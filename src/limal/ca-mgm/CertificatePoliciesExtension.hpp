@@ -24,6 +24,8 @@
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
+#include  <limal/ca-mgm/ExtensionBase.hpp>
+#include  <limal/ca-mgm/CA.hpp>
 
 namespace LIMAL_NAMESPACE {
 
@@ -51,8 +53,8 @@ namespace CA_MGM_NAMESPACE {
         void                setOrganization(const String& org);
         String              getOrganization() const;
 
-        void                setNoticeNumbers(const List<blocxx::Int32>& numbers);
-        List<blocxx::Int32> getNoticeNumbers();
+        void                setNoticeNumbers(const blocxx::List<blocxx::Int32>& numbers);
+        blocxx::List<blocxx::Int32> getNoticeNumbers();
         void                addNoticeNumber(blocxx::Int32 num);
 
     private:
@@ -64,7 +66,7 @@ namespace CA_MGM_NAMESPACE {
         // (if included) must BOTH be present.
 
         String              organization;      // max 200 characters 
-        List<blocxx::Int32> noticeNumbers;
+        blocxx::List<blocxx::Int32> noticeNumbers;
 
     };
 
@@ -80,15 +82,15 @@ namespace CA_MGM_NAMESPACE {
         void                    enableIA5org(bool ia5org = true);
         bool                    isIA5orgEnabled() const;
 
-        void                    setPolicies(const List<CertificatePolicy>& policies);
-        List<CertificatePolicy> getPolicies() const;
+        void                    setPolicies(const blocxx::List<CertificatePolicy>& policies);
+        blocxx::List<CertificatePolicy> getPolicies() const;
         void                    addPolicy(const CertificatePolicy& policy);
 
         virtual void commit2Config(CA& ca, Type type);
     private:
 
         bool ia5org;
-        List<CertificatePolicy> policies;
+        blocxx::List<CertificatePolicy> policies;
 
     };
 

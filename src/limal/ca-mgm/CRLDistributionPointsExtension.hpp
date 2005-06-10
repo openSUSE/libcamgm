@@ -24,6 +24,9 @@
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
+#include  <limal/ca-mgm/ExtensionBase.hpp>
+#include  <limal/ca-mgm/CA.hpp>
+#include  <limal/ca-mgm/LiteralValues.hpp>
 
 namespace LIMAL_NAMESPACE {
 
@@ -38,13 +41,13 @@ namespace CA_MGM_NAMESPACE {
 
         CRLDistributionPointsExtension& operator=(const CRLDistributionPointsExtension& extension);
 
-        void                   setCRLDistributionPoints(List<LiteralValueBase>);
-        List<LiteralValueBase> getCRLDistributionPoints() const;
+        void                   setCRLDistributionPoints(blocxx::List<LiteralValueBase>);
+        blocxx::List<LiteralValueBase> getCRLDistributionPoints() const;
 
         virtual void commit2Config(CA& ca, Type type);
 
     private:
-        List<LiteralValueBase> altNameList;
+        blocxx::List<LiteralValueBase> altNameList;
     };
 
 }

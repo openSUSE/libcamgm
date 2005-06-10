@@ -23,7 +23,7 @@
 #define    LIMAL_CA_MGM_LITERAL_VALUES_HPP
 
 #include  <limal/ca-mgm/config.h>
-#include  <limal/ca-mgm/CommonData.h>
+#include  <limal/ca-mgm/CommonData.hpp>
 
 namespace LIMAL_NAMESPACE {
 
@@ -38,7 +38,7 @@ namespace CA_MGM_NAMESPACE {
         virtual String getValue() const = 0;
 
     protected:
-        LiteralValueBase(const String &value) : literalValue(value);
+        LiteralValueBase(const String &value) : literalValue(value) {};
         LiteralValueBase(const LiteralValueBase& value);
 
         LiteralValueBase& operator=(const LiteralValueBase& value);
@@ -46,7 +46,7 @@ namespace CA_MGM_NAMESPACE {
     private:
         String literalValue;
 
-        LiteralValueBase() : literalValue(String());
+        LiteralValueBase() : literalValue(String()) {};
 
     };
 

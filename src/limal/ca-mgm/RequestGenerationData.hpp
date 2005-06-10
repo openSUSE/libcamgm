@@ -24,7 +24,10 @@
 #define    LIMAL_CA_MGM_REQUEST_GENERATION_DATA_HPP
 
 #include  <limal/ca-mgm/config.h>
-#include  <limal/ca-mgm/CommonData.h>
+#include  <limal/ca-mgm/CommonData.hpp>
+#include  <limal/ca-mgm/CA.hpp>
+#include  <limal/ca-mgm/DNObject.hpp>
+#include  <limal/ca-mgm/X509v3RequestExtensions.hpp>
 
 namespace LIMAL_NAMESPACE
 {
@@ -57,8 +60,8 @@ namespace CA_MGM_NAMESPACE
         void                setUnstructuredName(const String &name);
         String              getUnstructuredName() const;
 
-        void                setExtensions(const X509v3RequestExtension &ext);
-        X509v3RequestExtension getExtensions() const;
+        void                setExtensions(const X509v3RequestExtensions &ext);
+        X509v3RequestExtensions getExtensions() const;
 
         void                commit2Config(CA& ca, Type type);
 

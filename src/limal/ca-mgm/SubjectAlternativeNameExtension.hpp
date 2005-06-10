@@ -23,7 +23,9 @@
 #define    LIMAL_CA_MGM_SUBJECT_ALTERNATIVE_NAME_EXTENSION_HPP
 
 #include  <limal/ca-mgm/config.h>
-#include  <limal/ca-mgm/CommonData.h>
+#include  <limal/ca-mgm/CommonData.hpp>
+#include  <limal/ca-mgm/CA.hpp>
+#include  <limal/ca-mgm/ExtensionBase.hpp>
 
 namespace LIMAL_NAMESPACE {
 
@@ -33,7 +35,7 @@ namespace CA_MGM_NAMESPACE {
     public:
         SubjectAlternativeNameExtension(CA& ca, Type type);
         SubjectAlternativeNameExtension(bool copyEmail = false,
-                                       const List<LiteralValueBase> &alternativeNameList = List<LiteralValueBase>());
+                                        const blocxx::List<LiteralValueBase> &alternativeNameList = blocxx::List<LiteralValueBase>());
         SubjectAlternativeNameExtension(const SubjectAlternativeNameExtension& extension);
 
         virtual ~SubjectAlternativeNameExtension();
@@ -43,16 +45,16 @@ namespace CA_MGM_NAMESPACE {
         void  setCopyEmail(bool copyEmail);
         bool  getCopyEmail() const;
 
-        void                   setAlternativeNameList(const List<LiteralValueBase> &alternativeNameList);
-        List<LiteralValueBase> getAlternativeNameList() const;
+        void                   setAlternativeNameList(const blocxx::List<LiteralValueBase> &alternativeNameList);
+        blocxx::List<LiteralValueBase> getAlternativeNameList() const;
 
         void                   addSubjectAltName(const LiteralValueBase& altName);
 
         virtual void commit2Config(CA& ca, Type type);
 
     private:
-        bool                   emailCopy;
-        List<LiteralValueBase> altNameList;
+        bool                           emailCopy;
+        blocxx::List<LiteralValueBase> altNameList;
     };
 
 }

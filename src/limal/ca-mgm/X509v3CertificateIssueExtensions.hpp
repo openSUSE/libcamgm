@@ -24,7 +24,19 @@
 #define    LIMAL_CA_MGM_X509V_CERTIFICATE_ISSUE_EXTENSIONS_HPP
 
 #include  <limal/ca-mgm/config.h>
-#include  <limal/ca-mgm/CommonData.h>
+#include  <limal/ca-mgm/CommonData.hpp>
+#include  <limal/ca-mgm/CA.hpp>
+#include  <limal/ca-mgm/StringExtension.hpp>
+#include  <limal/ca-mgm/BitExtensions.hpp>
+#include  <limal/ca-mgm/BasicConstraintsExtension.hpp>
+#include  <limal/ca-mgm/SubjectKeyIdentifierExtension.hpp>
+#include  <limal/ca-mgm/SubjectKeyIdentifierExtension.hpp>
+#include  <limal/ca-mgm/AuthorityKeyIdentifierGenerateExtension.hpp>
+#include  <limal/ca-mgm/SubjectAlternativeNameExtension.hpp>
+#include  <limal/ca-mgm/IssuerAlternativeNameExtension.hpp>
+#include  <limal/ca-mgm/AuthorityInfoAccessExtension.hpp>
+#include  <limal/ca-mgm/CRLDistributionPointsExtension.hpp>
+#include  <limal/ca-mgm/CertificatePoliciesExtension.hpp>
 
 namespace LIMAL_NAMESPACE
 {
@@ -86,10 +98,10 @@ namespace CA_MGM_NAMESPACE
 
         void                            setSubjectAlternativeName(const SubjectAlternativeNameExtension &ext);
         SubjectAlternativeNameExtension getSubjectAlternativeName() const;
-
+        
         void                            setIssuerAlternativeName(const IssuerAlternativeNameExtension &ext);
         IssuerAlternativeNameExtension  getIssuerAlternativeName() const;
-
+                                                                     
         void                            setAuthorityInfoAccess(const AuthorityInfoAccessExtension &ext);
         AuthorityInfoAccessExtension    getAuthorityInfoAccess() const;
 

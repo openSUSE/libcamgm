@@ -33,24 +33,25 @@ namespace CA_MGM_NAMESPACE {
     public:
 
         enum KeyID {
-            none,
-            normal,
-            always
+            KeyID_none,
+            KeyID_normal,
+            KeyID_always
         };
         
         enum Issuer {
-            none,
-            normal,
-            always
+            Issuer_none,
+            Issuer_normal,
+            Issuer_always
         };
 
-        AuthorityKeyIdentifierExtension();
-        AuthorityKeyIdentifierExtension(CA& ca, Type type);
-        AuthorityKeyIdentifierExtension(KeyID kid, Issuer iss);
-        AuthorityKeyIdentifierExtension(const AuthorityKeyIdentifierExtension& extension);
-        virtual ~AuthorityKeyIdentifierExtension();
+        AuthorityKeyIdentifierGenerateExtension();
+        AuthorityKeyIdentifierGenerateExtension(CA& ca, Type type);
+        AuthorityKeyIdentifierGenerateExtension(KeyID kid, Issuer iss);
+        AuthorityKeyIdentifierGenerateExtension(const AuthorityKeyIdentifierGenerateExtension& extension);
+        virtual ~AuthorityKeyIdentifierGenerateExtension();
 
-        AuthorityKeyIdentifierExtension& operator=(const AuthorityKeyIdentifierExtension& extension);
+        AuthorityKeyIdentifierGenerateExtension& 
+        operator=(const AuthorityKeyIdentifierGenerateExtension& extension);
 
         void           setKeyID(KeyID kid);
         KeyID          getKeyID() const;

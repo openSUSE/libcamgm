@@ -24,7 +24,10 @@
 #define    LIMAL_CA_MGM_X509V3_CRL_GENERATION_EXTENSIONS_HPP
 
 #include  <limal/ca-mgm/config.h>
-#include  <limal/ca-mgm/CommonData.h>
+#include  <limal/ca-mgm/CommonData.hpp>
+#include  <limal/ca-mgm/AuthorityKeyIdentifierGenerateExtension.hpp>
+#include  <limal/ca-mgm/IssuerAlternativeNameExtension.hpp>
+#include  <limal/ca-mgm/CA.hpp>
 
 namespace LIMAL_NAMESPACE
 {

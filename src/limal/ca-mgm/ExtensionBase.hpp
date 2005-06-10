@@ -29,12 +29,16 @@ namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
+    class CA;
+
     class ExtensionBase {
 
     public:
         ExtensionBase(bool extPresent = false, bool extCritical = false)
             :present(extPresent), critical(extCritical) {}
+
         ExtensionBase(const ExtensionBase& extension);
+
         virtual ~ExtensionBase();
 
         ExtensionBase& operator=(const ExtensionBase& extension);
@@ -42,8 +46,8 @@ namespace CA_MGM_NAMESPACE {
         void   setPresent(bool extPresent);
         void   setCritical(bool extCritical);
 
-        bool   isCritical() { return (present)?critical:false; }
-        bool   isPresent()  { return present; }
+        bool   isCritical() const { return (present)?critical:false; }
+        bool   isPresent() const  { return present; }
 
         virtual void commit2Config(CA& ca, Type type) = 0;
 

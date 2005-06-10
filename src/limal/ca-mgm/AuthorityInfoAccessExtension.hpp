@@ -25,14 +25,18 @@
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <limal/ca-mgm/LiteralValues.hpp>
+#include  <limal/ca-mgm/ExtensionBase.hpp>
 
 namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
+    class CA;
+
     class AuthorityInfoAccessExtension : public ExtensionBase {
     public:
         enum AccessOIDType {
+            none,
             OCSP,
             caIssuers,
             OID
@@ -58,8 +62,8 @@ namespace CA_MGM_NAMESPACE {
          */
         String                 getAccessOID() const;
 
-        void                   setLocation(List<LiteralValueBase> locationList);
-        List<LiteralValueBase> getLocation() const;
+        void                   setLocation(blocxx::List<LiteralValueBase> locationList);
+        blocxx::List<LiteralValueBase> getLocation() const;
 
         void                   addLocation(const LiteralValueBase& location);
 
@@ -69,7 +73,7 @@ namespace CA_MGM_NAMESPACE {
         AccessOIDType          type;
         String                 accessIOD;
 
-        List<LiteralValueBase> locList;
+        blocxx::List<LiteralValueBase> locList;
    
     };
 

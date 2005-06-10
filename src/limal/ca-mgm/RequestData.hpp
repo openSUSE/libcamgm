@@ -24,6 +24,8 @@
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
+#include  <limal/ca-mgm/X509v3RequestExtensions.hpp>
+#include  <limal/ca-mgm/DNObject.hpp>
 
 namespace LIMAL_NAMESPACE {
 
@@ -42,11 +44,11 @@ namespace CA_MGM_NAMESPACE {
         blocxx::UInt32      getKeysize() const;
         DNObject            getSubject() const;
         KeyAlg              getKeyAlgorithm() const;
-        Array<blocxx::Int8> getPublicKey() const;
+        ByteArray           getPublicKey() const;
         SigAlg              getSignatureAlgorithm() const;
         String              getSignature() const;
         String              getFingerprint() const;
-        X509v3RequestExtension getExtensions() const;
+        X509v3RequestExtensions getExtensions() const;
         String              getChallengePassword() const;
         String              getUnstructuredName() const;
 
@@ -65,7 +67,7 @@ namespace CA_MGM_NAMESPACE {
         //   man EVP_PKEY_get1_RSA
         //   man i2d_RSAPublicKey     => i2d == internal to DER
         //   man d2i_RSAPublicKey     => d2i == DER to internal
-        Array<int8>      publicKey;  
+        ByteArray        publicKey;  
 
         SigAlg           signatureAlgorithm;
         String           signature;     // mit private key verschlüsselter Hash wert

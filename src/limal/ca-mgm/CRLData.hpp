@@ -24,6 +24,9 @@
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
+#include  <limal/ca-mgm/CRLReason.hpp>
+#include  <limal/ca-mgm/DNObject.hpp>
+#include  <limal/ca-mgm/X509v3CRLExtensions.hpp>
 
 namespace LIMAL_NAMESPACE {
 
@@ -42,7 +45,7 @@ namespace CA_MGM_NAMESPACE {
 
         void        setSerial(const String& serial);
         void        setRevokationDate(time_t date);
-        void        setReason(const CRLReason_Int& reason);
+        void        setReason(const CRLReason& reason);
 
         String      getSerial() const;
         time_t      getRevokationDate() const;
@@ -74,7 +77,7 @@ namespace CA_MGM_NAMESPACE {
         String                       getSignatureAlgorithmAsString() const; 
         String                       getSignature() const;
         X509v3CRLExtensions          getExtensions() const;
-        Map<String, RevokationEntry> getRevokationData() const;
+        blocxx::Map<String, RevokationEntry> getRevokationData() const;
         RevokationEntry              getRevokationEntry(const String& oid);
 
     protected:
@@ -89,11 +92,11 @@ namespace CA_MGM_NAMESPACE {
         SigAlg           signatureAlgorithm;
         String           signature;     // mit private key der CA verschlüsselter Hash wert
                                         // des Zertifikates
-
+        
         X509v3CRLExtensions extensions;
 
         //RevokationData   revokationData;
-        Map<String, RevokationEntry> revokationData;
+        blocxx::Map<String, RevokationEntry> revokationData;
 
     private:
         CRLData(const CRLData& data);

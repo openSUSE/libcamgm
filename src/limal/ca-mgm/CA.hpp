@@ -30,7 +30,14 @@
 #define    REPOSITORY   "/var/lib/CAM/"
 
 #include  <limal/ca-mgm/config.h>
-#include  <limal/ca-mgm/CommonData.h>
+#include  <limal/ca-mgm/CommonData.hpp>
+#include  <limal/ca-mgm/RequestGenerationData.hpp>
+#include  <limal/ca-mgm/RequestData.hpp>
+#include  <limal/ca-mgm/CRLGenerationData.hpp>
+#include  <limal/ca-mgm/CRLData.hpp>
+#include  <limal/ca-mgm/CertificateIssueData.hpp>
+#include  <limal/ca-mgm/CertificateData.hpp>
+#include  <limal/ca-mgm/CAConfig.hpp>
 
 namespace LIMAL_NAMESPACE
 {

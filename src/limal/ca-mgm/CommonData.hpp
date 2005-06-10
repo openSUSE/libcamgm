@@ -32,13 +32,11 @@ namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
-    typedef blocxx::String                String;
-    typedef blocxx::List                  List;
-    typedef blocxx::Map                   Map;
-    typedef List<String>                  StringList;
-    typedef List<Map<String, String> >    StringMapList;
+    typedef blocxx::String                             String;
+    typedef blocxx::List<String>                       StringList;
+    typedef blocxx::List<blocxx::Map<String, String> > StringMapList;
 
-    typedef blocxx::Array<blocxx::Int8>   ByteArray; 
+    typedef blocxx::Array<blocxx::Int8>                ByteArray; 
 
     enum Type {
         Client_Req,

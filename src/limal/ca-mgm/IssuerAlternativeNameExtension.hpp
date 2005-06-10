@@ -24,6 +24,9 @@
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
+#include  <limal/ca-mgm/ExtensionBase.hpp>
+#include  <limal/ca-mgm/LiteralValues.hpp>
+#include  <limal/ca-mgm/CA.hpp>
 
 namespace LIMAL_NAMESPACE {
 
@@ -32,7 +35,7 @@ namespace CA_MGM_NAMESPACE {
     class IssuerAlternativeNameExtension : public ExtensionBase {
     public:
         IssuerAlternativeNameExtension(bool copyIssuer = false, 
-                                       const List<LiteralValueBase> &alternativeNameList = List<LiteralValueBase>());
+                                       const blocxx::List<LiteralValueBase> &alternativeNameList = blocxx::List<LiteralValueBase>());
         IssuerAlternativeNameExtension(CA& ca, Type type);
         IssuerAlternativeNameExtension(const IssuerAlternativeNameExtension& extension);
         virtual ~IssuerAlternativeNameExtension();
@@ -42,8 +45,8 @@ namespace CA_MGM_NAMESPACE {
         void  setCopyIssuer(bool copyIssuer);
         bool  getCopyIssuer() const;
 
-        void                   setAlternativeNameList(const List<LiteralValueBase> &alternativeNameList);
-        List<LiteralValueBase> getAlternativeNameList() const;
+        void                   setAlternativeNameList(const blocxx::List<LiteralValueBase> &alternativeNameList);
+        blocxx::List<LiteralValueBase> getAlternativeNameList() const;
 
         void                   addIssuerAltName(const LiteralValueBase& altName);
 
@@ -51,7 +54,7 @@ namespace CA_MGM_NAMESPACE {
 
     private:
         bool issuerCopy;
-        List<LiteralValueBase> altNameList;
+        blocxx::List<LiteralValueBase> altNameList;
     };
 
 }

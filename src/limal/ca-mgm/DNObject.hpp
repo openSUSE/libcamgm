@@ -23,7 +23,7 @@
 #define    LIMAL_CA_MGM_DN_OBJECT_HPP
 
 #include  <limal/ca-mgm/config.h>
-#include  <limal/ca-mgm/CommonData.h>
+#include  <limal/ca-mgm/CommonData.hpp>
 
 namespace LIMAL_NAMESPACE {
 
@@ -53,17 +53,17 @@ namespace CA_MGM_NAMESPACE {
     class DNObject {
     public:
         DNObject();
-        DNObject(const List<RDNObject> &dn);
+        DNObject(const blocxx::List<RDNObject> &dn);
         DNObject(const DNObject& dn);
         virtual ~DNObject();
 
         DNObject& operator=(const DNObject& dn);
 
-        void            setDN(const List<RDNObject> &dn);
-        List<RDNObject> getDN() const;
+        void            setDN(const blocxx::List<RDNObject> &dn);
+        blocxx::List<RDNObject> getDN() const;
         
     private:
-        List<RDNObject> dn;
+        blocxx::List<RDNObject> dn;
 
     };
 
