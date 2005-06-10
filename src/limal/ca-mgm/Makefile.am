@@ -6,8 +6,38 @@ pkglimalincludedir = $(limalincludedir)/ca-mgm
 
 # these go to $(pkglimalincludedir)
 pkglimalinclude_HEADERS =   \
-	CaMgm.hpp	    \
-	config.h
+	config.h \
+        AuthorityInfoAccessExtension.hpp \
+        AuthorityKeyIdentifierExtension.hpp \
+        AuthorityKeyIdentifierGenerateExtension.hpp \
+        BasicConstraintsExtension.hpp \
+        BitExtensions.hpp \
+        CAConfig.hpp \
+        CA.hpp \
+        CertificateData.hpp \
+        CertificateIssueData.hpp \
+        CertificatePoliciesExtension.hpp \
+        CommonData.hpp \
+        CRLData.hpp \
+        CRLDistributionPointsExtension.hpp \
+        CRLGenerationData.hpp \
+        CRLReason.hpp \
+        DNObject.hpp \
+        ExtensionBase.hpp \
+        IssuerAlternativeNameExtension.hpp \
+        LiteralValues.hpp \
+        LocalManagement.hpp \
+        RequestData.hpp \
+        RequestGenerationData.hpp \
+        StringExtension.hpp \
+        SubjectAlternativeNameExtension.hpp \
+        SubjectKeyIdentifierExtension.hpp \
+        X509v3CertificateExtensions.hpp \
+        X509v3CertificateIssueExtensions.hpp \
+        X509v3CRLExtensions.hpp \
+        X509v3CRLGenerationExtensions.hpp \
+        X509v3RequestExtensions.hpp 
+
 
 #
 # replace some constants only
