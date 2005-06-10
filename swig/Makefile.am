@@ -1,0 +1,3 @@
+SUBDIRS = perl5
+
+EXTRA_DIST = *.i

@@ -1,0 +1,52 @@
+@HEADER-COMMENT@
+
+# neededforbuild  limal-devel-packages 
+@HEADER@
+Summary:	-
+
+%description
+-
+
+@HEADER-DEVEL@
+Summary:	-
+
+%description devel
+-
+
+@HEADER-PERL@
+Summary:	-
+
+%description perl
+-
+
+
+@PREP@
+
+@BUILD@
+
+@INSTALL@
+
+@CLEAN@
+
+%files
+%defattr(-,root,root)
+%dir @limallibdir@
+@limallibdir@/lib*.so.*
+
+%files devel
+%defattr(-,root,root)
+%dir @limallibdir@
+@limallibdir@/lib*.so
+@limallibdir@/lib*.la
+%dir @limalincludedir@/@RPMLIB@
+@limalincludedir@/@RPMLIB@/*
+@pkgconfigdir@/@RPMNAME@.pc
+%doc @docdir@
+
+%files perl
+%defattr(-,root,root)
+%dir %{perl_vendorarch}/LIMAL
+%dir %{perl_vendorarch}/auto/LIMAL
+%dir %{perl_vendorarch}/auto/LIMAL/CaMgm/
+%{perl_vendorarch}/auto/LIMAL/CaMgm/*
+%{perl_vendorarch}/LIMAL/*.pm

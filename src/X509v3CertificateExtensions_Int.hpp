@@ -1,0 +1,68 @@
+/*---------------------------------------------------------------------\
+|                                                                      |
+|                     _     _   _   _     __     _                     |
+|                    | |   | | | \_/ |   /  \   | |                    |
+|                    | |   | | | |_| |  / /\ \  | |                    |
+|                    | |__ | | | | | | / ____ \ | |__                  |
+|                    |____||_| |_| |_|/ /    \ \|____|                 |
+|                                                                      |
+|                             ca-mgm library                           |
+|                                                                      |
+|                                         (C) SUSE Linux Products GmbH |
+\----------------------------------------------------------------------/
+
+  File:       X509v3CertificateExtensions_Int.hpp
+
+  Author:     <Michael Calmer>     <mc@suse.de>
+  Maintainer: <Michael Calmer>     <mc@suse.de>
+
+  Purpose:
+
+/-*/
+#ifndef    LIMAL_CA_MGM_X509V3_CERTIFICATE_EXTENSION_INT_HPP
+#define    LIMAL_CA_MGM_X509V3_CERTIFICATE_EXTENSION_INT_HPP
+
+#include  <limal/ca-mgm/config.h>
+#include  <limal/ca-mgm/CommonData.hpp>
+#include  <openssl/x509.h>
+#include  <limal/ca-mgm/X509v3CertificateExtensions.hpp>
+
+namespace LIMAL_NAMESPACE {
+
+namespace CA_MGM_NAMESPACE {
+
+    class X509v3CertificateExtensions_Int : public X509v3CertificateExtensions {
+    public:
+        X509v3CertificateExtensions_Int();
+        X509v3CertificateExtensions_Int(X509* cert);
+        virtual ~X509v3CertificateExtensions_Int();
+
+        void   setNsBaseUrl(const NsBaseUrlExtension &ext);
+        void   setNsRevocationUrl(const NsRevocationUrlExtension &ext);
+        void   setNsCaRevocationUrl(const NsCaRevocationUrlExtension &ext);
+        void   setNsRenewalUrl(const NsRenewalUrlExtension &ext);
+        void   setNsCaPolicyUrl(const NsCaPolicyUrlExtension &ext);
+        void   setNsSslServerName(const NsSslServerNameExtension &ext);
+        void   setNsComment(const NsCommentExtension &ext);
+        void   setNsCertType(const NsCertTypeExtension &ext);
+        void   setKeyUsage(const KeyUsageExtension &ext);
+        void   setBasicConstraints(const BasicConstraintsExtension &ext);
+        void   setExtendedKeyUsage(const ExtendedKeyUsageExtension &ext);
+        void   setSubjectKeyIdentifier(const SubjectKeyIdentifierExtension &ext);
+        void   setAuthorityKeyIdentifier(const AuthorityKeyIdentifierExtension &ext);
+        void   setSubjectAlternativeName(const SubjectAlternativeNameExtension &ext);
+        void   setIssuerAlternativeName(const IssuerAlternativeNameExtension &ext);
+        void   setAuthorityInfoAccess(const AuthorityInfoAccessExtension &ext);
+        void   setCRLDistributionPoints(const CRLDistributionPointsExtension &ext);
+        void   setCertificatePolicies(const CertificatePoliciesExtension &ext);
+
+    private:
+        X509v3CertificateExtensions_Int(const X509v3CertificateExtensions_Int& extensions);
+
+        X509v3CertificateExtensions_Int& operator=(const X509v3CertificateExtensions_Int& extensions);
+    };
+
+}
+}
+
+#endif // LIMAL_CA_MGM_X509V3_CERTIFICATE_EXTENSION_HPP

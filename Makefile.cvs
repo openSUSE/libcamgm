@@ -1,0 +1,21 @@
+#
+# Makefile.cvs
+#
+
+LIB = $(shell limaltool get-lib)
+
+configure: all
+	./configure --libdir=/usr/$(LIB)
+
+all:
+	limaltool limalautoconf
+	limaltool limalautomake
+	autoreconf --force --install
+
+install: configure
+	make
+	make install
+
+reconf: all
+	./config.status --recheck
+	./config.status

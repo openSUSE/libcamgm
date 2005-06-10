@@ -1,0 +1,99 @@
+/*---------------------------------------------------------------------\
+|                                                                      |
+|                     _     _   _   _     __     _                     |
+|                    | |   | | | \_/ |   /  \   | |                    |
+|                    | |   | | | |_| |  / /\ \  | |                    |
+|                    | |__ | | | | | | / ____ \ | |__                  |
+|                    |____||_| |_| |_|/ /    \ \|____|                 |
+|                                                                      |
+|                             ca-mgm library                          |
+|                                                                      |
+|                                         (C) SUSE Linux Products GmbH |
+\----------------------------------------------------------------------/
+
+  File:       config.h
+
+  Author:     <Michael Calmer>     <mc@suse.de>
+  Maintainer: <Michael Calmer>     <mc@suse.de>
+
+  Purpose:
+
+/-*/
+/**
+ * @file config.h
+ * This is config file, where we declare the namespace
+ * and compilation time definitions, like our version.
+ */
+#ifndef    ca_mgm_config_h
+#define    ca_mgm_config_h
+
+#include  <limal/config.h>
+
+
+/**
+ * LiMaL ca-mgm library version.
+ */
+#ifndef LIMAL_CA_MGM_LIB_VERSION
+#define LIMAL_CA_MGM_LIB_VERSION		"@LIMAL_CA_MGM_LIB_VERSION@"
+#endif
+
+
+/**
+ * LiMaL ca-mgm API/namespace version.
+ */
+#ifndef LIMAL_CA_MGM_API_VERSION
+#define LIMAL_CA_MGM_API_VERSION		@LIMAL_CA_MGM_API_VERSION@
+#endif
+
+
+/**
+ * LiMaL ca-mgm namespace definition
+ * with appended API version number.
+ */
+#ifndef CA_MGM_NAMESPACE
+#define CA_MGM_NAMESPACE \
+	LIMAL_DEFINE_NAMESPACE(ca_mgm, LIMAL_CA_MGM_API_VERSION)
+#endif /* CA_MGM_NAMESPACE */
+
+
+/**
+ * @namespace limal::ca_mgm
+ * The LiMaL ca_mgm namespace is only a alias.
+ * The real namespace is defined in the @file config.h
+ * file to a namespace with appended API version number.
+ */
+#ifdef    __cplusplus
+namespace LIMAL_NAMESPACE
+{
+    namespace CA_MGM_NAMESPACE
+    {
+    }
+    namespace ca_mgm = CA_MGM_NAMESPACE;
+}
+#endif /* __cplusplus */
+
+
+#ifdef    __cplusplus
+extern "C" {
+#endif /* __cplusplus */
+
+/**
+ * LiMaL ca-mgm lib version number function.
+ * @returns library version string
+ */
+const char * const limal_ca_mgm_lib_version();
+
+
+/**
+ * LiMaL ca-mgm API version number function.
+ * @returns library API version number
+ */
+const unsigned int limal_ca_mgm_api_version();
+
+#ifdef    __cplusplus
+}
+#endif /* __cplusplus */
+
+
+#endif /* ca_mgm_config_h  */
+
