@@ -21,7 +21,17 @@ liblimal_ca_mgm_la_SOURCES  =	\
 	BasicConstraintsExtension.cpp \
 	BitExtensions.cpp \
 	CAConfig.cpp \
-	CA.cpp
+	CA.cpp \
+	CertificateData.cpp \
+	CertificateIssueData.cpp \
+	CertificatePoliciesExtension.cpp \
+	CRLData.cpp \
+	CRLDistributionPointsExtension.cpp \
+	CRLGenerationData.cpp \
+	CRLReason.cpp \
+	DNObject.cpp \
+	IssuerAlternativeNameExtension.cpp \
+	LiteralValues.cpp
 
 
 liblimal_ca_mgm_la_CXXFLAGS = $(LIMAL_CFLAGS)
