@@ -24,6 +24,9 @@
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
+#include  <limal/ca-mgm/CertificateData.hpp>
+#include  <limal/ca-mgm/RequestData.hpp>
+#include  <limal/ca-mgm/CRLData.hpp>
 
 namespace LIMAL_NAMESPACE {
 
@@ -37,6 +40,7 @@ namespace CA_MGM_NAMESPACE {
      */
     class LocalManagement {
 
+    public:
 
         static void 
         importAsLocalCertificate(const String &pkcs12File,
@@ -73,7 +77,7 @@ namespace CA_MGM_NAMESPACE {
                FormatType    type);
 
 
-    }
+    };
 
 }
 }

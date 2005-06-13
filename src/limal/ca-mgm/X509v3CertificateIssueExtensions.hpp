@@ -25,8 +25,7 @@
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
-#include  <limal/ca-mgm/CA.hpp>
-#include  <limal/ca-mgm/StringExtension.hpp>
+#include  <limal/ca-mgm/StringExtensions.hpp>
 #include  <limal/ca-mgm/BitExtensions.hpp>
 #include  <limal/ca-mgm/BasicConstraintsExtension.hpp>
 #include  <limal/ca-mgm/SubjectKeyIdentifierExtension.hpp>
@@ -42,6 +41,8 @@ namespace LIMAL_NAMESPACE
 {
 namespace CA_MGM_NAMESPACE
 {
+
+    class CA;
 
     /**
      * @brief Collection of X509v3 extension for signing a certificate

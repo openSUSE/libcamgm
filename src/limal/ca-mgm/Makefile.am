@@ -29,7 +29,7 @@ pkglimalinclude_HEADERS =   \
         LocalManagement.hpp \
         RequestData.hpp \
         RequestGenerationData.hpp \
-        StringExtension.hpp \
+        StringExtensions.hpp \
         SubjectAlternativeNameExtension.hpp \
         SubjectKeyIdentifierExtension.hpp \
         X509v3CertificateExtensions.hpp \

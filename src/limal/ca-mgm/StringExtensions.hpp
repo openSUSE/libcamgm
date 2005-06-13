@@ -11,7 +11,7 @@
 |                                         (C) SUSE Linux Products GmbH |
 \----------------------------------------------------------------------/
 
-  File:       StringExtension.hpp
+  File:       StringExtensions.hpp
 
   Author:     <Michael Calmer>     <mc@suse.de>
   Maintainer: <Michael Calmer>     <mc@suse.de>
@@ -19,8 +19,8 @@
   Purpose:
 
 /-*/
-#ifndef    LIMAL_CA_MGM_STRING_EXTENSION_HPP
-#define    LIMAL_CA_MGM_STRING_EXTENSION_HPP
+#ifndef    LIMAL_CA_MGM_STRING_EXTENSIONS_HPP
+#define    LIMAL_CA_MGM_STRING_EXTENSIONS_HPP
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
@@ -38,18 +38,19 @@ namespace CA_MGM_NAMESPACE {
         virtual ~StringExtension();
 
         virtual void   setValue(const String &v) = 0;
-        virtual void   getValue() const = 0;
+        virtual String getValue() const = 0;
         
         virtual void commit2Config(CA& ca, Type type) = 0;
         
     protected:
-        StringExtension(const String &v ) : value(v) {};
+        StringExtension(const String &v );
         StringExtension(const StringExtension& extension);
         
         StringExtension& operator=(const StringExtension& extension);
         
-    private:
         String value;
+
+    private:
         
         StringExtension();
     };
@@ -64,7 +65,7 @@ namespace CA_MGM_NAMESPACE {
         NsBaseUrlExtension& operator=(const NsBaseUrlExtension& extension);
 
         void           setValue(const String &v);
-        void           getValue() const;
+        String         getValue() const;
 
         virtual void commit2Config(CA& ca, Type type);
     private:
@@ -81,7 +82,7 @@ namespace CA_MGM_NAMESPACE {
         NsRevocationUrlExtension& operator=(const NsRevocationUrlExtension& extension);
 
         void           setValue(const String &v);
-        void           getValue() const;
+        String         getValue() const;
 
         virtual void commit2Config(CA& ca, Type type);
     private:
@@ -99,7 +100,7 @@ namespace CA_MGM_NAMESPACE {
         NsCaRevocationUrlExtension& operator=(const NsCaRevocationUrlExtension& extension);
 
         void           setValue(const String &v);
-        void           getValue() const;
+        String         getValue() const;
 
         virtual void commit2Config(CA& ca, Type type);
     private:
@@ -117,7 +118,7 @@ namespace CA_MGM_NAMESPACE {
         NsRenewalUrlExtension& operator=(const NsRenewalUrlExtension& extension);
 
         void           setValue(const String &v);
-        void           getValue() const;
+        String         getValue() const;
 
         virtual void commit2Config(CA& ca, Type type);
     private:
@@ -134,7 +135,7 @@ namespace CA_MGM_NAMESPACE {
         NsCaPolicyUrlExtension& operator=(const NsCaPolicyUrlExtension& extension);
 
         void           setValue(const String &v);
-        void           getValue() const;
+        String         getValue() const;
 
         virtual void commit2Config(CA& ca, Type type);
     private:
@@ -151,7 +152,7 @@ namespace CA_MGM_NAMESPACE {
         NsSslServerNameExtension& operator=(const NsSslServerNameExtension& extension);
 
         void           setValue(const String &v);
-        void           getValue() const;
+        String         getValue() const;
 
         virtual void commit2Config(CA& ca, Type type);
     private:
@@ -168,7 +169,7 @@ namespace CA_MGM_NAMESPACE {
         NsCommentExtension& operator=(const NsCommentExtension& extension);
 
         void           setValue(const String &v);
-        void           getValue() const;
+        String         getValue() const;
 
         virtual void commit2Config(CA& ca, Type type);
     private:

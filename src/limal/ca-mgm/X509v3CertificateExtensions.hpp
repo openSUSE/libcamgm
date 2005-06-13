@@ -24,7 +24,7 @@
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
-#include  <limal/ca-mgm/StringExtension.hpp>
+#include  <limal/ca-mgm/StringExtensions.hpp>
 #include  <limal/ca-mgm/BitExtensions.hpp>
 #include  <limal/ca-mgm/BasicConstraintsExtension.hpp>
 #include  <limal/ca-mgm/SubjectKeyIdentifierExtension.hpp>
