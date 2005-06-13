@@ -31,7 +31,11 @@ liblimal_ca_mgm_la_SOURCES  =	\
 	CRLReason.cpp \
 	DNObject.cpp \
 	IssuerAlternativeNameExtension.cpp \
-	LiteralValues.cpp
+	LiteralValues.cpp \
+	LocalManagement.cpp \
+	RequestData.cpp \
+	RequestGenerationData.cpp \
+	StringExtensions.cpp 
 
 
 liblimal_ca_mgm_la_CXXFLAGS = $(LIMAL_CFLAGS)
