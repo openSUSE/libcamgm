@@ -24,12 +24,14 @@
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
-#include  <limal/ca-mgm/CA.hpp>
 #include  <limal/ca-mgm/ExtensionBase.hpp>
+#include  <limal/ca-mgm/LiteralValues.hpp>
 
 namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
+
+    class CA;
 
     class SubjectAlternativeNameExtension : public ExtensionBase {
     public:

@@ -28,7 +28,7 @@
 #define    LIMAL_CA_CONFIG_HPP
 
 #include  <limal/ca-mgm/config.h>
-#include  <limal/ca-mgm/CommonData.h>
+#include  <limal/ca-mgm/CommonData.hpp>
 
 namespace LIMAL_NAMESPACE
 {

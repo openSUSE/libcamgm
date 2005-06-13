@@ -144,7 +144,7 @@ namespace CA_MGM_NAMESPACE
          * @return the name of the request
          */
         String importRequest(const ByteArray& request,
-                             FormatType formatType = FormatType::PEM);
+                             FormatType formatType = PEM);
 
 
         /**
@@ -378,7 +378,7 @@ namespace CA_MGM_NAMESPACE
          */
         bool verifyCertificate(const String& certificateName,
                                bool crlCheck = true,
-                               CertificatePurpose purpose = CertificatePurpose::any);
+                               CertificatePurpose purpose = any);
 
 
         /* ##########################################################################
@@ -431,13 +431,13 @@ namespace CA_MGM_NAMESPACE
          *
          * @return a list of lists of the available CAs 
          */
-        static List<StringList> getCATree();
+        static blocxx::List<StringList> getCATree();
 
     private:
         String caName;
         String caPasswd;
 
-        CAConfig template; 
+        CAConfig *config; 
 
         CA();
         CA(const CA&);

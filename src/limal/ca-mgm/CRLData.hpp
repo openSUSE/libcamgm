@@ -67,7 +67,10 @@ namespace CA_MGM_NAMESPACE {
      */
     class CRLData {
     public:
+        CRLData(const CRLData& data);
         virtual ~CRLData();
+
+        CRLData& operator=(const CRLData& data);
 
         blocxx::Int32                getVersion() const;
         time_t                       getLastUpdateDate() const;
@@ -98,10 +101,6 @@ namespace CA_MGM_NAMESPACE {
         //RevokationData   revokationData;
         blocxx::Map<String, RevokationEntry> revokationData;
 
-    private:
-        CRLData(const CRLData& data);
-
-        CRLData& operator=(const CRLData& data);
     };
 
 }

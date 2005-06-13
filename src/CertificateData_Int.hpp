@@ -23,7 +23,7 @@
 #define    LIMAL_CA_MGM_CERTIFICATE_DATA_INT_HPP
 
 #include  <limal/ca-mgm/config.h>
-#include  <limal/ca-mgm/CommonData.h>
+#include  <limal/ca-mgm/CommonData.hpp>
 #include  <limal/ca-mgm/CertificateData.hpp>
 
 namespace LIMAL_NAMESPACE {

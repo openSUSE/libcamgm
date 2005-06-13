@@ -38,7 +38,10 @@ namespace CA_MGM_NAMESPACE {
      */
     class RequestData {
     public:
+        RequestData(const RequestData& data);
         virtual ~RequestData();
+
+        RequestData& operator=(const RequestData& data);
 
         blocxx::UInt32      getVersion() const;
         blocxx::UInt32      getKeysize() const;
@@ -79,10 +82,6 @@ namespace CA_MGM_NAMESPACE {
         String challengePassword;
         String unstructuredName;
 
-    private:
-        RequestData(const RequestData& data);
-
-        RequestData& operator=(const RequestData& data);
 
     };
 

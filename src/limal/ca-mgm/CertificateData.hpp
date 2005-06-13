@@ -23,7 +23,8 @@
 #define    LIMAL_CA_MGM_CERTIFICATE_DATA_HPP
 
 #include  <limal/ca-mgm/config.h>
-#include  <limal/ca-mgm/CommonData.h>
+#include  <limal/ca-mgm/CommonData.hpp>
+#include  <limal/ca-mgm/X509v3CertificateExtensions.hpp>
 
 namespace LIMAL_NAMESPACE {
 
@@ -36,7 +37,11 @@ namespace CA_MGM_NAMESPACE {
      */
     class CertificateData {
     public:
+        CertificateData(const CertificateData& data);
+
         virtual ~CertificateData();
+
+        CertificateData& operator=(const CertificateData& data);
 
         blocxx::UInt32 getVersion() const;
         String         getSerial() const;
@@ -82,11 +87,6 @@ namespace CA_MGM_NAMESPACE {
 
 
         X509v3CertificateExtensions extensions;
-
-    private:
-        CertificateData(const CertificateData& data);
-
-        CertificateData& operator=(const CertificateData& data);
 
     };
 

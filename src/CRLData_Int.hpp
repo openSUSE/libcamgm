@@ -43,7 +43,7 @@ namespace CA_MGM_NAMESPACE {
         void   setSignatureAlgorithm(SigAlg sigAlg);
         void   setSignature(const String& sig);
         void   setExtensions(const X509v3CRLExtensions& ext);
-        void   setRevokationData(const Map<String, RevokationEntry>& data);
+        void   setRevokationData(const blocxx::Map<String, RevokationEntry>& data);
         void   addRevokationEntry(const String& oid,
                                   const RevokationEntry& entry);
         void   setRevokationEntry(const String& oid,

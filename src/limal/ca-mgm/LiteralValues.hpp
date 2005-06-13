@@ -34,8 +34,8 @@ namespace CA_MGM_NAMESPACE {
         virtual ~LiteralValueBase();
         
 
-        virtual void   setValue(const String &value) = 0;
-        virtual String getValue() const = 0;
+        virtual void   setValue(const String &value) { literalValue = value; }
+        virtual String getValue() const { return literalValue; }
 
     protected:
         LiteralValueBase(const String &value) : literalValue(value) {};

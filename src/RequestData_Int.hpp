@@ -34,17 +34,17 @@ namespace CA_MGM_NAMESPACE {
     public:
         RequestData_Int();
         RequestData_Int(const String& caName,
-                    const String& requestName);
+                        const String& requestName);
         ~RequestData_Int();
 
         void                setVersion(blocxx::UInt32 v);
         void                setKeysize(blocxx::UInt32 size);
         void                setSubject(const DNObject dn);
         void                setKeyAlgorithm(KeyAlg alg);
-        void                setPublicKey(const Array<blocxx::Int8> key);
+        void                setPublicKey(const ByteArray key);
         void                setSignatureAlgorithm(SigAlg alg);
         void                setSignature(const String &sig);
-        void                setExtensions(const X509v3RequestExtension &ext);
+        void                setExtensions(const X509v3RequestExtensions &ext);
         void                setChallengePassword(const String &passwd);
         void                setUnstructuredName(const String &name);
 

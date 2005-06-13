@@ -24,10 +24,13 @@
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
+#include  <limal/ca-mgm/ExtensionBase.hpp>
 
 namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
+
+    class CA;
 
     class AuthorityKeyIdentifierGenerateExtension : public ExtensionBase {
     public:

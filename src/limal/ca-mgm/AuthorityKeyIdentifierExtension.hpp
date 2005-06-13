@@ -24,6 +24,7 @@
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
+#include  <limal/ca-mgm/ExtensionBase.hpp>
 
 namespace LIMAL_NAMESPACE {
 
