@@ -26,11 +26,12 @@
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <limal/ca-mgm/ExtensionBase.hpp>
 #include  <limal/ca-mgm/LiteralValues.hpp>
-#include  <limal/ca-mgm/CA.hpp>
 
 namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
+
+    class CA;
 
     class IssuerAlternativeNameExtension : public ExtensionBase {
     public:

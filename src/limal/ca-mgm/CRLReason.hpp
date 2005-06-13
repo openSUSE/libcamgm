@@ -111,7 +111,7 @@ namespace CA_MGM_NAMESPACE {
         time_t getCompromiseDate() const;
 
     private:
-        time_t compromiseTime;
+        time_t compromiseDate;
     };
 
 }

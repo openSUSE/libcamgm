@@ -11,7 +11,7 @@
 |                                         (C) SUSE Linux Products GmbH |
 \----------------------------------------------------------------------/
 
-  File:       CertificateData.hpp
+  File:       CertificatePoliciesExtension.hpp
 
   Author:     <Michael Calmer>     <mc@suse.de>
   Maintainer: <Michael Calmer>     <mc@suse.de>
@@ -25,11 +25,12 @@
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <limal/ca-mgm/ExtensionBase.hpp>
-#include  <limal/ca-mgm/CA.hpp>
 
 namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
+
+    class CA;
 
     class CertificatePolicy {
     public:

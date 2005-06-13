@@ -24,7 +24,17 @@
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
-#include  <openssl/x509.h>
+#include  <limal/ca-mgm/StringExtension.hpp>
+#include  <limal/ca-mgm/BitExtensions.hpp>
+#include  <limal/ca-mgm/BasicConstraintsExtension.hpp>
+#include  <limal/ca-mgm/SubjectKeyIdentifierExtension.hpp>
+#include  <limal/ca-mgm/SubjectKeyIdentifierExtension.hpp>
+#include  <limal/ca-mgm/AuthorityKeyIdentifierExtension.hpp>
+#include  <limal/ca-mgm/SubjectAlternativeNameExtension.hpp>
+#include  <limal/ca-mgm/IssuerAlternativeNameExtension.hpp>
+#include  <limal/ca-mgm/AuthorityInfoAccessExtension.hpp>
+#include  <limal/ca-mgm/CRLDistributionPointsExtension.hpp>
+#include  <limal/ca-mgm/CertificatePoliciesExtension.hpp>
 
 namespace LIMAL_NAMESPACE {
 

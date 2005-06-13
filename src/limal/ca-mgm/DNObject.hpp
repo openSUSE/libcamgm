@@ -39,7 +39,7 @@ namespace CA_MGM_NAMESPACE {
         RDNObject& operator=(const RDNObject& rdn);
 
         void   setType(const String& type);
-        void   setValue(const String& type);
+        void   setValue(const String& value);
 
         String getType() const;
         String getValue() const;
