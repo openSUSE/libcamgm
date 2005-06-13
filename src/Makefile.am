@@ -13,7 +13,16 @@ AM_LDFLAGS  = -pthread
 limallib_LTLIBRARIES = liblimal-ca-mgm.la
 
 liblimal_ca_mgm_la_SOURCES  =	\
-	config.cpp
+	config.cpp \
+	ExtensionBase.cpp \
+	AuthorityInfoAccessExtension.cpp \
+	AuthorityKeyIdentifierExtension.cpp \
+	AuthorityKeyIdentifierGenerateExtension.cpp \
+	BasicConstraintsExtension.cpp \
+	BitExtensions.cpp \
+	CAConfig.cpp \
+	CA.cpp
+
 
 liblimal_ca_mgm_la_CXXFLAGS = $(LIMAL_CFLAGS)
 
