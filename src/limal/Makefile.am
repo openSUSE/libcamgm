@@ -4,3 +4,5 @@
 
 SUBDIRS = ca-mgm
 
+CLEANFILES = *~
+

@@ -48,4 +48,4 @@ config.h: config.h.in
 
 EXTRA_DIST = config.h.in
 DISTCLEANFILES = config.h
-
+CLEANFILES = *~
