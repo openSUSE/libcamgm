@@ -25,6 +25,7 @@
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <limal/ca-mgm/DNObject.hpp>
+#include  <openssl/x509.h>
 
 namespace LIMAL_NAMESPACE {
 
@@ -35,7 +36,6 @@ namespace CA_MGM_NAMESPACE {
         DNObject_Int(X509* cert);    
         virtual ~DNObject_Int();
 
-        void     initDN(X509* cert);
     private:
         DNObject_Int(const DNObject_Int& obj);    
 

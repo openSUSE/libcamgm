@@ -35,7 +35,7 @@ namespace CA_MGM_NAMESPACE {
         RequestData_Int();
         RequestData_Int(const String& caName,
                         const String& requestName);
-        ~RequestData_Int();
+        virtual ~RequestData_Int();
 
         void                setVersion(blocxx::UInt32 v);
         void                setKeysize(blocxx::UInt32 size);

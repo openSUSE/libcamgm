@@ -24,8 +24,8 @@
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
-#include  <openssl/x509.h>
 #include  <limal/ca-mgm/X509v3CertificateExtensions.hpp>
+#include  <openssl/x509.h>
 
 namespace LIMAL_NAMESPACE {
 

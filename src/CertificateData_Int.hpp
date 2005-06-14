@@ -38,11 +38,6 @@ namespace CA_MGM_NAMESPACE {
                             const String &certificateName);
         virtual ~CertificateData_Int();
 
-        void           initCA(const String &caName);
-
-        void           initCertificate(const String &caName,
-                                       const String &certificateName);
-
         void           setVersion(blocxx::UInt32 v);
 
         void           setSerial(const String& serial);
