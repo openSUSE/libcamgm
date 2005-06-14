@@ -28,65 +28,65 @@ using namespace limal::ca_mgm;
 using namespace blocxx;
 
 
-RevokationEntry::RevokationEntry()
+RevocationEntry::RevocationEntry()
 {
 }
 
-RevokationEntry::RevokationEntry(const String&    serial, 
+RevocationEntry::RevocationEntry(const String&    serial, 
                                  time_t           revokeDate,
                                  const CRLReason& reason)
 {
 }
 
-RevokationEntry::RevokationEntry(const RevokationEntry& entry)
+RevocationEntry::RevocationEntry(const RevocationEntry& entry)
 {
 }
 
-RevokationEntry::~RevokationEntry()
+RevocationEntry::~RevocationEntry()
 {
 }
 
-RevokationEntry& 
-RevokationEntry::operator=(const RevokationEntry& entry)
+RevocationEntry& 
+RevocationEntry::operator=(const RevocationEntry& entry)
 {
     return *this;
 }
 
 
 void
-RevokationEntry::setSerial(const String& serial)
+RevocationEntry::setSerial(const String& serial)
 {
     this->serial = serial;
 }
 
 void
-RevokationEntry::setRevokationDate(time_t date)
+RevocationEntry::setRevocationDate(time_t date)
 {
-    revokationDate = date;
+    revocationDate = date;
 }
 
 void
-RevokationEntry::setReason(const CRLReason& reason)
+RevocationEntry::setReason(const CRLReason& reason)
 {
-    revokationReason = reason;
+    revocationReason = reason;
 }
 
 blocxx::String
-RevokationEntry::getSerial() const
+RevocationEntry::getSerial() const
 {
     return serial;
 }
 
 time_t
-RevokationEntry::getRevokationDate() const
+RevocationEntry::getRevocationDate() const
 {
-    return revokationDate;
+    return revocationDate;
 }
 
 CRLReason
-RevokationEntry::getReason() const
+RevocationEntry::getReason() const
 {
-    return revokationReason;
+    return revocationReason;
 }
 
 
@@ -155,16 +155,16 @@ CRLData::getExtensions() const
     return extensions;
 }
 
-blocxx::Map<blocxx::String, RevokationEntry>
-CRLData::getRevokationData() const
+blocxx::Map<blocxx::String, RevocationEntry>
+CRLData::getRevocationData() const
 {
-    return revokationData;
+    return revocationData;
 }
 
-RevokationEntry
-CRLData::getRevokationEntry(const String& oid)
+RevocationEntry
+CRLData::getRevocationEntry(const String& oid)
 {
-    return RevokationEntry();
+    return RevocationEntry();
 }
 
 

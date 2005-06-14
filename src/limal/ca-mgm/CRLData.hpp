@@ -32,31 +32,31 @@ namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
-    class RevokationEntry {
+    class RevocationEntry {
     public:
-        RevokationEntry();
-        RevokationEntry(const String&    serial, 
+        RevocationEntry();
+        RevocationEntry(const String&    serial, 
                         time_t           revokeDate,
                         const CRLReason& reason);
-        RevokationEntry(const RevokationEntry& entry);
-        virtual ~RevokationEntry();
+        RevocationEntry(const RevocationEntry& entry);
+        virtual ~RevocationEntry();
         
-        RevokationEntry& operator=(const RevokationEntry& entry);
+        RevocationEntry& operator=(const RevocationEntry& entry);
 
         void        setSerial(const String& serial);
-        void        setRevokationDate(time_t date);
+        void        setRevocationDate(time_t date);
         void        setReason(const CRLReason& reason);
 
         String      getSerial() const;
-        time_t      getRevokationDate() const;
+        time_t      getRevocationDate() const;
         CRLReason   getReason() const;
 
 
     private:
 
         String      serial;
-        time_t      revokationDate;
-        CRLReason   revokationReason;
+        time_t      revocationDate;
+        CRLReason   revocationReason;
 
     };
 
@@ -80,8 +80,8 @@ namespace CA_MGM_NAMESPACE {
         String                       getSignatureAlgorithmAsString() const; 
         String                       getSignature() const;
         X509v3CRLExtensions          getExtensions() const;
-        blocxx::Map<String, RevokationEntry> getRevokationData() const;
-        RevokationEntry              getRevokationEntry(const String& oid);
+        blocxx::Map<String, RevocationEntry> getRevocationData() const;
+        RevocationEntry              getRevocationEntry(const String& oid);
 
     protected:
         CRLData();
@@ -98,8 +98,7 @@ namespace CA_MGM_NAMESPACE {
         
         X509v3CRLExtensions extensions;
 
-        //RevokationData   revokationData;
-        blocxx::Map<String, RevokationEntry> revokationData;
+        blocxx::Map<String, RevocationEntry> revocationData;
 
     };
 

@@ -43,12 +43,12 @@ namespace CA_MGM_NAMESPACE {
         void   setSignatureAlgorithm(SigAlg sigAlg);
         void   setSignature(const String& sig);
         void   setExtensions(const X509v3CRLExtensions& ext);
-        void   setRevokationData(const blocxx::Map<String, RevokationEntry>& data);
-        void   addRevokationEntry(const String& oid,
-                                  const RevokationEntry& entry);
-        void   setRevokationEntry(const String& oid,
-                                  const RevokationEntry& entry);
-        void   deleteRevokationEntry(const String& oid);
+        void   setRevocationData(const blocxx::Map<String, RevocationEntry>& data);
+        void   addRevocationEntry(const String& oid,
+                                  const RevocationEntry& entry);
+        void   setRevocationEntry(const String& oid,
+                                  const RevocationEntry& entry);
+        void   deleteRevocationEntry(const String& oid);
 
     private:
         CRLData_Int(const CRLData_Int& data);
