@@ -35,7 +35,14 @@ liblimal_ca_mgm_la_SOURCES  =	\
 	LocalManagement.cpp \
 	RequestData.cpp \
 	RequestGenerationData.cpp \
-	StringExtensions.cpp 
+	StringExtensions.cpp \
+	SubjectAlternativeNameExtension.cpp \
+	SubjectKeyIdentifierExtension.cpp \
+	X509v3CertificateExtensions.cpp \
+	X509v3CertificateIssueExtensions.cpp \
+	X509v3CRLExtensions.cpp \
+	X509v3CRLGenerationExtensions.cpp \
+	X509v3RequestExtensions.cpp
 
 
 liblimal_ca_mgm_la_CXXFLAGS = $(LIMAL_CFLAGS)
