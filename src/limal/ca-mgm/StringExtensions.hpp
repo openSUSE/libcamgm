@@ -35,6 +35,7 @@ namespace CA_MGM_NAMESPACE {
     class StringExtension : public ExtensionBase {
         
     public:
+        StringExtension();
         virtual ~StringExtension();
 
         virtual void   setValue(const String &v) = 0;
@@ -49,14 +50,12 @@ namespace CA_MGM_NAMESPACE {
         StringExtension& operator=(const StringExtension& extension);
         
         String value;
-
-    private:
-        
-        StringExtension();
+       
     };
 
     class NsBaseUrlExtension : public StringExtension { 
     public:
+        NsBaseUrlExtension();
         NsBaseUrlExtension(const String &v);
         NsBaseUrlExtension(CA& ca, Type type);
         NsBaseUrlExtension(const NsBaseUrlExtension &extension);
@@ -68,12 +67,11 @@ namespace CA_MGM_NAMESPACE {
         String         getValue() const;
 
         virtual void commit2Config(CA& ca, Type type);
-    private:
-        NsBaseUrlExtension();
     };
 
     class NsRevocationUrlExtension : public StringExtension { 
     public:
+        NsRevocationUrlExtension();
         NsRevocationUrlExtension(const String &v);
         NsRevocationUrlExtension(CA& ca, Type type);
         NsRevocationUrlExtension(const NsRevocationUrlExtension &extension);
@@ -85,13 +83,12 @@ namespace CA_MGM_NAMESPACE {
         String         getValue() const;
 
         virtual void commit2Config(CA& ca, Type type);
-    private:
-        NsRevocationUrlExtension();
 
     };
 
     class NsCaRevocationUrlExtension : public StringExtension { 
     public:
+        NsCaRevocationUrlExtension();
         NsCaRevocationUrlExtension(const String &v);
         NsCaRevocationUrlExtension(CA& ca, Type type);
         NsCaRevocationUrlExtension(const NsCaRevocationUrlExtension &extension);
@@ -103,13 +100,12 @@ namespace CA_MGM_NAMESPACE {
         String         getValue() const;
 
         virtual void commit2Config(CA& ca, Type type);
-    private:
-        NsCaRevocationUrlExtension();
 
     };
 
     class NsRenewalUrlExtension : public StringExtension { 
     public:
+        NsRenewalUrlExtension();
         NsRenewalUrlExtension(const String &v);
         NsRenewalUrlExtension(CA& ca, Type type);
         NsRenewalUrlExtension(const NsRenewalUrlExtension &extension);
@@ -121,12 +117,11 @@ namespace CA_MGM_NAMESPACE {
         String         getValue() const;
 
         virtual void commit2Config(CA& ca, Type type);
-    private:
-        NsRenewalUrlExtension();
 
     };
     class NsCaPolicyUrlExtension : public StringExtension { 
     public:
+        NsCaPolicyUrlExtension();
         NsCaPolicyUrlExtension(const String &v);
         NsCaPolicyUrlExtension(CA& ca, Type type);
         NsCaPolicyUrlExtension(const NsCaPolicyUrlExtension &extension);
@@ -138,12 +133,11 @@ namespace CA_MGM_NAMESPACE {
         String         getValue() const;
 
         virtual void commit2Config(CA& ca, Type type);
-    private:
-        NsCaPolicyUrlExtension();
 
     };
     class NsSslServerNameExtension : public StringExtension { 
     public:
+        NsSslServerNameExtension();
         NsSslServerNameExtension(const String &v);
         NsSslServerNameExtension(CA& ca, Type type);
         NsSslServerNameExtension(const NsSslServerNameExtension &extension);
@@ -155,12 +149,11 @@ namespace CA_MGM_NAMESPACE {
         String         getValue() const;
 
         virtual void commit2Config(CA& ca, Type type);
-    private:
-        NsSslServerNameExtension();
 
     };
     class NsCommentExtension : public StringExtension { 
     public:
+        NsCommentExtension();
         NsCommentExtension(const String &v);
         NsCommentExtension(CA& ca, Type type);
         NsCommentExtension(const NsCommentExtension &extension);
@@ -172,8 +165,6 @@ namespace CA_MGM_NAMESPACE {
         String         getValue() const;
 
         virtual void commit2Config(CA& ca, Type type);
-    private:
-        NsCommentExtension();
     };
 
 }

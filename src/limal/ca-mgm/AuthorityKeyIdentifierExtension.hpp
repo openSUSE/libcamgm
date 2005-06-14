@@ -33,6 +33,7 @@ namespace CA_MGM_NAMESPACE {
     class AuthorityKeyIdentifierExtension : public ExtensionBase {
     public:
 
+        AuthorityKeyIdentifierExtension();
         AuthorityKeyIdentifierExtension(const AuthorityKeyIdentifierExtension& extension);
         virtual ~AuthorityKeyIdentifierExtension();
 
@@ -43,7 +44,6 @@ namespace CA_MGM_NAMESPACE {
         String         getSerial() const;
         
     protected:
-        AuthorityKeyIdentifierExtension();
 
         String keyid;
         String DirName; // oder issuer?
