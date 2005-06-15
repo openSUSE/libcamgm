@@ -33,14 +33,33 @@ namespace CA_MGM_NAMESPACE {
 
     class CA;
 
+    class AuthorityInformation {
+
+    public:
+        AuthorityInformation();
+        AuthorityInformation(const AuthorityInformation& ai);
+        AuthorityInformation(const String &accessOID, 
+                             const LiteralValueBase& location);
+
+        AuthorityInformation&   operator=(const AuthorityInformation& ai);
+
+        void                    setAuthorityInformation(const String &accessOID, 
+                                                        const LiteralValueBase& location);
+
+        String                  getAccessOID() const;
+        LiteralValueBase        getLocation() const;
+
+        bool                    valid() const;
+        blocxx::StringArray     verify() const;
+
+    private:
+        String                  accessOID;
+        LiteralValueBase        location;
+
+    };
+
     class AuthorityInfoAccessExtension : public ExtensionBase {
     public:
-        enum AccessOIDType {
-            none,
-            OCSP,
-            caIssuers,
-            OID
-        };
 
         AuthorityInfoAccessExtension();
         AuthorityInfoAccessExtension(const AuthorityInfoAccessExtension& extension);
@@ -49,31 +68,19 @@ namespace CA_MGM_NAMESPACE {
 
         AuthorityInfoAccessExtension& operator=(const AuthorityInfoAccessExtension& extension);
         
-        /**
-         * If AccessOIDType is OID, you have to provide a valid oid.
-         * If AccessOIDType is OCSP or caIssuers the oid will receive 
-         * no consideration.
-         */
-        void                   setAccessOIDType(AccessOIDType type, String oid=String());
-        AccessOIDType          getAccessOIDType() const;
+        void
+        setAuthorityInformation(const blocxx::List<AuthorityInformation>& infolist);
 
-        /**
-         * return an empty String if AccessOIDType is OCSP or caIssuer
-         */
-        String                 getAccessOID() const;
-
-        void                   setLocation(blocxx::List<LiteralValueBase> locationList);
-        blocxx::List<LiteralValueBase> getLocation() const;
-
-        void                   addLocation(const LiteralValueBase& location);
+        blocxx::List<AuthorityInformation>
+        getAuthorityInformation() const;
 
         virtual void commit2Config(CA& ca, Type type);
 
-    private:
-        AccessOIDType          type;
-        String                 accessIOD;
+        virtual bool                 valid() const; 
+        virtual blocxx::StringArray  verify() const;
 
-        blocxx::List<LiteralValueBase> locList;
+    private:
+        blocxx::List<AuthorityInformation> info;
    
     };
 
