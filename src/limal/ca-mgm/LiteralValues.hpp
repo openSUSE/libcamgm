@@ -31,28 +31,27 @@ namespace CA_MGM_NAMESPACE {
 
     class LiteralValueBase {
     public:
+        LiteralValueBase(const String &value = String());
+        LiteralValueBase(const LiteralValueBase& value);
+
+        LiteralValueBase& operator=(const LiteralValueBase& value);
         virtual ~LiteralValueBase();
         
 
         virtual void   setValue(const String &value);
         virtual String getValue() const;
 
-    protected:
-        LiteralValueBase(const String &value);
-        LiteralValueBase(const LiteralValueBase& value);
-
-        LiteralValueBase& operator=(const LiteralValueBase& value);
+        virtual bool                valid() const;
+        virtual blocxx::StringArray verify() const;
 
     private:
         String literalValue;
-
-        LiteralValueBase();
 
     };
 
     class EmailLiteralValue : public LiteralValueBase {
     public:
-        EmailLiteralValue(const String &value);
+        EmailLiteralValue(const String &value = String());
         EmailLiteralValue(const EmailLiteralValue &value);
         virtual ~EmailLiteralValue();
 
@@ -60,11 +59,14 @@ namespace CA_MGM_NAMESPACE {
 
         virtual void   setValue(const String &value);
         virtual String getValue() const ;
+
+        virtual bool                valid() const;
+        virtual blocxx::StringArray verify() const;
     };
 
     class URILiteralValue : public LiteralValueBase {
     public:
-        URILiteralValue(const String &value);
+        URILiteralValue(const String &value = String());
         URILiteralValue(const URILiteralValue &value);
         virtual ~URILiteralValue();
 
@@ -72,11 +74,14 @@ namespace CA_MGM_NAMESPACE {
 
         virtual void   setValue(const String &value);
         virtual String getValue() const ;
+
+        virtual bool                valid() const;
+        virtual blocxx::StringArray verify() const;
     };
 
     class DNSLiteralValue : public LiteralValueBase {
     public:
-        DNSLiteralValue(const String &value);
+        DNSLiteralValue(const String &value = String());
         DNSLiteralValue(const DNSLiteralValue &value);
         virtual ~DNSLiteralValue();
 
@@ -84,11 +89,14 @@ namespace CA_MGM_NAMESPACE {
 
         virtual void   setValue(const String &value);
         virtual String getValue() const ;
+
+        virtual bool                valid() const;
+        virtual blocxx::StringArray verify() const;
     };
 
     class RIDLiteralValue : public LiteralValueBase {
     public:
-        RIDLiteralValue(const String &value);
+        RIDLiteralValue(const String &value = String());
         RIDLiteralValue(const RIDLiteralValue &value);
         virtual ~RIDLiteralValue();
 
@@ -96,11 +104,14 @@ namespace CA_MGM_NAMESPACE {
 
         virtual void   setValue(const String &value);
         virtual String getValue() const ;
+
+        virtual bool                valid() const;
+        virtual blocxx::StringArray verify() const;
     };
 
     class IPLiteralValue : public LiteralValueBase {
     public:
-        IPLiteralValue(const String &value);
+        IPLiteralValue(const String &value = String());
         IPLiteralValue(const IPLiteralValue &value);
         virtual ~IPLiteralValue();
 
@@ -108,6 +119,9 @@ namespace CA_MGM_NAMESPACE {
 
         virtual void   setValue(const String &value);
         virtual String getValue() const ;
+
+        virtual bool                valid() const;
+        virtual blocxx::StringArray verify() const;
     };
 
 }

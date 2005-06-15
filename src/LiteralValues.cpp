@@ -26,6 +26,22 @@ using namespace limal;
 using namespace limal::ca_mgm;
 using namespace blocxx;
 
+LiteralValueBase::LiteralValueBase(const String &value) 
+    : literalValue(value) 
+{
+}
+
+LiteralValueBase::LiteralValueBase(const LiteralValueBase& value)
+    : literalValue(value.literalValue)
+{
+}
+
+
+LiteralValueBase&
+LiteralValueBase::operator=(const LiteralValueBase& value)
+{
+    return *this;
+}
 
 LiteralValueBase::~LiteralValueBase()
 {
@@ -44,31 +60,20 @@ LiteralValueBase::getValue() const
     return literalValue; 
 }
 
-//    protected:
 
-LiteralValueBase::LiteralValueBase(const String &value) 
-    : literalValue(value) 
+bool
+LiteralValueBase::valid() const
 {
+    return false;
 }
 
-LiteralValueBase::LiteralValueBase(const LiteralValueBase& value)
-    : literalValue(value.literalValue)
+blocxx::StringArray
+LiteralValueBase::verify() const
 {
+    StringArray result;
+    result.append(String("This is the base object. This should never happen"));
+    return result;
 }
-
-
-LiteralValueBase&
-LiteralValueBase::operator=(const LiteralValueBase& value)
-{
-    return *this;
-}
-
-// private
-
-LiteralValueBase::LiteralValueBase()
-    : literalValue(String())
-{
-};
 
 
 // ##############################################################################
@@ -107,6 +112,22 @@ EmailLiteralValue::getValue() const
     return LiteralValueBase::getValue();
 }
 
+bool
+EmailLiteralValue::valid() const
+{
+    // Fixme: add check
+    return false;
+}
+
+blocxx::StringArray
+EmailLiteralValue::verify() const
+{
+    // Fixme: add check
+    StringArray result;
+    result.append(String("This is the base object. This should never happen"));
+    return result;
+}
+
 
 // ##############################################################################
 
@@ -143,6 +164,21 @@ URILiteralValue::getValue() const
     return LiteralValueBase::getValue();
 }
 
+bool
+URILiteralValue::valid() const
+{
+    // Fixme: add check
+    return false;
+}
+
+blocxx::StringArray
+URILiteralValue::verify() const
+{
+    // Fixme: add check
+    StringArray result;
+    result.append(String("This is the base object. This should never happen"));
+    return result;
+}
 
 // ##############################################################################
 
@@ -179,6 +215,21 @@ DNSLiteralValue::getValue() const
     return LiteralValueBase::getValue();
 }
 
+bool
+DNSLiteralValue::valid() const
+{
+    // Fixme: add check
+    return false;
+}
+
+blocxx::StringArray
+DNSLiteralValue::verify() const
+{
+    // Fixme: add check
+    StringArray result;
+    result.append(String("This is the base object. This should never happen"));
+    return result;
+}
 
 // ##############################################################################
 
@@ -216,6 +267,21 @@ RIDLiteralValue::getValue() const
     return LiteralValueBase::getValue();
 }
 
+bool
+RIDLiteralValue::valid() const
+{
+    // Fixme: add check
+    return false;
+}
+
+blocxx::StringArray
+RIDLiteralValue::verify() const
+{
+    // Fixme: add check
+    StringArray result;
+    result.append(String("This is the base object. This should never happen"));
+    return result;
+}
 
 // ##############################################################################
 
@@ -252,3 +318,18 @@ IPLiteralValue::getValue() const
     return LiteralValueBase::getValue();
 }
 
+bool
+IPLiteralValue::valid() const
+{
+    // Fixme: add check
+    return false;
+}
+
+blocxx::StringArray
+IPLiteralValue::verify() const
+{
+    // Fixme: add check
+    StringArray result;
+    result.append(String("This is the base object. This should never happen"));
+    return result;
+}

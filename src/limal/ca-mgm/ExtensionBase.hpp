@@ -34,8 +34,7 @@ namespace CA_MGM_NAMESPACE {
     class ExtensionBase {
 
     public:
-        ExtensionBase(bool extPresent = false, bool extCritical = false)
-            :present(extPresent), critical(extCritical) {}
+        ExtensionBase(bool extPresent = false, bool extCritical = false);
 
         ExtensionBase(const ExtensionBase& extension);
 
@@ -50,6 +49,9 @@ namespace CA_MGM_NAMESPACE {
         bool   isPresent() const  { return present; }
 
         virtual void commit2Config(CA& ca, Type type) = 0;
+
+        virtual bool                 valid() const;  // =0
+        virtual blocxx::StringArray  verify() const; // =0
 
     private:
         bool present;
