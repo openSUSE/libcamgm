@@ -83,8 +83,9 @@ namespace CA_MGM_NAMESPACE {
         ByteArray        publicKey;  
 
         SigAlg           signatureAlgorithm;
-        String           signature;     // mit private key der CA verschlüsselter Hash wert
-                                        // des Zertifikates
+        String           signature;      // better use ByteArray? see CIM schema.
+                                         // mit private key der CA verschlüsselter Hash wert
+                                         // des Zertifikates
 
 
         X509v3CertificateExtensions extensions;

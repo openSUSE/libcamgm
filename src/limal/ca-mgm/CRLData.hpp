@@ -93,7 +93,8 @@ namespace CA_MGM_NAMESPACE {
         DNObject         issuer;
 
         SigAlg           signatureAlgorithm;
-        String           signature;     // mit private key der CA verschlüsselter Hash wert
+        String           signature;     // better use ByteArray? see CIM schema.
+                                        // mit private key der CA verschlüsselter Hash wert
                                         // des Zertifikates
         
         X509v3CRLExtensions extensions;
