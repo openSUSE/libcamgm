@@ -20,16 +20,18 @@
 
 /-*/
 #include  <limal/ca-mgm/AuthorityKeyIdentifierExtension.hpp>
+#include  <limal/Exception.hpp>
 
 using namespace limal;
 using namespace limal::ca_mgm;
 using namespace blocxx;
 
 AuthorityKeyIdentifierExtension::AuthorityKeyIdentifierExtension(const AuthorityKeyIdentifierExtension& extension)
-    : ExtensionBase()
-{
-
-}
+    : ExtensionBase(extension),
+      keyid(extension.keyid),
+      DirName(extension.DirName),
+      serial(extension.serial)
+{}
 
 AuthorityKeyIdentifierExtension::~AuthorityKeyIdentifierExtension()
 {}
@@ -37,26 +39,55 @@ AuthorityKeyIdentifierExtension::~AuthorityKeyIdentifierExtension()
 AuthorityKeyIdentifierExtension& 
 AuthorityKeyIdentifierExtension::operator=(const AuthorityKeyIdentifierExtension& extension)
 {
+    if(this == &extension) return *this;
+
+    ExtensionBase::operator=(extension);
+    keyid = extension.keyid;
+    DirName = extension.DirName;
+    serial = extension.serial;
+   
     return *this;
 }
 
 blocxx::String         
 AuthorityKeyIdentifierExtension::getKeyID() const
 {
+    if(!isPresent()) {
+        BLOCXX_THROW(limal::ValueException, "AuthorityKeyIdentifierExtension is not present");
+    }
     return keyid;
 }
 
 blocxx::String         
 AuthorityKeyIdentifierExtension::getDirName() const
 {
+    if(!isPresent()) {
+        BLOCXX_THROW(limal::ValueException, "AuthorityKeyIdentifierExtension is not present");
+    }
     return DirName;
 }
 
 blocxx::String         
 AuthorityKeyIdentifierExtension::getSerial() const
 {
+    if(!isPresent()) {
+        BLOCXX_THROW(limal::ValueException, "AuthorityKeyIdentifierExtension is not present");
+    }
     return serial;
 }
+
+bool
+AuthorityKeyIdentifierExtension::valid() const
+{
+    return true;
+}
+
+blocxx::StringArray
+AuthorityKeyIdentifierExtension::verify() const
+{
+    return blocxx::StringArray();
+}
+
         
 // protected
 

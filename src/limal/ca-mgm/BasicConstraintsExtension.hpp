@@ -42,13 +42,16 @@ namespace CA_MGM_NAMESPACE {
 
         BasicConstraintsExtension& operator=(const BasicConstraintsExtension& extension);
 
-        void           setCA(bool isCa);
-        bool           isCA() const;
+        void           setBasicConstraints(bool isCa, blocxx::Int32 pathLength=-1);
 
-        void           setPathLength(blocxx::Int32 pathLength);
+        bool           isCA() const;
         blocxx::Int32  getPathLength() const;
 
         virtual void commit2Config(CA& ca, Type type);
+
+        virtual bool                 valid() const;  
+        virtual blocxx::StringArray  verify() const; 
+
     private:
         bool           ca;
         blocxx::Int32  pathlen;

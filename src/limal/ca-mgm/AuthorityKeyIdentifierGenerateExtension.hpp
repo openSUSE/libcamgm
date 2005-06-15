@@ -64,6 +64,9 @@ namespace CA_MGM_NAMESPACE {
 
         virtual void   commit2Config(CA& ca, Type type);
 
+        virtual bool                 valid() const;  
+        virtual blocxx::StringArray  verify() const; 
+
     private:
         KeyID  keyid;
         Issuer issuer; 

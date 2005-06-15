@@ -42,6 +42,9 @@ namespace CA_MGM_NAMESPACE {
         String         getKeyID() const;
         String         getDirName() const;
         String         getSerial() const;
+
+        virtual bool                 valid() const;  
+        virtual blocxx::StringArray  verify() const; 
         
     protected:
 
