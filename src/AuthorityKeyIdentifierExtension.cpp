@@ -53,7 +53,7 @@ blocxx::String
 AuthorityKeyIdentifierExtension::getKeyID() const
 {
     if(!isPresent()) {
-        BLOCXX_THROW(limal::ValueException, "AuthorityKeyIdentifierExtension is not present");
+        BLOCXX_THROW(limal::RuntimeException, "AuthorityKeyIdentifierExtension is not present");
     }
     return keyid;
 }
@@ -62,7 +62,7 @@ blocxx::String
 AuthorityKeyIdentifierExtension::getDirName() const
 {
     if(!isPresent()) {
-        BLOCXX_THROW(limal::ValueException, "AuthorityKeyIdentifierExtension is not present");
+        BLOCXX_THROW(limal::RuntimeException, "AuthorityKeyIdentifierExtension is not present");
     }
     return DirName;
 }
@@ -71,7 +71,7 @@ blocxx::String
 AuthorityKeyIdentifierExtension::getSerial() const
 {
     if(!isPresent()) {
-        BLOCXX_THROW(limal::ValueException, "AuthorityKeyIdentifierExtension is not present");
+        BLOCXX_THROW(limal::RuntimeException, "AuthorityKeyIdentifierExtension is not present");
     }
     return serial;
 }

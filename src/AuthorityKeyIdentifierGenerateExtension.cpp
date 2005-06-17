@@ -79,6 +79,9 @@ AuthorityKeyIdentifierGenerateExtension::setKeyID(KeyID kid)
 AuthorityKeyIdentifierGenerateExtension::KeyID
 AuthorityKeyIdentifierGenerateExtension::getKeyID() const
 {
+    if(!isPresent()) {
+        BLOCXX_THROW(limal::RuntimeException, "AuthorityKeyIdentifierGenerateExtension is not present");
+    }
     return keyid;
 }
 
@@ -96,6 +99,9 @@ AuthorityKeyIdentifierGenerateExtension::setIssuer(Issuer iss)
 AuthorityKeyIdentifierGenerateExtension::Issuer
 AuthorityKeyIdentifierGenerateExtension::getIssuer() const
 {
+    if(!isPresent()) {
+        BLOCXX_THROW(limal::RuntimeException, "AuthorityKeyIdentifierGenerateExtension is not present");
+    }
     return issuer;
 }
 

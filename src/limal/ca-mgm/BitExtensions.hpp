@@ -46,6 +46,9 @@ namespace CA_MGM_NAMESPACE {
 
         virtual void   commit2Config(CA& ca, Type type) = 0;
 
+        virtual bool                 valid() const  = 0;
+        virtual blocxx::StringArray  verify() const = 0;
+
     private:
         blocxx::UInt32 value;
 
@@ -80,6 +83,8 @@ namespace CA_MGM_NAMESPACE {
 
         virtual void commit2Config(CA& ca, Type type);
 
+        virtual bool                 valid() const;
+        virtual blocxx::StringArray  verify() const;
     };
 
     class NsCertTypeExtension : public BitExtension {
@@ -110,6 +115,8 @@ namespace CA_MGM_NAMESPACE {
 
         virtual void   commit2Config(CA& ca, Type type);
 
+        virtual bool                 valid() const;
+        virtual blocxx::StringArray  verify() const;
     };
 
     class ExtendedKeyUsageExtension : public BitExtension {
@@ -146,10 +153,12 @@ namespace CA_MGM_NAMESPACE {
         StringList                 getAdditionalOIDs() const;
 
         void                       addAdditionalOID(String oid);
-        bool                       deleteAdditionalOID(String oid);
+        //bool                       deleteAdditionalOID(String oid);
 
         virtual void               commit2Config(CA& ca, Type type);
         
+        virtual bool                 valid() const;
+        virtual blocxx::StringArray  verify() const;
     private:
 
         StringList oids;  //additional OIDs

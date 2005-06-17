@@ -85,12 +85,18 @@ BasicConstraintsExtension::setBasicConstraints(bool isCa, blocxx::Int32 pathLeng
 bool
 BasicConstraintsExtension::isCA() const
 {
+    if(!isPresent()) {
+        BLOCXX_THROW(limal::RuntimeException, "BasicConstraintsExtension is not present");
+    }
     return ca;
 }
 
 blocxx::Int32
 BasicConstraintsExtension::getPathLength() const
 {
+    if(!isPresent()) {
+        BLOCXX_THROW(limal::RuntimeException, "BasicConstraintsExtension is not present");
+    }
     return pathlen;
 }
 

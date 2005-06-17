@@ -35,8 +35,10 @@ namespace CA_MGM_NAMESPACE {
 
     class IssuerAlternativeNameExtension : public ExtensionBase {
     public:
-        IssuerAlternativeNameExtension(bool copyIssuer = false, 
-                                       const blocxx::List<LiteralValueBase> &alternativeNameList = blocxx::List<LiteralValueBase>());
+        IssuerAlternativeNameExtension();
+
+        IssuerAlternativeNameExtension(bool copyIssuer,
+                                       const blocxx::List<LiteralValueBase> &alternativeNameList);
         IssuerAlternativeNameExtension(CA& ca, Type type);
         IssuerAlternativeNameExtension(const IssuerAlternativeNameExtension& extension);
         virtual ~IssuerAlternativeNameExtension();
@@ -52,6 +54,9 @@ namespace CA_MGM_NAMESPACE {
         void                   addIssuerAltName(const LiteralValueBase& altName);
 
         virtual void           commit2Config(CA& ca, Type type);
+
+        virtual bool                 valid() const;
+        virtual blocxx::StringArray  verify() const;
 
     private:
         bool issuerCopy;

@@ -176,7 +176,7 @@ blocxx::List<AuthorityInformation>
 AuthorityInfoAccessExtension::getAuthorityInformation() const
 {
     if(!isPresent()) {
-        BLOCXX_THROW(limal::ValueException, "AuthorityInfoAccessExtension is not present");
+        BLOCXX_THROW(limal::RuntimeException, "AuthorityInfoAccessExtension is not present");
     }
     return info;
 }

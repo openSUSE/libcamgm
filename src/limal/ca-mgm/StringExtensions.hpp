@@ -43,6 +43,9 @@ namespace CA_MGM_NAMESPACE {
         
         virtual void commit2Config(CA& ca, Type type) = 0;
         
+        virtual bool                 valid() const = 0;
+        virtual blocxx::StringArray  verify() const = 0;
+
     protected:
         StringExtension(const String &v );
         StringExtension(const StringExtension& extension);
@@ -67,6 +70,9 @@ namespace CA_MGM_NAMESPACE {
         String         getValue() const;
 
         virtual void commit2Config(CA& ca, Type type);
+
+        virtual bool                 valid() const;
+        virtual blocxx::StringArray  verify() const;
     };
 
     class NsRevocationUrlExtension : public StringExtension { 
@@ -84,6 +90,8 @@ namespace CA_MGM_NAMESPACE {
 
         virtual void commit2Config(CA& ca, Type type);
 
+        virtual bool                 valid() const;
+        virtual blocxx::StringArray  verify() const;
     };
 
     class NsCaRevocationUrlExtension : public StringExtension { 
@@ -101,6 +109,8 @@ namespace CA_MGM_NAMESPACE {
 
         virtual void commit2Config(CA& ca, Type type);
 
+        virtual bool                 valid() const;
+        virtual blocxx::StringArray  verify() const;
     };
 
     class NsRenewalUrlExtension : public StringExtension { 
@@ -118,6 +128,8 @@ namespace CA_MGM_NAMESPACE {
 
         virtual void commit2Config(CA& ca, Type type);
 
+        virtual bool                 valid() const;
+        virtual blocxx::StringArray  verify() const;
     };
     class NsCaPolicyUrlExtension : public StringExtension { 
     public:
@@ -134,6 +146,8 @@ namespace CA_MGM_NAMESPACE {
 
         virtual void commit2Config(CA& ca, Type type);
 
+        virtual bool                 valid() const;
+        virtual blocxx::StringArray  verify() const;
     };
     class NsSslServerNameExtension : public StringExtension { 
     public:
@@ -150,6 +164,8 @@ namespace CA_MGM_NAMESPACE {
 
         virtual void commit2Config(CA& ca, Type type);
 
+        virtual bool                 valid() const;
+        virtual blocxx::StringArray  verify() const;
     };
     class NsCommentExtension : public StringExtension { 
     public:
@@ -165,6 +181,9 @@ namespace CA_MGM_NAMESPACE {
         String         getValue() const;
 
         virtual void commit2Config(CA& ca, Type type);
+
+        virtual bool                 valid() const;
+        virtual blocxx::StringArray  verify() const;
     };
 
 }
