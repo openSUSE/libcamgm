@@ -11,7 +11,7 @@
 |                                         (C) SUSE Linux Products GmbH |
 \----------------------------------------------------------------------/
 
-  File:       CRLData_Int.hpp
+  File:       CRLData_Priv.hpp
 
   Author:     <Michael Calmer>     <mc@suse.de>
   Maintainer: <Michael Calmer>     <mc@suse.de>
@@ -19,8 +19,8 @@
   Purpose:
 
 /-*/
-#ifndef    LIMAL_CA_MGM_CRL_DATA_INT_HPP
-#define    LIMAL_CA_MGM_CRL_DATA_INT_HPP
+#ifndef    LIMAL_CA_MGM_CRL_DATA_PRIV_HPP
+#define    LIMAL_CA_MGM_CRL_DATA_PRIV_HPP
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
@@ -30,11 +30,11 @@ namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
-    class CRLData_Int : public CRLData {
+    class CRLData_Priv : public CRLData {
     public:
-        CRLData_Int();
-        CRLData_Int(const String &caName);
-        virtual ~CRLData_Int();
+        CRLData_Priv();
+        CRLData_Priv(const String &caName);
+        virtual ~CRLData_Priv();
 
         void   setVersion(blocxx::Int32 version);
         void   setValidityPeriod(time_t last,
@@ -51,12 +51,12 @@ namespace CA_MGM_NAMESPACE {
         void   deleteRevocationEntry(const String& oid);
 
     private:
-        CRLData_Int(const CRLData_Int& data);
+        CRLData_Priv(const CRLData_Priv& data);
         
-        CRLData_Int& operator=(const CRLData_Int& data);
+        CRLData_Priv& operator=(const CRLData_Priv& data);
     };
 
 }
 }
 
-#endif // LIMAL_CA_MGM_CRL_DATA_HPP
+#endif // LIMAL_CA_MGM_CRL_DATA_PRIV_HPP

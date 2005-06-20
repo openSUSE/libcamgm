@@ -11,7 +11,7 @@
 |                                         (C) SUSE Linux Products GmbH |
 \----------------------------------------------------------------------/
 
-  File:       X509v3CRLExtensions_Int.hpp
+  File:       X509v3CRLExtensions_Priv.hpp
 
   Author:     <Michael Calmer>     <mc@suse.de>
   Maintainer: <Michael Calmer>     <mc@suse.de>
@@ -19,8 +19,8 @@
   Purpose:
 
 /-*/
-#ifndef    LIMAL_CA_MGM_X509V3_CRL_EXTENSIONS_INT_HPP
-#define    LIMAL_CA_MGM_X509V3_CRL_EXTENSIONS_INT_HPP
+#ifndef    LIMAL_CA_MGM_X509V3_CRL_EXTENSIONS_PRIV_HPP
+#define    LIMAL_CA_MGM_X509V3_CRL_EXTENSIONS_PRIV_HPP
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
@@ -31,23 +31,23 @@ namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
-    class X509v3CRLExtensions_Int : public X509v3CRLExtensions {
+    class X509v3CRLExtensions_Priv : public X509v3CRLExtensions {
     public:
-        X509v3CRLExtensions_Int();
-        X509v3CRLExtensions_Int(X509_CRL* crl);
-        virtual ~X509v3CRLExtensions_Int();
+        X509v3CRLExtensions_Priv();
+        X509v3CRLExtensions_Priv(X509_CRL* crl);
+        virtual ~X509v3CRLExtensions_Priv();
 
         void     setAuthorityKeyIdentifier(const AuthorityKeyIdentifierExtension &ext);
         void     setIssuerAlternativeName(const IssuerAlternativeNameExtension &ext);
 
     private:
-        X509v3CRLExtensions_Int(const X509v3CRLExtensions_Int& extensions);
+        X509v3CRLExtensions_Priv(const X509v3CRLExtensions_Priv& extensions);
 
-        X509v3CRLExtensions_Int& operator=(const X509v3CRLExtensions_Int& extensions);
+        X509v3CRLExtensions_Priv& operator=(const X509v3CRLExtensions_Priv& extensions);
 
     };
 
 }
 }
 
-#endif // LIMAL_CA_MGM_X509V3_CRL_EXTENSIONS_INT_HPP
+#endif // LIMAL_CA_MGM_X509V3_CRL_EXTENSIONS_PRIV_HPP

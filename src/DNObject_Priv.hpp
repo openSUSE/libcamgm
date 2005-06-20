@@ -11,7 +11,7 @@
 |                                         (C) SUSE Linux Products GmbH |
 \----------------------------------------------------------------------/
 
-  File:       DNObject_Int.hpp
+  File:       DNObject_Priv.hpp
 
   Author:     <Michael Calmer>     <mc@suse.de>
   Maintainer: <Michael Calmer>     <mc@suse.de>
@@ -19,8 +19,8 @@
   Purpose:
 
 /-*/
-#ifndef    LIMAL_CA_MGM_DN_OBJECT_INT_HPP
-#define    LIMAL_CA_MGM_DN_OBJECT_INT_HPP
+#ifndef    LIMAL_CA_MGM_DN_OBJECT_PRIV_HPP
+#define    LIMAL_CA_MGM_DN_OBJECT_PRIV_HPP
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
@@ -31,18 +31,18 @@ namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
-    class DNObject_Int : public DNObject {
+    class DNObject_Priv : public DNObject {
     public:
-        DNObject_Int(X509* cert);    
-        virtual ~DNObject_Int();
+        DNObject_Priv(X509* cert);    
+        virtual ~DNObject_Priv();
 
     private:
-        DNObject_Int(const DNObject_Int& obj);    
+        DNObject_Priv(const DNObject_Priv& obj);    
 
-        DNObject_Int& operator=(const DNObject_Int& obj);
+        DNObject_Priv& operator=(const DNObject_Priv& obj);
     };
 
 }
 }
 
-#endif // LIMAL_CA_MGM_DN_OBJECT_INT_HPP
+#endif // LIMAL_CA_MGM_DN_OBJECT_PRIV_HPP

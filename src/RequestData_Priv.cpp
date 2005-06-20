@@ -11,7 +11,7 @@
 |                                         (C) SUSE Linux Products GmbH |
 \----------------------------------------------------------------------/
 
-  File:       RequestData_Int.cpp
+  File:       RequestData_Priv.cpp
 
   Author:     <Michael Calmer>     <mc@suse.de>
   Maintainer: <Michael Calmer>     <mc@suse.de>
@@ -20,97 +20,97 @@
 
 /-*/
 
-#include  "RequestData_Int.hpp"
+#include  "RequestData_Priv.hpp"
 
 using namespace limal;
 using namespace limal::ca_mgm;
 using namespace blocxx;
 
-RequestData_Int::RequestData_Int()
+RequestData_Priv::RequestData_Priv()
     : RequestData()
 {
 }
 
-RequestData_Int::RequestData_Int(const String& caName,
+RequestData_Priv::RequestData_Priv(const String& caName,
                                  const String& requestName)
     : RequestData()
 {
 }
 
-RequestData_Int::~RequestData_Int()
+RequestData_Priv::~RequestData_Priv()
 {
 }
 
 
 void
-RequestData_Int::setVersion(blocxx::UInt32 v)
+RequestData_Priv::setVersion(blocxx::UInt32 v)
 {
     version = v;
 }
 
 void
-RequestData_Int::setKeysize(blocxx::UInt32 size)
+RequestData_Priv::setKeysize(blocxx::UInt32 size)
 {
     keysize = size;
 }
 
 void
-RequestData_Int::setSubject(const DNObject dn)
+RequestData_Priv::setSubject(const DNObject dn)
 {
     subject = dn;
 }
 
 void
-RequestData_Int::setKeyAlgorithm(KeyAlg alg)
+RequestData_Priv::setKeyAlgorithm(KeyAlg alg)
 {
     pubkeyAlgorithm = alg; 
 }
 
 void
-RequestData_Int::setPublicKey(const ByteArray key)
+RequestData_Priv::setPublicKey(const ByteArray key)
 {
     publicKey = key;
 }
 
 void
-RequestData_Int::setSignatureAlgorithm(SigAlg alg)
+RequestData_Priv::setSignatureAlgorithm(SigAlg alg)
 {
     signatureAlgorithm = alg;
 }
 
 void
-RequestData_Int::setSignature(const String &sig)
+RequestData_Priv::setSignature(const String &sig)
 {
     signature = sig;
 }
 
 void
-RequestData_Int::setExtensions(const X509v3RequestExtensions &ext)
+RequestData_Priv::setExtensions(const X509v3RequestExtensions &ext)
 {
     extensions = ext;
 }
 
 void
-RequestData_Int::setChallengePassword(const String &passwd)
+RequestData_Priv::setChallengePassword(const String &passwd)
 {
     challengePassword = passwd;
 }
 
 void
-RequestData_Int::setUnstructuredName(const String &name)
+RequestData_Priv::setUnstructuredName(const String &name)
 {
     unstructuredName = name;
 }
 
 
 //    private:
-RequestData_Int::RequestData_Int(const RequestData_Int& data)
+RequestData_Priv::RequestData_Priv(const RequestData_Priv& data)
     : RequestData(data)
 {
 }
 
-RequestData_Int&
-RequestData_Int::operator=(const RequestData_Int& data)
+RequestData_Priv&
+RequestData_Priv::operator=(const RequestData_Priv& data)
 {
     return *this;
 }

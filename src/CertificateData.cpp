@@ -21,7 +21,7 @@
 /-*/
 
 #include  <limal/ca-mgm/CertificateData.hpp>
-#include  "X509v3CertificateExtensions_Int.hpp"
+#include  "X509v3CertificateExtensions_Priv.hpp"
 
 using namespace limal;
 using namespace limal::ca_mgm;
@@ -137,7 +137,7 @@ CertificateData::getExtensions() const
 
 //    protected
 CertificateData::CertificateData()
-    : extensions(X509v3CertificateExtensions_Int())
+    : extensions(X509v3CertificateExtensions_Priv())
 {
 }
 

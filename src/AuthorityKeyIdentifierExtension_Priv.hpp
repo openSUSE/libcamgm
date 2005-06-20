@@ -11,7 +11,7 @@
 |                                         (C) SUSE Linux Products GmbH |
 \----------------------------------------------------------------------/
 
-  File:       AuthorityKeyIdentifierExtension_Int.hpp
+  File:       AuthorityKeyIdentifierExtension_Priv.hpp
 
   Author:     <Michael Calmer>     <mc@suse.de>
   Maintainer: <Michael Calmer>     <mc@suse.de>
@@ -19,8 +19,8 @@
   Purpose:
 
 /-*/
-#ifndef    LIMAL_CA_MGM_AUTHORITY_KEY_IDENTIFIER_EXTENSION_INT_HPP
-#define    LIMAL_CA_MGM_AUTHORITY_KEY_IDENTIFIER_EXTENSION_INT_HPP
+#ifndef    LIMAL_CA_MGM_AUTHORITY_KEY_IDENTIFIER_EXTENSION_PRIV_HPP
+#define    LIMAL_CA_MGM_AUTHORITY_KEY_IDENTIFIER_EXTENSION_PRIV_HPP
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
@@ -31,25 +31,25 @@ namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
-    class AuthorityKeyIdentifierExtension_Int : public AuthorityKeyIdentifierExtension {
+    class AuthorityKeyIdentifierExtension_Priv : public AuthorityKeyIdentifierExtension {
     public:
 
-        AuthorityKeyIdentifierExtension_Int();
-        AuthorityKeyIdentifierExtension_Int(X509* cert);
-        AuthorityKeyIdentifierExtension_Int(X509_CRL* crl);
-        virtual ~AuthorityKeyIdentifierExtension_Int();
+        AuthorityKeyIdentifierExtension_Priv();
+        AuthorityKeyIdentifierExtension_Priv(X509* cert);
+        AuthorityKeyIdentifierExtension_Priv(X509_CRL* crl);
+        virtual ~AuthorityKeyIdentifierExtension_Priv();
         
         void           setKeyID(const String& kid);
         void           setDirName(const String& dirName);
         void           setSerial(const String& serial);
     private:
-        AuthorityKeyIdentifierExtension_Int(const AuthorityKeyIdentifierExtension_Int& extension);
+        AuthorityKeyIdentifierExtension_Priv(const AuthorityKeyIdentifierExtension_Priv& extension);
         
-        AuthorityKeyIdentifierExtension_Int&
-        operator=(const AuthorityKeyIdentifierExtension_Int& extension);
+        AuthorityKeyIdentifierExtension_Priv&
+        operator=(const AuthorityKeyIdentifierExtension_Priv& extension);
     };
 
 }
 }
 
-#endif // LIMAL_CA_MGM_AUTHORITY_KEY_IDENTIFIER_EXTENSION_INT_HPP
+#endif // LIMAL_CA_MGM_AUTHORITY_KEY_IDENTIFIER_EXTENSION_PRIV_HPP

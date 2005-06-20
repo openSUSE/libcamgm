@@ -21,9 +21,9 @@
 /-*/
 
 #include  <limal/ca-mgm/LocalManagement.hpp>
-#include  "CertificateData_Int.hpp"
-#include  "CRLData_Int.hpp"
-#include  "RequestData_Int.hpp"
+#include  "CertificateData_Priv.hpp"
+#include  "CRLData_Priv.hpp"
+#include  "RequestData_Priv.hpp"
 
 using namespace limal;
 using namespace limal::ca_mgm;
@@ -64,20 +64,20 @@ CertificateData
 LocalManagement::getCertificate(const String &file,
                                 FormatType    type)
 {
-    return CertificateData_Int();
+    return CertificateData_Priv();
 }
 
 RequestData
 LocalManagement::getRequest(const String &file,
                             FormatType    type)
 {
-    return RequestData_Int();
+    return RequestData_Priv();
 }
 
 CRLData
 LocalManagement::getCRL(const String &file,
                         FormatType    type)
 {
-    return CRLData_Int();
+    return CRLData_Priv();
 }
 

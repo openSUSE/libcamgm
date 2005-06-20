@@ -11,7 +11,7 @@
 |                                         (C) SUSE Linux Products GmbH |
 \----------------------------------------------------------------------/
 
-  File:       RequestData_Int.hpp
+  File:       RequestData_Priv.hpp
 
   Author:     <Michael Calmer>     <mc@suse.de>
   Maintainer: <Michael Calmer>     <mc@suse.de>
@@ -19,8 +19,8 @@
   Purpose:
 
 /-*/
-#ifndef    LIMAL_CA_MGM_REQUEST_DATA_INT_HPP
-#define    LIMAL_CA_MGM_REQUEST_DATA_INT_HPP
+#ifndef    LIMAL_CA_MGM_REQUEST_DATA_PRIV_HPP
+#define    LIMAL_CA_MGM_REQUEST_DATA_PRIV_HPP
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
@@ -30,12 +30,12 @@ namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
-    class RequestData_Int : public RequestData {
+    class RequestData_Priv : public RequestData {
     public:
-        RequestData_Int();
-        RequestData_Int(const String& caName,
+        RequestData_Priv();
+        RequestData_Priv(const String& caName,
                         const String& requestName);
-        virtual ~RequestData_Int();
+        virtual ~RequestData_Priv();
 
         void                setVersion(blocxx::UInt32 v);
         void                setKeysize(blocxx::UInt32 size);
@@ -49,13 +49,13 @@ namespace CA_MGM_NAMESPACE {
         void                setUnstructuredName(const String &name);
 
     private:
-        RequestData_Int(const RequestData_Int& data);
+        RequestData_Priv(const RequestData_Priv& data);
 
-        RequestData_Int& operator=(const RequestData_Int& data);
+        RequestData_Priv& operator=(const RequestData_Priv& data);
         
     };
 
 }
 }
 
-#endif // LIMAL_CA_MGM_REQUEST_DATA_HPP
+#endif // LIMAL_CA_MGM_REQUEST_DATA_PRIV_HPP

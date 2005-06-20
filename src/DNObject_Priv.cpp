@@ -11,7 +11,7 @@
 |                                         (C) SUSE Linux Products GmbH |
 \----------------------------------------------------------------------/
 
-  File:       DNObject_Int.cpp
+  File:       DNObject_Priv.cpp
 
   Author:     <Michael Calmer>     <mc@suse.de>
   Maintainer: <Michael Calmer>     <mc@suse.de>
@@ -20,29 +20,29 @@
 
 /-*/
 
-#include  "DNObject_Int.hpp"
+#include  "DNObject_Priv.hpp"
 
 using namespace limal;
 using namespace limal::ca_mgm;
 using namespace blocxx;
 
-DNObject_Int::DNObject_Int(X509* cert)
+DNObject_Priv::DNObject_Priv(X509* cert)
     : DNObject()
 {
 }
 
-DNObject_Int::~DNObject_Int()
+DNObject_Priv::~DNObject_Priv()
 {
 }
 
 //  private:
-DNObject_Int::DNObject_Int(const DNObject_Int& obj)
+DNObject_Priv::DNObject_Priv(const DNObject_Priv& obj)
     : DNObject(obj)
 {
 }
 
-DNObject_Int&
-DNObject_Int::operator=(const DNObject_Int& obj)
+DNObject_Priv&
+DNObject_Priv::operator=(const DNObject_Priv& obj)
 {
     return *this;
 }

@@ -11,7 +11,7 @@
 |                                         (C) SUSE Linux Products GmbH |
 \----------------------------------------------------------------------/
 
-  File:       X509v3CRLExtensions_Int.cpp
+  File:       X509v3CRLExtensions_Priv.cpp
 
   Author:     <Michael Calmer>     <mc@suse.de>
   Maintainer: <Michael Calmer>     <mc@suse.de>
@@ -20,47 +20,47 @@
 
 /-*/
 
-#include  "X509v3CRLExtensions_Int.hpp"
+#include  "X509v3CRLExtensions_Priv.hpp"
 
 using namespace limal;
 using namespace limal::ca_mgm;
 using namespace blocxx;
 
-X509v3CRLExtensions_Int::X509v3CRLExtensions_Int()
+X509v3CRLExtensions_Priv::X509v3CRLExtensions_Priv()
     : X509v3CRLExtensions()
 {
 }
 
-X509v3CRLExtensions_Int::X509v3CRLExtensions_Int(X509_CRL* crl)
+X509v3CRLExtensions_Priv::X509v3CRLExtensions_Priv(X509_CRL* crl)
     : X509v3CRLExtensions()
 {
 }
 
-X509v3CRLExtensions_Int::~X509v3CRLExtensions_Int()
+X509v3CRLExtensions_Priv::~X509v3CRLExtensions_Priv()
 {
 }
 
 void
-X509v3CRLExtensions_Int::setAuthorityKeyIdentifier(const AuthorityKeyIdentifierExtension &ext)
+X509v3CRLExtensions_Priv::setAuthorityKeyIdentifier(const AuthorityKeyIdentifierExtension &ext)
 {
     authorityKeyIdentifier = ext;
 }
 
 void
-X509v3CRLExtensions_Int::setIssuerAlternativeName(const IssuerAlternativeNameExtension &ext)
+X509v3CRLExtensions_Priv::setIssuerAlternativeName(const IssuerAlternativeNameExtension &ext)
 {
     issuerAlternativeName = ext;
 }
 
 
 //  private:
-X509v3CRLExtensions_Int::X509v3CRLExtensions_Int(const X509v3CRLExtensions_Int& extensions)
+X509v3CRLExtensions_Priv::X509v3CRLExtensions_Priv(const X509v3CRLExtensions_Priv& extensions)
     : X509v3CRLExtensions(extensions)
 {
 }
 
-X509v3CRLExtensions_Int&
-X509v3CRLExtensions_Int::operator=(const X509v3CRLExtensions_Int& extensions)
+X509v3CRLExtensions_Priv&
+X509v3CRLExtensions_Priv::operator=(const X509v3CRLExtensions_Priv& extensions)
 {
     return *this;
 }

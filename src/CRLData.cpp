@@ -21,7 +21,7 @@
 /-*/
 
 #include  <limal/ca-mgm/CRLData.hpp>
-#include  "X509v3CRLExtensions_Int.hpp"
+#include  "X509v3CRLExtensions_Priv.hpp"
 
 using namespace limal;
 using namespace limal::ca_mgm;
@@ -170,7 +170,7 @@ CRLData::getRevocationEntry(const String& oid)
 
 //    protected:
 CRLData::CRLData()
-    : extensions(X509v3CRLExtensions_Int())
+    : extensions(X509v3CRLExtensions_Priv())
 {
 }
 

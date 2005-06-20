@@ -11,7 +11,7 @@
 |                                         (C) SUSE Linux Products GmbH |
 \----------------------------------------------------------------------/
 
-  File:       CRLData_Int.cpp
+  File:       CRLData_Priv.cpp
 
   Author:     <Michael Calmer>     <mc@suse.de>
   Maintainer: <Michael Calmer>     <mc@suse.de>
@@ -19,34 +19,34 @@
   Purpose:
 
 /-*/
-#include  "CRLData_Int.hpp"
+#include  "CRLData_Priv.hpp"
 
 using namespace limal;
 using namespace limal::ca_mgm;
 using namespace blocxx;
 
-CRLData_Int::CRLData_Int()
+CRLData_Priv::CRLData_Priv()
     : CRLData()
 {
 }
 
-CRLData_Int::CRLData_Int(const String &caName)
+CRLData_Priv::CRLData_Priv(const String &caName)
     : CRLData()
 {
 }
 
-CRLData_Int::~CRLData_Int()
+CRLData_Priv::~CRLData_Priv()
 {
 }
 
 void
-CRLData_Int::setVersion(blocxx::Int32 version)
+CRLData_Priv::setVersion(blocxx::Int32 version)
 {
     this->version = version;
 }
 
 void
-CRLData_Int::setValidityPeriod(time_t last,
+CRLData_Priv::setValidityPeriod(time_t last,
                                time_t next)
 {
     lastUpdate = last;
@@ -54,61 +54,61 @@ CRLData_Int::setValidityPeriod(time_t last,
 }
 
 void
-CRLData_Int::setIssuerDN(const DNObject& issuer)
+CRLData_Priv::setIssuerDN(const DNObject& issuer)
 {
     this->issuer = issuer;
 }
 
 void
-CRLData_Int::setSignatureAlgorithm(SigAlg sigAlg)
+CRLData_Priv::setSignatureAlgorithm(SigAlg sigAlg)
 {
     signatureAlgorithm = sigAlg;
 }
 
 void
-CRLData_Int::setSignature(const String& sig)
+CRLData_Priv::setSignature(const String& sig)
 {
     signature = sig;
 }
 
 void
-CRLData_Int::setExtensions(const X509v3CRLExtensions& ext)
+CRLData_Priv::setExtensions(const X509v3CRLExtensions& ext)
 {
     extensions = ext;
 }
 
 void
-CRLData_Int::setRevocationData(const blocxx::Map<String, RevocationEntry>& data)
+CRLData_Priv::setRevocationData(const blocxx::Map<String, RevocationEntry>& data)
 {
     revocationData = data;
 }
 
 void
-CRLData_Int::addRevocationEntry(const String& oid,
+CRLData_Priv::addRevocationEntry(const String& oid,
                                 const RevocationEntry& entry)
 {
 }
 
 void
-CRLData_Int::setRevocationEntry(const String& oid,
+CRLData_Priv::setRevocationEntry(const String& oid,
                                 const RevocationEntry& entry)
 {
 }
 
 void
-CRLData_Int::deleteRevocationEntry(const String& oid)
+CRLData_Priv::deleteRevocationEntry(const String& oid)
 {
 }
 
 
 //  private:
-CRLData_Int::CRLData_Int(const CRLData_Int& data)
+CRLData_Priv::CRLData_Priv(const CRLData_Priv& data)
     : CRLData()
 {
 }
 
-CRLData_Int&
-CRLData_Int::operator=(const CRLData_Int& data)
+CRLData_Priv&
+CRLData_Priv::operator=(const CRLData_Priv& data)
 {
     return *this;
 }

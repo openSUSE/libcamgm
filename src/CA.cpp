@@ -21,9 +21,9 @@
 /-*/
 
 #include  <limal/ca-mgm/CA.hpp>
-#include  "CertificateData_Int.hpp"
-#include  "RequestData_Int.hpp"
-#include  "CRLData_Int.hpp"
+#include  "CertificateData_Priv.hpp"
+#include  "RequestData_Priv.hpp"
+#include  "CRLData_Priv.hpp"
 
 
 using namespace limal;
@@ -149,26 +149,26 @@ CA::getRequestList()
 CertificateData
 CA::getCA()
 {
-    return CertificateData_Int();
+    return CertificateData_Priv();
 }
 
 
 RequestData
 CA::getRequest(const String& requestName)
 {
-    return RequestData_Int();
+    return RequestData_Priv();
 }
 
 CertificateData
 CA::getCertificate(const String& certificateName)
 {
-    return CertificateData_Int();
+    return CertificateData_Priv();
 }
 
 CRLData
 CA::getCRL()
 {
-    return CRLData_Int();
+    return CRLData_Priv();
 }
 
 ByteArray

@@ -11,7 +11,7 @@
 |                                         (C) SUSE Linux Products GmbH |
 \----------------------------------------------------------------------/
 
-  File:       X509v3CertificateExtensions_Int.hpp
+  File:       X509v3CertificateExtensions_Priv.hpp
 
   Author:     <Michael Calmer>     <mc@suse.de>
   Maintainer: <Michael Calmer>     <mc@suse.de>
@@ -19,8 +19,8 @@
   Purpose:
 
 /-*/
-#ifndef    LIMAL_CA_MGM_X509V3_CERTIFICATE_EXTENSION_INT_HPP
-#define    LIMAL_CA_MGM_X509V3_CERTIFICATE_EXTENSION_INT_HPP
+#ifndef    LIMAL_CA_MGM_X509V3_CERTIFICATE_EXTENSION_PRIV_HPP
+#define    LIMAL_CA_MGM_X509V3_CERTIFICATE_EXTENSION_PRIV_HPP
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
@@ -31,11 +31,11 @@ namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
-    class X509v3CertificateExtensions_Int : public X509v3CertificateExtensions {
+    class X509v3CertificateExtensions_Priv : public X509v3CertificateExtensions {
     public:
-        X509v3CertificateExtensions_Int();
-        X509v3CertificateExtensions_Int(X509* cert);
-        virtual ~X509v3CertificateExtensions_Int();
+        X509v3CertificateExtensions_Priv();
+        X509v3CertificateExtensions_Priv(X509* cert);
+        virtual ~X509v3CertificateExtensions_Priv();
 
         void   setNsBaseUrl(const NsBaseUrlExtension &ext);
         void   setNsRevocationUrl(const NsRevocationUrlExtension &ext);
@@ -57,12 +57,12 @@ namespace CA_MGM_NAMESPACE {
         void   setCertificatePolicies(const CertificatePoliciesExtension &ext);
 
     private:
-        X509v3CertificateExtensions_Int(const X509v3CertificateExtensions_Int& extensions);
+        X509v3CertificateExtensions_Priv(const X509v3CertificateExtensions_Priv& extensions);
 
-        X509v3CertificateExtensions_Int& operator=(const X509v3CertificateExtensions_Int& extensions);
+        X509v3CertificateExtensions_Priv& operator=(const X509v3CertificateExtensions_Priv& extensions);
     };
 
 }
 }
 
-#endif // LIMAL_CA_MGM_X509V3_CERTIFICATE_EXTENSION_HPP
+#endif // LIMAL_CA_MGM_X509V3_CERTIFICATE_EXTENSION_PRIV_HPP

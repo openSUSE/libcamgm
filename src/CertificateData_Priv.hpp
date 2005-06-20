@@ -11,7 +11,7 @@
 |                                         (C) SUSE Linux Products GmbH |
 \----------------------------------------------------------------------/
 
-  File:       CertificateData_Int.hpp
+  File:       CertificateData_Priv.hpp
 
   Author:     <Michael Calmer>     <mc@suse.de>
   Maintainer: <Michael Calmer>     <mc@suse.de>
@@ -19,8 +19,8 @@
   Purpose:
 
 /-*/
-#ifndef    LIMAL_CA_MGM_CERTIFICATE_DATA_INT_HPP
-#define    LIMAL_CA_MGM_CERTIFICATE_DATA_INT_HPP
+#ifndef    LIMAL_CA_MGM_CERTIFICATE_DATA_PRIV_HPP
+#define    LIMAL_CA_MGM_CERTIFICATE_DATA_PRIV_HPP
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
@@ -30,13 +30,13 @@ namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
-    class CertificateData_Int : public CertificateData {
+    class CertificateData_Priv : public CertificateData {
     public:
-        CertificateData_Int();
-        CertificateData_Int(const String &caName);
-        CertificateData_Int(const String &caName,
+        CertificateData_Priv();
+        CertificateData_Priv(const String &caName);
+        CertificateData_Priv(const String &caName,
                             const String &certificateName);
-        virtual ~CertificateData_Int();
+        virtual ~CertificateData_Priv();
 
         void           setVersion(blocxx::UInt32 v);
 
@@ -61,9 +61,9 @@ namespace CA_MGM_NAMESPACE {
         void           setExtensions(const X509v3CertificateExtensions& ext);
 
     private:
-        CertificateData_Int(const CertificateData_Int& data);
+        CertificateData_Priv(const CertificateData_Priv& data);
 
-        CertificateData_Int& operator=(const CertificateData_Int& data);
+        CertificateData_Priv& operator=(const CertificateData_Priv& data);
 
                      
     };
@@ -71,4 +71,4 @@ namespace CA_MGM_NAMESPACE {
 }
 }
 
-#endif // LIMAL_CA_MGM_CERTIFICATE_DATA_HPP
+#endif // LIMAL_CA_MGM_CERTIFICATE_DATA_PRIV_HPP
