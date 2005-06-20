@@ -23,6 +23,8 @@
 #include  <limal/ca-mgm/AuthorityKeyIdentifierGenerateExtension.hpp>
 #include  <limal/Exception.hpp>
 
+#include  "Utils.hpp"
+
 using namespace limal;
 using namespace limal::ca_mgm;
 using namespace blocxx;
@@ -69,6 +71,7 @@ void
 AuthorityKeyIdentifierGenerateExtension::setKeyID(KeyID kid)
 {
     if(kid == KeyID_none && issuer == Issuer_none) {
+        LOGIT_ERROR("Invalid value for keyid and issuer. At least one of both must be set");
         BLOCXX_THROW(limal::ValueException, 
                      "Invalid value for keyid and issuer. At least one of both must be set");
     }
@@ -80,6 +83,7 @@ AuthorityKeyIdentifierGenerateExtension::KeyID
 AuthorityKeyIdentifierGenerateExtension::getKeyID() const
 {
     if(!isPresent()) {
+        LOGIT_ERROR("AuthorityKeyIdentifierGenerateExtension is not present");
         BLOCXX_THROW(limal::RuntimeException, "AuthorityKeyIdentifierGenerateExtension is not present");
     }
     return keyid;
@@ -89,6 +93,7 @@ void
 AuthorityKeyIdentifierGenerateExtension::setIssuer(Issuer iss)
 {
     if(keyid == KeyID_none && iss == Issuer_none) {
+        LOGIT_ERROR("Invalid value for keyid and issuer. At least one of both must be set");
         BLOCXX_THROW(limal::ValueException, 
                      "Invalid value for keyid and issuer. At least one of both must be set");
     }
@@ -100,6 +105,7 @@ AuthorityKeyIdentifierGenerateExtension::Issuer
 AuthorityKeyIdentifierGenerateExtension::getIssuer() const
 {
     if(!isPresent()) {
+        LOGIT_ERROR("AuthorityKeyIdentifierGenerateExtension is not present");
         BLOCXX_THROW(limal::RuntimeException, "AuthorityKeyIdentifierGenerateExtension is not present");
     }
     return issuer;
@@ -114,10 +120,15 @@ AuthorityKeyIdentifierGenerateExtension::commit2Config(CA& ca, Type type)
 bool
 AuthorityKeyIdentifierGenerateExtension::valid() const
 {
-    if(!isPresent()) return true;
+    if(!isPresent()) {
+        LOGIT_DEBUG("return AuthorityKeyIdentifierGenerateExtension::valid() is true");
+        return true;
+    }
     if(keyid == KeyID_none && issuer == Issuer_none) {
+        LOGIT_DEBUG("return AuthorityKeyIdentifierGenerateExtension::valid() is false");
         return false;
     }
+    LOGIT_DEBUG("return AuthorityKeyIdentifierGenerateExtension::valid() is true");
     return true;
 }
 
@@ -130,6 +141,6 @@ AuthorityKeyIdentifierGenerateExtension::verify() const
     if(keyid == KeyID_none && issuer == Issuer_none) {
         result.append(String("Invalid value for keyid and issuer. At least one of both must be set"));
     }
+    LOGIT_DEBUG_STRINGARRAY("AuthorityKeyIdentifierGenerateExtension::verify()", result);
     return result;
-
 }

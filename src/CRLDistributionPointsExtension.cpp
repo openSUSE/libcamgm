@@ -23,6 +23,8 @@
 #include  <limal/ca-mgm/CRLDistributionPointsExtension.hpp>
 #include  <limal/Exception.hpp>
 
+#include  "Utils.hpp"
+
 using namespace limal;
 using namespace limal::ca_mgm;
 using namespace blocxx;
@@ -57,13 +59,15 @@ void
 CRLDistributionPointsExtension::setCRLDistributionPoints(blocxx::List<LiteralValueBase> dp)
 {
     if(dp.empty()) {
+        LOGIT_ERROR("invalid value for CRLDistributionPointsExtension");
         BLOCXX_THROW(limal::ValueException, "invalid value for CRLDistributionPointsExtension");
     }
     blocxx::List<LiteralValueBase>::const_iterator it = dp.begin();
     for(;it != dp.end(); it++) {
         if(!(*it).valid()) {
+            LOGIT_ERROR("invalid literal value for CRLDistributionPointsExtension");
             BLOCXX_THROW(limal::ValueException, 
-                         "invalid literal value(%1) for CRLDistributionPointsExtension");
+                         "invalid literal value for CRLDistributionPointsExtension");
         }
     }
     
@@ -74,6 +78,7 @@ blocxx::List<LiteralValueBase>
 CRLDistributionPointsExtension::getCRLDistributionPoints() const
 {
     if(!isPresent()) {
+        LOGIT_ERROR("CRLDistributionPointsExtension is not present");
         BLOCXX_THROW(limal::RuntimeException, "CRLDistributionPointsExtension is not present");
     }
     return altNameList;
@@ -87,17 +92,21 @@ CRLDistributionPointsExtension::commit2Config(CA& ca, Type type)
 bool
 CRLDistributionPointsExtension::valid() const
 {
-    if(!isPresent()) return true;
+    if(!isPresent()) {
+        LOGIT_DEBUG("return CRLDistributionPointsExtension::valid() is true");
+        return true;
+    }
 
     if(altNameList.empty()) return false;
 
     blocxx::List<LiteralValueBase>::const_iterator it = altNameList.begin();
     for(;it != altNameList.end(); it++) {
         if(!(*it).valid()) {
+            LOGIT_DEBUG("return CRLDistributionPointsExtension::valid() is false");
             return false;
         }
     }
-    
+    LOGIT_DEBUG("return CRLDistributionPointsExtension::valid() is true");
     return true;
 }
 
@@ -116,7 +125,7 @@ CRLDistributionPointsExtension::verify() const
     for(;it != altNameList.end(); it++) {
         result.appendArray((*it).verify());
     }
-    
+    LOGIT_DEBUG_STRINGARRAY("CRLDistributionPointsExtension::verify()", result);
     return result;
 }
 

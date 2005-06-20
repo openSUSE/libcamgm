@@ -22,6 +22,8 @@
 #include  <limal/ca-mgm/AuthorityKeyIdentifierExtension.hpp>
 #include  <limal/Exception.hpp>
 
+#include  "Utils.hpp"
+
 using namespace limal;
 using namespace limal::ca_mgm;
 using namespace blocxx;
@@ -53,6 +55,7 @@ blocxx::String
 AuthorityKeyIdentifierExtension::getKeyID() const
 {
     if(!isPresent()) {
+        LOGIT_ERROR("AuthorityKeyIdentifierExtension is not present");
         BLOCXX_THROW(limal::RuntimeException, "AuthorityKeyIdentifierExtension is not present");
     }
     return keyid;
@@ -62,6 +65,7 @@ blocxx::String
 AuthorityKeyIdentifierExtension::getDirName() const
 {
     if(!isPresent()) {
+        LOGIT_ERROR("AuthorityKeyIdentifierExtension is not present");
         BLOCXX_THROW(limal::RuntimeException, "AuthorityKeyIdentifierExtension is not present");
     }
     return DirName;
@@ -71,6 +75,7 @@ blocxx::String
 AuthorityKeyIdentifierExtension::getSerial() const
 {
     if(!isPresent()) {
+        LOGIT_ERROR("AuthorityKeyIdentifierExtension is not present");
         BLOCXX_THROW(limal::RuntimeException, "AuthorityKeyIdentifierExtension is not present");
     }
     return serial;

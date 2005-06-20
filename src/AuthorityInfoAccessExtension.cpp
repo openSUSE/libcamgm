@@ -25,6 +25,8 @@
 #include  <limal/Exception.hpp>
 #include  <blocxx/Format.hpp>
 
+#include  "Utils.hpp"
+
 using namespace limal;
 using namespace limal::ca_mgm;
 using namespace blocxx;
@@ -47,9 +49,11 @@ AuthorityInformation::AuthorityInformation(const AuthorityInformation& ai)
     : accessOID(ai.accessOID), location(ai.location)
 {
     if(!location.valid()) {
+        LOGIT_ERROR("invalid location"); 
         BLOCXX_THROW(limal::ValueException, "invalid location");
     }
     if(!valid()) {
+        LOGIT_ERROR("invalid accessOID"); 
         BLOCXX_THROW(limal::ValueException, "invalid accessOID");
     }
 }
@@ -77,9 +81,11 @@ AuthorityInformation::setAuthorityInformation(const String &accessOID,
                                               const LiteralValueBase& location)
 {
     if(!location.valid()) {
+        LOGIT_ERROR("invalid location"); 
         BLOCXX_THROW(limal::ValueException, "invalid location");
     }
     if(!initValueCheck().isValid(accessOID)) {
+        LOGIT_ERROR("invalid accessOID"); 
         BLOCXX_THROW(limal::ValueException, "invalid accessOID");
     }
 
@@ -104,11 +110,14 @@ AuthorityInformation::valid() const
 {
     ValueCheck checkAccessOID = initValueCheck();
     if(!checkAccessOID.isValid(accessOID)) {
+        LOGIT_DEBUG("return AuthorityInformation::valid() is false"); 
         return false;
     }
     if(!location.valid()) {
+        LOGIT_DEBUG("return AuthorityInformation::valid() is false"); 
         return false;
     }
+    LOGIT_DEBUG("return AuthorityInformation::valid() is true"); 
     return true;
 }
 
@@ -123,7 +132,8 @@ AuthorityInformation::verify() const
         result.append(Format("invalid value(%1) for accessOID", accessOID).toString());
     }
     result.appendArray(location.verify());
-
+    
+    LOGIT_DEBUG_STRINGARRAY("AuthorityInformation::verify()", result);
     return result;
 }
 
@@ -160,11 +170,13 @@ void
 AuthorityInfoAccessExtension::setAuthorityInformation(const blocxx::List<AuthorityInformation>& infolist)
 {
     if(infolist.empty()) {
+        LOGIT_ERROR("empty infolist");
         BLOCXX_THROW(limal::ValueException, "empty infolist");
     }
     blocxx::List<AuthorityInformation>::const_iterator it = infolist.begin();
     for(;it != infolist.end(); it++) {
         if(!(*it).valid()) {
+            LOGIT_ERROR("invalid AuthorityInformation in infolist");
             BLOCXX_THROW(limal::ValueException, "invalid AuthorityInformation in infolist");
         }
     }
@@ -176,6 +188,7 @@ blocxx::List<AuthorityInformation>
 AuthorityInfoAccessExtension::getAuthorityInformation() const
 {
     if(!isPresent()) {
+        LOGIT_ERROR("AuthorityInfoAccessExtension is not present");
         BLOCXX_THROW(limal::RuntimeException, "AuthorityInfoAccessExtension is not present");
     }
     return info;
@@ -193,17 +206,23 @@ AuthorityInfoAccessExtension::commit2Config(CA& ca, Type type)
 bool
 AuthorityInfoAccessExtension::valid() const
 {
-    if(!isPresent()) return true;
+    if(!isPresent()) {
+        LOGIT_DEBUG("return AuthorityInfoAccessExtension::valid() is true");
+        return true;
+    }
 
     if(info.empty()) {
+        LOGIT_DEBUG("return AuthorityInfoAccessExtension::valid() is false");
         return false;
     }
     blocxx::List<AuthorityInformation>::const_iterator it = info.begin();
     for(;it != info.end(); it++) {
         if(!(*it).valid()) {
+            LOGIT_DEBUG("return AuthorityInfoAccessExtension::valid() is false");
             return false;
         }
     }
+    LOGIT_DEBUG("return AuthorityInfoAccessExtension::valid() is true");
     return true;
 }
 
@@ -221,5 +240,7 @@ AuthorityInfoAccessExtension::verify() const
     for(;it != info.end(); it++) {
         result.appendArray((*it).verify());
     }
+
+    LOGIT_DEBUG_STRINGARRAY("AuthorityInfoAccessExtension::verify()", result);
     return result;
 }

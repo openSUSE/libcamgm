@@ -21,6 +21,9 @@
 /-*/
 
 #include  <limal/ca-mgm/LiteralValues.hpp>
+#include  <limal/ValueRegExCheck.hpp>
+#include  <limal/Exception.hpp>
+#include  <blocxx/Format.hpp>
 
 using namespace limal;
 using namespace limal::ca_mgm;
@@ -40,6 +43,10 @@ LiteralValueBase::LiteralValueBase(const LiteralValueBase& value)
 LiteralValueBase&
 LiteralValueBase::operator=(const LiteralValueBase& value)
 {
+    if(this == &value) return *this;
+
+    literalValue = value.literalValue;
+
     return *this;
 }
 
@@ -78,31 +85,49 @@ LiteralValueBase::verify() const
 
 // ##############################################################################
 
+inline static ValueCheck initEmailLiteralValueCheck() {
+    ValueCheck checkEmail =
+        ValueCheck(new ValueRegExCheck("^[^@]+@[^@]+$"));
+
+    return checkEmail;
+}
 
 EmailLiteralValue::EmailLiteralValue(const String &value)
     : LiteralValueBase(value)
 {
+    ValueCheck check = initEmailLiteralValueCheck();
+    if(!check.isValid(getValue())) {
+        BLOCXX_THROW(limal::ValueException,
+                     Format("invalid email address(%1) in EmailLiteralValue", getValue()).c_str());
+    }
 }
 
 EmailLiteralValue::EmailLiteralValue(const EmailLiteralValue &value)
     : LiteralValueBase(value)
-{
-}
+{}
 
 EmailLiteralValue::~EmailLiteralValue()
-{
-}
+{}
 
 
 EmailLiteralValue&
 EmailLiteralValue::operator=(const EmailLiteralValue& value)
 {
+    if(this == &value) return *this;
+    
+    LiteralValueBase::operator=(value);
+
     return *this;
 }
 
 void
 EmailLiteralValue::setValue(const String &value)
 {
+    ValueCheck check = initEmailLiteralValueCheck();
+    if(!check.isValid(value)) {
+        BLOCXX_THROW(limal::ValueException,
+                     Format("invalid email address(%1)", value).c_str());
+    }
     LiteralValueBase::setValue(value);
 }
 
@@ -115,21 +140,34 @@ EmailLiteralValue::getValue() const
 bool
 EmailLiteralValue::valid() const
 {
-    // Fixme: add check
-    return false;
+    ValueCheck check = initEmailLiteralValueCheck();
+    if(!check.isValid(getValue())) {
+        return false;
+    }
+    return true;
 }
 
 blocxx::StringArray
 EmailLiteralValue::verify() const
 {
-    // Fixme: add check
-    StringArray result;
-    result.append(String("This is the base object. This should never happen"));
-    return result;
+    blocxx::StringArray result;
+    
+    ValueCheck check = initEmailLiteralValueCheck();
+    if(!check.isValid(getValue())) {
+        result.append(Format("invalid email address(%1) in EmailLiteralValue", getValue()).toString());
+    }
 }
 
 
 // ##############################################################################
+
+
+ValueCheck initURILiteralValueCheck() {
+    ValueCheck checkEmail =
+        ValueCheck(new ValueRegExCheck("^(([^:/?#]+)://)?([^/?#]*)?([^?#]*)?(\\?([^#]*))?(#(.*))?"  ));
+
+    return checkEmail;
+}
 
 URILiteralValue::URILiteralValue(const String &value)
     : LiteralValueBase(value)
@@ -149,6 +187,10 @@ URILiteralValue::~URILiteralValue()
 URILiteralValue&
 URILiteralValue::operator=(const URILiteralValue& value)
 {
+    if(this == &value) return *this;
+    
+    LiteralValueBase::operator=(value);
+
     return *this;
 }
 
@@ -200,6 +242,10 @@ DNSLiteralValue::~DNSLiteralValue()
 DNSLiteralValue&
 DNSLiteralValue::operator=(const DNSLiteralValue& value)
 {
+    if(this == &value) return *this;
+    
+    LiteralValueBase::operator=(value);
+
     return *this;
 }
 
@@ -251,6 +297,10 @@ RIDLiteralValue::~RIDLiteralValue()
 RIDLiteralValue&
 RIDLiteralValue::operator=(const RIDLiteralValue& value)
 {
+    if(this == &value) return *this;
+    
+    LiteralValueBase::operator=(value);
+
     return *this;
 }
 
@@ -303,6 +353,10 @@ IPLiteralValue::~IPLiteralValue()
 IPLiteralValue&
 IPLiteralValue::operator=(const IPLiteralValue& value)
 {
+    if(this == &value) return *this;
+    
+    LiteralValueBase::operator=(value);
+
     return *this;
 }
 

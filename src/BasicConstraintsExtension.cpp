@@ -24,6 +24,8 @@
 #include  <limal/Exception.hpp>
 #include  <blocxx/Format.hpp>
 
+#include  "Utils.hpp"
+
 using namespace limal;
 using namespace limal::ca_mgm;
 using namespace blocxx;
@@ -40,9 +42,11 @@ BasicConstraintsExtension::BasicConstraintsExtension(bool isCa, blocxx::Int32 pa
     : ExtensionBase(), ca(isCa), pathlen(pathLength)
 {
     if(ca && pathlen < -1) {
+        LOGIT_ERROR("invalid value for pathLength");
         BLOCXX_THROW(limal::ValueException, "invalid value for pathLength");
     }
     if(!ca && pathlen != -1) {
+        LOGIT_ERROR("invalid value for pathLength");
         BLOCXX_THROW(limal::ValueException, "invalid value for pathLength");
     }
 }
@@ -71,9 +75,11 @@ void
 BasicConstraintsExtension::setBasicConstraints(bool isCa, blocxx::Int32 pathLength)
 {
     if(isCa && pathLength < -1) {
+        LOGIT_ERROR("invalid value for pathLength");
         BLOCXX_THROW(limal::ValueException, "invalid value for pathLength");
     }
     if(!isCa && pathLength != -1) {
+        LOGIT_ERROR("invalid value for pathLength");
         BLOCXX_THROW(limal::ValueException, "invalid value for pathLength");
     }
     
@@ -86,6 +92,7 @@ bool
 BasicConstraintsExtension::isCA() const
 {
     if(!isPresent()) {
+        LOGIT_ERROR("BasicConstraintsExtension is not present");
         BLOCXX_THROW(limal::RuntimeException, "BasicConstraintsExtension is not present");
     }
     return ca;
@@ -95,6 +102,7 @@ blocxx::Int32
 BasicConstraintsExtension::getPathLength() const
 {
     if(!isPresent()) {
+        LOGIT_ERROR("BasicConstraintsExtension is not present");
         BLOCXX_THROW(limal::RuntimeException, "BasicConstraintsExtension is not present");
     }
     return pathlen;
@@ -108,14 +116,20 @@ BasicConstraintsExtension::commit2Config(CA& ca, Type type)
 bool
 BasicConstraintsExtension::valid() const
 {
-    if(!isPresent()) return true;
+    if(!isPresent()) {
+        LOGIT_DEBUG("return BasicConstraintsExtension::valid() is true");
+        return true;
+    }
 
     if(ca && pathlen < -1) {
+        LOGIT_DEBUG("return BasicConstraintsExtension::valid() is false");
         return false;
     }
     if(!ca && pathlen != -1) {
+        LOGIT_DEBUG("return BasicConstraintsExtension::valid() is false");
         return false;
     }
+    LOGIT_DEBUG("return BasicConstraintsExtension::valid() is true");
     return true;
 }
 
@@ -132,5 +146,6 @@ BasicConstraintsExtension::verify() const
     if(!ca && pathlen != -1) {
         result.append(Format("invalid value for pathLength(%1). Has to be -1", pathlen).toString());
     }
+    LOGIT_DEBUG_STRINGARRAY("BasicConstraintsExtension::verify()", result);
     return result;
 }
