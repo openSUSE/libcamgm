@@ -43,14 +43,14 @@ liblimal_ca_mgm_la_SOURCES  =	\
 	X509v3CRLExtensions.cpp \
 	X509v3CRLGenerationExtensions.cpp \
 	X509v3RequestExtensions.cpp \
-	AuthorityKeyIdentifierExtension_Int.cpp \
-	CertificateData_Int.cpp \
-	CRLData_Int.cpp \
-	DNObject_Int.cpp \
-	RequestData_Int.cpp \
-	X509v3CertificateExtensions_Int.cpp \
-	X509v3CRLExtensions_Int.cpp \
-	X509v3RequestExtensions_Int.cpp
+	AuthorityKeyIdentifierExtension_Priv.cpp \
+	CertificateData_Priv.cpp \
+	CRLData_Priv.cpp \
+	DNObject_Priv.cpp \
+	RequestData_Priv.cpp \
+	X509v3CertificateExtensions_Priv.cpp \
+	X509v3CRLExtensions_Priv.cpp \
+	X509v3RequestExtensions_Priv.cpp
 
 
 liblimal_ca_mgm_la_CXXFLAGS = $(LIMAL_CFLAGS)
