@@ -29,99 +29,29 @@ namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
-    class LiteralValueBase {
+    class LiteralValue {
     public:
-        LiteralValueBase(const String &value = String());
-        LiteralValueBase(const LiteralValueBase& value);
+        LiteralValue();
+        LiteralValue(const String &type, const String &value);
+        LiteralValue(const LiteralValue& value);
 
-        LiteralValueBase& operator=(const LiteralValueBase& value);
-        virtual ~LiteralValueBase();
-        
+        LiteralValue& operator=(const LiteralValue& value);
+        virtual ~LiteralValue();
 
+        virtual void   setLiteral(const String &type, const String &value);
         virtual void   setValue(const String &value);
+        virtual String getType() const;
         virtual String getValue() const;
 
         virtual bool                valid() const;
         virtual blocxx::StringArray verify() const;
 
+        virtual String              toString() const;
+
     private:
+        String literalType;
         String literalValue;
 
-    };
-
-    class EmailLiteralValue : public LiteralValueBase {
-    public:
-        EmailLiteralValue(const String &value = String());
-        EmailLiteralValue(const EmailLiteralValue &value);
-        virtual ~EmailLiteralValue();
-
-        EmailLiteralValue& operator=(const EmailLiteralValue& value);
-
-        virtual void   setValue(const String &value);
-        virtual String getValue() const ;
-
-        virtual bool                valid() const;
-        virtual blocxx::StringArray verify() const;
-    };
-
-    class URILiteralValue : public LiteralValueBase {
-    public:
-        URILiteralValue(const String &value = String());
-        URILiteralValue(const URILiteralValue &value);
-        virtual ~URILiteralValue();
-
-        URILiteralValue& operator=(const URILiteralValue& value);
-
-        virtual void   setValue(const String &value);
-        virtual String getValue() const ;
-
-        virtual bool                valid() const;
-        virtual blocxx::StringArray verify() const;
-    };
-
-    class DNSLiteralValue : public LiteralValueBase {
-    public:
-        DNSLiteralValue(const String &value = String());
-        DNSLiteralValue(const DNSLiteralValue &value);
-        virtual ~DNSLiteralValue();
-
-        DNSLiteralValue& operator=(const DNSLiteralValue& value);
-
-        virtual void   setValue(const String &value);
-        virtual String getValue() const ;
-
-        virtual bool                valid() const;
-        virtual blocxx::StringArray verify() const;
-    };
-
-    class RIDLiteralValue : public LiteralValueBase {
-    public:
-        RIDLiteralValue(const String &value = String());
-        RIDLiteralValue(const RIDLiteralValue &value);
-        virtual ~RIDLiteralValue();
-
-        RIDLiteralValue& operator=(const RIDLiteralValue& value);
-
-        virtual void   setValue(const String &value);
-        virtual String getValue() const ;
-
-        virtual bool                valid() const;
-        virtual blocxx::StringArray verify() const;
-    };
-
-    class IPLiteralValue : public LiteralValueBase {
-    public:
-        IPLiteralValue(const String &value = String());
-        IPLiteralValue(const IPLiteralValue &value);
-        virtual ~IPLiteralValue();
-
-        IPLiteralValue& operator=(const IPLiteralValue& value);
-
-        virtual void   setValue(const String &value);
-        virtual String getValue() const ;
-
-        virtual bool                valid() const;
-        virtual blocxx::StringArray verify() const;
     };
 
 }

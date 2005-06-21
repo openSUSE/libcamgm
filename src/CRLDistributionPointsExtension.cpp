@@ -30,11 +30,11 @@ using namespace limal::ca_mgm;
 using namespace blocxx;
 
 CRLDistributionPointsExtension::CRLDistributionPointsExtension()
-    : ExtensionBase(), altNameList(blocxx::List<LiteralValueBase>())
+    : ExtensionBase(), altNameList(blocxx::List<LiteralValue>())
 {}
 
 CRLDistributionPointsExtension::CRLDistributionPointsExtension(CA& ca, Type type)
-    : ExtensionBase(), altNameList(blocxx::List<LiteralValueBase>())
+    : ExtensionBase(), altNameList(blocxx::List<LiteralValue>())
 {}
 
 CRLDistributionPointsExtension::CRLDistributionPointsExtension(const CRLDistributionPointsExtension& extension)
@@ -56,13 +56,13 @@ CRLDistributionPointsExtension::operator=(const CRLDistributionPointsExtension& 
 }
 
 void
-CRLDistributionPointsExtension::setCRLDistributionPoints(blocxx::List<LiteralValueBase> dp)
+CRLDistributionPointsExtension::setCRLDistributionPoints(blocxx::List<LiteralValue> dp)
 {
     if(dp.empty()) {
         LOGIT_ERROR("invalid value for CRLDistributionPointsExtension");
         BLOCXX_THROW(limal::ValueException, "invalid value for CRLDistributionPointsExtension");
     }
-    blocxx::List<LiteralValueBase>::const_iterator it = dp.begin();
+    blocxx::List<LiteralValue>::const_iterator it = dp.begin();
     for(;it != dp.end(); it++) {
         if(!(*it).valid()) {
             LOGIT_ERROR("invalid literal value for CRLDistributionPointsExtension");
@@ -74,7 +74,7 @@ CRLDistributionPointsExtension::setCRLDistributionPoints(blocxx::List<LiteralVal
     altNameList = dp;
 }
 
-blocxx::List<LiteralValueBase>
+blocxx::List<LiteralValue>
 CRLDistributionPointsExtension::getCRLDistributionPoints() const
 {
     if(!isPresent()) {
@@ -99,7 +99,7 @@ CRLDistributionPointsExtension::valid() const
 
     if(altNameList.empty()) return false;
 
-    blocxx::List<LiteralValueBase>::const_iterator it = altNameList.begin();
+    blocxx::List<LiteralValue>::const_iterator it = altNameList.begin();
     for(;it != altNameList.end(); it++) {
         if(!(*it).valid()) {
             LOGIT_DEBUG("return CRLDistributionPointsExtension::valid() is false");
@@ -121,7 +121,7 @@ CRLDistributionPointsExtension::verify() const
         result.append(String("No value for CRLDistributionPointsExtension."));
     }
 
-    blocxx::List<LiteralValueBase>::const_iterator it = altNameList.begin();
+    blocxx::List<LiteralValue>::const_iterator it = altNameList.begin();
     for(;it != altNameList.end(); it++) {
         result.appendArray((*it).verify());
     }

@@ -39,22 +39,22 @@ namespace CA_MGM_NAMESPACE {
         AuthorityInformation();
         AuthorityInformation(const AuthorityInformation& ai);
         AuthorityInformation(const String &accessOID, 
-                             const LiteralValueBase& location);
+                             const LiteralValue& location);
 
         AuthorityInformation&   operator=(const AuthorityInformation& ai);
 
         void                    setAuthorityInformation(const String &accessOID, 
-                                                        const LiteralValueBase& location);
+                                                        const LiteralValue& location);
 
         String                  getAccessOID() const;
-        LiteralValueBase        getLocation() const;
+        LiteralValue            getLocation() const;
 
         bool                    valid() const;
         blocxx::StringArray     verify() const;
 
     private:
         String                  accessOID;
-        LiteralValueBase        location;
+        LiteralValue            location;
 
     };
 

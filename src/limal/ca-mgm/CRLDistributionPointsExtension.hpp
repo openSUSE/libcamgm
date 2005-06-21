@@ -42,8 +42,8 @@ namespace CA_MGM_NAMESPACE {
 
         CRLDistributionPointsExtension& operator=(const CRLDistributionPointsExtension& extension);
 
-        void                   setCRLDistributionPoints(blocxx::List<LiteralValueBase>);
-        blocxx::List<LiteralValueBase> getCRLDistributionPoints() const;
+        void         setCRLDistributionPoints(blocxx::List<LiteralValue>);
+        blocxx::List<LiteralValue> getCRLDistributionPoints() const;
 
         virtual void commit2Config(CA& ca, Type type);
 
@@ -51,7 +51,7 @@ namespace CA_MGM_NAMESPACE {
         virtual blocxx::StringArray  verify() const;
 
     private:
-        blocxx::List<LiteralValueBase> altNameList;
+        blocxx::List<LiteralValue> altNameList;
     };
 
 }

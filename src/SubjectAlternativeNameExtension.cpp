@@ -32,7 +32,7 @@ SubjectAlternativeNameExtension::SubjectAlternativeNameExtension(CA& ca, Type ty
 }
 
 SubjectAlternativeNameExtension::SubjectAlternativeNameExtension(bool copyEmail,
-                                const blocxx::List<LiteralValueBase> &alternativeNameList)
+                                     const blocxx::List<LiteralValue> &alternativeNameList)
     : ExtensionBase()
 {
 }
@@ -68,20 +68,20 @@ SubjectAlternativeNameExtension::getCopyEmail() const
 }
 
 void
-SubjectAlternativeNameExtension::setAlternativeNameList(const blocxx::List<LiteralValueBase> &alternativeNameList)
+SubjectAlternativeNameExtension::setAlternativeNameList(const blocxx::List<LiteralValue> &alternativeNameList)
 {
     altNameList = alternativeNameList;
 }
 
 
-blocxx::List<LiteralValueBase>
+blocxx::List<LiteralValue>
 SubjectAlternativeNameExtension::getAlternativeNameList() const
 {
     return altNameList;
 }
 
 void
-SubjectAlternativeNameExtension::addSubjectAltName(const LiteralValueBase& altName)
+SubjectAlternativeNameExtension::addSubjectAltName(const LiteralValue& altName)
 {
 }
 

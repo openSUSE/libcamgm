@@ -38,7 +38,7 @@ namespace CA_MGM_NAMESPACE {
         IssuerAlternativeNameExtension();
 
         IssuerAlternativeNameExtension(bool copyIssuer,
-                                       const blocxx::List<LiteralValueBase> &alternativeNameList);
+                                       const blocxx::List<LiteralValue> &alternativeNameList);
         IssuerAlternativeNameExtension(CA& ca, Type type);
         IssuerAlternativeNameExtension(const IssuerAlternativeNameExtension& extension);
         virtual ~IssuerAlternativeNameExtension();
@@ -48,10 +48,10 @@ namespace CA_MGM_NAMESPACE {
         void  setCopyIssuer(bool copyIssuer);
         bool  getCopyIssuer() const;
 
-        void                   setAlternativeNameList(const blocxx::List<LiteralValueBase> &alternativeNameList);
-        blocxx::List<LiteralValueBase> getAlternativeNameList() const;
+        void  setAlternativeNameList(const blocxx::List<LiteralValue> &alternativeNameList);
+        blocxx::List<LiteralValue> getAlternativeNameList() const;
 
-        void                   addIssuerAltName(const LiteralValueBase& altName);
+        void                   addIssuerAltName(const LiteralValue& altName);
 
         virtual void           commit2Config(CA& ca, Type type);
 
@@ -60,7 +60,7 @@ namespace CA_MGM_NAMESPACE {
 
     private:
         bool issuerCopy;
-        blocxx::List<LiteralValueBase> altNameList;
+        blocxx::List<LiteralValue> altNameList;
     };
 
 }

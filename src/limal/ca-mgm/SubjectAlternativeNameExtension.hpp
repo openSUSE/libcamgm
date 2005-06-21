@@ -37,7 +37,7 @@ namespace CA_MGM_NAMESPACE {
     public:
         SubjectAlternativeNameExtension(CA& ca, Type type);
         SubjectAlternativeNameExtension(bool copyEmail = false,
-                                        const blocxx::List<LiteralValueBase> &alternativeNameList = blocxx::List<LiteralValueBase>());
+                                        const blocxx::List<LiteralValue> &alternativeNameList = blocxx::List<LiteralValue>());
         SubjectAlternativeNameExtension(const SubjectAlternativeNameExtension& extension);
 
         virtual ~SubjectAlternativeNameExtension();
@@ -47,16 +47,16 @@ namespace CA_MGM_NAMESPACE {
         void  setCopyEmail(bool copyEmail);
         bool  getCopyEmail() const;
 
-        void                   setAlternativeNameList(const blocxx::List<LiteralValueBase> &alternativeNameList);
-        blocxx::List<LiteralValueBase> getAlternativeNameList() const;
+        void  setAlternativeNameList(const blocxx::List<LiteralValue> &alternativeNameList);
+        blocxx::List<LiteralValue> getAlternativeNameList() const;
 
-        void                   addSubjectAltName(const LiteralValueBase& altName);
+        void                   addSubjectAltName(const LiteralValue& altName);
 
         virtual void commit2Config(CA& ca, Type type);
 
     private:
         bool                           emailCopy;
-        blocxx::List<LiteralValueBase> altNameList;
+        blocxx::List<LiteralValue>     altNameList;
     };
 
 }

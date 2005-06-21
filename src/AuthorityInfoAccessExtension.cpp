@@ -41,12 +41,16 @@ inline static ValueCheck initValueCheck() {
 }
 
 AuthorityInformation::AuthorityInformation()
-    : accessOID(""), location(LiteralValueBase())
-{
-}
+    : accessOID(""), location(LiteralValue())
+{}
 
 AuthorityInformation::AuthorityInformation(const AuthorityInformation& ai)
     : accessOID(ai.accessOID), location(ai.location)
+{}
+
+AuthorityInformation::AuthorityInformation(const String &accessOID, 
+                                           const LiteralValue& location)
+    : accessOID(accessOID), location(location)
 {
     if(!location.valid()) {
         LOGIT_ERROR("invalid location"); 
@@ -56,12 +60,6 @@ AuthorityInformation::AuthorityInformation(const AuthorityInformation& ai)
         LOGIT_ERROR("invalid accessOID"); 
         BLOCXX_THROW(limal::ValueException, "invalid accessOID");
     }
-}
-
-AuthorityInformation::AuthorityInformation(const String &accessOID, 
-                                           const LiteralValueBase& location)
-    : accessOID(accessOID), location(location)
-{
 }
 
 
@@ -78,7 +76,7 @@ AuthorityInformation::operator=(const AuthorityInformation& ai)
 
 void
 AuthorityInformation::setAuthorityInformation(const String &accessOID, 
-                                              const LiteralValueBase& location)
+                                              const LiteralValue& location)
 {
     if(!location.valid()) {
         LOGIT_ERROR("invalid location"); 
@@ -99,7 +97,7 @@ AuthorityInformation::getAccessOID() const
     return accessOID;
 }
 
-LiteralValueBase
+LiteralValue
 AuthorityInformation::getLocation() const
 {
     return location;

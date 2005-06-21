@@ -25,65 +25,11 @@
 #include  <limal/Exception.hpp>
 #include  <blocxx/Format.hpp>
 
+#include  "Utils.hpp"
+
 using namespace limal;
 using namespace limal::ca_mgm;
 using namespace blocxx;
-
-LiteralValueBase::LiteralValueBase(const String &value) 
-    : literalValue(value) 
-{
-}
-
-LiteralValueBase::LiteralValueBase(const LiteralValueBase& value)
-    : literalValue(value.literalValue)
-{
-}
-
-
-LiteralValueBase&
-LiteralValueBase::operator=(const LiteralValueBase& value)
-{
-    if(this == &value) return *this;
-
-    literalValue = value.literalValue;
-
-    return *this;
-}
-
-LiteralValueBase::~LiteralValueBase()
-{
-}
-        
-
-void
-LiteralValueBase::setValue(const String &value) 
-{
-    literalValue = value; 
-}
-
-blocxx::String
-LiteralValueBase::getValue() const 
-{
-    return literalValue; 
-}
-
-
-bool
-LiteralValueBase::valid() const
-{
-    return false;
-}
-
-blocxx::StringArray
-LiteralValueBase::verify() const
-{
-    StringArray result;
-    result.append(String("This is the base object. This should never happen"));
-    return result;
-}
-
-
-// ##############################################################################
 
 inline static ValueCheck initEmailLiteralValueCheck() {
     ValueCheck checkEmail =
@@ -92,298 +38,200 @@ inline static ValueCheck initEmailLiteralValueCheck() {
     return checkEmail;
 }
 
-EmailLiteralValue::EmailLiteralValue(const String &value)
-    : LiteralValueBase(value)
+inline static ValueCheck initURILiteralValueCheck() {
+    ValueCheck checkURI =
+        ValueCheck(new ValueRegExCheck("^(([^:/?#]+)://)?([^/?#]*)?([^?#]*)?(\\\\?([^#]*))?(#(.*))?"  ));
+
+    return checkURI;
+}
+
+inline static ValueCheck initDNSLiteralValueCheck() {
+    ValueCheck checkDNS =
+        ValueCheck(new ValueRegExCheck("^[a-z]+[a-z0-9.-]*$"));
+
+    return checkDNS;
+}
+
+inline static ValueCheck initRIDLiteralValueCheck() {
+    ValueCheck checkRID =
+        ValueCheck(new ValueRegExCheck("^([0-9]+\\.)+[0-9]+$"));
+
+    return checkRID;
+}
+
+inline static ValueCheck initIPLiteralValueCheck() {
+    ValueCheck checkIP =
+        ValueCheck(new ValueRegExCheck("^([0-9]{1,3}\\.){3}[0-9]+$"));
+
+    return checkIP;
+}
+
+LiteralValue::LiteralValue() 
+    : literalType(String()), literalValue(String()) 
+{}
+
+LiteralValue::LiteralValue(const String &type, const String &value) 
+    : literalType(type), literalValue(value) 
 {
-    ValueCheck check = initEmailLiteralValueCheck();
-    if(!check.isValid(getValue())) {
-        BLOCXX_THROW(limal::ValueException,
-                     Format("invalid email address(%1) in EmailLiteralValue", getValue()).c_str());
+    StringArray r = this->verify();
+    if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
+        BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
 }
 
-EmailLiteralValue::EmailLiteralValue(const EmailLiteralValue &value)
-    : LiteralValueBase(value)
-{}
-
-EmailLiteralValue::~EmailLiteralValue()
+LiteralValue::LiteralValue(const LiteralValue& value)
+    : literalType(value.literalType), literalValue(value.literalValue)
 {}
 
 
-EmailLiteralValue&
-EmailLiteralValue::operator=(const EmailLiteralValue& value)
+LiteralValue&
+LiteralValue::operator=(const LiteralValue& value)
 {
     if(this == &value) return *this;
-    
-    LiteralValueBase::operator=(value);
+
+    literalValue = value.literalValue;
+    literalType = value.literalType;
 
     return *this;
 }
 
+LiteralValue::~LiteralValue()
+{}
+        
+
 void
-EmailLiteralValue::setValue(const String &value)
+LiteralValue::setLiteral(const String &type, const String &value)
 {
-    ValueCheck check = initEmailLiteralValueCheck();
-    if(!check.isValid(value)) {
-        BLOCXX_THROW(limal::ValueException,
-                     Format("invalid email address(%1)", value).c_str());
+    String dType = literalType;
+    String dValue = literalValue;
+
+    literalType = type;
+    literalValue = value;
+
+    StringArray r = this->verify();
+    if(!r.empty()) {
+        literalType = dType;
+        literalValue = dValue;
+        
+        LOGIT_ERROR(r[0]);
+        BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
-    LiteralValueBase::setValue(value);
+}
+
+void
+LiteralValue::setValue(const String &value) 
+{
+    String dValue = literalValue;
+    
+    literalValue = value; 
+
+    StringArray r = this->verify();
+    if(!r.empty()) {
+        literalValue = dValue;
+        
+        LOGIT_ERROR(r[0]);
+        BLOCXX_THROW(limal::ValueException, r[0].c_str());
+    }
 }
 
 blocxx::String
-EmailLiteralValue::getValue() const
+LiteralValue::getValue() const 
 {
-    return LiteralValueBase::getValue();
+    return literalValue; 
+}
+
+blocxx::String
+LiteralValue::getType() const
+{
+    return literalType;
 }
 
 bool
-EmailLiteralValue::valid() const
+LiteralValue::valid() const
 {
-    ValueCheck check = initEmailLiteralValueCheck();
-    if(!check.isValid(getValue())) {
+    if(literalType == "email") {
+        ValueCheck check = initEmailLiteralValueCheck();
+        if(!check.isValid(literalValue)) {
+            LOGIT_DEBUG("Wrong LiteralValue for type 'email': " << literalValue);
+            return false;
+        }
+    } else if(literalType == "URI") {
+        ValueCheck check = initURILiteralValueCheck();
+        if(!check.isValid(literalValue)) {
+            LOGIT_DEBUG("Wrong LiteralValue for type 'URI': " << literalValue);
+            return false;
+        }
+    } else if(literalType == "DNS") {
+        ValueCheck check = initDNSLiteralValueCheck();
+        if(!check.isValid(literalValue)) {
+            LOGIT_DEBUG("Wrong LiteralValue for type 'DNS': " << literalValue);
+            return false;
+        }
+    } else if(literalType == "RID") {
+        ValueCheck check = initRIDLiteralValueCheck();
+        if(!check.isValid(literalValue)) {
+            LOGIT_DEBUG("Wrong LiteralValue for type 'RID': " << literalValue);
+            return false;
+        }
+    } else if(literalType == "IP") {
+        ValueCheck check = initIPLiteralValueCheck();
+        if(!check.isValid(literalValue)) {
+            LOGIT_DEBUG("Wrong LiteralValue for type 'IP': " << literalValue);
+            return false;
+        }
+    } else {
+        LOGIT_DEBUG("Unknown Type in LiteralValue: " << literalType);
         return false;
     }
     return true;
 }
 
 blocxx::StringArray
-EmailLiteralValue::verify() const
+LiteralValue::verify() const
 {
-    blocxx::StringArray result;
-    
-    ValueCheck check = initEmailLiteralValueCheck();
-    if(!check.isValid(getValue())) {
-        result.append(Format("invalid email address(%1) in EmailLiteralValue", getValue()).toString());
+    StringArray result;
+
+    if(literalType == "email") {
+        ValueCheck check = initEmailLiteralValueCheck();
+        if(!check.isValid(literalValue)) {
+            LOGIT_DEBUG("Wrong LiteralValue for type 'email': " << literalValue);
+            result.append(Format("Wrong LiteralValue for type 'email': %1", literalValue).toString());
+        }
+    } else if(literalType == "URI") {
+        ValueCheck check = initURILiteralValueCheck();
+        if(!check.isValid(literalValue)) {
+            LOGIT_DEBUG("Wrong LiteralValue for type 'URI': " << literalValue);
+            result.append(Format("Wrong LiteralValue for type 'URI': %1", literalValue).toString());
+        }
+    } else if(literalType == "DNS") {
+        ValueCheck check = initDNSLiteralValueCheck();
+        if(!check.isValid(literalValue)) {
+            LOGIT_DEBUG("Wrong LiteralValue for type 'DNS': " << literalValue);
+            result.append(Format("Wrong LiteralValue for type 'DNS': %1", literalValue).toString());
+        }
+    } else if(literalType == "RID") {
+        ValueCheck check = initRIDLiteralValueCheck();
+        if(!check.isValid(literalValue)) {
+            LOGIT_DEBUG("Wrong LiteralValue for type 'RID': " << literalValue);
+            result.append(Format("Wrong LiteralValue for type 'RID': %1", literalValue).toString());
+        }
+    } else if(literalType == "IP") {
+        ValueCheck check = initIPLiteralValueCheck();
+        if(!check.isValid(literalValue)) {
+            LOGIT_DEBUG("Wrong LiteralValue for type 'IP': " << literalValue);
+            result.append(Format("Wrong LiteralValue for type 'IP': %1", literalValue).toString());
+        }
+    } else {
+        LOGIT_DEBUG("Unknown Type in LiteralValue: " << literalType);
+        result.append(Format("Unknown Type in LiteralValue: %1", literalType).toString());
     }
-}
-
-
-// ##############################################################################
-
-
-ValueCheck initURILiteralValueCheck() {
-    ValueCheck checkEmail =
-        ValueCheck(new ValueRegExCheck("^(([^:/?#]+)://)?([^/?#]*)?([^?#]*)?(\\?([^#]*))?(#(.*))?"  ));
-
-    return checkEmail;
-}
-
-URILiteralValue::URILiteralValue(const String &value)
-    : LiteralValueBase(value)
-{
-}
-
-URILiteralValue::URILiteralValue(const URILiteralValue &value)
-    : LiteralValueBase(value)
-{
-}
-
-URILiteralValue::~URILiteralValue()
-{
-}
-
-
-URILiteralValue&
-URILiteralValue::operator=(const URILiteralValue& value)
-{
-    if(this == &value) return *this;
-    
-    LiteralValueBase::operator=(value);
-
-    return *this;
-}
-
-void
-URILiteralValue::setValue(const String &value)
-{
-    LiteralValueBase::setValue(value);
-}
-
-blocxx::String
-URILiteralValue::getValue() const 
-{
-    return LiteralValueBase::getValue();
-}
-
-bool
-URILiteralValue::valid() const
-{
-    // Fixme: add check
-    return false;
-}
-
-blocxx::StringArray
-URILiteralValue::verify() const
-{
-    // Fixme: add check
-    StringArray result;
-    result.append(String("This is the base object. This should never happen"));
     return result;
 }
 
-// ##############################################################################
-
-DNSLiteralValue::DNSLiteralValue(const String &value)
-    : LiteralValueBase(value)
-{
-}
-
-DNSLiteralValue::DNSLiteralValue(const DNSLiteralValue &value)
-    : LiteralValueBase(value)
-{
-}
-
-DNSLiteralValue::~DNSLiteralValue()
-{
-}
-
-
-DNSLiteralValue&
-DNSLiteralValue::operator=(const DNSLiteralValue& value)
-{
-    if(this == &value) return *this;
-    
-    LiteralValueBase::operator=(value);
-
-    return *this;
-}
-
-void
-DNSLiteralValue::setValue(const String &value)
-{
-    LiteralValueBase::setValue(value);
-}
-
 blocxx::String
-DNSLiteralValue::getValue() const
+LiteralValue::toString() const
 {
-    return LiteralValueBase::getValue();
+    return (literalType + ":" + literalValue);
 }
 
-bool
-DNSLiteralValue::valid() const
-{
-    // Fixme: add check
-    return false;
-}
-
-blocxx::StringArray
-DNSLiteralValue::verify() const
-{
-    // Fixme: add check
-    StringArray result;
-    result.append(String("This is the base object. This should never happen"));
-    return result;
-}
-
-// ##############################################################################
-
-RIDLiteralValue::RIDLiteralValue(const String &value)
-    : LiteralValueBase(value)
-{
-}
-
-RIDLiteralValue::RIDLiteralValue(const RIDLiteralValue &value)
-    : LiteralValueBase(value)
-{
-}
-
-RIDLiteralValue::~RIDLiteralValue()
-{
-}
-
-
-RIDLiteralValue&
-RIDLiteralValue::operator=(const RIDLiteralValue& value)
-{
-    if(this == &value) return *this;
-    
-    LiteralValueBase::operator=(value);
-
-    return *this;
-}
-
-
-void
-RIDLiteralValue::setValue(const String &value)
-{
-    LiteralValueBase::setValue(value);
-}
-
-blocxx::String
-RIDLiteralValue::getValue() const
-{
-    return LiteralValueBase::getValue();
-}
-
-bool
-RIDLiteralValue::valid() const
-{
-    // Fixme: add check
-    return false;
-}
-
-blocxx::StringArray
-RIDLiteralValue::verify() const
-{
-    // Fixme: add check
-    StringArray result;
-    result.append(String("This is the base object. This should never happen"));
-    return result;
-}
-
-// ##############################################################################
-
-IPLiteralValue::IPLiteralValue(const String &value)
-    : LiteralValueBase(value)
-{
-}
-
-IPLiteralValue::IPLiteralValue(const IPLiteralValue &value)
-    : LiteralValueBase(value)
-{
-}
-
-IPLiteralValue::~IPLiteralValue()
-{
-}
-
-
-IPLiteralValue&
-IPLiteralValue::operator=(const IPLiteralValue& value)
-{
-    if(this == &value) return *this;
-    
-    LiteralValueBase::operator=(value);
-
-    return *this;
-}
-
-void
-IPLiteralValue::setValue(const String &value)
-{
-    LiteralValueBase::setValue(value);
-}
-
-blocxx::String
-IPLiteralValue::getValue() const
-{
-    return LiteralValueBase::getValue();
-}
-
-bool
-IPLiteralValue::valid() const
-{
-    // Fixme: add check
-    return false;
-}
-
-blocxx::StringArray
-IPLiteralValue::verify() const
-{
-    // Fixme: add check
-    StringArray result;
-    result.append(String("This is the base object. This should never happen"));
-    return result;
-}
