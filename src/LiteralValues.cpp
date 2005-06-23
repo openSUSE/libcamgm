@@ -33,35 +33,35 @@ using namespace blocxx;
 
 inline static ValueCheck initEmailLiteralValueCheck() {
     ValueCheck checkEmail =
-        ValueCheck(new ValueRegExCheck("^[^@]+@[^@]+$"));
+        ValueCheck(new ValuePosixRECheck("^[^@]+@[^@]+$"));
 
     return checkEmail;
 }
 
 inline static ValueCheck initURILiteralValueCheck() {
     ValueCheck checkURI =
-        ValueCheck(new ValueRegExCheck("^(([^:/?#]+)://)?([^/?#]*)?([^?#]*)?(\\\\?([^#]*))?(#(.*))?"  ));
+        ValueCheck(new ValuePosixRECheck("^(([^:/?#]+)://)?([^/?#]*)?([^?#]*)?(\\\\?([^#]*))?(#(.*))?"  ));
 
     return checkURI;
 }
 
 inline static ValueCheck initDNSLiteralValueCheck() {
     ValueCheck checkDNS =
-        ValueCheck(new ValueRegExCheck("^[a-z]+[a-z0-9.-]*$"));
+        ValueCheck(new ValuePosixRECheck("^[a-z]+[a-z0-9.-]*$"));
 
     return checkDNS;
 }
 
 inline static ValueCheck initRIDLiteralValueCheck() {
     ValueCheck checkRID =
-        ValueCheck(new ValueRegExCheck("^([0-9]+\\.)+[0-9]+$"));
+        ValueCheck(new ValuePosixRECheck("^([0-9]+\\.)+[0-9]+$"));
 
     return checkRID;
 }
 
 inline static ValueCheck initIPLiteralValueCheck() {
     ValueCheck checkIP =
-        ValueCheck(new ValueRegExCheck("^([0-9]{1,3}\\.){3}[0-9]+$"));
+        ValueCheck(new ValuePosixRECheck("^([0-9]{1,3}\\.){3}[0-9]+$"));
 
     return checkIP;
 }

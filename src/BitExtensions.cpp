@@ -265,7 +265,7 @@ NsCertTypeExtension::verify() const
 
 inline static ValueCheck initExtendedKeyUsageOIDCheck() {
     ValueCheck checkOID =
-        ValueCheck(new ValueRegExCheck("^([0-9]+\\.)+[0-9]+$"));
+        ValueCheck(new ValuePosixRECheck("^([0-9]+\\.)+[0-9]+$"));
     
     return checkOID;
 }

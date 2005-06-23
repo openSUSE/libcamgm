@@ -34,8 +34,8 @@ using namespace blocxx;
 
 inline static ValueCheck initValueCheck() {
     ValueCheck checkAccessOID =
-        ValueCheck(new ValueRegExCheck("^(OCSP|caIssuers)$"))
-        .Or(new ValueRegExCheck("^([0-9]+\\.)+[0-9]+$"));
+        ValueCheck(new ValuePosixRECheck("^(OCSP|caIssuers)$"))
+        .Or(new ValuePosixRECheck("^([0-9]+\\.)+[0-9]+$"));
 
     return checkAccessOID;
 }
