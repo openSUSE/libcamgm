@@ -29,13 +29,13 @@
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
+#include  <limal/INIParser.hpp>
+
 
 namespace LIMAL_NAMESPACE
 {
 namespace CA_MGM_NAMESPACE
 {
-    class ConfigFileBase;
-
     class CAConfig {
     public:
         CAConfig(const String &file);
@@ -49,8 +49,11 @@ namespace CA_MGM_NAMESPACE
 
         CAConfig clone(const String &file);
 
+	void	 dump();
+
     private:
-        ConfigFileBase *config;
+        INI::INIParser 	*parser;
+	String		srcFilename;
 
 
         CAConfig();
@@ -58,6 +61,7 @@ namespace CA_MGM_NAMESPACE
 
         CAConfig& operator=(const CAConfig&);
 
+	void dumpTree(INI::Section *section, int level = 0);
 
     };
 

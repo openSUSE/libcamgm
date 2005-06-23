@@ -102,6 +102,18 @@ NsBaseUrlExtension::commit2Config(CA& ca, Type type)
 {
 }
 
+bool
+NsBaseUrlExtension::valid() const
+{
+    return true;
+}
+
+blocxx::StringArray
+NsBaseUrlExtension::verify() const
+{
+    return blocxx::StringArray();
+}
+
 // private:
 NsBaseUrlExtension::NsBaseUrlExtension()
     : StringExtension(String())
@@ -153,6 +165,18 @@ NsRevocationUrlExtension::commit2Config(CA& ca, Type type)
 {
 }
 
+blocxx::StringArray
+NsRevocationUrlExtension::verify() const
+{
+    return blocxx::StringArray();
+}
+
+bool
+NsRevocationUrlExtension::valid() const
+{
+    return true;
+}
+
 //    private:
 NsRevocationUrlExtension::NsRevocationUrlExtension()
     : StringExtension(String())
@@ -202,6 +226,18 @@ NsCaRevocationUrlExtension::getValue() const
 void
 NsCaRevocationUrlExtension::commit2Config(CA& ca, Type type)
 {
+}
+
+blocxx::StringArray
+NsCaRevocationUrlExtension::verify() const
+{
+    return blocxx::StringArray();
+}
+
+bool
+NsCaRevocationUrlExtension::valid() const
+{
+    return true;
 }
 
 //  private:
@@ -256,6 +292,19 @@ NsRenewalUrlExtension::commit2Config(CA& ca, Type type)
     
 }
 
+blocxx::StringArray
+NsRenewalUrlExtension::verify() const
+{
+    return blocxx::StringArray();
+}
+
+bool
+NsRenewalUrlExtension::valid() const
+{
+    return true;
+}
+
+
 //    private:
 NsRenewalUrlExtension::NsRenewalUrlExtension()
     : StringExtension(String())
@@ -304,6 +353,18 @@ NsCaPolicyUrlExtension::getValue() const
 void
 NsCaPolicyUrlExtension::commit2Config(CA& ca, Type type)
 {
+}
+
+blocxx::StringArray
+NsCaPolicyUrlExtension::verify() const
+{
+    return blocxx::StringArray();
+}
+
+bool
+NsCaPolicyUrlExtension::valid() const
+{
+    return true;
 }
 
 //    private:
@@ -357,6 +418,18 @@ NsSslServerNameExtension::commit2Config(CA& ca, Type type)
 {
 }
 
+blocxx::StringArray
+NsSslServerNameExtension::verify() const
+{
+    return blocxx::StringArray();
+}
+
+bool
+NsSslServerNameExtension::valid() const
+{
+    return true;
+}
+
 //    private:
 
 NsSslServerNameExtension::NsSslServerNameExtension()
@@ -406,6 +479,18 @@ NsCommentExtension::getValue() const
 void
 NsCommentExtension::commit2Config(CA& ca, Type type)
 {
+}
+
+blocxx::StringArray
+NsCommentExtension::verify() const
+{
+    return blocxx::StringArray();
+}
+
+bool
+NsCommentExtension::valid() const
+{
+    return true;
 }
 
 //    private:

@@ -14,8 +14,9 @@ AM_LDFLAGS = \
 	$(top_builddir)/src/liblimal-ca-mgm.la \
 	-Xlinker --no-whole-archive
 
-noinst_PROGRAMS = 
+noinst_PROGRAMS = CAConfig.single
 
+CAConfig_single_SOURCES = CAConfig.cc
 
 clean-local:
 	rm -f tmp.err.* tmp.out.* site.exp site.bak
