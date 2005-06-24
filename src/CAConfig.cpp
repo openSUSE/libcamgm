@@ -158,9 +158,19 @@ CAConfig::getValue(const String &section, const String &key) const
 CAConfig*
 CAConfig::clone(const String &file)
 {
-    String command = "/bin/cp " + srcFilename + " " + file;
-    system (command.c_str());
-    return new CAConfig (file);
+    if (file.indexOf(";") == String::npos)
+    {
+	String command = "/bin/cp " + srcFilename + " " + file;
+	system (command.c_str());
+	return new CAConfig (file);	
+    }
+    else
+    {
+	// there could be security problems
+	LOGIT_ERROR ("There is a security problem: The filename " << file << "includes simicolons.");
+	LOGIT_ERROR ("So a NULL pointer will be returned.");	
+	return NULL;
+    }
 }
 
 void
