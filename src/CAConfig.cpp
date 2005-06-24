@@ -86,15 +86,19 @@ CAConfig::dumpTree(Section *section, int level)
     if (level == 0)
         LOGIT_INFO (tab);
 
-    LOGIT_INFO (tab <<
-		"SectionComment " << section->getComment());
+    String sectionComment = section->getComment();
+    if (sectionComment.length() > 0)
+	LOGIT_INFO (tab <<
+		    "SectionComment " << section->getComment());
 
     EntryMap eMap= section->getEntries();
     for (EntryMap::iterator i = eMap.begin(); i != eMap.end(); i++)
     {
-        Entry entry = i->second; 
-        LOGIT_INFO (tab <<
-		    "Comment " << i->first << " : " << entry.getComment());
+        Entry entry = i->second;
+	String comment = entry.getComment();
+	if (comment.length() > 0)
+	    LOGIT_INFO (tab <<
+			"Comment " << i->first << " : " << entry.getComment());
         LOGIT_INFO (tab <<
 		    "Entry   " << i->first << " : " << entry.getValue());
     }
