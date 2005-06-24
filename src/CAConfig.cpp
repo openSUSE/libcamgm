@@ -20,7 +20,8 @@
 
 /-*/
 
-
+#include <fstream>
+#include <iostream>
 #include  <limal/ca-mgm/CAConfig.hpp>
 #include  "Utils.hpp"
 
@@ -28,6 +29,7 @@ using namespace limal;
 using namespace limal::ca_mgm;
 using namespace blocxx;
 using namespace limal::INI;
+using namespace std;
 
 
 
@@ -158,19 +160,27 @@ CAConfig::getValue(const String &section, const String &key) const
 CAConfig*
 CAConfig::clone(const String &file)
 {
-    if (file.indexOf(";") == String::npos)
+    ifstream in (srcFilename.c_str());
+    ofstream out (file.c_str());
+
+    if (!in)
     {
-	String command = "/bin/cp " + srcFilename + " " + file;
-	system (command.c_str());
-	return new CAConfig (file);	
-    }
-    else
-    {
-	// there could be security problems
-	LOGIT_ERROR ("There is a security problem: The filename " << file << "includes simicolons.");
-	LOGIT_ERROR ("So a NULL pointer will be returned.");	
+	LOGIT_ERROR ("Cannot open filename " << srcFilename );
 	return NULL;
     }
+    if (!out)
+    {
+	LOGIT_ERROR ("Cannot open filename " << file );
+	return NULL;
+    }	
+
+    // coppying
+    out << in.rdbuf();
+    
+    in.close();
+    out.close();
+	
+    return new CAConfig (file);	
 }
 
 void
