@@ -105,7 +105,7 @@ CAConfig::dumpTree(Section *section, int level)
         Section sec = i->second;
         LOGIT_INFO (tab <<
 		    "Section " << i->first);
-        dumpTree (&sec, ++level);
+        dumpTree (&sec, level+1);
     }
 }
 

@@ -52,87 +52,87 @@ INFO  ca-mgm -     Entry   serial : $dir/serial
 INFO  ca-mgm -     Comment x509_extensions : 
 INFO  ca-mgm -     Entry   x509_extensions : v3_ca
 INFO  ca-mgm -   Section client_cert
-INFO  ca-mgm -       SectionComment 
+INFO  ca-mgm -     SectionComment 
 #utf8                = yes
 # used to sign a client cert
 
-INFO  ca-mgm -       Comment RANDFILE : 
-INFO  ca-mgm -       Entry   RANDFILE : $dir/.rand
-INFO  ca-mgm -       Comment certificate : 
-INFO  ca-mgm -       Entry   certificate : $dir/cacert.pem
-INFO  ca-mgm -       Comment certopt : 
-INFO  ca-mgm -       Entry   certopt : default_ca
-INFO  ca-mgm -       Comment certs : 
-INFO  ca-mgm -       Entry   certs : $dir/certs
-INFO  ca-mgm -       Comment copy_extensions : 
-INFO  ca-mgm -       Entry   copy_extensions : none
-INFO  ca-mgm -       Comment crl : 
-INFO  ca-mgm -       Entry   crl : $dir/crl.pem
-INFO  ca-mgm -       Comment crl_dir : 
-INFO  ca-mgm -       Entry   crl_dir : $dir/crl
-INFO  ca-mgm -       Comment crl_extensions : 
-INFO  ca-mgm -       Entry   crl_extensions : v3_crl
-INFO  ca-mgm -       Comment database : 
-INFO  ca-mgm -       Entry   database : $dir/index.txt
-INFO  ca-mgm -       Comment default_crl_days : 
-INFO  ca-mgm -       Entry   default_crl_days : 7
-INFO  ca-mgm -       Comment default_days : 
-INFO  ca-mgm -       Entry   default_days : 365
-INFO  ca-mgm -       Comment default_md : 
-INFO  ca-mgm -       Entry   default_md : sha1
-INFO  ca-mgm -       Comment dir : 
-INFO  ca-mgm -       Entry   dir : /var/lib/CAM/YaST_Default_CA
-INFO  ca-mgm -       Comment nameopt : 
-INFO  ca-mgm -       Entry   nameopt : default_ca
-INFO  ca-mgm -       Comment new_certs_dir : 
-INFO  ca-mgm -       Entry   new_certs_dir : $dir/certs
-INFO  ca-mgm -       Comment policy : 
-INFO  ca-mgm -       Entry   policy : policy_client
-INFO  ca-mgm -       Comment preserve : 
-INFO  ca-mgm -       Entry   preserve : no
-INFO  ca-mgm -       Comment private_key : 
-INFO  ca-mgm -       Entry   private_key : $dir/cacert.key
-INFO  ca-mgm -       Comment serial : 
-INFO  ca-mgm -       Entry   serial : $dir/serial
-INFO  ca-mgm -       Comment x509_extensions : 
-INFO  ca-mgm -       Entry   x509_extensions : v3_client
+INFO  ca-mgm -     Comment RANDFILE : 
+INFO  ca-mgm -     Entry   RANDFILE : $dir/.rand
+INFO  ca-mgm -     Comment certificate : 
+INFO  ca-mgm -     Entry   certificate : $dir/cacert.pem
+INFO  ca-mgm -     Comment certopt : 
+INFO  ca-mgm -     Entry   certopt : default_ca
+INFO  ca-mgm -     Comment certs : 
+INFO  ca-mgm -     Entry   certs : $dir/certs
+INFO  ca-mgm -     Comment copy_extensions : 
+INFO  ca-mgm -     Entry   copy_extensions : none
+INFO  ca-mgm -     Comment crl : 
+INFO  ca-mgm -     Entry   crl : $dir/crl.pem
+INFO  ca-mgm -     Comment crl_dir : 
+INFO  ca-mgm -     Entry   crl_dir : $dir/crl
+INFO  ca-mgm -     Comment crl_extensions : 
+INFO  ca-mgm -     Entry   crl_extensions : v3_crl
+INFO  ca-mgm -     Comment database : 
+INFO  ca-mgm -     Entry   database : $dir/index.txt
+INFO  ca-mgm -     Comment default_crl_days : 
+INFO  ca-mgm -     Entry   default_crl_days : 7
+INFO  ca-mgm -     Comment default_days : 
+INFO  ca-mgm -     Entry   default_days : 365
+INFO  ca-mgm -     Comment default_md : 
+INFO  ca-mgm -     Entry   default_md : sha1
+INFO  ca-mgm -     Comment dir : 
+INFO  ca-mgm -     Entry   dir : /var/lib/CAM/YaST_Default_CA
+INFO  ca-mgm -     Comment nameopt : 
+INFO  ca-mgm -     Entry   nameopt : default_ca
+INFO  ca-mgm -     Comment new_certs_dir : 
+INFO  ca-mgm -     Entry   new_certs_dir : $dir/certs
+INFO  ca-mgm -     Comment policy : 
+INFO  ca-mgm -     Entry   policy : policy_client
+INFO  ca-mgm -     Comment preserve : 
+INFO  ca-mgm -     Entry   preserve : no
+INFO  ca-mgm -     Comment private_key : 
+INFO  ca-mgm -     Entry   private_key : $dir/cacert.key
+INFO  ca-mgm -     Comment serial : 
+INFO  ca-mgm -     Entry   serial : $dir/serial
+INFO  ca-mgm -     Comment x509_extensions : 
+INFO  ca-mgm -     Entry   x509_extensions : v3_client
 INFO  ca-mgm -   Section policy_client
-INFO  ca-mgm -         SectionComment 
+INFO  ca-mgm -     SectionComment 
 #utf8                = yes
 
-INFO  ca-mgm -         Comment commonName : 
-INFO  ca-mgm -         Entry   commonName : supplied
-INFO  ca-mgm -         Comment countryName : 
-INFO  ca-mgm -         Entry   countryName : optional
-INFO  ca-mgm -         Comment emailAddress : 
-INFO  ca-mgm -         Entry   emailAddress : supplied
-INFO  ca-mgm -         Comment localityName : 
-INFO  ca-mgm -         Entry   localityName : optional
-INFO  ca-mgm -         Comment organizationName : 
-INFO  ca-mgm -         Entry   organizationName : optional
-INFO  ca-mgm -         Comment organizationalUnitName : 
-INFO  ca-mgm -         Entry   organizationalUnitName : optional
-INFO  ca-mgm -         Comment stateOrProvinceName : 
-INFO  ca-mgm -         Entry   stateOrProvinceName : optional
+INFO  ca-mgm -     Comment commonName : 
+INFO  ca-mgm -     Entry   commonName : supplied
+INFO  ca-mgm -     Comment countryName : 
+INFO  ca-mgm -     Entry   countryName : optional
+INFO  ca-mgm -     Comment emailAddress : 
+INFO  ca-mgm -     Entry   emailAddress : supplied
+INFO  ca-mgm -     Comment localityName : 
+INFO  ca-mgm -     Entry   localityName : optional
+INFO  ca-mgm -     Comment organizationName : 
+INFO  ca-mgm -     Entry   organizationName : optional
+INFO  ca-mgm -     Comment organizationalUnitName : 
+INFO  ca-mgm -     Entry   organizationalUnitName : optional
+INFO  ca-mgm -     Comment stateOrProvinceName : 
+INFO  ca-mgm -     Entry   stateOrProvinceName : optional
 INFO  ca-mgm -   Section policy_server
-INFO  ca-mgm -           SectionComment 
+INFO  ca-mgm -     SectionComment 
 
-INFO  ca-mgm -           Comment commonName : 
-INFO  ca-mgm -           Entry   commonName : supplied
-INFO  ca-mgm -           Comment countryName : 
-INFO  ca-mgm -           Entry   countryName : optional
-INFO  ca-mgm -           Comment emailAddress : 
-INFO  ca-mgm -           Entry   emailAddress : optional
-INFO  ca-mgm -           Comment localityName : 
-INFO  ca-mgm -           Entry   localityName : optional
-INFO  ca-mgm -           Comment organizationName : 
-INFO  ca-mgm -           Entry   organizationName : optional
-INFO  ca-mgm -           Comment organizationalUnitName : 
-INFO  ca-mgm -           Entry   organizationalUnitName : optional
-INFO  ca-mgm -           Comment stateOrProvinceName : 
-INFO  ca-mgm -           Entry   stateOrProvinceName : optional
+INFO  ca-mgm -     Comment commonName : 
+INFO  ca-mgm -     Entry   commonName : supplied
+INFO  ca-mgm -     Comment countryName : 
+INFO  ca-mgm -     Entry   countryName : optional
+INFO  ca-mgm -     Comment emailAddress : 
+INFO  ca-mgm -     Entry   emailAddress : optional
+INFO  ca-mgm -     Comment localityName : 
+INFO  ca-mgm -     Entry   localityName : optional
+INFO  ca-mgm -     Comment organizationName : 
+INFO  ca-mgm -     Entry   organizationName : optional
+INFO  ca-mgm -     Comment organizationalUnitName : 
+INFO  ca-mgm -     Entry   organizationalUnitName : optional
+INFO  ca-mgm -     Comment stateOrProvinceName : 
+INFO  ca-mgm -     Entry   stateOrProvinceName : optional
 INFO  ca-mgm -   Section req
-INFO  ca-mgm -             SectionComment 
+INFO  ca-mgm -     SectionComment 
 #utf8                = yes
 
 # section, how to create a request
@@ -140,171 +140,171 @@ INFO  ca-mgm -             SectionComment
 # x509_extensions is for self signed CA
 # required section
 
-INFO  ca-mgm -             Comment attributes : 
-INFO  ca-mgm -             Entry   attributes : req_attributes
-INFO  ca-mgm -             Comment default_bits : 
-INFO  ca-mgm -             Entry   default_bits : 2048
-INFO  ca-mgm -             Comment default_keyfile : 
-INFO  ca-mgm -             Entry   default_keyfile : privkey.pem
-INFO  ca-mgm -             Comment default_md : 
-INFO  ca-mgm -             Entry   default_md : sha1
-INFO  ca-mgm -             Comment distinguished_name : 
-INFO  ca-mgm -             Entry   distinguished_name : req_distinguished_name
-INFO  ca-mgm -             Comment req_extensions : 
-INFO  ca-mgm -             Entry   req_extensions : v3_req
-INFO  ca-mgm -             Comment string_mask : 
-INFO  ca-mgm -             Entry   string_mask : nombstr
-INFO  ca-mgm -             Comment x509_extensions : 
-INFO  ca-mgm -             Entry   x509_extensions : v3_ca
+INFO  ca-mgm -     Comment attributes : 
+INFO  ca-mgm -     Entry   attributes : req_attributes
+INFO  ca-mgm -     Comment default_bits : 
+INFO  ca-mgm -     Entry   default_bits : 2048
+INFO  ca-mgm -     Comment default_keyfile : 
+INFO  ca-mgm -     Entry   default_keyfile : privkey.pem
+INFO  ca-mgm -     Comment default_md : 
+INFO  ca-mgm -     Entry   default_md : sha1
+INFO  ca-mgm -     Comment distinguished_name : 
+INFO  ca-mgm -     Entry   distinguished_name : req_distinguished_name
+INFO  ca-mgm -     Comment req_extensions : 
+INFO  ca-mgm -     Entry   req_extensions : v3_req
+INFO  ca-mgm -     Comment string_mask : 
+INFO  ca-mgm -     Entry   string_mask : nombstr
+INFO  ca-mgm -     Comment x509_extensions : 
+INFO  ca-mgm -     Entry   x509_extensions : v3_ca
 INFO  ca-mgm -   Section req_attributes
-INFO  ca-mgm -               SectionComment 
+INFO  ca-mgm -     SectionComment 
 
-INFO  ca-mgm -               Comment challengePassword : 
-INFO  ca-mgm -               Entry   challengePassword : A challenge password
-INFO  ca-mgm -               Comment challengePassword_max : 
-INFO  ca-mgm -               Entry   challengePassword_max : 20
-INFO  ca-mgm -               Comment challengePassword_min : 
-INFO  ca-mgm -               Entry   challengePassword_min : 4
-INFO  ca-mgm -               Comment unstructuredName : 
-INFO  ca-mgm -               Entry   unstructuredName : An optional company name
+INFO  ca-mgm -     Comment challengePassword : 
+INFO  ca-mgm -     Entry   challengePassword : A challenge password
+INFO  ca-mgm -     Comment challengePassword_max : 
+INFO  ca-mgm -     Entry   challengePassword_max : 20
+INFO  ca-mgm -     Comment challengePassword_min : 
+INFO  ca-mgm -     Entry   challengePassword_min : 4
+INFO  ca-mgm -     Comment unstructuredName : 
+INFO  ca-mgm -     Entry   unstructuredName : An optional company name
 INFO  ca-mgm -   Section req_distinguished_name
-INFO  ca-mgm -                 SectionComment 
+INFO  ca-mgm -     SectionComment 
 
-INFO  ca-mgm -                 Comment commonName : 
-INFO  ca-mgm -                 Entry   commonName : Common Name (eg, YOUR name)
-INFO  ca-mgm -                 Comment commonName_max : 
-INFO  ca-mgm -                 Entry   commonName_max : 64
-INFO  ca-mgm -                 Comment countryName : 
-INFO  ca-mgm -                 Entry   countryName : Country Name (2 letter code)
-INFO  ca-mgm -                 Comment countryName_max : 
-INFO  ca-mgm -                 Entry   countryName_max : 2
-INFO  ca-mgm -                 Comment countryName_min : 
-INFO  ca-mgm -                 Entry   countryName_min : 2
-INFO  ca-mgm -                 Comment emailAddress : 
-INFO  ca-mgm -                 Entry   emailAddress : Email Address
-INFO  ca-mgm -                 Comment emailAddress_max : 
-INFO  ca-mgm -                 Entry   emailAddress_max : 64
-INFO  ca-mgm -                 Comment localityName : 
-INFO  ca-mgm -                 Entry   localityName : Locality Name (eg, city)
-INFO  ca-mgm -                 Comment organizationName : 
-INFO  ca-mgm -                 Entry   organizationName : Organization Name (eg, company)
-INFO  ca-mgm -                 Comment organizationalUnitName : 
-INFO  ca-mgm -                 Entry   organizationalUnitName : Organizational Unit Name (eg, section)
-INFO  ca-mgm -                 Comment stateOrProvinceName : 
-INFO  ca-mgm -                 Entry   stateOrProvinceName : State or Province Name (full name)
+INFO  ca-mgm -     Comment commonName : 
+INFO  ca-mgm -     Entry   commonName : Common Name (eg, YOUR name)
+INFO  ca-mgm -     Comment commonName_max : 
+INFO  ca-mgm -     Entry   commonName_max : 64
+INFO  ca-mgm -     Comment countryName : 
+INFO  ca-mgm -     Entry   countryName : Country Name (2 letter code)
+INFO  ca-mgm -     Comment countryName_max : 
+INFO  ca-mgm -     Entry   countryName_max : 2
+INFO  ca-mgm -     Comment countryName_min : 
+INFO  ca-mgm -     Entry   countryName_min : 2
+INFO  ca-mgm -     Comment emailAddress : 
+INFO  ca-mgm -     Entry   emailAddress : Email Address
+INFO  ca-mgm -     Comment emailAddress_max : 
+INFO  ca-mgm -     Entry   emailAddress_max : 64
+INFO  ca-mgm -     Comment localityName : 
+INFO  ca-mgm -     Entry   localityName : Locality Name (eg, city)
+INFO  ca-mgm -     Comment organizationName : 
+INFO  ca-mgm -     Entry   organizationName : Organization Name (eg, company)
+INFO  ca-mgm -     Comment organizationalUnitName : 
+INFO  ca-mgm -     Entry   organizationalUnitName : Organizational Unit Name (eg, section)
+INFO  ca-mgm -     Comment stateOrProvinceName : 
+INFO  ca-mgm -     Entry   stateOrProvinceName : State or Province Name (full name)
 INFO  ca-mgm -   Section server_cert
-INFO  ca-mgm -                   SectionComment 
+INFO  ca-mgm -     SectionComment 
 #utf8                = yes
 # used to sign a server cert
 
-INFO  ca-mgm -                   Comment RANDFILE : 
-INFO  ca-mgm -                   Entry   RANDFILE : $dir/.rand
-INFO  ca-mgm -                   Comment certificate : 
-INFO  ca-mgm -                   Entry   certificate : $dir/cacert.pem
-INFO  ca-mgm -                   Comment certopt : 
-INFO  ca-mgm -                   Entry   certopt : default_ca
-INFO  ca-mgm -                   Comment certs : 
-INFO  ca-mgm -                   Entry   certs : $dir/certs
-INFO  ca-mgm -                   Comment copy_extensions : 
-INFO  ca-mgm -                   Entry   copy_extensions : none
-INFO  ca-mgm -                   Comment crl : 
-INFO  ca-mgm -                   Entry   crl : $dir/crl.pem
-INFO  ca-mgm -                   Comment crl_dir : 
-INFO  ca-mgm -                   Entry   crl_dir : $dir/crl
-INFO  ca-mgm -                   Comment crl_extensions : 
-INFO  ca-mgm -                   Entry   crl_extensions : v3_crl
-INFO  ca-mgm -                   Comment database : 
-INFO  ca-mgm -                   Entry   database : $dir/index.txt
-INFO  ca-mgm -                   Comment default_crl_days : 
-INFO  ca-mgm -                   Entry   default_crl_days : 7
-INFO  ca-mgm -                   Comment default_days : 
-INFO  ca-mgm -                   Entry   default_days : 365
-INFO  ca-mgm -                   Comment default_md : 
-INFO  ca-mgm -                   Entry   default_md : sha1
-INFO  ca-mgm -                   Comment dir : 
-INFO  ca-mgm -                   Entry   dir : /var/lib/CAM/YaST_Default_CA
-INFO  ca-mgm -                   Comment nameopt : 
-INFO  ca-mgm -                   Entry   nameopt : default_ca
-INFO  ca-mgm -                   Comment new_certs_dir : 
-INFO  ca-mgm -                   Entry   new_certs_dir : $dir/certs
-INFO  ca-mgm -                   Comment policy : 
-INFO  ca-mgm -                   Entry   policy : policy_server
-INFO  ca-mgm -                   Comment preserve : 
-INFO  ca-mgm -                   Entry   preserve : no
-INFO  ca-mgm -                   Comment private_key : 
-INFO  ca-mgm -                   Entry   private_key : $dir/cacert.key
-INFO  ca-mgm -                   Comment serial : 
-INFO  ca-mgm -                   Entry   serial : $dir/serial
-INFO  ca-mgm -                   Comment x509_extensions : 
-INFO  ca-mgm -                   Entry   x509_extensions : v3_server
+INFO  ca-mgm -     Comment RANDFILE : 
+INFO  ca-mgm -     Entry   RANDFILE : $dir/.rand
+INFO  ca-mgm -     Comment certificate : 
+INFO  ca-mgm -     Entry   certificate : $dir/cacert.pem
+INFO  ca-mgm -     Comment certopt : 
+INFO  ca-mgm -     Entry   certopt : default_ca
+INFO  ca-mgm -     Comment certs : 
+INFO  ca-mgm -     Entry   certs : $dir/certs
+INFO  ca-mgm -     Comment copy_extensions : 
+INFO  ca-mgm -     Entry   copy_extensions : none
+INFO  ca-mgm -     Comment crl : 
+INFO  ca-mgm -     Entry   crl : $dir/crl.pem
+INFO  ca-mgm -     Comment crl_dir : 
+INFO  ca-mgm -     Entry   crl_dir : $dir/crl
+INFO  ca-mgm -     Comment crl_extensions : 
+INFO  ca-mgm -     Entry   crl_extensions : v3_crl
+INFO  ca-mgm -     Comment database : 
+INFO  ca-mgm -     Entry   database : $dir/index.txt
+INFO  ca-mgm -     Comment default_crl_days : 
+INFO  ca-mgm -     Entry   default_crl_days : 7
+INFO  ca-mgm -     Comment default_days : 
+INFO  ca-mgm -     Entry   default_days : 365
+INFO  ca-mgm -     Comment default_md : 
+INFO  ca-mgm -     Entry   default_md : sha1
+INFO  ca-mgm -     Comment dir : 
+INFO  ca-mgm -     Entry   dir : /var/lib/CAM/YaST_Default_CA
+INFO  ca-mgm -     Comment nameopt : 
+INFO  ca-mgm -     Entry   nameopt : default_ca
+INFO  ca-mgm -     Comment new_certs_dir : 
+INFO  ca-mgm -     Entry   new_certs_dir : $dir/certs
+INFO  ca-mgm -     Comment policy : 
+INFO  ca-mgm -     Entry   policy : policy_server
+INFO  ca-mgm -     Comment preserve : 
+INFO  ca-mgm -     Entry   preserve : no
+INFO  ca-mgm -     Comment private_key : 
+INFO  ca-mgm -     Entry   private_key : $dir/cacert.key
+INFO  ca-mgm -     Comment serial : 
+INFO  ca-mgm -     Entry   serial : $dir/serial
+INFO  ca-mgm -     Comment x509_extensions : 
+INFO  ca-mgm -     Entry   x509_extensions : v3_server
 INFO  ca-mgm -   Section v3_ca
-INFO  ca-mgm -                     SectionComment 
+INFO  ca-mgm -     SectionComment 
 
-INFO  ca-mgm -                     Comment authorityKeyIdentifier : 
-INFO  ca-mgm -                     Entry   authorityKeyIdentifier : keyid:always,issuer:always
-INFO  ca-mgm -                     Comment basicConstraints : 
-INFO  ca-mgm -                     Entry   basicConstraints : critical, CA:true
-INFO  ca-mgm -                     Comment issuerAltName : 
-INFO  ca-mgm -                     Entry   issuerAltName : issuer:copy
-INFO  ca-mgm -                     Comment keyUsage : 
-INFO  ca-mgm -                     Entry   keyUsage : cRLSign, keyCertSign
-INFO  ca-mgm -                     Comment nsCertType : 
-INFO  ca-mgm -                     Entry   nsCertType : sslCA, emailCA
-INFO  ca-mgm -                     Comment nsComment : 
-INFO  ca-mgm -                     Entry   nsComment : "YaST Generated CA Certificate"
-INFO  ca-mgm -                     Comment subjectAltName : 
-INFO  ca-mgm -                     Entry   subjectAltName : email:copy
-INFO  ca-mgm -                     Comment subjectKeyIdentifier : 
-INFO  ca-mgm -                     Entry   subjectKeyIdentifier : hash
+INFO  ca-mgm -     Comment authorityKeyIdentifier : 
+INFO  ca-mgm -     Entry   authorityKeyIdentifier : keyid:always,issuer:always
+INFO  ca-mgm -     Comment basicConstraints : 
+INFO  ca-mgm -     Entry   basicConstraints : critical, CA:true
+INFO  ca-mgm -     Comment issuerAltName : 
+INFO  ca-mgm -     Entry   issuerAltName : issuer:copy
+INFO  ca-mgm -     Comment keyUsage : 
+INFO  ca-mgm -     Entry   keyUsage : cRLSign, keyCertSign
+INFO  ca-mgm -     Comment nsCertType : 
+INFO  ca-mgm -     Entry   nsCertType : sslCA, emailCA
+INFO  ca-mgm -     Comment nsComment : 
+INFO  ca-mgm -     Entry   nsComment : "YaST Generated CA Certificate"
+INFO  ca-mgm -     Comment subjectAltName : 
+INFO  ca-mgm -     Entry   subjectAltName : email:copy
+INFO  ca-mgm -     Comment subjectKeyIdentifier : 
+INFO  ca-mgm -     Entry   subjectKeyIdentifier : hash
 INFO  ca-mgm -   Section v3_client
-INFO  ca-mgm -                       SectionComment 
+INFO  ca-mgm -     SectionComment 
 # v3 extensions sections
 
-INFO  ca-mgm -                       Comment authorityKeyIdentifier : 
-INFO  ca-mgm -                       Entry   authorityKeyIdentifier : keyid,issuer:always
-INFO  ca-mgm -                       Comment basicConstraints : 
-INFO  ca-mgm -                       Entry   basicConstraints : CA:FALSE
-INFO  ca-mgm -                       Comment issuerAltName : 
-INFO  ca-mgm -                       Entry   issuerAltName : issuer:copy
-INFO  ca-mgm -                       Comment keyUsage : 
-INFO  ca-mgm -                       Entry   keyUsage : nonRepudiation, digitalSignature, keyEncipherment
-INFO  ca-mgm -                       Comment nsCertType : 
-INFO  ca-mgm -                       Entry   nsCertType : client, email, objsign
-INFO  ca-mgm -                       Comment nsComment : 
-INFO  ca-mgm -                       Entry   nsComment : "YaST Generated Client Certificate"
-INFO  ca-mgm -                       Comment subjectAltName : 
-INFO  ca-mgm -                       Entry   subjectAltName : email:copy
-INFO  ca-mgm -                       Comment subjectKeyIdentifier : 
-INFO  ca-mgm -                       Entry   subjectKeyIdentifier : hash
+INFO  ca-mgm -     Comment authorityKeyIdentifier : 
+INFO  ca-mgm -     Entry   authorityKeyIdentifier : keyid,issuer:always
+INFO  ca-mgm -     Comment basicConstraints : 
+INFO  ca-mgm -     Entry   basicConstraints : CA:FALSE
+INFO  ca-mgm -     Comment issuerAltName : 
+INFO  ca-mgm -     Entry   issuerAltName : issuer:copy
+INFO  ca-mgm -     Comment keyUsage : 
+INFO  ca-mgm -     Entry   keyUsage : nonRepudiation, digitalSignature, keyEncipherment
+INFO  ca-mgm -     Comment nsCertType : 
+INFO  ca-mgm -     Entry   nsCertType : client, email, objsign
+INFO  ca-mgm -     Comment nsComment : 
+INFO  ca-mgm -     Entry   nsComment : "YaST Generated Client Certificate"
+INFO  ca-mgm -     Comment subjectAltName : 
+INFO  ca-mgm -     Entry   subjectAltName : email:copy
+INFO  ca-mgm -     Comment subjectKeyIdentifier : 
+INFO  ca-mgm -     Entry   subjectKeyIdentifier : hash
 INFO  ca-mgm -   Section v3_crl
-INFO  ca-mgm -                         SectionComment 
+INFO  ca-mgm -     SectionComment 
 
-INFO  ca-mgm -                         Comment authorityKeyIdentifier : 
-INFO  ca-mgm -                         Entry   authorityKeyIdentifier : keyid:always,issuer:always
+INFO  ca-mgm -     Comment authorityKeyIdentifier : 
+INFO  ca-mgm -     Entry   authorityKeyIdentifier : keyid:always,issuer:always
 INFO  ca-mgm -   Section v3_req
-INFO  ca-mgm -                           SectionComment 
+INFO  ca-mgm -     SectionComment 
 
-INFO  ca-mgm -                           Comment basicConstraints : 
-INFO  ca-mgm -                           Entry   basicConstraints : CA:TRUE
+INFO  ca-mgm -     Comment basicConstraints : 
+INFO  ca-mgm -     Entry   basicConstraints : CA:TRUE
 INFO  ca-mgm -   Section v3_server
-INFO  ca-mgm -                             SectionComment 
+INFO  ca-mgm -     SectionComment 
 
-INFO  ca-mgm -                             Comment authorityKeyIdentifier : 
-INFO  ca-mgm -                             Entry   authorityKeyIdentifier : keyid,issuer:always
-INFO  ca-mgm -                             Comment basicConstraints : 
-INFO  ca-mgm -                             Entry   basicConstraints : CA:FALSE
-INFO  ca-mgm -                             Comment issuerAltName : 
-INFO  ca-mgm -                             Entry   issuerAltName : issuer:copy
-INFO  ca-mgm -                             Comment keyUsage : 
-INFO  ca-mgm -                             Entry   keyUsage : keyEncipherment
-INFO  ca-mgm -                             Comment nsCertType : 
-INFO  ca-mgm -                             Entry   nsCertType : server
-INFO  ca-mgm -                             Comment nsComment : 
-INFO  ca-mgm -                             Entry   nsComment : "YaST Generated Server Certificate"
-INFO  ca-mgm -                             Comment subjectAltName : 
-INFO  ca-mgm -                             Entry   subjectAltName : email:copy
-INFO  ca-mgm -                             Comment subjectKeyIdentifier : 
-INFO  ca-mgm -                             Entry   subjectKeyIdentifier : hash
+INFO  ca-mgm -     Comment authorityKeyIdentifier : 
+INFO  ca-mgm -     Entry   authorityKeyIdentifier : keyid,issuer:always
+INFO  ca-mgm -     Comment basicConstraints : 
+INFO  ca-mgm -     Entry   basicConstraints : CA:FALSE
+INFO  ca-mgm -     Comment issuerAltName : 
+INFO  ca-mgm -     Entry   issuerAltName : issuer:copy
+INFO  ca-mgm -     Comment keyUsage : 
+INFO  ca-mgm -     Entry   keyUsage : keyEncipherment
+INFO  ca-mgm -     Comment nsCertType : 
+INFO  ca-mgm -     Entry   nsCertType : server
+INFO  ca-mgm -     Comment nsComment : 
+INFO  ca-mgm -     Entry   nsComment : "YaST Generated Server Certificate"
+INFO  ca-mgm -     Comment subjectAltName : 
+INFO  ca-mgm -     Entry   subjectAltName : email:copy
+INFO  ca-mgm -     Comment subjectKeyIdentifier : 
+INFO  ca-mgm -     Entry   subjectKeyIdentifier : hash
 DEBUG IniPaser - File openssl.cnf.tmpl did not change. Not saving.
 DEBUG IniPaser - File openssl.cnf.tmpl.test did not change. Not saving.
 DEBUG IniPaser - File openssl.cnf.tmpl.test did not change. Not saving.
