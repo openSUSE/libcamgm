@@ -47,18 +47,17 @@ namespace CA_MGM_NAMESPACE
 
         String   getValue(const String &section, const String &key) const;
 
-        CAConfig clone(const String &file);
+        CAConfig *clone(const String &file);
 
 	void	 dump();
+
 
     private:
         INI::INIParser 	*parser;
 	String		srcFilename;
 
-
         CAConfig();
         CAConfig(const CAConfig&);
-
         CAConfig& operator=(const CAConfig&);
 
 	void dumpTree(INI::Section *section, int level = 0);

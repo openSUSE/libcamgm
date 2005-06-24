@@ -35,18 +35,22 @@ int main(int argc, char **argv)
 					logAppender
 					));
     limal::Logger::setDefaultLogger(appLogger);
+
+    CAConfig *config = new CAConfig("openssl.cnf.tmpl");
+    CAConfig *configNew = config->clone("openssl.cnf.tmpl.test");
     
-    blocxx::String srcFile("openssl.cnf.tmpl.test");
-    blocxx::String command = "/bin/cp openssl.cnf.tmpl " + srcFile;
-    system(command.c_str());
+    LIMAL_SLOG(limal::Logger("ca-mgm"),
+	       "DEBUG", "file openssl.cnf.tmpl.test parsed.");
+    
+    configNew->setValue ("v3_req", "basicConstraints", "CA:TRUE");
+    configNew->deleteValue ("v3_req", "keyUsage");
 
-    CAConfig *config = new CAConfig(srcFile);
+    CAConfig *configDump = new CAConfig("openssl.cnf.tmpl.test");
+    configDump->dump();
 
-    config->dump();
-	
-//    LIMAL_SLOG(logger, "DEBUG", "file " << srcFile << " parsed.");
-
-//    LIMAL_SLOG(logger, "ERROR", "Cannot parse file " << srcFile);
+    delete (config);
+    delete (configNew);
+    delete (configDump);
 
     std::cout << "DONE" << std::endl;
     return 0;

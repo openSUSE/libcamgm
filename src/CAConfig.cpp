@@ -29,37 +29,6 @@ using namespace limal::ca_mgm;
 using namespace blocxx;
 using namespace limal::INI;
 
-void
-CAConfig::dumpTree(Section *section, int level)
-{
-    String tab = "";
-    for (int i = 0; i <= level; i++) tab += "  ";
-
-    if (level == 0)
-        LOGIT_INFO (tab);
-
-    LOGIT_INFO (tab <<
-		"SectionComment " << section->getComment());
-
-    EntryMap eMap= section->getEntries();
-    for (EntryMap::iterator i = eMap.begin(); i != eMap.end(); i++)
-    {
-        Entry entry = i->second; 
-        LOGIT_INFO (tab <<
-		    "Comment " << i->first << " : " << entry.getComment());
-        LOGIT_INFO (tab <<
-		    "Entry   " << i->first << " : " << entry.getValue());
-    }
-
-    SectionMap sMap = section->getSections();
-    for (SectionMap::iterator i = sMap.begin(); i != sMap.end(); i++)
-    {
-        Section sec = i->second;
-        LOGIT_INFO (tab <<
-		    "Section " << i->first);
-        dumpTree (&sec, ++level);
-    }
-}
 
 
 CAConfig::CAConfig(const String &file)
@@ -109,6 +78,39 @@ CAConfig::~CAConfig()
 }
 
 void
+CAConfig::dumpTree(Section *section, int level)
+{
+    String tab = "";
+    for (int i = 0; i <= level; i++) tab += "  ";
+
+    if (level == 0)
+        LOGIT_INFO (tab);
+
+    LOGIT_INFO (tab <<
+		"SectionComment " << section->getComment());
+
+    EntryMap eMap= section->getEntries();
+    for (EntryMap::iterator i = eMap.begin(); i != eMap.end(); i++)
+    {
+        Entry entry = i->second; 
+        LOGIT_INFO (tab <<
+		    "Comment " << i->first << " : " << entry.getComment());
+        LOGIT_INFO (tab <<
+		    "Entry   " << i->first << " : " << entry.getValue());
+    }
+
+    SectionMap sMap = section->getSections();
+    for (SectionMap::iterator i = sMap.begin(); i != sMap.end(); i++)
+    {
+        Section sec = i->second;
+        LOGIT_INFO (tab <<
+		    "Section " << i->first);
+        dumpTree (&sec, ++level);
+    }
+}
+
+
+void
 CAConfig::setValue(const String &section, const String &key, const String &value)
 {
     if (parser->iniFile.contains (section) == NO)
@@ -122,6 +124,8 @@ CAConfig::setValue(const String &section, const String &key, const String &value
 	// add entry only
 	(parser->iniFile.getSection (section)).addValue(key, value);
     }
+    // and save
+    parser->write();
 }
 
 void
@@ -131,6 +135,8 @@ CAConfig::deleteValue(const String &section, const String &key)
     {
 	// delete entry
 	(parser->iniFile.getSection (section)).delEntry (key);
+	// and save
+	parser->write();	
     }
 }
 
@@ -145,12 +151,12 @@ CAConfig::getValue(const String &section, const String &key) const
     return "";
 }
 
-CAConfig
+CAConfig*
 CAConfig::clone(const String &file)
 {
     String command = "/bin/cp " + srcFilename + " " + file;
     system (command.c_str());
-    return CAConfig (file);
+    return new CAConfig (file);
 }
 
 void
