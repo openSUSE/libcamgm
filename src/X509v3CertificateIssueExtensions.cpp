@@ -22,6 +22,9 @@
 
 
 #include  <limal/ca-mgm/X509v3CertificateIssueExtensions.hpp>
+#include  <limal/Exception.hpp>
+
+#include  "Utils.hpp"
 
 using namespace limal;
 using namespace limal::ca_mgm;
@@ -36,22 +39,64 @@ X509v3CertificateIssueExtensions::X509v3CertificateIssueExtensions(CA& ca, Type 
 }
 
 X509v3CertificateIssueExtensions::X509v3CertificateIssueExtensions(const X509v3CertificateIssueExtensions& extensions)
+    : nsBaseUrl(extensions.nsBaseUrl),
+      nsRevocationUrl(extensions.nsRevocationUrl),
+      nsCaRevocationUrl(extensions.nsCaRevocationUrl),
+      nsRenewalUrl(extensions.nsRenewalUrl),
+      nsCaPolicyUrl(extensions.nsCaPolicyUrl),
+      nsSslServerName(extensions.nsSslServerName),
+      nsComment(extensions.nsComment),
+      keyUsage(extensions.keyUsage),
+      nsCertType(extensions.nsCertType),
+      basicConstraints(extensions.basicConstraints),
+      extendedKeyUsage(extensions.extendedKeyUsage),
+      subjectKeyIdentifier(extensions.subjectKeyIdentifier),
+      authorityKeyIdentifier(extensions.authorityKeyIdentifier),
+      subjectAlternativeName(extensions.subjectAlternativeName),
+      issuerAlternativeName(extensions.issuerAlternativeName),
+      authorityInfoAccess(extensions.authorityInfoAccess),
+      crlDistributionPoints(extensions.crlDistributionPoints),
+      certificatePolicies(extensions.certificatePolicies)
 {
 }
 
 X509v3CertificateIssueExtensions::~X509v3CertificateIssueExtensions()
-{
-}
+{}
 
 X509v3CertificateIssueExtensions&
 X509v3CertificateIssueExtensions::operator=(const X509v3CertificateIssueExtensions& extensions)
 {
+    if(this == &extensions) return *this;
+
+    nsBaseUrl              = extensions.nsBaseUrl;
+    nsRevocationUrl        = extensions.nsRevocationUrl;
+    nsCaRevocationUrl      = extensions.nsCaRevocationUrl;
+    nsRenewalUrl           = extensions.nsRenewalUrl;
+    nsCaPolicyUrl          = extensions.nsCaPolicyUrl;
+    nsSslServerName        = extensions.nsSslServerName;
+    nsComment              = extensions.nsComment;
+    keyUsage               = extensions.keyUsage;
+    nsCertType             = extensions.nsCertType;
+    basicConstraints       = extensions.basicConstraints;
+    extendedKeyUsage       = extensions.extendedKeyUsage;
+    subjectKeyIdentifier   = extensions.subjectKeyIdentifier;
+    authorityKeyIdentifier = extensions.authorityKeyIdentifier;
+    subjectAlternativeName = extensions.subjectAlternativeName;
+    issuerAlternativeName  = extensions.issuerAlternativeName;
+    authorityInfoAccess    = extensions.authorityInfoAccess;
+    crlDistributionPoints  = extensions.crlDistributionPoints;
+    certificatePolicies    = extensions.certificatePolicies;
+
     return *this;
 }
 
 void
 X509v3CertificateIssueExtensions::setNsBaseUrl(const NsBaseUrlExtension &ext)
 {
+    if(!ext.valid()) {
+        BLOCXX_THROW(limal::ValueException, 
+                     "X509v3CertificateIssueExtensions::setNsBaseUrl invalid value");
+    }
     nsBaseUrl = ext;
 }
 
@@ -64,6 +109,10 @@ X509v3CertificateIssueExtensions::getNsBaseUrl() const
 void
 X509v3CertificateIssueExtensions::setNsRevocationUrl(const NsRevocationUrlExtension &ext)
 {
+    if(!ext.valid()) {
+        BLOCXX_THROW(limal::ValueException, 
+                     "X509v3CertificateIssueExtensions::setNsRevocationUrl invalid value");
+    }
     nsRevocationUrl = ext;
 }
 
@@ -76,6 +125,10 @@ X509v3CertificateIssueExtensions::getNsRevocationUrl() const
 void
 X509v3CertificateIssueExtensions::setNsCaRevocationUrl(const NsCaRevocationUrlExtension &ext)
 {
+    if(!ext.valid()) {
+        BLOCXX_THROW(limal::ValueException, 
+                     "X509v3CertificateIssueExtensions::setNsCaRevocationUrl invalid value");
+    }
     nsCaRevocationUrl = ext;
 }
 
@@ -88,6 +141,10 @@ X509v3CertificateIssueExtensions::getNsCaRevocationUrl() const
 void
 X509v3CertificateIssueExtensions::setNsRenewalUrl(const NsRenewalUrlExtension &ext)
 {
+    if(!ext.valid()) {
+        BLOCXX_THROW(limal::ValueException, 
+                     "X509v3CertificateIssueExtensions::setNsRenewalUrl invalid value");
+    }
     nsRenewalUrl = ext;
 }
 
@@ -100,6 +157,10 @@ X509v3CertificateIssueExtensions::getNsRenewalUrl() const
 void
 X509v3CertificateIssueExtensions::setNsCaPolicyUrl(const NsCaPolicyUrlExtension &ext)
 {
+    if(!ext.valid()) {
+        BLOCXX_THROW(limal::ValueException, 
+                     "X509v3CertificateIssueExtensions::setNsCaPolicyUrl invalid value");
+    }
     nsCaPolicyUrl = ext;
 }
 
@@ -112,6 +173,10 @@ X509v3CertificateIssueExtensions::getNsCaPolicyUrl()
 void
 X509v3CertificateIssueExtensions::setNsSslServerName(const NsSslServerNameExtension &ext)
 {
+    if(!ext.valid()) {
+        BLOCXX_THROW(limal::ValueException, 
+                     "X509v3CertificateIssueExtensions::setNsSslServerName invalid value");
+    }
     nsSslServerName = ext;
 }
 
@@ -124,6 +189,10 @@ X509v3CertificateIssueExtensions::getNsSslServerName() const
 void
 X509v3CertificateIssueExtensions::setNsComment(const NsCommentExtension &ext)
 {
+    if(!ext.valid()) {
+        BLOCXX_THROW(limal::ValueException, 
+                     "X509v3CertificateIssueExtensions::setNsComment invalid value");
+    }
     nsComment = ext;
 }
 
@@ -136,6 +205,10 @@ X509v3CertificateIssueExtensions::getNsComment() const
 void
 X509v3CertificateIssueExtensions::setNsCertType(const NsCertTypeExtension &ext)
 {
+    if(!ext.valid()) {
+        BLOCXX_THROW(limal::ValueException, 
+                     "X509v3CertificateIssueExtensions::setNsCertType invalid value");
+    }
     nsCertType = ext;
 }
 
@@ -148,6 +221,10 @@ X509v3CertificateIssueExtensions::getNsCertType() const
 void
 X509v3CertificateIssueExtensions::setKeyUsage(const KeyUsageExtension &ext)
 {
+    if(!ext.valid()) {
+        BLOCXX_THROW(limal::ValueException, 
+                     "X509v3CertificateIssueExtensions::setKeyUsage invalid value");
+    }
     keyUsage = ext;
 }
 
@@ -160,6 +237,10 @@ X509v3CertificateIssueExtensions::getKeyUsage()
 void
 X509v3CertificateIssueExtensions::setBasicConstraints(const BasicConstraintsExtension &ext)
 {
+    if(!ext.valid()) {
+        BLOCXX_THROW(limal::ValueException, 
+                     "X509v3CertificateIssueExtensions::setBasicConstraints invalid value");
+    }
     basicConstraints = ext;
 }
 
@@ -172,6 +253,10 @@ X509v3CertificateIssueExtensions::getBasicConstraints() const
 void
 X509v3CertificateIssueExtensions::setExtendedKeyUsage(const ExtendedKeyUsageExtension &ext)
 {
+    if(!ext.valid()) {
+        BLOCXX_THROW(limal::ValueException, 
+                     "X509v3CertificateIssueExtensions::setExtendedKeyUsage invalid value");
+    }
     extendedKeyUsage = ext;
 }
 
@@ -184,6 +269,10 @@ X509v3CertificateIssueExtensions::getExtendedKeyUsage() const
 void
 X509v3CertificateIssueExtensions::setSubjectKeyIdentifier(const SubjectKeyIdentifierExtension &ext)
 {
+    if(!ext.valid()) {
+        BLOCXX_THROW(limal::ValueException, 
+                     "X509v3CertificateIssueExtensions::setSubjectKeyIdentifier invalid value");
+    }
     subjectKeyIdentifier = ext;
 }
 
@@ -196,6 +285,10 @@ X509v3CertificateIssueExtensions::getSubjectKeyIdentifier() const
 void
 X509v3CertificateIssueExtensions::setAuthorityKeyIdentifier(const AuthorityKeyIdentifierGenerateExtension &ext)
 {
+    if(!ext.valid()) {
+        BLOCXX_THROW(limal::ValueException, 
+                     "X509v3CertificateIssueExtensions::setAuthorityKeyIdentifier invalid value");
+    }
     authorityKeyIdentifier = ext;
 }
 
@@ -208,6 +301,10 @@ X509v3CertificateIssueExtensions::getAuthorityKeyIdentifier() const
 void
 X509v3CertificateIssueExtensions::setSubjectAlternativeName(const SubjectAlternativeNameExtension &ext)
 {
+    if(!ext.valid()) {
+        BLOCXX_THROW(limal::ValueException, 
+                     "X509v3CertificateIssueExtensions::setSubjectAlternativeName invalid value");
+    }
     subjectAlternativeName = ext;
 }
 
@@ -220,6 +317,10 @@ X509v3CertificateIssueExtensions::getSubjectAlternativeName() const
 void
 X509v3CertificateIssueExtensions::setIssuerAlternativeName(const IssuerAlternativeNameExtension &ext)
 {
+    if(!ext.valid()) {
+        BLOCXX_THROW(limal::ValueException, 
+                     "X509v3CertificateIssueExtensions::setIssuerAlternativeName invalid value");
+    }
     issuerAlternativeName = ext;
 }
 
@@ -232,6 +333,10 @@ X509v3CertificateIssueExtensions::getIssuerAlternativeName() const
 void
 X509v3CertificateIssueExtensions::setAuthorityInfoAccess(const AuthorityInfoAccessExtension &ext)
 {
+    if(!ext.valid()) {
+        BLOCXX_THROW(limal::ValueException, 
+                     "X509v3CertificateIssueExtensions::setAuthorityInfoAccess invalid value");
+    }
     authorityInfoAccess = ext;
 }
 
@@ -244,6 +349,10 @@ X509v3CertificateIssueExtensions::getAuthorityInfoAccess() const
 void
 X509v3CertificateIssueExtensions::setCRLDistributionPoints(const CRLDistributionPointsExtension &ext)
 {
+    if(!ext.valid()) {
+        BLOCXX_THROW(limal::ValueException, 
+                     "X509v3CertificateIssueExtensions::setCRLDistributionPoints invalid value");
+    }
     crlDistributionPoints = ext;
 }
 
@@ -256,6 +365,10 @@ X509v3CertificateIssueExtensions::getCRLDistributionPoints() const
 void
 X509v3CertificateIssueExtensions::setCertificatePolicies(const CertificatePoliciesExtension &ext)
 {
+    if(!ext.valid()) {
+        BLOCXX_THROW(limal::ValueException, 
+                     "X509v3CertificateIssueExtensions::setCertificatePolicies invalid value");
+    }
     certificatePolicies = ext;
 }
 
@@ -270,3 +383,54 @@ X509v3CertificateIssueExtensions::commit2Config(CA& ca, Type type)
 {
 }
 
+bool
+X509v3CertificateIssueExtensions::valid() const
+{
+    if(!nsBaseUrl.valid()) return false;
+    if(!nsRevocationUrl.valid()) return false;
+    if(!nsCaRevocationUrl.valid()) return false;
+    if(!nsRenewalUrl.valid()) return false;
+    if(!nsCaPolicyUrl.valid()) return false;
+    if(!nsSslServerName.valid()) return false;
+    if(!nsComment.valid()) return false;
+    if(!keyUsage.valid()) return false;
+    if(!nsCertType.valid()) return false;
+    if(!basicConstraints.valid()) return false;
+    if(!extendedKeyUsage.valid()) return false;
+    if(!subjectKeyIdentifier.valid()) return false;
+    if(!authorityKeyIdentifier.valid()) return false;
+    if(!subjectAlternativeName.valid()) return false;
+    if(!issuerAlternativeName.valid()) return false;
+    if(!authorityInfoAccess.valid()) return false;
+    if(!crlDistributionPoints.valid()) return false;
+    if(!certificatePolicies.valid()) return false;
+    return true;
+}
+
+blocxx::StringArray
+X509v3CertificateIssueExtensions::verify() const
+{
+    StringArray result;
+
+    result.appendArray(nsBaseUrl.verify());
+    result.appendArray(nsRevocationUrl.verify());
+    result.appendArray(nsCaRevocationUrl.verify());
+    result.appendArray(nsRenewalUrl.verify());
+    result.appendArray(nsCaPolicyUrl.verify());
+    result.appendArray(nsSslServerName.verify());
+    result.appendArray(nsComment.verify());
+    result.appendArray(keyUsage.verify());  
+    result.appendArray(nsCertType.verify());   
+    result.appendArray(basicConstraints.verify()); 
+    result.appendArray(extendedKeyUsage.verify());
+    result.appendArray(subjectKeyIdentifier.verify());
+    result.appendArray(authorityKeyIdentifier.verify());
+    result.appendArray(subjectAlternativeName.verify());
+    result.appendArray(issuerAlternativeName.verify());
+    result.appendArray(authorityInfoAccess.verify());
+    result.appendArray(crlDistributionPoints.verify());
+    result.appendArray(certificatePolicies.verify());
+
+    LOGIT_DEBUG_STRINGARRAY("X509v3CertificateIssueExtensions::verify()", result);
+    return result;
+}

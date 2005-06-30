@@ -21,12 +21,33 @@
 /-*/
 
 #include  <limal/ca-mgm/X509v3CertificateExtensions.hpp>
+#include  <limal/Exception.hpp>
+
+#include  "Utils.hpp"
 
 using namespace limal;
 using namespace limal::ca_mgm;
 using namespace blocxx;
 
 X509v3CertificateExtensions::X509v3CertificateExtensions(const X509v3CertificateExtensions& extensions)
+    : nsBaseUrl(extensions.nsBaseUrl),
+      nsRevocationUrl(extensions.nsRevocationUrl),
+      nsCaRevocationUrl(extensions.nsCaRevocationUrl),
+      nsRenewalUrl(extensions.nsRenewalUrl),
+      nsCaPolicyUrl(extensions.nsCaPolicyUrl),
+      nsSslServerName(extensions.nsSslServerName),
+      nsComment(extensions.nsComment),
+      keyUsage(extensions.keyUsage),
+      nsCertType(extensions.nsCertType),
+      basicConstraints(extensions.basicConstraints),
+      extendedKeyUsage(extensions.extendedKeyUsage),
+      subjectKeyIdentifier(extensions.subjectKeyIdentifier),
+      authorityKeyIdentifier(extensions.authorityKeyIdentifier),
+      subjectAlternativeName(extensions.subjectAlternativeName),
+      issuerAlternativeName(extensions.issuerAlternativeName),
+      authorityInfoAccess(extensions.authorityInfoAccess),
+      crlDistributionPoints(extensions.crlDistributionPoints),
+      certificatePolicies(extensions.certificatePolicies)
 {
 }
 
@@ -37,6 +58,27 @@ X509v3CertificateExtensions::~X509v3CertificateExtensions()
 X509v3CertificateExtensions&
 X509v3CertificateExtensions::operator=(const X509v3CertificateExtensions& extensions)
 {
+    if(this == &extensions) return *this;
+
+    nsBaseUrl              = extensions.nsBaseUrl;
+    nsRevocationUrl        = extensions.nsRevocationUrl;
+    nsCaRevocationUrl      = extensions.nsCaRevocationUrl;
+    nsRenewalUrl           = extensions.nsRenewalUrl;
+    nsCaPolicyUrl          = extensions.nsCaPolicyUrl;
+    nsSslServerName        = extensions.nsSslServerName;
+    nsComment              = extensions.nsComment;
+    keyUsage               = extensions.keyUsage;
+    nsCertType             = extensions.nsCertType;
+    basicConstraints       = extensions.basicConstraints;
+    extendedKeyUsage       = extensions.extendedKeyUsage;
+    subjectKeyIdentifier   = extensions.subjectKeyIdentifier;
+    authorityKeyIdentifier = extensions.authorityKeyIdentifier;
+    subjectAlternativeName = extensions.subjectAlternativeName;
+    issuerAlternativeName  = extensions.issuerAlternativeName;
+    authorityInfoAccess    = extensions.authorityInfoAccess;
+    crlDistributionPoints  = extensions.crlDistributionPoints;
+    certificatePolicies    = extensions.certificatePolicies;
+
     return *this;
 }
 
@@ -146,6 +188,58 @@ CertificatePoliciesExtension
 X509v3CertificateExtensions::getCertificatePolicies() const
 {
     return certificatePolicies;
+}
+
+bool
+X509v3CertificateExtensions::valid() const
+{
+    if(!nsBaseUrl.valid()) return false;
+    if(!nsRevocationUrl.valid()) return false;
+    if(!nsCaRevocationUrl.valid()) return false;
+    if(!nsRenewalUrl.valid()) return false;
+    if(!nsCaPolicyUrl.valid()) return false;
+    if(!nsSslServerName.valid()) return false;
+    if(!nsComment.valid()) return false;
+    if(!keyUsage.valid()) return false;
+    if(!nsCertType.valid()) return false;
+    if(!basicConstraints.valid()) return false;
+    if(!extendedKeyUsage.valid()) return false;
+    if(!subjectKeyIdentifier.valid()) return false;
+    if(!authorityKeyIdentifier.valid()) return false;
+    if(!subjectAlternativeName.valid()) return false;
+    if(!issuerAlternativeName.valid()) return false;
+    if(!authorityInfoAccess.valid()) return false;
+    if(!crlDistributionPoints.valid()) return false;
+    if(!certificatePolicies.valid()) return false;
+    return true;
+}
+
+blocxx::StringArray
+X509v3CertificateExtensions::verify() const
+{
+    StringArray result;
+
+    result.appendArray(nsBaseUrl.verify());
+    result.appendArray(nsRevocationUrl.verify());
+    result.appendArray(nsCaRevocationUrl.verify());
+    result.appendArray(nsRenewalUrl.verify());
+    result.appendArray(nsCaPolicyUrl.verify());
+    result.appendArray(nsSslServerName.verify());
+    result.appendArray(nsComment.verify());
+    result.appendArray(keyUsage.verify());  
+    result.appendArray(nsCertType.verify());   
+    result.appendArray(basicConstraints.verify()); 
+    result.appendArray(extendedKeyUsage.verify());
+    result.appendArray(subjectKeyIdentifier.verify());
+    result.appendArray(authorityKeyIdentifier.verify());
+    result.appendArray(subjectAlternativeName.verify());
+    result.appendArray(issuerAlternativeName.verify());
+    result.appendArray(authorityInfoAccess.verify());
+    result.appendArray(crlDistributionPoints.verify());
+    result.appendArray(certificatePolicies.verify());
+
+    LOGIT_DEBUG_STRINGARRAY("X509v3CertificateExtensions::verify()", result);
+    return result;
 }
 
         

@@ -21,22 +21,31 @@
 /-*/
 
 #include  <limal/ca-mgm/X509v3CRLExtensions.hpp>
+#include  <limal/Exception.hpp>
+
+#include  "Utils.hpp"
 
 using namespace limal;
 using namespace limal::ca_mgm;
 using namespace blocxx;
 
 X509v3CRLExtensions::X509v3CRLExtensions(const X509v3CRLExtensions& extensions)
+    : authorityKeyIdentifier(extensions.authorityKeyIdentifier),
+      issuerAlternativeName(extensions.issuerAlternativeName)
 {
 }
 
 X509v3CRLExtensions::~X509v3CRLExtensions()
-{
-}
+{}
 
 X509v3CRLExtensions&
 X509v3CRLExtensions::operator=(const X509v3CRLExtensions& extensions)
 {
+    if(this == &extensions) return *this;
+    
+    authorityKeyIdentifier = extensions.authorityKeyIdentifier;
+    issuerAlternativeName  = extensions.issuerAlternativeName;
+    
     return *this;
 }
 
@@ -51,6 +60,27 @@ X509v3CRLExtensions::getIssuerAlternativeName() const
 {
     return issuerAlternativeName;
 }
+
+bool
+X509v3CRLExtensions::valid() const
+{
+    if(!authorityKeyIdentifier.valid()) return false;
+    if(!issuerAlternativeName.valid())  return false;
+    return true;
+}
+
+blocxx::StringArray
+X509v3CRLExtensions::verify() const
+{
+    StringArray result;
+
+    result.appendArray(authorityKeyIdentifier.verify());
+    result.appendArray(issuerAlternativeName.verify());
+    
+    LOGIT_DEBUG_STRINGARRAY("X509v3CRLExtensions::verify()", result);
+    return result;;
+}
+
 
 //    protected:
 X509v3CRLExtensions::X509v3CRLExtensions()

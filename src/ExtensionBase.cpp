@@ -68,6 +68,7 @@ ExtensionBase::setCritical(bool extCritical)
 
 // FIXME: remove these methods. These should be abstract
 
+/*
 bool
 ExtensionBase::valid() const
 {
@@ -79,3 +80,4 @@ ExtensionBase::verify() const
 {
     return blocxx::StringArray();
 }
+*/

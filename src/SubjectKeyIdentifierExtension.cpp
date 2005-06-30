@@ -21,66 +21,99 @@
 /-*/
 
 #include  <limal/ca-mgm/SubjectKeyIdentifierExtension.hpp>
+#include  <limal/ValueRegExCheck.hpp>
+#include  <limal/Exception.hpp>
+#include  <blocxx/Format.hpp>
+
+#include  "Utils.hpp"
 
 using namespace limal;
 using namespace limal::ca_mgm;
 using namespace blocxx;
 
+inline static ValueCheck initHexCheck() {
+    ValueCheck checkHex =
+        ValueCheck(new ValuePosixRECheck("^([0-9a-fA-F]{2}:)+[0-9a-fA-F]{2}$" ));
+    
+    return checkHex;
+}
 
 SubjectKeyIdentifierExtension::SubjectKeyIdentifierExtension()
-    : ExtensionBase()
-{
-}
+    : ExtensionBase(), autodetect(false), keyid(String())
+{}
 
 SubjectKeyIdentifierExtension::SubjectKeyIdentifierExtension(CA& ca, Type type)
-    : ExtensionBase()
+    : ExtensionBase(), autodetect(false), keyid(String())
 {
 }
 
-SubjectKeyIdentifierExtension::SubjectKeyIdentifierExtension(bool autoDetect)
-    : ExtensionBase()
+SubjectKeyIdentifierExtension::SubjectKeyIdentifierExtension(bool autoDetect, const String& keyid)
+    : ExtensionBase(), autodetect(autoDetect), keyid(keyid)
 {
-}
-
-SubjectKeyIdentifierExtension::SubjectKeyIdentifierExtension(const String& keyid)
-    : ExtensionBase()
-{
+    StringArray r = this->verify();
+    if(!r.empty()) {
+        BLOCXX_THROW(limal::ValueException, r[0].c_str());
+    }
+    setPresent(true);
 }
 
 SubjectKeyIdentifierExtension::SubjectKeyIdentifierExtension(const SubjectKeyIdentifierExtension& extension)
-    : ExtensionBase()
-{
-}
+    : ExtensionBase(extension), autodetect(extension.autodetect), keyid(extension.keyid)
+{}
 
 SubjectKeyIdentifierExtension::~SubjectKeyIdentifierExtension()
-{
-}
+{}
 
 
 SubjectKeyIdentifierExtension&
 SubjectKeyIdentifierExtension::operator=(const SubjectKeyIdentifierExtension& extension)
 {
+    if(this == &extension) return *this;
+    
+    ExtensionBase::operator=(extension);
+    
+    autodetect = extension.autodetect;
+    keyid      = extension.keyid;
+    
     return *this;
 }
 
 void
-SubjectKeyIdentifierExtension::enableAutoDetection()
+SubjectKeyIdentifierExtension::setSubjectKeyIdentifier(bool autoDetect,
+                                                       const String& keyId)
 {
-    autodetect = true;
+    bool   oldAutoDetect = this->autodetect;
+    String oldKeyId      = this->keyid;
+
+    this->autodetect = autoDetect;
+    this->keyid      = keyId;
+
+    StringArray r = this->verify();
+    if(!r.empty()) {
+        this->autodetect   = oldAutoDetect;
+        this->keyid        = oldKeyId;
+
+        LOGIT_ERROR(r[0]);
+        BLOCXX_THROW(limal::ValueException, r[0].c_str());
+    }
+    setPresent(true);
 }
 
-
-void
-SubjectKeyIdentifierExtension::setKeyID(const String& keyid)
+bool
+SubjectKeyIdentifierExtension::isAutoDetectionEnabled() const
 {
-    autodetect = false;
-    this->keyid = keyid;
+    if(!isPresent()) {
+        BLOCXX_THROW(limal::RuntimeException, "SubjectKeyIdentifierExtension is not present");
+    }
+    return autodetect;
 }
-
 
 blocxx::String
 SubjectKeyIdentifierExtension::getKeyID() const
 {
+    if(!isPresent()) {
+        BLOCXX_THROW(limal::RuntimeException, "SubjectKeyIdentifierExtension is not present");
+    }
     return keyid;
 }
 
@@ -88,6 +121,58 @@ SubjectKeyIdentifierExtension::getKeyID() const
 void
 SubjectKeyIdentifierExtension::commit2Config(CA& ca, Type type)
 {
+}
+
+bool
+SubjectKeyIdentifierExtension::valid() const
+{
+    if(!isPresent()) return true;
+
+    if(!autodetect && keyid.empty()) {
+        LOGIT_DEBUG(Format("Wrong value for NsBaseUrlExtension: autodetect(%1), keyId(%2)",
+                           autodetect?"true":"false", keyid));
+        return false;
+    }
+
+    if(autodetect && !keyid.empty()) {
+        LOGIT_DEBUG(Format("Wrong value for NsBaseUrlExtension: autodetect(%1), keyId(%2)",
+                           autodetect?"true":"false", keyid));
+        return false;
+    }
+    if(!keyid.empty()) {
+        ValueCheck check = initHexCheck();
+        if(!check.isValid(keyid)) {
+            LOGIT_DEBUG("Wrong keyID in NsBaseUrlExtension:" << keyid);
+            return false;
+        }
+    }
+    return true;
+}
+
+blocxx::StringArray
+SubjectKeyIdentifierExtension::verify() const
+{
+    StringArray result;
+
+    if(!isPresent()) return result;
+
+    if(!autodetect && keyid.empty()) {
+        result.append(Format("Wrong value for NsBaseUrlExtension: autodetect(%1), keyId(%2)", 
+                             autodetect?"true":"false", keyid.c_str()).toString());
+    }
+
+    if(autodetect && !keyid.empty()) {
+        result.append(Format("Wrong value for NsBaseUrlExtension: autodetect(%1), keyId(%2)", 
+                             autodetect?"true":"false", keyid.c_str()).toString());
+    }
+    if(!keyid.empty()) {
+        ValueCheck check = initHexCheck();
+        if(!check.isValid(keyid)) {
+            result.append(Format("Wrong keyID in NsBaseUrlExtension: %1", keyid.c_str()).toString());
+        }
+    }
+    LOGIT_DEBUG_STRINGARRAY("SubjectKeyIdentifierExtension::verify()", result);
+    return result;
 }
 
 

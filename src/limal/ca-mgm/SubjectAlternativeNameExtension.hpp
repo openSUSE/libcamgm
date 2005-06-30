@@ -35,24 +35,27 @@ namespace CA_MGM_NAMESPACE {
 
     class SubjectAlternativeNameExtension : public ExtensionBase {
     public:
+        SubjectAlternativeNameExtension();
         SubjectAlternativeNameExtension(CA& ca, Type type);
-        SubjectAlternativeNameExtension(bool copyEmail = false,
-                                        const blocxx::List<LiteralValue> &alternativeNameList = blocxx::List<LiteralValue>());
+        SubjectAlternativeNameExtension(bool copyEmail,
+                                        const blocxx::List<LiteralValue> &alternativeNameList);
         SubjectAlternativeNameExtension(const SubjectAlternativeNameExtension& extension);
-
+        
         virtual ~SubjectAlternativeNameExtension();
 
         SubjectAlternativeNameExtension& operator=(const SubjectAlternativeNameExtension& extension);
 
-        void  setCopyEmail(bool copyEmail);
-        bool  getCopyEmail() const;
+        void  setSubjectAlternativeName(bool copyEmail, 
+                                        const blocxx::List<LiteralValue> &alternativeNameList = 
+                                        blocxx::List<LiteralValue>());
 
-        void  setAlternativeNameList(const blocxx::List<LiteralValue> &alternativeNameList);
+        bool                       getCopyEmail() const;
         blocxx::List<LiteralValue> getAlternativeNameList() const;
 
-        void                   addSubjectAltName(const LiteralValue& altName);
-
         virtual void commit2Config(CA& ca, Type type);
+
+        virtual bool                 valid() const;
+        virtual blocxx::StringArray  verify() const;
 
     private:
         bool                           emailCopy;

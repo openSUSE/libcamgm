@@ -50,8 +50,8 @@ namespace CA_MGM_NAMESPACE {
 
         virtual void commit2Config(CA& ca, Type type) = 0;
 
-        virtual bool                 valid() const;  // =0
-        virtual blocxx::StringArray  verify() const; // =0
+        virtual bool                 valid() const =0;
+        virtual blocxx::StringArray  verify() const =0;
 
     private:
         bool present;

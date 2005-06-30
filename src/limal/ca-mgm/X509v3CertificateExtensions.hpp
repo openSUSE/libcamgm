@@ -69,6 +69,8 @@ namespace CA_MGM_NAMESPACE {
         CRLDistributionPointsExtension  getCRLDistributionPoints() const;
         CertificatePoliciesExtension    getCertificatePolicies() const;
         
+        virtual bool                 valid() const;
+        virtual blocxx::StringArray  verify() const;
 
     protected:
         X509v3CertificateExtensions();

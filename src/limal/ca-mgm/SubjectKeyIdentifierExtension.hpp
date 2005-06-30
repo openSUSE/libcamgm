@@ -36,32 +36,27 @@ namespace CA_MGM_NAMESPACE {
     public:
         SubjectKeyIdentifierExtension();
         SubjectKeyIdentifierExtension(CA& ca, Type type);
-        SubjectKeyIdentifierExtension(bool autoDetect);
-        SubjectKeyIdentifierExtension(const String& keyid);
+        SubjectKeyIdentifierExtension(bool autoDetect, const String& keyid = String());
         SubjectKeyIdentifierExtension(const SubjectKeyIdentifierExtension& extension);
         virtual ~SubjectKeyIdentifierExtension();
 
         SubjectKeyIdentifierExtension& operator=(const SubjectKeyIdentifierExtension& extension);
-        /**
-         * Set auto detection to true and remove the directly
-         * set keyID if available.
-         */
-        void enableAutoDetection();
 
-        /**
-         * Set the defined keyID and disable auto detection.
-         * if enabled
-         */
-        void setKeyID(const String& keyid);
+        void setSubjectKeyIdentifier(bool autoDetect, const String& keyId = String());
+
+        bool   isAutoDetectionEnabled() const;
 
         /**
          * Get the keyID.
          *
-         * @return the keyID or the String "hash" if autodetection is enabled
+         * @return the keyID
          */
         String getKeyID() const;
 
         virtual void commit2Config(CA& ca, Type type);
+
+        virtual bool                 valid() const;
+        virtual blocxx::StringArray  verify() const;
 
     private:
 

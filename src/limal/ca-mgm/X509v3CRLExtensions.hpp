@@ -47,6 +47,9 @@ namespace CA_MGM_NAMESPACE {
         AuthorityKeyIdentifierExtension getAuthorityKeyIdentifier() const;
         IssuerAlternativeNameExtension  getIssuerAlternativeName() const;
 
+        virtual bool                    valid() const;
+        virtual blocxx::StringArray     verify() const;
+
     protected:
         X509v3CRLExtensions();
 
