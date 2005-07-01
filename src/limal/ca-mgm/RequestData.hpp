@@ -55,6 +55,9 @@ namespace CA_MGM_NAMESPACE {
         String              getChallengePassword() const;
         String              getUnstructuredName() const;
 
+        virtual bool                 valid() const;
+        virtual blocxx::StringArray  verify() const;
+
     protected:
         RequestData();
 

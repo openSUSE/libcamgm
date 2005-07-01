@@ -21,13 +21,36 @@
 /-*/
 
 #include  <limal/ca-mgm/RequestData.hpp>
+#include  <limal/ValueRegExCheck.hpp>
+#include  <limal/Exception.hpp>
+#include  <blocxx/Format.hpp>
+
+#include  "Utils.hpp"
+#include  "X509v3RequestExtensions_Priv.hpp"
 
 using namespace limal;
 using namespace limal::ca_mgm;
 using namespace blocxx;
 
 
+inline static ValueCheck initHexCheck() {
+    ValueCheck check =
+        ValueCheck(new ValuePosixRECheck("^[0-9a-fA-F]+[0-9a-fA-F:]*$"));
+
+    return check;
+}
+
 RequestData::RequestData(const RequestData& data)
+    : version(data.version),
+      subject(data.subject),
+      keysize(data.keysize),
+      pubkeyAlgorithm(data.pubkeyAlgorithm),
+      publicKey(data.publicKey),
+      signatureAlgorithm(data.signatureAlgorithm),
+      signature(data.signature),
+      extensions(data.extensions),
+      challengePassword(data.challengePassword), 
+      unstructuredName(data.unstructuredName)
 {
 }
 
@@ -38,6 +61,19 @@ RequestData::~RequestData()
 RequestData&
 RequestData::operator=(const RequestData& data)
 {
+    if(this == &data) return *this;
+
+    version            = data.version;
+    subject            = data.subject;
+    keysize            = data.keysize;
+    pubkeyAlgorithm    = data.pubkeyAlgorithm;
+    publicKey          = data.publicKey;
+    signatureAlgorithm = data.signatureAlgorithm;
+    signature          = data.signature;
+    extensions         = data.extensions;
+    challengePassword  = data.challengePassword;
+    unstructuredName   = data.unstructuredName;
+
     return *this;
 }
 
@@ -107,9 +143,73 @@ RequestData::getUnstructuredName() const
     return unstructuredName;
 }
 
+bool
+RequestData::valid() const
+{
+    if(version < 1 || version > 1) {
+        LOGIT_DEBUG("invalid version:" << version);
+        return false;
+    }
+
+    if(!subject.valid()) return false;
+
+    // keysize ?
+
+    if(publicKey.empty()) {
+        LOGIT_DEBUG("invalid publicKey");
+        return false;
+    }
+
+    ValueCheck checkHex = initHexCheck();
+    if(!checkHex.isValid(signature)) {
+        LOGIT_DEBUG("invalid signature:" << signature);
+        return false;
+    }
+    if(!extensions.valid()) return false;
+
+    return true;
+}
+
+blocxx::StringArray
+RequestData::verify() const
+{
+    StringArray result;
+
+    if(version < 1 || version > 1) {
+        result.append(Format("invalid version: %1", version).toString());
+    }
+
+    result.appendArray(subject.verify());
+
+    // keysize ?
+
+    if(publicKey.empty()) {
+        result.append("invalid publicKey");
+    }
+
+    ValueCheck checkHex = initHexCheck();
+    if(!checkHex.isValid(signature)) {
+        result.append(Format("invalid signature: %1", signature).toString());
+    }
+    result.appendArray(extensions.verify());
+
+    LOGIT_DEBUG_STRINGARRAY("CertificateData::verify()", result);
+
+    return result;
+}
 
 //    protected:
 RequestData::RequestData()
+    : version(0),
+      subject(DNObject()),
+      keysize(0),
+      pubkeyAlgorithm(RSA),
+      publicKey(ByteArray()),
+      signatureAlgorithm(SHA1RSA),
+      signature(""),
+      extensions(X509v3RequestExtensions_Priv()),
+      challengePassword(""), 
+      unstructuredName("")
 {
 }
 

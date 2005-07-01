@@ -22,6 +22,10 @@
 
 
 #include  <limal/ca-mgm/RequestGenerationData.hpp>
+#include  <limal/Exception.hpp>
+#include  <blocxx/Format.hpp>
+
+#include  "Utils.hpp"
 
 using namespace limal;
 using namespace limal::ca_mgm;
@@ -29,16 +33,30 @@ using namespace blocxx;
 
 
 RequestGenerationData::RequestGenerationData()
+    : subject(DNObject()),
+      keysize(0),
+      challengePassword(""),
+      unstructuredName(""),
+      extensions(X509v3RequestExtensions())
 {
 }
 
 RequestGenerationData::RequestGenerationData(CA& ca, Type type)
+    : subject(DNObject()),
+      keysize(0),
+      challengePassword(""),
+      unstructuredName(""),
+      extensions(X509v3RequestExtensions())
 {
 }
 
 RequestGenerationData::RequestGenerationData(const RequestGenerationData& data)
-{
-}
+    : subject(data.subject),
+      keysize(data.keysize),
+      challengePassword(data.challengePassword),
+      unstructuredName(data.unstructuredName),
+      extensions(data.extensions)
+{}
 
 RequestGenerationData::~RequestGenerationData()
 {
@@ -47,13 +65,31 @@ RequestGenerationData::~RequestGenerationData()
 RequestGenerationData&
 RequestGenerationData::operator=(const RequestGenerationData& data)
 {
+    if(this == &data) return *this;
+
+    subject           = data.subject;
+    keysize           = data.keysize;
+    challengePassword = data.challengePassword;
+    unstructuredName  = data.unstructuredName;
+    extensions        = data.extensions;
+
     return *this;
 }
 
 void
 RequestGenerationData::setSubject(const DNObject dn)
 {
+    DNObject oldSub = subject;
+
     subject = dn;
+
+    StringArray r = this->verify();
+    if(!r.empty()) {
+        subject = oldSub;
+
+        LOGIT_ERROR(r[0]);
+        BLOCXX_THROW(limal::ValueException, r[0].c_str());
+    }
 }
 
 DNObject
@@ -65,7 +101,17 @@ RequestGenerationData::getSubject() const
 void
 RequestGenerationData::setKeysize(blocxx::UInt32 size)
 {
+    blocxx::UInt32 oldSize = keysize;
+
     keysize = size;
+
+    StringArray r = this->verify();
+    if(!r.empty()) {
+        keysize = oldSize;
+
+        LOGIT_ERROR(r[0]);
+        BLOCXX_THROW(limal::ValueException, r[0].c_str());
+    }
 }
 
 blocxx::UInt32
@@ -101,6 +147,11 @@ RequestGenerationData::getUnstructuredName() const
 void
 RequestGenerationData::setExtensions(const X509v3RequestExtensions &ext)
 {
+    StringArray r = ext.verify();
+    if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
+        BLOCXX_THROW(limal::ValueException, r[0].c_str());
+    }
     extensions = ext;
 }
 
@@ -115,3 +166,28 @@ RequestGenerationData::commit2Config(CA& ca, Type type)
 {
 }
 
+bool
+RequestGenerationData::valid() const
+{
+    if(!subject.valid()) return false;
+
+    // keysize??
+
+    return extensions.valid();
+}
+
+blocxx::StringArray
+RequestGenerationData::verify() const
+{
+    StringArray result;
+
+    result.appendArray(subject.verify());
+
+    // keysize??
+
+    result.appendArray(extensions.verify());
+
+    LOGIT_DEBUG_STRINGARRAY("RequestGenerationData::verify()", result);
+
+    return result;
+}
