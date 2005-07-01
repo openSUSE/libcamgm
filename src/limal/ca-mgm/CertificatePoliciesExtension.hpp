@@ -32,6 +32,37 @@ namespace CA_MGM_NAMESPACE {
 
     class CA;
 
+    class UserNotice {
+    public:
+        UserNotice();
+        UserNotice(const UserNotice& notice);
+        virtual ~UserNotice();
+
+        UserNotice& operator=(const UserNotice& notice);
+
+        void                setExplicitText(const String& text);
+        String              getExplicitText() const;
+
+        void                setOrganizationNotice(const String& org, 
+                                                  const blocxx::List<blocxx::Int32>& numbers);
+
+        String                      getOrganization() const;
+        blocxx::List<blocxx::Int32> getNoticeNumbers();
+
+        virtual bool                    valid() const;
+        virtual blocxx::StringArray     verify() const;
+
+    private:
+        String              explicitText;      // max 200 characters
+
+        // The organization and noticeNumbers options
+        // (if included) must BOTH be present.
+
+        String                      organization;      // max 200 characters 
+        blocxx::List<blocxx::Int32> noticeNumbers;
+
+    };
+
     class CertificatePolicy {
     public:
         CertificatePolicy();
@@ -46,34 +77,24 @@ namespace CA_MGM_NAMESPACE {
 
         void                setCpsURI(const StringList& cpsURI);
         StringList          getCpsURI() const;
-        void                addCpsURI(const String& uri);
 
-        void                setExplicitText(const String& text);
-        String              getExplicitText() const;
-
-        void                setOrganization(const String& org);
-        String              getOrganization() const;
-
-        void                setNoticeNumbers(const blocxx::List<blocxx::Int32>& numbers);
-        blocxx::List<blocxx::Int32> getNoticeNumbers();
-        void                addNoticeNumber(blocxx::Int32 num);
+        void                     setUserNoticeList(const blocxx::List<UserNotice>& list);
+        blocxx::List<UserNotice> getUserNoticeList() const;
+        
+        virtual bool                    valid() const;
+        virtual blocxx::StringArray     verify() const;
 
     private:
-        String              policyIdentifier;  // required
-        StringList          cpsURI;            // Certification Practice Statement
-        String              explicitText;      // max 200 characters
+        String                   policyIdentifier;  // required
+        StringList               cpsURI;            // Certification Practice Statement
 
-        // The organization and noticeNumbers options
-        // (if included) must BOTH be present.
-
-        String              organization;      // max 200 characters 
-        blocxx::List<blocxx::Int32> noticeNumbers;
-
+        blocxx::List<UserNotice> noticeList;
     };
 
     class CertificatePoliciesExtension : public ExtensionBase {
     public:
         CertificatePoliciesExtension();
+        CertificatePoliciesExtension(const blocxx::List<CertificatePolicy>& policies);
         CertificatePoliciesExtension(CA& ca, Type type);
         CertificatePoliciesExtension(const CertificatePoliciesExtension& extension);
         virtual ~CertificatePoliciesExtension();
@@ -85,7 +106,6 @@ namespace CA_MGM_NAMESPACE {
 
         void                    setPolicies(const blocxx::List<CertificatePolicy>& policies);
         blocxx::List<CertificatePolicy> getPolicies() const;
-        void                    addPolicy(const CertificatePolicy& policy);
 
         virtual void commit2Config(CA& ca, Type type);
 
