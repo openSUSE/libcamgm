@@ -21,25 +21,55 @@
 /-*/
 
 #include  <limal/ca-mgm/CertificateData.hpp>
+#include  <limal/ValueRegExCheck.hpp>
+#include  <limal/Exception.hpp>
+#include  <blocxx/Format.hpp>
+
+#include  "Utils.hpp"
 #include  "X509v3CertificateExtensions_Priv.hpp"
 
 using namespace limal;
 using namespace limal::ca_mgm;
 using namespace blocxx;
 
-CertificateData::CertificateData(const CertificateData& data)
-    : extensions(data.extensions)
-{
+inline static ValueCheck initHexCheck() {
+    ValueCheck check =
+        ValueCheck(new ValuePosixRECheck("^[0-9a-fA-F]+[0-9a-fA-F:]*$"));
+
+    return check;
 }
 
+CertificateData::CertificateData(const CertificateData& data)
+    : version(data.version), serial(data.serial), 
+      notBefore(data.notBefore), notAfter(data.notAfter),
+      issuer(data.issuer), subject(data.subject),
+      keysize(data.keysize), pubkeyAlgorithm(data.pubkeyAlgorithm),
+      publicKey(data.publicKey), signatureAlgorithm(data.signatureAlgorithm),
+      signature(data.signature), extensions(data.extensions)
+{}
+
 CertificateData::~CertificateData()
-{
-}
+{}
 
 
 CertificateData& 
 CertificateData::operator=(const CertificateData& data)
 {
+    if(this == &data) return *this;
+
+    version            = data.version;
+    serial             = data.serial;
+    notBefore          = data.notBefore;
+    notAfter           = data.notAfter;
+    issuer             = data.issuer;
+    subject            = data.subject;
+    keysize            = data.keysize;
+    pubkeyAlgorithm    = data.pubkeyAlgorithm;
+    publicKey          = data.publicKey;
+    signatureAlgorithm = data.signatureAlgorithm;
+    signature          = data.signature;
+    extensions         = data.extensions;
+
     return *this;
 }
 
@@ -94,6 +124,17 @@ CertificateData::getPublicKeyAlgorithm() const
 blocxx::String
 CertificateData::getPublicKeyAlgorithmAsString() const
 {
+    switch(pubkeyAlgorithm) {
+    case RSA:
+        return "RSA";
+        break;
+    case DSA:
+        return "DSA";
+        break;
+    case DH:
+        return "DH";
+        break;
+    }
     return String();
 }
 
@@ -112,6 +153,17 @@ CertificateData::getSignatureAlgorithm() const
 blocxx::String
 CertificateData::getSignatureAlgorithmAsString() const
 {
+    switch(signatureAlgorithm) {
+    case SHA1RSA:
+        return "SHA1RSA";
+        break;
+    case MD5RSA:
+        return "MD5RSA";
+        break;
+    case SHA1DSA:
+        return "SHA1DSA";
+        break;
+    }
     return String();
 }
 
@@ -133,6 +185,85 @@ CertificateData::getExtensions() const
     return extensions;
 }
 
+bool
+CertificateData::valid() const
+{
+    if(version < 1 || version > 3) {
+        LOGIT_DEBUG("invalid version:" << version);
+        return false;
+    }
+
+    ValueCheck checkHex = initHexCheck();
+    if(!checkHex.isValid(serial)) {
+        LOGIT_DEBUG("invalid serial:" << serial);
+        return false;
+    }
+
+    if(notBefore == 0) {
+        LOGIT_DEBUG("invalid notBefore:" << notBefore);
+        return false;
+    }
+    if(notAfter <= notBefore) {
+        LOGIT_DEBUG("invalid notAfter:" << notAfter);
+        return false;
+    }
+    if(!issuer.valid())  return false;
+    if(!subject.valid()) return false;
+
+    // keysize ?
+
+    if(publicKey.empty()) {
+        LOGIT_DEBUG("invalid publicKey");
+        return false;
+    }
+
+    if(!checkHex.isValid(signature)) {
+        LOGIT_DEBUG("invalid signature:" << signature);
+        return false;
+    }
+    if(!extensions.valid()) return false;
+    
+    return true;
+}
+
+blocxx::StringArray
+CertificateData::verify() const
+{
+    StringArray result;
+
+    if(version < 1 || version > 3) {
+        result.append(Format("invalid version: %1", version).toString());
+    }
+
+    ValueCheck checkHex = initHexCheck();
+    if(!checkHex.isValid(serial)) {
+        result.append(Format("invalid serial: %1", serial).toString());
+    }
+
+    if(notBefore == 0) {
+        result.append(Format("invalid notBefore: %1", notBefore).toString());
+    }
+    if(notAfter <= notBefore) {
+        result.append(Format("invalid notAfter: %1", notAfter).toString());
+    }
+    result.appendArray(issuer.verify());
+    result.appendArray(subject.verify());
+
+    // keysize ?
+
+    if(publicKey.empty()) {
+        result.append("invalid publicKey");
+    }
+
+    if(!checkHex.isValid(signature)) {
+        result.append(Format("invalid signature: %1", signature).toString());
+    }
+    result.appendArray(extensions.verify());
+    
+    LOGIT_DEBUG_STRINGARRAY("CertificateData::verify()", result);
+
+    return result;
+}
                 
 
 //    protected

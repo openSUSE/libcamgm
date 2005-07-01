@@ -22,38 +22,64 @@
 
 #include  <limal/ca-mgm/CA.hpp>
 #include  <limal/ca-mgm/CertificateIssueData.hpp>
+#include  <limal/Exception.hpp>
+#include  <blocxx/Format.hpp>
+
+#include  "Utils.hpp"
 
 using namespace limal;
 using namespace limal::ca_mgm;
 using namespace blocxx;
 
 CertificateIssueData::CertificateIssueData()
+    : notBefore(0), notAfter(0), 
+      extensions(X509v3CertificateIssueExtensions())
 {
 }
 
 CertificateIssueData::CertificateIssueData(CA& ca, Type type)
+    : notBefore(0), notAfter(0), 
+      extensions(X509v3CertificateIssueExtensions())
 {
 }
 
 CertificateIssueData::CertificateIssueData(const CertificateIssueData& data)
+    : notBefore(data.notBefore), notAfter(data.notAfter), 
+      extensions(data.extensions)
 {
 }
 
 CertificateIssueData::~CertificateIssueData()
-{
-}
+{}
 
 CertificateIssueData&
 CertificateIssueData::operator=(const CertificateIssueData& data)
 {
+    if(this == &data) return *this;
+    
+    notBefore     = data.notBefore;
+    notAfter      = data.notAfter;
+    extensions    = data.extensions;
+    
     return *this;
 }
 
 void
 CertificateIssueData::setCertifiyPeriode(time_t start, time_t end)
 {
+    time_t oldStart = notBefore;
+    time_t oldEnd   = notAfter;
+
     notBefore = start;
     notAfter  = end;
+
+    StringArray r = this->verify();
+    if(!r.empty()) {
+        notBefore = oldStart;
+        notAfter  = oldEnd;
+        
+        BLOCXX_THROW(limal::ValueException, r[0].c_str());
+    }
 }
 
 time_t
@@ -71,6 +97,10 @@ CertificateIssueData::getEndDate() const
 void
 CertificateIssueData::setExtensions(const X509v3CertificateIssueExtensions& ext)
 {
+    StringArray r = ext.verify();
+    if(!r.empty()) {
+        BLOCXX_THROW(limal::ValueException, r[0].c_str());
+    }
     extensions = ext;
 }
 
@@ -85,4 +115,39 @@ CertificateIssueData::commit2Config(CA& ca, Type type)
 {
 }
 
+bool
+CertificateIssueData::valid() const
+{
+    if(notBefore == 0) {
+        LOGIT_DEBUG("invalid notBefore:" << notBefore);
+        return false;
+    }
+    if(notAfter <= notBefore) {
+        LOGIT_DEBUG("invalid notAfter:" << notAfter);
+        return false;
+    }
+
+    if(!extensions.valid()) return false;
+    
+    return true;
+}
+
+blocxx::StringArray
+CertificateIssueData::verify() const
+{
+    StringArray result;
+
+    if(notBefore == 0) {
+        result.append(Format("invalid notBefore: %1", notBefore).toString());
+    }
+    if(notAfter <= notBefore) {
+        result.append(Format("invalid notAfter: %1", notAfter).toString());
+    }
+
+    result.appendArray(extensions.verify());
+    
+    LOGIT_DEBUG_STRINGARRAY("CertificateIssueData::verify()", result);
+
+    return result;
+}
 

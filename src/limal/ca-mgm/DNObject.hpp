@@ -38,11 +38,13 @@ namespace CA_MGM_NAMESPACE {
 
         RDNObject& operator=(const RDNObject& rdn);
 
-        void   setType(const String& type);
-        void   setValue(const String& value);
+        void   setRDN(const String& type, const String& value);
 
         String getType() const;
         String getValue() const;
+
+        virtual bool                 valid() const;
+        virtual blocxx::StringArray  verify() const;
 
     private:
         String type;
@@ -61,6 +63,9 @@ namespace CA_MGM_NAMESPACE {
 
         void            setDN(const blocxx::List<RDNObject> &dn);
         blocxx::List<RDNObject> getDN() const;
+
+        virtual bool                 valid() const;
+        virtual blocxx::StringArray  verify() const;
         
     private:
         blocxx::List<RDNObject> dn;

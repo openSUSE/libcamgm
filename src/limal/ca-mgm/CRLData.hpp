@@ -36,7 +36,7 @@ namespace CA_MGM_NAMESPACE {
     public:
         RevocationEntry();
         RevocationEntry(const String&    serial, 
-                        time_t           revokeDate,
+                        //                        time_t           revokeDate,
                         const CRLReason& reason);
         RevocationEntry(const RevocationEntry& entry);
         virtual ~RevocationEntry();
@@ -44,13 +44,17 @@ namespace CA_MGM_NAMESPACE {
         RevocationEntry& operator=(const RevocationEntry& entry);
 
         void        setSerial(const String& serial);
-        void        setRevocationDate(time_t date);
+
+        // could not be set...
+        // void        setRevocationDate(time_t date);
         void        setReason(const CRLReason& reason);
 
         String      getSerial() const;
         time_t      getRevocationDate() const;
         CRLReason   getReason() const;
 
+        virtual bool                 valid() const;
+        virtual blocxx::StringArray  verify() const;
 
     private:
 
@@ -82,6 +86,9 @@ namespace CA_MGM_NAMESPACE {
         X509v3CRLExtensions          getExtensions() const;
         blocxx::Map<String, RevocationEntry> getRevocationData() const;
         RevocationEntry              getRevocationEntry(const String& oid);
+
+        virtual bool                 valid() const;
+        virtual blocxx::StringArray  verify() const;
 
     protected:
         CRLData();

@@ -54,64 +54,34 @@ namespace CA_MGM_NAMESPACE {
         void         setReason(RevokeReason reason);
         RevokeReason getReason() const;
 
-    private:
-
-        RevokeReason reason;
-        
-    };
-
-    class CRLReasonHold: public CRLReason {
-    public:
-        CRLReasonHold();
-        CRLReasonHold(const String& holdInstruction);
-        CRLReasonHold(const CRLReasonHold& reason);
-        virtual ~CRLReasonHold();
-
-        CRLReasonHold& operator=(const CRLReasonHold& reason);
-
         void   setHoldInstruction(const String& holdInstruction);
         String getHoldInstruction() const;
 
+        void   setKeyCompromiseDate(time_t compromiseDate);
+        time_t getKeyCompromiseDate() const;
+
+        void   setCACompromiseDate(time_t compromiseDate);
+        time_t getCACompromiseDate() const;
+
+        virtual bool                 valid() const;
+        virtual blocxx::StringArray  verify() const;
 
     private:
+
+        RevokeReason reason;
+
+        // used if reason is keyCompromise or CACompromise,
+
+        time_t compromiseDate;
+
+        // used if reason is certificateHold
         // possible values: 
         //    holdInstructionNone,
         //    holdInstructionCallIssuer, 
         //    holdInstructionReject
         // or an OID
         String holdInstruction;
-    };
-
-    class CRLReasonKeyCompromise: public CRLReason {
-    public:
-        CRLReasonKeyCompromise();
-        CRLReasonKeyCompromise(time_t compromiseDate);
-        CRLReasonKeyCompromise(const CRLReasonKeyCompromise& reason);
-        virtual ~CRLReasonKeyCompromise();
-
-        CRLReasonKeyCompromise& operator=(const CRLReasonKeyCompromise& reason);
-
-        void   setCompromiseDate(time_t compromiseDate);
-        time_t getCompromiseDate() const;
-
-    private:
-        time_t compromiseDate;
-    };
-
-    class CRLReasonCaCompromise: public CRLReason {
-    public:
-        CRLReasonCaCompromise();
-        CRLReasonCaCompromise(time_t compromiseDate);
-        CRLReasonCaCompromise(const CRLReasonCaCompromise& reason);
-        virtual ~CRLReasonCaCompromise();
-
-        CRLReasonCaCompromise& operator=(const CRLReasonCaCompromise& reason);
-
-        void   setCompromiseDate(time_t compromiseDate);
-        time_t getCompromiseDate() const;
-
-    private:
-        time_t compromiseDate;
+        
     };
 
 }

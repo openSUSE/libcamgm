@@ -60,11 +60,13 @@ namespace CA_MGM_NAMESPACE {
         String         getFingerprint() const;
         X509v3CertificateExtensions getExtensions() const;
                 
+        virtual bool                 valid() const;
+        virtual blocxx::StringArray  verify() const;
 
     protected:
         CertificateData();
 
-        blocxx::UInt32   version;
+        blocxx::UInt32   version;   // allowed 1, 2, 3
         String           serial;    // String?
         time_t           notBefore; // oder ein Date Object?
         time_t           notAfter;  // oder ein Date Object?
