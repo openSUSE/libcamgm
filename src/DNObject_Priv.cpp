@@ -44,5 +44,9 @@ DNObject_Priv::DNObject_Priv(const DNObject_Priv& obj)
 DNObject_Priv&
 DNObject_Priv::operator=(const DNObject_Priv& obj)
 {
+    if(this == &obj) return *this;
+    
+    DNObject::operator=(obj);
+
     return *this;
 }

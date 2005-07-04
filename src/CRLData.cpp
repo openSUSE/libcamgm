@@ -44,18 +44,6 @@ RevocationEntry::RevocationEntry()
 {
 }
 
-RevocationEntry::RevocationEntry(const String&    serial, 
-                      //                                 time_t           revokeDate,
-                                 const CRLReason& reason)
-    : serial(serial), revocationDate(0),
-      revocationReason(reason)
-{
-    StringArray r = this->verify();
-    if(!r.empty()) {
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
-    }
-}
-
 RevocationEntry::RevocationEntry(const RevocationEntry& entry)
     : serial(entry.serial), revocationDate(entry.revocationDate),
       revocationReason(entry.revocationReason)
@@ -74,39 +62,6 @@ RevocationEntry::operator=(const RevocationEntry& entry)
     revocationReason = entry.revocationReason;
     
     return *this;
-}
-
-
-void
-RevocationEntry::setSerial(const String& serial)
-{
-    String oldSerial = this->serial;
-
-    this->serial = serial;
-
-    StringArray r = this->verify();
-    if(!r.empty()) {
-        this->serial = oldSerial;
-
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
-    }
-}
-
-/*
-void
-RevocationEntry::setRevocationDate(time_t date)
-{
-    revocationDate = date;
-}
-*/
-
-void
-RevocationEntry::setReason(const CRLReason& reason)
-{
-    if(!reason.valid()) {
-        BLOCXX_THROW(limal::ValueException, "invalid CRL reason");
-    }
-    revocationReason = reason;
 }
 
 blocxx::String

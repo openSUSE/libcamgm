@@ -35,19 +35,10 @@ namespace CA_MGM_NAMESPACE {
     class RevocationEntry {
     public:
         RevocationEntry();
-        RevocationEntry(const String&    serial, 
-                        //                        time_t           revokeDate,
-                        const CRLReason& reason);
         RevocationEntry(const RevocationEntry& entry);
         virtual ~RevocationEntry();
         
         RevocationEntry& operator=(const RevocationEntry& entry);
-
-        void        setSerial(const String& serial);
-
-        // could not be set...
-        // void        setRevocationDate(time_t date);
-        void        setReason(const CRLReason& reason);
 
         String      getSerial() const;
         time_t      getRevocationDate() const;
@@ -56,7 +47,7 @@ namespace CA_MGM_NAMESPACE {
         virtual bool                 valid() const;
         virtual blocxx::StringArray  verify() const;
 
-    private:
+    protected:
 
         String      serial;
         time_t      revocationDate;

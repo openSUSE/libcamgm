@@ -21,6 +21,9 @@
 /-*/
 
 #include  "X509v3CRLExtensions_Priv.hpp"
+#include  <limal/Exception.hpp>
+
+#include  "Utils.hpp"
 
 using namespace limal;
 using namespace limal::ca_mgm;
@@ -43,12 +46,20 @@ X509v3CRLExtensions_Priv::~X509v3CRLExtensions_Priv()
 void
 X509v3CRLExtensions_Priv::setAuthorityKeyIdentifier(const AuthorityKeyIdentifierExtension &ext)
 {
+    StringArray r = ext.verify();
+    if(!r.empty()) {
+        BLOCXX_THROW(limal::ValueException, r[0].c_str());
+    }
     authorityKeyIdentifier = ext;
 }
 
 void
 X509v3CRLExtensions_Priv::setIssuerAlternativeName(const IssuerAlternativeNameExtension &ext)
 {
+    StringArray r = ext.verify();
+    if(!r.empty()) {
+        BLOCXX_THROW(limal::ValueException, r[0].c_str());
+    }
     issuerAlternativeName = ext;
 }
 
@@ -62,5 +73,9 @@ X509v3CRLExtensions_Priv::X509v3CRLExtensions_Priv(const X509v3CRLExtensions_Pri
 X509v3CRLExtensions_Priv&
 X509v3CRLExtensions_Priv::operator=(const X509v3CRLExtensions_Priv& extensions)
 {
+    if(this == &extensions) return *this;
+    
+    X509v3CRLExtensions::operator=(extensions);
+
     return *this;
 }

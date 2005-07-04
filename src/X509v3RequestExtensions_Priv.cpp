@@ -20,6 +20,9 @@
 
 /-*/
 #include  "X509v3RequestExtensions_Priv.hpp"
+#include  <limal/Exception.hpp>
+
+#include  "Utils.hpp"
 
 using namespace limal;
 using namespace limal::ca_mgm;
@@ -49,5 +52,9 @@ X509v3RequestExtensions_Priv::X509v3RequestExtensions_Priv(const X509v3RequestEx
 X509v3RequestExtensions_Priv&
 X509v3RequestExtensions_Priv::operator=(const X509v3RequestExtensions_Priv& extensions)
 {
+    if(this == &extensions) return *this;
+    
+    X509v3RequestExtensions::operator=(extensions);
+
     return *this;
 }

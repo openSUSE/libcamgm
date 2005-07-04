@@ -32,7 +32,7 @@ RequestData_Priv::RequestData_Priv()
 }
 
 RequestData_Priv::RequestData_Priv(const String& caName,
-                                 const String& requestName)
+                                   const String& requestName)
     : RequestData()
 {
 }
@@ -112,5 +112,9 @@ RequestData_Priv::RequestData_Priv(const RequestData_Priv& data)
 RequestData_Priv&
 RequestData_Priv::operator=(const RequestData_Priv& data)
 {
+    if(this == &data) return *this;
+    
+    RequestData::operator=(data);
+
     return *this;
 }

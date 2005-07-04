@@ -71,5 +71,9 @@ AuthorityKeyIdentifierExtension_Priv::AuthorityKeyIdentifierExtension_Priv(const
 AuthorityKeyIdentifierExtension_Priv&
 AuthorityKeyIdentifierExtension_Priv::operator=(const AuthorityKeyIdentifierExtension_Priv& extension)
 {
+    if(this == &extension) return *this;
+    
+    AuthorityKeyIdentifierExtension::operator=(extension);
+    
     return *this;
 }

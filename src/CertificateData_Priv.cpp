@@ -45,7 +45,6 @@ CertificateData_Priv::~CertificateData_Priv()
 {
 }
 
-
 void
 CertificateData_Priv::setVersion(blocxx::UInt32 v)
 {
@@ -122,5 +121,9 @@ CertificateData_Priv::CertificateData_Priv(const CertificateData_Priv& data)
 CertificateData_Priv&
 CertificateData_Priv::operator=(const CertificateData_Priv& data)
 {
+    if(this == &data) return *this;
+    
+    CertificateData::operator=(data);
+    
     return *this;
 }

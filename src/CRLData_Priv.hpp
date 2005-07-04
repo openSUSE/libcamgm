@@ -30,6 +30,24 @@ namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
+    class RevocationEntry_Priv : public RevocationEntry {
+    public:
+        RevocationEntry_Priv();
+        RevocationEntry_Priv(const String&    serial, 
+                             time_t           revokeDate,
+                             const CRLReason& reason);
+        RevocationEntry_Priv(const RevocationEntry_Priv& entry);
+        virtual ~RevocationEntry_Priv();
+        
+        RevocationEntry_Priv& operator=(const RevocationEntry_Priv& entry);
+
+        void        setSerial(const String& serial);
+
+        void        setRevocationDate(time_t date);
+        void        setReason(const CRLReason& reason);
+        
+    };
+
     class CRLData_Priv : public CRLData {
     public:
         CRLData_Priv();
@@ -44,11 +62,6 @@ namespace CA_MGM_NAMESPACE {
         void   setSignature(const String& sig);
         void   setExtensions(const X509v3CRLExtensions& ext);
         void   setRevocationData(const blocxx::Map<String, RevocationEntry>& data);
-        void   addRevocationEntry(const String& oid,
-                                  const RevocationEntry& entry);
-        void   setRevocationEntry(const String& oid,
-                                  const RevocationEntry& entry);
-        void   deleteRevocationEntry(const String& oid);
 
     private:
         CRLData_Priv(const CRLData_Priv& data);
