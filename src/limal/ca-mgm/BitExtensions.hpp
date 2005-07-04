@@ -85,6 +85,9 @@ namespace CA_MGM_NAMESPACE {
 
         virtual bool                 valid() const;
         virtual blocxx::StringArray  verify() const;
+
+    private:
+        bool  validKeyUsage(blocxx::UInt32 keyUsage) const;
     };
 
     class NsCertTypeExtension : public BitExtension {

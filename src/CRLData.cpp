@@ -79,8 +79,7 @@ RevocationEntry::getReason() const
 bool
 RevocationEntry::valid() const
 {
-    ValueCheck check = initHexCheck();
-    if(!check.isValid(serial)) {
+    if(!initHexCheck().isValid(serial)) {
         LOGIT_DEBUG("invalid serial: "<< serial);
         return false;
     }
@@ -92,8 +91,7 @@ RevocationEntry::verify() const
 {
     StringArray result;
     
-    ValueCheck check = initHexCheck();
-    if(!check.isValid(serial)) {
+    if(!initHexCheck().isValid(serial)) {
         result.append(Format("invalid serial: %1", serial).toString());
     }
     result.appendArray(revocationReason.verify());
@@ -212,19 +210,17 @@ CRLData::valid() const
     }
     if(!issuer.valid())  return false;
 
-    ValueCheck checkHex = initHexCheck();
-    if(!checkHex.isValid(signature)) {
+    if(!initHexCheck().isValid(signature)) {
         LOGIT_DEBUG("invalid signature:" << signature);
         return false;
     }
 
     if(!extensions.valid()) return false;
 
-    blocxx::Map<String, RevocationEntry>::const_iterator it = revocationData.begin();
-    for(; it != revocationData.end(); ++it) {
-        if(!((*it).second).valid()) {
-            return false;
-        }
+    StringArray r = checkRevocationData(revocationData);
+    if(!r.empty()) {
+        LOGIT_DEBUG(r[0]);
+        return false;
     }
     return true;
 }
@@ -251,11 +247,8 @@ CRLData::verify() const
     }
 
     result.appendArray(extensions.verify());
+    result.appendArray(checkRevocationData(revocationData));
 
-    blocxx::Map<String, RevocationEntry>::const_iterator it = revocationData.begin();
-    for(; it != revocationData.end(); ++it) {
-        result.appendArray(((*it).second).verify());
-    }
     LOGIT_DEBUG_STRINGARRAY("CRLData::verify()", result);
     
     return result;
@@ -268,3 +261,13 @@ CRLData::CRLData()
 {
 }
 
+StringArray
+CRLData::checkRevocationData(const blocxx::Map<String, RevocationEntry>& rd) const
+{
+    StringArray result;
+    blocxx::Map<String, RevocationEntry>::const_iterator it = revocationData.begin();
+    for(; it != revocationData.end(); ++it) {
+        result.appendArray(((*it).second).verify());
+    }
+    return result;
+}

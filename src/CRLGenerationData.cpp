@@ -45,7 +45,7 @@ CRLGenerationData::CRLGenerationData(blocxx::UInt32 hours,
                                      const X509v3CRLGenerationExtensions& ext)
     : crlHours(hours), extensions(ext)
 {
-    StringArray r = this->verify();
+    StringArray r = ext.verify();
     if(!r.empty()) {
         LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
@@ -73,17 +73,7 @@ CRLGenerationData::operator=(const CRLGenerationData& data)
 void
 CRLGenerationData::setCRLLifeTime(blocxx::UInt32 hours)
 {
-    blocxx::UInt32 oldH = crlHours;
-
     crlHours = hours;
-
-    StringArray r = this->verify();
-    if(!r.empty()) {
-        crlHours = oldH;
-        
-        LOGIT_ERROR(r[0]);
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
-    }
 }
 
 blocxx::UInt32
@@ -96,7 +86,6 @@ void
 CRLGenerationData::setExtensions(const X509v3CRLGenerationExtensions& ext)
 {
     StringArray r = ext.verify();
-        
     if(!r.empty()) {
         LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());

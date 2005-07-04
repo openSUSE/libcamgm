@@ -42,12 +42,12 @@ SubjectAlternativeNameExtension::SubjectAlternativeNameExtension(bool copyEmail,
                                      const blocxx::List<LiteralValue> &alternativeNameList)
     : ExtensionBase(), emailCopy(copyEmail), altNameList(alternativeNameList)
 {
-    StringArray r = this->verify();
+    StringArray r = checkLiteralValueList(alternativeNameList);
     if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
     setPresent(true);
-
 }
 
 SubjectAlternativeNameExtension::SubjectAlternativeNameExtension(const SubjectAlternativeNameExtension& extension)
@@ -76,20 +76,13 @@ void
 SubjectAlternativeNameExtension::setSubjectAlternativeName(bool copyEmail, 
                                const blocxx::List<LiteralValue> &alternativeNameList)
 {
-    bool                       oldEmailCopy   = emailCopy;
-    blocxx::List<LiteralValue> oldAltNameList = altNameList;
-
-    emailCopy = copyEmail;
-    altNameList = alternativeNameList;
-
-    StringArray r = this->verify();
+    StringArray r = checkLiteralValueList(alternativeNameList);
     if(!r.empty()) {
-        emailCopy   = oldEmailCopy;
-        altNameList = oldAltNameList;
-
         LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
+    emailCopy = copyEmail;
+    altNameList = alternativeNameList;
     setPresent(true);
 }
 
@@ -126,12 +119,10 @@ SubjectAlternativeNameExtension::valid() const
         LOGIT_DEBUG("return SubjectAlternativeNameExtension::::valid() is false");
         return false;
     }
-    blocxx::List<LiteralValue>::const_iterator it = altNameList.begin();
-    for(;it != altNameList.end(); it++) {
-        if(!(*it).valid()) {
-            LOGIT_DEBUG("return IssuerAlternativeNameExtension::valid() is false");
-            return false;
-        }
+    StringArray r = checkLiteralValueList(altNameList);
+    if(!r.empty()) {
+        LOGIT_DEBUG(r[0]);
+        return false;
     }
     return true;
 }
@@ -146,10 +137,8 @@ SubjectAlternativeNameExtension::verify() const
     if(!emailCopy && altNameList.empty()) {
         result.append(String("invalid value for SubjectAlternativeNameExtension"));
     }
-    blocxx::List<LiteralValue>::const_iterator it = altNameList.begin();
-    for(;it != altNameList.end(); it++) {
-        result.appendArray((*it).verify());
-    }
+    result.appendArray(checkLiteralValueList(altNameList));
+
     LOGIT_DEBUG_STRINGARRAY("SubjectAlternativeNameExtension::verify()", result);
     
     return result;

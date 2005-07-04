@@ -81,6 +81,8 @@ namespace CA_MGM_NAMESPACE {
         //    holdInstructionReject
         // or an OID
         String holdInstruction;
+
+        blocxx::String         checkHoldInstruction(const String& hi) const;
         
     };
 

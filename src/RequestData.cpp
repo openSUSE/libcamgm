@@ -153,8 +153,7 @@ RequestData::valid() const
         return false;
     }
 
-    ValueCheck checkHex = initHexCheck();
-    if(!checkHex.isValid(signature)) {
+    if(!initHexCheck().isValid(signature)) {
         LOGIT_DEBUG("invalid signature:" << signature);
         return false;
     }
@@ -180,8 +179,7 @@ RequestData::verify() const
         result.append("invalid publicKey");
     }
 
-    ValueCheck checkHex = initHexCheck();
-    if(!checkHex.isValid(signature)) {
+    if(!initHexCheck().isValid(signature)) {
         result.append(Format("invalid signature: %1", signature).toString());
     }
     result.appendArray(extensions.verify());

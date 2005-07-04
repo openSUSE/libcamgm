@@ -70,6 +70,8 @@ namespace CA_MGM_NAMESPACE {
     private:
         blocxx::List<RDNObject> dn;
 
+        blocxx::StringArray     checkRDNList(const blocxx::List<RDNObject>& list) const;
+
     };
 
 }

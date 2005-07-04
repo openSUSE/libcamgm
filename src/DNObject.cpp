@@ -38,17 +38,11 @@ RDNObject::RDNObject()
 
 RDNObject::RDNObject(const String& type, const String& value)
     : type(type), value(value)
-{
-    StringArray r = this->verify();
-    if(!r.empty()) {
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
-    }
-}
+{}
 
 RDNObject::RDNObject(const RDNObject& rdn)
     : type(rdn.type), value(rdn.value)
-{
-}
+{}
 
 RDNObject::~RDNObject()
 {}
@@ -67,19 +61,8 @@ RDNObject::operator=(const RDNObject& rdn)
 void
 RDNObject::setRDN(const String& type, const String& value)
 {
-    String oldType  = this->type;
-    String oldValue = this->value;
-
     this->type  = type;
     this->value = value;
-
-    StringArray r = this->verify();
-    if(!r.empty()) {
-        this->type  = oldType;
-        this->value = oldValue;
-        
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
-    }    
 }
 
 
@@ -166,16 +149,12 @@ DNObject::operator=(const DNObject& dn)
 void
 DNObject::setDN(const blocxx::List<RDNObject> &dn)
 {
-    blocxx::List<RDNObject> oldDN = this->dn;
-    
-    this->dn = dn;
-
-    StringArray r = this->verify();
+    StringArray r = checkRDNList(dn);
     if(!r.empty()) {
-        this->dn = oldDN;
-        
+        LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
-    }    
+    }
+    this->dn = dn;
 }
 
 blocxx::List<RDNObject>
@@ -191,11 +170,10 @@ DNObject::valid() const
         LOGIT_DEBUG("empty DN");
         return false;
     }
-    blocxx::List<RDNObject>::const_iterator it = dn.begin();
-    for(; it != dn.end(); ++it) {
-        if(!(*it).valid()) {
-            return false;
-        }
+    StringArray r = checkRDNList(dn);
+    if(!r.empty()) {
+        LOGIT_DEBUG(r[0]);
+        return false;
     }
     return true;
 }
@@ -208,11 +186,21 @@ DNObject::verify() const
     if(dn.empty()) {
         result.append("empty DN");
     }
-    blocxx::List<RDNObject>::const_iterator it = dn.begin();
-    for(; it != dn.end(); ++it) {
+    result.appendArray(checkRDNList(dn));
+    
+    LOGIT_DEBUG_STRINGARRAY("DNObject::verify()", result);
+    
+    return result;
+}
+
+blocxx::StringArray
+DNObject::checkRDNList(const blocxx::List<RDNObject>& list) const
+{
+    StringArray result;
+    
+    blocxx::List<RDNObject>::const_iterator it = list.begin();
+    for(; it != list.end(); ++it) {
         result.appendArray((*it).verify());
     }
-    LOGIT_DEBUG_STRINGARRAY("DNObject::verify()", result);
-
     return result;
 }

@@ -43,9 +43,9 @@ SubjectKeyIdentifierExtension::SubjectKeyIdentifierExtension(CA& ca, Type type)
 SubjectKeyIdentifierExtension::SubjectKeyIdentifierExtension(bool autoDetect, const String& keyid)
     : ExtensionBase(), autodetect(autoDetect), keyid(keyid)
 {
-    StringArray r = this->verify();
-    if(!r.empty()) {
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
+    if(!keyid.empty() && !initHexCheck().isValid(keyid)) {
+        LOGIT_ERROR("invalid KeyID");
+        BLOCXX_THROW(limal::ValueException, "invalid KeyID");
     }
     setPresent(true);
 }
@@ -75,20 +75,12 @@ void
 SubjectKeyIdentifierExtension::setSubjectKeyIdentifier(bool autoDetect,
                                                        const String& keyId)
 {
-    bool   oldAutoDetect = this->autodetect;
-    String oldKeyId      = this->keyid;
-
+    if(!keyId.empty() && !initHexCheck().isValid(keyId)) {
+        LOGIT_ERROR("invalid KeyID");
+        BLOCXX_THROW(limal::ValueException, "invalid KeyID");
+    }
     this->autodetect = autoDetect;
     this->keyid      = keyId;
-
-    StringArray r = this->verify();
-    if(!r.empty()) {
-        this->autodetect   = oldAutoDetect;
-        this->keyid        = oldKeyId;
-
-        LOGIT_ERROR(r[0]);
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
-    }
     setPresent(true);
 }
 

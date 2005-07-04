@@ -186,8 +186,7 @@ CertificateData::valid() const
         return false;
     }
 
-    ValueCheck checkHex = initHexCheck();
-    if(!checkHex.isValid(serial)) {
+    if(!initHexCheck().isValid(serial)) {
         LOGIT_DEBUG("invalid serial:" << serial);
         return false;
     }
@@ -210,7 +209,7 @@ CertificateData::valid() const
         return false;
     }
 
-    if(!checkHex.isValid(signature)) {
+    if(!initHexCheck().isValid(signature)) {
         LOGIT_DEBUG("invalid signature:" << signature);
         return false;
     }
@@ -228,8 +227,7 @@ CertificateData::verify() const
         result.append(Format("invalid version: %1", version).toString());
     }
 
-    ValueCheck checkHex = initHexCheck();
-    if(!checkHex.isValid(serial)) {
+    if(!initHexCheck().isValid(serial)) {
         result.append(Format("invalid serial: %1", serial).toString());
     }
 
@@ -248,7 +246,7 @@ CertificateData::verify() const
         result.append("invalid publicKey");
     }
 
-    if(!checkHex.isValid(signature)) {
+    if(!initHexCheck().isValid(signature)) {
         result.append(Format("invalid signature: %1", signature).toString());
     }
     result.appendArray(extensions.verify());

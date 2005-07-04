@@ -67,19 +67,8 @@ CertificateIssueData::operator=(const CertificateIssueData& data)
 void
 CertificateIssueData::setCertifiyPeriode(time_t start, time_t end)
 {
-    time_t oldStart = notBefore;
-    time_t oldEnd   = notAfter;
-
     notBefore = start;
     notAfter  = end;
-
-    StringArray r = this->verify();
-    if(!r.empty()) {
-        notBefore = oldStart;
-        notAfter  = oldEnd;
-        
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
-    }
 }
 
 time_t
@@ -99,6 +88,7 @@ CertificateIssueData::setExtensions(const X509v3CertificateIssueExtensions& ext)
 {
     StringArray r = ext.verify();
     if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
     extensions = ext;

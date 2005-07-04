@@ -60,17 +60,12 @@ UserNotice::operator=(const UserNotice& notice)
 void
 UserNotice::setExplicitText(const String& text)
 {
-    String oldText = explicitText;
-
-    explicitText = text;
-
-    StringArray r = this->verify();
-    if(!r.empty()) {
-        explicitText = oldText;
-        
-        LOGIT_ERROR(r[0]);
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
+    if(text.length() > 200) {
+        LOGIT_ERROR("text to long");
+        BLOCXX_THROW(limal::ValueException, "text to long");
     }
+    
+    explicitText = text;
 }
 
 blocxx::String
@@ -83,20 +78,8 @@ void
 UserNotice::setOrganizationNotice(const String& org, 
                                   const blocxx::List<blocxx::Int32>& numbers)
 {
-    String                      oldOrg = organization;
-    blocxx::List<blocxx::Int32> oldNum = noticeNumbers;
-
     organization  = org;
     noticeNumbers = numbers;
-
-    StringArray r = this->verify();
-    if(!r.empty()) {
-        organization  = oldOrg;
-        noticeNumbers = oldNum;
-        
-        LOGIT_ERROR(r[0]);
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
-    }
 }
 
 blocxx::String
@@ -156,9 +139,11 @@ CertificatePolicy::CertificatePolicy(const String& policyIdetifier)
     : policyIdentifier(policyIdetifier), cpsURI(StringList()), 
       noticeList(blocxx::List<UserNotice>())
 {
-    StringArray r = this->verify();
-    if(!r.empty()) {
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
+    
+    if(!initOIDCheck().isValid(this->policyIdentifier)) {
+        LOGIT_ERROR("invalid value for policyIdentifier" << this->policyIdentifier);
+        BLOCXX_THROW(limal::ValueException ,
+                     Format("invalid value for policyIdentifier: %1", this->policyIdentifier).c_str());
     }
 }
 
@@ -185,17 +170,13 @@ CertificatePolicy::operator=(const CertificatePolicy& policy)
 void
 CertificatePolicy::setPolicyIdentifier(const String& policyIdentifier)
 {
-    String oldPI = this->policyIdentifier;
+    if(!initOIDCheck().isValid(policyIdentifier)) {
+        LOGIT_ERROR("invalid value for policyIdentifier" << policyIdentifier);
+        BLOCXX_THROW(limal::ValueException,
+                     Format("invalid value for policyIdentifier: %1", policyIdentifier).c_str());
+    }
     
     this->policyIdentifier = policyIdentifier;
-    
-    StringArray r = this->verify();
-    if(!r.empty()) {
-        this->policyIdentifier = oldPI;
-        
-        LOGIT_ERROR(r[0]);
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
-    }
 }
 
 blocxx::String
@@ -207,17 +188,12 @@ CertificatePolicy::getPolicyIdentifier() const
 void
 CertificatePolicy::setCpsURI(const StringList& cpsURI)
 {
-    StringList oldCpsURI = this->cpsURI;
-    
-    this->cpsURI = cpsURI;
-    
-    StringArray r = this->verify();
+    StringArray r = checkCpsURIs(cpsURI); 
     if(!r.empty()) {
-        this->cpsURI = oldCpsURI;
-        
         LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
+    this->cpsURI = cpsURI;
 }
 
 StringList
@@ -229,17 +205,12 @@ CertificatePolicy::getCpsURI() const
 void
 CertificatePolicy::setUserNoticeList(const blocxx::List<UserNotice>& list)
 {
-    blocxx::List<UserNotice> oldList = noticeList;
-    
-    noticeList = list;
-
-    StringArray r = this->verify();
+    StringArray r = checkNoticeList(list); 
     if(!r.empty()) {
-        noticeList = oldList;
-        
         LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
+    noticeList = list;
 }
 
 blocxx::List<UserNotice>
@@ -251,28 +222,21 @@ CertificatePolicy::getUserNoticeList() const
 bool
 CertificatePolicy::valid() const
 {
-    ValueCheck oidCheck = initOIDCheck();
-    
-    if(policyIdentifier.empty() || !oidCheck.isValid(policyIdentifier)) {
+    if(policyIdentifier.empty() || !initOIDCheck().isValid(policyIdentifier)) {
         LOGIT_DEBUG("invalid value for policyIdentifier:" << policyIdentifier);
         return false;
     }
 
-    ValueCheck uriCheck = initURICheck();
-    StringList::const_iterator uit = cpsURI.begin();
-    for(;uit != cpsURI.end(); uit++) {
-        if(!uriCheck.isValid(*uit)) {
-            LOGIT_DEBUG("invalid URI:" << *uit);
-            return false;
-        }
+    StringArray r = checkCpsURIs(cpsURI);
+    if(!r.empty()) {
+        LOGIT_DEBUG(r[0]);
+        return false;
     }
-
-    blocxx::List<UserNotice>::const_iterator it = noticeList.begin();
-    for(;it != noticeList.end(); it++) {
-        if(!(*it).valid()) {
-            LOGIT_DEBUG("return CertificatePolicy::valid() is false");
-            return false;
-        }
+    
+    r = checkNoticeList(noticeList); ; 
+    if(!r.empty()) {
+        LOGIT_DEBUG(r[0]);
+        return false;
     }
     return true;
 }
@@ -281,28 +245,47 @@ blocxx::StringArray
 CertificatePolicy::verify() const
 {
     StringArray result;
-
+    
     ValueCheck oidCheck = initOIDCheck();
     
     if(policyIdentifier.empty() || !oidCheck.isValid(policyIdentifier)) {
         result.append(Format("invalid value for policyIdentifier: %1", policyIdentifier).toString());
     }
-
-    ValueCheck uriCheck = initURICheck();
-    StringList::const_iterator uit = cpsURI.begin();
-    for(;uit != cpsURI.end(); uit++) {
-        if(!uriCheck.isValid(*uit)) {
-            result.append(Format("invalid URI: %1", *uit).toString());
-        }
-    }
     
-    blocxx::List<UserNotice>::const_iterator it = noticeList.begin();
-    for(;it != noticeList.end(); it++) {
-        result.appendArray((*it).verify());
-    }
+    result.appendArray(checkCpsURIs(cpsURI));
+    
+    result.appendArray(checkNoticeList(noticeList)); 
+    
     LOGIT_DEBUG_STRINGARRAY("CertificatePolicy::verify()", result);
     return result;
 }
+
+blocxx::StringArray
+CertificatePolicy::checkCpsURIs(const StringList& cpsURIs) const
+{
+    StringArray result;
+    ValueCheck  uriCheck = initURICheck();
+    
+    StringList::const_iterator it = cpsURIs.begin();
+    for(;it != cpsURIs.end(); it++) {
+        if(!uriCheck.isValid(*it)) {
+            result.append(Format("invalid URI: %1", *it).toString());
+        }
+    }
+    return result;
+}
+
+blocxx::StringArray
+CertificatePolicy::checkNoticeList(const blocxx::List<UserNotice>& list) const
+{
+    StringArray result;
+    blocxx::List<UserNotice>::const_iterator it = list.begin();
+    for(;it != list.end(); it++) {
+        result.appendArray((*it).verify());
+    }
+    return result;
+}
+
 
 // ###################################################################################
 
@@ -313,8 +296,9 @@ CertificatePoliciesExtension::CertificatePoliciesExtension()
 CertificatePoliciesExtension::CertificatePoliciesExtension(const blocxx::List<CertificatePolicy>& policies)
     : ExtensionBase(), ia5org(false), policies(policies)
 {
-    StringArray r = this->verify();
+    StringArray r = checkPolicies(this->policies);
     if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
     setPresent(true);
@@ -363,17 +347,13 @@ CertificatePoliciesExtension::isIA5orgEnabled() const
 void
 CertificatePoliciesExtension::setPolicies(const blocxx::List<CertificatePolicy>& policies)
 {
-    blocxx::List<CertificatePolicy> oldPolicies = policies;
-    
-    this->policies = policies;
-
-    StringArray r = this->verify();
+    StringArray r = checkPolicies(policies);
     if(!r.empty()) {
-        this->policies   = oldPolicies;
-
         LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
+    this->policies = policies;
+
     setPresent(true);
 }
 
@@ -401,12 +381,10 @@ CertificatePoliciesExtension::valid() const
         LOGIT_DEBUG("No policy set");
         return false;
     }
-    blocxx::List<CertificatePolicy>::const_iterator it = policies.begin();
-    for(;it != policies.end(); it++) {
-        if(!(*it).valid()) {
-            LOGIT_DEBUG("return CertificatePoliciesExtension::valid() is false");
-            return false;
-        }
+    StringArray r = checkPolicies(policies);
+    if(!r.empty()) {
+        LOGIT_DEBUG(r[0]);
+        return false;
     }
     return true;
 }
@@ -421,11 +399,20 @@ CertificatePoliciesExtension::verify() const
     if(policies.empty()) {
         result.append("No policy set");
     }
-    blocxx::List<CertificatePolicy>::const_iterator it = policies.begin();
-    for(;it != policies.end(); it++) {
-        result.appendArray((*it).verify());
-    }
+    result.appendArray(checkPolicies(policies));
+    
     LOGIT_DEBUG_STRINGARRAY("CertificatePoliciesExtension::verify()", result);
     
+    return result;
+}
+
+blocxx::StringArray
+CertificatePoliciesExtension::checkPolicies(const blocxx::List<CertificatePolicy>& pl) const
+{
+    StringArray result;
+    blocxx::List<CertificatePolicy>::const_iterator it = pl.begin();
+    for(;it != pl.end(); it++) {
+        result.appendArray((*it).verify());
+    }
     return result;
 }

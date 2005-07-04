@@ -66,7 +66,8 @@ StringExtension::operator=(const StringExtension& extension)
 NsBaseUrlExtension::NsBaseUrlExtension(const String &v)
     : StringExtension(v)
 {
-    if(!this->valid()) {
+    if(!initURICheck().isValid(getValue())) {
+        LOGIT_ERROR("invalid value for NsBaseUrlExtension");
         BLOCXX_THROW(limal::ValueException, "invalid value for NsBaseUrlExtension");
     }
     setPresent(true);
@@ -96,17 +97,11 @@ NsBaseUrlExtension::operator=(const NsBaseUrlExtension& extension)
 void
 NsBaseUrlExtension::setValue(const String &v)
 {
-    String oldValue = value;
-
-    value = v;
-
-    StringArray r = this->verify();
-    if(!r.empty()) {
-        value = oldValue;
-        
-        LOGIT_ERROR(r[0]);
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
+    if(!initURICheck().isValid(v)) {
+        LOGIT_ERROR("invalid value for NsBaseUrlExtension");
+        BLOCXX_THROW(limal::ValueException, "invalid value for NsBaseUrlExtension");
     }
+    value = v;
     setPresent(true);
 }
 
@@ -129,8 +124,7 @@ NsBaseUrlExtension::valid() const
 {
     if(!isPresent()) return true;
 
-    ValueCheck check = initURICheck();
-    if(!check.isValid(value)) {
+    if(!initURICheck().isValid(value)) {
         LOGIT_DEBUG("Wrong value for NsBaseUrlExtension:" << value);
         return false;
     }    
@@ -144,8 +138,7 @@ NsBaseUrlExtension::verify() const
 
     if(!isPresent()) return result;
 
-    ValueCheck check = initURICheck();
-    if(!check.isValid(value)) {
+    if(!initURICheck().isValid(value)) {
         LOGIT_DEBUG("Wrong value for NsBaseUrlExtension:" << value);
         result.append(Format("Wrong value for NsBaseUrlExtension: %1", value).toString());
     }
@@ -163,7 +156,8 @@ NsBaseUrlExtension::NsBaseUrlExtension()
 NsRevocationUrlExtension::NsRevocationUrlExtension(const String &v)
     : StringExtension(v)
 {
-    if(!this->valid()) {
+    if(!initURICheck().isValid(v)) {
+        LOGIT_ERROR("invalid value for NsRevocationUrlExtension");
         BLOCXX_THROW(limal::ValueException, "invalid value for NsRevocationUrlExtension");
     }
     setPresent(true);
@@ -193,17 +187,11 @@ NsRevocationUrlExtension::operator=(const NsRevocationUrlExtension& extension)
 void
 NsRevocationUrlExtension::setValue(const String &v)
 {
-    String oldValue = value;
-    
-    value = v;
-    
-    StringArray r = this->verify();
-    if(!r.empty()) {
-        value = oldValue;
-        
-        LOGIT_ERROR(r[0]);
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
+    if(!initURICheck().isValid(v)) {
+        LOGIT_ERROR("invalid value for NsRevocationUrlExtension");
+        BLOCXX_THROW(limal::ValueException, "invalid value for NsRevocationUrlExtension");
     }
+    value = v;
     setPresent(true);
 }
 
@@ -228,8 +216,7 @@ NsRevocationUrlExtension::verify() const
 
     if(!isPresent()) return result;
 
-    ValueCheck check = initURICheck();
-    if(!check.isValid(value)) {
+    if(!initURICheck().isValid(value)) {
         LOGIT_DEBUG("Wrong value for NsRevocationUrlExtension:" << value);
         result.append(Format("Wrong value for NsRevocationUrlExtension: %1", value).toString());
     }
@@ -241,8 +228,7 @@ NsRevocationUrlExtension::valid() const
 {
     if(!isPresent()) return true;
 
-    ValueCheck check = initURICheck();
-    if(!check.isValid(value)) {
+    if(!initURICheck().isValid(value)) {
         LOGIT_DEBUG("Wrong value for NsRevocationUrlExtension:" << value);
         return false;
     }    
@@ -261,7 +247,8 @@ NsRevocationUrlExtension::NsRevocationUrlExtension()
 NsCaRevocationUrlExtension::NsCaRevocationUrlExtension(const String &v)
     : StringExtension(v)
 {
-    if(!this->valid()) {
+    if(!initURICheck().isValid(v)) {
+        LOGIT_ERROR("invalid value for NsCaRevocationUrlExtension");
         BLOCXX_THROW(limal::ValueException, "invalid value for NsCaRevocationUrlExtension");
     }
     setPresent(true);
@@ -291,17 +278,11 @@ NsCaRevocationUrlExtension::operator=(const NsCaRevocationUrlExtension& extensio
 void
 NsCaRevocationUrlExtension::setValue(const String &v)
 {
-    String oldValue = value;
-    
-    value = v;
-    
-    StringArray r = this->verify();
-    if(!r.empty()) {
-        value = oldValue;
-        
-        LOGIT_ERROR(r[0]);
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
+    if(!initURICheck().isValid(v)) {
+        LOGIT_ERROR("invalid value for NsCaRevocationUrlExtension");
+        BLOCXX_THROW(limal::ValueException, "invalid value for NsCaRevocationUrlExtension");
     }
+    value = v;
     setPresent(true);
 }
 
@@ -326,8 +307,7 @@ NsCaRevocationUrlExtension::verify() const
 
     if(!isPresent()) return result;
 
-    ValueCheck check = initURICheck();
-    if(!check.isValid(value)) {
+    if(!initURICheck().isValid(value)) {
         LOGIT_DEBUG("Wrong value for NsCaRevocationUrlExtension:" << value);
         result.append(Format("Wrong value for NsCaRevocationUrlExtension: %1", value).toString());
     }
@@ -339,8 +319,7 @@ NsCaRevocationUrlExtension::valid() const
 {
     if(!isPresent()) return true;
 
-    ValueCheck check = initURICheck();
-    if(!check.isValid(value)) {
+    if(!initURICheck().isValid(value)) {
         LOGIT_DEBUG("Wrong value for NsCaRevocationUrlExtension:" << value);
         return false;
     }    
@@ -358,7 +337,8 @@ NsCaRevocationUrlExtension::NsCaRevocationUrlExtension()
 NsRenewalUrlExtension::NsRenewalUrlExtension(const String &v)
     : StringExtension(v)
 {
-    if(!this->valid()) {
+    if(!initURICheck().isValid(v)) {
+        LOGIT_ERROR("invalid value for NsRenewalUrlExtension");
         BLOCXX_THROW(limal::ValueException, "invalid value for NsRenewalUrlExtension");
     }
     setPresent(true);
@@ -388,17 +368,11 @@ NsRenewalUrlExtension::operator=(const NsRenewalUrlExtension& extension)
 void
 NsRenewalUrlExtension::setValue(const String &v)
 {
-    String oldValue = value;
-    
-    value = v;
-    
-    StringArray r = this->verify();
-    if(!r.empty()) {
-        value = oldValue;
-        
-        LOGIT_ERROR(r[0]);
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
+    if(!initURICheck().isValid(v)) {
+        LOGIT_ERROR("invalid value for NsRenewalUrlExtension");
+        BLOCXX_THROW(limal::ValueException, "invalid value for NsRenewalUrlExtension");
     }
+    value = v;
     setPresent(true);
 }
 
@@ -423,8 +397,7 @@ NsRenewalUrlExtension::verify() const
 
     if(!isPresent()) return result;
 
-    ValueCheck check = initURICheck();
-    if(!check.isValid(value)) {
+    if(!initURICheck().isValid(value)) {
         LOGIT_DEBUG("Wrong value for NsRenewalUrlExtension:" << value);
         result.append(Format("Wrong value for NsRenewalUrlExtension: %1", value).toString());
     }
@@ -436,8 +409,7 @@ NsRenewalUrlExtension::valid() const
 {
     if(!isPresent()) return true;
 
-    ValueCheck check = initURICheck();
-    if(!check.isValid(value)) {
+    if(!initURICheck().isValid(value)) {
         LOGIT_DEBUG("Wrong value for NsRenewalUrlExtension:" << value);
         return false;
     }    
@@ -455,7 +427,8 @@ NsRenewalUrlExtension::NsRenewalUrlExtension()
 NsCaPolicyUrlExtension::NsCaPolicyUrlExtension(const String &v)
     : StringExtension(v)
 {
-    if(!this->valid()) {
+    if(!initURICheck().isValid(v)) {
+        LOGIT_ERROR("invalid value for NsCaPolicyUrlExtension");
         BLOCXX_THROW(limal::ValueException, "invalid value for NsCaPolicyUrlExtension");
     }
     setPresent(true);
@@ -485,17 +458,11 @@ NsCaPolicyUrlExtension::operator=(const NsCaPolicyUrlExtension& extension)
 void
 NsCaPolicyUrlExtension::setValue(const String &v)
 {
-    String oldValue = value;
-    
-    value = v;
-    
-    StringArray r = this->verify();
-    if(!r.empty()) {
-        value = oldValue;
-        
-        LOGIT_ERROR(r[0]);
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
+    if(!initURICheck().isValid(v)) {
+        LOGIT_ERROR("invalid value for NsCaPolicyUrlExtension");
+        BLOCXX_THROW(limal::ValueException, "invalid value for NsCaPolicyUrlExtension");
     }
+    value = v;
     setPresent(true);
 }
 
@@ -520,8 +487,7 @@ NsCaPolicyUrlExtension::verify() const
 
     if(!isPresent()) return result;
 
-    ValueCheck check = initURICheck();
-    if(!check.isValid(value)) {
+    if(!initURICheck().isValid(value)) {
         LOGIT_DEBUG("Wrong value for NsCaPolicyUrlExtension:" << value);
         result.append(Format("Wrong value for NsCaPolicyUrlExtension: %1", value).toString());
     }
@@ -533,8 +499,7 @@ NsCaPolicyUrlExtension::valid() const
 {
     if(!isPresent()) return true;
 
-    ValueCheck check = initURICheck();
-    if(!check.isValid(value)) {
+    if(!initURICheck().isValid(value)) {
         LOGIT_DEBUG("Wrong value for NsCaPolicyUrlExtension:" << value);
         return false;
     }    
@@ -552,9 +517,6 @@ NsCaPolicyUrlExtension::NsCaPolicyUrlExtension()
 NsSslServerNameExtension::NsSslServerNameExtension(const String &v)
     : StringExtension(v)
 {
-    if(!this->valid()) {
-        BLOCXX_THROW(limal::ValueException, "invalid value for NsSslServerNameExtension");
-    }
     setPresent(true);
 }
 
@@ -582,17 +544,7 @@ NsSslServerNameExtension::operator=(const NsSslServerNameExtension& extension)
 void
 NsSslServerNameExtension::setValue(const String &v)
 {
-    String oldValue = value;
-    
     value = v;
-    
-    StringArray r = this->verify();
-    if(!r.empty()) {
-        value = oldValue;
-        
-        LOGIT_ERROR(r[0]);
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
-    }
     setPresent(true);
 }
 

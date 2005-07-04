@@ -20,6 +20,9 @@
 
 /-*/
 #include  "CertificateData_Priv.hpp"
+#include  "Utils.hpp"
+
+#include  <limal/Exception.hpp>
 
 using namespace limal;
 using namespace limal::ca_mgm;
@@ -54,6 +57,10 @@ CertificateData_Priv::setVersion(blocxx::UInt32 v)
 void
 CertificateData_Priv::setSerial(const String& serial)
 {
+    if(!initHexCheck().isValid(serial)) {
+        LOGIT_ERROR("invalid serial: " << serial);
+        BLOCXX_THROW(limal::ValueException, Format("invalid serial: %1", serial).c_str());
+    }
     this->serial = serial;
 }
 
@@ -67,12 +74,22 @@ CertificateData_Priv::setCertifiyPeriode(time_t start, time_t end)
 void
 CertificateData_Priv::setIssuerDN(const DNObject& issuer)
 {
+    StringArray r = issuer.verify();
+    if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
+        BLOCXX_THROW(limal::ValueException, r[0].c_str());
+    }
     this->issuer = issuer;
 }
 
 void
 CertificateData_Priv::setSubjectDN(const DNObject& subject)
 {
+    StringArray r = subject.verify();
+    if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
+        BLOCXX_THROW(limal::ValueException, r[0].c_str());
+    }
     this->subject = subject;
 }
 
@@ -103,12 +120,21 @@ CertificateData_Priv::setSignatureAlgorithm(SigAlg sigAlg)
 void
 CertificateData_Priv::setSignature(const String& sig)
 {
+    if(!initHexCheck().isValid(sig)) {
+        LOGIT_ERROR("invalid signature: " << serial);
+        BLOCXX_THROW(limal::ValueException, Format("invalid signature: %1", serial).c_str());
+    }
     signature = sig;
 }
 
 void
 CertificateData_Priv::setExtensions(const X509v3CertificateExtensions& ext)
 {
+    StringArray r = ext.verify();
+    if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
+        BLOCXX_THROW(limal::ValueException, r[0].c_str());
+    }
     extensions = ext;
 }
 

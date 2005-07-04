@@ -45,7 +45,6 @@ BitExtension::BitExtension(const BitExtension& extension)
 BitExtension::~BitExtension()
 {}
 
-
 BitExtension&
 BitExtension::operator=(const BitExtension& extension)
 {
@@ -89,7 +88,7 @@ KeyUsageExtension::KeyUsageExtension(CA& ca, Type type)
 KeyUsageExtension::KeyUsageExtension(blocxx::UInt32 keyUsage)
     : BitExtension(keyUsage)
 {
-    if(getValue() > 0x1FF || getValue() == 0) {
+    if(!validKeyUsage(getValue())) {
         BLOCXX_THROW(limal::ValueException, "invalid value for keyUsage");
     }
     setPresent(true);
@@ -116,7 +115,7 @@ KeyUsageExtension::operator=(const KeyUsageExtension& extension)
 void
 KeyUsageExtension::setKeyUsage(blocxx::UInt32 keyUsage)
 {
-    if(keyUsage > 0x1FF || getValue() == 0) {
+    if(!validKeyUsage(keyUsage)) {
         BLOCXX_THROW(limal::ValueException, "invalid value for keyUsage");
     }
     setValue(keyUsage);
@@ -151,7 +150,7 @@ KeyUsageExtension::valid() const
 {
     if(!isPresent()) return true;
 
-    if(getValue() > 0x1FF || getValue() == 0) return false;
+    if(!validKeyUsage(getValue())) return false;
     
     return true;
 }
@@ -163,11 +162,21 @@ KeyUsageExtension::verify() const
 
     if(!isPresent()) return result;
 
-    if(getValue() > 0x1FF || getValue() == 0) {
+    if(!validKeyUsage(getValue())) {
         result.append(Format("invalid value '%1' for keyUsage", getValue()).toString());
     }
     return result;
 }
+
+bool
+KeyUsageExtension::validKeyUsage(blocxx::UInt32 keyUsage) const
+{
+    if(keyUsage > 0x1FF || keyUsage == 0) {
+        return false;
+    }
+    return true;
+}
+
 
 // ###################################################################
 

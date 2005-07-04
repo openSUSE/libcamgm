@@ -47,6 +47,7 @@ X509v3CertificateExtensions_Priv::setNsBaseUrl(const NsBaseUrlExtension &ext)
 {
     StringArray r = ext.verify();
     if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
     nsBaseUrl = ext;
@@ -57,6 +58,7 @@ X509v3CertificateExtensions_Priv::setNsRevocationUrl(const NsRevocationUrlExtens
 {
     StringArray r = ext.verify();
     if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
     nsRevocationUrl = ext;
@@ -67,6 +69,7 @@ X509v3CertificateExtensions_Priv::setNsCaRevocationUrl(const NsCaRevocationUrlEx
 {
     StringArray r = ext.verify();
     if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
     nsCaRevocationUrl = ext;
@@ -77,6 +80,7 @@ X509v3CertificateExtensions_Priv::setNsRenewalUrl(const NsRenewalUrlExtension &e
 {
     StringArray r = ext.verify();
     if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
     nsRenewalUrl = ext;
@@ -87,6 +91,7 @@ X509v3CertificateExtensions_Priv::setNsCaPolicyUrl(const NsCaPolicyUrlExtension 
 {
     StringArray r = ext.verify();
     if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
     nsCaPolicyUrl = ext;
@@ -97,6 +102,7 @@ X509v3CertificateExtensions_Priv::setNsSslServerName(const NsSslServerNameExtens
 {
     StringArray r = ext.verify();
     if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
     nsSslServerName = ext;
@@ -107,6 +113,7 @@ X509v3CertificateExtensions_Priv::setNsComment(const NsCommentExtension &ext)
 {
     StringArray r = ext.verify();
     if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
     nsComment = ext;
@@ -117,6 +124,7 @@ X509v3CertificateExtensions_Priv::setNsCertType(const NsCertTypeExtension &ext)
 {
     StringArray r = ext.verify();
     if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
     nsCertType = ext;
@@ -127,6 +135,7 @@ X509v3CertificateExtensions_Priv::setKeyUsage(const KeyUsageExtension &ext)
 {
     StringArray r = ext.verify();
     if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
     keyUsage = ext;
@@ -137,6 +146,7 @@ X509v3CertificateExtensions_Priv::setBasicConstraints(const BasicConstraintsExte
 {
     StringArray r = ext.verify();
     if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
     basicConstraints = ext;
@@ -147,6 +157,7 @@ X509v3CertificateExtensions_Priv::setExtendedKeyUsage(const ExtendedKeyUsageExte
 {
     StringArray r = ext.verify();
     if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
     extendedKeyUsage = ext;
@@ -157,6 +168,7 @@ X509v3CertificateExtensions_Priv::setSubjectKeyIdentifier(const SubjectKeyIdenti
 {
     StringArray r = ext.verify();
     if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
     subjectKeyIdentifier = ext;
@@ -167,6 +179,7 @@ X509v3CertificateExtensions_Priv::setAuthorityKeyIdentifier(const AuthorityKeyId
 {
     StringArray r = ext.verify();
     if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
     authorityKeyIdentifier = ext;
@@ -177,6 +190,7 @@ X509v3CertificateExtensions_Priv::setSubjectAlternativeName(const SubjectAlterna
 {
     StringArray r = ext.verify();
     if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
     subjectAlternativeName = ext;
@@ -187,6 +201,7 @@ X509v3CertificateExtensions_Priv::setIssuerAlternativeName(const IssuerAlternati
 {
     StringArray r = ext.verify();
     if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
     issuerAlternativeName = ext;
@@ -197,6 +212,7 @@ X509v3CertificateExtensions_Priv::setAuthorityInfoAccess(const AuthorityInfoAcce
 {
     StringArray r = ext.verify();
     if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
     authorityInfoAccess = ext;
@@ -207,6 +223,7 @@ X509v3CertificateExtensions_Priv::setCRLDistributionPoints(const CRLDistribution
 {
     StringArray r = ext.verify();
     if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
     crlDistributionPoints = ext;
@@ -217,6 +234,7 @@ X509v3CertificateExtensions_Priv::setCertificatePolicies(const CertificatePolici
 {
     StringArray r = ext.verify();
     if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
     certificatePolicies = ext;

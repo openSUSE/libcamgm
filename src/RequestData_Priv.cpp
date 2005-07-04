@@ -21,6 +21,10 @@
 /-*/
 
 #include  "RequestData_Priv.hpp"
+#include  <limal/Exception.hpp>
+#include  <blocxx/Format.hpp>
+
+#include  "Utils.hpp"
 
 using namespace limal;
 using namespace limal::ca_mgm;
@@ -57,6 +61,11 @@ RequestData_Priv::setKeysize(blocxx::UInt32 size)
 void
 RequestData_Priv::setSubject(const DNObject dn)
 {
+    StringArray r = dn.verify();
+    if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
+        BLOCXX_THROW(limal::ValueException, r[0].c_str());
+    }
     subject = dn;
 }
 
@@ -81,12 +90,21 @@ RequestData_Priv::setSignatureAlgorithm(SigAlg alg)
 void
 RequestData_Priv::setSignature(const String &sig)
 {
+    if(!initHexCheck().isValid(sig)) {
+        LOGIT_ERROR("invalid signature: " << sig);
+        BLOCXX_THROW(limal::ValueException, Format("invalid signature: %1", sig).c_str());
+    }
     signature = sig;
 }
 
 void
 RequestData_Priv::setExtensions(const X509v3RequestExtensions &ext)
 {
+    StringArray r = ext.verify();
+    if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
+        BLOCXX_THROW(limal::ValueException, r[0].c_str());
+    }
     extensions = ext;
 }
 

@@ -79,17 +79,12 @@ RequestGenerationData::operator=(const RequestGenerationData& data)
 void
 RequestGenerationData::setSubject(const DNObject dn)
 {
-    DNObject oldSub = subject;
-
-    subject = dn;
-
-    StringArray r = this->verify();
+    StringArray r = dn.verify();
     if(!r.empty()) {
-        subject = oldSub;
-
         LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
+    subject = dn;
 }
 
 DNObject
@@ -101,17 +96,7 @@ RequestGenerationData::getSubject() const
 void
 RequestGenerationData::setKeysize(blocxx::UInt32 size)
 {
-    blocxx::UInt32 oldSize = keysize;
-
     keysize = size;
-
-    StringArray r = this->verify();
-    if(!r.empty()) {
-        keysize = oldSize;
-
-        LOGIT_ERROR(r[0]);
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
-    }
 }
 
 blocxx::UInt32

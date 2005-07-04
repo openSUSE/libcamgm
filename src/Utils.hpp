@@ -28,7 +28,7 @@
 
 #include <limal/Logger.hpp>
 #include <limal/ValueRegExCheck.hpp>
-
+#include <limal/ca-mgm/LiteralValues.hpp>
 
 // -------------------------------------------------------------------
 #define LOGIT(level,message)	\
@@ -106,6 +106,16 @@ inline static limal::ValueCheck initAccessOIDCheck() {
     return checkAccessOID;
 }
 
+inline static blocxx::StringArray 
+checkLiteralValueList(const blocxx::List<limal::ca_mgm::LiteralValue>& list) 
+{
+    blocxx::StringArray result;
+    blocxx::List<limal::ca_mgm::LiteralValue>::const_iterator it = list.begin();
+    for(;it != list.end(); it++) {
+        result.appendArray((*it).verify());
+    }
+    return result;
+}
 
 // -------------------------------------------------------------------
 

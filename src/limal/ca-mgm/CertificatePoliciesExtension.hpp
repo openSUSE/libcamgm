@@ -89,6 +89,10 @@ namespace CA_MGM_NAMESPACE {
         StringList               cpsURI;            // Certification Practice Statement
 
         blocxx::List<UserNotice> noticeList;
+
+        blocxx::StringArray      checkCpsURIs(const StringList& cpsURIs) const;
+        blocxx::StringArray      checkNoticeList(const blocxx::List<UserNotice>& list) const;
+        
     };
 
     class CertificatePoliciesExtension : public ExtensionBase {
@@ -116,6 +120,8 @@ namespace CA_MGM_NAMESPACE {
 
         bool ia5org;
         blocxx::List<CertificatePolicy> policies;
+
+        blocxx::StringArray             checkPolicies(const blocxx::List<CertificatePolicy>& pl) const;
 
     };
 

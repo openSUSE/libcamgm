@@ -58,20 +58,13 @@ CRLDistributionPointsExtension::operator=(const CRLDistributionPointsExtension& 
 void
 CRLDistributionPointsExtension::setCRLDistributionPoints(blocxx::List<LiteralValue> dp)
 {
-    if(dp.empty()) {
-        LOGIT_ERROR("invalid value for CRLDistributionPointsExtension");
-        BLOCXX_THROW(limal::ValueException, "invalid value for CRLDistributionPointsExtension");
+    StringArray r = checkLiteralValueList(dp);
+    if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
+        BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
-    blocxx::List<LiteralValue>::const_iterator it = dp.begin();
-    for(;it != dp.end(); it++) {
-        if(!(*it).valid()) {
-            LOGIT_ERROR("invalid literal value for CRLDistributionPointsExtension");
-            BLOCXX_THROW(limal::ValueException, 
-                         "invalid literal value for CRLDistributionPointsExtension");
-        }
-    }
-    
     altNameList = dp;
+    setPresent(true);
 }
 
 blocxx::List<LiteralValue>
@@ -99,14 +92,11 @@ CRLDistributionPointsExtension::valid() const
 
     if(altNameList.empty()) return false;
 
-    blocxx::List<LiteralValue>::const_iterator it = altNameList.begin();
-    for(;it != altNameList.end(); it++) {
-        if(!(*it).valid()) {
-            LOGIT_DEBUG("return CRLDistributionPointsExtension::valid() is false");
-            return false;
-        }
+    StringArray r = checkLiteralValueList(altNameList);
+    if(!r.empty()) {
+        LOGIT_DEBUG(r[0]);
+        return false;
     }
-    LOGIT_DEBUG("return CRLDistributionPointsExtension::valid() is true");
     return true;
 }
 
@@ -114,17 +104,14 @@ blocxx::StringArray
 CRLDistributionPointsExtension::verify() const
 {
     blocxx::StringArray result;
-
+    
     if(!isPresent()) return result;
-
+    
     if(altNameList.empty()) {
         result.append(String("No value for CRLDistributionPointsExtension."));
     }
-
-    blocxx::List<LiteralValue>::const_iterator it = altNameList.begin();
-    for(;it != altNameList.end(); it++) {
-        result.appendArray((*it).verify());
-    }
+    result.appendArray(checkLiteralValueList(altNameList));
+    
     LOGIT_DEBUG_STRINGARRAY("CRLDistributionPointsExtension::verify()", result);
     return result;
 }

@@ -41,14 +41,7 @@ BasicConstraintsExtension::BasicConstraintsExtension(CA& ca, Type type)
 BasicConstraintsExtension::BasicConstraintsExtension(bool isCa, blocxx::Int32 pathLength)
     : ExtensionBase(), ca(isCa), pathlen(pathLength)
 {
-    if(ca && pathlen < -1) {
-        LOGIT_ERROR("invalid value for pathLength");
-        BLOCXX_THROW(limal::ValueException, "invalid value for pathLength");
-    }
-    if(!ca && pathlen != -1) {
-        LOGIT_ERROR("invalid value for pathLength");
-        BLOCXX_THROW(limal::ValueException, "invalid value for pathLength");
-    }
+    setPresent(true);
 }
 
 BasicConstraintsExtension::BasicConstraintsExtension(const BasicConstraintsExtension& extension)
@@ -74,18 +67,9 @@ BasicConstraintsExtension::operator=(const BasicConstraintsExtension& extension)
 void
 BasicConstraintsExtension::setBasicConstraints(bool isCa, blocxx::Int32 pathLength)
 {
-    if(isCa && pathLength < -1) {
-        LOGIT_ERROR("invalid value for pathLength");
-        BLOCXX_THROW(limal::ValueException, "invalid value for pathLength");
-    }
-    if(!isCa && pathLength != -1) {
-        LOGIT_ERROR("invalid value for pathLength");
-        BLOCXX_THROW(limal::ValueException, "invalid value for pathLength");
-    }
-    
-    setPresent(true);
     ca = isCa;
     pathlen = pathLength;
+    setPresent(true);
 }
 
 bool

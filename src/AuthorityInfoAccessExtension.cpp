@@ -48,7 +48,7 @@ AuthorityInformation::AuthorityInformation(const String &accessOID,
         LOGIT_ERROR("invalid location"); 
         BLOCXX_THROW(limal::ValueException, "invalid location");
     }
-    if(!valid()) {
+    if(!initAccessOIDCheck().isValid(accessOID)) {
         LOGIT_ERROR("invalid accessOID"); 
         BLOCXX_THROW(limal::ValueException, "invalid accessOID");
     }
@@ -98,8 +98,7 @@ AuthorityInformation::getLocation() const
 bool
 AuthorityInformation::valid() const
 {
-    ValueCheck checkAccessOID = initAccessOIDCheck();
-    if(!checkAccessOID.isValid(accessOID)) {
+    if(!initAccessOIDCheck().isValid(accessOID)) {
         LOGIT_DEBUG("return AuthorityInformation::valid() is false"); 
         return false;
     }
@@ -116,9 +115,7 @@ AuthorityInformation::verify() const
 {
     StringArray result;
     
-    ValueCheck checkAccessOID = initAccessOIDCheck();
-    
-    if(!checkAccessOID.isValid(accessOID)) {
+    if(!initAccessOIDCheck().isValid(accessOID)) {
         result.append(Format("invalid value(%1) for accessOID", accessOID).toString());
     }
     result.appendArray(location.verify());
@@ -159,10 +156,6 @@ AuthorityInfoAccessExtension::operator=(const AuthorityInfoAccessExtension& exte
 void
 AuthorityInfoAccessExtension::setAuthorityInformation(const blocxx::List<AuthorityInformation>& infolist)
 {
-    if(infolist.empty()) {
-        LOGIT_ERROR("empty infolist");
-        BLOCXX_THROW(limal::ValueException, "empty infolist");
-    }
     blocxx::List<AuthorityInformation>::const_iterator it = infolist.begin();
     for(;it != infolist.end(); it++) {
         if(!(*it).valid()) {

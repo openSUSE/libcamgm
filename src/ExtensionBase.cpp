@@ -65,19 +65,3 @@ ExtensionBase::setCritical(bool extCritical)
     setPresent(true);
     critical = extCritical;
 }
-
-// FIXME: remove these methods. These should be abstract
-
-/*
-bool
-ExtensionBase::valid() const
-{
-    return true;
-}
-
-blocxx::StringArray
-ExtensionBase::verify() const
-{
-    return blocxx::StringArray();
-}
-*/

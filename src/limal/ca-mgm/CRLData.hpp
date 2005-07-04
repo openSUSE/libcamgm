@@ -99,6 +99,8 @@ namespace CA_MGM_NAMESPACE {
 
         blocxx::Map<String, RevocationEntry> revocationData;
 
+        blocxx::StringArray checkRevocationData(const blocxx::Map<String, RevocationEntry>& rd) const;
+
     };
 
 }

@@ -40,11 +40,7 @@ AuthorityKeyIdentifierGenerateExtension::AuthorityKeyIdentifierGenerateExtension
 AuthorityKeyIdentifierGenerateExtension::AuthorityKeyIdentifierGenerateExtension(KeyID kid, Issuer iss)
     : ExtensionBase(), keyid(kid), issuer(iss)
 {
-    if(keyid == KeyID_none && issuer == Issuer_none) {
-        setPresent(false);
-    } else {
-        setPresent(true);
-    }
+    setPresent(true);
 }
 
 AuthorityKeyIdentifierGenerateExtension::AuthorityKeyIdentifierGenerateExtension(const AuthorityKeyIdentifierGenerateExtension& extension)
@@ -70,13 +66,8 @@ AuthorityKeyIdentifierGenerateExtension::operator=(const AuthorityKeyIdentifierG
 void
 AuthorityKeyIdentifierGenerateExtension::setKeyID(KeyID kid)
 {
-    if(kid == KeyID_none && issuer == Issuer_none) {
-        LOGIT_ERROR("Invalid value for keyid and issuer. At least one of both must be set");
-        BLOCXX_THROW(limal::ValueException, 
-                     "Invalid value for keyid and issuer. At least one of both must be set");
-    }
-    setPresent(true);
     keyid = kid;
+    setPresent(true);
 }
 
 AuthorityKeyIdentifierGenerateExtension::KeyID
@@ -92,13 +83,8 @@ AuthorityKeyIdentifierGenerateExtension::getKeyID() const
 void
 AuthorityKeyIdentifierGenerateExtension::setIssuer(Issuer iss)
 {
-    if(keyid == KeyID_none && iss == Issuer_none) {
-        LOGIT_ERROR("Invalid value for keyid and issuer. At least one of both must be set");
-        BLOCXX_THROW(limal::ValueException, 
-                     "Invalid value for keyid and issuer. At least one of both must be set");
-    }
-    setPresent(true);
     issuer = iss;
+    setPresent(true);
 }
 
 AuthorityKeyIdentifierGenerateExtension::Issuer

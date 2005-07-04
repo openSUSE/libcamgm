@@ -48,6 +48,7 @@ X509v3CRLExtensions_Priv::setAuthorityKeyIdentifier(const AuthorityKeyIdentifier
 {
     StringArray r = ext.verify();
     if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
     authorityKeyIdentifier = ext;
@@ -58,6 +59,7 @@ X509v3CRLExtensions_Priv::setIssuerAlternativeName(const IssuerAlternativeNameEx
 {
     StringArray r = ext.verify();
     if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
     issuerAlternativeName = ext;

@@ -67,17 +67,7 @@ CRLReason::operator=(const CRLReason& reason)
 void
 CRLReason::setReason(CRLReason::RevokeReason reason)
 {
-    RevokeReason oldReason = this->reason;
-
     this->reason = reason;
-    
-    StringArray r = this->verify();
-    if(!r.empty()) {
-        this->reason = oldReason;
-        
-        LOGIT_ERROR(r[0]);
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
-    }
 }
 
 CRLReason::RevokeReason
@@ -89,27 +79,19 @@ CRLReason::getReason() const
 void
 CRLReason::setHoldInstruction(const String& holdInstruction)
 {
-    RevokeReason oldReason = this->reason;
-    String       oldInst   = holdInstruction;
-
-    this->reason          = CRLReason::certificateHold;
-    this->holdInstruction = holdInstruction;
-    
-    StringArray r = this->verify();
+    String r = checkHoldInstruction(holdInstruction);
     if(!r.empty()) {
-        this->reason = oldReason;
-        this->holdInstruction = oldInst;
-        
-        LOGIT_ERROR(r[0]);
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
+        LOGIT_ERROR(r);
+        BLOCXX_THROW(limal::ValueException, r.c_str());
     }
+    this->holdInstruction = holdInstruction;
 }
 
 blocxx::String
 CRLReason::getHoldInstruction() const
 {
     if(reason != CRLReason::certificateHold) {
-        LOGIT_DEBUG("reason is not certificateHold");
+        LOGIT_ERROR("reason is not certificateHold");
         BLOCXX_THROW(limal::RuntimeException, "reason is not certificateHold");
     }
     return holdInstruction;
@@ -119,27 +101,14 @@ CRLReason::getHoldInstruction() const
 void
 CRLReason::setKeyCompromiseDate(time_t compromiseDate)
 {
-    RevokeReason oldReason = this->reason;
-    time_t       oldDate   = compromiseDate;
-
-    this->reason          = CRLReason::keyCompromise;
     this->compromiseDate  = compromiseDate;
-    
-    StringArray r = this->verify();
-    if(!r.empty()) {
-        this->reason         = oldReason;
-        this->compromiseDate = oldDate;
-        
-        LOGIT_ERROR(r[0]);
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
-    }
 }
 
 time_t
 CRLReason::getKeyCompromiseDate() const
 {
     if(reason != CRLReason::keyCompromise) {
-        LOGIT_DEBUG("reason is not keyCompromise");
+        LOGIT_ERROR("reason is not keyCompromise");
         BLOCXX_THROW(limal::RuntimeException, "reason is not keyCompromise");
     }
     return compromiseDate;
@@ -148,27 +117,14 @@ CRLReason::getKeyCompromiseDate() const
 void
 CRLReason::setCACompromiseDate(time_t compromiseDate)
 {
-    RevokeReason oldReason = this->reason;
-    time_t       oldDate   = compromiseDate;
-
-    this->reason          = CRLReason::CACompromise;
     this->compromiseDate  = compromiseDate;
-    
-    StringArray r = this->verify();
-    if(!r.empty()) {
-        this->reason         = oldReason;
-        this->compromiseDate = oldDate;
-        
-        LOGIT_ERROR(r[0]);
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
-    }
 }
 
 time_t
 CRLReason::getCACompromiseDate() const
 {
     if(reason != CRLReason::CACompromise) {
-        LOGIT_DEBUG("reason is not CACompromise");
+        LOGIT_ERROR("reason is not CACompromise");
         BLOCXX_THROW(limal::RuntimeException, "reason is not CACompromise");
     }
     return compromiseDate;
@@ -177,16 +133,13 @@ CRLReason::getCACompromiseDate() const
 bool
 CRLReason::valid() const
 {
-    ValueCheck check = initOIDCheck();
+    String r;
 
     switch(reason) {
     case CRLReason::certificateHold:
-        if(holdInstruction != "holdInstructionNone" ||
-           holdInstruction != "holdInstructionCallIssuer" ||
-           holdInstruction != "holdInstructionReject" ||
-           !check.isValid(holdInstruction)) {
-
-            LOGIT_DEBUG("invalid holdInstruction: " << holdInstruction);
+        r = checkHoldInstruction(holdInstruction);
+        if(!r.empty()) {
+            LOGIT_DEBUG(r);
             return false;
         }
         break;
@@ -199,7 +152,7 @@ CRLReason::valid() const
         break;
     default:
         return true;
-    } 
+    }
     return true;
 }
 
@@ -207,17 +160,10 @@ blocxx::StringArray
 CRLReason::verify() const
 {
     StringArray result;
-    ValueCheck check = initOIDCheck();
     
     switch(reason) {
     case CRLReason::certificateHold:
-        if(holdInstruction != "holdInstructionNone" ||
-           holdInstruction != "holdInstructionCallIssuer" ||
-           holdInstruction != "holdInstructionReject" ||
-           !check.isValid(holdInstruction)) {
-            
-            result.append(Format("invalid holdInstruction: ", holdInstruction).toString());
-        }
+        result.append(checkHoldInstruction(holdInstruction));
         break;
     case CRLReason::keyCompromise:
     case CRLReason::CACompromise:
@@ -231,4 +177,17 @@ CRLReason::verify() const
 
     LOGIT_DEBUG_STRINGARRAY("CRLReason::verify()", result);
     return result;
+}
+
+blocxx::String
+CRLReason::checkHoldInstruction(const String& hi) const
+{
+    if(hi != "holdInstructionNone" ||
+       hi != "holdInstructionCallIssuer" ||
+       hi != "holdInstructionReject" ||
+       !initOIDCheck().isValid(hi)) {
+        
+        return (Format("invalid holdInstruction: ", hi).toString());
+    }
+    return String();
 }
