@@ -24,6 +24,8 @@
 #include  <limal/Exception.hpp>
 #include  <blocxx/Format.hpp>
 
+#include "Utils.hpp"
+
 using namespace limal;
 using namespace limal::ca_mgm;
 using namespace blocxx;
@@ -263,13 +265,6 @@ NsCertTypeExtension::verify() const
 
 // ###################################################################
 
-inline static ValueCheck initExtendedKeyUsageOIDCheck() {
-    ValueCheck checkOID =
-        ValueCheck(new ValuePosixRECheck("^([0-9]+\\.)+[0-9]+$"));
-    
-    return checkOID;
-}
-
 ExtendedKeyUsageExtension::ExtendedKeyUsageExtension()
     : BitExtension(), oids(StringList())
 {}
@@ -291,7 +286,7 @@ ExtendedKeyUsageExtension::ExtendedKeyUsageExtension(blocxx::UInt32 extKeyUsages
         BLOCXX_THROW(limal::ValueException, "invalid extKeyUsages value");
     }
     
-    ValueCheck oidCheck = initExtendedKeyUsageOIDCheck();
+    ValueCheck oidCheck = initOIDCheck();
 
     StringList::const_iterator it = oids.begin();
     for(;it != oids.end(); it++) {
@@ -361,7 +356,7 @@ ExtendedKeyUsageExtension::setAdditionalOIDs(const StringList& additionalOIDs)
         BLOCXX_THROW(limal::ValueException, "invalid value for additionalOIDs.");
     }
 
-    ValueCheck oidCheck = initExtendedKeyUsageOIDCheck();
+    ValueCheck oidCheck = initOIDCheck();
     
     StringList::const_iterator it = oids.begin();
     for(;it != oids.end(); it++) {
@@ -386,7 +381,7 @@ ExtendedKeyUsageExtension::getAdditionalOIDs() const
 void
 ExtendedKeyUsageExtension::addAdditionalOID(String oid)
 {
-    ValueCheck oidCheck = initExtendedKeyUsageOIDCheck();
+    ValueCheck oidCheck = initOIDCheck();
     if(!oidCheck.isValid(oid)) {
         BLOCXX_THROW(limal::ValueException, Format("invalid OID(%1)", oid).c_str());
     }
@@ -420,7 +415,7 @@ ExtendedKeyUsageExtension::valid() const
         return false;
     }
     
-    ValueCheck oidCheck = initExtendedKeyUsageOIDCheck();
+    ValueCheck oidCheck = initOIDCheck();
 
     StringList::const_iterator it = oids.begin();
     for(;it != oids.end(); it++) {
@@ -446,7 +441,7 @@ ExtendedKeyUsageExtension::verify() const
         result.append(Format("invalid extKeyUsages value(%1)", getValue()).toString());
     }
     
-    ValueCheck oidCheck = initExtendedKeyUsageOIDCheck();
+    ValueCheck oidCheck = initOIDCheck();
 
     StringList::const_iterator it = oids.begin();
     for(;it != oids.end(); it++) {

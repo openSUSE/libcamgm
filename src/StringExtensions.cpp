@@ -31,13 +31,6 @@ using namespace limal;
 using namespace limal::ca_mgm;
 using namespace blocxx;
 
-inline static ValueCheck initURLCheck() {
-    ValueCheck checkURI =
-        ValueCheck(new ValuePosixRECheck("^(([^:/?#]+)://)?([^/?#]*)?([^?#]*)?(\\\\?([^#]*))?(#(.*))?"  ));
-
-    return checkURI;
-}
-    
 StringExtension::StringExtension()
     : ExtensionBase(), value(String())
 {}
@@ -136,7 +129,7 @@ NsBaseUrlExtension::valid() const
 {
     if(!isPresent()) return true;
 
-    ValueCheck check = initURLCheck();
+    ValueCheck check = initURICheck();
     if(!check.isValid(value)) {
         LOGIT_DEBUG("Wrong value for NsBaseUrlExtension:" << value);
         return false;
@@ -151,7 +144,7 @@ NsBaseUrlExtension::verify() const
 
     if(!isPresent()) return result;
 
-    ValueCheck check = initURLCheck();
+    ValueCheck check = initURICheck();
     if(!check.isValid(value)) {
         LOGIT_DEBUG("Wrong value for NsBaseUrlExtension:" << value);
         result.append(Format("Wrong value for NsBaseUrlExtension: %1", value).toString());
@@ -235,7 +228,7 @@ NsRevocationUrlExtension::verify() const
 
     if(!isPresent()) return result;
 
-    ValueCheck check = initURLCheck();
+    ValueCheck check = initURICheck();
     if(!check.isValid(value)) {
         LOGIT_DEBUG("Wrong value for NsRevocationUrlExtension:" << value);
         result.append(Format("Wrong value for NsRevocationUrlExtension: %1", value).toString());
@@ -248,7 +241,7 @@ NsRevocationUrlExtension::valid() const
 {
     if(!isPresent()) return true;
 
-    ValueCheck check = initURLCheck();
+    ValueCheck check = initURICheck();
     if(!check.isValid(value)) {
         LOGIT_DEBUG("Wrong value for NsRevocationUrlExtension:" << value);
         return false;
@@ -333,7 +326,7 @@ NsCaRevocationUrlExtension::verify() const
 
     if(!isPresent()) return result;
 
-    ValueCheck check = initURLCheck();
+    ValueCheck check = initURICheck();
     if(!check.isValid(value)) {
         LOGIT_DEBUG("Wrong value for NsCaRevocationUrlExtension:" << value);
         result.append(Format("Wrong value for NsCaRevocationUrlExtension: %1", value).toString());
@@ -346,7 +339,7 @@ NsCaRevocationUrlExtension::valid() const
 {
     if(!isPresent()) return true;
 
-    ValueCheck check = initURLCheck();
+    ValueCheck check = initURICheck();
     if(!check.isValid(value)) {
         LOGIT_DEBUG("Wrong value for NsCaRevocationUrlExtension:" << value);
         return false;
@@ -430,7 +423,7 @@ NsRenewalUrlExtension::verify() const
 
     if(!isPresent()) return result;
 
-    ValueCheck check = initURLCheck();
+    ValueCheck check = initURICheck();
     if(!check.isValid(value)) {
         LOGIT_DEBUG("Wrong value for NsRenewalUrlExtension:" << value);
         result.append(Format("Wrong value for NsRenewalUrlExtension: %1", value).toString());
@@ -443,7 +436,7 @@ NsRenewalUrlExtension::valid() const
 {
     if(!isPresent()) return true;
 
-    ValueCheck check = initURLCheck();
+    ValueCheck check = initURICheck();
     if(!check.isValid(value)) {
         LOGIT_DEBUG("Wrong value for NsRenewalUrlExtension:" << value);
         return false;
@@ -527,7 +520,7 @@ NsCaPolicyUrlExtension::verify() const
 
     if(!isPresent()) return result;
 
-    ValueCheck check = initURLCheck();
+    ValueCheck check = initURICheck();
     if(!check.isValid(value)) {
         LOGIT_DEBUG("Wrong value for NsCaPolicyUrlExtension:" << value);
         result.append(Format("Wrong value for NsCaPolicyUrlExtension: %1", value).toString());
@@ -540,7 +533,7 @@ NsCaPolicyUrlExtension::valid() const
 {
     if(!isPresent()) return true;
 
-    ValueCheck check = initURLCheck();
+    ValueCheck check = initURICheck();
     if(!check.isValid(value)) {
         LOGIT_DEBUG("Wrong value for NsCaPolicyUrlExtension:" << value);
         return false;

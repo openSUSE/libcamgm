@@ -30,20 +30,6 @@ using namespace limal;
 using namespace limal::ca_mgm;
 using namespace blocxx;
 
-inline static ValueCheck initOIDCheck() {
-    ValueCheck checkOID =
-        ValueCheck(new ValuePosixRECheck("^([0-9]+\\.)+[0-9]+$"));
-    
-    return checkOID;
-}
-
-inline static ValueCheck initURICheck() {
-    ValueCheck checkURI =
-        ValueCheck(new ValuePosixRECheck("^(([^:/?#]+)://)?([^/?#]*)?([^?#]*)?(\\\\?([^#]*))?(#(.*))?"  ));
-
-    return checkURI;
-}
-
 UserNotice::UserNotice()
     : explicitText(String()), organization(String()),
       noticeNumbers(blocxx::List<blocxx::Int32>())

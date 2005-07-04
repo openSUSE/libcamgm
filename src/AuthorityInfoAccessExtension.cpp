@@ -32,14 +32,6 @@ using namespace limal::ca_mgm;
 using namespace blocxx;
 
 
-inline static ValueCheck initValueCheck() {
-    ValueCheck checkAccessOID =
-        ValueCheck(new ValuePosixRECheck("^(OCSP|caIssuers)$"))
-        .Or(new ValuePosixRECheck("^([0-9]+\\.)+[0-9]+$"));
-
-    return checkAccessOID;
-}
-
 AuthorityInformation::AuthorityInformation()
     : accessOID(""), location(LiteralValue())
 {}
@@ -82,7 +74,7 @@ AuthorityInformation::setAuthorityInformation(const String &accessOID,
         LOGIT_ERROR("invalid location"); 
         BLOCXX_THROW(limal::ValueException, "invalid location");
     }
-    if(!initValueCheck().isValid(accessOID)) {
+    if(!initAccessOIDCheck().isValid(accessOID)) {
         LOGIT_ERROR("invalid accessOID"); 
         BLOCXX_THROW(limal::ValueException, "invalid accessOID");
     }
@@ -106,7 +98,7 @@ AuthorityInformation::getLocation() const
 bool
 AuthorityInformation::valid() const
 {
-    ValueCheck checkAccessOID = initValueCheck();
+    ValueCheck checkAccessOID = initAccessOIDCheck();
     if(!checkAccessOID.isValid(accessOID)) {
         LOGIT_DEBUG("return AuthorityInformation::valid() is false"); 
         return false;
@@ -124,7 +116,7 @@ AuthorityInformation::verify() const
 {
     StringArray result;
     
-    ValueCheck checkAccessOID = initValueCheck();
+    ValueCheck checkAccessOID = initAccessOIDCheck();
     
     if(!checkAccessOID.isValid(accessOID)) {
         result.append(Format("invalid value(%1) for accessOID", accessOID).toString());

@@ -31,41 +31,6 @@ using namespace limal;
 using namespace limal::ca_mgm;
 using namespace blocxx;
 
-inline static ValueCheck initEmailLiteralValueCheck() {
-    ValueCheck checkEmail =
-        ValueCheck(new ValuePosixRECheck("^[^@]+@[^@]+$"));
-
-    return checkEmail;
-}
-
-inline static ValueCheck initURILiteralValueCheck() {
-    ValueCheck checkURI =
-        ValueCheck(new ValuePosixRECheck("^(([^:/?#]+)://)?([^/?#]*)?([^?#]*)?(\\\\?([^#]*))?(#(.*))?"  ));
-
-    return checkURI;
-}
-
-inline static ValueCheck initDNSLiteralValueCheck() {
-    ValueCheck checkDNS =
-        ValueCheck(new ValuePosixRECheck("^[a-z]+[a-z0-9.-]*$"));
-
-    return checkDNS;
-}
-
-inline static ValueCheck initRIDLiteralValueCheck() {
-    ValueCheck checkRID =
-        ValueCheck(new ValuePosixRECheck("^([0-9]+\\.)+[0-9]+$"));
-
-    return checkRID;
-}
-
-inline static ValueCheck initIPLiteralValueCheck() {
-    ValueCheck checkIP =
-        ValueCheck(new ValuePosixRECheck("^([0-9]{1,3}\\.){3}[0-9]+$"));
-
-    return checkIP;
-}
-
 LiteralValue::LiteralValue() 
     : literalType(String()), literalValue(String()) 
 {}
@@ -151,31 +116,31 @@ bool
 LiteralValue::valid() const
 {
     if(literalType == "email") {
-        ValueCheck check = initEmailLiteralValueCheck();
+        ValueCheck check = initEmailCheck();
         if(!check.isValid(literalValue)) {
             LOGIT_DEBUG("Wrong LiteralValue for type 'email': " << literalValue);
             return false;
         }
     } else if(literalType == "URI") {
-        ValueCheck check = initURILiteralValueCheck();
+        ValueCheck check = initURICheck();
         if(!check.isValid(literalValue)) {
             LOGIT_DEBUG("Wrong LiteralValue for type 'URI': " << literalValue);
             return false;
         }
     } else if(literalType == "DNS") {
-        ValueCheck check = initDNSLiteralValueCheck();
+        ValueCheck check = initDNSCheck();
         if(!check.isValid(literalValue)) {
             LOGIT_DEBUG("Wrong LiteralValue for type 'DNS': " << literalValue);
             return false;
         }
     } else if(literalType == "RID") {
-        ValueCheck check = initRIDLiteralValueCheck();
+        ValueCheck check = initOIDCheck();
         if(!check.isValid(literalValue)) {
             LOGIT_DEBUG("Wrong LiteralValue for type 'RID': " << literalValue);
             return false;
         }
     } else if(literalType == "IP") {
-        ValueCheck check = initIPLiteralValueCheck();
+        ValueCheck check = initIPCheck();
         if(!check.isValid(literalValue)) {
             LOGIT_DEBUG("Wrong LiteralValue for type 'IP': " << literalValue);
             return false;
@@ -193,31 +158,31 @@ LiteralValue::verify() const
     StringArray result;
 
     if(literalType == "email") {
-        ValueCheck check = initEmailLiteralValueCheck();
+        ValueCheck check = initEmailCheck();
         if(!check.isValid(literalValue)) {
             LOGIT_DEBUG("Wrong LiteralValue for type 'email': " << literalValue);
             result.append(Format("Wrong LiteralValue for type 'email': %1", literalValue).toString());
         }
     } else if(literalType == "URI") {
-        ValueCheck check = initURILiteralValueCheck();
+        ValueCheck check = initURICheck();
         if(!check.isValid(literalValue)) {
             LOGIT_DEBUG("Wrong LiteralValue for type 'URI': " << literalValue);
             result.append(Format("Wrong LiteralValue for type 'URI': %1", literalValue).toString());
         }
     } else if(literalType == "DNS") {
-        ValueCheck check = initDNSLiteralValueCheck();
+        ValueCheck check = initDNSCheck();
         if(!check.isValid(literalValue)) {
             LOGIT_DEBUG("Wrong LiteralValue for type 'DNS': " << literalValue);
             result.append(Format("Wrong LiteralValue for type 'DNS': %1", literalValue).toString());
         }
     } else if(literalType == "RID") {
-        ValueCheck check = initRIDLiteralValueCheck();
+        ValueCheck check = initOIDCheck();
         if(!check.isValid(literalValue)) {
             LOGIT_DEBUG("Wrong LiteralValue for type 'RID': " << literalValue);
             result.append(Format("Wrong LiteralValue for type 'RID': %1", literalValue).toString());
         }
     } else if(literalType == "IP") {
-        ValueCheck check = initIPLiteralValueCheck();
+        ValueCheck check = initIPCheck();
         if(!check.isValid(literalValue)) {
             LOGIT_DEBUG("Wrong LiteralValue for type 'IP': " << literalValue);
             result.append(Format("Wrong LiteralValue for type 'IP': %1", literalValue).toString());

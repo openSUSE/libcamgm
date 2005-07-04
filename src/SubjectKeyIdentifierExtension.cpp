@@ -31,13 +31,6 @@ using namespace limal;
 using namespace limal::ca_mgm;
 using namespace blocxx;
 
-inline static ValueCheck initHexCheck() {
-    ValueCheck checkHex =
-        ValueCheck(new ValuePosixRECheck("^([0-9a-fA-F]{2}:)+[0-9a-fA-F]{2}$" ));
-    
-    return checkHex;
-}
-
 SubjectKeyIdentifierExtension::SubjectKeyIdentifierExtension()
     : ExtensionBase(), autodetect(false), keyid(String())
 {}

@@ -33,13 +33,6 @@ using namespace limal::ca_mgm;
 using namespace blocxx;
 
 
-inline static ValueCheck initHexCheck() {
-    ValueCheck check =
-        ValueCheck(new ValuePosixRECheck("^[0-9a-fA-F]+[0-9a-fA-F:]*$"));
-
-    return check;
-}
-
 RequestData::RequestData(const RequestData& data)
     : version(data.version),
       subject(data.subject),

@@ -27,6 +27,7 @@
 #define   LIMAL_CA_MGM_UTILS_HPP
 
 #include <limal/Logger.hpp>
+#include <limal/ValueRegExCheck.hpp>
 
 
 // -------------------------------------------------------------------
@@ -53,6 +54,58 @@
                        << stringarray[i]);                              \
         }                                                               \
     } 
+
+
+inline static limal::ValueCheck initHexCheck() {
+    limal::ValueCheck checkHex =
+        limal::ValueCheck(new limal::ValuePosixRECheck("^([0-9a-fA-F]{2}:)+[0-9a-fA-F]{2}$" ));
+    
+    return checkHex;
+}
+
+inline static limal::ValueCheck initOIDCheck() {
+    limal::ValueCheck checkOID =
+        limal::ValueCheck(new limal::ValuePosixRECheck("^([0-9]+\\.)+[0-9]+$"));
+
+    return checkOID;
+}
+
+inline static limal::ValueCheck initURICheck() {
+    limal::ValueCheck checkURI =
+        limal::ValueCheck(new limal::ValuePosixRECheck("^(([^:/?#]+)://)?([^/?#]*)?([^?#]*)?(\\\\?([^#]*))?(#(.*))?"  ));
+
+    return checkURI;
+}
+
+inline static limal::ValueCheck initEmailCheck() {
+    limal::ValueCheck checkEmail =
+        limal::ValueCheck(new limal::ValuePosixRECheck("^[^@]+@[^@]+$"));
+
+    return checkEmail;
+}
+
+inline static limal::ValueCheck initDNSCheck() {
+    limal::ValueCheck checkDNS =
+        limal::ValueCheck(new limal::ValuePosixRECheck("^[a-z]+[a-z0-9.-]*$"));
+
+    return checkDNS;
+}
+
+inline static limal::ValueCheck initIPCheck() {
+    limal::ValueCheck checkIP =
+        limal::ValueCheck(new limal::ValuePosixRECheck("^([0-9]{1,3}\\.){3}[0-9]+$"));
+
+    return checkIP;
+}
+
+inline static limal::ValueCheck initAccessOIDCheck() {
+    limal::ValueCheck checkAccessOID =
+        limal::ValueCheck(new limal::ValuePosixRECheck("^(OCSP|caIssuers)$"))
+        .Or(new limal::ValuePosixRECheck("^([0-9]+\\.)+[0-9]+$"));
+
+    return checkAccessOID;
+}
+
 
 // -------------------------------------------------------------------
 

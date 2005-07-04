@@ -31,13 +31,6 @@ using namespace limal;
 using namespace limal::ca_mgm;
 using namespace blocxx;
 
-inline static ValueCheck initOIDCheck() {
-    ValueCheck checkOID =
-        ValueCheck(new ValuePosixRECheck("^([0-9]+\\.)+[0-9]+$"));
-
-    return checkOID;
-}
-
 CRLReason::CRLReason()
     : reason(none), compromiseDate(0),
       holdInstruction("holdInstructionNone")

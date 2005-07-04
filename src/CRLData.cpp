@@ -32,12 +32,6 @@ using namespace limal;
 using namespace limal::ca_mgm;
 using namespace blocxx;
 
-inline static ValueCheck initHexCheck() {
-    ValueCheck check =
-        ValueCheck(new ValuePosixRECheck("^[0-9a-fA-F]+[0-9a-fA-F:]*$"));
-
-    return check;
-}
 
 RevocationEntry::RevocationEntry()
     : serial(0), revocationDate(0), revocationReason(CRLReason())
