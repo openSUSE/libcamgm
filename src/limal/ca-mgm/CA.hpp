@@ -379,12 +379,24 @@ namespace CA_MGM_NAMESPACE
         bool verifyCertificate(const String& certificateName,
                                bool crlCheck = true,
                                CertificatePurpose purpose = any);
+        /**
+         * Initialize the config file
+         *
+         * Copy the template to a configfile and create the config object
+         */
+        void initConfigFile();
 
+        /**
+         * Copy Config file to template
+         */
+        void commitConfig2Template();
 
         /* ##########################################################################
          * ###          static Functions                                          ###
          * ##########################################################################
          */
+
+        CAConfig* getConfig();
 
         /**
          * Create a new selfsigned root CA and creates the
@@ -438,11 +450,13 @@ namespace CA_MGM_NAMESPACE
         String caPasswd;
 
         CAConfig *config; 
+        CAConfig *templ; 
 
         CA();
         CA(const CA&);
 
         CA& operator=(const CA&);
+
 
     };
     

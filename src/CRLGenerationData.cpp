@@ -100,8 +100,20 @@ CRLGenerationData::getExtensions() const
 }
 
 void
-CRLGenerationData::commit2Config(CA& ca, Type type)
+CRLGenerationData::commit2Config(CA& ca, Type type) const
 {
+    if(!valid()) {
+        LOGIT_ERROR("invalid CRLGenerationData object");
+        BLOCXX_THROW(limal::ValueException, "invalid CRLGenerationData object");
+    }
+    // These types are not supported by this object
+    if(type != CRL) {
+        
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    extensions.commit2Config(ca, type);
 }
 
 bool

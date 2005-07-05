@@ -21,6 +21,7 @@
 /-*/
 
 #include  <limal/ca-mgm/AuthorityKeyIdentifierGenerateExtension.hpp>
+#include  <limal/ca-mgm/CA.hpp>
 #include  <limal/Exception.hpp>
 
 #include  "Utils.hpp"
@@ -98,9 +99,51 @@ AuthorityKeyIdentifierGenerateExtension::getIssuer() const
 }
 
 void
-AuthorityKeyIdentifierGenerateExtension::commit2Config(CA& ca, Type type)
+AuthorityKeyIdentifierGenerateExtension::commit2Config(CA& ca, Type type) const
 {
+    if(!valid()) {
+        LOGIT_ERROR("invalid AuthorityKeyIdentifierGenerateExtension object");
+        BLOCXX_THROW(limal::ValueException, "invalid AuthorityKeyIdentifierGenerateExtension object");
+    }
 
+    // These types are not supported by this object
+    if(type == Client_Req || type == Server_Req || type == CA_Req) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    if(isPresent()) {
+        String extString;
+
+        if(isCritical()) extString += "critical,";
+
+        switch(keyid) {
+        case AuthorityKeyIdentifierGenerateExtension::KeyID_normal:
+            extString += "keyid,";
+            break;
+        case AuthorityKeyIdentifierGenerateExtension::KeyID_always:
+            extString += "keyid:always,";
+            break;
+        default:
+            break;
+        }
+
+        switch(issuer) {
+        case AuthorityKeyIdentifierGenerateExtension::Issuer_normal:
+            extString += "issuer,";
+            break;
+        case AuthorityKeyIdentifierGenerateExtension::Issuer_always:
+            extString += "issuer:always,";
+            break;
+        default:
+            break;
+        }
+
+        ca.getConfig()->setValue(type2Section(type, true), "authorityKeyIdentifier",
+                                 extString.erase(extString.length()-2));
+    } else {
+        ca.getConfig()->deleteValue(type2Section(type, true), "authorityKeyIdentifier");
+    }
 }
 
 bool

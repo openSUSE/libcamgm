@@ -62,7 +62,7 @@ namespace CA_MGM_NAMESPACE {
         void           setIssuer(Issuer iss);
         Issuer         getIssuer() const;
 
-        virtual void   commit2Config(CA& ca, Type type);
+        virtual void   commit2Config(CA& ca, Type type) const;
 
         virtual bool                 valid() const;  
         virtual blocxx::StringArray  verify() const; 

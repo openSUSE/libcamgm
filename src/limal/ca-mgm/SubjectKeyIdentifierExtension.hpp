@@ -53,7 +53,7 @@ namespace CA_MGM_NAMESPACE {
          */
         String getKeyID() const;
 
-        virtual void commit2Config(CA& ca, Type type);
+        virtual void commit2Config(CA& ca, Type type) const;
 
         virtual bool                 valid() const;
         virtual blocxx::StringArray  verify() const;

@@ -53,7 +53,7 @@ namespace CA_MGM_NAMESPACE {
         String serial;  // String?
 
     private:
-        virtual void commit2Config(CA& ca, Type type);
+        virtual void commit2Config(CA& ca, Type type) const;
     };
 
 }

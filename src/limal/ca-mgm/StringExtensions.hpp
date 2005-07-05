@@ -41,7 +41,7 @@ namespace CA_MGM_NAMESPACE {
         virtual void   setValue(const String &v) = 0;
         virtual String getValue() const = 0;
         
-        virtual void commit2Config(CA& ca, Type type) = 0;
+        virtual void commit2Config(CA& ca, Type type) const = 0;
         
         virtual bool                 valid() const = 0;
         virtual blocxx::StringArray  verify() const = 0;
@@ -69,7 +69,7 @@ namespace CA_MGM_NAMESPACE {
         void           setValue(const String &v);
         String         getValue() const;
 
-        virtual void commit2Config(CA& ca, Type type);
+        virtual void commit2Config(CA& ca, Type type) const ;
 
         virtual bool                 valid() const;
         virtual blocxx::StringArray  verify() const;
@@ -88,7 +88,7 @@ namespace CA_MGM_NAMESPACE {
         void           setValue(const String &v);
         String         getValue() const;
 
-        virtual void commit2Config(CA& ca, Type type);
+        virtual void commit2Config(CA& ca, Type type) const;
 
         virtual bool                 valid() const;
         virtual blocxx::StringArray  verify() const;
@@ -107,7 +107,7 @@ namespace CA_MGM_NAMESPACE {
         void           setValue(const String &v);
         String         getValue() const;
 
-        virtual void commit2Config(CA& ca, Type type);
+        virtual void commit2Config(CA& ca, Type type) const; 
 
         virtual bool                 valid() const;
         virtual blocxx::StringArray  verify() const;
@@ -126,7 +126,7 @@ namespace CA_MGM_NAMESPACE {
         void           setValue(const String &v);
         String         getValue() const;
 
-        virtual void commit2Config(CA& ca, Type type);
+        virtual void commit2Config(CA& ca, Type type) const;
 
         virtual bool                 valid() const;
         virtual blocxx::StringArray  verify() const;
@@ -144,7 +144,7 @@ namespace CA_MGM_NAMESPACE {
         void           setValue(const String &v);
         String         getValue() const;
 
-        virtual void commit2Config(CA& ca, Type type);
+        virtual void commit2Config(CA& ca, Type type) const; 
 
         virtual bool                 valid() const;
         virtual blocxx::StringArray  verify() const;
@@ -162,7 +162,7 @@ namespace CA_MGM_NAMESPACE {
         void           setValue(const String &v);
         String         getValue() const;
 
-        virtual void commit2Config(CA& ca, Type type);
+        virtual void commit2Config(CA& ca, Type type) const;
 
         virtual bool                 valid() const;
         virtual blocxx::StringArray  verify() const;
@@ -180,7 +180,7 @@ namespace CA_MGM_NAMESPACE {
         void           setValue(const String &v);
         String         getValue() const;
 
-        virtual void commit2Config(CA& ca, Type type);
+        virtual void commit2Config(CA& ca, Type type) const;
 
         virtual bool                 valid() const;
         virtual blocxx::StringArray  verify() const;

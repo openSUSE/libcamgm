@@ -22,6 +22,7 @@
 
 
 #include  <limal/ca-mgm/RequestGenerationData.hpp>
+#include  <limal/ca-mgm/CA.hpp>
 #include  <limal/Exception.hpp>
 #include  <blocxx/Format.hpp>
 
@@ -147,8 +148,27 @@ RequestGenerationData::getExtensions() const
 }
 
 void
-RequestGenerationData::commit2Config(CA& ca, Type type)
+RequestGenerationData::commit2Config(CA& ca, Type type) const
 {
+    if(!valid()) {
+        LOGIT_ERROR("invalid RequestGenerationData object");
+        BLOCXX_THROW(limal::ValueException, "invalid RequestGenerationData object");
+    }
+    switch(type) {
+    case CA_Req:
+        ca.getConfig()->setValue("req", "default_bits", String(keysize));
+        break;
+    case Client_Req:
+        ca.getConfig()->setValue("req_client", "default_bits", String(keysize));
+        break;
+    case Server_Req:
+        ca.getConfig()->setValue("req_server", "default_bits", String(keysize));
+        break;
+    default:
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+    extensions.commit2Config(ca, type);
 }
 
 bool

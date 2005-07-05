@@ -101,8 +101,21 @@ CertificateIssueData::getExtensions() const
 }
 
 void
-CertificateIssueData::commit2Config(CA& ca, Type type)
+CertificateIssueData::commit2Config(CA& ca, Type type) const
 {
+    if(!valid()) {
+        LOGIT_ERROR("invalid CertificateIssueData object");
+        BLOCXX_THROW(limal::ValueException, "invalid CertificateIssueData object");
+    }
+    // These types are not supported by this object
+    if(type == CRL        || type == Client_Req ||
+       type == Server_Req || type == CA_Req         ) {
+        
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    extensions.commit2Config(ca, type);
 }
 
 bool

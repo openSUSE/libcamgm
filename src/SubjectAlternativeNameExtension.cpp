@@ -21,6 +21,7 @@
 /-*/
 
 #include  <limal/ca-mgm/SubjectAlternativeNameExtension.hpp>
+#include  <limal/ca-mgm/CA.hpp>
 #include  <limal/Exception.hpp>
 
 #include  "Utils.hpp"
@@ -106,8 +107,36 @@ SubjectAlternativeNameExtension::getAlternativeNameList() const
 
 
 void
-SubjectAlternativeNameExtension::commit2Config(CA& ca, Type type)
+SubjectAlternativeNameExtension::commit2Config(CA& ca, Type type) const
 {
+    if(!valid()) {
+        LOGIT_ERROR("invalid SubjectAlternativeNameExtension object");
+        BLOCXX_THROW(limal::ValueException, "invalid SubjectAlternativeNameExtension object");
+    }
+
+    // This extension is not supported by type CRL
+    if(type == CRL) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    if(isPresent()) {
+        String extString;
+
+        if(isCritical()) extString += "critical,";
+        if(emailCopy) {
+            extString += "email:copy,";
+        }
+        blocxx::List<LiteralValue>::const_iterator it = altNameList.begin();
+        for(;it != altNameList.end(); ++it) {
+            extString += (*it).toString()+",";
+        }
+
+        ca.getConfig()->setValue(type2Section(type, true), "subjectAltName", 
+                                 extString.erase(extString.length()-2));
+    } else {
+        ca.getConfig()->deleteValue(type2Section(type, true), "subjectAltName");
+    }
 }
 
 bool

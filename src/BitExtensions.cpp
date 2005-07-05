@@ -20,6 +20,7 @@
 
 /-*/
 #include  <limal/ca-mgm/BitExtensions.hpp>
+#include  <limal/ca-mgm/CA.hpp>
 #include  <limal/ValueRegExCheck.hpp>
 #include  <limal/Exception.hpp>
 #include  <blocxx/Format.hpp>
@@ -134,15 +135,65 @@ KeyUsageExtension::getKeyUsage() const
 bool
 KeyUsageExtension::isEnabledFor(KeyUsage ku) const
 {
-    // if ! isPresent() ... throw exceptions?
-    if(!isPresent()) return false;
-
+    if(!isPresent()) {
+        BLOCXX_THROW(limal::RuntimeException, "KeyUsageExtension is not present");
+    }
+    
     return !!(getValue() & ku);
 }
 
 void
-KeyUsageExtension::commit2Config(CA& ca, Type type)
+KeyUsageExtension::commit2Config(CA& ca, Type type) const
 {
+    if(!valid()) {
+        LOGIT_ERROR("invalid KeyUsageExtension object");
+        BLOCXX_THROW(limal::ValueException, "invalid KeyUsageExtension object");
+    }
+
+    // This extension is not supported by type CRL
+    if(type == CRL) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    if(isPresent()) {
+        String keyUsageString;
+
+        if(isCritical()) keyUsageString += "critical,";
+
+        if(!!(getValue() & KeyUsageExtension::digitalSignature)) {
+            keyUsageString += "digitalSignature,";
+        }
+        if(!!(getValue() & KeyUsageExtension::nonRepudiation)) {
+            keyUsageString += "nonRepudiation,";
+        }
+        if(!!(getValue() & KeyUsageExtension::keyEncipherment)) {
+            keyUsageString += "keyEncipherment,";
+        }
+        if(!!(getValue() & KeyUsageExtension::dataEncipherment)) {
+            keyUsageString += "dataEncipherment,";
+        }
+        if(!!(getValue() & KeyUsageExtension::keyAgreement)) {
+            keyUsageString += "keyAgreement,";
+        }
+        if(!!(getValue() & KeyUsageExtension::keyCertSign)) {
+            keyUsageString += "keyCertSign,";
+        }
+        if(!!(getValue() & KeyUsageExtension::cRLSign)) {
+            keyUsageString += "cRLSign,";
+        }
+        if(!!(getValue() & KeyUsageExtension::encipherOnly)) {
+            keyUsageString += "encipherOnly,";
+        }
+        if(!!(getValue() & KeyUsageExtension::decipherOnly)) {
+            keyUsageString += "decipherOnly,";
+        }
+        
+        ca.getConfig()->setValue(type2Section(type, true), "keyUsage", 
+                                 keyUsageString.erase(keyUsageString.length()-2));
+    } else {
+        ca.getConfig()->deleteValue(type2Section(type, true), "keyUsage");
+    }
 }
 
 bool
@@ -245,8 +296,54 @@ NsCertTypeExtension::isEnabledFor(NsCertType nsCertType) const
 }
 
 void
-NsCertTypeExtension::commit2Config(CA& ca, Type type)
+NsCertTypeExtension::commit2Config(CA& ca, Type type) const
 {
+    if(!valid()) {
+        LOGIT_ERROR("invalid NsCertTypeExtension object");
+        BLOCXX_THROW(limal::ValueException, "invalid NsCertTypeExtension object");
+    }
+
+    // This extension is not supported by type CRL
+    if(type == CRL) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    if(isPresent()) {
+        String nsCertTypeString;
+
+        if(isCritical()) nsCertTypeString += "critical,";
+
+        if(!!(getValue() & NsCertTypeExtension::client)) {
+            nsCertTypeString += "client,";
+        }
+        if(!!(getValue() & NsCertTypeExtension::server)) {
+            nsCertTypeString += "server,";
+        }
+        if(!!(getValue() & NsCertTypeExtension::email)) {
+            nsCertTypeString += "email,";
+        }
+        if(!!(getValue() & NsCertTypeExtension::objsign)) {
+            nsCertTypeString += "objsign,";
+        }
+        if(!!(getValue() & NsCertTypeExtension::reserved)) {
+            nsCertTypeString += "reserved,";
+        }
+        if(!!(getValue() & NsCertTypeExtension::sslCA)) {
+            nsCertTypeString += "sslCA,";
+        }
+        if(!!(getValue() & NsCertTypeExtension::emailCA)) {
+            nsCertTypeString += "emailCA,";
+        }
+        if(!!(getValue() & NsCertTypeExtension::objCA)) {
+            nsCertTypeString += "objCA,";
+        }
+        
+        ca.getConfig()->setValue(type2Section(type, true), "nsCertType", 
+                                 nsCertTypeString.erase(nsCertTypeString.length()-2));
+    } else {
+        ca.getConfig()->deleteValue(type2Section(type, true), "nsCertType");
+    }
 }
 
 bool
@@ -407,8 +504,67 @@ ExtendedKeyUsageExtension::addAdditionalOID(String oid)
 */
   
 void
-ExtendedKeyUsageExtension::commit2Config(CA& ca, Type type)
+ExtendedKeyUsageExtension::commit2Config(CA& ca, Type type) const
 {
+    if(!valid()) {
+        LOGIT_ERROR("invalid ExtendedKeyUsageExtension object");
+        BLOCXX_THROW(limal::ValueException, "invalid ExtendedKeyUsageExtension object");
+    }
+
+    // This extension is not supported by type CRL
+    if(type == CRL) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    if(isPresent()) {
+        String extendedKeyUsageString;
+
+        if(isCritical()) extendedKeyUsageString += "critical,";
+
+        if(!!(getValue() & ExtendedKeyUsageExtension::serverAuth)) {
+            extendedKeyUsageString += "serverAuth,";
+        }
+        if(!!(getValue() & ExtendedKeyUsageExtension::clientAuth)) {
+            extendedKeyUsageString += "clientAuth,";
+        }
+        if(!!(getValue() & ExtendedKeyUsageExtension::codeSigning)) {
+            extendedKeyUsageString += "codeSigning,";
+        }
+        if(!!(getValue() & ExtendedKeyUsageExtension::emailProtection)) {
+            extendedKeyUsageString += "emailProtection,";
+        }
+        if(!!(getValue() & ExtendedKeyUsageExtension::timeStamping)) {
+            extendedKeyUsageString += "timeStamping,";
+        }
+        if(!!(getValue() & ExtendedKeyUsageExtension::msCodeInd)) {
+            extendedKeyUsageString += "msCodeInd,";
+        }
+        if(!!(getValue() & ExtendedKeyUsageExtension::msCodeCom)) {
+            extendedKeyUsageString += "msCodeCom,";
+        }
+        if(!!(getValue() & ExtendedKeyUsageExtension::msCTLSign)) {
+            extendedKeyUsageString += "msCTLSign,";
+        }
+        if(!!(getValue() & ExtendedKeyUsageExtension::msSGC)) {
+            extendedKeyUsageString += "msSGC,";
+        }
+        if(!!(getValue() & ExtendedKeyUsageExtension::msEFS)) {
+            extendedKeyUsageString += "msEFS,";
+        }
+        if(!!(getValue() & ExtendedKeyUsageExtension::nsSGC)) {
+            extendedKeyUsageString += "nsSGC,";
+        }
+        StringList::const_iterator it = oids.begin();
+        for(; it != oids.end(); ++it) {
+            extendedKeyUsageString += (*it)+",";
+        }
+
+        ca.getConfig()->setValue(type2Section(type, true), "extendedKeyUsage", 
+                                 extendedKeyUsageString.erase(extendedKeyUsageString.length()-2));
+    } else {
+        ca.getConfig()->deleteValue(type2Section(type, true), "extendedKeyUsage");
+    }
 }
 
 bool

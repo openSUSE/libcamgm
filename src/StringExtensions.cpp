@@ -21,6 +21,7 @@
 /-*/
 
 #include  <limal/ca-mgm/StringExtensions.hpp>
+#include  <limal/ca-mgm/CA.hpp>
 #include  <limal/ValueRegExCheck.hpp>
 #include  <limal/Exception.hpp>
 #include  <blocxx/Format.hpp>
@@ -115,8 +116,29 @@ NsBaseUrlExtension::getValue() const
 }
 
 void
-NsBaseUrlExtension::commit2Config(CA& ca, Type type)
+NsBaseUrlExtension::commit2Config(CA& ca, Type type) const
 {
+    if(!valid()) {
+        LOGIT_ERROR("invalid NsBaseUrlExtension object");
+        BLOCXX_THROW(limal::ValueException, "invalid NsBaseUrlExtension object");
+    }
+
+    // This extension is not supported by type CRL
+    if(type == CRL) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    if(isPresent()) {
+        String extString;
+
+        if(isCritical()) extString += "critical,";
+        extString += value;
+
+        ca.getConfig()->setValue(type2Section(type, true), "nsBaseUrl", extString);
+    } else {
+        ca.getConfig()->deleteValue(type2Section(type, true), "nsBaseUrl");
+    }
 }
 
 bool
@@ -205,8 +227,29 @@ NsRevocationUrlExtension::getValue() const
 }
 
 void
-NsRevocationUrlExtension::commit2Config(CA& ca, Type type)
+NsRevocationUrlExtension::commit2Config(CA& ca, Type type) const
 {
+    if(!valid()) {
+        LOGIT_ERROR("invalid NsRevocationUrlExtension object");
+        BLOCXX_THROW(limal::ValueException, "invalid NsRevocationUrlExtension object");
+    }
+
+    // This extension is not supported by type CRL
+    if(type == CRL) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    if(isPresent()) {
+        String extString;
+
+        if(isCritical()) extString += "critical,";
+        extString += value;
+
+        ca.getConfig()->setValue(type2Section(type, true), "nsRevocationUrl", extString);
+    } else {
+        ca.getConfig()->deleteValue(type2Section(type, true), "nsRevocationUrl");
+    }
 }
 
 blocxx::StringArray
@@ -296,8 +339,29 @@ NsCaRevocationUrlExtension::getValue() const
 }
 
 void
-NsCaRevocationUrlExtension::commit2Config(CA& ca, Type type)
+NsCaRevocationUrlExtension::commit2Config(CA& ca, Type type) const
 {
+    if(!valid()) {
+        LOGIT_ERROR("invalid NsCaRevocationUrlExtension object");
+        BLOCXX_THROW(limal::ValueException, "invalid NsCaRevocationUrlExtension object");
+    }
+
+    // This extension is not supported by type CRL
+    if(type == CRL) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    if(isPresent()) {
+        String extString;
+
+        if(isCritical()) extString += "critical,";
+        extString += value;
+
+        ca.getConfig()->setValue(type2Section(type, true), "nsCaRevocationUrl", extString);
+    } else {
+        ca.getConfig()->deleteValue(type2Section(type, true), "nsCaRevocationUrl");
+    }
 }
 
 blocxx::StringArray
@@ -386,8 +450,29 @@ NsRenewalUrlExtension::getValue() const
 }
 
 void
-NsRenewalUrlExtension::commit2Config(CA& ca, Type type)
+NsRenewalUrlExtension::commit2Config(CA& ca, Type type) const
 {
+    if(!valid()) {
+        LOGIT_ERROR("invalid NsRenewalUrlExtension object");
+        BLOCXX_THROW(limal::ValueException, "invalid NsRenewalUrlExtension object");
+    }
+
+    // This extension is not supported by type CRL
+    if(type == CRL) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    if(isPresent()) {
+        String extString;
+
+        if(isCritical()) extString += "critical,";
+        extString += value;
+
+        ca.getConfig()->setValue(type2Section(type, true), "nsRenewalUrl", extString);
+    } else {
+        ca.getConfig()->deleteValue(type2Section(type, true), "nsRenewalUrl");
+    }
 }
 
 blocxx::StringArray
@@ -476,8 +561,29 @@ NsCaPolicyUrlExtension::getValue() const
 }
 
 void
-NsCaPolicyUrlExtension::commit2Config(CA& ca, Type type)
+NsCaPolicyUrlExtension::commit2Config(CA& ca, Type type) const
 {
+    if(!valid()) {
+        LOGIT_ERROR("invalid NsCaPolicyUrlExtension object");
+        BLOCXX_THROW(limal::ValueException, "invalid NsCaPolicyUrlExtension object");
+    }
+
+    // This extension is not supported by type CRL
+    if(type == CRL) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    if(isPresent()) {
+        String extString;
+
+        if(isCritical()) extString += "critical,";
+        extString += value;
+
+        ca.getConfig()->setValue(type2Section(type, true), "nsCaPolicyUrl", extString);
+    } else {
+        ca.getConfig()->deleteValue(type2Section(type, true), "nsCaPolicyUrl");
+    }
 }
 
 blocxx::StringArray
@@ -558,8 +664,29 @@ NsSslServerNameExtension::getValue() const
 }
 
 void
-NsSslServerNameExtension::commit2Config(CA& ca, Type type)
+NsSslServerNameExtension::commit2Config(CA& ca, Type type) const
 {
+    if(!valid()) {
+        LOGIT_ERROR("invalid NsSslServerNameExtension object");
+        BLOCXX_THROW(limal::ValueException, "invalid NsSslServerNameExtension object");
+    }
+
+    // This extension is not supported by type CRL
+    if(type == CRL) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    if(isPresent()) {
+        String extString;
+
+        if(isCritical()) extString += "critical,";
+        extString += value;
+
+        ca.getConfig()->setValue(type2Section(type, true), "nsSslServerName", extString);
+    } else {
+        ca.getConfig()->deleteValue(type2Section(type, true), "nsSslServerName");
+    }
 }
 
 blocxx::StringArray
@@ -626,8 +753,29 @@ NsCommentExtension::getValue() const
 }
 
 void
-NsCommentExtension::commit2Config(CA& ca, Type type)
+NsCommentExtension::commit2Config(CA& ca, Type type) const
 {
+    if(!valid()) {
+        LOGIT_ERROR("invalid NsCommentExtension object");
+        BLOCXX_THROW(limal::ValueException, "invalid NsCommentExtension object");
+    }
+
+    // This extension is not supported by type CRL
+    if(type == CRL) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    if(isPresent()) {
+        String extString;
+
+        if(isCritical()) extString += "critical,";
+        extString += value;
+
+        ca.getConfig()->setValue(type2Section(type, true), "nsComment", extString);
+    } else {
+        ca.getConfig()->deleteValue(type2Section(type, true), "nsComment");
+    }
 }
 
 blocxx::StringArray

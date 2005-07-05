@@ -112,7 +112,7 @@ namespace CA_MGM_NAMESPACE
         void                            setCertificatePolicies(const CertificatePoliciesExtension &ext);
         CertificatePoliciesExtension    getCertificatePolicies() const;
 
-        void                            commit2Config(CA& ca, Type type);
+        void                            commit2Config(CA& ca, Type type) const;
 
         virtual bool                    valid() const;
         virtual blocxx::StringArray     verify() const;

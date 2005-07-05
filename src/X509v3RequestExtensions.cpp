@@ -198,8 +198,20 @@ X509v3RequestExtensions::getSubjectAlternativeName() const
 }
 
 void
-X509v3RequestExtensions::commit2Config(CA& ca, Type type)
+X509v3RequestExtensions::commit2Config(CA& ca, Type type) const
 {
+    if(!valid()) {
+        LOGIT_ERROR("invalid X509v3RequestExtensions object");
+        BLOCXX_THROW(limal::ValueException, "invalid X509v3RequestExtensions object");
+    }
+    nsSslServerName.commit2Config(ca, type);
+    nsComment.commit2Config(ca, type);
+    keyUsage.commit2Config(ca, type);
+    nsCertType.commit2Config(ca, type);
+    basicConstraints.commit2Config(ca, type);
+    extendedKeyUsage.commit2Config(ca, type);
+    subjectKeyIdentifier.commit2Config(ca, type);
+    subjectAlternativeName.commit2Config(ca, type);
 }
 
 bool

@@ -21,6 +21,7 @@
 /-*/
 
 #include  <limal/ca-mgm/IssuerAlternativeNameExtension.hpp>
+#include  <limal/ca-mgm/CA.hpp>
 #include  <limal/Exception.hpp>
 
 #include  "Utils.hpp"
@@ -124,8 +125,36 @@ IssuerAlternativeNameExtension::addIssuerAltName(const LiteralValue& altName)
 
 
 void
-IssuerAlternativeNameExtension::commit2Config(CA& ca, Type type)
+IssuerAlternativeNameExtension::commit2Config(CA& ca, Type type) const
 {
+    if(!valid()) {
+        LOGIT_ERROR("invalid IssuerAlternativeNameExtension object");
+        BLOCXX_THROW(limal::ValueException, "invalid IssuerAlternativeNameExtension object");
+    }
+
+    // These types are not supported by this object
+    if(type == Client_Req || type == Server_Req || type == CA_Req) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    if(isPresent()) {
+        String extString;
+
+        if(isCritical()) extString += "critical,";
+
+        if(issuerCopy) extString += "issuer:copy,";
+
+        blocxx::List<LiteralValue>::const_iterator it = altNameList.begin();
+        for(;it != altNameList.end(); ++it) {
+            extString += (*it).toString()+",";
+        }
+
+        ca.getConfig()->setValue(type2Section(type, true), "issuerAltName",
+                                 extString.erase(extString.length()-2));
+    } else {
+        ca.getConfig()->deleteValue(type2Section(type, true), "issuerAltName");
+    }
 }
 
 bool

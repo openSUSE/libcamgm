@@ -22,6 +22,7 @@
 
 
 #include  <limal/ca-mgm/X509v3CertificateIssueExtensions.hpp>
+#include  <limal/ca-mgm/CA.hpp>
 #include  <limal/Exception.hpp>
 
 #include  "Utils.hpp"
@@ -379,8 +380,31 @@ X509v3CertificateIssueExtensions::getCertificatePolicies() const
 }
 
 void
-X509v3CertificateIssueExtensions::commit2Config(CA& ca, Type type)
+X509v3CertificateIssueExtensions::commit2Config(CA& ca, Type type) const
 {
+    if(!valid()) {
+        LOGIT_ERROR("invalid X509v3RequestExtensions object");
+        BLOCXX_THROW(limal::ValueException, "invalid X509v3RequestExtensions object");
+    }
+
+    nsBaseUrl.commit2Config(ca, type);
+    nsRevocationUrl.commit2Config(ca, type);
+    nsCaRevocationUrl.commit2Config(ca, type);
+    nsRenewalUrl.commit2Config(ca, type);
+    nsCaPolicyUrl.commit2Config(ca, type);
+    nsSslServerName.commit2Config(ca, type);
+    nsComment.commit2Config(ca, type);
+    keyUsage.commit2Config(ca, type);
+    nsCertType.commit2Config(ca, type);
+    basicConstraints.commit2Config(ca, type);
+    extendedKeyUsage.commit2Config(ca, type);
+    subjectKeyIdentifier.commit2Config(ca, type);
+    authorityKeyIdentifier.commit2Config(ca, type);
+    subjectAlternativeName.commit2Config(ca, type);
+    issuerAlternativeName.commit2Config(ca, type);
+    authorityInfoAccess.commit2Config(ca, type);
+    crlDistributionPoints.commit2Config(ca, type);
+    certificatePolicies.commit2Config(ca, type);
 }
 
 bool

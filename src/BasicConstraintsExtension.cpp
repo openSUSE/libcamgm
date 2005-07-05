@@ -21,6 +21,7 @@
 /-*/
 
 #include  <limal/ca-mgm/BasicConstraintsExtension.hpp>
+#include  <limal/ca-mgm/CA.hpp>
 #include  <limal/Exception.hpp>
 #include  <blocxx/Format.hpp>
 
@@ -93,8 +94,36 @@ BasicConstraintsExtension::getPathLength() const
 }
 
 void
-BasicConstraintsExtension::commit2Config(CA& ca, Type type)
+BasicConstraintsExtension::commit2Config(CA& ca, Type type) const
 {
+    if(!valid()) {
+        LOGIT_ERROR("invalid BasicConstraintsExtension object");
+        BLOCXX_THROW(limal::ValueException, "invalid BasicConstraintsExtension object");
+    }
+
+    // This extension is not supported by type CRL
+    if(type == CRL) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    if(isPresent()) {
+        String basicConstraintsString;
+
+        if(isCritical()) basicConstraintsString += "critical,";
+
+        if(this->ca) {
+            basicConstraintsString += "CA::TRUE";
+            if(pathlen > -1) {
+                basicConstraintsString += "pathlen:"+pathlen;
+            }
+        } else {
+            basicConstraintsString += "CA::FALSE";
+        }
+        ca.getConfig()->setValue(type2Section(type, true), "basicConstraints", basicConstraintsString);
+    } else {
+        ca.getConfig()->deleteValue(type2Section(type, true), "basicConstraints");
+    }
 }
 
 bool

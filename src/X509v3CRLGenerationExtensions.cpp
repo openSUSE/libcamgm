@@ -22,6 +22,7 @@
 
 
 #include  <limal/ca-mgm/X509v3CRLGenerationExtensions.hpp>
+#include  <limal/ca-mgm/CA.hpp>
 #include  <limal/Exception.hpp>
 
 #include  "Utils.hpp"
@@ -91,8 +92,15 @@ X509v3CRLGenerationExtensions::getIssuerAlternativeName() const
 }
 
 void
-X509v3CRLGenerationExtensions::commit2Config(CA& ca, Type type)
+X509v3CRLGenerationExtensions::commit2Config(CA& ca, Type type) const
 {
+    if(!valid()) {
+        LOGIT_ERROR("invalid X509v3RequestExtensions object");
+        BLOCXX_THROW(limal::ValueException, "invalid X509v3RequestExtensions object");
+    }
+    
+    authorityKeyIdentifier.commit2Config(ca, type);
+    issuerAlternativeName.commit2Config(ca, type);
 }
 
 bool

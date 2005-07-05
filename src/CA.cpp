@@ -21,10 +21,12 @@
 /-*/
 
 #include  <limal/ca-mgm/CA.hpp>
+#include  <limal/Exception.hpp>
 #include  "CertificateData_Priv.hpp"
 #include  "RequestData_Priv.hpp"
 #include  "CRLData_Priv.hpp"
 
+#include  "Utils.hpp"
 
 using namespace limal;
 using namespace limal::ca_mgm;
@@ -32,7 +34,8 @@ using namespace blocxx;
 
 CA::CA(const String& caName, const String& caPasswd)
     : caName(caName), caPasswd(caPasswd), 
-      config(new CAConfig(String(REPOSITORY)+"/"+caName+"/openssl.cnf.tmpl"))
+      config(NULL),
+      templ(new CAConfig(String(REPOSITORY)+"/"+caName+"/openssl.cnf.tmpl"))
 {
 }
 
@@ -97,26 +100,36 @@ CA::importRequest(const ByteArray& request,
 CertificateIssueData
 CA::getIssueDefaults(Type type)
 {
-    return CertificateIssueData();
+    CertificateIssueData cid = CertificateIssueData(*this, type);
+    return cid;
 }
 
 RequestGenerationData
 CA::getRequestDefaults(Type type)
 {
-    return RequestGenerationData();
+    RequestGenerationData rgd = RequestGenerationData(*this, type);
+
+    return rgd;
 }
 
 
 CRLGenerationData
 CA::getCRLDefaults()
 {
-    return CRLGenerationData();
+    CRLGenerationData  crlgd = CRLGenerationData(*this, CRL);
+    return crlgd;
 }
 
 bool
 CA::setIssueDefaults(Type type,
                      const CertificateIssueData& defaults)
 {
+    initConfigFile();
+    if(config) {
+        defaults.commit2Config(*this, type);
+        commitConfig2Template();
+        return true;
+    }
     return false;
 }
 
@@ -124,12 +137,24 @@ bool
 CA::setRequestDefaults(Type type,
                        const RequestGenerationData& defaults)
 {
+    initConfigFile();
+    if(config) {
+        defaults.commit2Config(*this, type);
+        commitConfig2Template();
+        return true;
+    }
     return false;
 }
 
 bool
 CA::setCRLDefaults(const CRLGenerationData& defaults)
 {
+    initConfigFile();
+    if(config) {
+        defaults.commit2Config(*this, CRL);
+        commitConfig2Template();
+        return true;
+    }
     return false;
 }
 
@@ -254,7 +279,35 @@ CA::verifyCertificate(const String& certificateName,
     return false;
 }
 
+void
+CA::initConfigFile()
+{
+    if(templ) {
+        config = templ->clone(String(REPOSITORY)+"/"+caName+"/openssl.cnf");
+    } else {
+        LOGIT_ERROR("template not initialized");
+        BLOCXX_THROW(limal::RuntimeException, "template not initialized");
+    }
+}
 
+void
+CA::commitConfig2Template()
+{
+    if(config) {
+        templ = config->clone(String(REPOSITORY)+"/"+caName+"/openssl.cnf.tmpl");
+        delete config;
+        config = NULL;
+    } else {
+        LOGIT_ERROR("config not initialized");
+        BLOCXX_THROW(limal::RuntimeException, "config not initialized");
+    }
+}
+
+CAConfig*
+CA::getConfig()
+{
+    return config;
+}
 
 /* ##########################################################################
  * ###          static Functions                                          ###
@@ -267,6 +320,26 @@ CA::createRootCA(const String& caName,
                  const RequestGenerationData& caRequestData,
                  const CertificateIssueData& caIssueData)
 {
+    // Create the infrastructure
+
+    // Create CA Object
+    CA tmpCA = CA(caName, caPasswd);
+
+    // copy template to config
+    tmpCA.initConfigFile();
+    
+    // write request data to config
+    caRequestData.commit2Config(tmpCA, CA_Req);
+
+    // create request
+
+    // write certificate issue data to config
+    caIssueData.commit2Config(tmpCA, CA_Cert);
+
+    // create the CA certificate
+
+    // some clean-ups 
+
     return false;
 }
        

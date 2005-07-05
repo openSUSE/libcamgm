@@ -48,6 +48,7 @@ namespace CA_MGM_NAMESPACE {
         CRL
     };
 
+
     /* obsolete */
     enum CertType {
         CertType_Client,

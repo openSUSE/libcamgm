@@ -20,6 +20,7 @@
 
 /-*/
 #include  <limal/ca-mgm/CertificatePoliciesExtension.hpp>
+#include  <limal/ca-mgm/CA.hpp>
 #include  <limal/ValueRegExCheck.hpp>
 #include  <limal/Exception.hpp>
 #include  <blocxx/Format.hpp>
@@ -92,6 +93,43 @@ blocxx::List<blocxx::Int32>
 UserNotice::getNoticeNumbers()
 {
     return noticeNumbers;
+}
+
+blocxx::String
+UserNotice::commit2Config(CA& ca, Type type, blocxx::UInt32 num) const
+{
+    if(!valid()) {
+        LOGIT_ERROR("invalid UserNotice object");
+        BLOCXX_THROW(limal::ValueException, "invalid UserNotice object");
+    }
+
+    // These types are not supported by this object
+    if(type == CRL        || type == Client_Req ||
+       type == Server_Req || type == CA_Req      ) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    // we need a User Notice section
+    String sectionName = String("notice")+String(num);
+
+    if(!explicitText.empty()) {
+        ca.getConfig()->setValue(sectionName, "explicitText", explicitText);
+    }
+
+    if(!organization.empty()) {
+        ca.getConfig()->setValue(sectionName, "organization", organization);
+
+        String numbers;
+        blocxx::List<blocxx::Int32>::const_iterator it = noticeNumbers.begin();
+        for(;it != noticeNumbers.end(); ++it) {
+
+            numbers += String(*it)+",";
+        }
+        ca.getConfig()->setValue(sectionName, "noticeNumbers", 
+                                 numbers.erase(numbers.length()-2));
+    }
+    return ("@"+sectionName);
 }
 
 bool
@@ -217,6 +255,47 @@ blocxx::List<UserNotice>
 CertificatePolicy::getUserNoticeList() const
 {
     return noticeList;
+}
+
+blocxx::String
+CertificatePolicy::commit2Config(CA& ca, Type type, blocxx::UInt32 num) const
+{
+    if(!valid()) {
+        LOGIT_ERROR("invalid CertificatePolicy object");
+        BLOCXX_THROW(limal::ValueException, "invalid CertificatePolicy object");
+    }
+
+    // These types are not supported by this object
+    if(type == CRL        || type == Client_Req ||
+       type == Server_Req || type == CA_Req      ) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    if(cpsURI.empty()) {
+        // no practice statement; return directly the policyIdentifier
+        return policyIdentifier;
+    }
+    // we need a policy section
+    String sectionName = String("polsec")+String(num);
+
+    ca.getConfig()->setValue(sectionName, "policyIdentifier", policyIdentifier);
+
+    StringList::const_iterator it = cpsURI.begin();
+    for(blocxx::UInt32 i = 1;it != cpsURI.end(); ++it, ++i) {
+
+        ca.getConfig()->setValue(sectionName, "CPS."+String(i),(*it));
+        
+    }
+
+    blocxx::List<UserNotice>::const_iterator nit = noticeList.begin();
+    for(blocxx::UInt32 j = 1;nit != noticeList.end(); ++nit, ++j) {
+
+        String n = (*nit).commit2Config(ca, type, j);
+        ca.getConfig()->setValue(sectionName, "userNotice."+String(j),n);
+    }
+
+    return ("@"+sectionName);
 }
 
 bool
@@ -368,8 +447,37 @@ CertificatePoliciesExtension::getPolicies() const
 
 
 void
-CertificatePoliciesExtension::commit2Config(CA& ca, Type type)
+CertificatePoliciesExtension::commit2Config(CA& ca, Type type) const
 {
+    if(!valid()) {
+        LOGIT_ERROR("invalid CertificatePoliciesExtension object");
+        BLOCXX_THROW(limal::ValueException, "invalid CertificatePoliciesExtension object");
+    }
+
+    // These types are not supported by this object
+    if(type == CRL        || type == Client_Req ||
+       type == Server_Req || type == CA_Req      ) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    if(isPresent()) {
+        String extString;
+
+        if(isCritical()) extString += "critical,";
+
+        if(ia5org) extString += "ia5org,";
+
+        blocxx::List<CertificatePolicy>::const_iterator it = policies.begin();
+        for(blocxx::UInt32 i = 0;it != policies.end(); ++it, ++i) {
+            extString += (*it).commit2Config(ca, type, i) + ",";
+        }
+
+        ca.getConfig()->setValue(type2Section(type, true), "certificatePolicies",
+                                 extString.erase(extString.length()-2));
+    } else {
+        ca.getConfig()->deleteValue(type2Section(type, true), "certificatePolicies");
+    }
 }
 
 bool

@@ -21,6 +21,7 @@
 /-*/
 
 #include  <limal/ca-mgm/AuthorityInfoAccessExtension.hpp>
+#include  <limal/ca-mgm/CA.hpp>
 #include  <limal/ValueRegExCheck.hpp>
 #include  <limal/Exception.hpp>
 #include  <blocxx/Format.hpp>
@@ -178,12 +179,35 @@ AuthorityInfoAccessExtension::getAuthorityInformation() const
 }
 
 void 
-AuthorityInfoAccessExtension::commit2Config(CA& ca, Type type)
+AuthorityInfoAccessExtension::commit2Config(CA& ca, Type type) const
 {
-    if(!isPresent()) {
-        return;
+    if(!valid()) {
+        LOGIT_ERROR("invalid AuthorityInfoAccessExtension object");
+        BLOCXX_THROW(limal::ValueException, "invalid AuthorityInfoAccessExtension object");
     }
 
+    // These types are not supported by this object
+    if(type == Client_Req || type == Server_Req ||
+       type == CA_Req     || type == CRL           ) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    if(isPresent()) {
+        String extString;
+
+        if(isCritical()) extString += "critical,";
+
+        blocxx::List<AuthorityInformation>::const_iterator it = info.begin();
+        for(;it != info.end(); ++it) {
+            extString += (*it).getAccessOID() + ";" + (*it).getLocation().toString()+",";
+        }
+
+        ca.getConfig()->setValue(type2Section(type, true), "authorityInfoAccess",
+                                 extString.erase(extString.length()-2));
+    } else {
+        ca.getConfig()->deleteValue(type2Section(type, true), "authorityInfoAccess");
+    }
 }
 
 bool

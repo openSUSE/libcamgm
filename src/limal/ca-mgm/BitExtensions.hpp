@@ -44,7 +44,7 @@ namespace CA_MGM_NAMESPACE {
         void           setValue(blocxx::UInt32 value);
         blocxx::UInt32 getValue() const;
 
-        virtual void   commit2Config(CA& ca, Type type) = 0;
+        virtual void   commit2Config(CA& ca, Type type) const = 0;
 
         virtual bool                 valid() const  = 0;
         virtual blocxx::StringArray  verify() const = 0;
@@ -81,7 +81,7 @@ namespace CA_MGM_NAMESPACE {
 
         bool isEnabledFor(KeyUsage ku) const;
 
-        virtual void commit2Config(CA& ca, Type type);
+        virtual void commit2Config(CA& ca, Type type) const ;
 
         virtual bool                 valid() const;
         virtual blocxx::StringArray  verify() const;
@@ -116,7 +116,7 @@ namespace CA_MGM_NAMESPACE {
         
         bool           isEnabledFor(NsCertType nsCertType) const;
 
-        virtual void   commit2Config(CA& ca, Type type);
+        virtual void   commit2Config(CA& ca, Type type) const;
 
         virtual bool                 valid() const;
         virtual blocxx::StringArray  verify() const;
@@ -158,7 +158,7 @@ namespace CA_MGM_NAMESPACE {
         void                       addAdditionalOID(String oid);
         //bool                       deleteAdditionalOID(String oid);
 
-        virtual void               commit2Config(CA& ca, Type type);
+        virtual void               commit2Config(CA& ca, Type type) const;
         
         virtual bool                 valid() const;
         virtual blocxx::StringArray  verify() const;

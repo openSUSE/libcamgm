@@ -43,6 +43,10 @@ namespace CA_MGM_NAMESPACE
     class RequestGenerationData {
     public:
         RequestGenerationData();
+
+        /**
+         * Read the Request generation defaults
+         */
         RequestGenerationData(CA& ca, Type type);
         RequestGenerationData(const RequestGenerationData& data);
         virtual ~RequestGenerationData();
@@ -64,7 +68,10 @@ namespace CA_MGM_NAMESPACE
         void                setExtensions(const X509v3RequestExtensions &ext);
         X509v3RequestExtensions getExtensions() const;
 
-        void                commit2Config(CA& ca, Type type);
+        /**
+         * write configuration file
+         */
+        void                commit2Config(CA& ca, Type type) const;
 
         virtual bool                 valid() const;
         virtual blocxx::StringArray  verify() const;

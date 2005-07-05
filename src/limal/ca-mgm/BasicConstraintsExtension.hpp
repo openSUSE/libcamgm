@@ -47,7 +47,7 @@ namespace CA_MGM_NAMESPACE {
         bool           isCA() const;
         blocxx::Int32  getPathLength() const;
 
-        virtual void commit2Config(CA& ca, Type type);
+        virtual void commit2Config(CA& ca, Type type) const;
 
         virtual bool                 valid() const;  
         virtual blocxx::StringArray  verify() const; 

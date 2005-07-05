@@ -48,7 +48,7 @@ namespace CA_MGM_NAMESPACE {
         bool   isCritical() const { return (present)?critical:false; }
         bool   isPresent() const  { return present; }
 
-        virtual void commit2Config(CA& ca, Type type) = 0;
+        virtual void commit2Config(CA& ca, Type type) const = 0;
 
         virtual bool                 valid() const =0;
         virtual blocxx::StringArray  verify() const =0;

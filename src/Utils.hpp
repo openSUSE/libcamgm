@@ -27,8 +27,12 @@
 #define   LIMAL_CA_MGM_UTILS_HPP
 
 #include <limal/Logger.hpp>
+#include <limal/Exception.hpp>
 #include <limal/ValueRegExCheck.hpp>
 #include <limal/ca-mgm/LiteralValues.hpp>
+#include <limal/ca-mgm/CommonData.hpp>
+
+#include <blocxx/Format.hpp>
 
 // -------------------------------------------------------------------
 #define LOGIT(level,message)	\
@@ -116,6 +120,57 @@ checkLiteralValueList(const blocxx::List<limal::ca_mgm::LiteralValue>& list)
     }
     return result;
 }
+
+inline static blocxx::String type2Section(limal::ca_mgm::Type type, bool v3section) {
+    switch(type) {
+    case limal::ca_mgm::CA_Req:
+        if(!v3section)
+            return "req";
+        else
+            return "v3_req_ca";
+        break;
+    case limal::ca_mgm::Client_Req:
+        if(!v3section)
+            return "req_client";
+        else
+            return "v3_req_client";
+        break;
+    case limal::ca_mgm::Server_Req:
+        if(!v3section)
+                return "req_server";
+        else
+            return "v3_req_server";
+        break;
+    case limal::ca_mgm::CA_Cert:
+        if(!v3section)
+            return "ca";
+        else
+            return "v3_ca";
+        break;
+    case limal::ca_mgm::Client_Cert:
+        if(!v3section)
+            return "client_cert";
+        else
+            return "v3_client";
+        break;
+    case limal::ca_mgm::Server_Cert:
+        if(!v3section)
+            return "server_cert";
+        else
+            return "v3_server";
+        break;
+    case limal::ca_mgm::CRL:
+        if(!v3section)
+            return "ca";
+        else
+            return "v3_crl";
+        break;
+    default:
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, blocxx::Format("wrong type: %1", type).c_str());
+    }
+}
+
 
 // -------------------------------------------------------------------
 

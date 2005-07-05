@@ -49,8 +49,10 @@ namespace CA_MGM_NAMESPACE {
         String                      getOrganization() const;
         blocxx::List<blocxx::Int32> getNoticeNumbers();
 
-        virtual bool                    valid() const;
-        virtual blocxx::StringArray     verify() const;
+        virtual blocxx::String      commit2Config(CA& ca, Type type, blocxx::UInt32 num) const;
+
+        virtual bool                valid() const;
+        virtual blocxx::StringArray verify() const;
 
     private:
         String              explicitText;      // max 200 characters
@@ -81,8 +83,10 @@ namespace CA_MGM_NAMESPACE {
         void                     setUserNoticeList(const blocxx::List<UserNotice>& list);
         blocxx::List<UserNotice> getUserNoticeList() const;
         
-        virtual bool                    valid() const;
-        virtual blocxx::StringArray     verify() const;
+        virtual blocxx::String   commit2Config(CA& ca, Type type, blocxx::UInt32 num) const;
+
+        virtual bool                valid() const;
+        virtual blocxx::StringArray verify() const;
 
     private:
         String                   policyIdentifier;  // required
@@ -111,7 +115,7 @@ namespace CA_MGM_NAMESPACE {
         void                    setPolicies(const blocxx::List<CertificatePolicy>& policies);
         blocxx::List<CertificatePolicy> getPolicies() const;
 
-        virtual void commit2Config(CA& ca, Type type);
+        virtual void commit2Config(CA& ca, Type type) const;
 
         virtual bool                    valid() const;
         virtual blocxx::StringArray     verify() const;
