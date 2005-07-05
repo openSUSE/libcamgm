@@ -40,9 +40,29 @@ default_md=sha1
 default_keyfile=privkey.pem
 distinguished_name=req_distinguished_name
 attributes=req_attributes
-x509_extensions=v3_ca
+x509_extensions=v3_req_ca
 string_mask=nombstr
-req_extensions=v3_req
+req_extensions=v3_req_ca
+
+[req_client]
+default_bits=2048
+default_md=sha1
+default_keyfile=privkey.pem
+distinguished_name=req_distinguished_name
+attributes=req_attributes
+x509_extensions=v3_req_client
+string_mask=nombstr
+req_extensions=v3_req_client
+
+[req_server]
+default_bits=2048
+default_md=sha1
+default_keyfile=privkey.pem
+distinguished_name=req_distinguished_name
+attributes=req_attributes
+x509_extensions=v3_req_server
+string_mask=nombstr
+req_extensions=v3_req_server
 
 #utf8                = yes
 # used to sign a client cert
@@ -163,9 +183,20 @@ authorityKeyIdentifier=keyid:always,issuer:always
 subjectAltName=email:copy
 issuerAltName=issuer:copy
 
-[v3_req]
+[v3_req_ca]
+basicConstraints=CA:TRUE
+nsCertType=sslCA, emailCA
+keyUsage=cRLSign, keyCertSign
+
+[v3_req_client]
 basicConstraints=CA:FALSE
+nsCertType=client, email, objsign
 keyUsage=nonRepudiation, digitalSignature, keyEncipherment
+
+[v3_req_server]
+basicConstraints=CA:FALSE
+nsCertType=server
+keyUsage=digitalSignature, keyEncipherment
 
 [v3_crl]
 authorityKeyIdentifier=keyid:always,issuer:always
