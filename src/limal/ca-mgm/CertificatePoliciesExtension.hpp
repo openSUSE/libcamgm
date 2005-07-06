@@ -40,6 +40,8 @@ namespace CA_MGM_NAMESPACE {
 
         UserNotice& operator=(const UserNotice& notice);
 
+        void                initWithSection(CA& ca, Type type, const String& sectionName);
+
         void                setExplicitText(const String& text);
         String              getExplicitText() const;
 
@@ -73,6 +75,8 @@ namespace CA_MGM_NAMESPACE {
         virtual ~CertificatePolicy();
         
         CertificatePolicy& operator=(const CertificatePolicy& policy);
+
+        void                initWithSection(CA& ca, Type type, const String& sectionName);
 
         void                setPolicyIdentifier(const String& policyIdentifier);
         String              getPolicyIdentifier() const;

@@ -39,7 +39,7 @@ CertificateIssueData::CertificateIssueData()
 
 CertificateIssueData::CertificateIssueData(CA& ca, Type type)
     : notBefore(0), notAfter(0), 
-      extensions(X509v3CertificateIssueExtensions())
+      extensions(X509v3CertificateIssueExtensions(ca, type))
 {
 }
 

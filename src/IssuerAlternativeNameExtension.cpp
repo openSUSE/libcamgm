@@ -50,6 +50,38 @@ IssuerAlternativeNameExtension::IssuerAlternativeNameExtension(bool copyIssuer,
 IssuerAlternativeNameExtension::IssuerAlternativeNameExtension(CA& ca, Type type)
     :ExtensionBase(), issuerCopy(false), altNameList(blocxx::List<LiteralValue>())
 {
+    // These types are not supported by this object
+    if(type == Client_Req || type == Server_Req || type == CA_Req) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    bool p = ca.getConfig()->exists(type2Section(type, true), "issuerAltName");
+    if(p) {
+        StringArray   sp   = PerlRegEx("\\s*,\\s*")
+            .split(ca.getConfig()->getValue(type2Section(type, true), "issuerAltName"));
+        if(sp[0].equalsIgnoreCase("critical"))  setCritical(true);
+
+        StringArray::const_iterator it = sp.begin();
+        for(; it != sp.end(); ++it) {
+            if((*it).indexOf(":") != String::npos) {
+                if((*it).equalsIgnoreCase("issuer:copy"))  
+                    issuerCopy = true;
+                else {
+
+                    try {
+                        
+                        LiteralValue lv = LiteralValue(*it);
+                        altNameList.push_back(lv);
+                    
+                    } catch(blocxx::Exception& e) {
+                        LOGIT_ERROR("invalid value: " << *it);
+                    }
+                }
+            }
+        }
+    }
+    setPresent(p);
 }
 
 IssuerAlternativeNameExtension::IssuerAlternativeNameExtension(const IssuerAlternativeNameExtension& extension)

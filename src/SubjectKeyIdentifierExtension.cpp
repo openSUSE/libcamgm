@@ -39,6 +39,31 @@ SubjectKeyIdentifierExtension::SubjectKeyIdentifierExtension()
 SubjectKeyIdentifierExtension::SubjectKeyIdentifierExtension(CA& ca, Type type)
     : ExtensionBase(), autodetect(false), keyid(String())
 {
+    // These types are not supported by this object
+    if(type == CRL) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    bool p = ca.getConfig()->exists(type2Section(type, true), "subjectKeyIdentifier");
+    if(p) {
+        String        str;
+
+        StringArray   sp   = PerlRegEx("\\s*,\\s*")
+            .split(ca.getConfig()->getValue(type2Section(type, true), "subjectKeyIdentifier"));
+        if(sp[0].equalsIgnoreCase("critical")) {
+            setCritical(true);
+            str = sp[1];
+        } else {
+            str = sp[0];
+        }
+
+        if(str.equalsIgnoreCase("hash"))  
+            setSubjectKeyIdentifier(true, String()); 
+        else
+            setSubjectKeyIdentifier(false, str);
+    }
+    setPresent(p);
 }
 
 SubjectKeyIdentifierExtension::SubjectKeyIdentifierExtension(bool autoDetect, const String& keyid)

@@ -34,6 +34,14 @@ X509v3RequestExtensions::X509v3RequestExtensions()
 }
 
 X509v3RequestExtensions::X509v3RequestExtensions(CA& ca, Type type)
+    : nsSslServerName(ca, type),
+      nsComment(ca, type),
+      keyUsage(ca, type),
+      nsCertType(ca, type),
+      basicConstraints(ca, type),
+      extendedKeyUsage(ca, type),
+      subjectKeyIdentifier(ca, type),
+      subjectAlternativeName(ca, type)
 {
 }
 

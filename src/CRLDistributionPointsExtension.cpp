@@ -36,7 +36,36 @@ CRLDistributionPointsExtension::CRLDistributionPointsExtension()
 
 CRLDistributionPointsExtension::CRLDistributionPointsExtension(CA& ca, Type type)
     : ExtensionBase(), altNameList(blocxx::List<LiteralValue>())
-{}
+{
+    // These types are not supported by this object
+    if(type == CRL        || type == Client_Req ||
+       type == Server_Req || type == CA_Req      ) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    bool p = ca.getConfig()->exists(type2Section(type, true), "crlDistributionPoints");
+    if(p) {
+        StringArray   sp   = PerlRegEx("\\s*,\\s*")
+            .split(ca.getConfig()->getValue(type2Section(type, true), "crlDistributionPoints"));
+        if(sp[0].equalsIgnoreCase("critical"))  setCritical(true);
+
+        StringArray::const_iterator it = sp.begin();
+        for(; it != sp.end(); ++it) {
+            if((*it).indexOf(":") != String::npos) {
+                try {
+                    
+                    LiteralValue lv = LiteralValue(*it);
+                    altNameList.push_back(lv);
+                    
+                } catch(blocxx::Exception& e) {
+                    LOGIT_ERROR("invalid value: " << *it);
+                }
+            }
+        }
+    }
+    setPresent(p);
+}
 
 CRLDistributionPointsExtension::CRLDistributionPointsExtension(const CRLDistributionPointsExtension& extension)
     : ExtensionBase(), altNameList(extension.altNameList)

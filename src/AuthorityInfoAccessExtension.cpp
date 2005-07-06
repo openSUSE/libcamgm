@@ -138,7 +138,32 @@ AuthorityInfoAccessExtension::AuthorityInfoAccessExtension(const AuthorityInfoAc
 AuthorityInfoAccessExtension::AuthorityInfoAccessExtension(CA& ca, Type type)
     : ExtensionBase()
 {
-    //Parse the config file
+    // These types are not supported by this object
+    if(type == Client_Req || type == Server_Req ||
+       type == CA_Req     || type == CRL           ) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    bool p = ca.getConfig()->exists(type2Section(type, true), "authorityInfoAccess");
+    if(p) {
+        StringArray   sp   = PerlRegEx("\\s*,\\s*")
+            .split(ca.getConfig()->getValue(type2Section(type, true), "authorityInfoAccess"));
+        if(sp[0].equalsIgnoreCase("critical"))  setCritical(true);
+
+        StringArray::const_iterator it = sp.begin();
+        for(; it != sp.end(); ++it) {
+            StringArray al = PerlRegEx(";").split(*it);
+
+            try {
+                AuthorityInformation ai = AuthorityInformation(al[0], LiteralValue(al[1]));
+
+            } catch(blocxx::Exception& e) {
+                LOGIT_ERROR("invalid value: " << *it);
+            }
+        }
+    }
+    setPresent(p);
 }
 
 AuthorityInfoAccessExtension::~AuthorityInfoAccessExtension() {}

@@ -36,7 +36,34 @@ AuthorityKeyIdentifierGenerateExtension::AuthorityKeyIdentifierGenerateExtension
 
 AuthorityKeyIdentifierGenerateExtension::AuthorityKeyIdentifierGenerateExtension(CA& ca, Type type)
     : ExtensionBase(), keyid(KeyID_none), issuer(Issuer_none)
-{}
+{
+    // These types are not supported by this object
+    if(type == Client_Req || type == Server_Req || type == CA_Req) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    bool p = ca.getConfig()->exists(type2Section(type, true), "authorityKeyIdentifier");
+    if(p) {
+        StringArray   sp   = PerlRegEx("\\s*,\\s*")
+            .split(ca.getConfig()->getValue(type2Section(type, true), "authorityKeyIdentifier"));
+        if(sp[0].equalsIgnoreCase("critical")) {
+            setCritical(true);
+            sp.remove(0);
+        }
+
+        StringArray::const_iterator it = sp.begin();
+        for(; it != sp.end(); ++it) {
+
+            if((*it).equalsIgnoreCase("keyid")) keyid = KeyID_normal;
+            else if((*it).equalsIgnoreCase("keyid:always")) keyid = KeyID_always;
+            else if((*it).equalsIgnoreCase("issuer")) issuer = Issuer_normal;
+            else if((*it).equalsIgnoreCase("issuer:always")) issuer = Issuer_always;
+            
+        }
+    }
+    setPresent(p);
+}
 
 AuthorityKeyIdentifierGenerateExtension::AuthorityKeyIdentifierGenerateExtension(KeyID kid, Issuer iss)
     : ExtensionBase(), keyid(kid), issuer(iss)

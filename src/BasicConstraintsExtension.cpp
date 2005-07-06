@@ -37,7 +37,35 @@ BasicConstraintsExtension::BasicConstraintsExtension()
 
 BasicConstraintsExtension::BasicConstraintsExtension(CA& ca, Type type)
     : ExtensionBase(), ca(false), pathlen(-1)
-{}
+{
+    // These types are not supported by this object
+    if(type == CRL) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    bool p = ca.getConfig()->exists(type2Section(type, true), "basicConstraints");
+    if(p) {
+        bool          isCA = false;
+        blocxx::Int32 pl   = -1;
+
+        StringArray   sp   = PerlRegEx("\\s*,\\s*")
+            .split(ca.getConfig()->getValue(type2Section(type, true), "basicConstraints"));
+        if(sp[0].equalsIgnoreCase("critical"))  setCritical(true); 
+
+        StringArray::const_iterator it = sp.begin();
+        for(; it != sp.end(); ++it) {
+            if((*it).equalsIgnoreCase("ca:true"))  isCA = true; 
+            else if((*it).equalsIgnoreCase("ca:false"))  isCA = false;
+            else if((*it).startsWith("pathlen:", String::E_CASE_INSENSITIVE)) {
+                StringArray plA = PerlRegEx(":").split(*it);
+                pl = plA[1].toInt32();
+            }
+        }
+        setBasicConstraints(isCA, pl);
+    }
+    setPresent(p);
+}
 
 BasicConstraintsExtension::BasicConstraintsExtension(bool isCa, blocxx::Int32 pathLength)
     : ExtensionBase(), ca(isCa), pathlen(pathLength)

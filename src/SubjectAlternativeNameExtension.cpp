@@ -1,3 +1,4 @@
+
 /*---------------------------------------------------------------------\
 |                                                                      |
 |                     _     _   _   _     __     _                     |
@@ -37,6 +38,38 @@ SubjectAlternativeNameExtension::SubjectAlternativeNameExtension()
 SubjectAlternativeNameExtension::SubjectAlternativeNameExtension(CA& ca, Type type)
     : ExtensionBase(), emailCopy(false), altNameList(blocxx::List<LiteralValue>())
 {
+    // These types are not supported by this object
+    if(type == CRL) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    bool p = ca.getConfig()->exists(type2Section(type, true), "subjectAltName");
+    if(p) {
+        StringArray   sp   = PerlRegEx("\\s*,\\s*")
+            .split(ca.getConfig()->getValue(type2Section(type, true), "subjectAltName"));
+        if(sp[0].equalsIgnoreCase("critical"))  setCritical(true);
+
+        StringArray::const_iterator it = sp.begin();
+        for(; it != sp.end(); ++it) {
+            if((*it).indexOf(":") != String::npos) {
+                if((*it).equalsIgnoreCase("email:copy"))  
+                    emailCopy = true;
+                else {
+
+                    try {
+                        
+                        LiteralValue lv = LiteralValue(*it);
+                        altNameList.push_back(lv);
+                    
+                    } catch(blocxx::Exception& e) {
+                        LOGIT_ERROR("invalid value: " << *it);
+                    }
+                }
+            }
+        }
+    }
+    setPresent(p);
 }
 
 SubjectAlternativeNameExtension::SubjectAlternativeNameExtension(bool copyEmail,

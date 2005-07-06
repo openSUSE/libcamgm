@@ -36,6 +36,24 @@ X509v3CertificateIssueExtensions::X509v3CertificateIssueExtensions()
 }
 
 X509v3CertificateIssueExtensions::X509v3CertificateIssueExtensions(CA& ca, Type type)
+    : nsBaseUrl(ca, type),
+      nsRevocationUrl(ca, type),
+      nsCaRevocationUrl(ca, type),
+      nsRenewalUrl(ca, type),
+      nsCaPolicyUrl(ca, type),
+      nsSslServerName(ca, type),
+      nsComment(ca, type),
+      keyUsage(ca, type),
+      nsCertType(ca, type),
+      basicConstraints(ca, type),
+      extendedKeyUsage(ca, type),
+      subjectKeyIdentifier(ca, type),
+      authorityKeyIdentifier(ca, type),
+      subjectAlternativeName(ca, type),
+      issuerAlternativeName(ca, type),
+      authorityInfoAccess(ca, type),
+      crlDistributionPoints(ca, type),
+      certificatePolicies(ca, type)
 {
 }
 

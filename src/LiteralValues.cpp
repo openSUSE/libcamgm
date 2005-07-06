@@ -45,6 +45,32 @@ LiteralValue::LiteralValue(const String &type, const String &value)
     }
 }
 
+LiteralValue::LiteralValue(const String& value)
+    : literalType(String()), literalValue(String())
+{
+    StringArray   sp   = PerlRegEx(":").split(value);
+
+    if(sp[0].equalsIgnoreCase("email")) {
+        literalType  = sp[0];
+        literalValue = sp[1];
+    } else if(sp[0].equalsIgnoreCase("URI")) {
+        literalType  = sp[0];
+        literalValue = sp[1];
+    } else if(sp[0].equalsIgnoreCase("DNS")) {
+        literalType  = sp[0];
+        literalValue = sp[1];
+    } else if(sp[0].equalsIgnoreCase("RID")) {
+        literalType  = sp[0];
+        literalValue = sp[1];
+    } else if(sp[0].equalsIgnoreCase("IP")) {
+        literalType  = sp[0];
+        literalValue = sp[1];
+    } else {
+        LOGIT_DEBUG("unknown type: "<< sp[0] << " = " << sp[1]);
+        BLOCXX_THROW(limal::ValueException , "unknown type");
+    }
+}
+
 LiteralValue::LiteralValue(const LiteralValue& value)
     : literalType(value.literalType), literalValue(value.literalValue)
 {}

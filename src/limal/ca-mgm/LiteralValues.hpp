@@ -33,6 +33,7 @@ namespace CA_MGM_NAMESPACE {
     public:
         LiteralValue();
         LiteralValue(const String &type, const String &value);
+        LiteralValue(const String& value);
         LiteralValue(const LiteralValue& value);
 
         LiteralValue& operator=(const LiteralValue& value);

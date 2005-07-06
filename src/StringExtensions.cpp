@@ -76,7 +76,26 @@ NsBaseUrlExtension::NsBaseUrlExtension(const String &v)
 
 NsBaseUrlExtension::NsBaseUrlExtension(CA& ca, Type type)
     : StringExtension(String())
-{}
+{
+    // These types are not supported by this object
+    if(type == CRL) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    bool p = ca.getConfig()->exists(type2Section(type, true), "nsBaseUrl");
+    if(p) {
+        StringArray   sp   = PerlRegEx("\\s*,\\s*")
+            .split(ca.getConfig()->getValue(type2Section(type, true), "nsBaseUrl"));
+        if(sp[0].equalsIgnoreCase("critical")) {
+            setCritical(true); 
+            value = sp[1];
+        } else {
+            value = sp[0];
+        }
+    }
+    setPresent(p);
+}
 
 NsBaseUrlExtension::NsBaseUrlExtension(const NsBaseUrlExtension &extension)
     : StringExtension(extension)
@@ -187,7 +206,26 @@ NsRevocationUrlExtension::NsRevocationUrlExtension(const String &v)
 
 NsRevocationUrlExtension::NsRevocationUrlExtension(CA& ca, Type type)
     : StringExtension(String())
-{}
+{
+    // These types are not supported by this object
+    if(type == CRL) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+    
+    bool p = ca.getConfig()->exists(type2Section(type, true), "nsRevocationUrl");
+    if(p) {
+        StringArray   sp   = PerlRegEx("\\s*,\\s*")
+            .split(ca.getConfig()->getValue(type2Section(type, true), "nsRevocationUrl"));
+        if(sp[0].equalsIgnoreCase("critical")) {
+            setCritical(true); 
+            value = sp[1];
+        } else {
+            value = sp[0];
+        }
+    }
+    setPresent(p);
+}
 
 NsRevocationUrlExtension::NsRevocationUrlExtension(const NsRevocationUrlExtension &extension)
     : StringExtension(extension)
@@ -299,7 +337,26 @@ NsCaRevocationUrlExtension::NsCaRevocationUrlExtension(const String &v)
 
 NsCaRevocationUrlExtension::NsCaRevocationUrlExtension(CA& ca, Type type)
     : StringExtension(String())
-{}
+{
+    // These types are not supported by this object
+    if(type == CRL) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    bool p = ca.getConfig()->exists(type2Section(type, true), "nsCaRevocationUrl");
+    if(p) {
+        StringArray   sp   = PerlRegEx("\\s*,\\s*")
+            .split(ca.getConfig()->getValue(type2Section(type, true), "nsCaRevocationUrl"));
+        if(sp[0].equalsIgnoreCase("critical")) {
+            setCritical(true); 
+            value = sp[1];
+        } else {
+            value = sp[0];
+        }
+    }
+    setPresent(p);
+}
 
 NsCaRevocationUrlExtension::NsCaRevocationUrlExtension(const NsCaRevocationUrlExtension &extension)
     : StringExtension(extension)
@@ -410,7 +467,26 @@ NsRenewalUrlExtension::NsRenewalUrlExtension(const String &v)
 
 NsRenewalUrlExtension::NsRenewalUrlExtension(CA& ca, Type type)
     : StringExtension(String())
-{}
+{
+    // These types are not supported by this object
+    if(type == CRL) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    bool p = ca.getConfig()->exists(type2Section(type, true), "nsRenewalUrl");
+    if(p) {
+        StringArray   sp   = PerlRegEx("\\s*,\\s*")
+            .split(ca.getConfig()->getValue(type2Section(type, true), "nsRenewalUrl"));
+        if(sp[0].equalsIgnoreCase("critical")) {
+            setCritical(true); 
+            value = sp[1];
+        } else {
+            value = sp[0];
+        }
+    }
+    setPresent(p);
+}
 
 NsRenewalUrlExtension::NsRenewalUrlExtension(const NsRenewalUrlExtension &extension)
     : StringExtension(extension)
@@ -521,7 +597,26 @@ NsCaPolicyUrlExtension::NsCaPolicyUrlExtension(const String &v)
 
 NsCaPolicyUrlExtension::NsCaPolicyUrlExtension(CA& ca, Type type)
     : StringExtension(String())
-{}
+{
+    // These types are not supported by this object
+    if(type == CRL) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    bool p = ca.getConfig()->exists(type2Section(type, true), "nsCaPolicyUrl");
+    if(p) {
+        StringArray   sp   = PerlRegEx("\\s*,\\s*")
+            .split(ca.getConfig()->getValue(type2Section(type, true), "nsCaPolicyUrl"));
+        if(sp[0].equalsIgnoreCase("critical")) {
+            setCritical(true); 
+            value = sp[1];
+        } else {
+            value = sp[0];
+        }
+    }
+    setPresent(p);
+}
 
 NsCaPolicyUrlExtension::NsCaPolicyUrlExtension(const NsCaPolicyUrlExtension &extension)
     : StringExtension(extension)
@@ -628,7 +723,26 @@ NsSslServerNameExtension::NsSslServerNameExtension(const String &v)
 
 NsSslServerNameExtension::NsSslServerNameExtension(CA& ca, Type type)
     : StringExtension(String())
-{}
+{
+    // These types are not supported by this object
+    if(type == CRL) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    bool p = ca.getConfig()->exists(type2Section(type, true), "nsSslServerName");
+    if(p) {
+        StringArray   sp   = PerlRegEx("\\s*,\\s*")
+            .split(ca.getConfig()->getValue(type2Section(type, true), "nsSslServerName"));
+        if(sp[0].equalsIgnoreCase("critical")) {
+            setCritical(true); 
+            value = sp[1];
+        } else {
+            value = sp[0];
+        }
+    }
+    setPresent(p);
+}
 
 NsSslServerNameExtension::NsSslServerNameExtension(const NsSslServerNameExtension &extension)
     : StringExtension(extension)
@@ -717,7 +831,26 @@ NsCommentExtension::NsCommentExtension(const String &v)
 
 NsCommentExtension::NsCommentExtension(CA& ca, Type type)
     : StringExtension(String())
-{}
+{
+    // These types are not supported by this object
+    if(type == CRL) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    bool p = ca.getConfig()->exists(type2Section(type, true), "nsComment");
+    if(p) {
+        StringArray   sp   = PerlRegEx("\\s*,\\s*")
+            .split(ca.getConfig()->getValue(type2Section(type, true), "nsComment"));
+        if(sp[0].equalsIgnoreCase("critical")) {
+            setCritical(true); 
+            value = sp[1];
+        } else {
+            value = sp[0];
+        }
+    }
+    setPresent(p);
+}
 
 NsCommentExtension::NsCommentExtension(const NsCommentExtension &extension)
     : StringExtension(extension)

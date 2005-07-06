@@ -47,8 +47,9 @@ RequestGenerationData::RequestGenerationData(CA& ca, Type type)
       keysize(0),
       challengePassword(""),
       unstructuredName(""),
-      extensions(X509v3RequestExtensions())
+      extensions(X509v3RequestExtensions(ca, type))
 {
+    keysize = ca.getConfig()->getValue(type2Section(type, false), "default_bits").toUInt32();
 }
 
 RequestGenerationData::RequestGenerationData(const RequestGenerationData& data)
@@ -154,20 +155,16 @@ RequestGenerationData::commit2Config(CA& ca, Type type) const
         LOGIT_ERROR("invalid RequestGenerationData object");
         BLOCXX_THROW(limal::ValueException, "invalid RequestGenerationData object");
     }
-    switch(type) {
-    case CA_Req:
-        ca.getConfig()->setValue("req", "default_bits", String(keysize));
-        break;
-    case Client_Req:
-        ca.getConfig()->setValue("req_client", "default_bits", String(keysize));
-        break;
-    case Server_Req:
-        ca.getConfig()->setValue("req_server", "default_bits", String(keysize));
-        break;
-    default:
+
+    if(type == CRL || type == Client_Cert ||
+       type == Server_Cert || type == CA_Cert ) {
+
         LOGIT_ERROR("wrong type" << type);
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
+
+    ca.getConfig()->setValue(type2Section(type, false), "default_bits", String(keysize));
+
     extensions.commit2Config(ca, type);
 }
 

@@ -59,6 +59,38 @@ UserNotice::operator=(const UserNotice& notice)
 }
 
 void
+UserNotice::initWithSection(CA& ca, Type type, const String& sectionName)
+{
+    // These types are not supported by this object
+    if(type == CRL        || type == Client_Req ||
+       type == Server_Req || type == CA_Req      ) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+    
+    bool p = ca.getConfig()->exists(sectionName, "explicitText");
+    if(p) {
+        explicitText = ca.getConfig()->getValue(sectionName, "explicitText");
+    }
+
+    p = ca.getConfig()->exists(sectionName, "organization");
+    if(p) {
+        organization = ca.getConfig()->getValue(sectionName, "organization");
+    }
+    
+    p = ca.getConfig()->exists(sectionName, "noticeNumbers");
+    if(p) {
+        StringArray a = PerlRegEx(",").
+            split(ca.getConfig()->getValue(sectionName, "noticeNumbers"));
+        StringArray::const_iterator it = a.begin();
+        for(; it != a.end(); ++it) {
+            
+            noticeNumbers.push_back((*it).toInt32());
+        }
+    }
+}
+
+void
 UserNotice::setExplicitText(const String& text)
 {
     if(text.length() > 200) {
@@ -203,6 +235,35 @@ CertificatePolicy::operator=(const CertificatePolicy& policy)
     noticeList       = policy.noticeList;
     
     return *this;
+}
+
+void
+CertificatePolicy::initWithSection(CA& ca, Type type, const String& sectionName)
+{
+    // These types are not supported by this object
+    if(type == CRL        || type == Client_Req ||
+       type == Server_Req || type == CA_Req      ) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+    
+    bool p = ca.getConfig()->exists(sectionName, "policyIdentifier");
+    if(p) {
+        policyIdentifier = ca.getConfig()->getValue(sectionName, "policyIdentifier");
+    }
+
+    StringList kl = ca.getConfig()->getKeylist(sectionName);
+    StringList::const_iterator it = kl.begin();
+    for(; it != kl.end(); ++it) {
+        if((*it).startsWith("CPS", String::E_CASE_INSENSITIVE)) {
+            cpsURI.push_back(ca.getConfig()->getValue(sectionName, *it));
+        } else if((*it).startsWith("userNotice", String::E_CASE_INSENSITIVE)) {
+            String uns = ca.getConfig()->getValue(sectionName, *it);
+            UserNotice un = UserNotice();
+            un.initWithSection(ca, type, uns);
+            noticeList.push_back(un);
+        }
+    }
 }
 
 void
@@ -386,6 +447,37 @@ CertificatePoliciesExtension::CertificatePoliciesExtension(const blocxx::List<Ce
 CertificatePoliciesExtension::CertificatePoliciesExtension(CA& ca, Type type)
     : ExtensionBase(), ia5org(false), policies(blocxx::List<CertificatePolicy>())
 {
+    // These types are not supported by this object
+    if(type == CRL        || type == Client_Req ||
+       type == Server_Req || type == CA_Req      ) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    bool p = ca.getConfig()->exists(type2Section(type, true), "certificatePolicies");
+    if(p) {
+        ValueCheck    check = initOIDCheck();
+        StringArray   sp    = PerlRegEx("\\s*,\\s*")
+            .split(ca.getConfig()->getValue(type2Section(type, true), "certificatePolicies"));
+        if(sp[0].equalsIgnoreCase("critical"))  {
+            setCritical(true);
+            sp.remove(0);
+        }
+
+        StringArray::const_iterator it = sp.begin();
+        for(; it != sp.end(); ++it) {
+            if((*it).equalsIgnoreCase("ia5org")) {
+                ia5org = true;
+            } else if(check.isValid(*it)) {
+                policies.push_back(CertificatePolicy(*it));
+            } else if((*it).startsWith("@")) {
+                CertificatePolicy cp = CertificatePolicy();
+                cp.initWithSection(ca, type, (*it).substring(1));
+                policies.push_back(cp);
+            }
+        }
+    }
+    setPresent(p);
 }
 
 CertificatePoliciesExtension::CertificatePoliciesExtension(const CertificatePoliciesExtension& extension)

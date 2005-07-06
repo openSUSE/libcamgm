@@ -84,6 +84,36 @@ KeyUsageExtension::KeyUsageExtension()
 KeyUsageExtension::KeyUsageExtension(CA& ca, Type type)
     : BitExtension()
 {
+    // These types are not supported by this object
+    if(type == CRL) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    bool p = ca.getConfig()->exists(type2Section(type, true), "keyUsage");
+    if(p) {
+        blocxx::UInt32 keyUsage = 0;
+        
+        String ku = ca.getConfig()->getValue(type2Section(type, true), "keyUsage");
+        StringArray sp = PerlRegEx("\\s*,\\s*").split(ku);
+
+        if(sp[0].equalsIgnoreCase("critical")) setCritical(true);
+
+        StringArray::const_iterator it = sp.begin();
+        for(; it != sp.end(); ++it) {
+            if((*it).equalsIgnoreCase("digitalSignature"))      keyUsage |= digitalSignature; 
+            else if((*it).equalsIgnoreCase("nonRepudiation"))   keyUsage |= nonRepudiation; 
+            else if((*it).equalsIgnoreCase("keyEncipherment"))  keyUsage |= keyEncipherment; 
+            else if((*it).equalsIgnoreCase("dataEncipherment")) keyUsage |= dataEncipherment; 
+            else if((*it).equalsIgnoreCase("keyAgreement"))     keyUsage |= keyAgreement; 
+            else if((*it).equalsIgnoreCase("keyCertSign"))      keyUsage |= keyCertSign; 
+            else if((*it).equalsIgnoreCase("cRLSign"))          keyUsage |= cRLSign; 
+            else if((*it).equalsIgnoreCase("encipherOnly"))     keyUsage |= encipherOnly; 
+            else if((*it).equalsIgnoreCase("decipherOnly"))     keyUsage |= decipherOnly; 
+        }
+        setKeyUsage(keyUsage);
+    }
+    setPresent(p);
 }
 
 KeyUsageExtension::KeyUsageExtension(blocxx::UInt32 keyUsage)
@@ -238,7 +268,37 @@ NsCertTypeExtension::NsCertTypeExtension()
 
 NsCertTypeExtension::NsCertTypeExtension(CA& ca, Type type)
     : BitExtension()
-{}
+{
+    // These types are not supported by this object
+    if(type == CRL) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    bool p = ca.getConfig()->exists(type2Section(type, true), "nsCertType");
+    if(p) {
+        blocxx::UInt32 bits = 0;
+        
+        String ct = ca.getConfig()->getValue(type2Section(type, true), "nsCertType");
+        StringArray sp = PerlRegEx("\\s*,\\s*").split(ct);
+
+        if(sp[0].equalsIgnoreCase("critical")) setCritical(true);
+
+        StringArray::const_iterator it = sp.begin();
+        for(; it != sp.end(); ++it) {
+            if((*it).equalsIgnoreCase("client"))        bits |= client; 
+            else if((*it).equalsIgnoreCase("server"))   bits |= server; 
+            else if((*it).equalsIgnoreCase("email"))    bits |= email; 
+            else if((*it).equalsIgnoreCase("objsign"))  bits |= objsign; 
+            else if((*it).equalsIgnoreCase("reserved")) bits |= reserved; 
+            else if((*it).equalsIgnoreCase("sslCA"))    bits |= sslCA; 
+            else if((*it).equalsIgnoreCase("emailCA"))  bits |= emailCA; 
+            else if((*it).equalsIgnoreCase("objCA"))    bits |= objCA;
+        }
+        setNsCertType(bits);
+    }
+    setPresent(p);
+}
 
 NsCertTypeExtension::NsCertTypeExtension(blocxx::UInt32 nsCertTypes)
     : BitExtension(nsCertTypes)
@@ -378,6 +438,42 @@ ExtendedKeyUsageExtension::ExtendedKeyUsageExtension()
 ExtendedKeyUsageExtension::ExtendedKeyUsageExtension(CA& ca, Type type)
     : BitExtension()
 {
+    // These types are not supported by this object
+    if(type == CRL) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    bool p = ca.getConfig()->exists(type2Section(type, true), "extendedKeyUsage");
+    if(p) {
+        blocxx::UInt32 bits = 0;
+        ValueCheck check = initOIDCheck();
+
+        String ct = ca.getConfig()->getValue(type2Section(type, true), "extendedKeyUsage");
+        StringArray sp = PerlRegEx("\\s*,\\s*").split(ct);
+
+        if(sp[0].equalsIgnoreCase("critical")) setCritical(true);
+
+        StringArray::const_iterator it = sp.begin();
+        for(; it != sp.end(); ++it) {
+            if((*it).equalsIgnoreCase("serverAuth"))            bits |= serverAuth; 
+            else if((*it).equalsIgnoreCase("clientAuth"))       bits |= clientAuth; 
+            else if((*it).equalsIgnoreCase("codeSigning"))      bits |= codeSigning; 
+            else if((*it).equalsIgnoreCase("emailProtection"))  bits |= emailProtection; 
+            else if((*it).equalsIgnoreCase("timeStamping"))     bits |= timeStamping; 
+            else if((*it).equalsIgnoreCase("msCodeInd"))        bits |= msCodeInd; 
+            else if((*it).equalsIgnoreCase("msCodeCom"))        bits |= msCodeCom; 
+            else if((*it).equalsIgnoreCase("msCTLSign"))        bits |= msCTLSign; 
+            else if((*it).equalsIgnoreCase("msSGC"))            bits |= msSGC; 
+            else if((*it).equalsIgnoreCase("msEFS"))            bits |= msEFS; 
+            else if((*it).equalsIgnoreCase("nsSGC"))            bits |= nsSGC; 
+            else if(check.isValid(*it)) {
+                oids.push_back(*it);
+            }
+        }
+        setExtendedKeyUsage(bits);
+    }
+    setPresent(p);
 }
 
 ExtendedKeyUsageExtension::ExtendedKeyUsageExtension(blocxx::UInt32 extKeyUsages, 
@@ -425,10 +521,6 @@ ExtendedKeyUsageExtension::operator=(const ExtendedKeyUsageExtension& extension)
 void
 ExtendedKeyUsageExtension::setExtendedKeyUsage(blocxx::UInt32 extKeyUsages)
 {
-    if(extKeyUsages == 0 && oids.empty()) {
-        BLOCXX_THROW(limal::ValueException, "invalid value for extKeyUsages.");
-    }
-
     if(extKeyUsages > 0x7FF) {
         BLOCXX_THROW(limal::ValueException, "invalid extKeyUsages value");
     }
@@ -458,10 +550,6 @@ ExtendedKeyUsageExtension::isEnabledFor(ExtendedKeyUsage extKeyUsage) const
 void
 ExtendedKeyUsageExtension::setAdditionalOIDs(const StringList& additionalOIDs)
 {
-    if(getValue() == 0 && additionalOIDs.empty()) {
-        BLOCXX_THROW(limal::ValueException, "invalid value for additionalOIDs.");
-    }
-
     ValueCheck oidCheck = initOIDCheck();
     
     StringList::const_iterator it = oids.begin();

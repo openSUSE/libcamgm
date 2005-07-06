@@ -37,8 +37,9 @@ CRLGenerationData::CRLGenerationData()
 }
 
 CRLGenerationData::CRLGenerationData(CA& ca, Type type)
-    : crlHours(0), extensions(X509v3CRLGenerationExtensions())
+    : crlHours(0), extensions(X509v3CRLGenerationExtensions(ca, type))
 {
+    crlHours = ca.getConfig()->getValue(type2Section(type, false), "default_crl_hours").toUInt32();
 }
 
 CRLGenerationData::CRLGenerationData(blocxx::UInt32 hours, 
@@ -112,6 +113,8 @@ CRLGenerationData::commit2Config(CA& ca, Type type) const
         LOGIT_ERROR("wrong type" << type);
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
+
+    ca.getConfig()->setValue(type2Section(type, false), "default_crl_hours", String(crlHours));
 
     extensions.commit2Config(ca, type);
 }

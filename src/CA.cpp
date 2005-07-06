@@ -62,7 +62,7 @@ CA::createRequest(const String& keyPasswd,
 
 blocxx::String
 CA::issueCertificate(const String& requestName,
-                        const CertificateIssueData& issueData)
+                     const CertificateIssueData& issueData)
 {
     return String();
 }
@@ -100,6 +100,7 @@ CA::importRequest(const ByteArray& request,
 CertificateIssueData
 CA::getIssueDefaults(Type type)
 {
+    initConfigFile();
     CertificateIssueData cid = CertificateIssueData(*this, type);
     return cid;
 }
@@ -107,6 +108,7 @@ CA::getIssueDefaults(Type type)
 RequestGenerationData
 CA::getRequestDefaults(Type type)
 {
+    initConfigFile();
     RequestGenerationData rgd = RequestGenerationData(*this, type);
 
     return rgd;
@@ -116,6 +118,7 @@ CA::getRequestDefaults(Type type)
 CRLGenerationData
 CA::getCRLDefaults()
 {
+    initConfigFile();
     CRLGenerationData  crlgd = CRLGenerationData(*this, CRL);
     return crlgd;
 }
