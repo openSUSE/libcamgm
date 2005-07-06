@@ -157,6 +157,34 @@ CAConfig::getValue(const String &section, const String &key) const
     return "";
 }
 
+bool
+CAConfig::exists(const String &section, const String &key) const
+{
+    if (parser->iniFile.contains(section) == SECTION) {
+        if((parser->iniFile.getSection(section)).contains(key) == VALUE) {
+            return true;
+        }
+    }
+    return false;
+}
+
+blocxx::List<blocxx::String>
+CAConfig::getKeylist(const String &section) const
+{
+    blocxx::List<String> keylist;
+
+    if (parser->iniFile.contains(section) == SECTION) {
+
+        EntryMap em = parser->iniFile.getSection(section).getEntries();
+        
+        EntryMap::const_iterator it = em.begin();
+        for(; it != em.end(); ++it) {
+            keylist.push_back((*it).first);
+        }
+    }
+    return keylist;
+}
+
 CAConfig*
 CAConfig::clone(const String &file)
 {
