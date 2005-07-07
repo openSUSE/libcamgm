@@ -101,6 +101,18 @@ RevocationEntry::verify() const
     return result;
 }
 
+blocxx::StringArray
+RevocationEntry::dump() const
+{
+    StringArray result;
+    result.append("RevocationEntry::dump()");
+
+    result.append("Serial = " + serial);
+    result.append("revocation Date = " + revocationDate);
+    result.appendArray(revocationReason.dump());
+
+    return result;
+}
 
 // ##################################################################
 
@@ -254,6 +266,28 @@ CRLData::verify() const
     return result;
 }
 
+blocxx::StringArray
+CRLData::dump() const
+{
+    StringArray result;
+    result.append("::dump()");
+
+    result.append("Version = " + String(version));
+    result.append("last Update = " + String(lastUpdate));
+    result.append("next Update = " + String(nextUpdate));
+    result.appendArray(issuer.dump());
+    result.append("signatureAlgorithm = "+ String(signatureAlgorithm));
+    result.append("Signature = " + signature);
+    result.appendArray(extensions.dump());
+
+    blocxx::Map< String, RevocationEntry >::const_iterator it = revocationData.begin();
+    for(; it != revocationData.end(); ++it) {
+        result.append((*it).first);
+        result.appendArray(((*it).second).dump());
+    }
+
+    return result;
+}
 
 //    protected:
 CRLData::CRLData()

@@ -119,7 +119,7 @@ KeyUsageExtension::KeyUsageExtension(CA& ca, Type type)
 KeyUsageExtension::KeyUsageExtension(blocxx::UInt32 keyUsage)
     : BitExtension(keyUsage)
 {
-    if(!validKeyUsage(getValue())) {
+    if(!validKeyUsage(value)) {
         BLOCXX_THROW(limal::ValueException, "invalid value for keyUsage");
     }
     setPresent(true);
@@ -159,7 +159,7 @@ KeyUsageExtension::getKeyUsage() const
     if(!isPresent()) {
         BLOCXX_THROW(limal::RuntimeException, "KeyUsageExtension is not present");
     }
-    return getValue();
+    return value;
 }
 
 bool
@@ -169,7 +169,7 @@ KeyUsageExtension::isEnabledFor(KeyUsage ku) const
         BLOCXX_THROW(limal::RuntimeException, "KeyUsageExtension is not present");
     }
     
-    return !!(getValue() & ku);
+    return !!(value & ku);
 }
 
 void
@@ -191,31 +191,31 @@ KeyUsageExtension::commit2Config(CA& ca, Type type) const
 
         if(isCritical()) keyUsageString += "critical,";
 
-        if(!!(getValue() & KeyUsageExtension::digitalSignature)) {
+        if(!!(value & KeyUsageExtension::digitalSignature)) {
             keyUsageString += "digitalSignature,";
         }
-        if(!!(getValue() & KeyUsageExtension::nonRepudiation)) {
+        if(!!(value & KeyUsageExtension::nonRepudiation)) {
             keyUsageString += "nonRepudiation,";
         }
-        if(!!(getValue() & KeyUsageExtension::keyEncipherment)) {
+        if(!!(value & KeyUsageExtension::keyEncipherment)) {
             keyUsageString += "keyEncipherment,";
         }
-        if(!!(getValue() & KeyUsageExtension::dataEncipherment)) {
+        if(!!(value & KeyUsageExtension::dataEncipherment)) {
             keyUsageString += "dataEncipherment,";
         }
-        if(!!(getValue() & KeyUsageExtension::keyAgreement)) {
+        if(!!(value & KeyUsageExtension::keyAgreement)) {
             keyUsageString += "keyAgreement,";
         }
-        if(!!(getValue() & KeyUsageExtension::keyCertSign)) {
+        if(!!(value & KeyUsageExtension::keyCertSign)) {
             keyUsageString += "keyCertSign,";
         }
-        if(!!(getValue() & KeyUsageExtension::cRLSign)) {
+        if(!!(value & KeyUsageExtension::cRLSign)) {
             keyUsageString += "cRLSign,";
         }
-        if(!!(getValue() & KeyUsageExtension::encipherOnly)) {
+        if(!!(value & KeyUsageExtension::encipherOnly)) {
             keyUsageString += "encipherOnly,";
         }
-        if(!!(getValue() & KeyUsageExtension::decipherOnly)) {
+        if(!!(value & KeyUsageExtension::decipherOnly)) {
             keyUsageString += "decipherOnly,";
         }
         
@@ -231,7 +231,7 @@ KeyUsageExtension::valid() const
 {
     if(!isPresent()) return true;
 
-    if(!validKeyUsage(getValue())) return false;
+    if(!validKeyUsage(value)) return false;
     
     return true;
 }
@@ -243,11 +243,28 @@ KeyUsageExtension::verify() const
 
     if(!isPresent()) return result;
 
-    if(!validKeyUsage(getValue())) {
-        result.append(Format("invalid value '%1' for keyUsage", getValue()).toString());
+    if(!validKeyUsage(value)) {
+        result.append(Format("invalid value '%1' for keyUsage", value).toString());
     }
     return result;
 }
+
+blocxx::StringArray
+KeyUsageExtension::dump() const
+{
+    StringArray result;
+    result.append("KeyUsageExtension::dump()");
+
+    result.appendArray(ExtensionBase::dump());
+    if(!isPresent()) return result;
+
+    String ku;
+    ku.format("%x", value);
+    result.append("KeyUsage = 0x" + ku);
+
+    return result;
+}
+
 
 bool
 KeyUsageExtension::validKeyUsage(blocxx::UInt32 keyUsage) const
@@ -303,7 +320,7 @@ NsCertTypeExtension::NsCertTypeExtension(CA& ca, Type type)
 NsCertTypeExtension::NsCertTypeExtension(blocxx::UInt32 nsCertTypes)
     : BitExtension(nsCertTypes)
 {
-    if(getValue() > 0xFF || getValue() == 0) {
+    if(value > 0xFF || value == 0) {
         BLOCXX_THROW(limal::ValueException, "invalid value for NsCertTypeExtension");
     }
     setPresent(true);
@@ -330,8 +347,9 @@ NsCertTypeExtension::operator=(const NsCertTypeExtension& extension)
 void
 NsCertTypeExtension::setNsCertType(blocxx::UInt32 nsCertTypes)
 {
-    if(nsCertTypes > 0xFF || getValue() == 0) {
-        BLOCXX_THROW(limal::ValueException, "invalid value for NsCertTypeExtension");
+    if(nsCertTypes > 0xFF || nsCertTypes == 0) {
+        BLOCXX_THROW(limal::ValueException, 
+                     Format("invalid value for NsCertTypeExtension: %1", nsCertTypes).c_str());
     }
     setValue(nsCertTypes);
     setPresent(true);
@@ -343,7 +361,7 @@ NsCertTypeExtension::getNsCertType() const
     if(!isPresent()) {
         BLOCXX_THROW(limal::RuntimeException, "NsCertTypeExtension is not present");
     }
-    return getValue();
+    return value;
 }
 
 bool
@@ -352,7 +370,7 @@ NsCertTypeExtension::isEnabledFor(NsCertType nsCertType) const
     // if ! isPresent() ... throw exceptions?
     if(!isPresent()) return false;
 
-    return !!(getValue() & nsCertType);
+    return !!(value & nsCertType);
 }
 
 void
@@ -374,28 +392,28 @@ NsCertTypeExtension::commit2Config(CA& ca, Type type) const
 
         if(isCritical()) nsCertTypeString += "critical,";
 
-        if(!!(getValue() & NsCertTypeExtension::client)) {
+        if(!!(value & NsCertTypeExtension::client)) {
             nsCertTypeString += "client,";
         }
-        if(!!(getValue() & NsCertTypeExtension::server)) {
+        if(!!(value & NsCertTypeExtension::server)) {
             nsCertTypeString += "server,";
         }
-        if(!!(getValue() & NsCertTypeExtension::email)) {
+        if(!!(value & NsCertTypeExtension::email)) {
             nsCertTypeString += "email,";
         }
-        if(!!(getValue() & NsCertTypeExtension::objsign)) {
+        if(!!(value & NsCertTypeExtension::objsign)) {
             nsCertTypeString += "objsign,";
         }
-        if(!!(getValue() & NsCertTypeExtension::reserved)) {
+        if(!!(value & NsCertTypeExtension::reserved)) {
             nsCertTypeString += "reserved,";
         }
-        if(!!(getValue() & NsCertTypeExtension::sslCA)) {
+        if(!!(value & NsCertTypeExtension::sslCA)) {
             nsCertTypeString += "sslCA,";
         }
-        if(!!(getValue() & NsCertTypeExtension::emailCA)) {
+        if(!!(value & NsCertTypeExtension::emailCA)) {
             nsCertTypeString += "emailCA,";
         }
-        if(!!(getValue() & NsCertTypeExtension::objCA)) {
+        if(!!(value & NsCertTypeExtension::objCA)) {
             nsCertTypeString += "objCA,";
         }
         
@@ -411,7 +429,7 @@ NsCertTypeExtension::valid() const
 {
     if(!isPresent()) return true;
 
-    if(getValue() > 0xFF || getValue() == 0) return false;
+    if(value > 0xFF || value == 0) return false;
     
     return true;
 }
@@ -423,9 +441,25 @@ NsCertTypeExtension::verify() const
 
     if(!isPresent()) return result;
 
-    if(getValue() > 0xFF || getValue() == 0) {
-        result.append(Format("invalid value '%1' for nsCertType", getValue()).toString());
+    if(value > 0xFF || value == 0) {
+        result.append(Format("invalid value '%1' for nsCertType", value).toString());
     }
+    return result;
+}
+
+blocxx::StringArray
+NsCertTypeExtension::dump() const
+{
+    StringArray result;
+    result.append("NsCertTypeExtension::dump()");
+
+    result.appendArray(ExtensionBase::dump());
+    if(!isPresent()) return result;
+
+    String nsct;
+    nsct.format("%x", value);
+    result.append("KeyUsage = 0x" + nsct);
+
     return result;
 }
 
@@ -480,11 +514,11 @@ ExtendedKeyUsageExtension::ExtendedKeyUsageExtension(blocxx::UInt32 extKeyUsages
                                                      const StringList& additionalOIDs)
     : BitExtension(extKeyUsages), oids(additionalOIDs)
 {
-    if(getValue() == 0 && oids.empty()) {
+    if(value == 0 && oids.empty()) {
         BLOCXX_THROW(limal::ValueException, "invalid ExtendedKeyUsageExtension.");
     }
 
-    if(getValue() > 0x7FF) {
+    if(value > 0x7FF) {
         BLOCXX_THROW(limal::ValueException, "invalid extKeyUsages value");
     }
     
@@ -535,7 +569,7 @@ ExtendedKeyUsageExtension::getExtendedKeyUsage() const
     if(!isPresent()) {
         BLOCXX_THROW(limal::RuntimeException, "ExtendedKeyUsageExtension is not present");
     }
-    return getValue();
+    return value;
 }
         
 bool
@@ -544,7 +578,7 @@ ExtendedKeyUsageExtension::isEnabledFor(ExtendedKeyUsage extKeyUsage) const
     // if ! isPresent() ... throw exceptions?
     if(!isPresent()) return false;
 
-    return !!(getValue() & extKeyUsage);
+    return !!(value & extKeyUsage);
 }
 
 void
@@ -610,37 +644,37 @@ ExtendedKeyUsageExtension::commit2Config(CA& ca, Type type) const
 
         if(isCritical()) extendedKeyUsageString += "critical,";
 
-        if(!!(getValue() & ExtendedKeyUsageExtension::serverAuth)) {
+        if(!!(value & ExtendedKeyUsageExtension::serverAuth)) {
             extendedKeyUsageString += "serverAuth,";
         }
-        if(!!(getValue() & ExtendedKeyUsageExtension::clientAuth)) {
+        if(!!(value & ExtendedKeyUsageExtension::clientAuth)) {
             extendedKeyUsageString += "clientAuth,";
         }
-        if(!!(getValue() & ExtendedKeyUsageExtension::codeSigning)) {
+        if(!!(value & ExtendedKeyUsageExtension::codeSigning)) {
             extendedKeyUsageString += "codeSigning,";
         }
-        if(!!(getValue() & ExtendedKeyUsageExtension::emailProtection)) {
+        if(!!(value & ExtendedKeyUsageExtension::emailProtection)) {
             extendedKeyUsageString += "emailProtection,";
         }
-        if(!!(getValue() & ExtendedKeyUsageExtension::timeStamping)) {
+        if(!!(value & ExtendedKeyUsageExtension::timeStamping)) {
             extendedKeyUsageString += "timeStamping,";
         }
-        if(!!(getValue() & ExtendedKeyUsageExtension::msCodeInd)) {
+        if(!!(value & ExtendedKeyUsageExtension::msCodeInd)) {
             extendedKeyUsageString += "msCodeInd,";
         }
-        if(!!(getValue() & ExtendedKeyUsageExtension::msCodeCom)) {
+        if(!!(value & ExtendedKeyUsageExtension::msCodeCom)) {
             extendedKeyUsageString += "msCodeCom,";
         }
-        if(!!(getValue() & ExtendedKeyUsageExtension::msCTLSign)) {
+        if(!!(value & ExtendedKeyUsageExtension::msCTLSign)) {
             extendedKeyUsageString += "msCTLSign,";
         }
-        if(!!(getValue() & ExtendedKeyUsageExtension::msSGC)) {
+        if(!!(value & ExtendedKeyUsageExtension::msSGC)) {
             extendedKeyUsageString += "msSGC,";
         }
-        if(!!(getValue() & ExtendedKeyUsageExtension::msEFS)) {
+        if(!!(value & ExtendedKeyUsageExtension::msEFS)) {
             extendedKeyUsageString += "msEFS,";
         }
-        if(!!(getValue() & ExtendedKeyUsageExtension::nsSGC)) {
+        if(!!(value & ExtendedKeyUsageExtension::nsSGC)) {
             extendedKeyUsageString += "nsSGC,";
         }
         StringList::const_iterator it = oids.begin();
@@ -660,11 +694,11 @@ ExtendedKeyUsageExtension::valid() const
 {
     if(!isPresent()) return true;
 
-    if(getValue() == 0 && oids.empty()) {
+    if(value == 0 && oids.empty()) {
         return false;
     }
 
-    if(getValue() > 0x7FF) {
+    if(value > 0x7FF) {
         return false;
     }
     
@@ -686,12 +720,12 @@ ExtendedKeyUsageExtension::verify() const
 
     if(!isPresent()) return result;
 
-    if(getValue() == 0 && oids.empty()) {
+    if(value == 0 && oids.empty()) {
         result.append(String("invalid ExtendedKeyUsageExtension."));
     }
 
-    if(getValue() > 0x7FF) {
-        result.append(Format("invalid extKeyUsages value(%1)", getValue()).toString());
+    if(value > 0x7FF) {
+        result.append(Format("invalid extKeyUsages value(%1)", value).toString());
     }
     
     ValueCheck oidCheck = initOIDCheck();
@@ -702,5 +736,26 @@ ExtendedKeyUsageExtension::verify() const
             result.append(Format("invalid additionalOID(%1)", *it).toString());
         }
     }
+    return result;
+}
+
+blocxx::StringArray
+ExtendedKeyUsageExtension::dump() const
+{
+    StringArray result;
+    result.append("ExtendedKeyUsageExtension::dump()");
+
+    result.appendArray(ExtensionBase::dump());
+    if(!isPresent()) return result;
+
+    String eku;
+    eku.format("%x", value);
+    result.append("KeyUsage = 0x" + eku);
+
+    StringList::const_iterator it = oids.begin();
+    for(; it != oids.end(); ++it) {
+        result.append("Additional OID = " + (*it));
+    }
+
     return result;
 }

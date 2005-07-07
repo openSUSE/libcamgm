@@ -122,53 +122,57 @@ checkLiteralValueList(const blocxx::List<limal::ca_mgm::LiteralValue>& list)
 }
 
 inline static blocxx::String type2Section(limal::ca_mgm::Type type, bool v3section) {
+    blocxx::String result;
+
     switch(type) {
     case limal::ca_mgm::CA_Req:
         if(!v3section)
-            return "req";
+            result = "req";
         else
-            return "v3_req_ca";
+            result = "v3_req_ca";
         break;
     case limal::ca_mgm::Client_Req:
         if(!v3section)
-            return "req_client";
+            result = "req_client";
         else
-            return "v3_req_client";
+            result = "v3_req_client";
         break;
     case limal::ca_mgm::Server_Req:
         if(!v3section)
-                return "req_server";
+                result = "req_server";
         else
-            return "v3_req_server";
+            result = "v3_req_server";
         break;
     case limal::ca_mgm::CA_Cert:
         if(!v3section)
-            return "ca";
+            result = "ca";
         else
-            return "v3_ca";
+            result = "v3_ca";
         break;
     case limal::ca_mgm::Client_Cert:
         if(!v3section)
-            return "client_cert";
+            result = "client_cert";
         else
-            return "v3_client";
+            result = "v3_client";
         break;
     case limal::ca_mgm::Server_Cert:
         if(!v3section)
-            return "server_cert";
+            result = "server_cert";
         else
-            return "v3_server";
+            result = "v3_server";
         break;
     case limal::ca_mgm::CRL:
         if(!v3section)
-            return "ca";
+            result = "ca";
         else
-            return "v3_crl";
+            result = "v3_crl";
         break;
     default:
         LOGIT_ERROR("wrong type" << type);
         BLOCXX_THROW(limal::ValueException, blocxx::Format("wrong type: %1", type).c_str());
     }
+    LOGIT_DEBUG("type2Section: type=" << type << " result=" << result);
+    return result;
 }
 
 

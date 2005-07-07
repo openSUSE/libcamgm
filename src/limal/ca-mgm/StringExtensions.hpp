@@ -46,6 +46,8 @@ namespace CA_MGM_NAMESPACE {
         virtual bool                 valid() const = 0;
         virtual blocxx::StringArray  verify() const = 0;
 
+        virtual blocxx::StringArray  dump() const = 0;
+
     protected:
         StringExtension(const String &v );
         StringExtension(const StringExtension& extension);
@@ -73,6 +75,8 @@ namespace CA_MGM_NAMESPACE {
 
         virtual bool                 valid() const;
         virtual blocxx::StringArray  verify() const;
+
+        virtual blocxx::StringArray  dump() const;
     };
 
     class NsRevocationUrlExtension : public StringExtension { 
@@ -92,6 +96,8 @@ namespace CA_MGM_NAMESPACE {
 
         virtual bool                 valid() const;
         virtual blocxx::StringArray  verify() const;
+
+        virtual blocxx::StringArray  dump() const;
     };
 
     class NsCaRevocationUrlExtension : public StringExtension { 
@@ -111,6 +117,8 @@ namespace CA_MGM_NAMESPACE {
 
         virtual bool                 valid() const;
         virtual blocxx::StringArray  verify() const;
+
+        virtual blocxx::StringArray  dump() const;
     };
 
     class NsRenewalUrlExtension : public StringExtension { 
@@ -130,6 +138,8 @@ namespace CA_MGM_NAMESPACE {
 
         virtual bool                 valid() const;
         virtual blocxx::StringArray  verify() const;
+
+        virtual blocxx::StringArray  dump() const;
     };
     class NsCaPolicyUrlExtension : public StringExtension { 
     public:
@@ -148,6 +158,8 @@ namespace CA_MGM_NAMESPACE {
 
         virtual bool                 valid() const;
         virtual blocxx::StringArray  verify() const;
+
+        virtual blocxx::StringArray  dump() const;
     };
     class NsSslServerNameExtension : public StringExtension { 
     public:
@@ -166,6 +178,8 @@ namespace CA_MGM_NAMESPACE {
 
         virtual bool                 valid() const;
         virtual blocxx::StringArray  verify() const;
+
+        virtual blocxx::StringArray  dump() const;
     };
     class NsCommentExtension : public StringExtension { 
     public:
@@ -184,6 +198,8 @@ namespace CA_MGM_NAMESPACE {
 
         virtual bool                 valid() const;
         virtual blocxx::StringArray  verify() const;
+
+        virtual blocxx::StringArray  dump() const;
     };
 
 }

@@ -65,3 +65,17 @@ ExtensionBase::setCritical(bool extCritical)
     setPresent(true);
     critical = extCritical;
 }
+
+blocxx::StringArray
+ExtensionBase::dump() const
+{
+    StringArray result;
+    result.append("ExtensionBase::dump()");
+    
+    result.append("is Present = " + Bool(present).toString());
+    if(!isPresent()) return result;
+    
+    result.append("is Critical = " + Bool(critical).toString());
+    
+    return result;
+}

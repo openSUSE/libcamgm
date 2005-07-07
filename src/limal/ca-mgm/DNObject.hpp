@@ -46,6 +46,8 @@ namespace CA_MGM_NAMESPACE {
         virtual bool                 valid() const;
         virtual blocxx::StringArray  verify() const;
 
+        virtual blocxx::StringArray  dump() const;
+
     private:
         String type;
         String value;
@@ -67,6 +69,8 @@ namespace CA_MGM_NAMESPACE {
         virtual bool                 valid() const;
         virtual blocxx::StringArray  verify() const;
         
+        virtual blocxx::StringArray  dump() const;
+
     private:
         blocxx::List<RDNObject> dn;
 

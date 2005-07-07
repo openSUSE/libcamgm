@@ -197,6 +197,26 @@ UserNotice::verify() const
     return result;
 }
 
+blocxx::StringArray
+UserNotice::dump() const
+{
+    StringArray result;
+    result.append("UserNotice::dump()");
+
+    result.append("explicitText = "+ explicitText);
+    result.append("organization = " + organization);
+
+    String n;
+    blocxx::List< blocxx::Int32 >::const_iterator it = noticeNumbers.begin();
+    for(; it != noticeNumbers.end(); ++it) {
+        n += (*it) + " ";
+    }
+    result.append("noticeNumbers = " + n);
+
+    return result;
+}
+
+
 // ###########################################################################
 
 CertificatePolicy::CertificatePolicy()
@@ -399,6 +419,27 @@ CertificatePolicy::verify() const
     LOGIT_DEBUG_STRINGARRAY("CertificatePolicy::verify()", result);
     return result;
 }
+
+blocxx::StringArray
+CertificatePolicy::dump() const
+{
+    StringArray result;
+    result.append("CertificatePolicy::dump()");
+
+    result.append("policy Identifier = " + policyIdentifier);
+
+    StringList::const_iterator it1 = cpsURI.begin();
+    for(; it1 != cpsURI.end(); ++it1) {
+        result.append(*it1);
+    }
+
+    blocxx::List< UserNotice >::const_iterator it2 = noticeList.begin();
+    for(; it2 != noticeList.end(); ++it2) {
+        result.appendArray((*it2).dump());
+    }
+    return result;
+}
+
 
 blocxx::StringArray
 CertificatePolicy::checkCpsURIs(const StringList& cpsURIs) const
@@ -605,6 +646,25 @@ CertificatePoliciesExtension::verify() const
     
     return result;
 }
+
+blocxx::StringArray
+CertificatePoliciesExtension::dump() const
+{
+    StringArray result;
+    result.append("CertificatePoliciesExtension::dump()");
+
+    result.appendArray(ExtensionBase::dump());
+    if(!isPresent()) return result;
+
+    result.append("ia5org = " + blocxx::Bool(ia5org));
+    blocxx::List< CertificatePolicy >::const_iterator it = policies.begin();
+    for(; it != policies.end(); ++it) {
+        result.appendArray((*it).dump());
+    }
+    
+    return result;
+}
+
 
 blocxx::StringArray
 CertificatePoliciesExtension::checkPolicies(const blocxx::List<CertificatePolicy>& pl) const

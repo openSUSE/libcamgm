@@ -173,3 +173,19 @@ CRLDistributionPointsExtension::verify() const
     return result;
 }
 
+blocxx::StringArray
+CRLDistributionPointsExtension::dump() const
+{
+    StringArray result;
+    result.append("CRLDistributionPointsExtension::dump()");
+
+    result.appendArray(ExtensionBase::dump());
+    if(!isPresent()) return result;
+
+    blocxx::List< LiteralValue >::const_iterator it = altNameList.begin();
+    for(; it != altNameList.end(); ++it) {
+        result.appendArray((*it).dump());
+    }
+    
+    return result;
+}

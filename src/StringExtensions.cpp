@@ -186,6 +186,21 @@ NsBaseUrlExtension::verify() const
     return result;
 }
 
+blocxx::StringArray
+NsBaseUrlExtension::dump() const
+{
+    StringArray result;
+    result.append("NsBaseUrlExtension::dump()");
+
+    result.appendArray(ExtensionBase::dump());
+    if(!isPresent()) return result;
+
+    result.append("URL = " + value);
+
+    return result;
+}
+
+
 // private:
 NsBaseUrlExtension::NsBaseUrlExtension()
     : StringExtension(String())
@@ -314,6 +329,20 @@ NsRevocationUrlExtension::valid() const
         return false;
     }    
     return true;
+}
+
+blocxx::StringArray
+NsRevocationUrlExtension::dump() const
+{
+    StringArray result;
+    result.append("NsRevocationUrlExtension::dump()");
+
+    result.appendArray(ExtensionBase::dump());
+    if(!isPresent()) return result;
+
+    result.append("URL = " + value);
+
+    return result;
 }
 
 //    private:
@@ -447,6 +476,20 @@ NsCaRevocationUrlExtension::valid() const
     return true;
 }
 
+blocxx::StringArray
+NsCaRevocationUrlExtension::dump() const
+{
+    StringArray result;
+    result.append("NsCaRevocationUrlExtension::dump()");
+
+    result.appendArray(ExtensionBase::dump());
+    if(!isPresent()) return result;
+
+    result.append("URL = " + value);
+
+    return result;
+}
+
 //  private:
 NsCaRevocationUrlExtension::NsCaRevocationUrlExtension()
     : StringExtension(String())
@@ -577,6 +620,19 @@ NsRenewalUrlExtension::valid() const
     return true;
 }
 
+blocxx::StringArray
+NsRenewalUrlExtension::dump() const
+{
+    StringArray result;
+    result.append("NsRenewalUrlExtension::dump()");
+
+    result.appendArray(ExtensionBase::dump());
+    if(!isPresent()) return result;
+
+    result.append("URL = " + value);
+
+    return result;
+}
 
 //    private:
 NsRenewalUrlExtension::NsRenewalUrlExtension()
@@ -707,6 +763,20 @@ NsCaPolicyUrlExtension::valid() const
     return true;
 }
 
+blocxx::StringArray
+NsCaPolicyUrlExtension::dump() const
+{
+    StringArray result;
+    result.append("NsCaPolicyUrlExtension::dump()");
+
+    result.appendArray(ExtensionBase::dump());
+    if(!isPresent()) return result;
+
+    result.append("URL = " + value);
+
+    return result;
+}
+
 //    private:
 NsCaPolicyUrlExtension::NsCaPolicyUrlExtension()
     : StringExtension(String())
@@ -815,6 +885,20 @@ NsSslServerNameExtension::valid() const
     return true;
 }
 
+blocxx::StringArray
+NsSslServerNameExtension::dump() const
+{
+    StringArray result;
+    result.append("NsSslServerNameExtension::dump()");
+
+    result.appendArray(ExtensionBase::dump());
+    if(!isPresent()) return result;
+
+    result.append("SSL server name = " + value);
+
+    return result;
+}
+
 //    private:
 
 NsSslServerNameExtension::NsSslServerNameExtension()
@@ -921,6 +1005,20 @@ bool
 NsCommentExtension::valid() const
 {
     return true;
+}
+
+blocxx::StringArray
+NsCommentExtension::dump() const
+{
+    StringArray result;
+    result.append("NsCommentExtension::dump()");
+
+    result.appendArray(ExtensionBase::dump());
+    if(!isPresent()) return result;
+
+    result.append("NS Comment = " + value);
+
+    return result;
 }
 
 //    private:

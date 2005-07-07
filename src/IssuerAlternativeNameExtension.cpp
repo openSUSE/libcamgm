@@ -226,3 +226,22 @@ IssuerAlternativeNameExtension::verify() const
 
     return result;
 }
+
+blocxx::StringArray
+IssuerAlternativeNameExtension::dump() const
+{
+    StringArray result;
+    result.append("IssuerAlternativeNameExtension::dump()");
+
+    result.appendArray(ExtensionBase::dump());
+    if(!isPresent()) return result;
+
+    result.append("Issuer:copy = " + Bool(issuerCopy).toString());
+
+    blocxx::List< LiteralValue >::const_iterator it = altNameList.begin();
+    for(; it != altNameList.end(); ++it) {
+        result.appendArray((*it).dump());
+    }
+    
+    return result;
+}

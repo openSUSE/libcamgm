@@ -53,6 +53,8 @@ namespace CA_MGM_NAMESPACE {
         virtual bool                 valid() const =0;
         virtual blocxx::StringArray  verify() const =0;
 
+        virtual blocxx::StringArray  dump() const;
+
     private:
         bool present;
         bool critical;

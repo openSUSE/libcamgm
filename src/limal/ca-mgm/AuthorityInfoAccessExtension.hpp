@@ -52,6 +52,8 @@ namespace CA_MGM_NAMESPACE {
         bool                    valid() const;
         blocxx::StringArray     verify() const;
 
+        blocxx::StringArray     dump() const;
+
     private:
         String                  accessOID;
         LiteralValue            location;
@@ -78,6 +80,8 @@ namespace CA_MGM_NAMESPACE {
 
         virtual bool                 valid() const; 
         virtual blocxx::StringArray  verify() const;
+
+        virtual blocxx::StringArray  dump() const;
 
     private:
         blocxx::List<AuthorityInformation> info;

@@ -56,6 +56,8 @@ namespace CA_MGM_NAMESPACE {
         virtual bool                valid() const;
         virtual blocxx::StringArray verify() const;
 
+        virtual blocxx::StringArray  dump() const;
+
     private:
         String              explicitText;      // max 200 characters
 
@@ -92,6 +94,8 @@ namespace CA_MGM_NAMESPACE {
         virtual bool                valid() const;
         virtual blocxx::StringArray verify() const;
 
+        virtual blocxx::StringArray  dump() const;
+
     private:
         String                   policyIdentifier;  // required
         StringList               cpsURI;            // Certification Practice Statement
@@ -123,6 +127,8 @@ namespace CA_MGM_NAMESPACE {
 
         virtual bool                    valid() const;
         virtual blocxx::StringArray     verify() const;
+
+        virtual blocxx::StringArray  dump() const;
 
     private:
 

@@ -193,3 +193,18 @@ RequestGenerationData::verify() const
 
     return result;
 }
+
+blocxx::StringArray
+RequestGenerationData::dump() const
+{
+    StringArray result;
+    result.append("RequestGenerationData::dump()");
+
+    result.appendArray(subject.dump());
+    result.append("Keysize = " + String(keysize));
+    result.append("Challenge Password = " + challengePassword);
+    result.append("Unstructured Name = " + unstructuredName);
+    result.appendArray(extensions.dump());
+
+    return result;
+}

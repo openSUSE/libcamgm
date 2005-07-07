@@ -254,3 +254,20 @@ X509v3RequestExtensions::verify() const
     return result;
 }
 
+blocxx::StringArray
+X509v3RequestExtensions::dump() const
+{
+    StringArray result;
+    result.append("X509v3RequestExtensions::dump()");
+
+    result.appendArray(nsSslServerName.dump());
+    result.appendArray(nsComment.dump());
+    result.appendArray(keyUsage.dump());  
+    result.appendArray(nsCertType.dump());   
+    result.appendArray(basicConstraints.dump()); 
+    result.appendArray(extendedKeyUsage.dump());
+    result.appendArray(subjectKeyIdentifier.dump());
+    result.appendArray(subjectAlternativeName.dump());
+
+    return result;
+}

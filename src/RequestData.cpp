@@ -189,6 +189,34 @@ RequestData::verify() const
     return result;
 }
 
+blocxx::StringArray
+RequestData::dump() const
+{
+    StringArray result;
+    result.append("RequestData::dump()");
+    
+    result.append("Version = " + String(version));
+    result.appendArray(subject.dump());
+    result.append("Keysize = " + String(keysize));
+    result.append("pubkeyAlgorithm = " + String(pubkeyAlgorithm));
+    
+    String pk;
+    ByteArray::const_iterator it = publicKey.begin();
+    for(; it != publicKey.end(); ++it) {
+        pk += *it + " ";
+    }
+    result.append("public Key = " + pk);
+    
+    result.append("signatureAlgorithm = "+ String(signatureAlgorithm));
+    result.append("Signature = " + signature);
+    result.appendArray(extensions.dump());
+    result.append("Challenge Password = " + challengePassword);
+    result.append("Unstructured Name = " + unstructuredName);
+    
+    return result;
+}
+
+
 //    protected:
 RequestData::RequestData()
     : version(0),

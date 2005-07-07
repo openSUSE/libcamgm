@@ -93,6 +93,21 @@ AuthorityKeyIdentifierExtension::verify() const
     return blocxx::StringArray();
 }
 
+blocxx::StringArray
+AuthorityKeyIdentifierExtension::dump() const
+{
+    StringArray result;
+    result.append("AuthorityKeyIdentifierExtension::dump()");
+
+    result.appendArray(ExtensionBase::dump());
+    if(!isPresent()) return result;
+
+    result.append("KeyID = " + keyid);
+    result.append("DirName = " + DirName);
+    result.append("serial = " + serial);
+
+    return result;
+}
         
 // protected
 

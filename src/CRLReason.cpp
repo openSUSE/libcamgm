@@ -179,6 +179,35 @@ CRLReason::verify() const
     return result;
 }
 
+blocxx::StringArray
+CRLReason::dump() const
+{
+    StringArray result;
+    result.append("CRLReason::dump()");
+
+    switch(reason) {
+    case CRLReason::certificateHold:
+        result.append("Revoke Reason = certificateHold");
+        result.append("hold Instruction =" + holdInstruction);
+
+        break;
+    case CRLReason::keyCompromise:
+        result.append("Revoke Reason = keyCompromise");
+        result.append("compromise Date =" + compromiseDate);
+        break;
+    case CRLReason::CACompromise:
+        result.append("Revoke Reason = CACompromise");
+        result.append("compromise Date =" + compromiseDate);
+        break;
+    default:
+        result.append("Revoke Reason = " + reason);
+        break;
+    } 
+
+    return result;
+}
+
+
 blocxx::String
 CRLReason::checkHoldInstruction(const String& hi) const
 {

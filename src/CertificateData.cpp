@@ -256,6 +256,33 @@ CertificateData::verify() const
     return result;
 }
                 
+blocxx::StringArray
+CertificateData::dump() const
+{
+    StringArray result;
+    result.append("CertificateData::dump()");
+
+    result.append("Version = " + String(version));
+    result.append("Serial = " + String(serial));
+    result.append("notBefore = " + String(notBefore));
+    result.append("notAfter = " + String(notAfter));
+    result.appendArray(issuer.dump());
+    result.appendArray(subject.dump());
+    result.append("Keysize = " + String(keysize));
+    result.append("public key algorithm = " + String(pubkeyAlgorithm));
+
+    String pk;
+    ByteArray::const_iterator it = publicKey.begin();
+    for(; it != publicKey.end(); ++it) {
+        pk += *it + " ";
+    }
+    result.append("public Key = " + pk);
+    result.append("signatureAlgorithm = "+ String(signatureAlgorithm));
+    result.append("Signature = " + signature);
+    result.appendArray(extensions.dump());
+
+    return result;
+}
 
 //    protected
 CertificateData::CertificateData()

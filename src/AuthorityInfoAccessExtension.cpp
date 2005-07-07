@@ -125,6 +125,18 @@ AuthorityInformation::verify() const
     return result;
 }
 
+blocxx::StringArray
+AuthorityInformation::dump() const
+{
+    StringArray result;
+    result.append("AuthorityInformation::dump()");
+
+    result.append("accessOID = " + accessOID);
+    result.appendArray(location.dump());
+
+    return result;
+}
+
 // ###############################################################################
 
 AuthorityInfoAccessExtension::AuthorityInfoAccessExtension()
@@ -274,5 +286,21 @@ AuthorityInfoAccessExtension::verify() const
     }
 
     LOGIT_DEBUG_STRINGARRAY("AuthorityInfoAccessExtension::verify()", result);
+    return result;
+}
+
+blocxx::StringArray
+AuthorityInfoAccessExtension::dump() const
+{
+    StringArray result;
+    result.append("AuthorityInfoAccessExtension::dump()");
+
+    result.appendArray(ExtensionBase::dump());
+    if(!isPresent()) return result;
+
+    blocxx::List< AuthorityInformation >::const_iterator it = info.begin();
+    for(; it != info.end(); ++it) {
+        result.appendArray((*it).dump());
+    }
     return result;
 }

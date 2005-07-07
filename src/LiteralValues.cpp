@@ -226,3 +226,13 @@ LiteralValue::toString() const
     return (literalType + ":" + literalValue);
 }
 
+blocxx::StringArray
+LiteralValue::dump() const
+{
+    StringArray result;
+    result.append("LiteralValue::dump()");
+
+    result.append(literalType + ":" + literalValue);
+
+    return result;
+}

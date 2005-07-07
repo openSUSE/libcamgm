@@ -81,6 +81,17 @@ X509v3CRLExtensions::verify() const
     return result;;
 }
 
+blocxx::StringArray
+X509v3CRLExtensions::dump() const
+{
+    StringArray result;
+    result.append("X509v3CRLExtensions::dump()");
+
+    result.appendArray(authorityKeyIdentifier.dump());
+    result.appendArray(issuerAlternativeName.dump());
+
+    return result;
+}
 
 //    protected:
 X509v3CRLExtensions::X509v3CRLExtensions()

@@ -49,7 +49,9 @@ namespace CA_MGM_NAMESPACE {
         virtual bool                 valid() const  = 0;
         virtual blocxx::StringArray  verify() const = 0;
 
-    private:
+        virtual blocxx::StringArray  dump() const = 0;
+
+    protected:
         blocxx::UInt32 value;
 
     };
@@ -86,6 +88,8 @@ namespace CA_MGM_NAMESPACE {
         virtual bool                 valid() const;
         virtual blocxx::StringArray  verify() const;
 
+        virtual blocxx::StringArray  dump() const;
+
     private:
         bool  validKeyUsage(blocxx::UInt32 keyUsage) const;
     };
@@ -120,6 +124,8 @@ namespace CA_MGM_NAMESPACE {
 
         virtual bool                 valid() const;
         virtual blocxx::StringArray  verify() const;
+
+        virtual blocxx::StringArray  dump() const;
     };
 
     class ExtendedKeyUsageExtension : public BitExtension {
@@ -162,6 +168,9 @@ namespace CA_MGM_NAMESPACE {
         
         virtual bool                 valid() const;
         virtual blocxx::StringArray  verify() const;
+
+        virtual blocxx::StringArray  dump() const;
+
     private:
 
         StringList oids;  //additional OIDs

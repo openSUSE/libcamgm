@@ -144,3 +144,14 @@ CRLGenerationData::verify() const
     return result;
 }
 
+blocxx::StringArray
+CRLGenerationData::dump() const
+{
+    StringArray result;
+    result.append("CRLGenerationData::dump()");
+
+    result.append("CRL Hours = " + String(crlHours));
+    result.appendArray(extensions.dump());
+
+    return result;
+}

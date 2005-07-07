@@ -190,3 +190,18 @@ BasicConstraintsExtension::verify() const
     LOGIT_DEBUG_STRINGARRAY("BasicConstraintsExtension::verify()", result);
     return result;
 }
+
+blocxx::StringArray
+BasicConstraintsExtension::dump() const
+{
+    StringArray result;
+    result.append("BasicConstraintsExtension::dump()");
+
+    result.appendArray(ExtensionBase::dump());
+    if(!isPresent()) return result;
+
+    result.append("CA = " + Bool(ca).toString());
+    result.append("pathlen = " + String(pathlen));
+
+    return result;
+}

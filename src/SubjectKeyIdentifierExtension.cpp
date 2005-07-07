@@ -211,4 +211,18 @@ SubjectKeyIdentifierExtension::verify() const
     return result;
 }
 
+blocxx::StringArray
+SubjectKeyIdentifierExtension::dump() const
+{
+    StringArray result;
+    result.append("SubjectKeyIdentifierExtension::dump()");
+
+    result.appendArray(ExtensionBase::dump());
+    if(!isPresent()) return result;
+
+    result.append("Autodetect = " + Bool(autodetect).toString());
+    result.append("KeyID = " + keyid);
+
+    return result;
+}
 

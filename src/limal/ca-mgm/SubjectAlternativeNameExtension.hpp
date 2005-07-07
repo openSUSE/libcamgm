@@ -57,6 +57,8 @@ namespace CA_MGM_NAMESPACE {
         virtual bool                 valid() const;
         virtual blocxx::StringArray  verify() const;
 
+        virtual blocxx::StringArray  dump() const;
+
     private:
         bool                           emailCopy;
         blocxx::List<LiteralValue>     altNameList;

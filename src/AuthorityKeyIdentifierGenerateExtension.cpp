@@ -200,3 +200,18 @@ AuthorityKeyIdentifierGenerateExtension::verify() const
     LOGIT_DEBUG_STRINGARRAY("AuthorityKeyIdentifierGenerateExtension::verify()", result);
     return result;
 }
+
+blocxx::StringArray
+AuthorityKeyIdentifierGenerateExtension::dump() const
+{
+    StringArray result;
+    result.append("AuthorityKeyIdentifierGenerateExtension::dump()");
+
+    result.appendArray(ExtensionBase::dump());
+    if(!isPresent()) return result;
+
+    result.append("KeyID = " + String(keyid));
+    result.append("Issuer = " + String(issuer));
+
+    return result;
+}

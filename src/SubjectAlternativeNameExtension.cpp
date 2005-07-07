@@ -205,3 +205,22 @@ SubjectAlternativeNameExtension::verify() const
     
     return result;
 }
+
+blocxx::StringArray
+SubjectAlternativeNameExtension::dump() const
+{
+    StringArray result;
+    result.append("SubjectAlternativeNameExtension::dump()");
+
+    result.appendArray(ExtensionBase::dump());
+    if(!isPresent()) return result;
+
+    result.append("email:copy = " + Bool(emailCopy).toString());
+
+    blocxx::List< LiteralValue >::const_iterator it = altNameList.begin();
+    for(; it != altNameList.end(); ++it) {
+        result.appendArray((*it).dump());
+    }
+
+    return result;
+}

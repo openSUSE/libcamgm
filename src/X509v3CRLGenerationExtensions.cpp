@@ -125,3 +125,14 @@ X509v3CRLGenerationExtensions::verify() const
     return result;;
 }
 
+blocxx::StringArray
+X509v3CRLGenerationExtensions::dump() const
+{
+    StringArray result;
+    result.append("X509v3CRLGenerationExtensions::dump()");
+
+    result.appendArray(authorityKeyIdentifier.dump());
+    result.appendArray(issuerAlternativeName.dump());
+
+    return result;
+}

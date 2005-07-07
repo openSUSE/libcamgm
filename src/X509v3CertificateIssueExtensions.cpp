@@ -476,3 +476,31 @@ X509v3CertificateIssueExtensions::verify() const
     LOGIT_DEBUG_STRINGARRAY("X509v3CertificateIssueExtensions::verify()", result);
     return result;
 }
+
+blocxx::StringArray
+X509v3CertificateIssueExtensions::dump() const
+{
+    StringArray result;
+    result.append("X509v3CertificateIssueExtensions::dump()");
+
+    result.appendArray(nsBaseUrl.dump());
+    result.appendArray(nsRevocationUrl.dump());
+    result.appendArray(nsCaRevocationUrl.dump());
+    result.appendArray(nsRenewalUrl.dump());
+    result.appendArray(nsCaPolicyUrl.dump());
+    result.appendArray(nsSslServerName.dump());
+    result.appendArray(nsComment.dump());
+    result.appendArray(keyUsage.dump());  
+    result.appendArray(nsCertType.dump());   
+    result.appendArray(basicConstraints.dump()); 
+    result.appendArray(extendedKeyUsage.dump());
+    result.appendArray(subjectKeyIdentifier.dump());
+    result.appendArray(authorityKeyIdentifier.dump());
+    result.appendArray(subjectAlternativeName.dump());
+    result.appendArray(issuerAlternativeName.dump());
+    result.appendArray(authorityInfoAccess.dump());
+    result.appendArray(crlDistributionPoints.dump());
+    result.appendArray(certificatePolicies.dump());
+
+    return result;
+}

@@ -112,6 +112,16 @@ RDNObject::verify() const
     return result;
 }
 
+blocxx::StringArray
+RDNObject::dump() const
+{
+    StringArray result;
+    result.append("RDNObject::dump()");
+
+    result.append(type + "=" + value);
+
+    return result;
+}
 
 // ######################################################################
 
@@ -202,5 +212,19 @@ DNObject::checkRDNList(const blocxx::List<RDNObject>& list) const
     for(; it != list.end(); ++it) {
         result.appendArray((*it).verify());
     }
+    return result;
+}
+
+blocxx::StringArray
+DNObject::dump() const
+{
+    StringArray result;
+    result.append("DNObject::dump()");
+
+    blocxx::List< RDNObject >::const_iterator it = dn.begin();
+    for(; it != dn.end(); ++it) {
+        result.appendArray((*it).dump());
+    }
+
     return result;
 }

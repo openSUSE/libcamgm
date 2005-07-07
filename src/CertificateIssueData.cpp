@@ -154,3 +154,15 @@ CertificateIssueData::verify() const
     return result;
 }
 
+blocxx::StringArray
+CertificateIssueData::dump() const
+{
+    StringArray result;
+    result.append("CertificateIssueData::dump()");
+
+    result.append("notBefore = " + String(notBefore));
+    result.append("notAfter = " + String(notAfter));
+    result.appendArray(extensions.dump());
+
+    return result;
+}
