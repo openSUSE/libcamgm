@@ -1,0 +1,134 @@
+START
+empty DN
+RequestGenerationData::dump()
+DNObject::dump()
+Keysize = 2048
+Challenge Password = 
+Unstructured Name = 
+X509v3RequestExtensions::dump()
+NsSslServerNameExtension::dump()
+ExtensionBase::dump()
+is Present = false
+NsCommentExtension::dump()
+ExtensionBase::dump()
+is Present = false
+KeyUsageExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+KeyUsage = 0x60
+NsCertTypeExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+KeyUsage = 0x60
+BasicConstraintsExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+CA = true
+pathlen = -1
+ExtendedKeyUsageExtension::dump()
+ExtensionBase::dump()
+is Present = false
+SubjectKeyIdentifierExtension::dump()
+ExtensionBase::dump()
+is Present = false
+SubjectAlternativeNameExtension::dump()
+ExtensionBase::dump()
+is Present = false
+======================== getIssueDefaults =================
+invalid notBefore: 0
+invalid notAfter: 0
+CertificateIssueData::dump()
+notBefore = 0
+notAfter = 0
+X509v3CertificateIssueExtensions::dump()
+NsBaseUrlExtension::dump()
+ExtensionBase::dump()
+is Present = false
+NsRevocationUrlExtension::dump()
+ExtensionBase::dump()
+is Present = false
+NsCaRevocationUrlExtension::dump()
+ExtensionBase::dump()
+is Present = false
+NsRenewalUrlExtension::dump()
+ExtensionBase::dump()
+is Present = false
+NsCaPolicyUrlExtension::dump()
+ExtensionBase::dump()
+is Present = false
+NsSslServerNameExtension::dump()
+ExtensionBase::dump()
+is Present = false
+NsCommentExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+NS Comment = "YaST Generated CA Certificate"
+KeyUsageExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+KeyUsage = 0x60
+NsCertTypeExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+KeyUsage = 0x60
+BasicConstraintsExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = true
+CA = true
+pathlen = -1
+ExtendedKeyUsageExtension::dump()
+ExtensionBase::dump()
+is Present = false
+SubjectKeyIdentifierExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+Autodetect = true
+KeyID = 
+AuthorityKeyIdentifierGenerateExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+KeyID = 2
+Issuer = 2
+SubjectAlternativeNameExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+email:copy = true
+IssuerAlternativeNameExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+Issuer:copy = true
+AuthorityInfoAccessExtension::dump()
+ExtensionBase::dump()
+is Present = false
+CRLDistributionPointsExtension::dump()
+ExtensionBase::dump()
+is Present = false
+CertificatePoliciesExtension::dump()
+ExtensionBase::dump()
+is Present = false
+======================== getCRLDefaults =================
+invalid crlhours: 0
+CRLGenerationData::dump()
+CRL Hours = 0
+X509v3CRLGenerationExtensions::dump()
+AuthorityKeyIdentifierGenerateExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+KeyID = 2
+Issuer = 2
+IssuerAlternativeNameExtension::dump()
+ExtensionBase::dump()
+is Present = false
+DONE
