@@ -56,8 +56,9 @@ namespace CA_MGM_NAMESPACE
          *
          * @param caName the name of this CA.
          * @param caPasswd the password of this CA.
+         * @param repos directory path to the repository
          */
-        CA(const String& caName, const String& caPasswd);
+        CA(const String& caName, const String& caPasswd, const String& repos=REPOSITORY);
         
         /**
          * Destructor of CA.
@@ -448,6 +449,7 @@ namespace CA_MGM_NAMESPACE
     private:
         String caName;
         String caPasswd;
+        String repositoryDir;
 
         CAConfig *config; 
         CAConfig *templ; 

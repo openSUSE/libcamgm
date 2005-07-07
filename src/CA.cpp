@@ -32,10 +32,10 @@ using namespace limal;
 using namespace limal::ca_mgm;
 using namespace blocxx;
 
-CA::CA(const String& caName, const String& caPasswd)
-    : caName(caName), caPasswd(caPasswd), 
+CA::CA(const String& caName, const String& caPasswd, const String& repos)
+    : caName(caName), caPasswd(caPasswd), repositoryDir(repos),
       config(NULL),
-      templ(new CAConfig(String(REPOSITORY)+"/"+caName+"/openssl.cnf.tmpl"))
+      templ(new CAConfig(repositoryDir+"/"+caName+"/openssl.cnf.tmpl"))
 {
 }
 
@@ -286,7 +286,7 @@ void
 CA::initConfigFile()
 {
     if(templ) {
-        config = templ->clone(String(REPOSITORY)+"/"+caName+"/openssl.cnf");
+        config = templ->clone(repositoryDir+"/"+caName+"/openssl.cnf");
     } else {
         LOGIT_ERROR("template not initialized");
         BLOCXX_THROW(limal::RuntimeException, "template not initialized");
@@ -297,7 +297,7 @@ void
 CA::commitConfig2Template()
 {
     if(config) {
-        templ = config->clone(String(REPOSITORY)+"/"+caName+"/openssl.cnf.tmpl");
+        templ = config->clone(repositoryDir+"/"+caName+"/openssl.cnf.tmpl");
         delete config;
         config = NULL;
     } else {
