@@ -4,6 +4,7 @@
 #include <blocxx/CerrAppender.hpp>
 #include <blocxx/Format.hpp>
 #include <blocxx/String.hpp>
+#include <blocxx/PerlRegEx.hpp>
 #include <limal/Logger.hpp>
 #include <limal/ca-mgm/CA.hpp>
 
@@ -20,6 +21,8 @@ limal::Logger logger("CA1");
 
 int main(int argc, char **argv)
 {
+    PerlRegEx r("^!CHANGING DATA!.*$");
+
     try {
         std::cout << "START" << std::endl;
         
@@ -51,7 +54,9 @@ int main(int argc, char **argv)
         StringArray dump = rgd.dump();
         StringArray::const_iterator it2 = dump.begin();
         for(; it2 != dump.end(); ++it2) {
-            std::cout << (*it2) << std::endl;
+            if(!r.match(*it2)) {
+                std::cout << (*it2) << std::endl;
+            }
         }
 
         std::cout << "======================== getIssueDefaults =================" << std::endl;
@@ -68,7 +73,9 @@ int main(int argc, char **argv)
         dump = cid.dump();
         it2 = dump.begin();
         for(; it2 != dump.end(); ++it2) {
-            std::cout << (*it2) << std::endl;
+            if(!r.match(*it2)) {
+                std::cout << (*it2) << std::endl;
+            }
         }
 
         std::cout << "======================== getCRLDefaults =================" << std::endl;
@@ -85,7 +92,9 @@ int main(int argc, char **argv)
         dump = cgd.dump();
         it2 = dump.begin();
         for(; it2 != dump.end(); ++it2) {
-            std::cout << (*it2) << std::endl;
+            if(!r.match(*it2)) {
+                std::cout << (*it2) << std::endl;
+            }
         }
 
         std::cout << "DONE" << std::endl;

@@ -91,11 +91,14 @@ int main(int argc, char **argv)
             }
             
             std::cout << "============= Call Dump" << std::endl; 
+            PerlRegEx r("^!CHANGING DATA!.*$");
 
             blocxx::StringArray dump = cid.dump();
             blocxx::StringArray::const_iterator it2 = dump.begin();
             for(; it2 != dump.end(); ++it2) {
-                std::cout << (*it2) << std::endl;
+                if(!r.match(*it2)) {
+                    std::cout << (*it2) << std::endl;
+                }
             }
             
         } catch(blocxx::Exception& e) {
