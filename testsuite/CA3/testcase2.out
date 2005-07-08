@@ -1,0 +1,175 @@
+START
+file: CA3/testcase2.in
+creating CA object
+============= Test:ca1_test=>Client_Cert
+============= Call Verify
+invalid notBefore: 0
+invalid notAfter: 0
+============= Call Dump
+CertificateIssueData::dump()
+notBefore = 0
+notAfter = 0
+X509v3CertificateIssueExtensions::dump()
+NsBaseUrlExtension::dump()
+ExtensionBase::dump()
+is Present = false
+NsRevocationUrlExtension::dump()
+ExtensionBase::dump()
+is Present = false
+NsCaRevocationUrlExtension::dump()
+ExtensionBase::dump()
+is Present = false
+NsRenewalUrlExtension::dump()
+ExtensionBase::dump()
+is Present = false
+NsCaPolicyUrlExtension::dump()
+ExtensionBase::dump()
+is Present = false
+NsSslServerNameExtension::dump()
+ExtensionBase::dump()
+is Present = false
+NsCommentExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+NS Comment = "YaST Generated Client Certificate"
+KeyUsageExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+KeyUsage = 0x07
+NsCertTypeExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+NsCertType = 0x0d
+BasicConstraintsExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+CA = false
+pathlen = -1
+ExtendedKeyUsageExtension::dump()
+ExtensionBase::dump()
+is Present = false
+SubjectKeyIdentifierExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+Autodetect = true
+KeyID = 
+AuthorityKeyIdentifierGenerateExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+KeyID = 1
+Issuer = 2
+SubjectAlternativeNameExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+email:copy = true
+IssuerAlternativeNameExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+Issuer:copy = true
+AuthorityInfoAccessExtension::dump()
+ExtensionBase::dump()
+is Present = false
+CRLDistributionPointsExtension::dump()
+ExtensionBase::dump()
+is Present = false
+CertificatePoliciesExtension::dump()
+ExtensionBase::dump()
+is Present = false
+creating CA object
+============= Test:ca2_test=>Client_Cert
+============= Call Verify
+invalid notBefore: 0
+invalid notAfter: 0
+============= Call Dump
+CertificateIssueData::dump()
+notBefore = 0
+notAfter = 0
+X509v3CertificateIssueExtensions::dump()
+NsBaseUrlExtension::dump()
+ExtensionBase::dump()
+is Present = false
+NsRevocationUrlExtension::dump()
+ExtensionBase::dump()
+is Present = false
+NsCaRevocationUrlExtension::dump()
+ExtensionBase::dump()
+is Present = false
+NsRenewalUrlExtension::dump()
+ExtensionBase::dump()
+is Present = false
+NsCaPolicyUrlExtension::dump()
+ExtensionBase::dump()
+is Present = false
+NsSslServerNameExtension::dump()
+ExtensionBase::dump()
+is Present = false
+NsCommentExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+NS Comment = "YaST Generated Client Certificate"
+KeyUsageExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+KeyUsage = 0x03
+NsCertTypeExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+NsCertType = 0x05
+BasicConstraintsExtension::dump()
+ExtensionBase::dump()
+is Present = false
+ExtendedKeyUsageExtension::dump()
+ExtensionBase::dump()
+is Present = false
+SubjectKeyIdentifierExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+Autodetect = false
+KeyID = a1:32:53:4e
+AuthorityKeyIdentifierGenerateExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+KeyID = 2
+Issuer = 1
+SubjectAlternativeNameExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+email:copy = false
+LiteralValue::dump()
+email:mc@suse.de
+LiteralValue::dump()
+URI:http://w3.suse.de/~mc/
+IssuerAlternativeNameExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+Issuer:copy = true
+AuthorityInfoAccessExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+AuthorityInformation::dump()
+accessOID = caIssuers
+LiteralValue::dump()
+URI:http://ocsp.my.host/
+CRLDistributionPointsExtension::dump()
+ExtensionBase::dump()
+is Present = false
+CertificatePoliciesExtension::dump()
+ExtensionBase::dump()
+is Present = false
+DONE

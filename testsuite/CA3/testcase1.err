@@ -1,0 +1,124 @@
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - Parse KeyUsage
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - Parse NsCertType
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setCritical(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - Parse ExtendedKeyUsage
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - CertificateIssueData::verify()(0/2):invalid notBefore: 0
+DEBUG ca-mgm - CertificateIssueData::verify()(1/2):invalid notAfter: 0
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - Parse KeyUsage
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - Parse NsCertType
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setCritical(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - Parse ExtendedKeyUsage
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - CertificateIssueData::verify()(0/2):invalid notBefore: 0
+DEBUG ca-mgm - CertificateIssueData::verify()(1/2):invalid notAfter: 0

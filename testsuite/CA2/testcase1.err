@@ -1,0 +1,62 @@
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - Parse KeyUsage
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - Parse NsCertType
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - Parse ExtendedKeyUsage
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=2 result=req
+DEBUG ca-mgm - DNObject::verify()(0/1):empty DN
+DEBUG ca-mgm - RequestGenerationData::verify()(0/1):empty DN
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - Parse KeyUsage
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - Parse NsCertType
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - ExtensionBase::setCritical(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - Parse ExtendedKeyUsage
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=2 result=req
+DEBUG ca-mgm - DNObject::verify()(0/1):empty DN
+DEBUG ca-mgm - RequestGenerationData::verify()(0/1):empty DN

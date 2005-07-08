@@ -1,0 +1,87 @@
+START
+file: CA2/testcase3.in
+creating CA object
+============= Test:ca1_test=>Server_Req
+============= Call Verify
+empty DN
+============= Call Dump
+RequestGenerationData::dump()
+DNObject::dump()
+Keysize = 2048
+Challenge Password = 
+Unstructured Name = 
+X509v3RequestExtensions::dump()
+NsSslServerNameExtension::dump()
+ExtensionBase::dump()
+is Present = false
+NsCommentExtension::dump()
+ExtensionBase::dump()
+is Present = false
+KeyUsageExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+KeyUsage = 0x05
+NsCertTypeExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+NsCertType = 0x02
+BasicConstraintsExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+CA = false
+pathlen = -1
+ExtendedKeyUsageExtension::dump()
+ExtensionBase::dump()
+is Present = false
+SubjectKeyIdentifierExtension::dump()
+ExtensionBase::dump()
+is Present = false
+SubjectAlternativeNameExtension::dump()
+ExtensionBase::dump()
+is Present = false
+creating CA object
+============= Test:ca2_test=>Server_Req
+============= Call Verify
+empty DN
+============= Call Dump
+RequestGenerationData::dump()
+DNObject::dump()
+Keysize = 2048
+Challenge Password = 
+Unstructured Name = 
+X509v3RequestExtensions::dump()
+NsSslServerNameExtension::dump()
+ExtensionBase::dump()
+is Present = false
+NsCommentExtension::dump()
+ExtensionBase::dump()
+is Present = false
+KeyUsageExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+KeyUsage = 0x05
+NsCertTypeExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+NsCertType = 0x02
+BasicConstraintsExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = true
+CA = false
+pathlen = -1
+ExtendedKeyUsageExtension::dump()
+ExtensionBase::dump()
+is Present = false
+SubjectKeyIdentifierExtension::dump()
+ExtensionBase::dump()
+is Present = false
+SubjectAlternativeNameExtension::dump()
+ExtensionBase::dump()
+is Present = false
+DONE
