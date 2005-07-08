@@ -169,9 +169,10 @@ AuthorityInfoAccessExtension::AuthorityInfoAccessExtension(CA& ca, Type type)
 
             try {
                 AuthorityInformation ai = AuthorityInformation(al[0], LiteralValue(al[1]));
+                info.push_back(ai);
 
             } catch(blocxx::Exception& e) {
-                LOGIT_ERROR("invalid value: " << *it);
+                LOGIT_ERROR("invalid value: " << *it << "(" << al[0] << "/" << al[1] << ")");
             }
         }
     }
