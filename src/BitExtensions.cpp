@@ -84,6 +84,8 @@ KeyUsageExtension::KeyUsageExtension()
 KeyUsageExtension::KeyUsageExtension(CA& ca, Type type)
     : BitExtension()
 {
+    LOGIT_DEBUG("Parse KeyUsage");
+
     // These types are not supported by this object
     if(type == CRL) {
         LOGIT_ERROR("wrong type" << type);
@@ -110,6 +112,9 @@ KeyUsageExtension::KeyUsageExtension(CA& ca, Type type)
             else if((*it).equalsIgnoreCase("cRLSign"))          keyUsage |= cRLSign; 
             else if((*it).equalsIgnoreCase("encipherOnly"))     keyUsage |= encipherOnly; 
             else if((*it).equalsIgnoreCase("decipherOnly"))     keyUsage |= decipherOnly; 
+            else
+                LOGIT_INFO("Unknown KeyUsage option: " << (*it));
+
         }
         setKeyUsage(keyUsage);
     }
@@ -138,7 +143,7 @@ KeyUsageExtension::operator=(const KeyUsageExtension& extension)
 {
     if(this == &extension) return *this;
 
-    ExtensionBase::operator=(extension);
+    BitExtension::operator=(extension);
 
     return *this;
 }
@@ -246,6 +251,8 @@ KeyUsageExtension::verify() const
     if(!validKeyUsage(value)) {
         result.append(Format("invalid value '%1' for keyUsage", value).toString());
     }
+
+    LOGIT_DEBUG_STRINGARRAY("KeyUsageExtension::verify()", result);
     return result;
 }
 
@@ -286,6 +293,8 @@ NsCertTypeExtension::NsCertTypeExtension()
 NsCertTypeExtension::NsCertTypeExtension(CA& ca, Type type)
     : BitExtension()
 {
+    LOGIT_DEBUG("Parse NsCertType");
+
     // These types are not supported by this object
     if(type == CRL) {
         LOGIT_ERROR("wrong type" << type);
@@ -311,6 +320,8 @@ NsCertTypeExtension::NsCertTypeExtension(CA& ca, Type type)
             else if((*it).equalsIgnoreCase("sslCA"))    bits |= sslCA; 
             else if((*it).equalsIgnoreCase("emailCA"))  bits |= emailCA; 
             else if((*it).equalsIgnoreCase("objCA"))    bits |= objCA;
+            else
+                LOGIT_INFO("Unknown NsCertType option: " << (*it));
         }
         setNsCertType(bits);
     }
@@ -339,7 +350,7 @@ NsCertTypeExtension::operator=(const NsCertTypeExtension& extension)
 {
     if(this == &extension) return *this;
 
-    ExtensionBase::operator=(extension);
+    BitExtension::operator=(extension);
 
     return *this;
 }
@@ -444,6 +455,7 @@ NsCertTypeExtension::verify() const
     if(value > 0xFF || value == 0) {
         result.append(Format("invalid value '%1' for nsCertType", value).toString());
     }
+    LOGIT_DEBUG_STRINGARRAY("NsCertTypeExtension::verify()", result);
     return result;
 }
 
@@ -470,8 +482,10 @@ ExtendedKeyUsageExtension::ExtendedKeyUsageExtension()
 {}
 
 ExtendedKeyUsageExtension::ExtendedKeyUsageExtension(CA& ca, Type type)
-    : BitExtension()
+    : BitExtension(), oids(StringList())
 {
+    LOGIT_DEBUG("Parse ExtendedKeyUsage");
+
     // These types are not supported by this object
     if(type == CRL) {
         LOGIT_ERROR("wrong type" << type);
@@ -503,7 +517,8 @@ ExtendedKeyUsageExtension::ExtendedKeyUsageExtension(CA& ca, Type type)
             else if((*it).equalsIgnoreCase("nsSGC"))            bits |= nsSGC; 
             else if(check.isValid(*it)) {
                 oids.push_back(*it);
-            }
+            } else
+                LOGIT_INFO("Unknown ExtendedKeyUsage option: " << (*it));
         }
         setExtendedKeyUsage(bits);
     }
@@ -546,7 +561,7 @@ ExtendedKeyUsageExtension::operator=(const ExtendedKeyUsageExtension& extension)
 {
     if(this == &extension) return *this;
 
-    ExtensionBase::operator=(extension);
+    BitExtension::operator=(extension);
     oids = extension.oids;
 
     return *this;
@@ -736,6 +751,7 @@ ExtendedKeyUsageExtension::verify() const
             result.append(Format("invalid additionalOID(%1)", *it).toString());
         }
     }
+    LOGIT_DEBUG_STRINGARRAY("ExtendedKeyUsageExtension::verify()", result);
     return result;
 }
 
