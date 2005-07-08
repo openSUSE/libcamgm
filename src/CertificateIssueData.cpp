@@ -24,6 +24,7 @@
 #include  <limal/ca-mgm/CertificateIssueData.hpp>
 #include  <limal/Exception.hpp>
 #include  <blocxx/Format.hpp>
+#include  <blocxx/DateTime.hpp>
 
 #include  "Utils.hpp"
 
@@ -41,6 +42,12 @@ CertificateIssueData::CertificateIssueData(CA& ca, Type type)
     : notBefore(0), notAfter(0), 
       extensions(X509v3CertificateIssueExtensions(ca, type))
 {
+    notBefore = DateTime::getCurrent().get();
+
+    UInt32 days = ca.getConfig()->getValue(type2Section(type, false), "default_days").toUInt32();
+    DateTime dt = DateTime(notBefore);
+    dt.addDays(days);
+    notAfter    = dt.get();
 }
 
 CertificateIssueData::CertificateIssueData(const CertificateIssueData& data)
@@ -114,7 +121,10 @@ CertificateIssueData::commit2Config(CA& ca, Type type) const
         LOGIT_ERROR("wrong type" << type);
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
-
+    UInt32 t = (UInt32)((notAfter-notBefore)/(60*60*24));
+    
+    ca.getConfig()->setValue(type2Section(type, false), "default_days", String(t));
+                        
     extensions.commit2Config(ca, type);
 }
 
@@ -160,8 +170,9 @@ CertificateIssueData::dump() const
     StringArray result;
     result.append("CertificateIssueData::dump()");
 
-    result.append("notBefore = " + String(notBefore));
-    result.append("notAfter = " + String(notAfter));
+    result.append("!CHANGING DATA! notBefore = " + String(notBefore));
+    result.append("!CHANGING DATA! notAfter = " + String(notAfter));
+    result.append("notAfter - notBefore (in days)= " + String((notAfter - notBefore)/86400));
     result.appendArray(extensions.dump());
 
     return result;
