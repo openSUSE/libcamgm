@@ -50,8 +50,7 @@ DEBUG ca-mgm - type2Section: type=3 result=v3_client
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=3 result=v3_client
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
-DEBUG ca-mgm - CertificateIssueData::verify()(0/2):invalid notBefore: 0
-DEBUG ca-mgm - CertificateIssueData::verify()(1/2):invalid notAfter: 0
+DEBUG ca-mgm - type2Section: type=3 result=client_cert
 DEBUG ca-mgm - type2Section: type=3 result=v3_client
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=3 result=v3_client
@@ -103,5 +102,4 @@ DEBUG ca-mgm - type2Section: type=3 result=v3_client
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=3 result=v3_client
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
-DEBUG ca-mgm - CertificateIssueData::verify()(0/2):invalid notBefore: 0
-DEBUG ca-mgm - CertificateIssueData::verify()(1/2):invalid notAfter: 0
+DEBUG ca-mgm - type2Section: type=3 result=client_cert

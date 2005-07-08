@@ -3,12 +3,9 @@ file: CA3/testcase3.in
 creating CA object
 ============= Test:ca1_test=>Server_Cert
 ============= Call Verify
-invalid notBefore: 0
-invalid notAfter: 0
 ============= Call Dump
 CertificateIssueData::dump()
-notBefore = 0
-notAfter = 0
+notAfter - notBefore (in days)= 365
 X509v3CertificateIssueExtensions::dump()
 NsBaseUrlExtension::dump()
 ExtensionBase::dump()
@@ -86,12 +83,9 @@ is Present = false
 creating CA object
 ============= Test:ca2_test=>Server_Cert
 ============= Call Verify
-invalid notBefore: 0
-invalid notAfter: 0
 ============= Call Dump
 CertificateIssueData::dump()
-notBefore = 0
-notAfter = 0
+notAfter - notBefore (in days)= 700
 X509v3CertificateIssueExtensions::dump()
 NsBaseUrlExtension::dump()
 ExtensionBase::dump()

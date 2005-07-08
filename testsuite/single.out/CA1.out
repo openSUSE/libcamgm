@@ -38,11 +38,8 @@ SubjectAlternativeNameExtension::dump()
 ExtensionBase::dump()
 is Present = false
 ======================== getIssueDefaults =================
-invalid notBefore: 0
-invalid notAfter: 0
 CertificateIssueData::dump()
-notBefore = 0
-notAfter = 0
+notAfter - notBefore (in days)= 1500
 X509v3CertificateIssueExtensions::dump()
 NsBaseUrlExtension::dump()
 ExtensionBase::dump()
