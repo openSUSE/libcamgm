@@ -71,11 +71,15 @@ UserNotice::initWithSection(CA& ca, Type type, const String& sectionName)
     bool p = ca.getConfig()->exists(sectionName, "explicitText");
     if(p) {
         explicitText = ca.getConfig()->getValue(sectionName, "explicitText");
+    } else {
+        LOGIT_DEBUG("no explicite Text in " << sectionName);
     }
 
     p = ca.getConfig()->exists(sectionName, "organization");
     if(p) {
         organization = ca.getConfig()->getValue(sectionName, "organization");
+    } else {
+        LOGIT_DEBUG("no Organization in " << sectionName);
     }
     
     p = ca.getConfig()->exists(sectionName, "noticeNumbers");
@@ -87,6 +91,8 @@ UserNotice::initWithSection(CA& ca, Type type, const String& sectionName)
             
             noticeNumbers.push_back((*it).toInt32());
         }
+    } else {
+        LOGIT_DEBUG("no Notice Numbers in " << sectionName);
     }
 }
 
@@ -209,7 +215,7 @@ UserNotice::dump() const
     String n;
     blocxx::List< blocxx::Int32 >::const_iterator it = noticeNumbers.begin();
     for(; it != noticeNumbers.end(); ++it) {
-        n += (*it) + " ";
+        n += String(*it) + " ";
     }
     result.append("noticeNumbers = " + n);
 
@@ -280,7 +286,7 @@ CertificatePolicy::initWithSection(CA& ca, Type type, const String& sectionName)
         } else if((*it).startsWith("userNotice", String::E_CASE_INSENSITIVE)) {
             String uns = ca.getConfig()->getValue(sectionName, *it);
             UserNotice un = UserNotice();
-            un.initWithSection(ca, type, uns);
+            un.initWithSection(ca, type, uns.substring(1));
             noticeList.push_back(un);
         }
     }
@@ -430,7 +436,7 @@ CertificatePolicy::dump() const
 
     StringList::const_iterator it1 = cpsURI.begin();
     for(; it1 != cpsURI.end(); ++it1) {
-        result.append(*it1);
+        result.append("CPS = " + (*it1));
     }
 
     blocxx::List< UserNotice >::const_iterator it2 = noticeList.begin();
@@ -656,7 +662,7 @@ CertificatePoliciesExtension::dump() const
     result.appendArray(ExtensionBase::dump());
     if(!isPresent()) return result;
 
-    result.append("ia5org = " + blocxx::Bool(ia5org));
+    result.append("ia5org = " + blocxx::Bool(ia5org).toString());
     blocxx::List< CertificatePolicy >::const_iterator it = policies.begin();
     for(; it != policies.end(); ++it) {
         result.appendArray((*it).dump());
