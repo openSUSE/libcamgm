@@ -103,7 +103,7 @@ crl=$dir/crl.pem
 private_key=$dir/cacert.key
 RANDFILE=$dir/.rand
 x509_extensions=v3_server
-default_days=365
+default_days=700
 default_crl_hours=24
 default_md=sha1
 preserve=no
@@ -221,3 +221,4 @@ keyUsage=digitalSignature, keyEncipherment
 [v3_crl]
 authorityKeyIdentifier=keyid:always,issuer:always
 issuerAltName=issuer:copy
+
