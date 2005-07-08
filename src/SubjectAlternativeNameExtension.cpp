@@ -63,7 +63,7 @@ SubjectAlternativeNameExtension::SubjectAlternativeNameExtension(CA& ca, Type ty
                         altNameList.push_back(lv);
                     
                     } catch(blocxx::Exception& e) {
-                        LOGIT_ERROR("invalid value: " << *it);
+                        LOGIT_ERROR("invalid value: " << *it << "\n" <<e);
                     }
                 }
             }
