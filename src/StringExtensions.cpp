@@ -183,6 +183,7 @@ NsBaseUrlExtension::verify() const
         LOGIT_DEBUG("Wrong value for NsBaseUrlExtension:" << value);
         result.append(Format("Wrong value for NsBaseUrlExtension: %1", value).toString());
     }
+    LOGIT_DEBUG_STRINGARRAY("NsBaseUrlExtension::verify()", result);
     return result;
 }
 
@@ -316,6 +317,7 @@ NsRevocationUrlExtension::verify() const
         LOGIT_DEBUG("Wrong value for NsRevocationUrlExtension:" << value);
         result.append(Format("Wrong value for NsRevocationUrlExtension: %1", value).toString());
     }
+    LOGIT_DEBUG_STRINGARRAY("NsRevocationUrlExtension::verify()", result);
     return result;
 }
 
@@ -461,6 +463,7 @@ NsCaRevocationUrlExtension::verify() const
         LOGIT_DEBUG("Wrong value for NsCaRevocationUrlExtension:" << value);
         result.append(Format("Wrong value for NsCaRevocationUrlExtension: %1", value).toString());
     }
+    LOGIT_DEBUG_STRINGARRAY("NsCaRevocationUrlExtension::verify()", result);
     return result;
 }
 
@@ -605,6 +608,7 @@ NsRenewalUrlExtension::verify() const
         LOGIT_DEBUG("Wrong value for NsRenewalUrlExtension:" << value);
         result.append(Format("Wrong value for NsRenewalUrlExtension: %1", value).toString());
     }
+    LOGIT_DEBUG_STRINGARRAY("NsRenewalUrlExtension::verify()", result);
     return result;
 }
 
@@ -748,6 +752,7 @@ NsCaPolicyUrlExtension::verify() const
         LOGIT_DEBUG("Wrong value for NsCaPolicyUrlExtension:" << value);
         result.append(Format("Wrong value for NsCaPolicyUrlExtension: %1", value).toString());
     }
+    LOGIT_DEBUG_STRINGARRAY("NsCaPolicyUrlExtension::verify()", result);
     return result;
 }
 
