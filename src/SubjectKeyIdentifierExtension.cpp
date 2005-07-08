@@ -58,10 +58,13 @@ SubjectKeyIdentifierExtension::SubjectKeyIdentifierExtension(CA& ca, Type type)
             str = sp[0];
         }
 
-        if(str.equalsIgnoreCase("hash"))  
-            setSubjectKeyIdentifier(true, String()); 
-        else
-            setSubjectKeyIdentifier(false, str);
+        if(str.equalsIgnoreCase("hash")) {
+            this->autodetect = true;
+            this->keyid      = String();
+        } else {
+            this->autodetect = false;
+            this->keyid      = str;
+        }
     }
     setPresent(p);
 }
@@ -165,20 +168,20 @@ SubjectKeyIdentifierExtension::valid() const
     if(!isPresent()) return true;
 
     if(!autodetect && keyid.empty()) {
-        LOGIT_DEBUG(Format("Wrong value for NsBaseUrlExtension: autodetect(%1), keyId(%2)",
+        LOGIT_DEBUG(Format("Wrong value for SubjectKeyIdentifierExtension: autodetect(%1), keyId(%2)",
                            autodetect?"true":"false", keyid));
         return false;
     }
 
     if(autodetect && !keyid.empty()) {
-        LOGIT_DEBUG(Format("Wrong value for NsBaseUrlExtension: autodetect(%1), keyId(%2)",
+        LOGIT_DEBUG(Format("Wrong value for SubjectKeyIdentifierExtension: autodetect(%1), keyId(%2)",
                            autodetect?"true":"false", keyid));
         return false;
     }
     if(!keyid.empty()) {
         ValueCheck check = initHexCheck();
         if(!check.isValid(keyid)) {
-            LOGIT_DEBUG("Wrong keyID in NsBaseUrlExtension:" << keyid);
+            LOGIT_DEBUG("Wrong keyID in SubjectKeyIdentifierExtension:" << keyid);
             return false;
         }
     }
@@ -193,18 +196,19 @@ SubjectKeyIdentifierExtension::verify() const
     if(!isPresent()) return result;
 
     if(!autodetect && keyid.empty()) {
-        result.append(Format("Wrong value for NsBaseUrlExtension: autodetect(%1), keyId(%2)", 
+        result.append(Format("Wrong value for SubjectKeyIdentifierExtension: autodetect(%1), keyId(%2)", 
                              autodetect?"true":"false", keyid.c_str()).toString());
     }
 
     if(autodetect && !keyid.empty()) {
-        result.append(Format("Wrong value for NsBaseUrlExtension: autodetect(%1), keyId(%2)", 
+        result.append(Format("Wrong value for SubjectKeyIdentifierExtension: autodetect(%1), keyId(%2)", 
                              autodetect?"true":"false", keyid.c_str()).toString());
     }
     if(!keyid.empty()) {
         ValueCheck check = initHexCheck();
         if(!check.isValid(keyid)) {
-            result.append(Format("Wrong keyID in NsBaseUrlExtension: %1", keyid.c_str()).toString());
+            result.append(Format("Wrong keyID in SubjectKeyIdentifierExtension: %1",
+                                 keyid.c_str()).toString());
         }
     }
     LOGIT_DEBUG_STRINGARRAY("SubjectKeyIdentifierExtension::verify()", result);
