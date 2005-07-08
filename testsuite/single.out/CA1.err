@@ -2,6 +2,13 @@ DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - Parse KeyUsage
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - Parse NsCertType
 DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
 DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): true
@@ -11,11 +18,7 @@ DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
 DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): true
 DEBUG ca-mgm - ExtensionBase::setPresent(): true
-DEBUG ca-mgm - ExtensionBase::setPresent(): true
-DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
-DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
-DEBUG ca-mgm - ExtensionBase::setPresent(): true
-DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - Parse ExtendedKeyUsage
 DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
@@ -40,11 +43,13 @@ DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - Parse KeyUsage
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): true
 DEBUG ca-mgm - ExtensionBase::setPresent(): true
 DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - Parse NsCertType
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): true
@@ -56,11 +61,11 @@ DEBUG ca-mgm - ExtensionBase::setCritical(): true
 DEBUG ca-mgm - ExtensionBase::setPresent(): true
 DEBUG ca-mgm - ExtensionBase::setPresent(): true
 DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - Parse ExtendedKeyUsage
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
-DEBUG ca-mgm - ExtensionBase::setPresent(): true
 DEBUG ca-mgm - ExtensionBase::setPresent(): true
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
@@ -85,4 +90,3 @@ DEBUG ca-mgm - ExtensionBase::setPresent(): true
 DEBUG ca-mgm - type2Section: type=6 result=v3_crl
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=6 result=ca
-DEBUG ca-mgm - CRLGenerationData::verify()(0/1):invalid crlhours: 0

@@ -37,7 +37,7 @@ int main(int argc, char **argv)
                                                          ));
         limal::Logger::setDefaultLogger(appLogger);
         
-        CA ca("ca1_test", "system", "./");
+        CA ca("ca1_test", "system", "./TestRepos/");
         
         RequestGenerationData rgd = ca.getRequestDefaults(CA_Req);
  

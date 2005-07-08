@@ -21,7 +21,7 @@ NsCertTypeExtension::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
-KeyUsage = 0x60
+NsCertType = 0x60
 BasicConstraintsExtension::dump()
 ExtensionBase::dump()
 is Present = true
@@ -76,7 +76,7 @@ NsCertTypeExtension::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
-KeyUsage = 0x60
+NsCertType = 0x60
 BasicConstraintsExtension::dump()
 ExtensionBase::dump()
 is Present = true
@@ -118,9 +118,8 @@ CertificatePoliciesExtension::dump()
 ExtensionBase::dump()
 is Present = false
 ======================== getCRLDefaults =================
-invalid crlhours: 0
 CRLGenerationData::dump()
-CRL Hours = 0
+CRL Hours = 24
 X509v3CRLGenerationExtensions::dump()
 AuthorityKeyIdentifierGenerateExtension::dump()
 ExtensionBase::dump()
