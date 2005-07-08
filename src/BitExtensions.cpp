@@ -266,7 +266,7 @@ KeyUsageExtension::dump() const
     if(!isPresent()) return result;
 
     String ku;
-    ku.format("%x", value);
+    ku.format("%02x", value);
     result.append("KeyUsage = 0x" + ku);
 
     return result;
@@ -469,7 +469,7 @@ NsCertTypeExtension::dump() const
     if(!isPresent()) return result;
 
     String nsct;
-    nsct.format("%x", value);
+    nsct.format("%02x", value);
     result.append("KeyUsage = 0x" + nsct);
 
     return result;
@@ -765,8 +765,8 @@ ExtendedKeyUsageExtension::dump() const
     if(!isPresent()) return result;
 
     String eku;
-    eku.format("%x", value);
-    result.append("KeyUsage = 0x" + eku);
+    eku.format("%04x", value);
+    result.append("Extended KeyUsage = 0x" + eku);
 
     StringList::const_iterator it = oids.begin();
     for(; it != oids.end(); ++it) {
