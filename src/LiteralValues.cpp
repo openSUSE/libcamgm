@@ -48,25 +48,25 @@ LiteralValue::LiteralValue(const String &type, const String &value)
 LiteralValue::LiteralValue(const String& value)
     : literalType(String()), literalValue(String())
 {
-    StringArray   sp   = PerlRegEx(":").split(value);
-
-    if(sp[0].equalsIgnoreCase("email")) {
-        literalType  = sp[0];
-        literalValue = sp[1];
-    } else if(sp[0].equalsIgnoreCase("URI")) {
-        literalType  = sp[0];
-        literalValue = sp[1];
-    } else if(sp[0].equalsIgnoreCase("DNS")) {
-        literalType  = sp[0];
-        literalValue = sp[1];
-    } else if(sp[0].equalsIgnoreCase("RID")) {
-        literalType  = sp[0];
-        literalValue = sp[1];
-    } else if(sp[0].equalsIgnoreCase("IP")) {
-        literalType  = sp[0];
-        literalValue = sp[1];
+    StringArray   sp   = PerlRegEx("^(\\w+):(.*)$").capture(value);
+    
+    if(sp[1].equalsIgnoreCase("email")) {
+        literalType  = sp[1];
+        literalValue = sp[2];
+    } else if(sp[1].equalsIgnoreCase("URI")) {
+        literalType  = sp[1];
+        literalValue = sp[2];
+    } else if(sp[1].equalsIgnoreCase("DNS")) {
+        literalType  = sp[1];
+        literalValue = sp[2];
+    } else if(sp[1].equalsIgnoreCase("RID")) {
+        literalType  = sp[1];
+        literalValue = sp[2];
+    } else if(sp[1].equalsIgnoreCase("IP")) {
+        literalType  = sp[1];
+        literalValue = sp[2];
     } else {
-        LOGIT_DEBUG("unknown type: "<< sp[0] << " = " << sp[1]);
+        LOGIT_DEBUG("unknown type: "<< sp[1] << " = " << sp[2]);
         BLOCXX_THROW(limal::ValueException , "unknown type");
     }
 }
