@@ -149,7 +149,7 @@ UserNotice::commit2Config(CA& ca, Type type, blocxx::UInt32 num) const
     }
 
     // we need a User Notice section
-    String sectionName = String("notice")+String(num);
+    String sectionName = String("notice")+type2Section(type, true)+String(num);
 
     if(!explicitText.empty()) {
         ca.getConfig()->setValue(sectionName, "explicitText", explicitText);
@@ -364,7 +364,7 @@ CertificatePolicy::commit2Config(CA& ca, Type type, blocxx::UInt32 num) const
         return policyIdentifier;
     }
     // we need a policy section
-    String sectionName = String("polsec")+String(num);
+    String sectionName = String("polsec")+type2Section(type, true)+String(num);
 
     ca.getConfig()->setValue(sectionName, "policyIdentifier", policyIdentifier);
 
