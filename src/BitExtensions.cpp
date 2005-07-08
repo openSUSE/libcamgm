@@ -470,7 +470,7 @@ NsCertTypeExtension::dump() const
 
     String nsct;
     nsct.format("%02x", value);
-    result.append("KeyUsage = 0x" + nsct);
+    result.append("NsCertType = 0x" + nsct);
 
     return result;
 }
