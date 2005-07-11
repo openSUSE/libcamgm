@@ -157,7 +157,7 @@
    basicConstraints = CA:FALSE
    nsComment = "YaST Generated Client Certificate"
    nsCertType = client,email,objsign
-   keyUsage = nonRepudiation,digitalSignature,keyEncipherment
+   keyUsage = digitalSignature,nonRepudiation,keyEncipherment
    subjectKeyIdentifier = hash
    authorityKeyIdentifier = keyid,issuer:always
    subjectAltName = email:copy
@@ -174,10 +174,10 @@
    issuerAltName = issuer:copy
 
 [v3_ca]
-   basicConstraints = critical,CA:true
+   basicConstraints = critical,CA:TRUE
    nsComment = "YaST Generated CA Certificate"
    nsCertType = sslCA,emailCA
-   keyUsage = cRLSign,keyCertSign
+   keyUsage = keyCertSign,cRLSign
    subjectKeyIdentifier = hash
    authorityKeyIdentifier = keyid:always,issuer:always
    subjectAltName = email:copy

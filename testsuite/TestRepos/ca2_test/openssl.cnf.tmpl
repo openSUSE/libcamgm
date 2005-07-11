@@ -156,7 +156,7 @@
 [v3_client]
    nsComment = "YaST Generated Client Certificate"
    nsCertType = client,email
-   keyUsage = nonRepudiation,digitalSignature
+   keyUsage = digitalSignature,nonRepudiation
    subjectKeyIdentifier = a1:32:53:4e
    authorityKeyIdentifier = keyid:always,issuer
    subjectAltName = email:mc@suse.de,URI:http://w3.suse.de/~mc/
@@ -174,15 +174,15 @@
    authorityInfoAccess = 2.76.8.2;URI:http://ocsp.my.host/
 
 [v3_ca]
-   basicConstraints = critical,CA:true,pathlen:5
+   basicConstraints = critical,CA:TRUE,pathlen:5
    nsComment = "YaST Generated CA Certificate"
    nsCertType = sslCA,emailCA,objCA
-   keyUsage = cRLSign,keyCertSign
+   keyUsage = keyCertSign,cRLSign
    subjectKeyIdentifier = hash
    authorityKeyIdentifier = keyid,issuer
    subjectAltName = email:copy,email:mc@suse.de,URI:http://w3.suse.de/~mc/
    issuerAltName = issuer:copy,email:mc@suse.de,URI:http://w3.suse.de/~mc/
-   certificatePolicies = ia5org,2.3.4.5,@polsec1
+   certificatePolicies = ia5org,2.3.4.5,@polsecv3_ca1
    nsBaseUrl = "http://www.linux.tux/"
    nsRevocationUrl = "http://www.linux.tux/"
    nsCaRevocationUrl = 'http://www.linux.tux/'
@@ -193,12 +193,12 @@
    authorityInfoAccess = OCSP;URI:http://ocsp.my.host/
    crlDistributionPoints = URI:ldap://my.linux.tux/cn=Test2_SuSE_CA%2Cou=CA%2Cdc=suse%2Cdc=de
 
-[polsec1]
+[polsecv3_ca1]
    policyIdentifier = 4.3.2.1
-   CPS = http://www.suse.de/
-   userNotice = @notice1
+   CPS.1 = http://www.suse.de/
+   userNotice.1 = @noticev3_ca1
 
-[notice1]
+[noticev3_ca1]
    explicitText = "Hi this is a explicite Text"
    organization = "Organisation field"
    noticeNumbers = 2,6,8,1
