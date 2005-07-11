@@ -23,7 +23,7 @@ int main(int argc, char **argv)
 {
     
     if ( argc != 2 ) {
-        std::cerr << "Usage: CA2 <filepath>" << std::endl;
+        std::cerr << "Usage: CA3 <filepath>" << std::endl;
         exit( 1 );
     }
     

@@ -16,14 +16,14 @@ using namespace blocxx;
 using namespace limal;
 using namespace limal::ca_mgm;
 
-limal::Logger logger("CA2");
+limal::Logger logger("CA4");
 
 
 int main(int argc, char **argv)
 {
     
     if ( argc != 2 ) {
-        std::cerr << "Usage: CA2 <filepath>" << std::endl;
+        std::cerr << "Usage: CA4 <filepath>" << std::endl;
         exit( 1 );
     }
     
@@ -35,7 +35,7 @@ int main(int argc, char **argv)
                                                          "%-5p %c - %m"
                                                          ));
     blocxx::LoggerRef	appLogger(new AppenderLogger(
-                                                     "CA2",
+                                                     "CA4",
                                                      E_ALL_LEVEL,
                                                      logAppender
                                                      ));
