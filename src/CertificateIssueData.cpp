@@ -33,13 +33,15 @@ using namespace limal::ca_mgm;
 using namespace blocxx;
 
 CertificateIssueData::CertificateIssueData()
-    : notBefore(0), notAfter(0), 
+    : notBefore(0), notAfter(0),
+      messageDigest(SHA1),
       extensions(X509v3CertificateIssueExtensions())
 {
 }
 
 CertificateIssueData::CertificateIssueData(CA& ca, Type type)
     : notBefore(0), notAfter(0), 
+      messageDigest(SHA1),
       extensions(X509v3CertificateIssueExtensions(ca, type))
 {
     notBefore = DateTime::getCurrent().get();
@@ -48,10 +50,24 @@ CertificateIssueData::CertificateIssueData(CA& ca, Type type)
     DateTime dt = DateTime(notBefore);
     dt.addDays(days);
     notAfter    = dt.get();
+
+    String md = ca.getConfig()->getValue(type2Section(type, false), "default_md");
+    if(md.equalsIgnoreCase("sha1")) {
+        messageDigest = SHA1;
+    } else if(md.equalsIgnoreCase("md5")) {
+        messageDigest = MD5;
+    } else if(md.equalsIgnoreCase("mdc2")) {
+        messageDigest = MDC2;
+    } else {
+        LOGIT_INFO("unsupported message digest: " << md);
+        LOGIT_INFO("select default sha1.");
+        messageDigest = SHA1;
+    }
 }
 
 CertificateIssueData::CertificateIssueData(const CertificateIssueData& data)
     : notBefore(data.notBefore), notAfter(data.notAfter), 
+      messageDigest(data.messageDigest),
       extensions(data.extensions)
 {
 }
@@ -66,6 +82,7 @@ CertificateIssueData::operator=(const CertificateIssueData& data)
     
     notBefore     = data.notBefore;
     notAfter      = data.notAfter;
+    messageDigest = data.messageDigest;
     extensions    = data.extensions;
     
     return *this;
@@ -88,6 +105,18 @@ time_t
 CertificateIssueData::getEndDate() const
 {
     return notAfter;
+}
+
+void
+CertificateIssueData::setMessageDigest(MD md)
+{
+    messageDigest = md;
+}
+
+MD 
+CertificateIssueData::getMessageDigest() const
+{
+    return messageDigest;
 }
 
 void
@@ -125,6 +154,20 @@ CertificateIssueData::commit2Config(CA& ca, Type type) const
     
     ca.getConfig()->setValue(type2Section(type, false), "default_days", String(t));
                         
+    String md("sha1");
+    switch(messageDigest) {
+    case SHA1:
+        md = "sha1";
+        break;
+    case MD5:
+        md = "md5";
+        break;
+    case MDC2:
+        md = "mdc2";
+        break;
+    }
+    ca.getConfig()->setValue(type2Section(type, false), "default_md", md);
+
     extensions.commit2Config(ca, type);
 }
 
@@ -173,6 +216,7 @@ CertificateIssueData::dump() const
     result.append("!CHANGING DATA! notBefore = " + String(notBefore));
     result.append("!CHANGING DATA! notAfter = " + String(notAfter));
     result.append("notAfter - notBefore (in days)= " + String((notAfter - notBefore)/86400));
+    result.append("MessageDigest = " + String(messageDigest));
     result.appendArray(extensions.dump());
 
     return result;

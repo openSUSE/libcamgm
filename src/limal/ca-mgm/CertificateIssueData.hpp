@@ -58,6 +58,9 @@ namespace CA_MGM_NAMESPACE
         time_t         getStartDate() const;
         time_t         getEndDate() const;
 
+        void           setMessageDigest(MD md);
+        MD             getMessageDigest() const;
+
         void           setExtensions(const X509v3CertificateIssueExtensions& ext);
         X509v3CertificateIssueExtensions getExtensions() const;
 
@@ -75,11 +78,10 @@ namespace CA_MGM_NAMESPACE
         time_t           notBefore;
         time_t           notAfter;
 
-        // ???  KeyAlg           pubkeyAlgorithm;
+        // ???  KeyAlg           pubkeyAlgorithm; // at the beginning we only support rsa
 
 
-        // ???  SigAlg           signatureAlgorithm;
-
+        MD               messageDigest;           // parameter default_md
 
         X509v3CertificateIssueExtensions extensions;
 

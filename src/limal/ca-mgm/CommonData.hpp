@@ -84,6 +84,12 @@ namespace CA_MGM_NAMESPACE {
         SHA1DSA,
     };
 
+    enum MD {
+        SHA1,
+        MD5,
+        MDC2,
+    };
+
 }
 }
 

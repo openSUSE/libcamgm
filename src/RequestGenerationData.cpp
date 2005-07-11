@@ -36,6 +36,7 @@ using namespace blocxx;
 RequestGenerationData::RequestGenerationData()
     : subject(DNObject()),
       keysize(0),
+      messageDigest(SHA1),
       challengePassword(""),
       unstructuredName(""),
       extensions(X509v3RequestExtensions())
@@ -45,16 +46,31 @@ RequestGenerationData::RequestGenerationData()
 RequestGenerationData::RequestGenerationData(CA& ca, Type type)
     : subject(DNObject()),
       keysize(0),
+      messageDigest(SHA1),
       challengePassword(""),
       unstructuredName(""),
       extensions(X509v3RequestExtensions(ca, type))
 {
     keysize = ca.getConfig()->getValue(type2Section(type, false), "default_bits").toUInt32();
+
+    String md = ca.getConfig()->getValue(type2Section(type, false), "default_md");
+    if(md.equalsIgnoreCase("sha1")) {
+        messageDigest = SHA1;
+    } else if(md.equalsIgnoreCase("md5")) {
+        messageDigest = MD5;
+    } else if(md.equalsIgnoreCase("mdc2")) {
+        messageDigest = MDC2;
+    } else {
+        LOGIT_INFO("unsupported message digest: " << md);
+        LOGIT_INFO("select default sha1.");
+        messageDigest = SHA1;
+    }
 }
 
 RequestGenerationData::RequestGenerationData(const RequestGenerationData& data)
     : subject(data.subject),
       keysize(data.keysize),
+      messageDigest(data.messageDigest),
       challengePassword(data.challengePassword),
       unstructuredName(data.unstructuredName),
       extensions(data.extensions)
@@ -71,10 +87,10 @@ RequestGenerationData::operator=(const RequestGenerationData& data)
 
     subject           = data.subject;
     keysize           = data.keysize;
+    messageDigest     = data.messageDigest;
     challengePassword = data.challengePassword;
     unstructuredName  = data.unstructuredName;
     extensions        = data.extensions;
-
     return *this;
 }
 
@@ -105,6 +121,18 @@ blocxx::UInt32
 RequestGenerationData::getKeysize() const
 {
     return keysize;
+}
+
+void
+RequestGenerationData::setMessageDigest(MD md)
+{
+    messageDigest = md;
+}
+
+MD 
+RequestGenerationData::getMessageDigest() const
+{
+    return messageDigest;
 }
 
 void
@@ -165,6 +193,20 @@ RequestGenerationData::commit2Config(CA& ca, Type type) const
 
     ca.getConfig()->setValue(type2Section(type, false), "default_bits", String(keysize));
 
+    String md("sha1");
+    switch(messageDigest) {
+    case SHA1:
+        md = "sha1";
+        break;
+    case MD5:
+        md = "md5";
+        break;
+    case MDC2:
+        md = "mdc2";
+        break;
+    }
+    ca.getConfig()->setValue(type2Section(type, false), "default_md", md);
+
     extensions.commit2Config(ca, type);
 }
 
@@ -202,6 +244,7 @@ RequestGenerationData::dump() const
 
     result.appendArray(subject.dump());
     result.append("Keysize = " + String(keysize));
+    result.append("MessageDigest = " + String(messageDigest));
     result.append("Challenge Password = " + challengePassword);
     result.append("Unstructured Name = " + unstructuredName);
     result.appendArray(extensions.dump());

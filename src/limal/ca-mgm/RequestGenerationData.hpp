@@ -59,6 +59,9 @@ namespace CA_MGM_NAMESPACE
         void                setKeysize(blocxx::UInt32 size);
         blocxx::UInt32      getKeysize() const;
 
+        void                setMessageDigest(MD md);
+        MD                  getMessageDigest() const;
+                               
         void                setChallengePassword(const String &passwd);
         String              getChallengePassword() const;
 
@@ -83,11 +86,11 @@ namespace CA_MGM_NAMESPACE
         DNObject         subject;
         blocxx::UInt32   keysize;
 
-        // ???  KeyAlg           pubkeyAlgorithm;
+        // ???  KeyAlg           pubkeyAlgorithm;  // at the beginning we only support rsa
 
 
-        // ???  SigAlg           signatureAlgorithm;
-
+        MD               messageDigest;       // parameter default_md
+                       
         // attributes
         String challengePassword;
         String unstructuredName;
