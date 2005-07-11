@@ -165,7 +165,7 @@ UserNotice::commit2Config(CA& ca, Type type, blocxx::UInt32 num) const
             numbers += String(*it)+",";
         }
         ca.getConfig()->setValue(sectionName, "noticeNumbers", 
-                                 numbers.erase(numbers.length()-2));
+                                 numbers.erase(numbers.length()-1));
     }
     return ("@"+sectionName);
 }
@@ -613,7 +613,7 @@ CertificatePoliciesExtension::commit2Config(CA& ca, Type type) const
         }
 
         ca.getConfig()->setValue(type2Section(type, true), "certificatePolicies",
-                                 extString.erase(extString.length()-2));
+                                 extString.erase(extString.length()-1));
     } else {
         ca.getConfig()->deleteValue(type2Section(type, true), "certificatePolicies");
     }

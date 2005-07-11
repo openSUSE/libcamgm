@@ -225,7 +225,7 @@ KeyUsageExtension::commit2Config(CA& ca, Type type) const
         }
         
         ca.getConfig()->setValue(type2Section(type, true), "keyUsage", 
-                                 keyUsageString.erase(keyUsageString.length()-2));
+                                 keyUsageString.erase(keyUsageString.length()-1));
     } else {
         ca.getConfig()->deleteValue(type2Section(type, true), "keyUsage");
     }
@@ -429,7 +429,7 @@ NsCertTypeExtension::commit2Config(CA& ca, Type type) const
         }
         
         ca.getConfig()->setValue(type2Section(type, true), "nsCertType", 
-                                 nsCertTypeString.erase(nsCertTypeString.length()-2));
+                                 nsCertTypeString.erase(nsCertTypeString.length()-1));
     } else {
         ca.getConfig()->deleteValue(type2Section(type, true), "nsCertType");
     }
@@ -698,7 +698,7 @@ ExtendedKeyUsageExtension::commit2Config(CA& ca, Type type) const
         }
 
         ca.getConfig()->setValue(type2Section(type, true), "extendedKeyUsage", 
-                                 extendedKeyUsageString.erase(extendedKeyUsageString.length()-2));
+                                 extendedKeyUsageString.erase(extendedKeyUsageString.length()-1));
     } else {
         ca.getConfig()->deleteValue(type2Section(type, true), "extendedKeyUsage");
     }

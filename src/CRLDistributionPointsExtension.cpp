@@ -133,7 +133,7 @@ CRLDistributionPointsExtension::commit2Config(CA& ca, Type type) const
         }
 
         ca.getConfig()->setValue(type2Section(type, true), "crlDistributionPoints",
-                                 extString.erase(extString.length()-2));
+                                 extString.erase(extString.length()-1));
     } else {
         ca.getConfig()->deleteValue(type2Section(type, true), "crlDistributionPoints");
     }

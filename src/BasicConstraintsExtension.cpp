@@ -141,12 +141,12 @@ BasicConstraintsExtension::commit2Config(CA& ca, Type type) const
         if(isCritical()) basicConstraintsString += "critical,";
 
         if(this->ca) {
-            basicConstraintsString += "CA::TRUE";
+            basicConstraintsString += "CA:TRUE";
             if(pathlen > -1) {
-                basicConstraintsString += "pathlen:"+pathlen;
+                basicConstraintsString += ",pathlen:"+String(pathlen);
             }
         } else {
-            basicConstraintsString += "CA::FALSE";
+            basicConstraintsString += "CA:FALSE";
         }
         ca.getConfig()->setValue(type2Section(type, true), "basicConstraints", basicConstraintsString);
     } else {
