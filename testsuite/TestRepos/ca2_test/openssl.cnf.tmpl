@@ -5,220 +5,219 @@
 #
 ###############################################
 [ca]
-   default_ca=ca
-   dir=/var/lib/CAM/
-   certs=$dir/certs
-   crl_dir=$dir/crl
-   database=$dir/index.txt
-   new_certs_dir=$dir/certs
-   certificate=$dir/cacert.pem
-   serial=$dir/serial
-   crl=$dir/crl.pem
-   private_key=$dir/cacert.key
-   RANDFILE=$dir/.rand
-   x509_extensions=v3_ca
-   default_days=3650
-   default_crl_hours=24
-   default_md=sha1
-   preserve=no
-   policy=policy_server
-   nameopt=default_ca
-   certopt=default_ca
-   copy_extensions=none
-   crl_extensions=v3_crl
-   unique_subject=no
+   default_ca = ca
+   dir = /var/lib/CAM/
+   certs = $dir/certs
+   crl_dir = $dir/crl
+   database = $dir/index.txt
+   new_certs_dir = $dir/certs
+   certificate = $dir/cacert.pem
+   serial = $dir/serial
+   crl = $dir/crl.pem
+   private_key = $dir/cacert.key
+   RANDFILE = $dir/.rand
+   x509_extensions = v3_ca
+   default_days = 3650
+   default_crl_hours = 24
+   default_md = sha1
+   preserve = no
+   policy = policy_server
+   nameopt = default_ca
+   certopt = default_ca
+   copy_extensions = none
+   crl_extensions = v3_crl
+   unique_subject = no
 
-#utf8                = yes
+#utf8                 =  yes
 
 # section, how to create a request
 # 
 # x509_extensions is for self signed CA
 # required section
 [req]
-   default_bits=2048
-   default_md=sha1
-   default_keyfile=privkey.pem
-   distinguished_name=req_distinguished_name
-   attributes=req_attributes
-   x509_extensions=v3_req_ca
-   string_mask=nombstr
-   req_extensions=v3_req_ca
+   default_bits = 2048
+   default_md = sha1
+   default_keyfile = privkey.pem
+   distinguished_name = req_distinguished_name
+   attributes = req_attributes
+   x509_extensions = v3_req_ca
+   string_mask = nombstr
+   req_extensions = v3_req_ca
 
 [req_client]
-   default_bits=2048
-   default_md=mdc2
-   default_keyfile=privkey.pem
-   distinguished_name=req_distinguished_name
-   attributes=req_attributes
-   x509_extensions=v3_req_client
-   string_mask=nombstr
-   req_extensions=v3_req_client
+   default_bits = 2048
+   default_md = mdc2
+   default_keyfile = privkey.pem
+   distinguished_name = req_distinguished_name
+   attributes = req_attributes
+   x509_extensions = v3_req_client
+   string_mask = nombstr
+   req_extensions = v3_req_client
 
 [req_server]
-   default_bits=2048
-   default_md=md5
-   default_keyfile=privkey.pem
-   distinguished_name=req_distinguished_name
-   attributes=req_attributes
-   x509_extensions=v3_req_server
-   string_mask=nombstr
-   req_extensions=v3_req_server
+   default_bits = 2048
+   default_md = md5
+   default_keyfile = privkey.pem
+   distinguished_name = req_distinguished_name
+   attributes = req_attributes
+   x509_extensions = v3_req_server
+   string_mask = nombstr
+   req_extensions = v3_req_server
 
-#utf8                = yes
+#utf8                 =  yes
 # used to sign a client cert
 [client_cert]
-   dir=/var/lib/CAM/
-   certs=$dir/certs
-   crl_dir=$dir/crl
-   database=$dir/index.txt
-   new_certs_dir=$dir/certs
-   certificate=$dir/cacert.pem
-   serial=$dir/serial
-   crl=$dir/crl.pem
-   private_key=$dir/cacert.key
-   RANDFILE=$dir/.rand
-   x509_extensions=v3_client
-   default_days=365
-   default_crl_hours=24
-   default_md=mdc2
-   preserve=no
-   policy=policy_client
-   nameopt=default_ca
-   certopt=default_ca
-   copy_extensions=none
-   crl_extensions=v3_crl
-   unique_subject=no
+   dir = /var/lib/CAM/
+   certs = $dir/certs
+   crl_dir = $dir/crl
+   database = $dir/index.txt
+   new_certs_dir = $dir/certs
+   certificate = $dir/cacert.pem
+   serial = $dir/serial
+   crl = $dir/crl.pem
+   private_key = $dir/cacert.key
+   RANDFILE = $dir/.rand
+   x509_extensions = v3_client
+   default_days = 365
+   default_crl_hours = 24
+   default_md = mdc2
+   preserve = no
+   policy = policy_client
+   nameopt = default_ca
+   certopt = default_ca
+   copy_extensions = none
+   crl_extensions = v3_crl
+   unique_subject = no
 
-#utf8                = yes
+#utf8                 =  yes
 # used to sign a server cert
 [server_cert]
-   dir=/var/lib/CAM/
-   certs=$dir/certs
-   crl_dir=$dir/crl
-   database=$dir/index.txt
-   new_certs_dir=$dir/certs
-   certificate=$dir/cacert.pem
-   serial=$dir/serial
-   crl=$dir/crl.pem
-   private_key=$dir/cacert.key
-   RANDFILE=$dir/.rand
-   x509_extensions=v3_server
-   default_days=700
-   default_crl_hours=24
-   default_md=md5
-   preserve=no
-   policy=policy_server
-   nameopt=default_ca
-   certopt=default_ca
-   copy_extensions=none
-   crl_extensions=v3_crl
-   unique_subject=no
+   dir = /var/lib/CAM/
+   certs = $dir/certs
+   crl_dir = $dir/crl
+   database = $dir/index.txt
+   new_certs_dir = $dir/certs
+   certificate = $dir/cacert.pem
+   serial = $dir/serial
+   crl = $dir/crl.pem
+   private_key = $dir/cacert.key
+   RANDFILE = $dir/.rand
+   x509_extensions = v3_server
+   default_days = 700
+   default_crl_hours = 24
+   default_md = md5
+   preserve = no
+   policy = policy_server
+   nameopt = default_ca
+   certopt = default_ca
+   copy_extensions = none
+   crl_extensions = v3_crl
+   unique_subject = no
 
-#utf8                = yes
+#utf8                 =  yes
 [policy_client]
-   countryName=optional
-   stateOrProvinceName=optional
-   localityName=optional
-   organizationName=optional
-   organizationalUnitName=optional
-   commonName=supplied
-   emailAddress=supplied
+   countryName = optional
+   stateOrProvinceName = optional
+   localityName = optional
+   organizationName = optional
+   organizationalUnitName = optional
+   commonName = supplied
+   emailAddress = supplied
 
 [policy_server]
-   countryName=optional
-   stateOrProvinceName=optional
-   localityName=optional
-   organizationName=optional
-   organizationalUnitName=optional
-   commonName=supplied
-   emailAddress=optional
+   countryName = optional
+   stateOrProvinceName = optional
+   localityName = optional
+   organizationName = optional
+   organizationalUnitName = optional
+   commonName = supplied
+   emailAddress = optional
 
 [req_distinguished_name]
-   countryName=Country Name (2 letter code)
-   countryName_min=2
-   countryName_max=2
-   stateOrProvinceName=State or Province Name (full name)
-   localityName=Locality Name (eg, city)
-   organizationName=Organization Name (eg, company)
-   organizationalUnitName=Organizational Unit Name (eg, section)
-   commonName=Common Name (eg, YOUR name)
-   commonName_max=64
-   emailAddress=Email Address
-   emailAddress_max=64
+   countryName = Country Name (2 letter code)
+   countryName_min = 2
+   countryName_max = 2
+   stateOrProvinceName = State or Province Name (full name)
+   localityName = Locality Name (eg, city)
+   organizationName = Organization Name (eg, company)
+   organizationalUnitName = Organizational Unit Name (eg, section)
+   commonName = Common Name (eg, YOUR name)
+   commonName_max = 64
+   emailAddress = Email Address
+   emailAddress_max = 64
 
 [req_attributes]
-   challengePassword=A challenge password
-   challengePassword_min=4
-   challengePassword_max=20
-   unstructuredName=An optional company name
+   challengePassword = A challenge password
+   challengePassword_min = 4
+   challengePassword_max = 20
+   unstructuredName = An optional company name
 
 # v3 extensions sections
 [v3_client]
-   nsComment="YaST Generated Client Certificate"
-   nsCertType=client, email
-   keyUsage=nonRepudiation, digitalSignature
-   subjectKeyIdentifier=a1:32:53:4e
-   authorityKeyIdentifier=keyid:always,issuer
-   subjectAltName=email:mc@suse.de, URI:http://w3.suse.de/~mc/
-   issuerAltName=issuer:copy
-   authorityInfoAccess=caIssuers;URI:http://ocsp.my.host/
+   nsComment = "YaST Generated Client Certificate"
+   nsCertType = client,email
+   keyUsage = nonRepudiation,digitalSignature
+   subjectKeyIdentifier = a1:32:53:4e
+   authorityKeyIdentifier = keyid:always,issuer
+   subjectAltName = email:mc@suse.de,URI:http://w3.suse.de/~mc/
+   issuerAltName = issuer:copy
+   authorityInfoAccess = caIssuers;URI:http://ocsp.my.host/
 
 [v3_server]
-   nsComment="YaST Generated Server Certificate"
-   nsCertType=server
-   keyUsage=digitalSignature, keyEncipherment
-   subjectKeyIdentifier=hash
-   authorityKeyIdentifier=keyid,issuer:always
-   subjectAltName=email:copy
-   issuerAltName=issuer:copy
-   authorityInfoAccess=2.76.8.2;URI:http://ocsp.my.host/
+   nsComment = "YaST Generated Server Certificate"
+   nsCertType = server
+   keyUsage = digitalSignature,keyEncipherment
+   subjectKeyIdentifier = hash
+   authorityKeyIdentifier = keyid,issuer:always
+   subjectAltName = email:copy
+   issuerAltName = issuer:copy
+   authorityInfoAccess = 2.76.8.2;URI:http://ocsp.my.host/
 
 [v3_ca]
-   basicConstraints=critical, CA:true, pathlen:5
-   nsComment="YaST Generated CA Certificate"
-   nsCertType=sslCA, emailCA, objCA
-   keyUsage=cRLSign, keyCertSign
-   subjectKeyIdentifier=hash
-   authorityKeyIdentifier=keyid,issuer
-   subjectAltName=email:copy,email:mc@suse.de, URI:http://w3.suse.de/~mc/
-   issuerAltName=issuer:copy,email:mc@suse.de, URI:http://w3.suse.de/~mc/
-   certificatePolicies=ia5org, 2.3.4.5, @polsec1
-   nsBaseUrl="http://www.linux.tux/"
-   nsRevocationUrl="http://www.linux.tux/"
-   nsCaRevocationUrl='http://www.linux.tux/'
-   nsRenewalUrl='http://www.linux.tux/'
-   nsCaPolicyUrl='http://www.linux.tux/'
-   nsSslServerName=*.suse.de
-   extendedKeyUsage=emailProtection, msSGC, nsSGC, 87.23.6.109
-   authorityInfoAccess=OCSP;URI:http://ocsp.my.host/
-   crlDistributionPoints=URI:ldap://my.linux.tux/cn=Test2_SuSE_CA%2Cou=CA%2Cdc=suse%2Cdc=de
+   basicConstraints = critical,CA:true,pathlen:5
+   nsComment = "YaST Generated CA Certificate"
+   nsCertType = sslCA,emailCA,objCA
+   keyUsage = cRLSign,keyCertSign
+   subjectKeyIdentifier = hash
+   authorityKeyIdentifier = keyid,issuer
+   subjectAltName = email:copy,email:mc@suse.de,URI:http://w3.suse.de/~mc/
+   issuerAltName = issuer:copy,email:mc@suse.de,URI:http://w3.suse.de/~mc/
+   certificatePolicies = ia5org,2.3.4.5,@polsec1
+   nsBaseUrl = "http://www.linux.tux/"
+   nsRevocationUrl = "http://www.linux.tux/"
+   nsCaRevocationUrl = 'http://www.linux.tux/'
+   nsRenewalUrl = 'http://www.linux.tux/'
+   nsCaPolicyUrl = 'http://www.linux.tux/'
+   nsSslServerName = *.suse.de
+   extendedKeyUsage = emailProtection,msSGC,nsSGC,87.23.6.109
+   authorityInfoAccess = OCSP;URI:http://ocsp.my.host/
+   crlDistributionPoints = URI:ldap://my.linux.tux/cn=Test2_SuSE_CA%2Cou=CA%2Cdc=suse%2Cdc=de
 
 [polsec1]
-   policyIdentifier=4.3.2.1
-   CPS=http://www.suse.de/
-   userNotice=@notice1
+   policyIdentifier = 4.3.2.1
+   CPS = http://www.suse.de/
+   userNotice = @notice1
 
 [notice1]
-   explicitText="Hi this is a explicite Text"
-   organization="Organisation field"
-   noticeNumbers=2,6, 8, 1
+   explicitText = "Hi this is a explicite Text"
+   organization = "Organisation field"
+   noticeNumbers = 2,6,8,1
 
 
 [v3_req_ca]
-   basicConstraints=critical, CA:TRUE
-   nsCertType=sslCA, emailCA, objCA
-   keyUsage=cRLSign, keyCertSign
+   basicConstraints = critical,CA:TRUE
+   nsCertType = sslCA,emailCA,objCA
+   keyUsage = keyCertSign,cRLSign
 
 [v3_req_client]
-   nsCertType=client, email
-   keyUsage=nonRepudiation, digitalSignature, keyEncipherment
+   nsCertType = client,email
+   keyUsage = nonRepudiation,digitalSignature,keyEncipherment
 
 [v3_req_server]
-   basicConstraints=critical, CA:FALSE
-   nsCertType=server
-   keyUsage=digitalSignature, keyEncipherment
+   basicConstraints = critical,CA:FALSE
+   nsCertType = server
+   keyUsage = digitalSignature,keyEncipherment
 
 [v3_crl]
-   authorityKeyIdentifier=keyid:always,issuer:always
-   issuerAltName=issuer:copy
-
+   authorityKeyIdentifier = keyid:always,issuer:always
+   issuerAltName = issuer:copy
