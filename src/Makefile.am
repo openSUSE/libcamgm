@@ -7,8 +7,8 @@ SUBDIRS = limal
 INCLUDES = -I. -I$(srcdir)
 
 # FIXME:
-AM_CPPFLAGS = $(DEBUG_FLAGS) -pthread -DLOCALEDIR=\"${localedir}\"
-AM_LDFLAGS  = -pthread
+AM_CPPFLAGS = $(DEBUG_FLAGS) -pthread -DLOCALEDIR=\"${localedir}\" $(PERL_CFLAGS)
+AM_LDFLAGS  = -pthread $(PERL_LDFLAGS)
 
 limallib_LTLIBRARIES = liblimal-ca-mgm.la
 
@@ -50,7 +50,8 @@ liblimal_ca_mgm_la_SOURCES  =	\
 	RequestData_Priv.cpp \
 	X509v3CertificateExtensions_Priv.cpp \
 	X509v3CRLExtensions_Priv.cpp \
-	X509v3RequestExtensions_Priv.cpp
+	X509v3RequestExtensions_Priv.cpp \
+	OPENSSL.cpp
 
 
 liblimal_ca_mgm_la_CXXFLAGS = $(LIMAL_CFLAGS)
@@ -58,5 +59,11 @@ liblimal_ca_mgm_la_CXXFLAGS = $(LIMAL_CFLAGS)
 liblimal_ca_mgm_la_LDFLAGS  = \
 	-version-info $(LIB_VERSION_INFO) \
 	$(LIMAL_LIBS)
+
+LIMALDEVTOOLS=$(limaldatadir)/devtools
+#FIXME: multiple files are built
+OPENSSL.cpp: OPENSSL.ini
+	perl -I$(LIMALDEVTOOLS)/codegen $(LIMALDEVTOOLS)/bin/codegen.pl OPENSSL.ini
+
 
 CLEANFILES = *~
