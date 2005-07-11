@@ -3,6 +3,7 @@ empty DN
 RequestGenerationData::dump()
 DNObject::dump()
 Keysize = 2048
+MessageDigest = 0
 Challenge Password = 
 Unstructured Name = 
 X509v3RequestExtensions::dump()
@@ -40,6 +41,7 @@ is Present = false
 ======================== getIssueDefaults =================
 CertificateIssueData::dump()
 notAfter - notBefore (in days)= 1500
+MessageDigest = 0
 X509v3CertificateIssueExtensions::dump()
 NsBaseUrlExtension::dump()
 ExtensionBase::dump()

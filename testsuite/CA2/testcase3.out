@@ -8,6 +8,7 @@ empty DN
 RequestGenerationData::dump()
 DNObject::dump()
 Keysize = 2048
+MessageDigest = 0
 Challenge Password = 
 Unstructured Name = 
 X509v3RequestExtensions::dump()
@@ -50,6 +51,7 @@ empty DN
 RequestGenerationData::dump()
 DNObject::dump()
 Keysize = 2048
+MessageDigest = 1
 Challenge Password = 
 Unstructured Name = 
 X509v3RequestExtensions::dump()

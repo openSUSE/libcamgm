@@ -6,6 +6,7 @@ creating CA object
 ============= Call Dump
 CertificateIssueData::dump()
 notAfter - notBefore (in days)= 365
+MessageDigest = 0
 X509v3CertificateIssueExtensions::dump()
 NsBaseUrlExtension::dump()
 ExtensionBase::dump()
@@ -86,6 +87,7 @@ creating CA object
 ============= Call Dump
 CertificateIssueData::dump()
 notAfter - notBefore (in days)= 700
+MessageDigest = 1
 X509v3CertificateIssueExtensions::dump()
 NsBaseUrlExtension::dump()
 ExtensionBase::dump()

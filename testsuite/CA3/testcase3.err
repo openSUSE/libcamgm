@@ -51,6 +51,7 @@ DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=4 result=v3_server
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=4 result=server_cert
+DEBUG ca-mgm - type2Section: type=4 result=server_cert
 DEBUG ca-mgm - type2Section: type=4 result=v3_server
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=4 result=v3_server
@@ -102,4 +103,5 @@ DEBUG ca-mgm - type2Section: type=4 result=v3_server
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=4 result=v3_server
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=4 result=server_cert
 DEBUG ca-mgm - type2Section: type=4 result=server_cert
