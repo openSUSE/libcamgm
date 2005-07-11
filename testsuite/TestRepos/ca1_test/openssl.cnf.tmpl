@@ -5,28 +5,28 @@
 #
 ###############################################
 [ca]
-default_ca=ca
-dir=/var/lib/CAM/
-certs=$dir/certs
-crl_dir=$dir/crl
-database=$dir/index.txt
-new_certs_dir=$dir/certs
-certificate=$dir/cacert.pem
-serial=$dir/serial
-crl=$dir/crl.pem
-private_key=$dir/cacert.key
-RANDFILE=$dir/.rand
-x509_extensions=v3_ca
-default_days=1500
-default_crl_hours=24
-default_md=sha1
-preserve=no
-policy=policy_server
-nameopt=default_ca
-certopt=default_ca
-copy_extensions=none
-crl_extensions=v3_crl
-unique_subject=no
+   default_ca=ca
+   dir=/var/lib/CAM/
+   certs=$dir/certs
+   crl_dir=$dir/crl
+   database=$dir/index.txt
+   new_certs_dir=$dir/certs
+   certificate=$dir/cacert.pem
+   serial=$dir/serial
+   crl=$dir/crl.pem
+   private_key=$dir/cacert.key
+   RANDFILE=$dir/.rand
+   x509_extensions=v3_ca
+   default_days=1500
+   default_crl_hours=24
+   default_md=sha1
+   preserve=no
+   policy=policy_server
+   nameopt=default_ca
+   certopt=default_ca
+   copy_extensions=none
+   crl_extensions=v3_crl
+   unique_subject=no
 
 #utf8                = yes
 
@@ -35,169 +35,169 @@ unique_subject=no
 # x509_extensions is for self signed CA
 # required section
 [req]
-default_bits=2048
-default_md=sha1
-default_keyfile=privkey.pem
-distinguished_name=req_distinguished_name
-attributes=req_attributes
-x509_extensions=v3_req_ca
-string_mask=nombstr
-req_extensions=v3_req_ca
+   default_bits=2048
+   default_md=sha1
+   default_keyfile=privkey.pem
+   distinguished_name=req_distinguished_name
+   attributes=req_attributes
+   x509_extensions=v3_req_ca
+   string_mask=nombstr
+   req_extensions=v3_req_ca
 
 [req_client]
-default_bits=2048
-default_md=sha1
-default_keyfile=privkey.pem
-distinguished_name=req_distinguished_name
-attributes=req_attributes
-x509_extensions=v3_req_client
-string_mask=nombstr
-req_extensions=v3_req_client
+   default_bits=2048
+   default_md=sha1
+   default_keyfile=privkey.pem
+   distinguished_name=req_distinguished_name
+   attributes=req_attributes
+   x509_extensions=v3_req_client
+   string_mask=nombstr
+   req_extensions=v3_req_client
 
 [req_server]
-default_bits=2048
-default_md=sha1
-default_keyfile=privkey.pem
-distinguished_name=req_distinguished_name
-attributes=req_attributes
-x509_extensions=v3_req_server
-string_mask=nombstr
-req_extensions=v3_req_server
+   default_bits=2048
+   default_md=sha1
+   default_keyfile=privkey.pem
+   distinguished_name=req_distinguished_name
+   attributes=req_attributes
+   x509_extensions=v3_req_server
+   string_mask=nombstr
+   req_extensions=v3_req_server
 
 #utf8                = yes
 # used to sign a client cert
 [client_cert]
-dir=/var/lib/CAM/
-certs=$dir/certs
-crl_dir=$dir/crl
-database=$dir/index.txt
-new_certs_dir=$dir/certs
-certificate=$dir/cacert.pem
-serial=$dir/serial
-crl=$dir/crl.pem
-private_key=$dir/cacert.key
-RANDFILE=$dir/.rand
-x509_extensions=v3_client
-default_days=365
-default_crl_hours=24
-default_md=sha1
-preserve=no
-policy=policy_client
-nameopt=default_ca
-certopt=default_ca
-copy_extensions=none
-crl_extensions=v3_crl
-unique_subject=no
+   dir=/var/lib/CAM/
+   certs=$dir/certs
+   crl_dir=$dir/crl
+   database=$dir/index.txt
+   new_certs_dir=$dir/certs
+   certificate=$dir/cacert.pem
+   serial=$dir/serial
+   crl=$dir/crl.pem
+   private_key=$dir/cacert.key
+   RANDFILE=$dir/.rand
+   x509_extensions=v3_client
+   default_days=365
+   default_crl_hours=24
+   default_md=sha1
+   preserve=no
+   policy=policy_client
+   nameopt=default_ca
+   certopt=default_ca
+   copy_extensions=none
+   crl_extensions=v3_crl
+   unique_subject=no
 
 #utf8                = yes
 # used to sign a server cert
 [server_cert]
-dir=/var/lib/CAM/
-certs=$dir/certs
-crl_dir=$dir/crl
-database=$dir/index.txt
-new_certs_dir=$dir/certs
-certificate=$dir/cacert.pem
-serial=$dir/serial
-crl=$dir/crl.pem
-private_key=$dir/cacert.key
-RANDFILE=$dir/.rand
-x509_extensions=v3_server
-default_days=365
-default_crl_hours=24
-default_md=sha1
-preserve=no
-policy=policy_server
-nameopt=default_ca
-certopt=default_ca
-copy_extensions=none
-crl_extensions=v3_crl
-unique_subject=no
+   dir=/var/lib/CAM/
+   certs=$dir/certs
+   crl_dir=$dir/crl
+   database=$dir/index.txt
+   new_certs_dir=$dir/certs
+   certificate=$dir/cacert.pem
+   serial=$dir/serial
+   crl=$dir/crl.pem
+   private_key=$dir/cacert.key
+   RANDFILE=$dir/.rand
+   x509_extensions=v3_server
+   default_days=365
+   default_crl_hours=24
+   default_md=sha1
+   preserve=no
+   policy=policy_server
+   nameopt=default_ca
+   certopt=default_ca
+   copy_extensions=none
+   crl_extensions=v3_crl
+   unique_subject=no
 
 #utf8                = yes
 [policy_client]
-countryName=optional
-stateOrProvinceName=optional
-localityName=optional
-organizationName=optional
-organizationalUnitName=optional
-commonName=supplied
-emailAddress=supplied
+   countryName=optional
+   stateOrProvinceName=optional
+   localityName=optional
+   organizationName=optional
+   organizationalUnitName=optional
+   commonName=supplied
+   emailAddress=supplied
 
 [policy_server]
-countryName=optional
-stateOrProvinceName=optional
-localityName=optional
-organizationName=optional
-organizationalUnitName=optional
-commonName=supplied
-emailAddress=optional
+   countryName=optional
+   stateOrProvinceName=optional
+   localityName=optional
+   organizationName=optional
+   organizationalUnitName=optional
+   commonName=supplied
+   emailAddress=optional
 
 [req_distinguished_name]
-countryName=Country Name (2 letter code)
-countryName_min=2
-countryName_max=2
-stateOrProvinceName=State or Province Name (full name)
-localityName=Locality Name (eg, city)
-organizationName=Organization Name (eg, company)
-organizationalUnitName=Organizational Unit Name (eg, section)
-commonName=Common Name (eg, YOUR name)
-commonName_max=64
-emailAddress=Email Address
-emailAddress_max=64
+   countryName=Country Name (2 letter code)
+   countryName_min=2
+   countryName_max=2
+   stateOrProvinceName=State or Province Name (full name)
+   localityName=Locality Name (eg, city)
+   organizationName=Organization Name (eg, company)
+   organizationalUnitName=Organizational Unit Name (eg, section)
+   commonName=Common Name (eg, YOUR name)
+   commonName_max=64
+   emailAddress=Email Address
+   emailAddress_max=64
 
 [req_attributes]
-challengePassword=A challenge password
-challengePassword_min=4
-challengePassword_max=20
-unstructuredName=An optional company name
+   challengePassword=A challenge password
+   challengePassword_min=4
+   challengePassword_max=20
+   unstructuredName=An optional company name
 
 # v3 extensions sections
 [v3_client]
-basicConstraints=CA:FALSE
-nsComment="YaST Generated Client Certificate"
-nsCertType=client, email, objsign
-keyUsage=nonRepudiation, digitalSignature, keyEncipherment
-subjectKeyIdentifier=hash
-authorityKeyIdentifier=keyid,issuer:always
-subjectAltName=email:copy
-issuerAltName=issuer:copy
+   basicConstraints=CA:FALSE
+   nsComment="YaST Generated Client Certificate"
+   nsCertType=client, email, objsign
+   keyUsage=nonRepudiation, digitalSignature, keyEncipherment
+   subjectKeyIdentifier=hash
+   authorityKeyIdentifier=keyid,issuer:always
+   subjectAltName=email:copy
+   issuerAltName=issuer:copy
 
 [v3_server]
-basicConstraints=CA:FALSE
-nsComment="YaST Generated Server Certificate"
-nsCertType=server
-keyUsage=digitalSignature, keyEncipherment
-subjectKeyIdentifier=hash
-authorityKeyIdentifier=keyid,issuer:always
-subjectAltName=email:copy
-issuerAltName=issuer:copy
+   basicConstraints=CA:FALSE
+   nsComment="YaST Generated Server Certificate"
+   nsCertType=server
+   keyUsage=digitalSignature, keyEncipherment
+   subjectKeyIdentifier=hash
+   authorityKeyIdentifier=keyid,issuer:always
+   subjectAltName=email:copy
+   issuerAltName=issuer:copy
 
 [v3_ca]
-basicConstraints=critical, CA:true
-nsComment="YaST Generated CA Certificate"
-nsCertType=sslCA, emailCA
-keyUsage=cRLSign, keyCertSign
-subjectKeyIdentifier=hash
-authorityKeyIdentifier=keyid:always,issuer:always
-subjectAltName=email:copy
-issuerAltName=issuer:copy
+   basicConstraints=critical, CA:true
+   nsComment="YaST Generated CA Certificate"
+   nsCertType=sslCA, emailCA
+   keyUsage=cRLSign, keyCertSign
+   subjectKeyIdentifier=hash
+   authorityKeyIdentifier=keyid:always,issuer:always
+   subjectAltName=email:copy
+   issuerAltName=issuer:copy
 
 [v3_req_ca]
-basicConstraints=CA:TRUE
-nsCertType=sslCA, emailCA
-keyUsage=cRLSign, keyCertSign
+   basicConstraints=CA:TRUE
+   nsCertType=sslCA, emailCA
+   keyUsage=cRLSign, keyCertSign
 
 [v3_req_client]
-basicConstraints=CA:FALSE
-nsCertType=client, email, objsign
-keyUsage=nonRepudiation, digitalSignature, keyEncipherment
+   basicConstraints=CA:FALSE
+   nsCertType=client, email, objsign
+   keyUsage=nonRepudiation, digitalSignature, keyEncipherment
 
 [v3_req_server]
-basicConstraints=CA:FALSE
-nsCertType=server
-keyUsage=digitalSignature, keyEncipherment
+   basicConstraints=CA:FALSE
+   nsCertType=server
+   keyUsage=digitalSignature, keyEncipherment
 
 [v3_crl]
-authorityKeyIdentifier=keyid:always,issuer:always
+   authorityKeyIdentifier=keyid:always,issuer:always
 
