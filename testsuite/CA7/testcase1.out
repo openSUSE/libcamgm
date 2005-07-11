@@ -1,0 +1,43 @@
+START
+file: CA7/testcase1.in
+creating CA object
+============= Test:ca1_test
+============= read
+============= write back unchanged
+============= re-read
+============= Call Verify
+============= Call Dump
+CRLGenerationData::dump()
+CRL Hours = 24
+X509v3CRLGenerationExtensions::dump()
+AuthorityKeyIdentifierGenerateExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+KeyID = 2
+Issuer = 2
+IssuerAlternativeNameExtension::dump()
+ExtensionBase::dump()
+is Present = false
+creating CA object
+============= Test:ca2_test
+============= read
+============= write back unchanged
+============= re-read
+============= Call Verify
+============= Call Dump
+CRLGenerationData::dump()
+CRL Hours = 24
+X509v3CRLGenerationExtensions::dump()
+AuthorityKeyIdentifierGenerateExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+KeyID = 2
+Issuer = 2
+IssuerAlternativeNameExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+Issuer:copy = true
+DONE

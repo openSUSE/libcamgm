@@ -1,0 +1,166 @@
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - Parse KeyUsage
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - Parse NsCertType
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - Parse ExtendedKeyUsage
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=0 result=req_client
+DEBUG ca-mgm - type2Section: type=0 result=req_client
+DEBUG ca-mgm - return BasicConstraintsExtension::valid() is true
+DEBUG ca-mgm - type2Section: type=0 result=req_client
+DEBUG ca-mgm - type2Section: type=0 result=req_client
+DEBUG ca-mgm - return BasicConstraintsExtension::valid() is true
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG IniParser - Can not delete nsSslServerName Key does not exist.
+DEBUG IniPaser - File ./TestRepos//ca1_test/openssl.cnf did not change. Not saving.
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG IniParser - Can not delete nsComment Key does not exist.
+DEBUG IniPaser - File ./TestRepos//ca1_test/openssl.cnf did not change. Not saving.
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - return BasicConstraintsExtension::valid() is true
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG IniParser - Can not delete extendedKeyUsage Key does not exist.
+DEBUG IniPaser - File ./TestRepos//ca1_test/openssl.cnf did not change. Not saving.
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG IniParser - Can not delete subjectKeyIdentifier Key does not exist.
+DEBUG IniPaser - File ./TestRepos//ca1_test/openssl.cnf did not change. Not saving.
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG IniParser - Can not delete subjectAltName Key does not exist.
+DEBUG IniPaser - File ./TestRepos//ca1_test/openssl.cnf did not change. Not saving.
+DEBUG IniPaser - File ./TestRepos//ca1_test/openssl.cnf did not change. Not saving.
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - Parse KeyUsage
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - Parse NsCertType
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - Parse ExtendedKeyUsage
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=0 result=req_client
+DEBUG ca-mgm - type2Section: type=0 result=req_client
+DEBUG ca-mgm - DNObject::verify()(0/1):empty DN
+DEBUG ca-mgm - RequestGenerationData::verify()(0/1):empty DN
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - Parse KeyUsage
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - Parse NsCertType
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - Parse ExtendedKeyUsage
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=0 result=req_client
+DEBUG ca-mgm - type2Section: type=0 result=req_client
+DEBUG ca-mgm - return BasicConstraintsExtension::valid() is true
+DEBUG ca-mgm - type2Section: type=0 result=req_client
+DEBUG ca-mgm - type2Section: type=0 result=req_client
+DEBUG ca-mgm - return BasicConstraintsExtension::valid() is true
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG IniParser - Can not delete nsSslServerName Key does not exist.
+DEBUG IniPaser - File ./TestRepos//ca2_test/openssl.cnf did not change. Not saving.
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG IniParser - Can not delete nsComment Key does not exist.
+DEBUG IniPaser - File ./TestRepos//ca2_test/openssl.cnf did not change. Not saving.
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - return BasicConstraintsExtension::valid() is true
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG IniParser - Can not delete basicConstraints Key does not exist.
+DEBUG IniPaser - File ./TestRepos//ca2_test/openssl.cnf did not change. Not saving.
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG IniParser - Can not delete extendedKeyUsage Key does not exist.
+DEBUG IniPaser - File ./TestRepos//ca2_test/openssl.cnf did not change. Not saving.
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG IniParser - Can not delete subjectKeyIdentifier Key does not exist.
+DEBUG IniPaser - File ./TestRepos//ca2_test/openssl.cnf did not change. Not saving.
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG IniParser - Can not delete subjectAltName Key does not exist.
+DEBUG IniPaser - File ./TestRepos//ca2_test/openssl.cnf did not change. Not saving.
+DEBUG IniPaser - File ./TestRepos//ca2_test/openssl.cnf did not change. Not saving.
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - Parse KeyUsage
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - Parse NsCertType
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - Parse ExtendedKeyUsage
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=0 result=req_client
+DEBUG ca-mgm - type2Section: type=0 result=req_client
+DEBUG ca-mgm - DNObject::verify()(0/1):empty DN
+DEBUG ca-mgm - RequestGenerationData::verify()(0/1):empty DN

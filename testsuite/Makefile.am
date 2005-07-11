@@ -15,7 +15,8 @@ AM_LDFLAGS = \
 	-Xlinker --no-whole-archive
 
 noinst_PROGRAMS = CAConfig.single CA1.single CA2.multi \
-				  CA3.multi CA4.multi
+                  CA3.multi CA4.multi  \
+                  CA5.multi CA6.multi CA7.multi
 
 CAConfig_single_SOURCES = CAConfig.cc
 
@@ -27,9 +28,19 @@ CA3_multi_SOURCES = CA3.cc
 
 CA4_multi_SOURCES = CA4.cc
 
+CA5_multi_SOURCES = CA5.cc
+
+CA6_multi_SOURCES = CA6.cc
+
+CA7_multi_SOURCES = CA7.cc
+
 clean-local:
 	rm -f tmp.err.* tmp.out.* site.exp site.bak
+	rm -f TestRepos/ca1_test/openssl.cnf
+	rm -f TestRepos/ca2_test/openssl.cnf
+	rm -f *~
 
 EXTRA_DIST = test_multi/*.in test_multi/*.out test_multi/*.err \
-			 perl_test/*.in perl_test/*.out perl_test/*.err \
-			 TestRepos/* CA2/*.* CA3/*.* CA4/*.*
+             perl_test/*.in perl_test/*.out perl_test/*.err \
+             TestRepos/* CA2/*.* CA3/*.* CA4/*.* CA5/*.* \
+             CA6/*.* CA7/*.*
