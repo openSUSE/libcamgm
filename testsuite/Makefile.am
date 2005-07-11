@@ -35,10 +35,17 @@ CA6_multi_SOURCES = CA6.cc
 CA7_multi_SOURCES = CA7.cc
 
 clean-local:
-	rm -f tmp.err.* tmp.out.* site.exp site.bak
+	rm -f tmp.err.* tmp.out.* site.exp site.bak openssl.cnf.tmpl.test
 	rm -f TestRepos/ca1_test/openssl.cnf
 	rm -f TestRepos/ca2_test/openssl.cnf
 	rm -f *~
+	rm -rf CA2/out
+	rm -rf CA3/out
+	rm -rf CA4/out
+	rm -rf CA5/out
+	rm -rf CA6/out
+	rm -rf CA7/out
+	rm -rf single.out/out
 
 EXTRA_DIST = test_multi/*.in test_multi/*.out test_multi/*.err \
              perl_test/*.in perl_test/*.out perl_test/*.err \
