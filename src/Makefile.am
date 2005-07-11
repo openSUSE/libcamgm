@@ -63,7 +63,8 @@ liblimal_ca_mgm_la_LDFLAGS  = \
 LIMALDEVTOOLS=$(limaldatadir)/devtools
 #FIXME: multiple files are built
 OPENSSL.cpp: OPENSSL.ini
-	perl -I$(LIMALDEVTOOLS)/codegen $(LIMALDEVTOOLS)/bin/codegen.pl OPENSSL.ini
+	perl -I$(LIMALDEVTOOLS)/codegen $(LIMALDEVTOOLS)/bin/codegen.pl $^ 
 
+EXTRA_DIST = OPENSSL.ini
 
-CLEANFILES = *~
+CLEANFILES = *~ OPENSSL.h OPENSSL.cpp cpp_perl_converter.*
