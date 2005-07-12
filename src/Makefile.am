@@ -51,8 +51,9 @@ liblimal_ca_mgm_la_SOURCES  =	\
 	X509v3CertificateExtensions_Priv.cpp \
 	X509v3CRLExtensions_Priv.cpp \
 	X509v3RequestExtensions_Priv.cpp \
-	OPENSSL.cpp
-
+	OPENSSL.cpp \
+	CATools.cpp \
+        cpp_perl_converter.cpp 
 
 liblimal_ca_mgm_la_CXXFLAGS = $(LIMAL_CFLAGS)
 
@@ -62,9 +63,9 @@ liblimal_ca_mgm_la_LDFLAGS  = \
 
 LIMALDEVTOOLS=$(limaldatadir)/devtools
 #FIXME: multiple files are built
-OPENSSL.cpp: OPENSSL.ini
+OPENSSL.cpp: OPENSSL.ini CATools.ini
 	perl -I$(LIMALDEVTOOLS)/codegen $(LIMALDEVTOOLS)/bin/codegen.pl $^ 
 
-EXTRA_DIST = OPENSSL.ini
+EXTRA_DIST = OPENSSL.ini CATools.ini CATools.pm
 
-CLEANFILES = *~ OPENSSL.h OPENSSL.cpp cpp_perl_converter.*
+CLEANFILES = *~ OPENSSL.h OPENSSL.cpp cpp_perl_converter.* CATools.cpp CATools.h
