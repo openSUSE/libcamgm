@@ -7,12 +7,12 @@ AUTOMAKE_OPTIONS = dejagnu
 
 INCLUDES= -I. -I$(top_srcdir)/src
 
-AM_CPPFLAGS = 
+AM_CPPFLAGS = $(DEBUG_FLAGS) -pthread -DLOCALEDIR=\"${localedir}\" $(PERL_CFLAGS)
 
 AM_LDFLAGS = \
-	-Xlinker --whole-archive \
+	-pthread -Xlinker --whole-archive \
 	$(top_builddir)/src/liblimal-ca-mgm.la \
-	-Xlinker --no-whole-archive
+	-Xlinker --no-whole-archive $(PERL_LDFLAGS)
 
 noinst_PROGRAMS = CAConfig.single CA1.single CA2.multi \
                   CA3.multi CA4.multi  \
