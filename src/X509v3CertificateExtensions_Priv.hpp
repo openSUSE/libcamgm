@@ -35,6 +35,7 @@ namespace CA_MGM_NAMESPACE {
     public:
         X509v3CertificateExtensions_Priv();
         X509v3CertificateExtensions_Priv(X509* cert);
+        X509v3CertificateExtensions_Priv(const X509v3CertificateExtensions_Priv& extensions);
         virtual ~X509v3CertificateExtensions_Priv();
 
         void   setNsBaseUrl(const NsBaseUrlExtension &ext);
@@ -57,7 +58,6 @@ namespace CA_MGM_NAMESPACE {
         void   setCertificatePolicies(const CertificatePoliciesExtension &ext);
 
     private:
-        X509v3CertificateExtensions_Priv(const X509v3CertificateExtensions_Priv& extensions);
 
         X509v3CertificateExtensions_Priv& operator=(const X509v3CertificateExtensions_Priv& extensions);
     };

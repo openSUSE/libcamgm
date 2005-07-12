@@ -36,6 +36,7 @@ namespace CA_MGM_NAMESPACE {
         CertificateData_Priv(const String &caName);
         CertificateData_Priv(const String &caName,
                             const String &certificateName);
+        CertificateData_Priv(const CertificateData_Priv& data);
         virtual ~CertificateData_Priv();
 
         void           setVersion(blocxx::UInt32 v);
@@ -61,8 +62,6 @@ namespace CA_MGM_NAMESPACE {
         void           setExtensions(const X509v3CertificateExtensions& ext);
 
     private:
-        CertificateData_Priv(const CertificateData_Priv& data);
-
         CertificateData_Priv& operator=(const CertificateData_Priv& data);
 
                      

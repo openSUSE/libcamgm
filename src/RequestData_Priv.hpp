@@ -35,6 +35,7 @@ namespace CA_MGM_NAMESPACE {
         RequestData_Priv();
         RequestData_Priv(const String& caName,
                         const String& requestName);
+        RequestData_Priv(const RequestData_Priv& data);
         virtual ~RequestData_Priv();
 
         void                setVersion(blocxx::UInt32 v);
@@ -49,7 +50,6 @@ namespace CA_MGM_NAMESPACE {
         void                setUnstructuredName(const String &name);
 
     private:
-        RequestData_Priv(const RequestData_Priv& data);
 
         RequestData_Priv& operator=(const RequestData_Priv& data);
         

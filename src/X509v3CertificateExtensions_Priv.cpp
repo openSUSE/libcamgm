@@ -38,6 +38,12 @@ X509v3CertificateExtensions_Priv::X509v3CertificateExtensions_Priv(X509* cert)
 {
 }
 
+X509v3CertificateExtensions_Priv::X509v3CertificateExtensions_Priv(const X509v3CertificateExtensions_Priv& extensions)
+    : X509v3CertificateExtensions(extensions)
+{
+}
+
+
 X509v3CertificateExtensions_Priv::~X509v3CertificateExtensions_Priv()
 {
 }
@@ -242,11 +248,6 @@ X509v3CertificateExtensions_Priv::setCertificatePolicies(const CertificatePolici
 
 
 //    private:
-X509v3CertificateExtensions_Priv::X509v3CertificateExtensions_Priv(const X509v3CertificateExtensions_Priv& extensions)
-    : X509v3CertificateExtensions(extensions)
-{
-}
-
 X509v3CertificateExtensions_Priv&
 X509v3CertificateExtensions_Priv::operator=(const X509v3CertificateExtensions_Priv& extensions)
 {

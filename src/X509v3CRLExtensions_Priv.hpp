@@ -35,13 +35,13 @@ namespace CA_MGM_NAMESPACE {
     public:
         X509v3CRLExtensions_Priv();
         X509v3CRLExtensions_Priv(X509_CRL* crl);
+        X509v3CRLExtensions_Priv(const X509v3CRLExtensions_Priv& extensions);
         virtual ~X509v3CRLExtensions_Priv();
 
         void     setAuthorityKeyIdentifier(const AuthorityKeyIdentifierExtension &ext);
         void     setIssuerAlternativeName(const IssuerAlternativeNameExtension &ext);
 
     private:
-        X509v3CRLExtensions_Priv(const X509v3CRLExtensions_Priv& extensions);
 
         X509v3CRLExtensions_Priv& operator=(const X509v3CRLExtensions_Priv& extensions);
 

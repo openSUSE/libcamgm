@@ -39,6 +39,12 @@ X509v3CRLExtensions_Priv::X509v3CRLExtensions_Priv(X509_CRL* crl)
 {
 }
 
+X509v3CRLExtensions_Priv::X509v3CRLExtensions_Priv(const X509v3CRLExtensions_Priv& extensions)
+    : X509v3CRLExtensions(extensions)
+{
+}
+
+
 X509v3CRLExtensions_Priv::~X509v3CRLExtensions_Priv()
 {
 }
@@ -67,11 +73,6 @@ X509v3CRLExtensions_Priv::setIssuerAlternativeName(const IssuerAlternativeNameEx
 
 
 //  private:
-X509v3CRLExtensions_Priv::X509v3CRLExtensions_Priv(const X509v3CRLExtensions_Priv& extensions)
-    : X509v3CRLExtensions(extensions)
-{
-}
-
 X509v3CRLExtensions_Priv&
 X509v3CRLExtensions_Priv::operator=(const X509v3CRLExtensions_Priv& extensions)
 {

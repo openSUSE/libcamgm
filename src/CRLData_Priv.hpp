@@ -52,6 +52,7 @@ namespace CA_MGM_NAMESPACE {
     public:
         CRLData_Priv();
         CRLData_Priv(const String &caName);
+        CRLData_Priv(const CRLData_Priv& data);
         virtual ~CRLData_Priv();
 
         void   setVersion(blocxx::Int32 version);
@@ -64,7 +65,6 @@ namespace CA_MGM_NAMESPACE {
         void   setRevocationData(const blocxx::Map<String, RevocationEntry>& data);
 
     private:
-        CRLData_Priv(const CRLData_Priv& data);
         
         CRLData_Priv& operator=(const CRLData_Priv& data);
     };

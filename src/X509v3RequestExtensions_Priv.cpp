@@ -38,17 +38,18 @@ X509v3RequestExtensions_Priv::X509v3RequestExtensions_Priv(X509_REQ* req)
 {
 }
 
+X509v3RequestExtensions_Priv::X509v3RequestExtensions_Priv(const X509v3RequestExtensions_Priv& extensions)
+    : X509v3RequestExtensions(extensions)
+{
+}
+
+
 X509v3RequestExtensions_Priv::~X509v3RequestExtensions_Priv()
 {
 }
 
 
 //    private:
-X509v3RequestExtensions_Priv::X509v3RequestExtensions_Priv(const X509v3RequestExtensions_Priv& extensions)
-    : X509v3RequestExtensions(extensions)
-{
-}
-
 X509v3RequestExtensions_Priv&
 X509v3RequestExtensions_Priv::operator=(const X509v3RequestExtensions_Priv& extensions)
 {

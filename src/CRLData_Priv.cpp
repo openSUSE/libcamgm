@@ -107,6 +107,11 @@ CRLData_Priv::CRLData_Priv(const String &caName)
 {
 }
 
+CRLData_Priv::CRLData_Priv(const CRLData_Priv& data)
+    : CRLData(data)
+{
+}
+
 CRLData_Priv::~CRLData_Priv()
 {}
 
@@ -175,10 +180,7 @@ CRLData_Priv::setRevocationData(const blocxx::Map<String, RevocationEntry>& data
 
 
 //  private:
-CRLData_Priv::CRLData_Priv(const CRLData_Priv& data)
-    : CRLData()
-{
-}
+
 
 CRLData_Priv&
 CRLData_Priv::operator=(const CRLData_Priv& data)

@@ -41,6 +41,11 @@ RequestData_Priv::RequestData_Priv(const String& caName,
 {
 }
 
+RequestData_Priv::RequestData_Priv(const RequestData_Priv& data)
+    : RequestData(data)
+{
+}
+
 RequestData_Priv::~RequestData_Priv()
 {
 }
@@ -122,10 +127,7 @@ RequestData_Priv::setUnstructuredName(const String &name)
 
 
 //    private:
-RequestData_Priv::RequestData_Priv(const RequestData_Priv& data)
-    : RequestData(data)
-{
-}
+
 
 RequestData_Priv&
 RequestData_Priv::operator=(const RequestData_Priv& data)

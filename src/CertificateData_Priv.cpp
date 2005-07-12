@@ -44,6 +44,11 @@ CertificateData_Priv::CertificateData_Priv(const String &caName,
 {
 }
 
+CertificateData_Priv::CertificateData_Priv(const CertificateData_Priv& data)
+    : CertificateData(data)
+{
+}
+
 CertificateData_Priv::~CertificateData_Priv()
 {
 }
@@ -139,10 +144,7 @@ CertificateData_Priv::setExtensions(const X509v3CertificateExtensions& ext)
 }
 
 //    private:
-CertificateData_Priv::CertificateData_Priv(const CertificateData_Priv& data)
-    : CertificateData(data)
-{
-}
+
 
 CertificateData_Priv&
 CertificateData_Priv::operator=(const CertificateData_Priv& data)
