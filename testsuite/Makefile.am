@@ -1,7 +1,7 @@
 #
 # Makefile.am for limal-ca-mgm/testsuite
 #
-SUBDIRS = lib config limal.test single.out
+SUBDIRS = TestRepos lib config limal.test single.out
 PACKAGE = limal
 AUTOMAKE_OPTIONS = dejagnu
 
@@ -38,8 +38,6 @@ CA8_single_SOURCES = CA8.cc perlxsi.cpp
 
 clean-local:
 	rm -f tmp.err.* tmp.out.* site.exp site.bak openssl.cnf.tmpl.test
-	rm -f TestRepos/ca1_test/openssl.cnf
-	rm -f TestRepos/ca2_test/openssl.cnf
 	rm -f *~ perlxsi.cpp
 	rm -rf CA2/out
 	rm -rf CA3/out
@@ -48,13 +46,11 @@ clean-local:
 	rm -rf CA6/out
 	rm -rf CA7/out
 	rm -rf single.out/out
-	rm -rf TestRepos/Test_CA/
-	rm -f TestRepos/.cas/*
 
 perlxsi.cpp:
 	perl -MExtUtils::Embed -e xsinit -- -o $@
 
 EXTRA_DIST = test_multi/*.in test_multi/*.out test_multi/*.err \
              perl_test/*.in perl_test/*.out perl_test/*.err \
-             TestRepos/* CA2/*.* CA3/*.* CA4/*.* CA5/*.* \
+             CA2/*.* CA3/*.* CA4/*.* CA5/*.* \
              CA6/*.* CA7/*.*
