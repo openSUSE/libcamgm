@@ -1,0 +1,168 @@
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - Parse KeyUsage
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - Parse NsCertType
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - Parse ExtendedKeyUsage
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=2 result=req
+DEBUG ca-mgm - type2Section: type=2 result=req
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - Parse KeyUsage
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - Parse NsCertType
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setCritical(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - Parse ExtendedKeyUsage
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - type2Section: type=5 result=ca
+DEBUG ca-mgm - type2Section: type=5 result=ca
+CAM_ROOT = ./TestRepos/
+CAM_ROOT = ./TestRepos/
+DEBUG ca-mgm - return BasicConstraintsExtension::valid() is true
+DEBUG ca-mgm - type2Section: type=2 result=req
+DEBUG ca-mgm - type2Section: type=2 result=req
+DEBUG ca-mgm - return BasicConstraintsExtension::valid() is true
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG IniParser - Can not delete nsSslServerName Key does not exist.
+DEBUG IniPaser - File ./TestRepos//Test_CA/openssl.cnf did not change. Not saving.
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG IniParser - Can not delete nsComment Key does not exist.
+DEBUG IniPaser - File ./TestRepos//Test_CA/openssl.cnf did not change. Not saving.
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - return BasicConstraintsExtension::valid() is true
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG IniParser - Can not delete extendedKeyUsage Key does not exist.
+DEBUG IniPaser - File ./TestRepos//Test_CA/openssl.cnf did not change. Not saving.
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG IniParser - Can not delete subjectKeyIdentifier Key does not exist.
+DEBUG IniPaser - File ./TestRepos//Test_CA/openssl.cnf did not change. Not saving.
+DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
+DEBUG IniParser - Can not delete subjectAltName Key does not exist.
+DEBUG IniPaser - File ./TestRepos//Test_CA/openssl.cnf did not change. Not saving.
+DEBUG OPENSSL - OPENSSL->createKey command: /usr/bin/openssl genrsa -out ./TestRepos//Test_CA/cacert.key -passout env:pass -des3 2048
+DEBUG OPENSSL - OPENSSL->createReq: command: '/usr/bin/openssl req -new -config ./TestRepos//Test_CA/openssl.cnf -key ./TestRepos//Test_CA/cacert.key -outform PEM -out ./TestRepos//Test_CA/cacert.req -passin env:pass
+DEBUG ca-mgm - return BasicConstraintsExtension::valid() is true
+DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExtension::valid() is true
+DEBUG ca-mgm - return IssuerAlternativeNameExtension::valid() ist true
+DEBUG ca-mgm - return AuthorityInfoAccessExtension::valid() is true
+DEBUG ca-mgm - return CRLDistributionPointsExtension::valid() is true
+DEBUG ca-mgm - type2Section: type=5 result=ca
+DEBUG ca-mgm - type2Section: type=5 result=ca
+DEBUG ca-mgm - return BasicConstraintsExtension::valid() is true
+DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExtension::valid() is true
+DEBUG ca-mgm - return IssuerAlternativeNameExtension::valid() ist true
+DEBUG ca-mgm - return AuthorityInfoAccessExtension::valid() is true
+DEBUG ca-mgm - return CRLDistributionPointsExtension::valid() is true
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG IniParser - Can not delete nsBaseUrl Key does not exist.
+DEBUG IniPaser - File ./TestRepos//Test_CA/openssl.cnf did not change. Not saving.
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG IniParser - Can not delete nsRevocationUrl Key does not exist.
+DEBUG IniPaser - File ./TestRepos//Test_CA/openssl.cnf did not change. Not saving.
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG IniParser - Can not delete nsCaRevocationUrl Key does not exist.
+DEBUG IniPaser - File ./TestRepos//Test_CA/openssl.cnf did not change. Not saving.
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG IniParser - Can not delete nsRenewalUrl Key does not exist.
+DEBUG IniPaser - File ./TestRepos//Test_CA/openssl.cnf did not change. Not saving.
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG IniParser - Can not delete nsCaPolicyUrl Key does not exist.
+DEBUG IniPaser - File ./TestRepos//Test_CA/openssl.cnf did not change. Not saving.
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG IniParser - Can not delete nsSslServerName Key does not exist.
+DEBUG IniPaser - File ./TestRepos//Test_CA/openssl.cnf did not change. Not saving.
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - return BasicConstraintsExtension::valid() is true
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG IniParser - Can not delete extendedKeyUsage Key does not exist.
+DEBUG IniPaser - File ./TestRepos//Test_CA/openssl.cnf did not change. Not saving.
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExtension::valid() is true
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - return IssuerAlternativeNameExtension::valid() ist true
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - return AuthorityInfoAccessExtension::valid() is true
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG IniParser - Can not delete authorityInfoAccess Key does not exist.
+DEBUG IniPaser - File ./TestRepos//Test_CA/openssl.cnf did not change. Not saving.
+DEBUG ca-mgm - return CRLDistributionPointsExtension::valid() is true
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG IniParser - Can not delete crlDistributionPoints Key does not exist.
+DEBUG IniPaser - File ./TestRepos//Test_CA/openssl.cnf did not change. Not saving.
+DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG IniParser - Can not delete certificatePolicies Key does not exist.
+DEBUG IniPaser - File ./TestRepos//Test_CA/openssl.cnf did not change. Not saving.
+DEBUG OPENSSL - OPENSSL->createSelfSignedCert command: /usr/bin/openssl req -x509 -passin env:pass -config ./TestRepos//Test_CA/openssl.cnf -days 1500 -in ./TestRepos//Test_CA/cacert.req -key ./TestRepos//Test_CA/cacert.key -out ./TestRepos//Test_CA/cacert.pem
