@@ -399,6 +399,7 @@ namespace CA_MGM_NAMESPACE
 
         CAConfig* getConfig();
 
+
         /**
          * Create a new selfsigned root CA and creates the
          * whole needed infrastructure.
@@ -411,7 +412,8 @@ namespace CA_MGM_NAMESPACE
         createRootCA(const String& caName,
                      const String& caPasswd,
                      const RequestGenerationData& caRequestData,
-                     const CertificateIssueData& caIssueData);
+                     const CertificateIssueData& caIssueData,
+                     const String& repos=REPOSITORY);
         
 
         /**
