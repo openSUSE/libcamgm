@@ -85,10 +85,12 @@ RDNObject::valid() const
         LOGIT_DEBUG("type is empty");
         return false;
     }
-    if(value.empty()) {
-        LOGIT_DEBUG("value is empty");
-        return false;
-    }
+    /*
+      if(value.empty()) {
+      LOGIT_DEBUG("value is empty");
+      return false;
+      }
+    */
     // FIXME: define and check pre defined types ?
 
     return true;
@@ -102,9 +104,11 @@ RDNObject::verify() const
     if(type.empty()) {
         result.append("type is empty");
     }
-    if(value.empty()) {
-        result.append("value is empty");
-    }
+    /*
+      if(value.empty()) {
+      result.append("value is empty");
+      }
+    */
     // FIXME: define and check pre defined types ?
 
     LOGIT_DEBUG_STRINGARRAY("RDNObject::verify()", result);
@@ -128,6 +132,13 @@ RDNObject::dump() const
 DNObject::DNObject()
     : dn(blocxx::List<RDNObject>())
 {
+    dn.push_back(RDNObject("countryName", ""));
+    dn.push_back(RDNObject("stateOrProvinceName", ""));
+    dn.push_back(RDNObject("localityName", ""));
+    dn.push_back(RDNObject("organizationName", ""));
+    dn.push_back(RDNObject("organizationalUnitName", ""));
+    dn.push_back(RDNObject("commonName", ""));
+    dn.push_back(RDNObject("emailAddress", ""));
 }
 
 DNObject::DNObject(const blocxx::List<RDNObject> &dn)
