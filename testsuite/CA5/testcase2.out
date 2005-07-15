@@ -5,10 +5,23 @@ creating CA object
 ============= read
 ============= write back unchanged
 ============= re-read
-empty DN
 ============= Call Dump
 RequestGenerationData::dump()
 DNObject::dump()
+RDNObject::dump()
+countryName=
+RDNObject::dump()
+stateOrProvinceName=
+RDNObject::dump()
+localityName=
+RDNObject::dump()
+organizationName=
+RDNObject::dump()
+organizationalUnitName=
+RDNObject::dump()
+commonName=
+RDNObject::dump()
+emailAddress=
 Keysize = 2048
 MessageDigest = 0
 Challenge Password = 
@@ -50,10 +63,23 @@ creating CA object
 ============= read
 ============= write back unchanged
 ============= re-read
-empty DN
 ============= Call Dump
 RequestGenerationData::dump()
 DNObject::dump()
+RDNObject::dump()
+countryName=
+RDNObject::dump()
+stateOrProvinceName=
+RDNObject::dump()
+localityName=
+RDNObject::dump()
+organizationName=
+RDNObject::dump()
+organizationalUnitName=
+RDNObject::dump()
+commonName=
+RDNObject::dump()
+emailAddress=
 Keysize = 2048
 MessageDigest = 2
 Challenge Password = 

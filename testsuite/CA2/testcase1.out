@@ -3,10 +3,23 @@ file: CA2/testcase1.in
 creating CA object
 ============= Test:ca1_test=>CA_Req
 ============= Call Verify
-empty DN
 ============= Call Dump
 RequestGenerationData::dump()
 DNObject::dump()
+RDNObject::dump()
+countryName=
+RDNObject::dump()
+stateOrProvinceName=
+RDNObject::dump()
+localityName=
+RDNObject::dump()
+organizationName=
+RDNObject::dump()
+organizationalUnitName=
+RDNObject::dump()
+commonName=
+RDNObject::dump()
+emailAddress=
 Keysize = 2048
 MessageDigest = 0
 Challenge Password = 
@@ -46,10 +59,23 @@ is Present = false
 creating CA object
 ============= Test:ca2_test=>CA_Req
 ============= Call Verify
-empty DN
 ============= Call Dump
 RequestGenerationData::dump()
 DNObject::dump()
+RDNObject::dump()
+countryName=
+RDNObject::dump()
+stateOrProvinceName=
+RDNObject::dump()
+localityName=
+RDNObject::dump()
+organizationName=
+RDNObject::dump()
+organizationalUnitName=
+RDNObject::dump()
+commonName=
+RDNObject::dump()
+emailAddress=
 Keysize = 2048
 MessageDigest = 0
 Challenge Password = 

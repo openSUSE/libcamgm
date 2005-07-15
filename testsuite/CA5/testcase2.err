@@ -80,8 +80,6 @@ DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=0 result=req_client
 DEBUG ca-mgm - type2Section: type=0 result=req_client
-DEBUG ca-mgm - DNObject::verify()(0/1):empty DN
-DEBUG ca-mgm - RequestGenerationData::verify()(0/1):empty DN
 DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
@@ -162,5 +160,3 @@ DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=0 result=req_client
 DEBUG ca-mgm - type2Section: type=0 result=req_client
-DEBUG ca-mgm - DNObject::verify()(0/1):empty DN
-DEBUG ca-mgm - RequestGenerationData::verify()(0/1):empty DN
