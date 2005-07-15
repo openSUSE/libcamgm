@@ -13,6 +13,9 @@ AM_LDFLAGS  = -pthread $(PERL_LDFLAGS)
 limallib_LTLIBRARIES = liblimal-ca-mgm.la
 
 liblimal_ca_mgm_la_SOURCES  =	\
+	OPENSSL.cpp \
+	CATools.cpp \
+    cpp_perl_converter.cpp \
 	config.cpp \
 	ExtensionBase.cpp \
 	AuthorityInfoAccessExtension.cpp \
@@ -50,10 +53,7 @@ liblimal_ca_mgm_la_SOURCES  =	\
 	RequestData_Priv.cpp \
 	X509v3CertificateExtensions_Priv.cpp \
 	X509v3CRLExtensions_Priv.cpp \
-	X509v3RequestExtensions_Priv.cpp \
-	OPENSSL.cpp \
-	CATools.cpp \
-        cpp_perl_converter.cpp 
+	X509v3RequestExtensions_Priv.cpp 
 
 liblimal_ca_mgm_la_CXXFLAGS = $(LIMAL_CFLAGS)
 

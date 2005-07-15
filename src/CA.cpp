@@ -22,11 +22,17 @@
 
 #include  <limal/ca-mgm/CA.hpp>
 #include  <limal/Exception.hpp>
+#include  <blocxx/Exec.hpp>
+#include  <blocxx/EnvVars.hpp>
+
 #include  "CertificateData_Priv.hpp"
 #include  "RequestData_Priv.hpp"
 #include  "CRLData_Priv.hpp"
+#include  "CATools.h"
+#include  "OPENSSL.h"
 
 #include  "Utils.hpp"
+#include  "Commands.hpp"
 
 using namespace limal;
 using namespace limal::ca_mgm;
@@ -41,6 +47,15 @@ CA::CA(const String& caName, const String& caPasswd, const String& repos)
 
 CA::~CA()
 {
+    StringArray cmd;
+    cmd.push_back(RM_COMMAND);
+    cmd.push_back(repositoryDir+"/"+caName+"/openssl.cnf");
+    try {
+        blocxx::Exec::safeSystem(cmd, blocxx::EnvVars());
+    } catch(Exception &e) {
+        // ignore errors
+        LOGIT_INFO("Remove of openssl.cnf failed. " << e);
+    }
 }
         
 bool
@@ -321,12 +336,22 @@ bool
 CA::createRootCA(const String& caName,
                  const String& caPasswd,
                  const RequestGenerationData& caRequestData,
-                 const CertificateIssueData& caIssueData)
+                 const CertificateIssueData& caIssueData,
+                 const String& repos)
 {
     // Create the infrastructure
 
+    try {
+        createCaInfrastructure(caName, repos);
+    } catch(blocxx::Exception &e) {
+        LOGIT_ERROR(e);
+        BLOCXX_THROW_SUBEX(limal::SystemException, 
+                           "Error during create CA infrastructure",
+                           e);
+    }
+    
     // Create CA Object
-    CA tmpCA = CA(caName, caPasswd);
+    CA tmpCA = CA(caName, caPasswd, repos);
 
     // copy template to config
     tmpCA.initConfigFile();
@@ -334,16 +359,67 @@ CA::createRootCA(const String& caName,
     // write request data to config
     caRequestData.commit2Config(tmpCA, CA_Req);
 
+    blocxx::Map<blocxx::String,blocxx::String > hash;
+    hash["BINARY"] = OPENSSL_COMMAND;
+    hash["CONFIG"] = repos + "/" + caName + "/" + "openssl.cnf";;
+    hash["DEBUG"] = "1";
+    OPENSSL ossl(hash);
+
+    // create key
+    hash.clear();
+    hash["OUTFILE"] = repos + "/" + caName + "/" + "cacert.key";
+    hash["PASSWD"] = caPasswd;
+    hash["BITS"] = String(caRequestData.getKeysize());
+    //    hash[""] = "";
+	blocxx::String k = ossl.createKey(hash);
+
     // create request
+    hash.clear();
+    hash["OUTFILE"] = repos + "/" + caName + "/" + "cacert.req";
+    hash["KEYFILE"] = repos + "/" + caName + "/" + "cacert.key";
+    hash["PASSWD"] = caPasswd;
+    //hash[""] = "";
+
+    blocxx::List<RDNObject> dn = caRequestData.getSubject().getDN();
+    blocxx::List<RDNObject>::const_iterator it = dn.begin();
+    blocxx::Array<blocxx::String> sdn;
+    for(; it != dn.end(); ++it) {
+        sdn.push_back( (*it).getValue() );
+    }
+    sdn.push_back(caRequestData.getChallengePassword());
+    sdn.push_back(caRequestData.getUnstructuredName());
+
+    k = ossl.createReq(&hash, &sdn);
 
     // write certificate issue data to config
     caIssueData.commit2Config(tmpCA, CA_Cert);
 
     // create the CA certificate
+    hash.clear();
+    hash["OUTFILE"] = repos + "/" + caName + "/" + "cacert.pem";
+    hash["KEYFILE"] = repos + "/" + caName + "/" + "cacert.key";
+    hash["REQFILE"] = repos + "/" + caName + "/" + "cacert.req";
+    hash["PASSWD"]  = caPasswd;
+    hash["DAYS"]    = String((caIssueData.getEndDate() - caIssueData.getStartDate()) /(60*60*24));
+
+    k = ossl.createSelfSignedCert(hash);
 
     // some clean-ups 
+    StringArray cmd;
+    cmd.push_back(CP_COMMAND);
+    cmd.push_back(repos + "/" + caName + "/" + "cacert.pem");
+    cmd.push_back(repos + "/" + ".cas/" + caName + ".pem");
+    blocxx::Exec::safeSystem(cmd, blocxx::EnvVars());
+    
+    cmd.clear();
+    cmd.push_back(C_REHASH_COMMAND);
+    cmd.push_back(repos + "/" + ".cas/");
 
-    return false;
+    blocxx::EnvVars env;
+    env.addVar("PATH", "/usr/bin/");
+    blocxx::Exec::safeSystem(cmd, env);
+    
+    return true;
 }
        
 
