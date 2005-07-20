@@ -22,6 +22,7 @@
 
 #include  <limal/ca-mgm/CA.hpp>
 #include  <limal/Exception.hpp>
+#include  <limal/PathUtils.hpp>
 #include  <blocxx/Exec.hpp>
 #include  <blocxx/EnvVars.hpp>
 
@@ -43,18 +44,15 @@ CA::CA(const String& caName, const String& caPasswd, const String& repos)
       config(NULL),
       templ(new CAConfig(repositoryDir+"/"+caName+"/openssl.cnf.tmpl"))
 {
+    //FIXME: check if caName is not empty
 }
 
 CA::~CA()
 {
-    StringArray cmd;
-    cmd.push_back(RM_COMMAND);
-    cmd.push_back(repositoryDir+"/"+caName+"/openssl.cnf");
-    try {
-        blocxx::Exec::safeSystem(cmd, blocxx::EnvVars());
-    } catch(Exception &e) {
-        // ignore errors
-        LOGIT_INFO("Remove of openssl.cnf failed. " << e);
+    int r = path::removeFile(repositoryDir+"/"+caName+"/openssl.cnf");
+    
+    if(r != 0) {
+        LOGIT_INFO("Remove of openssl.cnf failed: " << r);
     }
 }
         
@@ -405,20 +403,41 @@ CA::createRootCA(const String& caName,
     k = ossl.createSelfSignedCert(hash);
 
     // some clean-ups 
-    StringArray cmd;
-    cmd.push_back(CP_COMMAND);
-    cmd.push_back(repos + "/" + caName + "/" + "cacert.pem");
-    cmd.push_back(repos + "/" + ".cas/" + caName + ".pem");
-    blocxx::Exec::safeSystem(cmd, blocxx::EnvVars());
+
+    int r = path::copyFile(repos + "/" + caName + "/" + "cacert.pem",
+                           repos + "/" + ".cas/" + caName + ".pem");
     
-    cmd.clear();
+    if(r != 0) {
+        LOGIT_INFO("Copy of cacert.pem to .cas/ failed: " << r);
+    }
+    
+    StringArray cmd;
     cmd.push_back(C_REHASH_COMMAND);
     cmd.push_back(repos + "/" + ".cas/");
 
     blocxx::EnvVars env;
     env.addVar("PATH", "/usr/bin/");
-    blocxx::Exec::safeSystem(cmd, env);
-    
+
+    String stdOutput;
+    String errOutput;
+    int    status = 0;
+    try {
+
+        blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
+
+    } catch(Exception& e) {
+        LOGIT_INFO( "c_rehash exception:" << e);
+        status = -1;
+    }
+    if(status != 0) {
+        LOGIT_INFO( "c_rehash status:" << String(status));
+    }
+    if(!errOutput.empty()) {
+        LOGIT_INFO("c_rehash stderr:" << errOutput);
+    }
+    if(!stdOutput.empty()) {
+        LOGIT_DEBUG("c_rehash stdout:" << stdOutput);
+    }
     return true;
 }
        
