@@ -25,10 +25,18 @@
 #ifndef   LIMAL_CA_MGM_COMMANDS_HPP
 #define   LIMAL_CA_MGM_COMMANDS_HPP
 
-#define CP_COMMAND "@CP_COMMAND@"
-#define RM_COMMAND "@RM_COMMAND@"
-#define OPENSSL_COMMAND "@OPENSSL_COMMAND@"
-#define C_REHASH_COMMAND "@C_REHASH_COMMAND@"
+#include <limal/config.h>
+#include <blocxx/String.hpp>
+
+namespace LIMAL_NAMESPACE {
+
+namespace CA_MGM_NAMESPACE {
+
+const blocxx::String OPENSSL_COMMAND  = "@OPENSSL_COMMAND@";
+const blocxx::String C_REHASH_COMMAND = "@C_REHASH_COMMAND@";
+
+}
+}
 
 #endif /* LIMAL_CA_MGM_COMMANDS_HPP */
 
