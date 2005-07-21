@@ -9,7 +9,7 @@ clean-local:
 	rm -rf Test_CA/
 	rm -f .cas/*
 
-CLEANFILES = Makefile.in
+MAINTAINERCLEANFILES = Makefile.in
 
 EXTRA_DIST = ca1_test/* ca2_test/* openssl.cnf.tmpl
 
