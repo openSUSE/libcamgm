@@ -162,6 +162,7 @@ DEBUG ca-mgm - type2Section: type=3 result=v3_client
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=3 result=client_cert
 DEBUG ca-mgm - type2Section: type=3 result=client_cert
+DEBUG limal - removeFile ./TestRepos/ca1_test/openssl.cnf
 DEBUG ca-mgm - type2Section: type=3 result=v3_client
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=3 result=v3_client
@@ -327,3 +328,4 @@ DEBUG ca-mgm - type2Section: type=3 result=v3_client
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=3 result=client_cert
 DEBUG ca-mgm - type2Section: type=3 result=client_cert
+DEBUG limal - removeFile ./TestRepos/ca2_test/openssl.cnf

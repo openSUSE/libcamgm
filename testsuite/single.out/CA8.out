@@ -1,4 +1,8 @@
 START
-Doing ./TestRepos//.cas/
-Test_CA.pem => c7a0e8db.0
+./TestRepos/Test_CA/cacert.key IS FILE
+Size is greater then 0
+./TestRepos/Test_CA/cacert.req IS FILE
+Size is greater then 0
+./TestRepos/Test_CA/cacert.pem IS FILE
+Size is greater then 0
 DONE

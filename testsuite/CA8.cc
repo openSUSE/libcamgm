@@ -5,14 +5,17 @@
 #include <blocxx/String.hpp>
 #include <blocxx/PerlRegEx.hpp>
 #include <limal/Logger.hpp>
+#include <limal/PathInfo.hpp>
 #include <limal/ca-mgm/CA.hpp>
 
 #include <iostream>
 #include <fstream>
 #include <unistd.h>
 
+extern "C" {
 #include <EXTERN.h>
 #include <perl.h>
+}
 
 EXTERN_C void xs_init (pTHX);
 PerlInterpreter *my_perl;
@@ -22,7 +25,6 @@ using namespace limal;
 using namespace limal::ca_mgm;
 
 limal::Logger logger("CA8");
-
 
 int main(int argc, char **argv)
 {
@@ -57,11 +59,9 @@ int main(int argc, char **argv)
                                                          ));
         limal::Logger::setDefaultLogger(appLogger);
         
-        CA ca("ca1_test", "system", "./TestRepos/");
+        RequestGenerationData rgd = CA::getRootCARequestDefaults("./TestRepos/");
+        CertificateIssueData cid  = CA::getRootCAIssueDefaults("./TestRepos/");
         
-        RequestGenerationData rgd = ca.getRequestDefaults(CA_Req);
-        CertificateIssueData cid  = ca.getIssueDefaults(CA_Cert);
-
         blocxx::List<RDNObject> dnl = rgd.getSubject().getDN();
         blocxx::List<RDNObject>::iterator dnit = dnl.begin();
         for(; dnit != dnl.end(); ++dnit) {
@@ -76,23 +76,43 @@ int main(int argc, char **argv)
         rgd.setSubject(dn);
         
         CA::createRootCA("Test_CA", "system", rgd, cid, "./TestRepos/");
+        
+        path::PathInfo iKey("./TestRepos/Test_CA/cacert.key");
+        path::PathInfo iReq("./TestRepos/Test_CA/cacert.req");
+        path::PathInfo iCrt("./TestRepos/Test_CA/cacert.pem");
 
-        /*  
-            StringArray a = rgd.verify();
-            
-            StringArray::const_iterator it = a.begin();
-            for(; it != a.end(); ++it) {
-            std::cout << (*it) << std::endl;
+        if(iKey.isFile()) {
+            std::cout << iKey.toString() << " IS FILE" <<std::endl;
+            if(iKey.size() > 0) {
+                std::cout << "Size is greater then 0" << std::endl;
+            } else {
+                std::cout << "ERROR Size is 0" << iKey.size() << std::endl;
             }
-            
-            StringArray dump = rgd.dump();
-            StringArray::const_iterator it2 = dump.begin();
-            for(; it2 != dump.end(); ++it2) {
-            if(!r.match(*it2)) {
-            std::cout << (*it2) << std::endl;
+        } else {
+            std::cout << "ERROR ./TestRepos/Test_CA/cacert.key is not a file" <<std::endl;
+        }
+
+        if(iReq.isFile()) {
+            std::cout << iReq.toString() << " IS FILE" <<std::endl;
+            if(iKey.size() > 0) {
+                std::cout << "Size is greater then 0" << std::endl;
+            } else {
+                std::cout << "ERROR Size is 0" << std::endl;
             }
+        } else {
+            std::cout << "ERROR ./TestRepos/Test_CA/cacert.req is not a file" <<std::endl;
+        }
+
+        if(iCrt.isFile()) {
+            std::cout << iCrt.toString() << " IS FILE" <<std::endl;
+            if(iKey.size() > 0) {
+                std::cout << "Size is greater then 0" << std::endl;
+            } else {
+                std::cout << "ERROR Size is 0" << std::endl;
             }
-        */
+        } else {
+            std::cout << "ERROR ./TestRepos/Test_CA/cacert.pem is not a file" <<std::endl;
+        }
 
         std::cout << "DONE" << std::endl;
     } catch(blocxx::Exception& e) {
