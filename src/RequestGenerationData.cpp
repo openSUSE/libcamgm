@@ -44,7 +44,7 @@ RequestGenerationData::RequestGenerationData()
 }
 
 RequestGenerationData::RequestGenerationData(CAConfig* caConfig, Type type)
-    : subject(DNObject()),
+    : subject(DNObject(caConfig, type)),
       keysize(0),
       messageDigest(SHA1),
       challengePassword(""),
