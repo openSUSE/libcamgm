@@ -21,24 +21,18 @@
 /-*/
 
 #include  <limal/ca-mgm/DNObject.hpp>
+#include  <limal/ca-mgm/CAConfig.hpp>
 #include  <limal/ValueRegExCheck.hpp>
 #include  <limal/Exception.hpp>
 #include  <blocxx/Format.hpp>
 
+#include  "DNObject_Priv.hpp"
 #include  "Utils.hpp"
 
 using namespace limal;
 using namespace limal::ca_mgm;
 using namespace blocxx;
 
-RDNObject::RDNObject()
-    : type(String()), value(String())
-{
-}
-
-RDNObject::RDNObject(const String& type, const String& value)
-    : type(type), value(value)
-{}
 
 RDNObject::RDNObject(const RDNObject& rdn)
     : type(rdn.type), value(rdn.value)
@@ -59,9 +53,8 @@ RDNObject::operator=(const RDNObject& rdn)
 }
 
 void
-RDNObject::setRDN(const String& type, const String& value)
+RDNObject::setRDNValue(const String& value)
 {
-    this->type  = type;
     this->value = value;
 }
 
@@ -127,18 +120,39 @@ RDNObject::dump() const
     return result;
 }
 
+// protected
+
+RDNObject::RDNObject()
+    : type(String()), value(String())
+{
+}
+
+
 // ######################################################################
 
 DNObject::DNObject()
     : dn(blocxx::List<RDNObject>())
 {
-    dn.push_back(RDNObject("countryName", ""));
-    dn.push_back(RDNObject("stateOrProvinceName", ""));
-    dn.push_back(RDNObject("localityName", ""));
-    dn.push_back(RDNObject("organizationName", ""));
-    dn.push_back(RDNObject("organizationalUnitName", ""));
-    dn.push_back(RDNObject("commonName", ""));
-    dn.push_back(RDNObject("emailAddress", ""));
+    dn.push_back(RDNObject_Priv("countryName", ""));
+    dn.push_back(RDNObject_Priv("stateOrProvinceName", ""));
+    dn.push_back(RDNObject_Priv("localityName", ""));
+    dn.push_back(RDNObject_Priv("organizationName", ""));
+    dn.push_back(RDNObject_Priv("organizationalUnitName", ""));
+    dn.push_back(RDNObject_Priv("commonName", ""));
+    dn.push_back(RDNObject_Priv("emailAddress", ""));
+}
+
+DNObject::DNObject(CAConfig* caConfig, Type type)
+    : dn(blocxx::List<RDNObject>())
+{
+    // FIXME: get these values from the configfile
+    dn.push_back(RDNObject_Priv("countryName", ""));
+    dn.push_back(RDNObject_Priv("stateOrProvinceName", ""));
+    dn.push_back(RDNObject_Priv("localityName", ""));
+    dn.push_back(RDNObject_Priv("organizationName", ""));
+    dn.push_back(RDNObject_Priv("organizationalUnitName", ""));
+    dn.push_back(RDNObject_Priv("commonName", ""));
+    dn.push_back(RDNObject_Priv("emailAddress", ""));
 }
 
 DNObject::DNObject(const blocxx::List<RDNObject> &dn)

@@ -29,16 +29,16 @@ namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
+    class CAConfig;
+
     class RDNObject {
     public:
-        RDNObject();
-        RDNObject(const String& type, const String& value);
         RDNObject(const RDNObject& rdn);
         virtual ~RDNObject();
 
         RDNObject& operator=(const RDNObject& rdn);
 
-        void   setRDN(const String& type, const String& value);
+        void   setRDNValue(const String& value);
 
         String getType() const;
         String getValue() const;
@@ -48,15 +48,17 @@ namespace CA_MGM_NAMESPACE {
 
         virtual blocxx::StringArray  dump() const;
 
-    private:
+    protected:
         String type;
         String value;
 
+        RDNObject();
     };
 
     class DNObject {
     public:
         DNObject();
+        DNObject(CAConfig* caConfig, Type type);
         DNObject(const blocxx::List<RDNObject> &dn);
         DNObject(const DNObject& dn);
         virtual ~DNObject();

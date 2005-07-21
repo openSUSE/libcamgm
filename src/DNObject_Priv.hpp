@@ -31,6 +31,17 @@ namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
+    class RDNObject_Priv : public RDNObject {
+    public:
+        RDNObject_Priv();
+        RDNObject_Priv(const String& type, const String& value);
+
+        virtual ~RDNObject_Priv();
+
+        void   setRDN(const String& type, const String& value);
+
+    };
+
     class DNObject_Priv : public DNObject {
     public:
         DNObject_Priv(X509* cert);    

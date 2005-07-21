@@ -26,6 +26,31 @@ using namespace limal;
 using namespace limal::ca_mgm;
 using namespace blocxx;
 
+RDNObject_Priv::RDNObject_Priv()
+    : RDNObject()
+{
+}
+
+RDNObject_Priv::RDNObject_Priv(const String& type, const String& value)
+    : RDNObject()
+{
+    this->type  = type;
+    this->value = value;
+}
+
+RDNObject_Priv::~RDNObject_Priv()
+{}
+
+void
+RDNObject_Priv::setRDN(const String& type, const String& value)
+{
+    this->type  = type;
+    this->value = value;
+}
+
+
+// ##############################################################
+
 DNObject_Priv::DNObject_Priv(X509* cert)
     : DNObject()
 {
