@@ -31,6 +31,7 @@ namespace LIMAL_NAMESPACE {
 namespace CA_MGM_NAMESPACE {
 
     class CA;
+    class CAConfig;
 
     class AuthorityKeyIdentifierGenerateExtension : public ExtensionBase {
     public:
@@ -48,7 +49,7 @@ namespace CA_MGM_NAMESPACE {
         };
 
         AuthorityKeyIdentifierGenerateExtension();
-        AuthorityKeyIdentifierGenerateExtension(CA& ca, Type type);
+        AuthorityKeyIdentifierGenerateExtension(CAConfig* caConfig, Type type);
         AuthorityKeyIdentifierGenerateExtension(KeyID kid, Issuer iss);
         AuthorityKeyIdentifierGenerateExtension(const AuthorityKeyIdentifierGenerateExtension& extension);
         virtual ~AuthorityKeyIdentifierGenerateExtension();

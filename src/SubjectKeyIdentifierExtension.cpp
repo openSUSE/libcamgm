@@ -36,7 +36,7 @@ SubjectKeyIdentifierExtension::SubjectKeyIdentifierExtension()
     : ExtensionBase(), autodetect(false), keyid(String())
 {}
 
-SubjectKeyIdentifierExtension::SubjectKeyIdentifierExtension(CA& ca, Type type)
+SubjectKeyIdentifierExtension::SubjectKeyIdentifierExtension(CAConfig* caConfig, Type type)
     : ExtensionBase(), autodetect(false), keyid(String())
 {
     // These types are not supported by this object
@@ -45,12 +45,12 @@ SubjectKeyIdentifierExtension::SubjectKeyIdentifierExtension(CA& ca, Type type)
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
 
-    bool p = ca.getConfig()->exists(type2Section(type, true), "subjectKeyIdentifier");
+    bool p = caConfig->exists(type2Section(type, true), "subjectKeyIdentifier");
     if(p) {
         String        str;
 
         StringArray   sp   = PerlRegEx("\\s*,\\s*")
-            .split(ca.getConfig()->getValue(type2Section(type, true), "subjectKeyIdentifier"));
+            .split(caConfig->getValue(type2Section(type, true), "subjectKeyIdentifier"));
         if(sp[0].equalsIgnoreCase("critical")) {
             setCritical(true);
             str = sp[1];

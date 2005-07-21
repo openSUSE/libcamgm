@@ -448,6 +448,22 @@ namespace CA_MGM_NAMESPACE
          */
         static blocxx::List<StringList> getCATree();
 
+        /**
+         * Get a CertificateIssueData object with current signing default
+         * settings for a Root CA.
+         *
+         * @return a CertificateIssueData object with the current defaults
+         */
+        static CertificateIssueData  getRootCAIssueDefaults(const String& repos=REPOSITORY);
+
+        /**
+         * Get a RequestGenerationData object with current request default
+         * settings for a Root CA.
+         *
+         * @return a RequestGenerationData object with the current defaults
+         */
+        static RequestGenerationData getRootCARequestDefaults(const String& repos=REPOSITORY);
+
     private:
         String caName;
         String caPasswd;

@@ -35,7 +35,7 @@ SubjectAlternativeNameExtension::SubjectAlternativeNameExtension()
     : ExtensionBase(), emailCopy(false), altNameList(blocxx::List<LiteralValue>())
 {}
 
-SubjectAlternativeNameExtension::SubjectAlternativeNameExtension(CA& ca, Type type)
+SubjectAlternativeNameExtension::SubjectAlternativeNameExtension(CAConfig* caConfig, Type type)
     : ExtensionBase(), emailCopy(false), altNameList(blocxx::List<LiteralValue>())
 {
     // These types are not supported by this object
@@ -44,10 +44,10 @@ SubjectAlternativeNameExtension::SubjectAlternativeNameExtension(CA& ca, Type ty
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
 
-    bool p = ca.getConfig()->exists(type2Section(type, true), "subjectAltName");
+    bool p = caConfig->exists(type2Section(type, true), "subjectAltName");
     if(p) {
         StringArray   sp   = PerlRegEx("\\s*,\\s*")
-            .split(ca.getConfig()->getValue(type2Section(type, true), "subjectAltName"));
+            .split(caConfig->getValue(type2Section(type, true), "subjectAltName"));
         if(sp[0].equalsIgnoreCase("critical"))  setCritical(true);
 
         StringArray::const_iterator it = sp.begin();

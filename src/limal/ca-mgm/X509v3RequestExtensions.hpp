@@ -35,7 +35,8 @@ namespace LIMAL_NAMESPACE {
 namespace CA_MGM_NAMESPACE {
 
     class CA;
-    
+    class CAConfig;
+
     /**
      * @brief Collection of X509v3 extension for certificate requests
      *
@@ -46,7 +47,7 @@ namespace CA_MGM_NAMESPACE {
 
     public:
         X509v3RequestExtensions();
-        X509v3RequestExtensions(CA& ca, Type type);
+        X509v3RequestExtensions(CAConfig* caConfig, Type type);
         X509v3RequestExtensions(const X509v3RequestExtensions& extensions);
         virtual ~X509v3RequestExtensions();
 

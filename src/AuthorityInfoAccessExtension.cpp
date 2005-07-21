@@ -147,7 +147,7 @@ AuthorityInfoAccessExtension::AuthorityInfoAccessExtension(const AuthorityInfoAc
     : ExtensionBase(extension), info(extension.info)
 {}
 
-AuthorityInfoAccessExtension::AuthorityInfoAccessExtension(CA& ca, Type type)
+AuthorityInfoAccessExtension::AuthorityInfoAccessExtension(CAConfig* caConfig, Type type)
     : ExtensionBase()
 {
     // These types are not supported by this object
@@ -157,10 +157,10 @@ AuthorityInfoAccessExtension::AuthorityInfoAccessExtension(CA& ca, Type type)
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
 
-    bool p = ca.getConfig()->exists(type2Section(type, true), "authorityInfoAccess");
+    bool p = caConfig->exists(type2Section(type, true), "authorityInfoAccess");
     if(p) {
         StringArray   sp   = PerlRegEx("\\s*,\\s*")
-            .split(ca.getConfig()->getValue(type2Section(type, true), "authorityInfoAccess"));
+            .split(caConfig->getValue(type2Section(type, true), "authorityInfoAccess"));
         if(sp[0].equalsIgnoreCase("critical"))  setCritical(true);
 
         StringArray::const_iterator it = sp.begin();

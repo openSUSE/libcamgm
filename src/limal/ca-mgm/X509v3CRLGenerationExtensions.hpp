@@ -34,6 +34,7 @@ namespace CA_MGM_NAMESPACE
 {
 
     class CA;
+    class CAConfig;
 
     /**
      * @brief Collection of X509v3 extension for generating CRLs
@@ -43,7 +44,7 @@ namespace CA_MGM_NAMESPACE
     class X509v3CRLGenerationExtensions {
     public:
         X509v3CRLGenerationExtensions();
-        X509v3CRLGenerationExtensions(CA& ca, Type type);
+        X509v3CRLGenerationExtensions(CAConfig* caConfig, Type type);
         X509v3CRLGenerationExtensions(const X509v3CRLGenerationExtensions& extensions);
         virtual ~X509v3CRLGenerationExtensions();
 

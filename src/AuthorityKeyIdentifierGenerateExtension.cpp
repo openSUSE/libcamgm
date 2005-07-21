@@ -34,7 +34,8 @@ AuthorityKeyIdentifierGenerateExtension::AuthorityKeyIdentifierGenerateExtension
     : ExtensionBase(), keyid(KeyID_none), issuer(Issuer_none)
 {}
 
-AuthorityKeyIdentifierGenerateExtension::AuthorityKeyIdentifierGenerateExtension(CA& ca, Type type)
+AuthorityKeyIdentifierGenerateExtension::AuthorityKeyIdentifierGenerateExtension(CAConfig* caConfig,
+                                                                                 Type type)
     : ExtensionBase(), keyid(KeyID_none), issuer(Issuer_none)
 {
     // These types are not supported by this object
@@ -43,10 +44,10 @@ AuthorityKeyIdentifierGenerateExtension::AuthorityKeyIdentifierGenerateExtension
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
 
-    bool p = ca.getConfig()->exists(type2Section(type, true), "authorityKeyIdentifier");
+    bool p = caConfig->exists(type2Section(type, true), "authorityKeyIdentifier");
     if(p) {
         StringArray   sp   = PerlRegEx("\\s*,\\s*")
-            .split(ca.getConfig()->getValue(type2Section(type, true), "authorityKeyIdentifier"));
+            .split(caConfig->getValue(type2Section(type, true), "authorityKeyIdentifier"));
         if(sp[0].equalsIgnoreCase("critical")) {
             setCritical(true);
             sp.remove(0);

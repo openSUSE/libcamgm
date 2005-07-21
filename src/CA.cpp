@@ -114,7 +114,7 @@ CertificateIssueData
 CA::getIssueDefaults(Type type)
 {
     initConfigFile();
-    CertificateIssueData cid = CertificateIssueData(*this, type);
+    CertificateIssueData cid = CertificateIssueData(config, type);
     return cid;
 }
 
@@ -122,7 +122,7 @@ RequestGenerationData
 CA::getRequestDefaults(Type type)
 {
     initConfigFile();
-    RequestGenerationData rgd = RequestGenerationData(*this, type);
+    RequestGenerationData rgd = RequestGenerationData(config, type);
 
     return rgd;
 }
@@ -132,7 +132,7 @@ CRLGenerationData
 CA::getCRLDefaults()
 {
     initConfigFile();
-    CRLGenerationData  crlgd = CRLGenerationData(*this, CRL);
+    CRLGenerationData  crlgd = CRLGenerationData(config, CRL);
     return crlgd;
 }
 
@@ -463,6 +463,26 @@ blocxx::List<StringList>
 CA::getCATree()
 {
     return List<StringList>();
+}
+
+CertificateIssueData
+CA::getRootCAIssueDefaults(const String& repos)
+{
+    CAConfig *config = new CAConfig(repos+"/openssl.cnf.tmpl");
+    CertificateIssueData cid = CertificateIssueData(config, CA_Cert);
+    delete config;
+
+    return cid;
+}
+
+RequestGenerationData
+CA::getRootCARequestDefaults(const String& repos)
+{
+    CAConfig *config = new CAConfig(repos+"/openssl.cnf.tmpl");
+    RequestGenerationData rgd = RequestGenerationData(config, CA_Req);
+    delete config;
+
+    return rgd;
 }
 
 

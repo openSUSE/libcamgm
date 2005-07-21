@@ -35,9 +35,9 @@ X509v3CRLGenerationExtensions::X509v3CRLGenerationExtensions()
 {
 }
 
-X509v3CRLGenerationExtensions::X509v3CRLGenerationExtensions(CA& ca, Type type)
-    : authorityKeyIdentifier(ca, type),
-      issuerAlternativeName(ca, type)
+X509v3CRLGenerationExtensions::X509v3CRLGenerationExtensions(CAConfig* caConfig, Type type)
+    : authorityKeyIdentifier(caConfig, type),
+      issuerAlternativeName(caConfig, type)
 {
 }
 

@@ -31,6 +31,7 @@ namespace LIMAL_NAMESPACE {
 namespace CA_MGM_NAMESPACE {
 
     class CA;
+    class CAConfig;
 
     class UserNotice {
     public:
@@ -40,7 +41,7 @@ namespace CA_MGM_NAMESPACE {
 
         UserNotice& operator=(const UserNotice& notice);
 
-        void                initWithSection(CA& ca, Type type, const String& sectionName);
+        void                initWithSection(CAConfig* caConfig, Type type, const String& sectionName);
 
         void                setExplicitText(const String& text);
         String              getExplicitText() const;
@@ -78,7 +79,7 @@ namespace CA_MGM_NAMESPACE {
         
         CertificatePolicy& operator=(const CertificatePolicy& policy);
 
-        void                initWithSection(CA& ca, Type type, const String& sectionName);
+        void                initWithSection(CAConfig* caConfig, Type type, const String& sectionName);
 
         void                setPolicyIdentifier(const String& policyIdentifier);
         String              getPolicyIdentifier() const;
@@ -111,7 +112,7 @@ namespace CA_MGM_NAMESPACE {
     public:
         CertificatePoliciesExtension();
         CertificatePoliciesExtension(const blocxx::List<CertificatePolicy>& policies);
-        CertificatePoliciesExtension(CA& ca, Type type);
+        CertificatePoliciesExtension(CAConfig* caConfig, Type type);
         CertificatePoliciesExtension(const CertificatePoliciesExtension& extension);
         virtual ~CertificatePoliciesExtension();
 

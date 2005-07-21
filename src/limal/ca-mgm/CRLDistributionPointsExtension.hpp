@@ -32,11 +32,12 @@ namespace LIMAL_NAMESPACE {
 namespace CA_MGM_NAMESPACE {
 
     class CA;
+    class CAConfig;
 
     class CRLDistributionPointsExtension : public ExtensionBase {
     public:
         CRLDistributionPointsExtension();
-        CRLDistributionPointsExtension(CA& ca, Type type);
+        CRLDistributionPointsExtension(CAConfig* caConfig, Type type);
         CRLDistributionPointsExtension(const CRLDistributionPointsExtension& extension);
         virtual ~CRLDistributionPointsExtension();
 

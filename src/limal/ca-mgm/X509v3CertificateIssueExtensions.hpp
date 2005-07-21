@@ -43,6 +43,7 @@ namespace CA_MGM_NAMESPACE
 {
 
     class CA;
+    class CAConfig;
 
     /**
      * @brief Collection of X509v3 extension for signing a certificate
@@ -52,7 +53,7 @@ namespace CA_MGM_NAMESPACE
     class X509v3CertificateIssueExtensions {
     public:
         X509v3CertificateIssueExtensions();
-        X509v3CertificateIssueExtensions(CA& ca, Type type);
+        X509v3CertificateIssueExtensions(CAConfig* caConfig, Type type);
         X509v3CertificateIssueExtensions(const X509v3CertificateIssueExtensions& extensions);
         virtual ~X509v3CertificateIssueExtensions();
 

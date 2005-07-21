@@ -43,17 +43,17 @@ RequestGenerationData::RequestGenerationData()
 {
 }
 
-RequestGenerationData::RequestGenerationData(CA& ca, Type type)
+RequestGenerationData::RequestGenerationData(CAConfig* caConfig, Type type)
     : subject(DNObject()),
       keysize(0),
       messageDigest(SHA1),
       challengePassword(""),
       unstructuredName(""),
-      extensions(X509v3RequestExtensions(ca, type))
+      extensions(X509v3RequestExtensions(caConfig, type))
 {
-    keysize = ca.getConfig()->getValue(type2Section(type, false), "default_bits").toUInt32();
+    keysize = caConfig->getValue(type2Section(type, false), "default_bits").toUInt32();
 
-    String md = ca.getConfig()->getValue(type2Section(type, false), "default_md");
+    String md = caConfig->getValue(type2Section(type, false), "default_md");
     if(md.equalsIgnoreCase("sha1")) {
         messageDigest = SHA1;
     } else if(md.equalsIgnoreCase("md5")) {

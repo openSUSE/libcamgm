@@ -32,6 +32,7 @@ namespace LIMAL_NAMESPACE {
 namespace CA_MGM_NAMESPACE {
 
     class CA;
+    class CAConfig;
 
     class AuthorityInformation {
 
@@ -65,7 +66,7 @@ namespace CA_MGM_NAMESPACE {
 
         AuthorityInfoAccessExtension();
         AuthorityInfoAccessExtension(const AuthorityInfoAccessExtension& extension);
-        AuthorityInfoAccessExtension(CA& ca, Type type);
+        AuthorityInfoAccessExtension(CAConfig* caConfig, Type type);
         virtual ~AuthorityInfoAccessExtension();
 
         AuthorityInfoAccessExtension& operator=(const AuthorityInfoAccessExtension& extension);

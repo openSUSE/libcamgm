@@ -31,6 +31,7 @@ namespace LIMAL_NAMESPACE {
 namespace CA_MGM_NAMESPACE {
 
     class CA;
+    class CAConfig;
 
     class BitExtension : public ExtensionBase {
     public:
@@ -71,7 +72,7 @@ namespace CA_MGM_NAMESPACE {
         };
         
         KeyUsageExtension();
-        KeyUsageExtension(CA& ca, Type type);
+        KeyUsageExtension(CAConfig* caConfig, Type type);
         KeyUsageExtension(blocxx::UInt32 keyUsage);
         KeyUsageExtension(const KeyUsageExtension& extension);
         virtual ~KeyUsageExtension();
@@ -108,7 +109,7 @@ namespace CA_MGM_NAMESPACE {
         };
         
         NsCertTypeExtension();
-        NsCertTypeExtension(CA& ca, Type type);
+        NsCertTypeExtension(CAConfig* caConfig, Type type);
         NsCertTypeExtension(blocxx::UInt32 nsCertTypes);
         NsCertTypeExtension(const NsCertTypeExtension& extension);
         virtual ~NsCertTypeExtension();
@@ -145,7 +146,7 @@ namespace CA_MGM_NAMESPACE {
         };
 
         ExtendedKeyUsageExtension();
-        ExtendedKeyUsageExtension(CA& ca, Type type);
+        ExtendedKeyUsageExtension(CAConfig* caConfig, Type type);
         ExtendedKeyUsageExtension(blocxx::UInt32 extKeyUsages, 
                                   const StringList& additionalOIDs = StringList());
         ExtendedKeyUsageExtension(const ExtendedKeyUsageExtension& extension);

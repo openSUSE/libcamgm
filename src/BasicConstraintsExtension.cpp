@@ -35,7 +35,7 @@ BasicConstraintsExtension::BasicConstraintsExtension()
     : ExtensionBase(), ca(false), pathlen(-1)
 {}
 
-BasicConstraintsExtension::BasicConstraintsExtension(CA& ca, Type type)
+BasicConstraintsExtension::BasicConstraintsExtension(CAConfig* caConfig, Type type)
     : ExtensionBase(), ca(false), pathlen(-1)
 {
     // These types are not supported by this object
@@ -44,13 +44,13 @@ BasicConstraintsExtension::BasicConstraintsExtension(CA& ca, Type type)
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
 
-    bool p = ca.getConfig()->exists(type2Section(type, true), "basicConstraints");
+    bool p = caConfig->exists(type2Section(type, true), "basicConstraints");
     if(p) {
         bool          isCA = false;
         blocxx::Int32 pl   = -1;
 
         StringArray   sp   = PerlRegEx("\\s*,\\s*")
-            .split(ca.getConfig()->getValue(type2Section(type, true), "basicConstraints"));
+            .split(caConfig->getValue(type2Section(type, true), "basicConstraints"));
         if(sp[0].equalsIgnoreCase("critical"))  setCritical(true); 
 
         StringArray::const_iterator it = sp.begin();

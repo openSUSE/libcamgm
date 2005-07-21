@@ -32,6 +32,7 @@ namespace LIMAL_NAMESPACE {
 namespace CA_MGM_NAMESPACE {
 
     class CA;
+    class CAConfig;
 
     class IssuerAlternativeNameExtension : public ExtensionBase {
     public:
@@ -39,7 +40,7 @@ namespace CA_MGM_NAMESPACE {
 
         IssuerAlternativeNameExtension(bool copyIssuer,
                                        const blocxx::List<LiteralValue> &alternativeNameList);
-        IssuerAlternativeNameExtension(CA& ca, Type type);
+        IssuerAlternativeNameExtension(CAConfig* caConfig, Type type);
         IssuerAlternativeNameExtension(const IssuerAlternativeNameExtension& extension);
         virtual ~IssuerAlternativeNameExtension();
 

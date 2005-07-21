@@ -31,11 +31,12 @@ namespace LIMAL_NAMESPACE {
 namespace CA_MGM_NAMESPACE {
 
     class CA;
+    class CAConfig;
 
     class SubjectKeyIdentifierExtension : public ExtensionBase {
     public:
         SubjectKeyIdentifierExtension();
-        SubjectKeyIdentifierExtension(CA& ca, Type type);
+        SubjectKeyIdentifierExtension(CAConfig* caConfig, Type type);
         SubjectKeyIdentifierExtension(bool autoDetect, const String& keyid = String());
         SubjectKeyIdentifierExtension(const SubjectKeyIdentifierExtension& extension);
         virtual ~SubjectKeyIdentifierExtension();

@@ -36,10 +36,10 @@ CRLGenerationData::CRLGenerationData()
 {
 }
 
-CRLGenerationData::CRLGenerationData(CA& ca, Type type)
-    : crlHours(0), extensions(X509v3CRLGenerationExtensions(ca, type))
+CRLGenerationData::CRLGenerationData(CAConfig* caConfig, Type type)
+    : crlHours(0), extensions(X509v3CRLGenerationExtensions(caConfig, type))
 {
-    crlHours = ca.getConfig()->getValue(type2Section(type, false), "default_crl_hours").toUInt32();
+    crlHours = caConfig->getValue(type2Section(type, false), "default_crl_hours").toUInt32();
 }
 
 CRLGenerationData::CRLGenerationData(blocxx::UInt32 hours, 

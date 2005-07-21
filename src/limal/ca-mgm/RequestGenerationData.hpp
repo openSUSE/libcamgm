@@ -34,6 +34,7 @@ namespace CA_MGM_NAMESPACE
 {
 
     class CA;
+    class CAConfig;
 
     /**
      * @brief Data representation for generating a certificate request
@@ -47,7 +48,7 @@ namespace CA_MGM_NAMESPACE
         /**
          * Read the Request generation defaults
          */
-        RequestGenerationData(CA& ca, Type type);
+        RequestGenerationData(CAConfig* caConfig, Type type);
         RequestGenerationData(const RequestGenerationData& data);
         virtual ~RequestGenerationData();
 

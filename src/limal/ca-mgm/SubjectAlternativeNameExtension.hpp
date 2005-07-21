@@ -32,11 +32,12 @@ namespace LIMAL_NAMESPACE {
 namespace CA_MGM_NAMESPACE {
 
     class CA;
+    class CAConfig;
 
     class SubjectAlternativeNameExtension : public ExtensionBase {
     public:
         SubjectAlternativeNameExtension();
-        SubjectAlternativeNameExtension(CA& ca, Type type);
+        SubjectAlternativeNameExtension(CAConfig* caConfig, Type type);
         SubjectAlternativeNameExtension(bool copyEmail,
                                         const blocxx::List<LiteralValue> &alternativeNameList);
         SubjectAlternativeNameExtension(const SubjectAlternativeNameExtension& extension);

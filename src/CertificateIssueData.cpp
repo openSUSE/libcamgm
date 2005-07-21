@@ -39,19 +39,19 @@ CertificateIssueData::CertificateIssueData()
 {
 }
 
-CertificateIssueData::CertificateIssueData(CA& ca, Type type)
+CertificateIssueData::CertificateIssueData(CAConfig* caConfig, Type type)
     : notBefore(0), notAfter(0), 
       messageDigest(SHA1),
-      extensions(X509v3CertificateIssueExtensions(ca, type))
+      extensions(X509v3CertificateIssueExtensions(caConfig, type))
 {
     notBefore = DateTime::getCurrent().get();
 
-    UInt32 days = ca.getConfig()->getValue(type2Section(type, false), "default_days").toUInt32();
+    UInt32 days = caConfig->getValue(type2Section(type, false), "default_days").toUInt32();
     DateTime dt = DateTime(notBefore);
     dt.addDays(days);
     notAfter    = dt.get();
 
-    String md = ca.getConfig()->getValue(type2Section(type, false), "default_md");
+    String md = caConfig->getValue(type2Section(type, false), "default_md");
     if(md.equalsIgnoreCase("sha1")) {
         messageDigest = SHA1;
     } else if(md.equalsIgnoreCase("md5")) {

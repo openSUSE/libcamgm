@@ -35,25 +35,25 @@ X509v3CertificateIssueExtensions::X509v3CertificateIssueExtensions()
 {
 }
 
-X509v3CertificateIssueExtensions::X509v3CertificateIssueExtensions(CA& ca, Type type)
-    : nsBaseUrl(ca, type),
-      nsRevocationUrl(ca, type),
-      nsCaRevocationUrl(ca, type),
-      nsRenewalUrl(ca, type),
-      nsCaPolicyUrl(ca, type),
-      nsSslServerName(ca, type),
-      nsComment(ca, type),
-      keyUsage(ca, type),
-      nsCertType(ca, type),
-      basicConstraints(ca, type),
-      extendedKeyUsage(ca, type),
-      subjectKeyIdentifier(ca, type),
-      authorityKeyIdentifier(ca, type),
-      subjectAlternativeName(ca, type),
-      issuerAlternativeName(ca, type),
-      authorityInfoAccess(ca, type),
-      crlDistributionPoints(ca, type),
-      certificatePolicies(ca, type)
+X509v3CertificateIssueExtensions::X509v3CertificateIssueExtensions(CAConfig* caConfig, Type type)
+    : nsBaseUrl(caConfig, type),
+      nsRevocationUrl(caConfig, type),
+      nsCaRevocationUrl(caConfig, type),
+      nsRenewalUrl(caConfig, type),
+      nsCaPolicyUrl(caConfig, type),
+      nsSslServerName(caConfig, type),
+      nsComment(caConfig, type),
+      keyUsage(caConfig, type),
+      nsCertType(caConfig, type),
+      basicConstraints(caConfig, type),
+      extendedKeyUsage(caConfig, type),
+      subjectKeyIdentifier(caConfig, type),
+      authorityKeyIdentifier(caConfig, type),
+      subjectAlternativeName(caConfig, type),
+      issuerAlternativeName(caConfig, type),
+      authorityInfoAccess(caConfig, type),
+      crlDistributionPoints(caConfig, type),
+      certificatePolicies(caConfig, type)
 {
 }
 

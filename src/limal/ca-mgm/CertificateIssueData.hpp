@@ -46,7 +46,7 @@ namespace CA_MGM_NAMESPACE
          * Initialize this object with the defaults of the CA 
          * and Type
          */
-        CertificateIssueData(CA& ca, Type type);
+        CertificateIssueData(CAConfig* caConfig, Type type);
 
         CertificateIssueData(const CertificateIssueData& data);
 

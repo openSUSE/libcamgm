@@ -34,7 +34,7 @@ CRLDistributionPointsExtension::CRLDistributionPointsExtension()
     : ExtensionBase(), altNameList(blocxx::List<LiteralValue>())
 {}
 
-CRLDistributionPointsExtension::CRLDistributionPointsExtension(CA& ca, Type type)
+CRLDistributionPointsExtension::CRLDistributionPointsExtension(CAConfig* caConfig, Type type)
     : ExtensionBase(), altNameList(blocxx::List<LiteralValue>())
 {
     // These types are not supported by this object
@@ -44,10 +44,10 @@ CRLDistributionPointsExtension::CRLDistributionPointsExtension(CA& ca, Type type
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
 
-    bool p = ca.getConfig()->exists(type2Section(type, true), "crlDistributionPoints");
+    bool p = caConfig->exists(type2Section(type, true), "crlDistributionPoints");
     if(p) {
         StringArray   sp   = PerlRegEx("\\s*,\\s*")
-            .split(ca.getConfig()->getValue(type2Section(type, true), "crlDistributionPoints"));
+            .split(caConfig->getValue(type2Section(type, true), "crlDistributionPoints"));
         if(sp[0].equalsIgnoreCase("critical"))  setCritical(true);
 
         StringArray::const_iterator it = sp.begin();

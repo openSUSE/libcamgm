@@ -42,7 +42,7 @@ namespace CA_MGM_NAMESPACE
     class CRLGenerationData {
     public:
         CRLGenerationData();
-        CRLGenerationData(CA& ca, Type type);
+        CRLGenerationData(CAConfig* caConfig, Type type);
         CRLGenerationData(blocxx::UInt32 hours, 
                           const X509v3CRLGenerationExtensions& ext);
         CRLGenerationData(const CRLGenerationData& data);

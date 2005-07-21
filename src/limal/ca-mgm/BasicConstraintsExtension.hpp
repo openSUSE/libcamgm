@@ -31,11 +31,12 @@ namespace LIMAL_NAMESPACE {
 namespace CA_MGM_NAMESPACE {
 
     class CA;
+    class CAConfig;
 
     class BasicConstraintsExtension : public ExtensionBase {
     public:
         BasicConstraintsExtension();
-        BasicConstraintsExtension(CA& ca, Type type);
+        BasicConstraintsExtension(CAConfig* caConfig, Type type);
         BasicConstraintsExtension(bool isCa, blocxx::Int32 pathLength=-1);
         BasicConstraintsExtension(const BasicConstraintsExtension& extension);
         virtual ~BasicConstraintsExtension();

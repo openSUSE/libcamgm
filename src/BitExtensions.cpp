@@ -81,7 +81,7 @@ KeyUsageExtension::KeyUsageExtension()
     : BitExtension()
 {}
 
-KeyUsageExtension::KeyUsageExtension(CA& ca, Type type)
+KeyUsageExtension::KeyUsageExtension(CAConfig* caConfig, Type type)
     : BitExtension()
 {
     LOGIT_DEBUG("Parse KeyUsage");
@@ -92,11 +92,11 @@ KeyUsageExtension::KeyUsageExtension(CA& ca, Type type)
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
 
-    bool p = ca.getConfig()->exists(type2Section(type, true), "keyUsage");
+    bool p = caConfig->exists(type2Section(type, true), "keyUsage");
     if(p) {
         blocxx::UInt32 keyUsage = 0;
         
-        String ku = ca.getConfig()->getValue(type2Section(type, true), "keyUsage");
+        String ku = caConfig->getValue(type2Section(type, true), "keyUsage");
         StringArray sp = PerlRegEx("\\s*,\\s*").split(ku);
 
         if(sp[0].equalsIgnoreCase("critical")) setCritical(true);
@@ -290,7 +290,7 @@ NsCertTypeExtension::NsCertTypeExtension()
     : BitExtension()
 {}
 
-NsCertTypeExtension::NsCertTypeExtension(CA& ca, Type type)
+NsCertTypeExtension::NsCertTypeExtension(CAConfig* caConfig, Type type)
     : BitExtension()
 {
     LOGIT_DEBUG("Parse NsCertType");
@@ -301,11 +301,11 @@ NsCertTypeExtension::NsCertTypeExtension(CA& ca, Type type)
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
 
-    bool p = ca.getConfig()->exists(type2Section(type, true), "nsCertType");
+    bool p = caConfig->exists(type2Section(type, true), "nsCertType");
     if(p) {
         blocxx::UInt32 bits = 0;
         
-        String ct = ca.getConfig()->getValue(type2Section(type, true), "nsCertType");
+        String ct = caConfig->getValue(type2Section(type, true), "nsCertType");
         StringArray sp = PerlRegEx("\\s*,\\s*").split(ct);
 
         if(sp[0].equalsIgnoreCase("critical")) setCritical(true);
@@ -481,7 +481,7 @@ ExtendedKeyUsageExtension::ExtendedKeyUsageExtension()
     : BitExtension(), oids(StringList())
 {}
 
-ExtendedKeyUsageExtension::ExtendedKeyUsageExtension(CA& ca, Type type)
+ExtendedKeyUsageExtension::ExtendedKeyUsageExtension(CAConfig* caConfig, Type type)
     : BitExtension(), oids(StringList())
 {
     LOGIT_DEBUG("Parse ExtendedKeyUsage");
@@ -492,12 +492,12 @@ ExtendedKeyUsageExtension::ExtendedKeyUsageExtension(CA& ca, Type type)
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
 
-    bool p = ca.getConfig()->exists(type2Section(type, true), "extendedKeyUsage");
+    bool p = caConfig->exists(type2Section(type, true), "extendedKeyUsage");
     if(p) {
         blocxx::UInt32 bits = 0;
         ValueCheck check = initOIDCheck();
 
-        String ct = ca.getConfig()->getValue(type2Section(type, true), "extendedKeyUsage");
+        String ct = caConfig->getValue(type2Section(type, true), "extendedKeyUsage");
         StringArray sp = PerlRegEx("\\s*,\\s*").split(ct);
 
         if(sp[0].equalsIgnoreCase("critical")) setCritical(true);

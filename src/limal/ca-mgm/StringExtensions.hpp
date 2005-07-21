@@ -31,6 +31,7 @@ namespace LIMAL_NAMESPACE {
 namespace CA_MGM_NAMESPACE {
 
     class CA;
+    class CAConfig;
     
     class StringExtension : public ExtensionBase {
         
@@ -62,7 +63,7 @@ namespace CA_MGM_NAMESPACE {
     public:
         NsBaseUrlExtension();
         NsBaseUrlExtension(const String &v);
-        NsBaseUrlExtension(CA& ca, Type type);
+        NsBaseUrlExtension(CAConfig* caConfig, Type type);
         NsBaseUrlExtension(const NsBaseUrlExtension &extension);
         virtual ~NsBaseUrlExtension();
 
@@ -83,7 +84,7 @@ namespace CA_MGM_NAMESPACE {
     public:
         NsRevocationUrlExtension();
         NsRevocationUrlExtension(const String &v);
-        NsRevocationUrlExtension(CA& ca, Type type);
+        NsRevocationUrlExtension(CAConfig* caConfig, Type type);
         NsRevocationUrlExtension(const NsRevocationUrlExtension &extension);
         virtual ~NsRevocationUrlExtension();
 
@@ -104,7 +105,7 @@ namespace CA_MGM_NAMESPACE {
     public:
         NsCaRevocationUrlExtension();
         NsCaRevocationUrlExtension(const String &v);
-        NsCaRevocationUrlExtension(CA& ca, Type type);
+        NsCaRevocationUrlExtension(CAConfig* caConfig, Type type);
         NsCaRevocationUrlExtension(const NsCaRevocationUrlExtension &extension);
         virtual ~NsCaRevocationUrlExtension();
 
@@ -125,7 +126,7 @@ namespace CA_MGM_NAMESPACE {
     public:
         NsRenewalUrlExtension();
         NsRenewalUrlExtension(const String &v);
-        NsRenewalUrlExtension(CA& ca, Type type);
+        NsRenewalUrlExtension(CAConfig* caConfig, Type type);
         NsRenewalUrlExtension(const NsRenewalUrlExtension &extension);
         virtual ~NsRenewalUrlExtension();
 
@@ -145,7 +146,7 @@ namespace CA_MGM_NAMESPACE {
     public:
         NsCaPolicyUrlExtension();
         NsCaPolicyUrlExtension(const String &v);
-        NsCaPolicyUrlExtension(CA& ca, Type type);
+        NsCaPolicyUrlExtension(CAConfig* caConfig, Type type);
         NsCaPolicyUrlExtension(const NsCaPolicyUrlExtension &extension);
         virtual ~NsCaPolicyUrlExtension();
 
@@ -165,7 +166,7 @@ namespace CA_MGM_NAMESPACE {
     public:
         NsSslServerNameExtension();
         NsSslServerNameExtension(const String &v);
-        NsSslServerNameExtension(CA& ca, Type type);
+        NsSslServerNameExtension(CAConfig* caConfig, Type type);
         NsSslServerNameExtension(const NsSslServerNameExtension &extension);
         virtual ~NsSslServerNameExtension();
 
@@ -185,7 +186,7 @@ namespace CA_MGM_NAMESPACE {
     public:
         NsCommentExtension();
         NsCommentExtension(const String &v);
-        NsCommentExtension(CA& ca, Type type);
+        NsCommentExtension(CAConfig* caConfig, Type type);
         NsCommentExtension(const NsCommentExtension &extension);
         virtual ~NsCommentExtension();
 

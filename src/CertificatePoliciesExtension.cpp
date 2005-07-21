@@ -59,7 +59,7 @@ UserNotice::operator=(const UserNotice& notice)
 }
 
 void
-UserNotice::initWithSection(CA& ca, Type type, const String& sectionName)
+UserNotice::initWithSection(CAConfig* caConfig, Type type, const String& sectionName)
 {
     // These types are not supported by this object
     if(type == CRL        || type == Client_Req ||
@@ -68,24 +68,24 @@ UserNotice::initWithSection(CA& ca, Type type, const String& sectionName)
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
     
-    bool p = ca.getConfig()->exists(sectionName, "explicitText");
+    bool p = caConfig->exists(sectionName, "explicitText");
     if(p) {
-        explicitText = ca.getConfig()->getValue(sectionName, "explicitText");
+        explicitText = caConfig->getValue(sectionName, "explicitText");
     } else {
         LOGIT_DEBUG("no explicite Text in " << sectionName);
     }
 
-    p = ca.getConfig()->exists(sectionName, "organization");
+    p = caConfig->exists(sectionName, "organization");
     if(p) {
-        organization = ca.getConfig()->getValue(sectionName, "organization");
+        organization = caConfig->getValue(sectionName, "organization");
     } else {
         LOGIT_DEBUG("no Organization in " << sectionName);
     }
     
-    p = ca.getConfig()->exists(sectionName, "noticeNumbers");
+    p = caConfig->exists(sectionName, "noticeNumbers");
     if(p) {
         StringArray a = PerlRegEx(",").
-            split(ca.getConfig()->getValue(sectionName, "noticeNumbers"));
+            split(caConfig->getValue(sectionName, "noticeNumbers"));
         StringArray::const_iterator it = a.begin();
         for(; it != a.end(); ++it) {
             
@@ -264,7 +264,7 @@ CertificatePolicy::operator=(const CertificatePolicy& policy)
 }
 
 void
-CertificatePolicy::initWithSection(CA& ca, Type type, const String& sectionName)
+CertificatePolicy::initWithSection(CAConfig* caConfig, Type type, const String& sectionName)
 {
     // These types are not supported by this object
     if(type == CRL        || type == Client_Req ||
@@ -273,20 +273,20 @@ CertificatePolicy::initWithSection(CA& ca, Type type, const String& sectionName)
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
     
-    bool p = ca.getConfig()->exists(sectionName, "policyIdentifier");
+    bool p = caConfig->exists(sectionName, "policyIdentifier");
     if(p) {
-        policyIdentifier = ca.getConfig()->getValue(sectionName, "policyIdentifier");
+        policyIdentifier = caConfig->getValue(sectionName, "policyIdentifier");
     }
 
-    StringList kl = ca.getConfig()->getKeylist(sectionName);
+    StringList kl = caConfig->getKeylist(sectionName);
     StringList::const_iterator it = kl.begin();
     for(; it != kl.end(); ++it) {
         if((*it).startsWith("CPS", String::E_CASE_INSENSITIVE)) {
-            cpsURI.push_back(ca.getConfig()->getValue(sectionName, *it));
+            cpsURI.push_back(caConfig->getValue(sectionName, *it));
         } else if((*it).startsWith("userNotice", String::E_CASE_INSENSITIVE)) {
-            String uns = ca.getConfig()->getValue(sectionName, *it);
+            String uns = caConfig->getValue(sectionName, *it);
             UserNotice un = UserNotice();
-            un.initWithSection(ca, type, uns.substring(1));
+            un.initWithSection(caConfig, type, uns.substring(1));
             noticeList.push_back(un);
         }
     }
@@ -491,7 +491,7 @@ CertificatePoliciesExtension::CertificatePoliciesExtension(const blocxx::List<Ce
     setPresent(true);
 }
 
-CertificatePoliciesExtension::CertificatePoliciesExtension(CA& ca, Type type)
+CertificatePoliciesExtension::CertificatePoliciesExtension(CAConfig* caConfig, Type type)
     : ExtensionBase(), ia5org(false), policies(blocxx::List<CertificatePolicy>())
 {
     // These types are not supported by this object
@@ -501,11 +501,11 @@ CertificatePoliciesExtension::CertificatePoliciesExtension(CA& ca, Type type)
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
 
-    bool p = ca.getConfig()->exists(type2Section(type, true), "certificatePolicies");
+    bool p = caConfig->exists(type2Section(type, true), "certificatePolicies");
     if(p) {
         ValueCheck    check = initOIDCheck();
         StringArray   sp    = PerlRegEx("\\s*,\\s*")
-            .split(ca.getConfig()->getValue(type2Section(type, true), "certificatePolicies"));
+            .split(caConfig->getValue(type2Section(type, true), "certificatePolicies"));
         if(sp[0].equalsIgnoreCase("critical"))  {
             setCritical(true);
             sp.remove(0);
@@ -519,7 +519,7 @@ CertificatePoliciesExtension::CertificatePoliciesExtension(CA& ca, Type type)
                 policies.push_back(CertificatePolicy(*it));
             } else if((*it).startsWith("@")) {
                 CertificatePolicy cp = CertificatePolicy();
-                cp.initWithSection(ca, type, (*it).substring(1));
+                cp.initWithSection(caConfig, type, (*it).substring(1));
                 policies.push_back(cp);
             }
         }
