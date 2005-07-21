@@ -90,9 +90,16 @@ int main(int argc, char **argv)
 
             std::cout << "============= write back unchanged" << std::endl; 
 
-            blocxx::List<RDNObject> dnl;
-            dnl.push_back(RDNObject("CN", "Michael Calmer"));
-            dnl.push_back(RDNObject("C",  "DE"));
+            blocxx::List<RDNObject> dnl = rgd.getSubject().getDN();
+            blocxx::List<RDNObject>::iterator dnit = dnl.begin();
+            for(; dnit != dnl.end(); ++dnit) {
+                if((*dnit).getType() == "countryName") {
+                    (*dnit).setRDNValue("DE");
+                } else if((*dnit).getType() == "commonName") {
+                    (*dnit).setRDNValue("Test CA");
+                }
+            }            
+
 
             DNObject dn(dnl);
             rgd.setSubject(dn);

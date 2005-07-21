@@ -66,9 +66,9 @@ int main(int argc, char **argv)
         blocxx::List<RDNObject>::iterator dnit = dnl.begin();
         for(; dnit != dnl.end(); ++dnit) {
             if((*dnit).getType() == "countryName") {
-                (*dnit).setRDN((*dnit).getType(), "DE");
+                (*dnit).setRDNValue("DE");
             } else if((*dnit).getType() == "commonName") {
-                (*dnit).setRDN((*dnit).getType(), "Test CA");
+                (*dnit).setRDNValue("Test CA");
             }
         }
         
