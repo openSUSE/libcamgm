@@ -477,6 +477,16 @@ namespace CA_MGM_NAMESPACE
 
         CA& operator=(const CA&);
 
+        /**
+         * Check if the given dn matches the policy defined in the 
+         * configuration file
+         *
+         * @param dn the DN object
+         * @param type the Type of the certificate which should be signed
+         *
+         * @return empty String if the policy match, otherwise a error message
+         */
+        String checkDNPolicy(const DNObject& dn, Type type);
 
     };
     

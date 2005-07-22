@@ -502,3 +502,79 @@ CA::operator=(const CA&)
 }
 
 
+blocxx::String
+CA::checkDNPolicy(const DNObject& dn, Type type)
+{
+    // These types are not supported by this method
+    if(type == Client_Req || type == Server_Req ||
+       type == CA_Req     || type == CRL           ) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+    bool p = config->exists(type2Section(type, false), "policy");
+    if(!p) {
+        LOGIT_ERROR("missing value 'policy' in config file");
+        BLOCXX_THROW(limal::SyntaxException, 
+                     "missing value 'policy' in config file");
+    }
+    String policySect = config->getValue(type2Section(type, false), "policy");
+    
+    StringList policyKeys = config->getKeylist(policySect);
+    
+    if(policyKeys.empty()) {
+        LOGIT_ERROR("Can not parse Section " << policySect);
+        BLOCXX_THROW(limal::SyntaxException, 
+                     Format("Can not parse Section %1", policySect).c_str());
+    }
+    StringList::const_iterator it = policyKeys.begin();
+    
+    blocxx::List<RDNObject> l = dn.getDN();
+
+    bool policyFound = false;
+
+    for(; it != policyKeys.end(); ++it) {
+
+        policyFound = false;  // reset
+        blocxx::List<RDNObject>::const_iterator rdnit = l.begin();
+
+        for(; rdnit != l.end(); ++rdnit) {
+        
+            if( (*it).equalsIgnoreCase( (*rdnit).getType() ) ) {
+
+                policyFound = true;
+
+                // could be optional, supplied or match
+                String policyString = config->getValue(policySect, *it);
+
+                if(policyString.equalsIgnoreCase("optional")) {
+                    // do not care
+                } else if(policyString.equalsIgnoreCase("supplied")) {
+
+                    if( (*rdnit).getValue().empty() ) {
+
+                        return ("Invalid value for '" + *it + "'. This part has to have a value");
+
+                    }
+
+                } else if(policyString.equalsIgnoreCase("match")) {
+
+                    // FIXME: read the CA and check the value
+
+                } else {
+                    LOGIT_ERROR("Invalid value for policy: "<< 
+                                *it << "=" << policyString);
+                    BLOCXX_THROW(limal::SyntaxException, 
+                                 Format("Invalid value for policy: %1=%2", *it, policyString).c_str());
+                }
+            }
+        }
+        if(!policyFound) {
+
+            // FIXME: do more
+            LOGIT_ERROR("policy in config file but not in DN");
+
+        }
+    }
+    return String();
+}
