@@ -145,7 +145,119 @@ DNObject::DNObject()
 DNObject::DNObject(CAConfig* caConfig, Type type)
     : dn(blocxx::List<RDNObject>())
 {
-    // FIXME: get these values from the configfile
+    if(type == Client_Cert || type == Server_Cert ||
+       type == CA_Cert     || type == CRL           ) {
+        LOGIT_ERROR("wrong type" << type);
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+    }
+
+#if 0
+
+    // FIXME: does not work till we get the exact order of the keys 
+    //        like it is in the configfiles
+
+    bool p = caConfig->exists(type2Section(type, false), "distinguished_name");
+    if(!p) {
+        LOGIT_ERROR("missing section 'distinguished_name' in config file");
+        BLOCXX_THROW(limal::SyntaxException, 
+                     "missing section 'distinguished_name' in config file");
+    }
+    String dnSect = caConfig->getValue(type2Section(type, false), 
+                                       "distinguished_name");
+
+    StringList dnKeys = caConfig->getKeylist(dnSect);
+
+    if(dnKeys.empty()) {
+        LOGIT_ERROR("Can not parse Section " << dnSect);
+        BLOCXX_THROW(limal::SyntaxException, 
+                     Format("Can not parse Section %1", dnSect).c_str());
+    }
+    StringList::const_iterator it = dnKeys.begin();
+
+    String fieldName;
+    String prompt;
+    String defaultValue;
+    String min;
+    String max;
+
+    Array<Map<String, String> > configDN;
+
+    for(; it != dnKeys.end(); ++it) {
+
+        if((*it).endsWith("_default", String::E_CASE_INSENSITIVE)) {
+
+            if((*it).startsWith(fieldName, String::E_CASE_INSENSITIVE)) {
+                
+                defaultValue = caConfig->getValue(dnSect, *it);
+
+            } else {
+                LOGIT_INFO("Wrong order of section '" << dnSect <<
+                           "'. FieldName is '" << fieldName <<
+                           "' but parsed Key is '" << *it << 
+                           "'. Ignoring value.");
+                continue;
+            }
+
+        } else if((*it).endsWith("_min", String::E_CASE_INSENSITIVE)) {
+
+            if((*it).startsWith(fieldName, String::E_CASE_INSENSITIVE)) {
+
+                min = caConfig->getValue(dnSect, *it);
+
+            } else {
+                LOGIT_INFO("Wrong order of section '" << dnSect <<
+                           "'. FieldName is '" << fieldName <<
+                           "' but parsed Key is '" << *it << 
+                           "'. Ignoring value.");
+                continue;
+            }
+
+        } else if((*it).endsWith("_max", String::E_CASE_INSENSITIVE)) {
+
+            if((*it).startsWith(fieldName, String::E_CASE_INSENSITIVE)) {
+
+                max = caConfig->getValue(dnSect, *it);
+
+            } else {
+                LOGIT_INFO("Wrong order of section '" << dnSect <<
+                           "'. FieldName is '" << fieldName <<
+                           "' but parsed Key is '" << *it << 
+                           "'. Ignoring value.");
+                continue;
+            }
+
+        } else {
+            // A new fieldName
+
+            // commit values
+            if(!fieldName.empty()) {
+
+                dn.push_back(RDNObject_Priv(fieldName, defaultValue));
+                //FIXME: do something with the other values too
+
+            }
+
+            // reset
+            prompt       = String();
+            defaultValue = String();
+            min          = String();
+            max          = String();
+
+            fieldName    = *it;
+            prompt       = caConfig->getValue(dnSect, *it);
+
+        }
+
+    }
+    // commit the last values
+    if(!fieldName.empty()) {
+        
+        dn.push_back(RDNObject_Priv(fieldName, defaultValue));
+        //FIXME: do something with the other values too
+        
+    }
+#endif
+
     dn.push_back(RDNObject_Priv("countryName", ""));
     dn.push_back(RDNObject_Priv("stateOrProvinceName", ""));
     dn.push_back(RDNObject_Priv("localityName", ""));
@@ -153,6 +265,7 @@ DNObject::DNObject(CAConfig* caConfig, Type type)
     dn.push_back(RDNObject_Priv("organizationalUnitName", ""));
     dn.push_back(RDNObject_Priv("commonName", ""));
     dn.push_back(RDNObject_Priv("emailAddress", ""));
+
 }
 
 DNObject::DNObject(const blocxx::List<RDNObject> &dn)
