@@ -49,7 +49,7 @@ namespace CA_MGM_NAMESPACE
 
         bool     exists(const String &section, const String &key) const;
 
-        List<String> CAConfig::getKeylist(const String &section) const;
+        List<String> getKeylist(const String &section) const;
 
         CAConfig *clone(const String &file);
 
