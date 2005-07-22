@@ -65,6 +65,7 @@ int main(int argc, char **argv)
         blocxx::List<RDNObject> dnl = rgd.getSubject().getDN();
         blocxx::List<RDNObject>::iterator dnit = dnl.begin();
         for(; dnit != dnl.end(); ++dnit) {
+            std::cout << "DN Key " << (*dnit).getType() << std::endl;
             if((*dnit).getType() == "countryName") {
                 (*dnit).setRDNValue("DE");
             } else if((*dnit).getType() == "commonName") {

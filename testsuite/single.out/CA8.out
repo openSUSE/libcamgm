@@ -1,4 +1,11 @@
 START
+DN Key countryName
+DN Key stateOrProvinceName
+DN Key localityName
+DN Key organizationName
+DN Key organizationalUnitName
+DN Key commonName
+DN Key emailAddress
 ./TestRepos/Test_CA/cacert.key IS FILE
 Size is greater then 0
 ./TestRepos/Test_CA/cacert.req IS FILE
