@@ -52,6 +52,10 @@ namespace CA_MGM_NAMESPACE {
         String type;
         String value;
 
+        String prompt;
+        blocxx::UInt32 min;
+        blocxx::UInt32 max;
+
         RDNObject();
     };
 

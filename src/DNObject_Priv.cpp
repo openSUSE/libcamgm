@@ -42,10 +42,16 @@ RDNObject_Priv::~RDNObject_Priv()
 {}
 
 void
-RDNObject_Priv::setRDN(const String& type, const String& value)
+RDNObject_Priv::setRDN(const String& type, const String& value,
+                       const String&  prompt,
+                       blocxx::UInt32 min,
+                       blocxx::UInt32 max)
 {
-    this->type  = type;
-    this->value = value;
+    this->type   = type;
+    this->value  = value;
+    this->prompt = prompt;
+    this->min    = min;
+    this->max    = max;
 }
 
 

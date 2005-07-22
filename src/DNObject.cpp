@@ -78,6 +78,17 @@ RDNObject::valid() const
         LOGIT_DEBUG("type is empty");
         return false;
     }
+
+    if(min != 0 && value.UTF8Length() < min) {
+        LOGIT_DEBUG("value is too small. Value has to be a minimal length of " << min);
+        return false;
+    }
+
+    if(max != 0 && value.UTF8Length() > max) {
+        LOGIT_DEBUG("value is too long. Value has to be a maximal length of " << max);
+        return false;
+    }
+
     /*
       if(value.empty()) {
       LOGIT_DEBUG("value is empty");
@@ -96,6 +107,14 @@ RDNObject::verify() const
 
     if(type.empty()) {
         result.append("type is empty");
+    }
+
+    if(min != 0 && value.UTF8Length() < min) {
+        result.append("Value is too small. Value has to be a minimal length of " + String(min));
+    }
+
+    if(max != 0 && value.UTF8Length() > max) {
+        result.append("Value is too long. Value has to be a maximal length of " + String(max));
     }
     /*
       if(value.empty()) {
@@ -116,7 +135,9 @@ RDNObject::dump() const
     result.append("RDNObject::dump()");
 
     result.append(type + "=" + value);
-
+    result.append("Prompt:" + prompt);
+    result.append("Min:" + String(min));
+    result.append("Max:" + String(max));
     return result;
 }
 

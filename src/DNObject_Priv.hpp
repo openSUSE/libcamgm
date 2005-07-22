@@ -38,7 +38,19 @@ namespace CA_MGM_NAMESPACE {
 
         virtual ~RDNObject_Priv();
 
-        void   setRDN(const String& type, const String& value);
+        /**
+         * Set the RDN value
+         *
+         * @param type of the RDN
+         * @param value of the RDN
+         * @param prompt the prompt which is configured in the configfile
+         * @param min minimal string length of value; 0 == min not set
+         * @param max maximal string length of value; 0 == max not set
+         */
+        void   setRDN(const String& type, const String& value,
+                      const String& prompt = String(),
+                      blocxx::UInt32 min = 0,
+                      blocxx::UInt32 max = 0);
 
     };
 
