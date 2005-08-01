@@ -18,7 +18,7 @@ using namespace limal::CA_MGM_NAMESPACE;
 limal::Logger logger("CAConfig");
 
 
-int main(int argc, char **argv)
+int main()
 {
     std::cout << "START" << std::endl;
 
@@ -47,6 +47,15 @@ int main(int argc, char **argv)
 
     CAConfig *configDump = new CAConfig("openssl.cnf.tmpl.test");
     configDump->dump();
+
+    typedef blocxx::List<blocxx::String> StringList;
+    StringList listKey = config->getKeylist("ca");
+    std::cout << "Key for section : ca" << std::endl;
+    for (StringList::iterator i = listKey.begin();
+	 i != listKey.end(); i++)
+    {
+        std::cout << "key   " << *i <<std::endl;
+    }
 
     delete (config);
     delete (configNew);
