@@ -174,13 +174,7 @@ CAConfig::getKeylist(const String &section) const
     blocxx::List<String> keylist;
 
     if (parser->iniFile.contains(section) == SECTION) {
-
-        EntryMap em = parser->iniFile.getSection(section).getEntries();
-        
-        EntryMap::const_iterator it = em.begin();
-        for(; it != em.end(); ++it) {
-            keylist.push_back((*it).first);
-        }
+	keylist = parser->iniFile.getSection(section).getEntryKeys();
     }
     return keylist;
 }
