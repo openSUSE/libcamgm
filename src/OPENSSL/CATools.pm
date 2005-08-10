@@ -7,6 +7,8 @@ my $CAM_ROOT = "/var/lib/CAM/";
 my $TEMPLATE = "openssl.cnf.tmpl";
 
 sub listCA {
+    $CAM_ROOT = shift || $DEF_REPOS;
+
     my @av_ca = ();
     if (opendir(CAMDIR, "$CAM_ROOT")) {
         foreach my $d (readdir(CAMDIR)) {
