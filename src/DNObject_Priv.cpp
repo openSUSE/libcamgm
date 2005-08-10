@@ -21,6 +21,7 @@
 /-*/
 
 #include  "DNObject_Priv.hpp"
+#include  "Utils.hpp"
 
 using namespace limal;
 using namespace limal::ca_mgm;
@@ -31,11 +32,17 @@ RDNObject_Priv::RDNObject_Priv()
 {
 }
 
-RDNObject_Priv::RDNObject_Priv(const String& type, const String& value)
+RDNObject_Priv::RDNObject_Priv(const String& type, const String& value,
+                               const String&  prompt,
+                               blocxx::UInt32 min,
+                               blocxx::UInt32 max)
     : RDNObject()
 {
-    this->type  = type;
-    this->value = value;
+    this->type   = type;
+    this->value  = value;
+    this->prompt = prompt;
+    this->min    = min;
+    this->max    = max;
 }
 
 RDNObject_Priv::~RDNObject_Priv()

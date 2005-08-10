@@ -35,7 +35,11 @@ using namespace blocxx;
 
 
 RDNObject::RDNObject(const RDNObject& rdn)
-    : type(rdn.type), value(rdn.value)
+    : type(rdn.type),
+      value(rdn.value),
+      prompt(rdn.prompt),
+      min(rdn.min),
+      max(rdn.max)
 {}
 
 RDNObject::~RDNObject()
@@ -46,8 +50,11 @@ RDNObject::operator=(const RDNObject& rdn)
 {
     if(this == &rdn) return *this;
     
-    type  = rdn.type;
-    value = rdn.value;
+    type   = rdn.type;
+    value  = rdn.value;
+    prompt = rdn.prompt;
+    min    = rdn.min;
+    max    = rdn.max;
 
     return *this;
 }
@@ -80,12 +87,12 @@ RDNObject::valid() const
     }
 
     if(min != 0 && value.UTF8Length() < min) {
-        LOGIT_DEBUG("value is too small. Value has to be a minimal length of " << min);
+        LOGIT_DEBUG("value(" << value << ") is too small. Value has to be a minimal length of " << min);
         return false;
     }
 
     if(max != 0 && value.UTF8Length() > max) {
-        LOGIT_DEBUG("value is too long. Value has to be a maximal length of " << max);
+        LOGIT_DEBUG("value(" << value << ") is too long. Value has to be a maximal length of " << max);
         return false;
     }
 
@@ -110,11 +117,13 @@ RDNObject::verify() const
     }
 
     if(min != 0 && value.UTF8Length() < min) {
-        result.append("Value is too small. Value has to be a minimal length of " + String(min));
+        result.append("Value(" + value + 
+                      ") is too small. Value has to be a minimal length of " + String(min));
     }
 
     if(max != 0 && value.UTF8Length() > max) {
-        result.append("Value is too long. Value has to be a maximal length of " + String(max));
+        result.append("Value(" + value + 
+                      ") is too long. Value has to be a maximal length of " + String(max));
     }
     /*
       if(value.empty()) {
@@ -144,7 +153,8 @@ RDNObject::dump() const
 // protected
 
 RDNObject::RDNObject()
-    : type(String()), value(String())
+    : type(String()), value(String()), prompt(String()),
+      min(0), max(0)
 {
 }
 
@@ -172,11 +182,6 @@ DNObject::DNObject(CAConfig* caConfig, Type type)
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
 
-#if 0
-
-    // FIXME: does not work till we get the exact order of the keys 
-    //        like it is in the configfiles
-
     bool p = caConfig->exists(type2Section(type, false), "distinguished_name");
     if(!p) {
         LOGIT_ERROR("missing section 'distinguished_name' in config file");
@@ -198,8 +203,8 @@ DNObject::DNObject(CAConfig* caConfig, Type type)
     String fieldName;
     String prompt;
     String defaultValue;
-    String min;
-    String max;
+    String min("0");
+    String max("0");
 
     Array<Map<String, String> > configDN;
 
@@ -249,20 +254,19 @@ DNObject::DNObject(CAConfig* caConfig, Type type)
 
         } else {
             // A new fieldName
-
+            //
             // commit values
             if(!fieldName.empty()) {
 
-                dn.push_back(RDNObject_Priv(fieldName, defaultValue));
-                //FIXME: do something with the other values too
-
+                dn.push_back(RDNObject_Priv(fieldName, defaultValue,
+                                            prompt, min.toUInt32(), max.toUInt32()));
             }
 
             // reset
             prompt       = String();
             defaultValue = String();
-            min          = String();
-            max          = String();
+            min          = String("0");
+            max          = String("0");
 
             fieldName    = *it;
             prompt       = caConfig->getValue(dnSect, *it);
@@ -273,20 +277,9 @@ DNObject::DNObject(CAConfig* caConfig, Type type)
     // commit the last values
     if(!fieldName.empty()) {
         
-        dn.push_back(RDNObject_Priv(fieldName, defaultValue));
-        //FIXME: do something with the other values too
-        
+        dn.push_back(RDNObject_Priv(fieldName, defaultValue,
+                                    prompt, min.toUInt32(), max.toUInt32()));
     }
-#endif
-
-    dn.push_back(RDNObject_Priv("countryName", ""));
-    dn.push_back(RDNObject_Priv("stateOrProvinceName", ""));
-    dn.push_back(RDNObject_Priv("localityName", ""));
-    dn.push_back(RDNObject_Priv("organizationName", ""));
-    dn.push_back(RDNObject_Priv("organizationalUnitName", ""));
-    dn.push_back(RDNObject_Priv("commonName", ""));
-    dn.push_back(RDNObject_Priv("emailAddress", ""));
-
 }
 
 DNObject::DNObject(const blocxx::List<RDNObject> &dn)

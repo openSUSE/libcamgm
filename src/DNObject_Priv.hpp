@@ -34,7 +34,10 @@ namespace CA_MGM_NAMESPACE {
     class RDNObject_Priv : public RDNObject {
     public:
         RDNObject_Priv();
-        RDNObject_Priv(const String& type, const String& value);
+        RDNObject_Priv(const String& type, const String& value,
+                       const String& prompt = String(),
+                       blocxx::UInt32 min = 0,
+                       blocxx::UInt32 max = 0);
 
         virtual ~RDNObject_Priv();
 
