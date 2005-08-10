@@ -446,7 +446,8 @@ bool
 CA::importCA(const String& caName,
              const String& caCertificate,
              const String& cakey,
-             const String& caPasswd)
+             const String& caPasswd,
+             const String& repos)
 {
     return false;
 }
@@ -463,10 +464,10 @@ CA::getCAList(const String& repos)
 }
 
         
-blocxx::List<StringList>
-CA::getCATree()
+blocxx::Array<blocxx::Array<blocxx::String> >
+CA::getCATree(const String& repos)
 {
-    return List<StringList>();
+    return blocxx::Array<blocxx::Array<blocxx::String> >();
 }
 
 CertificateIssueData

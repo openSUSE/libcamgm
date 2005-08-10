@@ -431,7 +431,8 @@ namespace CA_MGM_NAMESPACE
         importCA(const String& caName,
                  const String& caCertificate,
                  const String& cakey,
-                 const String& caPasswd = String());
+                 const String& caPasswd = String(),
+                 const String& repos=REPOSITORY);
 
         /**
          * Get a list of available CAs
@@ -446,7 +447,8 @@ namespace CA_MGM_NAMESPACE
          *
          * @return a list of lists of the available CAs 
          */
-        static blocxx::List<StringList> getCATree();
+        static blocxx::Array<blocxx::Array<blocxx::String> >
+        getCATree(const String& repos=REPOSITORY);
 
         /**
          * Get a CertificateIssueData object with current signing default
