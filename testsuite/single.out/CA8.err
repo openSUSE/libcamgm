@@ -1,3 +1,5 @@
+DEBUG ca-mgm - type2Section: type=2 result=req
+DEBUG ca-mgm - type2Section: type=2 result=req
 DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca

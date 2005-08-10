@@ -42,7 +42,11 @@ int main(int argc, char **argv)
         
         CA ca("ca1_test", "system", "./TestRepos/");
         
+        std::cout << "======================== getRequestDefaults =================" << std::endl;
+
         RequestGenerationData rgd = ca.getRequestDefaults(CA_Req);
+
+        std::cout << "======================== call verify() =================" << std::endl;
  
         StringArray a = rgd.verify();
         
@@ -51,6 +55,8 @@ int main(int argc, char **argv)
             std::cout << (*it) << std::endl;
         }
        
+        std::cout << "======================== call dump() =================" << std::endl;
+
         StringArray dump = rgd.dump();
         StringArray::const_iterator it2 = dump.begin();
         for(; it2 != dump.end(); ++it2) {
@@ -63,6 +69,8 @@ int main(int argc, char **argv)
 
         CertificateIssueData cid = ca.getIssueDefaults(CA_Cert);
  
+        std::cout << "======================== call verify() =================" << std::endl;
+
         a = cid.verify();
         
         it = a.begin();
@@ -70,6 +78,8 @@ int main(int argc, char **argv)
             std::cout << (*it) << std::endl;
         }
        
+        std::cout << "======================== call dump() =================" << std::endl;
+
         dump = cid.dump();
         it2 = dump.begin();
         for(; it2 != dump.end(); ++it2) {
@@ -82,6 +92,8 @@ int main(int argc, char **argv)
 
         CRLGenerationData cgd = ca.getCRLDefaults();
  
+        std::cout << "======================== call verify() =================" << std::endl;
+  
         a = cgd.verify();
         
         it = a.begin();
@@ -89,6 +101,8 @@ int main(int argc, char **argv)
             std::cout << (*it) << std::endl;
         }
        
+        std::cout << "======================== call dump() =================" << std::endl;
+
         dump = cgd.dump();
         it2 = dump.begin();
         for(; it2 != dump.end(); ++it2) {

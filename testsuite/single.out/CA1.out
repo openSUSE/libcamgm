@@ -1,20 +1,45 @@
 START
+======================== getRequestDefaults =================
+======================== call verify() =================
+Value() is too small. Value has to be a minimal length of 2
+======================== call dump() =================
 RequestGenerationData::dump()
 DNObject::dump()
 RDNObject::dump()
 countryName=
+Prompt:Country Name (2 letter code)
+Min:2
+Max:2
 RDNObject::dump()
 stateOrProvinceName=
+Prompt:State or Province Name (full name)
+Min:0
+Max:0
 RDNObject::dump()
 localityName=
+Prompt:Locality Name (eg, city)
+Min:0
+Max:0
 RDNObject::dump()
 organizationName=
+Prompt:Organization Name (eg, company)
+Min:0
+Max:0
 RDNObject::dump()
 organizationalUnitName=
+Prompt:Organizational Unit Name (eg, section)
+Min:0
+Max:0
 RDNObject::dump()
 commonName=
+Prompt:Common Name (eg, YOUR name)
+Min:0
+Max:64
 RDNObject::dump()
 emailAddress=
+Prompt:Email Address
+Min:0
+Max:64
 Keysize = 2048
 MessageDigest = 0
 Challenge Password = 
@@ -52,6 +77,8 @@ SubjectAlternativeNameExtension::dump()
 ExtensionBase::dump()
 is Present = false
 ======================== getIssueDefaults =================
+======================== call verify() =================
+======================== call dump() =================
 CertificateIssueData::dump()
 notAfter - notBefore (in days)= 1500
 MessageDigest = 0
@@ -130,6 +157,8 @@ CertificatePoliciesExtension::dump()
 ExtensionBase::dump()
 is Present = false
 ======================== getCRLDefaults =================
+======================== call verify() =================
+======================== call dump() =================
 CRLGenerationData::dump()
 CRL Hours = 24
 X509v3CRLGenerationExtensions::dump()

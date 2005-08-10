@@ -3,23 +3,45 @@ file: CA2/testcase1.in
 creating CA object
 ============= Test:ca1_test=>CA_Req
 ============= Call Verify
+Value() is too small. Value has to be a minimal length of 2
 ============= Call Dump
 RequestGenerationData::dump()
 DNObject::dump()
 RDNObject::dump()
 countryName=
+Prompt:Country Name (2 letter code)
+Min:2
+Max:2
 RDNObject::dump()
 stateOrProvinceName=
+Prompt:State or Province Name (full name)
+Min:0
+Max:0
 RDNObject::dump()
 localityName=
+Prompt:Locality Name (eg, city)
+Min:0
+Max:0
 RDNObject::dump()
 organizationName=
+Prompt:Organization Name (eg, company)
+Min:0
+Max:0
 RDNObject::dump()
 organizationalUnitName=
+Prompt:Organizational Unit Name (eg, section)
+Min:0
+Max:0
 RDNObject::dump()
 commonName=
+Prompt:Common Name (eg, YOUR name)
+Min:0
+Max:64
 RDNObject::dump()
 emailAddress=
+Prompt:Email Address
+Min:0
+Max:64
 Keysize = 2048
 MessageDigest = 0
 Challenge Password = 
@@ -59,23 +81,45 @@ is Present = false
 creating CA object
 ============= Test:ca2_test=>CA_Req
 ============= Call Verify
+Value() is too small. Value has to be a minimal length of 2
 ============= Call Dump
 RequestGenerationData::dump()
 DNObject::dump()
 RDNObject::dump()
 countryName=
+Prompt:Country Name (2 letter code)
+Min:2
+Max:2
 RDNObject::dump()
 stateOrProvinceName=
+Prompt:State or Province Name (full name)
+Min:0
+Max:0
 RDNObject::dump()
 localityName=
+Prompt:Locality Name (eg, city)
+Min:0
+Max:0
 RDNObject::dump()
 organizationName=
+Prompt:Organization Name (eg, company)
+Min:0
+Max:0
 RDNObject::dump()
 organizationalUnitName=
+Prompt:Organizational Unit Name (eg, section)
+Min:0
+Max:0
 RDNObject::dump()
 commonName=
+Prompt:Common Name (eg, YOUR name)
+Min:0
+Max:64
 RDNObject::dump()
 emailAddress=
+Prompt:Email Address
+Min:0
+Max:64
 Keysize = 2048
 MessageDigest = 0
 Challenge Password = 

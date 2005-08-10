@@ -1,5 +1,6 @@
 
 check:
+	echo "clean before check"
 	rm -rf Test_CA/
 	rm -f .cas/*
 

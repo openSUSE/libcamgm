@@ -1,3 +1,5 @@
+DEBUG ca-mgm - type2Section: type=0 result=req_client
+DEBUG ca-mgm - type2Section: type=0 result=req_client
 DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
@@ -51,6 +53,8 @@ DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
 DEBUG IniParser - Can not delete subjectAltName Key does not exist.
 DEBUG IniPaser - File ./TestRepos//ca1_test/openssl.cnf did not change. Not saving.
 DEBUG IniPaser - File ./TestRepos//ca1_test/openssl.cnf did not change. Not saving.
+DEBUG ca-mgm - type2Section: type=0 result=req_client
+DEBUG ca-mgm - type2Section: type=0 result=req_client
 DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
@@ -80,7 +84,12 @@ DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=0 result=req_client
 DEBUG ca-mgm - type2Section: type=0 result=req_client
+DEBUG ca-mgm - RDNObject::verify()(0/1):Value() is too small. Value has to be a minimal length of 2
+DEBUG ca-mgm - DNObject::verify()(0/1):Value() is too small. Value has to be a minimal length of 2
+DEBUG ca-mgm - RequestGenerationData::verify()(0/1):Value() is too small. Value has to be a minimal length of 2
 DEBUG limal - removeFile ./TestRepos/ca1_test/openssl.cnf
+DEBUG ca-mgm - type2Section: type=0 result=req_client
+DEBUG ca-mgm - type2Section: type=0 result=req_client
 DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
@@ -134,6 +143,8 @@ DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
 DEBUG IniParser - Can not delete subjectAltName Key does not exist.
 DEBUG IniPaser - File ./TestRepos//ca2_test/openssl.cnf did not change. Not saving.
 DEBUG IniPaser - File ./TestRepos//ca2_test/openssl.cnf did not change. Not saving.
+DEBUG ca-mgm - type2Section: type=0 result=req_client
+DEBUG ca-mgm - type2Section: type=0 result=req_client
 DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
@@ -161,4 +172,7 @@ DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=0 result=req_client
 DEBUG ca-mgm - type2Section: type=0 result=req_client
+DEBUG ca-mgm - RDNObject::verify()(0/1):Value() is too small. Value has to be a minimal length of 2
+DEBUG ca-mgm - DNObject::verify()(0/1):Value() is too small. Value has to be a minimal length of 2
+DEBUG ca-mgm - RequestGenerationData::verify()(0/1):Value() is too small. Value has to be a minimal length of 2
 DEBUG limal - removeFile ./TestRepos/ca2_test/openssl.cnf
