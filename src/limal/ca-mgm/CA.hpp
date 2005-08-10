@@ -438,7 +438,7 @@ namespace CA_MGM_NAMESPACE
          *
          * @return StringList of available CAs
          */
-        static StringList getCAList();
+        static blocxx::Array<blocxx::String> getCAList();
         
         /**
          * Get a list of lists of the available CAs 

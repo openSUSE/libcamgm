@@ -452,10 +452,14 @@ CA::importCA(const String& caName,
 }
 
 
-StringList
+blocxx::Array<blocxx::String>
 CA::getCAList()
 {
-    return StringList();
+    Array<String> caList;
+    
+    caList = listCA();
+
+    return caList;
 }
 
         
