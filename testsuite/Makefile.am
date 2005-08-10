@@ -16,7 +16,8 @@ AM_LDFLAGS = \
 
 noinst_PROGRAMS = CAConfig.single CA1.single CA2.multi \
                   CA3.multi CA4.multi  \
-                  CA5.multi CA6.multi CA7.multi CA8.single
+                  CA5.multi CA6.multi CA7.multi CA8.single \
+                  CA9.single
 
 CAConfig_single_SOURCES = CAConfig.cc
 
@@ -35,6 +36,8 @@ CA6_multi_SOURCES = CA6.cc
 CA7_multi_SOURCES = CA7.cc
 
 CA8_single_SOURCES = CA8.cc perlxsi.cpp
+
+CA9_single_SOURCES = CA9.cc perlxsi.cpp
 
 clean-local:
 	rm -f tmp.err.* tmp.out.* site.exp site.bak openssl.cnf.tmpl.test
