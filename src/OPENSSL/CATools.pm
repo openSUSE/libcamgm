@@ -22,7 +22,7 @@ sub listCA {
 #        return $class->SetError( code    => "Opendir_Failed",
 #                                 summary => "Can not read directory '$CAM_ROOT' '$!'");
     }
-    return \@av_ca;
+    return @av_ca;
 }
 
 sub nextSerial {
