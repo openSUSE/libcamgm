@@ -1,5 +1,5 @@
-DEBUG ca-mgm - type2Section: type=2 result=req
-DEBUG ca-mgm - type2Section: type=2 result=req
+DEBUG ca-mgm - type2Section: type=2 result=req_ca
+DEBUG ca-mgm - type2Section: type=2 result=req_ca
 DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
@@ -27,8 +27,8 @@ DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
-DEBUG ca-mgm - type2Section: type=2 result=req
-DEBUG ca-mgm - type2Section: type=2 result=req
+DEBUG ca-mgm - type2Section: type=2 result=req_ca
+DEBUG ca-mgm - type2Section: type=2 result=req_ca
 DEBUG ca-mgm - RDNObject::verify()(0/1):Value() is too small. Value has to be a minimal length of 2
 DEBUG ca-mgm - DNObject::verify()(0/1):Value() is too small. Value has to be a minimal length of 2
 DEBUG ca-mgm - RequestGenerationData::verify()(0/1):Value() is too small. Value has to be a minimal length of 2
