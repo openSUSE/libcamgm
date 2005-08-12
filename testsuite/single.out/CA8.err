@@ -1,5 +1,5 @@
-DEBUG ca-mgm - type2Section: type=2 result=req
-DEBUG ca-mgm - type2Section: type=2 result=req
+DEBUG ca-mgm - type2Section: type=2 result=req_ca
+DEBUG ca-mgm - type2Section: type=2 result=req_ca
 DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
@@ -27,8 +27,8 @@ DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
-DEBUG ca-mgm - type2Section: type=2 result=req
-DEBUG ca-mgm - type2Section: type=2 result=req
+DEBUG ca-mgm - type2Section: type=2 result=req_ca
+DEBUG ca-mgm - type2Section: type=2 result=req_ca
 DEBUG IniPaser - File ./TestRepos//openssl.cnf.tmpl did not change. Not saving.
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
@@ -90,8 +90,8 @@ DEBUG IniPaser - File ./TestRepos//openssl.cnf.tmpl did not change. Not saving.
 CAM_ROOT = ./TestRepos/
 CAM_ROOT = ./TestRepos/
 DEBUG ca-mgm - return BasicConstraintsExtension::valid() is true
-DEBUG ca-mgm - type2Section: type=2 result=req
-DEBUG ca-mgm - type2Section: type=2 result=req
+DEBUG ca-mgm - type2Section: type=2 result=req_ca
+DEBUG ca-mgm - type2Section: type=2 result=req_ca
 DEBUG ca-mgm - return BasicConstraintsExtension::valid() is true
 DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
 DEBUG IniParser - Can not delete nsSslServerName Key does not exist.
@@ -112,6 +112,16 @@ DEBUG IniPaser - File ./TestRepos//Test_CA/openssl.cnf did not change. Not savin
 DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
 DEBUG IniParser - Can not delete subjectAltName Key does not exist.
 DEBUG IniPaser - File ./TestRepos//Test_CA/openssl.cnf did not change. Not saving.
+DEBUG ca-mgm - type2Section: type=2 result=req_ca
+DEBUG IniPaser - Adding section .section.req
+DEBUG IniParser - Adding value .value.req.default_bits=2048
+DEBUG IniParser - Adding value .value.req.default_md=sha1
+DEBUG IniParser - Adding value .value.req.default_keyfile=privkey.pem
+DEBUG IniParser - Adding value .value.req.distinguished_name=req_distinguished_name
+DEBUG IniParser - Adding value .value.req.attributes=req_attributes
+DEBUG IniParser - Adding value .value.req.x509_extensions=v3_req_ca
+DEBUG IniParser - Adding value .value.req.string_mask=nombstr
+DEBUG IniParser - Adding value .value.req.req_extensions=v3_req_ca
 DEBUG OPENSSL - OPENSSL->createKey command: /usr/bin/openssl genrsa -out ./TestRepos//Test_CA/cacert.key -passout env:pass -des3 2048
 DEBUG OPENSSL - OPENSSL->createReq: command: '/usr/bin/openssl req -new -config ./TestRepos//Test_CA/openssl.cnf -key ./TestRepos//Test_CA/cacert.key -outform PEM -out ./TestRepos//Test_CA/cacert.req -passin env:pass
 DEBUG ca-mgm - return BasicConstraintsExtension::valid() is true
