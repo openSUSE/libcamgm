@@ -6,7 +6,7 @@
 ###############################################
 [ca]
 default_ca=ca
-dir=/var/lib/CAM/Test_CA
+dir=./TestRepos//Test_CA1/
 certs=$dir/certs
 crl_dir=$dir/crl
 database=$dir/index.txt
@@ -34,7 +34,7 @@ unique_subject=no
 # 
 # x509_extensions is for self signed CA
 # required section
-[req]
+[req_ca]
 default_bits=2048
 default_md=sha1
 default_keyfile=privkey.pem
@@ -67,7 +67,7 @@ req_extensions=v3_req_server
 #utf8                = yes
 # used to sign a client cert
 [client_cert]
-dir=/var/lib/CAM/Test_CA
+dir=./TestRepos//Test_CA1/
 certs=$dir/certs
 crl_dir=$dir/crl
 database=$dir/index.txt
@@ -92,7 +92,7 @@ unique_subject=no
 #utf8                = yes
 # used to sign a server cert
 [server_cert]
-dir=/var/lib/CAM/Test_CA
+dir=./TestRepos//Test_CA1/
 certs=$dir/certs
 crl_dir=$dir/crl
 database=$dir/index.txt
