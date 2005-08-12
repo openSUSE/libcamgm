@@ -189,6 +189,8 @@ sub setError {
     my $message = shift;
     my $err_openssl = shift || "";
     
+    chop($err_openssl);
+
     my $errmsg = $message;
     if($err_openssl ne "") {
         $errmsg .= "\n".$err_openssl;
@@ -272,6 +274,8 @@ sub createReq {
 	my $outform = $data->{OUTFORM};
 	my $keyfile = $data->{KEYFILE};
 	my $passwd  = $data->{PASSWD};
+    my $extension = $data->{EXTENSION};
+
 	my @command = ($this->{bin}, qw(req -new));
 	my ( $ret, $tmp, @DN );
     
@@ -289,6 +293,10 @@ sub createReq {
 		push(@command, '-config', $this->{conf});
 	}
     
+    if( defined($extension) && $extension ne "") {
+        push(@command, '-reqexts', $extension);
+    }
+
 	push(@command, '-key', $keyfile);
 
 	unless(defined($outform)) {
@@ -370,7 +378,7 @@ sub createSelfSignedCert {
 		die("ValueException: ".$this->setError("OPENSSL->createSelfSignedCert: No keyfile specified."));
 	}
 	unless(defined($reqfile) and $reqfile ne "") {
-		die($this->setError("OPENSSL->createSelfSignedCert: No requestfile specified."));
+		die("ValueException: ".$this->setError("OPENSSL->createSelfSignedCert: No requestfile specified."));
 	}
     
 	## if ( defined($noemail) && $noemail ne "" ) {
@@ -513,15 +521,15 @@ sub issueReq {
 	$ret = ($? >> 8);
 	$err = '' unless(defined($err));
 	#$out = '' unless(defined($out));
-    
 	if ( 0 != $ret) {
         if (defined $outfile && $outfile ne "" && -e $outfile) {
             # issue failed, so remove broken file
             unlink($outfile);
         }
-		die($this->setError("OPENSSL->issueReq: ".
+        
+        die($this->setError("SystemException: OPENSSL->issueReq: ".
                             "OPENSSL failed ".
-                            "(".$ret.")",$err));
+                            "(".$ret.")", $err));
 	}
     
 	unless( defined $outfile && $outfile ne "" ) {
