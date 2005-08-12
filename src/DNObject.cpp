@@ -25,6 +25,7 @@
 #include  <limal/ValueRegExCheck.hpp>
 #include  <limal/Exception.hpp>
 #include  <blocxx/Format.hpp>
+#include  <blocxx/Map.hpp>
 
 #include  "DNObject_Priv.hpp"
 #include  "Utils.hpp"
@@ -76,6 +77,43 @@ blocxx::String
 RDNObject::getValue() const
 {
     return value;
+}
+
+blocxx::String
+RDNObject::getOpenSSLValue() const
+{
+    if(value.empty()) return String();
+
+    Map<String, String> opensslKeys;
+    opensslKeys["countryName"] = "C";
+    opensslKeys["stateOrProvinceName"] = "ST";
+    opensslKeys["localityName"] = "L";
+    opensslKeys["organizationName"] = "O";
+    opensslKeys["organizationalUnitName"] = "OU";
+    opensslKeys["commonName"] = "CN";
+    opensslKeys["emailAddress"] = "emailAddress";
+    //opensslKeys[""] = "";
+
+    String ret;
+    Map<String, String>::const_iterator it = opensslKeys.find(type);
+
+    if( it != opensslKeys.end()) {
+        
+        ret += (*it).second + "=";
+
+    } else {
+
+        LOGIT_ERROR("Invalid type:" << type);
+        BLOCXX_THROW(limal::ValueException, Format("Invalid type:%1", type).c_str());
+
+    }
+
+    PerlRegEx regex("([\\\\/])");
+    String v = regex.replace(value, "\\\\\\1", true);
+
+    ret += v;
+
+    return ret;
 }
 
 bool
@@ -323,6 +361,23 @@ blocxx::List<RDNObject>
 DNObject::getDN() const
 {
     return dn;
+}
+
+blocxx::String
+DNObject::getOpenSSLString() const
+{
+    String ret;
+
+    blocxx::List<RDNObject>::const_iterator it = dn.begin();
+    for(; it != dn.end(); ++it) {
+        if(! (*it).getOpenSSLValue().empty()) {
+            
+            ret += "/" + (*it).getOpenSSLValue();
+            
+        }
+    }
+    
+    return ret;
 }
 
 bool

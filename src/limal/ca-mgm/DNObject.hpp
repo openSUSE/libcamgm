@@ -43,6 +43,8 @@ namespace CA_MGM_NAMESPACE {
         String getType() const;
         String getValue() const;
 
+        String getOpenSSLValue() const;
+
         virtual bool                 valid() const;
         virtual blocxx::StringArray  verify() const;
 
@@ -71,6 +73,8 @@ namespace CA_MGM_NAMESPACE {
 
         void            setDN(const blocxx::List<RDNObject> &dn);
         blocxx::List<RDNObject> getDN() const;
+
+        String          getOpenSSLString() const;
 
         virtual bool                 valid() const;
         virtual blocxx::StringArray  verify() const;
