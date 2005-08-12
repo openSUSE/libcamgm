@@ -49,7 +49,9 @@ namespace CA_MGM_NAMESPACE
 
         bool     exists(const String &section, const String &key) const;
 
-        List<String> getKeylist(const String &section) const;
+        blocxx::List<blocxx::String> getKeylist(const String &section) const;
+
+        void     copySection(const String &srcSection, const String &destSection);
 
         CAConfig *clone(const String &file);
 

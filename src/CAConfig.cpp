@@ -174,9 +174,25 @@ CAConfig::getKeylist(const String &section) const
     blocxx::List<String> keylist;
 
     if (parser->iniFile.contains(section) == SECTION) {
-	keylist = parser->iniFile.getSection(section).getEntryKeys();
+        keylist = parser->iniFile.getSection(section).getEntryKeys();
     }
     return keylist;
+}
+
+void
+CAConfig::copySection(const String &srcSection, const String &destSection)
+{
+    blocxx::List<String> keylist;
+
+    keylist = getKeylist(srcSection);
+
+    blocxx::List<String>::const_iterator it = keylist.begin();
+
+    for(; it != keylist.end(); ++it) {
+
+        setValue(destSection, *it, getValue(srcSection, *it));
+
+    }
 }
 
 CAConfig*
