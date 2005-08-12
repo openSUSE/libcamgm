@@ -127,7 +127,7 @@ inline static blocxx::String type2Section(limal::ca_mgm::Type type, bool v3secti
     switch(type) {
     case limal::ca_mgm::CA_Req:
         if(!v3section)
-            result = "req";
+            result = "req_ca";
         else
             result = "v3_req_ca";
         break;
