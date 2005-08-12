@@ -28,15 +28,11 @@ sub listCA {
 }
 
 sub nextSerial {
-#    my $caName = shift || return $class->SetError(summary =>"Parameter 'caName' missing",
-#                                                  code => "PARAM_CHECK_FAILED");
-
     my $caName = shift || die("ValueException: Parameter 'caName' missing");
+    $CAM_ROOT = shift  || $DEF_REPOS;
 
     my $ret = undef;
     if(!open(SER, "< $CAM_ROOT/$caName/serial")) {
-#        return $class->SetError( summary => "Can not open '$CAM_ROOT/$caName/serial' '$!'",
-#                                 code    => "OPEN_FAILED");            
         die("SystemException: Can not open '$CAM_ROOT/$caName/serial' '$!'");
     }
     while(my $l = <SER>) {
@@ -48,8 +44,6 @@ sub nextSerial {
     }
     close SER;
     if(not defined $ret) {
-#        return $class->SetError(summary => "No serial number found in '$CAM_ROOT/$caName/serial'",
-#                                code => "PARSING_ERROR");
         die("RuntimeException: No serial number found in '$CAM_ROOT/$caName/serial'");
     } else {
         return $ret;
@@ -294,18 +288,12 @@ print STDERR "CAM_ROOT = $CAM_ROOT\n";
 }
 
 sub addCAM {
-#    my $caName = shift || return $class->SetError(summary => "Missing value caName",
-#                                                  code => "PARAM_CHECK_FAILED");
-#    my $hash   = shift || return $class->SetError(summary => "Missing parameter.",
-#                                                  code => "PARAM_CHECK_FAILED");
-#    my $md5 = $hash->{MD5} || return $class->SetError(summary => "Missing parameter 'MD5'.",
-#                                                      code => "PARAM_CHECK_FAILED");
-#    my $dn  = $hash->{DN} || return $class->SetError(summary => "Missing parameter 'DN'.",
-#                                                     code => "PARAM_CHECK_FAILED");
     my $caName = shift || die("ValueException: Missing value caName");
     my $hash   = shift || die("ValueException: Missing parameter.");
     my $md5 = $hash->{MD5} || die("ValueException: Missing parameter 'MD5'.");
     my $dn  = $hash->{DN} || die("ValueException: Missing parameter 'DN'.");
+
+    $CAM_ROOT = $hash->{REPOSITORY} || $DEF_REPOS;
     
     my $db = parseCAMDB($caName);
 #    return undef if(not defined $db);
@@ -330,15 +318,10 @@ sub addCAM {
 }
 
 sub delCAM {
-#    my $caName = shift || return $class->SetError(summary => "Missing value caName",
-#                                                  code => "PARAM_CHECK_FAILED");
-#    my $hash   = shift || return $class->SetError(summary => "Missing parameter.",
-#                                                  code => "PARAM_CHECK_FAILED");
-#    my $md5 = $hash->{MD5} || return $class->SetError(summary => "Missing parameter 'MD5'.",
-#                                                      code => "PARAM_CHECK_FAILED");
     my $caName = shift || die("ValueException: Missing value caName");
     my $hash   = shift || die("ValueException: Missing parameter.");
     my $md5 = $hash->{MD5} || die("ValueException: Missing parameter 'MD5'.");
+    $CAM_ROOT = $hash->{REPOSITORY} || $DEF_REPOS;
     
     if(!open(DB, "< /$CAM_ROOT/$caName/cam.txt")) {
 #        return $class->SetError(summary => "Can not open cam.txt.",
