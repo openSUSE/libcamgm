@@ -23,8 +23,12 @@
 #include  <limal/ca-mgm/CA.hpp>
 #include  <limal/Exception.hpp>
 #include  <limal/PathUtils.hpp>
+#include  <limal/PathInfo.hpp>
 #include  <blocxx/Exec.hpp>
 #include  <blocxx/EnvVars.hpp>
+#include  <blocxx/MD5.hpp>
+#include  <blocxx/DateTime.hpp>
+
 
 #include  "CertificateData_Priv.hpp"
 #include  "RequestData_Priv.hpp"
@@ -67,17 +71,132 @@ CA::createSubCA(const String& keyPasswd,
 
 blocxx::String
 CA::createRequest(const String& keyPasswd,
-                  const RequestGenerationData& requestData)
+                  const RequestGenerationData& requestData,
+                  Type requestType)
 {
-    return String();
+    blocxx::Map<blocxx::String,blocxx::String > hash;
+    hash["BINARY"] = OPENSSL_COMMAND;
+    hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf";;
+    hash["DEBUG"] = "1";
+    OPENSSL ossl(hash);
+
+    String opensslDN = requestData.getSubject().getOpenSSLString();
+    blocxx::MD5 md5(opensslDN);
+    String request = md5.toString() + "-" +
+        String(blocxx::DateTime::getCurrent().get());
+           
+    path::PathInfo dKey(repositoryDir + "/" + caName + "/keys/"+ request + ".key");
+    if(dKey.exists()) {
+        LOGIT_ERROR("Duplicate DN. Key '" << request <<".key' already exists.");
+        BLOCXX_THROW(RuntimeException,
+                     Format("Duplicate DN. Key '%1.key' already exists.", request).c_str());
+    }
+
+    path::PathInfo r(repositoryDir + "/" + caName + "/req/"+ request + ".req");
+    if(r.exists()) {
+        LOGIT_ERROR("Duplicate DN. Request '" << request <<".req' already exists.");
+        BLOCXX_THROW(RuntimeException,
+                     Format("Duplicate DN. Request '%1.req' already exists.", request).c_str());
+    }
+
+    // copy template to config
+    initConfigFile();
+    
+    // write request data to config
+    requestData.commit2Config(*this, requestType);
+
+    // copy Section, because "req" is hard coded in openssl :-(
+    config->copySection(type2Section(requestType, false), "req");
+
+    // create key
+    hash.clear();
+    hash["OUTFILE"] = repositoryDir + "/" + caName + "/keys/"+ request + ".key";
+    hash["PASSWD"]  = keyPasswd;
+    hash["BITS"]    = String(requestData.getKeysize());
+    //    hash[""] = "";
+	blocxx::String k = ossl.createKey(hash);
+
+    // create request
+    hash.clear();
+    hash["OUTFILE"]   = repositoryDir + "/" + caName + "/req/"+ request + ".req";
+    hash["KEYFILE"]   = repositoryDir + "/" + caName + "/keys/"+ request + ".key";
+    hash["PASSWD"]    = keyPasswd;
+    hash["EXTENSION"] = type2Section(requestType, true);
+    //hash[""] = "";
+
+    blocxx::List<RDNObject> dn = requestData.getSubject().getDN();
+    blocxx::List<RDNObject>::const_iterator it = dn.begin();
+    blocxx::Array<blocxx::String> sdn;
+    for(; it != dn.end(); ++it) {
+        sdn.push_back( (*it).getValue() );
+    }
+    sdn.push_back(requestData.getChallengePassword());
+    sdn.push_back(requestData.getUnstructuredName());
+
+    k = ossl.createReq(&hash, &sdn);
+
+    hash.clear();
+    hash["MD5"] = request;
+    hash["DN"]  = opensslDN;
+    hash["REPOSITORY"]  = repositoryDir;
+    
+    addCAM(caName, &hash);
+
+    return request;
 }
 
 
 blocxx::String
 CA::issueCertificate(const String& requestName,
-                     const CertificateIssueData& issueData)
+                     const CertificateIssueData& issueData,
+                     Type certType)
 {
-    return String();
+    String requestFile = String(repositoryDir + "/" + caName + "/req/"+ requestName + ".req");
+    path::PathInfo p(requestFile);
+    if(!p.exists()) {
+        LOGIT_ERROR("Request does not exist.(" << requestFile << ")");
+        BLOCXX_THROW(ValueException, 
+                     Format("Request does not exist.(%1)", requestFile ).c_str());
+    }
+    
+    String serial      = nextSerial(caName, repositoryDir);
+    String certificate = serial + ":" + requestName;
+
+    // FIXME:
+    // parse the CA and check if the end date of the ca is greater
+    // than the end date of the certificate
+
+
+    // FIXME:
+    // Check the DN Policy
+
+    // copy template to config
+    initConfigFile();
+    
+    // write data to config
+    issueData.commit2Config(*this, certType);
+
+    blocxx::Map<blocxx::String,blocxx::String > hash;
+    hash["BINARY"] = OPENSSL_COMMAND;
+    hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf";;
+    hash["DEBUG"] = "1";
+    OPENSSL ossl(hash);
+
+    hash.clear();
+    hash["REQFILE"] = repositoryDir + "/" + caName + "/req/"+ requestName + ".req";
+    hash["CAKEY"] = repositoryDir + "/" + caName + "/cacert.key";
+    hash["CACERT"] = repositoryDir + "/" + caName + "/cacert.pem";
+    hash["DAYS"] = String((issueData.getEndDate() - issueData.getStartDate()) /(60*60*24));
+    hash["PASSWD"] = caPasswd;
+    hash["CA_SECTION"] = type2Section(certType, false);
+    hash["EXTS"] = type2Section(certType, true);
+    hash["OUTDIR"] = repositoryDir + "/" + caName + "/certs/";
+    hash["OUTFILE"] = repositoryDir + "/" + caName + "/newcerts/" + certificate + ".pem";
+    hash["NOTEXT"] = "1";
+
+	blocxx::String c = ossl.issueReq(hash);
+
+    return certificate;
 }
 
 blocxx::String
@@ -356,6 +475,9 @@ CA::createRootCA(const String& caName,
     
     // write request data to config
     caRequestData.commit2Config(tmpCA, CA_Req);
+
+    // copy Section, because "req" is hard coded in openssl :-(
+    tmpCA.getConfig()->copySection(type2Section(CA_Req, false), "req");
 
     blocxx::Map<blocxx::String,blocxx::String > hash;
     hash["BINARY"] = OPENSSL_COMMAND;
