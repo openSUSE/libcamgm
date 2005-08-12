@@ -85,7 +85,8 @@ namespace CA_MGM_NAMESPACE
          * @return the name of the request
          */
         String createRequest(const String& keyPasswd,
-                             const RequestGenerationData& requestData);
+                             const RequestGenerationData& requestData,
+                             Type requestType);
 
 
         /**
@@ -97,7 +98,8 @@ namespace CA_MGM_NAMESPACE
          * @return the name of the certificate
          */
         String issueCertificate(const String& requestName,
-                                const CertificateIssueData& issueData);
+                                const CertificateIssueData& issueData,
+                                Type certType);
 
         /**
          * Create a certificate in the specified CA
@@ -392,13 +394,13 @@ namespace CA_MGM_NAMESPACE
          */
         void commitConfig2Template();
 
+        CAConfig* getConfig();
+
+
         /* ##########################################################################
          * ###          static Functions                                          ###
          * ##########################################################################
          */
-
-        CAConfig* getConfig();
-
 
         /**
          * Create a new selfsigned root CA and creates the
