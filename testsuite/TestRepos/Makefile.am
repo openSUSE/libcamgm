@@ -12,7 +12,7 @@ check:
 	rm Test_CA1/cam.txt; touch Test_CA1/cam.txt
 
 
-clean-local:
+clean-local: check
 	rm -f ca1_test/openssl.cnf
 	rm -f ca2_test/openssl.cnf
 	rm -rf Test_CA/
