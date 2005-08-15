@@ -24,12 +24,10 @@ using namespace blocxx;
 using namespace limal;
 using namespace limal::ca_mgm;
 
-limal::Logger logger("RequestTest");
+limal::Logger logger("CertificateTest");
 
 int main()
 {
-    PerlRegEx r("^!CHANGING DATA!.*$");
-
     char *embedding[] = { "", "-I../src/", "-MDynaLoader", "-MOPENSSL", "-MOPENSSL::CATools", "-e", 
                           "0" };
     
@@ -59,7 +57,7 @@ int main()
                                                              "%-5p %c - %m"
                                                              ));
         blocxx::LoggerRef	appLogger(new AppenderLogger(
-                                                         "RequestTest",
+                                                         "CertificateTest",
                                                          E_ALL_LEVEL,
                                                          logAppender
                                                          ));
