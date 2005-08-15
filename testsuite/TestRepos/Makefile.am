@@ -17,6 +17,10 @@ clean-local: check
 	rm -f ca2_test/openssl.cnf
 	rm -rf Test_CA/
 	rm -f .cas/*
+	rm -f Test_CA1/serial.old
+	rm -f Test_CA1/index.txt.old
+	rm -f Test_CA1/.rand
+	rm -f Test_CA1/index.txt.attr.old
 
 MAINTAINERCLEANFILES = Makefile.in
 
