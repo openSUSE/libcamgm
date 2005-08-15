@@ -202,9 +202,52 @@ CA::issueCertificate(const String& requestName,
 blocxx::String
 CA::createCertificate(const String& keyPasswd,
                       const RequestGenerationData& requestData,
-                      const CertificateIssueData&  certificateData)
+                      const CertificateIssueData&  certificateData,
+                      Type type)
 {
-    return String();
+    Type t = Client_Req;
+
+    if(type == Client_Req || type == Client_Cert) {
+        t = Client_Req;
+    }
+    if(type == Server_Req || type == Server_Cert) {
+        t = Server_Req;
+    }
+    if(type == CA_Req || type == CA_Cert) {
+        t = CA_Req;
+    }
+
+    String requestName = createRequest(keyPasswd, requestData, t);
+
+    if(type == Client_Req || type == Client_Cert) {
+        t = Client_Cert;
+    }
+    if(type == Server_Req || type == Server_Cert) {
+        t = Server_Cert;
+    }
+    if(type == CA_Req || type == CA_Cert) {
+        t = CA_Cert;
+    }
+
+    String certificate;
+
+    try {
+
+        certificate = issueCertificate(requestName, certificateData, t);
+        
+    } catch(blocxx::Exception &e) {
+        Map<String, String> hash;
+        hash["MD5"] = requestName;
+        hash["REPOSITORY"]  = repositoryDir;
+        
+        delCAM(caName, &hash);
+        
+        path::removeFile(repositoryDir + "/" + caName + "/keys/" + requestName + ".key");
+        path::removeFile(repositoryDir + "/" + caName + "/req/" + requestName + ".req");
+        BLOCXX_THROW_SUBEX(limal::RuntimeException, "issueCertificate() failed", e);
+    }
+
+    return certificate;
 }
 
 bool

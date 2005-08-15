@@ -110,7 +110,8 @@ namespace CA_MGM_NAMESPACE
          */    
         String createCertificate(const String& keyPasswd,
                                  const RequestGenerationData& requestData,
-                                 const CertificateIssueData&  certificateData);
+                                 const CertificateIssueData&  certificateData,
+                                 Type type);
 
 
         /**
