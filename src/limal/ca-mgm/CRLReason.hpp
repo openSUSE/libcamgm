@@ -53,6 +53,7 @@ namespace CA_MGM_NAMESPACE {
 
         void         setReason(RevokeReason reason);
         RevokeReason getReason() const;
+        String       getReasonAsString() const;
 
         void   setHoldInstruction(const String& holdInstruction);
         String getHoldInstruction() const;

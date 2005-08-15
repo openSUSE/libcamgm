@@ -76,6 +76,40 @@ CRLReason::getReason() const
     return reason;
 }
 
+blocxx::String
+CRLReason::getReasonAsString() const
+{
+    switch( reason ) {
+    case unspecified:
+        return "unspecified";
+        break;
+    case keyCompromise:
+        return "keyCompromise";
+        break;
+    case CACompromise:
+        return "CACompromise";
+        break;
+    case affiliationChanged:
+        return "affiliationChanged";
+        break;
+    case superseded:
+        return "superseded";
+        break;
+    case cessationOfOperation:
+        return "cessationOfOperation";
+        break;
+    case certificateHold:
+        return "certificateHold";
+        break;
+    case removeFromCRL:
+        return "removeFromCRL";
+        break;
+    default:
+        return "none";
+    }    
+}
+
+
 void
 CRLReason::setHoldInstruction(const String& holdInstruction)
 {
