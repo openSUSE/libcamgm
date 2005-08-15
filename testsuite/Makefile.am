@@ -18,7 +18,7 @@ noinst_PROGRAMS = CAConfig.single CA1.single CA2.multi \
                   CA3.multi CA4.multi  \
                   CA5.multi CA6.multi CA7.multi CA8.single \
                   CA9.single CertificateTest.single \
-                  CertificateTest2.single
+                  CertificateTest2.single RevokeTest.single 
 
 CAConfig_single_SOURCES = CAConfig.cc
 
@@ -43,6 +43,8 @@ CA9_single_SOURCES = CA9.cc perlxsi.cpp
 CertificateTest_single_SOURCES = CertificateTest.cc perlxsi.cpp
 
 CertificateTest2_single_SOURCES = CertificateTest2.cc perlxsi.cpp
+
+RevokeTest_single_SOURCES = RevokeTest.cc perlxsi.cpp
 
 clean-local:
 	rm -f tmp.err.* tmp.out.* site.exp site.bak openssl.cnf.tmpl.test
