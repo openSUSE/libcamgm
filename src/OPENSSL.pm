@@ -550,7 +550,7 @@ sub revokeCert {
 	my $crlReason= $data->{CRL_REASON};
 
 	if (!defined $certFile || $certFile eq "" ) {
-		die($this->setError("OPENSSL->revokeCert: No certificate specified."));
+		die($this->setError("ValueException: OPENSSL->revokeCert: No certificate specified."));
 	}
 
 	my @command = ($this->{bin}, "ca", "-revoke", "$certFile");
@@ -581,7 +581,7 @@ sub revokeCert {
                                                             env => {pass => $passwd},
                                                            ));
 	unless(defined($pid)) {
-		die($this->setError("OPENSSL->issueReq: ".
+		die($this->setError("SystemException: OPENSSL->issueReq: ".
                             "Can't open pipe to OPENSSL: $!"));
 	}
 	waitpid($pid, 0);
@@ -590,7 +590,7 @@ sub revokeCert {
 	#$out = '' unless(defined($out));
     
 	if ( $ret != 0) {
-		die($this->setError("OPENSSL->revokeCert: OPENSSL failed (".$ret.").",
+		die($this->setError("RuntimeException: OPENSSL->revokeCert: OPENSSL failed (".$ret.").",
                             $err));
 	} else {
 		return 1;

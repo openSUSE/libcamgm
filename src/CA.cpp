@@ -252,9 +252,39 @@ CA::createCertificate(const String& keyPasswd,
 
 bool
 CA::revokeCertificate(const String& certificateName,
+                      const String& caPassword,
                       const CRLReason& crlReason)
 {
-    return false;
+    path::PathInfo pi(repositoryDir + "/" + caName + "/newcerts/" + certificateName + ".pem");
+    if(!pi.exists()) {
+        LOGIT_ERROR("File '" << certificateName << ".pem' not found in repository");
+        BLOCXX_THROW(limal::SystemException,
+                     Format("File '%1' not found in repositoy", certificateName).c_str());
+    }
+
+    Map<String, String> hash;
+    hash["BINARY"] = OPENSSL_COMMAND;
+    hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf";;
+    hash["DEBUG"] = "1";
+    OPENSSL ossl(hash);
+
+    String reason = crlReason.getReasonAsString();
+
+    // FIXME: check for none, keyCompromise and CACompromise
+
+    hash.clear();
+    hash["CAKEY"] = repositoryDir + "/" + caName + "/cacert.key";
+    hash["CACERT"] = repositoryDir + "/" + caName + "/cacert.pem";;
+    hash["PASSWD"] = caPassword;
+    hash["INFILE"] = repositoryDir + "/" + caName + "/newcerts/" + certificateName + ".pem";
+    hash[""] = "";
+
+    if(reason != "none") {
+        hash["CRL_REASON"] = reason;
+    }
+    ossl.revokeCert(hash);
+
+    return true;
 }
 
 

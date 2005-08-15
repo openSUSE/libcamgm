@@ -126,6 +126,7 @@ namespace CA_MGM_NAMESPACE
          * @return true on success, otherwise false.
          */
         bool revokeCertificate(const String& certificateName,
+                               const String& caPassword,
                                const CRLReason& crlReason = CRLReason());
 
         /**
