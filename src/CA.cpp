@@ -560,7 +560,54 @@ CA::deleteCertificate(const String& certificateName)
 bool
 CA::updateDB()
 {
-    return false;
+    bool ret = false;
+
+    path::PathInfo db(repositoryDir + "/" + caName + "/index.txt");
+    
+    if(!db.exists()) {
+        LOGIT_ERROR("Database not found.");
+        BLOCXX_THROW(limal::RuntimeException, "Database not found.");
+    }
+    if(db.size() == 0) {
+        // no certificate created => test only the caPasswd
+
+        Map<String, String> hash;
+        hash["PASSWORD"]   = caPasswd;
+        hash["CACERT"]     = "1";
+        hash["REPOSITORY"] = repositoryDir;
+        //hash[""] = "";
+
+        ret = checkKey(caName, &hash);
+
+    } else {
+        // test password first, for a better error message
+
+        Map<String, String> hash;
+        hash["PASSWORD"]   = caPasswd;
+        hash["CACERT"]     = "1";
+        hash["REPOSITORY"] = repositoryDir;
+        //hash[""] = "";
+
+        ret = checkKey(caName, &hash);
+        
+        initConfigFile();
+        hash.clear();
+        hash["BINARY"] = OPENSSL_COMMAND;
+        hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf";;
+        hash["DEBUG"] = "1";
+        OPENSSL ossl(hash);
+
+        hash.clear();
+        hash["CAKEY"]   = repositoryDir + "/" + caName + "/cacert.key";
+        hash["CACERT"]  = repositoryDir + "/" + caName + "/cacert.pem";;
+        hash["PASSWD"]  = caPasswd;
+        //hash[""] = "";
+        
+        ossl.updateDB(hash);
+        ret = true;
+
+    }
+    return ret;
 }
         
 bool
