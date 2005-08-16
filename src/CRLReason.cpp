@@ -24,6 +24,7 @@
 #include  <limal/ValueRegExCheck.hpp>
 #include  <limal/Exception.hpp>
 #include  <blocxx/Format.hpp>
+#include  <blocxx/DateTime.hpp>
 
 #include  "Utils.hpp"
 
@@ -118,6 +119,7 @@ CRLReason::setHoldInstruction(const String& holdInstruction)
         LOGIT_ERROR(r);
         BLOCXX_THROW(limal::ValueException, r.c_str());
     }
+
     this->holdInstruction = holdInstruction;
 }
 
@@ -125,8 +127,8 @@ blocxx::String
 CRLReason::getHoldInstruction() const
 {
     if(reason != CRLReason::certificateHold) {
-        LOGIT_ERROR("reason is not certificateHold");
-        BLOCXX_THROW(limal::RuntimeException, "reason is not certificateHold");
+        LOGIT_ERROR("Reason is not certificateHold");
+        BLOCXX_THROW(limal::RuntimeException, "Reason is not certificateHold");
     }
     return holdInstruction;
 }
@@ -142,10 +144,23 @@ time_t
 CRLReason::getKeyCompromiseDate() const
 {
     if(reason != CRLReason::keyCompromise) {
-        LOGIT_ERROR("reason is not keyCompromise");
-        BLOCXX_THROW(limal::RuntimeException, "reason is not keyCompromise");
+        LOGIT_ERROR("Reason is not keyCompromise");
+        BLOCXX_THROW(limal::RuntimeException, "Reason is not keyCompromise");
     }
     return compromiseDate;
+}
+
+blocxx::String
+CRLReason::getKeyCompromiseDateAsString() const
+{
+    if(reason != CRLReason::keyCompromise) {
+        LOGIT_ERROR("Reason is not keyCompromise");
+        BLOCXX_THROW(limal::RuntimeException, "Reason is not keyCompromise");
+    }
+    DateTime dt(compromiseDate);
+    String time = dt.toString("%Y%m%d%H%M%S") + "Z";
+
+    return time;
 }
 
 void
@@ -158,10 +173,23 @@ time_t
 CRLReason::getCACompromiseDate() const
 {
     if(reason != CRLReason::CACompromise) {
-        LOGIT_ERROR("reason is not CACompromise");
-        BLOCXX_THROW(limal::RuntimeException, "reason is not CACompromise");
+        LOGIT_ERROR("Reason is not CACompromise");
+        BLOCXX_THROW(limal::RuntimeException, "Reason is not CACompromise");
     }
     return compromiseDate;
+}
+
+blocxx::String
+CRLReason::getCACompromiseDateAsString() const
+{
+    if(reason != CRLReason::CACompromise) {
+        LOGIT_ERROR("Reason is not CACompromise");
+        BLOCXX_THROW(limal::RuntimeException, "Reason is not CACompromise");
+    }
+    DateTime dt(compromiseDate);
+    String time = dt.toString("%Y%m%d%H%M%S") + "Z";
+
+    return time;
 }
 
 bool
@@ -245,12 +273,12 @@ CRLReason::dump() const
 blocxx::String
 CRLReason::checkHoldInstruction(const String& hi) const
 {
-    if(hi != "holdInstructionNone" ||
-       hi != "holdInstructionCallIssuer" ||
-       hi != "holdInstructionReject" ||
+    if(hi != "holdInstructionNone"       &&
+       hi != "holdInstructionCallIssuer" &&
+       hi != "holdInstructionReject"     &&
        !initOIDCheck().isValid(hi)) {
         
-        return (Format("invalid holdInstruction: ", hi).toString());
+        return (Format("Invalid holdInstruction: %1", hi).toString());
     }
     return String();
 }
