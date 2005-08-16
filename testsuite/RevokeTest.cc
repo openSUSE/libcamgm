@@ -48,7 +48,7 @@ int main()
         comp.push_back("ERROR");
         comp.push_back("INFO");
         //comp.push_back("DEBUG");
-
+        
         // Logging
         blocxx::LogAppenderRef	logAppender(new CerrAppender(
                                                              LogAppender::ALL_COMPONENTS,
@@ -95,7 +95,7 @@ int main()
 
         std::cout << "Try to revoke it" << std::endl;
 
-        ca.revokeCertificate(c, "system");
+        ca.revokeCertificate(c);
 
         blocxx::PerlRegEx r0("^([0-9a-fA-F]+):.*");
         blocxx::StringArray serial = r0.capture(c);
@@ -117,6 +117,17 @@ int main()
             }
         }
 
+        std::cout << "Create a CRL" << std::endl;
+
+        CRLGenerationData cgd = ca.getCRLDefaults();
+        
+        ca.createCRL(cgd);
+
+        limal::path::PathInfo pi2("./TestRepos/Test_CA1/crl/crl.pem");
+        if(pi2.size() > 0) {
+            std::cout << "CRL file available and greater then 0" << std::endl;
+        }
+        
         std::cout << "DONE" << std::endl;
     } catch(blocxx::Exception& e) {
         std::cerr << e << std::endl;

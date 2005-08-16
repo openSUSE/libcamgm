@@ -99,7 +99,7 @@ int main()
         CRLReason reason(CRLReason::certificateHold);
         reason.setHoldInstruction("holdInstructionCallIssuer");
 
-        ca.revokeCertificate(c, "system", reason);
+        ca.revokeCertificate(c, reason);
 
         blocxx::PerlRegEx r0("^([0-9a-fA-F]+):.*");
         blocxx::StringArray serial = r0.capture(c);
@@ -120,6 +120,17 @@ int main()
             if(line.empty()) {
                 break;
             }
+        }
+
+        std::cout << "Create a CRL" << std::endl;
+
+        CRLGenerationData cgd = ca.getCRLDefaults();
+        
+        ca.createCRL(cgd);
+
+        limal::path::PathInfo pi2("./TestRepos/Test_CA1/crl/crl.pem");
+        if(pi2.size() > 0) {
+            std::cout << "CRL file available and greater then 0" << std::endl;
         }
 
         std::cout << "DONE" << std::endl;
