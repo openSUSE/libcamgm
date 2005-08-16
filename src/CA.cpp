@@ -262,6 +262,11 @@ CA::revokeCertificate(const String& certificateName,
                      Format("File '%1' not found in repositoy", certificateName).c_str());
     }
 
+    if(!crlReason.valid()) {
+        LOGIT_ERROR("Invalid CRL reason");
+        BLOCXX_THROW(limal::ValueException, "Invalid CRL reason");
+    }
+
     Map<String, String> hash;
     hash["BINARY"] = OPENSSL_COMMAND;
     hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf";;
@@ -270,18 +275,34 @@ CA::revokeCertificate(const String& certificateName,
 
     String reason = crlReason.getReasonAsString();
 
-    // FIXME: check for none, keyCompromise and CACompromise
-
     hash.clear();
     hash["CAKEY"] = repositoryDir + "/" + caName + "/cacert.key";
     hash["CACERT"] = repositoryDir + "/" + caName + "/cacert.pem";;
     hash["PASSWD"] = caPassword;
     hash["INFILE"] = repositoryDir + "/" + caName + "/newcerts/" + certificateName + ".pem";
-    hash[""] = "";
-
-    if(reason != "none") {
+    //hash[""] = "";
+    
+    if(reason == "certificateHold") {
+        
         hash["CRL_REASON"] = reason;
+        hash["CRL_REASON_EXTRA"] = crlReason.getHoldInstruction();
+      
+    } else if(reason == "keyCompromise") {
+
+        hash["CRL_REASON"] = reason;
+        hash["CRL_REASON_EXTRA"] = String(crlReason.getKeyCompromiseDateAsString());
+
+    } else if(reason == "CACompromise") {
+
+        hash["CRL_REASON"] = reason;
+        hash["CRL_REASON_EXTRA"] = String(crlReason.getCACompromiseDateAsString());
+  
+    } else if(reason != "none") {
+        
+        hash["CRL_REASON"] = reason;
+        
     }
+
     ossl.revokeCert(hash);
 
     return true;
