@@ -543,11 +543,12 @@ sub revokeCert {
 	my $this = shift;
 	my $data = {@_};
 
-	my $cakey    = $data->{CAKEY};
-	my $cacert   = $data->{CACERT};
-	my $passwd   = $data->{PASSWD};
-	my $certFile = $data->{INFILE};
-	my $crlReason= $data->{CRL_REASON};
+	my $cakey          = $data->{CAKEY};
+	my $cacert         = $data->{CACERT};
+	my $passwd         = $data->{PASSWD};
+	my $certFile       = $data->{INFILE};
+	my $crlReason      = $data->{CRL_REASON};
+    my $crlReasonExtra = $data->{CRL_REASON_EXTRA};
 
 	if (!defined $certFile || $certFile eq "" ) {
 		die($this->setError("ValueException: OPENSSL->revokeCert: No certificate specified."));
@@ -570,7 +571,13 @@ sub revokeCert {
     if ( $data->{NOUNIQUEDN} ) {
         push @command, "-nouniqueDN" ;
     }
-    if (defined $crlReason && $crlReason ne "") {
+    if (defined $crlReason && $crlReason eq "certificateHold") {
+        push @command, "-crl_hold", $crlReasonExtra;
+    } elsif (defined $crlReason && $crlReason eq "keyCompromise") {
+        push @command, "-crl_compromise", $crlReasonExtra;
+    } elsif (defined $crlReason && $crlReason eq "CACompromise") {
+        push @command, "-crl_CA_compromise", $crlReasonExtra;
+    } elsif (defined $crlReason && $crlReason ne "") {
         push @command, "-crl_reason", $crlReason;
     }
 
