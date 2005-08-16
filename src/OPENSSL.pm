@@ -370,6 +370,7 @@ sub createSelfSignedCert {
 	my $noemail = $data->{NOEMAILDN};
 	my $passwd  = $data->{PASSWD};
 	my $days    = $data->{DAYS};
+    my $extension = $data->{EXTENSION};
 	my @command = ($this->{bin}, qw(req -x509));
     
 	my ( $ret, $tmp );
@@ -393,6 +394,10 @@ sub createSelfSignedCert {
 	if ( defined $this->{'conf'} && $this->{conf} ne "" ) {
 	    push(@command, '-config', $this->{conf});
 	}
+
+    if( defined($extension) && $extension ne "") {
+        push(@command, '-extensions', $extension);
+    }
 
 	if ( defined $days && $days =~ /^\d+$/ && $days > 0) {
 	    push(@command, '-days', $days);
@@ -612,10 +617,11 @@ sub issueCRL {
 	my $cakey    = $data->{CAKEY};
 	my $cacert   = $data->{CACERT};
 	my $days     = $data->{DAYS};
+	my $hours    = $data->{HOURS};
 	my $passwd   = $data->{PASSWD};
 	my $outfile  = $data->{OUTFILE};
 	my $outform  = $data->{OUTFORM};
-	my $exts     = $data->{EXTS};
+	my $exts     = $data->{EXTENSION};
 
 	my @command = ($this->{bin}, "ca", "-gencrl");
     
@@ -634,7 +640,9 @@ sub issueCRL {
     if ( defined $cacert && $cacert ne "" ) {
         push @command, "-cert", $cacert;
     }
-    if ( defined $days && $days ne "" ) {
+    if ( defined $hours && $hours ne "") {
+        push @command, "-crlhours", $hours;
+    } elsif ( defined $days && $days ne "" ) {
         push @command, "-crldays", $days;
     }
     if ( defined $exts && $exts ne "" ) {
@@ -651,7 +659,7 @@ sub issueCRL {
                                                             env => {pass => $passwd},
                                                            ));
 	unless(defined($pid)) {
-		die($this->setError("OPENSSL->issueReq: ".
+		die($this->setError("SystemException OPENSSL->issueReq: ".
                             "Can't open pipe to OPENSSL: $!"));
 	}
 	waitpid($pid, 0);
@@ -660,7 +668,7 @@ sub issueCRL {
 	#$out = '' unless(defined($out));
     
 	if ( $ret != 0) {
-		die($this->setError("OPENSSL->issueCRL: OPENSSL failed (".$ret.").",
+		die($this->setError("RuntimeException OPENSSL->issueCRL: OPENSSL failed (".$ret.").",
                             $err));
 	}
     
