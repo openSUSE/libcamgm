@@ -70,6 +70,8 @@ int main(int argc, char **argv)
                 (*dnit).setRDNValue("DE");
             } else if((*dnit).getType() == "commonName") {
                 (*dnit).setRDNValue("Test CA");
+            } else if((*dnit).getType() == "emailAddress") {
+                (*dnit).setRDNValue("suse@suse.de");
             }
         }
         
@@ -77,7 +79,7 @@ int main(int argc, char **argv)
         rgd.setSubject(dn);
         
         CA::createRootCA("Test_CA", "system", rgd, cid, "./TestRepos/");
-        
+
         path::PathInfo iKey("./TestRepos/Test_CA/cacert.key");
         path::PathInfo iReq("./TestRepos/Test_CA/cacert.req");
         path::PathInfo iCrt("./TestRepos/Test_CA/cacert.pem");
