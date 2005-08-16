@@ -1,2 +1,24 @@
 START
+Key for section : ca
+key   default_ca
+key   dir
+key   certs
+key   crl_dir
+key   database
+key   new_certs_dir
+key   certificate
+key   serial
+key   crl
+key   private_key
+key   RANDFILE
+key   x509_extensions
+key   default_days
+key   default_crl_days
+key   default_md
+key   preserve
+key   policy
+key   nameopt
+key   certopt
+key   copy_extensions
+key   crl_extensions
 DONE
