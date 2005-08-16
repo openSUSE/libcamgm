@@ -910,7 +910,7 @@ sub updateDB {
                                                                 env => {pass => $passwd},
                                                                ));
 	unless(defined($pid)) {
-		die($this->setError("OPENSSL->updateDB: ".
+		die($this->setError("SystemException OPENSSL->updateDB: ".
                             "Can't open pipe to OPENSSL: $!"));
 	}
 	waitpid($pid, 0);
@@ -919,7 +919,7 @@ sub updateDB {
     $out = '' unless(defined($out));
     
 	if ( ($ret != 0 && $ret != 1) || $osl_err =~ /error/g ) {
-		die($this->setError("OPENSSL->updateDB: OPENSSL failed (".$?.").",
+		die($this->setError("RuntimeException OPENSSL->updateDB: OPENSSL failed (".$?.").",
                             $osl_err));
 	}
 	return 1;
