@@ -211,16 +211,16 @@ sub listRequests {
 }
 
 sub checkKey {
-#    my $caName = shift || return $class->SetError(summary =>"Parameter 'caName' missing",
-#                                                  code => "PARAM_CHECK_FAILED");
-#    my $data = shift || return $class->SetError(summary =>"Parameter 'data' missing",
-#                                                code => "PARAM_CHECK_FAILED");
     my $caName = shift || die("ValueException: Parameter 'caName' missing");
     my $data = shift   || die("ValueException: Parameter 'data' missing");
-    
+
+    if(defined $data->{'REPOSITORY'} && $data->{'REPOSITORY'} ne "") {
+
+        $CAM_ROOT = $data->{'REPOSITORY'};
+
+    }
+
     if(not defined $data->{'PASSWORD'}) {
-#        return $class->SetError(summary =>"Parameter 'PASSWORD' missing",
-#                                code => "PARAM_CHECK_FAILED");
         die("ValueException: Parameter 'PASSWORD' missing");
     }
     $ENV{'PASSWORD'} = $data->{'PASSWORD'};
@@ -231,8 +231,6 @@ sub checkKey {
         my $ret = `$command 2>/dev/null`;
         if($? != 0) {
             delete( $ENV{'PASSWORD'} );
-#            return $class->SetError(summary =>"Wrong password",
-#                                    code => "PARAM_CHECK_FAILED");
             return 0;
         } else {
             delete( $ENV{'PASSWORD'} );
@@ -241,16 +239,12 @@ sub checkKey {
     } elsif(defined $data->{'CERT'}) {
         $data->{'CERT'} =~ /^[[:xdigit:]]+:([[:xdigit:]]+[\d-]*)$/;
         if(not defined $1) {
-#            return $class->SetError(summary => "Can not parse certificate name",
-#                                    code => "PARSING_ERROR");
             die("RuntimeException: Can not parse certificate name");
         }
         my $keyname = $1;
         
         if(!-e "$CAM_ROOT/$caName/keys/".$keyname.".key") {
             delete( $ENV{'PASSWORD'} );
-#            return $class->SetError(summary =>"Key '".$keyname.".key' does not exist in CA '$caName'",
-#                                    code => "PARAM_CHECK_FAILED");
             die("RuntimeException: Key '".$keyname.".key' does not exist in CA '$caName'");
         }
         my $command ="openssl rsa -noout -in ";
@@ -259,16 +253,12 @@ sub checkKey {
         my $ret = `$command 2>/dev/null`;
         if($? != 0) {
             delete( $ENV{'PASSWORD'} );
-#            return $class->SetError(summary =>"Wrong password",
-#                                    code => "PARAM_CHECK_FAILED");
             return 0;
         } else {
             delete( $ENV{'PASSWORD'} );
             return 1;
         }
     } else {
-#        return $class->SetError(summary =>"Missing 'CACERT' or 'CERT' parameter",
-#                                code => "PARAM_CHECK_FAILED");
         die("ValueException: Missing 'CACERT' or 'CERT' parameter");
     }
 }
