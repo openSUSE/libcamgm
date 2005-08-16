@@ -60,9 +60,11 @@ namespace CA_MGM_NAMESPACE {
 
         void   setKeyCompromiseDate(time_t compromiseDate);
         time_t getKeyCompromiseDate() const;
+        String getKeyCompromiseDateAsString() const;
 
         void   setCACompromiseDate(time_t compromiseDate);
         time_t getCACompromiseDate() const;
+        String getCACompromiseDateAsString() const;
 
         virtual bool                 valid() const;
         virtual blocxx::StringArray  verify() const;
