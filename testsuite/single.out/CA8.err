@@ -123,7 +123,7 @@ DEBUG IniParser - Adding value .value.req.x509_extensions=v3_req_ca
 DEBUG IniParser - Adding value .value.req.string_mask=nombstr
 DEBUG IniParser - Adding value .value.req.req_extensions=v3_req_ca
 DEBUG OPENSSL - OPENSSL->createKey command: /usr/bin/openssl genrsa -out ./TestRepos//Test_CA/cacert.key -passout env:pass -des3 2048
-DEBUG OPENSSL - OPENSSL->createReq: command: '/usr/bin/openssl req -new -config ./TestRepos//Test_CA/openssl.cnf -key ./TestRepos//Test_CA/cacert.key -outform PEM -out ./TestRepos//Test_CA/cacert.req -passin env:pass
+DEBUG OPENSSL - OPENSSL->createReq: command: '/usr/bin/openssl req -new -config ./TestRepos//Test_CA/openssl.cnf -reqexts v3_req_ca -key ./TestRepos//Test_CA/cacert.key -outform PEM -out ./TestRepos//Test_CA/cacert.req -passin env:pass
 DEBUG ca-mgm - return BasicConstraintsExtension::valid() is true
 DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExtension::valid() is true
 DEBUG ca-mgm - return IssuerAlternativeNameExtension::valid() ist true
@@ -179,9 +179,9 @@ DEBUG IniPaser - File ./TestRepos//Test_CA/openssl.cnf did not change. Not savin
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG IniParser - Can not delete certificatePolicies Key does not exist.
 DEBUG IniPaser - File ./TestRepos//Test_CA/openssl.cnf did not change. Not saving.
-DEBUG OPENSSL - OPENSSL->createSelfSignedCert command: /usr/bin/openssl req -x509 -passin env:pass -config ./TestRepos//Test_CA/openssl.cnf -days 3650 -in ./TestRepos//Test_CA/cacert.req -key ./TestRepos//Test_CA/cacert.key -out ./TestRepos//Test_CA/cacert.pem
+DEBUG OPENSSL - OPENSSL->createSelfSignedCert command: /usr/bin/openssl req -x509 -passin env:pass -config ./TestRepos//Test_CA/openssl.cnf -extensions v3_ca -days 3650 -in ./TestRepos//Test_CA/cacert.req -key ./TestRepos//Test_CA/cacert.key -out ./TestRepos//Test_CA/cacert.pem
 DEBUG limal - copyFile ./TestRepos/Test_CA/cacert.pem -> ./TestRepos/.cas/Test_CA.pem 
 DEBUG ca-mgm - c_rehash stdout:Doing ./TestRepos//.cas/
-Test_CA.pem => c7a0e8db.0
+Test_CA.pem => f01e457e.0
 
 DEBUG limal - removeFile ./TestRepos/Test_CA/openssl.cnf
