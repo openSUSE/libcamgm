@@ -182,6 +182,7 @@ DEBUG IniPaser - File ./TestRepos//Test_CA/openssl.cnf did not change. Not savin
 DEBUG OPENSSL - OPENSSL->createSelfSignedCert command: /usr/bin/openssl req -x509 -passin env:pass -config ./TestRepos//Test_CA/openssl.cnf -extensions v3_ca -days 3650 -in ./TestRepos//Test_CA/cacert.req -key ./TestRepos//Test_CA/cacert.key -out ./TestRepos//Test_CA/cacert.pem
 DEBUG limal - copyFile ./TestRepos/Test_CA/cacert.pem -> ./TestRepos/.cas/Test_CA.pem 
 DEBUG ca-mgm - c_rehash stdout:Doing ./TestRepos//.cas/
+crl_Test_CA1.pem => f01e457e.r0
 Test_CA.pem => f01e457e.0
 
 DEBUG limal - removeFile ./TestRepos/Test_CA/openssl.cnf
