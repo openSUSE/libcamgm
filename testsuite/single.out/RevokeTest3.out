@@ -10,4 +10,6 @@ RETURN Certificate
 Certificate exists: true
 Try to revoke it
 Found revoked certificate 
+Create a CRL
+CRL file available and greater then 0
 DONE
