@@ -252,7 +252,6 @@ CA::createCertificate(const String& keyPasswd,
 
 bool
 CA::revokeCertificate(const String& certificateName,
-                      const String& caPassword,
                       const CRLReason& crlReason)
 {
     path::PathInfo pi(repositoryDir + "/" + caName + "/newcerts/" + certificateName + ".pem");
@@ -278,7 +277,7 @@ CA::revokeCertificate(const String& certificateName,
     hash.clear();
     hash["CAKEY"] = repositoryDir + "/" + caName + "/cacert.key";
     hash["CACERT"] = repositoryDir + "/" + caName + "/cacert.pem";;
-    hash["PASSWD"] = caPassword;
+    hash["PASSWD"] = caPasswd;
     hash["INFILE"] = repositoryDir + "/" + caName + "/newcerts/" + certificateName + ".pem";
     //hash[""] = "";
     
@@ -312,7 +311,71 @@ CA::revokeCertificate(const String& certificateName,
 bool
 CA::createCRL(const CRLGenerationData& crlData)
 {
-    return false;
+    if(!crlData.valid()) {
+        LOGIT_ERROR("Invalid CRL data");
+        BLOCXX_THROW(limal::ValueException, "Invalid CRL data");
+    }
+
+    // copy template to config
+    initConfigFile();
+    
+    // write crl data to config
+    crlData.commit2Config(*this, CRL);
+
+    Map<String, String> hash;
+    hash["BINARY"] = OPENSSL_COMMAND;
+    hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf";;
+    hash["DEBUG"] = "1";
+    OPENSSL ossl(hash);
+
+    hash.clear();
+    hash["CAKEY"]   = repositoryDir + "/" + caName + "/cacert.key";
+    hash["CACERT"]  = repositoryDir + "/" + caName + "/cacert.pem";;
+    hash["PASSWD"]  = caPasswd;
+    hash["HOURS"]   = String(crlData.getCRLLifeTime());
+    hash["OUTFORM"] = "PEM";
+    hash["OUTFILE"] = repositoryDir + "/" + caName + "/crl/crl.pem";
+    hash["EXTENSION"] = "v3_crl";
+    //hash[""] = "";
+
+    ossl.issueCRL(hash);
+    
+    int r = path::copyFile(repositoryDir + "/" + caName + "/crl/crl.pem",
+                           repositoryDir + "/" + ".cas/crl_" + caName + ".pem");
+    
+    if(r != 0) {
+        LOGIT_INFO("Copy of crl.pem to .cas/ failed: " << r);
+    }
+    
+    StringArray cmd;
+    cmd.push_back(C_REHASH_COMMAND);
+    cmd.push_back(repositoryDir + "/" + ".cas/");
+
+    blocxx::EnvVars env;
+    env.addVar("PATH", "/usr/bin/");
+
+    String stdOutput;
+    String errOutput;
+    int    status = 0;
+    try {
+
+        blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
+
+    } catch(Exception& e) {
+        LOGIT_INFO( "c_rehash exception:" << e);
+        status = -1;
+    }
+    if(status != 0) {
+        LOGIT_INFO( "c_rehash status:" << String(status));
+    }
+    if(!errOutput.empty()) {
+        LOGIT_INFO("c_rehash stderr:" << errOutput);
+    }
+    if(!stdOutput.empty()) {
+        LOGIT_DEBUG("c_rehash stdout:" << stdOutput);
+    }
+
+    return true;
 }
 
 
@@ -592,6 +655,7 @@ CA::createRootCA(const String& caName,
     hash["OUTFILE"] = repos + "/" + caName + "/" + "cacert.req";
     hash["KEYFILE"] = repos + "/" + caName + "/" + "cacert.key";
     hash["PASSWD"] = caPasswd;
+    hash["EXTENSION"] = "v3_req_ca";
     //hash[""] = "";
 
     blocxx::List<RDNObject> dn = caRequestData.getSubject().getDN();
@@ -615,6 +679,7 @@ CA::createRootCA(const String& caName,
     hash["REQFILE"] = repos + "/" + caName + "/" + "cacert.req";
     hash["PASSWD"]  = caPasswd;
     hash["DAYS"]    = String((caIssueData.getEndDate() - caIssueData.getStartDate()) /(60*60*24));
+    hash["EXTENSION"] = "v3_ca";
 
     k = ossl.createSelfSignedCert(hash);
 
@@ -654,6 +719,7 @@ CA::createRootCA(const String& caName,
     if(!stdOutput.empty()) {
         LOGIT_DEBUG("c_rehash stdout:" << stdOutput);
     }
+
     return true;
 }
        
