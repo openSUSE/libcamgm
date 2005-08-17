@@ -1,0 +1,2 @@
+DEBUG OPENSSL - OPENSSL->updateDB command: /usr/bin/openssl ca -updatedb -config ./TestRepos//Test_CA2/openssl.cnf -keyfile ./TestRepos//Test_CA2/cacert.key -passin env:pass -cert ./TestRepos//Test_CA2/cacert.pem
+DEBUG limal - removeFile ./TestRepos/Test_CA2/openssl.cnf
