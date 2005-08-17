@@ -256,13 +256,9 @@ sub checkKey {
 }
 
 sub createCaInfrastructure {
-#    my $caName = shift || return $class->SetError(summary => "Missing value caName",
-#                                                  code => "PARAM_CHECK_FAILED");
     my $caName = shift || die("ValueException: Missing value caName");
     $CAM_ROOT  = shift || $DEF_REPOS;
 
-print STDERR "CAM_ROOT = $CAM_ROOT\n";
-    
     if( not defined createCaInf($caName)) {
         return 0;
     }
@@ -322,44 +318,29 @@ sub delCAM {
 sub createCaInf {
     my $caName = shift;
 
-print STDERR "CAM_ROOT = $CAM_ROOT\n";
-
-    
     if( !defined $caName || ($caName eq "") || ($caName =~ /\./)) {
-#        return $class->SetError( 'summary' => 'missing parameter caName' ,
-#                                 'code'    => 'PARAM_CHECK_FAILED');
         die("ValueException: Missing parameter caName");
     }
     
     if (!-d $CAM_ROOT) {
-#        return $class->SetError( summary => "'$CAM_ROOT' does not exist!",
-#                                 code    => 'FS_ERROR') ;
         die("SystemException: '$CAM_ROOT' does not exist!");
     }
 
     if ( -d "$CAM_ROOT/$caName" ) {
-#        return $class->SetError( summary => "'$CAM_ROOT/$caName' still exist",
-#                                 code    => 'DIR_ALREADY_EXIST');
         die("SystemException: '$CAM_ROOT/$caName' still exist");
     }
     
     if (!mkdir("$CAM_ROOT/$caName", 0700)) {
-#        return $class->SetError( summary => "Can not create '$CAM_ROOT/$caName' '$!'",
-#                                 code    => 'CREATE_DIR_FAILED') ;
         die("SystemException: Can not create '$CAM_ROOT/$caName' '$!'");
     }
 
     if( !open(IN, "< $CAM_ROOT/$TEMPLATE")) {
         rmdir("$CAM_ROOT/$caName");
-#        return $class->SetError( summary => "Can not open '$TEMPLATE' '$!'",
-#                                 code    => "OPEN_FAILED");
         die("SystemException: Can not open '$CAM_ROOT/$TEMPLATE' '$!'");
     }
     if(!open(OUT, ">  $CAM_ROOT/$caName/openssl.cnf.tmpl") ) { 
         rmdir("$CAM_ROOT/$caName");
         close IN;
-#        return $class->SetError(summary => "Can not open '$CAM_ROOT/$caName/openssl.cnf.tmpl' '$!'",
-#                                code    => "OPEN_FAILED");
         die("SystemException: Can not open '$CAM_ROOT/$caName/openssl.cnf.tmpl' '$!'");
     }
     while(my $l = <IN>) {
@@ -373,16 +354,12 @@ print STDERR "CAM_ROOT = $CAM_ROOT\n";
     if (!mkdir("$CAM_ROOT/$caName/certs", 0700) ) {
         unlink("$CAM_ROOT/$caName/openssl.cnf.tmpl");
         rmdir("$CAM_ROOT/$caName");
-#        return $class->SetError( summary => "Can not create certificate directory '$CAM_ROOT/$caName/certs' '$!'",
-#                                 code    => "MKDIR_FAILED");
         die("SystemException: Can not create certificate directory '$CAM_ROOT/$caName/certs' '$!'");
     }
     if (!mkdir("$CAM_ROOT/$caName/crl", 0700) ) {
         unlink("$CAM_ROOT/$caName/openssl.cnf.tmpl");
         rmdir("$CAM_ROOT/$caName/certs");
         rmdir("$CAM_ROOT/$caName");
-#        return $class->SetError( summary => "Can not create CRL directory '$CAM_ROOT/$caName/crl' '$!'",
-#                                 code    => "MKDIR_FAILED");
         die("SystemException: Can not create CRL directory '$CAM_ROOT/$caName/crl' '$!'");
     }
     if (!mkdir("$CAM_ROOT/$caName/newcerts", 0700) ) {
@@ -390,8 +367,6 @@ print STDERR "CAM_ROOT = $CAM_ROOT\n";
         rmdir("$CAM_ROOT/$caName/crl");
         rmdir("$CAM_ROOT/$caName/certs");
         rmdir("$CAM_ROOT/$caName");
-#        return $class->SetError( summary => "Can not create directory for new certificates '$CAM_ROOT/$caName/newcerts' '$!'",
-#                                 code    => "MKDIR_FAILED");
         die("SystemException: Can not create directory for new certificates '$CAM_ROOT/$caName/newcerts' '$!'");
 }
     if (!mkdir("$CAM_ROOT/$caName/req", 0700) ) {
@@ -400,8 +375,6 @@ print STDERR "CAM_ROOT = $CAM_ROOT\n";
         rmdir("$CAM_ROOT/$caName/crl");
         rmdir("$CAM_ROOT/$caName/certs");
         rmdir("$CAM_ROOT/$caName");
-#        return $class->SetError( summary => "Can not create request directory '$CAM_ROOT/$caName/req' '$!'",
-#                                 code    => "MKDIR_FAILED");
         die("SystemException: Can not create request directory '$CAM_ROOT/$caName/req' '$!'");
     }
     if (!mkdir("$CAM_ROOT/$caName/keys", 0700) ) {
@@ -411,8 +384,6 @@ print STDERR "CAM_ROOT = $CAM_ROOT\n";
         rmdir("$CAM_ROOT/$caName/crl");
         rmdir("$CAM_ROOT/$caName/certs");
         rmdir("$CAM_ROOT/$caName");
-#        return $class->SetError( summary => "Can not create key directory '$CAM_ROOT/$caName/keys' '$!'",
-#                                 code    => "MKDIR_FAILED");
         die("SystemException: Can not create key directory '$CAM_ROOT/$caName/keys' '$!'");
     }
 
@@ -425,8 +396,6 @@ print STDERR "CAM_ROOT = $CAM_ROOT\n";
         rmdir("$CAM_ROOT/$caName/crl");
         rmdir("$CAM_ROOT/$caName/certs");
         rmdir("$CAM_ROOT/$caName");
-#        return $class->SetError( summary => "Can not create serial file '$CAM_ROOT/$caName/serial' '$!'",
-#                                 code    => "OPEN_FAILED");
         die("SystemException: Can not create serial file '$CAM_ROOT/$caName/serial' '$!'");
     }
     print SR "01";
@@ -441,8 +410,6 @@ print STDERR "CAM_ROOT = $CAM_ROOT\n";
         rmdir("$CAM_ROOT/$caName/crl");
         rmdir("$CAM_ROOT/$caName/certs");
         rmdir("$CAM_ROOT/$caName");
-#        return $class->SetError( summary => "Can not create database '$CAM_ROOT/$caName/index.txt' '$!'",
-#                                 code    => "OPEN_FAILED");
         die("SystemException: Can not create database '$CAM_ROOT/$caName/index.txt' '$!'");
     }
     close DB;
@@ -457,8 +424,6 @@ print STDERR "CAM_ROOT = $CAM_ROOT\n";
         rmdir("$CAM_ROOT/$caName/crl");
         rmdir("$CAM_ROOT/$caName/certs");
         rmdir("$CAM_ROOT/$caName");
-#        return $class->SetError( summary => "Can not create database '$CAM_ROOT/$caName/cam.txt' '$!'",
-#                                 code    => "OPEN_FAILED");
         die("SystemException: Can not create database '$CAM_ROOT/$caName/cam.txt' '$!'");
     }
     close DB2;
