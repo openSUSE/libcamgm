@@ -53,10 +53,13 @@ CA::CA(const String& caName, const String& caPasswd, const String& repos)
 
 CA::~CA()
 {
-    int r = path::removeFile(repositoryDir+"/"+caName+"/openssl.cnf");
-    
-    if(r != 0) {
-        LOGIT_INFO("Remove of openssl.cnf failed: " << r);
+    path::PathInfo pi(repositoryDir+"/"+caName+"/openssl.cnf");
+    if(pi.exists()) {
+        int r = path::removeFile(repositoryDir+"/"+caName+"/openssl.cnf");
+        
+        if(r != 0) {
+            LOGIT_INFO("Remove of openssl.cnf failed: " << r);
+        }
     }
 }
         
@@ -450,16 +453,44 @@ CA::setCRLDefaults(const CRLGenerationData& defaults)
     return false;
 }
 
-StringMapList
+blocxx::Array<blocxx::Map<blocxx::String, blocxx::String> >
 CA::getCertificateList()
 {
-    return StringMapList();
+    updateDB();
+
+    Array<Map<String, String>* > ret;
+
+    ret = listCertificates(caName, repositoryDir);
+
+    Array<Map<String, String> > ret2;
+
+    Array<Map<String, String>* >::iterator it = ret.begin();
+
+    for(; it != ret.end(); ++it) {
+        ret2.push_back( *(*it) );
+        delete(*it);
+    }
+
+    return ret2;
 }
 
-StringMapList
+blocxx::Array<blocxx::Map<blocxx::String, blocxx::String> >
 CA::getRequestList()
 {
-    return StringMapList();
+    Array<Map<String, String>* > ret;
+
+    ret = listRequests(caName, repositoryDir);
+
+    Array<Map<String, String> > ret2;
+
+    Array<Map<String, String>* >::iterator it = ret.begin();
+
+    for(; it != ret.end(); ++it) {
+        ret2.push_back( *(*it) );
+        delete(*it);
+    }
+
+    return ret2;
 }
 
 
