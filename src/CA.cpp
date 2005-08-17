@@ -459,39 +459,21 @@ CA::getCertificateList()
 {
     updateDB();
 
-    Array<Map<String, String>* > ret;
+    Array<Map<String, String> > ret;
 
     ret = listCertificates(caName, repositoryDir);
 
-    Array<Map<String, String> > ret2;
-
-    Array<Map<String, String>* >::iterator it = ret.begin();
-
-    for(; it != ret.end(); ++it) {
-        ret2.push_back( *(*it) );
-        delete(*it);
-    }
-
-    return ret2;
+    return ret;
 }
 
 blocxx::Array<blocxx::Map<blocxx::String, blocxx::String> >
 CA::getRequestList()
 {
-    Array<Map<String, String>* > ret;
+    Array<Map<String, String> > ret;
 
     ret = listRequests(caName, repositoryDir);
 
-    Array<Map<String, String> > ret2;
-
-    Array<Map<String, String>* >::iterator it = ret.begin();
-
-    for(; it != ret.end(); ++it) {
-        ret2.push_back( *(*it) );
-        delete(*it);
-    }
-
-    return ret2;
+    return ret;
 }
 
 
