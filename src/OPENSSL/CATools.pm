@@ -51,9 +51,9 @@ sub nextSerial {
 }
 
 sub listCertificates {
-#    my $caName = shift || return $class->SetError(summary =>"Parameter 'caName' missing",
-#                                                  code => "PARAM_CHECK_FAILED");
     my $caName = shift || die("ValueException: Parameter 'caName' missing");
+    $CAM_ROOT  = shift || $DEF_REPOS;
+
     my @ret = ();
     
     my $indextxt = parseIndexTXT($caName);
@@ -88,8 +88,6 @@ sub listCertificates {
                     }
                 }
                 if($subject eq "") {
-#                    return $class->SetError(summary => "Can not find certificate subject.",
-#                                            code => "PARSE_ERROR");
                     die("RuntimeException: Can not find certificate subject.");
                 }
                 my @rdns = ();
@@ -122,18 +120,16 @@ sub listCertificates {
             }
         }
         closedir(CERTDIR);
-        return \@ret;
+        return @ret;
     } else {
-#        return $class->SetError( code    => "Opendir_Failed",
-#                                 summary => "Can not read directory '$CAM_ROOT' '$!'");
         die("SystemException: Can not read directory '$CAM_ROOT' '$!'");
     }
 }
 
 sub listRequests {
-#    my $caName = shift || return $class->SetError(summary =>"Parameter 'caName' missing",
-#                                                  code => "PARAM_CHECK_FAILED");
     my $caName = shift || die("ValueException: Parameter 'caName' missing");
+    $CAM_ROOT  = shift || $DEF_REPOS;
+
     my @ret = ();
     
     my $camdb = parseCAMDB($caName);
@@ -168,8 +164,6 @@ sub listRequests {
                     }
                 }
                 if($subject eq "") {
-#                    return $class->SetError(summary => "Can not find request subject.",
-#                                            code => "PARSE_ERROR");
                     die("RuntimeException: Can not find request subject.");
                 }
                 my @rdns = ();
@@ -202,10 +196,8 @@ sub listRequests {
             }
         }
         closedir(REQDIR);
-        return \@ret;
+        return @ret;
     } else {
-#        return $class->SetError( code    => "Opendir_Failed",
-#                                 summary => "Can not read directory '$CAM_ROOT' '$!'");
         die("SystemException: Can not read directory '$CAM_ROOT' '$!'");
     }
 }
