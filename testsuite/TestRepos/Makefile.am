@@ -7,6 +7,7 @@ check:
 	rm -f Test_CA1/req/*.req
 	rm -f Test_CA1/newcerts/*.pem
 	rm -f Test_CA1/certs/*.pem
+	rm -f Test_CA1/crl/crl.pem
 	rm Test_CA1/serial; echo -n "01" > Test_CA1/serial
 	rm Test_CA1/index.txt; touch Test_CA1/index.txt
 	rm Test_CA1/cam.txt; touch Test_CA1/cam.txt
