@@ -7,6 +7,7 @@
 #include <limal/Logger.hpp>
 #include <limal/PathInfo.hpp>
 #include <limal/ca-mgm/CA.hpp>
+#include <limal/Exception.hpp>
 
 #include <iostream>
 #include <fstream>
@@ -43,10 +44,16 @@ int main()
     try {
         std::cout << "START" << std::endl;
         
+        blocxx::StringArray cat;
+        cat.push_back("FATAL");
+        cat.push_back("ERROR");
+        cat.push_back("INFO");
+        //comp.push_back("DEBUG");
+
         // Logging
         blocxx::LogAppenderRef	logAppender(new CerrAppender(
                                                              LogAppender::ALL_COMPONENTS,
-                                                             LogAppender::ALL_CATEGORIES,
+                                                             cat,
                                                              // category component - message
                                                              "%-5p %c - %m"
                                                              ));
@@ -62,15 +69,21 @@ int main()
             CA ca("Test_CA1", "system", "./TestRepos/");
 
             ca.updateDB();
+            
+            std::cout << "UpdateDB successfully executed" << std::endl;
+
         }
         std::cout << "=================== test wrong password ==================" << std::endl;
-        {
+        try {
             CA ca2("Test_CA1", "tralla", "./TestRepos/");
             
             ca2.updateDB();
+
+        } catch(limal::RuntimeException &re) {
+            std::cout << "Got RuntimeException. This is ok!" << std::endl;
         }
         std::cout << "=================== end Update DB ========================" << std::endl;
-
+        
         std::cout << "DONE" << std::endl;
     } catch(blocxx::Exception& e) {
         std::cerr << e << std::endl;

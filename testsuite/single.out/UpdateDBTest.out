@@ -1,3 +1,7 @@
 START
 =================== start Update DB ======================
+UpdateDB successfully executed
 =================== test wrong password ==================
+Got RuntimeException. This is ok!
+=================== end Update DB ========================
+DONE
