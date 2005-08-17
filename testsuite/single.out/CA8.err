@@ -87,8 +87,6 @@ DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=5 result=ca
 DEBUG ca-mgm - type2Section: type=5 result=ca
 DEBUG IniPaser - File ./TestRepos//openssl.cnf.tmpl did not change. Not saving.
-CAM_ROOT = ./TestRepos/
-CAM_ROOT = ./TestRepos/
 DEBUG ca-mgm - return BasicConstraintsExtension::valid() is true
 DEBUG ca-mgm - type2Section: type=2 result=req_ca
 DEBUG ca-mgm - type2Section: type=2 result=req_ca
