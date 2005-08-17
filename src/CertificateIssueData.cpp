@@ -107,6 +107,24 @@ CertificateIssueData::getEndDate() const
     return notAfter;
 }
 
+blocxx::String
+CertificateIssueData::getStartDateAsString() const
+{
+    DateTime dt(notBefore);
+    String time = dt.toString("%y%m%d%H%M%S") + "Z";
+    
+    return time;
+}
+
+blocxx::String
+CertificateIssueData::getEndDateAsString() const
+{
+    DateTime dt(notAfter);
+    String time = dt.toString("%y%m%d%H%M%S") + "Z";
+    
+    return time;
+}
+
 void
 CertificateIssueData::setMessageDigest(MD md)
 {

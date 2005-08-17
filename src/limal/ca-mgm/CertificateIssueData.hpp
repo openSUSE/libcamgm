@@ -57,6 +57,8 @@ namespace CA_MGM_NAMESPACE
         void           setCertifiyPeriode(time_t start, time_t end);
         time_t         getStartDate() const;
         time_t         getEndDate() const;
+        blocxx::String getStartDateAsString() const;
+        blocxx::String getEndDateAsString() const;
 
         void           setMessageDigest(MD md);
         MD             getMessageDigest() const;
