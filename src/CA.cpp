@@ -182,20 +182,21 @@ CA::issueCertificate(const String& requestName,
     blocxx::Map<blocxx::String,blocxx::String > hash;
     hash["BINARY"] = OPENSSL_COMMAND;
     hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf";;
-    hash["DEBUG"] = "1";
+    hash["DEBUG"]  = "1";
     OPENSSL ossl(hash);
 
     hash.clear();
-    hash["REQFILE"] = repositoryDir + "/" + caName + "/req/"+ requestName + ".req";
-    hash["CAKEY"] = repositoryDir + "/" + caName + "/cacert.key";
-    hash["CACERT"] = repositoryDir + "/" + caName + "/cacert.pem";
-    hash["DAYS"] = String((issueData.getEndDate() - issueData.getStartDate()) /(60*60*24));
-    hash["PASSWD"] = caPasswd;
+    hash["REQFILE"]    = repositoryDir + "/" + caName + "/req/"+ requestName + ".req";
+    hash["CAKEY"]      = repositoryDir + "/" + caName + "/cacert.key";
+    hash["CACERT"]     = repositoryDir + "/" + caName + "/cacert.pem";
+    hash["START_DATE"] = String(issueData.getStartDateAsString());
+    hash["END_DATE"]   = String(issueData.getEndDateAsString());
+    hash["PASSWD"]     = caPasswd;
     hash["CA_SECTION"] = type2Section(certType, false);
-    hash["EXTS"] = type2Section(certType, true);
-    hash["OUTDIR"] = repositoryDir + "/" + caName + "/certs/";
-    hash["OUTFILE"] = repositoryDir + "/" + caName + "/newcerts/" + certificate + ".pem";
-    hash["NOTEXT"] = "1";
+    hash["EXTS"]       = type2Section(certType, true);
+    hash["OUTDIR"]     = repositoryDir + "/" + caName + "/certs/";
+    hash["OUTFILE"]    = repositoryDir + "/" + caName + "/newcerts/" + certificate + ".pem";
+    hash["NOTEXT"]     = "1";
 
 	blocxx::String c = ossl.issueReq(hash);
 
