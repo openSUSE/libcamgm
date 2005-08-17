@@ -64,11 +64,98 @@ CA::~CA()
 }
         
 bool
-CA::createSubCA(const String& keyPasswd,
+CA::createSubCA(const String& newCaName,
+                const String& keyPasswd,
                 const RequestGenerationData& caRequestData,
-                const CertificateIssueData& ca)
+                const CertificateIssueData& caIssueData)
 {
-    return false;
+
+    String certificate = createCertificate(keyPasswd,
+                                           caRequestData,
+                                           caIssueData,
+                                           CA_Cert);
+
+    
+    try {
+        createCaInfrastructure(newCaName, repositoryDir);
+    } catch(blocxx::Exception &e) {
+        LOGIT_ERROR(e);
+        BLOCXX_THROW_SUBEX(limal::SystemException, 
+                           "Error during create CA infrastructure",
+                           e);
+    }
+    String request;
+
+    PerlRegEx p("^([[:xdigit:]]+):([[:xdigit:]]+[\\d-]*)$");
+    StringArray sa = p.capture(certificate); 
+
+    if(sa.size() == 3) {
+        request = sa[2];
+    } else {
+        // cleanup
+        path::removeDirRecursive(repositoryDir + "/" + newCaName);
+
+        LOGIT_ERROR("Can not parse certificate name: " << certificate);
+        BLOCXX_THROW(limal::RuntimeException, 
+                     Format("Can not parse certificate name: ", certificate).c_str());
+    }
+
+    int r = path::copyFile(repositoryDir + "/" + caName + "/keys/" + request + ".key",
+                           repositoryDir + "/" + newCaName + "/cacert.key");
+    if(r != 0) {
+        // cleanup
+        path::removeDirRecursive(repositoryDir + "/" + newCaName);
+
+        LOGIT_ERROR("Can not copy the private key." << r);
+        BLOCXX_THROW(limal::SystemException, "Can not copy the private key.");
+    }
+
+    r = path::copyFile(repositoryDir + "/" + caName + "/newcerts/" + certificate + ".pem",
+                       repositoryDir + "/" + newCaName + "/cacert.pem");
+    if(r != 0) {
+        // cleanup
+        path::removeDirRecursive(repositoryDir + "/" + newCaName);
+
+        LOGIT_ERROR("Can not copy the certificate." << r);
+        BLOCXX_THROW(limal::SystemException, "Can not copy the certificate.");
+    }
+
+    r = path::copyFile(repositoryDir + "/" + newCaName + "/" + "cacert.pem",
+                       repositoryDir + "/" + ".cas/" + newCaName + ".pem");
+    
+    if(r != 0) {
+        LOGIT_INFO("Copy of cacert.pem to .cas/ failed: " << r);
+    }
+    
+    StringArray cmd;
+    cmd.push_back(C_REHASH_COMMAND);
+    cmd.push_back(repositoryDir + "/" + ".cas/");
+
+    blocxx::EnvVars env;
+    env.addVar("PATH", "/usr/bin/");
+
+    String stdOutput;
+    String errOutput;
+    int    status = 0;
+    try {
+
+        blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
+
+    } catch(Exception& e) {
+        LOGIT_INFO( "c_rehash exception:" << e);
+        status = -1;
+    }
+    if(status != 0) {
+        LOGIT_INFO( "c_rehash status:" << String(status));
+    }
+    if(!errOutput.empty()) {
+        LOGIT_INFO("c_rehash stderr:" << errOutput);
+    }
+    if(!stdOutput.empty()) {
+        LOGIT_DEBUG("c_rehash stdout:" << stdOutput);
+    }
+    
+    return true;
 }
 
 

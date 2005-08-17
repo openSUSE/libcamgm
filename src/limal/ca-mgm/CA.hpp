@@ -73,9 +73,10 @@ namespace CA_MGM_NAMESPACE
          *
          * @return true for success otherwise false
          */
-        bool createSubCA(const String& keyPasswd,
+        bool createSubCA(const String& newCaName,
+                         const String& keyPasswd,
                          const RequestGenerationData& caRequestData,
-                         const CertificateIssueData& ca);
+                         const CertificateIssueData& caIssueData);
 
         /**
          * Create a certificate request in the specified CA
