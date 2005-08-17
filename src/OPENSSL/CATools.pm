@@ -278,20 +278,14 @@ sub addCAM {
     $CAM_ROOT = $hash->{REPOSITORY} || $DEF_REPOS;
     
     my $db = parseCAMDB($caName);
-#    return undef if(not defined $db);
     
     foreach my $l (@$db) {
         if($l->[0] eq $md5) {
-#            return $class->SetError(summary => "Request already exist.",
-#                                    code => "PARAM_CHECK_FAILED");
             die("RuntimeException: Request already exist.");
         }
     }
     
     if(!open(DB, ">> $CAM_ROOT/$caName/cam.txt")) {
-#        return $class->SetError(summary => "Can not open cam.txt.",
-#                                description => "$!",
-#                                code => "OPEN_FAILED");
         die("SystemException: Can not open cam.txt. '$!'");
     }
     print DB "$md5 $dn\n";
@@ -302,14 +296,11 @@ sub addCAM {
 sub delCAM {
     my $caName = shift || die("ValueException: Missing value caName");
     my $hash   = shift || die("ValueException: Missing parameter.");
-    my $md5 = $hash->{MD5} || die("ValueException: Missing parameter 'MD5'.");
-    $CAM_ROOT = $hash->{REPOSITORY} || $DEF_REPOS;
+    my $md5    = $hash->{MD5} || die("ValueException: Missing parameter 'MD5'.");
+    $CAM_ROOT  = $hash->{REPOSITORY} || $DEF_REPOS;
     
-    if(!open(DB, "< /$CAM_ROOT/$caName/cam.txt")) {
-#        return $class->SetError(summary => "Can not open cam.txt.",
-#                                description => "$!",
-#                                code => "OPEN_FAILED");
-        die("SystemException: Can not open cam.txt. '$!'");
+    if(!open(DB, "< $CAM_ROOT/$caName/cam.txt")) {
+        die("SystemException: Can not open $CAM_ROOT/$caName/cam.txt. '$!'");
     }
     my @cam = <DB>;
     close DB;
@@ -319,11 +310,8 @@ sub delCAM {
             push @new_cam, $l;
         }
     }
-    if(!open(DB2, "> /$CAM_ROOT/$caName/cam.txt")) {
-#        return $class->SetError(summary => "Can not open cam.txt.",
-#                                description => "$!",
-#                                code => "OPEN_FAILED");
-        die("SystemException: Can not open cam.txt.'$!'");
+    if(!open(DB2, "> $CAM_ROOT/$caName/cam.txt")) {
+        die("SystemException: Can not open $CAM_ROOT/$caName/cam.txt.'$!'");
     }
     print DB2 @new_cam;
     close DB2;
