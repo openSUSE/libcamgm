@@ -1,0 +1,11 @@
+START
+DN Key countryName
+DN Key stateOrProvinceName
+DN Key localityName
+DN Key organizationName
+DN Key organizationalUnitName
+DN Key commonName
+DN Key emailAddress
+RETURN Certificate 
+Sub CA exists: true
+DONE

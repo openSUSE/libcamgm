@@ -2,6 +2,7 @@
 check:
 	echo "clean before check"
 	rm -rf Test_CA/
+	rm -rf SubCA_Test/
 	rm -f .cas/*
 	rm -f Test_CA1/keys/*.key
 	rm -f Test_CA1/req/*.req
