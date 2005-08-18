@@ -12,13 +12,13 @@ check:
 	rm Test_CA1/serial; echo -n "01" > Test_CA1/serial
 	rm Test_CA1/index.txt; touch Test_CA1/index.txt
 	rm Test_CA1/cam.txt; touch Test_CA1/cam.txt
-
+	cp Test_CA2/cacert.pem .cas/Test_CA2.pem
+	cp Test_CA2/crl/crl.pem .cas/crl_Test_CA2.pem
+	c_rehash .cas/
 
 clean-local: check
 	rm -f ca1_test/openssl.cnf
 	rm -f ca2_test/openssl.cnf
-	rm -rf Test_CA/
-	rm -f .cas/*
 	rm -f Test_CA1/serial.old
 	rm -f Test_CA1/index.txt.old
 	rm -f Test_CA1/.rand
@@ -26,5 +26,5 @@ clean-local: check
 
 MAINTAINERCLEANFILES = Makefile.in
 
-EXTRA_DIST = ca1_test/* ca2_test/* openssl.cnf.tmpl
+EXTRA_DIST = ca1_test/* ca2_test/* openssl.cnf.tmpl Test_CA2/*
 
