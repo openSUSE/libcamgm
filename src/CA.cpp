@@ -49,6 +49,11 @@ CA::CA(const String& caName, const String& caPasswd, const String& repos)
       templ(new CAConfig(repositoryDir+"/"+caName+"/openssl.cnf.tmpl"))
 {
     //FIXME: check if caName is not empty
+    if(caName.empty()) {
+        LOGIT_ERROR("Empty CA name.");
+        BLOCXX_THROW(limal::ValueException, "Empty CA name.");
+    }
+
 }
 
 CA::~CA()
@@ -164,6 +169,12 @@ CA::createRequest(const String& keyPasswd,
                   const RequestGenerationData& requestData,
                   Type requestType)
 {
+    if(!requestData.valid()) {
+        LOGIT_ERROR("Invalid request data");
+        BLOCXX_THROW(limal::ValueException, "Invalid request data");
+    }
+  
+
     blocxx::Map<blocxx::String,blocxx::String > hash;
     hash["BINARY"] = OPENSSL_COMMAND;
     hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf";;
@@ -247,6 +258,11 @@ CA::issueCertificate(const String& requestName,
         LOGIT_ERROR("Request does not exist.(" << requestFile << ")");
         BLOCXX_THROW(ValueException, 
                      Format("Request does not exist.(%1)", requestFile ).c_str());
+    }
+
+    if(!issueData.valid()) {
+        LOGIT_ERROR("Invalid issue data");
+        BLOCXX_THROW(limal::ValueException, "Invalid issue data");
     }
     
     String serial      = nextSerial(caName, repositoryDir);
@@ -761,6 +777,17 @@ CA::createRootCA(const String& caName,
                  const CertificateIssueData& caIssueData,
                  const String& repos)
 {
+    if(!caRequestData.valid()) {
+        LOGIT_ERROR("Invalid CA request data");
+        BLOCXX_THROW(limal::ValueException, "Invalid CA request data");
+    }
+
+    if(!caIssueData.valid()) {
+        LOGIT_ERROR("Invalid CA issue data");
+        BLOCXX_THROW(limal::ValueException, "Invalid CA issue data");
+    }
+    
+
     // Create the infrastructure
 
     try {
