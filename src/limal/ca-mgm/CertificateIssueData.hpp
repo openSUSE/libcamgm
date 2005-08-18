@@ -57,7 +57,15 @@ namespace CA_MGM_NAMESPACE
         void           setCertifiyPeriode(time_t start, time_t end);
         time_t         getStartDate() const;
         time_t         getEndDate() const;
+
+        /**
+         * Returns the start date as string for openssl (GMT)
+         */ 
         blocxx::String getStartDateAsString() const;
+
+        /**
+         * Returns the end date as string for openssl (GMT)
+         */ 
         blocxx::String getEndDateAsString() const;
 
         void           setMessageDigest(MD md);

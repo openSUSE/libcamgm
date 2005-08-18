@@ -111,7 +111,7 @@ blocxx::String
 CertificateIssueData::getStartDateAsString() const
 {
     DateTime dt(notBefore);
-    String time = dt.toString("%y%m%d%H%M%S") + "Z";
+    String time = dt.toString("%y%m%d%H%M%S", DateTime::E_UTC_TIME) + "Z";
     
     return time;
 }
@@ -120,7 +120,7 @@ blocxx::String
 CertificateIssueData::getEndDateAsString() const
 {
     DateTime dt(notAfter);
-    String time = dt.toString("%y%m%d%H%M%S") + "Z";
+    String time = dt.toString("%y%m%d%H%M%S", DateTime::E_UTC_TIME) + "Z";
     
     return time;
 }
