@@ -6,7 +6,7 @@
 ###############################################
 [ca]
 default_ca=ca
-dir=./TestRepos//Test_CA1/
+dir=./TestRepos//Test_CA2/
 certs=$dir/certs
 crl_dir=$dir/crl
 database=$dir/index.txt
@@ -67,7 +67,7 @@ req_extensions=v3_req_server
 #utf8                = yes
 # used to sign a client cert
 [client_cert]
-dir=./TestRepos//Test_CA1/
+dir=./TestRepos//Test_CA2/
 certs=$dir/certs
 crl_dir=$dir/crl
 database=$dir/index.txt
@@ -92,7 +92,7 @@ unique_subject=no
 #utf8                = yes
 # used to sign a server cert
 [server_cert]
-dir=./TestRepos//Test_CA1/
+dir=./TestRepos//Test_CA2/
 certs=$dir/certs
 crl_dir=$dir/crl
 database=$dir/index.txt
