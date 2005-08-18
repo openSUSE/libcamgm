@@ -10,7 +10,11 @@
 if { [catch {  set filenames [glob $srcdir/*.single] } ] } {
     puts "No .single files found"
 } else {
+    # sort the tests 
+
+    set fn [ lsort $filenames ]
+
     # foreach file, call single-run (from testsuite/lib)
 
-    foreach file $filenames { single-run $file }
+    foreach file $fn { single-run $file }
 }
