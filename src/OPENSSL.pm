@@ -939,7 +939,7 @@ sub verify {
     my $errorNmb = 0;
     
     if (not defined $cert) {
-        die($this->setError("No certificate to verify!"));
+        die($this->setError("SystemException: No certificate to verify!"));
     }
     
     my @command = ($this->{bin}, "verify");
@@ -961,7 +961,7 @@ sub verify {
                                                                 cmd => [@command]
                                                                ));
 	unless(defined($pid)) {
-		die($this->setError("OPENSSL->verify: ".
+		die($this->setError("SystemException OPENSSL->verify: ".
                             "Can't open pipe to OPENSSL: $!"));
 	}
 	waitpid($pid, 0);
@@ -971,7 +971,7 @@ sub verify {
     
     foreach my $line (split(/\n/, $out)) {
         
-        $line =~ /^\/.*\.pem:\s+(.*)\s*$/;
+        $line =~ /\.pem:\s+(.*)\s*$/;
         if ( defined $1 && $1 eq "OK" ) {
             $retValue = "OK";
             last;
@@ -986,14 +986,15 @@ sub verify {
             $errorNmb = $1;
         }
     }
+
     if ($retValue eq "OK") {
         return 1;
     } else {
         if (defined $osl_err && $osl_err ne "") {
-            die($this->setError("OPENSSL->verify: Certificate invalid! ($retValue / $errorMsg)",
+            die($this->setError("RuntimeException OPENSSL->verify: Certificate invalid! ($retValue / $errorMsg)",
                                 $osl_err));
         } else {
-            die($this->setError("OPENSSL->verify: Certificate invalid! ($retValue / $errorMsg)"));
+            die($this->setError("RuntimeException OPENSSL->verify: Certificate invalid! ($retValue / $errorMsg)"));
         }
     }
 }
