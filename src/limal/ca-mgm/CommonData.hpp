@@ -61,17 +61,6 @@ namespace CA_MGM_NAMESPACE {
         DER
     };
 
-    enum CertificatePurpose {
-        sslclient,
-        sslserver,
-        nssslserver,
-        smimesign,
-        smimeencrypt,
-        crlsign,
-        any,
-        ocsphelper
-    };
-
     enum KeyAlg {
         RSA,
         DSA,
