@@ -665,7 +665,51 @@ CA::deleteCA(bool force)
 bool
 CA::deleteRequest(const String& requestName)
 {
-    return false;
+    path::PathInfo reqFile(repositoryDir + "/" + caName + "/req/" + requestName + ".req");
+    if(!reqFile.exists()) {
+        LOGIT_ERROR("Request '" << reqFile.toString() <<"' does not exist." );
+        BLOCXX_THROW(limal::SystemException, Format("Request '%1' does not exist.",
+                                                    reqFile.toString()).c_str());
+    }
+    
+  
+    Map<String, String> hash;
+    hash["PASSWORD"]   = caPasswd;
+    hash["CACERT"]     = "1";
+    hash["REPOSITORY"] = repositoryDir;
+    //hash[""] = "";
+    
+    bool passOK = checkKey(caName, &hash);
+    
+    if(!passOK) {
+        LOGIT_ERROR("Invalid CA password");
+        BLOCXX_THROW(limal::ValueException, "Invalid CA password");
+    }
+
+    hash.clear();
+    hash["MD5"]        = requestName;
+    hash["REPOSITORY"] = repositoryDir;
+    //hash[""] = "";
+
+    delCAM(caName, &hash);
+
+    path::PathInfo keyFile(repositoryDir + "/" + caName + "/keys/" + requestName + ".key");
+    
+    int r = 0;
+
+    if(keyFile.exists()) {
+        r = path::removeFile(keyFile.toString());
+        // if removeFile failed an error was logged by removeFile
+        // we continue and try to remove the request file
+    }
+
+    r = path::removeFile(reqFile.toString());
+    if(r != 0) {
+        BLOCXX_THROW(limal::SystemException, 
+                     Format("Removing the request failed: %1.", r).c_str());
+    }    
+
+    return true;
 }
 
 bool
