@@ -385,7 +385,7 @@ namespace CA_MGM_NAMESPACE
          */
         bool verifyCertificate(const String& certificateName,
                                bool crlCheck = true,
-                               CertificatePurpose purpose = any);
+                               const String& purpose = String("any"));
         /**
          * Initialize the config file
          *

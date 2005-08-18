@@ -841,9 +841,44 @@ CA::updateDB()
 bool
 CA::verifyCertificate(const String& certificateName,
                       bool crlCheck,
-                      CertificatePurpose purpose)
+                      const String& purpose)
 {
-    return false;
+    path::PathInfo certFile(repositoryDir + "/" + caName + "/newcerts/" + certificateName + ".pem");
+    if(!certFile.exists()) {
+        LOGIT_ERROR("Certificate does not exist");
+        BLOCXX_THROW(limal::SystemException, "Certificate does not exist");
+    }
+
+    if(purpose != "sslclient"    && 
+       purpose != "sslserver"    && 
+       purpose != "nssslserver"  && 
+       purpose != "smimesign"    && 
+       purpose != "smimeencrypt" && 
+       purpose != "crlsign"      && 
+       purpose != "any"          && 
+       purpose != "ocsphelper") {
+
+        LOGIT_ERROR("Invalid purpose: " << purpose);
+        BLOCXX_THROW(limal::ValueException, 
+                     Format("Invalid purpose: %", purpose).c_str());
+    }
+
+    Map<String, String> hash;
+    hash["BINARY"] = OPENSSL_COMMAND;
+    hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf";;
+    hash["DEBUG"] = "1";
+    OPENSSL ossl(hash);
+    
+    hash.clear();
+    hash["CERT"] = certFile.toString();
+    hash["CAPATH"] = repositoryDir + "/.cas/";
+    hash["CRLCHECK"] = Bool(crlCheck).toString();
+    hash["PURPOSE"] = purpose;
+    //hash[""] = "";
+
+    ossl.verify(hash);
+
+    return true;
 }
 
 void
