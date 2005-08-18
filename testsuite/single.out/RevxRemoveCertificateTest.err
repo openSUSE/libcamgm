@@ -1,0 +1,1 @@
+ERROR ca-mgm - Only revoked or expired certificates can be deleted. The status of the certificate is 'Valid'.

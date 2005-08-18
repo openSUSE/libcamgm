@@ -1,0 +1,10 @@
+START
+=================== start ======================
+Take 0: Delete Certificate successfull.
+Take 0: Delete Key successfull.
+Take 0: Delete Request successfull.
+Take 1: Delete Certificate successfull.
+Take 1: Key still exists. !!! OK !!!
+Take 1: Request still exists. !!! OK !!!
+Take 2: Delete Certificate failed. This is ok
+DONE
