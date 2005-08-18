@@ -351,15 +351,17 @@ namespace CA_MGM_NAMESPACE
 
         /**
          * Delete the specified certificate together with the corresponding 
-         * request and private key. 
+         * request and private key if requestToo is set to true. 
          * This function works only for revoked or expired certificates.
          *
-         * @param caPasswd the password of the CA
          * @param certificateName the certificate to delete
+         * @param requestToo if set to true also request and key file 
+         * will be deleted
          *
          * @return true on success, otherwise false.
          */
-        bool deleteCertificate(const String& certificateName);
+        bool deleteCertificate(const String& certificateName, 
+                               bool requestToo = true);
 
 
 

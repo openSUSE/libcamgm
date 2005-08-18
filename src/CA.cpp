@@ -713,9 +713,76 @@ CA::deleteRequest(const String& requestName)
 }
 
 bool
-CA::deleteCertificate(const String& certificateName)
+CA::deleteCertificate(const String& certificateName, 
+                      bool requestToo)
 {
-    return false;
+    path::PathInfo certFile(repositoryDir + "/" + caName + "/newcerts/" + certificateName + ".pem");
+    if(!certFile.exists()) {
+        LOGIT_ERROR("Certificate does not exist.");
+        BLOCXX_THROW(limal::ValueException, "Certificate does not exist.");
+    }
+
+    Map<String, String> hash;
+    hash["PASSWORD"]   = caPasswd;
+    hash["CACERT"]     = "1";
+    hash["REPOSITORY"] = repositoryDir;
+    //hash[""] = "";
+    
+    bool passOK = checkKey(caName, &hash);
+    
+    if(!passOK) {
+        LOGIT_ERROR("Invalid CA password");
+        BLOCXX_THROW(limal::ValueException, "Invalid CA password");
+    }
+    
+    PerlRegEx p("^([[:xdigit:]]+):([[:xdigit:]]+[\\d-]*)$");
+    StringArray sa = p.capture(certificateName);
+
+    if(sa.size() != 3) {
+        LOGIT_ERROR("Can not parse certificate name: " << certificateName);
+        BLOCXX_THROW(limal::RuntimeException,
+                     Format("Can not parse certificate name: ", certificateName).c_str());
+
+    }
+
+    String serial  = sa[1];
+    String request = sa[2];
+
+    initConfigFile();
+
+    hash.clear();
+    hash["BINARY"] = OPENSSL_COMMAND;
+    hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf";;
+    hash["DEBUG"]  = "1";
+    OPENSSL ossl(hash);
+
+    hash.clear();
+    hash["SERIAL"] = serial;
+    //hash[""] = "";
+
+    String state = ossl.status(hash);
+
+    if( state.equalsIgnoreCase("Revoked") ||
+        state.equalsIgnoreCase("Expired")) {
+
+        if(requestToo) {
+            deleteRequest(request);
+        }
+
+        int r = path::removeFile(certFile.toString());
+        if(r != 0) {
+            BLOCXX_THROW(limal::SystemException, 
+                         Format("Removing the certificate failed: %1.", r).c_str());
+        }
+    } else {
+        String dummy = 
+            String("Only revoked or expired certificates can be deleted. ") +
+            "The status of the certificate is '" + state + "'.";
+        LOGIT_ERROR(dummy);
+        BLOCXX_THROW(limal::RuntimeException, dummy.c_str());
+    }
+    
+    return true;
 }
 
 bool
