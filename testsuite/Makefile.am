@@ -10,7 +10,7 @@ INCLUDES= -I. -I$(top_srcdir)/src
 AM_CPPFLAGS = $(DEBUG_FLAGS) -pthread -DLOCALEDIR=\"${localedir}\" $(PERL_CFLAGS)
 
 AM_LDFLAGS = \
-	-pthread -Xlinker --whole-archive \
+	-pthread -Xlinker --whole-archive -lssl \
 	$(top_builddir)/src/liblimal-ca-mgm.la \
 	-Xlinker --no-whole-archive $(PERL_LDFLAGS)
 
