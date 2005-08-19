@@ -64,16 +64,109 @@ RDNObject_Priv::setRDN(const String& type, const String& value,
 
 // ##############################################################
 
-DNObject_Priv::DNObject_Priv(X509* cert)
+DNObject_Priv::DNObject_Priv(X509_NAME *x509_name)
     : DNObject()
 {
+    BIO *bio = BIO_new(BIO_s_mem());
+    if(!bio) {
+
+        LOGIT_ERROR("Can not create a memory BIO");
+        BLOCXX_THROW(limal::MemoryException, "Can not create a memory BIO");
+        
+    }
+    
+    X509_NAME_print_ex(bio, x509_name, 0, 
+                       ASN1_STRFLGS_ESC_CTRL |
+                       ASN1_STRFLGS_ESC_MSB  |
+                       XN_FLAG_SEP_MULTILINE |
+                       XN_FLAG_FN_LN         |
+                       XN_FLAG_SPC_EQ
+                       );
+    
+    // XN_FLAG_SPC_EQ        |     // space after '='
+    // XN_FLAG_FN_LN         |     // long names (commonName)
+    // XN_FLAG_FN_ALIGN            // add spaces for a nice output
+
+    char *d = NULL;
+
+    int n = BIO_get_mem_data(bio, &d);
+
+    String      name(d, n);
+    PerlRegEx   re("(^[\\w]+)\\s=\\s(.+)$");
+    StringArray lines = name.tokenize("\n");
+
+    /* 
+     * This is one option.
+     *
+    for(uint j = 0 ; j < lines.size(); ++j) {
+
+        StringArray vals = re.capture(lines[j]);
+
+        if(vals.size() != 3) {
+            
+            BIO_free(bio);
+
+            LOGIT_ERROR("Can not parse DN line: " << lines[j]);
+            BLOCXX_THROW(limal::RuntimeException, 
+                         Format("Can not parse DN line: %1", lines[j]).c_str());
+
+        }
+
+        List<RDNObject>::iterator it = dn.begin();
+        bool found                   = false;
+
+        for(; it != dn.end(); ++it) {
+
+            if( (*it).getType() == vals[1] ) {
+
+                (*it).setRDNValue(vals[2]);
+                found = true;
+
+            }
+
+        }
+
+        if(!found) {
+            // What to do here?
+
+            LOGIT_INFO("DN does not match the policy: '" << lines[j] << "'");
+        }
+    }
+
+    */
+
+    /* and this is the other option */
+
+    List<RDNObject> tmpDN;
+
+    for(uint j = 0 ; j < lines.size(); ++j) {
+
+        StringArray vals = re.capture(lines[j]);
+
+        if(vals.size() != 3) {
+            
+            BIO_free(bio);
+
+            LOGIT_ERROR("Can not parse DN line: " << lines[j]);
+            BLOCXX_THROW(limal::RuntimeException, 
+                         Format("Can not parse DN line: %1", lines[j]).c_str());
+
+        }
+
+        tmpDN.push_back(RDNObject_Priv(vals[1], vals[2]));
+
+    }
+    
+    setDN(tmpDN);
+    
+    BIO_free(bio);
+
 }
 
 DNObject_Priv::~DNObject_Priv()
 {
 }
 
-//  private:
 DNObject_Priv::DNObject_Priv(const DNObject_Priv& obj)
     : DNObject(obj)
 {

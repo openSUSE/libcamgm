@@ -33,9 +33,18 @@ namespace CA_MGM_NAMESPACE {
     class CertificateData_Priv : public CertificateData {
     public:
         CertificateData_Priv();
-        CertificateData_Priv(const String &caName);
+
+        /**
+         * Construct a CertificateData object by parsing a certificate 
+         * file.
+         *
+         * If certificateName is empty the CA certificate of caName 
+         * will be parsed.
+         *
+         */
         CertificateData_Priv(const String &caName,
-                            const String &certificateName);
+                             const String &certificateName,
+                             const String &repository = REPOSITORY);
         CertificateData_Priv(const CertificateData_Priv& data);
         virtual ~CertificateData_Priv();
 
@@ -57,7 +66,7 @@ namespace CA_MGM_NAMESPACE {
 
         void           setSignatureAlgorithm(SigAlg sigAlg);
         
-        void           setSignature(const String& sig);
+        void           setSignature(const ByteArray& sig);
 
         void           setExtensions(const X509v3CertificateExtensions& ext);
 
