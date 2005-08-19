@@ -59,11 +59,9 @@ namespace CA_MGM_NAMESPACE {
 
     class DNObject_Priv : public DNObject {
     public:
-        DNObject_Priv(X509* cert);    
-        virtual ~DNObject_Priv();
-
-    private:
+        DNObject_Priv(X509_NAME *x509_name);
         DNObject_Priv(const DNObject_Priv& obj);    
+        virtual ~DNObject_Priv();
 
         DNObject_Priv& operator=(const DNObject_Priv& obj);
     };
