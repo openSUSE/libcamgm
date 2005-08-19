@@ -27,8 +27,6 @@
 #ifndef    LIMAL_CA_HPP
 #define    LIMAL_CA_HPP
 
-#define    REPOSITORY   "/var/lib/CAM/"
-
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <limal/ca-mgm/RequestGenerationData.hpp>

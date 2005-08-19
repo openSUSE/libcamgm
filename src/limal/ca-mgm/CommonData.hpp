@@ -28,6 +28,8 @@
 #include  <blocxx/Array.hpp>
 #include  <blocxx/Map.hpp>
 
+#define   REPOSITORY   "/var/lib/CAM/"
+
 namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
