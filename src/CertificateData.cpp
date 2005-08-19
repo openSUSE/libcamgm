@@ -160,7 +160,7 @@ CertificateData::getSignatureAlgorithmAsString() const
     return String();
 }
 
-blocxx::String
+ByteArray
 CertificateData::getSignature() const
 {
     return signature;
@@ -209,10 +209,12 @@ CertificateData::valid() const
         return false;
     }
 
-    if(!initHexCheck().isValid(signature)) {
-        LOGIT_DEBUG("invalid signature:" << signature);
-        return false;
-    }
+    /*
+      if(!initHexCheck().isValid(signature)) {
+      LOGIT_DEBUG("invalid signature:" << signature);
+      return false;
+      }
+    */
     if(!extensions.valid()) return false;
     
     return true;
@@ -246,9 +248,11 @@ CertificateData::verify() const
         result.append("invalid publicKey");
     }
 
-    if(!initHexCheck().isValid(signature)) {
-        result.append(Format("invalid signature: %1", signature).toString());
-    }
+    /*
+      if(!initHexCheck().isValid(signature)) {
+      result.append(Format("invalid signature: %1", signature).toString());
+      }
+    */
     result.appendArray(extensions.verify());
     
     LOGIT_DEBUG_STRINGARRAY("CertificateData::verify()", result);
@@ -278,7 +282,15 @@ CertificateData::dump() const
     }
     result.append("public Key = " + pk);
     result.append("signatureAlgorithm = "+ String(signatureAlgorithm));
-    result.append("Signature = " + signature);
+
+    String s;
+    for(int i = 0; i < signature.size(); ++i) {
+        String d;
+        d.format("%02x:", signature[i]);
+        s += d;
+    }
+
+    result.append("Signature = " + s);
     result.appendArray(extensions.dump());
 
     return result;
@@ -286,7 +298,12 @@ CertificateData::dump() const
 
 //    protected
 CertificateData::CertificateData()
-    : extensions(X509v3CertificateExtensions_Priv())
+    : version(0), serial(0), 
+      notBefore(0), notAfter(0),
+      issuer(DNObject()), subject(DNObject()),
+      keysize(2048), pubkeyAlgorithm(RSA),
+      publicKey(ByteArray()), signatureAlgorithm(SHA1RSA),
+      signature(ByteArray()), extensions(X509v3CertificateExtensions_Priv())
 {
 }
 

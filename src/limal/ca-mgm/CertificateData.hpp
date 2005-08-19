@@ -56,7 +56,7 @@ namespace CA_MGM_NAMESPACE {
         ByteArray      getPublicKey() const;
         SigAlg         getSignatureAlgorithm() const;
         String         getSignatureAlgorithmAsString() const;
-        String         getSignature() const;
+        ByteArray      getSignature() const;
         String         getFingerprint() const;
         X509v3CertificateExtensions getExtensions() const;
                 
@@ -86,7 +86,7 @@ namespace CA_MGM_NAMESPACE {
         ByteArray        publicKey;  
 
         SigAlg           signatureAlgorithm;
-        String           signature;      // better use ByteArray? see CIM schema.
+        ByteArray        signature;      // better use ByteArray? see CIM schema.
                                          // mit private key der CA verschlüsselter Hash wert
                                          // des Zertifikates
 
