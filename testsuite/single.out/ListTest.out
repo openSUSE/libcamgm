@@ -19,6 +19,12 @@ date = 2005-8-18 16:13:19
 emailAddress = suse@suse.de
 request = bc5324c7f5c2a27492fb6795745b596b-1124374399
 New Entry
+commonName = Full Test Certificate
+country = DE
+date = 2005-8-23 12:26:42
+emailAddress = suse@suse.de
+request = 40717a16174dc4d516f6fa7ee8eeb18c-1124792802
+New Entry
 commonName = Test Sub CA
 country = DE
 date = 2005-8-18 16:13:29
@@ -44,6 +50,13 @@ emailAddress = suse@suse.de
 request = 9198f6798d9da70d7cbfb67b610633f5-1124374406
 getRequestList successfully executed
 =================== start getCertificateList ==================
+New Entry
+certificate = 08:40717a16174dc4d516f6fa7ee8eeb18c-1124792802
+commonName = Full Test Certificate
+country = DE
+emailAddress = suse@suse.de
+serial = 08
+status = Valid
 New Entry
 certificate = 06:3e248858337c2b46dc67a0f9389376dd-1124374407
 commonName = Test Certificate for revocation 4
