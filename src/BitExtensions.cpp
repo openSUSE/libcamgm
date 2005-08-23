@@ -548,6 +548,7 @@ ExtendedKeyUsageExtension::ExtendedKeyUsageExtension(blocxx::UInt32 extKeyUsages
     setPresent(true);
 }
 
+
 ExtendedKeyUsageExtension::ExtendedKeyUsageExtension(const ExtendedKeyUsageExtension& extension)
     : BitExtension(extension), oids(extension.oids)
 {}
@@ -565,6 +566,41 @@ ExtendedKeyUsageExtension::operator=(const ExtendedKeyUsageExtension& extension)
     oids = extension.oids;
 
     return *this;
+}
+
+void
+ExtendedKeyUsageExtension::setExtendedKeyUsage(const StringList& usageList)
+{
+    blocxx::UInt32 bits = 0;
+    ValueCheck check = initOIDCheck();
+    StringList::const_iterator it = usageList.begin();
+    for(; it != usageList.end(); ++it) {
+        if((*it).equalsIgnoreCase("serverAuth"))            bits |= serverAuth; 
+        else if((*it).equalsIgnoreCase("clientAuth"))       bits |= clientAuth; 
+        else if((*it).equalsIgnoreCase("codeSigning"))      bits |= codeSigning; 
+        else if((*it).equalsIgnoreCase("emailProtection"))  bits |= emailProtection; 
+        else if((*it).equalsIgnoreCase("timeStamping"))     bits |= timeStamping; 
+        else if((*it).equalsIgnoreCase("msCodeInd"))        bits |= msCodeInd; 
+        else if((*it).equalsIgnoreCase("msCodeCom"))        bits |= msCodeCom; 
+        else if((*it).equalsIgnoreCase("msCTLSign"))        bits |= msCTLSign; 
+        else if((*it).equalsIgnoreCase("msSGC"))            bits |= msSGC; 
+        else if((*it).equalsIgnoreCase("msEFS"))            bits |= msEFS; 
+        else if((*it).equalsIgnoreCase("nsSGC"))            bits |= nsSGC; 
+        else if(check.isValid(*it)) {
+            oids.push_back(*it);
+        } else
+            LOGIT_INFO("Unknown ExtendedKeyUsage option: " << (*it));
+    }
+    setExtendedKeyUsage(bits);
+
+    if(value == 0 && oids.empty()) {
+        BLOCXX_THROW(limal::ValueException, "invalid ExtendedKeyUsageExtension.");
+    }
+
+    if(value > 0x7FF) {
+        BLOCXX_THROW(limal::ValueException, "invalid extKeyUsages value");
+    }
+    setPresent(true);
 }
 
 void

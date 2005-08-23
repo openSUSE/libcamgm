@@ -60,6 +60,16 @@ namespace CA_MGM_NAMESPACE {
     private:
 
         X509v3CertificateExtensions_Priv& operator=(const X509v3CertificateExtensions_Priv& extensions);
+
+        void parseStringExtension(X509* cert, int nid, StringExtension &ext);
+
+        void parseBitExtension(X509* cert, int nid, BitExtension &ext);
+
+        void parseExtKeyUsageExtension(X509* cert, ExtendedKeyUsageExtension &ext);
+
+        void parseBasicConstraintsExtension(X509* cert, BasicConstraintsExtension &ext);
+
+
     };
 
 }

@@ -42,9 +42,7 @@ namespace CA_MGM_NAMESPACE {
          * will be parsed.
          *
          */
-        CertificateData_Priv(const String &caName,
-                             const String &certificateName,
-                             const String &repository = REPOSITORY);
+        CertificateData_Priv(const String &certificatePath);
         CertificateData_Priv(const CertificateData_Priv& data);
         virtual ~CertificateData_Priv();
 

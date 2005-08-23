@@ -278,13 +278,15 @@ CertificateData::dump() const
     String pk;
     ByteArray::const_iterator it = publicKey.begin();
     for(; it != publicKey.end(); ++it) {
-        pk += *it + " ";
+        String s;
+        s.format("%02x", *it);
+        pk += s + ":";
     }
     result.append("public Key = " + pk);
     result.append("signatureAlgorithm = "+ String(signatureAlgorithm));
 
     String s;
-    for(int i = 0; i < signature.size(); ++i) {
+    for(uint i = 0; i < signature.size(); ++i) {
         String d;
         d.format("%02x:", signature[i]);
         s += d;

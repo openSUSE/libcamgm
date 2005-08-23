@@ -39,6 +39,7 @@
 
 #include  "Utils.hpp"
 #include  "DNObject_Priv.hpp"
+#include  "X509v3CertificateExtensions_Priv.hpp"
 
 using namespace limal;
 using namespace limal::ca_mgm;
@@ -49,23 +50,11 @@ CertificateData_Priv::CertificateData_Priv()
 {
 }
 
-CertificateData_Priv::CertificateData_Priv(const String &caName,
-                                           const String &certificateName,
-                                           const String &repository)
+CertificateData_Priv::CertificateData_Priv(const String &certificatePath)
     : CertificateData()
 {
     String sbuf;             // String buffer
-    path::PathInfo certFile;
-
-    if(certificateName == String()) {
-
-        certFile.setPath(repository + "/" + caName + "/cacert.pem");
-
-    } else {
-
-        certFile.setPath(repository + "/" + caName + "/newcerts/" + certificateName + ".pem");
-
-    }
+    path::PathInfo certFile(certificatePath);
 
     if(!certFile.exists()) {
 
@@ -131,6 +120,7 @@ CertificateData_Priv::CertificateData_Priv(const String &caName,
     char      *cbuf = new char[t->length + 1];
 
     memcpy(cbuf, t->data, t->length);
+    cbuf[t->length] = '\0';
 
     sbuf = String(cbuf);
     delete(cbuf);
@@ -145,17 +135,24 @@ CertificateData_Priv::CertificateData_Priv(const String &caName,
                      Format("Can not parse date: %1", sbuf).c_str());
 
     }
-    
-    DateTime dt(sa[1].toInt(), sa[2].toInt(), sa[3].toInt(),
+    int year = 1970;
+    if(sa[1].toInt() >= 70 && sa[1].toInt() <= 99) {
+        year = sa[1].toInt() + 1900;
+    } else {
+        year = sa[1].toInt() + 2000;
+    }
+
+    DateTime dt(year, sa[2].toInt(), sa[3].toInt(),
                 sa[4].toInt(), sa[5].toInt(), sa[6].toInt(),
                 0, DateTime::E_UTC_TIME);
     notBefore = dt.get();
 
     // get notAfter
-    t    = X509_get_notBefore(x509);
+    t    = X509_get_notAfter(x509);
     cbuf = new char[t->length + 1];
 
     memcpy(cbuf, t->data, t->length);
+    cbuf[t->length] = '\0';
 
     sbuf = String(cbuf);
     delete(cbuf);
@@ -169,8 +166,14 @@ CertificateData_Priv::CertificateData_Priv(const String &caName,
                      Format("Can not parse date: %1", sbuf).c_str());
 
     }
+    year = 1970;
+    if(sa[1].toInt() >= 70 && sa[1].toInt() <= 99) {
+        year = sa[1].toInt() + 1900;
+    } else {
+        year = sa[1].toInt() + 2000;
+    }
     
-    dt = DateTime(sa[1].toInt(), sa[2].toInt(), sa[3].toInt(),
+    dt = DateTime(year, sa[2].toInt(), sa[3].toInt(),
                   sa[4].toInt(), sa[5].toInt(), sa[6].toInt(),
                   0, DateTime::E_UTC_TIME);
     notAfter = dt.get();
@@ -300,9 +303,12 @@ CertificateData_Priv::CertificateData_Priv(const String &caName,
     }
 
     // get extensions
-    
-    EVP_PKEY_free(pkey);
 
+    extensions = X509v3CertificateExtensions_Priv(x509);
+
+
+    EVP_PKEY_free(pkey);
+    X509_free(x509);
 }
 
 CertificateData_Priv::CertificateData_Priv(const CertificateData_Priv& data)

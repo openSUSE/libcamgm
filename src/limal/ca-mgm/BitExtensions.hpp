@@ -154,6 +154,7 @@ namespace CA_MGM_NAMESPACE {
 
         ExtendedKeyUsageExtension& operator=(const ExtendedKeyUsageExtension& extension);
 
+        void                       setExtendedKeyUsage(const StringList& usageList);
         void                       setExtendedKeyUsage(blocxx::UInt32 extKeyUsages);
         blocxx::UInt32             getExtendedKeyUsage() const;
         

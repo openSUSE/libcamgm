@@ -583,7 +583,7 @@ CA::getRequestList()
 CertificateData
 CA::getCA()
 {
-    return CertificateData_Priv();
+    return CertificateData_Priv(repositoryDir + "/" + caName + "/cacert.pem");
 }
 
 
@@ -596,7 +596,7 @@ CA::getRequest(const String& requestName)
 CertificateData
 CA::getCertificate(const String& certificateName)
 {
-    return CertificateData_Priv();
+    return CertificateData_Priv(repositoryDir + "/" + caName + "/newcerts/" + certificateName + ".pem");
 }
 
 CRLData
