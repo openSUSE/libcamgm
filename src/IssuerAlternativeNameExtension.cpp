@@ -85,7 +85,7 @@ IssuerAlternativeNameExtension::IssuerAlternativeNameExtension(CAConfig* caConfi
 }
 
 IssuerAlternativeNameExtension::IssuerAlternativeNameExtension(const IssuerAlternativeNameExtension& extension)
-    :ExtensionBase(), issuerCopy(extension.issuerCopy),
+    :ExtensionBase(extension), issuerCopy(extension.issuerCopy),
      altNameList(extension.altNameList)
 {}
 
