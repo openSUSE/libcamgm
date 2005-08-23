@@ -37,16 +37,16 @@ namespace CA_MGM_NAMESPACE {
         AuthorityKeyIdentifierExtension_Priv();
         AuthorityKeyIdentifierExtension_Priv(X509* cert);
         AuthorityKeyIdentifierExtension_Priv(X509_CRL* crl);
-        virtual ~AuthorityKeyIdentifierExtension_Priv();
-        
-        void           setKeyID(const String& kid);
-        void           setDirName(const String& dirName);
-        void           setSerial(const String& serial);
-    private:
         AuthorityKeyIdentifierExtension_Priv(const AuthorityKeyIdentifierExtension_Priv& extension);
+        virtual ~AuthorityKeyIdentifierExtension_Priv();
         
         AuthorityKeyIdentifierExtension_Priv&
         operator=(const AuthorityKeyIdentifierExtension_Priv& extension);
+
+        void           setKeyID(const String& kid);
+        void           setDirName(const String& dirName);
+        void           setSerial(const String& serial);
+       
     };
 
 }

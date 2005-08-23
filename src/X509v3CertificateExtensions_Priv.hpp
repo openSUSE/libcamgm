@@ -69,6 +69,13 @@ namespace CA_MGM_NAMESPACE {
 
         void parseBasicConstraintsExtension(X509* cert, BasicConstraintsExtension &ext);
 
+        void parseSubjectKeyIdentifierExtension(X509 *cert, SubjectKeyIdentifierExtension &ext);
+
+        void parseSubjectAlternativeNameExtension(X509 *cert,SubjectAlternativeNameExtension &ext);
+
+        void parseIssuerAlternativeNameExtension(X509 *cert, IssuerAlternativeNameExtension &ext);
+
+
 
     };
 

@@ -20,6 +20,7 @@
 
 /-*/
 #include "X509v3CertificateExtensions_Priv.hpp"
+#include "AuthorityKeyIdentifierExtension_Priv.hpp"
 #include <limal/Exception.hpp>
 
 #include <openssl/x509v3.h>
@@ -34,6 +35,64 @@
 using namespace limal;
 using namespace limal::ca_mgm;
 using namespace blocxx;
+
+inline static LiteralValue gn2lv(GENERAL_NAME *gen)
+{
+    char oline[256];
+    char *s = NULL;
+    LiteralValue lv;
+
+    switch (gen->type) {
+        
+    case GEN_EMAIL:
+        s = new char[gen->d.ia5->length +1];
+        memcpy(s, gen->d.ia5->data, gen->d.ia5->length);
+        s[gen->d.ia5->length] = '\0';
+        lv.setLiteral("email", s);
+        delete(s);
+        break;
+
+    case GEN_DNS:
+        s = new char[gen->d.ia5->length +1];
+        memcpy(s, gen->d.ia5->data, gen->d.ia5->length);
+        s[gen->d.ia5->length] = '\0';
+        lv.setLiteral("DNS", s);
+        delete(s);
+        break;
+
+    case GEN_URI:
+        s = new char[gen->d.ia5->length +1];
+        memcpy(s, gen->d.ia5->data, gen->d.ia5->length);
+        s[gen->d.ia5->length] = '\0';
+        lv.setLiteral("URI", s);
+        delete(s);
+        break;
+
+    case GEN_DIRNAME:
+        X509_NAME_oneline(gen->d.dirn, oline, 256);
+        lv.setLiteral("DirName", oline);
+        break;
+
+    case GEN_IPADD:
+        unsigned char *p = gen->d.ip->data;
+        /* BUG: doesn't support IPV6 */
+        if(gen->d.ip->length != 4) {
+            LOGIT_ERROR("Invalid IP Address: maybe IPv6");
+            BLOCXX_THROW(limal::SyntaxException, "Invalid IP Address: maybe IPv6");
+            break;
+        }
+        BIO_snprintf(oline, sizeof oline,
+                     "%d.%d.%d.%d", p[0], p[1], p[2], p[3]);
+        lv.setLiteral("IP", oline);
+        break;
+
+    case GEN_RID:
+        i2t_ASN1_OBJECT(oline, 256, gen->d.rid);
+        lv.setLiteral("RID", oline);
+        break;
+    }
+    return lv;
+}
 
 X509v3CertificateExtensions_Priv::X509v3CertificateExtensions_Priv()
     : X509v3CertificateExtensions()
@@ -90,11 +149,19 @@ X509v3CertificateExtensions_Priv::X509v3CertificateExtensions_Priv(X509* cert)
 
     // SubjectKeyIdentifierExtension   subjectKeyIdentifier;
 
+    parseSubjectKeyIdentifierExtension(cert, subjectKeyIdentifier);
+
     // AuthorityKeyIdentifierExtension authorityKeyIdentifier;
+
+    authorityKeyIdentifier = AuthorityKeyIdentifierExtension_Priv(cert);
 
     // SubjectAlternativeNameExtension subjectAlternativeName;
 
+    parseSubjectAlternativeNameExtension(cert, subjectAlternativeName);
+
     // IssuerAlternativeNameExtension  issuerAlternativeName;
+
+    parseIssuerAlternativeNameExtension(cert, issuerAlternativeName);
 
     // AuthorityInfoAccessExtension    authorityInfoAccess;
 
@@ -519,4 +586,167 @@ X509v3CertificateExtensions_Priv::parseBasicConstraintsExtension(X509* cert,
     ext.setBasicConstraints(ca, pl);
 
     BASIC_CONSTRAINTS_free(bs);
+}
+
+void 
+X509v3CertificateExtensions_Priv::parseSubjectKeyIdentifierExtension(X509 *cert, 
+                                                                     SubjectKeyIdentifierExtension &ext)
+{
+    int crit = 0;
+    
+    ASN1_OCTET_STRING *ski = NULL;
+    ski = static_cast<ASN1_OCTET_STRING *>(X509_get_ext_d2i(cert, NID_subject_key_identifier, &crit, NULL));
+    
+    if(ski == NULL) {
+        
+        if(crit == -1) {
+            // extension not found
+            ext.setPresent(false);
+
+            return;
+
+        } else if(crit == -2) {
+            // extension occurred more than once 
+            LOGIT_ERROR("Extension occurred more than once");
+            BLOCXX_THROW(limal::SyntaxException,
+                         "Extension occurred more than once");
+
+        }
+
+        LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
+        BLOCXX_THROW(limal::SyntaxException,
+                     Format("Unable to parse the certificate (Crit: %2)", crit).c_str());
+    }
+
+    String s;
+
+    for(int i = 0; i < ski->length; ++i) {
+
+        String d;
+        d.format("%02x", ski->data[i]);
+
+        s += d;
+        if( (i+1) < ski->length) {
+
+            s += ":";
+
+        }
+    }
+
+    ext.setSubjectKeyIdentifier(false, s);
+
+    ASN1_OCTET_STRING_free(ski);
+}
+
+void 
+X509v3CertificateExtensions_Priv::parseSubjectAlternativeNameExtension(X509 *cert,
+                                                                       SubjectAlternativeNameExtension &ext)
+{
+    int crit = 0;
+    
+    GENERAL_NAMES *gns = NULL;
+    gns = static_cast<GENERAL_NAMES *>(X509_get_ext_d2i(cert, NID_subject_alt_name, &crit, NULL));
+    
+    if(gns == NULL) {
+        
+        if(crit == -1) {
+            // extension not found
+            ext.setPresent(false);
+
+            return;
+
+        } else if(crit == -2) {
+            // extension occurred more than once 
+            LOGIT_ERROR("Extension occurred more than once");
+            BLOCXX_THROW(limal::SyntaxException,
+                         "Extension occurred more than once");
+
+        }
+
+        LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
+        BLOCXX_THROW(limal::SyntaxException,
+                     Format("Unable to parse the certificate (Crit: %2)", crit).c_str());
+    }
+    
+    int j;
+    GENERAL_NAME *gen;
+    blocxx::List<LiteralValue> lvList;
+
+    for(j = 0; j < sk_GENERAL_NAME_num(gns); j++) {
+
+        gen = sk_GENERAL_NAME_value(gns, j);
+
+        LiteralValue lv = gn2lv(gen);
+
+        lvList.push_back(lv);
+    }
+
+    if(!lvList.empty()) {
+
+        ext.setSubjectAlternativeName(false, lvList);
+
+    } else {
+        
+        ext.setPresent(false);
+
+    }
+
+    GENERAL_NAMES_free(gns);
+}
+
+void 
+X509v3CertificateExtensions_Priv::parseIssuerAlternativeNameExtension(X509 *cert,
+                                                                      IssuerAlternativeNameExtension &ext)
+{
+    int crit = 0;
+    
+    GENERAL_NAMES *gns = NULL;
+    gns = static_cast<GENERAL_NAMES *>(X509_get_ext_d2i(cert, NID_issuer_alt_name, &crit, NULL));
+    
+    if(gns == NULL) {
+        
+        if(crit == -1) {
+            // extension not found
+            ext.setPresent(false);
+
+            return;
+
+        } else if(crit == -2) {
+            // extension occurred more than once 
+            LOGIT_ERROR("Extension occurred more than once");
+            BLOCXX_THROW(limal::SyntaxException,
+                         "Extension occurred more than once");
+
+        }
+
+        LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
+        BLOCXX_THROW(limal::SyntaxException,
+                     Format("Unable to parse the certificate (Crit: %2)", crit).c_str());
+    }
+    
+    int j;
+    GENERAL_NAME *gen;
+    blocxx::List<LiteralValue> lvList;
+
+    for(j = 0; j < sk_GENERAL_NAME_num(gns); j++) {
+
+        gen = sk_GENERAL_NAME_value(gns, j);
+
+        LiteralValue lv = gn2lv(gen);
+
+        lvList.push_back(lv);
+    }
+
+    if(!lvList.empty()) {
+
+        ext.setCopyIssuer(false);
+        ext.setAlternativeNameList(lvList);
+
+    } else {
+
+        ext.setPresent(false);
+
+    }
+
+    GENERAL_NAMES_free(gns);
 }
