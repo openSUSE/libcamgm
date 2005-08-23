@@ -67,7 +67,7 @@ StringExtension::operator=(const StringExtension& extension)
 NsBaseUrlExtension::NsBaseUrlExtension(const String &v)
     : StringExtension(v)
 {
-    if(!initURICheck().isValid(getValue())) {
+    if(!initURICheck().isValid(v)) {
         LOGIT_ERROR("invalid value for NsBaseUrlExtension");
         BLOCXX_THROW(limal::ValueException, "invalid value for NsBaseUrlExtension");
     }
