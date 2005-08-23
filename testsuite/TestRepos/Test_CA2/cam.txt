@@ -5,3 +5,4 @@
 b4d4e48e6de644c953290eb2854a6ced-1124374396 /C=DE/CN=Test CA\/SUSE Inc.\Gmbh/emailAddress=suse@suse.de
 bc5324c7f5c2a27492fb6795745b596b-1124374399 /C=DE/CN=Test Server Certificate\/SUSE Inc.\Gmbh/emailAddress=suse@suse.de
 d816690a832b0e52becd255d3a62e975-1124374403 /C=DE/CN=Test Certificate for revocation 2/emailAddress=suse@suse.de
+40717a16174dc4d516f6fa7ee8eeb18c-1124792802 /C=DE/CN=Full Test Certificate/emailAddress=suse@suse.de
