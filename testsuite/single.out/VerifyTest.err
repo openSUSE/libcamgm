@@ -27,6 +27,7 @@ SubCA_Test.pem => ce4e31c5.0
 Test_CA.pem => f01e457e.0
 
 DEBUG OPENSSL - OPENSSL->updateDB command: /usr/bin/openssl ca -updatedb -config ./TestRepos//Test_CA2/openssl.cnf -keyfile ./TestRepos//Test_CA2/cacert.key -passin env:pass -cert ./TestRepos//Test_CA2/cacert.pem
+DEBUG OPENSSL - OPENSSL->verify command: /usr/bin/openssl verify -CApath ./TestRepos//.cas/ -purpose any -crl_check_all ./TestRepos/Test_CA2/newcerts/08:40717a16174dc4d516f6fa7ee8eeb18c-1124792802.pem
 DEBUG OPENSSL - OPENSSL->verify command: /usr/bin/openssl verify -CApath ./TestRepos//.cas/ -purpose any -crl_check_all ./TestRepos/Test_CA2/newcerts/06:3e248858337c2b46dc67a0f9389376dd-1124374407.pem
 DEBUG OPENSSL -  OPENSSL->setError: errmsg:RuntimeException OPENSSL->verify: Certificate invalid! (certificate revoked / error 23 at 0 depth lookup:certificate revoked)
 DEBUG OPENSSL - OPENSSL->verify command: /usr/bin/openssl verify -CApath ./TestRepos//.cas/ -purpose any -crl_check_all ./TestRepos/Test_CA2/newcerts/02:bc5324c7f5c2a27492fb6795745b596b-1124374399.pem
@@ -39,14 +40,14 @@ DEBUG OPENSSL - OPENSSL->verify command: /usr/bin/openssl verify -CApath ./TestR
 DEBUG OPENSSL - OPENSSL->verify command: /usr/bin/openssl verify -CApath ./TestRepos//.cas/ -purpose any -crl_check_all ./TestRepos/Test_CA2/newcerts/04:d816690a832b0e52becd255d3a62e975-1124374403.pem
 DEBUG OPENSSL -  OPENSSL->setError: errmsg:RuntimeException OPENSSL->verify: Certificate invalid! (certificate revoked / error 23 at 0 depth lookup:certificate revoked)
 DEBUG limal - removeFile ./TestRepos/Test_CA2/openssl.cnf
-Attempt to free temp prematurely: SV 0x85c084c, Perl interpreter: 0x804f720 during global destruction.
-Attempt to free temp prematurely: SV 0x85c5da0, Perl interpreter: 0x804f720 during global destruction.
-Attempt to free temp prematurely: SV 0x85c5de8, Perl interpreter: 0x804f720 during global destruction.
-Attempt to free temp prematurely: SV 0x85c5efc, Perl interpreter: 0x804f720 during global destruction.
-Attempt to free temp prematurely: SV 0x85c63f4, Perl interpreter: 0x804f720 during global destruction.
-Attempt to free temp prematurely: SV 0x85c6568, Perl interpreter: 0x804f720 during global destruction.
-Attempt to free temp prematurely: SV 0x85c65d4, Perl interpreter: 0x804f720 during global destruction.
-Attempt to free temp prematurely: SV 0x858b244, Perl interpreter: 0x804f720 during global destruction.
+Attempt to free temp prematurely: SV 0x862a344, Perl interpreter: 0x804f720 during global destruction.
+Attempt to free temp prematurely: SV 0x862a368, Perl interpreter: 0x804f720 during global destruction.
+Attempt to free temp prematurely: SV 0x862a488, Perl interpreter: 0x804f720 during global destruction.
+Attempt to free temp prematurely: SV 0x8613924, Perl interpreter: 0x804f720 during global destruction.
+Attempt to free temp prematurely: SV 0x85c0d60, Perl interpreter: 0x804f720 during global destruction.
+Attempt to free temp prematurely: SV 0x85c0ea4, Perl interpreter: 0x804f720 during global destruction.
+Attempt to free temp prematurely: SV 0x85c1138, Perl interpreter: 0x804f720 during global destruction.
+Attempt to free temp prematurely: SV 0x8050424, Perl interpreter: 0x804f720 during global destruction.
 Unbalanced string table refcount: (2) for "PURPOSE" during global destruction.
 Unbalanced string table refcount: (2) for "CAPATH" during global destruction.
 Unbalanced string table refcount: (2) for "CRLCHECK" during global destruction.

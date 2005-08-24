@@ -1,5 +1,6 @@
 START
 =================== start Verify Test ======================
+08: Verify success
 06: Verify failed: Found revoked certificate
 02: Verify success
 05: Verify failed: Found revoked certificate
