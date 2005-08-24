@@ -68,7 +68,7 @@ CRLDistributionPointsExtension::CRLDistributionPointsExtension(CAConfig* caConfi
 }
 
 CRLDistributionPointsExtension::CRLDistributionPointsExtension(const CRLDistributionPointsExtension& extension)
-    : ExtensionBase(), altNameList(extension.altNameList)
+    : ExtensionBase(extension), altNameList(extension.altNameList)
 {}
 
 CRLDistributionPointsExtension::~CRLDistributionPointsExtension()

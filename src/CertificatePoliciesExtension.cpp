@@ -528,7 +528,7 @@ CertificatePoliciesExtension::CertificatePoliciesExtension(CAConfig* caConfig, T
 }
 
 CertificatePoliciesExtension::CertificatePoliciesExtension(const CertificatePoliciesExtension& extension)
-    : ExtensionBase(), ia5org(extension.ia5org), policies(extension.policies)
+    : ExtensionBase(extension), ia5org(extension.ia5org), policies(extension.policies)
 {}
 
 CertificatePoliciesExtension::~CertificatePoliciesExtension()
