@@ -68,8 +68,7 @@ int main()
         {
             CA ca("Test_CA2", "system", "./TestRepos/");
 
-            // FIXME: should be ca.getCA();
-            CertificateData cd = ca.getCertificate("08:40717a16174dc4d516f6fa7ee8eeb18c-1124792802");
+            CertificateData cd = ca.getCA();
 
             blocxx::Array<blocxx::String> ret = cd.dump();
 

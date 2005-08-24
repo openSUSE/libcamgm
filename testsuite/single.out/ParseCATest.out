@@ -63,31 +63,55 @@ ExtensionBase::dump()
 is Present = false
 NsCommentExtension::dump()
 ExtensionBase::dump()
-is Present = false
+is Present = true
+is Critical = false
+NS Comment = YaST Generated CA Certificate
 KeyUsageExtension::dump()
 ExtensionBase::dump()
-is Present = false
+is Present = true
+is Critical = false
+KeyUsage = 0x0006
 NsCertTypeExtension::dump()
 ExtensionBase::dump()
-is Present = false
+is Present = true
+is Critical = false
+NsCertType = 0x06
 BasicConstraintsExtension::dump()
 ExtensionBase::dump()
-is Present = false
+is Present = true
+is Critical = true
+CA = true
+pathlen = -1
 ExtendedKeyUsageExtension::dump()
 ExtensionBase::dump()
 is Present = false
 SubjectKeyIdentifierExtension::dump()
 ExtensionBase::dump()
-is Present = false
+is Present = true
+is Critical = false
+Autodetect = false
+KeyID = 32:00:c0:04:a4:2a:88:c2:3e:ca:d5:bd:d8:4c:d3:52:88:20:7f:3b
 AuthorityKeyIdentifierExtension::dump()
 ExtensionBase::dump()
-is Present = false
+is Present = true
+is Critical = false
+KeyID = 32:00:c0:04:a4:2a:88:c2:3e:ca:d5:bd:d8:4c:d3:52:88:20:7f:3b
+DirName = /C=DE/CN=Static Test CA/emailAddress=suse@suse.de
+serial = 8e:f1:ce:98:61:8f:64:9d
 SubjectAlternativeNameExtension::dump()
 ExtensionBase::dump()
-is Present = false
+is Present = true
+is Critical = false
+email:copy = false
+LiteralValue::dump()
+email:suse@suse.de
 IssuerAlternativeNameExtension::dump()
 ExtensionBase::dump()
-is Present = false
+is Present = true
+is Critical = false
+Issuer:copy = false
+LiteralValue::dump()
+email:suse@suse.de
 AuthorityInfoAccessExtension::dump()
 ExtensionBase::dump()
 is Present = false
