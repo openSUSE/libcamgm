@@ -927,7 +927,7 @@ X509v3CertificateExtensions_Priv::parseCertificatePoliciesExtension(X509 *cert,
         pinfo = sk_POLICYINFO_value(cps, i);
 
         i2t_ASN1_OBJECT(obj_tmp, sizeof obj_tmp, pinfo->policyid);
-        LOGIT_DEBUG("XXXXXXXXXX oid: " << obj_tmp);
+
         CertificatePolicy cp(obj_tmp);
 
         if(pinfo->qualifiers) {
