@@ -266,7 +266,7 @@ KeyUsageExtension::dump() const
     if(!isPresent()) return result;
 
     String ku;
-    ku.format("%02x", value);
+    ku.format("%04x", value);
     result.append("KeyUsage = 0x" + ku);
 
     return result;
@@ -276,7 +276,8 @@ KeyUsageExtension::dump() const
 bool
 KeyUsageExtension::validKeyUsage(blocxx::UInt32 keyUsage) const
 {
-    if(keyUsage > 0x1FF || keyUsage == 0) {
+    UInt32 mask = 0x80FF;
+    if( (keyUsage&mask) != keyUsage || keyUsage == 0) {
         return false;
     }
     return true;
