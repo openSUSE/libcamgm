@@ -165,9 +165,15 @@ X509v3CertificateExtensions_Priv::X509v3CertificateExtensions_Priv(X509* cert)
 
     // AuthorityInfoAccessExtension    authorityInfoAccess;
 
+    parseAuthorityInfoAccessExtension(cert, authorityInfoAccess);
+
     // CRLDistributionPointsExtension  crlDistributionPoints;
+    
+    parseCRLDistributionPointsExtension(cert, crlDistributionPoints);
 
     // CertificatePoliciesExtension    certificatePolicies;
+
+    parseCertificatePoliciesExtension(cert, certificatePolicies);
 
 }
 
@@ -749,4 +755,265 @@ X509v3CertificateExtensions_Priv::parseIssuerAlternativeNameExtension(X509 *cert
     }
 
     GENERAL_NAMES_free(gns);
+}
+
+void 
+X509v3CertificateExtensions_Priv::parseCRLDistributionPointsExtension(X509 *cert,
+                                                                      CRLDistributionPointsExtension &ext)
+{
+    int crit = 0;
+    
+    CRL_DIST_POINTS *cdps = NULL;
+    cdps = static_cast<CRL_DIST_POINTS *>(X509_get_ext_d2i(cert, NID_crl_distribution_points,
+                                                           &crit, NULL));
+    
+    if(cdps == NULL) {
+        
+        if(crit == -1) {
+            // extension not found
+            ext.setPresent(false);
+
+            return;
+
+        } else if(crit == -2) {
+            // extension occurred more than once 
+            LOGIT_ERROR("Extension occurred more than once");
+            BLOCXX_THROW(limal::SyntaxException,
+                         "Extension occurred more than once");
+
+        }
+
+        LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
+        BLOCXX_THROW(limal::SyntaxException,
+                     Format("Unable to parse the certificate (Crit: %2)", crit).c_str());
+    }
+
+    DIST_POINT *point;
+    int i, j;
+    GENERAL_NAME *gen;
+    blocxx::List<LiteralValue> lvList;
+
+    for(i = 0; i < sk_DIST_POINT_num(cdps); i++) {
+        point = sk_DIST_POINT_value(cdps, i);
+        if(point->distpoint) {
+            if(point->distpoint->type == 0) {
+                
+                for(j = 0; j < sk_GENERAL_NAME_num(point->distpoint->name.fullname); j++) {
+
+                    gen = sk_GENERAL_NAME_value(point->distpoint->name.fullname, j);
+                    
+                    LiteralValue lv = gn2lv(gen);
+                    
+                    lvList.push_back(lv);
+                }
+            } 
+        }
+    }
+
+    ext.setCRLDistributionPoints(lvList);
+
+    CRL_DIST_POINTS_free(cdps);
+}
+
+void 
+X509v3CertificateExtensions_Priv::parseAuthorityInfoAccessExtension(X509 *cert,
+                                                                    AuthorityInfoAccessExtension &ext)
+{
+    int crit = 0;
+    
+    AUTHORITY_INFO_ACCESS *ainf = NULL;
+    ainf = static_cast<AUTHORITY_INFO_ACCESS *>(X509_get_ext_d2i(cert, NID_info_access,
+                                                                 &crit, NULL));
+    
+    if(ainf == NULL) {
+        
+        if(crit == -1) {
+            // extension not found
+            ext.setPresent(false);
+
+            return;
+
+        } else if(crit == -2) {
+            // extension occurred more than once 
+            LOGIT_ERROR("Extension occurred more than once");
+            BLOCXX_THROW(limal::SyntaxException,
+                         "Extension occurred more than once");
+
+        }
+
+        LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
+        BLOCXX_THROW(limal::SyntaxException,
+                     Format("Unable to parse the certificate (Crit: %2)", crit).c_str());
+    }
+
+
+    ACCESS_DESCRIPTION *desc;
+    int i;
+    char objtmp[80];
+    blocxx::List<AuthorityInformation> infolist;
+
+
+    for(i = 0; i < sk_ACCESS_DESCRIPTION_num(ainf); i++) {
+
+        desc = sk_ACCESS_DESCRIPTION_value(ainf, i);
+
+        LiteralValue lv = gn2lv(desc->location);
+       
+        if(!lv.valid()) {
+            LOGIT_ERROR("Invalid location in authorityInfoAccess");
+            BLOCXX_THROW(limal::SyntaxException, "Invalid location in authorityInfoAccess");
+        }
+
+        String method;
+        
+        i2t_ASN1_OBJECT(objtmp, sizeof objtmp, desc->method);
+
+        int nid = OBJ_txt2nid(objtmp);
+
+        if(nid == 0) {
+            method = String(objtmp);
+        } else {
+            method = String(OBJ_nid2sn(nid));
+        }
+
+        AuthorityInformation ai(method, lv);
+
+        infolist.push_back(ai);
+    }
+
+    ext.setAuthorityInformation(infolist);
+    
+    AUTHORITY_INFO_ACCESS_free(ainf);
+}
+
+void 
+X509v3CertificateExtensions_Priv::parseCertificatePoliciesExtension(X509 *cert,
+                                                                    CertificatePoliciesExtension &ext)
+{
+    int crit = 0;
+    
+    CERTIFICATEPOLICIES *cps = NULL;
+    cps = static_cast<CERTIFICATEPOLICIES *>(X509_get_ext_d2i(cert, NID_certificate_policies,
+                                                                 &crit, NULL));
+    
+    if(cps == NULL) {
+        
+        if(crit == -1) {
+            // extension not found
+            ext.setPresent(false);
+
+            return;
+
+        } else if(crit == -2) {
+            // extension occurred more than once 
+            LOGIT_ERROR("Extension occurred more than once");
+            BLOCXX_THROW(limal::SyntaxException,
+                         "Extension occurred more than once");
+
+        }
+
+        LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
+        BLOCXX_THROW(limal::SyntaxException,
+                     Format("Unable to parse the certificate (Crit: %2)", crit).c_str());
+    }
+
+    int i;
+    POLICYINFO *pinfo;
+    char obj_tmp[256];
+    blocxx::List<CertificatePolicy> policies;
+
+    /* First print out the policy OIDs */
+    for(i = 0; i < sk_POLICYINFO_num(cps); i++) {
+        pinfo = sk_POLICYINFO_value(cps, i);
+
+        i2t_ASN1_OBJECT(obj_tmp, sizeof obj_tmp, pinfo->policyid);
+        LOGIT_DEBUG("XXXXXXXXXX oid: " << obj_tmp);
+        CertificatePolicy cp(obj_tmp);
+
+        if(pinfo->qualifiers) {
+
+            POLICYQUALINFO *qualinfo;
+            int j;
+            StringList cpsURI;
+            blocxx::List<UserNotice> noticeList;
+            UserNotice un;
+            char *s;
+
+            for(j = 0; j < sk_POLICYQUALINFO_num(pinfo->qualifiers); j++) {
+
+                qualinfo = sk_POLICYQUALINFO_value(pinfo->qualifiers, j);
+
+                switch(OBJ_obj2nid(qualinfo->pqualid)) {
+
+                case NID_id_qt_cps:
+                    s = new char[qualinfo->d.cpsuri->length +1];
+                    memcpy(s, qualinfo->d.cpsuri->data, qualinfo->d.cpsuri->length);
+                    s[qualinfo->d.cpsuri->length] = '\0';
+
+                    cpsURI.push_back(String(s));
+                    delete(s);
+                    break;
+                case NID_id_qt_unotice:
+                    int k;
+                    un = UserNotice();
+
+                    if(qualinfo->d.usernotice->noticeref) {
+
+                        NOTICEREF *ref;
+                        blocxx::List<blocxx::Int32> numberList;
+
+                        ref = qualinfo->d.usernotice->noticeref;
+
+                        for(k = 0; k < sk_ASN1_INTEGER_num(ref->noticenos); k++) {
+                            ASN1_INTEGER *num;
+                            char *tmp;
+
+                            num = sk_ASN1_INTEGER_value(ref->noticenos, k);
+                            tmp = i2s_ASN1_INTEGER(NULL, num);
+
+                            numberList.push_back(String(tmp).toInt32());
+
+                            OPENSSL_free(tmp);
+                        }
+
+                        s = new char[ref->organization->length +1];
+                        memcpy(s, ref->organization->data, ref->organization->length);
+                        s[ref->organization->length] = '\0';
+                        
+                        un.setOrganizationNotice(s, numberList);
+
+                        delete(s);
+                    }
+                    
+                    if(qualinfo->d.usernotice->exptext) {
+
+                        s = new char[qualinfo->d.usernotice->exptext->length +1];
+                        memcpy(s, qualinfo->d.usernotice->exptext->data,
+                               qualinfo->d.usernotice->exptext->length);
+                        s[qualinfo->d.usernotice->exptext->length] = '\0';
+                        
+                        un.setExplicitText(s);
+                        
+                        delete(s);
+                    }
+
+                    noticeList.push_back(un);
+                    break;
+                default:
+                    i2t_ASN1_OBJECT(obj_tmp, sizeof obj_tmp, qualinfo->pqualid);
+                    
+                    LOGIT_INFO("Unknown Qualifier: " << obj_tmp);
+                    break;
+                }
+                
+            }
+            cp.setCpsURI(cpsURI);
+            cp.setUserNoticeList(noticeList);
+        }
+        policies.push_back(cp);
+    }    
+
+    ext.setPolicies(policies);
+
+    CERTIFICATEPOLICIES_free(cps);
 }

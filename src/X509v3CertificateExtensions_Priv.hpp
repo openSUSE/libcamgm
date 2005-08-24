@@ -75,6 +75,11 @@ namespace CA_MGM_NAMESPACE {
 
         void parseIssuerAlternativeNameExtension(X509 *cert, IssuerAlternativeNameExtension &ext);
 
+        void parseCRLDistributionPointsExtension(X509 *cert, CRLDistributionPointsExtension &ext);
+
+        void parseAuthorityInfoAccessExtension(X509 *cert, AuthorityInfoAccessExtension &ext);
+
+        void parseCertificatePoliciesExtension(X509 *cert, CertificatePoliciesExtension &ext);
 
 
     };
