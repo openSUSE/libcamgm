@@ -38,12 +38,12 @@ KeyUsageExtension::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
-KeyUsage = 0x05
+KeyUsage = 0x00a0
 NsCertTypeExtension::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
-NsCertType = 0x02
+NsCertType = 0x40
 BasicConstraintsExtension::dump()
 ExtensionBase::dump()
 is Present = true
@@ -122,12 +122,12 @@ KeyUsageExtension::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
-KeyUsage = 0x05
+KeyUsage = 0x00a0
 NsCertTypeExtension::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
-NsCertType = 0x02
+NsCertType = 0x40
 BasicConstraintsExtension::dump()
 ExtensionBase::dump()
 is Present = false
