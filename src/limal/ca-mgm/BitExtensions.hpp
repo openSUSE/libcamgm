@@ -60,15 +60,15 @@ namespace CA_MGM_NAMESPACE {
     class KeyUsageExtension : public BitExtension {
     public:
         enum KeyUsage {
-            digitalSignature  = 0x0001,
-            nonRepudiation    = 0x0002,
-            keyEncipherment   = 0x0004,
-            dataEncipherment  = 0x0008,
-            keyAgreement      = 0x0010,
-            keyCertSign       = 0x0020,
-            cRLSign           = 0x0040,
-            encipherOnly      = 0x0080,
-            decipherOnly      = 0x0100
+            digitalSignature  = 0x0080, // KU_DIGITAL_SIGNATURE
+            nonRepudiation    = 0x0040, // KU_NON_REPUDIATION
+            keyEncipherment   = 0x0020, // KU_KEY_ENCIPHERMENT
+            dataEncipherment  = 0x0010, // KU_DATA_ENCIPHERMENT
+            keyAgreement      = 0x0008, // KU_KEY_AGREEMENT
+            keyCertSign       = 0x0004, // KU_KEY_CERT_SIGN
+            cRLSign           = 0x0002, // KU_CRL_SIGN
+            encipherOnly      = 0x0001, // KU_ENCIPHER_ONLY
+            decipherOnly      = 0x8000  // KU_DECIPHER_ONLY
         };
         
         KeyUsageExtension();
@@ -98,14 +98,14 @@ namespace CA_MGM_NAMESPACE {
     class NsCertTypeExtension : public BitExtension {
     public:
         enum NsCertType {
-            client   = 0x0001,
-            server   = 0x0002,
-            email    = 0x0004,
-            objsign  = 0x0008,
-            reserved = 0x0010,
-            sslCA    = 0x0020,
-            emailCA  = 0x0040,
-            objCA    = 0x0080
+            client   = 0x0080, // NS_SSL_CLIENT
+            server   = 0x0040, // NS_SSL_SERVER
+            email    = 0x0020, // NS_SMIME
+            objsign  = 0x0010, // NS_OBJSIGN
+            reserved = 0x0008, // ??
+            sslCA    = 0x0004, // NS_SSL_CA
+            emailCA  = 0x0002, // NS_SMIME_CA
+            objCA    = 0x0001  // NS_OBJSIGN_CA
         };
         
         NsCertTypeExtension();
