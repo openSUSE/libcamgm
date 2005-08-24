@@ -109,27 +109,27 @@ X509v3CertificateExtensions_Priv::X509v3CertificateExtensions_Priv(X509* cert)
 
     // NsRevocationUrlExtension   nsRevocationUrl;
     
-    parseStringExtension(cert, NID_netscape_revocation_url, nsBaseUrl);
+    parseStringExtension(cert, NID_netscape_revocation_url, nsRevocationUrl);
 
     // NsCaRevocationUrlExtension nsCaRevocationUrl;
     
-    parseStringExtension(cert, NID_netscape_ca_revocation_url, nsBaseUrl);
+    parseStringExtension(cert, NID_netscape_ca_revocation_url, nsCaRevocationUrl);
 
     // NsRenewalUrlExtension      nsRenewalUrl;
 
-    parseStringExtension(cert, NID_netscape_renewal_url, nsBaseUrl);
+    parseStringExtension(cert, NID_netscape_renewal_url, nsRenewalUrl);
 
     // NsCaPolicyUrlExtension     nsCaPolicyUrl;
 
-    parseStringExtension(cert, NID_netscape_ca_policy_url, nsBaseUrl);
+    parseStringExtension(cert, NID_netscape_ca_policy_url, nsCaPolicyUrl);
 
     // NsSslServerNameExtension   nsSslServerName;
 
-    parseStringExtension(cert, NID_netscape_ssl_server_name, nsBaseUrl);
+    parseStringExtension(cert, NID_netscape_ssl_server_name, nsSslServerName);
 
     // NsCommentExtension         nsComment;
 
-    parseStringExtension(cert, NID_netscape_comment, nsBaseUrl);
+    parseStringExtension(cert, NID_netscape_comment, nsComment);
 
     // KeyUsageExtension   keyUsage;
 
@@ -541,6 +541,12 @@ X509v3CertificateExtensions_Priv::parseExtKeyUsageExtension(X509* cert,
     }
     ext.setExtendedKeyUsage(usageList);
 
+    if(crit == 1) {
+        ext.setCritical(true);
+    } else {
+        ext.setCritical(false);
+    }
+
     EXTENDED_KEY_USAGE_free(eku);
 }
 
@@ -590,6 +596,12 @@ X509v3CertificateExtensions_Priv::parseBasicConstraintsExtension(X509* cert,
     }
 
     ext.setBasicConstraints(ca, pl);
+
+    if(crit == 1) {
+        ext.setCritical(true);
+    } else {
+        ext.setCritical(false);
+    }
 
     BASIC_CONSTRAINTS_free(bs);
 }
@@ -641,6 +653,12 @@ X509v3CertificateExtensions_Priv::parseSubjectKeyIdentifierExtension(X509 *cert,
 
     ext.setSubjectKeyIdentifier(false, s);
 
+    if(crit == 1) {
+        ext.setCritical(true);
+    } else {
+        ext.setCritical(false);
+    }
+
     ASN1_OCTET_STRING_free(ski);
 }
 
@@ -685,6 +703,12 @@ X509v3CertificateExtensions_Priv::parseSubjectAlternativeNameExtension(X509 *cer
         LiteralValue lv = gn2lv(gen);
 
         lvList.push_back(lv);
+    }
+
+    if(crit == 1) {
+        ext.setCritical(true);
+    } else {
+        ext.setCritical(false);
     }
 
     if(!lvList.empty()) {
@@ -741,6 +765,12 @@ X509v3CertificateExtensions_Priv::parseIssuerAlternativeNameExtension(X509 *cert
         LiteralValue lv = gn2lv(gen);
 
         lvList.push_back(lv);
+    }
+
+    if(crit == 1) {
+        ext.setCritical(true);
+    } else {
+        ext.setCritical(false);
     }
 
     if(!lvList.empty()) {
@@ -811,6 +841,12 @@ X509v3CertificateExtensions_Priv::parseCRLDistributionPointsExtension(X509 *cert
     }
 
     ext.setCRLDistributionPoints(lvList);
+
+    if(crit == 1) {
+        ext.setCritical(true);
+    } else {
+        ext.setCritical(false);
+    }
 
     CRL_DIST_POINTS_free(cdps);
 }
@@ -883,6 +919,12 @@ X509v3CertificateExtensions_Priv::parseAuthorityInfoAccessExtension(X509 *cert,
 
     ext.setAuthorityInformation(infolist);
     
+    if(crit == 1) {
+        ext.setCritical(true);
+    } else {
+        ext.setCritical(false);
+    }
+
     AUTHORITY_INFO_ACCESS_free(ainf);
 }
 
@@ -1014,6 +1056,12 @@ X509v3CertificateExtensions_Priv::parseCertificatePoliciesExtension(X509 *cert,
     }    
 
     ext.setPolicies(policies);
+
+    if(crit == 1) {
+        ext.setCritical(true);
+    } else {
+        ext.setCritical(false);
+    }
 
     CERTIFICATEPOLICIES_free(cps);
 }
