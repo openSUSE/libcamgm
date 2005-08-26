@@ -255,14 +255,14 @@ CRLReason::dump() const
         break;
     case CRLReason::keyCompromise:
         result.append("Revoke Reason = keyCompromise");
-        result.append("compromise Date =" + compromiseDate);
+        result.append("compromise Date =" + String(compromiseDate));
         break;
     case CRLReason::CACompromise:
         result.append("Revoke Reason = CACompromise");
-        result.append("compromise Date =" + compromiseDate);
+        result.append("compromise Date =" + String(compromiseDate));
         break;
     default:
-        result.append("Revoke Reason = " + reason);
+        result.append("Revoke Reason = " + String(reason));
         break;
     } 
 
