@@ -1,0 +1,100 @@
+START
+file: ParseRequestTest/testcase2.in
+Parse 52324820ee92ebe512780bec85174c14 in Test_CA2
+RequestData::dump()
+Version = 0
+DNObject::dump()
+RDNObject::dump()
+countryName=DE
+Prompt:
+Min:0
+Max:0
+RDNObject::dump()
+stateOrProvinceName=Bavaria
+Prompt:
+Min:0
+Max:0
+RDNObject::dump()
+localityName=Nuremberg
+Prompt:
+Min:0
+Max:0
+RDNObject::dump()
+organizationName=My Linux Tux GmbH
+Prompt:
+Min:0
+Max:0
+RDNObject::dump()
+organizationalUnitName=IT Abteilung
+Prompt:
+Min:0
+Max:0
+RDNObject::dump()
+commonName=Michael Calmer
+Prompt:
+Min:0
+Max:0
+RDNObject::dump()
+emailAddress=mc@suse.de
+Prompt:
+Min:0
+Max:0
+Keysize = 2048
+pubkeyAlgorithm = 0
+public Key = 30:82:01:22:30:0d:06:09:2a:86:48:86:f7:0d:01:01:01:05:00:03:82:01:0f:00:30:82:01:0a:02:82:01:01:00:96:d8:2f:01:60:a7:13:d3:33:e2:4b:3c:ab:16:60:86:09:d7:f1:fb:f9:b7:eb:f9:d3:5d:aa:5f:94:54:ee:ab:f7:d2:e2:bf:c1:0d:92:93:07:42:4f:24:4b:76:15:00:45:2b:fa:85:6f:21:e1:38:67:41:72:27:a6:b4:5c:e6:db:8f:5d:96:35:61:42:97:e5:04:16:fa:2b:62:23:9c:75:72:0c:1a:64:12:73:b4:96:49:d4:d9:8b:76:1c:aa:b9:0d:c1:24:4f:24:59:c1:50:ca:4c:a4:1a:60:1f:4c:52:df:15:9c:8d:f5:ef:ca:e1:24:39:2b:98:0f:f0:8c:00:9f:78:6a:ed:14:6e:fd:d2:d4:2a:13:90:58:da:b2:15:0d:25:b2:bd:52:0d:07:e9:35:34:7b:60:a8:ae:18:d5:7f:26:76:7b:a9:24:97:3d:57:ca:2e:eb:39:a9:47:21:f6:20:d6:dc:32:58:7f:af:49:4f:92:a2:22:8d:40:76:64:f1:30:16:74:9b:aa:72:1b:14:f1:7c:f9:14:6b:1f:59:b3:6a:01:95:2c:b7:ef:45:83:13:6f:fc:cc:a9:e3:9b:1c:26:e5:be:2a:47:d0:77:73:83:da:e7:67:26:8c:88:b3:93:9d:de:a7:b7:84:fa:b4:66:f9:4e:13:25:02:03:01:00:01:
+signatureAlgorithm = 0
+Signature = 6d:a8:a9:50:19:32:e0:e4:26:9e:36:c0:66:ea:c6:a8:4b:3b:fc:67:89:0e:81:b7:f7:c2:a0:8d:f3:20:cd:7d:90:8a:51:f2:bd:db:d2:a2:7f:c7:59:08:60:43:29:f6:2b:66:13:c9:6b:b0:19:64:2b:49:02:0d:a7:2e:ff:4c:84:5d:1d:42:fb:b7:7a:6a:94:5d:16:aa:07:cd:34:2b:da:64:36:b4:0b:82:39:80:67:3f:18:88:55:11:62:fa:f6:19:e3:12:67:af:80:c5:4d:cb:c0:70:2b:94:69:df:c6:37:a1:49:75:6e:c8:7d:f5:95:52:60:04:aa:cd:0c:49:dc:8d:8b:0f:a2:ce:74:de:d4:86:7d:39:4a:df:5b:1e:f6:81:96:bc:f6:b9:ed:6b:36:ce:87:27:e8:a6:01:bb:6f:3a:7e:90:02:d2:44:b1:5b:c5:5e:28:2f:4d:e6:0d:12:e7:61:8f:af:d6:56:8e:fe:b8:14:99:6a:6a:df:11:b3:1b:65:73:c8:78:b1:e6:da:7f:dc:94:1c:cf:b3:ff:f1:02:fb:51:96:f6:74:8b:36:61:eb:5e:2f:9e:7f:fb:1c:57:20:0b:bc:dc:20:dd:6e:3b:ca:d3:08:55:f2:9e:08:40:aa:72:4f:fe:19:d4:17:9c:08:e6:01:c7:98:
+X509v3RequestExtensions::dump()
+NsSslServerNameExtension::dump()
+ExtensionBase::dump()
+is Present = false
+NsCommentExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+NS Comment = Heide Witzka, Herr Kapitaen
+KeyUsageExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+KeyUsage = 0x00a0
+NsCertTypeExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+NsCertType = 0xa0
+BasicConstraintsExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = true
+CA = false
+pathlen = -1
+ExtendedKeyUsageExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+Extended KeyUsage = 0x0508
+SubjectKeyIdentifierExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = true
+Autodetect = false
+KeyID = 02:94:83:f1:bb:27:db:e2:a5:65:d8:54:95:ee:88:08:23:a3:ad:44
+SubjectAlternativeNameExtension::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+email:copy = false
+LiteralValue::dump()
+email:me@linux.tux
+LiteralValue::dump()
+URI:http://www.linux.tux/
+LiteralValue::dump()
+DNS:tait.linux.tux
+LiteralValue::dump()
+RID:1.2.3.4
+LiteralValue::dump()
+IP:10.10.0.161
+Challenge Password = tralla
+Unstructured Name = My unstructured Name
+DONE
