@@ -35,8 +35,7 @@ namespace CA_MGM_NAMESPACE {
     public:
 
         AuthorityKeyIdentifierExtension_Priv();
-        AuthorityKeyIdentifierExtension_Priv(X509* cert);
-        AuthorityKeyIdentifierExtension_Priv(X509_CRL* crl);
+        AuthorityKeyIdentifierExtension_Priv(STACK_OF(X509_EXTENSION)* extensions);
         AuthorityKeyIdentifierExtension_Priv(const AuthorityKeyIdentifierExtension_Priv& extension);
         virtual ~AuthorityKeyIdentifierExtension_Priv();
         

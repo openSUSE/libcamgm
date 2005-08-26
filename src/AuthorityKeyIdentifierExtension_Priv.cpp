@@ -39,14 +39,14 @@ AuthorityKeyIdentifierExtension_Priv::AuthorityKeyIdentifierExtension_Priv()
 {
 }
 
-AuthorityKeyIdentifierExtension_Priv::AuthorityKeyIdentifierExtension_Priv(X509* cert)
+AuthorityKeyIdentifierExtension_Priv::AuthorityKeyIdentifierExtension_Priv(STACK_OF(X509_EXTENSION)* extensions)
     : AuthorityKeyIdentifierExtension()
 {
     int crit = 0;
     
     AUTHORITY_KEYID *aki = NULL;
-    aki = static_cast<AUTHORITY_KEYID *>(X509_get_ext_d2i(cert, NID_authority_key_identifier,
-                                                          &crit, NULL));
+    aki = static_cast<AUTHORITY_KEYID *>(X509V3_get_d2i(extensions, NID_authority_key_identifier,
+                                                        &crit, NULL));
     
     if(aki == NULL) {
         
@@ -123,11 +123,6 @@ AuthorityKeyIdentifierExtension_Priv::AuthorityKeyIdentifierExtension_Priv(X509*
     setPresent(true);
 
     AUTHORITY_KEYID_free(aki);
-}
-
-AuthorityKeyIdentifierExtension_Priv::AuthorityKeyIdentifierExtension_Priv(X509_CRL* crl)
-    : AuthorityKeyIdentifierExtension()
-{
 }
 
 AuthorityKeyIdentifierExtension_Priv::AuthorityKeyIdentifierExtension_Priv(const AuthorityKeyIdentifierExtension_Priv& extension)
