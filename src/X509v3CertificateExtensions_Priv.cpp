@@ -100,80 +100,80 @@ X509v3CertificateExtensions_Priv::X509v3CertificateExtensions_Priv()
 }
 
 
-X509v3CertificateExtensions_Priv::X509v3CertificateExtensions_Priv(X509* cert)
+X509v3CertificateExtensions_Priv::X509v3CertificateExtensions_Priv(STACK_OF(X509_EXTENSION) *extensions)
     : X509v3CertificateExtensions()
 {
     // NsBaseUrlExtension         nsBaseUrl;
 
-    parseStringExtension(cert, NID_netscape_base_url, nsBaseUrl);
+    parseStringExtension(extensions, NID_netscape_base_url, nsBaseUrl);
 
     // NsRevocationUrlExtension   nsRevocationUrl;
     
-    parseStringExtension(cert, NID_netscape_revocation_url, nsRevocationUrl);
+    parseStringExtension(extensions, NID_netscape_revocation_url, nsRevocationUrl);
 
     // NsCaRevocationUrlExtension nsCaRevocationUrl;
     
-    parseStringExtension(cert, NID_netscape_ca_revocation_url, nsCaRevocationUrl);
+    parseStringExtension(extensions, NID_netscape_ca_revocation_url, nsCaRevocationUrl);
 
     // NsRenewalUrlExtension      nsRenewalUrl;
 
-    parseStringExtension(cert, NID_netscape_renewal_url, nsRenewalUrl);
+    parseStringExtension(extensions, NID_netscape_renewal_url, nsRenewalUrl);
 
     // NsCaPolicyUrlExtension     nsCaPolicyUrl;
 
-    parseStringExtension(cert, NID_netscape_ca_policy_url, nsCaPolicyUrl);
+    parseStringExtension(extensions, NID_netscape_ca_policy_url, nsCaPolicyUrl);
 
     // NsSslServerNameExtension   nsSslServerName;
 
-    parseStringExtension(cert, NID_netscape_ssl_server_name, nsSslServerName);
+    parseStringExtension(extensions, NID_netscape_ssl_server_name, nsSslServerName);
 
     // NsCommentExtension         nsComment;
 
-    parseStringExtension(cert, NID_netscape_comment, nsComment);
+    parseStringExtension(extensions, NID_netscape_comment, nsComment);
 
     // KeyUsageExtension   keyUsage;
 
-    parseBitExtension(cert, NID_key_usage, keyUsage);
+    parseBitExtension(extensions, NID_key_usage, keyUsage);
 
     // NsCertTypeExtension nsCertType;
 
-    parseBitExtension(cert, NID_netscape_cert_type, nsCertType);
+    parseBitExtension(extensions, NID_netscape_cert_type, nsCertType);
 
     // BasicConstraintsExtension       basicConstraints;
 
-    parseBasicConstraintsExtension(cert, basicConstraints);
+    parseBasicConstraintsExtension(extensions, basicConstraints);
 
     // ExtendedKeyUsageExtension       extendedKeyUsage;
 
-    parseExtKeyUsageExtension(cert, extendedKeyUsage);
+    parseExtKeyUsageExtension(extensions, extendedKeyUsage);
 
     // SubjectKeyIdentifierExtension   subjectKeyIdentifier;
 
-    parseSubjectKeyIdentifierExtension(cert, subjectKeyIdentifier);
+    parseSubjectKeyIdentifierExtension(extensions, subjectKeyIdentifier);
 
     // AuthorityKeyIdentifierExtension authorityKeyIdentifier;
 
-    authorityKeyIdentifier = AuthorityKeyIdentifierExtension_Priv(cert);
+    authorityKeyIdentifier = AuthorityKeyIdentifierExtension_Priv(extensions);
 
     // SubjectAlternativeNameExtension subjectAlternativeName;
 
-    parseSubjectAlternativeNameExtension(cert, subjectAlternativeName);
+    parseSubjectAlternativeNameExtension(extensions, subjectAlternativeName);
 
     // IssuerAlternativeNameExtension  issuerAlternativeName;
 
-    parseIssuerAlternativeNameExtension(cert, issuerAlternativeName);
+    parseIssuerAlternativeNameExtension(extensions, issuerAlternativeName);
 
     // AuthorityInfoAccessExtension    authorityInfoAccess;
 
-    parseAuthorityInfoAccessExtension(cert, authorityInfoAccess);
+    parseAuthorityInfoAccessExtension(extensions, authorityInfoAccess);
 
     // CRLDistributionPointsExtension  crlDistributionPoints;
     
-    parseCRLDistributionPointsExtension(cert, crlDistributionPoints);
+    parseCRLDistributionPointsExtension(extensions, crlDistributionPoints);
 
     // CertificatePoliciesExtension    certificatePolicies;
 
-    parseCertificatePoliciesExtension(cert, certificatePolicies);
+    parseCertificatePoliciesExtension(extensions, certificatePolicies);
 
 }
 
@@ -397,14 +397,14 @@ X509v3CertificateExtensions_Priv::operator=(const X509v3CertificateExtensions_Pr
     return *this;
 }
 
-void X509v3CertificateExtensions_Priv::parseStringExtension(X509* cert, 
+void X509v3CertificateExtensions_Priv::parseStringExtension(STACK_OF(X509_EXTENSION) * cert, 
                                                             int nid,
                                                             StringExtension &ext)
 {
     int crit = 0;
     
     ASN1_STRING *str = NULL;
-    str = static_cast<ASN1_STRING *>(X509_get_ext_d2i(cert, nid, &crit, NULL));
+    str = static_cast<ASN1_STRING *>(X509V3_get_d2i(cert, nid, &crit, NULL));
     
     if(str == NULL) {
         
@@ -444,14 +444,14 @@ void X509v3CertificateExtensions_Priv::parseStringExtension(X509* cert,
     ASN1_STRING_free(str);
 }
 
-void X509v3CertificateExtensions_Priv::parseBitExtension(X509* cert, 
+void X509v3CertificateExtensions_Priv::parseBitExtension(STACK_OF(X509_EXTENSION)* cert, 
                                                          int nid,
                                                          BitExtension &ext)
 {
     int crit = 0;
     
     ASN1_BIT_STRING *bit = NULL;
-    bit = static_cast<ASN1_BIT_STRING *>(X509_get_ext_d2i(cert, nid, &crit, NULL));
+    bit = static_cast<ASN1_BIT_STRING *>(X509V3_get_d2i(cert, nid, &crit, NULL));
     
     if(bit == NULL) {
         
@@ -496,13 +496,13 @@ void X509v3CertificateExtensions_Priv::parseBitExtension(X509* cert,
 }
 
 void 
-X509v3CertificateExtensions_Priv::parseExtKeyUsageExtension(X509* cert,
+X509v3CertificateExtensions_Priv::parseExtKeyUsageExtension(STACK_OF(X509_EXTENSION)* cert,
                                                             ExtendedKeyUsageExtension &ext)
 {
     int crit = 0;
     
     EXTENDED_KEY_USAGE *eku = NULL;
-    eku = static_cast<EXTENDED_KEY_USAGE *>(X509_get_ext_d2i(cert, NID_ext_key_usage, &crit, NULL));
+    eku = static_cast<EXTENDED_KEY_USAGE *>(X509V3_get_d2i(cert, NID_ext_key_usage, &crit, NULL));
     
     if(eku == NULL) {
         
@@ -551,13 +551,13 @@ X509v3CertificateExtensions_Priv::parseExtKeyUsageExtension(X509* cert,
 }
 
 void 
-X509v3CertificateExtensions_Priv::parseBasicConstraintsExtension(X509* cert,
+X509v3CertificateExtensions_Priv::parseBasicConstraintsExtension(STACK_OF(X509_EXTENSION)* cert,
                                                                  BasicConstraintsExtension &ext)
 {
     int crit = 0;
     
     BASIC_CONSTRAINTS *bs = NULL;
-    bs = static_cast<BASIC_CONSTRAINTS *>(X509_get_ext_d2i(cert, NID_basic_constraints, &crit, NULL));
+    bs = static_cast<BASIC_CONSTRAINTS *>(X509V3_get_d2i(cert, NID_basic_constraints, &crit, NULL));
     
     if(bs == NULL) {
         
@@ -607,13 +607,13 @@ X509v3CertificateExtensions_Priv::parseBasicConstraintsExtension(X509* cert,
 }
 
 void 
-X509v3CertificateExtensions_Priv::parseSubjectKeyIdentifierExtension(X509 *cert, 
+X509v3CertificateExtensions_Priv::parseSubjectKeyIdentifierExtension(STACK_OF(X509_EXTENSION) *cert, 
                                                                      SubjectKeyIdentifierExtension &ext)
 {
     int crit = 0;
     
     ASN1_OCTET_STRING *ski = NULL;
-    ski = static_cast<ASN1_OCTET_STRING *>(X509_get_ext_d2i(cert, NID_subject_key_identifier, &crit, NULL));
+    ski = static_cast<ASN1_OCTET_STRING *>(X509V3_get_d2i(cert, NID_subject_key_identifier, &crit, NULL));
     
     if(ski == NULL) {
         
@@ -663,13 +663,13 @@ X509v3CertificateExtensions_Priv::parseSubjectKeyIdentifierExtension(X509 *cert,
 }
 
 void 
-X509v3CertificateExtensions_Priv::parseSubjectAlternativeNameExtension(X509 *cert,
+X509v3CertificateExtensions_Priv::parseSubjectAlternativeNameExtension(STACK_OF(X509_EXTENSION) *cert,
                                                                        SubjectAlternativeNameExtension &ext)
 {
     int crit = 0;
     
     GENERAL_NAMES *gns = NULL;
-    gns = static_cast<GENERAL_NAMES *>(X509_get_ext_d2i(cert, NID_subject_alt_name, &crit, NULL));
+    gns = static_cast<GENERAL_NAMES *>(X509V3_get_d2i(cert, NID_subject_alt_name, &crit, NULL));
     
     if(gns == NULL) {
         
@@ -725,13 +725,13 @@ X509v3CertificateExtensions_Priv::parseSubjectAlternativeNameExtension(X509 *cer
 }
 
 void 
-X509v3CertificateExtensions_Priv::parseIssuerAlternativeNameExtension(X509 *cert,
+X509v3CertificateExtensions_Priv::parseIssuerAlternativeNameExtension(STACK_OF(X509_EXTENSION) *cert,
                                                                       IssuerAlternativeNameExtension &ext)
 {
     int crit = 0;
     
     GENERAL_NAMES *gns = NULL;
-    gns = static_cast<GENERAL_NAMES *>(X509_get_ext_d2i(cert, NID_issuer_alt_name, &crit, NULL));
+    gns = static_cast<GENERAL_NAMES *>(X509V3_get_d2i(cert, NID_issuer_alt_name, &crit, NULL));
     
     if(gns == NULL) {
         
@@ -788,14 +788,14 @@ X509v3CertificateExtensions_Priv::parseIssuerAlternativeNameExtension(X509 *cert
 }
 
 void 
-X509v3CertificateExtensions_Priv::parseCRLDistributionPointsExtension(X509 *cert,
+X509v3CertificateExtensions_Priv::parseCRLDistributionPointsExtension(STACK_OF(X509_EXTENSION) *cert,
                                                                       CRLDistributionPointsExtension &ext)
 {
     int crit = 0;
     
     CRL_DIST_POINTS *cdps = NULL;
-    cdps = static_cast<CRL_DIST_POINTS *>(X509_get_ext_d2i(cert, NID_crl_distribution_points,
-                                                           &crit, NULL));
+    cdps = static_cast<CRL_DIST_POINTS *>(X509V3_get_d2i(cert, NID_crl_distribution_points,
+                                                         &crit, NULL));
     
     if(cdps == NULL) {
         
@@ -852,14 +852,14 @@ X509v3CertificateExtensions_Priv::parseCRLDistributionPointsExtension(X509 *cert
 }
 
 void 
-X509v3CertificateExtensions_Priv::parseAuthorityInfoAccessExtension(X509 *cert,
+X509v3CertificateExtensions_Priv::parseAuthorityInfoAccessExtension(STACK_OF(X509_EXTENSION) *cert,
                                                                     AuthorityInfoAccessExtension &ext)
 {
     int crit = 0;
     
     AUTHORITY_INFO_ACCESS *ainf = NULL;
-    ainf = static_cast<AUTHORITY_INFO_ACCESS *>(X509_get_ext_d2i(cert, NID_info_access,
-                                                                 &crit, NULL));
+    ainf = static_cast<AUTHORITY_INFO_ACCESS *>(X509V3_get_d2i(cert, NID_info_access,
+                                                               &crit, NULL));
     
     if(ainf == NULL) {
         
@@ -929,14 +929,14 @@ X509v3CertificateExtensions_Priv::parseAuthorityInfoAccessExtension(X509 *cert,
 }
 
 void 
-X509v3CertificateExtensions_Priv::parseCertificatePoliciesExtension(X509 *cert,
+X509v3CertificateExtensions_Priv::parseCertificatePoliciesExtension(STACK_OF(X509_EXTENSION) *cert,
                                                                     CertificatePoliciesExtension &ext)
 {
     int crit = 0;
     
     CERTIFICATEPOLICIES *cps = NULL;
-    cps = static_cast<CERTIFICATEPOLICIES *>(X509_get_ext_d2i(cert, NID_certificate_policies,
-                                                                 &crit, NULL));
+    cps = static_cast<CERTIFICATEPOLICIES *>(X509V3_get_d2i(cert, NID_certificate_policies,
+                                                            &crit, NULL));
     
     if(cps == NULL) {
         

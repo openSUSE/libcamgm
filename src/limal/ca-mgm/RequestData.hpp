@@ -49,7 +49,7 @@ namespace CA_MGM_NAMESPACE {
         KeyAlg              getKeyAlgorithm() const;
         ByteArray           getPublicKey() const;
         SigAlg              getSignatureAlgorithm() const;
-        String              getSignature() const;
+        ByteArray           getSignature() const;
         String              getFingerprint() const;
         X509v3RequestExtensions getExtensions() const;
         String              getChallengePassword() const;
@@ -78,7 +78,7 @@ namespace CA_MGM_NAMESPACE {
         ByteArray        publicKey;  
 
         SigAlg           signatureAlgorithm;
-        String           signature;     // better use ByteArray? see CIM schema.
+        ByteArray        signature;     // better use ByteArray? see CIM schema.
                                         // mit private key verschlüsselter Hash wert
                                         // des Requests
 

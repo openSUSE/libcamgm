@@ -75,7 +75,7 @@ namespace CA_MGM_NAMESPACE {
         DNObject                     getIssuerDN() const;
         SigAlg                       getSignatureAlgorithm() const;
         String                       getSignatureAlgorithmAsString() const; 
-        String                       getSignature() const;
+        ByteArray                    getSignature() const;
         X509v3CRLExtensions          getExtensions() const;
         blocxx::Map<String, RevocationEntry> getRevocationData() const;
         RevocationEntry              getRevocationEntry(const String& oid);
@@ -95,7 +95,7 @@ namespace CA_MGM_NAMESPACE {
         DNObject         issuer;
 
         SigAlg           signatureAlgorithm;
-        String           signature;     // better use ByteArray? see CIM schema.
+        ByteArray        signature;     // better use ByteArray? see CIM schema.
                                         // mit private key der CA verschlüsselter Hash wert
                                         // des Zertifikates
         

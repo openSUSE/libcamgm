@@ -106,7 +106,7 @@ RequestData::getSignatureAlgorithm() const
     return signatureAlgorithm;
 }
 
-blocxx::String
+ByteArray
 RequestData::getSignature() const
 {
     return signature;
@@ -153,10 +153,6 @@ RequestData::valid() const
         return false;
     }
 
-    if(!initHexCheck().isValid(signature)) {
-        LOGIT_DEBUG("invalid signature:" << signature);
-        return false;
-    }
     if(!extensions.valid()) return false;
 
     return true;
@@ -179,9 +175,6 @@ RequestData::verify() const
         result.append("invalid publicKey");
     }
 
-    if(!initHexCheck().isValid(signature)) {
-        result.append(Format("invalid signature: %1", signature).toString());
-    }
     result.appendArray(extensions.verify());
 
     LOGIT_DEBUG_STRINGARRAY("CertificateData::verify()", result);
@@ -203,12 +196,23 @@ RequestData::dump() const
     String pk;
     ByteArray::const_iterator it = publicKey.begin();
     for(; it != publicKey.end(); ++it) {
-        pk += *it + " ";
+        String s;
+        s.format("%02x", *it);
+        pk += s + ":";
     }
     result.append("public Key = " + pk);
     
     result.append("signatureAlgorithm = "+ String(signatureAlgorithm));
-    result.append("Signature = " + signature);
+
+    String s;
+    for(uint i = 0; i < signature.size(); ++i) {
+        String d;
+        d.format("%02x:", signature[i]);
+        s += d;
+    }
+
+    result.append("Signature = " + s);
+
     result.appendArray(extensions.dump());
     result.append("Challenge Password = " + challengePassword);
     result.append("Unstructured Name = " + unstructuredName);
@@ -225,7 +229,7 @@ RequestData::RequestData()
       pubkeyAlgorithm(RSA),
       publicKey(ByteArray()),
       signatureAlgorithm(SHA1RSA),
-      signature(""),
+      signature(ByteArray()),
       extensions(X509v3RequestExtensions_Priv()),
       challengePassword(""), 
       unstructuredName("")

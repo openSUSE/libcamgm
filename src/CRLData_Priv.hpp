@@ -51,7 +51,7 @@ namespace CA_MGM_NAMESPACE {
     class CRLData_Priv : public CRLData {
     public:
         CRLData_Priv();
-        CRLData_Priv(const String &caName);
+        CRLData_Priv(const String &crlPath);
         CRLData_Priv(const CRLData_Priv& data);
         virtual ~CRLData_Priv();
 
@@ -60,13 +60,14 @@ namespace CA_MGM_NAMESPACE {
                                  time_t next);
         void   setIssuerDN(const DNObject& issuer);
         void   setSignatureAlgorithm(SigAlg sigAlg);
-        void   setSignature(const String& sig);
+        void   setSignature(const ByteArray& sig);
         void   setExtensions(const X509v3CRLExtensions& ext);
         void   setRevocationData(const blocxx::Map<String, RevocationEntry>& data);
 
     private:
         
         CRLData_Priv& operator=(const CRLData_Priv& data);
+
     };
 
 }

@@ -34,7 +34,7 @@ namespace CA_MGM_NAMESPACE {
     class X509v3CertificateExtensions_Priv : public X509v3CertificateExtensions {
     public:
         X509v3CertificateExtensions_Priv();
-        X509v3CertificateExtensions_Priv(X509* cert);
+        X509v3CertificateExtensions_Priv(STACK_OF(X509_EXTENSION) *extensions);
         X509v3CertificateExtensions_Priv(const X509v3CertificateExtensions_Priv& extensions);
         virtual ~X509v3CertificateExtensions_Priv();
 
@@ -61,25 +61,31 @@ namespace CA_MGM_NAMESPACE {
 
         X509v3CertificateExtensions_Priv& operator=(const X509v3CertificateExtensions_Priv& extensions);
 
-        void parseStringExtension(X509* cert, int nid, StringExtension &ext);
+        void parseStringExtension(STACK_OF(X509_EXTENSION)* cert, int nid, StringExtension &ext);
 
-        void parseBitExtension(X509* cert, int nid, BitExtension &ext);
+        void parseBitExtension(STACK_OF(X509_EXTENSION)* cert, int nid, BitExtension &ext);
 
-        void parseExtKeyUsageExtension(X509* cert, ExtendedKeyUsageExtension &ext);
+        void parseExtKeyUsageExtension(STACK_OF(X509_EXTENSION)* cert, ExtendedKeyUsageExtension &ext);
 
-        void parseBasicConstraintsExtension(X509* cert, BasicConstraintsExtension &ext);
+        void parseBasicConstraintsExtension(STACK_OF(X509_EXTENSION)* cert, BasicConstraintsExtension &ext);
 
-        void parseSubjectKeyIdentifierExtension(X509 *cert, SubjectKeyIdentifierExtension &ext);
+        void parseSubjectKeyIdentifierExtension(STACK_OF(X509_EXTENSION) *cert,
+                                                SubjectKeyIdentifierExtension &ext);
 
-        void parseSubjectAlternativeNameExtension(X509 *cert,SubjectAlternativeNameExtension &ext);
+        void parseSubjectAlternativeNameExtension(STACK_OF(X509_EXTENSION) *cert,
+                                                  SubjectAlternativeNameExtension &ext);
 
-        void parseIssuerAlternativeNameExtension(X509 *cert, IssuerAlternativeNameExtension &ext);
+        void parseIssuerAlternativeNameExtension(STACK_OF(X509_EXTENSION) *cert,
+                                                 IssuerAlternativeNameExtension &ext);
 
-        void parseCRLDistributionPointsExtension(X509 *cert, CRLDistributionPointsExtension &ext);
+        void parseCRLDistributionPointsExtension(STACK_OF(X509_EXTENSION) *cert,
+                                                 CRLDistributionPointsExtension &ext);
 
-        void parseAuthorityInfoAccessExtension(X509 *cert, AuthorityInfoAccessExtension &ext);
+        void parseAuthorityInfoAccessExtension(STACK_OF(X509_EXTENSION) *cert,
+                                               AuthorityInfoAccessExtension &ext);
 
-        void parseCertificatePoliciesExtension(X509 *cert, CertificatePoliciesExtension &ext);
+        void parseCertificatePoliciesExtension(STACK_OF(X509_EXTENSION) *cert,
+                                               CertificatePoliciesExtension &ext);
 
 
     };

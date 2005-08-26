@@ -304,7 +304,7 @@ CertificateData_Priv::CertificateData_Priv(const String &certificatePath)
 
     // get extensions
 
-    extensions = X509v3CertificateExtensions_Priv(x509);
+    extensions = X509v3CertificateExtensions_Priv(x509->cert_info->extensions);
 
 
     EVP_PKEY_free(pkey);

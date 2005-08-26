@@ -33,8 +33,7 @@ namespace CA_MGM_NAMESPACE {
     class RequestData_Priv : public RequestData {
     public:
         RequestData_Priv();
-        RequestData_Priv(const String& caName,
-                        const String& requestName);
+        RequestData_Priv(const String& requestPath);
         RequestData_Priv(const RequestData_Priv& data);
         virtual ~RequestData_Priv();
 
@@ -44,7 +43,7 @@ namespace CA_MGM_NAMESPACE {
         void                setKeyAlgorithm(KeyAlg alg);
         void                setPublicKey(const ByteArray key);
         void                setSignatureAlgorithm(SigAlg alg);
-        void                setSignature(const String &sig);
+        void                setSignature(const ByteArray &sig);
         void                setExtensions(const X509v3RequestExtensions &ext);
         void                setChallengePassword(const String &passwd);
         void                setUnstructuredName(const String &name);

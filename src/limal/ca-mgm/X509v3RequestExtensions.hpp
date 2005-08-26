@@ -84,7 +84,7 @@ namespace CA_MGM_NAMESPACE {
 
         virtual blocxx::StringArray  dump() const;
 
-    private:
+    protected:
 
         /* String extensions */
 

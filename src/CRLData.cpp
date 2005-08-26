@@ -1,4 +1,4 @@
-/*---------------------------------------------------------------------\
+#/*---------------------------------------------------------------------\
 |                                                                      |
 |                     _     _   _   _     __     _                     |
 |                    | |   | | | \_/ |   /  \   | |                    |
@@ -25,6 +25,7 @@
 #include  <limal/Exception.hpp>
 #include  <blocxx/Format.hpp>
 
+#include  "DNObject_Priv.hpp"
 #include  "Utils.hpp"
 #include  "X509v3CRLExtensions_Priv.hpp"
 
@@ -108,7 +109,7 @@ RevocationEntry::dump() const
     result.append("RevocationEntry::dump()");
 
     result.append("Serial = " + serial);
-    result.append("revocation Date = " + revocationDate);
+    result.append("revocation Date = " + String(revocationDate));
     result.appendArray(revocationReason.dump());
 
     return result;
@@ -181,7 +182,7 @@ CRLData::getSignatureAlgorithmAsString() const
     return String();
 }
 
-blocxx::String
+ByteArray
 CRLData::getSignature() const
 {
     return signature;
@@ -222,11 +223,6 @@ CRLData::valid() const
     }
     if(!issuer.valid())  return false;
 
-    if(!initHexCheck().isValid(signature)) {
-        LOGIT_DEBUG("invalid signature:" << signature);
-        return false;
-    }
-
     if(!extensions.valid()) return false;
 
     StringArray r = checkRevocationData(revocationData);
@@ -253,11 +249,6 @@ CRLData::verify() const
     }
     result.appendArray(issuer.verify());
 
-    ValueCheck checkHex = initHexCheck();
-    if(!checkHex.isValid(signature)) {
-        result.append(Format("invalid signature: %1", signature).toString());
-    }
-
     result.appendArray(extensions.verify());
     result.appendArray(checkRevocationData(revocationData));
 
@@ -270,14 +261,22 @@ blocxx::StringArray
 CRLData::dump() const
 {
     StringArray result;
-    result.append("::dump()");
+    result.append("CRLData::dump()");
 
     result.append("Version = " + String(version));
     result.append("last Update = " + String(lastUpdate));
     result.append("next Update = " + String(nextUpdate));
     result.appendArray(issuer.dump());
     result.append("signatureAlgorithm = "+ String(signatureAlgorithm));
-    result.append("Signature = " + signature);
+
+    String s;
+    for(uint i = 0; i < signature.size(); ++i) {
+        String d;
+        d.format("%02x:", signature[i]);
+        s += d;
+    }
+    result.append("Signature = " + s);
+
     result.appendArray(extensions.dump());
 
     blocxx::Map< String, RevocationEntry >::const_iterator it = revocationData.begin();
@@ -291,7 +290,11 @@ CRLData::dump() const
 
 //    protected:
 CRLData::CRLData()
-    : extensions(X509v3CRLExtensions_Priv())
+    : version(0), lastUpdate(0),
+      nextUpdate(0), issuer(DNObject()),
+      signatureAlgorithm(SHA1RSA), signature(ByteArray()),
+      extensions(X509v3CRLExtensions_Priv()), 
+      revocationData(blocxx::Map<String, RevocationEntry>())
 {
 }
 

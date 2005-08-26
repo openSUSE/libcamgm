@@ -34,13 +34,27 @@ namespace CA_MGM_NAMESPACE {
     class X509v3RequestExtensions_Priv : public X509v3RequestExtensions {
     public:
         X509v3RequestExtensions_Priv();
-        X509v3RequestExtensions_Priv(X509_REQ* req);
+        X509v3RequestExtensions_Priv(STACK_OF(X509_EXTENSION)* extensions);
         X509v3RequestExtensions_Priv(const X509v3RequestExtensions_Priv& extensions);
         virtual ~X509v3RequestExtensions_Priv();
 
     private:
 
         X509v3RequestExtensions_Priv& operator=(const X509v3RequestExtensions_Priv& extensions);
+
+        void parseStringExtension(STACK_OF(X509_EXTENSION)* cert, int nid, StringExtension &ext);
+
+        void parseBitExtension(STACK_OF(X509_EXTENSION)* cert, int nid, BitExtension &ext);
+
+        void parseExtKeyUsageExtension(STACK_OF(X509_EXTENSION)* cert, ExtendedKeyUsageExtension &ext);
+
+        void parseBasicConstraintsExtension(STACK_OF(X509_EXTENSION)* cert, BasicConstraintsExtension &ext);
+
+        void parseSubjectKeyIdentifierExtension(STACK_OF(X509_EXTENSION) *cert,
+                                                SubjectKeyIdentifierExtension &ext);
+
+        void parseSubjectAlternativeNameExtension(STACK_OF(X509_EXTENSION) *cert,
+                                                  SubjectAlternativeNameExtension &ext);
 
     };
 }

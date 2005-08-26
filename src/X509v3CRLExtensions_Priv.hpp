@@ -34,7 +34,7 @@ namespace CA_MGM_NAMESPACE {
     class X509v3CRLExtensions_Priv : public X509v3CRLExtensions {
     public:
         X509v3CRLExtensions_Priv();
-        X509v3CRLExtensions_Priv(X509_CRL* crl);
+        X509v3CRLExtensions_Priv(STACK_OF(X509_EXTENSION) *extensions);
         X509v3CRLExtensions_Priv(const X509v3CRLExtensions_Priv& extensions);
         virtual ~X509v3CRLExtensions_Priv();
 
@@ -44,6 +44,9 @@ namespace CA_MGM_NAMESPACE {
     private:
 
         X509v3CRLExtensions_Priv& operator=(const X509v3CRLExtensions_Priv& extensions);
+
+        void parseIssuerAlternativeNameExtension(STACK_OF(X509_EXTENSION) *cert,
+                                                 IssuerAlternativeNameExtension &ext);
 
     };
 
