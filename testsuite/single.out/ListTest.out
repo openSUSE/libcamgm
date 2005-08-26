@@ -19,6 +19,16 @@ date = 2005-8-18 16:13:19
 emailAddress = suse@suse.de
 request = bc5324c7f5c2a27492fb6795745b596b-1124374399
 New Entry
+commonName = Michael Calmer
+country = DE
+date = 
+emailAddress = mc@suse.de
+localityName = Nuremberg
+organizationName = My Linux Tux GmbH
+organizationalUnitName = IT Abteilung
+request = 52324820ee92ebe512780bec85174c14
+stateOrProvinceName = Bavaria
+New Entry
 commonName = Full Test Certificate
 country = DE
 date = 2005-8-23 12:26:42
