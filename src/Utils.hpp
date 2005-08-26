@@ -59,10 +59,10 @@
         }                                                               \
     } 
 
-
+// FIXME: what is the format of a hex number?? 0a:0f or 0a0f
 inline static limal::ValueCheck initHexCheck() {
     limal::ValueCheck checkHex =
-        limal::ValueCheck(new limal::ValuePosixRECheck("^([0-9a-fA-F]{2}:)+[0-9a-fA-F]{2}$" ));
+        limal::ValueCheck(new limal::ValuePosixRECheck("^([0-9a-fA-F]{2}:)*[0-9a-fA-F]{2}$" ));
     
     return checkHex;
 }
