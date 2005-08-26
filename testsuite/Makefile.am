@@ -25,7 +25,7 @@ noinst_PROGRAMS = CAConfig.single CA1.single CA2.multi \
                   RemoveRequestTest.single RevxRemoveCertificateTest.single \
                   VerifyTest.single ParseCATest.single \
                   CertificateTest3.single ParseCertificateTest.multi \
-                  ParseRequestTest.multi
+                  ParseRequestTest.multi ParseCRLTest.multi
 
 CAConfig_single_SOURCES = CAConfig.cc
 
@@ -79,6 +79,8 @@ ParseCertificateTest_multi_SOURCES = ParseCertificateTest.cc perlxsi.cpp
 
 ParseRequestTest_multi_SOURCES = ParseRequestTest.cc perlxsi.cpp
 
+ParseCRLTest_multi_SOURCES = ParseCRLTest.cc perlxsi.cpp
+
 clean-local:
 	rm -f tmp.err.* tmp.out.* site.exp site.bak openssl.cnf.tmpl.test
 	rm -f *~ perlxsi.cpp
@@ -89,6 +91,9 @@ clean-local:
 	rm -rf CA6/out
 	rm -rf CA7/out
 	rm -rf single.out/out
+	rm -rf ParseCertificateTest/out
+	rm -rf ParseRequestTest/out
+	rm -rf ParseCRLTest/out
 
 perlxsi.cpp:
 	perl -MExtUtils::Embed -e xsinit -- -o $@
@@ -96,4 +101,5 @@ perlxsi.cpp:
 EXTRA_DIST = test_multi/*.in test_multi/*.out test_multi/*.err \
              perl_test/*.in perl_test/*.out perl_test/*.err \
              CA2/*.* CA3/*.* CA4/*.* CA5/*.* \
-             CA6/*.* CA7/*.*
+             CA6/*.* CA7/*.* ParseCertificateTest/*.* \
+             ParseRequestTest/*.* ParseCRLTest/*.*
