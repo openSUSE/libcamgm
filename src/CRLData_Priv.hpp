@@ -26,6 +26,8 @@
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <limal/ca-mgm/CRLData.hpp>
 
+#include  <openssl/x509.h>
+
 namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
@@ -33,6 +35,7 @@ namespace CA_MGM_NAMESPACE {
     class RevocationEntry_Priv : public RevocationEntry {
     public:
         RevocationEntry_Priv();
+        RevocationEntry_Priv(X509_REVOKED *rev);
         RevocationEntry_Priv(const String&    serial, 
                              time_t           revokeDate,
                              const CRLReason& reason);

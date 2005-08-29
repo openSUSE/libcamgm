@@ -53,7 +53,8 @@ liblimal_ca_mgm_la_SOURCES  =	\
 	RequestData_Priv.cpp \
 	X509v3CertificateExtensions_Priv.cpp \
 	X509v3CRLExtensions_Priv.cpp \
-	X509v3RequestExtensions_Priv.cpp 
+	X509v3RequestExtensions_Priv.cpp \
+    CRLReason_Priv.cpp
 
 liblimal_ca_mgm_la_CXXFLAGS = $(LIMAL_CFLAGS)
 

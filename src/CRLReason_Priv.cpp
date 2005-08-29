@@ -1,0 +1,144 @@
+/*---------------------------------------------------------------------\
+|                                                                      |
+|                     _     _   _   _     __     _                     |
+|                    | |   | | | \_/ |   /  \   | |                    |
+|                    | |   | | | |_| |  / /\ \  | |                    |
+|                    | |__ | | | | | | / ____ \ | |__                  |
+|                    |____||_| |_| |_|/ /    \ \|____|                 |
+|                                                                      |
+|                             ca-mgm library                           |
+|                                                                      |
+|                                         (C) SUSE Linux Products GmbH |
+\----------------------------------------------------------------------/
+
+  File:       CRLReason_Priv.cpp
+
+  Author:     <Michael Calmer>     <mc@suse.de>
+  Maintainer: <Michael Calmer>     <mc@suse.de>
+
+  Purpose:
+
+/-*/
+#include  "CRLReason_Priv.hpp"
+
+#include <openssl/x509v3.h>
+#include <openssl/pem.h>
+#include <openssl/bio.h>
+#include <openssl/rsa.h>
+#include <openssl/x509.h>
+#include <openssl/evp.h>
+
+#include  <fstream>
+#include  <iostream>
+
+#include  <limal/Exception.hpp>
+#include  <blocxx/Format.hpp>
+#include  <blocxx/DateTime.hpp>
+
+#include  "Utils.hpp"
+
+using namespace limal;
+using namespace limal::ca_mgm;
+using namespace blocxx;
+
+
+CRLReason_Priv::CRLReason_Priv()
+    : CRLReason()
+{}
+
+CRLReason_Priv::CRLReason_Priv(STACK_OF(X509_EXTENSION) *stack)
+    : CRLReason()
+{
+    for(int x = 0; x < sk_X509_EXTENSION_num(stack); x++) {
+        
+        X509_EXTENSION *xe = sk_X509_EXTENSION_value(stack, x);
+
+        int nid = 0;
+        String valueString;
+        char *value;
+        char obj_tmp[80];
+        BIO *out;
+
+        i2t_ASN1_OBJECT(obj_tmp, 80, xe->object);
+        nid = OBJ_txt2nid(obj_tmp);
+        
+        LOGIT_DEBUG("NID: " << obj_tmp << " " << nid);
+        
+        out = BIO_new(BIO_s_mem());
+        X509V3_EXT_print(out, xe, 0, 1);
+        
+        int n = BIO_get_mem_data(out, &value);
+        valueString = String(value, n);
+        valueString.ltrim();
+        valueString.rtrim();
+        BIO_free(out);
+
+        LOGIT_DEBUG("Value: " << valueString);
+        
+        if(nid == NID_crl_reason) {
+            
+            if(valueString == "Unspecified") {
+                setReason(CRLReason::unspecified);
+            } else if(valueString == "Key Compromise") {
+                setReason(CRLReason::keyCompromise);
+            } else if(valueString == "CA Compromise") {
+                setReason(CRLReason::CACompromise);
+            } else if(valueString == "Affiliation Changed") {
+                setReason(CRLReason::affiliationChanged);
+            } else if(valueString == "Superseded") {
+                setReason(CRLReason::superseded);
+            } else if(valueString == "Cessation Of Operation") {
+                setReason(CRLReason::cessationOfOperation);
+            } else if(valueString == "Certificate Hold") {
+                setReason(CRLReason::certificateHold);
+            } else if(valueString == "Remove From CRL") {
+                setReason(CRLReason::removeFromCRL);
+            } else {
+                LOGIT_INFO("Unknown CRL reason:" << valueString);
+            }
+        } else if(nid == NID_hold_instruction_code) {
+            
+            // FIXME: Test with OID
+            
+            if(valueString == "Hold Instruction Call Issuer") {
+                
+                setHoldInstruction("holdInstructionCallIssuer");
+                
+            } else if(valueString == "Hold Instruction None") {
+                
+                setHoldInstruction("holdInstructionNone");
+                
+            } else if(valueString == "Hold Instruction Reject") {
+                
+                setHoldInstruction("holdInstructionReject");
+                
+            } else {
+                // OID ?? does this work ?
+                setHoldInstruction(valueString);
+                
+            }
+        } else if(nid == NID_invalidity_date) {
+            
+            // e.g. Aug 18 15:56:46 2005 GMT
+            DateTime dtime(valueString);
+            
+            if(getReason() == CRLReason::keyCompromise) {
+                
+                setKeyCompromiseDate(dtime.get());
+                
+            } else if(getReason() == CRLReason::CACompromise) {
+                
+                setCACompromiseDate(dtime.get());
+                
+            } else {
+                LOGIT_INFO("Date with wrong reason");
+            }
+            
+        } else {
+            LOGIT_INFO("Unsupported NID: " << nid);
+        }
+    }
+}
+
+CRLReason_Priv::~CRLReason_Priv()
+{}
