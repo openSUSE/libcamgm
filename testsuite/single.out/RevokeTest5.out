@@ -1,0 +1,15 @@
+START
+DN Key countryName
+DN Key stateOrProvinceName
+DN Key localityName
+DN Key organizationName
+DN Key organizationalUnitName
+DN Key commonName
+DN Key emailAddress
+RETURN Certificate 
+Certificate exists: true
+Try to revoke it
+Found revoked certificate 
+Create a CRL
+CRL file available and greater then 0
+DONE
