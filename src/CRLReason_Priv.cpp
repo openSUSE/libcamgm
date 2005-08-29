@@ -113,7 +113,8 @@ CRLReason_Priv::CRLReason_Priv(STACK_OF(X509_EXTENSION) *stack)
                 setHoldInstruction("holdInstructionReject");
                 
             } else {
-                // OID ?? does this work ?
+               
+                // set an OID as hold instruction 
                 setHoldInstruction(valueString);
                 
             }
