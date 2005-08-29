@@ -63,13 +63,13 @@ int main(int argc, char **argv)
             }
 
             blocxx::StringArray params = blocxx::PerlRegEx("\\s").split(line);
-            if(params.size() != 1) {
+            if(params.size() != 2) {
                 break;
             }
 
-            CA ca(params[0], "system", "./TestRepos/");
+            CA ca(params[1], "system", params[0]);
             
-            std::cout << "Parse CRL in " << params[0] << std::endl;
+            std::cout << "Parse CRL in " << params[0] << "/" << params[1] << std::endl;
 
             CRLData crl = ca.getCRL();
 

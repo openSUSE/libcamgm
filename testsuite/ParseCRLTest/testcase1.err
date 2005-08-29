@@ -20,3 +20,9 @@ DEBUG ca-mgm - NID: X509v3 CRL Reason Code 141
 DEBUG ca-mgm - Value: CA Compromise
 DEBUG ca-mgm - NID: Invalidity Date 142
 DEBUG ca-mgm - Value: Aug 18 15:56:48 2005 GMT
+DEBUG ca-mgm - =>=> New Entry with Serial: 09
+DEBUG ca-mgm - Revocation Date: 050829132818Z
+DEBUG ca-mgm - NID: X509v3 CRL Reason Code 141
+DEBUG ca-mgm - Value: Certificate Hold
+DEBUG ca-mgm - NID: Hold Instruction Code 430
+DEBUG ca-mgm - Value: 1.6.21.43

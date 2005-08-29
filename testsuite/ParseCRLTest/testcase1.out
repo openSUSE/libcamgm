@@ -1,12 +1,12 @@
 START
 file: ParseCRLTest/testcase1.in
-Parse CRL in Test_CA2
+Parse CRL in ./TestRepos2//Test_CA3
 got the data
 dump the data
 CRLData::dump()
 Version = 2
-last Update = 1125320527
-next Update = 1125406927
+last Update = 1125322848
+next Update = 1125409248
 DNObject::dump()
 RDNObject::dump()
 countryName=DE
@@ -24,7 +24,7 @@ Prompt:
 Min:0
 Max:0
 signatureAlgorithm = 0
-Signature = 0e:0d:72:40:3f:2b:bf:7a:8f:9b:d9:53:d7:4e:57:79:76:e0:6a:2b:45:5a:72:e7:96:ba:4c:b6:63:ca:41:14:a2:df:fd:7b:2f:0c:2a:f0:33:4d:75:cf:d4:c8:d5:ed:c5:22:69:42:a1:1e:43:0c:3f:05:cf:b7:d2:40:85:a0:75:6d:e5:ea:0e:d0:8a:e5:46:7b:56:7b:bb:2f:4c:c4:15:2c:68:ba:fc:cc:66:fd:40:2b:e8:58:39:0d:9f:01:3b:27:04:ee:1c:95:ad:79:53:e5:40:4e:9a:45:24:a1:81:2c:20:72:e1:70:d7:d3:a5:25:30:e4:21:56:5b:28:0b:58:1b:0b:98:e2:74:44:35:6c:f4:14:52:00:f1:7c:62:4c:d9:0e:49:e5:15:3d:d6:4e:47:a8:f3:f6:72:61:38:43:2f:29:48:7f:53:76:14:7b:66:ed:6f:d0:38:ec:e4:9f:c2:92:64:7c:0b:f6:ff:7d:b6:2d:31:8f:2d:a6:6b:ef:f0:b5:6f:04:52:7e:47:78:38:d4:49:3a:1b:2f:9b:d6:f5:24:0a:55:ce:18:9a:d6:1b:c4:79:84:95:45:5b:7c:a3:93:65:60:0e:bf:f7:0d:46:36:92:25:e1:07:e7:9d:40:94:7d:59:bc:59:54:1d:a0:6a:e9:51:53:e8:
+Signature = 02:72:03:69:4d:76:7c:83:1d:53:50:66:58:88:d3:c4:83:d1:0b:b8:dd:6c:15:47:54:5c:4e:98:62:d0:63:6d:cc:11:d4:fa:18:74:20:cd:55:32:77:b1:eb:79:c4:8a:c9:3a:c2:f0:59:8f:1f:87:82:19:be:fe:77:50:1e:3b:77:0c:6c:4b:0e:36:e2:7b:04:1d:e6:30:22:60:07:28:db:0e:d1:3b:6d:bd:b8:c0:a1:37:e4:05:de:a4:9e:26:69:07:0c:9c:d5:2b:a3:ab:7c:49:09:1b:80:03:0b:da:06:fb:ba:20:d3:a0:32:6f:04:38:e4:16:30:24:3e:83:1a:c5:82:07:ac:4b:8a:a8:84:ed:4e:f9:db:cc:43:cc:bc:2e:27:34:45:be:34:3f:6d:68:44:63:f6:53:09:93:88:53:eb:af:80:a1:9a:0e:c2:78:c0:9e:71:2f:9c:fe:0f:6a:8a:e1:f3:f6:5e:37:95:05:20:31:80:59:61:2a:e6:bf:15:f7:f2:a1:c8:ed:51:33:dc:de:4d:a6:9c:51:63:4a:cb:26:cb:db:1b:7e:19:d9:c2:69:c1:92:ae:cc:11:37:7c:73:2d:2f:84:72:24:33:d8:14:66:63:b1:5c:da:6d:af:48:b2:13:78:2f:ad:3b:33:b2:83:8e:df:5e:
 X509v3CRLExtensions::dump()
 AuthorityKeyIdentifierExtension::dump()
 ExtensionBase::dump()
@@ -63,4 +63,11 @@ revocation Date = 1124374408
 CRLReason::dump()
 Revoke Reason = CACompromise
 compromise Date =1124380608
+09
+RevocationEntry::dump()
+Serial = 09
+revocation Date = 1125322098
+CRLReason::dump()
+Revoke Reason = certificateHold
+hold Instruction =1.6.21.43
 DONE
