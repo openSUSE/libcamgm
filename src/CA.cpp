@@ -863,21 +863,23 @@ CA::verifyCertificate(const String& certificateName,
                      Format("Invalid purpose: %", purpose).c_str());
     }
 
+    initConfigFile();
+    
     Map<String, String> hash;
     hash["BINARY"] = OPENSSL_COMMAND;
     hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf";;
     hash["DEBUG"] = "1";
     OPENSSL ossl(hash);
-    
+        
     hash.clear();
-    hash["CERT"] = certFile.toString();
-    hash["CAPATH"] = repositoryDir + "/.cas/";
+    hash["CERT"]     = certFile.toString();
+    hash["CAPATH"]   = repositoryDir + "/.cas/";
     hash["CRLCHECK"] = Bool(crlCheck).toString();
-    hash["PURPOSE"] = purpose;
+    hash["PURPOSE"]  = purpose;
     //hash[""] = "";
-
+        
     ossl.verify(hash);
-
+    
     return true;
 }
 
