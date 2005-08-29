@@ -449,7 +449,7 @@ sub parseIndexTXT {
     close IDX;
     
     foreach my $l (@lines) {
-        $l =~ /^(\w)\s([\d\w]+)\s([\w\d,]*)\s([[:xdigit:]]+)\s(\w+)\s(.*)$/;
+        $l =~ /^(\w)\s([\d\w]+)\s([\w\d,.]*)\s([[:xdigit:]]+)\s(\w+)\s(.*)$/;
         my @idxrow = ();
         push @idxrow, $1, $2, $3, $4, $5, $6;
         push @indextxt, \@idxrow;
