@@ -1,0 +1,22 @@
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - =>=> New Entry with Serial: 03
+DEBUG ca-mgm - Revocation Date: 050818141323Z
+DEBUG ca-mgm - =>=> New Entry with Serial: 04
+DEBUG ca-mgm - Revocation Date: 050818141325Z
+DEBUG ca-mgm - NID: X509v3 CRL Reason Code 141
+DEBUG ca-mgm - Value: Certificate Hold
+DEBUG ca-mgm - NID: Hold Instruction Code 430
+DEBUG ca-mgm - Value: Hold Instruction Call Issuer
+DEBUG ca-mgm - =>=> New Entry with Serial: 05
+DEBUG ca-mgm - Revocation Date: 050818141326Z
+DEBUG ca-mgm - NID: X509v3 CRL Reason Code 141
+DEBUG ca-mgm - Value: Key Compromise
+DEBUG ca-mgm - NID: Invalidity Date 142
+DEBUG ca-mgm - Value: Aug 18 15:56:46 2005 GMT
+DEBUG ca-mgm - =>=> New Entry with Serial: 06
+DEBUG ca-mgm - Revocation Date: 050818141328Z
+DEBUG ca-mgm - NID: X509v3 CRL Reason Code 141
+DEBUG ca-mgm - Value: CA Compromise
+DEBUG ca-mgm - NID: Invalidity Date 142
+DEBUG ca-mgm - Value: Aug 18 15:56:48 2005 GMT
