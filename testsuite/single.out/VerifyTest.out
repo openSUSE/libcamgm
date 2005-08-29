@@ -8,5 +8,6 @@ START
 07: Verify success
 01: Verify success
 04: Verify failed: Found revoked certificate
+09: Verify failed: Found revoked certificate
 =================== end List tests ========================
 DONE
