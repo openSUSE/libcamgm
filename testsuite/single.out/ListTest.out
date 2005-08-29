@@ -7,6 +7,12 @@ date = 2005-8-18 16:13:27
 emailAddress = suse@suse.de
 request = 3e248858337c2b46dc67a0f9389376dd-1124374407
 New Entry
+commonName = Test Certificate for revocation 5 oid test
+country = DE
+date = 2005-8-29 15:28:17
+emailAddress = suse@suse.de
+request = bf04fdd95062554800c1556085f47063-1125322097
+New Entry
 commonName = Test CA/SUSE Inc.\Gmbh
 country = DE
 date = 2005-8-18 16:13:16
@@ -115,6 +121,13 @@ commonName = Test Certificate for revocation 2
 country = DE
 emailAddress = suse@suse.de
 serial = 04
+status = Revoked
+New Entry
+certificate = 09:bf04fdd95062554800c1556085f47063-1125322097
+commonName = Test Certificate for revocation 5 oid test
+country = DE
+emailAddress = suse@suse.de
+serial = 09
 status = Revoked
 getCertificateList successfully executed
 =================== end List tests ========================
