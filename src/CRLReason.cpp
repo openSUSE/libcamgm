@@ -222,10 +222,14 @@ blocxx::StringArray
 CRLReason::verify() const
 {
     StringArray result;
-    
+    String err;
+
     switch(reason) {
     case CRLReason::certificateHold:
-        result.append(checkHoldInstruction(holdInstruction));
+        err = checkHoldInstruction(holdInstruction);
+        if(!err.empty()) {
+            result.append(err);
+        }
         break;
     case CRLReason::keyCompromise:
     case CRLReason::CACompromise:
