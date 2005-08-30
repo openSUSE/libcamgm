@@ -54,15 +54,16 @@
         for(uint i = 0; i < s; i++) {                                   \
             LIMAL_SLOG(d, blocxx::E_DEBUG_LEVEL,                        \
                        text <<                                          \
-                       "(" << i << "/" << s << "):"                     \
+                       "(" << (i+1) << "/" << s << "):"                 \
                        << stringarray[i]);                              \
         }                                                               \
     } 
 
 // FIXME: what is the format of a hex number?? 0a:0f or 0a0f
+//        currently allowed is both
 inline static limal::ValueCheck initHexCheck() {
     limal::ValueCheck checkHex =
-        limal::ValueCheck(new limal::ValuePosixRECheck("^([0-9a-fA-F]{2}:)*[0-9a-fA-F]{2}$" ));
+        limal::ValueCheck(new limal::ValuePosixRECheck("^[0-9a-fA-F:]*[0-9a-fA-F]{2}$" ));
     
     return checkHex;
 }
@@ -97,7 +98,7 @@ inline static limal::ValueCheck initDNSCheck() {
 
 inline static limal::ValueCheck initIPCheck() {
     limal::ValueCheck checkIP =
-        limal::ValueCheck(new limal::ValuePosixRECheck("^([0-9]{1,3}\\.){3}[0-9]+$"));
+        limal::ValueCheck(new limal::ValuePosixRECheck("^([0-9]{1,3}\\.){3}[0-9]{1,3}$"));
 
     return checkIP;
 }
