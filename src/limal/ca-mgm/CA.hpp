@@ -146,7 +146,7 @@ namespace CA_MGM_NAMESPACE
          *
          * @return the name of the request
          */
-        String importRequest(const ByteArray& request,
+        String importRequest(const String& requestFile,
                              FormatType formatType = PEM);
 
 

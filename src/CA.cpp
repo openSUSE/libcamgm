@@ -500,10 +500,60 @@ CA::createCRL(const CRLGenerationData& crlData)
 
 
 blocxx::String
-CA::importRequest(const ByteArray& request,
+CA::importRequest(const String& requestFile,
                   FormatType formatType)
 {
-    return String();
+    path::PathInfo in(requestFile);
+
+    if(!in.exists()) {
+
+        LOGIT_ERROR("Request files does not exist");
+        BLOCXX_THROW(limal::SystemException,
+                     "Request files does not exist");
+
+    }
+
+    RequestData rd = RequestData_Priv(requestFile, formatType);
+
+    String name = rd.getSubject().getOpenSSLString();
+
+    blocxx::MD5 md5(name);
+
+    String requestName = md5.toString() + "-" +
+        String(blocxx::DateTime::getCurrent().get());
+
+    path::PathInfo out(repositoryDir + "/" + caName + "/req/" + requestName + ".req");
+
+    if(out.exists()) {
+        LOGIT_ERROR("Duplicate DN. Request already exists.");
+        BLOCXX_THROW(limal::RuntimeException,
+                     "Duplicate DN. Request already exists.");
+    }
+
+    if(formatType == PEM) {
+
+        int ret = path::copyFile(in.toString(), out.toString());
+
+        if( ret != 0 ) {
+            LOGIT_ERROR("Can not write the request. (" << ret << ")");
+            BLOCXX_THROW(limal::SystemException,
+                         Format("Can not write the request. (%1)", ret).c_str());
+        }
+
+    } else {
+        
+        // we have to convert the request to PEM format
+
+    }
+
+    Map<String, String> hash;
+    hash["MD5"]         = requestName;
+    hash["DN"]          = name;
+    hash["REPOSITORY"]  = repositoryDir;
+    
+    addCAM(caName, &hash);
+
+    return requestName;
 }
 
 CertificateIssueData
