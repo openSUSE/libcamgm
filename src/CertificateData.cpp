@@ -209,12 +209,6 @@ CertificateData::valid() const
         return false;
     }
 
-    /*
-      if(!initHexCheck().isValid(signature)) {
-      LOGIT_DEBUG("invalid signature:" << signature);
-      return false;
-      }
-    */
     if(!extensions.valid()) return false;
     
     return true;
@@ -248,11 +242,6 @@ CertificateData::verify() const
         result.append("invalid publicKey");
     }
 
-    /*
-      if(!initHexCheck().isValid(signature)) {
-      result.append(Format("invalid signature: %1", signature).toString());
-      }
-    */
     result.appendArray(extensions.verify());
     
     LOGIT_DEBUG_STRINGARRAY("CertificateData::verify()", result);
@@ -267,7 +256,7 @@ CertificateData::dump() const
     result.append("CertificateData::dump()");
 
     result.append("Version = " + String(version));
-    result.append("Serial = " + String(serial));
+    result.append("Serial = " + serial);
     result.append("notBefore = " + String(notBefore));
     result.append("notAfter = " + String(notAfter));
     result.appendArray(issuer.dump());
