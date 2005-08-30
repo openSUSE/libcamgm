@@ -51,7 +51,8 @@ RequestData_Priv::RequestData_Priv()
 {
 }
 
-RequestData_Priv::RequestData_Priv(const String& requestPath)
+RequestData_Priv::RequestData_Priv(const String& requestPath, 
+                                   FormatType formatType)
     : RequestData()
 {
     String sbuf;             // String buffer
@@ -80,25 +81,41 @@ RequestData_Priv::RequestData_Priv(const String& requestPath)
 
     in.close();
 
-    char *d = new char[_buf.length()+1];
-    memcpy(d, _buf.c_str(), _buf.length());
+    BIO *bio;
+    X509_REQ *x509 = NULL;
 
-    // load the request into a memory bio
-    BIO *bio = BIO_new_mem_buf(d, _buf.length());
+    if( formatType == PEM ) {
 
-    if(!bio) {
+        char *d = new char[_buf.length()+1];
+        memcpy(d, _buf.c_str(), _buf.length());
+        
+        // load the request into a memory bio
+        bio = BIO_new_mem_buf(d, _buf.length());
+
+        if(!bio) {
+            
+            delete(d);
+            
+            LOGIT_ERROR("Can not create a memory BIO");
+            BLOCXX_THROW(limal::MemoryException, "Can not create a memory BIO");
+            
+        }
+
+        // create the X509 structure
+        x509 = PEM_read_bio_X509_REQ(bio, NULL, 0, NULL);
+        BIO_free(bio);
+        delete(d);
+    } else {
+
+        // => DER
+
+        unsigned char *d = new unsigned char[_buf.length()+1];
+        memcpy(d, _buf.c_str(), _buf.length());
+
+        x509 = d2i_X509_REQ(NULL, &d, _buf.length());
 
         delete(d);
-
-        LOGIT_ERROR("Can not create a memory BIO");
-        BLOCXX_THROW(limal::MemoryException, "Can not create a memory BIO");
-
     }
-
-    // create the X509 structure
-    X509_REQ *x509 = PEM_read_bio_X509_REQ(bio, NULL, 0, NULL);
-    BIO_free(bio);
-    delete(d);
 
     if(x509 == NULL) {
 

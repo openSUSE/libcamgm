@@ -33,7 +33,8 @@ namespace CA_MGM_NAMESPACE {
     class RequestData_Priv : public RequestData {
     public:
         RequestData_Priv();
-        RequestData_Priv(const String& requestPath);
+        RequestData_Priv(const String& requestPath, 
+                         FormatType formatType = PEM);
         RequestData_Priv(const RequestData_Priv& data);
         virtual ~RequestData_Priv();
 
