@@ -26,7 +26,7 @@ noinst_PROGRAMS = CAConfig.single CA1.single CA2.multi \
                   VerifyTest.single ParseCATest.single \
                   CertificateTest3.single ParseCertificateTest.multi \
                   ParseRequestTest.multi ParseCRLTest.multi \
-                  RevokeTest5.single
+                  RevokeTest5.single ImportRequestTest.single
 
 CAConfig_single_SOURCES = CAConfig.cc
 
@@ -83,6 +83,8 @@ ParseCertificateTest_multi_SOURCES = ParseCertificateTest.cc perlxsi.cpp
 ParseRequestTest_multi_SOURCES = ParseRequestTest.cc perlxsi.cpp
 
 ParseCRLTest_multi_SOURCES = ParseCRLTest.cc perlxsi.cpp
+
+ImportRequestTest_single_SOURCES = ImportRequestTest.cc perlxsi.cpp
 
 clean-local:
 	rm -f tmp.err.* tmp.out.* site.exp site.bak openssl.cnf.tmpl.test
