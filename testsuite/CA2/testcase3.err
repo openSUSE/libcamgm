@@ -29,9 +29,9 @@ DEBUG ca-mgm - type2Section: type=1 result=v3_req_server
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=1 result=req_server
 DEBUG ca-mgm - type2Section: type=1 result=req_server
-DEBUG ca-mgm - RDNObject::verify()(0/1):Value() is too small. Value has to be a minimal length of 2
-DEBUG ca-mgm - DNObject::verify()(0/1):Value() is too small. Value has to be a minimal length of 2
-DEBUG ca-mgm - RequestGenerationData::verify()(0/1):Value() is too small. Value has to be a minimal length of 2
+DEBUG ca-mgm - RDNObject::verify()(1/1):Value() is too small. Value has to be a minimal length of 2
+DEBUG ca-mgm - DNObject::verify()(1/1):Value() is too small. Value has to be a minimal length of 2
+DEBUG ca-mgm - RequestGenerationData::verify()(1/1):Value() is too small. Value has to be a minimal length of 2
 DEBUG limal - removeFile ./TestRepos/ca1_test/openssl.cnf
 DEBUG ca-mgm - type2Section: type=1 result=req_server
 DEBUG ca-mgm - type2Section: type=1 result=req_server
@@ -66,7 +66,7 @@ DEBUG ca-mgm - type2Section: type=1 result=v3_req_server
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=1 result=req_server
 DEBUG ca-mgm - type2Section: type=1 result=req_server
-DEBUG ca-mgm - RDNObject::verify()(0/1):Value() is too small. Value has to be a minimal length of 2
-DEBUG ca-mgm - DNObject::verify()(0/1):Value() is too small. Value has to be a minimal length of 2
-DEBUG ca-mgm - RequestGenerationData::verify()(0/1):Value() is too small. Value has to be a minimal length of 2
+DEBUG ca-mgm - RDNObject::verify()(1/1):Value() is too small. Value has to be a minimal length of 2
+DEBUG ca-mgm - DNObject::verify()(1/1):Value() is too small. Value has to be a minimal length of 2
+DEBUG ca-mgm - RequestGenerationData::verify()(1/1):Value() is too small. Value has to be a minimal length of 2
 DEBUG limal - removeFile ./TestRepos/ca2_test/openssl.cnf

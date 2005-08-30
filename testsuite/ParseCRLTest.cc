@@ -86,6 +86,16 @@ int main(int argc, char **argv)
                 std::cout << (*it) << std::endl;
             }
 
+            std::cout << "=================== call verify ======================" << std::endl;
+
+            ret = crl.verify();
+            it  = ret.begin();
+
+            for(; it != ret.end(); ++it) {
+                
+                std::cout << "> " << (*it) << std::endl;
+            }
+
         } catch(blocxx::Exception& e) {
             std::cerr << e << std::endl;
         }

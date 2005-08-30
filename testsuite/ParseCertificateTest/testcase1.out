@@ -3,7 +3,7 @@ file: ParseCertificateTest/testcase1.in
 Parse 08:40717a16174dc4d516f6fa7ee8eeb18c-1124792802 in Test_CA2
 CertificateData::dump()
 Version = 3
-Serial = 8
+Serial = 08
 notBefore = 1124792804
 notAfter = 1156328804
 DNObject::dump()
@@ -182,4 +182,5 @@ UserNotice::dump()
 explicitText = This is the explicite Text
 organization = My Company
 noticeNumbers = 1 5 8 
+=================== call verify ======================
 DONE

@@ -78,6 +78,17 @@ int main()
                 
                 std::cout << (*it) << std::endl;
             }
+
+            std::cout << "=================== call verify ======================" << std::endl;
+
+            ret = cd.verify();
+            it  = ret.begin();
+
+            for(; it != ret.end(); ++it) {
+                
+                std::cout << (*it) << std::endl;
+            }
+            
         }
 
         std::cout << "=================== end ParseCATest ========================" << std::endl;

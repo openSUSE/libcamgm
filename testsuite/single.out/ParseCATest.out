@@ -2,7 +2,7 @@ START
 =================== start ParseCATest ======================
 CertificateData::dump()
 Version = 3
-Serial = 10300240976640173213
+Serial = 8ef1ce98618f649d
 notBefore = 1124374357
 notAfter = 1439734357
 DNObject::dump()
@@ -121,5 +121,6 @@ is Present = false
 CertificatePoliciesExtension::dump()
 ExtensionBase::dump()
 is Present = false
+=================== call verify ======================
 =================== end ParseCATest ========================
 DONE
