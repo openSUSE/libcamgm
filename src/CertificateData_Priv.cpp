@@ -111,9 +111,10 @@ CertificateData_Priv::CertificateData_Priv(const String &certificatePath)
     
     // get serial
     //
-    // decimal version of the serial number 
-    serial  = String(i2s_ASN1_INTEGER(NULL,X509_get_serialNumber(x509)));
-
+    // convert to hexadecimal version of the serial number 
+    serial.format("%02llx",
+                  String(i2s_ASN1_INTEGER(NULL,X509_get_serialNumber(x509))).toUInt64());
+    
 
     // get notBefore
     ASN1_TIME *t   = X509_get_notBefore(x509);
@@ -392,12 +393,6 @@ CertificateData_Priv::setSignatureAlgorithm(SigAlg sigAlg)
 void
 CertificateData_Priv::setSignature(const ByteArray& sig)
 {
-    /*
-      if(!initHexCheck().isValid(sig)) {
-      LOGIT_ERROR("invalid signature: " << serial);
-      BLOCXX_THROW(limal::ValueException, Format("invalid signature: %1", serial).c_str());
-      }
-    */
     signature = sig;
 }
 

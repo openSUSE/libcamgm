@@ -55,10 +55,10 @@ RevocationEntry_Priv::RevocationEntry_Priv(X509_REVOKED *rev)
 {
     // get serial number
     
-    Int64 serial =  ASN1_INTEGER_get(rev->serialNumber);
+    UInt64 serial =  ASN1_INTEGER_get(rev->serialNumber);
     
     String sbuf;
-    sbuf.format("%02x", serial);
+    sbuf.format("%02llx", serial);
     
     LOGIT_DEBUG("=>=> New Entry with Serial: " << sbuf);
     setSerial(sbuf); 
