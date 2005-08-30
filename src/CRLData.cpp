@@ -97,7 +97,7 @@ RevocationEntry::verify() const
     }
     result.appendArray(revocationReason.verify());
 
-    LOGIT_DEBUG_STRINGARRAY("CRLData::verify()", result);
+    LOGIT_DEBUG_STRINGARRAY("RevocationEntry::verify()", result);
     
     return result;
 }
