@@ -134,14 +134,6 @@ RDNObject::valid() const
         return false;
     }
 
-    /*
-      if(value.empty()) {
-      LOGIT_DEBUG("value is empty");
-      return false;
-      }
-    */
-    // FIXME: define and check pre defined types ?
-
     return true;
 }
 
@@ -163,12 +155,6 @@ RDNObject::verify() const
         result.append("Value(" + value + 
                       ") is too long. Value has to be a maximal length of " + String(max));
     }
-    /*
-      if(value.empty()) {
-      result.append("value is empty");
-      }
-    */
-    // FIXME: define and check pre defined types ?
 
     LOGIT_DEBUG_STRINGARRAY("RDNObject::verify()", result);
 
