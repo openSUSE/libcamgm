@@ -98,8 +98,6 @@ CRLReason_Priv::CRLReason_Priv(STACK_OF(X509_EXTENSION) *stack)
             }
         } else if(nid == NID_hold_instruction_code) {
             
-            // FIXME: Test with OID
-            
             if(valueString == "Hold Instruction Call Issuer") {
                 
                 setHoldInstruction("holdInstructionCallIssuer");
