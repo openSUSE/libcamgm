@@ -492,7 +492,7 @@ namespace CA_MGM_NAMESPACE
          *
          * @return empty String if the policy match, otherwise a error message
          */
-        String checkDNPolicy(const DNObject& dn, Type type);
+        void checkDNPolicy(const DNObject& dn, Type type);
 
     };
     

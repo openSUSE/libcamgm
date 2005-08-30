@@ -33,6 +33,7 @@
 #include  "CertificateData_Priv.hpp"
 #include  "RequestData_Priv.hpp"
 #include  "CRLData_Priv.hpp"
+#include  "DNObject_Priv.hpp"
 #include  "CATools.h"
 #include  "OPENSSL.h"
 
@@ -48,7 +49,7 @@ CA::CA(const String& caName, const String& caPasswd, const String& repos)
       config(NULL),
       templ(new CAConfig(repositoryDir+"/"+caName+"/openssl.cnf.tmpl"))
 {
-    //FIXME: check if caName is not empty
+
     if(caName.empty()) {
         LOGIT_ERROR("Empty CA name.");
         BLOCXX_THROW(limal::ValueException, "Empty CA name.");
@@ -268,13 +269,25 @@ CA::issueCertificate(const String& requestName,
     String serial      = nextSerial(caName, repositoryDir);
     String certificate = serial + ":" + requestName;
 
-    // FIXME:
     // parse the CA and check if the end date of the ca is greater
     // than the end date of the certificate
 
+    CertificateData cdata = getCA();
 
-    // FIXME:
+    if(issueData.getEndDate() > cdata.getEndDate()) {
+
+        LOGIT_ERROR("CA expires before the certificate should expire.");
+        LOGIT_ERROR("CA expires: '" << cdata.getEndDate() << 
+                    "' Cert should expire: '" << issueData.getEndDate()<< "'");
+        BLOCXX_THROW(limal::RuntimeException, 
+                     "CA expires before the certificate should expire.");
+
+    }
+    
     // Check the DN Policy
+    RequestData rdata = getRequest(requestName);
+
+    checkDNPolicy(rdata.getSubject(), certType);
 
     // copy template to config
     initConfigFile();
@@ -1112,7 +1125,7 @@ CA::operator=(const CA&)
 }
 
 
-blocxx::String
+void
 CA::checkDNPolicy(const DNObject& dn, Type type)
 {
     // These types are not supported by this method
@@ -1142,49 +1155,90 @@ CA::checkDNPolicy(const DNObject& dn, Type type)
     blocxx::List<RDNObject> l = dn.getDN();
 
     bool policyFound = false;
+    blocxx::List<RDNObject> caDNList = getCA().getSubjectDN().getDN();
 
     for(; it != policyKeys.end(); ++it) {
 
         policyFound = false;  // reset
-        blocxx::List<RDNObject>::const_iterator rdnit = l.begin();
 
-        for(; rdnit != l.end(); ++rdnit) {
-        
-            if( (*it).equalsIgnoreCase( (*rdnit).getType() ) ) {
+        // could be optional, supplied or match
+        String policyString = config->getValue(policySect, *it);
 
-                policyFound = true;
+        if(policyString.equalsIgnoreCase("optional")) {
+            // do not care
+            policyFound = true;
+        } else if(policyString.equalsIgnoreCase("supplied")) {
+            // we need a value
 
-                // could be optional, supplied or match
-                String policyString = config->getValue(policySect, *it);
+            blocxx::List<RDNObject>::const_iterator rdnit = l.begin();
 
-                if(policyString.equalsIgnoreCase("optional")) {
-                    // do not care
-                } else if(policyString.equalsIgnoreCase("supplied")) {
+            for(; rdnit != l.end(); ++rdnit) {
 
+                if( (*it).equalsIgnoreCase( (*rdnit).getType() ) ) {
+                    
                     if( (*rdnit).getValue().empty() ) {
-
-                        return ("Invalid value for '" + *it + "'. This part has to have a value");
+                        
+                        LOGIT_ERROR("Invalid value for '" << *it << "'. This part has to have a value");
+                        BLOCXX_THROW(limal::ValueException,
+                                     Format("Invalid value for '%1'. This part has to have a value", 
+                                            *it).c_str());
 
                     }
 
-                } else if(policyString.equalsIgnoreCase("match")) {
-
-                    // FIXME: read the CA and check the value
-
-                } else {
-                    LOGIT_ERROR("Invalid value for policy: "<< 
-                                *it << "=" << policyString);
-                    BLOCXX_THROW(limal::SyntaxException, 
-                                 Format("Invalid value for policy: %1=%2", *it, policyString).c_str());
+                    policyFound = true;
+                    break;
                 }
             }
+        } else if(policyString.equalsIgnoreCase("match")) {
+            
+            // read the CA and check the value
+            // *it == key (e.g. commonName, emailAddress, ...
+
+            blocxx::List<RDNObject>::const_iterator rdnit = l.begin();
+            RDNObject rdn2check = RDNObject_Priv(*it, "");
+
+            for(; rdnit != l.end(); ++rdnit) {
+
+                if( (*it).equalsIgnoreCase( (*rdnit).getType() ) ) {
+                
+                    rdn2check = *rdnit;
+                    break;
+
+                }
+            }
+
+            bool validMatch = false;
+                    
+            blocxx::List<RDNObject>::const_iterator caRdnIT = caDNList.begin();
+            for(; caRdnIT != caDNList.end(); ++caRdnIT) {
+                        
+                if( (*caRdnIT).getType() == rdn2check.getType() &&
+                    (*rdnit).getValue()  == rdn2check.getValue()) {
+                            
+                    validMatch = true;
+                    break;
+                }
+            }
+
+            if(!validMatch) {
+                // policy does not match
+                LOGIT_ERROR("Invalid value for '" << *it << 
+                            "'. This part has to match the CA Subject.");
+                BLOCXX_THROW(limal::ValueException,
+                             (Format("Invalid value for '%1'.", *it) + 
+                              "This part has to match the CA Subject").c_str());
+                
+            }
+
+            policyFound = true;
+        
         }
         if(!policyFound) {
 
-            // FIXME: do more
-            LOGIT_ERROR("policy in config file but not in DN");
-
+            LOGIT_ERROR("Invalid policy in config file ? (" << *it << "/" << policyString << ")");
+            BLOCXX_THROW(limal::SyntaxException,
+                         "Invalid policy in config file?");
         }
     }
-    return String();
+    return;
 }
