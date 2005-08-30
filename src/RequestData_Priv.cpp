@@ -108,7 +108,7 @@ RequestData_Priv::RequestData_Priv(const String& requestPath)
     }
 
     // get version
-    version = X509_REQ_get_version(x509); // ??  + 1;
+    version = X509_REQ_get_version(x509) + 1; // ??  + 1;
 
     // get subject
     subject = DNObject_Priv(x509->req_info->subject);
