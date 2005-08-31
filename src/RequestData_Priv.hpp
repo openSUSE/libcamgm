@@ -26,6 +26,8 @@
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <limal/ca-mgm/RequestData.hpp>
 
+#include <openssl/x509.h>
+
 namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
@@ -34,6 +36,8 @@ namespace CA_MGM_NAMESPACE {
     public:
         RequestData_Priv();
         RequestData_Priv(const String& requestPath, 
+                         FormatType formatType = PEM);
+        RequestData_Priv(const ByteArray& request, 
                          FormatType formatType = PEM);
         RequestData_Priv(const RequestData_Priv& data);
         virtual ~RequestData_Priv();
@@ -51,8 +55,9 @@ namespace CA_MGM_NAMESPACE {
 
     private:
 
-        RequestData_Priv& operator=(const RequestData_Priv& data);
-        
+        RequestData_Priv&   operator=(const RequestData_Priv& data);
+
+        void                parseRequest(X509_REQ *x509);
     };
 
 }

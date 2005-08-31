@@ -136,12 +136,21 @@ namespace CA_MGM_NAMESPACE
          */
         bool createCRL(const CRLGenerationData& crlData);
 
-
-
         /**
          * Import a request in a CA repository.
          *
          * @param request the request data
+         * @param formatType the input format type
+         *
+         * @return the name of the request
+         */
+        String importRequest(const ByteArray& request,
+                             FormatType formatType = PEM);
+
+        /**
+         * Import a request in a CA repository.
+         *
+         * @param requestFile the request file
          * @param formatType the input format type
          *
          * @return the name of the request

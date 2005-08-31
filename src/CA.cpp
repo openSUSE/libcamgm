@@ -28,7 +28,11 @@
 #include  <blocxx/EnvVars.hpp>
 #include  <blocxx/MD5.hpp>
 #include  <blocxx/DateTime.hpp>
+#include  <blocxx/StringBuffer.hpp>
 
+#include  <fstream>
+
+#include  <openssl/pem.h>
 
 #include  "CertificateData_Priv.hpp"
 #include  "RequestData_Priv.hpp"
@@ -498,53 +502,93 @@ CA::createCRL(const CRLGenerationData& crlData)
     return true;
 }
 
-
 blocxx::String
-CA::importRequest(const String& requestFile,
+CA::importRequest(const ByteArray& request,
                   FormatType formatType)
 {
-    path::PathInfo in(requestFile);
-
-    if(!in.exists()) {
-
-        LOGIT_ERROR("Request files does not exist");
-        BLOCXX_THROW(limal::SystemException,
-                     "Request files does not exist");
-
-    }
-
-    RequestData rd = RequestData_Priv(requestFile, formatType);
-
+    RequestData rd = RequestData_Priv(request, formatType);
+    
     String name = rd.getSubject().getOpenSSLString();
-
+    
     blocxx::MD5 md5(name);
-
+    
     String requestName = md5.toString() + "-" +
         String(blocxx::DateTime::getCurrent().get());
-
-    path::PathInfo out(repositoryDir + "/" + caName + "/req/" + requestName + ".req");
-
-    if(out.exists()) {
+    
+    path::PathInfo outPi(repositoryDir + "/" + caName + "/req/" + requestName + ".req");
+    
+    if(outPi.exists()) {
         LOGIT_ERROR("Duplicate DN. Request already exists.");
         BLOCXX_THROW(limal::RuntimeException,
                      "Duplicate DN. Request already exists.");
     }
 
+    std::ofstream out(outPi.toString().c_str());
+
+    if (!out) {
+
+        LOGIT_ERROR ("Cannot open file " << outPi.toString() );
+        BLOCXX_THROW(limal::SystemException,
+                     Format("Cannot open file %1", outPi.toString()).c_str());
+
+    }
+
+
     if(formatType == PEM) {
 
-        int ret = path::copyFile(in.toString(), out.toString());
+        /*
+        StringBuffer sbuff;
+        ByteArray::const_iterator it = request.begin();
 
-        if( ret != 0 ) {
-            LOGIT_ERROR("Can not write the request. (" << ret << ")");
-            BLOCXX_THROW(limal::SystemException,
-                         Format("Can not write the request. (%1)", ret).c_str());
+        for(; it != request.end(); ++it) {
+
+            sbuff += static_cast<char>(*it);
+        }
+
+        out << sbuff;
+        */
+
+        ByteArray::const_iterator it = request.begin();
+
+        for(; it != request.end(); ++it) {
+
+            out << static_cast<char>(*it);
         }
 
     } else {
         
         // we have to convert the request to PEM format
 
+        unsigned char *dbuf = new unsigned char[request.size()+1];
+        ByteArray::const_iterator it = request.begin();
+
+        for(int i = 0; it != request.end(); ++it, ++i) {
+
+            dbuf[i] = static_cast<char>(*it);
+
+        }
+
+        X509_REQ *req = NULL;
+        
+        req=d2i_X509_REQ(NULL, &dbuf , request.size());
+        delete(dbuf);
+
+        unsigned char *pbuf = NULL;
+        BIO *bio  = BIO_new(BIO_s_mem());
+        PEM_write_bio_X509_REQ(bio , req);
+        int k = BIO_get_mem_data(bio, &pbuf);
+
+        for(int i = 0; i < k ; ++i) {
+
+            out << pbuf[i];
+
+        }
+
+        BIO_free(bio);
+        X509_REQ_free(req);
     }
+
+    out.close();
 
     Map<String, String> hash;
     hash["MD5"]         = requestName;
@@ -554,6 +598,46 @@ CA::importRequest(const String& requestFile,
     addCAM(caName, &hash);
 
     return requestName;
+}
+
+blocxx::String
+CA::importRequest(const String& requestFile,
+                  FormatType formatType)
+{
+    path::PathInfo inPi(requestFile);
+
+    if(!inPi.exists()) {
+        
+        LOGIT_ERROR("Request files does not exist");
+        BLOCXX_THROW(limal::SystemException,
+                     "Request files does not exist");
+        
+    }
+
+    std::ifstream in(inPi.toString().c_str(), std::ios_base::binary);
+
+    if (!in) {
+        
+        LOGIT_ERROR("Cannot open file: " << inPi.toString() );
+        BLOCXX_THROW(limal::SystemException,
+                     Format("Cannot open file: %1", inPi.toString()).c_str());
+
+    }
+    
+    // read the request into a ByteArray
+    
+    int i        = 0;
+    ByteArray ba;
+    
+    while(i != EOF) {
+        
+        i = in.get();
+        ba.push_back(i);
+        
+    }
+    in.close();
+    
+    return importRequest(ba, formatType);
 }
 
 CertificateIssueData

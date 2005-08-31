@@ -26,7 +26,6 @@
 #include <openssl/pem.h>
 #include <openssl/bio.h>
 #include <openssl/rsa.h>
-#include <openssl/x509.h>
 #include <openssl/evp.h>
 
 #include  <fstream>
@@ -49,6 +48,60 @@ using namespace blocxx;
 RequestData_Priv::RequestData_Priv()
     : RequestData()
 {
+}
+
+RequestData_Priv::RequestData_Priv(const ByteArray& request, 
+                                   FormatType formatType)
+    : RequestData()
+{
+    BIO *bio;
+    X509_REQ *x509 = NULL;
+
+    unsigned char *d = new unsigned char[request.size()+1];
+
+    ByteArray::const_iterator it = request.begin();
+    for(int i = 0; it != request.end(); ++it, ++i) {
+
+        d[i] = (*it);
+
+    }
+
+    if( formatType == PEM ) {
+
+        bio = BIO_new_mem_buf(d, request.size());
+
+        if(!bio) {
+            
+            delete(d);
+            
+            LOGIT_ERROR("Can not create a memory BIO");
+            BLOCXX_THROW(limal::MemoryException, "Can not create a memory BIO");
+            
+        }
+
+        // create the X509 structure
+        x509 = PEM_read_bio_X509_REQ(bio, NULL, 0, NULL);
+        BIO_free(bio);
+        delete(d);
+
+    } else {
+
+        // => DER
+
+        x509 = d2i_X509_REQ(NULL, &d, request.size());
+
+        delete(d);
+    }
+
+    if(x509 == NULL) {
+
+        LOGIT_ERROR("Can not parse request");
+        BLOCXX_THROW(limal::RuntimeException, "Can not parse request");
+
+    }
+
+    parseRequest(x509);
+
 }
 
 RequestData_Priv::RequestData_Priv(const String& requestPath, 
@@ -84,11 +137,11 @@ RequestData_Priv::RequestData_Priv(const String& requestPath,
     BIO *bio;
     X509_REQ *x509 = NULL;
 
+    unsigned char *d = new unsigned char[_buf.length()+1];
+    memcpy(d, _buf.c_str(), _buf.length());
+
     if( formatType == PEM ) {
 
-        char *d = new char[_buf.length()+1];
-        memcpy(d, _buf.c_str(), _buf.length());
-        
         // load the request into a memory bio
         bio = BIO_new_mem_buf(d, _buf.length());
 
@@ -104,18 +157,14 @@ RequestData_Priv::RequestData_Priv(const String& requestPath,
         // create the X509 structure
         x509 = PEM_read_bio_X509_REQ(bio, NULL, 0, NULL);
         BIO_free(bio);
-        delete(d);
     } else {
 
         // => DER
 
-        unsigned char *d = new unsigned char[_buf.length()+1];
-        memcpy(d, _buf.c_str(), _buf.length());
-
         x509 = d2i_X509_REQ(NULL, &d, _buf.length());
 
-        delete(d);
     }
+    delete(d);
 
     if(x509 == NULL) {
 
@@ -124,6 +173,108 @@ RequestData_Priv::RequestData_Priv(const String& requestPath,
 
     }
 
+    parseRequest(x509);
+
+
+}
+
+RequestData_Priv::RequestData_Priv(const RequestData_Priv& data)
+    : RequestData(data)
+{
+}
+
+RequestData_Priv::~RequestData_Priv()
+{
+}
+
+
+void
+RequestData_Priv::setVersion(blocxx::UInt32 v)
+{
+    version = v;
+}
+
+void
+RequestData_Priv::setKeysize(blocxx::UInt32 size)
+{
+    keysize = size;
+}
+
+void
+RequestData_Priv::setSubject(const DNObject dn)
+{
+    StringArray r = dn.verify();
+    if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
+        BLOCXX_THROW(limal::ValueException, r[0].c_str());
+    }
+    subject = dn;
+}
+
+void
+RequestData_Priv::setKeyAlgorithm(KeyAlg alg)
+{
+    pubkeyAlgorithm = alg; 
+}
+
+void
+RequestData_Priv::setPublicKey(const ByteArray key)
+{
+    publicKey = key;
+}
+
+void
+RequestData_Priv::setSignatureAlgorithm(SigAlg alg)
+{
+    signatureAlgorithm = alg;
+}
+
+void
+RequestData_Priv::setSignature(const ByteArray &sig)
+{
+    signature = sig;
+}
+
+void
+RequestData_Priv::setExtensions(const X509v3RequestExtensions &ext)
+{
+    StringArray r = ext.verify();
+    if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
+        BLOCXX_THROW(limal::ValueException, r[0].c_str());
+    }
+    extensions = ext;
+}
+
+void
+RequestData_Priv::setChallengePassword(const String &passwd)
+{
+    challengePassword = passwd;
+}
+
+void
+RequestData_Priv::setUnstructuredName(const String &name)
+{
+    unstructuredName = name;
+}
+
+
+//    private:
+
+
+RequestData_Priv&
+RequestData_Priv::operator=(const RequestData_Priv& data)
+{
+    if(this == &data) return *this;
+    
+    RequestData::operator=(data);
+
+    return *this;
+}
+
+void
+RequestData_Priv::parseRequest(X509_REQ *x509)
+{
     // get version
     version = X509_REQ_get_version(x509) + 1; // ??  + 1;
 
@@ -204,11 +355,11 @@ RequestData_Priv::RequestData_Priv(const String& requestPath,
 
     // get signatureAlgorithm
     char      *cbuf = NULL;
-    bio = BIO_new(BIO_s_mem());
+    BIO       *bio  = BIO_new(BIO_s_mem());
     i2a_ASN1_OBJECT(bio, x509->sig_alg->algorithm);
     int n = BIO_get_mem_data(bio, &cbuf);
 
-    sbuf = String(cbuf, n);
+    String sbuf = String(cbuf, n);
     BIO_free(bio);
 
     if(sbuf.equalsIgnoreCase("sha1WithRSAEncryption") ) {
@@ -311,99 +462,4 @@ RequestData_Priv::RequestData_Priv(const String& requestPath,
     // get extensions
 
     extensions = X509v3RequestExtensions_Priv(X509_REQ_get_extensions(x509));
-
-}
-
-RequestData_Priv::RequestData_Priv(const RequestData_Priv& data)
-    : RequestData(data)
-{
-}
-
-RequestData_Priv::~RequestData_Priv()
-{
-}
-
-
-void
-RequestData_Priv::setVersion(blocxx::UInt32 v)
-{
-    version = v;
-}
-
-void
-RequestData_Priv::setKeysize(blocxx::UInt32 size)
-{
-    keysize = size;
-}
-
-void
-RequestData_Priv::setSubject(const DNObject dn)
-{
-    StringArray r = dn.verify();
-    if(!r.empty()) {
-        LOGIT_ERROR(r[0]);
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
-    }
-    subject = dn;
-}
-
-void
-RequestData_Priv::setKeyAlgorithm(KeyAlg alg)
-{
-    pubkeyAlgorithm = alg; 
-}
-
-void
-RequestData_Priv::setPublicKey(const ByteArray key)
-{
-    publicKey = key;
-}
-
-void
-RequestData_Priv::setSignatureAlgorithm(SigAlg alg)
-{
-    signatureAlgorithm = alg;
-}
-
-void
-RequestData_Priv::setSignature(const ByteArray &sig)
-{
-    signature = sig;
-}
-
-void
-RequestData_Priv::setExtensions(const X509v3RequestExtensions &ext)
-{
-    StringArray r = ext.verify();
-    if(!r.empty()) {
-        LOGIT_ERROR(r[0]);
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
-    }
-    extensions = ext;
-}
-
-void
-RequestData_Priv::setChallengePassword(const String &passwd)
-{
-    challengePassword = passwd;
-}
-
-void
-RequestData_Priv::setUnstructuredName(const String &name)
-{
-    unstructuredName = name;
-}
-
-
-//    private:
-
-
-RequestData_Priv&
-RequestData_Priv::operator=(const RequestData_Priv& data)
-{
-    if(this == &data) return *this;
-    
-    RequestData::operator=(data);
-
-    return *this;
 }
