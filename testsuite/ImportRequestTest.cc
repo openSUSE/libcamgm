@@ -77,10 +77,23 @@ int main()
 
             }
 
+            sleep(1);
+
             name = ca.importRequest("./TestRepos/c293624b6a877f401407ce8f8f1f327e.req", PEM);
             
             limal::path::PathInfo pi2("./TestRepos/Test_CA1/req/" + name + ".req");
             if(pi2.exists()) {
+
+                std::cout << "File exists in the repository!" << std::endl;
+
+            }
+
+            sleep(1);
+
+            name = ca.importRequest("./TestRepos/importRequestTest-DER.req", DER);
+            
+            limal::path::PathInfo pi3("./TestRepos/Test_CA1/req/" + name + ".req");
+            if(pi3.exists()) {
 
                 std::cout << "File exists in the repository!" << std::endl;
 
