@@ -100,8 +100,21 @@ RequestData_Priv::RequestData_Priv(const ByteArray& request,
 
     }
 
-    parseRequest(x509);
+    try {
 
+        parseRequest(x509);
+        
+    } catch(Exception &e) {
+        
+        X509_REQ_free(x509);
+
+        BLOCXX_THROW_SUBEX(limal::SyntaxException,
+                           "Error at parsing the request",
+                           e);
+
+    }
+
+    X509_REQ_free(x509);
 }
 
 RequestData_Priv::RequestData_Priv(const String& requestPath, 

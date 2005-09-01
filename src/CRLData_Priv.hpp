@@ -54,7 +54,10 @@ namespace CA_MGM_NAMESPACE {
     class CRLData_Priv : public CRLData {
     public:
         CRLData_Priv();
-        CRLData_Priv(const String &crlPath);
+        CRLData_Priv(const ByteArray &crl,
+                     FormatType formatType = PEM);
+        CRLData_Priv(const String &crlPath,
+                     FormatType formatType = PEM);
         CRLData_Priv(const CRLData_Priv& data);
         virtual ~CRLData_Priv();
 
@@ -71,6 +74,7 @@ namespace CA_MGM_NAMESPACE {
         
         CRLData_Priv& operator=(const CRLData_Priv& data);
 
+        void   parseCRL(X509_CRL *x509);
     };
 
 }

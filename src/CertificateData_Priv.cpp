@@ -26,7 +26,6 @@
 #include <openssl/pem.h>
 #include <openssl/bio.h>
 #include <openssl/rsa.h>
-#include <openssl/x509.h>
 #include <openssl/evp.h>
 
 #include  <fstream>
@@ -50,7 +49,77 @@ CertificateData_Priv::CertificateData_Priv()
 {
 }
 
-CertificateData_Priv::CertificateData_Priv(const String &certificatePath)
+CertificateData_Priv::CertificateData_Priv(const ByteArray &certificate,
+                                           FormatType formatType)
+    : CertificateData()
+{
+    BIO  *bio;
+    X509 *x509 = NULL;
+
+    unsigned char *d = new unsigned char[certificate.size()+1];
+
+    ByteArray::const_iterator it = certificate.begin();
+    for(int i = 0; it != certificate.end(); ++it, ++i) {
+
+        d[i] = (*it);
+
+    }
+
+    if( formatType == PEM ) {
+
+        // load the certificate into a memory bio 
+        bio = BIO_new_mem_buf(d, certificate.size());
+
+        if(!bio) {
+            
+            delete(d);
+            
+            LOGIT_ERROR("Can not create a memory BIO");
+            BLOCXX_THROW(limal::MemoryException, "Can not create a memory BIO");
+            
+        }
+
+        // create the X509 structure
+        x509 = PEM_read_bio_X509(bio, NULL, 0, NULL);
+        BIO_free(bio);
+        delete(d);
+
+    } else {
+
+        // => DER
+
+        x509 = d2i_X509(NULL, &d, certificate.size());
+
+        delete(d);
+    }
+
+    if(x509 == NULL) {
+
+        LOGIT_ERROR("Can not parse certificate");
+        BLOCXX_THROW(limal::RuntimeException, "Can not parse certificate");
+
+    }
+
+    try {
+
+        parseCertificate(x509);
+
+    } catch(Exception &e) {
+
+        X509_free(x509);
+
+        BLOCXX_THROW_SUBEX(limal::SyntaxException,
+                           "Error at parsing the certificate",
+                           e);
+
+    }
+    
+    X509_free(x509);
+
+}
+
+CertificateData_Priv::CertificateData_Priv(const String &certificatePath,
+                                           FormatType formatType)
     : CertificateData()
 {
     String sbuf;             // String buffer
@@ -73,38 +142,134 @@ CertificateData_Priv::CertificateData_Priv(const String &certificatePath)
         
     }
 
-    // read the certificate in PEM format into a StringStream buffer
-    OStringStream _buf;
-    _buf << in.rdbuf();
+    // read the certificate into a ByteArray
+    int i        = 0;
+    ByteArray ba;
 
+    while(i != EOF) {
+
+        i = in.get();
+        ba.push_back(i);
+
+    }
     in.close();
 
-    char *d = new char[_buf.length()+1];
-    memcpy(d, _buf.c_str(), _buf.length());
+    // FIXME: I do not know if this is the right way :-)
+    *this = CertificateData_Priv(ba, formatType);
+}
 
-    // load the certificate into a memory bio 
-    BIO *bio = BIO_new_mem_buf(d, _buf.length());
+CertificateData_Priv::CertificateData_Priv(const CertificateData_Priv& data)
+    : CertificateData(data)
+{
+}
 
-    if(!bio) {
+CertificateData_Priv::~CertificateData_Priv()
+{
+}
 
-        delete(d);
+void
+CertificateData_Priv::setVersion(blocxx::UInt32 v)
+{
+    version = v;
+}
 
-        LOGIT_ERROR("Can not create a memory BIO");
-        BLOCXX_THROW(limal::MemoryException, "Can not create a memory BIO");
-
+void
+CertificateData_Priv::setSerial(const String& serial)
+{
+    if(!initHexCheck().isValid(serial)) {
+        LOGIT_ERROR("invalid serial: " << serial);
+        BLOCXX_THROW(limal::ValueException, Format("invalid serial: %1", serial).c_str());
     }
+    this->serial = serial;
+}
 
-    // create the X509 structure
-    X509 *x509 = PEM_read_bio_X509(bio, NULL, 0, NULL);
-    BIO_free(bio);
-    delete(d);
+void
+CertificateData_Priv::setCertifiyPeriode(time_t start, time_t end)
+{
+    notBefore = start;
+    notAfter  = end;
+}
 
-    if(x509 == NULL) {
-
-        LOGIT_ERROR("Can not parse certificate");
-        BLOCXX_THROW(limal::RuntimeException, "Can not parse certificate");
-
+void
+CertificateData_Priv::setIssuerDN(const DNObject& issuer)
+{
+    StringArray r = issuer.verify();
+    if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
+        BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
+    this->issuer = issuer;
+}
+
+void
+CertificateData_Priv::setSubjectDN(const DNObject& subject)
+{
+    StringArray r = subject.verify();
+    if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
+        BLOCXX_THROW(limal::ValueException, r[0].c_str());
+    }
+    this->subject = subject;
+}
+
+void
+CertificateData_Priv::setKeysize(blocxx::UInt32 size)
+{
+    keysize = size;
+}
+
+void
+CertificateData_Priv::setPublicKeyAlgorithm(KeyAlg pubKeyAlg)
+{
+    pubkeyAlgorithm = pubKeyAlg;
+}
+
+void
+CertificateData_Priv::setPublicKey(const ByteArray derPublicKey)
+{
+    publicKey = derPublicKey;
+}
+
+void
+CertificateData_Priv::setSignatureAlgorithm(SigAlg sigAlg)
+{
+    signatureAlgorithm = sigAlg;
+}
+
+void
+CertificateData_Priv::setSignature(const ByteArray& sig)
+{
+    signature = sig;
+}
+
+void
+CertificateData_Priv::setExtensions(const X509v3CertificateExtensions& ext)
+{
+    StringArray r = ext.verify();
+    if(!r.empty()) {
+        LOGIT_ERROR(r[0]);
+        BLOCXX_THROW(limal::ValueException, r[0].c_str());
+    }
+    extensions = ext;
+}
+
+//    private:
+
+
+CertificateData_Priv&
+CertificateData_Priv::operator=(const CertificateData_Priv& data)
+{
+    if(this == &data) return *this;
+    
+    CertificateData::operator=(data);
+    
+    return *this;
+}
+
+void
+CertificateData_Priv::parseCertificate(X509 *x509) 
+{
+    
 
     // get version
     version = X509_get_version(x509) + 1;
@@ -123,7 +288,7 @@ CertificateData_Priv::CertificateData_Priv(const String &certificatePath)
     memcpy(cbuf, t->data, t->length);
     cbuf[t->length] = '\0';
 
-    sbuf = String(cbuf);
+    String sbuf = String(cbuf);
     delete(cbuf);
 
     PerlRegEx r("^(\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)Z$");
@@ -266,7 +431,7 @@ CertificateData_Priv::CertificateData_Priv(const String &certificatePath)
 
     // get signatureAlgorithm
 
-    bio = BIO_new(BIO_s_mem());
+    BIO *bio = BIO_new(BIO_s_mem());
     i2a_ASN1_OBJECT(bio, x509->cert_info->signature->algorithm);
     int n = BIO_get_mem_data(bio, &cbuf);
 
@@ -309,113 +474,4 @@ CertificateData_Priv::CertificateData_Priv(const String &certificatePath)
 
 
     EVP_PKEY_free(pkey);
-    X509_free(x509);
-}
-
-CertificateData_Priv::CertificateData_Priv(const CertificateData_Priv& data)
-    : CertificateData(data)
-{
-}
-
-CertificateData_Priv::~CertificateData_Priv()
-{
-}
-
-void
-CertificateData_Priv::setVersion(blocxx::UInt32 v)
-{
-    version = v;
-}
-
-void
-CertificateData_Priv::setSerial(const String& serial)
-{
-    if(!initHexCheck().isValid(serial)) {
-        LOGIT_ERROR("invalid serial: " << serial);
-        BLOCXX_THROW(limal::ValueException, Format("invalid serial: %1", serial).c_str());
-    }
-    this->serial = serial;
-}
-
-void
-CertificateData_Priv::setCertifiyPeriode(time_t start, time_t end)
-{
-    notBefore = start;
-    notAfter  = end;
-}
-
-void
-CertificateData_Priv::setIssuerDN(const DNObject& issuer)
-{
-    StringArray r = issuer.verify();
-    if(!r.empty()) {
-        LOGIT_ERROR(r[0]);
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
-    }
-    this->issuer = issuer;
-}
-
-void
-CertificateData_Priv::setSubjectDN(const DNObject& subject)
-{
-    StringArray r = subject.verify();
-    if(!r.empty()) {
-        LOGIT_ERROR(r[0]);
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
-    }
-    this->subject = subject;
-}
-
-void
-CertificateData_Priv::setKeysize(blocxx::UInt32 size)
-{
-    keysize = size;
-}
-
-void
-CertificateData_Priv::setPublicKeyAlgorithm(KeyAlg pubKeyAlg)
-{
-    pubkeyAlgorithm = pubKeyAlg;
-}
-
-void
-CertificateData_Priv::setPublicKey(const ByteArray derPublicKey)
-{
-    publicKey = derPublicKey;
-}
-
-void
-CertificateData_Priv::setSignatureAlgorithm(SigAlg sigAlg)
-{
-    signatureAlgorithm = sigAlg;
-}
-
-void
-CertificateData_Priv::setSignature(const ByteArray& sig)
-{
-    signature = sig;
-}
-
-void
-CertificateData_Priv::setExtensions(const X509v3CertificateExtensions& ext)
-{
-    StringArray r = ext.verify();
-    if(!r.empty()) {
-        LOGIT_ERROR(r[0]);
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
-    }
-    extensions = ext;
-}
-
-//    private:
-
-
-CertificateData_Priv&
-CertificateData_Priv::operator=(const CertificateData_Priv& data)
-{
-    if(this == &data) return *this;
-    
-    CertificateData::operator=(data);
-    
-    return *this;
 }

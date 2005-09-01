@@ -26,6 +26,8 @@
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <limal/ca-mgm/CertificateData.hpp>
 
+#include <openssl/x509.h>
+
 namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
@@ -34,15 +36,18 @@ namespace CA_MGM_NAMESPACE {
     public:
         CertificateData_Priv();
 
+        CertificateData_Priv(const ByteArray &certificate,
+                             FormatType formatType = PEM);
+
         /**
          * Construct a CertificateData object by parsing a certificate 
          * file.
          *
-         * If certificateName is empty the CA certificate of caName 
-         * will be parsed.
          *
          */
-        CertificateData_Priv(const String &certificatePath);
+        CertificateData_Priv(const String &certificatePath,
+                             FormatType formatType = PEM);
+
         CertificateData_Priv(const CertificateData_Priv& data);
         virtual ~CertificateData_Priv();
 
@@ -71,7 +76,7 @@ namespace CA_MGM_NAMESPACE {
     private:
         CertificateData_Priv& operator=(const CertificateData_Priv& data);
 
-                     
+        void           parseCertificate(X509 *x509);
     };
     
 }
