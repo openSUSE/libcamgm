@@ -1,0 +1,43 @@
+DEBUG limal - copyFile ./TestRepos/Test_CA1/index.txt -> ./TestRepos/Test_CA/index.txt 
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setCritical(): false
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setCritical(): false
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setCritical(): false
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setCritical(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setCritical(): false
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setCritical(): false
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setCritical(): false
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+ERROR ca-mgm - Deleting the CA is not allowed. The CA must be expired or no certificate was signed with this CA
+CA.cpp: 1283 RuntimeException: Deleting the CA is not allowed. The CA must be expired or no certificate was signed with this CA
+DEBUG ca-mgm - Force delete
+DEBUG limal - removeDirRecursive ./TestRepos/Test_CA
+DEBUG limal - removeFile ./TestRepos/.cas/Test_CA.pem
+DEBUG ca-mgm - c_rehash stdout:Doing ./TestRepos//.cas/
+Test_CA2.pem => c527c2de.0
+crl_Test_CA2.pem => c527c2de.r0
+
