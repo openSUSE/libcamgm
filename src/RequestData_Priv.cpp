@@ -128,53 +128,20 @@ RequestData_Priv::RequestData_Priv(const String& requestPath,
 
     }
 
-    // read the request in PEM format into a StringStream buffer
-    OStringStream _buf;
-    _buf << in.rdbuf();
-
+    // read the request into a ByteArray
+    int i        = 0;
+    ByteArray ba;
+    
+    while(i != EOF) {
+        
+        i = in.get();
+        ba.push_back(i);
+        
+    }
     in.close();
 
-    BIO *bio;
-    X509_REQ *x509 = NULL;
-
-    unsigned char *d = new unsigned char[_buf.length()+1];
-    memcpy(d, _buf.c_str(), _buf.length());
-
-    if( formatType == PEM ) {
-
-        // load the request into a memory bio
-        bio = BIO_new_mem_buf(d, _buf.length());
-
-        if(!bio) {
-            
-            delete(d);
-            
-            LOGIT_ERROR("Can not create a memory BIO");
-            BLOCXX_THROW(limal::MemoryException, "Can not create a memory BIO");
-            
-        }
-
-        // create the X509 structure
-        x509 = PEM_read_bio_X509_REQ(bio, NULL, 0, NULL);
-        BIO_free(bio);
-    } else {
-
-        // => DER
-
-        x509 = d2i_X509_REQ(NULL, &d, _buf.length());
-
-    }
-    delete(d);
-
-    if(x509 == NULL) {
-
-        LOGIT_ERROR("Can not parse request");
-        BLOCXX_THROW(limal::RuntimeException, "Can not parse request");
-
-    }
-
-    parseRequest(x509);
-
+    // FIXME: I do not know if this is the right way :-)
+    *this = RequestData_Priv(ba, formatType);
 
 }
 
