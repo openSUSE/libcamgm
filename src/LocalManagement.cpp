@@ -64,20 +64,20 @@ CertificateData
 LocalManagement::getCertificate(const String &file,
                                 FormatType    type)
 {
-    return CertificateData_Priv();
+    return CertificateData_Priv(file, type);
 }
 
 RequestData
 LocalManagement::getRequest(const String &file,
                             FormatType    type)
 {
-    return RequestData_Priv();
+    return RequestData_Priv(file, type);
 }
 
 CRLData
 LocalManagement::getCRL(const String &file,
                         FormatType    type)
 {
-    return CRLData_Priv();
+    return CRLData_Priv(file, type);
 }
 
