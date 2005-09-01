@@ -1180,11 +1180,178 @@ CA::createRootCA(const String& caName,
 bool
 CA::importCA(const String& caName,
              const String& caCertificate,
-             const String& cakey,
+             const String& caKey,
              const String& caPasswd,
              const String& repos)
 {
-    return false;
+    if(caName.empty()) {
+
+        LOGIT_ERROR("CA name is empty");
+        BLOCXX_THROW(limal::ValueException,
+                     "CA name is empty");
+    }
+
+    path::PathInfo caDir(repos + "/" + caName);
+
+    if(caDir.exists()) {
+
+        LOGIT_ERROR("CA directory already exists");
+        BLOCXX_THROW(limal::RuntimeException,
+                     "CA directory already exists");
+
+    }
+
+    ByteArray caCert;
+    for(size_t i = 0 ; i < caCertificate.length(); ++i) {
+
+        caCert.push_back(caCertificate.charAt(i));
+
+    }
+
+    CertificateData cad = CertificateData_Priv(caCert, PEM);
+
+    BasicConstraintsExtension bs = cad.getExtensions().getBasicConstraints();
+
+    if(!bs.isPresent() || !bs.isCA()) {
+
+        LOGIT_ERROR("According to 'basicConstraints', this is not a CA.");
+        BLOCXX_THROW(limal::ValueException,
+                     "According to 'basicConstraints', this is not a CA.");
+    }
+
+    if(caKey.empty()) {
+
+        LOGIT_ERROR("CA key is empty");
+        BLOCXX_THROW(limal::ValueException,
+                     "CA key is empty");
+    }
+
+    PerlRegEx keyregex("-----BEGIN[\\w\\s]+KEY[-]{5}[\\S\\s\n]+-----END[\\w\\s]+KEY[-]{5}");
+    
+    if(!keyregex.match(caKey)) {
+
+        LOGIT_ERROR("Invalid Key data.");
+        BLOCXX_THROW(limal::ValueException,
+                     "Invalid Key data.");
+    }
+
+    PerlRegEx keycrypt("ENCRYPTED");
+    if(!keycrypt.match(caKey) && caPasswd.empty()) {
+        
+        LOGIT_ERROR("CA password is empty.");
+        BLOCXX_THROW(limal::ValueException,
+                     "CA password is empty.");
+    }
+
+    try {
+        createCaInfrastructure(caName, repos);
+    } catch(blocxx::Exception &e) {
+
+        LOGIT_ERROR(e);
+        BLOCXX_THROW_SUBEX(limal::SystemException,
+                           "Error during create CA infrastructure",
+                           e);
+    }
+
+    std::ofstream out( (caDir.toString() + "/cacert.pem").c_str() );
+
+    if (!out) {
+        
+        path::removeDirRecursive(repos + "/" + caName);
+        
+        LOGIT_ERROR ("Cannot open file " << caDir.toString() << "/cacert.pem" );
+        BLOCXX_THROW(limal::SystemException,
+                     Format("Cannot open file %1", caDir.toString()+"/cacert.pem").c_str());
+
+    }
+
+    out << caCertificate;
+    out.close();
+
+    if(keycrypt.match(caKey)) {
+    
+        std::ofstream out( (caDir.toString() + "/cacert.key").c_str() );
+
+        if (!out) {
+            
+            path::removeDirRecursive(repos + "/" + caName);
+        
+            LOGIT_ERROR ("Cannot open file " << caDir.toString() << "/cacert.key" );
+            BLOCXX_THROW(limal::SystemException,
+                         Format("Cannot open file %1", caDir.toString()+"/cacert.key").c_str());
+            
+        }
+
+        out << caKey;
+        out.close();
+        
+    } else {
+
+        Map<String, String> hash;
+        hash["BINARY"] = OPENSSL_COMMAND;
+        hash["CONFIG"] = repos + "/" + caName + "/" + "openssl.cnf.tmpl";;
+        hash["DEBUG"] = "1";
+        OPENSSL ossl(hash);
+
+        hash.clear();
+        hash["DATATYPE"]  = "KEY";
+        hash["INFORM"]    = "PEM";
+        hash["DATA"]      = caKey;
+        hash["OUTFORM"]   = "PEM";
+        hash["OUTPASSWD"] = caPasswd;
+        hash["OUTFILE"]   = caDir.toString() + "/cacert.key";
+        //hash[""] = ;
+
+        try {
+
+            ossl.convert(hash);
+
+        } catch(Exception &e) {
+
+            path::removeDirRecursive(repos + "/" + caName);
+        
+            LOGIT_ERROR ("Error during key encryption." );
+            BLOCXX_THROW_SUBEX(limal::RuntimeException,
+                               "Error during key encryption.", e);
+        }
+    }
+
+    int r = path::copyFile(repos + "/" + caName + "/" + "cacert.pem",
+                           repos + "/" + ".cas/" + caName + ".pem");
+
+    if(r != 0) {
+        LOGIT_INFO("Copy of cacert.pem to .cas/ failed: " << r);
+    }
+
+    StringArray cmd;
+    cmd.push_back(C_REHASH_COMMAND);
+    cmd.push_back(repos + "/" + ".cas/");
+
+    blocxx::EnvVars env;
+    env.addVar("PATH", "/usr/bin/");
+
+    String stdOutput;
+    String errOutput;
+    int    status = 0;
+    try {
+
+        blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
+
+    } catch(Exception& e) {
+        LOGIT_INFO( "c_rehash exception:" << e);
+        status = -1;
+    }
+    if(status != 0) {
+        LOGIT_INFO( "c_rehash status:" << String(status));
+    }
+    if(!errOutput.empty()) {
+        LOGIT_INFO("c_rehash stderr:" << errOutput);
+    }
+    if(!stdOutput.empty()) {
+        LOGIT_DEBUG("c_rehash stdout:" << stdOutput);
+    }
+   
+    return true;
 }
 
 
@@ -1311,7 +1478,7 @@ CA::deleteCA(const String& caName,
         path::removeFile(p.toString());
     }
     
-    p.setPath(repos + "/.cas/crl_" + caName + ".pem");
+    p.stat(repos + "/.cas/crl_" + caName + ".pem");
 
     if(p.exists()) {
         path::removeFile(p.toString());

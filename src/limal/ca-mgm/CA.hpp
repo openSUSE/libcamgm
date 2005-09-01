@@ -427,7 +427,7 @@ namespace CA_MGM_NAMESPACE
         static bool
         importCA(const String& caName,
                  const String& caCertificate,
-                 const String& cakey,
+                 const String& caKey,
                  const String& caPasswd = String(),
                  const String& repos=REPOSITORY);
 
