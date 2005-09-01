@@ -762,6 +762,7 @@ sub convert {
         }
         if ( defined $outpasswd && $outpasswd ne "") {
 			push(@command, '-passout', 'env:outpass');
+			push(@command, '-'.$algo);
         }
     } else {
 		# unknown type...
