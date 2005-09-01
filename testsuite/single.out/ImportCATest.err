@@ -1,0 +1,2 @@
+ERROR ca-mgm - CA password is empty.
+CA.cpp: 1243 ValueException: CA password is empty.
