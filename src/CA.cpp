@@ -21,6 +21,7 @@
 /-*/
 
 #include  <limal/ca-mgm/CA.hpp>
+#include  <limal/ca-mgm/LocalManagement.hpp>
 #include  <limal/Exception.hpp>
 #include  <limal/PathUtils.hpp>
 #include  <limal/PathInfo.hpp>
@@ -536,18 +537,6 @@ CA::importRequest(const ByteArray& request,
 
     if(formatType == PEM) {
 
-        /*
-        StringBuffer sbuff;
-        ByteArray::const_iterator it = request.begin();
-
-        for(; it != request.end(); ++it) {
-
-            sbuff += static_cast<char>(*it);
-        }
-
-        out << sbuff;
-        */
-
         ByteArray::const_iterator it = request.begin();
 
         for(; it != request.end(); ++it) {
@@ -802,12 +791,6 @@ CA::exportCRL(FormatType exportType)
     return ByteArray();
 }
 
-
-bool
-CA::deleteCA(bool force)
-{
-    return false;
-}
 
 bool
 CA::deleteRequest(const String& requestName)
@@ -1240,6 +1223,129 @@ CA::getRootCARequestDefaults(const String& repos)
     delete config;
 
     return rgd;
+}
+
+bool
+CA::deleteCA(const String& caName,
+             const String& caPasswd,
+             bool force,
+             const String& repos)
+{
+    if(caName.empty()) {
+
+        LOGIT_ERROR("Empty CA name.");
+        BLOCXX_THROW(limal::ValueException, "Empty CA name.");
+
+    }
+
+    path::PathInfo pi(repos + "/" + caName);
+
+    if(!pi.exists()) {
+
+        LOGIT_ERROR("CA name does not exist.(" << pi.toString() << ")");
+        BLOCXX_THROW(limal::ValueException, 
+                     Format("CA name does not exist.(%1)", pi.toString()).c_str());
+
+    }
+    
+    Map<String, String> hash;
+    hash["PASSWORD"]   = caPasswd;
+    hash["CACERT"]     = "1";
+    hash["REPOSITORY"] = repos;
+    //hash[""] = "";
+    
+    bool ret = checkKey(caName, &hash);
+
+    if(!ret) {
+
+        LOGIT_ERROR("Invalid CA password");
+        BLOCXX_THROW(limal::ValueException, "Invalid CA password");
+
+    }
+
+    if(!force) {
+
+        path::PathInfo piIndex(repos + "/" + caName + "/index.txt");
+
+        if(piIndex.exists() && piIndex.size() > 0) {
+
+            // test if expire date of the CA is greater then "now"
+
+            CertificateData ca = 
+                LocalManagement::getCertificate(repos + "/" + caName + "/cacert.pem",
+                                                PEM);
+
+            if( ca.getEndDate() > DateTime::getCurrent().get() ) {
+
+                LOGIT_ERROR("Deleting the CA is not allowed. " <<
+                            "The CA must be expired or no certificate was signed with this CA");
+                BLOCXX_THROW(limal::RuntimeException,
+                             "Deleting the CA is not allowed. The CA must be expired or no certificate was signed with this CA");
+                
+            } else {
+                LOGIT_DEBUG("CA is expired");
+            }
+
+        } else {
+            LOGIT_DEBUG("No index file or index file is empty");
+        }
+
+    } else {
+        LOGIT_DEBUG("Force delete");
+    }
+
+    // ok, delete the CA
+
+    int r = path::removeDirRecursive(repos + "/" + caName);
+    if( r != 0 ) {
+        
+        LOGIT_ERROR("Deleting the CA failed: " << r);
+        BLOCXX_THROW(limal::SystemException,
+                     Format("Deleting the CA failed: %1", r).c_str());
+
+    }
+
+    path::PathInfo p(repos + "/.cas/" + caName + ".pem");
+
+    if(p.exists()) {
+        path::removeFile(p.toString());
+    }
+    
+    p.setPath(repos + "/.cas/crl_" + caName + ".pem");
+
+    if(p.exists()) {
+        path::removeFile(p.toString());
+    }
+
+    StringArray cmd;
+    cmd.push_back(C_REHASH_COMMAND);
+    cmd.push_back(repos + "/" + ".cas/");
+
+    blocxx::EnvVars env;
+    env.addVar("PATH", "/usr/bin/");
+    
+    String stdOutput;
+    String errOutput;
+    int    status = 0;
+    try {
+        
+        blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
+        
+    } catch(Exception& e) {
+        LOGIT_INFO( "c_rehash exception:" << e);
+        status = -1;
+    }
+    if(status != 0) {
+        LOGIT_INFO( "c_rehash status:" << String(status));
+    }
+    if(!errOutput.empty()) {
+        LOGIT_INFO("c_rehash stderr:" << errOutput);
+    }
+    if(!stdOutput.empty()) {
+        LOGIT_DEBUG("c_rehash stdout:" << stdOutput);
+    }
+
+    return true;
 }
 
 

@@ -331,22 +331,6 @@ namespace CA_MGM_NAMESPACE
 
 
         /**
-         * Delete a Certificate Authority infrastructure
-         *
-         * Normaly you can only delete a CA if the CA certificate is expired or
-         * you have never signed a certificate with this CA. In all other cases 
-         * you have to set the force parameter to "true" if you realy want to delete 
-         * the CA and you know what you are doing.
-         *
-         * @param caPasswd the password of the CA
-         * @param force no checks, simply delete the CA
-         *
-         * @return true on success, otherwise false
-         */
-        bool deleteCA(bool force = false);
-        
-
-        /**
          * Delete a Request. This function removes also
          * the private key if one is available.
          *
@@ -478,6 +462,25 @@ namespace CA_MGM_NAMESPACE
          * @return a RequestGenerationData object with the current defaults
          */
         static RequestGenerationData getRootCARequestDefaults(const String& repos=REPOSITORY);
+
+
+        /**
+         * Delete a Certificate Authority infrastructure
+         *
+         * Normaly you can only delete a CA if the CA certificate is expired or
+         * you have never signed a certificate with this CA. In all other cases 
+         * you have to set the force parameter to "true" if you realy want to delete 
+         * the CA and you know what you are doing.
+         *
+         * @param caPasswd the password of the CA
+         * @param force no checks, simply delete the CA
+         *
+         * @return true on success, otherwise false
+         */
+        static bool deleteCA(const String& caName,
+                             const String& caPasswd,
+                             bool force = false,
+                             const String& repos = REPOSITORY);
 
     private:
         String caName;
