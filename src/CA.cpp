@@ -32,6 +32,7 @@
 #include  <blocxx/StringBuffer.hpp>
 
 #include  <fstream>
+#include  <iostream>
 
 #include  <openssl/pem.h>
 
@@ -48,6 +49,37 @@
 using namespace limal;
 using namespace limal::ca_mgm;
 using namespace blocxx;
+
+class CATreeCompare {
+
+public:
+    int operator()(const blocxx::List<blocxx::String> &l, const blocxx::List<blocxx::String> r) const {
+
+        if(l.back() == "" && r.back() != "") {
+
+            return true;
+
+        } else if(l.back() != "" && r.back() == "") {
+
+            return false;
+
+        } else if(l.back() == r.back()) {
+
+            return l.front() < r.front();
+
+        } else if(l.back() == r.front()) {
+
+            return false;
+
+        } else if(l.front() == r.back()) {
+
+            return true;
+
+        }
+        return l.front() < r.front();
+    }
+};
+
 
 CA::CA(const String& caName, const String& caPasswd, const String& repos)
     : caName(caName), caPasswd(caPasswd), repositoryDir(repos),
@@ -1366,10 +1398,71 @@ CA::getCAList(const String& repos)
 }
 
         
-blocxx::Array<blocxx::Array<blocxx::String> >
+blocxx::List<blocxx::List<blocxx::String> >
 CA::getCATree(const String& repos)
 {
-    return blocxx::Array<blocxx::Array<blocxx::String> >();
+    List<List<String> > ret;
+
+    Array<String> caList = CA::getCAList(repos);
+
+    if(caList.empty()) {
+        return ret;
+    }
+
+    Map<String, Array<String> > caHash;
+
+    Array<String>::const_iterator it = caList.begin();
+    for(; it != caList.end(); ++it) {
+
+        CertificateData caData = 
+            LocalManagement::getCertificate(repos + "/" + (*it) + "/cacert.pem",
+                                            PEM);
+
+        Array<String> d;
+        d.push_back(caData.getSubjectDN().getOpenSSLString());
+        d.push_back(caData.getIssuerDN().getOpenSSLString());
+        caHash[*it] = d;
+        
+    }
+
+
+    Map<String, Array<String> >::const_iterator chit = caHash.begin();
+    for(; chit != caHash.end(); ++chit) {
+
+        //       issuer         ==       subject
+        if( ((*chit).second)[0] == ((*chit).second)[1] ) {
+
+            // root CA
+            List<String> d;
+            d.push_back((*chit).first);
+            d.push_back("");
+
+            ret.push_back(d);   // push_front() ?
+
+        } else {
+
+            // sub CA; find caName of the issuer
+            Map<String, Array<String> >::const_iterator chitnew = caHash.begin();
+            for(; chitnew != caHash.end(); ++chitnew) {
+
+                //       issuer          ==       subject
+                if(  ((*chit).second)[1] == ((*chitnew).second)[0]  ) {
+
+                    List<String> d;
+                    d.push_back((*chit).first);
+                    d.push_back((*chitnew).first);
+                    
+                    ret.push_back(d);
+
+                    break;
+                }
+            }
+        }
+    }
+
+    ret.sort(CATreeCompare());
+
+    return ret;
 }
 
 CertificateIssueData
