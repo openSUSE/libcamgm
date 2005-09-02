@@ -76,6 +76,31 @@ namespace CA_MGM_NAMESPACE {
         getCRL(const String &file,
                FormatType    type);
 
+        static CertificateData
+        getCertificate(const ByteArray &data,
+                       FormatType    type);
+        
+        static RequestData
+        getRequest(const ByteArray &data,
+                   FormatType    type);
+        
+        static CRLData
+        getCRL(const ByteArray &data,
+               FormatType    type);
+        
+
+        static ByteArray
+        readFile(const String& file);
+
+        static void
+        writeFile(const ByteArray& data,
+                  const String &file);
+
+        static String
+        ba2str(const ByteArray& data);
+
+        static ByteArray
+        str2ba(const String& data);
 
     };
 
