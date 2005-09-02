@@ -25,13 +25,9 @@
 #include  <limal/Exception.hpp>
 #include  <limal/PathUtils.hpp>
 #include  <limal/PathInfo.hpp>
-#include  <blocxx/Exec.hpp>
-#include  <blocxx/EnvVars.hpp>
 #include  <blocxx/MD5.hpp>
 #include  <blocxx/DateTime.hpp>
 #include  <blocxx/StringBuffer.hpp>
-
-#include  <fstream>
 
 #include  <openssl/pem.h>
 
@@ -168,34 +164,8 @@ CA::createSubCA(const String& newCaName,
     if(r != 0) {
         LOGIT_INFO("Copy of cacert.pem to .cas/ failed: " << r);
     }
-    
-    StringArray cmd;
-    cmd.push_back(C_REHASH_COMMAND);
-    cmd.push_back(repositoryDir + "/" + ".cas/");
 
-    blocxx::EnvVars env;
-    env.addVar("PATH", "/usr/bin/");
-
-    String stdOutput;
-    String errOutput;
-    int    status = 0;
-    try {
-
-        blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
-
-    } catch(Exception& e) {
-        LOGIT_INFO( "c_rehash exception:" << e);
-        status = -1;
-    }
-    if(status != 0) {
-        LOGIT_INFO( "c_rehash status:" << String(status));
-    }
-    if(!errOutput.empty()) {
-        LOGIT_INFO("c_rehash stderr:" << errOutput);
-    }
-    if(!stdOutput.empty()) {
-        LOGIT_DEBUG("c_rehash stdout:" << stdOutput);
-    }
+    rehashCAs(repositoryDir);
     
     return true;
 }
@@ -503,33 +473,7 @@ CA::createCRL(const CRLGenerationData& crlData)
         LOGIT_INFO("Copy of crl.pem to .cas/ failed: " << r);
     }
     
-    StringArray cmd;
-    cmd.push_back(C_REHASH_COMMAND);
-    cmd.push_back(repositoryDir + "/" + ".cas/");
-
-    blocxx::EnvVars env;
-    env.addVar("PATH", "/usr/bin/");
-
-    String stdOutput;
-    String errOutput;
-    int    status = 0;
-    try {
-
-        blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
-
-    } catch(Exception& e) {
-        LOGIT_INFO( "c_rehash exception:" << e);
-        status = -1;
-    }
-    if(status != 0) {
-        LOGIT_INFO( "c_rehash status:" << String(status));
-    }
-    if(!errOutput.empty()) {
-        LOGIT_INFO("c_rehash stderr:" << errOutput);
-    }
-    if(!stdOutput.empty()) {
-        LOGIT_DEBUG("c_rehash stdout:" << stdOutput);
-    }
+    rehashCAs(repositoryDir);
 
     return true;
 }
@@ -555,36 +499,20 @@ CA::importRequest(const ByteArray& request,
                      "Duplicate DN. Request already exists.");
     }
 
-    std::ofstream out(outPi.toString().c_str());
-
-    if (!out) {
-
-        LOGIT_ERROR ("Cannot open file " << outPi.toString() );
-        BLOCXX_THROW(limal::SystemException,
-                     Format("Cannot open file %1", outPi.toString()).c_str());
-
-    }
-
-
     if(formatType == PEM) {
-
-        ByteArray::const_iterator it = request.begin();
-
-        for(; it != request.end(); ++it) {
-
-            out << static_cast<char>(*it);
-        }
-
+        
+        LocalManagement::writeFile(request, outPi.toString());
+        
     } else {
         
         // we have to convert the request to PEM format
-
+        
         unsigned char *dbuf = new unsigned char[request.size()+1];
         ByteArray::const_iterator it = request.begin();
 
         for(int i = 0; it != request.end(); ++it, ++i) {
 
-            dbuf[i] = static_cast<char>(*it);
+            dbuf[i] = static_cast<unsigned char>(*it);
 
         }
 
@@ -593,22 +521,18 @@ CA::importRequest(const ByteArray& request,
         req=d2i_X509_REQ(NULL, &dbuf , request.size());
         delete(dbuf);
 
-        unsigned char *pbuf = NULL;
-        BIO *bio  = BIO_new(BIO_s_mem());
+        char *pbuf = NULL;
+        BIO  *bio  = BIO_new(BIO_s_mem());
         PEM_write_bio_X509_REQ(bio , req);
         int k = BIO_get_mem_data(bio, &pbuf);
 
-        for(int i = 0; i < k ; ++i) {
-
-            out << pbuf[i];
-
-        }
-
+        String d(pbuf, k);
+        LocalManagement::writeFile(LocalManagement::str2ba(d),
+                                   outPi.toString());
+        
         BIO_free(bio);
         X509_REQ_free(req);
     }
-
-    out.close();
 
     Map<String, String> hash;
     hash["MD5"]         = requestName;
@@ -624,38 +548,7 @@ blocxx::String
 CA::importRequest(const String& requestFile,
                   FormatType formatType)
 {
-    path::PathInfo inPi(requestFile);
-
-    if(!inPi.exists()) {
-        
-        LOGIT_ERROR("Request files does not exist");
-        BLOCXX_THROW(limal::SystemException,
-                     "Request files does not exist");
-        
-    }
-
-    std::ifstream in(inPi.toString().c_str(), std::ios_base::binary);
-
-    if (!in) {
-        
-        LOGIT_ERROR("Cannot open file: " << inPi.toString() );
-        BLOCXX_THROW(limal::SystemException,
-                     Format("Cannot open file: %1", inPi.toString()).c_str());
-
-    }
-    
-    // read the request into a ByteArray
-    
-    int i        = 0;
-    ByteArray ba;
-    
-    while(i != EOF) {
-        
-        i = in.get();
-        ba.push_back(i);
-        
-    }
-    in.close();
+    ByteArray ba = LocalManagement::readFile(requestFile);
     
     return importRequest(ba, formatType);
 }
@@ -1273,33 +1166,7 @@ CA::createRootCA(const String& caName,
         LOGIT_INFO("Copy of cacert.pem to .cas/ failed: " << r);
     }
     
-    StringArray cmd;
-    cmd.push_back(C_REHASH_COMMAND);
-    cmd.push_back(repos + "/" + ".cas/");
-
-    blocxx::EnvVars env;
-    env.addVar("PATH", "/usr/bin/");
-
-    String stdOutput;
-    String errOutput;
-    int    status = 0;
-    try {
-
-        blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
-
-    } catch(Exception& e) {
-        LOGIT_INFO( "c_rehash exception:" << e);
-        status = -1;
-    }
-    if(status != 0) {
-        LOGIT_INFO( "c_rehash status:" << String(status));
-    }
-    if(!errOutput.empty()) {
-        LOGIT_INFO("c_rehash stderr:" << errOutput);
-    }
-    if(!stdOutput.empty()) {
-        LOGIT_DEBUG("c_rehash stdout:" << stdOutput);
-    }
+    rehashCAs(repos);
 
     return true;
 }
@@ -1329,12 +1196,7 @@ CA::importCA(const String& caName,
 
     }
 
-    ByteArray caCert;
-    for(size_t i = 0 ; i < caCertificate.length(); ++i) {
-
-        caCert.push_back(caCertificate.charAt(i));
-
-    }
+    ByteArray caCert = LocalManagement::str2ba(caCertificate);
 
     CertificateData cad = CertificateData_Priv(caCert, PEM);
 
@@ -1381,37 +1243,12 @@ CA::importCA(const String& caName,
                            e);
     }
 
-    std::ofstream out( (caDir.toString() + "/cacert.pem").c_str() );
-
-    if (!out) {
-        
-        path::removeDirRecursive(repos + "/" + caName);
-        
-        LOGIT_ERROR ("Cannot open file " << caDir.toString() << "/cacert.pem" );
-        BLOCXX_THROW(limal::SystemException,
-                     Format("Cannot open file %1", caDir.toString()+"/cacert.pem").c_str());
-
-    }
-
-    out << caCertificate;
-    out.close();
+    LocalManagement::writeFile(caCert, caDir.toString() + "/cacert.pem");
 
     if(keycrypt.match(caKey)) {
     
-        std::ofstream out( (caDir.toString() + "/cacert.key").c_str() );
-
-        if (!out) {
-            
-            path::removeDirRecursive(repos + "/" + caName);
-        
-            LOGIT_ERROR ("Cannot open file " << caDir.toString() << "/cacert.key" );
-            BLOCXX_THROW(limal::SystemException,
-                         Format("Cannot open file %1", caDir.toString()+"/cacert.key").c_str());
-            
-        }
-
-        out << caKey;
-        out.close();
+        LocalManagement::writeFile(LocalManagement::str2ba(caKey),
+                                   caDir.toString() + "/cacert.key");
         
     } else {
 
@@ -1451,33 +1288,7 @@ CA::importCA(const String& caName,
         LOGIT_INFO("Copy of cacert.pem to .cas/ failed: " << r);
     }
 
-    StringArray cmd;
-    cmd.push_back(C_REHASH_COMMAND);
-    cmd.push_back(repos + "/" + ".cas/");
-
-    blocxx::EnvVars env;
-    env.addVar("PATH", "/usr/bin/");
-
-    String stdOutput;
-    String errOutput;
-    int    status = 0;
-    try {
-
-        blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
-
-    } catch(Exception& e) {
-        LOGIT_INFO( "c_rehash exception:" << e);
-        status = -1;
-    }
-    if(status != 0) {
-        LOGIT_INFO( "c_rehash status:" << String(status));
-    }
-    if(!errOutput.empty()) {
-        LOGIT_INFO("c_rehash stderr:" << errOutput);
-    }
-    if(!stdOutput.empty()) {
-        LOGIT_DEBUG("c_rehash stdout:" << stdOutput);
-    }
+    rehashCAs(repos);
    
     return true;
 }
@@ -1673,33 +1484,7 @@ CA::deleteCA(const String& caName,
         path::removeFile(p.toString());
     }
 
-    StringArray cmd;
-    cmd.push_back(C_REHASH_COMMAND);
-    cmd.push_back(repos + "/" + ".cas/");
-
-    blocxx::EnvVars env;
-    env.addVar("PATH", "/usr/bin/");
-    
-    String stdOutput;
-    String errOutput;
-    int    status = 0;
-    try {
-        
-        blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
-        
-    } catch(Exception& e) {
-        LOGIT_INFO( "c_rehash exception:" << e);
-        status = -1;
-    }
-    if(status != 0) {
-        LOGIT_INFO( "c_rehash status:" << String(status));
-    }
-    if(!errOutput.empty()) {
-        LOGIT_INFO("c_rehash stderr:" << errOutput);
-    }
-    if(!stdOutput.empty()) {
-        LOGIT_DEBUG("c_rehash stdout:" << stdOutput);
-    }
+    rehashCAs(repos);
 
     return true;
 }

@@ -22,14 +22,13 @@
 
 #include  "CertificateData_Priv.hpp"
 
+#include <limal/ca-mgm/LocalManagement.hpp>
+
 #include <openssl/x509v3.h>
 #include <openssl/pem.h>
 #include <openssl/bio.h>
 #include <openssl/rsa.h>
 #include <openssl/evp.h>
-
-#include  <fstream>
-#include  <iostream>
 
 #include  <blocxx/DateTime.hpp>
 
@@ -122,38 +121,8 @@ CertificateData_Priv::CertificateData_Priv(const String &certificatePath,
                                            FormatType formatType)
     : CertificateData()
 {
-    String sbuf;             // String buffer
-    path::PathInfo certFile(certificatePath);
-
-    if(!certFile.exists()) {
-
-        LOGIT_ERROR("Certificate does not exist.");
-        BLOCXX_THROW(limal::SystemException, "Certificate does not exist.");
-
-    }
-
-    std::ifstream in(certFile.toString().c_str());
-
-    if (!in) {
-
-        LOGIT_ERROR("Cannot open file: " << certFile.toString() );
-        BLOCXX_THROW(limal::SystemException, 
-                     Format("Cannot open file: %1", certFile.toString()).c_str());
-        
-    }
-
-    // read the certificate into a ByteArray
-    int i        = 0;
-    ByteArray ba;
-
-    while(i != EOF) {
-
-        i = in.get();
-        ba.push_back(i);
-
-    }
-    in.close();
-
+    ByteArray ba = LocalManagement::readFile(certificatePath);
+    
     // FIXME: I do not know if this is the right way :-)
     *this = CertificateData_Priv(ba, formatType);
 }

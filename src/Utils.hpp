@@ -32,7 +32,12 @@
 #include <limal/ca-mgm/LiteralValues.hpp>
 #include <limal/ca-mgm/CommonData.hpp>
 
+#include <blocxx/String.hpp>
 #include <blocxx/Format.hpp>
+#include <blocxx/Exec.hpp>
+#include <blocxx/EnvVars.hpp>
+
+#include "Commands.hpp"
 
 // -------------------------------------------------------------------
 #define LOGIT(level,message)	\
@@ -176,6 +181,37 @@ inline static blocxx::String type2Section(limal::ca_mgm::Type type, bool v3secti
     return result;
 }
 
+inline static int rehashCAs(const blocxx::String &repositoryDir) 
+{
+    blocxx::Array<blocxx::String> cmd;
+    cmd.push_back(limal::ca_mgm::C_REHASH_COMMAND);
+    cmd.push_back(repositoryDir + "/" + ".cas/");
+    
+    blocxx::EnvVars env;
+    env.addVar("PATH", "/usr/bin/");
+    
+    blocxx::String stdOutput;
+    blocxx::String errOutput;
+    int    status = 0;
+    try {
+        
+        blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
+
+    } catch(blocxx::Exception& e) {
+        LOGIT_INFO( "c_rehash exception:" << e);
+        status = -1;
+    }
+    if(status != 0) {
+        LOGIT_INFO( "c_rehash status:" << blocxx::String(status));
+    }
+    if(!errOutput.empty()) {
+        LOGIT_INFO("c_rehash stderr:" << errOutput);
+    }
+    if(!stdOutput.empty()) {
+        LOGIT_DEBUG("c_rehash stdout:" << stdOutput);
+    }
+    return status;
+}
 
 // -------------------------------------------------------------------
 

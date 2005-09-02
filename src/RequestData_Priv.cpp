@@ -22,14 +22,13 @@
 
 #include  "RequestData_Priv.hpp"
 
+#include <limal/ca-mgm/LocalManagement.hpp>
+
 #include <openssl/x509v3.h>
 #include <openssl/pem.h>
 #include <openssl/bio.h>
 #include <openssl/rsa.h>
 #include <openssl/evp.h>
-
-#include  <fstream>
-#include  <iostream>
 
 #include  <blocxx/DateTime.hpp>
 #include  <blocxx/Format.hpp>
@@ -121,37 +120,8 @@ RequestData_Priv::RequestData_Priv(const String& requestPath,
                                    FormatType formatType)
     : RequestData()
 {
-    String sbuf;             // String buffer
-    path::PathInfo reqFile(requestPath);
 
-    if(!reqFile.exists()) {
-
-        LOGIT_ERROR("Request does not exist.");
-        BLOCXX_THROW(limal::SystemException, "Request does not exist.");
-
-    }
-
-    std::ifstream in(reqFile.toString().c_str());
-
-    if (!in) {
-
-        LOGIT_ERROR("Cannot open file: " << reqFile.toString() );
-        BLOCXX_THROW(limal::SystemException,
-                     Format("Cannot open file: %1", reqFile.toString()).c_str());
-
-    }
-
-    // read the request into a ByteArray
-    int i        = 0;
-    ByteArray ba;
-    
-    while(i != EOF) {
-        
-        i = in.get();
-        ba.push_back(i);
-        
-    }
-    in.close();
+    ByteArray ba = LocalManagement::readFile(requestPath);
 
     // FIXME: I do not know if this is the right way :-)
     *this = RequestData_Priv(ba, formatType);

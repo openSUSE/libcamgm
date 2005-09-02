@@ -21,15 +21,14 @@
 /-*/
 #include  "CRLData_Priv.hpp"
 
+#include  <limal/ca-mgm/LocalManagement.hpp>
+
 #include <openssl/x509v3.h>
 #include <openssl/pem.h>
 #include <openssl/bio.h>
 #include <openssl/rsa.h>
 #include <openssl/x509.h>
 #include <openssl/evp.h>
-
-#include  <fstream>
-#include  <iostream>
 
 #include  <limal/PathInfo.hpp>
 #include  <limal/ValueRegExCheck.hpp>
@@ -247,37 +246,7 @@ CRLData_Priv::CRLData_Priv(const String &crlPath,
                            FormatType formatType)
     : CRLData()
 {
-    String sbuf;             // String buffer
-    path::PathInfo crlFile(crlPath);
-
-    if(!crlFile.exists()) {
-
-        LOGIT_ERROR("CRL does not exist.");
-        BLOCXX_THROW(limal::SystemException, "CRL does not exist.");
-
-    }
-
-    std::ifstream in(crlFile.toString().c_str());
-
-    if (!in) {
-
-        LOGIT_ERROR("Cannot open file: " << crlFile.toString() );
-        BLOCXX_THROW(limal::SystemException,
-                     Format("Cannot open file: %1", crlFile.toString()).c_str());
-
-    }
-
-    // read the certificate into a ByteArray
-    int i        = 0;
-    ByteArray ba;
-
-    while(i != EOF) {
-
-        i = in.get();
-        ba.push_back(i);
-
-    }
-    in.close();
+    ByteArray ba = LocalManagement::readFile(crlPath);
 
     // FIXME: I do not know if this is the right way :-)
     *this = CRLData_Priv(ba, formatType);
