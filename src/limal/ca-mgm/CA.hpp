@@ -292,30 +292,65 @@ namespace CA_MGM_NAMESPACE
         CRLData getCRL();
 
        
-
-        /**
-         * ??? Not nice, but ...
+        /** 
+         * Return the CA certificate in PEM or DER format
+         *
          */
         ByteArray exportCACert(FormatType exportType);
         
-        ByteArray exportCAKey(bool encrypted = true);
+        /**
+         * Return the CA private key in PEM format.
+         * If a new Password is given, the key will be encrypted
+         * using the newPassword. 
+         * If newPassword is empty the returned key is decrypted.
+         */
+        ByteArray exportCAKeyAsPEM(const String& newPassword);
+
+        /**
+         * Return the CA private key in DER format.
+         * The private Key is decrypted.
+         */
+        ByteArray exportCAKeyAsDER();
         
+        /**
+         * Return the CA certificate in PKCS12 format.
+         * If withChain is true, all issuer certificates
+         * will be included.
+         */
         ByteArray exportCAasPKCS12(const String& p12Passwd,
                                    bool withChain = false);
         
-        /**
-         * ??? Not nice, but ...
+        
+        /** 
+         * Return the certificate in PEM or DER format
+         *
          */
-
         ByteArray exportCertificate(const String& certificateName,
-                                    const String& keyPasswd,
                                     FormatType exportType);
         
-        ByteArray exportCertificateKey(const String& certificateName,
-                                       const String& keyPasswd,
-                                       bool encrypted = true);
+        /**
+         * Return the certificate private key in PEM format.
+         * If a new Password is given, the key will be encrypted
+         * using the newPassword. 
+         * If newPassword is empty the returned key is decrypted.
+         */
+        ByteArray exportCertificateKeyAsPEM(const String& certificateName,
+                                            const String& keyPasswd,
+                                            const String& newPasswd);
+
+        /**
+         * Return the certificate private key in DER format.
+         * The private Key is decrypted.
+         */
+        ByteArray exportCertificateKeyAsDER(const String& certificateName,
+                                            const String& keyPasswd);
         
-        ByteArray exportCertificateasPKCS12(const String& certificateName,
+        /**
+         * Return the certificate in PKCS12 format.
+         * If withChain is true, all issuer certificates
+         * will be included.
+         */
+        ByteArray exportCertificateAsPKCS12(const String& certificateName,
                                             const String& keyPasswd,
                                             const String& p12Passwd,
                                             bool withChain = false);

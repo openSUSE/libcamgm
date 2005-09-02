@@ -32,7 +32,6 @@
 #include  <blocxx/StringBuffer.hpp>
 
 #include  <fstream>
-#include  <iostream>
 
 #include  <openssl/pem.h>
 
@@ -773,54 +772,151 @@ CA::getCRL()
     return CRLData_Priv(repositoryDir + "/" + caName + "/crl/crl.pem");
 }
 
+/** 
+ * Return the CA certificate in PEM or DER format
+ *
+ */
 ByteArray
 CA::exportCACert(FormatType exportType)
 {
-    return ByteArray();
+    ByteArray ret;
+
+    Map<String, String> hash;
+    hash["PASSWORD"]   = caPasswd;
+    hash["CACERT"]     = "1";
+    hash["REPOSITORY"] = repositoryDir;
+    //hash[""] = "";
+    
+    bool passOK = checkKey(caName, &hash);
+    
+    if(!passOK) {
+
+        LOGIT_ERROR("Invalid CA password");
+        BLOCXX_THROW(limal::ValueException, "Invalid CA password");
+
+    }
+
+    ret = LocalManagement::readFile(repositoryDir + "/" + caName + "/cacert.pem");
+
+    if( exportType == DER ) {
+
+        hash.clear();
+        hash["BINARY"] = OPENSSL_COMMAND;
+        hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf.tmpl";;
+        hash["DEBUG"] = "1";
+        OPENSSL ossl(hash);
+
+        hash.clear();
+        hash["DATATYPE"] = "CERTIFICATE";
+        hash["INFORM"]   = "PEM";
+        hash["DATA"]     = LocalManagement::ba2str(ret);
+        hash["OUTFORM"]  = "DER";
+        //hash[""] = "";
+        String data = ossl.convert(hash);
+
+        ret = LocalManagement::str2ba(data);
+    }
+
+    return ret;
 }
+
+
         
+/**
+ * Return the CA private key in PEM format.
+ * If a new Password is given, the key will be encrypted
+ * using the newPassword. 
+ * If newPassword is empty the returned key is decrypted.
+ */
 ByteArray
-CA::exportCAKey(bool encrypted)
+CA::exportCAKeyAsPEM(const String& newPassword)
 {
-    return ByteArray();
+
 }
-        
+
+/**
+ * Return the CA private key in DER format.
+ * The private Key is decrypted.
+ */
+ByteArray
+CA::exportCAKeyAsDER()
+{
+
+}
+
+/**
+ * Return the CA certificate in PKCS12 format.
+ * If withChain is true, all issuer certificates
+ * will be included.
+ */
 ByteArray
 CA::exportCAasPKCS12(const String& p12Passwd,
                      bool withChain)
 {
-    return ByteArray();
+    
 }
 
+/** 
+ * Return the certificate in PEM or DER format
+ *
+ */
 ByteArray
 CA::exportCertificate(const String& certificateName,
-                      const String& keyPasswd,
                       FormatType exportType)
 {
-    return ByteArray();
+
 }
         
+/**
+ * Return the certificate private key in PEM format.
+ * If a new Password is given, the key will be encrypted
+ * using the newPassword. 
+ * If newPassword is empty the returned key is decrypted.
+ */
 ByteArray
-CA::exportCertificateKey(const String& certificateName,
-                         const String& keyPasswd,
-                         bool encrypted)
+CA::exportCertificateKeyAsPEM(const String& certificateName,
+                              const String& keyPasswd,
+                              const String& newPasswd)
 {
-    return ByteArray();
+
+}
+
+/**
+ * Return the certificate private key in DER format.
+ * The private Key is decrypted.
+ */
+ByteArray
+CA::exportCertificateKeyAsDER(const String& certificateName,
+                              const String& keyPasswd)
+{
+
 }
         
+/**
+ * Return the certificate in PKCS12 format.
+ * If withChain is true, all issuer certificates
+ * will be included.
+ */
 ByteArray
-CA::exportCertificateasPKCS12(const String& certificateName,
+CA::exportCertificateAsPKCS12(const String& certificateName,
                               const String& keyPasswd,
                               const String& p12Passwd,
                               bool withChain)
 {
-    return ByteArray();
+
 }
 
+/**
+ * Export a CRL in the requested format type.
+ *
+ * @param the format type
+ *
+ * @return the CRL in the requested format
+ */
 ByteArray
 CA::exportCRL(FormatType exportType)
 {
-    return ByteArray();
+
 }
 
 
