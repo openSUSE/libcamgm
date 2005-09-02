@@ -13,7 +13,8 @@ sub listCA {
     if (opendir(CAMDIR, "$CAM_ROOT")) {
         foreach my $d (readdir(CAMDIR)) {
             if ($d !~ /^\./) {
-                if (-d "$CAM_ROOT/$d" && -e "$CAM_ROOT/$d/openssl.cnf.tmpl") {
+                if (-d "$CAM_ROOT/$d" && -e "$CAM_ROOT/$d/openssl.cnf.tmpl" &&
+                    -e "$CAM_ROOT/$d/cacert.pem") {
                     push @av_ca, $d;
                 }
             }
