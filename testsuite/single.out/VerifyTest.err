@@ -21,10 +21,10 @@ DEBUG OPENSSL - OPENSSL->issueCRL command: /usr/bin/openssl ca -gencrl -out ./Te
 DEBUG limal - copyFile ./TestRepos/Test_CA2/crl/crl.pem -> ./TestRepos/.cas/crl_Test_CA2.pem 
 DEBUG ca-mgm - c_rehash stdout:Doing ./TestRepos//.cas/
 Test_CA2.pem => c527c2de.0
+Test_CA3.pem => f01e457e.0
 crl_Test_CA1.pem => f01e457e.r0
 crl_Test_CA2.pem => c527c2de.r0
 SubCA_Test.pem => ce4e31c5.0
-Test_CA.pem => f01e457e.0
 
 DEBUG OPENSSL - OPENSSL->updateDB command: /usr/bin/openssl ca -updatedb -config ./TestRepos//Test_CA2/openssl.cnf -keyfile ./TestRepos//Test_CA2/cacert.key -passin env:pass -cert ./TestRepos//Test_CA2/cacert.pem
 DEBUG OPENSSL - OPENSSL->verify command: /usr/bin/openssl verify -CApath ./TestRepos//.cas/ -purpose any -crl_check_all ./TestRepos/Test_CA2/newcerts/08:40717a16174dc4d516f6fa7ee8eeb18c-1124792802.pem
@@ -42,18 +42,18 @@ DEBUG OPENSSL -  OPENSSL->setError: errmsg:RuntimeException OPENSSL->verify: Cer
 DEBUG OPENSSL - OPENSSL->verify command: /usr/bin/openssl verify -CApath ./TestRepos//.cas/ -purpose any -crl_check_all ./TestRepos/Test_CA2/newcerts/09:bf04fdd95062554800c1556085f47063-1125322097.pem
 DEBUG OPENSSL -  OPENSSL->setError: errmsg:RuntimeException OPENSSL->verify: Certificate invalid! (certificate revoked / error 23 at 0 depth lookup:certificate revoked)
 DEBUG limal - removeFile ./TestRepos/Test_CA2/openssl.cnf
-Attempt to free temp prematurely: SV 0x85c1008, Perl interpreter: 0x804f720 during global destruction.
-Attempt to free temp prematurely: SV 0x85c1050, Perl interpreter: 0x804f720 during global destruction.
-Attempt to free temp prematurely: SV 0x85c105c, Perl interpreter: 0x804f720 during global destruction.
-Attempt to free temp prematurely: SV 0x85c6330, Perl interpreter: 0x804f720 during global destruction.
-Attempt to free temp prematurely: SV 0x85c63b4, Perl interpreter: 0x804f720 during global destruction.
-Attempt to free temp prematurely: SV 0x85c6840, Perl interpreter: 0x804f720 during global destruction.
-Attempt to free temp prematurely: SV 0x85c6924, Perl interpreter: 0x804f720 during global destruction.
-Attempt to free temp prematurely: SV 0x85c69e4, Perl interpreter: 0x804f720 during global destruction.
-Attempt to free temp prematurely: SV 0x85c6abc, Perl interpreter: 0x804f720 during global destruction.
-Attempt to free temp prematurely: SV 0x85c6b4c, Perl interpreter: 0x804f720 during global destruction.
-Attempt to free temp prematurely: SV 0x85c6db0, Perl interpreter: 0x804f720 during global destruction.
-Attempt to free temp prematurely: SV 0x85c6dd4, Perl interpreter: 0x804f720 during global destruction.
+Attempt to free temp prematurely: SV 0x85c0b9c, Perl interpreter: 0x804f720 during global destruction.
+Attempt to free temp prematurely: SV 0x85c0bc0, Perl interpreter: 0x804f720 during global destruction.
+Attempt to free temp prematurely: SV 0x85c0ce0, Perl interpreter: 0x804f720 during global destruction.
+Attempt to free temp prematurely: SV 0x85c0d28, Perl interpreter: 0x804f720 during global destruction.
+Attempt to free temp prematurely: SV 0x85c0d34, Perl interpreter: 0x804f720 during global destruction.
+Attempt to free temp prematurely: SV 0x85c5b30, Perl interpreter: 0x804f720 during global destruction.
+Attempt to free temp prematurely: SV 0x85c5bb4, Perl interpreter: 0x804f720 during global destruction.
+Attempt to free temp prematurely: SV 0x85c6040, Perl interpreter: 0x804f720 during global destruction.
+Attempt to free temp prematurely: SV 0x85c6124, Perl interpreter: 0x804f720 during global destruction.
+Attempt to free temp prematurely: SV 0x85c61e4, Perl interpreter: 0x804f720 during global destruction.
+Attempt to free temp prematurely: SV 0x85c62bc, Perl interpreter: 0x804f720 during global destruction.
+Attempt to free temp prematurely: SV 0x85c634c, Perl interpreter: 0x804f720 during global destruction.
 Unbalanced string table refcount: (3) for "PURPOSE" during global destruction.
 Unbalanced string table refcount: (3) for "CAPATH" during global destruction.
 Unbalanced string table refcount: (3) for "CRLCHECK" during global destruction.
