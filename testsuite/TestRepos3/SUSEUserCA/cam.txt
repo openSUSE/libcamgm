@@ -1,0 +1,3 @@
+9528e1d8783f83b662fca6085a8c1467-1111161258 /C=DE/L=Nuremberg/O=SUSE Linux GmbH/OU=IT/CN=taylor.suse.de/emailAddress=ug@suse.de
+781eb7e3dcf0fefeb97e88ee157ca99d-1111161408 /C=DE/L=Nuremberg/O=SUSE Linux GmbH/OU=IT/CN=Michael Calmer/emailAddress=mc@suse.de
+edbfc5cf3212c59a4dec3a5ae59de306-1111585554 /C=DE/L=Nuremberg/O=SUSE Linux GmbH/OU=IT/CN=SUSE IPSec CA/emailAddress=ipsec@suse.de

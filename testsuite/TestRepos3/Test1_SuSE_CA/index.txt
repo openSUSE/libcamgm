@@ -1,0 +1,6 @@
+R	060324135526Z	050324135531Z	01	unknown	/C=DE/ST=Bavaria/L=Nuremberg/O=My Linux, Inc./OU=IT Abteilung/CN=My Request5/emailAddress=my2@tait.linux.tux
+V	060324135527Z		02	unknown	/C=DE/ST=Bavaria/L=Nuremberg/O=My Linux Tux GmbH/OU=IT Abteilung/CN=donar.linux.tux/emailAddress=my@linux.tux
+V	060324135531Z		03	unknown	/C=DE/ST=Bavaria/L=Nuremberg/O=My Linux Tux GmbH/OU=IT Abteilung/CN=Michael Calmer/emailAddress=mc@suse.de
+V	150131135538Z		04	unknown	/C=DE/L=Nuernberg/O=My GmbH/CN=My CA New Sub CA/emailAddress=my@linux.tux
+V	060518145645Z		05	unknown	/C=DE/O=Novell Inc./CN=Michael Calmer/emailAddress=Michael.Calmer@novell.com
+V	060812115544Z		06	unknown	/C=DE/L=Nuernberg/O=My GmbH/CN=SUSE Inc/GmbH/emailAddress=suse@suse.de

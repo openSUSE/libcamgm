@@ -1,0 +1,3 @@
+R	060318155419Z	050318155504Z,affiliationChanged	01	unknown	/C=DE/L=Nuremberg/O=SUSE Linux GmbH/OU=IT/CN=taylor.suse.de/emailAddress=ug@suse.de
+V	060318155649Z		02	unknown	/C=DE/L=Nuremberg/O=SUSE Linux GmbH/OU=IT/CN=Michael Calmer/emailAddress=mc@suse.de
+V	071218134555Z		03	unknown	/C=DE/L=Nuremberg/O=SUSE Linux GmbH/OU=IT/CN=SUSE IPSec CA/emailAddress=ipsec@suse.de

@@ -1,0 +1,4 @@
+d9f127beb8144838fc140eaea5df8adf /C=DE/ST=Bavaria/L=Nuremberg/O=My Linux Tux GmbH/OU=IT Abteilung/CN=donar.linux.tux/emailAddress=my@linux.tux
+52324820ee92ebe512780bec85174c14 /C=DE/ST=Bavaria/L=Nuremberg/O=My Linux Tux GmbH/OU=IT Abteilung/CN=Michael Calmer/emailAddress=mc@suse.de
+31c25358eb2e3e5c44f3ed307023fd06 /C=DE/L=Nuernberg/O=My GmbH/CN=My CA New Sub CA/emailAddress=my@linux.tux
+16ce3e5edb307550fc0fb8d284decf94-1123847743 /C=DE/L=Nuernberg/O=My GmbH/CN=SUSE Inc\/GmbH/emailAddress=suse@suse.de

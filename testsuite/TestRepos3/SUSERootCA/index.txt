@@ -1,0 +1,3 @@
+V	060318154855Z		01	unknown	/C=DE/L=Nuremberg/O=SUSE Linux GmbH/OU=IT/CN=tait.suse.de/emailAddress=mc@suse.de
+R	150315155311Z	050323092545Z,keyCompromise	02	unknown	/C=DE/L=Nuremberg/O=SUSE Linux GmbH/OU=IT/CN=SUSE User CA/emailAddress=security-team@suse.de
+V	060318162523Z		03	unknown	/C=DE/L=Nuremberg/O=SUSE Linux GmbH/OU=IT/CN=gsx.suse.de/emailAddress=server-team@suse.de

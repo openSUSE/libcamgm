@@ -1,0 +1,3 @@
+a64a6c95f2a3dc22975e13691ad8e2bb-1111160526 /C=DE/L=Nuremberg/O=SUSE Linux GmbH/OU=IT/CN=tait.suse.de/emailAddress=mc@suse.de
+c293624b6a877f401407ce8f8f1f327e-1111161190 /C=DE/L=Nuremberg/O=SUSE Linux GmbH/OU=IT/CN=SUSE User CA/emailAddress=security-team@suse.de
+c4c863bb2251a60cf0a755c2a119edc6-1111163121 /C=DE/L=Nuremberg/O=SUSE Linux GmbH/OU=IT/CN=gsx.suse.de/emailAddress=server-team@suse.de
