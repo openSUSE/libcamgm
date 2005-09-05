@@ -317,7 +317,7 @@ namespace CA_MGM_NAMESPACE
          * If withChain is true, all issuer certificates
          * will be included.
          */
-        ByteArray exportCAasPKCS12(const String& p12Passwd,
+        ByteArray exportCAasPKCS12(const String& p12Password,
                                    bool withChain = false);
         
         
@@ -335,15 +335,15 @@ namespace CA_MGM_NAMESPACE
          * If newPassword is empty the returned key is decrypted.
          */
         ByteArray exportCertificateKeyAsPEM(const String& certificateName,
-                                            const String& keyPasswd,
-                                            const String& newPasswd);
+                                            const String& keyPassword,
+                                            const String& newPassword);
 
         /**
          * Return the certificate private key in DER format.
          * The private Key is decrypted.
          */
         ByteArray exportCertificateKeyAsDER(const String& certificateName,
-                                            const String& keyPasswd);
+                                            const String& keyPassword);
         
         /**
          * Return the certificate in PKCS12 format.
@@ -351,8 +351,8 @@ namespace CA_MGM_NAMESPACE
          * will be included.
          */
         ByteArray exportCertificateAsPKCS12(const String& certificateName,
-                                            const String& keyPasswd,
-                                            const String& p12Passwd,
+                                            const String& keyPassword,
+                                            const String& p12Password,
                                             bool withChain = false);
 
         /**

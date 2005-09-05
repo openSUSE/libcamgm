@@ -724,7 +724,63 @@ CA::exportCACert(FormatType exportType)
 ByteArray
 CA::exportCAKeyAsPEM(const String& newPassword)
 {
+    ByteArray ret;
 
+    Map<String, String> hash;
+    hash["PASSWORD"]   = caPasswd;
+    hash["CACERT"]     = "1";
+    hash["REPOSITORY"] = repositoryDir;
+    //hash[""] = "";
+    
+    bool passOK = checkKey(caName, &hash);
+    
+    if(!passOK) {
+
+        LOGIT_ERROR("Invalid CA password");
+        BLOCXX_THROW(limal::ValueException, "Invalid CA password");
+
+    }
+
+    hash.clear();
+    hash["BINARY"] = OPENSSL_COMMAND;
+    hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf.tmpl";;
+    hash["DEBUG"] = "1";
+    OPENSSL ossl(hash);
+
+    ret = LocalManagement::readFile(repositoryDir + "/" + caName + "/cacert.key");
+
+    String data;
+
+    hash.clear();
+
+    if(newPassword.empty()) {
+
+        hash["DATATYPE"] = "KEY";
+        hash["INFORM"]   = "PEM";
+        hash["DATA"]     = LocalManagement::ba2str(ret);
+        hash["OUTFORM"]  = "PEM";
+        hash["INPASSWD"] = caPasswd;
+        //hash[""] = "";
+
+        data = ossl.convert(hash);
+
+    } else {
+
+        hash["DATATYPE"]  = "KEY";
+        hash["INFORM"]    = "PEM";
+        hash["DATA"]      = LocalManagement::ba2str(ret);
+        hash["OUTFORM"]   = "PEM";
+        hash["INPASSWD"]  = caPasswd;
+        hash["OUTPASSWD"] = newPassword;
+        //hash[""] = "";
+
+        data = ossl.convert(hash);
+
+    }
+
+    ret = LocalManagement::str2ba(data);
+
+    return ret;
 }
 
 /**
@@ -734,7 +790,47 @@ CA::exportCAKeyAsPEM(const String& newPassword)
 ByteArray
 CA::exportCAKeyAsDER()
 {
+    ByteArray ret;
 
+    Map<String, String> hash;
+    hash["PASSWORD"]   = caPasswd;
+    hash["CACERT"]     = "1";
+    hash["REPOSITORY"] = repositoryDir;
+    //hash[""] = "";
+    
+    bool passOK = checkKey(caName, &hash);
+    
+    if(!passOK) {
+
+        LOGIT_ERROR("Invalid CA password");
+        BLOCXX_THROW(limal::ValueException, "Invalid CA password");
+
+    }
+
+    hash.clear();
+    hash["BINARY"] = OPENSSL_COMMAND;
+    hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf.tmpl";;
+    hash["DEBUG"] = "1";
+    OPENSSL ossl(hash);
+
+    ret = LocalManagement::readFile(repositoryDir + "/" + caName + "/cacert.key");
+
+    String data;
+
+    hash.clear();
+
+    hash["DATATYPE"] = "KEY";
+    hash["INFORM"]   = "PEM";
+    hash["DATA"]     = LocalManagement::ba2str(ret);
+    hash["OUTFORM"]  = "DER";
+    hash["INPASSWD"] = caPasswd;
+    //hash[""] = "";
+
+    data = ossl.convert(hash);
+    
+    ret = LocalManagement::str2ba(data);
+    
+    return ret;
 }
 
 /**
@@ -743,10 +839,57 @@ CA::exportCAKeyAsDER()
  * will be included.
  */
 ByteArray
-CA::exportCAasPKCS12(const String& p12Passwd,
+CA::exportCAasPKCS12(const String& p12Password,
                      bool withChain)
 {
+    ByteArray ret;
+
+    Map<String, String> hash;
+    hash["PASSWORD"]   = caPasswd;
+    hash["CACERT"]     = "1";
+    hash["REPOSITORY"] = repositoryDir;
+    //hash[""] = "";
     
+    bool passOK = checkKey(caName, &hash);
+    
+    if(!passOK) {
+
+        LOGIT_ERROR("Invalid CA password");
+        BLOCXX_THROW(limal::ValueException, "Invalid CA password");
+
+    }
+
+    hash.clear();
+    hash["BINARY"] = OPENSSL_COMMAND;
+    hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf.tmpl";;
+    hash["DEBUG"] = "1";
+    OPENSSL ossl(hash);
+
+    String data;
+
+    hash.clear();
+
+    hash["DATATYPE"]  = "CERTIFICATE";
+    hash["INFORM"]    = "PEM";
+    hash["INFILE"]    = repositoryDir + "/" + caName + "/" + "cacert.pem";
+    hash["KEYFILE"]   = repositoryDir + "/" + caName + "/" + "cacert.key";
+    hash["OUTFORM"]   = "PKCS12";
+    hash["INPASSWD"]  = caPasswd;
+    hash["OUTPASSWD"] = p12Password;
+
+    if(withChain) {
+        
+        hash["CHAIN"] = "1";
+        hash["CAPATH"] = repositoryDir + "/.cas/";
+        //hash[""] = "";
+        
+    }
+
+    data = ossl.convert(hash);
+    
+    ret = LocalManagement::str2ba(data);
+    
+    return ret;
 }
 
 /** 
@@ -757,7 +900,46 @@ ByteArray
 CA::exportCertificate(const String& certificateName,
                       FormatType exportType)
 {
+    ByteArray ret;
 
+    Map<String, String> hash;
+    hash["PASSWORD"]   = caPasswd;
+    hash["CACERT"]     = "1";
+    hash["REPOSITORY"] = repositoryDir;
+    //hash[""] = "";
+    
+    bool passOK = checkKey(caName, &hash);
+    
+    if(!passOK) {
+
+        LOGIT_ERROR("Invalid CA password");
+        BLOCXX_THROW(limal::ValueException, "Invalid CA password");
+
+    }
+
+    ret = LocalManagement::readFile(repositoryDir + "/" + caName + "/newcerts/" + 
+                                    certificateName + ".pem");
+
+    if( exportType == DER ) {
+
+        hash.clear();
+        hash["BINARY"] = OPENSSL_COMMAND;
+        hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf.tmpl";;
+        hash["DEBUG"] = "1";
+        OPENSSL ossl(hash);
+
+        hash.clear();
+        hash["DATATYPE"] = "CERTIFICATE";
+        hash["INFORM"]   = "PEM";
+        hash["DATA"]     = LocalManagement::ba2str(ret);
+        hash["OUTFORM"]  = "DER";
+        //hash[""] = "";
+        String data = ossl.convert(hash);
+
+        ret = LocalManagement::str2ba(data);
+    }
+
+    return ret;
 }
         
 /**
@@ -768,10 +950,77 @@ CA::exportCertificate(const String& certificateName,
  */
 ByteArray
 CA::exportCertificateKeyAsPEM(const String& certificateName,
-                              const String& keyPasswd,
-                              const String& newPasswd)
+                              const String& keyPassword,
+                              const String& newPassword)
 {
+    ByteArray ret;
 
+    Map<String, String> hash;
+    hash["PASSWORD"]   = caPasswd;
+    hash["CACERT"]     = "1";
+    hash["REPOSITORY"] = repositoryDir;
+    //hash[""] = "";
+    
+    bool passOK = checkKey(caName, &hash);
+    
+    if(!passOK) {
+
+        LOGIT_ERROR("Invalid CA password");
+        BLOCXX_THROW(limal::ValueException, "Invalid CA password");
+
+    }
+
+    PerlRegEx rReq("^[[:xdigit:]]+:([[:xdigit:]]+[\\d-]*)$");
+    StringArray sa = rReq.capture(certificateName);
+
+    if(sa.size() != 2) {
+
+        LOGIT_ERROR("Cannot parse certificate Name");
+        BLOCXX_THROW(limal::ValueException, "Cannot parse certificate Name");
+
+    }
+
+    hash.clear();
+    hash["BINARY"] = OPENSSL_COMMAND;
+    hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf.tmpl";;
+    hash["DEBUG"] = "1";
+    OPENSSL ossl(hash);
+
+    ret = LocalManagement::readFile(repositoryDir + "/" + caName + "/keys/" + 
+                                    sa[1] + ".key");
+
+    String data;
+
+    hash.clear();
+
+    if(newPassword.empty()) {
+
+        hash["DATATYPE"] = "KEY";
+        hash["INFORM"]   = "PEM";
+        hash["DATA"]     = LocalManagement::ba2str(ret);
+        hash["OUTFORM"]  = "PEM";
+        hash["INPASSWD"] = keyPassword;
+        //hash[""] = "";
+
+        data = ossl.convert(hash);
+
+    } else {
+
+        hash["DATATYPE"]  = "KEY";
+        hash["INFORM"]    = "PEM";
+        hash["DATA"]      = LocalManagement::ba2str(ret);
+        hash["OUTFORM"]   = "PEM";
+        hash["INPASSWD"]  = keyPassword;
+        hash["OUTPASSWD"] = newPassword;
+        //hash[""] = "";
+
+        data = ossl.convert(hash);
+
+    }
+
+    ret = LocalManagement::str2ba(data);
+
+    return ret;
 }
 
 /**
@@ -780,9 +1029,60 @@ CA::exportCertificateKeyAsPEM(const String& certificateName,
  */
 ByteArray
 CA::exportCertificateKeyAsDER(const String& certificateName,
-                              const String& keyPasswd)
+                              const String& keyPassword)
 {
+    ByteArray ret;
 
+    Map<String, String> hash;
+    hash["PASSWORD"]   = caPasswd;
+    hash["CACERT"]     = "1";
+    hash["REPOSITORY"] = repositoryDir;
+    //hash[""] = "";
+    
+    bool passOK = checkKey(caName, &hash);
+    
+    if(!passOK) {
+
+        LOGIT_ERROR("Invalid CA password");
+        BLOCXX_THROW(limal::ValueException, "Invalid CA password");
+
+    }
+
+    PerlRegEx rReq("^[[:xdigit:]]+:([[:xdigit:]]+[\\d-]*)$");
+    StringArray sa = rReq.capture(certificateName);
+
+    if(sa.size() != 2) {
+
+        LOGIT_ERROR("Cannot parse certificate Name");
+        BLOCXX_THROW(limal::ValueException, "Cannot parse certificate Name");
+
+    }
+
+    hash.clear();
+    hash["BINARY"] = OPENSSL_COMMAND;
+    hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf.tmpl";;
+    hash["DEBUG"] = "1";
+    OPENSSL ossl(hash);
+
+    ret = LocalManagement::readFile(repositoryDir + "/" + caName + "/keys/" + 
+                                    sa[1] + ".key");
+
+    String data;
+
+    hash.clear();
+
+    hash["DATATYPE"] = "KEY";
+    hash["INFORM"]   = "PEM";
+    hash["DATA"]     = LocalManagement::ba2str(ret);
+    hash["OUTFORM"]  = "DER";
+    hash["INPASSWD"] = keyPassword;
+    //hash[""] = "";
+
+    data = ossl.convert(hash);
+    
+    ret = LocalManagement::str2ba(data);
+    
+    return ret;
 }
         
 /**
@@ -792,11 +1092,68 @@ CA::exportCertificateKeyAsDER(const String& certificateName,
  */
 ByteArray
 CA::exportCertificateAsPKCS12(const String& certificateName,
-                              const String& keyPasswd,
-                              const String& p12Passwd,
+                              const String& keyPassword,
+                              const String& p12Password,
                               bool withChain)
 {
+    ByteArray ret;
 
+    Map<String, String> hash;
+    hash["PASSWORD"]   = caPasswd;
+    hash["CACERT"]     = "1";
+    hash["REPOSITORY"] = repositoryDir;
+    //hash[""] = "";
+    
+    bool passOK = checkKey(caName, &hash);
+    
+    if(!passOK) {
+
+        LOGIT_ERROR("Invalid CA password");
+        BLOCXX_THROW(limal::ValueException, "Invalid CA password");
+
+    }
+
+    PerlRegEx rReq("^[[:xdigit:]]+:([[:xdigit:]]+[\\d-]*)$");
+    StringArray sa = rReq.capture(certificateName);
+
+    if(sa.size() != 2) {
+
+        LOGIT_ERROR("Cannot parse certificate Name");
+        BLOCXX_THROW(limal::ValueException, "Cannot parse certificate Name");
+
+    }
+
+    hash.clear();
+    hash["BINARY"] = OPENSSL_COMMAND;
+    hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf.tmpl";;
+    hash["DEBUG"] = "1";
+    OPENSSL ossl(hash);
+
+    String data;
+
+    hash.clear();
+
+    hash["DATATYPE"]  = "CERTIFICATE";
+    hash["INFORM"]    = "PEM";
+    hash["INFILE"]    = repositoryDir + "/" + caName + "/newcerts/" + certificateName +".pem";
+    hash["KEYFILE"]   = repositoryDir + "/" + caName + "/keys/" + sa[1] + ".key";
+    hash["OUTFORM"]   = "PKCS12";
+    hash["INPASSWD"]  = keyPassword;
+    hash["OUTPASSWD"] = p12Password;
+
+    if(withChain) {
+        
+        hash["CHAIN"] = "1";
+        hash["CAPATH"] = repositoryDir + "/.cas/";
+        //hash[""] = "";
+        
+    }
+
+    data = ossl.convert(hash);
+    
+    ret = LocalManagement::str2ba(data);
+    
+    return ret;
 }
 
 /**
@@ -809,7 +1166,45 @@ CA::exportCertificateAsPKCS12(const String& certificateName,
 ByteArray
 CA::exportCRL(FormatType exportType)
 {
+    ByteArray ret;
 
+    Map<String, String> hash;
+    hash["PASSWORD"]   = caPasswd;
+    hash["CACERT"]     = "1";
+    hash["REPOSITORY"] = repositoryDir;
+    //hash[""] = "";
+    
+    bool passOK = checkKey(caName, &hash);
+    
+    if(!passOK) {
+
+        LOGIT_ERROR("Invalid CA password");
+        BLOCXX_THROW(limal::ValueException, "Invalid CA password");
+
+    }
+
+    ret = LocalManagement::readFile(repositoryDir + "/" + caName + "/crl/crl.pem");
+
+    if( exportType == DER ) {
+
+        hash.clear();
+        hash["BINARY"] = OPENSSL_COMMAND;
+        hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf.tmpl";;
+        hash["DEBUG"] = "1";
+        OPENSSL ossl(hash);
+
+        hash.clear();
+        hash["DATATYPE"] = "CRL";
+        hash["INFORM"]   = "PEM";
+        hash["DATA"]     = LocalManagement::ba2str(ret);
+        hash["OUTFORM"]  = "DER";
+        //hash[""] = "";
+        String data = ossl.convert(hash);
+
+        ret = LocalManagement::str2ba(data);
+    }
+
+    return ret;
 }
 
 
