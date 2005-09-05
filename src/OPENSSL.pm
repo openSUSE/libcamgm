@@ -708,31 +708,31 @@ sub convert {
 	}
     
 	if ( !defined $type || $type eq "") {
-		die($this->setError("OPENSSL->convert: No datatype specified."));
+		die($this->setError("ValueException: OPENSSL->convert: No datatype specified."));
 	}
 	if ( not $algo =~ /des3|des|idea/ ) {
-		die($this->setError("OPENSSL->convert: Unsupported algorithm specified."));
+		die($this->setError("ValueException: OPENSSL->convert: Unsupported algorithm specified."));
 	}
 	if (defined $infile and $infile ne "") {
 		# Return if $infile does not exists
 		if ( not -e $infile ) {
-			die($this->setError("OPENSSL->convert: The specified inputfile doesn't exist."));
+			die($this->setError("SystemException: OPENSSL->convert: The specified inputfile doesn't exist."));
 		}
 		$tmp_file = undef;
 	} else {
 		# Return if no data buffer given
 		unless(defined($indata) and length($indata)) {
-			die($this->setError("OPENSSL->convert: No input data or file specified"));
+			die($this->setError("ValueException: OPENSSL->convert: No input data or file specified"));
 		}
         
 		( $tmp_fd, $tmp_file) = tempfile();
 		unless($tmp_fd and $tmp_file) {
-			die($this->setError("OPENSSL->convert: Can't open temporary file."));
+			die($this->setError("SystemException: OPENSSL->convert: Can't open temporary file."));
 		}
 		if ( !defined(write_data($tmp_fd, $indata))) {
 			close($tmp_fd);
 			unlink($tmp_file);
-			die($this->setError("OPENSSL->convert: Can't write temporary file."));
+			die($this->setError("SystemException: OPENSSL->convert: Can't write temporary file."));
 		}
 		close($tmp_fd);
 		$infile = $tmp_file;
@@ -766,7 +766,7 @@ sub convert {
         }
     } else {
 		# unknown type...
-		die($this->setError("OPENSSL->convert: The datatype which should be converted is not known."));
+		die($this->setError("ValueException: OPENSSL->convert: The datatype which should be converted is not known."));
 	}
     
 	# FILES
@@ -802,7 +802,7 @@ sub convert {
         } else {
             ## unknown inform
             unlink($tmp_file) if($tmp_file);
-            die($this->setError("OPENSSL->convert: input format is unknown or unsupported."));
+            die($this->setError("ValueException: OPENSSL->convert: input format is unknown or unsupported."));
         }
     }
     
@@ -833,7 +833,7 @@ sub convert {
 	} else {
 		## unknown outform
 		unlink($tmp_file) if($tmp_file);
-		die($this->setError("OPENSSL->convert: The output format is unknown or unsupported."));
+		die($this->setError("ValueException: OPENSSL->convert: The output format is unknown or unsupported."));
 	}
 
 	logDebug("OPENSSL->convert: command: '".
@@ -853,7 +853,7 @@ sub convert {
                                                            ));
 	unless(defined($pid)) {
 		unlink($tmp_file) if($tmp_file);
-		die($this->setError("OPENSSL->convert: Can't open pipe".
+		die($this->setError("SystemException: OPENSSL->convert: Can't open pipe".
                             " to OPENSSL: $!"));
 	}
 	waitpid($pid, 0);
@@ -865,13 +865,13 @@ sub convert {
 	if (defined $outfile and $outfile ne "") {
 		unless( $ret == 0 || ($ret == 1 && $err eq "")) {
 			unlink($outfile);   # remove broken file
-			die($this->setError("OPENSSL->convert: OPENSSL failed".
+			die($this->setError("RuntimeException: OPENSSL->convert: OPENSSL failed".
                                 " (".$ret.")",$err));
 		}
 		return 1;               # true, outfile written
 	} else {
 		unless( $ret == 0 || ($err eq "" && $out ne "")) {
-			die($this->setError("OPENSSL->convert: OPENSSL failed".
+			die($this->setError("RuntimeException: OPENSSL->convert: OPENSSL failed".
                                 " (".$ret.")",$err));
 		}
 		return $out;            # openssl stdout data
