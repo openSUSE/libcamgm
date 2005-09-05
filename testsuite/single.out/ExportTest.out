@@ -1,0 +1,38 @@
+START
+==================== ca.exportCACert(PEM); ======================
+Subject: /C=DE/L=Nuremberg/O=SUSE Linux GmbH/OU=IT/CN=SUSE IPSec CA/emailAddress=ipsec@suse.de
+==================== ca.exportCACert(DER); ======================
+Subject: /C=DE/L=Nuremberg/O=SUSE Linux GmbH/OU=IT/CN=SUSE IPSec CA/emailAddress=ipsec@suse.de
+==================== ca.exportCAKeyAsPEM(''); ======================
+Key exists
+Key is decrypted
+==================== ca.exportCAKeyAsPEM('tralla'); ======================
+Key exists
+Key is encrypted
+==================== ca.exportCAKeyAsDER(); ======================
+Key exists
+==================== ca.exportCAasPKCS12('tralla', false); ======================
+Certificate exists
+==================== ca.exportCAasPKCS12('tralla', true); ======================
+Certificate exists
+==================== ca.exportCertificate(PEM); ======================
+Subject: /C=DE/L=Nuremberg/O=SUSE Linux GmbH/OU=IT/CN=taylor.suse.de/emailAddress=ug@suse.de
+==================== ca.exportCertificate(DER); ======================
+Subject: /C=DE/L=Nuremberg/O=SUSE Linux GmbH/OU=IT/CN=taylor.suse.de/emailAddress=ug@suse.de
+==================== ca.exportCertificateKeyAsPEM(decr); ======================
+Key exists
+Key is decrypted
+==================== ca.exportexportCertificateKeyAsPEM('tralla'); ======================
+Key exists
+Key is encrypted
+==================== ca.exportCertificateKeyAsDER(); ======================
+Key exists
+==================== ca.exportCertificateAsPKCS12(..., false); ======================
+Certificate exists
+==================== ca.exportCertificateAsPKCS12(..., true); ======================
+Certificate exists
+==================== ca.exportCRL(PEM); ======================
+Issuer: /C=DE/L=Nuremberg/O=SUSE Linux GmbH/OU=IT/CN=SUSE User CA/emailAddress=security-team@suse.de
+==================== ca.exportCRL(DER); ======================
+Issuer: /C=DE/L=Nuremberg/O=SUSE Linux GmbH/OU=IT/CN=SUSE User CA/emailAddress=security-team@suse.de
+DONE

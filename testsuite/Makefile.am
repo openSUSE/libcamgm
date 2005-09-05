@@ -28,7 +28,7 @@ noinst_PROGRAMS = CAConfig.single CA1.single CA2.multi \
                   ParseRequestTest.multi ParseCRLTest.multi \
                   RevokeTest5.single ImportRequestTest.single \
                   DeleteCATest.single ImportCATest.single \
-                  X_ListCATreeTest.single
+                  X_ListCATreeTest.single ExportTest.single
 
 CAConfig_single_SOURCES = CAConfig.cc
 
@@ -93,6 +93,8 @@ DeleteCATest_single_SOURCES = DeleteCATest.cc perlxsi.cpp
 ImportCATest_single_SOURCES = ImportCATest.cc perlxsi.cpp
 
 X_ListCATreeTest_single_SOURCES = ListCATreeTest.cc perlxsi.cpp
+
+ExportTest_single_SOURCES = ExportTest.cc perlxsi.cpp
 
 clean-local:
 	rm -f tmp.err.* tmp.out.* site.exp site.bak openssl.cnf.tmpl.test
