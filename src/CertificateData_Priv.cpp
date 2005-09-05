@@ -87,9 +87,14 @@ CertificateData_Priv::CertificateData_Priv(const ByteArray &certificate,
 
         // => DER
 
-        x509 = d2i_X509(NULL, &d, certificate.size());
+        unsigned char *d2 = NULL;
+        d2 = d;
+
+        x509 = d2i_X509(NULL, &d2, certificate.size());
 
         delete(d);
+        d2 = NULL;
+
     }
 
     if(x509 == NULL) {

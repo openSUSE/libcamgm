@@ -87,9 +87,13 @@ RequestData_Priv::RequestData_Priv(const ByteArray& request,
 
         // => DER
 
-        x509 = d2i_X509_REQ(NULL, &d, request.size());
+        unsigned char *d2 = NULL;
+        d2 = d;
+
+        x509 = d2i_X509_REQ(NULL, &d2, request.size());
 
         delete(d);
+        d2 = NULL;
     }
 
     if(x509 == NULL) {

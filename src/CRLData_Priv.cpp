@@ -212,9 +212,13 @@ CRLData_Priv::CRLData_Priv(const ByteArray &crl,
 
         // => DER
 
-        x509 = d2i_X509_CRL(NULL, &d, crl.size());
+        unsigned char *d2 = NULL;
+        d2 = d;
+
+        x509 = d2i_X509_CRL(NULL, &d2, crl.size());
 
         delete(d);
+        d2 = NULL;
     }
 
     if(x509 == NULL) {
