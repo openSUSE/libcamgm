@@ -36,6 +36,8 @@
 #include  "Utils.hpp"
 #include  "Commands.hpp"
 
+#include  <blocxx/File.hpp>
+
 #include  <string.h>
 
 using namespace limal;
@@ -325,8 +327,6 @@ LocalManagement::importAsLocalCertificate(const ByteArray &pkcs12Data,
             }
         }
         
-        // FIXME: create File with the correct permissions 600
-
         writeFile(str2ba(serverKey),
                   destinationKeyFile, 0600);
 
@@ -457,26 +457,52 @@ LocalManagement::readFile(const String& file)
         
     }
 
-    std::ifstream in(filePi.toString().c_str());
+    if(filePi.size() > (1024*1024)) {
 
-    if(!in) {
-
-        LOGIT_ERROR("Cannot open file: " << filePi.toString());
+        LOGIT_ERROR("File too big: " << filePi.toString());
         BLOCXX_THROW(limal::RuntimeException,
-                     Format("Cannot open file: %1", filePi.toString()).c_str());
+                     Format("File too big: %1", filePi.toString()).c_str());
 
     }
+
+    int fd = ::open(file.c_str(), O_RDONLY);
+    if(fd == -1) {
+
+        LOGIT_ERROR("Cannot open file: " << file << "(" << errno << ")");
+        BLOCXX_THROW_ERRNO_MSG1(limal::SystemException,
+                                Format("Cannot open file: %1", file).c_str(),
+                                errno);
+
+    }
+
+    File fileObject(fd);
+    ByteArray   ret;
+    size_t      i = 1;
     
-    int         i = 0;
-    ByteArray ret;
+    while( i != 0 ) {
+        char *buf = new char[1025];
+        i = fileObject.read(buf, 1024);
 
-    while(i != EOF) {
+        if(i == size_t(-1)) {
+            
+            delete(buf);
+            fileObject.close();
+            
+            LOGIT_ERROR("Cannot read from file: " << file << "(" << errno << ")");
+            BLOCXX_THROW_ERRNO_MSG1(limal::SystemException,
+                                    Format("Cannot read from file: %1", file).c_str(),
+                                    errno);
+        }
 
-        i = in.get();
-        ret.push_back(i);
+        for(uint k = 0; k < i; ++k) {
 
+            ret.push_back(buf[k]);
+        }
+        
+        delete(buf);
     }
-    in.close();
+
+    fileObject.close();
 
     return ret;
 }
@@ -484,35 +510,66 @@ LocalManagement::readFile(const String& file)
 void
 LocalManagement::writeFile(const ByteArray& data,
                            const String &file,
+                           bool overwrite,
                            mode_t mode)
 {
-    std::ofstream out(file.c_str());
-    
-    if (!out) {
+    path::PathInfo pi(file);
+    if(pi.exists() && !overwrite) {
         
-        LOGIT_ERROR ("Cannot open file " << file );
+        LOGIT_ERROR ("File already exists: " << file );
         BLOCXX_THROW(limal::SystemException,
-                     Format("Cannot open file %1", file).c_str());
+                     Format("CFile already exists: %1", file).c_str());
         
+    }
+
+    int fd = ::open(file.c_str(), O_CREAT|O_TRUNC|O_WRONLY, mode);
+    if(fd == -1) {
+
+        LOGIT_ERROR("Cannot open file: " << file << "(" << errno << ")");
+        BLOCXX_THROW_ERRNO_MSG1(limal::SystemException,
+                                Format("Cannot open file: %1", file).c_str(),
+                                errno);
+
+    }
+
+    File fileObject(fd);
+
+    int r = fileObject.getLock();
+    if(r != 0) {
+
+        LOGIT_ERROR("Cannot get lock on file: " << file << "(" << errno << ")");
+        BLOCXX_THROW_ERRNO_MSG1(limal::SystemException,
+                                Format("Cannot get lock on file: %1", file).c_str(),
+                                errno);
+
     }
     
     ByteArray::const_iterator it = data.begin();
-    
-    for(; it != data.end(); ++it) {
-        
-        out << static_cast<char>(*it);
-    }
-    out.close();
+    char *out = new char[data.size()];
 
-    int e = path::changeMode(file, mode);
-    if(e != 0) {
+    for(uint i = 0; it != data.end(); ++it, ++i) {
         
-        // remove the file if chmod is not possible.
-        path::removeFile(file);
-        
-        BLOCXX_THROW(limal::SystemException,
-                     Format("Cannot change mode of file %1 (%2)", file, e).c_str());
+        out[i] = static_cast<char>(*it);
     }
+
+    size_t st = fileObject.write(out, data.size());
+
+    if(st == size_t(-1)) {
+
+        delete(out);
+        fileObject.unlock();
+        fileObject.close();
+
+        LOGIT_ERROR("Cannot write to file: " << file << "(" << errno << ")");
+        BLOCXX_THROW_ERRNO_MSG1(limal::SystemException,
+                                Format("Cannot write to file: %1", file).c_str(),
+                                errno);
+    }
+
+    delete(out);
+    fileObject.flush();
+    fileObject.unlock();
+    fileObject.close();
 }
 
 blocxx::String
