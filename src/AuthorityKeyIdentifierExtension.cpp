@@ -118,5 +118,5 @@ AuthorityKeyIdentifierExtension::AuthorityKeyIdentifierExtension()
 
 // private
 void 
-AuthorityKeyIdentifierExtension::commit2Config(CA& ca, Type type) const
+AuthorityKeyIdentifierExtension::commit2Config(CA&, Type) const
 {}
