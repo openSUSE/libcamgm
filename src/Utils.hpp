@@ -185,7 +185,7 @@ inline static int rehashCAs(const blocxx::String &repositoryDir)
 {
     blocxx::Array<blocxx::String> cmd;
     cmd.push_back(limal::ca_mgm::C_REHASH_COMMAND);
-    cmd.push_back(repositoryDir + "/" + ".cas/");
+    cmd.push_back(repositoryDir);
     
     blocxx::EnvVars env;
     env.addVar("PATH", "/usr/bin/");
@@ -212,6 +212,7 @@ inline static int rehashCAs(const blocxx::String &repositoryDir)
     }
     return status;
 }
+
 
 // -------------------------------------------------------------------
 
