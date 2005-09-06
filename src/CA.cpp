@@ -165,7 +165,7 @@ CA::createSubCA(const String& newCaName,
         LOGIT_INFO("Copy of cacert.pem to .cas/ failed: " << r);
     }
 
-    rehashCAs(repositoryDir);
+    rehashCAs(repositoryDir + "/.cas/");
     
     return true;
 }
@@ -473,7 +473,7 @@ CA::createCRL(const CRLGenerationData& crlData)
         LOGIT_INFO("Copy of crl.pem to .cas/ failed: " << r);
     }
     
-    rehashCAs(repositoryDir);
+    rehashCAs(repositoryDir + "/.cas/");
 
     return true;
 }
@@ -1561,7 +1561,7 @@ CA::createRootCA(const String& caName,
         LOGIT_INFO("Copy of cacert.pem to .cas/ failed: " << r);
     }
     
-    rehashCAs(repos);
+    rehashCAs(repos + "/.cas/");
 
     return true;
 }
@@ -1683,7 +1683,7 @@ CA::importCA(const String& caName,
         LOGIT_INFO("Copy of cacert.pem to .cas/ failed: " << r);
     }
 
-    rehashCAs(repos);
+    rehashCAs(repos + "/.cas/");
    
     return true;
 }
@@ -1879,7 +1879,7 @@ CA::deleteCA(const String& caName,
         path::removeFile(p.toString());
     }
 
-    rehashCAs(repos);
+    rehashCAs(repos + "/.cas/");
 
     return true;
 }
