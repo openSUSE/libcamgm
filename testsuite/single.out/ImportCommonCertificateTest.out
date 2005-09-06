@@ -1,0 +1,14 @@
+START
+==================== ca.exportCertificateAsPKCS12(..., false); ======================
+Certificate exists
+==================== importAsLocalCertificate() ======================
+servercert.pem exists
+serverkey.pem exists and has permissions 0600
+CA do not exists ! OK !
+==================== ca.exportCertificateAsPKCS12(..., true); ======================
+Certificate exists
+==================== importAsLocalCertificate(Chain) ======================
+servercert.pem exists
+serverkey.pem exists and has permissions 0600
+CA exists
+DONE
