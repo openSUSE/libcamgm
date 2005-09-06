@@ -94,7 +94,8 @@ namespace CA_MGM_NAMESPACE {
 
         static void
         writeFile(const ByteArray& data,
-                  const String &file);
+                  const String &file,
+                  mode_t mode = 0644);
 
         static String
         ba2str(const ByteArray& data);
