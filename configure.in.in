@@ -11,12 +11,19 @@ LIMAL_CA_MGM_API_VERSION=${VERSION%%.*}
 AC_SUBST(LIMAL_CA_MGM_LIB_VERSION)
 AC_SUBST(LIMAL_CA_MGM_API_VERSION)
 
-micro=${VERSION##*.}
+major=${VERSION%%.*}
 minor=${VERSION#*.}
 minor=${minor%.*}
-cur=${LIMAL_CA_MGM_API_VERSION}
-rev=$(( $minor * 100 + $micro ))
-LIB_VERSION_INFO=${cur}:${rev}
+patch=${VERSION##*.}
+
+# first binary compatible minor number
+old=0
+# current interface number (incl. minor)
+cur=$((${major} * 100 + ${minor}))
+# binary compatible interface range dif
+age=$((${cur} - ${major} * 100 - ${old}))
+# libtool -version-info arguments
+LIB_VERSION_INFO=${cur}:${patch}:${age}
 AC_SUBST(LIB_VERSION_INFO)
 
 ## some common checks
