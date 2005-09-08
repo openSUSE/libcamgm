@@ -40,6 +40,7 @@ inline static LiteralValue gn2lv(GENERAL_NAME *gen)
 {
     char oline[256];
     char *s = NULL;
+    unsigned char *p = NULL;
     LiteralValue lv;
 
     switch (gen->type) {
@@ -74,7 +75,7 @@ inline static LiteralValue gn2lv(GENERAL_NAME *gen)
         break;
 
     case GEN_IPADD:
-        unsigned char *p = gen->d.ip->data;
+        p = gen->d.ip->data;
         /* BUG: doesn't support IPV6 */
         if(gen->d.ip->length != 4) {
             LOGIT_ERROR("Invalid IP Address: maybe IPv6");
