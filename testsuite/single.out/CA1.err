@@ -32,6 +32,7 @@ DEBUG ca-mgm - type2Section: type=2 result=req_ca
 DEBUG ca-mgm - RDNObject::verify()(1/1):Value() is too small. Value has to be a minimal length of 2
 DEBUG ca-mgm - DNObject::verify()(1/1):Value() is too small. Value has to be a minimal length of 2
 DEBUG ca-mgm - RequestGenerationData::verify()(1/1):Value() is too small. Value has to be a minimal length of 2
+DEBUG IniPaser - File ./TestRepos//ca1_test/openssl.cnf did not change. Not saving.
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
@@ -88,6 +89,7 @@ DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=5 result=ca
 DEBUG ca-mgm - type2Section: type=5 result=ca
+DEBUG IniPaser - File ./TestRepos//ca1_test/openssl.cnf did not change. Not saving.
 DEBUG ca-mgm - type2Section: type=6 result=v3_crl
 DEBUG ca-mgm - type2Section: type=6 result=v3_crl
 DEBUG ca-mgm - ExtensionBase::setPresent(): true

@@ -4,11 +4,13 @@ Certificate exists
 ==================== importAsLocalCertificate() ======================
 servercert.pem exists
 serverkey.pem exists and has permissions 0600
-CA do not exists ! OK !
+CA exists ! OK!
+YaST-CA-0 do not exists ! OK !
 ==================== ca.exportCertificateAsPKCS12(..., true); ======================
 Certificate exists
 ==================== importAsLocalCertificate(Chain) ======================
 servercert.pem exists
 serverkey.pem exists and has permissions 0600
 CA exists
+YaST-CA-0 exists ! OK !
 DONE

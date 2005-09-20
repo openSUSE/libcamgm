@@ -27,6 +27,7 @@
 #include  <limal/ca-mgm/CRLReason.hpp>
 #include  <limal/ca-mgm/DNObject.hpp>
 #include  <limal/ca-mgm/X509v3CRLExtensions.hpp>
+#include  <limal/ByteBuffer.hpp>
 
 namespace LIMAL_NAMESPACE {
 
@@ -75,7 +76,7 @@ namespace CA_MGM_NAMESPACE {
         DNObject                     getIssuerDN() const;
         SigAlg                       getSignatureAlgorithm() const;
         String                       getSignatureAlgorithmAsString() const; 
-        ByteArray                    getSignature() const;
+        limal::ByteBuffer            getSignature() const;
         X509v3CRLExtensions          getExtensions() const;
         blocxx::Map<String, RevocationEntry> getRevocationData() const;
         RevocationEntry              getRevocationEntry(const String& oid);
@@ -95,7 +96,7 @@ namespace CA_MGM_NAMESPACE {
         DNObject         issuer;
 
         SigAlg           signatureAlgorithm;
-        ByteArray        signature;     // better use ByteArray? see CIM schema.
+        ByteBuffer        signature;    
                                         // mit private key der CA verschlüsselter Hash wert
                                         // des Zertifikates
         

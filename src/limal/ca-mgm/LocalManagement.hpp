@@ -27,6 +27,7 @@
 #include  <limal/ca-mgm/CertificateData.hpp>
 #include  <limal/ca-mgm/RequestData.hpp>
 #include  <limal/ca-mgm/CRLData.hpp>
+#include  <limal/ByteBuffer.hpp>
 
 namespace LIMAL_NAMESPACE {
 
@@ -50,19 +51,19 @@ namespace CA_MGM_NAMESPACE {
                                  const String &destinationKeyFile);
         
         static void
-        importAsLocalCertificate(const ByteArray &pkcs12Data,
-                                 const String    &password,
-                                 const String    &destinationCAsDir,
-                                 const String    &destinationCertFile,
-                                 const String    &destinationKeyFile);
+        importAsLocalCertificate(const limal::ByteBuffer &pkcs12Data,
+                                 const String            &password,
+                                 const String            &destinationCAsDir,
+                                 const String            &destinationCertFile,
+                                 const String            &destinationKeyFile);
 
         static void 
         importCommonServerCertificate(const String &pkcs12File,
                                       const String &password);
         
         static void
-        importCommonServerCertificate(const ByteArray &pkcs12File,
-                                      const String    &password);
+        importCommonServerCertificate(const limal::ByteBuffer &pkcs12File,
+                                      const String            &password);
         
         static CertificateData
         getCertificate(const String &file,
@@ -77,33 +78,27 @@ namespace CA_MGM_NAMESPACE {
                FormatType    type);
 
         static CertificateData
-        getCertificate(const ByteArray &data,
-                       FormatType    type);
+        getCertificate(const limal::ByteBuffer &data,
+                       FormatType               type);
         
         static RequestData
-        getRequest(const ByteArray &data,
-                   FormatType    type);
+        getRequest(const limal::ByteBuffer &data,
+                   FormatType               type);
         
         static CRLData
-        getCRL(const ByteArray &data,
-               FormatType    type);
+        getCRL(const limal::ByteBuffer &data,
+               FormatType               type);
         
 
-        static ByteArray
+        static limal::ByteBuffer
         readFile(const String& file);
 
         static void
-        writeFile(const ByteArray& data,
+        writeFile(const limal::ByteBuffer& data,
                   const String &file,
                   bool overwrite = true,
                   mode_t mode = 0644);
-
-        static String
-        ba2str(const ByteArray& data);
-
-        static ByteArray
-        str2ba(const String& data);
-
+        
     };
 
 }

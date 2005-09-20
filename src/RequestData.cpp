@@ -94,7 +94,7 @@ RequestData::getKeyAlgorithm() const
     return pubkeyAlgorithm;
 }
 
-ByteArray
+ByteBuffer
 RequestData::getPublicKey() const
 {
     return publicKey;
@@ -106,7 +106,7 @@ RequestData::getSignatureAlgorithm() const
     return signatureAlgorithm;
 }
 
-ByteArray
+ByteBuffer
 RequestData::getSignature() const
 {
     return signature;
@@ -194,10 +194,9 @@ RequestData::dump() const
     result.append("pubkeyAlgorithm = " + String(pubkeyAlgorithm));
     
     String pk;
-    ByteArray::const_iterator it = publicKey.begin();
-    for(; it != publicKey.end(); ++it) {
+    for(size_t i = 0; i < publicKey.size(); ++i) {
         String s;
-        s.format("%02x", *it);
+        s.format("%02x", (UInt8)publicKey[i]);
         pk += s + ":";
     }
     result.append("public Key = " + pk);
@@ -207,7 +206,7 @@ RequestData::dump() const
     String s;
     for(uint i = 0; i < signature.size(); ++i) {
         String d;
-        d.format("%02x:", signature[i]);
+        d.format("%02x:", (UInt8)signature[i]);
         s += d;
     }
 
@@ -227,9 +226,9 @@ RequestData::RequestData()
       subject(DNObject()),
       keysize(0),
       pubkeyAlgorithm(RSA),
-      publicKey(ByteArray()),
+      publicKey(ByteBuffer()),
       signatureAlgorithm(SHA1RSA),
-      signature(ByteArray()),
+      signature(ByteBuffer()),
       extensions(X509v3RequestExtensions_Priv()),
       challengePassword(""), 
       unstructuredName("")

@@ -50,7 +50,7 @@ inline static LiteralValue gn2lv(GENERAL_NAME *gen)
         memcpy(s, gen->d.ia5->data, gen->d.ia5->length);
         s[gen->d.ia5->length] = '\0';
         lv.setLiteral("email", s);
-        delete(s);
+        delete [] s;
         break;
 
     case GEN_DNS:
@@ -58,7 +58,7 @@ inline static LiteralValue gn2lv(GENERAL_NAME *gen)
         memcpy(s, gen->d.ia5->data, gen->d.ia5->length);
         s[gen->d.ia5->length] = '\0';
         lv.setLiteral("DNS", s);
-        delete(s);
+        delete [] s;
         break;
 
     case GEN_URI:
@@ -66,7 +66,7 @@ inline static LiteralValue gn2lv(GENERAL_NAME *gen)
         memcpy(s, gen->d.ia5->data, gen->d.ia5->length);
         s[gen->d.ia5->length] = '\0';
         lv.setLiteral("URI", s);
-        delete(s);
+        delete [] s;
         break;
 
     case GEN_DIRNAME:
@@ -434,7 +434,7 @@ void X509v3CertificateExtensions_Priv::parseStringExtension(STACK_OF(X509_EXTENS
 
     ext.setValue(s);
 
-    delete(s);
+    delete [] s;
 
     if(crit == 1) {
         ext.setCritical(true);
@@ -994,7 +994,7 @@ X509v3CertificateExtensions_Priv::parseCertificatePoliciesExtension(STACK_OF(X50
                     s[qualinfo->d.cpsuri->length] = '\0';
 
                     cpsURI.push_back(String(s));
-                    delete(s);
+                    delete [] s;
                     break;
                 case NID_id_qt_unotice:
                     int k;
@@ -1025,7 +1025,7 @@ X509v3CertificateExtensions_Priv::parseCertificatePoliciesExtension(STACK_OF(X50
                         
                         un.setOrganizationNotice(s, numberList);
 
-                        delete(s);
+                        delete [] s;
                     }
                     
                     if(qualinfo->d.usernotice->exptext) {
@@ -1037,7 +1037,7 @@ X509v3CertificateExtensions_Priv::parseCertificatePoliciesExtension(STACK_OF(X50
                         
                         un.setExplicitText(s);
                         
-                        delete(s);
+                        delete [] s;
                     }
 
                     noticeList.push_back(un);

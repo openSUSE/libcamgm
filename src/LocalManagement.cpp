@@ -26,19 +26,15 @@
 #include  <limal/PathName.hpp>
 #include  <limal/PathUtils.hpp>
 
-#include <fstream>
-
-#include  "OPENSSL.h"
-
 #include  "CertificateData_Priv.hpp"
 #include  "CRLData_Priv.hpp"
 #include  "RequestData_Priv.hpp"
 #include  "Utils.hpp"
 #include  "Commands.hpp"
+#include  "OpenSSLUtils.hpp"
 
 #include  <blocxx/File.hpp>
-
-#include  <string.h>
+#include  <blocxx/System.hpp>
 
 using namespace limal;
 using namespace limal::ca_mgm;
@@ -46,9 +42,9 @@ using namespace blocxx;
 
 inline static blocxx::String errno2String(int e) {
     // FIXME: make strerror working
-    //blocxx::String s(::strerror(e));
-    blocxx::String s = "(" + blocxx::String(e) + ")";
-    return "";
+    blocxx::String s = System::errorMsg(e);
+    s = "(" + blocxx::String(e) + ")";
+    return s;
 }
 
 void 
@@ -66,29 +62,16 @@ LocalManagement::importAsLocalCertificate(const String &pkcs12File,
 }
 
 void
-LocalManagement::importAsLocalCertificate(const ByteArray &pkcs12Data,
-                                          const String    &password,
-                                          const String    &destinationCAsDir,
-                                          const String    &destinationCertFile,
-                                          const String    &destinationKeyFile)
+LocalManagement::importAsLocalCertificate(const ByteBuffer &pkcs12Data,
+                                          const String     &password,
+                                          const String     &destinationCAsDir,
+                                          const String     &destinationCertFile,
+                                          const String     &destinationKeyFile)
 {
-    Map<String, String> hash;
-    hash["BINARY"] = OPENSSL_COMMAND;
-    hash["CONFIG"] = "/";
-    hash["DEBUG"]  = "1";
-    OPENSSL ossl(hash);
+    ByteBuffer out = OpenSSLUtils::pkcs12ToPEM(pkcs12Data, password, "");
+
+    String data(out.data(), out.size());
     
-    hash.clear();
-    hash["DATATYPE"]  = "CERTIFICATE";
-    hash["INFORM"]    = "PKCS12";
-    hash["DATA"]      = LocalManagement::ba2str(pkcs12Data);
-    hash["OUTFORM"]   = "PEM";
-    hash["INPASSWD"]  = password;
-    hash["OUTPASSWD"] = "";
-    //hash[""] = "";
-
-    String data = ossl.convert(hash);
-
     Array< Map<String, String> > list;
 
     String info;
@@ -306,7 +289,7 @@ LocalManagement::importAsLocalCertificate(const ByteArray &pkcs12Data,
             }
         }
 
-        writeFile(str2ba(serverCert),
+        writeFile(ByteBuffer(serverCert.c_str(), serverCert.length()),
                   destinationCertFile);
 
 
@@ -327,7 +310,7 @@ LocalManagement::importAsLocalCertificate(const ByteArray &pkcs12Data,
             }
         }
         
-        writeFile(str2ba(serverKey),
+        writeFile(ByteBuffer(serverKey.c_str(), serverKey.length()),
                   destinationKeyFile, 0600);
 
 
@@ -358,12 +341,12 @@ LocalManagement::importAsLocalCertificate(const ByteArray &pkcs12Data,
                 
             }
             
-            writeFile(str2ba(srvIssuerCert),
+            writeFile(ByteBuffer(srvIssuerCert.c_str(), srvIssuerCert.length()),
                       pi.toString() + "/YaST-CA.pem");
-
+            
             for(uint i = 0; i < restCA.size(); ++i) {
                 
-                writeFile(str2ba(restCA[i]),
+                writeFile(ByteBuffer(restCA[i].c_str(), restCA[i].length()),
                           pi.toString() + "/YaST-CA-" + String(i) + ".pem");
             }
         
@@ -392,7 +375,7 @@ LocalManagement::importCommonServerCertificate(const String &pkcs12File,
 }
 
 void
-LocalManagement::importCommonServerCertificate(const ByteArray &pkcs12Data,
+LocalManagement::importCommonServerCertificate(const ByteBuffer &pkcs12Data,
                                                const String    &password)
 {
     importAsLocalCertificate(pkcs12Data,
@@ -424,28 +407,28 @@ LocalManagement::getCRL(const String &file,
 }
 
 CertificateData
-LocalManagement::getCertificate(const ByteArray &data,
+LocalManagement::getCertificate(const ByteBuffer &data,
                                 FormatType    type)
 {
     return CertificateData_Priv(data, type);
 }
         
 RequestData
-LocalManagement::getRequest(const ByteArray &data,
+LocalManagement::getRequest(const ByteBuffer &data,
                             FormatType    type)
 {
     return RequestData_Priv(data, type);
 }
         
 CRLData
-LocalManagement::getCRL(const ByteArray &data,
+LocalManagement::getCRL(const ByteBuffer &data,
                         FormatType    type)
 {
     return CRLData_Priv(data, type);
 }
 
 
-ByteArray
+ByteBuffer
 LocalManagement::readFile(const String& file)
 {
     path::PathInfo filePi(file);
@@ -476,7 +459,7 @@ LocalManagement::readFile(const String& file)
     }
 
     File fileObject(fd);
-    ByteArray   ret;
+    ByteBuffer  ret;
     size_t      i = 1;
     
     while( i != 0 ) {
@@ -494,12 +477,9 @@ LocalManagement::readFile(const String& file)
                                     errno);
         }
 
-        for(uint k = 0; k < i; ++k) {
-
-            ret.push_back(buf[k]);
-        }
+        ret.append(buf, i);
         
-        delete(buf);
+        delete [] buf;
     }
 
     fileObject.close();
@@ -508,7 +488,7 @@ LocalManagement::readFile(const String& file)
 }
 
 void
-LocalManagement::writeFile(const ByteArray& data,
+LocalManagement::writeFile(const ByteBuffer& data,
                            const String &file,
                            bool overwrite,
                            mode_t mode)
@@ -536,75 +516,28 @@ LocalManagement::writeFile(const ByteArray& data,
 
     int r = fileObject.getLock();
     if(r != 0) {
-
+        
         LOGIT_ERROR("Cannot get lock on file: " << file << "(" << errno << ")");
         BLOCXX_THROW_ERRNO_MSG1(limal::SystemException,
                                 Format("Cannot get lock on file: %1", file).c_str(),
                                 errno);
-
+        
     }
     
-    ByteArray::const_iterator it = data.begin();
-    char *out = new char[data.size()];
-
-    for(uint i = 0; it != data.end(); ++it, ++i) {
-        
-        out[i] = static_cast<char>(*it);
-    }
-
-    size_t st = fileObject.write(out, data.size());
-
+    size_t st = fileObject.write(data.data(), data.size());
+    
     if(st == size_t(-1)) {
-
-        delete(out);
+        
         fileObject.unlock();
         fileObject.close();
-
+        
         LOGIT_ERROR("Cannot write to file: " << file << "(" << errno << ")");
         BLOCXX_THROW_ERRNO_MSG1(limal::SystemException,
                                 Format("Cannot write to file: %1", file).c_str(),
                                 errno);
     }
-
-    delete(out);
+    
     fileObject.flush();
     fileObject.unlock();
     fileObject.close();
-}
-
-blocxx::String
-LocalManagement::ba2str(const ByteArray& data)
-{
-    String ret;
-
-    String dbg;
-
-    char *c = new char[data.size()];
-
-    ByteArray::const_iterator it = data.begin();
-    
-    for(uint i = 0; it != data.end(); ++it, ++i) {
-
-        c[i] = static_cast<char>(*it);
-        
-    }
-    ret = String(c, data.size());
-    delete(c);
-
-    return ret;
-}
-
-ByteArray
-LocalManagement::str2ba(const String& data)
-{
-    ByteArray ret;
-
-    for(size_t i = 0; i < data.length(); ++i) {
-
-        ret.push_back( data.charAt(i) );
-
-    }
-
-    return ret;
-
 }

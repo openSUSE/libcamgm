@@ -182,7 +182,7 @@ CRLData::getSignatureAlgorithmAsString() const
     return String();
 }
 
-ByteArray
+ByteBuffer
 CRLData::getSignature() const
 {
     return signature;
@@ -203,7 +203,12 @@ CRLData::getRevocationData() const
 RevocationEntry
 CRLData::getRevocationEntry(const String& oid)
 {
-    return RevocationEntry();
+    if(revocationData.find(oid) != revocationData.end()) {
+
+        return (*(revocationData.find(oid))).second;
+    }
+    LOGIT_ERROR("Entry not found: " << oid);
+    BLOCXX_THROW(limal::ValueException, "Entry not found");
 }
 
 bool
@@ -272,7 +277,7 @@ CRLData::dump() const
     String s;
     for(uint i = 0; i < signature.size(); ++i) {
         String d;
-        d.format("%02x:", signature[i]);
+        d.format("%02x:", (UInt8)signature[i]);
         s += d;
     }
     result.append("Signature = " + s);
@@ -292,7 +297,7 @@ CRLData::dump() const
 CRLData::CRLData()
     : version(0), lastUpdate(0),
       nextUpdate(0), issuer(DNObject()),
-      signatureAlgorithm(SHA1RSA), signature(ByteArray()),
+      signatureAlgorithm(SHA1RSA), signature(ByteBuffer()),
       extensions(X509v3CRLExtensions_Priv()), 
       revocationData(blocxx::Map<String, RevocationEntry>())
 {
@@ -302,8 +307,8 @@ StringArray
 CRLData::checkRevocationData(const blocxx::Map<String, RevocationEntry>& rd) const
 {
     StringArray result;
-    blocxx::Map<String, RevocationEntry>::const_iterator it = revocationData.begin();
-    for(; it != revocationData.end(); ++it) {
+    blocxx::Map<String, RevocationEntry>::const_iterator it = rd.begin();
+    for(; it != rd.end(); ++it) {
         result.appendArray(((*it).second).verify());
     }
     return result;

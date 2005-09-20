@@ -131,7 +131,7 @@ CertificateData::getPublicKeyAlgorithmAsString() const
     return String();
 }
 
-ByteArray
+ByteBuffer
 CertificateData::getPublicKey() const
 {
     return publicKey;
@@ -160,7 +160,7 @@ CertificateData::getSignatureAlgorithmAsString() const
     return String();
 }
 
-ByteArray
+ByteBuffer
 CertificateData::getSignature() const
 {
     return signature;
@@ -265,10 +265,9 @@ CertificateData::dump() const
     result.append("public key algorithm = " + String(pubkeyAlgorithm));
 
     String pk;
-    ByteArray::const_iterator it = publicKey.begin();
-    for(; it != publicKey.end(); ++it) {
+    for(size_t i = 0; i < publicKey.size(); ++i) {
         String s;
-        s.format("%02x", *it);
+        s.format("%02x", (UInt8)publicKey[i]);
         pk += s + ":";
     }
     result.append("public Key = " + pk);
@@ -277,7 +276,7 @@ CertificateData::dump() const
     String s;
     for(uint i = 0; i < signature.size(); ++i) {
         String d;
-        d.format("%02x:", signature[i]);
+        d.format("%02x:", (UInt8)signature[i]);
         s += d;
     }
 
@@ -293,8 +292,8 @@ CertificateData::CertificateData()
       notBefore(0), notAfter(0),
       issuer(DNObject()), subject(DNObject()),
       keysize(2048), pubkeyAlgorithm(RSA),
-      publicKey(ByteArray()), signatureAlgorithm(SHA1RSA),
-      signature(ByteArray()), extensions(X509v3CertificateExtensions_Priv())
+      publicKey(ByteBuffer()), signatureAlgorithm(SHA1RSA),
+      signature(ByteBuffer()), extensions(X509v3CertificateExtensions_Priv())
 {
 }
 

@@ -49,29 +49,20 @@ RequestData_Priv::RequestData_Priv()
 {
 }
 
-RequestData_Priv::RequestData_Priv(const ByteArray& request, 
+RequestData_Priv::RequestData_Priv(const ByteBuffer& request, 
                                    FormatType formatType)
     : RequestData()
 {
     BIO *bio;
     X509_REQ *x509 = NULL;
 
-    unsigned char *d = new unsigned char[request.size()+1];
-
-    ByteArray::const_iterator it = request.begin();
-    for(int i = 0; it != request.end(); ++it, ++i) {
-
-        d[i] = (*it);
-
-    }
+    unsigned char *d = (unsigned char*)request.data();
 
     if( formatType == PEM ) {
 
         bio = BIO_new_mem_buf(d, request.size());
 
         if(!bio) {
-            
-            delete(d);
             
             LOGIT_ERROR("Can not create a memory BIO");
             BLOCXX_THROW(limal::MemoryException, "Can not create a memory BIO");
@@ -81,7 +72,6 @@ RequestData_Priv::RequestData_Priv(const ByteArray& request,
         // create the X509 structure
         x509 = PEM_read_bio_X509_REQ(bio, NULL, 0, NULL);
         BIO_free(bio);
-        delete(d);
 
     } else {
 
@@ -92,7 +82,6 @@ RequestData_Priv::RequestData_Priv(const ByteArray& request,
 
         x509 = d2i_X509_REQ(NULL, &d2, request.size());
 
-        delete(d);
         d2 = NULL;
     }
 
@@ -125,7 +114,7 @@ RequestData_Priv::RequestData_Priv(const String& requestPath,
     : RequestData()
 {
 
-    ByteArray ba = LocalManagement::readFile(requestPath);
+    ByteBuffer ba = LocalManagement::readFile(requestPath);
 
     // FIXME: I do not know if this is the right way :-)
     *this = RequestData_Priv(ba, formatType);
@@ -172,7 +161,7 @@ RequestData_Priv::setKeyAlgorithm(KeyAlg alg)
 }
 
 void
-RequestData_Priv::setPublicKey(const ByteArray key)
+RequestData_Priv::setPublicKey(const ByteBuffer key)
 {
     publicKey = key;
 }
@@ -184,7 +173,7 @@ RequestData_Priv::setSignatureAlgorithm(SigAlg alg)
 }
 
 void
-RequestData_Priv::setSignature(const ByteArray &sig)
+RequestData_Priv::setSignature(const ByteBuffer &sig)
 {
     signature = sig;
 }
@@ -257,10 +246,7 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
 
         int len  = i2d_RSA_PUBKEY(rsa, &y);
 
-        for( int j = 0; j < len ; ++j) {
-
-            publicKey.push_back(y[j]);
-        }
+        publicKey = ByteBuffer((char*)y, len);
 
         free(y);
         RSA_free(rsa);
@@ -340,11 +326,7 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
 
     // get signature
 
-    for(int k = 0; k < x509->signature->length; ++k) {
-
-        signature.push_back(x509->signature->data[k]);
-
-    }
+    signature = ByteBuffer((char*)x509->signature->data, x509->signature->length);
 
     // get attributes
 
@@ -397,7 +379,7 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
             d[bs->length] = '\0';
 
             String s(d, bs->length);
-            delete(d);
+            delete [] d;
             
             if(nid == NID_pkcs9_challengePassword) {
                 

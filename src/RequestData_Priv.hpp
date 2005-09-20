@@ -25,6 +25,7 @@
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <limal/ca-mgm/RequestData.hpp>
+#include  <limal/ByteBuffer.hpp>
 
 #include <openssl/x509.h>
 
@@ -37,7 +38,7 @@ namespace CA_MGM_NAMESPACE {
         RequestData_Priv();
         RequestData_Priv(const String& requestPath, 
                          FormatType formatType = PEM);
-        RequestData_Priv(const ByteArray& request, 
+        RequestData_Priv(const ByteBuffer& request, 
                          FormatType formatType = PEM);
         RequestData_Priv(const RequestData_Priv& data);
         virtual ~RequestData_Priv();
@@ -46,9 +47,9 @@ namespace CA_MGM_NAMESPACE {
         void                setKeysize(blocxx::UInt32 size);
         void                setSubject(const DNObject dn);
         void                setKeyAlgorithm(KeyAlg alg);
-        void                setPublicKey(const ByteArray key);
+        void                setPublicKey(const ByteBuffer key);
         void                setSignatureAlgorithm(SigAlg alg);
-        void                setSignature(const ByteArray &sig);
+        void                setSignature(const ByteBuffer &sig);
         void                setExtensions(const X509v3RequestExtensions &ext);
         void                setChallengePassword(const String &passwd);
         void                setUnstructuredName(const String &name);

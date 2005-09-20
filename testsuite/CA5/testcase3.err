@@ -29,6 +29,7 @@ DEBUG ca-mgm - type2Section: type=1 result=v3_req_server
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=1 result=req_server
 DEBUG ca-mgm - type2Section: type=1 result=req_server
+DEBUG IniPaser - File ./TestRepos//ca1_test/openssl.cnf did not change. Not saving.
 DEBUG ca-mgm - return BasicConstraintsExtension::valid() is true
 DEBUG ca-mgm - type2Section: type=1 result=req_server
 DEBUG ca-mgm - type2Section: type=1 result=req_server
@@ -121,6 +122,7 @@ DEBUG ca-mgm - type2Section: type=1 result=v3_req_server
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=1 result=req_server
 DEBUG ca-mgm - type2Section: type=1 result=req_server
+DEBUG IniPaser - File ./TestRepos//ca2_test/openssl.cnf did not change. Not saving.
 DEBUG ca-mgm - return BasicConstraintsExtension::valid() is true
 DEBUG ca-mgm - type2Section: type=1 result=req_server
 DEBUG ca-mgm - type2Section: type=1 result=req_server

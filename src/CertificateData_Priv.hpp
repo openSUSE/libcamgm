@@ -25,6 +25,7 @@
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <limal/ca-mgm/CertificateData.hpp>
+#include  <limal/ByteBuffer.hpp>
 
 #include <openssl/x509.h>
 
@@ -36,7 +37,7 @@ namespace CA_MGM_NAMESPACE {
     public:
         CertificateData_Priv();
 
-        CertificateData_Priv(const ByteArray &certificate,
+        CertificateData_Priv(const ByteBuffer &certificate,
                              FormatType formatType = PEM);
 
         /**
@@ -65,11 +66,11 @@ namespace CA_MGM_NAMESPACE {
 
         void           setPublicKeyAlgorithm(KeyAlg pubKeyAlg);
 
-        void           setPublicKey(const ByteArray derPublicKey);
+        void           setPublicKey(const ByteBuffer derPublicKey);
 
         void           setSignatureAlgorithm(SigAlg sigAlg);
         
-        void           setSignature(const ByteArray& sig);
+        void           setSignature(const ByteBuffer& sig);
 
         void           setExtensions(const X509v3CertificateExtensions& ext);
 

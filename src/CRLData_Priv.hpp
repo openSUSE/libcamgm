@@ -25,6 +25,7 @@
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <limal/ca-mgm/CRLData.hpp>
+#include  <limal/ByteBuffer.hpp>
 
 #include  <openssl/x509.h>
 
@@ -54,7 +55,7 @@ namespace CA_MGM_NAMESPACE {
     class CRLData_Priv : public CRLData {
     public:
         CRLData_Priv();
-        CRLData_Priv(const ByteArray &crl,
+        CRLData_Priv(const ByteBuffer &crl,
                      FormatType formatType = PEM);
         CRLData_Priv(const String &crlPath,
                      FormatType formatType = PEM);
@@ -66,7 +67,7 @@ namespace CA_MGM_NAMESPACE {
                                  time_t next);
         void   setIssuerDN(const DNObject& issuer);
         void   setSignatureAlgorithm(SigAlg sigAlg);
-        void   setSignature(const ByteArray& sig);
+        void   setSignature(const ByteBuffer& sig);
         void   setExtensions(const X509v3CRLExtensions& ext);
         void   setRevocationData(const blocxx::Map<String, RevocationEntry>& data);
 

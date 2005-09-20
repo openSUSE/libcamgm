@@ -8,20 +8,13 @@
 #include <limal/PathInfo.hpp>
 #include <limal/PathUtils.hpp>
 #include <limal/Exception.hpp>
+#include <limal/ByteBuffer.hpp>
 #include <limal/ca-mgm/CA.hpp>
 #include <limal/ca-mgm/LocalManagement.hpp>
 
 #include <iostream>
 #include <fstream>
 #include <unistd.h>
-
-extern "C" {
-#include <EXTERN.h>
-#include <perl.h>
-}
-
-EXTERN_C void xs_init (pTHX);
-PerlInterpreter *my_perl;
 
 using namespace blocxx;
 using namespace limal;
@@ -31,17 +24,6 @@ limal::Logger logger("ImportCommonCertificateTest");
 
 int main(int argc, char **argv)
 {
-    char *embedding[] = { "", "-I../src/", "-MDynaLoader", "-MOPENSSL", "-MOPENSSL::CATools", "-e", 
-                          "0" };
-    
-    PERL_SYS_INIT3(&argc,&argv,&env);
-    my_perl = perl_alloc();
-    perl_construct( my_perl );
-    
-    perl_parse(my_perl, xs_init, 7, embedding, NULL);
-    PL_exit_flags |= PERL_EXIT_DESTRUCT_END;
-    perl_run(my_perl);
-
     try {
         std::cout << "START" << std::endl;
 
@@ -70,7 +52,7 @@ int main(int argc, char **argv)
         
         std::cout << "==================== ca.exportCertificateAsPKCS12(..., false); ======================" << std::endl; 
         
-        ByteArray ba = ca2.exportCertificateAsPKCS12("01:9528e1d8783f83b662fca6085a8c1467-1111161258",
+        ByteBuffer ba = ca2.exportCertificateAsPKCS12("01:9528e1d8783f83b662fca6085a8c1467-1111161258",
                                            "system", "tralla", false);
         
         LocalManagement::writeFile(ba, "./TestRepos3/testCert.p12");
@@ -105,11 +87,21 @@ int main(int argc, char **argv)
         pi.stat("./TestRepos3/localTest/certs/YaST-CA.pem");
         if(pi.exists()) {
 
-            std::cout << "CA exists !WRONG!" << std::endl;
+            std::cout << "CA exists ! OK!" << std::endl;
+            
+        } else {
+
+            std::cout << "CA do not exists ! WRONG !" << std::endl;
+        }
+
+        pi.stat("./TestRepos3/localTest/certs/YaST-CA-0.pem");
+        if(pi.exists()) {
+
+            std::cout << "YaST-CA-0 exists !WRONG!" << std::endl;
 
         } else {
 
-            std::cout << "CA do not exists ! OK !" << std::endl;
+            std::cout << "YaST-CA-0 do not exists ! OK !" << std::endl;
         }
 
         limal::path::removeFile("./TestRepos3/testCert.p12");
@@ -155,6 +147,15 @@ int main(int argc, char **argv)
             std::cout << "CA exists" << std::endl;
 
         }
+        pi.stat("./TestRepos3/localTest/certs2/YaST-CA-0.pem");
+        if(pi.exists()) {
+
+            std::cout << "YaST-CA-0 exists ! OK !" << std::endl;
+
+        } else {
+
+            std::cout << "YaST-CA-0 do not exists ! WRONG !" << std::endl;
+        }
 
         limal::path::removeFile("./TestRepos3/testCertChain.p12");
 
@@ -165,10 +166,6 @@ int main(int argc, char **argv)
     } catch(blocxx::Exception& e) {
         std::cerr << e << std::endl;
     }
-
-    perl_destruct(my_perl);
-    perl_free(my_perl);
-    PERL_SYS_TERM();
 
     return 0;
 }

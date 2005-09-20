@@ -35,8 +35,7 @@
 #include  "RequestData_Priv.hpp"
 #include  "CRLData_Priv.hpp"
 #include  "DNObject_Priv.hpp"
-#include  "CATools.h"
-#include  "OPENSSL.h"
+#include  "OpenSSLUtils.hpp"
 
 #include  "Utils.hpp"
 #include  "Commands.hpp"
@@ -115,8 +114,11 @@ CA::createSubCA(const String& newCaName,
 
     
     try {
-        createCaInfrastructure(newCaName, repositoryDir);
+
+        OpenSSLUtils::createCaInfrastructure(newCaName, repositoryDir);
+
     } catch(blocxx::Exception &e) {
+
         LOGIT_ERROR(e);
         BLOCXX_THROW_SUBEX(limal::SystemException, 
                            "Error during create CA infrastructure",
@@ -181,12 +183,7 @@ CA::createRequest(const String& keyPasswd,
         BLOCXX_THROW(limal::ValueException, "Invalid request data");
     }
   
-
-    blocxx::Map<blocxx::String,blocxx::String > hash;
-    hash["BINARY"] = OPENSSL_COMMAND;
-    hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf";;
-    hash["DEBUG"] = "1";
-    OPENSSL ossl(hash);
+    OpenSSLUtils ost(repositoryDir + "/" + caName + "/" + "openssl.cnf");
 
     String opensslDN = requestData.getSubject().getOpenSSLString();
     blocxx::MD5 md5(opensslDN);
@@ -217,38 +214,24 @@ CA::createRequest(const String& keyPasswd,
     config->copySection(type2Section(requestType, false), "req");
 
     // create key
-    hash.clear();
-    hash["OUTFILE"] = repositoryDir + "/" + caName + "/keys/"+ request + ".key";
-    hash["PASSWD"]  = keyPasswd;
-    hash["BITS"]    = String(requestData.getKeysize());
-    //    hash[""] = "";
-	blocxx::String k = ossl.createKey(hash);
+
+    ost.createRSAKey(repositoryDir + "/" + caName + "/keys/"+ request + ".key",
+                     keyPasswd, requestData.getKeysize());
+
 
     // create request
-    hash.clear();
-    hash["OUTFILE"]   = repositoryDir + "/" + caName + "/req/"+ request + ".req";
-    hash["KEYFILE"]   = repositoryDir + "/" + caName + "/keys/"+ request + ".key";
-    hash["PASSWD"]    = keyPasswd;
-    hash["EXTENSION"] = type2Section(requestType, true);
-    //hash[""] = "";
 
-    blocxx::List<RDNObject> dn = requestData.getSubject().getDN();
-    blocxx::List<RDNObject>::const_iterator it = dn.begin();
-    blocxx::Array<blocxx::String> sdn;
-    for(; it != dn.end(); ++it) {
-        sdn.push_back( (*it).getValue() );
-    }
-    sdn.push_back(requestData.getChallengePassword());
-    sdn.push_back(requestData.getUnstructuredName());
-
-    k = ossl.createReq(&hash, &sdn);
-
-    hash.clear();
-    hash["MD5"] = request;
-    hash["DN"]  = opensslDN;
-    hash["REPOSITORY"]  = repositoryDir;
+    ost.createRequest(requestData.getSubject(),
+                      repositoryDir + "/" + caName + "/req/"+ request + ".req",
+                      repositoryDir + "/" + caName + "/keys/"+ request + ".key",
+                      keyPasswd,
+                      type2Section(requestType, true),
+                      PEM,
+                      requestData.getChallengePassword(),
+                      requestData.getUnstructuredName());
     
-    addCAM(caName, &hash);
+    
+    OpenSSLUtils::addCAM(caName, request, opensslDN, repositoryDir);
 
     return request;
 }
@@ -272,7 +255,7 @@ CA::issueCertificate(const String& requestName,
         BLOCXX_THROW(limal::ValueException, "Invalid issue data");
     }
     
-    String serial      = nextSerial(caName, repositoryDir);
+    String serial      = OpenSSLUtils::nextSerial(repositoryDir + "/" + caName + "/serial");
     String certificate = serial + ":" + requestName;
 
     // parse the CA and check if the end date of the ca is greater
@@ -301,26 +284,17 @@ CA::issueCertificate(const String& requestName,
     // write data to config
     issueData.commit2Config(*this, certType);
 
-    blocxx::Map<blocxx::String,blocxx::String > hash;
-    hash["BINARY"] = OPENSSL_COMMAND;
-    hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf";;
-    hash["DEBUG"]  = "1";
-    OPENSSL ossl(hash);
+    OpenSSLUtils ost(repositoryDir + "/" + caName + "/" + "openssl.cnf");
 
-    hash.clear();
-    hash["REQFILE"]    = repositoryDir + "/" + caName + "/req/"+ requestName + ".req";
-    hash["CAKEY"]      = repositoryDir + "/" + caName + "/cacert.key";
-    hash["CACERT"]     = repositoryDir + "/" + caName + "/cacert.pem";
-    hash["START_DATE"] = String(issueData.getStartDateAsString());
-    hash["END_DATE"]   = String(issueData.getEndDateAsString());
-    hash["PASSWD"]     = caPasswd;
-    hash["CA_SECTION"] = type2Section(certType, false);
-    hash["EXTS"]       = type2Section(certType, true);
-    hash["OUTDIR"]     = repositoryDir + "/" + caName + "/certs/";
-    hash["OUTFILE"]    = repositoryDir + "/" + caName + "/newcerts/" + certificate + ".pem";
-    hash["NOTEXT"]     = "1";
-
-	blocxx::String c = ossl.issueReq(hash);
+    ost.signRequest(repositoryDir + "/" + caName + "/req/"+ requestName + ".req",
+                    repositoryDir + "/" + caName + "/newcerts/" + certificate + ".pem",
+                    repositoryDir + "/" + caName + "/cacert.key",
+                    caPasswd, 
+                    type2Section(certType, true),
+                    issueData.getStartDateAsString(),
+                    issueData.getEndDateAsString(),
+                    type2Section(certType, false),
+                    repositoryDir + "/" + caName + "/certs/");
 
     return certificate;
 }
@@ -362,11 +336,8 @@ CA::createCertificate(const String& keyPasswd,
         certificate = issueCertificate(requestName, certificateData, t);
         
     } catch(blocxx::Exception &e) {
-        Map<String, String> hash;
-        hash["MD5"] = requestName;
-        hash["REPOSITORY"]  = repositoryDir;
         
-        delCAM(caName, &hash);
+        OpenSSLUtils::delCAM(caName, requestName, repositoryDir);
         
         path::removeFile(repositoryDir + "/" + caName + "/keys/" + requestName + ".key");
         path::removeFile(repositoryDir + "/" + caName + "/req/" + requestName + ".req");
@@ -392,43 +363,13 @@ CA::revokeCertificate(const String& certificateName,
         BLOCXX_THROW(limal::ValueException, "Invalid CRL reason");
     }
 
-    Map<String, String> hash;
-    hash["BINARY"] = OPENSSL_COMMAND;
-    hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf";;
-    hash["DEBUG"] = "1";
-    OPENSSL ossl(hash);
+    OpenSSLUtils ost(repositoryDir + "/" + caName + "/" + "openssl.cnf");
 
-    String reason = crlReason.getReasonAsString();
-
-    hash.clear();
-    hash["CAKEY"] = repositoryDir + "/" + caName + "/cacert.key";
-    hash["CACERT"] = repositoryDir + "/" + caName + "/cacert.pem";;
-    hash["PASSWD"] = caPasswd;
-    hash["INFILE"] = repositoryDir + "/" + caName + "/newcerts/" + certificateName + ".pem";
-    //hash[""] = "";
-    
-    if(reason == "certificateHold") {
-        
-        hash["CRL_REASON"] = reason;
-        hash["CRL_REASON_EXTRA"] = crlReason.getHoldInstruction();
-      
-    } else if(reason == "keyCompromise") {
-
-        hash["CRL_REASON"] = reason;
-        hash["CRL_REASON_EXTRA"] = String(crlReason.getKeyCompromiseDateAsString());
-
-    } else if(reason == "CACompromise") {
-
-        hash["CRL_REASON"] = reason;
-        hash["CRL_REASON_EXTRA"] = String(crlReason.getCACompromiseDateAsString());
-  
-    } else if(reason != "none") {
-        
-        hash["CRL_REASON"] = reason;
-        
-    }
-
-    ossl.revokeCert(hash);
+    ost.revokeCertificate(repositoryDir + "/" + caName + "/cacert.pem",
+                          repositoryDir + "/" + caName + "/cacert.key",
+                          caPasswd,
+                          repositoryDir + "/" + caName + "/newcerts/" + certificateName + ".pem",
+                          crlReason);
 
     return true;
 }
@@ -448,24 +389,15 @@ CA::createCRL(const CRLGenerationData& crlData)
     // write crl data to config
     crlData.commit2Config(*this, CRL);
 
-    Map<String, String> hash;
-    hash["BINARY"] = OPENSSL_COMMAND;
-    hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf";;
-    hash["DEBUG"] = "1";
-    OPENSSL ossl(hash);
+    OpenSSLUtils ost(repositoryDir + "/" + caName + "/" + "openssl.cnf");
 
-    hash.clear();
-    hash["CAKEY"]   = repositoryDir + "/" + caName + "/cacert.key";
-    hash["CACERT"]  = repositoryDir + "/" + caName + "/cacert.pem";;
-    hash["PASSWD"]  = caPasswd;
-    hash["HOURS"]   = String(crlData.getCRLLifeTime());
-    hash["OUTFORM"] = "PEM";
-    hash["OUTFILE"] = repositoryDir + "/" + caName + "/crl/crl.pem";
-    hash["EXTENSION"] = "v3_crl";
-    //hash[""] = "";
+    ost.issueCRL(repositoryDir + "/" + caName + "/cacert.pem",
+                 repositoryDir + "/" + caName + "/cacert.key",
+                 caPasswd,
+                 crlData.getCRLLifeTime(),
+                 repositoryDir + "/" + caName + "/crl/crl.pem",
+                 "v3_crl");
 
-    ossl.issueCRL(hash);
-    
     int r = path::copyFile(repositoryDir + "/" + caName + "/crl/crl.pem",
                            repositoryDir + "/" + ".cas/crl_" + caName + ".pem");
     
@@ -479,7 +411,7 @@ CA::createCRL(const CRLGenerationData& crlData)
 }
 
 blocxx::String
-CA::importRequest(const ByteArray& request,
+CA::importRequest(const ByteBuffer& request,
                   FormatType formatType)
 {
     RequestData rd = RequestData_Priv(request, formatType);
@@ -507,28 +439,18 @@ CA::importRequest(const ByteArray& request,
         
         // we have to convert the request to PEM format
         
-        unsigned char *dbuf = new unsigned char[request.size()+1];
-        ByteArray::const_iterator it = request.begin();
-
-        for(int i = 0; it != request.end(); ++it, ++i) {
-
-            dbuf[i] = static_cast<unsigned char>(*it);
-
-        }
-
-        X509_REQ *req = NULL;
+        unsigned char *dbuf = (unsigned char*)request.data();
+        X509_REQ *req  = NULL;
         
         req=d2i_X509_REQ(NULL, &dbuf , request.size());
-        delete(dbuf);
 
         char *pbuf = NULL;
         BIO  *bio  = BIO_new(BIO_s_mem());
         PEM_write_bio_X509_REQ(bio , req);
         int k = BIO_get_mem_data(bio, &pbuf);
 
-        String d(pbuf, k);
-        LocalManagement::writeFile(LocalManagement::str2ba(d),
-                                   outPi.toString());
+        ByteBuffer d(pbuf, k);
+        LocalManagement::writeFile(d, outPi.toString());
         
         BIO_free(bio);
         X509_REQ_free(req);
@@ -539,7 +461,7 @@ CA::importRequest(const ByteArray& request,
     hash["DN"]          = name;
     hash["REPOSITORY"]  = repositoryDir;
     
-    addCAM(caName, &hash);
+    OpenSSLUtils::addCAM(caName, requestName, name, repositoryDir);
 
     return requestName;
 }
@@ -548,7 +470,7 @@ blocxx::String
 CA::importRequest(const String& requestFile,
                   FormatType formatType)
 {
-    ByteArray ba = LocalManagement::readFile(requestFile);
+    ByteBuffer ba = LocalManagement::readFile(requestFile);
     
     return importRequest(ba, formatType);
 }
@@ -624,7 +546,7 @@ CA::getCertificateList()
 
     Array<Map<String, String> > ret;
 
-    ret = listCertificates(caName, repositoryDir);
+    ret = OpenSSLUtils::listCertificates(caName, repositoryDir);
 
     return ret;
 }
@@ -634,7 +556,7 @@ CA::getRequestList()
 {
     Array<Map<String, String> > ret;
 
-    ret = listRequests(caName, repositoryDir);
+    ret = OpenSSLUtils::listRequests(caName, repositoryDir);
 
     return ret;
 }
@@ -669,18 +591,14 @@ CA::getCRL()
  * Return the CA certificate in PEM or DER format
  *
  */
-ByteArray
+ByteBuffer
 CA::exportCACert(FormatType exportType)
 {
-    ByteArray ret;
+    ByteBuffer ret;
 
-    Map<String, String> hash;
-    hash["PASSWORD"]   = caPasswd;
-    hash["CACERT"]     = "1";
-    hash["REPOSITORY"] = repositoryDir;
-    //hash[""] = "";
-    
-    bool passOK = checkKey(caName, &hash);
+    OpenSSLUtils ost(repositoryDir + "/" + caName + "/openssl.cnf.tmpl");
+
+    bool passOK = ost.checkKey(caName, caPasswd, "cacert", repositoryDir);
     
     if(!passOK) {
 
@@ -693,21 +611,8 @@ CA::exportCACert(FormatType exportType)
 
     if( exportType == DER ) {
 
-        hash.clear();
-        hash["BINARY"] = OPENSSL_COMMAND;
-        hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf.tmpl";;
-        hash["DEBUG"] = "1";
-        OPENSSL ossl(hash);
+        ret = OpenSSLUtils::x509Convert(ret, PEM, DER);
 
-        hash.clear();
-        hash["DATATYPE"] = "CERTIFICATE";
-        hash["INFORM"]   = "PEM";
-        hash["DATA"]     = LocalManagement::ba2str(ret);
-        hash["OUTFORM"]  = "DER";
-        //hash[""] = "";
-        String data = ossl.convert(hash);
-
-        ret = LocalManagement::str2ba(data);
     }
 
     return ret;
@@ -721,18 +626,14 @@ CA::exportCACert(FormatType exportType)
  * using the newPassword. 
  * If newPassword is empty the returned key is decrypted.
  */
-ByteArray
+ByteBuffer
 CA::exportCAKeyAsPEM(const String& newPassword)
 {
-    ByteArray ret;
+    ByteBuffer ret;
 
-    Map<String, String> hash;
-    hash["PASSWORD"]   = caPasswd;
-    hash["CACERT"]     = "1";
-    hash["REPOSITORY"] = repositoryDir;
-    //hash[""] = "";
-    
-    bool passOK = checkKey(caName, &hash);
+    OpenSSLUtils ost(repositoryDir + "/" + caName + "/openssl.cnf.tmpl");
+
+    bool passOK = ost.checkKey(caName, caPasswd, "cacert", repositoryDir);
     
     if(!passOK) {
 
@@ -741,45 +642,10 @@ CA::exportCAKeyAsPEM(const String& newPassword)
 
     }
 
-    hash.clear();
-    hash["BINARY"] = OPENSSL_COMMAND;
-    hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf.tmpl";;
-    hash["DEBUG"] = "1";
-    OPENSSL ossl(hash);
-
     ret = LocalManagement::readFile(repositoryDir + "/" + caName + "/cacert.key");
 
-    String data;
-
-    hash.clear();
-
-    if(newPassword.empty()) {
-
-        hash["DATATYPE"] = "KEY";
-        hash["INFORM"]   = "PEM";
-        hash["DATA"]     = LocalManagement::ba2str(ret);
-        hash["OUTFORM"]  = "PEM";
-        hash["INPASSWD"] = caPasswd;
-        //hash[""] = "";
-
-        data = ossl.convert(hash);
-
-    } else {
-
-        hash["DATATYPE"]  = "KEY";
-        hash["INFORM"]    = "PEM";
-        hash["DATA"]      = LocalManagement::ba2str(ret);
-        hash["OUTFORM"]   = "PEM";
-        hash["INPASSWD"]  = caPasswd;
-        hash["OUTPASSWD"] = newPassword;
-        //hash[""] = "";
-
-        data = ossl.convert(hash);
-
-    }
-
-    ret = LocalManagement::str2ba(data);
-
+    ret = OpenSSLUtils::rsaConvert(ret, PEM, PEM, caPasswd, newPassword);
+    
     return ret;
 }
 
@@ -787,18 +653,14 @@ CA::exportCAKeyAsPEM(const String& newPassword)
  * Return the CA private key in DER format.
  * The private Key is decrypted.
  */
-ByteArray
+ByteBuffer
 CA::exportCAKeyAsDER()
 {
-    ByteArray ret;
+    ByteBuffer ret;
 
-    Map<String, String> hash;
-    hash["PASSWORD"]   = caPasswd;
-    hash["CACERT"]     = "1";
-    hash["REPOSITORY"] = repositoryDir;
-    //hash[""] = "";
-    
-    bool passOK = checkKey(caName, &hash);
+    OpenSSLUtils ost(repositoryDir + "/" + caName + "/openssl.cnf.tmpl");
+
+    bool passOK = ost.checkKey(caName, caPasswd, "cacert", repositoryDir);
     
     if(!passOK) {
 
@@ -807,28 +669,9 @@ CA::exportCAKeyAsDER()
 
     }
 
-    hash.clear();
-    hash["BINARY"] = OPENSSL_COMMAND;
-    hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf.tmpl";;
-    hash["DEBUG"] = "1";
-    OPENSSL ossl(hash);
-
     ret = LocalManagement::readFile(repositoryDir + "/" + caName + "/cacert.key");
 
-    String data;
-
-    hash.clear();
-
-    hash["DATATYPE"] = "KEY";
-    hash["INFORM"]   = "PEM";
-    hash["DATA"]     = LocalManagement::ba2str(ret);
-    hash["OUTFORM"]  = "DER";
-    hash["INPASSWD"] = caPasswd;
-    //hash[""] = "";
-
-    data = ossl.convert(hash);
-    
-    ret = LocalManagement::str2ba(data);
+    ret = OpenSSLUtils::rsaConvert(ret, PEM, DER, caPasswd, "");
     
     return ret;
 }
@@ -838,19 +681,15 @@ CA::exportCAKeyAsDER()
  * If withChain is true, all issuer certificates
  * will be included.
  */
-ByteArray
+ByteBuffer
 CA::exportCAasPKCS12(const String& p12Password,
                      bool withChain)
 {
-    ByteArray ret;
+    ByteBuffer ret;
 
-    Map<String, String> hash;
-    hash["PASSWORD"]   = caPasswd;
-    hash["CACERT"]     = "1";
-    hash["REPOSITORY"] = repositoryDir;
-    //hash[""] = "";
-    
-    bool passOK = checkKey(caName, &hash);
+    OpenSSLUtils ost(repositoryDir + "/" + caName + "/openssl.cnf.tmpl");
+
+    bool passOK = ost.checkKey(caName, caPasswd, "cacert", repositoryDir);
     
     if(!passOK) {
 
@@ -859,36 +698,15 @@ CA::exportCAasPKCS12(const String& p12Password,
 
     }
 
-    hash.clear();
-    hash["BINARY"] = OPENSSL_COMMAND;
-    hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf.tmpl";;
-    hash["DEBUG"] = "1";
-    OPENSSL ossl(hash);
+    ret = OpenSSLUtils::createPKCS12
+        (LocalManagement::readFile(repositoryDir + "/" + caName + "/" + "cacert.pem"),
+         LocalManagement::readFile(repositoryDir + "/" + caName + "/" + "cacert.key"),
+         caPasswd,
+         p12Password,
+         ByteBuffer(),
+         repositoryDir + "/.cas/",
+         withChain);
 
-    String data;
-
-    hash.clear();
-
-    hash["DATATYPE"]  = "CERTIFICATE";
-    hash["INFORM"]    = "PEM";
-    hash["INFILE"]    = repositoryDir + "/" + caName + "/" + "cacert.pem";
-    hash["KEYFILE"]   = repositoryDir + "/" + caName + "/" + "cacert.key";
-    hash["OUTFORM"]   = "PKCS12";
-    hash["INPASSWD"]  = caPasswd;
-    hash["OUTPASSWD"] = p12Password;
-
-    if(withChain) {
-        
-        hash["CHAIN"] = "1";
-        hash["CAPATH"] = repositoryDir + "/.cas/";
-        //hash[""] = "";
-        
-    }
-
-    data = ossl.convert(hash);
-    
-    ret = LocalManagement::str2ba(data);
-    
     return ret;
 }
 
@@ -896,19 +714,15 @@ CA::exportCAasPKCS12(const String& p12Password,
  * Return the certificate in PEM or DER format
  *
  */
-ByteArray
+ByteBuffer
 CA::exportCertificate(const String& certificateName,
                       FormatType exportType)
 {
-    ByteArray ret;
+    ByteBuffer ret;
 
-    Map<String, String> hash;
-    hash["PASSWORD"]   = caPasswd;
-    hash["CACERT"]     = "1";
-    hash["REPOSITORY"] = repositoryDir;
-    //hash[""] = "";
-    
-    bool passOK = checkKey(caName, &hash);
+    OpenSSLUtils ost(repositoryDir + "/" + caName + "/openssl.cnf.tmpl");
+
+    bool passOK = ost.checkKey(caName, caPasswd, "cacert", repositoryDir);
     
     if(!passOK) {
 
@@ -922,21 +736,7 @@ CA::exportCertificate(const String& certificateName,
 
     if( exportType == DER ) {
 
-        hash.clear();
-        hash["BINARY"] = OPENSSL_COMMAND;
-        hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf.tmpl";;
-        hash["DEBUG"] = "1";
-        OPENSSL ossl(hash);
-
-        hash.clear();
-        hash["DATATYPE"] = "CERTIFICATE";
-        hash["INFORM"]   = "PEM";
-        hash["DATA"]     = LocalManagement::ba2str(ret);
-        hash["OUTFORM"]  = "DER";
-        //hash[""] = "";
-        String data = ossl.convert(hash);
-
-        ret = LocalManagement::str2ba(data);
+        ret = OpenSSLUtils::x509Convert(ret, PEM, DER);
     }
 
     return ret;
@@ -948,20 +748,16 @@ CA::exportCertificate(const String& certificateName,
  * using the newPassword. 
  * If newPassword is empty the returned key is decrypted.
  */
-ByteArray
+ByteBuffer
 CA::exportCertificateKeyAsPEM(const String& certificateName,
                               const String& keyPassword,
                               const String& newPassword)
 {
-    ByteArray ret;
+    ByteBuffer ret;
 
-    Map<String, String> hash;
-    hash["PASSWORD"]   = caPasswd;
-    hash["CACERT"]     = "1";
-    hash["REPOSITORY"] = repositoryDir;
-    //hash[""] = "";
-    
-    bool passOK = checkKey(caName, &hash);
+    OpenSSLUtils ost(repositoryDir + "/" + caName + "/openssl.cnf.tmpl");
+
+    bool passOK = ost.checkKey(caName, caPasswd, "cacert", repositoryDir);
     
     if(!passOK) {
 
@@ -980,46 +776,11 @@ CA::exportCertificateKeyAsPEM(const String& certificateName,
 
     }
 
-    hash.clear();
-    hash["BINARY"] = OPENSSL_COMMAND;
-    hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf.tmpl";;
-    hash["DEBUG"] = "1";
-    OPENSSL ossl(hash);
-
     ret = LocalManagement::readFile(repositoryDir + "/" + caName + "/keys/" + 
                                     sa[1] + ".key");
 
-    String data;
-
-    hash.clear();
-
-    if(newPassword.empty()) {
-
-        hash["DATATYPE"] = "KEY";
-        hash["INFORM"]   = "PEM";
-        hash["DATA"]     = LocalManagement::ba2str(ret);
-        hash["OUTFORM"]  = "PEM";
-        hash["INPASSWD"] = keyPassword;
-        //hash[""] = "";
-
-        data = ossl.convert(hash);
-
-    } else {
-
-        hash["DATATYPE"]  = "KEY";
-        hash["INFORM"]    = "PEM";
-        hash["DATA"]      = LocalManagement::ba2str(ret);
-        hash["OUTFORM"]   = "PEM";
-        hash["INPASSWD"]  = keyPassword;
-        hash["OUTPASSWD"] = newPassword;
-        //hash[""] = "";
-
-        data = ossl.convert(hash);
-
-    }
-
-    ret = LocalManagement::str2ba(data);
-
+    ret = OpenSSLUtils::rsaConvert(ret, PEM, PEM, keyPassword, newPassword);
+    
     return ret;
 }
 
@@ -1027,19 +788,15 @@ CA::exportCertificateKeyAsPEM(const String& certificateName,
  * Return the certificate private key in DER format.
  * The private Key is decrypted.
  */
-ByteArray
+ByteBuffer
 CA::exportCertificateKeyAsDER(const String& certificateName,
                               const String& keyPassword)
 {
-    ByteArray ret;
+    ByteBuffer ret;
 
-    Map<String, String> hash;
-    hash["PASSWORD"]   = caPasswd;
-    hash["CACERT"]     = "1";
-    hash["REPOSITORY"] = repositoryDir;
-    //hash[""] = "";
-    
-    bool passOK = checkKey(caName, &hash);
+    OpenSSLUtils ost(repositoryDir + "/" + caName + "/openssl.cnf.tmpl");
+
+    bool passOK = ost.checkKey(caName, caPasswd, "cacert", repositoryDir);
     
     if(!passOK) {
 
@@ -1058,29 +815,10 @@ CA::exportCertificateKeyAsDER(const String& certificateName,
 
     }
 
-    hash.clear();
-    hash["BINARY"] = OPENSSL_COMMAND;
-    hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf.tmpl";;
-    hash["DEBUG"] = "1";
-    OPENSSL ossl(hash);
-
     ret = LocalManagement::readFile(repositoryDir + "/" + caName + "/keys/" + 
                                     sa[1] + ".key");
 
-    String data;
-
-    hash.clear();
-
-    hash["DATATYPE"] = "KEY";
-    hash["INFORM"]   = "PEM";
-    hash["DATA"]     = LocalManagement::ba2str(ret);
-    hash["OUTFORM"]  = "DER";
-    hash["INPASSWD"] = keyPassword;
-    //hash[""] = "";
-
-    data = ossl.convert(hash);
-    
-    ret = LocalManagement::str2ba(data);
+    ret = OpenSSLUtils::rsaConvert(ret, PEM, DER, keyPassword, "");
     
     return ret;
 }
@@ -1090,21 +828,17 @@ CA::exportCertificateKeyAsDER(const String& certificateName,
  * If withChain is true, all issuer certificates
  * will be included.
  */
-ByteArray
+ByteBuffer
 CA::exportCertificateAsPKCS12(const String& certificateName,
                               const String& keyPassword,
                               const String& p12Password,
                               bool withChain)
 {
-    ByteArray ret;
+    ByteBuffer ret;
 
-    Map<String, String> hash;
-    hash["PASSWORD"]   = caPasswd;
-    hash["CACERT"]     = "1";
-    hash["REPOSITORY"] = repositoryDir;
-    //hash[""] = "";
-    
-    bool passOK = checkKey(caName, &hash);
+    OpenSSLUtils ost(repositoryDir + "/" + caName + "/openssl.cnf.tmpl");
+
+    bool passOK = ost.checkKey(caName, caPasswd, "cacert", repositoryDir);
     
     if(!passOK) {
 
@@ -1123,35 +857,20 @@ CA::exportCertificateAsPKCS12(const String& certificateName,
 
     }
 
-    hash.clear();
-    hash["BINARY"] = OPENSSL_COMMAND;
-    hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf.tmpl";;
-    hash["DEBUG"] = "1";
-    OPENSSL ossl(hash);
+    ByteBuffer caCert;
+    if(!withChain) {
 
-    String data;
-
-    hash.clear();
-
-    hash["DATATYPE"]  = "CERTIFICATE";
-    hash["INFORM"]    = "PEM";
-    hash["INFILE"]    = repositoryDir + "/" + caName + "/newcerts/" + certificateName +".pem";
-    hash["KEYFILE"]   = repositoryDir + "/" + caName + "/keys/" + sa[1] + ".key";
-    hash["OUTFORM"]   = "PKCS12";
-    hash["INPASSWD"]  = keyPassword;
-    hash["OUTPASSWD"] = p12Password;
-
-    if(withChain) {
-        
-        hash["CHAIN"] = "1";
-        hash["CAPATH"] = repositoryDir + "/.cas/";
-        //hash[""] = "";
-        
+        caCert = LocalManagement::readFile(repositoryDir + "/" + caName + "/cacert.pem");
     }
 
-    data = ossl.convert(hash);
-    
-    ret = LocalManagement::str2ba(data);
+    ret = OpenSSLUtils::createPKCS12
+        (LocalManagement::readFile(repositoryDir + "/" + caName + "/newcerts/" + certificateName +".pem"),
+         LocalManagement::readFile(repositoryDir + "/" + caName + "/keys/" + sa[1] + ".key"),
+         keyPassword,
+         p12Password,
+         caCert,
+         repositoryDir + "/.cas/",
+         withChain);
     
     return ret;
 }
@@ -1163,18 +882,14 @@ CA::exportCertificateAsPKCS12(const String& certificateName,
  *
  * @return the CRL in the requested format
  */
-ByteArray
+ByteBuffer
 CA::exportCRL(FormatType exportType)
 {
-    ByteArray ret;
+    ByteBuffer ret;
 
-    Map<String, String> hash;
-    hash["PASSWORD"]   = caPasswd;
-    hash["CACERT"]     = "1";
-    hash["REPOSITORY"] = repositoryDir;
-    //hash[""] = "";
-    
-    bool passOK = checkKey(caName, &hash);
+    OpenSSLUtils ost(repositoryDir + "/" + caName + "/openssl.cnf.tmpl");
+
+    bool passOK = ost.checkKey(caName, caPasswd, "cacert", repositoryDir);
     
     if(!passOK) {
 
@@ -1186,22 +901,9 @@ CA::exportCRL(FormatType exportType)
     ret = LocalManagement::readFile(repositoryDir + "/" + caName + "/crl/crl.pem");
 
     if( exportType == DER ) {
-
-        hash.clear();
-        hash["BINARY"] = OPENSSL_COMMAND;
-        hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf.tmpl";;
-        hash["DEBUG"] = "1";
-        OPENSSL ossl(hash);
-
-        hash.clear();
-        hash["DATATYPE"] = "CRL";
-        hash["INFORM"]   = "PEM";
-        hash["DATA"]     = LocalManagement::ba2str(ret);
-        hash["OUTFORM"]  = "DER";
-        //hash[""] = "";
-        String data = ossl.convert(hash);
-
-        ret = LocalManagement::str2ba(data);
+        
+        ret = OpenSSLUtils::crlConvert(ret, PEM, DER);
+        
     }
 
     return ret;
@@ -1218,26 +920,16 @@ CA::deleteRequest(const String& requestName)
                                                     reqFile.toString()).c_str());
     }
     
-  
-    Map<String, String> hash;
-    hash["PASSWORD"]   = caPasswd;
-    hash["CACERT"]     = "1";
-    hash["REPOSITORY"] = repositoryDir;
-    //hash[""] = "";
-    
-    bool passOK = checkKey(caName, &hash);
-    
+    OpenSSLUtils ost(repositoryDir + "/" + caName + "/openssl.cnf.tmpl");
+
+    bool passOK = ost.checkKey(caName, caPasswd, "cacert", repositoryDir);
+   
     if(!passOK) {
         LOGIT_ERROR("Invalid CA password");
         BLOCXX_THROW(limal::ValueException, "Invalid CA password");
     }
 
-    hash.clear();
-    hash["MD5"]        = requestName;
-    hash["REPOSITORY"] = repositoryDir;
-    //hash[""] = "";
-
-    delCAM(caName, &hash);
+    OpenSSLUtils::delCAM(caName, requestName, repositoryDir);
 
     path::PathInfo keyFile(repositoryDir + "/" + caName + "/keys/" + requestName + ".key");
     
@@ -1268,13 +960,11 @@ CA::deleteCertificate(const String& certificateName,
         BLOCXX_THROW(limal::ValueException, "Certificate does not exist.");
     }
 
-    Map<String, String> hash;
-    hash["PASSWORD"]   = caPasswd;
-    hash["CACERT"]     = "1";
-    hash["REPOSITORY"] = repositoryDir;
-    //hash[""] = "";
-    
-    bool passOK = checkKey(caName, &hash);
+    initConfigFile();
+
+    OpenSSLUtils ost(repositoryDir + "/" + caName + "/" + "openssl.cnf");
+
+    bool passOK = ost.checkKey(caName, caPasswd, "cacert", repositoryDir);
     
     if(!passOK) {
         LOGIT_ERROR("Invalid CA password");
@@ -1294,19 +984,7 @@ CA::deleteCertificate(const String& certificateName,
     String serial  = sa[1];
     String request = sa[2];
 
-    initConfigFile();
-
-    hash.clear();
-    hash["BINARY"] = OPENSSL_COMMAND;
-    hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf";;
-    hash["DEBUG"]  = "1";
-    OPENSSL ossl(hash);
-
-    hash.clear();
-    hash["SERIAL"] = serial;
-    //hash[""] = "";
-
-    String state = ossl.status(hash);
+    String state = ost.status(serial);
 
     if( state.equalsIgnoreCase("Revoked") ||
         state.equalsIgnoreCase("Expired")) {
@@ -1334,54 +1012,38 @@ CA::deleteCertificate(const String& certificateName,
 bool
 CA::updateDB()
 {
-    bool ret = false;
-
     path::PathInfo db(repositoryDir + "/" + caName + "/index.txt");
     
     if(!db.exists()) {
         LOGIT_ERROR("Database not found.");
         BLOCXX_THROW(limal::RuntimeException, "Database not found.");
     }
-    if(db.size() == 0) {
-        // no certificate created => test only the caPasswd
 
-        Map<String, String> hash;
-        hash["PASSWORD"]   = caPasswd;
-        hash["CACERT"]     = "1";
-        hash["REPOSITORY"] = repositoryDir;
-        //hash[""] = "";
+    OpenSSLUtils ost(repositoryDir + "/" + caName + "/openssl.cnf.tmpl");
 
-        ret = checkKey(caName, &hash);
+    bool passOK = ost.checkKey(caName, caPasswd, "cacert", repositoryDir);
 
-    } else {
-        // test password first, for a better error message
-
-        Map<String, String> hash;
-        hash["PASSWORD"]   = caPasswd;
-        hash["CACERT"]     = "1";
-        hash["REPOSITORY"] = repositoryDir;
-        //hash[""] = "";
-
-        ret = checkKey(caName, &hash);
-        
-        initConfigFile();
-        hash.clear();
-        hash["BINARY"] = OPENSSL_COMMAND;
-        hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf";;
-        hash["DEBUG"] = "1";
-        OPENSSL ossl(hash);
-
-        hash.clear();
-        hash["CAKEY"]   = repositoryDir + "/" + caName + "/cacert.key";
-        hash["CACERT"]  = repositoryDir + "/" + caName + "/cacert.pem";;
-        hash["PASSWD"]  = caPasswd;
-        //hash[""] = "";
-        
-        ossl.updateDB(hash);
-        ret = true;
-
+    if(!passOK) {
+        LOGIT_ERROR("Invalid password");
+        BLOCXX_THROW(limal::RuntimeException,
+                     "Invalid password");
     }
-    return ret;
+    
+    if(db.size() != 0) {
+        initConfigFile();
+        
+        OpenSSLUtils ost(repositoryDir + "/" + caName + "/" + "openssl.cnf");
+        
+        ost.updateDB(repositoryDir + "/" + caName + "/cacert.pem",
+                     repositoryDir + "/" + caName + "/cacert.key",
+                     caPasswd);
+        
+    } else {
+        LOGIT_ERROR("Invalid password");
+        BLOCXX_THROW(limal::RuntimeException,
+                     "Invalid password");
+    }
+    return true;
 }
         
 bool
@@ -1411,20 +1073,18 @@ CA::verifyCertificate(const String& certificateName,
 
     initConfigFile();
     
-    Map<String, String> hash;
-    hash["BINARY"] = OPENSSL_COMMAND;
-    hash["CONFIG"] = repositoryDir + "/" + caName + "/" + "openssl.cnf";;
-    hash["DEBUG"] = "1";
-    OPENSSL ossl(hash);
+    OpenSSLUtils ost(repositoryDir + "/" + caName + "/" + "openssl.cnf");
+
+    String ret = ost.verify(certFile.toString(),
+                            repositoryDir + "/.cas/",
+                            crlCheck,
+                            purpose);
+
+    if(!ret.empty()) {
         
-    hash.clear();
-    hash["CERT"]     = certFile.toString();
-    hash["CAPATH"]   = repositoryDir + "/.cas/";
-    hash["CRLCHECK"] = Bool(crlCheck).toString();
-    hash["PURPOSE"]  = purpose;
-    //hash[""] = "";
-        
-    ossl.verify(hash);
+        LOGIT_ERROR(ret);
+        BLOCXX_THROW(limal::RuntimeException, ret.c_str());
+    }
     
     return true;
 }
@@ -1433,6 +1093,10 @@ void
 CA::initConfigFile()
 {
     if(templ) {
+        if(config) {
+            delete config;
+            config = NULL;
+        }
         config = templ->clone(repositoryDir+"/"+caName+"/openssl.cnf");
     } else {
         LOGIT_ERROR("template not initialized");
@@ -1485,8 +1149,11 @@ CA::createRootCA(const String& caName,
     // Create the infrastructure
 
     try {
-        createCaInfrastructure(caName, repos);
+
+        OpenSSLUtils::createCaInfrastructure(caName, repos);
+
     } catch(blocxx::Exception &e) {
+
         LOGIT_ERROR(e);
         BLOCXX_THROW_SUBEX(limal::SystemException, 
                            "Error during create CA infrastructure",
@@ -1505,55 +1172,37 @@ CA::createRootCA(const String& caName,
     // copy Section, because "req" is hard coded in openssl :-(
     tmpCA.getConfig()->copySection(type2Section(CA_Req, false), "req");
 
-    blocxx::Map<blocxx::String,blocxx::String > hash;
-    hash["BINARY"] = OPENSSL_COMMAND;
-    hash["CONFIG"] = repos + "/" + caName + "/" + "openssl.cnf";;
-    hash["DEBUG"] = "1";
-    OPENSSL ossl(hash);
+    OpenSSLUtils ost(repos + "/" + caName + "/" + "openssl.cnf");
 
     // create key
-    hash.clear();
-    hash["OUTFILE"] = repos + "/" + caName + "/" + "cacert.key";
-    hash["PASSWD"] = caPasswd;
-    hash["BITS"] = String(caRequestData.getKeysize());
-    //    hash[""] = "";
-	blocxx::String k = ossl.createKey(hash);
+
+    ost.createRSAKey(repos + "/" + caName + "/" + "cacert.key",
+                     caPasswd, caRequestData.getKeysize());
+
 
     // create request
-    hash.clear();
-    hash["OUTFILE"] = repos + "/" + caName + "/" + "cacert.req";
-    hash["KEYFILE"] = repos + "/" + caName + "/" + "cacert.key";
-    hash["PASSWD"] = caPasswd;
-    hash["EXTENSION"] = "v3_req_ca";
-    //hash[""] = "";
-
-    blocxx::List<RDNObject> dn = caRequestData.getSubject().getDN();
-    blocxx::List<RDNObject>::const_iterator it = dn.begin();
-    blocxx::Array<blocxx::String> sdn;
-    for(; it != dn.end(); ++it) {
-        sdn.push_back( (*it).getValue() );
-    }
-    sdn.push_back(caRequestData.getChallengePassword());
-    sdn.push_back(caRequestData.getUnstructuredName());
-
-    k = ossl.createReq(&hash, &sdn);
+    ost.createRequest(caRequestData.getSubject(),
+                      repos + "/" + caName + "/" + "cacert.req",
+                      repos + "/" + caName + "/" + "cacert.key",
+                      caPasswd,
+                      "v3_req_ca",
+                      PEM,
+                      caRequestData.getChallengePassword(),
+                      caRequestData.getUnstructuredName());
 
     // write certificate issue data to config
     caIssueData.commit2Config(tmpCA, CA_Cert);
 
     // create the CA certificate
-    hash.clear();
-    hash["OUTFILE"] = repos + "/" + caName + "/" + "cacert.pem";
-    hash["KEYFILE"] = repos + "/" + caName + "/" + "cacert.key";
-    hash["REQFILE"] = repos + "/" + caName + "/" + "cacert.req";
-    hash["PASSWD"]  = caPasswd;
-    hash["DAYS"]    = String((caIssueData.getEndDate() - caIssueData.getStartDate()) /(60*60*24));
-    hash["EXTENSION"] = "v3_ca";
 
-    k = ossl.createSelfSignedCert(hash);
+    ost.createSelfSignedCertificate(repos + "/" + caName + "/" + "cacert.pem",
+                                    repos + "/" + caName + "/" + "cacert.key",
+                                    repos + "/" + caName + "/" + "cacert.req",
+                                    caPasswd, "v3_ca",
+                                    (caIssueData.getEndDate() - caIssueData.getStartDate()) /(60*60*24));
 
     // some clean-ups 
-
+    
     int r = path::copyFile(repos + "/" + caName + "/" + "cacert.pem",
                            repos + "/" + ".cas/" + caName + ".pem");
     
@@ -1569,8 +1218,8 @@ CA::createRootCA(const String& caName,
 
 bool
 CA::importCA(const String& caName,
-             const String& caCertificate,
-             const String& caKey,
+             const ByteBuffer& caCertificate,
+             const ByteBuffer& caKey,
              const String& caPasswd,
              const String& repos)
 {
@@ -1591,9 +1240,7 @@ CA::importCA(const String& caName,
 
     }
 
-    ByteArray caCert = LocalManagement::str2ba(caCertificate);
-
-    CertificateData cad = CertificateData_Priv(caCert, PEM);
+    CertificateData cad = CertificateData_Priv(caCertificate, PEM);
 
     BasicConstraintsExtension bs = cad.getExtensions().getBasicConstraints();
 
@@ -1613,7 +1260,7 @@ CA::importCA(const String& caName,
 
     PerlRegEx keyregex("-----BEGIN[\\w\\s]+KEY[-]{5}[\\S\\s\n]+-----END[\\w\\s]+KEY[-]{5}");
     
-    if(!keyregex.match(caKey)) {
+    if(!keyregex.match(String(caKey.data(), caKey.size()))) {
 
         LOGIT_ERROR("Invalid Key data.");
         BLOCXX_THROW(limal::ValueException,
@@ -1621,7 +1268,8 @@ CA::importCA(const String& caName,
     }
 
     PerlRegEx keycrypt("ENCRYPTED");
-    if(!keycrypt.match(caKey) && caPasswd.empty()) {
+    if(!keycrypt.match( String(caKey.data(), caKey.size()) ) &&
+       caPasswd.empty()) {
         
         LOGIT_ERROR("CA password is empty.");
         BLOCXX_THROW(limal::ValueException,
@@ -1629,7 +1277,9 @@ CA::importCA(const String& caName,
     }
 
     try {
-        createCaInfrastructure(caName, repos);
+
+        OpenSSLUtils::createCaInfrastructure(caName, repos);
+
     } catch(blocxx::Exception &e) {
 
         LOGIT_ERROR(e);
@@ -1638,42 +1288,31 @@ CA::importCA(const String& caName,
                            e);
     }
 
-    LocalManagement::writeFile(caCert, caDir.toString() + "/cacert.pem");
+    LocalManagement::writeFile(caCertificate, caDir.toString() + "/cacert.pem");
 
-    if(keycrypt.match(caKey)) {
+    if(keycrypt.match( String(caKey.data(), caKey.size()) )) {
     
-        LocalManagement::writeFile(LocalManagement::str2ba(caKey),
+        LocalManagement::writeFile(caKey,
                                    caDir.toString() + "/cacert.key");
         
     } else {
-
-        Map<String, String> hash;
-        hash["BINARY"] = OPENSSL_COMMAND;
-        hash["CONFIG"] = repos + "/" + caName + "/" + "openssl.cnf.tmpl";;
-        hash["DEBUG"] = "1";
-        OPENSSL ossl(hash);
-
-        hash.clear();
-        hash["DATATYPE"]  = "KEY";
-        hash["INFORM"]    = "PEM";
-        hash["DATA"]      = caKey;
-        hash["OUTFORM"]   = "PEM";
-        hash["OUTPASSWD"] = caPasswd;
-        hash["OUTFILE"]   = caDir.toString() + "/cacert.key";
-        //hash[""] = ;
+        ByteBuffer buf;
 
         try {
-
-            ossl.convert(hash);
-
+            
+            buf = OpenSSLUtils::rsaConvert(caKey, PEM, PEM, "", caPasswd);
+            
         } catch(Exception &e) {
-
+            
             path::removeDirRecursive(repos + "/" + caName);
-        
+            
             LOGIT_ERROR ("Error during key encryption." );
             BLOCXX_THROW_SUBEX(limal::RuntimeException,
                                "Error during key encryption.", e);
         }
+        
+        LocalManagement::writeFile(buf,
+                                   caDir.toString() + "/cacert.key");
     }
 
     int r = path::copyFile(repos + "/" + caName + "/" + "cacert.pem",
@@ -1694,7 +1333,7 @@ CA::getCAList(const String& repos)
 {
     Array<String> caList;
     
-    caList = listCA(repos);
+    caList = OpenSSLUtils::listCA(repos);
 
     return caList;
 }
@@ -1810,13 +1449,9 @@ CA::deleteCA(const String& caName,
 
     }
     
-    Map<String, String> hash;
-    hash["PASSWORD"]   = caPasswd;
-    hash["CACERT"]     = "1";
-    hash["REPOSITORY"] = repos;
-    //hash[""] = "";
-    
-    bool ret = checkKey(caName, &hash);
+    OpenSSLUtils ost(repos + "/" + caName + "/openssl.cnf.tmpl");
+
+    bool ret = ost.checkKey(caName, caPasswd, "cacert", repos);
 
     if(!ret) {
 

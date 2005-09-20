@@ -69,7 +69,7 @@ RevocationEntry_Priv::RevocationEntry_Priv(X509_REVOKED *rev)
     cbuf[rev->revocationDate->length] = '\0';
     
     sbuf = String(cbuf);
-    delete(cbuf);
+    delete [] cbuf;
 
     LOGIT_DEBUG("Revocation Date: " << sbuf);
 
@@ -173,22 +173,15 @@ CRLData_Priv::CRLData_Priv()
     : CRLData()
 {}
 
-CRLData_Priv::CRLData_Priv(const ByteArray &crl,
+CRLData_Priv::CRLData_Priv(const ByteBuffer &crl,
                            FormatType formatType)
     : CRLData()
 {
     BIO *bio;
     X509_CRL *x509 = NULL;
 
-    unsigned char *d = new unsigned char[crl.size()+1];
+    unsigned char *d = (unsigned char*)crl.data();
 
-    ByteArray::const_iterator it = crl.begin();
-    for(int i = 0; it != crl.end(); ++it, ++i) {
-        
-        d[i] = (*it);
-        
-    }
-    
     if( formatType == PEM ) {
 
         // load the crl into a memory bio
@@ -196,8 +189,6 @@ CRLData_Priv::CRLData_Priv(const ByteArray &crl,
 
         if(!bio) {
             
-            delete(d);
-
             LOGIT_ERROR("Can not create a memory BIO");
             BLOCXX_THROW(limal::MemoryException, "Can not create a memory BIO");
             
@@ -206,7 +197,6 @@ CRLData_Priv::CRLData_Priv(const ByteArray &crl,
         // create the X509 structure
         x509 = PEM_read_bio_X509_CRL(bio, NULL, 0, NULL);
         BIO_free(bio);
-        delete(d);
 
     } else {
 
@@ -217,7 +207,6 @@ CRLData_Priv::CRLData_Priv(const ByteArray &crl,
 
         x509 = d2i_X509_CRL(NULL, &d2, crl.size());
 
-        delete(d);
         d2 = NULL;
     }
 
@@ -250,7 +239,7 @@ CRLData_Priv::CRLData_Priv(const String &crlPath,
                            FormatType formatType)
     : CRLData()
 {
-    ByteArray ba = LocalManagement::readFile(crlPath);
+    ByteBuffer ba = LocalManagement::readFile(crlPath);
 
     // FIXME: I do not know if this is the right way :-)
     *this = CRLData_Priv(ba, formatType);
@@ -297,7 +286,7 @@ CRLData_Priv::setSignatureAlgorithm(SigAlg sigAlg)
 }
 
 void
-CRLData_Priv::setSignature(const ByteArray& sig)
+CRLData_Priv::setSignature(const ByteBuffer& sig)
 {
     signature = sig;
 }
@@ -353,7 +342,7 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
     cbuf[t->length] = '\0';
 
     String sbuf = String(cbuf);
-    delete(cbuf);
+    delete [] cbuf;
 
     PerlRegEx r("^(\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)Z$");
     StringArray sa = r.capture(sbuf);
@@ -386,7 +375,7 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
     cbuf[t->length] = '\0';
 
     sbuf = String(cbuf);
-    delete(cbuf);
+    delete [] cbuf;
 
     sa = r.capture(sbuf);
 
@@ -443,11 +432,8 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
     }
 
     // get signature
-    for(int k = 0; k < x509->signature->length; ++k) {
 
-        signature.push_back(x509->signature->data[k]);
-
-    }
+    signature = ByteBuffer((char*)x509->signature->data, x509->signature->length);
 
     // get extensions
     extensions = X509v3CRLExtensions_Priv(x509->crl->extensions);

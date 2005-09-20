@@ -36,6 +36,7 @@
 #include  <limal/ca-mgm/CertificateIssueData.hpp>
 #include  <limal/ca-mgm/CertificateData.hpp>
 #include  <limal/ca-mgm/CAConfig.hpp>
+#include  <limal/ByteBuffer.hpp>
 
 namespace LIMAL_NAMESPACE
 {
@@ -144,7 +145,7 @@ namespace CA_MGM_NAMESPACE
          *
          * @return the name of the request
          */
-        String importRequest(const ByteArray& request,
+        String importRequest(const limal::ByteBuffer& request,
                              FormatType formatType = PEM);
 
         /**
@@ -296,7 +297,7 @@ namespace CA_MGM_NAMESPACE
          * Return the CA certificate in PEM or DER format
          *
          */
-        ByteArray exportCACert(FormatType exportType);
+        limal::ByteBuffer exportCACert(FormatType exportType);
         
         /**
          * Return the CA private key in PEM format.
@@ -304,20 +305,20 @@ namespace CA_MGM_NAMESPACE
          * using the newPassword. 
          * If newPassword is empty the returned key is decrypted.
          */
-        ByteArray exportCAKeyAsPEM(const String& newPassword);
+        limal::ByteBuffer exportCAKeyAsPEM(const String& newPassword);
 
         /**
          * Return the CA private key in DER format.
          * The private Key is decrypted.
          */
-        ByteArray exportCAKeyAsDER();
+        limal::ByteBuffer exportCAKeyAsDER();
         
         /**
          * Return the CA certificate in PKCS12 format.
          * If withChain is true, all issuer certificates
          * will be included.
          */
-        ByteArray exportCAasPKCS12(const String& p12Password,
+        limal::ByteBuffer exportCAasPKCS12(const String& p12Password,
                                    bool withChain = false);
         
         
@@ -325,7 +326,7 @@ namespace CA_MGM_NAMESPACE
          * Return the certificate in PEM or DER format
          *
          */
-        ByteArray exportCertificate(const String& certificateName,
+        limal::ByteBuffer exportCertificate(const String& certificateName,
                                     FormatType exportType);
         
         /**
@@ -334,7 +335,7 @@ namespace CA_MGM_NAMESPACE
          * using the newPassword. 
          * If newPassword is empty the returned key is decrypted.
          */
-        ByteArray exportCertificateKeyAsPEM(const String& certificateName,
+        limal::ByteBuffer exportCertificateKeyAsPEM(const String& certificateName,
                                             const String& keyPassword,
                                             const String& newPassword);
 
@@ -342,7 +343,7 @@ namespace CA_MGM_NAMESPACE
          * Return the certificate private key in DER format.
          * The private Key is decrypted.
          */
-        ByteArray exportCertificateKeyAsDER(const String& certificateName,
+        limal::ByteBuffer exportCertificateKeyAsDER(const String& certificateName,
                                             const String& keyPassword);
         
         /**
@@ -350,7 +351,7 @@ namespace CA_MGM_NAMESPACE
          * If withChain is true, all issuer certificates
          * will be included.
          */
-        ByteArray exportCertificateAsPKCS12(const String& certificateName,
+        limal::ByteBuffer exportCertificateAsPKCS12(const String& certificateName,
                                             const String& keyPassword,
                                             const String& p12Password,
                                             bool withChain = false);
@@ -362,7 +363,7 @@ namespace CA_MGM_NAMESPACE
          *
          * @return the CRL in the requested format
          */
-        ByteArray exportCRL(FormatType exportType);
+        limal::ByteBuffer exportCRL(FormatType exportType);
 
 
         /**
@@ -461,8 +462,8 @@ namespace CA_MGM_NAMESPACE
          */
         static bool
         importCA(const String& caName,
-                 const String& caCertificate,
-                 const String& caKey,
+                 const limal::ByteBuffer& caCertificate,
+                 const limal::ByteBuffer& caKey,
                  const String& caPasswd = String(),
                  const String& repos=REPOSITORY);
 

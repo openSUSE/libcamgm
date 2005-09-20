@@ -48,21 +48,14 @@ CertificateData_Priv::CertificateData_Priv()
 {
 }
 
-CertificateData_Priv::CertificateData_Priv(const ByteArray &certificate,
+CertificateData_Priv::CertificateData_Priv(const ByteBuffer &certificate,
                                            FormatType formatType)
     : CertificateData()
 {
     BIO  *bio;
     X509 *x509 = NULL;
 
-    unsigned char *d = new unsigned char[certificate.size()+1];
-
-    ByteArray::const_iterator it = certificate.begin();
-    for(int i = 0; it != certificate.end(); ++it, ++i) {
-
-        d[i] = (*it);
-
-    }
+    unsigned char *d = (unsigned char*)certificate.data();
 
     if( formatType == PEM ) {
 
@@ -70,8 +63,6 @@ CertificateData_Priv::CertificateData_Priv(const ByteArray &certificate,
         bio = BIO_new_mem_buf(d, certificate.size());
 
         if(!bio) {
-            
-            delete(d);
             
             LOGIT_ERROR("Can not create a memory BIO");
             BLOCXX_THROW(limal::MemoryException, "Can not create a memory BIO");
@@ -81,7 +72,6 @@ CertificateData_Priv::CertificateData_Priv(const ByteArray &certificate,
         // create the X509 structure
         x509 = PEM_read_bio_X509(bio, NULL, 0, NULL);
         BIO_free(bio);
-        delete(d);
 
     } else {
 
@@ -92,7 +82,6 @@ CertificateData_Priv::CertificateData_Priv(const ByteArray &certificate,
 
         x509 = d2i_X509(NULL, &d2, certificate.size());
 
-        delete(d);
         d2 = NULL;
 
     }
@@ -126,7 +115,7 @@ CertificateData_Priv::CertificateData_Priv(const String &certificatePath,
                                            FormatType formatType)
     : CertificateData()
 {
-    ByteArray ba = LocalManagement::readFile(certificatePath);
+    ByteBuffer ba = LocalManagement::readFile(certificatePath);
     
     // FIXME: I do not know if this is the right way :-)
     *this = CertificateData_Priv(ba, formatType);
@@ -199,7 +188,7 @@ CertificateData_Priv::setPublicKeyAlgorithm(KeyAlg pubKeyAlg)
 }
 
 void
-CertificateData_Priv::setPublicKey(const ByteArray derPublicKey)
+CertificateData_Priv::setPublicKey(const ByteBuffer derPublicKey)
 {
     publicKey = derPublicKey;
 }
@@ -211,7 +200,7 @@ CertificateData_Priv::setSignatureAlgorithm(SigAlg sigAlg)
 }
 
 void
-CertificateData_Priv::setSignature(const ByteArray& sig)
+CertificateData_Priv::setSignature(const ByteBuffer& sig)
 {
     signature = sig;
 }
@@ -263,7 +252,7 @@ CertificateData_Priv::parseCertificate(X509 *x509)
     cbuf[t->length] = '\0';
 
     String sbuf = String(cbuf);
-    delete(cbuf);
+    delete [] cbuf;
 
     PerlRegEx r("^(\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)Z$");
     StringArray sa = r.capture(sbuf);
@@ -295,7 +284,7 @@ CertificateData_Priv::parseCertificate(X509 *x509)
     cbuf[t->length] = '\0';
 
     sbuf = String(cbuf);
-    delete(cbuf);
+    delete [] cbuf;
 
     sa = r.capture(sbuf);
     
@@ -348,14 +337,10 @@ CertificateData_Priv::parseCertificate(X509 *x509)
         unsigned char *y = NULL;
         
         int len  = i2d_RSA_PUBKEY(rsa, &y);
+
+        publicKey = ByteBuffer((char*)y, len);
         
-        for( int j = 0; j < len ; ++j) {
-            
-            publicKey.push_back(y[j]);
-            
-        }
-        
-        free(y);
+        free(y); // ??
         RSA_free(rsa);
             
     } else {
@@ -436,11 +421,8 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 
     // get signature
 
-    for(int k = 0; k < x509->signature->length; ++k) {
+    signature = ByteBuffer((char*)x509->signature->data, x509->signature->length);
 
-        signature.push_back(x509->signature->data[k]);
-
-    }
 
     // get extensions
 

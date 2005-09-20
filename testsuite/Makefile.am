@@ -7,12 +7,12 @@ AUTOMAKE_OPTIONS = dejagnu
 
 INCLUDES= -I. -I$(top_srcdir)/src
 
-AM_CPPFLAGS = $(DEBUG_FLAGS) -pthread -DLOCALEDIR=\"${localedir}\" $(PERL_CFLAGS)
+AM_CPPFLAGS = $(DEBUG_FLAGS) -pthread -DLOCALEDIR=\"${localedir}\" 
 
 AM_LDFLAGS = \
 	-pthread -Xlinker --whole-archive -lssl \
 	$(top_builddir)/src/liblimal-ca-mgm.la \
-	-Xlinker --no-whole-archive $(PERL_LDFLAGS)
+	-Xlinker --no-whole-archive 
 
 noinst_PROGRAMS = CAConfig.single CA1.single CA2.multi \
                   CA3.multi CA4.multi  \
@@ -47,61 +47,61 @@ CA6_multi_SOURCES = CA6.cc
 
 CA7_multi_SOURCES = CA7.cc
 
-CA8_single_SOURCES = CA8.cc perlxsi.cpp
+CA8_single_SOURCES = CA8.cc
 
-CA9_single_SOURCES = CA9.cc perlxsi.cpp
+CA9_single_SOURCES = CA9.cc
 
-CertificateTest_single_SOURCES = CertificateTest.cc perlxsi.cpp
+CertificateTest_single_SOURCES = CertificateTest.cc
 
-CertificateTest2_single_SOURCES = CertificateTest2.cc perlxsi.cpp
+CertificateTest2_single_SOURCES = CertificateTest2.cc
 
-CertificateTest3_single_SOURCES = CertificateTest3.cc perlxsi.cpp
+CertificateTest3_single_SOURCES = CertificateTest3.cc
 
-RevokeTest_single_SOURCES = RevokeTest.cc perlxsi.cpp
+RevokeTest_single_SOURCES = RevokeTest.cc 
 
-RevokeTest2_single_SOURCES = RevokeTest2.cc perlxsi.cpp
+RevokeTest2_single_SOURCES = RevokeTest2.cc 
 
-RevokeTest3_single_SOURCES = RevokeTest3.cc perlxsi.cpp
+RevokeTest3_single_SOURCES = RevokeTest3.cc 
 
-RevokeTest4_single_SOURCES = RevokeTest4.cc perlxsi.cpp
+RevokeTest4_single_SOURCES = RevokeTest4.cc
 
-RevokeTest5_single_SOURCES = RevokeTest5.cc perlxsi.cpp
+RevokeTest5_single_SOURCES = RevokeTest5.cc 
 
-UpdateDBTest_single_SOURCES = UpdateDBTest.cc perlxsi.cpp
+UpdateDBTest_single_SOURCES = UpdateDBTest.cc 
 
-ListTest_single_SOURCES = ListTest.cc perlxsi.cpp
+ListTest_single_SOURCES = ListTest.cc
 
-SubCATest_single_SOURCES = SubCATest.cc perlxsi.cpp
+SubCATest_single_SOURCES = SubCATest.cc
 
-RemoveRequestTest_single_SOURCES = RemoveRequestTest.cc perlxsi.cpp
+RemoveRequestTest_single_SOURCES = RemoveRequestTest.cc
 
-RevxRemoveCertificateTest_single_SOURCES = RemoveCertificateTest.cc perlxsi.cpp
+RevxRemoveCertificateTest_single_SOURCES = RemoveCertificateTest.cc
 
-VerifyTest_single_SOURCES = VerifyTest.cc perlxsi.cpp
+VerifyTest_single_SOURCES = VerifyTest.cc
 
-ParseCATest_single_SOURCES = ParseCATest.cc perlxsi.cpp
+ParseCATest_single_SOURCES = ParseCATest.cc
 
-ParseCertificateTest_multi_SOURCES = ParseCertificateTest.cc perlxsi.cpp
+ParseCertificateTest_multi_SOURCES = ParseCertificateTest.cc
 
-ParseRequestTest_multi_SOURCES = ParseRequestTest.cc perlxsi.cpp
+ParseRequestTest_multi_SOURCES = ParseRequestTest.cc
 
-ParseCRLTest_multi_SOURCES = ParseCRLTest.cc perlxsi.cpp
+ParseCRLTest_multi_SOURCES = ParseCRLTest.cc
 
-ImportRequestTest_single_SOURCES = ImportRequestTest.cc perlxsi.cpp
+ImportRequestTest_single_SOURCES = ImportRequestTest.cc
 
-DeleteCATest_single_SOURCES = DeleteCATest.cc perlxsi.cpp
+DeleteCATest_single_SOURCES = DeleteCATest.cc
 
-ImportCATest_single_SOURCES = ImportCATest.cc perlxsi.cpp
+ImportCATest_single_SOURCES = ImportCATest.cc 
 
-X_ListCATreeTest_single_SOURCES = ListCATreeTest.cc perlxsi.cpp
+X_ListCATreeTest_single_SOURCES = ListCATreeTest.cc
 
-ExportTest_single_SOURCES = ExportTest.cc perlxsi.cpp
+ExportTest_single_SOURCES = ExportTest.cc
 
-ImportCommonCertificateTest_single_SOURCES = ImportCommonCertificateTest.cc perlxsi.cpp
+ImportCommonCertificateTest_single_SOURCES = ImportCommonCertificateTest.cc
 
 clean-local:
 	rm -f tmp.err.* tmp.out.* site.exp site.bak openssl.cnf.tmpl.test
-	rm -f *~ perlxsi.cpp
+	rm -f *~
 	rm -rf CA2/out
 	rm -rf CA3/out
 	rm -rf CA4/out
@@ -112,9 +112,6 @@ clean-local:
 	rm -rf ParseCertificateTest/out
 	rm -rf ParseRequestTest/out
 	rm -rf ParseCRLTest/out
-
-perlxsi.cpp:
-	perl -MExtUtils::Embed -e xsinit -- -o $@
 
 EXTRA_DIST = test_multi/*.in test_multi/*.out test_multi/*.err \
              perl_test/*.in perl_test/*.out perl_test/*.err \

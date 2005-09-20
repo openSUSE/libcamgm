@@ -26,6 +26,7 @@
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <limal/ca-mgm/X509v3RequestExtensions.hpp>
 #include  <limal/ca-mgm/DNObject.hpp>
+#include  <limal/ByteBuffer.hpp>
 
 namespace LIMAL_NAMESPACE {
 
@@ -47,9 +48,9 @@ namespace CA_MGM_NAMESPACE {
         blocxx::UInt32      getKeysize() const;
         DNObject            getSubject() const;
         KeyAlg              getKeyAlgorithm() const;
-        ByteArray           getPublicKey() const;
+        limal::ByteBuffer   getPublicKey() const;
         SigAlg              getSignatureAlgorithm() const;
-        ByteArray           getSignature() const;
+        limal::ByteBuffer   getSignature() const;
         String              getFingerprint() const;
         X509v3RequestExtensions getExtensions() const;
         String              getChallengePassword() const;
@@ -75,10 +76,10 @@ namespace CA_MGM_NAMESPACE {
         //   man EVP_PKEY_get1_RSA
         //   man i2d_RSAPublicKey     => i2d == internal to DER
         //   man d2i_RSAPublicKey     => d2i == DER to internal
-        ByteArray        publicKey;  
+        ByteBuffer        publicKey;  
 
         SigAlg           signatureAlgorithm;
-        ByteArray        signature;     // better use ByteArray? see CIM schema.
+        ByteBuffer        signature;    
                                         // mit private key verschlüsselter Hash wert
                                         // des Requests
 

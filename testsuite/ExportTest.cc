@@ -8,20 +8,13 @@
 #include <limal/PathInfo.hpp>
 #include <limal/PathUtils.hpp>
 #include <limal/Exception.hpp>
+#include <limal/ByteBuffer.hpp>
 #include <limal/ca-mgm/CA.hpp>
 #include <limal/ca-mgm/LocalManagement.hpp>
 
 #include <iostream>
 #include <fstream>
 #include <unistd.h>
-
-extern "C" {
-#include <EXTERN.h>
-#include <perl.h>
-}
-
-EXTERN_C void xs_init (pTHX);
-PerlInterpreter *my_perl;
 
 using namespace blocxx;
 using namespace limal;
@@ -31,17 +24,6 @@ limal::Logger logger("ExportTest");
 
 int main(int argc, char **argv)
 {
-    char *embedding[] = { "", "-I../src/", "-MDynaLoader", "-MOPENSSL", "-MOPENSSL::CATools", "-e", 
-                          "0" };
-    
-    PERL_SYS_INIT3(&argc,&argv,&env);
-    my_perl = perl_alloc();
-    perl_construct( my_perl );
-    
-    perl_parse(my_perl, xs_init, 7, embedding, NULL);
-    PL_exit_flags |= PERL_EXIT_DESTRUCT_END;
-    perl_run(my_perl);
-
     PerlRegEx r("ENCRYPTED");
 
     try {
@@ -72,7 +54,7 @@ int main(int argc, char **argv)
         
         std::cout << "==================== ca.exportCACert(PEM); ======================" << std::endl; 
 
-        ByteArray ba = ca.exportCACert(PEM);
+        ByteBuffer ba = ca.exportCACert(PEM);
         
         CertificateData cd = LocalManagement::getCertificate(ba, PEM);
 
@@ -98,7 +80,7 @@ int main(int argc, char **argv)
 
             std::cout << "Key exists" << std::endl;
 
-            if(!r.match(LocalManagement::ba2str(ba))) {
+            if(!r.match(blocxx::String(ba.data(), ba.size()))) {
 
                 std::cout << "Key is decrypted" << std::endl;
 
@@ -122,7 +104,7 @@ int main(int argc, char **argv)
 
             std::cout << "Key exists" << std::endl;
 
-            if(!r.match(LocalManagement::ba2str(ba))) {
+            if(!r.match(blocxx::String(ba.data(), ba.size()))) {
 
                 std::cout << "Key is decrypted" << std::endl;
 
@@ -215,7 +197,7 @@ int main(int argc, char **argv)
 
             std::cout << "Key exists" << std::endl;
 
-            if(!r.match(LocalManagement::ba2str(ba))) {
+            if(!r.match(blocxx::String(ba.data(), ba.size()))) {
 
                 std::cout << "Key is decrypted" << std::endl;
 
@@ -240,7 +222,7 @@ int main(int argc, char **argv)
 
             std::cout << "Key exists" << std::endl;
 
-            if(!r.match(LocalManagement::ba2str(ba))) {
+            if(!r.match(blocxx::String(ba.data(), ba.size()))) {
 
                 std::cout << "Key is decrypted" << std::endl;
 
@@ -323,10 +305,6 @@ int main(int argc, char **argv)
     } catch(blocxx::Exception& e) {
         std::cerr << e << std::endl;
     }
-
-    perl_destruct(my_perl);
-    perl_free(my_perl);
-    PERL_SYS_TERM();
 
     return 0;
 }

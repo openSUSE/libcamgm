@@ -49,7 +49,7 @@ inline static LiteralValue gn2lv(GENERAL_NAME *gen)
         memcpy(s, gen->d.ia5->data, gen->d.ia5->length);
         s[gen->d.ia5->length] = '\0';
         lv.setLiteral("email", s);
-        delete(s);
+        delete [] s;
         break;
 
     case GEN_DNS:
@@ -57,7 +57,7 @@ inline static LiteralValue gn2lv(GENERAL_NAME *gen)
         memcpy(s, gen->d.ia5->data, gen->d.ia5->length);
         s[gen->d.ia5->length] = '\0';
         lv.setLiteral("DNS", s);
-        delete(s);
+        delete [] s;
         break;
 
     case GEN_URI:
@@ -65,7 +65,7 @@ inline static LiteralValue gn2lv(GENERAL_NAME *gen)
         memcpy(s, gen->d.ia5->data, gen->d.ia5->length);
         s[gen->d.ia5->length] = '\0';
         lv.setLiteral("URI", s);
-        delete(s);
+        delete [] s;
         break;
 
     case GEN_DIRNAME:
@@ -195,7 +195,7 @@ void X509v3RequestExtensions_Priv::parseStringExtension(STACK_OF(X509_EXTENSION)
 
     ext.setValue(s);
 
-    delete(s);
+    delete [] s;
 
     if(crit == 1) {
         ext.setCritical(true);

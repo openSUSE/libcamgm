@@ -38,8 +38,6 @@ namespace CA_MGM_NAMESPACE {
     typedef blocxx::List<String>                       StringList;
     typedef blocxx::List<blocxx::Map<String, String> > StringMapList;
 
-    typedef blocxx::Array<blocxx::UInt8>                ByteArray; 
-
     enum Type {
         Client_Req,
         Server_Req,

@@ -7,15 +7,12 @@ SUBDIRS = limal
 INCLUDES = -I. -I$(srcdir)
 
 # FIXME:
-AM_CPPFLAGS = $(DEBUG_FLAGS) -pthread -DLOCALEDIR=\"${localedir}\" $(PERL_CFLAGS)
-AM_LDFLAGS  = -pthread $(PERL_LDFLAGS)
+AM_CPPFLAGS = $(DEBUG_FLAGS) -pthread -DLOCALEDIR=\"${localedir}\"
+AM_LDFLAGS  = -pthread
 
 limallib_LTLIBRARIES = liblimal-ca-mgm.la
 
 liblimal_ca_mgm_la_SOURCES  =	\
-	OPENSSL.cpp \
-	CATools.cpp \
-    cpp_perl_converter.cpp \
 	config.cpp \
 	ExtensionBase.cpp \
 	AuthorityInfoAccessExtension.cpp \
@@ -54,7 +51,8 @@ liblimal_ca_mgm_la_SOURCES  =	\
 	X509v3CertificateExtensions_Priv.cpp \
 	X509v3CRLExtensions_Priv.cpp \
 	X509v3RequestExtensions_Priv.cpp \
-    CRLReason_Priv.cpp
+    CRLReason_Priv.cpp \
+    OpenSSLUtils.cpp
 
 liblimal_ca_mgm_la_CXXFLAGS = $(LIMAL_CFLAGS)
 
@@ -62,11 +60,4 @@ liblimal_ca_mgm_la_LDFLAGS  = \
 	-version-info $(LIB_VERSION_INFO) \
 	$(LIMAL_LIBS)
 
-LIMALDEVTOOLS=$(limaldatadir)/devtools
-#FIXME: multiple files are built
-OPENSSL.cpp: OPENSSL.ini CATools.ini
-	perl -I$(LIMALDEVTOOLS)/codegen $(LIMALDEVTOOLS)/bin/codegen.pl $^ 
-
-EXTRA_DIST = OPENSSL.ini CATools.ini CATools.pm
-
-CLEANFILES = *~ OPENSSL.h OPENSSL.cpp cpp_perl_converter.* CATools.cpp CATools.h
+CLEANFILES = *~
