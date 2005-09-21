@@ -51,8 +51,8 @@ liblimal_ca_mgm_la_SOURCES  =	\
 	X509v3CertificateExtensions_Priv.cpp \
 	X509v3CRLExtensions_Priv.cpp \
 	X509v3RequestExtensions_Priv.cpp \
-    CRLReason_Priv.cpp \
-    OpenSSLUtils.cpp
+	CRLReason_Priv.cpp \
+	OpenSSLUtils.cpp
 
 liblimal_ca_mgm_la_CXXFLAGS = $(LIMAL_CFLAGS)
 
@@ -61,3 +61,5 @@ liblimal_ca_mgm_la_LDFLAGS  = \
 	$(LIMAL_LIBS)
 
 CLEANFILES = *~
+
+EXTRA_DIST = *.hpp Commands.hpp.in
