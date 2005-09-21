@@ -113,8 +113,20 @@ clean-local:
 	rm -rf ParseRequestTest/out
 	rm -rf ParseCRLTest/out
 
-EXTRA_DIST = test_multi/*.in test_multi/*.out test_multi/*.err \
-             perl_test/*.in perl_test/*.out perl_test/*.err \
-             CA2/*.* CA3/*.* CA4/*.* CA5/*.* \
-             CA6/*.* CA7/*.* ParseCertificateTest/*.* \
-             ParseRequestTest/*.* ParseCRLTest/*.*
+EXTRA_DIST = CA2/*.* CA3/*.* CA4/*.* CA5/*.* single.out/*.* \
+             CA6/*.* CA7/*.* ParseCertificateTest/*.*       \
+             ParseRequestTest/*.* ParseCRLTest/*.*          \
+             TestRepos2/Test_CA3/*.*                        \
+             TestRepos2/Test_CA3/crl/*.*                    \
+             TestRepos3/My_Test_SuSE_CA/*.*                 \
+             TestRepos3/openssl.cnf.tmpl                    \
+             TestRepos3/SUSEIPsecCA/*.*                     \
+             TestRepos3/SUSERootCA/*/*.*                    \
+             TestRepos3/SUSERootCA/*.*                      \
+             TestRepos3/SUSEUserCA/*/*.*                    \
+             TestRepos3/SUSEUserCA/*.*                      \
+             TestRepos3/Test1_SuSE_CA/*/*.*                 \
+             TestRepos3/Test1_SuSE_CA/*.*                   \
+             TestRepos3/Test2_SuSE_CA/*/*.*                 \
+             TestRepos3/Test2_SuSE_CA/*.*                   \
+             TestRepos3/Test3_SuSE_CA/*.*
