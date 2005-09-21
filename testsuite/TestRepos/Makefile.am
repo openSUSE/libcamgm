@@ -27,5 +27,10 @@ clean-local: check
 
 MAINTAINERCLEANFILES = Makefile.in
 
-EXTRA_DIST = ca1_test/*.* ca2_test/*.* Test_CA1/*.* Test_CA2/*.* .cas/*.* *.*
+EXTRA_DIST = ca1_test/*.* ca2_test/*.* \
+             Test_CA1/*.*              \
+             Test_CA1/*/*.*            \
+             Test_CA2/*.*              \
+             Test_CA2/*/*.*            \
+             .cas/*.* *.*
 
