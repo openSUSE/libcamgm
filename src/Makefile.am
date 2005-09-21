@@ -60,6 +60,6 @@ liblimal_ca_mgm_la_LDFLAGS  = \
 	-version-info $(LIB_VERSION_INFO) \
 	$(LIMAL_LIBS)
 
-CLEANFILES = *~
-
-EXTRA_DIST = *.hpp Commands.hpp.in
+CLEANFILES     = *~
+DISTCLEANFILES = Commands.hpp
+EXTRA_DIST     = *.hpp Commands.hpp.in
