@@ -8,6 +8,7 @@ Summary:	-
 -
 
 @HEADER-DEVEL@
+Requires:       limal-devel openssl-devel
 Summary:	-
 
 %description devel
