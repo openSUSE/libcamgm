@@ -101,7 +101,7 @@ ImportCommonCertificateTest_single_SOURCES = ImportCommonCertificateTest.cc
 
 clean-local:
 	rm -f tmp.err.* tmp.out.* site.exp site.bak openssl.cnf.tmpl.test
-	rm -f *~
+	rm -f *~ limal.log limal.sum .rnd
 	rm -rf CA2/out
 	rm -rf CA3/out
 	rm -rf CA4/out
@@ -112,6 +112,16 @@ clean-local:
 	rm -rf ParseCertificateTest/out
 	rm -rf ParseRequestTest/out
 	rm -rf ParseCRLTest/out
+	rm -f CA2/*~
+	rm -f CA3/*~
+	rm -f CA4/*~
+	rm -f CA5/*~
+	rm -f CA6/*~
+	rm -f CA7/*~
+	rm -f single.out/*~
+	rm -f ParseCertificateTest/*~
+	rm -f ParseRequestTest/*~
+	rm -f ParseCRLTest/*~
 
 EXTRA_DIST = CA2/*.* CA3/*.* CA4/*.* CA5/*.* single.out/*.* \
              CA6/*.* CA7/*.* ParseCertificateTest/*.*       \
