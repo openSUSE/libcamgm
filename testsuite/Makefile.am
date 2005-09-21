@@ -129,4 +129,6 @@ EXTRA_DIST = CA2/*.* CA3/*.* CA4/*.* CA5/*.* single.out/*.* \
              TestRepos3/Test1_SuSE_CA/*.*                   \
              TestRepos3/Test2_SuSE_CA/*/*.*                 \
              TestRepos3/Test2_SuSE_CA/*.*                   \
-             TestRepos3/Test3_SuSE_CA/*.*
+             TestRepos3/Test3_SuSE_CA/*.*                   \
+             TestRepos3/.cas/*.*                            \
+             openssl.cnf.tmpl
