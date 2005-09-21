@@ -27,5 +27,5 @@ clean-local: check
 
 MAINTAINERCLEANFILES = Makefile.in
 
-EXTRA_DIST = ca1_test/* ca2_test/* openssl.cnf.tmpl Test_CA2/*
+EXTRA_DIST = ca1_test/*.* ca2_test/*.* Test_CA1/*.* Test_CA2/*.* .cas/*.* *.*
 
