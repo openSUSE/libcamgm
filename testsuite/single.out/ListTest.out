@@ -3,25 +3,25 @@ START
 New Entry
 commonName = Test Certificate for revocation 4
 country = DE
-date = 2005-08-18 16:13:27
+date = 2005-08-18 14:13:27 UTC
 emailAddress = suse@suse.de
 request = 3e248858337c2b46dc67a0f9389376dd-1124374407
 New Entry
 commonName = Test Certificate for revocation 5 oid test
 country = DE
-date = 2005-08-29 15:28:17
+date = 2005-08-29 13:28:17 UTC
 emailAddress = suse@suse.de
 request = bf04fdd95062554800c1556085f47063-1125322097
 New Entry
 commonName = Test CA/SUSE Inc.\Gmbh
 country = DE
-date = 2005-08-18 16:13:16
+date = 2005-08-18 14:13:16 UTC
 emailAddress = suse@suse.de
 request = b4d4e48e6de644c953290eb2854a6ced-1124374396
 New Entry
 commonName = Test Server Certificate/SUSE Inc.\Gmbh
 country = DE
-date = 2005-08-18 16:13:19
+date = 2005-08-18 14:13:19 UTC
 emailAddress = suse@suse.de
 request = bc5324c7f5c2a27492fb6795745b596b-1124374399
 New Entry
@@ -37,31 +37,31 @@ stateOrProvinceName = Bavaria
 New Entry
 commonName = Full Test Certificate
 country = DE
-date = 2005-08-23 12:26:42
+date = 2005-08-23 10:26:42 UTC
 emailAddress = suse@suse.de
 request = 40717a16174dc4d516f6fa7ee8eeb18c-1124792802
 New Entry
 commonName = Test Sub CA
 country = DE
-date = 2005-08-18 16:13:29
+date = 2005-08-18 14:13:29 UTC
 emailAddress = suse@suse.de
 request = 9797ac11af29f94b82c1e5b0499ab5f2-1124374409
 New Entry
 commonName = Test Certificate for revocation 2
 country = DE
-date = 2005-08-18 16:13:23
+date = 2005-08-18 14:13:23 UTC
 emailAddress = suse@suse.de
 request = d816690a832b0e52becd255d3a62e975-1124374403
 New Entry
 commonName = Test Certificate for revocation
 country = DE
-date = 2005-08-18 16:13:22
+date = 2005-08-18 14:13:22 UTC
 emailAddress = suse@suse.de
 request = 3673cf466b7b97997f25f5cee5dafe40-1124374402
 New Entry
 commonName = Test Certificate for revocation 3
 country = DE
-date = 2005-08-18 16:13:26
+date = 2005-08-18 14:13:26 UTC
 emailAddress = suse@suse.de
 request = 9198f6798d9da70d7cbfb67b610633f5-1124374406
 getRequestList successfully executed

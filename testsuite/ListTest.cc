@@ -3,6 +3,7 @@
 #include <blocxx/CerrLogger.hpp>
 #include <blocxx/CerrAppender.hpp>
 #include <blocxx/String.hpp>
+#include <blocxx/DateTime.hpp>
 #include <blocxx/PerlRegEx.hpp>
 #include <limal/Logger.hpp>
 #include <limal/PathInfo.hpp>
@@ -61,7 +62,27 @@ int main()
 
                 for(; it2 != (*it).end(); ++it2) {
 
-                    std::cout << (*it2).first << " = " << (*it2).second << std::endl;
+                    if((*it2).first == "date")
+                    {
+                        PerlRegEx r("^(\\d\\d\\d\\d)-(\\d\\d)-(\\d\\d)\\s(\\d\\d):(\\d\\d):(\\d\\d)");
+                        StringArray sa = r.capture( (*it2).second );
+
+                        if(sa.size() == 7)
+                        {
+                            blocxx::DateTime dt( sa[1].toInt(), sa[2].toInt(), sa[3].toInt(),
+                                                 sa[4].toInt(), sa[5].toInt(), sa[6].toInt() );
+                            std::cout << (*it2).first << " = " <<
+                                dt.toString("%Y-%m-%d %H:%M:%S UTC", DateTime::E_UTC_TIME) << std::endl;
+                        }
+                        else
+                        {
+                            std::cout << (*it2).first << " = " << (*it2).second << std::endl;
+                        }
+                    }
+                    else
+                    {
+                        std::cout << (*it2).first << " = " << (*it2).second << std::endl;
+                    }
 
                 }
             }
