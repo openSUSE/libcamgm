@@ -1,6 +1,6 @@
 @HEADER-COMMENT@
 
-# neededforbuild  limal-devel-packages 
+# neededforbuild  limal-devel-packages pcre pcre-devel openssl-devel 
 @HEADER@
 Summary:	-
 
