@@ -100,7 +100,7 @@ CA::~CA()
     }
 }
         
-bool
+void
 CA::createSubCA(const String& newCaName,
                 const String& keyPasswd,
                 const RequestGenerationData& caRequestData,
@@ -168,8 +168,6 @@ CA::createSubCA(const String& newCaName,
     }
 
     rehashCAs(repositoryDir + "/.cas/");
-    
-    return true;
 }
 
 
@@ -347,7 +345,7 @@ CA::createCertificate(const String& keyPasswd,
     return certificate;
 }
 
-bool
+void
 CA::revokeCertificate(const String& certificateName,
                       const CRLReason& crlReason)
 {
@@ -371,11 +369,10 @@ CA::revokeCertificate(const String& certificateName,
                           repositoryDir + "/" + caName + "/newcerts/" + certificateName + ".pem",
                           crlReason);
 
-    return true;
 }
 
 
-bool
+void
 CA::createCRL(const CRLGenerationData& crlData)
 {
     if(!crlData.valid()) {
@@ -406,8 +403,6 @@ CA::createCRL(const CRLGenerationData& crlData)
     }
     
     rehashCAs(repositoryDir + "/.cas/");
-
-    return true;
 }
 
 blocxx::String
@@ -501,42 +496,30 @@ CA::getCRLDefaults()
     return crlgd;
 }
 
-bool
+void
 CA::setIssueDefaults(Type type,
                      const CertificateIssueData& defaults)
 {
     initConfigFile();
-    if(config) {
-        defaults.commit2Config(*this, type);
-        commitConfig2Template();
-        return true;
-    }
-    return false;
+    defaults.commit2Config(*this, type);
+    commitConfig2Template();
 }
 
-bool
+void
 CA::setRequestDefaults(Type type,
                        const RequestGenerationData& defaults)
 {
     initConfigFile();
-    if(config) {
-        defaults.commit2Config(*this, type);
-        commitConfig2Template();
-        return true;
-    }
-    return false;
+    defaults.commit2Config(*this, type);
+    commitConfig2Template();
 }
 
-bool
+void
 CA::setCRLDefaults(const CRLGenerationData& defaults)
 {
     initConfigFile();
-    if(config) {
-        defaults.commit2Config(*this, CRL);
-        commitConfig2Template();
-        return true;
-    }
-    return false;
+    defaults.commit2Config(*this, CRL);
+    commitConfig2Template();
 }
 
 blocxx::Array<blocxx::Map<blocxx::String, blocxx::String> >
@@ -910,7 +893,7 @@ CA::exportCRL(FormatType exportType)
 }
 
 
-bool
+void
 CA::deleteRequest(const String& requestName)
 {
     path::PathInfo reqFile(repositoryDir + "/" + caName + "/req/" + requestName + ".req");
@@ -946,11 +929,9 @@ CA::deleteRequest(const String& requestName)
         BLOCXX_THROW(limal::SystemException, 
                      Format("Removing the request failed: %1.", r).c_str());
     }    
-
-    return true;
 }
 
-bool
+void
 CA::deleteCertificate(const String& certificateName, 
                       bool requestToo)
 {
@@ -1005,11 +986,9 @@ CA::deleteCertificate(const String& certificateName,
         LOGIT_ERROR(dummy);
         BLOCXX_THROW(limal::RuntimeException, dummy.c_str());
     }
-    
-    return true;
 }
 
-bool
+void
 CA::updateDB()
 {
     path::PathInfo db(repositoryDir + "/" + caName + "/index.txt");
@@ -1043,7 +1022,6 @@ CA::updateDB()
         BLOCXX_THROW(limal::RuntimeException,
                      "Invalid password");
     }
-    return true;
 }
         
 bool
@@ -1089,46 +1067,19 @@ CA::verifyCertificate(const String& certificateName,
     return true;
 }
 
-void
-CA::initConfigFile()
-{
-    if(templ) {
-        if(config) {
-            delete config;
-            config = NULL;
-        }
-        config = templ->clone(repositoryDir+"/"+caName+"/openssl.cnf");
-    } else {
-        LOGIT_ERROR("template not initialized");
-        BLOCXX_THROW(limal::RuntimeException, "template not initialized");
-    }
-}
-
-void
-CA::commitConfig2Template()
-{
-    if(config) {
-        templ = config->clone(repositoryDir+"/"+caName+"/openssl.cnf.tmpl");
-        delete config;
-        config = NULL;
-    } else {
-        LOGIT_ERROR("config not initialized");
-        BLOCXX_THROW(limal::RuntimeException, "config not initialized");
-    }
-}
-
 CAConfig*
 CA::getConfig()
 {
     return config;
 }
 
+
 /* ##########################################################################
  * ###          static Functions                                          ###
  * ##########################################################################
  */
 
-bool 
+void 
 CA::createRootCA(const String& caName,
                  const String& caPasswd,
                  const RequestGenerationData& caRequestData,
@@ -1211,12 +1162,10 @@ CA::createRootCA(const String& caName,
     }
     
     rehashCAs(repos + "/.cas/");
-
-    return true;
 }
        
 
-bool
+void
 CA::importCA(const String& caName,
              const ByteBuffer& caCertificate,
              const ByteBuffer& caKey,
@@ -1323,8 +1272,6 @@ CA::importCA(const String& caName,
     }
 
     rehashCAs(repos + "/.cas/");
-   
-    return true;
 }
 
 
@@ -1426,7 +1373,7 @@ CA::getRootCARequestDefaults(const String& repos)
     return rgd;
 }
 
-bool
+void
 CA::deleteCA(const String& caName,
              const String& caPasswd,
              bool force,
@@ -1515,8 +1462,6 @@ CA::deleteCA(const String& caName,
     }
 
     rehashCAs(repos + "/.cas/");
-
-    return true;
 }
 
 
@@ -1652,4 +1597,32 @@ CA::checkDNPolicy(const DNObject& dn, Type type)
         }
     }
     return;
+}
+
+void
+CA::initConfigFile()
+{
+    if(templ) {
+        if(config) {
+            delete config;
+            config = NULL;
+        }
+        config = templ->clone(repositoryDir+"/"+caName+"/openssl.cnf");
+    } else {
+        LOGIT_ERROR("template not initialized");
+        BLOCXX_THROW(limal::RuntimeException, "template not initialized");
+    }
+}
+
+void
+CA::commitConfig2Template()
+{
+    if(config) {
+        templ = config->clone(repositoryDir+"/"+caName+"/openssl.cnf.tmpl");
+        delete config;
+        config = NULL;
+    } else {
+        LOGIT_ERROR("config not initialized");
+        BLOCXX_THROW(limal::RuntimeException, "config not initialized");
+    }
 }

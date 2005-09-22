@@ -55,7 +55,7 @@ namespace CA_MGM_NAMESPACE
          *
          * @param caName the name of this CA.
          * @param caPasswd the password of this CA.
-         * @param repos directory path to the repository
+         * @param repos directory path to the repository root
          */
         CA(const String& caName, const String& caPasswd, const String& repos=REPOSITORY);
         
@@ -66,23 +66,29 @@ namespace CA_MGM_NAMESPACE
         
 
         /**
-         * Create a new Sub CA and creates the whole needed infrastructure.
+         * Create a new Sub CA and with the whole needed infrastructure.
+         * On error this method throws exceptions.
          *
-         * @param CertificateData the required certificate data
+         * @param newCaName the name for the new CA
+         * @param keyPasswd the password for the private key
+         * @param caRequestData data for the request generation
+         * @param caIssueData the required data to sign the request
          *
-         * @return true for success otherwise false
          */
-        bool createSubCA(const String& newCaName,
+        void createSubCA(const String& newCaName,
                          const String& keyPasswd,
                          const RequestGenerationData& caRequestData,
                          const CertificateIssueData& caIssueData);
 
         /**
          * Create a certificate request in the specified CA
+         * On error this method throws exceptions.
          *
+         * @param keyPasswd the password for the private key
          * @param requestData the data for the request
+         * @param requestType the type of the request
          *
-         * @return the name of the request
+         * @return the name of the new request
          */
         String createRequest(const String& keyPasswd,
                              const RequestGenerationData& requestData,
@@ -91,9 +97,11 @@ namespace CA_MGM_NAMESPACE
 
         /**
          * Issue a certificate in the specified CA
+         * On error this method throws exceptions.
          *
          * @param requestName the name of the request which sould be signed
          * @param issueData the issuing data
+         * @param certType the type of the certificate
          *
          * @return the name of the certificate
          */
@@ -103,8 +111,12 @@ namespace CA_MGM_NAMESPACE
 
         /**
          * Create a certificate in the specified CA
+         * On error this method throws exceptions.
          *
+         * @param keyPasswd the password for the private key
+         * @param requestData the data for the request
          * @param certificateData the data of the certificate
+         * @param type the type of the certificate
          *
          * @return the name of the certificate
          */    
@@ -116,6 +128,7 @@ namespace CA_MGM_NAMESPACE
 
         /**
          * Revoke a certificate. 
+         * On error this method throws exceptions.
          *
          * @note This function does not create a new CRL.
          *
@@ -123,22 +136,22 @@ namespace CA_MGM_NAMESPACE
          * @param crlReason a crlReason object which describes the reason
          * why this certificate is revoked.
          *
-         * @return true on success, otherwise false.
          */
-        bool revokeCertificate(const String& certificateName,
+        void revokeCertificate(const String& certificateName,
                                const CRLReason& crlReason = CRLReason());
 
         /**
          * Create a new CRL with the specified data.
+         * On error this method throws exceptions.
          *
          * @param crlData the data for the new CRL
          *
-         * @return true on success, otherwise false
          */
-        bool createCRL(const CRLGenerationData& crlData);
+        void createCRL(const CRLGenerationData& crlData);
 
         /**
          * Import a request in a CA repository.
+         * On error this method throws exceptions.
          *
          * @param request the request data
          * @param formatType the input format type
@@ -150,6 +163,7 @@ namespace CA_MGM_NAMESPACE
 
         /**
          * Import a request in a CA repository.
+         * On error this method throws exceptions.
          *
          * @param requestFile the request file
          * @param formatType the input format type
@@ -162,7 +176,8 @@ namespace CA_MGM_NAMESPACE
 
         /**
          * Get a CertificateIssueData object with current signing default
-         * settings for the specific CA and type.
+         * settings for this CA and the specific type.
+         * On error this method throws exceptions.
          *
          * @param type the requested certificate type 
          *
@@ -172,7 +187,8 @@ namespace CA_MGM_NAMESPACE
 
         /**
          * Get a RequestGenerationData object with current request default
-         * settings for the specific CA and certType.
+         * settings for this CA and the specific type.
+         * On error this method throws exceptions.
          *
          * @param type the requested certificate type 
          *
@@ -182,46 +198,48 @@ namespace CA_MGM_NAMESPACE
 
         /**
          * Get a CRLGenerationData object with current default
-         * settings for the specific CA.
+         * settings for this CA.
+         * On error this method throws exceptions.
          *
          * @return a CRLGenerationData object with the current defaults
          */
         CRLGenerationData     getCRLDefaults();
 
         /**
-         * Set the signing defaults for the specific CA and certType
+         * Set the signing defaults for this CA and the specific certType
+         * On error this method throws exceptions.
          *
          * @param type the requested certificate type 
          * @param defaults the new certificate defaults
          *
-         * @return true on success, otherwise false
          */
-        bool  setIssueDefaults(Type type,
+        void  setIssueDefaults(Type type,
                                const CertificateIssueData& defaults);
 
         /**
-         * Set the request defaults for the specific CA and certType
+         * Set the request defaults for this CA and the specific certType
+         * On error this method throws exceptions.
          *
          * @param type the requested certificate type 
          * @param defaults the new certificate defaults
          *
-         * @return true on success, otherwise false
          */
-        bool  setRequestDefaults(Type type,
+        void  setRequestDefaults(Type type,
                                  const RequestGenerationData& defaults);
 
         /**
-         * Set CRL defaults for the specific CA
+         * Set CRL defaults for this CA
+         * On error this method throws exceptions.
          *
-         * @param defaults the new certificate defaults
+         * @param defaults the new CRL defaults
          *
-         * @return true on success, otherwise false
          */
-        bool  setCRLDefaults(const CRLGenerationData& defaults);
+        void  setCRLDefaults(const CRLGenerationData& defaults);
            
 
         /**
-         * Get a list of maps with all certificates of the defined CA.
+         * Get an Array of maps with all certificates of the defined CA.
+         * On error this method throws exceptions.
          *
          * @return a list of maps with all certificates in this CA. 
          * the map keys are:
@@ -241,7 +259,8 @@ namespace CA_MGM_NAMESPACE
 
 
         /**
-         * Get a list of maps with all requests of the defined CA.
+         * Get an Array of maps with all requests of the defined CA.
+         * On error this method throws exceptions.
          *
          * @return a list of maps with all requests in this CA. 
          * the map keys are:
@@ -262,23 +281,28 @@ namespace CA_MGM_NAMESPACE
 
 
         /**
-         * Get the CertificateData of the specified CA
+         * Parse this CA and return the data.
+         * On error this method throws exceptions.
          *
-         * @return the certificate data
+         * @return the CA data
          */
         CertificateData getCA();
 
         /**
-         * Get the specified request
+         * Parse a request and return the data.
+         * On error this method throws exceptions.
          *
          * @param requestName the name of the Request
+         *
+         * @return the request data
          */
         RequestData getRequest(const String& requestName);
 
         /**
-         * Get the specified certificate
+         * Parse a certificate and return the data.
+         * On error this method throws exceptions.
          *
-         * @param certificateName the name of the Certificate
+         * @param certificateName the name of the certificate
          *
          * @return the certificate data
          */
@@ -286,7 +310,8 @@ namespace CA_MGM_NAMESPACE
 
 
         /**
-         * Get the data of the current CRL in the specified CA
+         * Parse the current CRL of this CA and return the data.
+         * On error this method throws exceptions.
          *
          * @return the CRL data
          */
@@ -294,8 +319,12 @@ namespace CA_MGM_NAMESPACE
 
        
         /** 
-         * Return the CA certificate in PEM or DER format
+         * Return the CA certificate in PEM or DER format.
+         * On error this method throws exceptions.
          *
+         * @param exportType the type in which the CA should be exported
+         *
+         * @return this CA certificate
          */
         limal::ByteBuffer exportCACert(FormatType exportType);
         
@@ -304,12 +333,21 @@ namespace CA_MGM_NAMESPACE
          * If a new Password is given, the key will be encrypted
          * using the newPassword. 
          * If newPassword is empty the returned key is decrypted.
+         * On error this method throws exceptions.
+         *
+         * @param newPassword the password to encrypt the private key.
+         * If newPassword is empty, the key will be returned decrypted.
+         *
+         * @return the private key of the CA in PEM format
          */
         limal::ByteBuffer exportCAKeyAsPEM(const String& newPassword);
 
         /**
          * Return the CA private key in DER format.
          * The private Key is decrypted.
+         * On error this method throws exceptions.
+         *
+         * @return the private key of the CA in DER format
          */
         limal::ByteBuffer exportCAKeyAsDER();
         
@@ -317,49 +355,87 @@ namespace CA_MGM_NAMESPACE
          * Return the CA certificate in PKCS12 format.
          * If withChain is true, all issuer certificates
          * will be included.
+         * On error this method throws exceptions.
+         *
+         * @param p12Password the password for the private key
+         * @param withChain should the certificate chain be included
+         * set this to true, otherwise set this to false
+         *
+         * @return the data in PKCS12 format
          */
         limal::ByteBuffer exportCAasPKCS12(const String& p12Password,
-                                   bool withChain = false);
+                                           bool withChain = false);
         
         
         /** 
-         * Return the certificate in PEM or DER format
+         * Return the specified certificate in PEM or DER format
+         * On error this method throws exceptions.
+         *
+         * @param certificateName the name of the certificate
+         * @param exportType the format in which the certificate
+         * should be exported
+         *
+         * @return the certificate data
          *
          */
         limal::ByteBuffer exportCertificate(const String& certificateName,
-                                    FormatType exportType);
+                                            FormatType exportType);
         
         /**
          * Return the certificate private key in PEM format.
          * If a new Password is given, the key will be encrypted
          * using the newPassword. 
          * If newPassword is empty the returned key is decrypted.
+         * On error this method throws exceptions.
+         *
+         * @param certificateName the name of the certificate
+         * @param keyPassword the current password of the key.
+         * @param newPassword the password to encrypt the private key.
+         * If newPassword is empty, the key will be returned decrypted.
+         *
+         * @return the private key of the certificate in PEM format
          */
         limal::ByteBuffer exportCertificateKeyAsPEM(const String& certificateName,
-                                            const String& keyPassword,
-                                            const String& newPassword);
+                                                    const String& keyPassword,
+                                                    const String& newPassword);
 
         /**
          * Return the certificate private key in DER format.
          * The private Key is decrypted.
+         * On error this method throws exceptions.
+         *
+         * @param certificateName the name of the certificate
+         * @param keyPassword the current password of the key.
+         *
+         * @return the private key in DER format
          */
         limal::ByteBuffer exportCertificateKeyAsDER(const String& certificateName,
-                                            const String& keyPassword);
+                                                    const String& keyPassword);
         
         /**
          * Return the certificate in PKCS12 format.
          * If withChain is true, all issuer certificates
          * will be included.
+         * On error this method throws exceptions.
+         *
+         * @param certificateName the name of the certificate
+         * @param keyPassword the current password of the key.
+         * @param p12Password the password for the private key
+         * @param withChain should the certificate chain be included
+         * set this to true, otherwise set this to false
+         *
+         * @return the data in PKCS12 format
          */
         limal::ByteBuffer exportCertificateAsPKCS12(const String& certificateName,
-                                            const String& keyPassword,
-                                            const String& p12Password,
-                                            bool withChain = false);
+                                                    const String& keyPassword,
+                                                    const String& p12Password,
+                                                    bool withChain = false);
 
         /**
-         * Export a CRL in the requested format type.
+         * Export the CRL of this CA in the requested format type.
+         * On error this method throws exceptions.
          *
-         * @param the format type
+         * @param exportFormat the format type
          *
          * @return the CRL in the requested format
          */
@@ -369,62 +445,65 @@ namespace CA_MGM_NAMESPACE
         /**
          * Delete a Request. This function removes also
          * the private key if one is available.
+         * On error this method throws exceptions.
          *
          * @param requestName the name of the request
          *
-         * @return true on success, otherwise false
          */
-        bool deleteRequest(const String& requestName);
+        void deleteRequest(const String& requestName);
 
         /**
          * Delete the specified certificate together with the corresponding 
-         * request and private key if requestToo is set to true. 
+         * request and private key if <b>requestToo</b> is set to true. 
          * This function works only for revoked or expired certificates.
+         * On error this method throws exceptions.
          *
          * @param certificateName the certificate to delete
          * @param requestToo if set to true also request and key file 
          * will be deleted
          *
-         * @return true on success, otherwise false.
          */
-        bool deleteCertificate(const String& certificateName, 
+        void deleteCertificate(const String& certificateName, 
                                bool requestToo = true);
-
 
 
         /**
          * Update the internal openssl database. 
+         * On error this method throws exceptions.
          *
-         * @param caPasswd the password of the CA
-         *
-         * @return true on success, otherwise false
          */
-        bool updateDB();
+        void updateDB();
         
         /**
          * Verify a certificate.
+         * On error this method throws exceptions.
          *
          * @param certificateName the name of the certificate 
          * @param crlCheck verify against the CRLs
          * @param purpose check for a specific certificate purpose
+         * valid purpose string are:
+         * <ul>
+         *   <li>sslclient</li>
+         *   <li>sslserver</li>
+         *   <li>nssslserver</li>
+         *   <li>smimesign</li>
+         *   <li>smimeencrypt</li>
+         *   <li>crlsign</li>
+         *   <li>ocsphelper</li>
+         *   <li>any (default)</li>
+         * </ul>
          *
          * @return true if the certificate is valid, otherwise false.
          */
         bool verifyCertificate(const String& certificateName,
                                bool crlCheck = true,
                                const String& purpose = String("any"));
+
         /**
-         * Initialize the config file
+         * Return the current config object
          *
-         * Copy the template to a configfile and create the config object
+         * @return the config object
          */
-        void initConfigFile();
-
-        /**
-         * Copy Config file to template
-         */
-        void commitConfig2Template();
-
         CAConfig* getConfig();
 
 
@@ -434,14 +513,18 @@ namespace CA_MGM_NAMESPACE
          */
 
         /**
-         * Create a new selfsigned root CA and creates the
+         * Create a new selfsigned root CA plus the
          * whole needed infrastructure.
+         * On error this function throws exceptions.
          *
-         * @param CertificateData the required certificate data
+         * @param caName the name for this CA
+         * @param caPasswd the password for this CA
+         * @param caRequestData the data for the request
+         * @param caIssueData the data to signing the CA
+         * @param repos the path to the repository root directory
          *
-         * @return true for success otherwise false
          */
-        static bool 
+        static void
         createRootCA(const String& caName,
                      const String& caPasswd,
                      const RequestGenerationData& caRequestData,
@@ -452,15 +535,16 @@ namespace CA_MGM_NAMESPACE
         /**
          * Import a CA certificate and private key and creates a 
          * infrastructure.
+         * On error this function throws exceptions.
          *
          * @param caName the name of the CA
          * @param caCertificate the CA certificate data in PEM format
          * @param caKey the private key in PEM format
          * @param caPasswd a password for the private key, if caKey is unencrypted
+         * @param repos the path to the repository root directory
          *
-         * @return true on success, otherwise false
          */
-        static bool
+        static void
         importCA(const String& caName,
                  const limal::ByteBuffer& caCertificate,
                  const limal::ByteBuffer& caKey,
@@ -469,14 +553,28 @@ namespace CA_MGM_NAMESPACE
 
         /**
          * Get a list of available CAs
+         * On error this function throws exceptions.
          *
-         * @return StringList of available CAs
+         * @param repos the path to the repository root directory
+         *
+         * @return Array of Strings of available CAs
          */
         static blocxx::Array<blocxx::String> getCAList(const String& repos=REPOSITORY);
         
         /**
-         * Get a list of lists of the available CAs 
-         * containing the issuer caName.
+         * Return a table of the available CAs and its issuer.
+         * If the CA is self-signed the issuer field is empty.
+         *
+         * <table>
+         *   <tr><th>caName</th><th>issuer caName</th></tr>
+         *   <tr><td>RootCA</td><td>&nbsp;</td></tr>
+         *   <tr><td>UserCA</td><td>RootCA</td></tr>
+         *   <tr><td>IPSecCA</td><td>UserCA</td></tr>
+         * </table>
+         *
+         * On error this function throws exceptions.
+         *
+         * @param repos the path to the repository root directory
          *
          * @return a list of lists of the available CAs 
          */
@@ -486,6 +584,9 @@ namespace CA_MGM_NAMESPACE
         /**
          * Get a CertificateIssueData object with current signing default
          * settings for a Root CA.
+         * On error this function throws exceptions.
+         *
+         * @param repos the path to the repository root directory
          *
          * @return a CertificateIssueData object with the current defaults
          */
@@ -494,6 +595,9 @@ namespace CA_MGM_NAMESPACE
         /**
          * Get a RequestGenerationData object with current request default
          * settings for a Root CA.
+         * On error this function throws exceptions.
+         *
+         * @param repos the path to the repository root directory
          *
          * @return a RequestGenerationData object with the current defaults
          */
@@ -506,14 +610,16 @@ namespace CA_MGM_NAMESPACE
          * Normaly you can only delete a CA if the CA certificate is expired or
          * you have never signed a certificate with this CA. In all other cases 
          * you have to set the force parameter to "true" if you realy want to delete 
-         * the CA and you know what you are doing.
+         * the CA and you know what you do.
+         * On error this function throws exceptions.
          *
+         * @param caName the name of the CA to delete
          * @param caPasswd the password of the CA
          * @param force no checks, simply delete the CA
+         * @param repos the path to the repository root directory
          *
-         * @return true on success, otherwise false
          */
-        static bool deleteCA(const String& caName,
+        static void deleteCA(const String& caName,
                              const String& caPasswd,
                              bool force = false,
                              const String& repos = REPOSITORY);
@@ -534,13 +640,27 @@ namespace CA_MGM_NAMESPACE
         /**
          * Check if the given dn matches the policy defined in the 
          * configuration file
+         * On error this method throws exceptions.
          *
          * @param dn the DN object
          * @param type the Type of the certificate which should be signed
          *
-         * @return empty String if the policy match, otherwise a error message
          */
         void checkDNPolicy(const DNObject& dn, Type type);
+
+        /**
+         * Initialize the config file
+         * On error this method throws exceptions.
+         *
+         * Copy the template to a configfile and create the config object
+         */
+        void initConfigFile();
+
+        /**
+         * Copy Config file to template
+         * On error this method throws exceptions.
+         */
+        void commitConfig2Template();
 
     };
     
