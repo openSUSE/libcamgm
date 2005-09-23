@@ -53,3 +53,16 @@
 %include limal/ca-mgm/CAConfig.hpp
 %include limal/ca-mgm/LocalManagement.hpp
 %include limal/ca-mgm/CA.hpp
+
+%template(StringArray) blocxx::Array<blocxx::String>;
+%template(StringList)  blocxx::List<blocxx::String>;
+%template(Int32List)   blocxx::List<blocxx::Int32>;
+
+%template(AuthorityInformationList) blocxx::List<limal::ca_mgm::AuthorityInformation>;
+%template(UserNoticeList)           blocxx::List<limal::ca_mgm::UserNotice>;
+%template(CertificatePolicyList)    blocxx::List<limal::ca_mgm::CertificatePolicy>;
+%template(RevocationEntryMap)       blocxx::Map<blocxx::String, limal::ca_mgm::RevocationEntry>;
+%template(LiteralValueList)         blocxx::List<limal::ca_mgm::LiteralValue>;
+%template(RDNObjectList)            blocxx::List<limal::ca_mgm::RDNObject>;
+
+
