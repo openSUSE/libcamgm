@@ -62,4 +62,4 @@ liblimal_ca_mgm_la_LDFLAGS  = \
 
 CLEANFILES     = *~
 DISTCLEANFILES = Commands.hpp
-EXTRA_DIST     = *.hpp Commands.hpp.in
+EXTRA_DIST     = *.hpp Commands.hpp.in openssl.cnf.tmpl
