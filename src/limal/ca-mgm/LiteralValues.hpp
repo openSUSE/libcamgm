@@ -51,6 +51,9 @@ namespace CA_MGM_NAMESPACE {
 
         virtual String              toString() const;
 
+        friend bool operator==(const LiteralValue &l, const LiteralValue &r);
+        friend bool operator<(const LiteralValue &l, const LiteralValue &r);
+
     private:
         String literalType;
         String literalValue;

@@ -128,7 +128,7 @@ UserNotice::getOrganization() const
 }
 
 blocxx::List<blocxx::Int32>
-UserNotice::getNoticeNumbers()
+UserNotice::getNoticeNumbers() const
 {
     return noticeNumbers;
 }
@@ -220,6 +220,38 @@ UserNotice::dump() const
     result.append("noticeNumbers = " + n);
 
     return result;
+}
+
+bool
+limal::ca_mgm::operator==(const UserNotice &l, const UserNotice &r)
+{
+    if(l.getExplicitText()  == r.getExplicitText() &&
+       l.getOrganization()  == r.getOrganization() &&
+       l.getNoticeNumbers() == r.getNoticeNumbers())
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+bool
+limal::ca_mgm::operator<(const UserNotice &l, const UserNotice &r)
+{
+    // this is only to make a List happy
+    
+    if(l.getExplicitText()  < r.getExplicitText() ||
+       l.getOrganization()  < r.getOrganization() ||
+       l.getNoticeNumbers() < r.getNoticeNumbers())
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 
@@ -446,6 +478,37 @@ CertificatePolicy::dump() const
     return result;
 }
 
+bool
+limal::ca_mgm::operator==(const CertificatePolicy &l, const CertificatePolicy &r)
+{
+    if(l.getPolicyIdentifier() == r.getPolicyIdentifier() &&
+       l.getCpsURI()           == r.getCpsURI()           &&
+       l.getUserNoticeList()   == r.getUserNoticeList() )
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+bool
+limal::ca_mgm::operator<(const CertificatePolicy &l, const CertificatePolicy &r)
+{
+    // this is only to make a List happy
+    
+    if(l.getPolicyIdentifier() < r.getPolicyIdentifier() ||
+       l.getCpsURI()           < r.getCpsURI()           ||
+       l.getUserNoticeList()   < r.getUserNoticeList() )
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
 
 blocxx::StringArray
 CertificatePolicy::checkCpsURIs(const StringList& cpsURIs) const

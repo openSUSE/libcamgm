@@ -69,25 +69,20 @@ namespace CA_MGM_NAMESPACE {
         CertificateData();
 
         blocxx::UInt32   version;   // allowed 1, 2, 3
-        String           serial;    // String?
-        time_t           notBefore; // oder ein Date Object?
-        time_t           notAfter;  // oder ein Date Object?
+        String           serial;    
+        time_t           notBefore; 
+        time_t           notAfter;  
 
         DNObject         issuer;
         DNObject         subject;
         blocxx::UInt32   keysize;
 
-        KeyAlg           pubkeyAlgorithm; // oder enum?
+        KeyAlg           pubkeyAlgorithm; 
 
-        // DER des public key
-        //   man EVP_PKEY_set1_RSA
-        //   man EVP_PKEY_get1_RSA
-        //   man i2d_RSAPublicKey     => i2d == internal to DER
-        //   man d2i_RSAPublicKey     => d2i == DER to internal
-        ByteBuffer        publicKey;  
+        ByteBuffer       publicKey;  
 
         SigAlg           signatureAlgorithm;
-        ByteBuffer        signature;     
+        ByteBuffer       signature;     
                                          // mit private key der CA verschlüsselter Hash wert
                                          // des Zertifikates
 

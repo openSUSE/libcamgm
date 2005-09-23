@@ -34,6 +34,11 @@ using namespace limal;
 using namespace limal::ca_mgm;
 using namespace blocxx;
 
+RDNObject::RDNObject()
+    : type(String()), value(String()), prompt(String()),
+      min(0), max(0)
+{
+}
 
 RDNObject::RDNObject(const RDNObject& rdn)
     : type(rdn.type),
@@ -174,12 +179,40 @@ RDNObject::dump() const
     return result;
 }
 
-// protected
-
-RDNObject::RDNObject()
-    : type(String()), value(String()), prompt(String()),
-      min(0), max(0)
+bool
+limal::ca_mgm::operator==(const RDNObject &l, const RDNObject &r)
 {
+    if(l.getType()  == r.getType() &&
+       l.getValue() == r.getValue())
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+bool
+limal::ca_mgm::operator<(const RDNObject &l, const RDNObject &r)
+{
+    if(l.getType()  < r.getType())
+    {
+        return true;
+    }
+    else if(l.getType()  == r.getType())
+    {
+        if(l.getValue() < r.getValue())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    } else{
+        return false;
+    }
 }
 
 

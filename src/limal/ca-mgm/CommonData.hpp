@@ -39,21 +39,13 @@ namespace CA_MGM_NAMESPACE {
     typedef blocxx::List<blocxx::Map<String, String> > StringMapList;
 
     enum Type {
-        Client_Req,
-        Server_Req,
-        CA_Req,
-        Client_Cert,
-        Server_Cert,
-        CA_Cert,
-        CRL
-    };
-
-
-    /* obsolete */
-    enum CertType {
-        CertType_Client,
-        CertType_Server,
-        CertType_CA
+        Client_Req,  //! Client Request
+        Server_Req,  //! Server Request
+        CA_Req,      //! CA Request
+        Client_Cert, //! Client Certificate
+        Server_Cert, //! Server Certificate
+        CA_Cert,     //! CA Certificate
+        CRL          //! Certificate Revocation List
     };
 
     enum FormatType {

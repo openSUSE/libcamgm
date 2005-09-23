@@ -137,6 +137,38 @@ AuthorityInformation::dump() const
     return result;
 }
 
+// ------------------------------------------
+// friends
+// ------------------------------------------
+
+bool
+operator==(const AuthorityInformation &l, const AuthorityInformation &r)
+{
+    if(l.getAccessOID() == r.getAccessOID() &&
+       l.getLocation()  == r.getLocation() )
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+bool
+operator<(const AuthorityInformation &l, const AuthorityInformation &r)
+{
+    if(l.getAccessOID() < r.getAccessOID() ||
+       l.getLocation()  < r.getLocation() )
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 // ###############################################################################
 
 AuthorityInfoAccessExtension::AuthorityInfoAccessExtension()

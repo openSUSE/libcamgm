@@ -50,7 +50,7 @@ namespace CA_MGM_NAMESPACE {
                                                   const blocxx::List<blocxx::Int32>& numbers);
 
         String                      getOrganization() const;
-        blocxx::List<blocxx::Int32> getNoticeNumbers();
+        blocxx::List<blocxx::Int32> getNoticeNumbers() const;
 
         virtual blocxx::String      commit2Config(CA& ca, Type type, blocxx::UInt32 num) const;
 
@@ -58,6 +58,9 @@ namespace CA_MGM_NAMESPACE {
         virtual blocxx::StringArray verify() const;
 
         virtual blocxx::StringArray  dump() const;
+
+        friend bool operator==(const UserNotice &l, const UserNotice &r);
+        friend bool operator<(const UserNotice &l, const UserNotice &r);
 
     private:
         String              explicitText;      // max 200 characters
@@ -96,6 +99,9 @@ namespace CA_MGM_NAMESPACE {
         virtual blocxx::StringArray verify() const;
 
         virtual blocxx::StringArray  dump() const;
+
+        friend bool operator==(const CertificatePolicy &l, const CertificatePolicy &r);
+        friend bool operator<(const CertificatePolicy &l, const CertificatePolicy &r);
 
     private:
         String                   policyIdentifier;  // required

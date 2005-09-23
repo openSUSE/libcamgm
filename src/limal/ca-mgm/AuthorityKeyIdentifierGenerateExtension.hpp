@@ -33,23 +33,33 @@ namespace CA_MGM_NAMESPACE {
     class CA;
     class CAConfig;
 
+    /**
+     * If the keyid option is present an attempt is made to copy the subject key
+     * identifier from the parent certificate.
+     * The issuer option copies the issuer and serial number from the issuer
+     * certificate.
+     */
     class AuthorityKeyIdentifierGenerateExtension : public ExtensionBase {
     public:
 
         enum KeyID {
-            KeyID_none,
-            KeyID_normal,
-            KeyID_always
+            KeyID_none,   /*!< no key ID */ 
+            KeyID_normal, /*!< include key ID if possible*/
+            KeyID_always  /*!< include key ID or return error */
         };
         
         enum Issuer {
-            Issuer_none,
-            Issuer_normal,
-            Issuer_always
+            Issuer_none,   /*!< no issuer/serial */
+            Issuer_normal, /*!< include issuer/serial if possible */
+            Issuer_always  /*!< include issuer/serial or return error */
         };
 
         AuthorityKeyIdentifierGenerateExtension();
         AuthorityKeyIdentifierGenerateExtension(CAConfig* caConfig, Type type);
+
+        /**
+         * Create an object with KeyID and Issuer option
+         */
         AuthorityKeyIdentifierGenerateExtension(KeyID kid, Issuer iss);
         AuthorityKeyIdentifierGenerateExtension(const AuthorityKeyIdentifierGenerateExtension& extension);
         virtual ~AuthorityKeyIdentifierGenerateExtension();
@@ -57,17 +67,53 @@ namespace CA_MGM_NAMESPACE {
         AuthorityKeyIdentifierGenerateExtension& 
         operator=(const AuthorityKeyIdentifierGenerateExtension& extension);
 
+        /**
+         * Set the Key ID
+         */
         void           setKeyID(KeyID kid);
+
+        /**
+         * Return the Key ID
+         */
         KeyID          getKeyID() const;
 
+        /**
+         * Set the issuer option
+         */
         void           setIssuer(Issuer iss);
+
+        /**
+         * Return the issuer option
+         */
         Issuer         getIssuer() const;
 
+        /**
+         * Write the informations of this object back to the configuration file
+         *
+         * @param ca the CA object which holds the config object
+         * @param type the type describes the section of the config file
+         */
         virtual void   commit2Config(CA& ca, Type type) const;
 
+        /**
+         * Check if this object is valid
+         *
+         * @return true if this object is valid, otherwise false
+         */
         virtual bool                 valid() const;  
+
+        /**
+         * Verify this object and return an Array with all
+         * error messages.
+         *
+         * @return Array with error messages. If this Array is empty this
+         * object is valid
+         */
         virtual blocxx::StringArray  verify() const; 
 
+        /**
+         * Return the content of this object for debugging
+         */
         virtual blocxx::StringArray  dump() const;
 
     private:

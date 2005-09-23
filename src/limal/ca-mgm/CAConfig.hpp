@@ -36,23 +36,54 @@ namespace LIMAL_NAMESPACE
 {
 namespace CA_MGM_NAMESPACE
 {
+    /**
+     * Class for reading and writing the openssl.cnf
+     */
     class CAConfig {
     public:
+
+        /**
+         * Create a new object from <b>file</b>
+         */
         CAConfig(const String &file);
         ~CAConfig();
 
+        /**
+         * Set a new value in Section <b>section</b> with the Key <b>key</b>.
+         */
         void     setValue(const String &section, const String &key, const String &value);
 
+        /**
+         * Delete the Key <b>key</b> in Section <b>section</b>
+         */
         void     deleteValue(const String &section, const String &key);
 
+        /**
+         * Get the value of Section  <b>section</b> with the Key <b>key</b>.
+         */
         String   getValue(const String &section, const String &key) const;
 
+        /**
+         * Check if Key <b>key</b> in Section <b>section</b> exists.
+         */
         bool     exists(const String &section, const String &key) const;
 
+        /**
+         * Return a List of all Keys in Section <b>section</b>.
+         */
         blocxx::List<blocxx::String> getKeylist(const String &section) const;
 
+        /**
+         * Copy all Keys and values from Section <b>srcSection</b> to
+         * Section <b>destSection</b>.
+         */
         void     copySection(const String &srcSection, const String &destSection);
 
+        /**
+         * Clone this object
+         *
+         * @param file a new filename for this object
+         */
         CAConfig *clone(const String &file);
 
         void	 dump();

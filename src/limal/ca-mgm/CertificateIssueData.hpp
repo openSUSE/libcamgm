@@ -79,9 +79,25 @@ namespace CA_MGM_NAMESPACE
          */
         void           commit2Config(CA& ca, Type type) const;
 
+        /**
+         * Check if this object is valid
+         *
+         * @return true if this object is valid, otherwise false
+         */
         virtual bool                 valid() const;
+
+        /**
+         * Verify this object and return an Array with all
+         * error messages.
+         *
+         * @return Array with error messages. If this Array is empty this
+         * object is valid
+         */
         virtual blocxx::StringArray  verify() const;
 
+        /**
+         * Return the content of this object for debugging
+         */
         virtual blocxx::StringArray  dump() const;
 
     private:

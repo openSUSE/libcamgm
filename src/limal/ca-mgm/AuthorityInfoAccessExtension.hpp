@@ -107,6 +107,9 @@ namespace CA_MGM_NAMESPACE {
          */
         blocxx::Array<String>   dump() const;
 
+        friend bool operator==(const AuthorityInformation &l, const AuthorityInformation &r);
+        friend bool operator<(const AuthorityInformation &l, const AuthorityInformation &r);
+        
     private:
         String                  accessOID;
         LiteralValue            location;

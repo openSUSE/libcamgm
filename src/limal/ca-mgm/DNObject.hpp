@@ -33,6 +33,7 @@ namespace CA_MGM_NAMESPACE {
 
     class RDNObject {
     public:
+        RDNObject();
         RDNObject(const RDNObject& rdn);
         virtual ~RDNObject();
 
@@ -50,6 +51,9 @@ namespace CA_MGM_NAMESPACE {
 
         virtual blocxx::StringArray  dump() const;
 
+        friend bool operator==(const RDNObject &l, const RDNObject &r);
+        friend bool operator<(const RDNObject &l, const RDNObject &r);
+
     protected:
         String type;
         String value;
@@ -58,7 +62,6 @@ namespace CA_MGM_NAMESPACE {
         blocxx::UInt32 min;
         blocxx::UInt32 max;
 
-        RDNObject();
     };
 
     class DNObject {
@@ -71,10 +74,10 @@ namespace CA_MGM_NAMESPACE {
 
         DNObject& operator=(const DNObject& dn);
 
-        void            setDN(const blocxx::List<RDNObject> &dn);
-        blocxx::List<RDNObject> getDN() const;
+        void                         setDN(const blocxx::List<RDNObject> &dn);
+        blocxx::List<RDNObject>      getDN() const;
 
-        String          getOpenSSLString() const;
+        String                       getOpenSSLString() const;
 
         virtual bool                 valid() const;
         virtual blocxx::StringArray  verify() const;

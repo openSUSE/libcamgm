@@ -236,3 +236,35 @@ LiteralValue::dump() const
 
     return result;
 }
+
+// ------------------------------------------
+// friends
+// ------------------------------------------
+
+bool
+limal::ca_mgm::operator==(const LiteralValue &l, const LiteralValue &r)
+{
+    if(l.getType() == r.getType() &&
+       l.getValue() == r.getValue())
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+bool
+limal::ca_mgm::operator<(const LiteralValue &l, const LiteralValue &r)
+{
+    if(l.getType() < r.getType() ||
+       l.getValue() < r.getValue())
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}

@@ -33,6 +33,9 @@ namespace CA_MGM_NAMESPACE {
     class CA;
     class CAConfig;
 
+    /**
+     * Base Class for Bit Extensions
+     */
     class BitExtension : public ExtensionBase {
     public:
         BitExtension();
@@ -57,6 +60,10 @@ namespace CA_MGM_NAMESPACE {
 
     };
 
+    /**
+     * This extension describes the usage of this
+     * certificate
+     */
     class KeyUsageExtension : public BitExtension {
     public:
         enum KeyUsage {
@@ -73,28 +80,68 @@ namespace CA_MGM_NAMESPACE {
         
         KeyUsageExtension();
         KeyUsageExtension(CAConfig* caConfig, Type type);
+
+        /**
+         * Create an object with a specific key usage set
+         */
         KeyUsageExtension(blocxx::UInt32 keyUsage);
         KeyUsageExtension(const KeyUsageExtension& extension);
         virtual ~KeyUsageExtension();
 
         KeyUsageExtension& operator=(const KeyUsageExtension& extension);
 
+        /**
+         * Set a new key usage
+         */
         void           setKeyUsage(blocxx::UInt32 keyUsage);
+
+        /**
+         * Return the key usage
+         */
         blocxx::UInt32 getKeyUsage() const;
 
+        /**
+         * Return true if the specified bit is set
+         */
         bool isEnabledFor(KeyUsage ku) const;
 
+        /**
+         * Write the informations of this object back to the configuration file
+         *
+         * @param ca the CA object which holds the config object
+         * @param type the type describes the section of the config file
+         */
         virtual void commit2Config(CA& ca, Type type) const ;
 
+        /**
+         * Check if this object is valid
+         *
+         * @return true if this object is valid, otherwise false
+         */
         virtual bool                 valid() const;
+
+        /**
+         * Verify this object and return an Array with all
+         * error messages.
+         *
+         * @return Array with error messages. If this Array is empty this
+         * object is valid
+         */
         virtual blocxx::StringArray  verify() const;
 
+        /**
+         * Return the content of this object for debugging
+         */
         virtual blocxx::StringArray  dump() const;
 
     private:
         bool  validKeyUsage(blocxx::UInt32 keyUsage) const;
     };
 
+    /**
+     * This extension describes the usage of this
+     * certificate (Netscape specific)
+     */
     class NsCertTypeExtension : public BitExtension {
     public:
         enum NsCertType {
@@ -110,25 +157,67 @@ namespace CA_MGM_NAMESPACE {
         
         NsCertTypeExtension();
         NsCertTypeExtension(CAConfig* caConfig, Type type);
+
+        /**
+         * Create an object with a specific certificate type set
+         */
         NsCertTypeExtension(blocxx::UInt32 nsCertTypes);
         NsCertTypeExtension(const NsCertTypeExtension& extension);
         virtual ~NsCertTypeExtension();
 
         NsCertTypeExtension& operator=(const NsCertTypeExtension& extension);
 
+        /**
+         * Set a new certificate type
+         */
         void           setNsCertType(blocxx::UInt32 nsCertTypes);
+
+        /**
+         * Return the certificate type
+         */
         blocxx::UInt32 getNsCertType() const;
         
+        /**
+         * Return true if the specified bit is set
+         */
         bool           isEnabledFor(NsCertType nsCertType) const;
 
+        /**
+         * Write the informations of this object back to the configuration file
+         *
+         * @param ca the CA object which holds the config object
+         * @param type the type describes the section of the config file
+         */
         virtual void   commit2Config(CA& ca, Type type) const;
 
+        /**
+         * Check if this object is valid
+         *
+         * @return true if this object is valid, otherwise false
+         */
         virtual bool                 valid() const;
+
+        /**
+         * Verify this object and return an Array with all
+         * error messages.
+         *
+         * @return Array with error messages. If this Array is empty this
+         * object is valid
+         */
         virtual blocxx::StringArray  verify() const;
 
+        /**
+         * Return the content of this object for debugging
+         */
         virtual blocxx::StringArray  dump() const;
     };
 
+    /**
+     * This extensions consists of a list of usages.
+     *
+     * These can either be object short names of the dotted
+     * numerical form of OIDs.
+     */
     class ExtendedKeyUsageExtension : public BitExtension {
     public:
         enum ExtendedKeyUsage {
@@ -147,6 +236,11 @@ namespace CA_MGM_NAMESPACE {
 
         ExtendedKeyUsageExtension();
         ExtendedKeyUsageExtension(CAConfig* caConfig, Type type);
+
+        /**
+         * Create an object with the specified bit field and
+         * a List of additional OIDs
+         */
         ExtendedKeyUsageExtension(blocxx::UInt32 extKeyUsages, 
                                   const StringList& additionalOIDs = StringList());
         ExtendedKeyUsageExtension(const ExtendedKeyUsageExtension& extension);
@@ -154,23 +248,85 @@ namespace CA_MGM_NAMESPACE {
 
         ExtendedKeyUsageExtension& operator=(const ExtendedKeyUsageExtension& extension);
 
+        /**
+         * Set new extended key usage.
+         *
+         * @param usageList this list can contain the short names or long OIDs
+         * <ul>
+         *   <li>serverAuth</li>
+         *   <li>clientAuth</li>
+         *   <li>codeSigning</li>
+         *   <li>emailProtection</li>
+         *   <li>timeStamping</li>
+         *   <li>msCodeInd</li>
+         *   <li>msCodeCom</li>
+         *   <li>msCTLSign</li>
+         *   <li>msSGC</li>
+         *   <li>msEFS</li>
+         *   <li>nsSGC</li>
+         *   <li>1.5.2.6</li>
+         * </ul>
+         */
         void                       setExtendedKeyUsage(const StringList& usageList);
+
+        /**
+         * Set a new bit mask
+         */
         void                       setExtendedKeyUsage(blocxx::UInt32 extKeyUsages);
+
+        /**
+         * Return the bit mask
+         */
         blocxx::UInt32             getExtendedKeyUsage() const;
-        
+
+        /**
+         * Return true if the specified bit is set
+         */
         bool                       isEnabledFor(ExtendedKeyUsage extKeyUsage) const;
 
+        /**
+         * Set a new OID list
+         */
         void                       setAdditionalOIDs(const StringList& additionalOIDs);
+
+        /**
+         * Return the OID List
+         */
         StringList                 getAdditionalOIDs() const;
 
+        /**
+         * Append an OID to the list
+         */
         void                       addAdditionalOID(String oid);
         //bool                       deleteAdditionalOID(String oid);
 
+        /**
+         * Write the informations of this object back to the configuration file
+         *
+         * @param ca the CA object which holds the config object
+         * @param type the type describes the section of the config file
+         */
         virtual void               commit2Config(CA& ca, Type type) const;
         
+        /**
+         * Check if this object is valid
+         *
+         * @return true if this object is valid, otherwise false
+         */
         virtual bool                 valid() const;
+
+        /**
+         * Verify this object and return an Array with all
+         * error messages.
+         *
+         * @return Array with error messages. If this Array is empty this
+         * object is valid
+         */
         virtual blocxx::StringArray  verify() const;
 
+        /**
+         * Return the content of this object for debugging
+         */
         virtual blocxx::StringArray  dump() const;
 
     private:
