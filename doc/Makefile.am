@@ -31,7 +31,7 @@ html/limaldocs.css: html/index.html
 	cp @STYLESHEET_CSS@ html
 	cp -a $(limaldatadir)/docbook/images html
 
-EXTRA_DIST = $(xml_files)
+EXTRA_DIST = $(xml_files) examples/*.cpp
 
 CLEANFILES =  $(html_DATA)
 

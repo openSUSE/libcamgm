@@ -13,5 +13,7 @@ doxygen.css @RPMNAME@.tag: index.html
 header_dir = $(srcdir)/../../src/limal/ca-mgm/
 source_dir = $(srcdir)/../../src/
 
-index.html: $(header_dir)/*.hpp $(source_dir)/*.hpp
-	${LIMALDOXYGEN} --prefix=$(prefix) PROJECT_NAME=@RPMNAME@ TAGFILES= INPUT="$(header_dir) $(source_dir)"
+index.html: $(source_dir)/*.hpp $(srcdir)/../../doc/examples/*.cpp
+	${LIMALDOXYGEN} --prefix=$(prefix) PROJECT_NAME=@RPMNAME@ TAGFILES= \
+    EXAMPLE_PATH=$(srcdir)/../../doc/examples/ \
+    INPUT="$(header_dir) $(source_dir)"
