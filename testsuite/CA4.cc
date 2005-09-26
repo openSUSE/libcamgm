@@ -15,89 +15,82 @@
 using namespace blocxx;
 using namespace limal;
 using namespace limal::ca_mgm;
-
-limal::Logger logger("CA4");
-
+using namespace std;
 
 int main(int argc, char **argv)
 {
-    
-    if ( argc != 2 ) {
-        std::cerr << "Usage: CA4 <filepath>" << std::endl;
+    if ( argc != 2 )
+    {
+        cerr << "Usage: CA4 <filepath>" << endl;
         exit( 1 );
     }
     
     // Logging
-    blocxx::LogAppenderRef	logAppender(new CerrAppender(
-                                                         LogAppender::ALL_COMPONENTS,
-                                                         LogAppender::ALL_CATEGORIES,
-                                                         // category component - message
-                                                         "%-5p %c - %m"
-                                                         ));
-    blocxx::LoggerRef	appLogger(new AppenderLogger(
-                                                     "CA4",
-                                                     E_ALL_LEVEL,
-                                                     logAppender
-                                                     ));
-    limal::Logger::setDefaultLogger(appLogger);
+    LoggerRef l = limal::Logger::createCerrLogger(
+                                                  "CA4",
+                                                  LogAppender::ALL_COMPONENTS,
+                                                  LogAppender::ALL_CATEGORIES,
+                                                  "%-5p %c - %m"
+                                                  );
+    limal::Logger::setDefaultLogger(l);
     
     blocxx::String file = argv[ 1 ];
-      
+    cout << "START" << endl;
+    cout << "file: " << file << endl;
     
-    std::cout << "START" << std::endl;
-    std::cout << "file: " << file << std::endl;
-    
-    std::ifstream in( file.c_str() );
-    if ( in.fail() ) {
-        std::cerr << "Unable to load '" << file << "'" << std::endl;
+    ifstream in( file.c_str() );
+    if ( in.fail() )
+    {
+        cerr << "Unable to load '" << file << "'" << endl;
         exit( 2 );
     }
     
-    while( in ) {
-        
-        try {
-            
-            blocxx::String     line = blocxx::String::getLine( in );
-            if(line == "EOF") {
-                break;
-            }
+    while( in )
+    {        
+        try
+        {            
+            blocxx::String    line = blocxx::String::getLine( in );
+            if(line == "EOF") break;
 
-            std::cout << "creating CA object" << std::endl;
+            cout << "creating CA object" << endl;
             
             CA ca(line, "system", "./TestRepos/");
-            
             CRLGenerationData cgd;
             
-            std::cout << "============= Test:" << line  << std::endl;
+            cout << "============= Test:" << line  << endl;
             
             cgd = ca.getCRLDefaults();
             
-            std::cout << "============= Call Verify" << std::endl; 
+            cout << "============= Call Verify" << endl; 
 
-            blocxx::StringArray a = cgd.verify();
+            StringArray a = cgd.verify();
             
-            blocxx::StringArray::const_iterator it = a.begin();
-            for(; it != a.end(); ++it) {
-                std::cout << (*it) << std::endl;
+            StringArray::const_iterator it;
+            for(it = a.begin(); it != a.end(); ++it)
+            {
+                cout << (*it) << endl;
             }
        
-            std::cout << "============= Call Dump" << std::endl; 
+            cout << "============= Call Dump" << endl; 
             PerlRegEx r("^!CHANGING DATA!.*$");
 
-            blocxx::StringArray dump = cgd.dump();
-            blocxx::StringArray::const_iterator it2 = dump.begin();
-            for(; it2 != dump.end(); ++it2) {
-                if(!r.match(*it2)) {
-                    std::cout << (*it2) << std::endl;
+            StringArray dump = cgd.dump();
+            StringArray::const_iterator it2;
+            for(it2 = dump.begin(); it2 != dump.end(); ++it2)
+            {
+                if(!r.match(*it2))
+                {
+                    cout << (*it2) << endl;
                 }
             }
-            
-        } catch(blocxx::Exception& e) {
-            std::cerr << e << std::endl;
+        }
+        catch(blocxx::Exception& e)
+        {
+            cerr << e << endl;
         }
     }
     
-    std::cout << "DONE" << std::endl;
+    cout << "DONE" << endl;
     return 0;
 }
 

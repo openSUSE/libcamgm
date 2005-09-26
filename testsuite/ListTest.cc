@@ -17,13 +17,13 @@
 using namespace blocxx;
 using namespace limal;
 using namespace limal::ca_mgm;
-
-limal::Logger logger("ListTest");
+using namespace std;
 
 int main()
 {
-    try {
-        std::cout << "START" << std::endl;
+    try
+    {
+        cout << "START" << endl;
         
         blocxx::StringArray cat;
         cat.push_back("FATAL");
@@ -32,36 +32,31 @@ int main()
         cat.push_back("DEBUG");
 
         // Logging
-        blocxx::LogAppenderRef	logAppender(new CerrAppender(
-                                                             LogAppender::ALL_COMPONENTS,
-                                                             cat,
-                                                             // category component - message
-                                                             "%-5p %c - %m"
-                                                             ));
-        blocxx::LoggerRef	appLogger(new AppenderLogger(
-                                                         "ListTest",
-                                                         E_ALL_LEVEL,
-                                                         logAppender
-                                                         ));
-        limal::Logger::setDefaultLogger(appLogger);
+        LoggerRef l = limal::Logger::createCerrLogger(
+                                                      "ListTest",
+                                                      LogAppender::ALL_COMPONENTS,
+                                                      cat,
+                                                      "%-5p %c - %m"
+                                                      );
+        limal::Logger::setDefaultLogger(l);
         
-        std::cout << "=================== start getRequestList ======================" << std::endl;
+        cout << "=================== start getRequestList ======================" << endl;
         {
             CA ca("Test_CA2", "system", "./TestRepos/");
 
-            blocxx::Array<blocxx::Map<blocxx::String, blocxx::String> > ret;
+            Array<Map<blocxx::String, blocxx::String> > ret;
             ret = ca.getRequestList();
             
-            blocxx::Array<blocxx::Map<blocxx::String, blocxx::String> >::const_iterator it = ret.begin();
+            Array<Map<blocxx::String, blocxx::String> >::const_iterator it;
 
-            for(; it != ret.end(); ++it) {
+            for(it = ret.begin(); it != ret.end(); ++it)
+            {
+                Map<blocxx::String, blocxx::String>::const_iterator it2;
 
-                blocxx::Map<blocxx::String, blocxx::String>::const_iterator it2 = (*it).begin();
+                cout << "New Entry" << endl;
 
-                std::cout << "New Entry" << std::endl;
-
-                for(; it2 != (*it).end(); ++it2) {
-
+                for(it2 = (*it).begin(); it2 != (*it).end(); ++it2)
+                {
                     if((*it2).first == "date")
                     {
                         PerlRegEx r("^(\\d\\d\\d\\d)-(\\d\\d)-(\\d\\d)\\s(\\d\\d):(\\d\\d):(\\d\\d)");
@@ -71,56 +66,51 @@ int main()
                         {
                             blocxx::DateTime dt( sa[1].toInt(), sa[2].toInt(), sa[3].toInt(),
                                                  sa[4].toInt(), sa[5].toInt(), sa[6].toInt() );
-                            std::cout << (*it2).first << " = " <<
-                                dt.toString("%Y-%m-%d %H:%M:%S UTC", DateTime::E_UTC_TIME) << std::endl;
+                            cout << (*it2).first << " = " <<
+                                dt.toString("%Y-%m-%d %H:%M:%S UTC", DateTime::E_UTC_TIME) << endl;
                         }
                         else
                         {
-                            std::cout << (*it2).first << " = " << (*it2).second << std::endl;
+                            cout << (*it2).first << " = " << (*it2).second << endl;
                         }
                     }
                     else
                     {
-                        std::cout << (*it2).first << " = " << (*it2).second << std::endl;
+                        cout << (*it2).first << " = " << (*it2).second << endl;
                     }
-
                 }
             }
-
-            std::cout << "getRequestList successfully executed" << std::endl;
-
+            cout << "getRequestList successfully executed" << endl;
         }
-        std::cout << "=================== start getCertificateList ==================" << std::endl;
+        cout << "=================== start getCertificateList ==================" << endl;
         {
             CA ca2("Test_CA2", "system", "./TestRepos/");
             
-            blocxx::Array<blocxx::Map<blocxx::String, blocxx::String> > ret;
+            Array<Map<blocxx::String, blocxx::String> > ret;
             ret = ca2.getCertificateList();
             
-            blocxx::Array<blocxx::Map<blocxx::String, blocxx::String> >::const_iterator it = ret.begin();
+            Array<Map<blocxx::String, blocxx::String> >::const_iterator it = ret.begin();
 
-            for(; it != ret.end(); ++it) {
+            for(it = ret.begin(); it != ret.end(); ++it)
+            {
+                Map<blocxx::String, blocxx::String>::const_iterator it2;
 
-                blocxx::Map<blocxx::String, blocxx::String>::const_iterator it2 = (*it).begin();
+                cout << "New Entry" << endl;
 
-                std::cout << "New Entry" << std::endl;
-
-                for(; it2 != (*it).end(); ++it2) {
-
-                    std::cout << (*it2).first << " = " << (*it2).second << std::endl;
-
+                for(it2 = (*it).begin(); it2 != (*it).end(); ++it2)
+                {
+                    cout << (*it2).first << " = " << (*it2).second << endl;
                 }
             }
-
-            std::cout << "getCertificateList successfully executed" << std::endl;
-
+            cout << "getCertificateList successfully executed" << endl;
         }
-
-        std::cout << "=================== end List tests ========================" << std::endl;
+        cout << "=================== end List tests ========================" << endl;
         
-        std::cout << "DONE" << std::endl;
-    } catch(blocxx::Exception& e) {
-        std::cerr << e << std::endl;
+        cout << "DONE" << endl;
+    }
+    catch(blocxx::Exception& e)
+    {
+        cerr << e << endl;
     }
 
     return 0;

@@ -15,49 +15,45 @@
 using namespace blocxx;
 using namespace limal;
 using namespace limal::ca_mgm;
-
-limal::Logger logger("ListCATreeTest");
+using namespace std;
 
 int main()
 {
-    try {
-        std::cout << "START" << std::endl;
+    try
+    {
+        cout << "START" << endl;
         
         // Logging
-        blocxx::LogAppenderRef	logAppender(new CerrAppender(
-                                                             LogAppender::ALL_COMPONENTS,
-                                                             LogAppender::ALL_CATEGORIES,
-                                                             // category component - message
-                                                             "%-5p %c - %m"
-                                                             ));
-        blocxx::LoggerRef	appLogger(new AppenderLogger(
-                                                         "ListCATreeTest",
-                                                         E_ALL_LEVEL,
-                                                         logAppender
-                                                         ));
-        limal::Logger::setDefaultLogger(appLogger);
+        LoggerRef l = limal::Logger::createCerrLogger(
+                                                      "ListCATreeTest",
+                                                      LogAppender::ALL_COMPONENTS,
+                                                      LogAppender::ALL_CATEGORIES,
+                                                      "%-5p %c - %m"
+                                                  );
+        limal::Logger::setDefaultLogger(l);
         
-        std::cout << "=================== start CA Tree List ======================" << std::endl;
+        cout << "=================== start CA Tree List ======================" << endl;
 
-        blocxx::List<blocxx::List<blocxx::String> > tree = CA::getCATree("./TestRepos3/");
+        List<List<blocxx::String> > tree = CA::getCATree("./TestRepos3/");
+        List<List<blocxx::String> >::const_iterator it_ext;
 
-        blocxx::List<blocxx::List<blocxx::String> >::const_iterator it_ext = tree.begin();
+        for(it_ext = tree.begin(); it_ext != tree.end(); ++it_ext)
+        {
+            List<blocxx::String>::const_iterator it_int;
 
-        for(; it_ext != tree.end(); ++it_ext) {
-
-            blocxx::List<blocxx::String>::const_iterator it_int = (*it_ext).begin();
-
-            for(; it_int != (*it_ext).end(); ++it_int) {
-
-                std::cout << *it_int << "  " ;
+            for(it_int = (*it_ext).begin(); it_int != (*it_ext).end(); ++it_int)
+            {
+                cout << *it_int << "  " ;
             }
-            std::cout << std::endl;
+            cout << endl;
         }
-        std::cout << "=================== end CA Tree List ========================" << std::endl;
+        cout << "=================== end CA Tree List ========================" << endl;
 
-        std::cout << "DONE" << std::endl;
-    } catch(blocxx::Exception& e) {
-        std::cerr << e << std::endl;
+        cout << "DONE" << endl;
+    }
+    catch(Exception& e)
+    {
+        cerr << e << endl;
     }
 
     return 0;

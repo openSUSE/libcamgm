@@ -13,55 +13,50 @@
 
 using namespace blocxx;
 using namespace limal;
-using namespace limal::CA_MGM_NAMESPACE;
-
-limal::Logger logger("CAConfig");
-
+using namespace limal::ca_mgm;
+using namespace std;
 
 int main()
 {
-    std::cout << "START" << std::endl;
+    cout << "START" << endl;
 
     // Logging
-    blocxx::LogAppenderRef	logAppender(new CerrAppender(
-					 LogAppender::ALL_COMPONENTS,
-					LogAppender::ALL_CATEGORIES,
-					// category component - message
-					"%-5p %c - %m"
-					 ));
-    blocxx::LoggerRef	appLogger(new AppenderLogger(
-					"CAConfig",
-					E_ALL_LEVEL,
-					logAppender
-					));
-    limal::Logger::setDefaultLogger(appLogger);
+    LoggerRef l = limal::Logger::createCerrLogger(
+                                                  "CAConfig",
+                                                  LogAppender::ALL_COMPONENTS,
+                                                  LogAppender::ALL_CATEGORIES,
+                                                  "%-5p %c - %m"
+                                                  );
+    limal::Logger::setDefaultLogger(l);
 
-    CAConfig *config = new CAConfig("openssl.cnf.tmpl");
+    CAConfig *config    = new CAConfig("openssl.cnf.tmpl");
     CAConfig *configNew = config->clone("openssl.cnf.tmpl.test");
     
     LIMAL_SLOG(limal::Logger("ca-mgm"),
-	       "DEBUG", "file openssl.cnf.tmpl.test parsed.");
+               "DEBUG", "file openssl.cnf.tmpl.test parsed.");
     
     configNew->setValue ("v3_req", "basicConstraints", "CA:TRUE");
     configNew->deleteValue ("v3_req", "keyUsage");
-
+    
     CAConfig *configDump = new CAConfig("openssl.cnf.tmpl.test");
     configDump->dump();
-
+    
     typedef blocxx::List<blocxx::String> StringList;
     StringList listKey = config->getKeylist("ca");
-    std::cout << "Key for section : ca" << std::endl;
+    
+    cout << "Key for section : ca" << endl;
+    
     for (StringList::iterator i = listKey.begin();
-	 i != listKey.end(); i++)
+         i != listKey.end(); i++)
     {
-        std::cout << "key   " << *i <<std::endl;
+        cout << "key   " << *i <<endl;
     }
-
+    
     delete (config);
     delete (configNew);
     delete (configDump);
-
-    std::cout << "DONE" << std::endl;
+    
+    cout << "DONE" << endl;
     return 0;
 }
 

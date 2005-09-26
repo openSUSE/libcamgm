@@ -18,13 +18,13 @@
 using namespace blocxx;
 using namespace limal;
 using namespace limal::ca_mgm;
+using namespace std;
 
-limal::Logger logger("ImportCATest");
-
-int main(int argc, char **argv)
+int main()
 {
-    try {
-        std::cout << "START" << std::endl;
+    try
+    {
+        cout << "START" << endl;
 
         blocxx::StringArray cat;
         cat.push_back("FATAL");
@@ -33,32 +33,26 @@ int main(int argc, char **argv)
         //cat.push_back("DEBUG");
 
         // Logging
-        blocxx::LogAppenderRef	logAppender(new CerrAppender(
-                                                             LogAppender::ALL_COMPONENTS,
-                                                             cat,
-                                                             // category component - message
-                                                             "%-5p %c - %m"
-                                                             ));
-        blocxx::LoggerRef	appLogger(new AppenderLogger(
-                                                         "ImportCATest",
-                                                         E_ALL_LEVEL,
-                                                         logAppender
-                                                         ));
-        limal::Logger::setDefaultLogger(appLogger);
+        LoggerRef l = limal::Logger::createCerrLogger(
+                                                      "ImportCATest",
+                                                      LogAppender::ALL_COMPONENTS,
+                                                      cat,
+                                                      "%-5p %c - %m"
+                                                  );
+        limal::Logger::setDefaultLogger(l);
 
-        try {
-
+        try
+        {
             CA::importCA("Test_CA3", 
                          LocalManagement::readFile("./TestRepos/importCATest.pem"),
                          LocalManagement::readFile("./TestRepos/importCATest.key"),
                          "", "./TestRepos/");
-
-        } catch(limal::ValueException& e) {
-
-            std::cout << "Got expected exception" << std::endl;
-            std::cerr << e << std::endl;
-            
+        }
+        catch(ValueException& e)
+        {
             // this is a wanted exception
+            cout << "Got expected exception" << endl;
+            cerr << e << endl;
         }
 
         CA::importCA("Test_CA3",
@@ -66,24 +60,29 @@ int main(int argc, char **argv)
                      LocalManagement::readFile("./TestRepos/importCATest.key"),
                      "tralla", "./TestRepos/");
         
-        limal::path::PathInfo t("./TestRepos/Test_CA3/");
-        if(t.exists() && t.isDir()) {
-            std::cout << "./TestRepos/Test_CA3/ exists" << std::endl;
+        path::PathInfo t("./TestRepos/Test_CA3/");
+        if(t.exists() && t.isDir())
+        {
+            cout << "./TestRepos/Test_CA3/ exists" << endl;
         }
 
         t.stat("./TestRepos/Test_CA3/cacert.pem");
-        if(t.exists() && t.isFile() && t.size() > 0) {
-            std::cout << "./TestRepos/Test_CA3/cacert.pem exists" << std::endl;
+        if(t.exists() && t.isFile() && t.size() > 0)
+        {
+            cout << "./TestRepos/Test_CA3/cacert.pem exists" << endl;
         }
 
         t.stat("./TestRepos/Test_CA3/cacert.key");
-        if(t.exists() && t.isFile() && t.size() > 0) {
-            std::cout << "./TestRepos/Test_CA3/cacert.key exists" << std::endl;
+        if(t.exists() && t.isFile() && t.size() > 0)
+        {
+            cout << "./TestRepos/Test_CA3/cacert.key exists" << endl;
         }
 
-        std::cout << "DONE" << std::endl;
-    } catch(blocxx::Exception& e) {
-        std::cerr << e << std::endl;
+        cout << "DONE" << endl;
+    }
+    catch(Exception& e)
+    {
+        cerr << e << endl;
     }
 
     return 0;

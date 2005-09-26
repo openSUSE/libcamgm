@@ -15,47 +15,50 @@
 using namespace blocxx;
 using namespace limal;
 using namespace limal::ca_mgm;
-
-limal::Logger logger("CA8");
+using namespace std;
 
 int main()
 {
-    try {
-        std::cout << "START" << std::endl;
+    try
+    {
+        cout << "START" << endl;
 
-        blocxx::StringArray comp;
-        comp.push_back("FATAL");
-        comp.push_back("ERROR");
-        comp.push_back("INFO");
-        //comp.push_back("DEBUG");
+        StringArray cat;
+        cat.push_back("FATAL");
+        cat.push_back("ERROR");
+        cat.push_back("INFO");
+        //cat.push_back("DEBUG");
 
         
         // Logging
-        blocxx::LogAppenderRef	logAppender(new CerrAppender(
-                                                             LogAppender::ALL_COMPONENTS,
-                                                             comp,
-                                                             // category component - message
-                                                             "%-5p %c - %m"
-                                                             ));
-        blocxx::LoggerRef	appLogger(new AppenderLogger(
-                                                         "CA8",
-                                                         E_ALL_LEVEL,
-                                                         logAppender
-                                                         ));
-        limal::Logger::setDefaultLogger(appLogger);
+        LoggerRef l = limal::Logger::createCerrLogger(
+                                                      "CA8",
+                                                      LogAppender::ALL_COMPONENTS,
+                                                      cat,
+                                                      "%-5p %c - %m"
+                                                  );
+        limal::Logger::setDefaultLogger(l);
         
         RequestGenerationData rgd = CA::getRootCARequestDefaults("./TestRepos/");
-        CertificateIssueData cid  = CA::getRootCAIssueDefaults("./TestRepos/");
+        CertificateIssueData  cid = CA::getRootCAIssueDefaults("./TestRepos/");
         
-        blocxx::List<RDNObject> dnl = rgd.getSubject().getDN();
-        blocxx::List<RDNObject>::iterator dnit = dnl.begin();
-        for(; dnit != dnl.end(); ++dnit) {
-            std::cout << "DN Key " << (*dnit).getType() << std::endl;
-            if((*dnit).getType() == "countryName") {
+        List<RDNObject> dnl = rgd.getSubject().getDN();
+        List<RDNObject>::iterator dnit;
+
+        for(dnit = dnl.begin(); dnit != dnl.end(); ++dnit)
+        {
+            cout << "DN Key " << (*dnit).getType() << endl;
+            
+            if((*dnit).getType() == "countryName")
+            {
                 (*dnit).setRDNValue("DE");
-            } else if((*dnit).getType() == "commonName") {
+            }
+            else if((*dnit).getType() == "commonName")
+            {
                 (*dnit).setRDNValue("Test CA");
-            } else if((*dnit).getType() == "emailAddress") {
+            }
+            else if((*dnit).getType() == "emailAddress")
+            {
                 (*dnit).setRDNValue("suse@suse.de");
             }
         }
@@ -69,42 +72,65 @@ int main()
         path::PathInfo iReq("./TestRepos/Test_CA/cacert.req");
         path::PathInfo iCrt("./TestRepos/Test_CA/cacert.pem");
 
-        if(iKey.isFile()) {
-            std::cout << iKey.toString() << " IS FILE" <<std::endl;
-            if(iKey.size() > 0) {
-                std::cout << "Size is greater then 0" << std::endl;
-            } else {
-                std::cout << "ERROR Size is 0" << iKey.size() << std::endl;
+        if(iKey.isFile())
+        {
+            cout << iKey.toString() << " IS FILE" <<endl;
+
+            if(iKey.size() > 0)
+            {
+                cout << "Size is greater then 0" << endl;
             }
-        } else {
-            std::cout << "ERROR ./TestRepos/Test_CA/cacert.key is not a file" <<std::endl;
+            else
+            {
+                cout << "ERROR Size is 0" << iKey.size() << endl;
+            }
+        }
+        else
+        {
+            cout << "ERROR ./TestRepos/Test_CA/cacert.key is not a file" <<endl;
         }
 
-        if(iReq.isFile()) {
-            std::cout << iReq.toString() << " IS FILE" <<std::endl;
-            if(iKey.size() > 0) {
-                std::cout << "Size is greater then 0" << std::endl;
-            } else {
-                std::cout << "ERROR Size is 0" << std::endl;
+        if(iReq.isFile())
+        {
+            cout << iReq.toString() << " IS FILE" <<endl;
+            
+            if(iKey.size() > 0)
+            {
+                cout << "Size is greater then 0" << endl;
             }
-        } else {
-            std::cout << "ERROR ./TestRepos/Test_CA/cacert.req is not a file" <<std::endl;
+            else
+            {
+                cout << "ERROR Size is 0" << endl;
+            }
+        }
+        else
+        {
+            cout << "ERROR ./TestRepos/Test_CA/cacert.req is not a file" <<endl;
         }
 
-        if(iCrt.isFile()) {
-            std::cout << iCrt.toString() << " IS FILE" <<std::endl;
-            if(iKey.size() > 0) {
-                std::cout << "Size is greater then 0" << std::endl;
-            } else {
-                std::cout << "ERROR Size is 0" << std::endl;
+        if(iCrt.isFile())
+        {
+            cout << iCrt.toString() << " IS FILE" <<endl;
+            
+            if(iKey.size() > 0)
+            {
+                cout << "Size is greater then 0" << endl;
             }
-        } else {
-            std::cout << "ERROR ./TestRepos/Test_CA/cacert.pem is not a file" <<std::endl;
+            else
+            {
+                cout << "ERROR Size is 0" << endl;
+            }
+        }
+        else
+        {
+            cout << "ERROR ./TestRepos/Test_CA/cacert.pem is not a file" <<endl;
         }
 
-        std::cout << "DONE" << std::endl;
-    } catch(blocxx::Exception& e) {
-        std::cerr << e << std::endl;
+        cout << "DONE" << endl;
+    }
+    catch(Exception& e)
+    {
+        cerr << e << endl;
     }
 
     return 0;

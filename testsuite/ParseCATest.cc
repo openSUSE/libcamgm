@@ -16,14 +16,13 @@
 using namespace blocxx;
 using namespace limal;
 using namespace limal::ca_mgm;
-
-limal::Logger logger("ParseCATest");
+using namespace std;
 
 int main()
 {
-
-    try {
-        std::cout << "START" << std::endl;
+    try
+    {
+        cout << "START" << endl;
         
         blocxx::StringArray cat;
         cat.push_back("FATAL");
@@ -32,51 +31,45 @@ int main()
         cat.push_back("DEBUG");
 
         // Logging
-        blocxx::LogAppenderRef	logAppender(new CerrAppender(
-                                                             LogAppender::ALL_COMPONENTS,
-                                                             cat,
-                                                             // category component - message
-                                                             "%-5p %c - %m"
-                                                             ));
-        blocxx::LoggerRef	appLogger(new AppenderLogger(
-                                                         "ParseCATest",
-                                                         E_ALL_LEVEL,
-                                                         logAppender
-                                                         ));
-        limal::Logger::setDefaultLogger(appLogger);
+        LoggerRef l = limal::Logger::createCerrLogger(
+                                                      "ParseCATest",
+                                                      LogAppender::ALL_COMPONENTS,
+                                                      cat,
+                                                      "%-5p %c - %m"
+                                                      );
+        limal::Logger::setDefaultLogger(l);
         
-        std::cout << "=================== start ParseCATest ======================" << std::endl;
+        cout << "=================== start ParseCATest ======================" << endl;
         {
             CA ca("Test_CA2", "system", "./TestRepos/");
 
             CertificateData cd = ca.getCA();
 
-            blocxx::Array<blocxx::String> ret = cd.dump();
+            Array<blocxx::String> ret = cd.dump();
 
-            blocxx::Array<blocxx::String>::const_iterator it = ret.begin();
+            Array<blocxx::String>::const_iterator it;
 
-            for(; it != ret.end(); ++it) {
-                
-                std::cout << (*it) << std::endl;
+            for(it = ret.begin(); it != ret.end(); ++it)
+            {                
+                cout << (*it) << endl;
             }
 
-            std::cout << "=================== call verify ======================" << std::endl;
+            cout << "=================== call verify ======================" << endl;
 
             ret = cd.verify();
-            it  = ret.begin();
-
-            for(; it != ret.end(); ++it) {
-                
-                std::cout << (*it) << std::endl;
-            }
             
+            for(it  = ret.begin(); it != ret.end(); ++it)
+            {                
+                cout << (*it) << endl;
+            }
         }
-
-        std::cout << "=================== end ParseCATest ========================" << std::endl;
+        cout << "=================== end ParseCATest ========================" << endl;
         
-        std::cout << "DONE" << std::endl;
-    } catch(blocxx::Exception& e) {
-        std::cerr << e << std::endl;
+        cout << "DONE" << endl;
+    }
+    catch(blocxx::Exception& e)
+    {
+        cerr << e << endl;
     }
 
     return 0;

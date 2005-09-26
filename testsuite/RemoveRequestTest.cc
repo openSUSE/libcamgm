@@ -16,13 +16,13 @@
 using namespace blocxx;
 using namespace limal;
 using namespace limal::ca_mgm;
-
-limal::Logger logger("RemoveRequestTest");
+using namespace std;
 
 int main()
 {
-    try {
-        std::cout << "START" << std::endl;
+    try
+    {
+        cout << "START" << endl;
         
         blocxx::StringArray cat;
         cat.push_back("FATAL");
@@ -31,56 +31,58 @@ int main()
         //cat.push_back("DEBUG");
 
         // Logging
-        blocxx::LogAppenderRef	logAppender(new CerrAppender(
-                                                             LogAppender::ALL_COMPONENTS,
-                                                             cat,
-                                                             // category component - message
-                                                             "%-5p %c - %m"
-                                                             ));
-        blocxx::LoggerRef	appLogger(new AppenderLogger(
-                                                         "RemoveRequestTest",
-                                                         E_ALL_LEVEL,
-                                                         logAppender
-                                                         ));
-        limal::Logger::setDefaultLogger(appLogger);
+        LoggerRef l = limal::Logger::createCerrLogger(
+                                                      "RemoveRequestTest",
+                                                      LogAppender::ALL_COMPONENTS,
+                                                      cat,
+                                                      "%-5p %c - %m"
+                                                      );
+        limal::Logger::setDefaultLogger(l);
         
-        std::cout << "=================== start ======================" << std::endl;
+        cout << "=================== start ======================" << endl;
         {
             CA ca("Test_CA1", "system", "./TestRepos/");
 
-            blocxx::Array<blocxx::Map<blocxx::String, blocxx::String> > ret;
+            Array<Map<blocxx::String, blocxx::String> > ret;
             ret = ca.getRequestList();
 
             blocxx::String requestName = (*(ret[0].find("request"))).second;
             
-            limal::path::PathInfo reqFile("./TestRepos/Test_CA1/req/" + requestName + ".req");
-            if(reqFile.exists()) {
-
+            path::PathInfo reqFile("./TestRepos/Test_CA1/req/" + requestName + ".req");
+            if(reqFile.exists())
+            {
                 ca.deleteRequest(requestName);
 
                 reqFile.stat();
-                if(!reqFile.exists()) {
-                    std::cout << "Delete Request successfull." << std::endl;
-                } else {
-                    std::cout << "Delete Request failed." << std::endl;
+                if(!reqFile.exists())
+                {
+                    cout << "Delete Request successfull." << endl;
+                }
+                else
+                {
+                    cout << "Delete Request failed." << endl;
                 }
 
-                limal::path::PathInfo keyFile("./TestRepos/Test_CA1/keys/" + requestName + ".key");
-                if(!keyFile.exists()) {
-                    std::cout << "Delete Key successfull." << std::endl;
-                } else {
-                    std::cout << "Delete Key failed." << std::endl;
+                path::PathInfo keyFile("./TestRepos/Test_CA1/keys/" + requestName + ".key");
+                if(!keyFile.exists())
+                {
+                    cout << "Delete Key successfull." << endl;
                 }
-
-            } else {
-                std::cout << "Request not found." << std::endl;
+                else
+                {
+                    cout << "Delete Key failed." << endl;
+                }
             }
-
+            else
+            {
+                cout << "Request not found." << endl;
+            }
         }
-        
-        std::cout << "DONE" << std::endl;
-    } catch(blocxx::Exception& e) {
-        std::cerr << e << std::endl;
+        cout << "DONE" << endl;
+    }
+    catch(Exception& e)
+    {
+        cerr << e << endl;
     }
 
     return 0;

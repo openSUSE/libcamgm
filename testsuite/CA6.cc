@@ -15,115 +15,117 @@
 using namespace blocxx;
 using namespace limal;
 using namespace limal::ca_mgm;
-
-limal::Logger logger("CA6");
-
+using namespace std;
 
 int main(int argc, char **argv)
 {
-    
-    if ( argc != 2 ) {
-        std::cerr << "Usage: CA6 <filepath>" << std::endl;
+    if ( argc != 2 )
+    {
+        cerr << "Usage: CA6 <filepath>" << endl;
         exit( 1 );
     }
     
     // Logging
-    blocxx::LogAppenderRef	logAppender(new CerrAppender(
-                                                         LogAppender::ALL_COMPONENTS,
-                                                         LogAppender::ALL_CATEGORIES,
-                                                         // category component - message
-                                                         "%-5p %c - %m"
-                                                         ));
-    blocxx::LoggerRef	appLogger(new AppenderLogger(
-                                                     "CA6",
-                                                     E_ALL_LEVEL,
-                                                     logAppender
-                                                     ));
-    limal::Logger::setDefaultLogger(appLogger);
+    LoggerRef l = limal::Logger::createCerrLogger(
+                                                  "CA6",
+                                                  LogAppender::ALL_COMPONENTS,
+                                                  LogAppender::ALL_CATEGORIES,
+                                                  "%-5p %c - %m"
+                                                  );
+    limal::Logger::setDefaultLogger(l);
     
     blocxx::String file = argv[ 1 ];
-      
     
-    std::cout << "START" << std::endl;
-    std::cout << "file: " << file << std::endl;
+    cout << "START" << endl;
+    cout << "file: " << file << endl;
 
-    std::ifstream in( file.c_str() );
-    if ( in.fail() ) {
-        std::cerr << "Unable to load '" << file << "'" << std::endl;
+    ifstream in( file.c_str() );
+    if ( in.fail() )
+    {
+        cerr << "Unable to load '" << file << "'" << endl;
         exit( 2 );
     }
     
-    while( in ) {
-        
-        try {
-            
-            blocxx::String     line = blocxx::String::getLine( in );
-            if(line == "EOF") {
-                break;
-            }
-            blocxx::StringArray params = blocxx::PerlRegEx("\\s").split(line);
+    while( in )
+    {        
+        try
+        {            
+            blocxx::String    line = blocxx::String::getLine( in );
+            if(line == "EOF") break;
 
-            std::cout << "creating CA object" << std::endl;
+            StringArray params = PerlRegEx("\\s").split(line);
+
+            cout << "creating CA object" << endl;
             
             CA ca(params[0], "system", "./TestRepos/");
             
             CertificateIssueData cid;
     
-            std::cout << "============= Test:" << params[0] << "=>" << params[1] << std::endl;
+            cout << "============= Test:" << params[0] << "=>" << params[1] << endl;
             
             Type t = CA_Req;
       
-            if(params[1] == "CA_Cert") {
+            if(params[1] == "CA_Cert")
+            {
                 t = CA_Cert;
-            } else if(params[1] == "Server_Cert") {
+            }
+            else if(params[1] == "Server_Cert")
+            {
                 t = Server_Cert;
-            } else if(params[1] == "Client_Cert") {
+            }
+            else if(params[1] == "Client_Cert")
+            {
                 t = Client_Cert;
-            } else {
-                std::cout << "unknown parameter" << std::endl;
+            }
+            else
+            {
+                cout << "unknown parameter" << endl;
                 exit(1);
             }
 
-
-            std::cout << "============= read" << std::endl; 
+            cout << "============= read" << endl; 
             
             cid = ca.getIssueDefaults(t);
 
-            std::cout << "============= write back unchanged" << std::endl; 
+            cout << "============= write back unchanged" << endl; 
 
             ca.setIssueDefaults(t, cid);
             
-            std::cout << "============= re-read" << std::endl; 
+            cout << "============= re-read" << endl; 
 
             CertificateIssueData Ncid;
             Ncid = ca.getIssueDefaults(t);
 
-            std::cout << "============= Call Verify" << std::endl; 
+            cout << "============= Call Verify" << endl; 
 
-            blocxx::StringArray a = Ncid.verify();
+            StringArray a = Ncid.verify();
             
-            blocxx::StringArray::const_iterator it = a.begin();
-            for(; it != a.end(); ++it) {
-                std::cout << (*it) << std::endl;
+            StringArray::const_iterator it;
+            for(it = a.begin(); it != a.end(); ++it)
+            {
+                cout << (*it) << endl;
             }
             
-            std::cout << "============= Call Dump" << std::endl; 
+            cout << "============= Call Dump" << endl; 
             PerlRegEx r("^!CHANGING DATA!.*$");
 
-            blocxx::StringArray dump = Ncid.dump();
-            blocxx::StringArray::const_iterator it2 = dump.begin();
-            for(; it2 != dump.end(); ++it2) {
-                if(!r.match(*it2)) {
-                    std::cout << (*it2) << std::endl;
+            StringArray dump = Ncid.dump();
+            StringArray::const_iterator it2;
+            for(it2 = dump.begin(); it2 != dump.end(); ++it2)
+            {
+                if(!r.match(*it2))
+                {
+                    cout << (*it2) << endl;
                 }
             }
-            
-        } catch(blocxx::Exception& e) {
-            std::cerr << e << std::endl;
+        }
+        catch(Exception& e)
+        {
+            cerr << e << endl;
         }
     }
     
-    std::cout << "DONE" << std::endl;
+    cout << "DONE" << endl;
     return 0;
 }
 

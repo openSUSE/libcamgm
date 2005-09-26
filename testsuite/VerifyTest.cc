@@ -16,13 +16,13 @@
 using namespace blocxx;
 using namespace limal;
 using namespace limal::ca_mgm;
+using namespace std;
 
-limal::Logger logger("VerifyTest");
-
-int main(int argc, char **argv)
+int main()
 {
-    try {
-        std::cout << "START" << std::endl;
+    try
+    {
+        cout << "START" << endl;
         
         blocxx::StringArray cat;
         cat.push_back("FATAL");
@@ -31,20 +31,15 @@ int main(int argc, char **argv)
         cat.push_back("DEBUG");
 
         // Logging
-        blocxx::LogAppenderRef	logAppender(new CerrAppender(
-                                                             LogAppender::ALL_COMPONENTS,
-                                                             cat,
-                                                             // category component - message
-                                                             "%-5p %c - %m"
-                                                             ));
-        blocxx::LoggerRef	appLogger(new AppenderLogger(
-                                                         "VerifyTest",
-                                                         E_ALL_LEVEL,
-                                                         logAppender
-                                                         ));
-        limal::Logger::setDefaultLogger(appLogger);
+        LoggerRef l = limal::Logger::createCerrLogger(
+                                                      "VerifyTest",
+                                                      LogAppender::ALL_COMPONENTS,
+                                                      cat,
+                                                      "%-5p %c - %m"
+                                                      );
+        limal::Logger::setDefaultLogger(l);
         
-        std::cout << "=================== start Verify Test ======================" << std::endl;
+        cout << "=================== start Verify Test ======================" << endl;
         {
             PerlRegEx r1("revoked");
 
@@ -54,37 +49,42 @@ int main(int argc, char **argv)
 
             ca.createCRL(cgd);
 
-            blocxx::Array<blocxx::Map<blocxx::String, blocxx::String> > ret;
+            Array<Map<blocxx::String, blocxx::String> > ret;
             ret = ca.getCertificateList();
             
-            blocxx::Array<blocxx::Map<blocxx::String, blocxx::String> >::const_iterator it = ret.begin();
+            Array<Map<blocxx::String, blocxx::String> >::const_iterator it;
 
-            for(; it != ret.end(); ++it) {
-                
+            for(it = ret.begin(); it != ret.end(); ++it)
+            {               
                 blocxx::String name = (*(*it).find("certificate")).second;
                 blocxx::String serial = (*(*it).find("serial")).second;
                 
-                try {
-
+                try
+                {
                     ca.verifyCertificate( name );
                     
-                    std::cout << serial << ": Verify success" << std::endl;
-                    
-                } catch(limal::RuntimeException &e) {
-                    if(r1.match(e.what())) {
-                        std::cout << serial << ": Verify failed: Found revoked certificate" << std::endl;
-                    } else {
-                        std::cout << serial << ": Verify failed: unknown reason" << std::endl;
+                    cout << serial << ": Verify success" << endl;
+                }
+                catch(RuntimeException &e)
+                {
+                    if(r1.match(e.what()))
+                    {
+                        cout << serial << ": Verify failed: Found revoked certificate" << endl;
+                    }
+                    else
+                    {
+                        cout << serial << ": Verify failed: unknown reason" << endl;
                     }
                 }
             }
         }
-
-        std::cout << "=================== end List tests ========================" << std::endl;
+        cout << "=================== end List tests ========================" << endl;
         
-        std::cout << "DONE" << std::endl;
-    } catch(blocxx::Exception& e) {
-        std::cerr << e << std::endl;
+        cout << "DONE" << endl;
+    }
+    catch(Exception& e)
+    {
+        cerr << e << endl;
     }
 
     return 0;

@@ -16,13 +16,13 @@
 using namespace blocxx;
 using namespace limal;
 using namespace limal::ca_mgm;
-
-limal::Logger logger("ImportRequestTest");
+using namespace std;
 
 int main()
 {
-    try {
-        std::cout << "START" << std::endl;
+    try
+    {
+        cout << "START" << endl;
         
         blocxx::StringArray cat;
         cat.push_back("FATAL");
@@ -31,31 +31,25 @@ int main()
         //cat.push_back("DEBUG");
 
         // Logging
-        blocxx::LogAppenderRef	logAppender(new CerrAppender(
-                                                             LogAppender::ALL_COMPONENTS,
-                                                             cat,
-                                                             // category component - message
-                                                             "%-5p %c - %m"
-                                                             ));
-        blocxx::LoggerRef	appLogger(new AppenderLogger(
-                                                         "ImportRequestTest",
-                                                         E_ALL_LEVEL,
-                                                         logAppender
-                                                         ));
-        limal::Logger::setDefaultLogger(appLogger);
+        LoggerRef l = limal::Logger::createCerrLogger(
+                                                      "ImportRequestTest",
+                                                      LogAppender::ALL_COMPONENTS,
+                                                      cat,
+                                                      "%-5p %c - %m"
+                                                  );
+        limal::Logger::setDefaultLogger(l);
         
-        std::cout << "=================== start ImportRequestTest ======================" << std::endl;
+        cout << "=================== start ImportRequestTest ======================" << endl;
         {
             CA ca("Test_CA1", "system", "./TestRepos/");
 
             blocxx::String name = ca.importRequest(blocxx::String("./TestRepos/importRequestTest.req"),
                                                    PEM);
             
-            limal::path::PathInfo pi("./TestRepos/Test_CA1/req/" + name + ".req");
-            if(pi.exists()) {
-
-                std::cout << "File exists in the repository!" << std::endl;
-
+            path::PathInfo pi("./TestRepos/Test_CA1/req/" + name + ".req");
+            if(pi.exists())
+            {
+                cout << "File exists in the repository!" << endl;
             }
 
             sleep(1);
@@ -63,31 +57,30 @@ int main()
             name = ca.importRequest(blocxx::String("./TestRepos/c293624b6a877f401407ce8f8f1f327e.req"),
                                     PEM);
             
-            limal::path::PathInfo pi2("./TestRepos/Test_CA1/req/" + name + ".req");
-            if(pi2.exists()) {
-
-                std::cout << "File exists in the repository!" << std::endl;
-
+            path::PathInfo pi2("./TestRepos/Test_CA1/req/" + name + ".req");
+            if(pi2.exists())
+            {
+                cout << "File exists in the repository!" << endl;
             }
-
             sleep(1);
 
             name = ca.importRequest(blocxx::String("./TestRepos/importRequestTest-DER.req"),
                                     DER);
             
-            limal::path::PathInfo pi3("./TestRepos/Test_CA1/req/" + name + ".req");
-            if(pi3.exists()) {
-
-                std::cout << "File exists in the repository!" << std::endl;
-
+            path::PathInfo pi3("./TestRepos/Test_CA1/req/" + name + ".req");
+            if(pi3.exists())
+            {
+                cout << "File exists in the repository!" << endl;
             }
         }
 
-        std::cout << "=================== end ImportRequestTest ========================" << std::endl;
+        cout << "=================== end ImportRequestTest ========================" << endl;
         
-        std::cout << "DONE" << std::endl;
-    } catch(blocxx::Exception& e) {
-        std::cerr << e << std::endl;
+        cout << "DONE" << endl;
+    }
+    catch(blocxx::Exception& e)
+    {
+        cerr << e << endl;
     }
 
     return 0;

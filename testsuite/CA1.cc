@@ -15,106 +15,115 @@
 using namespace blocxx;
 using namespace limal;
 using namespace limal::ca_mgm;
+using namespace std;
 
-limal::Logger logger("CA1");
-
-
-int main(int argc, char **argv)
+int main()
 {
     PerlRegEx r("^!CHANGING DATA!.*$");
 
-    try {
-        std::cout << "START" << std::endl;
+    try
+    {
+        cout << "START" << endl;
         
         // Logging
-        blocxx::LogAppenderRef	logAppender(new CerrAppender(
-                                                             LogAppender::ALL_COMPONENTS,
-                                                             LogAppender::ALL_CATEGORIES,
-                                                             // category component - message
-                                                             "%-5p %c - %m"
-                                                             ));
-        blocxx::LoggerRef	appLogger(new AppenderLogger(
-                                                         "CA1",
-                                                         E_ALL_LEVEL,
-                                                         logAppender
-                                                         ));
-        limal::Logger::setDefaultLogger(appLogger);
+
+        LoggerRef l = limal::Logger::createCerrLogger(
+                                                      "CA1",
+                                                      LogAppender::ALL_COMPONENTS,
+                                                      LogAppender::ALL_CATEGORIES,
+                                                      "%-5p %c - %m"
+                                                      );
+
+        limal::Logger::setDefaultLogger(l);
         
         CA ca("ca1_test", "system", "./TestRepos/");
         
-        std::cout << "======================== getRequestDefaults =================" << std::endl;
+        cout << "======================== getRequestDefaults =================" << endl;
 
         RequestGenerationData rgd = ca.getRequestDefaults(CA_Req);
 
-        std::cout << "======================== call verify() =================" << std::endl;
+        cout << "======================== call verify() =================" << endl;
  
         StringArray a = rgd.verify();
         
-        StringArray::const_iterator it = a.begin();
-        for(; it != a.end(); ++it) {
-            std::cout << (*it) << std::endl;
+        StringArray::const_iterator it;
+        
+        for(it = a.begin(); it != a.end(); ++it)
+        {
+            cout << (*it) << endl;
         }
        
-        std::cout << "======================== call dump() =================" << std::endl;
+        cout << "======================== call dump() =================" << endl;
 
         StringArray dump = rgd.dump();
-        StringArray::const_iterator it2 = dump.begin();
-        for(; it2 != dump.end(); ++it2) {
-            if(!r.match(*it2)) {
-                std::cout << (*it2) << std::endl;
+        StringArray::const_iterator it2;
+        
+        for(it2 = dump.begin(); it2 != dump.end(); ++it2)
+        {
+            if(!r.match(*it2))
+            {
+                cout << (*it2) << endl;
             }
         }
 
-        std::cout << "======================== getIssueDefaults =================" << std::endl;
+        cout << "======================== getIssueDefaults =================" << endl;
 
         CertificateIssueData cid = ca.getIssueDefaults(CA_Cert);
  
-        std::cout << "======================== call verify() =================" << std::endl;
+        cout << "======================== call verify() =================" << endl;
 
         a = cid.verify();
         
-        it = a.begin();
-        for(; it != a.end(); ++it) {
-            std::cout << (*it) << std::endl;
+        for(it = a.begin(); it != a.end(); ++it)
+        {
+            cout << (*it) << endl;
         }
        
-        std::cout << "======================== call dump() =================" << std::endl;
+        cout << "======================== call dump() =================" << endl;
 
         dump = cid.dump();
-        it2 = dump.begin();
-        for(; it2 != dump.end(); ++it2) {
-            if(!r.match(*it2)) {
-                std::cout << (*it2) << std::endl;
+        
+        for(it2 = dump.begin(); it2 != dump.end(); ++it2)
+        {
+            if(!r.match(*it2))
+            {
+                cout << (*it2) << endl;
             }
         }
 
-        std::cout << "======================== getCRLDefaults =================" << std::endl;
+        cout << "======================== getCRLDefaults =================" << endl;
 
         CRLGenerationData cgd = ca.getCRLDefaults();
  
-        std::cout << "======================== call verify() =================" << std::endl;
+        cout << "======================== call verify() =================" << endl;
   
         a = cgd.verify();
         
-        it = a.begin();
-        for(; it != a.end(); ++it) {
-            std::cout << (*it) << std::endl;
+        for(it = a.begin(); it != a.end(); ++it)
+        {
+            cout << (*it) << endl;
         }
        
-        std::cout << "======================== call dump() =================" << std::endl;
+        cout << "======================== call dump() =================" << endl;
 
         dump = cgd.dump();
-        it2 = dump.begin();
-        for(; it2 != dump.end(); ++it2) {
-            if(!r.match(*it2)) {
-                std::cout << (*it2) << std::endl;
+
+        for(it2 = dump.begin(); it2 != dump.end(); ++it2)
+        {
+            if(!r.match(*it2))
+            {
+                cout << (*it2) << endl;
             }
         }
 
-        std::cout << "DONE" << std::endl;
-    } catch(blocxx::Exception& e) {
-        std::cerr << e << std::endl;
+        cout << "DONE" << endl;
+        
     }
+    catch(Exception& e)
+    {
+        cerr << e << endl;
+    }
+    
     return 0;
 }
 

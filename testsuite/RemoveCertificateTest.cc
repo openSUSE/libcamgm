@@ -16,13 +16,13 @@
 using namespace blocxx;
 using namespace limal;
 using namespace limal::ca_mgm;
-
-limal::Logger logger("RemoveCertificateTest");
+using namespace std;
 
 int main()
 {
-    try {
-        std::cout << "START" << std::endl;
+    try
+    {
+        cout << "START" << endl;
         
         blocxx::StringArray cat;
         cat.push_back("FATAL");
@@ -31,147 +31,176 @@ int main()
         //cat.push_back("DEBUG");
 
         // Logging
-        blocxx::LogAppenderRef	logAppender(new CerrAppender(
-                                                             LogAppender::ALL_COMPONENTS,
-                                                             cat,
-                                                             // category component - message
-                                                             "%-5p %c - %m"
-                                                             ));
-        blocxx::LoggerRef	appLogger(new AppenderLogger(
-                                                         "RemoveCertificateTest",
-                                                         E_ALL_LEVEL,
-                                                         logAppender
-                                                         ));
-        limal::Logger::setDefaultLogger(appLogger);
+        LoggerRef l = limal::Logger::createCerrLogger(
+                                                      "RemoveCertificateTest",
+                                                      LogAppender::ALL_COMPONENTS,
+                                                      cat,
+                                                      "%-5p %c - %m"
+                                                      );
+        limal::Logger::setDefaultLogger(l);
         
-        std::cout << "=================== start ======================" << std::endl;
+        cout << "=================== start ======================" << endl;
         {
             CA ca("Test_CA1", "system", "./TestRepos/");
 
-            blocxx::Array<blocxx::Map<blocxx::String, blocxx::String> > ret;
+            Array<Map<blocxx::String, blocxx::String> > ret;
             ret = ca.getCertificateList();
 
-            blocxx::Array<blocxx::Map<blocxx::String, blocxx::String> >::const_iterator it = ret.begin();
+            Array<Map<blocxx::String, blocxx::String> >::const_iterator it;
             int i = 0;
-            for(; it != ret.end(); ++it) {
-            
+            for(it = ret.begin(); it != ret.end(); ++it)
+            {            
                 blocxx::String certificateName = (*((*it).find("certificate"))).second;
                 blocxx::String state           = (*((*it).find("status"))).second;
 
                 PerlRegEx p("^([[:xdigit:]]+):([[:xdigit:]]+[\\d-]*)$");
                 StringArray sa = p.capture(certificateName);
 
-                if(sa.size() != 3) {
-                    std::cerr << "Can not parse certificate name ... continue." << std::endl;
+                if(sa.size() != 3)
+                {
+                    cerr << "Can not parse certificate name ... continue." << endl;
                     continue;
                 }
 
                 blocxx::String serial  = sa[1];
                 blocxx::String request = sa[2];
 
-                if(i == 0 && state != "Valid") {
-
-                    limal::path::PathInfo certFile("./TestRepos/Test_CA1/newcerts/" +
-                                                   certificateName + ".pem");
-                    if(certFile.exists()) {
-                        
+                if(i == 0 && state != "Valid")
+                {
+                    path::PathInfo certFile("./TestRepos/Test_CA1/newcerts/" +
+                                            certificateName + ".pem");
+                    if(certFile.exists())
+                    {                        
                         ca.deleteCertificate(certificateName);
 
                         certFile.stat();
-                        if(!certFile.exists()) {
-                            std::cout << "Take 0: Delete Certificate successfull." << std::endl;
-                        } else {
-                            std::cout << "Take 0: Delete Certificate failed." << std::endl;
+                        if(!certFile.exists())
+                        {
+                            cout << "Take 0: Delete Certificate successfull." << endl;
+                        }
+                        else
+                        {
+                            cout << "Take 0: Delete Certificate failed." << endl;
                         }
 
-                        limal::path::PathInfo keyFile("./TestRepos/Test_CA1/keys/" +
-                                                      request + ".key");
-                        if(!keyFile.exists()) {
-                            std::cout << "Take 0: Delete Key successfull." << std::endl;
-                        } else {
-                            std::cout << "Take 0: Delete Key failed." << std::endl;
+                        path::PathInfo keyFile("./TestRepos/Test_CA1/keys/" +
+                                               request + ".key");
+                        if(!keyFile.exists())
+                        {
+                            cout << "Take 0: Delete Key successfull." << endl;
+                        }
+                        else
+                        {
+                            cout << "Take 0: Delete Key failed." << endl;
                         }
 
-                        limal::path::PathInfo reqFile("./TestRepos/Test_CA1/req/" +
-                                                      request + ".req");
-                        if(!reqFile.exists()) {
-                            std::cout << "Take 0: Delete Request successfull." << std::endl;
-                        } else {
-                            std::cout << "Take 0: Delete Request failed." << std::endl;
+                        path::PathInfo reqFile("./TestRepos/Test_CA1/req/" +
+                                               request + ".req");
+                        if(!reqFile.exists())
+                        {
+                            cout << "Take 0: Delete Request successfull." << endl;
                         }
-                        
-                    } else {
-                        std::cout << "Take 0: Certificate not found." << std::endl;
+                        else
+                        {
+                            cout << "Take 0: Delete Request failed." << endl;
+                        }
+                    }
+                    else
+                    {
+                        cout << "Take 0: Certificate not found." << endl;
                     }
                     i++;
-                } else if(i == 1 && state != "Valid") {
-                    limal::path::PathInfo certFile("./TestRepos/Test_CA1/newcerts/" +
-                                                   certificateName + ".pem");
-                    if(certFile.exists()) {
-                        
+                }
+                else if(i == 1 && state != "Valid")
+                {
+                    path::PathInfo certFile("./TestRepos/Test_CA1/newcerts/" +
+                                            certificateName + ".pem");
+                    if(certFile.exists())
+                    {                        
                         ca.deleteCertificate(certificateName, false);
                         
                         certFile.stat();
-                        if(!certFile.exists()) {
-                            std::cout << "Take 1: Delete Certificate successfull." << std::endl;
-                        } else {
-                            std::cout << "Take 1: Delete Certificate failed." << std::endl;
+                        if(!certFile.exists())
+                        {
+                            cout << "Take 1: Delete Certificate successfull." << endl;
+                        }
+                        else
+                        {
+                            cout << "Take 1: Delete Certificate failed." << endl;
                         }
 
-                        limal::path::PathInfo keyFile("./TestRepos/Test_CA1/keys/" +
-                                                      request + ".key");
-                        if(!keyFile.exists()) {
-                            std::cout << "Take 1: Key not exists. !!! Wrong !!!" << std::endl;
-                        } else {
-                            std::cout << "Take 1: Key still exists. !!! OK !!!" << std::endl;
+                        path::PathInfo keyFile("./TestRepos/Test_CA1/keys/" +
+                                               request + ".key");
+                        if(!keyFile.exists())
+                        {
+                            cout << "Take 1: Key not exists. !!! Wrong !!!" << endl;
+                        }
+                        else
+                        {
+                            cout << "Take 1: Key still exists. !!! OK !!!" << endl;
                         }
 
-                        limal::path::PathInfo reqFile("./TestRepos/Test_CA1/req/" +
-                                                      request + ".req");
-                        if(!reqFile.exists()) {
-                            std::cout << "Take 1: Request not exists. !!! Wrong !!!" << std::endl;
-                        } else {
-                            std::cout << "Take 1: Request still exists. !!! OK !!!" << std::endl;
+                        path::PathInfo reqFile("./TestRepos/Test_CA1/req/" +
+                                               request + ".req");
+                        if(!reqFile.exists())
+                        {
+                            cout << "Take 1: Request not exists. !!! Wrong !!!" << endl;
                         }
-                        
-                    } else {
-                        std::cout << "Take 1: Certificate not found." << std::endl;
+                        else
+                        {
+                            cout << "Take 1: Request still exists. !!! OK !!!" << endl;
+                        }
+                    }
+                    else
+                    {
+                        cout << "Take 1: Certificate not found." << endl;
                     }
                     i++;
-                } else if(i == 2 && state == "Valid") {
-                    limal::path::PathInfo certFile("./TestRepos/Test_CA1/newcerts/" +
-                                                   certificateName + ".pem");
-                    if(certFile.exists()) {
-
-                        try {
-
+                }
+                else if(i == 2 && state == "Valid")
+                {
+                    path::PathInfo certFile("./TestRepos/Test_CA1/newcerts/" +
+                                            certificateName + ".pem");
+                    if(certFile.exists())
+                    {
+                        try
+                        {
                             ca.deleteCertificate(certificateName, false);
-                        
+                            
                             certFile.stat();
-                            if(!certFile.exists()) {
-                                std::cout << "Take 2: Delete Certificate successfull." << std::endl;
-                            } else {
-                                std::cout << "Take 2: Delete Certificate failed." << std::endl;
+                            if(!certFile.exists())
+                            {
+                                cout << "Take 2: Delete Certificate successfull." << endl;
                             }
-                        } catch(limal::RuntimeException &e) {
-                            std::cout << "Take 2: Delete Certificate failed. This is ok" << std::endl;
+                            else
+                            {
+                                cout << "Take 2: Delete Certificate failed." << endl;
+                            }
                         }
-                    } else {
-                        std::cout << "Take 2: Certificate not found." << std::endl;
+                        catch(RuntimeException &e)
+                        {
+                            cout << "Take 2: Delete Certificate failed. This is ok" << endl;
+                        }
                     }
-                    
+                    else
+                    {
+                        cout << "Take 2: Certificate not found." << endl;
+                    }
                     i++;
-                } else {
+                }
+                else
+                {
                     continue;
                 }
             }
-        }
-        
-        std::cout << "DONE" << std::endl;
-    } catch(blocxx::Exception& e) {
-        std::cerr << e << std::endl;
+        }        
+        cout << "DONE" << endl;
     }
-
+    catch(Exception& e)
+    {
+        cerr << e << endl;
+    }
+    
     return 0;
 }
 

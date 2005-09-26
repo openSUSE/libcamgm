@@ -1,14 +1,14 @@
 START
-==================== ca.exportCertificateAsPKCS12(..., false); ======================
+============ ca.exportCertificateAsPKCS12(..., false); ===========
 Certificate exists
-==================== importAsLocalCertificate() ======================
+================= importAsLocalCertificate() ==================
 servercert.pem exists
 serverkey.pem exists and has permissions 0600
 CA exists ! OK!
 YaST-CA-0 do not exists ! OK !
-==================== ca.exportCertificateAsPKCS12(..., true); ======================
+============ ca.exportCertificateAsPKCS12(..., true); ============
 Certificate exists
-==================== importAsLocalCertificate(Chain) ======================
+================ importAsLocalCertificate(Chain) ==================
 servercert.pem exists
 serverkey.pem exists and has permissions 0600
 CA exists

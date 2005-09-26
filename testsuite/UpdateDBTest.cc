@@ -16,58 +16,57 @@
 using namespace blocxx;
 using namespace limal;
 using namespace limal::ca_mgm;
-
-limal::Logger logger("UpdateDBTest");
+using namespace std;
 
 int main()
 {
-
-    try {
-        std::cout << "START" << std::endl;
+    try
+    {
+        cout << "START" << endl;
         
         blocxx::StringArray cat;
         cat.push_back("FATAL");
         cat.push_back("ERROR");
         cat.push_back("INFO");
-        //comp.push_back("DEBUG");
+        //cat.push_back("DEBUG");
 
         // Logging
-        blocxx::LogAppenderRef	logAppender(new CerrAppender(
-                                                             LogAppender::ALL_COMPONENTS,
-                                                             cat,
-                                                             // category component - message
-                                                             "%-5p %c - %m"
-                                                             ));
-        blocxx::LoggerRef	appLogger(new AppenderLogger(
-                                                         "UpdateDBTest",
-                                                         E_ALL_LEVEL,
-                                                         logAppender
-                                                         ));
-        limal::Logger::setDefaultLogger(appLogger);
+        LoggerRef l = limal::Logger::createCerrLogger(
+                                                      "UpdateDBTest",
+                                                      LogAppender::ALL_COMPONENTS,
+                                                      cat,
+                                                      "%-5p %c - %m"
+                                                      );
+        limal::Logger::setDefaultLogger(l);
         
-        std::cout << "=================== start Update DB ======================" << std::endl;
+        cout << "=================== start Update DB ======================" << endl;
         {
             CA ca("Test_CA1", "system", "./TestRepos/");
 
             ca.updateDB();
             
-            std::cout << "UpdateDB successfully executed" << std::endl;
-
+            cout << "UpdateDB successfully executed" << endl;
         }
-        std::cout << "=================== test wrong password ==================" << std::endl;
-        try {
+
+        cout << "=================== test wrong password ==================" << endl;
+        
+        try
+        {
             CA ca2("Test_CA1", "tralla", "./TestRepos/");
             
             ca2.updateDB();
-
-        } catch(limal::RuntimeException &re) {
-            std::cout << "Got RuntimeException. This is ok!" << std::endl;
         }
-        std::cout << "=================== end Update DB ========================" << std::endl;
+        catch(RuntimeException &re)
+        {
+            cout << "Got RuntimeException. This is ok!" << endl;
+        }
+        cout << "=================== end Update DB ========================" << endl;
         
-        std::cout << "DONE" << std::endl;
-    } catch(blocxx::Exception& e) {
-        std::cerr << e << std::endl;
+        cout << "DONE" << endl;
+    }
+    catch(Exception& e)
+    {
+        cerr << e << endl;
     }
 
     return 0;

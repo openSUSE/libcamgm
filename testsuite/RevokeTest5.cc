@@ -16,47 +16,49 @@
 using namespace blocxx;
 using namespace limal;
 using namespace limal::ca_mgm;
-
-limal::Logger logger("RevokeTest5");
+using namespace std;
 
 int main()
 {
-    try {
-        std::cout << "START" << std::endl;
+    try
+    {
+        cout << "START" << endl;
         
-        blocxx::StringArray comp;
-        comp.push_back("FATAL");
-        comp.push_back("ERROR");
-        comp.push_back("INFO");
-        //comp.push_back("DEBUG");
+        blocxx::StringArray cat;
+        cat.push_back("FATAL");
+        cat.push_back("ERROR");
+        cat.push_back("INFO");
+        //cat.push_back("DEBUG");
 
         // Logging
-        blocxx::LogAppenderRef	logAppender(new CerrAppender(
-                                                             LogAppender::ALL_COMPONENTS,
-                                                             comp,
-                                                             // category component - message
-                                                             "%-5p %c - %m"
-                                                             ));
-        blocxx::LoggerRef	appLogger(new AppenderLogger(
-                                                         "RevokeTest5",
-                                                         E_ALL_LEVEL,
-                                                         logAppender
-                                                         ));
-        limal::Logger::setDefaultLogger(appLogger);
+        LoggerRef l = limal::Logger::createCerrLogger(
+                                                      "RevokeTest5",
+                                                      LogAppender::ALL_COMPONENTS,
+                                                      cat,
+                                                      "%-5p %c - %m"
+                                                      );
+        limal::Logger::setDefaultLogger(l);
         
         CA ca("Test_CA1", "system", "./TestRepos/");
         RequestGenerationData rgd = ca.getRequestDefaults(Server_Req);
 
-        blocxx::List<RDNObject> dnl = rgd.getSubject().getDN();
-        blocxx::List<RDNObject>::iterator dnit = dnl.begin();
-        for(; dnit != dnl.end(); ++dnit) {
-            std::cout << "DN Key " << (*dnit).getType() << std::endl;
-            if((*dnit).getType() == "countryName") {
+        List<RDNObject> dnl = rgd.getSubject().getDN();
+        List<RDNObject>::iterator dnit;
+        
+        for(dnit = dnl.begin(); dnit != dnl.end(); ++dnit)
+        {
+            cout << "DN Key " << (*dnit).getType() << endl;
+            
+            if((*dnit).getType() == "countryName")
+            {
                 (*dnit).setRDNValue("DE");
-            } else if((*dnit).getType() == "commonName") {
+            }
+            else if((*dnit).getType() == "commonName")
+            {
                 (*dnit).setRDNValue("Test Certificate for revocation 5 oid test");
             }
-            else if((*dnit).getType() == "emailAddress") {
+            else if((*dnit).getType() == "emailAddress")
+            {
                 (*dnit).setRDNValue("suse@suse.de");
             }
         }
@@ -68,56 +70,59 @@ int main()
 
         blocxx::String c = ca.createCertificate("system", rgd, cid, Server_Cert);
 
-        std::cout << "RETURN Certificate " << std::endl;
+        cout << "RETURN Certificate " << endl;
 
-        limal::path::PathInfo pi("./TestRepos/Test_CA1/newcerts/" + c + ".pem");
+        path::PathInfo pi("./TestRepos/Test_CA1/newcerts/" + c + ".pem");
         
-        std::cout << "Certificate exists: " << blocxx::Bool(pi.exists()) << std::endl;
+        cout << "Certificate exists: " << Bool(pi.exists()) << endl;
 
-        std::cout << "Try to revoke it" << std::endl;
+        cout << "Try to revoke it" << endl;
 
         CRLReason reason(CRLReason::certificateHold);
         reason.setHoldInstruction("1.6.21.43");
 
         ca.revokeCertificate(c, reason);
 
-        blocxx::PerlRegEx r0("^([0-9a-fA-F]+):.*");
-        blocxx::StringArray serial = r0.capture(c);
+        PerlRegEx r0("^([0-9a-fA-F]+):.*");
+        StringArray serial = r0.capture(c);
 
-        std::ifstream in ("./TestRepos/Test_CA1/index.txt");
+        ifstream in ("./TestRepos/Test_CA1/index.txt");
 
-        blocxx::StringBuffer b;
+        StringBuffer b;
 
-        while(1) {
+        while(1)
+        {
             blocxx::String line = b.getLine(in);
 
-            blocxx::PerlRegEx r1("^R.+holdInstruction,1.6.21.43\\t"+
-                                 serial[1]+"\\t.*");
+            PerlRegEx r1("^R.+holdInstruction,1.6.21.43\\t"+
+                         serial[1]+"\\t.*");
 
-            if(r1.match(line)) {
-                std::cout << "Found revoked certificate " << std::endl;
+            if(r1.match(line))
+            {
+                cout << "Found revoked certificate " << endl;
             }
-            if(line.empty()) {
-                break;
-            }
+            
+            if(line.empty()) break;
         }
 
-        std::cout << "Create a CRL" << std::endl;
+        cout << "Create a CRL" << endl;
 
         CRLGenerationData cgd = ca.getCRLDefaults();
         
         ca.createCRL(cgd);
 
-        limal::path::PathInfo pi2("./TestRepos/Test_CA1/crl/crl.pem");
-        if(pi2.size() > 0) {
-            std::cout << "CRL file available and greater then 0" << std::endl;
+        path::PathInfo pi2("./TestRepos/Test_CA1/crl/crl.pem");
+        if(pi2.size() > 0)
+        {
+            cout << "CRL file available and greater then 0" << endl;
         }
-
-        std::cout << "DONE" << std::endl;
-    } catch(blocxx::Exception& e) {
-        std::cerr << e << std::endl;
+        cout << "DONE" << endl;
     }
-
+    catch(Exception& e)
+    {
+        cerr << e << endl;
+    }
+    
     return 0;
 }
 

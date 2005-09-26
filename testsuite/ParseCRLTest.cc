@@ -15,93 +15,83 @@
 using namespace blocxx;
 using namespace limal;
 using namespace limal::ca_mgm;
-
-limal::Logger logger("ParseCRLTest");
-
+using namespace std;
 
 int main(int argc, char **argv)
 {
     
-    if ( argc != 2 ) {
-        std::cerr << "Usage: ParseCRLTest <filepath>" << std::endl;
+    if ( argc != 2 )
+    {
+        cerr << "Usage: ParseCRLTest <filepath>" << endl;
         exit( 1 );
     }
     
     // Logging
-    blocxx::LogAppenderRef	logAppender(new CerrAppender(
-                                                         LogAppender::ALL_COMPONENTS,
-                                                         LogAppender::ALL_CATEGORIES,
-                                                         // category component - message
-                                                         "%-5p %c - %m"
-                                                         ));
-    blocxx::LoggerRef	appLogger(new AppenderLogger(
-                                                     "ParseCRLTest",
-                                                     E_ALL_LEVEL,
-                                                     logAppender
-                                                     ));
-    limal::Logger::setDefaultLogger(appLogger);
+    LoggerRef l = limal::Logger::createCerrLogger(
+                                                  "ParseCRLTest",
+                                                  LogAppender::ALL_COMPONENTS,
+                                                  LogAppender::ALL_CATEGORIES,
+                                                  "%-5p %c - %m"
+                                                  );
+    limal::Logger::setDefaultLogger(l);
     
     blocxx::String file = argv[ 1 ];
-      
-    
-    std::cout << "START" << std::endl;
-    std::cout << "file: " << file << std::endl;
 
-    std::ifstream in( file.c_str() );
-    if ( in.fail() ) {
-        std::cerr << "Unable to load '" << file << "'" << std::endl;
+    cout << "START" << endl;
+    cout << "file: " << file << endl;
+
+    ifstream in( file.c_str() );
+    if ( in.fail() )
+    {
+        cerr << "Unable to load '" << file << "'" << endl;
         exit( 2 );
     }
     
-    while( in ) {
-        
-        try {
-            
+    while( in )
+    {        
+        try
+        {            
             blocxx::String     line = blocxx::String::getLine( in );
-            if(line == "EOF" || line.empty()) {
-                break;
-            }
+            if(line == "EOF" || line.empty()) break;
 
-            blocxx::StringArray params = blocxx::PerlRegEx("\\s").split(line);
-            if(params.size() != 2) {
-                break;
-            }
+            StringArray params = blocxx::PerlRegEx("\\s").split(line);
+            if(params.size() != 2) break;
 
             CA ca(params[1], "system", params[0]);
             
-            std::cout << "Parse CRL in " << params[0] << "/" << params[1] << std::endl;
+            cout << "Parse CRL in " << params[0] << "/" << params[1] << endl;
 
             CRLData crl = ca.getCRL();
 
-            std::cout << "got the data" << std::endl;
+            cout << "got the data" << endl;
 
-            blocxx::Array<blocxx::String> ret = crl.dump();
+            StringArray ret = crl.dump();
 
-            std::cout << "dump the data" << std::endl;
+            cout << "dump the data" << endl;
 
-            blocxx::Array<blocxx::String>::const_iterator it = ret.begin();
+            StringArray::const_iterator it;
 
-            for(; it != ret.end(); ++it) {
-                
-                std::cout << (*it) << std::endl;
+            for(it = ret.begin(); it != ret.end(); ++it)
+            {               
+                cout << (*it) << endl;
             }
 
-            std::cout << "=================== call verify ======================" << std::endl;
+            cout << "=================== call verify ======================" << endl;
 
             ret = crl.verify();
-            it  = ret.begin();
-
-            for(; it != ret.end(); ++it) {
-                
-                std::cout << "> " << (*it) << std::endl;
+            
+            for(it  = ret.begin(); it != ret.end(); ++it)
+            {                
+                cout << "> " << (*it) << endl;
             }
-
-        } catch(blocxx::Exception& e) {
-            std::cerr << e << std::endl;
+        }
+        catch(Exception& e)
+        {
+            cerr << e << endl;
         }
     }
     
-    std::cout << "DONE" << std::endl;
+    cout << "DONE" << endl;
     return 0;
 }
 

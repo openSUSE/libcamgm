@@ -17,49 +17,46 @@
 using namespace blocxx;
 using namespace limal;
 using namespace limal::ca_mgm;
+using namespace std;
 
-limal::Logger logger("DeleteCATest");
-
-int main(int argc, char **argv)
+int main()
 {
-    try {
-        std::cout << "START" << std::endl;
+    try
+    {
+        cout << "START" << endl;
         
         // Logging
-        blocxx::LogAppenderRef	logAppender(new CerrAppender(
-                                                             LogAppender::ALL_COMPONENTS,
-                                                             LogAppender::ALL_CATEGORIES,
-                                                             // category component - message
-                                                             "%-5p %c - %m"
-                                                             ));
-        blocxx::LoggerRef	appLogger(new AppenderLogger(
-                                                         "DeleteCATest",
-                                                         E_ALL_LEVEL,
-                                                         logAppender
-                                                         ));
-        limal::Logger::setDefaultLogger(appLogger);
+        LoggerRef l = limal::Logger::createCerrLogger(
+                                                      "DeleteCATest",
+                                                      LogAppender::ALL_COMPONENTS,
+                                                      LogAppender::ALL_CATEGORIES,
+                                                      "%-5p %c - %m"
+                                                  );
+        limal::Logger::setDefaultLogger(l);
 
         // fake the index.txt
-        limal::path::copyFile("./TestRepos/Test_CA1/index.txt", 
-                              "./TestRepos/Test_CA/index.txt");
+        path::copyFile("./TestRepos/Test_CA1/index.txt", 
+                       "./TestRepos/Test_CA/index.txt");
 
-        try {
-
+        try
+        {
             CA::deleteCA("Test_CA", "system", false, "./TestRepos/");
 
-        } catch(limal::RuntimeException& e) {
-
-            std::cout << "Got expected exception" << std::endl;
-            std::cerr << e << std::endl;
-            
+        }
+        catch(RuntimeException& e)
+        {
             // this is a wanted exception
+            cout << "Got expected exception" << endl;
+            cerr << e << endl;
         }
 
         CA::deleteCA("Test_CA", "system", true, "./TestRepos/");
         
-        std::cout << "DONE" << std::endl;
-    } catch(blocxx::Exception& e) {
-        std::cerr << e << std::endl;
+        cout << "DONE" << endl;
+    }
+    catch(Exception& e)
+    {
+        cerr << e << endl;
     }
 
     return 0;

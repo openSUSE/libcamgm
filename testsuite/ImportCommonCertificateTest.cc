@@ -19,13 +19,13 @@
 using namespace blocxx;
 using namespace limal;
 using namespace limal::ca_mgm;
+using namespace std;
 
-limal::Logger logger("ImportCommonCertificateTest");
-
-int main(int argc, char **argv)
+int main()
 {
-    try {
-        std::cout << "START" << std::endl;
+    try
+    {
+        cout << "START" << endl;
 
         blocxx::StringArray cat;
         cat.push_back("FATAL");
@@ -34,79 +34,72 @@ int main(int argc, char **argv)
         //cat.push_back("DEBUG");
 
         // Logging
-        blocxx::LogAppenderRef	logAppender(new CerrAppender(
-                                                             LogAppender::ALL_COMPONENTS,
-                                                             cat,
-                                                             // category component - message
-                                                             "%-5p %c - %m"
-                                                             ));
-        blocxx::LoggerRef	appLogger(new AppenderLogger(
-                                                         "ImportCommonCertificateTest",
-                                                         E_ALL_LEVEL,
-                                                         logAppender
-                                                         ));
-        limal::Logger::setDefaultLogger(appLogger);
-
+        LoggerRef l = limal::Logger::createCerrLogger(
+                                                      "ImportCommonCertificateTest",
+                                                      LogAppender::ALL_COMPONENTS,
+                                                      cat,
+                                                      "%-5p %c - %m"
+                                                  );
+        limal::Logger::setDefaultLogger(l);
         
         CA ca2("SUSEUserCA", "system", "./TestRepos3/");
         
-        std::cout << "==================== ca.exportCertificateAsPKCS12(..., false); ======================" << std::endl; 
+        cout << "============ ca.exportCertificateAsPKCS12(..., false); ===========" << endl; 
         
         ByteBuffer ba = ca2.exportCertificateAsPKCS12("01:9528e1d8783f83b662fca6085a8c1467-1111161258",
-                                           "system", "tralla", false);
+                                                      "system", "tralla", false);
         
         LocalManagement::writeFile(ba, "./TestRepos3/testCert.p12");
 
-        limal::path::PathInfo pi("./TestRepos3/testCert.p12");
-
-        if(pi.exists() && pi.size() > 2500) {
-
-            std::cout << "Certificate exists" << std::endl;
+        path::PathInfo pi("./TestRepos3/testCert.p12");
+        if(pi.exists() && pi.size() > 2500)
+        {
+            cout << "Certificate exists" << endl;
         }
         
-        std::cout << "==================== importAsLocalCertificate() ======================" << std::endl; 
+        cout << "================= importAsLocalCertificate() ==================" << endl; 
 
-        LocalManagement::importAsLocalCertificate(ba, //pi.toString(),
+        LocalManagement::importAsLocalCertificate(ba,
                                                   "tralla",
                                                   "./TestRepos3/localTest/certs/",
                                                   "./TestRepos3/localTest/servercerts/servercert.pem",
                                                   "./TestRepos3/localTest/servercerts/serverkey.pem");
 
         pi.stat("./TestRepos3/localTest/servercerts/servercert.pem");
-        if(pi.exists()) {
-
-            std::cout << "servercert.pem exists" << std::endl;
-
+        if(pi.exists())
+        {
+            cout << "servercert.pem exists" << endl;
         }
+
         pi.stat("./TestRepos3/localTest/servercerts/serverkey.pem");
-        if(pi.exists() && pi.hasPerm(0600)) {
-
-            std::cout << "serverkey.pem exists and has permissions 0600" << std::endl;
-
+        if(pi.exists() && pi.hasPerm(0600))
+        {
+            cout << "serverkey.pem exists and has permissions 0600" << endl;
         }
+
         pi.stat("./TestRepos3/localTest/certs/YaST-CA.pem");
-        if(pi.exists()) {
-
-            std::cout << "CA exists ! OK!" << std::endl;
-            
-        } else {
-
-            std::cout << "CA do not exists ! WRONG !" << std::endl;
+        if(pi.exists())
+        {
+            cout << "CA exists ! OK!" << endl;
+        }
+        else
+        {
+            cout << "CA do not exists ! WRONG !" << endl;
         }
 
         pi.stat("./TestRepos3/localTest/certs/YaST-CA-0.pem");
-        if(pi.exists()) {
-
-            std::cout << "YaST-CA-0 exists !WRONG!" << std::endl;
-
-        } else {
-
-            std::cout << "YaST-CA-0 do not exists ! OK !" << std::endl;
+        if(pi.exists())
+        {
+            cout << "YaST-CA-0 exists !WRONG!" << endl;
+        }
+        else
+        {
+            cout << "YaST-CA-0 do not exists ! OK !" << endl;
         }
 
-        limal::path::removeFile("./TestRepos3/testCert.p12");
+        path::removeFile("./TestRepos3/testCert.p12");
 
-        std::cout << "==================== ca.exportCertificateAsPKCS12(..., true); ======================" << std::endl; 
+        cout << "============ ca.exportCertificateAsPKCS12(..., true); ============" << endl; 
 
         ba = ca2.exportCertificateAsPKCS12("01:9528e1d8783f83b662fca6085a8c1467-1111161258",
                                            "system", "tralla", true);
@@ -114,57 +107,55 @@ int main(int argc, char **argv)
         LocalManagement::writeFile(ba, "./TestRepos3/testCertChain.p12");
 
         pi.stat("./TestRepos3/testCertChain.p12");
-
-        if(pi.exists() && pi.size() > 5400) {
-
-            std::cout << "Certificate exists" << std::endl;
-        
+        if(pi.exists() && pi.size() > 5400)
+        {
+            cout << "Certificate exists" << endl;
         }
 
-        std::cout << "==================== importAsLocalCertificate(Chain) ======================" << std::endl; 
+        cout << "================ importAsLocalCertificate(Chain) ==================" << endl; 
 
         LocalManagement::importAsLocalCertificate(pi.toString(),
                                                   "tralla",
                                                   "./TestRepos3/localTest/certs2/",
                                                   "./TestRepos3/localTest/servercerts/servercert2.pem",
                                                   "./TestRepos3/localTest/servercerts/serverkey2.pem");
-
+        
         pi.stat("./TestRepos3/localTest/servercerts/servercert2.pem");
-        if(pi.exists()) {
-
-            std::cout << "servercert.pem exists" << std::endl;
-
+        if(pi.exists())
+        {
+            cout << "servercert.pem exists" << endl;
         }
+        
         pi.stat("./TestRepos3/localTest/servercerts/serverkey2.pem");
-        if(pi.exists() && pi.hasPerm(0600)) {
-
-            std::cout << "serverkey.pem exists and has permissions 0600" << std::endl;
-
+        if(pi.exists() && pi.hasPerm(0600))
+        {
+            cout << "serverkey.pem exists and has permissions 0600" << endl;
         }
+        
         pi.stat("./TestRepos3/localTest/certs2/YaST-CA.pem");
-        if(pi.exists()) {
-
-            std::cout << "CA exists" << std::endl;
-
+        if(pi.exists())
+        {
+            cout << "CA exists" << endl;
         }
+        
         pi.stat("./TestRepos3/localTest/certs2/YaST-CA-0.pem");
-        if(pi.exists()) {
-
-            std::cout << "YaST-CA-0 exists ! OK !" << std::endl;
-
-        } else {
-
-            std::cout << "YaST-CA-0 do not exists ! WRONG !" << std::endl;
+        if(pi.exists())
+        {
+            cout << "YaST-CA-0 exists ! OK !" << endl;
+        }
+        else
+        {
+            cout << "YaST-CA-0 do not exists ! WRONG !" << endl;
         }
 
-        limal::path::removeFile("./TestRepos3/testCertChain.p12");
+        path::removeFile("./TestRepos3/testCertChain.p12");
+        path::removeDirRecursive("./TestRepos3/localTest/");
 
-        limal::path::removeDirRecursive("./TestRepos3/localTest/");
-
-
-        std::cout << "DONE" << std::endl;
-    } catch(blocxx::Exception& e) {
-        std::cerr << e << std::endl;
+        cout << "DONE" << endl;
+    }
+    catch(Exception& e)
+    {
+        cerr << e << endl;
     }
 
     return 0;

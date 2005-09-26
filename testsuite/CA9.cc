@@ -15,44 +15,42 @@
 using namespace blocxx;
 using namespace limal;
 using namespace limal::ca_mgm;
-
-limal::Logger logger("CA9");
+using namespace std;
 
 int main()
 {
     PerlRegEx r("^!CHANGING DATA!.*$");
 
-    try {
-        std::cout << "START" << std::endl;
+    try
+    {
+        cout << "START" << endl;
         
         // Logging
-        blocxx::LogAppenderRef	logAppender(new CerrAppender(
-                                                             LogAppender::ALL_COMPONENTS,
-                                                             LogAppender::ALL_CATEGORIES,
-                                                             // category component - message
-                                                             "%-5p %c - %m"
-                                                             ));
-        blocxx::LoggerRef	appLogger(new AppenderLogger(
-                                                         "CA9",
-                                                         E_ALL_LEVEL,
-                                                         logAppender
-                                                         ));
-        limal::Logger::setDefaultLogger(appLogger);
+        LoggerRef l = limal::Logger::createCerrLogger(
+                                                      "CA9",
+                                                      LogAppender::ALL_COMPONENTS,
+                                                      LogAppender::ALL_CATEGORIES,
+                                                      "%-5p %c - %m"
+                                                  );
+        limal::Logger::setDefaultLogger(l);
         
-        std::cout << "=================== start CA List ======================" << std::endl;
+        cout << "=================== start CA List ======================" << endl;
 
-        blocxx::Array<blocxx::String> list = CA::getCAList("./TestRepos/");
+        StringArray list = CA::getCAList("./TestRepos/");
 
-        blocxx::Array<blocxx::String>::const_iterator it = list.begin();
+        StringArray::const_iterator it;
 
-        for(; it != list.end(); ++it) {
-            std::cout << *it << std::endl;
+        for(it = list.begin(); it != list.end(); ++it)
+        {
+            cout << *it << endl;
         }
-        std::cout << "=================== end CA List ========================" << std::endl;
+        cout << "=================== end CA List ========================" << endl;
 
-        std::cout << "DONE" << std::endl;
-    } catch(blocxx::Exception& e) {
-        std::cerr << e << std::endl;
+        cout << "DONE" << endl;
+    }
+    catch(Exception& e)
+    {
+        cerr << e << endl;
     }
 
     return 0;
