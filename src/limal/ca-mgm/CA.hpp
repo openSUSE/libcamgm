@@ -45,7 +45,10 @@ namespace CA_MGM_NAMESPACE
     /**
      * @brief Managing a CA repository
      *
-     * This class provides methods for managing a CA repository
+     * This class provides methods for managing a CA repository.
+     * If you want to know how to use these methods and functions
+     * have a look at the <a href="examples.html">example page</a>
+     *
      */
     class CA
     {
@@ -666,6 +669,29 @@ namespace CA_MGM_NAMESPACE
     
 }       // End of CA_MGM_NAMESPACE
 }       // End of LIMAL_NAMESPACE
+
+
+/** @example CreateRootCA.cpp
+ *
+ * This is an example which shows how to create a root CA.
+ */
+
+/** @example CreateCertificate.cpp
+ *
+ * This is an example which shows how to create a Certificate.
+ */
+
+/** @example RevokeCertificateAndCreateCRL.cpp
+ *
+ * This example show how to revoke a certificate and create
+ * a certificate revocation list (CRL)
+ */
+
+/** @example Export.cpp
+ *
+ * This example shows how to export CAs, keys, certificates and CRLs
+ * from the repository
+ */
 
 #endif  // LIMAL_CA_MGM_HPP
 
