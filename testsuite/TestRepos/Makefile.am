@@ -25,12 +25,14 @@ clean-local: check
 	rm -f Test_CA1/.rand
 	rm -f Test_CA1/index.txt.attr.old
 
+
 MAINTAINERCLEANFILES = Makefile.in
 
 EXTRA_DIST = ca1_test/*.* ca2_test/*.* \
-             Test_CA1/*.*              \
-             Test_CA1/*/*.*            \
-             Test_CA2/*.*              \
-             Test_CA2/*/*.*            \
+             Test_CA1/                 \
+             Test_CA2/                 \
              .cas/*.* *.*
+
+dist-hook:
+	rm -rf `find $(distdir)/ -name .svn`
 
