@@ -41,4 +41,5 @@ clean-local:
 install-data-local:
 	mkdir -p $(DESTDIR)$(htmldir)
 	cp -a $(srcdir)/html/images $(DESTDIR)$(htmldir)
+	cp -a $(srcdir)/examples $(DESTDIR)$(htmldir)
 
