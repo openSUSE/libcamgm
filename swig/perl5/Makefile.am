@@ -38,18 +38,20 @@ clean:
 	rm -f $(NAME).so
 	rm -f *.cxx
 	rm -f $(NAME).pm
+	rm -fr auto LIMAL
 
 $(NAME).so: $(NAME)_wrap.o
 	$(CXX) -shared -o $(NAME).so $< $(LDFLAGS) $(LIBS)
-	@if test ! -L auto; then \
-	 ln -s . auto \
-	; fi
-	@if test ! -L LIMAL; then \
-	 ln -s . LIMAL \
-	; fi
-	@if test ! -L $(NAME); then \
-	 ln -s . $(NAME) \
-	; fi
+	@if test ! -d LIMAL; then mkdir -p LIMAL ; fi
+	@if test ! -L LIMAL/$(NAME).pm ; then \
+            ln -s ../$(NAME).pm LIMAL/$(NAME).pm ; \
+        fi
+	@if test ! -d auto/LIMAL/$(NAME) ; then \
+	    mkdir -p auto/LIMAL/$(NAME) ; \
+        fi
+	@if test ! -L auto/LIMAL/$(NAME)/$(NAME).so ; then \
+            ln -s ../../../$(NAME).so auto/LIMAL/$(NAME)/$(NAME).so ; \
+        fi
 
 $(NAME)_wrap.o: $(NAME)_wrap.cxx
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $<
