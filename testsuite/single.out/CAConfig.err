@@ -180,6 +180,6 @@ INFO  ca-mgm -     Entry   nsCertType : server
 INFO  ca-mgm -     Entry   nsComment : "YaST Generated Server Certificate"
 INFO  ca-mgm -     Entry   subjectAltName : email:copy
 INFO  ca-mgm -     Entry   subjectKeyIdentifier : hash
-DEBUG IniPaser - File openssl.cnf.tmpl did not change. Not saving.
-DEBUG IniPaser - File openssl.cnf.tmpl.test did not change. Not saving.
-DEBUG IniPaser - File openssl.cnf.tmpl.test did not change. Not saving.
+DEBUG IniParser - File openssl.cnf.tmpl did not change. Not saving.
+DEBUG IniParser - File openssl.cnf.tmpl.test did not change. Not saving.
+DEBUG IniParser - File openssl.cnf.tmpl.test did not change. Not saving.
