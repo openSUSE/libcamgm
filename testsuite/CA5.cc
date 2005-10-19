@@ -25,11 +25,15 @@ int main(int argc, char **argv)
         cerr << "Usage: CA5 <filepath>" << endl;
         exit( 1 );
     }
+
+    StringArray comp;
+    comp.push_back("ca-mgm");
+    comp.push_back("limal");
     
     // Logging
     LoggerRef l = limal::Logger::createCerrLogger(
                                                   "CA5",
-                                                  LogAppender::ALL_COMPONENTS,
+                                                  comp,
                                                   LogAppender::ALL_CATEGORIES,
                                                   "%-5p %c - %m"
                                                   );

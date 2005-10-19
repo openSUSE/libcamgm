@@ -30,10 +30,14 @@ int main()
         cat.push_back("INFO");
         cat.push_back("DEBUG");
 
+        StringArray comp;
+        comp.push_back("ca-mgm");
+        comp.push_back("limal");
+
         // Logging
         LoggerRef l = limal::Logger::createCerrLogger(
                                                       "VerifyTest",
-                                                      LogAppender::ALL_COMPONENTS,
+                                                      comp,
                                                       cat,
                                                       "%-5p %c - %m"
                                                       );

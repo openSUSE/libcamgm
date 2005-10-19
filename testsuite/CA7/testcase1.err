@@ -4,7 +4,6 @@ DEBUG ca-mgm - ExtensionBase::setPresent(): true
 DEBUG ca-mgm - type2Section: type=6 result=v3_crl
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=6 result=ca
-DEBUG IniPaser - File ./TestRepos//ca1_test/openssl.cnf did not change. Not saving.
 DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExtension::valid() is true
 DEBUG ca-mgm - return IssuerAlternativeNameExtension::valid() ist true
 DEBUG ca-mgm - type2Section: type=6 result=ca
@@ -14,9 +13,6 @@ DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExtension::valid() is true
 DEBUG ca-mgm - type2Section: type=6 result=v3_crl
 DEBUG ca-mgm - return IssuerAlternativeNameExtension::valid() ist true
 DEBUG ca-mgm - type2Section: type=6 result=v3_crl
-DEBUG IniParser - Can not delete issuerAltName Key does not exist.
-DEBUG IniPaser - File ./TestRepos//ca1_test/openssl.cnf did not change. Not saving.
-DEBUG IniPaser - File ./TestRepos//ca1_test/openssl.cnf did not change. Not saving.
 DEBUG ca-mgm - type2Section: type=6 result=v3_crl
 DEBUG ca-mgm - type2Section: type=6 result=v3_crl
 DEBUG ca-mgm - ExtensionBase::setPresent(): true
@@ -31,7 +27,6 @@ DEBUG ca-mgm - type2Section: type=6 result=v3_crl
 DEBUG ca-mgm - type2Section: type=6 result=v3_crl
 DEBUG ca-mgm - ExtensionBase::setPresent(): true
 DEBUG ca-mgm - type2Section: type=6 result=ca
-DEBUG IniPaser - File ./TestRepos//ca2_test/openssl.cnf did not change. Not saving.
 DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExtension::valid() is true
 DEBUG ca-mgm - return IssuerAlternativeNameExtension::valid() ist true
 DEBUG ca-mgm - type2Section: type=6 result=ca
@@ -41,7 +36,6 @@ DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExtension::valid() is true
 DEBUG ca-mgm - type2Section: type=6 result=v3_crl
 DEBUG ca-mgm - return IssuerAlternativeNameExtension::valid() ist true
 DEBUG ca-mgm - type2Section: type=6 result=v3_crl
-DEBUG IniPaser - File ./TestRepos//ca2_test/openssl.cnf did not change. Not saving.
 DEBUG ca-mgm - type2Section: type=6 result=v3_crl
 DEBUG ca-mgm - type2Section: type=6 result=v3_crl
 DEBUG ca-mgm - ExtensionBase::setPresent(): true

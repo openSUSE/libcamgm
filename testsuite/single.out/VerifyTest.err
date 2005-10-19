@@ -6,7 +6,6 @@ DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=6 result=ca
 DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExtension::valid() is true
 DEBUG ca-mgm - return IssuerAlternativeNameExtension::valid() ist true
-DEBUG IniPaser - File ./TestRepos//Test_CA2/openssl.cnf did not change. Not saving.
 DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExtension::valid() is true
 DEBUG ca-mgm - return IssuerAlternativeNameExtension::valid() ist true
 DEBUG ca-mgm - type2Section: type=6 result=ca
@@ -16,8 +15,6 @@ DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExtension::valid() is true
 DEBUG ca-mgm - type2Section: type=6 result=v3_crl
 DEBUG ca-mgm - return IssuerAlternativeNameExtension::valid() ist true
 DEBUG ca-mgm - type2Section: type=6 result=v3_crl
-DEBUG IniParser - Can not delete issuerAltName Key does not exist.
-DEBUG IniPaser - File ./TestRepos//Test_CA2/openssl.cnf did not change. Not saving.
 DEBUG ca-mgm - Command: /usr/bin/openssl ca -gencrl -config ./TestRepos//Test_CA2/openssl.cnf -out ./TestRepos//Test_CA2/crl/crl.pem -keyfile ./TestRepos//Test_CA2/cacert.key -cert ./TestRepos//Test_CA2/cacert.pem -passin env:pass -crlhours 24 -crlexts v3_crl 
 DEBUG ca-mgm - openssl stderr:Using configuration from ./TestRepos//Test_CA2/openssl.cnf
 DEBUG[load_index]: unique_subject = "no"
@@ -31,7 +28,6 @@ crl_Test_CA2.pem => c527c2de.r0
 SubCA_Test.pem => ce4e31c5.0
 
 DEBUG ca-mgm - Command: /usr/bin/openssl rsa -noout -in ./TestRepos//Test_CA2/cacert.key -passin env:PASSWORD 
-DEBUG IniPaser - File ./TestRepos//Test_CA2/openssl.cnf did not change. Not saving.
 DEBUG ca-mgm - Command: /usr/bin/openssl ca -updatedb -config ./TestRepos//Test_CA2/openssl.cnf -keyfile ./TestRepos//Test_CA2/cacert.key -cert ./TestRepos//Test_CA2/cacert.pem -passin env:pass 
 DEBUG ca-mgm - openssl stderr:Using configuration from ./TestRepos//Test_CA2/openssl.cnf
 DEBUG[load_index]: unique_subject = "no"
@@ -39,27 +35,18 @@ DEBUG[load_index]: unique_subject = "no"
 DEBUG limal - readDir ./TestRepos/Test_CA2/newcerts 
 DEBUG ca-mgm - Append '/SUSE Inc.\Gmbh' to commonName
 DEBUG ca-mgm - Append '/SUSE Inc.\Gmbh' to commonName
-DEBUG IniPaser - File ./TestRepos//Test_CA2/openssl.cnf did not change. Not saving.
 DEBUG ca-mgm - Command: /usr/bin/openssl verify -CApath ./TestRepos//.cas/ -purpose any -crl_check_all ./TestRepos/Test_CA2/newcerts/08:40717a16174dc4d516f6fa7ee8eeb18c-1124792802.pem
-DEBUG IniPaser - File ./TestRepos//Test_CA2/openssl.cnf did not change. Not saving.
 DEBUG ca-mgm - Command: /usr/bin/openssl verify -CApath ./TestRepos//.cas/ -purpose any -crl_check_all ./TestRepos/Test_CA2/newcerts/06:3e248858337c2b46dc67a0f9389376dd-1124374407.pem
 ERROR ca-mgm - Certificate invalid! (certificate revoked / error 23 at 0 depth lookup:certificate revoked)
-DEBUG IniPaser - File ./TestRepos//Test_CA2/openssl.cnf did not change. Not saving.
 DEBUG ca-mgm - Command: /usr/bin/openssl verify -CApath ./TestRepos//.cas/ -purpose any -crl_check_all ./TestRepos/Test_CA2/newcerts/02:bc5324c7f5c2a27492fb6795745b596b-1124374399.pem
-DEBUG IniPaser - File ./TestRepos//Test_CA2/openssl.cnf did not change. Not saving.
 DEBUG ca-mgm - Command: /usr/bin/openssl verify -CApath ./TestRepos//.cas/ -purpose any -crl_check_all ./TestRepos/Test_CA2/newcerts/05:9198f6798d9da70d7cbfb67b610633f5-1124374406.pem
 ERROR ca-mgm - Certificate invalid! (certificate revoked / error 23 at 0 depth lookup:certificate revoked)
-DEBUG IniPaser - File ./TestRepos//Test_CA2/openssl.cnf did not change. Not saving.
 DEBUG ca-mgm - Command: /usr/bin/openssl verify -CApath ./TestRepos//.cas/ -purpose any -crl_check_all ./TestRepos/Test_CA2/newcerts/03:3673cf466b7b97997f25f5cee5dafe40-1124374402.pem
 ERROR ca-mgm - Certificate invalid! (certificate revoked / error 23 at 0 depth lookup:certificate revoked)
-DEBUG IniPaser - File ./TestRepos//Test_CA2/openssl.cnf did not change. Not saving.
 DEBUG ca-mgm - Command: /usr/bin/openssl verify -CApath ./TestRepos//.cas/ -purpose any -crl_check_all ./TestRepos/Test_CA2/newcerts/07:9797ac11af29f94b82c1e5b0499ab5f2-1124374409.pem
-DEBUG IniPaser - File ./TestRepos//Test_CA2/openssl.cnf did not change. Not saving.
 DEBUG ca-mgm - Command: /usr/bin/openssl verify -CApath ./TestRepos//.cas/ -purpose any -crl_check_all ./TestRepos/Test_CA2/newcerts/01:b4d4e48e6de644c953290eb2854a6ced-1124374396.pem
-DEBUG IniPaser - File ./TestRepos//Test_CA2/openssl.cnf did not change. Not saving.
 DEBUG ca-mgm - Command: /usr/bin/openssl verify -CApath ./TestRepos//.cas/ -purpose any -crl_check_all ./TestRepos/Test_CA2/newcerts/04:d816690a832b0e52becd255d3a62e975-1124374403.pem
 ERROR ca-mgm - Certificate invalid! (certificate revoked / error 23 at 0 depth lookup:certificate revoked)
-DEBUG IniPaser - File ./TestRepos//Test_CA2/openssl.cnf did not change. Not saving.
 DEBUG ca-mgm - Command: /usr/bin/openssl verify -CApath ./TestRepos//.cas/ -purpose any -crl_check_all ./TestRepos/Test_CA2/newcerts/09:bf04fdd95062554800c1556085f47063-1125322097.pem
 ERROR ca-mgm - Certificate invalid! (certificate revoked / error 23 at 0 depth lookup:certificate revoked)
 DEBUG limal - removeFile ./TestRepos/Test_CA2/openssl.cnf
