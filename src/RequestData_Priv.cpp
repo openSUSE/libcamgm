@@ -77,9 +77,14 @@ RequestData_Priv::RequestData_Priv(const ByteBuffer& request,
 
         // => DER
 
+#if OPENSSL_VERSION_NUMBER >= 0x0090801fL        
+        const unsigned char *d2 = NULL;
+        d2 = (const unsigned char*)d;
+#else
         unsigned char *d2 = NULL;
         d2 = d;
-
+#endif
+        
         x509 = d2i_X509_REQ(NULL, &d2, request.size());
 
         d2 = NULL;

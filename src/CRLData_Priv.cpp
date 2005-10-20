@@ -202,9 +202,14 @@ CRLData_Priv::CRLData_Priv(const ByteBuffer &crl,
 
         // => DER
 
+#if OPENSSL_VERSION_NUMBER >= 0x0090801fL        
+        const unsigned char *d2 = NULL;
+        d2 = (const unsigned char*)d;
+#else
         unsigned char *d2 = NULL;
         d2 = d;
-
+#endif
+        
         x509 = d2i_X509_CRL(NULL, &d2, crl.size());
 
         d2 = NULL;

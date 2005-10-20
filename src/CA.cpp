@@ -433,8 +433,12 @@ CA::importRequest(const ByteBuffer& request,
     } else {
         
         // we have to convert the request to PEM format
-        
+#if OPENSSL_VERSION_NUMBER >= 0x0090801fL        
+        const unsigned char *dbuf = (const unsigned char*)request.data();
+#else
         unsigned char *dbuf = (unsigned char*)request.data();
+#endif
+        
         X509_REQ *req  = NULL;
         
         req=d2i_X509_REQ(NULL, &dbuf , request.size());
