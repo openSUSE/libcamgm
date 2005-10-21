@@ -24,6 +24,48 @@
  * This is config file, where we declare the namespace
  * and compilation time definitions, like our version.
  */
+
+/**
+ * @mainpage
+ * The LiMaL CA Management library provides two main functionalities.
+ * 
+ * <ol>
+ *   <li>Manage a Certificate Authority in side a repository.<br>
+ *       This functionality is provides by the 
+ *       <a href="classlimal_1_1ca__mgm_1_1CA.html">CA</a> Class.
+ *
+ *       <p>You are able to: </p>
+ *       <ul>
+ *         <li>create/import a new root or sub CAs</li>
+ *         <li>create/delete Certificate Requests</li>
+ *         <li>sign Certificate Requests</li>
+ *         <li>revoke Certificates</li>
+ *         <li>create Certificate Revocation Lists (CRLs)</li>
+ *         <li>import Requests</li>
+ *         <li>export Certificates, Requests and CRLs</li>
+ *         <li>... etc.</li>
+ *      </ul>
+ *   </li>
+ *
+ *   <li>Local management functionality.<br>
+ *       This is provided by the Class 
+ *       <a href="classlimal_1_1ca__mgm_1_1LocalManagement.html">LocalManagent</a>.
+ *   
+ *       <p>
+ *         You are able to import a Certificate in PKCS12 format
+ *         into your system.
+ *         Additionaly you are able to parse Certificates, Requests
+ *         and CRLs.
+ *       </p>
+ *   </li>
+ * </ol>
+ *
+ * <p>
+ *   There are some programming examples at the 
+ *   <a href="examples.html">example page</a>.
+ * </p>
+ */
+
 #ifndef    ca_mgm_config_h
 #define    ca_mgm_config_h
 
