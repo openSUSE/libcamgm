@@ -24,8 +24,12 @@
 
 #include  "Utils.hpp"
 
+namespace LIMAL_NAMESPACE
+{
+namespace CA_MGM_NAMESPACE
+{
+
 using namespace limal;
-using namespace limal::ca_mgm;
 using namespace blocxx;
 
 ExtensionBase::ExtensionBase(bool extPresent, bool extCritical)
@@ -78,4 +82,7 @@ ExtensionBase::dump() const
     result.append("is Critical = " + Bool(critical).toString());
     
     return result;
+}
+
+}
 }

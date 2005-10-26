@@ -39,6 +39,11 @@
 
 #include "Commands.hpp"
 
+namespace LIMAL_NAMESPACE
+{
+namespace CA_MGM_NAMESPACE
+{
+    
 // -------------------------------------------------------------------
 #define LOGIT(level,message)	\
 	LIMAL_SLOG(limal::Logger("ca-mgm"), level, message)
@@ -66,49 +71,49 @@
 
 // FIXME: what is the format of a hex number?? 0a:0f or 0a0f
 //        currently allowed is both
-inline static limal::ValueCheck initHexCheck() {
+inline limal::ValueCheck initHexCheck() {
     limal::ValueCheck checkHex =
         limal::ValueCheck(new limal::ValuePosixRECheck("^[0-9a-fA-F:]*[0-9a-fA-F]{2}$" ));
     
     return checkHex;
 }
 
-inline static limal::ValueCheck initOIDCheck() {
+inline limal::ValueCheck initOIDCheck() {
     limal::ValueCheck checkOID =
         limal::ValueCheck(new limal::ValuePosixRECheck("^([0-9]+\\.)+[0-9]+$"));
 
     return checkOID;
 }
 
-inline static limal::ValueCheck initURICheck() {
+inline limal::ValueCheck initURICheck() {
     limal::ValueCheck checkURI =
         limal::ValueCheck(new limal::ValuePosixRECheck("^(([^:/?#]+)://)?([^/?#]*)?([^?#]*)?(\\\\?([^#]*))?(#(.*))?"  ));
 
     return checkURI;
 }
 
-inline static limal::ValueCheck initEmailCheck() {
+inline limal::ValueCheck initEmailCheck() {
     limal::ValueCheck checkEmail =
         limal::ValueCheck(new limal::ValuePosixRECheck("^[^@]+@[^@]+$"));
 
     return checkEmail;
 }
 
-inline static limal::ValueCheck initDNSCheck() {
+inline limal::ValueCheck initDNSCheck() {
     limal::ValueCheck checkDNS =
         limal::ValueCheck(new limal::ValuePosixRECheck("^[a-z]+[a-z0-9.-]*$"));
 
     return checkDNS;
 }
 
-inline static limal::ValueCheck initIPCheck() {
+inline limal::ValueCheck initIPCheck() {
     limal::ValueCheck checkIP =
         limal::ValueCheck(new limal::ValuePosixRECheck("^([0-9]{1,3}\\.){3}[0-9]{1,3}$"));
 
     return checkIP;
 }
 
-inline static limal::ValueCheck initAccessOIDCheck() {
+inline limal::ValueCheck initAccessOIDCheck() {
     limal::ValueCheck checkAccessOID =
         limal::ValueCheck(new limal::ValuePosixRECheck("^(OCSP|caIssuers)$"))
         .Or(new limal::ValuePosixRECheck("^([0-9]+\\.)+[0-9]+$"));
@@ -116,8 +121,8 @@ inline static limal::ValueCheck initAccessOIDCheck() {
     return checkAccessOID;
 }
 
-inline static blocxx::StringArray 
-checkLiteralValueList(const blocxx::List<limal::ca_mgm::LiteralValue>& list) 
+inline blocxx::StringArray 
+checkLiteralValueList(const blocxx::List<LiteralValue>& list) 
 {
     blocxx::StringArray result;
     blocxx::List<limal::ca_mgm::LiteralValue>::const_iterator it = list.begin();
@@ -127,7 +132,7 @@ checkLiteralValueList(const blocxx::List<limal::ca_mgm::LiteralValue>& list)
     return result;
 }
 
-inline static blocxx::String type2Section(limal::ca_mgm::Type type, bool v3section) {
+inline blocxx::String type2Section(Type type, bool v3section) {
     blocxx::String result;
 
     switch(type) {
@@ -181,7 +186,7 @@ inline static blocxx::String type2Section(limal::ca_mgm::Type type, bool v3secti
     return result;
 }
 
-inline static int rehashCAs(const blocxx::String &repositoryDir) 
+inline int rehashCAs(const blocxx::String &repositoryDir) 
 {
     blocxx::Array<blocxx::String> cmd;
     cmd.push_back(limal::ca_mgm::C_REHASH_COMMAND);
@@ -214,6 +219,8 @@ inline static int rehashCAs(const blocxx::String &repositoryDir)
 }
 
 
+}
+}
 // -------------------------------------------------------------------
 
 #endif // LIMAL_CA_MGM_UTILS_HPP

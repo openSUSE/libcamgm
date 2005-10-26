@@ -29,8 +29,12 @@
 #include  "Utils.hpp"
 #include  "X509v3CRLExtensions_Priv.hpp"
 
+namespace LIMAL_NAMESPACE
+{
+namespace CA_MGM_NAMESPACE
+{
+
 using namespace limal;
-using namespace limal::ca_mgm;
 using namespace blocxx;
 
 
@@ -312,4 +316,7 @@ CRLData::checkRevocationData(const blocxx::Map<String, RevocationEntry>& rd) con
         result.appendArray(((*it).second).verify());
     }
     return result;
+}
+
+}
 }

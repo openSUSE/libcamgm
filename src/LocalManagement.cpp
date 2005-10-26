@@ -36,15 +36,21 @@
 #include  <blocxx/File.hpp>
 #include  <blocxx/System.hpp>
 
+namespace LIMAL_NAMESPACE
+{
+namespace CA_MGM_NAMESPACE
+{
+
 using namespace limal;
-using namespace limal::ca_mgm;
 using namespace blocxx;
 
-inline static blocxx::String errno2String(int e) {
-    // FIXME: make strerror working
-    blocxx::String s = System::errorMsg(e);
-    s = "(" + blocxx::String(e) + ")";
-    return s;
+namespace {
+    inline blocxx::String errno2String(int e) {
+        // FIXME: make strerror working
+        blocxx::String s = System::errorMsg(e);
+        s = "(" + blocxx::String(e) + ")";
+        return s;
+    }
 }
 
 void 
@@ -540,4 +546,7 @@ LocalManagement::writeFile(const ByteBuffer& data,
     fileObject.flush();
     fileObject.unlock();
     fileObject.close();
+}
+
+}
 }

@@ -40,8 +40,12 @@
 #include  "X509v3RequestExtensions_Priv.hpp"
 #include  "Utils.hpp"
 
+namespace LIMAL_NAMESPACE
+{
+namespace CA_MGM_NAMESPACE
+{
+
 using namespace limal;
-using namespace limal::ca_mgm;
 using namespace blocxx;
 
 RequestData_Priv::RequestData_Priv()
@@ -403,4 +407,7 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
     // get extensions
 
     extensions = X509v3RequestExtensions_Priv(X509_REQ_get_extensions(x509));
+}
+
+}
 }

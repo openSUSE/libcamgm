@@ -30,8 +30,12 @@
 #include  "DNObject_Priv.hpp"
 #include  "Utils.hpp"
 
+namespace LIMAL_NAMESPACE
+{
+namespace CA_MGM_NAMESPACE
+{
+
 using namespace limal;
-using namespace limal::ca_mgm;
 using namespace blocxx;
 
 RDNObject::RDNObject()
@@ -180,7 +184,7 @@ RDNObject::dump() const
 }
 
 bool
-limal::ca_mgm::operator==(const RDNObject &l, const RDNObject &r)
+operator==(const RDNObject &l, const RDNObject &r)
 {
     if(l.getType()  == r.getType() &&
        l.getValue() == r.getValue())
@@ -194,7 +198,7 @@ limal::ca_mgm::operator==(const RDNObject &l, const RDNObject &r)
 }
 
 bool
-limal::ca_mgm::operator<(const RDNObject &l, const RDNObject &r)
+operator<(const RDNObject &l, const RDNObject &r)
 {
     if(l.getType()  < r.getType())
     {
@@ -453,4 +457,7 @@ DNObject::dump() const
     }
 
     return result;
+}
+
+}
 }

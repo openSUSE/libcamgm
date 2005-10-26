@@ -28,8 +28,12 @@
 
 #include  "Utils.hpp"
 
+namespace LIMAL_NAMESPACE
+{
+namespace CA_MGM_NAMESPACE
+{
+
 using namespace limal;
-using namespace limal::ca_mgm;
 using namespace blocxx;
 
 CertificateIssueData::CertificateIssueData()
@@ -238,4 +242,7 @@ CertificateIssueData::dump() const
     result.appendArray(extensions.dump());
 
     return result;
+}
+
+}
 }

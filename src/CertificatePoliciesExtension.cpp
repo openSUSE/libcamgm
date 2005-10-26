@@ -27,8 +27,12 @@
 
 #include  "Utils.hpp"
 
+namespace LIMAL_NAMESPACE
+{
+namespace CA_MGM_NAMESPACE
+{
+
 using namespace limal;
-using namespace limal::ca_mgm;
 using namespace blocxx;
 
 UserNotice::UserNotice()
@@ -223,7 +227,7 @@ UserNotice::dump() const
 }
 
 bool
-limal::ca_mgm::operator==(const UserNotice &l, const UserNotice &r)
+operator==(const UserNotice &l, const UserNotice &r)
 {
     if(l.getExplicitText()  == r.getExplicitText() &&
        l.getOrganization()  == r.getOrganization() &&
@@ -238,7 +242,7 @@ limal::ca_mgm::operator==(const UserNotice &l, const UserNotice &r)
 }
 
 bool
-limal::ca_mgm::operator<(const UserNotice &l, const UserNotice &r)
+operator<(const UserNotice &l, const UserNotice &r)
 {
     // this is only to make a List happy
     
@@ -479,7 +483,7 @@ CertificatePolicy::dump() const
 }
 
 bool
-limal::ca_mgm::operator==(const CertificatePolicy &l, const CertificatePolicy &r)
+operator==(const CertificatePolicy &l, const CertificatePolicy &r)
 {
     if(l.getPolicyIdentifier() == r.getPolicyIdentifier() &&
        l.getCpsURI()           == r.getCpsURI()           &&
@@ -494,7 +498,7 @@ limal::ca_mgm::operator==(const CertificatePolicy &l, const CertificatePolicy &r
 }
 
 bool
-limal::ca_mgm::operator<(const CertificatePolicy &l, const CertificatePolicy &r)
+operator<(const CertificatePolicy &l, const CertificatePolicy &r)
 {
     // this is only to make a List happy
     
@@ -744,4 +748,7 @@ CertificatePoliciesExtension::checkPolicies(const blocxx::List<CertificatePolicy
         result.appendArray((*it).verify());
     }
     return result;
+}
+
+}
 }

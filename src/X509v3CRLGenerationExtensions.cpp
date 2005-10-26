@@ -27,8 +27,12 @@
 
 #include  "Utils.hpp"
 
+namespace LIMAL_NAMESPACE
+{
+namespace CA_MGM_NAMESPACE
+{
+
 using namespace limal;
-using namespace limal::ca_mgm;
 using namespace blocxx;
 
 X509v3CRLGenerationExtensions::X509v3CRLGenerationExtensions()
@@ -135,4 +139,7 @@ X509v3CRLGenerationExtensions::dump() const
     result.appendArray(issuerAlternativeName.dump());
 
     return result;
+}
+
+}
 }

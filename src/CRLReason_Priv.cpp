@@ -34,8 +34,12 @@
 
 #include  "Utils.hpp"
 
+namespace LIMAL_NAMESPACE
+{
+namespace CA_MGM_NAMESPACE
+{
+
 using namespace limal;
-using namespace limal::ca_mgm;
 using namespace blocxx;
 
 
@@ -138,3 +142,6 @@ CRLReason_Priv::CRLReason_Priv(STACK_OF(X509_EXTENSION) *stack)
 
 CRLReason_Priv::~CRLReason_Priv()
 {}
+
+}
+}

@@ -27,8 +27,12 @@
 
 #include  "Utils.hpp"
 
+namespace LIMAL_NAMESPACE
+{
+namespace CA_MGM_NAMESPACE
+{
+
 using namespace limal;
-using namespace limal::ca_mgm;
 using namespace blocxx;
 
 LiteralValue::LiteralValue() 
@@ -242,7 +246,7 @@ LiteralValue::dump() const
 // ------------------------------------------
 
 bool
-limal::ca_mgm::operator==(const LiteralValue &l, const LiteralValue &r)
+operator==(const LiteralValue &l, const LiteralValue &r)
 {
     if(l.getType() == r.getType() &&
        l.getValue() == r.getValue())
@@ -256,7 +260,7 @@ limal::ca_mgm::operator==(const LiteralValue &l, const LiteralValue &r)
 }
 
 bool
-limal::ca_mgm::operator<(const LiteralValue &l, const LiteralValue &r)
+operator<(const LiteralValue &l, const LiteralValue &r)
 {
     if(l.getType() < r.getType() ||
        l.getValue() < r.getValue())
@@ -267,4 +271,7 @@ limal::ca_mgm::operator<(const LiteralValue &l, const LiteralValue &r)
     {
         return false;
     }
+}
+
+}
 }

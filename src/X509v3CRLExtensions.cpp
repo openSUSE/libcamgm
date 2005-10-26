@@ -25,8 +25,12 @@
 
 #include  "Utils.hpp"
 
+namespace LIMAL_NAMESPACE
+{
+namespace CA_MGM_NAMESPACE
+{
+
 using namespace limal;
-using namespace limal::ca_mgm;
 using namespace blocxx;
 
 X509v3CRLExtensions::X509v3CRLExtensions(const X509v3CRLExtensions& extensions)
@@ -98,3 +102,5 @@ X509v3CRLExtensions::X509v3CRLExtensions()
 {
 }
 
+}
+}

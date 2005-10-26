@@ -40,8 +40,12 @@
 #include  "Utils.hpp"
 #include  "Commands.hpp"
 
+namespace LIMAL_NAMESPACE
+{
+namespace CA_MGM_NAMESPACE
+{
+
 using namespace limal;
-using namespace limal::ca_mgm;
 using namespace blocxx;
 
 class CATreeCompare {
@@ -1629,4 +1633,7 @@ CA::commitConfig2Template()
         LOGIT_ERROR("config not initialized");
         BLOCXX_THROW(limal::RuntimeException, "config not initialized");
     }
+}
+
+}
 }

@@ -41,8 +41,12 @@
 #include  "X509v3CRLExtensions_Priv.hpp"
 #include  "CRLReason_Priv.hpp"
 
+namespace LIMAL_NAMESPACE
+{
+namespace CA_MGM_NAMESPACE
+{
+
 using namespace limal;
-using namespace limal::ca_mgm;
 using namespace blocxx;
 
 RevocationEntry_Priv::RevocationEntry_Priv()
@@ -453,4 +457,7 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
         revocationData[ser] = revEntry;
 
     }
+}
+
+}
 }

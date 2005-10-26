@@ -26,8 +26,12 @@
 
 #include  "Utils.hpp"
 
+namespace LIMAL_NAMESPACE
+{
+namespace CA_MGM_NAMESPACE
+{
+
 using namespace limal;
-using namespace limal::ca_mgm;
 using namespace blocxx;
 
 CRLDistributionPointsExtension::CRLDistributionPointsExtension()
@@ -188,4 +192,7 @@ CRLDistributionPointsExtension::dump() const
     }
     
     return result;
+}
+
+}
 }

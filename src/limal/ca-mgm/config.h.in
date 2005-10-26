@@ -97,9 +97,14 @@
 	LIMAL_DEFINE_NAMESPACE(ca_mgm, LIMAL_CA_MGM_API_VERSION)
 #endif /* CA_MGM_NAMESPACE */
 
-
+/**
+ * @namespace limal
+ * @brief The main LiMaL namespace.
+ */
 /**
  * @namespace limal::ca_mgm
+ * @brief The LiMaL ca-mgm library namespace.
+ *
  * The LiMaL ca_mgm namespace is only a alias.
  * The real namespace is defined in the @file config.h
  * file to a namespace with appended API version number.

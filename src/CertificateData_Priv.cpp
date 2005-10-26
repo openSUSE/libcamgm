@@ -39,8 +39,12 @@
 #include  "DNObject_Priv.hpp"
 #include  "X509v3CertificateExtensions_Priv.hpp"
 
+namespace LIMAL_NAMESPACE
+{
+namespace CA_MGM_NAMESPACE
+{
+
 using namespace limal;
-using namespace limal::ca_mgm;
 using namespace blocxx;
 
 CertificateData_Priv::CertificateData_Priv()
@@ -435,4 +439,7 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 
 
     EVP_PKEY_free(pkey);
+}
+
+}
 }

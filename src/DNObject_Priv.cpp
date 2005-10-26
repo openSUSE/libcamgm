@@ -23,8 +23,12 @@
 #include  "DNObject_Priv.hpp"
 #include  "Utils.hpp"
 
+namespace LIMAL_NAMESPACE
+{
+namespace CA_MGM_NAMESPACE
+{
+
 using namespace limal;
-using namespace limal::ca_mgm;
 using namespace blocxx;
 
 RDNObject_Priv::RDNObject_Priv()
@@ -181,3 +185,7 @@ DNObject_Priv::operator=(const DNObject_Priv& obj)
 
     return *this;
 }
+
+}
+}
+
