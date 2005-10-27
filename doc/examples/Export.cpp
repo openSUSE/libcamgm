@@ -45,12 +45,12 @@ int main()
         
         // export CA certificate in PEM format ----------------------------
         
-        ByteBuffer ba = ca.exportCACert(PEM);
+        ByteBuffer ba = ca.exportCACert(E_PEM);
 
         
         // export CA certificate in DER format ----------------------------
         
-        ba = ca.exportCACert(DER);
+        ba = ca.exportCACert(E_DER);
         
 
         // export CA private key in PEM format (decrypted) ----------------
@@ -93,12 +93,14 @@ int main()
 
         // export certificate in PEM format -------------------------------
 
-        ba = ca2.exportCertificate("01:9528e1d8783f83b662fca6085a8c1467-1111161258", PEM);
+        ba = ca2.exportCertificate("01:9528e1d8783f83b662fca6085a8c1467-1111161258",
+                                   E_PEM);
         
 
         // export certificate in DER format -------------------------------
 
-        ba = ca2.exportCertificate("01:9528e1d8783f83b662fca6085a8c1467-1111161258", DER);
+        ba = ca2.exportCertificate("01:9528e1d8783f83b662fca6085a8c1467-1111161258",
+                                   E_DER);
         
 
         // export private key in PEM format (decrypted) -------------------
@@ -143,12 +145,12 @@ int main()
         
         // export CRL in PEM format ------------------------------------
         
-        ba = ca2.exportCRL(PEM);
+        ba = ca2.exportCRL(E_PEM);
         
 
         // export CRL in DER format ------------------------------------
         
-        ba = ca2.exportCRL(DER);
+        ba = ca2.exportCRL(E_DER);
         
     }
     catch(Exception& e)

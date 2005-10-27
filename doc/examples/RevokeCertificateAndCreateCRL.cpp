@@ -41,7 +41,7 @@ int main()
 
         // ------------------------ get request defaults -------------------
 
-        RequestGenerationData rgd = ca.getRequestDefaults(Server_Req);
+        RequestGenerationData rgd = ca.getRequestDefaults(E_Server_Req);
 
         List<RDNObject> dnl = rgd.getSubject().getDN();
         List<RDNObject>::iterator dnit;
@@ -71,11 +71,12 @@ int main()
 
         // ------------------------ get issue defaults ---------------------
 
-        CertificateIssueData cid = ca.getIssueDefaults(Server_Cert);
+        CertificateIssueData cid = ca.getIssueDefaults(E_Server_Cert);
 
         // ------------------------ create a certificate -------------------
 
-        blocxx::String c = ca.createCertificate("system", rgd, cid, Server_Cert);
+        blocxx::String c = ca.createCertificate("system", rgd, cid,
+                                                E_Server_Cert);
 
         cout << "RETURN Certificate " << endl;
 

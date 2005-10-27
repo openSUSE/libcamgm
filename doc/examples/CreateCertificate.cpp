@@ -37,7 +37,7 @@ int main()
         limal::Logger::setDefaultLogger(l);
         
         CA ca("Test_CA1", "system", "./TestRepos/");
-        RequestGenerationData rgd = ca.getRequestDefaults(Client_Req);
+        RequestGenerationData rgd = ca.getRequestDefaults(E_Client_Req);
         
         // ------------------------ Set DN --------------------------------
         
@@ -65,13 +65,13 @@ int main()
 
         // ------------------------ create request --------------------------------
 
-        blocxx::String r = ca.createRequest("system", rgd, Client_Req);
+        blocxx::String r = ca.createRequest("system", rgd, E_Client_Req);
         
         cout << "RETURN Request " << endl;
 
         // ------------------------ get issue defaults --------------------------------
 
-        CertificateIssueData cid = ca.getIssueDefaults(Client_Cert);
+        CertificateIssueData cid = ca.getIssueDefaults(E_Client_Cert);
 
         // ------------------------ create netscape extension -----------------------------
 
@@ -202,7 +202,7 @@ int main()
 
         cid.setExtensions(ex);
         
-        blocxx::String c = ca.issueCertificate(r, cid, CA_Cert);
+        blocxx::String c = ca.issueCertificate(r, cid, E_CA_Cert);
 
         cout << "RETURN Certificate " << endl;
     }
