@@ -114,7 +114,7 @@ CA::createSubCA(const String& newCaName,
     String certificate = createCertificate(keyPasswd,
                                            caRequestData,
                                            caIssueData,
-                                           CA_Cert);
+                                           E_CA_Cert);
 
     
     try {
@@ -228,7 +228,7 @@ CA::createRequest(const String& keyPasswd,
                       repositoryDir + "/" + caName + "/keys/"+ request + ".key",
                       keyPasswd,
                       type2Section(requestType, true),
-                      PEM,
+                      E_PEM,
                       requestData.getChallengePassword(),
                       requestData.getUnstructuredName());
     
@@ -307,28 +307,28 @@ CA::createCertificate(const String& keyPasswd,
                       const CertificateIssueData&  certificateData,
                       Type type)
 {
-    Type t = Client_Req;
+    Type t = E_Client_Req;
 
-    if(type == Client_Req || type == Client_Cert) {
-        t = Client_Req;
+    if(type == E_Client_Req || type == E_Client_Cert) {
+        t = E_Client_Req;
     }
-    if(type == Server_Req || type == Server_Cert) {
-        t = Server_Req;
+    if(type == E_Server_Req || type == E_Server_Cert) {
+        t = E_Server_Req;
     }
-    if(type == CA_Req || type == CA_Cert) {
-        t = CA_Req;
+    if(type == E_CA_Req || type == E_CA_Cert) {
+        t = E_CA_Req;
     }
 
     String requestName = createRequest(keyPasswd, requestData, t);
 
-    if(type == Client_Req || type == Client_Cert) {
-        t = Client_Cert;
+    if(type == E_Client_Req || type == E_Client_Cert) {
+        t = E_Client_Cert;
     }
-    if(type == Server_Req || type == Server_Cert) {
-        t = Server_Cert;
+    if(type == E_Server_Req || type == E_Server_Cert) {
+        t = E_Server_Cert;
     }
-    if(type == CA_Req || type == CA_Cert) {
-        t = CA_Cert;
+    if(type == E_CA_Req || type == E_CA_Cert) {
+        t = E_CA_Cert;
     }
 
     String certificate;
@@ -388,7 +388,7 @@ CA::createCRL(const CRLGenerationData& crlData)
     initConfigFile();
     
     // write crl data to config
-    crlData.commit2Config(*this, CRL);
+    crlData.commit2Config(*this, E_CRL);
 
     OpenSSLUtils ost(repositoryDir + "/" + caName + "/" + "openssl.cnf");
 
@@ -430,7 +430,7 @@ CA::importRequest(const ByteBuffer& request,
                      "Duplicate DN. Request already exists.");
     }
 
-    if(formatType == PEM) {
+    if(formatType == E_PEM) {
         
         LocalManagement::writeFile(request, outPi.toString());
         
@@ -500,7 +500,7 @@ CRLGenerationData
 CA::getCRLDefaults()
 {
     initConfigFile();
-    CRLGenerationData  crlgd = CRLGenerationData(config, CRL);
+    CRLGenerationData  crlgd = CRLGenerationData(config, E_CRL);
     return crlgd;
 }
 
@@ -526,7 +526,7 @@ void
 CA::setCRLDefaults(const CRLGenerationData& defaults)
 {
     initConfigFile();
-    defaults.commit2Config(*this, CRL);
+    defaults.commit2Config(*this, E_CRL);
     commitConfig2Template();
 }
 
@@ -600,9 +600,9 @@ CA::exportCACert(FormatType exportType)
 
     ret = LocalManagement::readFile(repositoryDir + "/" + caName + "/cacert.pem");
 
-    if( exportType == DER ) {
+    if( exportType == E_DER ) {
 
-        ret = OpenSSLUtils::x509Convert(ret, PEM, DER);
+        ret = OpenSSLUtils::x509Convert(ret, E_PEM, E_DER);
 
     }
 
@@ -635,7 +635,7 @@ CA::exportCAKeyAsPEM(const String& newPassword)
 
     ret = LocalManagement::readFile(repositoryDir + "/" + caName + "/cacert.key");
 
-    ret = OpenSSLUtils::rsaConvert(ret, PEM, PEM, caPasswd, newPassword);
+    ret = OpenSSLUtils::rsaConvert(ret, E_PEM, E_PEM, caPasswd, newPassword);
     
     return ret;
 }
@@ -662,7 +662,7 @@ CA::exportCAKeyAsDER()
 
     ret = LocalManagement::readFile(repositoryDir + "/" + caName + "/cacert.key");
 
-    ret = OpenSSLUtils::rsaConvert(ret, PEM, DER, caPasswd, "");
+    ret = OpenSSLUtils::rsaConvert(ret, E_PEM, E_DER, caPasswd, "");
     
     return ret;
 }
@@ -725,9 +725,9 @@ CA::exportCertificate(const String& certificateName,
     ret = LocalManagement::readFile(repositoryDir + "/" + caName + "/newcerts/" + 
                                     certificateName + ".pem");
 
-    if( exportType == DER ) {
+    if( exportType == E_DER ) {
 
-        ret = OpenSSLUtils::x509Convert(ret, PEM, DER);
+        ret = OpenSSLUtils::x509Convert(ret, E_PEM, E_DER);
     }
 
     return ret;
@@ -770,7 +770,7 @@ CA::exportCertificateKeyAsPEM(const String& certificateName,
     ret = LocalManagement::readFile(repositoryDir + "/" + caName + "/keys/" + 
                                     sa[1] + ".key");
 
-    ret = OpenSSLUtils::rsaConvert(ret, PEM, PEM, keyPassword, newPassword);
+    ret = OpenSSLUtils::rsaConvert(ret, E_PEM, E_PEM, keyPassword, newPassword);
     
     return ret;
 }
@@ -809,7 +809,7 @@ CA::exportCertificateKeyAsDER(const String& certificateName,
     ret = LocalManagement::readFile(repositoryDir + "/" + caName + "/keys/" + 
                                     sa[1] + ".key");
 
-    ret = OpenSSLUtils::rsaConvert(ret, PEM, DER, keyPassword, "");
+    ret = OpenSSLUtils::rsaConvert(ret, E_PEM, E_DER, keyPassword, "");
     
     return ret;
 }
@@ -891,9 +891,9 @@ CA::exportCRL(FormatType exportType)
 
     ret = LocalManagement::readFile(repositoryDir + "/" + caName + "/crl/crl.pem");
 
-    if( exportType == DER ) {
+    if( exportType == E_DER ) {
         
-        ret = OpenSSLUtils::crlConvert(ret, PEM, DER);
+        ret = OpenSSLUtils::crlConvert(ret, E_PEM, E_DER);
         
     }
 
@@ -1126,10 +1126,10 @@ CA::createRootCA(const String& caName,
     tmpCA.initConfigFile();
     
     // write request data to config
-    caRequestData.commit2Config(tmpCA, CA_Req);
+    caRequestData.commit2Config(tmpCA, E_CA_Req);
 
     // copy Section, because "req" is hard coded in openssl :-(
-    tmpCA.getConfig()->copySection(type2Section(CA_Req, false), "req");
+    tmpCA.getConfig()->copySection(type2Section(E_CA_Req, false), "req");
 
     OpenSSLUtils ost(repos + "/" + caName + "/" + "openssl.cnf");
 
@@ -1145,12 +1145,12 @@ CA::createRootCA(const String& caName,
                       repos + "/" + caName + "/" + "cacert.key",
                       caPasswd,
                       "v3_req_ca",
-                      PEM,
+                      E_PEM,
                       caRequestData.getChallengePassword(),
                       caRequestData.getUnstructuredName());
 
     // write certificate issue data to config
-    caIssueData.commit2Config(tmpCA, CA_Cert);
+    caIssueData.commit2Config(tmpCA, E_CA_Cert);
 
     // create the CA certificate
 
@@ -1197,7 +1197,7 @@ CA::importCA(const String& caName,
 
     }
 
-    CertificateData cad = CertificateData_Priv(caCertificate, PEM);
+    CertificateData cad = CertificateData_Priv(caCertificate, E_PEM);
 
     BasicConstraintsExtension bs = cad.getExtensions().getBasicConstraints();
 
@@ -1257,7 +1257,7 @@ CA::importCA(const String& caName,
 
         try {
             
-            buf = OpenSSLUtils::rsaConvert(caKey, PEM, PEM, "", caPasswd);
+            buf = OpenSSLUtils::rsaConvert(caKey, E_PEM, E_PEM, "", caPasswd);
             
         } catch(Exception &e) {
             
@@ -1312,7 +1312,7 @@ CA::getCATree(const String& repos)
 
         CertificateData caData = 
             LocalManagement::getCertificate(repos + "/" + (*it) + "/cacert.pem",
-                                            PEM);
+                                            E_PEM);
 
         Array<String> d;
         d.push_back(caData.getSubjectDN().getOpenSSLString());
@@ -1365,7 +1365,7 @@ CertificateIssueData
 CA::getRootCAIssueDefaults(const String& repos)
 {
     CAConfig *config = new CAConfig(repos+"/openssl.cnf.tmpl");
-    CertificateIssueData cid = CertificateIssueData(config, CA_Cert);
+    CertificateIssueData cid = CertificateIssueData(config, E_CA_Cert);
     delete config;
 
     return cid;
@@ -1375,7 +1375,7 @@ RequestGenerationData
 CA::getRootCARequestDefaults(const String& repos)
 {
     CAConfig *config = new CAConfig(repos+"/openssl.cnf.tmpl");
-    RequestGenerationData rgd = RequestGenerationData(config, CA_Req);
+    RequestGenerationData rgd = RequestGenerationData(config, E_CA_Req);
     delete config;
 
     return rgd;
@@ -1425,7 +1425,7 @@ CA::deleteCA(const String& caName,
 
             CertificateData ca = 
                 LocalManagement::getCertificate(repos + "/" + caName + "/cacert.pem",
-                                                PEM);
+                                                E_PEM);
 
             if( ca.getEndDate() > DateTime::getCurrent().get() ) {
 
@@ -1493,8 +1493,9 @@ void
 CA::checkDNPolicy(const DNObject& dn, Type type)
 {
     // These types are not supported by this method
-    if(type == Client_Req || type == Server_Req ||
-       type == CA_Req     || type == CRL           ) {
+    if(type == E_Client_Req || type == E_Server_Req ||
+       type == E_CA_Req     || type == E_CRL           )
+    {
         LOGIT_ERROR("wrong type" << type);
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }

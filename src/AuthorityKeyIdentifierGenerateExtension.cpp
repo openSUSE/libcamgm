@@ -39,7 +39,8 @@ AuthorityKeyIdentifierGenerateExtension::AuthorityKeyIdentifierGenerateExtension
     : ExtensionBase(), keyid(KeyID_none), issuer(Issuer_none)
 {
     // These types are not supported by this object
-    if(type == Client_Req || type == Server_Req || type == CA_Req) {
+    if(type == E_Client_Req || type == E_Server_Req || type == E_CA_Req)
+    {
         LOGIT_ERROR("wrong type" << type);
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
@@ -135,12 +136,14 @@ AuthorityKeyIdentifierGenerateExtension::commit2Config(CA& ca, Type type) const
     }
 
     // These types are not supported by this object
-    if(type == Client_Req || type == Server_Req || type == CA_Req) {
+    if(type == E_Client_Req || type == E_Server_Req || type == E_CA_Req)
+    {
         LOGIT_ERROR("wrong type" << type);
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
 
-    if(isPresent()) {
+    if(isPresent())
+    {
         String extString;
 
         if(isCritical()) extString += "critical,";
@@ -169,7 +172,9 @@ AuthorityKeyIdentifierGenerateExtension::commit2Config(CA& ca, Type type) const
 
         ca.getConfig()->setValue(type2Section(type, true), "authorityKeyIdentifier",
                                  extString.erase(extString.length()-1));
-    } else {
+    }
+    else
+    {
         ca.getConfig()->deleteValue(type2Section(type, true), "authorityKeyIdentifier");
     }
 }

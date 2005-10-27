@@ -162,7 +162,7 @@ namespace CA_MGM_NAMESPACE
          * @return the name of the request
          */
         String importRequest(const limal::ByteBuffer& request,
-                             FormatType formatType = PEM);
+                             FormatType formatType = E_PEM);
 
         /**
          * Import a request in a CA repository.
@@ -174,7 +174,7 @@ namespace CA_MGM_NAMESPACE
          * @return the name of the request
          */
         String importRequest(const String& requestFile,
-                             FormatType formatType = PEM);
+                             FormatType formatType = E_PEM);
 
 
         /**

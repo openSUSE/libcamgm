@@ -121,16 +121,17 @@ CertificateData::getPublicKeyAlgorithm() const
 blocxx::String
 CertificateData::getPublicKeyAlgorithmAsString() const
 {
-    switch(pubkeyAlgorithm) {
-    case RSA:
-        return "RSA";
-        break;
-    case DSA:
-        return "DSA";
-        break;
-    case DH:
-        return "DH";
-        break;
+    switch(pubkeyAlgorithm)
+    {
+        case E_RSA:
+            return "RSA";
+            break;
+        case E_DSA:
+            return "DSA";
+            break;
+        case E_DH:
+            return "DH";
+            break;
     }
     return String();
 }
@@ -150,16 +151,17 @@ CertificateData::getSignatureAlgorithm() const
 blocxx::String
 CertificateData::getSignatureAlgorithmAsString() const
 {
-    switch(signatureAlgorithm) {
-    case SHA1RSA:
-        return "SHA1RSA";
-        break;
-    case MD5RSA:
-        return "MD5RSA";
-        break;
-    case SHA1DSA:
-        return "SHA1DSA";
-        break;
+    switch(signatureAlgorithm)
+    {
+        case E_SHA1RSA:
+            return "SHA1RSA";
+            break;
+        case E_MD5RSA:
+            return "MD5RSA";
+            break;
+        case E_SHA1DSA:
+            return "SHA1DSA";
+            break;
     }
     return String();
 }
@@ -295,8 +297,8 @@ CertificateData::CertificateData()
     : version(0), serial(0), 
       notBefore(0), notAfter(0),
       issuer(DNObject()), subject(DNObject()),
-      keysize(2048), pubkeyAlgorithm(RSA),
-      publicKey(ByteBuffer()), signatureAlgorithm(SHA1RSA),
+      keysize(2048), pubkeyAlgorithm(E_RSA),
+      publicKey(ByteBuffer()), signatureAlgorithm(E_SHA1RSA),
       signature(ByteBuffer()), extensions(X509v3CertificateExtensions_Priv())
 {
 }

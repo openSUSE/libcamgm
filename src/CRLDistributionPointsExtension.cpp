@@ -42,8 +42,9 @@ CRLDistributionPointsExtension::CRLDistributionPointsExtension(CAConfig* caConfi
     : ExtensionBase(), altNameList(blocxx::List<LiteralValue>())
 {
     // These types are not supported by this object
-    if(type == CRL        || type == Client_Req ||
-       type == Server_Req || type == CA_Req      ) {
+    if(type == E_CRL        || type == E_Client_Req ||
+       type == E_Server_Req || type == E_CA_Req      )
+    {
         LOGIT_ERROR("wrong type" << type);
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
@@ -120,8 +121,9 @@ CRLDistributionPointsExtension::commit2Config(CA& ca, Type type) const
     }
 
     // These types are not supported by this object
-    if(type == CRL        || type == Client_Req ||
-       type == Server_Req || type == CA_Req      ) {
+    if(type == E_CRL        || type == E_Client_Req ||
+       type == E_Server_Req || type == E_CA_Req      )
+    {
         LOGIT_ERROR("wrong type" << type);
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }

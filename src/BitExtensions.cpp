@@ -91,7 +91,7 @@ KeyUsageExtension::KeyUsageExtension(CAConfig* caConfig, Type type)
     LOGIT_DEBUG("Parse KeyUsage");
 
     // These types are not supported by this object
-    if(type == CRL) {
+    if(type == E_CRL) {
         LOGIT_ERROR("wrong type" << type);
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
@@ -190,7 +190,7 @@ KeyUsageExtension::commit2Config(CA& ca, Type type) const
     }
 
     // This extension is not supported by type CRL
-    if(type == CRL) {
+    if(type == E_CRL) {
         LOGIT_ERROR("wrong type" << type);
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
@@ -301,7 +301,7 @@ NsCertTypeExtension::NsCertTypeExtension(CAConfig* caConfig, Type type)
     LOGIT_DEBUG("Parse NsCertType");
 
     // These types are not supported by this object
-    if(type == CRL) {
+    if(type == E_CRL) {
         LOGIT_ERROR("wrong type" << type);
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
@@ -398,7 +398,7 @@ NsCertTypeExtension::commit2Config(CA& ca, Type type) const
     }
 
     // This extension is not supported by type CRL
-    if(type == CRL) {
+    if(type == E_CRL) {
         LOGIT_ERROR("wrong type" << type);
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
@@ -492,7 +492,7 @@ ExtendedKeyUsageExtension::ExtendedKeyUsageExtension(CAConfig* caConfig, Type ty
     LOGIT_DEBUG("Parse ExtendedKeyUsage");
 
     // These types are not supported by this object
-    if(type == CRL) {
+    if(type == E_CRL) {
         LOGIT_ERROR("wrong type" << type);
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
@@ -690,7 +690,7 @@ ExtendedKeyUsageExtension::commit2Config(CA& ca, Type type) const
     }
 
     // This extension is not supported by type CRL
-    if(type == CRL) {
+    if(type == E_CRL) {
         LOGIT_ERROR("wrong type" << type);
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }

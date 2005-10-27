@@ -38,7 +38,7 @@ namespace CA_MGM_NAMESPACE {
         CertificateData_Priv();
 
         CertificateData_Priv(const ByteBuffer &certificate,
-                             FormatType formatType = PEM);
+                             FormatType formatType = E_PEM);
 
         /**
          * Construct a CertificateData object by parsing a certificate 
@@ -47,7 +47,7 @@ namespace CA_MGM_NAMESPACE {
          *
          */
         CertificateData_Priv(const String &certificatePath,
-                             FormatType formatType = PEM);
+                             FormatType formatType = E_PEM);
 
         CertificateData_Priv(const CertificateData_Priv& data);
         virtual ~CertificateData_Priv();

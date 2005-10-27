@@ -37,9 +37,9 @@ namespace CA_MGM_NAMESPACE {
     public:
         RequestData_Priv();
         RequestData_Priv(const String& requestPath, 
-                         FormatType formatType = PEM);
+                         FormatType formatType = E_PEM);
         RequestData_Priv(const ByteBuffer& request, 
-                         FormatType formatType = PEM);
+                         FormatType formatType = E_PEM);
         RequestData_Priv(const RequestData_Priv& data);
         virtual ~RequestData_Priv();
 

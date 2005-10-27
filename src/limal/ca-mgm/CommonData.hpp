@@ -34,41 +34,40 @@ namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
-    typedef blocxx::String                             String;
-    typedef blocxx::List<String>                       StringList;
-    typedef blocxx::List<blocxx::Map<String, String> > StringMapList;
-
+    typedef blocxx::String       String;
+    typedef blocxx::List<String> StringList;
+    
     enum Type {
-        Client_Req,  //! Client Request
-        Server_Req,  //! Server Request
-        CA_Req,      //! CA Request
-        Client_Cert, //! Client Certificate
-        Server_Cert, //! Server Certificate
-        CA_Cert,     //! CA Certificate
-        CRL          //! Certificate Revocation List
+        E_Client_Req,  //! Client Request
+        E_Server_Req,  //! Server Request
+        E_CA_Req,      //! CA Request
+        E_Client_Cert, //! Client Certificate
+        E_Server_Cert, //! Server Certificate
+        E_CA_Cert,     //! CA Certificate
+        E_CRL          //! Certificate Revocation List
     };
 
     enum FormatType {
-        PEM,
-        DER
+        E_PEM,
+        E_DER
     };
 
     enum KeyAlg {
-        RSA,
-        DSA,
-        DH
+        E_RSA,
+        E_DSA,
+        E_DH
     };
 
     enum SigAlg {
-        SHA1RSA,
-        MD5RSA,
-        SHA1DSA,
+        E_SHA1RSA,
+        E_MD5RSA,
+        E_SHA1DSA,
     };
 
     enum MD {
-        SHA1,
-        MD5,
-        MDC2,
+        E_SHA1,
+        E_MD5,
+        E_MDC2,
     };
 
 }

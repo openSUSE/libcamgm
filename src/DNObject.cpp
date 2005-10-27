@@ -237,8 +237,9 @@ DNObject::DNObject()
 DNObject::DNObject(CAConfig* caConfig, Type type)
     : dn(blocxx::List<RDNObject>())
 {
-    if(type == Client_Cert || type == Server_Cert ||
-       type == CA_Cert     || type == CRL           ) {
+    if(type == E_Client_Cert || type == E_Server_Cert ||
+       type == E_CA_Cert     || type == E_CRL           )
+    {
         LOGIT_ERROR("wrong type" << type);
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }

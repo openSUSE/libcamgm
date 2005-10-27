@@ -82,7 +82,8 @@ NsBaseUrlExtension::NsBaseUrlExtension(CAConfig* caConfig, Type type)
     : StringExtension(String())
 {
     // These types are not supported by this object
-    if(type == CRL) {
+    if(type == E_CRL)
+    {
         LOGIT_ERROR("wrong type" << type);
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
@@ -147,7 +148,7 @@ NsBaseUrlExtension::commit2Config(CA& ca, Type type) const
     }
 
     // This extension is not supported by type CRL
-    if(type == CRL) {
+    if(type == E_CRL) {
         LOGIT_ERROR("wrong type" << type);
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
@@ -228,7 +229,8 @@ NsRevocationUrlExtension::NsRevocationUrlExtension(CAConfig* caConfig, Type type
     : StringExtension(String())
 {
     // These types are not supported by this object
-    if(type == CRL) {
+    if(type == E_CRL)
+    {
         LOGIT_ERROR("wrong type" << type);
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
@@ -293,7 +295,8 @@ NsRevocationUrlExtension::commit2Config(CA& ca, Type type) const
     }
 
     // This extension is not supported by type CRL
-    if(type == CRL) {
+    if(type == E_CRL)
+    {
         LOGIT_ERROR("wrong type" << type);
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
@@ -374,7 +377,8 @@ NsCaRevocationUrlExtension::NsCaRevocationUrlExtension(CAConfig* caConfig, Type 
     : StringExtension(String())
 {
     // These types are not supported by this object
-    if(type == CRL) {
+    if(type == E_CRL)
+    {
         LOGIT_ERROR("wrong type" << type);
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
@@ -439,7 +443,8 @@ NsCaRevocationUrlExtension::commit2Config(CA& ca, Type type) const
     }
 
     // This extension is not supported by type CRL
-    if(type == CRL) {
+    if(type == E_CRL)
+    {
         LOGIT_ERROR("wrong type" << type);
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
@@ -519,7 +524,8 @@ NsRenewalUrlExtension::NsRenewalUrlExtension(CAConfig* caConfig, Type type)
     : StringExtension(String())
 {
     // These types are not supported by this object
-    if(type == CRL) {
+    if(type == E_CRL)
+    {
         LOGIT_ERROR("wrong type" << type);
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
@@ -584,7 +590,8 @@ NsRenewalUrlExtension::commit2Config(CA& ca, Type type) const
     }
 
     // This extension is not supported by type CRL
-    if(type == CRL) {
+    if(type == E_CRL)
+    {
         LOGIT_ERROR("wrong type" << type);
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
@@ -663,7 +670,8 @@ NsCaPolicyUrlExtension::NsCaPolicyUrlExtension(CAConfig* caConfig, Type type)
     : StringExtension(String())
 {
     // These types are not supported by this object
-    if(type == CRL) {
+    if(type == E_CRL)
+    {
         LOGIT_ERROR("wrong type" << type);
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
@@ -728,7 +736,8 @@ NsCaPolicyUrlExtension::commit2Config(CA& ca, Type type) const
     }
 
     // This extension is not supported by type CRL
-    if(type == CRL) {
+    if(type == E_CRL)
+    {
         LOGIT_ERROR("wrong type" << type);
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
@@ -804,7 +813,8 @@ NsSslServerNameExtension::NsSslServerNameExtension(CAConfig* caConfig, Type type
     : StringExtension(String())
 {
     // These types are not supported by this object
-    if(type == CRL) {
+    if(type == E_CRL)
+    {
         LOGIT_ERROR("wrong type" << type);
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
@@ -865,7 +875,7 @@ NsSslServerNameExtension::commit2Config(CA& ca, Type type) const
     }
 
     // This extension is not supported by type CRL
-    if(type == CRL) {
+    if(type == E_CRL) {
         LOGIT_ERROR("wrong type" << type);
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
@@ -926,7 +936,7 @@ NsCommentExtension::NsCommentExtension(CAConfig* caConfig, Type type)
     : StringExtension(String())
 {
     // These types are not supported by this object
-    if(type == CRL) {
+    if(type == E_CRL) {
         LOGIT_ERROR("wrong type" << type);
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
@@ -987,7 +997,7 @@ NsCommentExtension::commit2Config(CA& ca, Type type) const
     }
 
     // This extension is not supported by type CRL
-    if(type == CRL) {
+    if(type == E_CRL) {
         LOGIT_ERROR("wrong type" << type);
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }

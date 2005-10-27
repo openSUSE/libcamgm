@@ -187,8 +187,9 @@ AuthorityInfoAccessExtension::AuthorityInfoAccessExtension(CAConfig* caConfig, T
     : ExtensionBase()
 {
     // These types are not supported by this object
-    if(type == Client_Req || type == Server_Req ||
-       type == CA_Req     || type == CRL           ) {
+    if(type == E_Client_Req || type == E_Server_Req ||
+       type == E_CA_Req     || type == E_CRL           )
+    {
         LOGIT_ERROR("wrong type" << type);
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
@@ -261,8 +262,9 @@ AuthorityInfoAccessExtension::commit2Config(CA& ca, Type type) const
     }
 
     // These types are not supported by this object
-    if(type == Client_Req || type == Server_Req ||
-       type == CA_Req     || type == CRL           ) {
+    if(type == E_Client_Req || type == E_Server_Req ||
+       type == E_CA_Req     || type == E_CRL           )
+    {
         LOGIT_ERROR("wrong type" << type);
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }

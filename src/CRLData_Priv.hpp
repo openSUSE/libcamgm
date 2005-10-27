@@ -56,9 +56,9 @@ namespace CA_MGM_NAMESPACE {
     public:
         CRLData_Priv();
         CRLData_Priv(const ByteBuffer &crl,
-                     FormatType formatType = PEM);
+                     FormatType formatType = E_PEM);
         CRLData_Priv(const String &crlPath,
-                     FormatType formatType = PEM);
+                     FormatType formatType = E_PEM);
         CRLData_Priv(const CRLData_Priv& data);
         virtual ~CRLData_Priv();
 

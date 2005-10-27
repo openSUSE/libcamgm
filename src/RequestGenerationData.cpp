@@ -40,7 +40,7 @@ using namespace blocxx;
 RequestGenerationData::RequestGenerationData()
     : subject(DNObject()),
       keysize(0),
-      messageDigest(SHA1),
+      messageDigest(E_SHA1),
       challengePassword(""),
       unstructuredName(""),
       extensions(X509v3RequestExtensions())
@@ -50,7 +50,7 @@ RequestGenerationData::RequestGenerationData()
 RequestGenerationData::RequestGenerationData(CAConfig* caConfig, Type type)
     : subject(DNObject(caConfig, type)),
       keysize(0),
-      messageDigest(SHA1),
+      messageDigest(E_SHA1),
       challengePassword(""),
       unstructuredName(""),
       extensions(X509v3RequestExtensions(caConfig, type))
@@ -59,15 +59,15 @@ RequestGenerationData::RequestGenerationData(CAConfig* caConfig, Type type)
 
     String md = caConfig->getValue(type2Section(type, false), "default_md");
     if(md.equalsIgnoreCase("sha1")) {
-        messageDigest = SHA1;
+        messageDigest = E_SHA1;
     } else if(md.equalsIgnoreCase("md5")) {
-        messageDigest = MD5;
+        messageDigest = E_MD5;
     } else if(md.equalsIgnoreCase("mdc2")) {
-        messageDigest = MDC2;
+        messageDigest = E_MDC2;
     } else {
         LOGIT_INFO("unsupported message digest: " << md);
         LOGIT_INFO("select default sha1.");
-        messageDigest = SHA1;
+        messageDigest = E_SHA1;
     }
 }
 
@@ -188,9 +188,9 @@ RequestGenerationData::commit2Config(CA& ca, Type type) const
         BLOCXX_THROW(limal::ValueException, "invalid RequestGenerationData object");
     }
 
-    if(type == CRL || type == Client_Cert ||
-       type == Server_Cert || type == CA_Cert ) {
-
+    if(type == E_CRL         || type == E_Client_Cert ||
+       type == E_Server_Cert || type == E_CA_Cert )
+    {
         LOGIT_ERROR("wrong type" << type);
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
@@ -198,16 +198,17 @@ RequestGenerationData::commit2Config(CA& ca, Type type) const
     ca.getConfig()->setValue(type2Section(type, false), "default_bits", String(keysize));
 
     String md("sha1");
-    switch(messageDigest) {
-    case SHA1:
-        md = "sha1";
-        break;
-    case MD5:
-        md = "md5";
-        break;
-    case MDC2:
-        md = "mdc2";
-        break;
+    switch(messageDigest)
+    {
+        case E_SHA1:
+            md = "sha1";
+            break;
+        case E_MD5:
+            md = "md5";
+            break;
+        case E_MDC2:
+            md = "mdc2";
+            break;
     }
     ca.getConfig()->setValue(type2Section(type, false), "default_md", md);
 

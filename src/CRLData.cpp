@@ -301,7 +301,7 @@ CRLData::dump() const
 CRLData::CRLData()
     : version(0), lastUpdate(0),
       nextUpdate(0), issuer(DNObject()),
-      signatureAlgorithm(SHA1RSA), signature(ByteBuffer()),
+      signatureAlgorithm(E_SHA1RSA), signature(ByteBuffer()),
       extensions(X509v3CRLExtensions_Priv()), 
       revocationData(blocxx::Map<String, RevocationEntry>())
 {

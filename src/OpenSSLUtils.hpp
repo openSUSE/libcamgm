@@ -54,7 +54,7 @@ namespace CA_MGM_NAMESPACE {
                            const blocxx::String &keyFile,
                            const blocxx::String &password,
                            const blocxx::String &extension,
-                           FormatType            outForm           = PEM,
+                           FormatType            outForm           = E_PEM,
                            const blocxx::String &challengePassword = "",
                            const blocxx::String &unstructuredName  = "");
 

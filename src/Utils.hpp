@@ -135,52 +135,53 @@ checkLiteralValueList(const blocxx::List<LiteralValue>& list)
 inline blocxx::String type2Section(Type type, bool v3section) {
     blocxx::String result;
 
-    switch(type) {
-    case limal::ca_mgm::CA_Req:
-        if(!v3section)
-            result = "req_ca";
-        else
-            result = "v3_req_ca";
-        break;
-    case limal::ca_mgm::Client_Req:
-        if(!v3section)
-            result = "req_client";
-        else
-            result = "v3_req_client";
-        break;
-    case limal::ca_mgm::Server_Req:
-        if(!v3section)
+    switch(type)
+    {
+        case E_CA_Req:
+            if(!v3section)
+                result = "req_ca";
+            else
+                result = "v3_req_ca";
+            break;
+        case E_Client_Req:
+            if(!v3section)
+                result = "req_client";
+            else
+                result = "v3_req_client";
+            break;
+        case E_Server_Req:
+            if(!v3section)
                 result = "req_server";
-        else
-            result = "v3_req_server";
-        break;
-    case limal::ca_mgm::CA_Cert:
-        if(!v3section)
-            result = "ca";
-        else
-            result = "v3_ca";
-        break;
-    case limal::ca_mgm::Client_Cert:
-        if(!v3section)
-            result = "client_cert";
-        else
-            result = "v3_client";
-        break;
-    case limal::ca_mgm::Server_Cert:
-        if(!v3section)
-            result = "server_cert";
-        else
-            result = "v3_server";
-        break;
-    case limal::ca_mgm::CRL:
-        if(!v3section)
-            result = "ca";
-        else
-            result = "v3_crl";
-        break;
-    default:
-        LOGIT_ERROR("wrong type" << type);
-        BLOCXX_THROW(limal::ValueException, blocxx::Format("wrong type: %1", type).c_str());
+            else
+                result = "v3_req_server";
+            break;
+        case E_CA_Cert:
+            if(!v3section)
+                result = "ca";
+            else
+                result = "v3_ca";
+            break;
+        case E_Client_Cert:
+            if(!v3section)
+                result = "client_cert";
+            else
+                result = "v3_client";
+            break;
+        case E_Server_Cert:
+            if(!v3section)
+                result = "server_cert";
+            else
+                result = "v3_server";
+            break;
+        case E_CRL:
+            if(!v3section)
+                result = "ca";
+            else
+                result = "v3_crl";
+            break;
+        default:
+            LOGIT_ERROR("wrong type" << type);
+            BLOCXX_THROW(limal::ValueException, blocxx::Format("wrong type: %1", type).c_str());
     }
     LOGIT_DEBUG("type2Section: type=" << type << " result=" << result);
     return result;

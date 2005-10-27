@@ -172,7 +172,7 @@ void OpenSSLUtils::createRequest(const DNObject &dn,
 
     debugCmd += "-key " + keyFile + " ";
 
-    if(outForm == PEM) {
+    if(outForm == E_PEM) {
 
         debugCmd += "-outform PEM ";
 
@@ -983,10 +983,10 @@ OpenSSLUtils::x509Convert(const ByteBuffer &certificate,
     debugCmd += "-inform ";
     
     switch(inform) {
-    case PEM:
+    case E_PEM:
         debugCmd += "PEM ";
         break;
-    case DER:
+    case E_DER:
         debugCmd += "DER ";
         break;
     }
@@ -994,10 +994,10 @@ OpenSSLUtils::x509Convert(const ByteBuffer &certificate,
     debugCmd += "-outform ";
     
     switch(outform) {
-    case PEM:
+    case E_PEM:
         debugCmd += "PEM ";
         break;
-     case DER:
+     case E_DER:
          debugCmd += "DER ";
          break;
     }
@@ -1069,10 +1069,10 @@ OpenSSLUtils::rsaConvert(const ByteBuffer &key,
     debugCmd += "-inform ";
     
     switch(inform) {
-    case PEM:
+    case E_PEM:
         debugCmd += "PEM ";
         break;
-    case DER:
+    case E_DER:
         debugCmd += "DER ";
         break;
     }
@@ -1080,21 +1080,21 @@ OpenSSLUtils::rsaConvert(const ByteBuffer &key,
     debugCmd += "-outform ";
     
     switch(outform) {
-    case PEM:
+    case E_PEM:
         debugCmd += "PEM ";
         break;
-     case DER:
+     case E_DER:
          debugCmd += "DER ";
          break;
     }
     
-    if(!inPassword.empty() && inform != DER) {
+    if(!inPassword.empty() && inform != E_DER) {
 
         debugCmd += "-passin env:inpass ";
         isInPassSet = true;
     }
 
-    if(!outPassword.empty() && outform != DER) {
+    if(!outPassword.empty() && outform != E_DER) {
     
         debugCmd += "-passout env:outpass ";
 
@@ -1185,10 +1185,10 @@ OpenSSLUtils::crlConvert(const ByteBuffer &crl,
     debugCmd += "-inform ";
     
     switch(inform) {
-    case PEM:
+    case E_PEM:
         debugCmd += "PEM ";
         break;
-    case DER:
+    case E_DER:
         debugCmd += "DER ";
         break;
     }
@@ -1196,10 +1196,10 @@ OpenSSLUtils::crlConvert(const ByteBuffer &crl,
     debugCmd += "-outform ";
     
     switch(outform) {
-    case PEM:
+    case E_PEM:
         debugCmd += "PEM ";
         break;
-     case DER:
+     case E_DER:
          debugCmd += "DER ";
          break;
     }

@@ -61,7 +61,7 @@ CertificateData_Priv::CertificateData_Priv(const ByteBuffer &certificate,
 
     unsigned char *d = (unsigned char*)certificate.data();
 
-    if( formatType == PEM ) {
+    if( formatType == E_PEM ) {
 
         // load the certificate into a memory bio 
         bio = BIO_new_mem_buf(d, certificate.size());
@@ -374,7 +374,7 @@ CertificateData_Priv::parseCertificate(X509 *x509)
     if(pkey->type == EVP_PKEY_RSA || 
        pkey->type == EVP_PKEY_RSA2 ) {
 
-        pubkeyAlgorithm = RSA;
+        pubkeyAlgorithm = E_RSA;
 
     } else if(pkey->type == EVP_PKEY_DSA  || 
               pkey->type == EVP_PKEY_DSA1 || 
@@ -382,11 +382,11 @@ CertificateData_Priv::parseCertificate(X509 *x509)
               pkey->type == EVP_PKEY_DSA3 ||
               pkey->type == EVP_PKEY_DSA4  ) {
 
-        pubkeyAlgorithm = DSA;
+        pubkeyAlgorithm = E_DSA;
 
     } else if(pkey->type == EVP_PKEY_DH ) {
 
-        pubkeyAlgorithm = DH;
+        pubkeyAlgorithm = E_DH;
 
     } else {
 
@@ -408,15 +408,15 @@ CertificateData_Priv::parseCertificate(X509 *x509)
     
     if(sbuf.equalsIgnoreCase("sha1WithRSAEncryption") ) {
 
-        signatureAlgorithm = SHA1RSA;
+        signatureAlgorithm = E_SHA1RSA;
 
     } else if(sbuf.equalsIgnoreCase("md5WithRSAEncryption") ) {
 
-        signatureAlgorithm = MD5RSA;
+        signatureAlgorithm = E_MD5RSA;
     
     } else if(sbuf.equalsIgnoreCase("dsaWithSHA1") ) {
 
-        signatureAlgorithm = SHA1DSA;
+        signatureAlgorithm = E_SHA1DSA;
 
     } else {
 

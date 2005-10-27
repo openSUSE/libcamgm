@@ -38,14 +38,14 @@ using namespace blocxx;
 
 CertificateIssueData::CertificateIssueData()
     : notBefore(0), notAfter(0),
-      messageDigest(SHA1),
+      messageDigest(E_SHA1),
       extensions(X509v3CertificateIssueExtensions())
 {
 }
 
 CertificateIssueData::CertificateIssueData(CAConfig* caConfig, Type type)
     : notBefore(0), notAfter(0), 
-      messageDigest(SHA1),
+      messageDigest(E_SHA1),
       extensions(X509v3CertificateIssueExtensions(caConfig, type))
 {
     notBefore = DateTime::getCurrent().get();
@@ -57,15 +57,15 @@ CertificateIssueData::CertificateIssueData(CAConfig* caConfig, Type type)
 
     String md = caConfig->getValue(type2Section(type, false), "default_md");
     if(md.equalsIgnoreCase("sha1")) {
-        messageDigest = SHA1;
+        messageDigest = E_SHA1;
     } else if(md.equalsIgnoreCase("md5")) {
-        messageDigest = MD5;
+        messageDigest = E_MD5;
     } else if(md.equalsIgnoreCase("mdc2")) {
-        messageDigest = MDC2;
+        messageDigest = E_MDC2;
     } else {
         LOGIT_INFO("unsupported message digest: " << md);
         LOGIT_INFO("select default sha1.");
-        messageDigest = SHA1;
+        messageDigest = E_SHA1;
     }
 }
 
@@ -166,8 +166,9 @@ CertificateIssueData::commit2Config(CA& ca, Type type) const
         BLOCXX_THROW(limal::ValueException, "invalid CertificateIssueData object");
     }
     // These types are not supported by this object
-    if(type == CRL        || type == Client_Req ||
-       type == Server_Req || type == CA_Req         ) {
+    if(type == E_CRL        || type == E_Client_Req ||
+       type == E_Server_Req || type == E_CA_Req         )
+    {
         
         LOGIT_ERROR("wrong type" << type);
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
@@ -177,16 +178,17 @@ CertificateIssueData::commit2Config(CA& ca, Type type) const
     ca.getConfig()->setValue(type2Section(type, false), "default_days", String(t));
                         
     String md("sha1");
-    switch(messageDigest) {
-    case SHA1:
-        md = "sha1";
-        break;
-    case MD5:
-        md = "md5";
-        break;
-    case MDC2:
-        md = "mdc2";
-        break;
+    switch(messageDigest)
+    {
+        case E_SHA1:
+            md = "sha1";
+            break;
+        case E_MD5:
+            md = "md5";
+            break;
+        case E_MDC2:
+            md = "mdc2";
+            break;
     }
     ca.getConfig()->setValue(type2Section(type, false), "default_md", md);
 

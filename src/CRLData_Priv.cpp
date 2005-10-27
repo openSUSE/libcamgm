@@ -186,7 +186,7 @@ CRLData_Priv::CRLData_Priv(const ByteBuffer &crl,
 
     unsigned char *d = (unsigned char*)crl.data();
 
-    if( formatType == PEM ) {
+    if( formatType == E_PEM ) {
 
         // load the crl into a memory bio
         bio = BIO_new_mem_buf(d, crl.size());
@@ -422,15 +422,15 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
     
     if(sbuf.equalsIgnoreCase("sha1WithRSAEncryption") ) {
         
-        signatureAlgorithm = SHA1RSA;
+        signatureAlgorithm = E_SHA1RSA;
         
     } else if(sbuf.equalsIgnoreCase("md5WithRSAEncryption") ) {
         
-        signatureAlgorithm = MD5RSA;
+        signatureAlgorithm = E_MD5RSA;
         
     } else if(sbuf.equalsIgnoreCase("dsaWithSHA1") ) {
         
-        signatureAlgorithm = SHA1DSA;
+        signatureAlgorithm = E_SHA1DSA;
         
     } else {
         
