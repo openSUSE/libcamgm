@@ -66,15 +66,15 @@ int main(int argc, char **argv)
             
             if(params[1] == "CA_Cert")
             {
-                cid = ca.getIssueDefaults(CA_Cert);
+                cid = ca.getIssueDefaults(E_CA_Cert);
             }
             else if(params[1] == "Server_Cert")
             {
-                cid = ca.getIssueDefaults(Server_Cert);
+                cid = ca.getIssueDefaults(E_Server_Cert);
             }
             else if(params[1] == "Client_Cert")
             {
-                cid = ca.getIssueDefaults(Client_Cert);
+                cid = ca.getIssueDefaults(E_Client_Cert);
             }
             else
             {

@@ -49,17 +49,17 @@ int main()
         
         cout << "==================== ca.exportCACert(PEM); ======================" << endl; 
 
-        ByteBuffer ba = ca.exportCACert(PEM);
+        ByteBuffer ba = ca.exportCACert(E_PEM);
         
-        CertificateData cd = LocalManagement::getCertificate(ba, PEM);
+        CertificateData cd = LocalManagement::getCertificate(ba, E_PEM);
 
         cout << "Subject: " << cd.getSubjectDN().getOpenSSLString() << endl;
 
         cout << "==================== ca.exportCACert(DER); ======================" << endl; 
 
-        ba = ca.exportCACert(DER);
+        ba = ca.exportCACert(E_DER);
         
-        cd = LocalManagement::getCertificate(ba, DER);
+        cd = LocalManagement::getCertificate(ba, E_DER);
 
         cout << "Subject: " << cd.getSubjectDN().getOpenSSLString() << endl;
 
@@ -160,17 +160,17 @@ int main()
 
         cout << "==================== ca.exportCertificate(PEM); ======================" << endl; 
 
-        ba = ca2.exportCertificate("01:9528e1d8783f83b662fca6085a8c1467-1111161258", PEM);
+        ba = ca2.exportCertificate("01:9528e1d8783f83b662fca6085a8c1467-1111161258", E_PEM);
         
-        cd = LocalManagement::getCertificate(ba, PEM);
+        cd = LocalManagement::getCertificate(ba, E_PEM);
 
         cout << "Subject: " << cd.getSubjectDN().getOpenSSLString() << endl;
 
         cout << "==================== ca.exportCertificate(DER); ======================" << endl; 
 
-        ba = ca2.exportCertificate("01:9528e1d8783f83b662fca6085a8c1467-1111161258", DER);
+        ba = ca2.exportCertificate("01:9528e1d8783f83b662fca6085a8c1467-1111161258", E_DER);
         
-        cd = LocalManagement::getCertificate(ba, DER);
+        cd = LocalManagement::getCertificate(ba, E_DER);
 
         cout << "Subject: " << cd.getSubjectDN().getOpenSSLString() << endl;
 
@@ -276,17 +276,17 @@ int main()
         
         cout << "==================== ca.exportCRL(PEM); ======================" << endl; 
         
-        ba = ca2.exportCRL(PEM);
+        ba = ca2.exportCRL(E_PEM);
         
-        CRLData crl = LocalManagement::getCRL(ba, PEM);
+        CRLData crl = LocalManagement::getCRL(ba, E_PEM);
 
         cout << "Issuer: " << crl.getIssuerDN().getOpenSSLString() << endl;
 
         cout << "==================== ca.exportCRL(DER); ======================" << endl; 
         
-        ba = ca2.exportCRL(DER);
+        ba = ca2.exportCRL(E_DER);
         
-        crl = LocalManagement::getCRL(ba, DER);
+        crl = LocalManagement::getCRL(ba, E_DER);
 
         cout << "Issuer: " << crl.getIssuerDN().getOpenSSLString() << endl;
 

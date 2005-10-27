@@ -39,7 +39,7 @@ int main()
         limal::Logger::setDefaultLogger(l);
         
         CA ca("Test_CA1", "system", "./TestRepos/");
-        RequestGenerationData rgd = ca.getRequestDefaults(Server_Req);
+        RequestGenerationData rgd = ca.getRequestDefaults(E_Server_Req);
 
         List<RDNObject> dnl = rgd.getSubject().getDN();
         List<RDNObject>::iterator dnit;
@@ -65,8 +65,8 @@ int main()
         DNObject dn(dnl);
         rgd.setSubject(dn);
 
-        CertificateIssueData cid = ca.getIssueDefaults(Server_Cert);
-        blocxx::String       c   = ca.createCertificate("system", rgd, cid, Server_Cert);
+        CertificateIssueData cid = ca.getIssueDefaults(E_Server_Cert);
+        blocxx::String       c   = ca.createCertificate("system", rgd, cid, E_Server_Cert);
 
         cout << "RETURN Certificate " << endl;
 

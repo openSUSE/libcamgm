@@ -39,7 +39,7 @@ int main()
         limal::Logger::setDefaultLogger(l);
         
         CA ca("Test_CA1", "system", "./TestRepos/");
-        RequestGenerationData rgd = ca.getRequestDefaults(CA_Req);
+        RequestGenerationData rgd = ca.getRequestDefaults(E_CA_Req);
 
         List<RDNObject> dnl = rgd.getSubject().getDN();
         List<RDNObject>::iterator dnit;
@@ -65,7 +65,7 @@ int main()
         DNObject dn(dnl);
         rgd.setSubject(dn);
 
-        CertificateIssueData cid = ca.getIssueDefaults(CA_Cert);
+        CertificateIssueData cid = ca.getIssueDefaults(E_CA_Cert);
         cid.setCertifiyPeriode(cid.getStartDate(), 
                                cid.getStartDate() + 63072000); // startDate + 2 Years
 

@@ -66,15 +66,15 @@ int main(int argc, char **argv)
         
             if(params[1] == "CA_Req")
             {
-                rgd = ca.getRequestDefaults(CA_Req);
+                rgd = ca.getRequestDefaults(E_CA_Req);
             }
             else if(params[1] == "Server_Req")
             {
-                rgd = ca.getRequestDefaults(Server_Req);
+                rgd = ca.getRequestDefaults(E_Server_Req);
             }
             else if(params[1] == "Client_Req")
             {
-                rgd = ca.getRequestDefaults(Client_Req);
+                rgd = ca.getRequestDefaults(E_Client_Req);
             }
             else
             {

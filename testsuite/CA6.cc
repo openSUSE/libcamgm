@@ -67,19 +67,19 @@ int main(int argc, char **argv)
     
             cout << "============= Test:" << params[0] << "=>" << params[1] << endl;
             
-            Type t = CA_Req;
+            Type t = E_CA_Req;
       
             if(params[1] == "CA_Cert")
             {
-                t = CA_Cert;
+                t = E_CA_Cert;
             }
             else if(params[1] == "Server_Cert")
             {
-                t = Server_Cert;
+                t = E_Server_Cert;
             }
             else if(params[1] == "Client_Cert")
             {
-                t = Client_Cert;
+                t = E_Client_Cert;
             }
             else
             {

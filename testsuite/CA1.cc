@@ -44,7 +44,7 @@ int main()
         
         cout << "======================== getRequestDefaults =================" << endl;
 
-        RequestGenerationData rgd = ca.getRequestDefaults(CA_Req);
+        RequestGenerationData rgd = ca.getRequestDefaults(E_CA_Req);
 
         cout << "======================== call verify() =================" << endl;
  
@@ -72,7 +72,7 @@ int main()
 
         cout << "======================== getIssueDefaults =================" << endl;
 
-        CertificateIssueData cid = ca.getIssueDefaults(CA_Cert);
+        CertificateIssueData cid = ca.getIssueDefaults(E_CA_Cert);
  
         cout << "======================== call verify() =================" << endl;
 

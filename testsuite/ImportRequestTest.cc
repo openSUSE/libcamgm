@@ -44,7 +44,7 @@ int main()
             CA ca("Test_CA1", "system", "./TestRepos/");
 
             blocxx::String name = ca.importRequest(blocxx::String("./TestRepos/importRequestTest.req"),
-                                                   PEM);
+                                                   E_PEM);
             
             path::PathInfo pi("./TestRepos/Test_CA1/req/" + name + ".req");
             if(pi.exists())
@@ -55,7 +55,7 @@ int main()
             sleep(1);
 
             name = ca.importRequest(blocxx::String("./TestRepos/c293624b6a877f401407ce8f8f1f327e.req"),
-                                    PEM);
+                                    E_PEM);
             
             path::PathInfo pi2("./TestRepos/Test_CA1/req/" + name + ".req");
             if(pi2.exists())
@@ -65,7 +65,7 @@ int main()
             sleep(1);
 
             name = ca.importRequest(blocxx::String("./TestRepos/importRequestTest-DER.req"),
-                                    DER);
+                                    E_DER);
             
             path::PathInfo pi3("./TestRepos/Test_CA1/req/" + name + ".req");
             if(pi3.exists())
