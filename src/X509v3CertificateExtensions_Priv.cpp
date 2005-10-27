@@ -40,67 +40,6 @@ namespace CA_MGM_NAMESPACE
 using namespace limal;
 using namespace blocxx;
 
-namespace
-{
-    inline LiteralValue gn2lv(GENERAL_NAME *gen)
-    {
-        char oline[256];
-        char *s = NULL;
-        unsigned char *p = NULL;
-        LiteralValue lv;
-        
-        switch (gen->type) {
-            
-            case GEN_EMAIL:
-                s = new char[gen->d.ia5->length +1];
-                memcpy(s, gen->d.ia5->data, gen->d.ia5->length);
-                s[gen->d.ia5->length] = '\0';
-                lv.setLiteral("email", s);
-                delete [] s;
-                break;
-                
-            case GEN_DNS:
-                s = new char[gen->d.ia5->length +1];
-                memcpy(s, gen->d.ia5->data, gen->d.ia5->length);
-                s[gen->d.ia5->length] = '\0';
-                lv.setLiteral("DNS", s);
-                delete [] s;
-                break;
-                
-            case GEN_URI:
-                s = new char[gen->d.ia5->length +1];
-                memcpy(s, gen->d.ia5->data, gen->d.ia5->length);
-                s[gen->d.ia5->length] = '\0';
-                lv.setLiteral("URI", s);
-                delete [] s;
-                break;
-                
-            case GEN_DIRNAME:
-                X509_NAME_oneline(gen->d.dirn, oline, 256);
-                lv.setLiteral("DirName", oline);
-                break;
-                
-            case GEN_IPADD:
-                p = gen->d.ip->data;
-                /* BUG: doesn't support IPV6 */
-                if(gen->d.ip->length != 4) {
-                    LOGIT_ERROR("Invalid IP Address: maybe IPv6");
-                    BLOCXX_THROW(limal::SyntaxException, "Invalid IP Address: maybe IPv6");
-                    break;
-                }
-                BIO_snprintf(oline, sizeof oline,
-                             "%d.%d.%d.%d", p[0], p[1], p[2], p[3]);
-                lv.setLiteral("IP", oline);
-                break;
-                
-            case GEN_RID:
-                i2t_ASN1_OBJECT(oline, 256, gen->d.rid);
-                lv.setLiteral("RID", oline);
-                break;
-        }
-        return lv;
-    }
-}
 
 X509v3CertificateExtensions_Priv::X509v3CertificateExtensions_Priv()
     : X509v3CertificateExtensions()
