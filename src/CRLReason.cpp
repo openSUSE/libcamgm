@@ -36,17 +36,29 @@ namespace CA_MGM_NAMESPACE
 using namespace limal;
 using namespace blocxx;
 
+// ----------------------------------------------------------------------------
+    
 CRLReason::CRLReason()
-    : reason(none), compromiseDate(0),
+    : reason("none"), compromiseDate(0),
       holdInstruction("holdInstructionNone")
 {
 }
 
-CRLReason::CRLReason(RevokeReason reason)
-    : reason(reason), compromiseDate(0),
+// ----------------------------------------------------------------------------
+
+CRLReason::CRLReason(const String& reason)
+    : compromiseDate(0),
       holdInstruction("holdInstructionNone")
 {
+    if(!checkReason(reason))
+    {
+        BLOCXX_THROW(limal::ValueException,
+                     Format("Invalid revoke reason: %1", reason).c_str());
+    }
+    this->reason = reason;
 }
+
+// ----------------------------------------------------------------------------
 
 CRLReason::CRLReason(const CRLReason& reason)
     : reason(reason.reason), compromiseDate(reason.compromiseDate),
@@ -54,8 +66,12 @@ CRLReason::CRLReason(const CRLReason& reason)
 {
 }
 
+// ----------------------------------------------------------------------------
+
 CRLReason::~CRLReason()
 {}
+
+// ----------------------------------------------------------------------------
 
 CRLReason&
 CRLReason::operator=(const CRLReason& reason)
@@ -69,51 +85,28 @@ CRLReason::operator=(const CRLReason& reason)
     return *this;
 }
 
+// ----------------------------------------------------------------------------
+
 void
-CRLReason::setReason(CRLReason::RevokeReason reason)
+CRLReason::setReason(const String& reason)
 {
+    if(!checkReason(reason))
+    {
+        BLOCXX_THROW(limal::ValueException,
+                     Format("Invalid revoke reason: %1", reason).c_str());
+    }
     this->reason = reason;
 }
 
-CRLReason::RevokeReason
+// ----------------------------------------------------------------------------
+
+blocxx::String
 CRLReason::getReason() const
 {
     return reason;
 }
 
-blocxx::String
-CRLReason::getReasonAsString() const
-{
-    switch( reason ) {
-    case unspecified:
-        return "unspecified";
-        break;
-    case keyCompromise:
-        return "keyCompromise";
-        break;
-    case CACompromise:
-        return "CACompromise";
-        break;
-    case affiliationChanged:
-        return "affiliationChanged";
-        break;
-    case superseded:
-        return "superseded";
-        break;
-    case cessationOfOperation:
-        return "cessationOfOperation";
-        break;
-    case certificateHold:
-        return "certificateHold";
-        break;
-    case removeFromCRL:
-        return "removeFromCRL";
-        break;
-    default:
-        return "none";
-    }    
-}
-
+// ----------------------------------------------------------------------------
 
 void
 CRLReason::setHoldInstruction(const String& holdInstruction)
@@ -127,16 +120,20 @@ CRLReason::setHoldInstruction(const String& holdInstruction)
     this->holdInstruction = holdInstruction;
 }
 
+// ----------------------------------------------------------------------------
+
 blocxx::String
 CRLReason::getHoldInstruction() const
 {
-    if(reason != CRLReason::certificateHold) {
+    if(!reason.equalsIgnoreCase("certificateHold"))
+    {
         LOGIT_ERROR("Reason is not certificateHold");
         BLOCXX_THROW(limal::RuntimeException, "Reason is not certificateHold");
     }
     return holdInstruction;
 }
 
+// ----------------------------------------------------------------------------
 
 void
 CRLReason::setKeyCompromiseDate(time_t compromiseDate)
@@ -144,20 +141,26 @@ CRLReason::setKeyCompromiseDate(time_t compromiseDate)
     this->compromiseDate  = compromiseDate;
 }
 
+// ----------------------------------------------------------------------------
+
 time_t
 CRLReason::getKeyCompromiseDate() const
 {
-    if(reason != CRLReason::keyCompromise) {
+    if(!reason.equalsIgnoreCase("keyCompromise"))
+    {
         LOGIT_ERROR("Reason is not keyCompromise");
         BLOCXX_THROW(limal::RuntimeException, "Reason is not keyCompromise");
     }
     return compromiseDate;
 }
 
+// ----------------------------------------------------------------------------
+
 blocxx::String
 CRLReason::getKeyCompromiseDateAsString() const
 {
-    if(reason != CRLReason::keyCompromise) {
+    if(!reason.equalsIgnoreCase("keyCompromise"))
+    {
         LOGIT_ERROR("Reason is not keyCompromise");
         BLOCXX_THROW(limal::RuntimeException, "Reason is not keyCompromise");
     }
@@ -166,6 +169,8 @@ CRLReason::getKeyCompromiseDateAsString() const
 
     return time;
 }
+
+// ----------------------------------------------------------------------------
 
 void
 CRLReason::setCACompromiseDate(time_t compromiseDate)
@@ -173,20 +178,26 @@ CRLReason::setCACompromiseDate(time_t compromiseDate)
     this->compromiseDate  = compromiseDate;
 }
 
+// ----------------------------------------------------------------------------
+
 time_t
 CRLReason::getCACompromiseDate() const
 {
-    if(reason != CRLReason::CACompromise) {
+    if(!reason.equalsIgnoreCase("CACompromise"))
+    {
         LOGIT_ERROR("Reason is not CACompromise");
         BLOCXX_THROW(limal::RuntimeException, "Reason is not CACompromise");
     }
     return compromiseDate;
 }
 
+// ----------------------------------------------------------------------------
+
 blocxx::String
 CRLReason::getCACompromiseDateAsString() const
 {
-    if(reason != CRLReason::CACompromise) {
+    if(!reason.equalsIgnoreCase("CACompromise"))
+    {
         LOGIT_ERROR("Reason is not CACompromise");
         BLOCXX_THROW(limal::RuntimeException, "Reason is not CACompromise");
     }
@@ -196,58 +207,62 @@ CRLReason::getCACompromiseDateAsString() const
     return time;
 }
 
+// ----------------------------------------------------------------------------
+
 bool
 CRLReason::valid() const
 {
-    String r;
-
-    switch(reason) {
-    case CRLReason::certificateHold:
-        r = checkHoldInstruction(holdInstruction);
+    if(reason.equalsIgnoreCase("certificateHold"))
+    {
+        String r = checkHoldInstruction(holdInstruction);
         if(!r.empty()) {
             LOGIT_DEBUG(r);
             return false;
         }
-        break;
-    case CRLReason::keyCompromise:
-    case CRLReason::CACompromise:
+    }
+    else if(reason.equalsIgnoreCase("keyCompromise") ||
+            reason.equalsIgnoreCase("CACompromise"))
+    {
         if(compromiseDate == 0) {
             LOGIT_DEBUG("invalid compromiseDate");
             return false;
         }
-        break;
-    default:
-        return true;
     }
-    return true;
+    return checkReason(reason);
 }
+
+// ----------------------------------------------------------------------------
 
 blocxx::StringArray
 CRLReason::verify() const
 {
     StringArray result;
-    String err;
 
-    switch(reason) {
-    case CRLReason::certificateHold:
-        err = checkHoldInstruction(holdInstruction);
+    if(reason.equalsIgnoreCase("certificateHold"))
+    {
+        String err = checkHoldInstruction(holdInstruction);
         if(!err.empty()) {
             result.append(err);
         }
-        break;
-    case CRLReason::keyCompromise:
-    case CRLReason::CACompromise:
+    }
+    else if(reason.equalsIgnoreCase("keyCompromise") ||
+            reason.equalsIgnoreCase("CACompromise"))
+    {
         if(compromiseDate == 0) {
-            result.append("invalid compromiseDate");
+            result.append(Format("invalid compromiseDate: %1",
+                                 String(compromiseDate)));
         }
-        break;
-    default:
-        break;
-    } 
-
+    }
+    else if(!checkReason(reason))
+    {
+        result.append(Format("Invalid revoke reason", reason));
+    }
+    
     LOGIT_DEBUG_STRINGARRAY("CRLReason::verify()", result);
     return result;
 }
+
+// ----------------------------------------------------------------------------
 
 blocxx::StringArray
 CRLReason::dump() const
@@ -255,35 +270,35 @@ CRLReason::dump() const
     StringArray result;
     result.append("CRLReason::dump()");
 
-    switch(reason) {
-    case CRLReason::certificateHold:
+    if(reason.equalsIgnoreCase("certificateHold"))
+    {
         result.append("Revoke Reason = certificateHold");
         result.append("hold Instruction =" + holdInstruction);
-
-        break;
-    case CRLReason::keyCompromise:
-        result.append("Revoke Reason = keyCompromise");
-        result.append("compromise Date =" + String(compromiseDate));
-        break;
-    case CRLReason::CACompromise:
-        result.append("Revoke Reason = CACompromise");
-        result.append("compromise Date =" + String(compromiseDate));
-        break;
-    default:
+    }
+    else if(reason.equalsIgnoreCase("keyCompromise") ||
+            reason.equalsIgnoreCase("CACompromise"))
+    {
+        result.append(Format("Revoke Reason = %1", reason));
+        result.append("compromise Date = " + String(compromiseDate));
+    }
+    else
+    {
         result.append("Revoke Reason = " + String(reason));
-        break;
     } 
-
+    
     return result;
 }
 
+// ----------------------------------------------------------------------------
+// private:
+// ----------------------------------------------------------------------------
 
 blocxx::String
 CRLReason::checkHoldInstruction(const String& hi) const
 {
-    if(hi != "holdInstructionNone"       &&
-       hi != "holdInstructionCallIssuer" &&
-       hi != "holdInstructionReject"     &&
+    if(!hi.equalsIgnoreCase("holdInstructionNone")       &&
+       !hi.equalsIgnoreCase("holdInstructionCallIssuer") &&
+       !hi.equalsIgnoreCase("holdInstructionReject")     &&
        !initOIDCheck().isValid(hi)) {
         
         return (Format("Invalid holdInstruction: %1", hi).toString());
@@ -291,5 +306,27 @@ CRLReason::checkHoldInstruction(const String& hi) const
     return String();
 }
 
+// ----------------------------------------------------------------------------
+
+bool
+CRLReason::checkReason(const String& reason) const
+{
+    if(reason.equalsIgnoreCase("none")                 ||
+       reason.equalsIgnoreCase("unspecified")          ||
+       reason.equalsIgnoreCase("keyCompromise")        ||
+       reason.equalsIgnoreCase("CACompromise")         ||
+       reason.equalsIgnoreCase("affiliationChanged")   ||
+       reason.equalsIgnoreCase("superseded")           ||
+       reason.equalsIgnoreCase("cessationOfOperation") ||
+       reason.equalsIgnoreCase("certificateHold")      ||
+       reason.equalsIgnoreCase("removeFromCRL"))
+    {
+        return true;
+    }
+    return false;
+}
+
+// ----------------------------------------------------------------------------
+    
 }
 }

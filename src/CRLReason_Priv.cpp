@@ -50,15 +50,15 @@ CRLReason_Priv::CRLReason_Priv()
 CRLReason_Priv::CRLReason_Priv(STACK_OF(X509_EXTENSION) *stack)
     : CRLReason()
 {
-    for(int x = 0; x < sk_X509_EXTENSION_num(stack); x++) {
-        
+    for(int x = 0; x < sk_X509_EXTENSION_num(stack); x++)
+    {        
         X509_EXTENSION *xe = sk_X509_EXTENSION_value(stack, x);
 
-        int nid = 0;
-        String valueString;
-        char *value;
-        char obj_tmp[80];
-        BIO *out;
+        int             nid = 0;
+        String          valueString;
+        char           *value;
+        char            obj_tmp[80];
+        BIO            *out;
 
         i2t_ASN1_OBJECT(obj_tmp, 80, xe->object);
         nid = OBJ_txt2nid(obj_tmp);
@@ -76,65 +76,86 @@ CRLReason_Priv::CRLReason_Priv(STACK_OF(X509_EXTENSION) *stack)
 
         LOGIT_DEBUG("Value: " << valueString);
         
-        if(nid == NID_crl_reason) {
-            
-            if(valueString == "Unspecified") {
-                setReason(CRLReason::unspecified);
-            } else if(valueString == "Key Compromise") {
-                setReason(CRLReason::keyCompromise);
-            } else if(valueString == "CA Compromise") {
-                setReason(CRLReason::CACompromise);
-            } else if(valueString == "Affiliation Changed") {
-                setReason(CRLReason::affiliationChanged);
-            } else if(valueString == "Superseded") {
-                setReason(CRLReason::superseded);
-            } else if(valueString == "Cessation Of Operation") {
-                setReason(CRLReason::cessationOfOperation);
-            } else if(valueString == "Certificate Hold") {
-                setReason(CRLReason::certificateHold);
-            } else if(valueString == "Remove From CRL") {
-                setReason(CRLReason::removeFromCRL);
-            } else {
+        if(nid == NID_crl_reason)
+        {            
+            if(valueString == "Unspecified")
+            {
+                setReason("unspecified");
+            }
+            else if(valueString == "Key Compromise")
+            {
+                setReason("keyCompromise");
+            }
+            else if(valueString == "CA Compromise")
+            {
+                setReason("CACompromise");
+            }
+            else if(valueString == "Affiliation Changed")
+            {
+                setReason("affiliationChanged");
+            }
+            else if(valueString == "Superseded")
+            {
+                setReason("superseded");
+            }
+            else if(valueString == "Cessation Of Operation")
+            {
+                setReason("cessationOfOperation");
+            }
+            else if(valueString == "Certificate Hold")
+            {
+                setReason("certificateHold");
+            }
+            else if(valueString == "Remove From CRL")
+            {
+                setReason("removeFromCRL");
+            }
+            else
+            {
                 LOGIT_INFO("Unknown CRL reason:" << valueString);
             }
-        } else if(nid == NID_hold_instruction_code) {
-            
-            if(valueString == "Hold Instruction Call Issuer") {
-                
+        }
+        else if(nid == NID_hold_instruction_code)
+        {            
+            if(valueString == "Hold Instruction Call Issuer")
+            {                
                 setHoldInstruction("holdInstructionCallIssuer");
-                
-            } else if(valueString == "Hold Instruction None") {
-                
+            }
+            else if(valueString == "Hold Instruction None")
+            {                
                 setHoldInstruction("holdInstructionNone");
-                
-            } else if(valueString == "Hold Instruction Reject") {
-                
+            }
+            else if(valueString == "Hold Instruction Reject")
+            {                
                 setHoldInstruction("holdInstructionReject");
-                
-            } else {
-               
+            }
+            else
+            {               
                 // set an OID as hold instruction 
                 setHoldInstruction(valueString);
-                
             }
-        } else if(nid == NID_invalidity_date) {
-            
+        }
+        else if(nid == NID_invalidity_date)
+        {            
             // e.g. Aug 18 15:56:46 2005 GMT
             DateTime dtime(valueString);
             
-            if(getReason() == CRLReason::keyCompromise) {
-                
+            if(getReason().equalsIgnoreCase("keyCompromise"))
+            {                
                 setKeyCompromiseDate(dtime.get());
-                
-            } else if(getReason() == CRLReason::CACompromise) {
-                
+            }
+            else if(getReason().equalsIgnoreCase("CACompromise"))
+            {
                 setCACompromiseDate(dtime.get());
-                
-            } else {
+            }
+            else
+            {
                 LOGIT_INFO("Date with wrong reason");
             }
             
-        } else {
+        }
+        else
+        {
             LOGIT_INFO("Unsupported NID: " << nid);
         }
     }

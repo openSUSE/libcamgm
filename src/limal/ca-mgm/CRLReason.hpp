@@ -32,52 +32,59 @@ namespace CA_MGM_NAMESPACE {
 
     class CRLReason {
     public:
-        enum RevokeReason {
-            none,
-            unspecified,
-            keyCompromise,
-            CACompromise,
-            affiliationChanged,
-            superseded,
-            cessationOfOperation,
-            certificateHold,
-            removeFromCRL
-        };
 
         CRLReason();
-        CRLReason(RevokeReason reason);
+        CRLReason(const String& reason);
         CRLReason(const CRLReason& reason);
         virtual ~CRLReason();
 
         CRLReason& operator=(const CRLReason& reason);
 
-        void         setReason(RevokeReason reason);
-        RevokeReason getReason() const;
-        String       getReasonAsString() const;
+        void
+        setReason(const String& reason);
+        
+        String
+        getReason() const;
+        
+        void
+        setHoldInstruction(const String& holdInstruction);
+        
+        String
+        getHoldInstruction() const;
 
-        void   setHoldInstruction(const String& holdInstruction);
-        String getHoldInstruction() const;
+        void
+        setKeyCompromiseDate(time_t compromiseDate);
+        
+        time_t
+        getKeyCompromiseDate() const;
+        
+        String
+        getKeyCompromiseDateAsString() const;
 
-        void   setKeyCompromiseDate(time_t compromiseDate);
-        time_t getKeyCompromiseDate() const;
-        String getKeyCompromiseDateAsString() const;
+        void
+        setCACompromiseDate(time_t compromiseDate);
+        
+        time_t
+        getCACompromiseDate() const;
+        
+        String
+        getCACompromiseDateAsString() const;
 
-        void   setCACompromiseDate(time_t compromiseDate);
-        time_t getCACompromiseDate() const;
-        String getCACompromiseDateAsString() const;
+        virtual bool
+        valid() const;
+        
+        virtual blocxx::StringArray
+        verify() const;
 
-        virtual bool                 valid() const;
-        virtual blocxx::StringArray  verify() const;
-
-        virtual blocxx::StringArray  dump() const;
+        virtual blocxx::StringArray
+        dump() const;
 
     private:
 
-        RevokeReason reason;
+        String         reason;
 
         // used if reason is keyCompromise or CACompromise,
-
-        time_t compromiseDate;
+        time_t         compromiseDate;
 
         // used if reason is certificateHold
         // possible values: 
@@ -85,10 +92,15 @@ namespace CA_MGM_NAMESPACE {
         //    holdInstructionCallIssuer, 
         //    holdInstructionReject
         // or an OID
-        String holdInstruction;
+        String         holdInstruction;
 
-        blocxx::String         checkHoldInstruction(const String& hi) const;
         
+        blocxx::String
+        checkHoldInstruction(const String& hi) const;
+        
+        bool
+        checkReason(const String& reason) const;
+                
     };
 
 }

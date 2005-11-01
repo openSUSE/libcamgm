@@ -82,7 +82,7 @@ int main()
 
         // ------------------------ set a CRL reason -----------------------
 
-        CRLReason reason(CRLReason::certificateHold);
+        CRLReason reason("certificateHold");
         reason.setHoldInstruction("holdInstructionCallIssuer");
 
         // ------------------------ revoke the certificate -----------------
