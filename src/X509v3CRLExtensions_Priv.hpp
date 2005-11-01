@@ -31,22 +31,22 @@ namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
-    class X509v3CRLExtensions_Priv : public X509v3CRLExtensions {
+    class X509v3CRLExts_Priv : public X509v3CRLExts {
     public:
-        X509v3CRLExtensions_Priv();
-        X509v3CRLExtensions_Priv(STACK_OF(X509_EXTENSION) *extensions);
-        X509v3CRLExtensions_Priv(const X509v3CRLExtensions_Priv& extensions);
-        virtual ~X509v3CRLExtensions_Priv();
+        X509v3CRLExts_Priv();
+        X509v3CRLExts_Priv(STACK_OF(X509_EXTENSION) *extensions);
+        X509v3CRLExts_Priv(const X509v3CRLExts_Priv& extensions);
+        virtual ~X509v3CRLExts_Priv();
 
-        void     setAuthorityKeyIdentifier(const AuthorityKeyIdentifierExtension &ext);
-        void     setIssuerAlternativeName(const IssuerAlternativeNameExtension &ext);
+        void     setAuthorityKeyIdentifier(const AuthorityKeyIdentifierExt &ext);
+        void     setIssuerAlternativeName(const IssuerAlternativeNameExt &ext);
 
     private:
 
-        X509v3CRLExtensions_Priv& operator=(const X509v3CRLExtensions_Priv& extensions);
+        X509v3CRLExts_Priv& operator=(const X509v3CRLExts_Priv& extensions);
 
-        void parseIssuerAlternativeNameExtension(STACK_OF(X509_EXTENSION) *cert,
-                                                 IssuerAlternativeNameExtension &ext);
+        void parseIssuerAlternativeNameExt(STACK_OF(X509_EXTENSION) *cert,
+                                                 IssuerAlternativeNameExt &ext);
 
     };
 

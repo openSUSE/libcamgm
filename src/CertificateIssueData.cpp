@@ -39,14 +39,14 @@ using namespace blocxx;
 CertificateIssueData::CertificateIssueData()
     : notBefore(0), notAfter(0),
       messageDigest(E_SHA1),
-      extensions(X509v3CertificateIssueExtensions())
+      extensions(X509v3CertificateIssueExts())
 {
 }
 
 CertificateIssueData::CertificateIssueData(CAConfig* caConfig, Type type)
     : notBefore(0), notAfter(0), 
       messageDigest(E_SHA1),
-      extensions(X509v3CertificateIssueExtensions(caConfig, type))
+      extensions(X509v3CertificateIssueExts(caConfig, type))
 {
     notBefore = DateTime::getCurrent().get();
 
@@ -142,7 +142,7 @@ CertificateIssueData::getMessageDigest() const
 }
 
 void
-CertificateIssueData::setExtensions(const X509v3CertificateIssueExtensions& ext)
+CertificateIssueData::setExtensions(const X509v3CertificateIssueExts& ext)
 {
     StringArray r = ext.verify();
     if(!r.empty()) {
@@ -152,7 +152,7 @@ CertificateIssueData::setExtensions(const X509v3CertificateIssueExtensions& ext)
     extensions = ext;
 }
 
-X509v3CertificateIssueExtensions
+X509v3CertificateIssueExts
 CertificateIssueData::getExtensions() const
 {
     return extensions;

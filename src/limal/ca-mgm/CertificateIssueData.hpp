@@ -52,39 +52,55 @@ namespace CA_MGM_NAMESPACE
 
         virtual ~CertificateIssueData();
 
-        CertificateIssueData& operator=(const CertificateIssueData& data);
+        CertificateIssueData&
+        operator=(const CertificateIssueData& data);
 
-        void           setCertifiyPeriode(time_t start, time_t end);
-        time_t         getStartDate() const;
-        time_t         getEndDate() const;
+        void
+        setCertifiyPeriode(time_t start, time_t end);
+        
+        time_t
+        getStartDate() const;
+        
+        time_t
+        getEndDate() const;
 
         /**
          * Returns the start date as string for openssl (GMT)
          */ 
-        blocxx::String getStartDateAsString() const;
+        blocxx::String
+        getStartDateAsString() const;
 
         /**
          * Returns the end date as string for openssl (GMT)
          */ 
-        blocxx::String getEndDateAsString() const;
+        blocxx::String
+        getEndDateAsString() const;
 
-        void           setMessageDigest(MD md);
-        MD             getMessageDigest() const;
+        void
+        setMessageDigest(MD md);
+        
+        MD
+        getMessageDigest() const;
 
-        void           setExtensions(const X509v3CertificateIssueExtensions& ext);
-        X509v3CertificateIssueExtensions getExtensions() const;
+        void
+        setExtensions(const X509v3CertificateIssueExts& ext);
+        
+        X509v3CertificateIssueExts
+        getExtensions() const;
 
         /** 
          * Write memory data to config file
          */
-        void           commit2Config(CA& ca, Type type) const;
+        void
+        commit2Config(CA& ca, Type type) const;
 
         /**
          * Check if this object is valid
          *
          * @return true if this object is valid, otherwise false
          */
-        virtual bool                 valid() const;
+        virtual bool
+        valid() const;
 
         /**
          * Verify this object and return an Array with all
@@ -93,23 +109,24 @@ namespace CA_MGM_NAMESPACE
          * @return Array with error messages. If this Array is empty this
          * object is valid
          */
-        virtual blocxx::StringArray  verify() const;
+        virtual blocxx::StringArray
+        verify() const;
 
         /**
          * Return the content of this object for debugging
          */
-        virtual blocxx::StringArray  dump() const;
+        virtual blocxx::StringArray
+        dump() const;
 
     private:
-        time_t           notBefore;
-        time_t           notAfter;
+        time_t                     notBefore;
+        time_t                     notAfter;
 
-        // ???  KeyAlg           pubkeyAlgorithm; // at the beginning we only support rsa
+        // KeyAlg        pubkeyAlgorithm; // at the beginning we only support rsa
 
+        MD                         messageDigest; // parameter default_md
 
-        MD               messageDigest;           // parameter default_md
-
-        X509v3CertificateIssueExtensions extensions;
+        X509v3CertificateIssueExts extensions;
 
     };
 

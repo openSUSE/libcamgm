@@ -35,11 +35,11 @@ namespace CA_MGM_NAMESPACE
 using namespace limal;
 using namespace blocxx;
 
-BasicConstraintsExtension::BasicConstraintsExtension()
+BasicConstraintsExt::BasicConstraintsExt()
     : ExtensionBase(), ca(false), pathlen(-1)
 {}
 
-BasicConstraintsExtension::BasicConstraintsExtension(CAConfig* caConfig, Type type)
+BasicConstraintsExt::BasicConstraintsExt(CAConfig* caConfig, Type type)
     : ExtensionBase(), ca(false), pathlen(-1)
 {
     // These types are not supported by this object
@@ -72,22 +72,22 @@ BasicConstraintsExtension::BasicConstraintsExtension(CAConfig* caConfig, Type ty
     setPresent(p);
 }
 
-BasicConstraintsExtension::BasicConstraintsExtension(bool isCa, blocxx::Int32 pathLength)
+BasicConstraintsExt::BasicConstraintsExt(bool isCa, blocxx::Int32 pathLength)
     : ExtensionBase(), ca(isCa), pathlen(pathLength)
 {
     setPresent(true);
 }
 
-BasicConstraintsExtension::BasicConstraintsExtension(const BasicConstraintsExtension& extension)
+BasicConstraintsExt::BasicConstraintsExt(const BasicConstraintsExt& extension)
     : ExtensionBase(extension), ca(extension.ca), pathlen(extension.pathlen)
 {}
 
-BasicConstraintsExtension::~BasicConstraintsExtension()
+BasicConstraintsExt::~BasicConstraintsExt()
 {}
 
 
-BasicConstraintsExtension&
-BasicConstraintsExtension::operator=(const BasicConstraintsExtension& extension)
+BasicConstraintsExt&
+BasicConstraintsExt::operator=(const BasicConstraintsExt& extension)
 {
     if(this == &extension) return *this;
 
@@ -99,7 +99,7 @@ BasicConstraintsExtension::operator=(const BasicConstraintsExtension& extension)
 }
 
 void
-BasicConstraintsExtension::setBasicConstraints(bool isCa, blocxx::Int32 pathLength)
+BasicConstraintsExt::setBasicConstraints(bool isCa, blocxx::Int32 pathLength)
 {
     ca = isCa;
     pathlen = pathLength;
@@ -107,31 +107,31 @@ BasicConstraintsExtension::setBasicConstraints(bool isCa, blocxx::Int32 pathLeng
 }
 
 bool
-BasicConstraintsExtension::isCA() const
+BasicConstraintsExt::isCA() const
 {
     if(!isPresent()) {
-        LOGIT_ERROR("BasicConstraintsExtension is not present");
-        BLOCXX_THROW(limal::RuntimeException, "BasicConstraintsExtension is not present");
+        LOGIT_ERROR("BasicConstraintsExt is not present");
+        BLOCXX_THROW(limal::RuntimeException, "BasicConstraintsExt is not present");
     }
     return ca;
 }
 
 blocxx::Int32
-BasicConstraintsExtension::getPathLength() const
+BasicConstraintsExt::getPathLength() const
 {
     if(!isPresent()) {
-        LOGIT_ERROR("BasicConstraintsExtension is not present");
-        BLOCXX_THROW(limal::RuntimeException, "BasicConstraintsExtension is not present");
+        LOGIT_ERROR("BasicConstraintsExt is not present");
+        BLOCXX_THROW(limal::RuntimeException, "BasicConstraintsExt is not present");
     }
     return pathlen;
 }
 
 void
-BasicConstraintsExtension::commit2Config(CA& ca, Type type) const
+BasicConstraintsExt::commit2Config(CA& ca, Type type) const
 {
     if(!valid()) {
-        LOGIT_ERROR("invalid BasicConstraintsExtension object");
-        BLOCXX_THROW(limal::ValueException, "invalid BasicConstraintsExtension object");
+        LOGIT_ERROR("invalid BasicConstraintsExt object");
+        BLOCXX_THROW(limal::ValueException, "invalid BasicConstraintsExt object");
     }
 
     // This extension is not supported by type CRL
@@ -160,27 +160,27 @@ BasicConstraintsExtension::commit2Config(CA& ca, Type type) const
 }
 
 bool
-BasicConstraintsExtension::valid() const
+BasicConstraintsExt::valid() const
 {
     if(!isPresent()) {
-        LOGIT_DEBUG("return BasicConstraintsExtension::valid() is true");
+        LOGIT_DEBUG("return BasicConstraintsExt::valid() is true");
         return true;
     }
 
     if(ca && pathlen < -1) {
-        LOGIT_DEBUG("return BasicConstraintsExtension::valid() is false");
+        LOGIT_DEBUG("return BasicConstraintsExt::valid() is false");
         return false;
     }
     if(!ca && pathlen != -1) {
-        LOGIT_DEBUG("return BasicConstraintsExtension::valid() is false");
+        LOGIT_DEBUG("return BasicConstraintsExt::valid() is false");
         return false;
     }
-    LOGIT_DEBUG("return BasicConstraintsExtension::valid() is true");
+    LOGIT_DEBUG("return BasicConstraintsExt::valid() is true");
     return true;
 }
 
 blocxx::StringArray
-BasicConstraintsExtension::verify() const
+BasicConstraintsExt::verify() const
 {
     blocxx::StringArray result;
 
@@ -192,15 +192,15 @@ BasicConstraintsExtension::verify() const
     if(!ca && pathlen != -1) {
         result.append(Format("invalid value for pathLength(%1). Has to be -1", pathlen).toString());
     }
-    LOGIT_DEBUG_STRINGARRAY("BasicConstraintsExtension::verify()", result);
+    LOGIT_DEBUG_STRINGARRAY("BasicConstraintsExt::verify()", result);
     return result;
 }
 
 blocxx::StringArray
-BasicConstraintsExtension::dump() const
+BasicConstraintsExt::dump() const
 {
     StringArray result;
-    result.append("BasicConstraintsExtension::dump()");
+    result.append("BasicConstraintsExt::dump()");
 
     result.appendArray(ExtensionBase::dump());
     if(!isPresent()) return result;

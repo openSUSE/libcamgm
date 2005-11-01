@@ -41,102 +41,102 @@ using namespace limal;
 using namespace blocxx;
 
 
-X509v3CertificateExtensions_Priv::X509v3CertificateExtensions_Priv()
-    : X509v3CertificateExtensions()
+X509v3CertificateExts_Priv::X509v3CertificateExts_Priv()
+    : X509v3CertificateExts()
 {
 }
 
 
-X509v3CertificateExtensions_Priv::X509v3CertificateExtensions_Priv(STACK_OF(X509_EXTENSION) *extensions)
-    : X509v3CertificateExtensions()
+X509v3CertificateExts_Priv::X509v3CertificateExts_Priv(STACK_OF(X509_EXTENSION) *extensions)
+    : X509v3CertificateExts()
 {
-    // NsBaseUrlExtension         nsBaseUrl;
+    // NsBaseUrlExt         nsBaseUrl;
 
-    parseStringExtension(extensions, NID_netscape_base_url, nsBaseUrl);
+    parseStringExt(extensions, NID_netscape_base_url, nsBaseUrl);
 
-    // NsRevocationUrlExtension   nsRevocationUrl;
+    // NsRevocationUrlExt   nsRevocationUrl;
     
-    parseStringExtension(extensions, NID_netscape_revocation_url, nsRevocationUrl);
+    parseStringExt(extensions, NID_netscape_revocation_url, nsRevocationUrl);
 
-    // NsCaRevocationUrlExtension nsCaRevocationUrl;
+    // NsCaRevocationUrlExt nsCaRevocationUrl;
     
-    parseStringExtension(extensions, NID_netscape_ca_revocation_url,
+    parseStringExt(extensions, NID_netscape_ca_revocation_url,
                          nsCaRevocationUrl);
 
-    // NsRenewalUrlExtension      nsRenewalUrl;
+    // NsRenewalUrlExt      nsRenewalUrl;
 
-    parseStringExtension(extensions, NID_netscape_renewal_url, nsRenewalUrl);
+    parseStringExt(extensions, NID_netscape_renewal_url, nsRenewalUrl);
 
-    // NsCaPolicyUrlExtension     nsCaPolicyUrl;
+    // NsCaPolicyUrlExt     nsCaPolicyUrl;
 
-    parseStringExtension(extensions, NID_netscape_ca_policy_url, nsCaPolicyUrl);
+    parseStringExt(extensions, NID_netscape_ca_policy_url, nsCaPolicyUrl);
 
-    // NsSslServerNameExtension   nsSslServerName;
+    // NsSslServerNameExt   nsSslServerName;
 
-    parseStringExtension(extensions, NID_netscape_ssl_server_name, nsSslServerName);
+    parseStringExt(extensions, NID_netscape_ssl_server_name, nsSslServerName);
 
-    // NsCommentExtension         nsComment;
+    // NsCommentExt         nsComment;
 
-    parseStringExtension(extensions, NID_netscape_comment, nsComment);
+    parseStringExt(extensions, NID_netscape_comment, nsComment);
 
-    // KeyUsageExtension   keyUsage;
+    // KeyUsageExt   keyUsage;
 
-    parseBitExtension(extensions, NID_key_usage, keyUsage);
+    parseBitExt(extensions, NID_key_usage, keyUsage);
 
-    // NsCertTypeExtension nsCertType;
+    // NsCertTypeExt nsCertType;
 
-    parseBitExtension(extensions, NID_netscape_cert_type, nsCertType);
+    parseBitExt(extensions, NID_netscape_cert_type, nsCertType);
 
-    // BasicConstraintsExtension       basicConstraints;
+    // BasicConstraintsExt       basicConstraints;
 
-    parseBasicConstraintsExtension(extensions, basicConstraints);
+    parseBasicConstraintsExt(extensions, basicConstraints);
 
-    // ExtendedKeyUsageExtension       extendedKeyUsage;
+    // ExtendedKeyUsageExt       extendedKeyUsage;
 
     parseExtendedKeyUsageExt(extensions, extendedKeyUsage);
 
-    // SubjectKeyIdentifierExtension   subjectKeyIdentifier;
+    // SubjectKeyIdentifierExt   subjectKeyIdentifier;
 
-    parseSubjectKeyIdentifierExtension(extensions, subjectKeyIdentifier);
+    parseSubjectKeyIdentifierExt(extensions, subjectKeyIdentifier);
 
-    // AuthorityKeyIdentifierExtension authorityKeyIdentifier;
+    // AuthorityKeyIdentifierExt authorityKeyIdentifier;
 
-    authorityKeyIdentifier = AuthorityKeyIdentifierExtension_Priv(extensions);
+    authorityKeyIdentifier = AuthorityKeyIdentifierExt_Priv(extensions);
 
-    // SubjectAlternativeNameExtension subjectAlternativeName;
+    // SubjectAlternativeNameExt subjectAlternativeName;
 
-    parseSubjectAlternativeNameExtension(extensions, subjectAlternativeName);
+    parseSubjectAlternativeNameExt(extensions, subjectAlternativeName);
 
-    // IssuerAlternativeNameExtension  issuerAlternativeName;
+    // IssuerAlternativeNameExt  issuerAlternativeName;
 
-    parseIssuerAlternativeNameExtension(extensions, issuerAlternativeName);
+    parseIssuerAlternativeNameExt(extensions, issuerAlternativeName);
 
-    // AuthorityInfoAccessExtension    authorityInfoAccess;
+    // AuthorityInfoAccessExt    authorityInfoAccess;
 
-    parseAuthorityInfoAccessExtension(extensions, authorityInfoAccess);
+    parseAuthorityInfoAccessExt(extensions, authorityInfoAccess);
 
-    // CRLDistributionPointsExtension  crlDistributionPoints;
+    // CRLDistributionPointsExt  crlDistributionPoints;
     
-    parseCRLDistributionPointsExtension(extensions, crlDistributionPoints);
+    parseCRLDistributionPointsExt(extensions, crlDistributionPoints);
 
-    // CertificatePoliciesExtension    certificatePolicies;
+    // CertificatePoliciesExt    certificatePolicies;
 
-    parseCertificatePoliciesExtension(extensions, certificatePolicies);
+    parseCertificatePoliciesExt(extensions, certificatePolicies);
 
 }
 
-X509v3CertificateExtensions_Priv::X509v3CertificateExtensions_Priv(const X509v3CertificateExtensions_Priv& extensions)
-    : X509v3CertificateExtensions(extensions)
+X509v3CertificateExts_Priv::X509v3CertificateExts_Priv(const X509v3CertificateExts_Priv& extensions)
+    : X509v3CertificateExts(extensions)
 {
 }
 
 
-X509v3CertificateExtensions_Priv::~X509v3CertificateExtensions_Priv()
+X509v3CertificateExts_Priv::~X509v3CertificateExts_Priv()
 {
 }
 
 void
-X509v3CertificateExtensions_Priv::setNsBaseUrl(const NsBaseUrlExtension &ext)
+X509v3CertificateExts_Priv::setNsBaseUrl(const NsBaseUrlExt &ext)
 {
     StringArray r = ext.verify();
     if(!r.empty())
@@ -148,7 +148,7 @@ X509v3CertificateExtensions_Priv::setNsBaseUrl(const NsBaseUrlExtension &ext)
 }
 
 void
-X509v3CertificateExtensions_Priv::setNsRevocationUrl(const NsRevocationUrlExtension &ext)
+X509v3CertificateExts_Priv::setNsRevocationUrl(const NsRevocationUrlExt &ext)
 {
     StringArray r = ext.verify();
     if(!r.empty())
@@ -160,7 +160,7 @@ X509v3CertificateExtensions_Priv::setNsRevocationUrl(const NsRevocationUrlExtens
 }
 
 void
-X509v3CertificateExtensions_Priv::setNsCaRevocationUrl(const NsCaRevocationUrlExtension &ext)
+X509v3CertificateExts_Priv::setNsCaRevocationUrl(const NsCaRevocationUrlExt &ext)
 {
     StringArray r = ext.verify();
     if(!r.empty())
@@ -172,7 +172,7 @@ X509v3CertificateExtensions_Priv::setNsCaRevocationUrl(const NsCaRevocationUrlEx
 }
 
 void
-X509v3CertificateExtensions_Priv::setNsRenewalUrl(const NsRenewalUrlExtension &ext)
+X509v3CertificateExts_Priv::setNsRenewalUrl(const NsRenewalUrlExt &ext)
 {
     StringArray r = ext.verify();
     if(!r.empty())
@@ -184,7 +184,7 @@ X509v3CertificateExtensions_Priv::setNsRenewalUrl(const NsRenewalUrlExtension &e
 }
 
 void
-X509v3CertificateExtensions_Priv::setNsCaPolicyUrl(const NsCaPolicyUrlExtension &ext)
+X509v3CertificateExts_Priv::setNsCaPolicyUrl(const NsCaPolicyUrlExt &ext)
 {
     StringArray r = ext.verify();
     if(!r.empty())
@@ -196,7 +196,7 @@ X509v3CertificateExtensions_Priv::setNsCaPolicyUrl(const NsCaPolicyUrlExtension 
 }
 
 void
-X509v3CertificateExtensions_Priv::setNsSslServerName(const NsSslServerNameExtension &ext)
+X509v3CertificateExts_Priv::setNsSslServerName(const NsSslServerNameExt &ext)
 {
     StringArray r = ext.verify();
     if(!r.empty())
@@ -208,7 +208,7 @@ X509v3CertificateExtensions_Priv::setNsSslServerName(const NsSslServerNameExtens
 }
 
 void
-X509v3CertificateExtensions_Priv::setNsComment(const NsCommentExtension &ext)
+X509v3CertificateExts_Priv::setNsComment(const NsCommentExt &ext)
 {
     StringArray r = ext.verify();
     if(!r.empty())
@@ -220,7 +220,7 @@ X509v3CertificateExtensions_Priv::setNsComment(const NsCommentExtension &ext)
 }
 
 void
-X509v3CertificateExtensions_Priv::setNsCertType(const NsCertTypeExtension &ext)
+X509v3CertificateExts_Priv::setNsCertType(const NsCertTypeExt &ext)
 {
     StringArray r = ext.verify();
     if(!r.empty())
@@ -232,7 +232,7 @@ X509v3CertificateExtensions_Priv::setNsCertType(const NsCertTypeExtension &ext)
 }
 
 void
-X509v3CertificateExtensions_Priv::setKeyUsage(const KeyUsageExtension &ext)
+X509v3CertificateExts_Priv::setKeyUsage(const KeyUsageExt &ext)
 {
     StringArray r = ext.verify();
     if(!r.empty())
@@ -244,7 +244,7 @@ X509v3CertificateExtensions_Priv::setKeyUsage(const KeyUsageExtension &ext)
 }
 
 void
-X509v3CertificateExtensions_Priv::setBasicConstraints(const BasicConstraintsExtension &ext)
+X509v3CertificateExts_Priv::setBasicConstraints(const BasicConstraintsExt &ext)
 {
     StringArray r = ext.verify();
     if(!r.empty())
@@ -256,7 +256,7 @@ X509v3CertificateExtensions_Priv::setBasicConstraints(const BasicConstraintsExte
 }
 
 void
-X509v3CertificateExtensions_Priv::setExtendedKeyUsage(const ExtendedKeyUsageExt &ext)
+X509v3CertificateExts_Priv::setExtendedKeyUsage(const ExtendedKeyUsageExt &ext)
 {
     StringArray r = ext.verify();
     if(!r.empty())
@@ -268,7 +268,7 @@ X509v3CertificateExtensions_Priv::setExtendedKeyUsage(const ExtendedKeyUsageExt 
 }
 
 void
-X509v3CertificateExtensions_Priv::setSubjectKeyIdentifier(const SubjectKeyIdentifierExtension &ext)
+X509v3CertificateExts_Priv::setSubjectKeyIdentifier(const SubjectKeyIdentifierExt &ext)
 {
     StringArray r = ext.verify();
     if(!r.empty())
@@ -280,7 +280,7 @@ X509v3CertificateExtensions_Priv::setSubjectKeyIdentifier(const SubjectKeyIdenti
 }
 
 void
-X509v3CertificateExtensions_Priv::setAuthorityKeyIdentifier(const AuthorityKeyIdentifierExtension &ext)
+X509v3CertificateExts_Priv::setAuthorityKeyIdentifier(const AuthorityKeyIdentifierExt &ext)
 {
     StringArray r = ext.verify();
     if(!r.empty())
@@ -292,7 +292,7 @@ X509v3CertificateExtensions_Priv::setAuthorityKeyIdentifier(const AuthorityKeyId
 }
 
 void
-X509v3CertificateExtensions_Priv::setSubjectAlternativeName(const SubjectAlternativeNameExtension &ext)
+X509v3CertificateExts_Priv::setSubjectAlternativeName(const SubjectAlternativeNameExt &ext)
 {
     StringArray r = ext.verify();
     if(!r.empty())
@@ -304,7 +304,7 @@ X509v3CertificateExtensions_Priv::setSubjectAlternativeName(const SubjectAlterna
 }
 
 void
-X509v3CertificateExtensions_Priv::setIssuerAlternativeName(const IssuerAlternativeNameExtension &ext)
+X509v3CertificateExts_Priv::setIssuerAlternativeName(const IssuerAlternativeNameExt &ext)
 {
     StringArray r = ext.verify();
     if(!r.empty())
@@ -316,7 +316,7 @@ X509v3CertificateExtensions_Priv::setIssuerAlternativeName(const IssuerAlternati
 }
 
 void
-X509v3CertificateExtensions_Priv::setAuthorityInfoAccess(const AuthorityInfoAccessExtension &ext)
+X509v3CertificateExts_Priv::setAuthorityInfoAccess(const AuthorityInfoAccessExt &ext)
 {
     StringArray r = ext.verify();
     if(!r.empty())
@@ -328,7 +328,7 @@ X509v3CertificateExtensions_Priv::setAuthorityInfoAccess(const AuthorityInfoAcce
 }
 
 void
-X509v3CertificateExtensions_Priv::setCRLDistributionPoints(const CRLDistributionPointsExtension &ext)
+X509v3CertificateExts_Priv::setCRLDistributionPoints(const CRLDistributionPointsExt &ext)
 {
     StringArray r = ext.verify();
     if(!r.empty())
@@ -340,7 +340,7 @@ X509v3CertificateExtensions_Priv::setCRLDistributionPoints(const CRLDistribution
 }
 
 void
-X509v3CertificateExtensions_Priv::setCertificatePolicies(const CertificatePoliciesExtension &ext)
+X509v3CertificateExts_Priv::setCertificatePolicies(const CertificatePoliciesExt &ext)
 {
     StringArray r = ext.verify();
     if(!r.empty())
@@ -353,44 +353,48 @@ X509v3CertificateExtensions_Priv::setCertificatePolicies(const CertificatePolici
 
 
 //    private:
-X509v3CertificateExtensions_Priv&
-X509v3CertificateExtensions_Priv::operator=(const X509v3CertificateExtensions_Priv& extensions)
+X509v3CertificateExts_Priv&
+X509v3CertificateExts_Priv::operator=(const X509v3CertificateExts_Priv& extensions)
 {
     if(this == &extensions) return *this;
     
-    X509v3CertificateExtensions::operator=(extensions);
+    X509v3CertificateExts::operator=(extensions);
 
     return *this;
 }
 
-void X509v3CertificateExtensions_Priv::parseStringExtension(STACK_OF(X509_EXTENSION) * cert, 
-                                                            int nid,
-                                                            StringExtension &ext)
+void X509v3CertificateExts_Priv::parseStringExt(STACK_OF(X509_EXTENSION) * cert, 
+                                                int nid,
+                                                StringExtension &ext)
 {
     int crit = 0;
     
     ASN1_STRING *str = NULL;
     str = static_cast<ASN1_STRING *>(X509V3_get_d2i(cert, nid, &crit, NULL));
     
-    if(str == NULL) {
-        
-        if(crit == -1) {
+    if(str == NULL)
+    {
+        if(crit == -1)
+        {
             // extension not found
             ext.setPresent(false);
 
             return;
-
-        } else if(crit == -2) {
+        }
+        else if(crit == -2)
+        {
             // extension occurred more than once 
             LOGIT_ERROR("Extension occurred more than once: " << nid);
             BLOCXX_THROW(limal::SyntaxException,
-                         Format("Extension occurred more than once: %1", nid).c_str());
-
+                         Format("Extension occurred more than once: %1",
+                                nid).c_str());
         }
 
-        LOGIT_ERROR("Unable to parse the certificate (NID:" << nid << " Crit:" << crit << ")");
+        LOGIT_ERROR("Unable to parse the certificate (NID:" <<
+                    nid << " Crit:" << crit << ")");
         BLOCXX_THROW(limal::SyntaxException,
-                     Format("Unable to parse the certificate (NID: %1 Crit: %2)", nid, crit).c_str());
+                     Format("Unable to parse the certificate (NID: %1 Crit: %2)",
+                            nid, crit).c_str());
     } 
     
     char *s = new char[str->length +1];
@@ -401,50 +405,60 @@ void X509v3CertificateExtensions_Priv::parseStringExtension(STACK_OF(X509_EXTENS
 
     delete [] s;
 
-    if(crit == 1) {
+    if(crit == 1)
+    {
         ext.setCritical(true);
-    } else {
+    }
+    else
+    {
         ext.setCritical(false);
     }
 
     ASN1_STRING_free(str);
 }
 
-void X509v3CertificateExtensions_Priv::parseBitExtension(STACK_OF(X509_EXTENSION)* cert, 
-                                                         int nid,
-                                                         BitExtension &ext)
+void X509v3CertificateExts_Priv::parseBitExt(STACK_OF(X509_EXTENSION)* cert, 
+                                             int nid,
+                                             BitExtension &ext)
 {
     int crit = 0;
     
     ASN1_BIT_STRING *bit = NULL;
-    bit = static_cast<ASN1_BIT_STRING *>(X509V3_get_d2i(cert, nid, &crit, NULL));
+    bit = static_cast<ASN1_BIT_STRING *>(X509V3_get_d2i(cert,
+                                                        nid,
+                                                        &crit,
+                                                        NULL));
     
-    if(bit == NULL) {
-        
-        if(crit == -1) {
+    if(bit == NULL)
+    {
+        if(crit == -1)
+        {
             // extension not found
             ext.setPresent(false);
 
             return;
-
-        } else if(crit == -2) {
+        }
+        else if(crit == -2)
+        {
             // extension occurred more than once 
             LOGIT_ERROR("Extension occurred more than once: " << nid);
             BLOCXX_THROW(limal::SyntaxException,
-                         Format("Extension occurred more than once: %1", nid).c_str());
-
+                         Format("Extension occurred more than once: %1",
+                                nid).c_str());
         }
 
-        LOGIT_ERROR("Unable to parse the certificate (NID:" << nid << " Crit:" << crit << ")");
+        LOGIT_ERROR("Unable to parse the certificate (NID:" <<
+                    nid << " Crit:" << crit << ")");
         BLOCXX_THROW(limal::SyntaxException,
-                     Format("Unable to parse the certificate (NID: %1 Crit: %2)", nid, crit).c_str());
+                     Format("Unable to parse the certificate (NID: %1 Crit: %2)",
+                            nid, crit).c_str());
     } 
     
-    int len = bit->length -1;
+    int    len = bit->length -1;
     UInt32 ret = 0;
     
-    for(; len >= 0; --len) {
-        
+    for(; len >= 0; --len)
+    {
         int bits = bit->data[len];
         int shift = bits<<(len*8);
         ret |= shift;
@@ -452,9 +466,12 @@ void X509v3CertificateExtensions_Priv::parseBitExtension(STACK_OF(X509_EXTENSION
     
     ext.setValue(ret);
 
-    if(crit == 1) {
+    if(crit == 1)
+    {
         ext.setCritical(true);
-    } else {
+    }
+    else
+    {
         ext.setCritical(false);
     }
 
@@ -462,8 +479,8 @@ void X509v3CertificateExtensions_Priv::parseBitExtension(STACK_OF(X509_EXTENSION
 }
 
 void 
-X509v3CertificateExtensions_Priv::parseExtendedKeyUsageExt(STACK_OF(X509_EXTENSION)* cert,
-                                                           ExtendedKeyUsageExt &ext)
+X509v3CertificateExts_Priv::parseExtendedKeyUsageExt(STACK_OF(X509_EXTENSION)* cert,
+                                                     ExtendedKeyUsageExt &ext)
 {
     int crit = 0;
     
@@ -527,45 +544,50 @@ X509v3CertificateExtensions_Priv::parseExtendedKeyUsageExt(STACK_OF(X509_EXTENSI
 }
 
 void 
-X509v3CertificateExtensions_Priv::parseBasicConstraintsExtension(STACK_OF(X509_EXTENSION)* cert,
-                                                                 BasicConstraintsExtension &ext)
+X509v3CertificateExts_Priv::parseBasicConstraintsExt(STACK_OF(X509_EXTENSION)* cert,
+                                                     BasicConstraintsExt &ext)
 {
     int crit = 0;
     
     BASIC_CONSTRAINTS *bs = NULL;
-    bs = static_cast<BASIC_CONSTRAINTS *>(X509V3_get_d2i(cert, NID_basic_constraints, &crit, NULL));
+    bs = static_cast<BASIC_CONSTRAINTS *>(X509V3_get_d2i(cert,
+                                                         NID_basic_constraints,
+                                                         &crit, NULL));
     
-    if(bs == NULL) {
-        
-        if(crit == -1) {
+    if(bs == NULL)
+    {
+        if(crit == -1)
+        {
             // extension not found
             ext.setPresent(false);
 
             return;
-
-        } else if(crit == -2) {
+        }
+        else if(crit == -2)
+        {
             // extension occurred more than once 
             LOGIT_ERROR("Extension occurred more than once");
             BLOCXX_THROW(limal::SyntaxException,
                          "Extension occurred more than once");
-
         }
 
         LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
         BLOCXX_THROW(limal::SyntaxException,
-                     Format("Unable to parse the certificate (Crit: %2)", crit).c_str());
+                     Format("Unable to parse the certificate (Crit: %2)",
+                            crit).c_str());
     }
 
     bool  ca = false;
     Int32 pl = -1;
 
-    if(bs->ca) {
-
+    if(bs->ca)
+    {
         ca = true;
 
-        if(bs->pathlen) {
-            if(bs->pathlen->type != V_ASN1_NEG_INTEGER) {
-
+        if(bs->pathlen)
+        {
+            if(bs->pathlen->type != V_ASN1_NEG_INTEGER)
+            {
                 pl = ASN1_INTEGER_get(bs->pathlen);
             }
         }
@@ -573,9 +595,12 @@ X509v3CertificateExtensions_Priv::parseBasicConstraintsExtension(STACK_OF(X509_E
 
     ext.setBasicConstraints(ca, pl);
 
-    if(crit == 1) {
+    if(crit == 1)
+    {
         ext.setCritical(true);
-    } else {
+    }
+    else
+    {
         ext.setCritical(false);
     }
 
@@ -583,55 +608,61 @@ X509v3CertificateExtensions_Priv::parseBasicConstraintsExtension(STACK_OF(X509_E
 }
 
 void 
-X509v3CertificateExtensions_Priv::parseSubjectKeyIdentifierExtension(STACK_OF(X509_EXTENSION) *cert, 
-                                                                     SubjectKeyIdentifierExtension &ext)
+X509v3CertificateExts_Priv::parseSubjectKeyIdentifierExt(STACK_OF(X509_EXTENSION) *cert, 
+                                                         SubjectKeyIdentifierExt &ext)
 {
     int crit = 0;
     
     ASN1_OCTET_STRING *ski = NULL;
-    ski = static_cast<ASN1_OCTET_STRING *>(X509V3_get_d2i(cert, NID_subject_key_identifier, &crit, NULL));
+    ski = static_cast<ASN1_OCTET_STRING *>(X509V3_get_d2i(cert,
+                                                          NID_subject_key_identifier,
+                                                          &crit, NULL));
     
-    if(ski == NULL) {
-        
-        if(crit == -1) {
+    if(ski == NULL)
+    {
+        if(crit == -1)
+        {
             // extension not found
             ext.setPresent(false);
 
             return;
-
-        } else if(crit == -2) {
+        }
+        else if(crit == -2)
+        {
             // extension occurred more than once 
             LOGIT_ERROR("Extension occurred more than once");
             BLOCXX_THROW(limal::SyntaxException,
                          "Extension occurred more than once");
-
         }
 
         LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
         BLOCXX_THROW(limal::SyntaxException,
-                     Format("Unable to parse the certificate (Crit: %2)", crit).c_str());
+                     Format("Unable to parse the certificate (Crit: %2)",
+                            crit).c_str());
     }
 
     String s;
 
-    for(int i = 0; i < ski->length; ++i) {
-
+    for(int i = 0; i < ski->length; ++i)
+    {
         String d;
         d.format("%02x", ski->data[i]);
 
         s += d;
-        if( (i+1) < ski->length) {
-
+        if( (i+1) < ski->length)
+        {
             s += ":";
-
         }
     }
 
     ext.setSubjectKeyIdentifier(false, s);
 
-    if(crit == 1) {
+    if(crit == 1)
+    {
         ext.setCritical(true);
-    } else {
+    }
+    else
+    {
         ext.setCritical(false);
     }
 
@@ -639,23 +670,27 @@ X509v3CertificateExtensions_Priv::parseSubjectKeyIdentifierExtension(STACK_OF(X5
 }
 
 void 
-X509v3CertificateExtensions_Priv::parseSubjectAlternativeNameExtension(STACK_OF(X509_EXTENSION) *cert,
-                                                                       SubjectAlternativeNameExtension &ext)
+X509v3CertificateExts_Priv::parseSubjectAlternativeNameExt(STACK_OF(X509_EXTENSION) *cert,
+                                                           SubjectAlternativeNameExt &ext)
 {
     int crit = 0;
     
     GENERAL_NAMES *gns = NULL;
-    gns = static_cast<GENERAL_NAMES *>(X509V3_get_d2i(cert, NID_subject_alt_name, &crit, NULL));
+    gns = static_cast<GENERAL_NAMES *>(X509V3_get_d2i(cert,
+                                                      NID_subject_alt_name,
+                                                      &crit, NULL));
     
-    if(gns == NULL) {
-        
-        if(crit == -1) {
+    if(gns == NULL)
+    {
+        if(crit == -1)
+        {
             // extension not found
             ext.setPresent(false);
 
             return;
-
-        } else if(crit == -2) {
+        }
+        else if(crit == -2)
+        {
             // extension occurred more than once 
             LOGIT_ERROR("Extension occurred more than once");
             BLOCXX_THROW(limal::SyntaxException,
@@ -665,15 +700,16 @@ X509v3CertificateExtensions_Priv::parseSubjectAlternativeNameExtension(STACK_OF(
 
         LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
         BLOCXX_THROW(limal::SyntaxException,
-                     Format("Unable to parse the certificate (Crit: %2)", crit).c_str());
+                     Format("Unable to parse the certificate (Crit: %2)",
+                            crit).c_str());
     }
     
     int j;
     GENERAL_NAME *gen;
     blocxx::List<LiteralValue> lvList;
 
-    for(j = 0; j < sk_GENERAL_NAME_num(gns); j++) {
-
+    for(j = 0; j < sk_GENERAL_NAME_num(gns); j++)
+    {
         gen = sk_GENERAL_NAME_value(gns, j);
 
         LiteralValue lv = gn2lv(gen);
@@ -681,61 +717,68 @@ X509v3CertificateExtensions_Priv::parseSubjectAlternativeNameExtension(STACK_OF(
         lvList.push_back(lv);
     }
 
-    if(crit == 1) {
+    if(crit == 1)
+    {
         ext.setCritical(true);
-    } else {
+    }
+    else
+    {
         ext.setCritical(false);
     }
 
-    if(!lvList.empty()) {
-
+    if(!lvList.empty())
+    {
         ext.setSubjectAlternativeName(false, lvList);
-
-    } else {
-        
+    }
+    else
+    {
         ext.setPresent(false);
-
     }
 
     GENERAL_NAMES_free(gns);
 }
 
 void 
-X509v3CertificateExtensions_Priv::parseIssuerAlternativeNameExtension(STACK_OF(X509_EXTENSION) *cert,
-                                                                      IssuerAlternativeNameExtension &ext)
+X509v3CertificateExts_Priv::parseIssuerAlternativeNameExt(STACK_OF(X509_EXTENSION) *cert,
+                                                          IssuerAlternativeNameExt &ext)
 {
     int crit = 0;
     
     GENERAL_NAMES *gns = NULL;
-    gns = static_cast<GENERAL_NAMES *>(X509V3_get_d2i(cert, NID_issuer_alt_name, &crit, NULL));
+    gns = static_cast<GENERAL_NAMES *>(X509V3_get_d2i(cert,
+                                                      NID_issuer_alt_name,
+                                                      &crit, NULL));
     
-    if(gns == NULL) {
+    if(gns == NULL)
+    {
         
-        if(crit == -1) {
+        if(crit == -1)
+        {
             // extension not found
             ext.setPresent(false);
 
             return;
-
-        } else if(crit == -2) {
+        }
+        else if(crit == -2)
+        {
             // extension occurred more than once 
             LOGIT_ERROR("Extension occurred more than once");
             BLOCXX_THROW(limal::SyntaxException,
                          "Extension occurred more than once");
-
         }
 
         LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
         BLOCXX_THROW(limal::SyntaxException,
-                     Format("Unable to parse the certificate (Crit: %2)", crit).c_str());
+                     Format("Unable to parse the certificate (Crit: %2)",
+                            crit).c_str());
     }
     
     int j;
     GENERAL_NAME *gen;
     blocxx::List<LiteralValue> lvList;
 
-    for(j = 0; j < sk_GENERAL_NAME_num(gns); j++) {
-
+    for(j = 0; j < sk_GENERAL_NAME_num(gns); j++)
+    {
         gen = sk_GENERAL_NAME_value(gns, j);
 
         LiteralValue lv = gn2lv(gen);
@@ -743,45 +786,50 @@ X509v3CertificateExtensions_Priv::parseIssuerAlternativeNameExtension(STACK_OF(X
         lvList.push_back(lv);
     }
 
-    if(crit == 1) {
+    if(crit == 1)
+    {
         ext.setCritical(true);
-    } else {
+    }
+    else
+    {
         ext.setCritical(false);
     }
 
-    if(!lvList.empty()) {
-
+    if(!lvList.empty())
+    {
         ext.setCopyIssuer(false);
         ext.setAlternativeNameList(lvList);
-
-    } else {
-
+    }
+    else
+    {
         ext.setPresent(false);
-
     }
 
     GENERAL_NAMES_free(gns);
 }
 
 void 
-X509v3CertificateExtensions_Priv::parseCRLDistributionPointsExtension(STACK_OF(X509_EXTENSION) *cert,
-                                                                      CRLDistributionPointsExtension &ext)
+X509v3CertificateExts_Priv::parseCRLDistributionPointsExt(STACK_OF(X509_EXTENSION) *cert,
+                                                          CRLDistributionPointsExt &ext)
 {
     int crit = 0;
     
     CRL_DIST_POINTS *cdps = NULL;
-    cdps = static_cast<CRL_DIST_POINTS *>(X509V3_get_d2i(cert, NID_crl_distribution_points,
+    cdps = static_cast<CRL_DIST_POINTS *>(X509V3_get_d2i(cert,
+                                                         NID_crl_distribution_points,
                                                          &crit, NULL));
     
-    if(cdps == NULL) {
-        
-        if(crit == -1) {
+    if(cdps == NULL)
+    {
+        if(crit == -1)
+        {
             // extension not found
             ext.setPresent(false);
 
             return;
-
-        } else if(crit == -2) {
+        }
+        else if(crit == -2)
+        {
             // extension occurred more than once 
             LOGIT_ERROR("Extension occurred more than once");
             BLOCXX_THROW(limal::SyntaxException,
@@ -791,7 +839,8 @@ X509v3CertificateExtensions_Priv::parseCRLDistributionPointsExtension(STACK_OF(X
 
         LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
         BLOCXX_THROW(limal::SyntaxException,
-                     Format("Unable to parse the certificate (Crit: %2)", crit).c_str());
+                     Format("Unable to parse the certificate (Crit: %2)",
+                            crit).c_str());
     }
 
     DIST_POINT *point;
@@ -799,14 +848,19 @@ X509v3CertificateExtensions_Priv::parseCRLDistributionPointsExtension(STACK_OF(X
     GENERAL_NAME *gen;
     blocxx::List<LiteralValue> lvList;
 
-    for(i = 0; i < sk_DIST_POINT_num(cdps); i++) {
+    for(i = 0; i < sk_DIST_POINT_num(cdps); i++)
+    {
         point = sk_DIST_POINT_value(cdps, i);
-        if(point->distpoint) {
-            if(point->distpoint->type == 0) {
-                
-                for(j = 0; j < sk_GENERAL_NAME_num(point->distpoint->name.fullname); j++) {
-
-                    gen = sk_GENERAL_NAME_value(point->distpoint->name.fullname, j);
+        if(point->distpoint)
+        {
+            if(point->distpoint->type == 0)
+            {                
+                for(j = 0;
+                    j < sk_GENERAL_NAME_num(point->distpoint->name.fullname);
+                    j++)
+                {
+                    gen = sk_GENERAL_NAME_value(point->distpoint->name.fullname,
+                                                j);
                     
                     LiteralValue lv = gn2lv(gen);
                     
@@ -818,9 +872,12 @@ X509v3CertificateExtensions_Priv::parseCRLDistributionPointsExtension(STACK_OF(X
 
     ext.setCRLDistributionPoints(lvList);
 
-    if(crit == 1) {
+    if(crit == 1)
+    {
         ext.setCritical(true);
-    } else {
+    }
+    else
+    {
         ext.setCritical(false);
     }
 
@@ -828,29 +885,31 @@ X509v3CertificateExtensions_Priv::parseCRLDistributionPointsExtension(STACK_OF(X
 }
 
 void 
-X509v3CertificateExtensions_Priv::parseAuthorityInfoAccessExtension(STACK_OF(X509_EXTENSION) *cert,
-                                                                    AuthorityInfoAccessExtension &ext)
+X509v3CertificateExts_Priv::parseAuthorityInfoAccessExt(STACK_OF(X509_EXTENSION) *cert,
+                                                        AuthorityInfoAccessExt &ext)
 {
     int crit = 0;
     
     AUTHORITY_INFO_ACCESS *ainf = NULL;
-    ainf = static_cast<AUTHORITY_INFO_ACCESS *>(X509V3_get_d2i(cert, NID_info_access,
+    ainf = static_cast<AUTHORITY_INFO_ACCESS *>(X509V3_get_d2i(cert,
+                                                               NID_info_access,
                                                                &crit, NULL));
     
-    if(ainf == NULL) {
-        
-        if(crit == -1) {
+    if(ainf == NULL)
+    {
+        if(crit == -1)
+        {
             // extension not found
             ext.setPresent(false);
 
             return;
-
-        } else if(crit == -2) {
+        }
+        else if(crit == -2)
+        {
             // extension occurred more than once 
             LOGIT_ERROR("Extension occurred more than once");
             BLOCXX_THROW(limal::SyntaxException,
                          "Extension occurred more than once");
-
         }
 
         LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
@@ -865,15 +924,18 @@ X509v3CertificateExtensions_Priv::parseAuthorityInfoAccessExtension(STACK_OF(X50
     blocxx::List<AuthorityInformation> infolist;
 
 
-    for(i = 0; i < sk_ACCESS_DESCRIPTION_num(ainf); i++) {
+    for(i = 0; i < sk_ACCESS_DESCRIPTION_num(ainf); i++)
+    {
 
         desc = sk_ACCESS_DESCRIPTION_value(ainf, i);
 
         LiteralValue lv = gn2lv(desc->location);
        
-        if(!lv.valid()) {
+        if(!lv.valid())
+        {
             LOGIT_ERROR("Invalid location in authorityInfoAccess");
-            BLOCXX_THROW(limal::SyntaxException, "Invalid location in authorityInfoAccess");
+            BLOCXX_THROW(limal::SyntaxException,
+                         "Invalid location in authorityInfoAccess");
         }
 
         String method;
@@ -882,9 +944,12 @@ X509v3CertificateExtensions_Priv::parseAuthorityInfoAccessExtension(STACK_OF(X50
 
         int nid = OBJ_txt2nid(objtmp);
 
-        if(nid == 0) {
+        if(nid == 0)
+        {
             method = String(objtmp);
-        } else {
+        }
+        else
+        {
             method = String(OBJ_nid2sn(nid));
         }
 
@@ -895,9 +960,12 @@ X509v3CertificateExtensions_Priv::parseAuthorityInfoAccessExtension(STACK_OF(X50
 
     ext.setAuthorityInformation(infolist);
     
-    if(crit == 1) {
+    if(crit == 1)
+    {
         ext.setCritical(true);
-    } else {
+    }
+    else
+    {
         ext.setCritical(false);
     }
 
@@ -905,13 +973,14 @@ X509v3CertificateExtensions_Priv::parseAuthorityInfoAccessExtension(STACK_OF(X50
 }
 
 void 
-X509v3CertificateExtensions_Priv::parseCertificatePoliciesExtension(STACK_OF(X509_EXTENSION) *cert,
-                                                                    CertificatePoliciesExtension &ext)
+X509v3CertificateExts_Priv::parseCertificatePoliciesExt(STACK_OF(X509_EXTENSION) *cert,
+                                                        CertificatePoliciesExt &ext)
 {
     int crit = 0;
     
     CERTIFICATEPOLICIES *cps = NULL;
-    cps = static_cast<CERTIFICATEPOLICIES *>(X509V3_get_d2i(cert, NID_certificate_policies,
+    cps = static_cast<CERTIFICATEPOLICIES *>(X509V3_get_d2i(cert,
+                                                            NID_certificate_policies,
                                                             &crit, NULL));
     
     if(cps == NULL) {

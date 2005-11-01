@@ -48,24 +48,24 @@ Keysize = 2048
 MessageDigest = 0
 Challenge Password = 
 Unstructured Name = 
-X509v3RequestExtensions::dump()
-NsSslServerNameExtension::dump()
+X509v3RequestExts::dump()
+NsSslServerNameExt::dump()
 ExtensionBase::dump()
 is Present = false
-NsCommentExtension::dump()
+NsCommentExt::dump()
 ExtensionBase::dump()
 is Present = false
-KeyUsageExtension::dump()
+KeyUsageExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 KeyUsage = 0x00e0
-NsCertTypeExtension::dump()
+NsCertTypeExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 NsCertType = 0xb0
-BasicConstraintsExtension::dump()
+BasicConstraintsExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
@@ -74,10 +74,10 @@ pathlen = -1
 ExtendedKeyUsageExt::dump()
 ExtensionBase::dump()
 is Present = false
-SubjectKeyIdentifierExtension::dump()
+SubjectKeyIdentifierExt::dump()
 ExtensionBase::dump()
 is Present = false
-SubjectAlternativeNameExtension::dump()
+SubjectAlternativeNameExt::dump()
 ExtensionBase::dump()
 is Present = false
 creating CA object
@@ -128,33 +128,33 @@ Keysize = 2048
 MessageDigest = 2
 Challenge Password = 
 Unstructured Name = 
-X509v3RequestExtensions::dump()
-NsSslServerNameExtension::dump()
+X509v3RequestExts::dump()
+NsSslServerNameExt::dump()
 ExtensionBase::dump()
 is Present = false
-NsCommentExtension::dump()
+NsCommentExt::dump()
 ExtensionBase::dump()
 is Present = false
-KeyUsageExtension::dump()
+KeyUsageExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 KeyUsage = 0x00e0
-NsCertTypeExtension::dump()
+NsCertTypeExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 NsCertType = 0xa0
-BasicConstraintsExtension::dump()
+BasicConstraintsExt::dump()
 ExtensionBase::dump()
 is Present = false
 ExtendedKeyUsageExt::dump()
 ExtensionBase::dump()
 is Present = false
-SubjectKeyIdentifierExtension::dump()
+SubjectKeyIdentifierExt::dump()
 ExtensionBase::dump()
 is Present = false
-SubjectAlternativeNameExtension::dump()
+SubjectAlternativeNameExt::dump()
 ExtensionBase::dump()
 is Present = false
 DONE

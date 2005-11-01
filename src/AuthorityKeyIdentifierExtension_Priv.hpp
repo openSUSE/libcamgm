@@ -31,16 +31,16 @@ namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
-    class AuthorityKeyIdentifierExtension_Priv : public AuthorityKeyIdentifierExtension {
+    class AuthorityKeyIdentifierExt_Priv : public AuthorityKeyIdentifierExt {
     public:
 
-        AuthorityKeyIdentifierExtension_Priv();
-        AuthorityKeyIdentifierExtension_Priv(STACK_OF(X509_EXTENSION)* extensions);
-        AuthorityKeyIdentifierExtension_Priv(const AuthorityKeyIdentifierExtension_Priv& extension);
-        virtual ~AuthorityKeyIdentifierExtension_Priv();
+        AuthorityKeyIdentifierExt_Priv();
+        AuthorityKeyIdentifierExt_Priv(STACK_OF(X509_EXTENSION)* extensions);
+        AuthorityKeyIdentifierExt_Priv(const AuthorityKeyIdentifierExt_Priv& extension);
+        virtual ~AuthorityKeyIdentifierExt_Priv();
         
-        AuthorityKeyIdentifierExtension_Priv&
-        operator=(const AuthorityKeyIdentifierExtension_Priv& extension);
+        AuthorityKeyIdentifierExt_Priv&
+        operator=(const AuthorityKeyIdentifierExt_Priv& extension);
 
         void           setKeyID(const String& kid);
         void           setDirName(const String& dirName);

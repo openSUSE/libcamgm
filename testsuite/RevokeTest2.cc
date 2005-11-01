@@ -78,7 +78,7 @@ int main()
 
         cout << "Try to revoke it" << endl;
 
-        CRLReason reason(CRLReason::certificateHold);
+        CRLReason reason("certificateHold");
         reason.setHoldInstruction("holdInstructionCallIssuer");
 
         ca.revokeCertificate(c, reason);

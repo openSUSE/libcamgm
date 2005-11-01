@@ -29,15 +29,15 @@ DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=2 result=req_ca
 DEBUG ca-mgm - type2Section: type=2 result=req_ca
-DEBUG ca-mgm - return BasicConstraintsExtension::valid() is true
+DEBUG ca-mgm - return BasicConstraintsExt::valid() is true
 DEBUG ca-mgm - type2Section: type=2 result=req_ca
 DEBUG ca-mgm - type2Section: type=2 result=req_ca
-DEBUG ca-mgm - return BasicConstraintsExtension::valid() is true
+DEBUG ca-mgm - return BasicConstraintsExt::valid() is true
 DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
 DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
 DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
 DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
-DEBUG ca-mgm - return BasicConstraintsExtension::valid() is true
+DEBUG ca-mgm - return BasicConstraintsExt::valid() is true
 DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
 DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
 DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
@@ -110,15 +110,15 @@ DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=2 result=req_ca
 DEBUG ca-mgm - type2Section: type=2 result=req_ca
-DEBUG ca-mgm - return BasicConstraintsExtension::valid() is true
+DEBUG ca-mgm - return BasicConstraintsExt::valid() is true
 DEBUG ca-mgm - type2Section: type=2 result=req_ca
 DEBUG ca-mgm - type2Section: type=2 result=req_ca
-DEBUG ca-mgm - return BasicConstraintsExtension::valid() is true
+DEBUG ca-mgm - return BasicConstraintsExt::valid() is true
 DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
 DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
 DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
 DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
-DEBUG ca-mgm - return BasicConstraintsExtension::valid() is true
+DEBUG ca-mgm - return BasicConstraintsExt::valid() is true
 DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
 DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca
 DEBUG ca-mgm - type2Section: type=2 result=v3_req_ca

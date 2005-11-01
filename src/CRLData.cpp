@@ -192,7 +192,7 @@ CRLData::getSignature() const
     return signature;
 }
 
-X509v3CRLExtensions
+X509v3CRLExts
 CRLData::getExtensions() const
 {
     return extensions;
@@ -302,7 +302,7 @@ CRLData::CRLData()
     : version(0), lastUpdate(0),
       nextUpdate(0), issuer(DNObject()),
       signatureAlgorithm(E_SHA1RSA), signature(ByteBuffer()),
-      extensions(X509v3CRLExtensions_Priv()), 
+      extensions(X509v3CRLExts_Priv()), 
       revocationData(blocxx::Map<String, RevocationEntry>())
 {
 }

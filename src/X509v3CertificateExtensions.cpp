@@ -33,7 +33,7 @@ namespace CA_MGM_NAMESPACE
 using namespace limal;
 using namespace blocxx;
 
-X509v3CertificateExtensions::X509v3CertificateExtensions(const X509v3CertificateExtensions& extensions)
+X509v3CertificateExts::X509v3CertificateExts(const X509v3CertificateExts& extensions)
     : nsBaseUrl(extensions.nsBaseUrl),
       nsRevocationUrl(extensions.nsRevocationUrl),
       nsCaRevocationUrl(extensions.nsCaRevocationUrl),
@@ -55,12 +55,12 @@ X509v3CertificateExtensions::X509v3CertificateExtensions(const X509v3Certificate
 {
 }
 
-X509v3CertificateExtensions::~X509v3CertificateExtensions()
+X509v3CertificateExts::~X509v3CertificateExts()
 {
 }
 
-X509v3CertificateExtensions&
-X509v3CertificateExtensions::operator=(const X509v3CertificateExtensions& extensions)
+X509v3CertificateExts&
+X509v3CertificateExts::operator=(const X509v3CertificateExts& extensions)
 {
     if(this == &extensions) return *this;
 
@@ -86,116 +86,116 @@ X509v3CertificateExtensions::operator=(const X509v3CertificateExtensions& extens
     return *this;
 }
 
-NsBaseUrlExtension
-X509v3CertificateExtensions::getNsBaseUrl() const
+NsBaseUrlExt
+X509v3CertificateExts::getNsBaseUrl() const
 {
     return nsBaseUrl;
 }
 
-NsRevocationUrlExtension
-X509v3CertificateExtensions::getNsRevocationUrl() const
+NsRevocationUrlExt
+X509v3CertificateExts::getNsRevocationUrl() const
 {
     return nsRevocationUrl;
 }
 
-NsCaRevocationUrlExtension
-X509v3CertificateExtensions::getNsCaRevocationUrl() const
+NsCaRevocationUrlExt
+X509v3CertificateExts::getNsCaRevocationUrl() const
 {
     return nsCaRevocationUrl;
 }
 
-NsRenewalUrlExtension
-X509v3CertificateExtensions::getNsRenewalUrl() const
+NsRenewalUrlExt
+X509v3CertificateExts::getNsRenewalUrl() const
 {
     return nsRenewalUrl;
 }
 
-NsCaPolicyUrlExtension
-X509v3CertificateExtensions::getNsCaPolicyUrl() const
+NsCaPolicyUrlExt
+X509v3CertificateExts::getNsCaPolicyUrl() const
 {
     return nsCaPolicyUrl;
 }
 
-NsSslServerNameExtension
-X509v3CertificateExtensions::getNsSslServerName() const
+NsSslServerNameExt
+X509v3CertificateExts::getNsSslServerName() const
 {
     return nsSslServerName;
 }
 
-NsCommentExtension
-X509v3CertificateExtensions::getNsComment() const
+NsCommentExt
+X509v3CertificateExts::getNsComment() const
 {
     return nsComment;
 }
 
-NsCertTypeExtension
-X509v3CertificateExtensions::getNsCertType() const
+NsCertTypeExt
+X509v3CertificateExts::getNsCertType() const
 {
     return nsCertType;
 }
 
-KeyUsageExtension
-X509v3CertificateExtensions::getKeyUsage() const
+KeyUsageExt
+X509v3CertificateExts::getKeyUsage() const
 {
     return keyUsage;
 }
 
-BasicConstraintsExtension
-X509v3CertificateExtensions::getBasicConstraints() const
+BasicConstraintsExt
+X509v3CertificateExts::getBasicConstraints() const
 {
     return basicConstraints;
 }
 
 ExtendedKeyUsageExt
-X509v3CertificateExtensions::getExtendedKeyUsage() const
+X509v3CertificateExts::getExtendedKeyUsage() const
 {
     return extendedKeyUsage;
 }
 
-SubjectKeyIdentifierExtension
-X509v3CertificateExtensions::getSubjectKeyIdentifier() const
+SubjectKeyIdentifierExt
+X509v3CertificateExts::getSubjectKeyIdentifier() const
 {
     return subjectKeyIdentifier;
 }
 
-AuthorityKeyIdentifierExtension
-X509v3CertificateExtensions::getAuthorityKeyIdentifier() const
+AuthorityKeyIdentifierExt
+X509v3CertificateExts::getAuthorityKeyIdentifier() const
 {
     return authorityKeyIdentifier;
 }
 
-SubjectAlternativeNameExtension
-X509v3CertificateExtensions::getSubjectAlternativeName() const
+SubjectAlternativeNameExt
+X509v3CertificateExts::getSubjectAlternativeName() const
 {
     return subjectAlternativeName;
 }
 
-IssuerAlternativeNameExtension
-X509v3CertificateExtensions::getIssuerAlternativeName() const
+IssuerAlternativeNameExt
+X509v3CertificateExts::getIssuerAlternativeName() const
 {
     return issuerAlternativeName;
 }
 
-AuthorityInfoAccessExtension
-X509v3CertificateExtensions::getAuthorityInfoAccess() const
+AuthorityInfoAccessExt
+X509v3CertificateExts::getAuthorityInfoAccess() const
 {
     return authorityInfoAccess;
 }
 
-CRLDistributionPointsExtension
-X509v3CertificateExtensions::getCRLDistributionPoints() const
+CRLDistributionPointsExt
+X509v3CertificateExts::getCRLDistributionPoints() const
 {
     return crlDistributionPoints;
 }
 
-CertificatePoliciesExtension
-X509v3CertificateExtensions::getCertificatePolicies() const
+CertificatePoliciesExt
+X509v3CertificateExts::getCertificatePolicies() const
 {
     return certificatePolicies;
 }
 
 bool
-X509v3CertificateExtensions::valid() const
+X509v3CertificateExts::valid() const
 {
     if(!nsBaseUrl.valid()) return false;
     if(!nsRevocationUrl.valid()) return false;
@@ -219,7 +219,7 @@ X509v3CertificateExtensions::valid() const
 }
 
 blocxx::StringArray
-X509v3CertificateExtensions::verify() const
+X509v3CertificateExts::verify() const
 {
     StringArray result;
 
@@ -242,15 +242,15 @@ X509v3CertificateExtensions::verify() const
     result.appendArray(crlDistributionPoints.verify());
     result.appendArray(certificatePolicies.verify());
 
-    LOGIT_DEBUG_STRINGARRAY("X509v3CertificateExtensions::verify()", result);
+    LOGIT_DEBUG_STRINGARRAY("X509v3CertificateExts::verify()", result);
     return result;
 }
 
 blocxx::StringArray
-X509v3CertificateExtensions::dump() const
+X509v3CertificateExts::dump() const
 {
     StringArray result;
-    result.append("X509v3CertificateExtensions::dump()");
+    result.append("X509v3CertificateExts::dump()");
 
     result.appendArray(nsBaseUrl.dump());
     result.appendArray(nsRevocationUrl.dump());
@@ -275,7 +275,7 @@ X509v3CertificateExtensions::dump() const
 }
         
 //    protected:
-X509v3CertificateExtensions::X509v3CertificateExtensions()
+X509v3CertificateExts::X509v3CertificateExts()
 {
 }
 

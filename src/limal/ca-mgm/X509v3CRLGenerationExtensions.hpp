@@ -41,31 +41,44 @@ namespace CA_MGM_NAMESPACE
      *
      * This class includes a collection of X509v3 extension for generating CRLs
      */
-    class X509v3CRLGenerationExtensions {
+    class X509v3CRLGenerationExts {
     public:
-        X509v3CRLGenerationExtensions();
-        X509v3CRLGenerationExtensions(CAConfig* caConfig, Type type);
-        X509v3CRLGenerationExtensions(const X509v3CRLGenerationExtensions& extensions);
-        virtual ~X509v3CRLGenerationExtensions();
+        X509v3CRLGenerationExts();
+        X509v3CRLGenerationExts(CAConfig* caConfig, Type type);
+        X509v3CRLGenerationExts(const X509v3CRLGenerationExts& extensions);
+        virtual ~X509v3CRLGenerationExts();
 
-        X509v3CRLGenerationExtensions& operator=(const X509v3CRLGenerationExtensions& extension);
+        X509v3CRLGenerationExts&
+        operator=(const X509v3CRLGenerationExts& extension);
 
-        void                            setAuthorityKeyIdentifier(const AuthorityKeyIdentifierGenerateExtension &ext);
-        AuthorityKeyIdentifierGenerateExtension getAuthorityKeyIdentifier() const;
+        void
+        setAuthorityKeyIdentifier(const AuthorityKeyIdentifierGenerateExt &ext);
         
-        void                            setIssuerAlternativeName(const IssuerAlternativeNameExtension &ext);
-        IssuerAlternativeNameExtension  getIssuerAlternativeName() const;
+        AuthorityKeyIdentifierGenerateExt
+        getAuthorityKeyIdentifier() const;
         
-        void                            commit2Config(CA& ca, Type type) const;
+        void
+        setIssuerAlternativeName(const IssuerAlternativeNameExt &ext);
+        
+        IssuerAlternativeNameExt
+        getIssuerAlternativeName() const;
+        
+        void
+        commit2Config(CA& ca, Type type) const;
 
-        virtual bool                    valid() const;
-        virtual blocxx::StringArray     verify() const;
+        virtual bool
+        valid() const;
+        
+        virtual blocxx::StringArray
+        verify() const;
 
-        virtual blocxx::StringArray  dump() const;
+        virtual blocxx::StringArray
+        dump() const;
 
     private:
-        AuthorityKeyIdentifierGenerateExtension authorityKeyIdentifier;
-        IssuerAlternativeNameExtension          issuerAlternativeName;
+        
+        AuthorityKeyIdentifierGenerateExt authorityKeyIdentifier;
+        IssuerAlternativeNameExt          issuerAlternativeName;
 
     };
 

@@ -1199,7 +1199,7 @@ CA::importCA(const String& caName,
 
     CertificateData cad = CertificateData_Priv(caCertificate, E_PEM);
 
-    BasicConstraintsExtension bs = cad.getExtensions().getBasicConstraints();
+    BasicConstraintsExt bs = cad.getExtensions().getBasicConstraints();
 
     if(!bs.isPresent() || !bs.isCA()) {
 

@@ -175,15 +175,15 @@ operator<(const AuthorityInformation &l, const AuthorityInformation &r)
 
 // ###############################################################################
 
-AuthorityInfoAccessExtension::AuthorityInfoAccessExtension()
+AuthorityInfoAccessExt::AuthorityInfoAccessExt()
     : ExtensionBase()
 {}
 
-AuthorityInfoAccessExtension::AuthorityInfoAccessExtension(const AuthorityInfoAccessExtension& extension)
+AuthorityInfoAccessExt::AuthorityInfoAccessExt(const AuthorityInfoAccessExt& extension)
     : ExtensionBase(extension), info(extension.info)
 {}
 
-AuthorityInfoAccessExtension::AuthorityInfoAccessExtension(CAConfig* caConfig, Type type)
+AuthorityInfoAccessExt::AuthorityInfoAccessExt(CAConfig* caConfig, Type type)
     : ExtensionBase()
 {
     // These types are not supported by this object
@@ -216,10 +216,10 @@ AuthorityInfoAccessExtension::AuthorityInfoAccessExtension(CAConfig* caConfig, T
     setPresent(p);
 }
 
-AuthorityInfoAccessExtension::~AuthorityInfoAccessExtension() {}
+AuthorityInfoAccessExt::~AuthorityInfoAccessExt() {}
 
-AuthorityInfoAccessExtension& 
-AuthorityInfoAccessExtension::operator=(const AuthorityInfoAccessExtension& extension)
+AuthorityInfoAccessExt& 
+AuthorityInfoAccessExt::operator=(const AuthorityInfoAccessExt& extension)
 {
     if(this == &extension) return *this;
     
@@ -230,7 +230,7 @@ AuthorityInfoAccessExtension::operator=(const AuthorityInfoAccessExtension& exte
 }
 
 void
-AuthorityInfoAccessExtension::setAuthorityInformation(const blocxx::List<AuthorityInformation>& infolist)
+AuthorityInfoAccessExt::setAuthorityInformation(const blocxx::List<AuthorityInformation>& infolist)
 {
     blocxx::List<AuthorityInformation>::const_iterator it = infolist.begin();
     for(;it != infolist.end(); it++) {
@@ -244,21 +244,21 @@ AuthorityInfoAccessExtension::setAuthorityInformation(const blocxx::List<Authori
 }
 
 blocxx::List<AuthorityInformation>
-AuthorityInfoAccessExtension::getAuthorityInformation() const
+AuthorityInfoAccessExt::getAuthorityInformation() const
 {
     if(!isPresent()) {
-        LOGIT_ERROR("AuthorityInfoAccessExtension is not present");
-        BLOCXX_THROW(limal::RuntimeException, "AuthorityInfoAccessExtension is not present");
+        LOGIT_ERROR("AuthorityInfoAccessExt is not present");
+        BLOCXX_THROW(limal::RuntimeException, "AuthorityInfoAccessExt is not present");
     }
     return info;
 }
 
 void 
-AuthorityInfoAccessExtension::commit2Config(CA& ca, Type type) const
+AuthorityInfoAccessExt::commit2Config(CA& ca, Type type) const
 {
     if(!valid()) {
-        LOGIT_ERROR("invalid AuthorityInfoAccessExtension object");
-        BLOCXX_THROW(limal::ValueException, "invalid AuthorityInfoAccessExtension object");
+        LOGIT_ERROR("invalid AuthorityInfoAccessExt object");
+        BLOCXX_THROW(limal::ValueException, "invalid AuthorityInfoAccessExt object");
     }
 
     // These types are not supported by this object
@@ -287,30 +287,30 @@ AuthorityInfoAccessExtension::commit2Config(CA& ca, Type type) const
 }
 
 bool
-AuthorityInfoAccessExtension::valid() const
+AuthorityInfoAccessExt::valid() const
 {
     if(!isPresent()) {
-        LOGIT_DEBUG("return AuthorityInfoAccessExtension::valid() is true");
+        LOGIT_DEBUG("return AuthorityInfoAccessExt::valid() is true");
         return true;
     }
 
     if(info.empty()) {
-        LOGIT_DEBUG("return AuthorityInfoAccessExtension::valid() is false");
+        LOGIT_DEBUG("return AuthorityInfoAccessExt::valid() is false");
         return false;
     }
     blocxx::List<AuthorityInformation>::const_iterator it = info.begin();
     for(;it != info.end(); it++) {
         if(!(*it).valid()) {
-            LOGIT_DEBUG("return AuthorityInfoAccessExtension::valid() is false");
+            LOGIT_DEBUG("return AuthorityInfoAccessExt::valid() is false");
             return false;
         }
     }
-    LOGIT_DEBUG("return AuthorityInfoAccessExtension::valid() is true");
+    LOGIT_DEBUG("return AuthorityInfoAccessExt::valid() is true");
     return true;
 }
 
 blocxx::StringArray
-AuthorityInfoAccessExtension::verify() const
+AuthorityInfoAccessExt::verify() const
 {
     blocxx::StringArray result;
 
@@ -324,15 +324,15 @@ AuthorityInfoAccessExtension::verify() const
         result.appendArray((*it).verify());
     }
 
-    LOGIT_DEBUG_STRINGARRAY("AuthorityInfoAccessExtension::verify()", result);
+    LOGIT_DEBUG_STRINGARRAY("AuthorityInfoAccessExt::verify()", result);
     return result;
 }
 
 blocxx::StringArray
-AuthorityInfoAccessExtension::dump() const
+AuthorityInfoAccessExt::dump() const
 {
     StringArray result;
-    result.append("AuthorityInfoAccessExtension::dump()");
+    result.append("AuthorityInfoAccessExt::dump()");
 
     result.appendArray(ExtensionBase::dump());
     if(!isPresent()) return result;

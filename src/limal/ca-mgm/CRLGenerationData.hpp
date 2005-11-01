@@ -44,29 +44,41 @@ namespace CA_MGM_NAMESPACE
         CRLGenerationData();
         CRLGenerationData(CAConfig* caConfig, Type type);
         CRLGenerationData(blocxx::UInt32 hours, 
-                          const X509v3CRLGenerationExtensions& ext);
+                          const X509v3CRLGenerationExts& ext);
         CRLGenerationData(const CRLGenerationData& data);
         virtual ~CRLGenerationData();
         
-        CRLGenerationData& operator=(const CRLGenerationData& data);
+        CRLGenerationData&
+        operator=(const CRLGenerationData& data);
 
-        void                          setCRLLifeTime(blocxx::UInt32 hours);
-        blocxx::UInt32                getCRLLifeTime() const;
+        void
+        setCRLLifeTime(blocxx::UInt32 hours);
+        
+        blocxx::UInt32
+        getCRLLifeTime() const;
 
-        void                          setExtensions(const X509v3CRLGenerationExtensions& ext);
-        X509v3CRLGenerationExtensions getExtensions() const;
+        void
+        setExtensions(const X509v3CRLGenerationExts& ext);
+        
+        X509v3CRLGenerationExts
+        getExtensions() const;
 
-        void                          commit2Config(CA& ca, Type type) const;
+        void
+        commit2Config(CA& ca, Type type) const;
 
-        virtual bool                 valid() const;
-        virtual blocxx::StringArray  verify() const;
+        virtual bool
+        valid() const;
+        
+        virtual blocxx::StringArray
+        verify() const;
 
-        virtual blocxx::StringArray  dump() const;
+        virtual blocxx::StringArray
+        dump() const;
 
     private:
         blocxx::UInt32                crlHours;
 
-        X509v3CRLGenerationExtensions extensions;
+        X509v3CRLGenerationExts       extensions;
 
     };
 

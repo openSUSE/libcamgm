@@ -36,18 +36,18 @@ using namespace limal;
 using namespace blocxx;
 
 CRLGenerationData::CRLGenerationData()
-    : crlHours(0), extensions(X509v3CRLGenerationExtensions())
+    : crlHours(0), extensions(X509v3CRLGenerationExts())
 {
 }
 
 CRLGenerationData::CRLGenerationData(CAConfig* caConfig, Type type)
-    : crlHours(0), extensions(X509v3CRLGenerationExtensions(caConfig, type))
+    : crlHours(0), extensions(X509v3CRLGenerationExts(caConfig, type))
 {
     crlHours = caConfig->getValue(type2Section(type, false), "default_crl_hours").toUInt32();
 }
 
 CRLGenerationData::CRLGenerationData(blocxx::UInt32 hours, 
-                                     const X509v3CRLGenerationExtensions& ext)
+                                     const X509v3CRLGenerationExts& ext)
     : crlHours(hours), extensions(ext)
 {
     StringArray r = ext.verify();
@@ -88,7 +88,7 @@ CRLGenerationData::getCRLLifeTime() const
 }
 
 void
-CRLGenerationData::setExtensions(const X509v3CRLGenerationExtensions& ext)
+CRLGenerationData::setExtensions(const X509v3CRLGenerationExts& ext)
 {
     StringArray r = ext.verify();
     if(!r.empty()) {
@@ -98,7 +98,7 @@ CRLGenerationData::setExtensions(const X509v3CRLGenerationExtensions& ext)
     extensions = ext;
 }
 
-X509v3CRLGenerationExtensions
+X509v3CRLGenerationExts
 CRLGenerationData::getExtensions() const
 {
     return extensions;

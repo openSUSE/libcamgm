@@ -43,53 +43,53 @@ public key algorithm = 0
 public Key = 30:82:01:22:30:0d:06:09:2a:86:48:86:f7:0d:01:01:01:05:00:03:82:01:0f:00:30:82:01:0a:02:82:01:01:00:99:66:1a:d6:4d:66:c0:2e:0a:5b:32:d2:6d:67:32:d6:c5:9d:9d:47:6c:72:d8:74:42:c9:88:57:95:de:d1:1d:04:03:5e:a1:40:b5:da:eb:3d:22:db:cf:67:a3:12:1d:96:80:7a:1d:e0:c5:ae:ec:21:bc:40:1b:73:81:cc:95:aa:f4:54:e8:cb:9b:c2:3d:ca:a6:f4:52:2e:1f:16:d8:64:7e:d6:16:dc:87:69:96:a9:95:6e:5d:ae:46:f7:58:4e:85:fa:b7:31:3e:de:9a:26:ae:83:32:c9:bd:76:64:e3:bd:8f:f3:59:7a:e7:3a:f4:c7:cc:c7:b1:dd:d5:cd:9c:33:73:f1:6d:62:58:5a:b7:c0:19:67:b7:44:a4:3e:27:2a:6c:2d:b9:0e:a8:6f:a3:cc:33:be:69:24:97:41:45:19:39:cd:f2:5a:1a:3a:04:5e:df:47:6e:af:57:1d:7a:83:a6:8a:77:87:03:46:63:fb:45:29:a8:bb:5f:e2:ea:e0:1f:b6:ea:da:f8:4b:7d:e7:fa:1b:dc:c8:aa:8f:c0:13:04:2c:81:ac:7f:4e:b4:37:f5:13:2c:52:99:14:99:39:3b:a2:b7:8a:a2:85:14:ef:97:80:26:af:5f:3f:0c:72:29:59:c9:7c:fe:00:48:64:c4:b0:cd:c3:70:9d:02:03:01:00:01:
 signatureAlgorithm = 0
 Signature = 3b:ad:5b:2c:e3:a8:51:0b:04:94:f7:da:f1:a0:64:e5:2d:dd:18:66:6b:2b:a2:73:fb:eb:0f:6b:d7:51:ff:5f:68:0e:9d:dd:23:26:75:ca:63:05:b6:64:6e:24:2e:80:1e:e5:2b:81:e1:e9:2e:07:c3:e4:eb:f0:c0:55:6f:98:96:fc:b8:6a:fc:39:dd:51:c5:d6:29:9b:09:5e:b7:11:48:16:a7:b3:30:1f:74:f1:7c:20:3e:09:46:10:92:5e:7c:3e:ab:28:c2:d3:0d:1d:2d:76:84:18:29:23:3d:57:37:57:ae:73:a7:a1:ae:70:93:b3:50:01:f5:82:1d:32:c8:aa:44:09:48:1d:8d:92:c5:7f:d8:36:15:fb:b4:38:6b:04:0d:ed:23:48:4c:58:e7:da:c3:b0:cb:06:03:a1:05:58:5d:0e:e1:04:93:89:43:51:ed:41:03:d0:8d:d0:46:23:76:eb:14:4a:44:f7:35:0c:a8:76:d8:a1:ce:58:00:65:ce:a1:a5:88:79:e3:7e:16:19:39:85:8a:f5:32:3a:ab:a9:d9:66:b2:dd:50:05:e7:e0:ef:7b:43:df:83:a6:5e:f1:d9:9a:af:61:07:d0:1f:88:21:56:de:76:c4:d7:08:d5:6a:73:eb:ab:e8:ed:73:a7:ee:48:3b:7f:9d:
-X509v3CertificateExtensions::dump()
-NsBaseUrlExtension::dump()
+X509v3CertificateExts::dump()
+NsBaseUrlExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 URL = http://www.my-company.com/
-NsRevocationUrlExtension::dump()
+NsRevocationUrlExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 URL = http://www.my-company.com/revoke.pl
-NsCaRevocationUrlExtension::dump()
+NsCaRevocationUrlExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 URL = http://www.my-company.com/CArevoke.pl
-NsRenewalUrlExtension::dump()
+NsRenewalUrlExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 URL = http://www.my-company.com/renew.pl
-NsCaPolicyUrlExtension::dump()
+NsCaPolicyUrlExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 URL = http://www.my-company.com/policy.html
-NsSslServerNameExtension::dump()
+NsSslServerNameExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 SSL server name = *.my-company.com
-NsCommentExtension::dump()
+NsCommentExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 NS Comment = My Company Certificate
-KeyUsageExtension::dump()
+KeyUsageExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 KeyUsage = 0x8000
-NsCertTypeExtension::dump()
+NsCertTypeExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 NsCertType = 0x07
-BasicConstraintsExtension::dump()
+BasicConstraintsExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
@@ -104,20 +104,20 @@ Extended KeyUsage = msCTLSign
 Extended KeyUsage = nsSGC
 Extended KeyUsage = 2.3.4.5
 Extended KeyUsage = 2.12.10.39
-SubjectKeyIdentifierExtension::dump()
+SubjectKeyIdentifierExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 Autodetect = false
 KeyID = 4a:9f:d5:9e:10:33:c2:fc:ab:8f:d7:36:fd:5d:e8:bf:c1:37:9d:3e
-AuthorityKeyIdentifierExtension::dump()
+AuthorityKeyIdentifierExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 KeyID = 32:00:c0:04:a4:2a:88:c2:3e:ca:d5:bd:d8:4c:d3:52:88:20:7f:3b
 DirName = /C=DE/CN=Static Test CA/emailAddress=suse@suse.de
 serial = 8e:f1:ce:98:61:8f:64:9d
-SubjectAlternativeNameExtension::dump()
+SubjectAlternativeNameExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
@@ -134,7 +134,7 @@ LiteralValue::dump()
 email:me@my-company.com
 LiteralValue::dump()
 URI:http://www.my-company.com/
-IssuerAlternativeNameExtension::dump()
+IssuerAlternativeNameExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
@@ -151,7 +151,7 @@ LiteralValue::dump()
 email:me@my-company.com
 LiteralValue::dump()
 URI:http://www.my-company.com/
-AuthorityInfoAccessExtension::dump()
+AuthorityInfoAccessExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
@@ -163,13 +163,13 @@ AuthorityInformation::dump()
 accessOID = caIssuers
 LiteralValue::dump()
 URI:http://www.my-company.com/caIssuer.html
-CRLDistributionPointsExtension::dump()
+CRLDistributionPointsExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 LiteralValue::dump()
 URI:ldap://ldap.my-company.com/?ou=PKI%2ddc=my-company%2ddc=com
-CertificatePoliciesExtension::dump()
+CertificatePoliciesExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false

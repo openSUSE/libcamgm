@@ -52,51 +52,75 @@ namespace CA_MGM_NAMESPACE
         RequestGenerationData(const RequestGenerationData& data);
         virtual ~RequestGenerationData();
 
-        RequestGenerationData& operator=(const RequestGenerationData& data);
+        RequestGenerationData&
+        operator=(const RequestGenerationData& data);
 
-        void                setSubject(const DNObject dn);
-        DNObject            getSubject() const;
+        void
+        setSubject(const DNObject dn);
+        
+        DNObject
+        getSubject() const;
 
-        void                setKeysize(blocxx::UInt32 size);
-        blocxx::UInt32      getKeysize() const;
+        void
+        setKeysize(blocxx::UInt32 size);
+        
+        blocxx::UInt32
+        getKeysize() const;
 
-        void                setMessageDigest(MD md);
-        MD                  getMessageDigest() const;
+        void
+        setMessageDigest(MD md);
+        
+        MD
+        getMessageDigest() const;
                                
-        void                setChallengePassword(const String &passwd);
-        String              getChallengePassword() const;
+        void
+        setChallengePassword(const String &passwd);
+        
+        String
+        getChallengePassword() const;
 
-        void                setUnstructuredName(const String &name);
-        String              getUnstructuredName() const;
+        void
+        setUnstructuredName(const String &name);
+        
+        String
+        getUnstructuredName() const;
 
-        void                setExtensions(const X509v3RequestExtensions &ext);
-        X509v3RequestExtensions getExtensions() const;
+        void
+        setExtensions(const X509v3RequestExts &ext);
+        
+        X509v3RequestExts
+        getExtensions() const;
 
         /**
          * write configuration file
          */
-        void                commit2Config(CA& ca, Type type) const;
+        void
+        commit2Config(CA& ca, Type type) const;
 
-        virtual bool                 valid() const;
-        virtual blocxx::StringArray  verify() const;
+        virtual bool
+        valid() const;
+        
+        virtual blocxx::StringArray
+        verify() const;
 
-        virtual blocxx::StringArray  dump() const;
+        virtual blocxx::StringArray
+        dump() const;
 
     private:
 
-        DNObject         subject;
-        blocxx::UInt32   keysize;
+        DNObject          subject;
+        blocxx::UInt32    keysize;
 
-        // ???  KeyAlg           pubkeyAlgorithm;  // at the beginning we only support rsa
+        // KeyAlg         pubkeyAlgorithm;  // at the beginning we only support rsa
 
 
-        MD               messageDigest;       // parameter default_md
+        MD                messageDigest;       // parameter default_md
                        
         // attributes
-        String challengePassword;
-        String unstructuredName;
+        String            challengePassword;
+        String            unstructuredName;
 
-        X509v3RequestExtensions extensions;
+        X509v3RequestExts extensions;
 
     };
 

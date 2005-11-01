@@ -81,11 +81,11 @@ BitExtension::getValue() const
 // ###################################################################
 
        
-KeyUsageExtension::KeyUsageExtension()
+KeyUsageExt::KeyUsageExt()
     : BitExtension()
 {}
 
-KeyUsageExtension::KeyUsageExtension(CAConfig* caConfig, Type type)
+KeyUsageExt::KeyUsageExt(CAConfig* caConfig, Type type)
     : BitExtension()
 {
     LOGIT_DEBUG("Parse KeyUsage");
@@ -125,7 +125,7 @@ KeyUsageExtension::KeyUsageExtension(CAConfig* caConfig, Type type)
     setPresent(p);
 }
 
-KeyUsageExtension::KeyUsageExtension(blocxx::UInt32 keyUsage)
+KeyUsageExt::KeyUsageExt(blocxx::UInt32 keyUsage)
     : BitExtension(keyUsage)
 {
     if(!validKeyUsage(value)) {
@@ -134,16 +134,16 @@ KeyUsageExtension::KeyUsageExtension(blocxx::UInt32 keyUsage)
     setPresent(true);
 }
 
-KeyUsageExtension::KeyUsageExtension(const KeyUsageExtension& extension)
+KeyUsageExt::KeyUsageExt(const KeyUsageExt& extension)
     : BitExtension(extension)
 {}
 
-KeyUsageExtension::~KeyUsageExtension()
+KeyUsageExt::~KeyUsageExt()
 {}
 
 
-KeyUsageExtension&
-KeyUsageExtension::operator=(const KeyUsageExtension& extension)
+KeyUsageExt&
+KeyUsageExt::operator=(const KeyUsageExt& extension)
 {
     if(this == &extension) return *this;
 
@@ -153,7 +153,7 @@ KeyUsageExtension::operator=(const KeyUsageExtension& extension)
 }
 
 void
-KeyUsageExtension::setKeyUsage(blocxx::UInt32 keyUsage)
+KeyUsageExt::setKeyUsage(blocxx::UInt32 keyUsage)
 {
     if(!validKeyUsage(keyUsage)) {
         BLOCXX_THROW(limal::ValueException, "invalid value for keyUsage");
@@ -163,30 +163,30 @@ KeyUsageExtension::setKeyUsage(blocxx::UInt32 keyUsage)
 }
 
 blocxx::UInt32
-KeyUsageExtension::getKeyUsage() const
+KeyUsageExt::getKeyUsage() const
 {
     if(!isPresent()) {
-        BLOCXX_THROW(limal::RuntimeException, "KeyUsageExtension is not present");
+        BLOCXX_THROW(limal::RuntimeException, "KeyUsageExt is not present");
     }
     return value;
 }
 
 bool
-KeyUsageExtension::isEnabledFor(KeyUsage ku) const
+KeyUsageExt::isEnabledFor(KeyUsage ku) const
 {
     if(!isPresent()) {
-        BLOCXX_THROW(limal::RuntimeException, "KeyUsageExtension is not present");
+        BLOCXX_THROW(limal::RuntimeException, "KeyUsageExt is not present");
     }
     
     return !!(value & ku);
 }
 
 void
-KeyUsageExtension::commit2Config(CA& ca, Type type) const
+KeyUsageExt::commit2Config(CA& ca, Type type) const
 {
     if(!valid()) {
-        LOGIT_ERROR("invalid KeyUsageExtension object");
-        BLOCXX_THROW(limal::ValueException, "invalid KeyUsageExtension object");
+        LOGIT_ERROR("invalid KeyUsageExt object");
+        BLOCXX_THROW(limal::ValueException, "invalid KeyUsageExt object");
     }
 
     // This extension is not supported by type CRL
@@ -200,31 +200,31 @@ KeyUsageExtension::commit2Config(CA& ca, Type type) const
 
         if(isCritical()) keyUsageString += "critical,";
 
-        if(!!(value & KeyUsageExtension::digitalSignature)) {
+        if(!!(value & KeyUsageExt::digitalSignature)) {
             keyUsageString += "digitalSignature,";
         }
-        if(!!(value & KeyUsageExtension::nonRepudiation)) {
+        if(!!(value & KeyUsageExt::nonRepudiation)) {
             keyUsageString += "nonRepudiation,";
         }
-        if(!!(value & KeyUsageExtension::keyEncipherment)) {
+        if(!!(value & KeyUsageExt::keyEncipherment)) {
             keyUsageString += "keyEncipherment,";
         }
-        if(!!(value & KeyUsageExtension::dataEncipherment)) {
+        if(!!(value & KeyUsageExt::dataEncipherment)) {
             keyUsageString += "dataEncipherment,";
         }
-        if(!!(value & KeyUsageExtension::keyAgreement)) {
+        if(!!(value & KeyUsageExt::keyAgreement)) {
             keyUsageString += "keyAgreement,";
         }
-        if(!!(value & KeyUsageExtension::keyCertSign)) {
+        if(!!(value & KeyUsageExt::keyCertSign)) {
             keyUsageString += "keyCertSign,";
         }
-        if(!!(value & KeyUsageExtension::cRLSign)) {
+        if(!!(value & KeyUsageExt::cRLSign)) {
             keyUsageString += "cRLSign,";
         }
-        if(!!(value & KeyUsageExtension::encipherOnly)) {
+        if(!!(value & KeyUsageExt::encipherOnly)) {
             keyUsageString += "encipherOnly,";
         }
-        if(!!(value & KeyUsageExtension::decipherOnly)) {
+        if(!!(value & KeyUsageExt::decipherOnly)) {
             keyUsageString += "decipherOnly,";
         }
         
@@ -236,7 +236,7 @@ KeyUsageExtension::commit2Config(CA& ca, Type type) const
 }
 
 bool
-KeyUsageExtension::valid() const
+KeyUsageExt::valid() const
 {
     if(!isPresent()) return true;
 
@@ -246,7 +246,7 @@ KeyUsageExtension::valid() const
 }
 
 blocxx::StringArray
-KeyUsageExtension::verify() const
+KeyUsageExt::verify() const
 {
     blocxx::StringArray result;
 
@@ -256,15 +256,15 @@ KeyUsageExtension::verify() const
         result.append(Format("invalid value '%1' for keyUsage", value).toString());
     }
 
-    LOGIT_DEBUG_STRINGARRAY("KeyUsageExtension::verify()", result);
+    LOGIT_DEBUG_STRINGARRAY("KeyUsageExt::verify()", result);
     return result;
 }
 
 blocxx::StringArray
-KeyUsageExtension::dump() const
+KeyUsageExt::dump() const
 {
     StringArray result;
-    result.append("KeyUsageExtension::dump()");
+    result.append("KeyUsageExt::dump()");
 
     result.appendArray(ExtensionBase::dump());
     if(!isPresent()) return result;
@@ -278,7 +278,7 @@ KeyUsageExtension::dump() const
 
 
 bool
-KeyUsageExtension::validKeyUsage(blocxx::UInt32 keyUsage) const
+KeyUsageExt::validKeyUsage(blocxx::UInt32 keyUsage) const
 {
     UInt32 mask = 0x80FF;
     if( (keyUsage&mask) != keyUsage || keyUsage == 0) {
@@ -291,11 +291,11 @@ KeyUsageExtension::validKeyUsage(blocxx::UInt32 keyUsage) const
 // ###################################################################
 
         
-NsCertTypeExtension::NsCertTypeExtension()
+NsCertTypeExt::NsCertTypeExt()
     : BitExtension()
 {}
 
-NsCertTypeExtension::NsCertTypeExtension(CAConfig* caConfig, Type type)
+NsCertTypeExt::NsCertTypeExt(CAConfig* caConfig, Type type)
     : BitExtension()
 {
     LOGIT_DEBUG("Parse NsCertType");
@@ -333,25 +333,25 @@ NsCertTypeExtension::NsCertTypeExtension(CAConfig* caConfig, Type type)
     setPresent(p);
 }
 
-NsCertTypeExtension::NsCertTypeExtension(blocxx::UInt32 nsCertTypes)
+NsCertTypeExt::NsCertTypeExt(blocxx::UInt32 nsCertTypes)
     : BitExtension(nsCertTypes)
 {
     if(value > 0xFF || value == 0) {
-        BLOCXX_THROW(limal::ValueException, "invalid value for NsCertTypeExtension");
+        BLOCXX_THROW(limal::ValueException, "invalid value for NsCertTypeExt");
     }
     setPresent(true);
 }
 
-NsCertTypeExtension::NsCertTypeExtension(const NsCertTypeExtension& extension)
+NsCertTypeExt::NsCertTypeExt(const NsCertTypeExt& extension)
     : BitExtension(extension)
 {}
 
-NsCertTypeExtension::~NsCertTypeExtension()
+NsCertTypeExt::~NsCertTypeExt()
 {}
 
 
-NsCertTypeExtension&
-NsCertTypeExtension::operator=(const NsCertTypeExtension& extension)
+NsCertTypeExt&
+NsCertTypeExt::operator=(const NsCertTypeExt& extension)
 {
     if(this == &extension) return *this;
 
@@ -361,27 +361,27 @@ NsCertTypeExtension::operator=(const NsCertTypeExtension& extension)
 }
 
 void
-NsCertTypeExtension::setNsCertType(blocxx::UInt32 nsCertTypes)
+NsCertTypeExt::setNsCertType(blocxx::UInt32 nsCertTypes)
 {
     if(nsCertTypes > 0xFF || nsCertTypes == 0) {
         BLOCXX_THROW(limal::ValueException, 
-                     Format("invalid value for NsCertTypeExtension: %1", nsCertTypes).c_str());
+                     Format("invalid value for NsCertTypeExt: %1", nsCertTypes).c_str());
     }
     setValue(nsCertTypes);
     setPresent(true);
 }
 
 blocxx::UInt32
-NsCertTypeExtension::getNsCertType() const
+NsCertTypeExt::getNsCertType() const
 {
     if(!isPresent()) {
-        BLOCXX_THROW(limal::RuntimeException, "NsCertTypeExtension is not present");
+        BLOCXX_THROW(limal::RuntimeException, "NsCertTypeExt is not present");
     }
     return value;
 }
 
 bool
-NsCertTypeExtension::isEnabledFor(NsCertType nsCertType) const
+NsCertTypeExt::isEnabledFor(NsCertType nsCertType) const
 {
     // if ! isPresent() ... throw exceptions?
     if(!isPresent()) return false;
@@ -390,11 +390,11 @@ NsCertTypeExtension::isEnabledFor(NsCertType nsCertType) const
 }
 
 void
-NsCertTypeExtension::commit2Config(CA& ca, Type type) const
+NsCertTypeExt::commit2Config(CA& ca, Type type) const
 {
     if(!valid()) {
-        LOGIT_ERROR("invalid NsCertTypeExtension object");
-        BLOCXX_THROW(limal::ValueException, "invalid NsCertTypeExtension object");
+        LOGIT_ERROR("invalid NsCertTypeExt object");
+        BLOCXX_THROW(limal::ValueException, "invalid NsCertTypeExt object");
     }
 
     // This extension is not supported by type CRL
@@ -408,28 +408,28 @@ NsCertTypeExtension::commit2Config(CA& ca, Type type) const
 
         if(isCritical()) nsCertTypeString += "critical,";
 
-        if(!!(value & NsCertTypeExtension::client)) {
+        if(!!(value & NsCertTypeExt::client)) {
             nsCertTypeString += "client,";
         }
-        if(!!(value & NsCertTypeExtension::server)) {
+        if(!!(value & NsCertTypeExt::server)) {
             nsCertTypeString += "server,";
         }
-        if(!!(value & NsCertTypeExtension::email)) {
+        if(!!(value & NsCertTypeExt::email)) {
             nsCertTypeString += "email,";
         }
-        if(!!(value & NsCertTypeExtension::objsign)) {
+        if(!!(value & NsCertTypeExt::objsign)) {
             nsCertTypeString += "objsign,";
         }
-        if(!!(value & NsCertTypeExtension::reserved)) {
+        if(!!(value & NsCertTypeExt::reserved)) {
             nsCertTypeString += "reserved,";
         }
-        if(!!(value & NsCertTypeExtension::sslCA)) {
+        if(!!(value & NsCertTypeExt::sslCA)) {
             nsCertTypeString += "sslCA,";
         }
-        if(!!(value & NsCertTypeExtension::emailCA)) {
+        if(!!(value & NsCertTypeExt::emailCA)) {
             nsCertTypeString += "emailCA,";
         }
-        if(!!(value & NsCertTypeExtension::objCA)) {
+        if(!!(value & NsCertTypeExt::objCA)) {
             nsCertTypeString += "objCA,";
         }
         
@@ -441,7 +441,7 @@ NsCertTypeExtension::commit2Config(CA& ca, Type type) const
 }
 
 bool
-NsCertTypeExtension::valid() const
+NsCertTypeExt::valid() const
 {
     if(!isPresent()) return true;
 
@@ -451,7 +451,7 @@ NsCertTypeExtension::valid() const
 }
 
 blocxx::StringArray
-NsCertTypeExtension::verify() const
+NsCertTypeExt::verify() const
 {
     blocxx::StringArray result;
 
@@ -460,15 +460,15 @@ NsCertTypeExtension::verify() const
     if(value > 0xFF || value == 0) {
         result.append(Format("invalid value '%1' for nsCertType", value).toString());
     }
-    LOGIT_DEBUG_STRINGARRAY("NsCertTypeExtension::verify()", result);
+    LOGIT_DEBUG_STRINGARRAY("NsCertTypeExt::verify()", result);
     return result;
 }
 
 blocxx::StringArray
-NsCertTypeExtension::dump() const
+NsCertTypeExt::dump() const
 {
     StringArray result;
-    result.append("NsCertTypeExtension::dump()");
+    result.append("NsCertTypeExt::dump()");
 
     result.appendArray(ExtensionBase::dump());
     if(!isPresent()) return result;

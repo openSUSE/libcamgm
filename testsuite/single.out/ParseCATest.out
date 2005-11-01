@@ -42,41 +42,41 @@ public key algorithm = 0
 public Key = 30:82:01:22:30:0d:06:09:2a:86:48:86:f7:0d:01:01:01:05:00:03:82:01:0f:00:30:82:01:0a:02:82:01:01:00:ba:10:73:0e:19:06:01:17:1d:77:c2:a1:27:ae:3b:23:df:e0:1a:11:65:40:85:71:d3:29:52:33:e0:2f:9c:5a:cf:61:5c:e5:b8:22:be:93:6a:2c:98:8d:1c:62:4c:95:d4:4a:60:59:6b:6a:55:72:09:8e:62:f7:bd:a1:33:a6:c1:46:14:59:cf:5c:22:df:89:f5:b5:de:57:41:b5:d5:09:f5:78:49:8e:f7:e5:1e:e9:4d:04:04:50:6a:b9:7c:bf:07:02:b7:91:1a:eb:b3:42:c2:3b:58:68:a3:02:15:65:d2:2d:1a:59:5c:34:fd:b7:f7:c8:8d:87:ce:a1:c1:46:5f:49:ef:c7:ac:54:4c:b7:67:36:bb:e9:ed:98:7b:e3:01:6e:99:b1:89:b3:e1:95:62:9b:e9:21:b0:7d:85:13:91:67:10:4c:a6:b5:db:3c:b0:20:e0:8a:f7:30:c6:68:df:86:00:42:b0:e6:ac:92:56:82:db:58:17:0f:e0:99:11:23:d6:3d:d4:ac:7f:64:e3:de:0e:9b:ef:27:10:fd:53:86:45:c7:07:3b:57:22:bd:ac:3f:f6:d8:cb:ba:cb:0f:8a:40:36:82:25:40:7c:9d:3a:94:f4:88:7a:b3:71:04:58:26:8f:b9:bb:15:ce:31:aa:16:9c:f6:4c:21:02:03:01:00:01:
 signatureAlgorithm = 0
 Signature = 20:e4:81:a4:9b:2e:c8:0d:1d:0a:3b:fe:fa:ec:9a:11:8c:d2:14:b8:7f:86:0a:40:19:c3:56:d6:31:9c:bf:3d:23:c3:c4:75:27:c2:68:fc:1d:cb:c9:40:d1:95:68:5e:25:23:c2:22:12:ff:d9:8b:59:4b:50:59:74:e6:88:a6:84:52:2a:f3:c1:54:dd:2f:10:a8:28:e6:b0:a8:26:d0:84:1a:71:2d:6f:ba:a6:99:f4:b2:17:af:00:86:52:62:f6:2a:a0:74:1a:7c:0f:8e:ae:56:93:05:f2:b3:33:a6:45:3c:16:18:c4:88:c9:17:71:74:e3:8c:cb:b9:f3:1d:0c:f5:cb:40:8a:ab:a1:32:3a:1b:86:4b:69:7a:27:5e:3c:84:63:fd:62:69:6f:d6:fe:3d:46:10:d0:c8:70:0f:75:9b:45:7e:e4:06:43:73:33:74:e3:78:0e:3a:c5:4e:ec:ba:ba:14:63:b8:89:c7:b9:19:60:a2:63:2a:f1:97:f0:41:2b:84:8f:91:69:9d:e7:c9:00:89:85:fc:09:05:1f:37:6f:b1:cb:1f:95:8a:72:6e:d1:45:07:c9:09:c9:26:c6:d0:05:4e:5b:4a:1f:8f:e4:62:aa:85:e1:7e:25:41:23:12:4b:d1:11:ce:8d:8d:23:f0:54:86:0f:fd:fc:
-X509v3CertificateExtensions::dump()
-NsBaseUrlExtension::dump()
+X509v3CertificateExts::dump()
+NsBaseUrlExt::dump()
 ExtensionBase::dump()
 is Present = false
-NsRevocationUrlExtension::dump()
+NsRevocationUrlExt::dump()
 ExtensionBase::dump()
 is Present = false
-NsCaRevocationUrlExtension::dump()
+NsCaRevocationUrlExt::dump()
 ExtensionBase::dump()
 is Present = false
-NsRenewalUrlExtension::dump()
+NsRenewalUrlExt::dump()
 ExtensionBase::dump()
 is Present = false
-NsCaPolicyUrlExtension::dump()
+NsCaPolicyUrlExt::dump()
 ExtensionBase::dump()
 is Present = false
-NsSslServerNameExtension::dump()
+NsSslServerNameExt::dump()
 ExtensionBase::dump()
 is Present = false
-NsCommentExtension::dump()
+NsCommentExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 NS Comment = YaST Generated CA Certificate
-KeyUsageExtension::dump()
+KeyUsageExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 KeyUsage = 0x0006
-NsCertTypeExtension::dump()
+NsCertTypeExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 NsCertType = 0x06
-BasicConstraintsExtension::dump()
+BasicConstraintsExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = true
@@ -85,40 +85,40 @@ pathlen = -1
 ExtendedKeyUsageExt::dump()
 ExtensionBase::dump()
 is Present = false
-SubjectKeyIdentifierExtension::dump()
+SubjectKeyIdentifierExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 Autodetect = false
 KeyID = 32:00:c0:04:a4:2a:88:c2:3e:ca:d5:bd:d8:4c:d3:52:88:20:7f:3b
-AuthorityKeyIdentifierExtension::dump()
+AuthorityKeyIdentifierExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 KeyID = 32:00:c0:04:a4:2a:88:c2:3e:ca:d5:bd:d8:4c:d3:52:88:20:7f:3b
 DirName = /C=DE/CN=Static Test CA/emailAddress=suse@suse.de
 serial = 8e:f1:ce:98:61:8f:64:9d
-SubjectAlternativeNameExtension::dump()
+SubjectAlternativeNameExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 email:copy = false
 LiteralValue::dump()
 email:suse@suse.de
-IssuerAlternativeNameExtension::dump()
+IssuerAlternativeNameExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 Issuer:copy = false
 LiteralValue::dump()
 email:suse@suse.de
-AuthorityInfoAccessExtension::dump()
+AuthorityInfoAccessExt::dump()
 ExtensionBase::dump()
 is Present = false
-CRLDistributionPointsExtension::dump()
+CRLDistributionPointsExt::dump()
 ExtensionBase::dump()
 is Present = false
-CertificatePoliciesExtension::dump()
+CertificatePoliciesExt::dump()
 ExtensionBase::dump()
 is Present = false
 =================== call verify ======================

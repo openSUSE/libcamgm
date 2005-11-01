@@ -34,11 +34,11 @@ namespace CA_MGM_NAMESPACE
 using namespace limal;
 using namespace blocxx;
 
-CRLDistributionPointsExtension::CRLDistributionPointsExtension()
+CRLDistributionPointsExt::CRLDistributionPointsExt()
     : ExtensionBase(), altNameList(blocxx::List<LiteralValue>())
 {}
 
-CRLDistributionPointsExtension::CRLDistributionPointsExtension(CAConfig* caConfig, Type type)
+CRLDistributionPointsExt::CRLDistributionPointsExt(CAConfig* caConfig, Type type)
     : ExtensionBase(), altNameList(blocxx::List<LiteralValue>())
 {
     // These types are not supported by this object
@@ -72,15 +72,15 @@ CRLDistributionPointsExtension::CRLDistributionPointsExtension(CAConfig* caConfi
     setPresent(p);
 }
 
-CRLDistributionPointsExtension::CRLDistributionPointsExtension(const CRLDistributionPointsExtension& extension)
+CRLDistributionPointsExt::CRLDistributionPointsExt(const CRLDistributionPointsExt& extension)
     : ExtensionBase(extension), altNameList(extension.altNameList)
 {}
 
-CRLDistributionPointsExtension::~CRLDistributionPointsExtension()
+CRLDistributionPointsExt::~CRLDistributionPointsExt()
 {}
 
-CRLDistributionPointsExtension&
-CRLDistributionPointsExtension::operator=(const CRLDistributionPointsExtension& extension)
+CRLDistributionPointsExt&
+CRLDistributionPointsExt::operator=(const CRLDistributionPointsExt& extension)
 {
     if(this == &extension) return *this;
     
@@ -91,7 +91,7 @@ CRLDistributionPointsExtension::operator=(const CRLDistributionPointsExtension& 
 }
 
 void
-CRLDistributionPointsExtension::setCRLDistributionPoints(blocxx::List<LiteralValue> dp)
+CRLDistributionPointsExt::setCRLDistributionPoints(blocxx::List<LiteralValue> dp)
 {
     StringArray r = checkLiteralValueList(dp);
     if(!r.empty()) {
@@ -103,21 +103,21 @@ CRLDistributionPointsExtension::setCRLDistributionPoints(blocxx::List<LiteralVal
 }
 
 blocxx::List<LiteralValue>
-CRLDistributionPointsExtension::getCRLDistributionPoints() const
+CRLDistributionPointsExt::getCRLDistributionPoints() const
 {
     if(!isPresent()) {
-        LOGIT_ERROR("CRLDistributionPointsExtension is not present");
-        BLOCXX_THROW(limal::RuntimeException, "CRLDistributionPointsExtension is not present");
+        LOGIT_ERROR("CRLDistributionPointsExt is not present");
+        BLOCXX_THROW(limal::RuntimeException, "CRLDistributionPointsExt is not present");
     }
     return altNameList;
 }
 
 void
-CRLDistributionPointsExtension::commit2Config(CA& ca, Type type) const
+CRLDistributionPointsExt::commit2Config(CA& ca, Type type) const
 {
     if(!valid()) {
-        LOGIT_ERROR("invalid CRLDistributionPointsExtension object");
-        BLOCXX_THROW(limal::ValueException, "invalid CRLDistributionPointsExtension object");
+        LOGIT_ERROR("invalid CRLDistributionPointsExt object");
+        BLOCXX_THROW(limal::ValueException, "invalid CRLDistributionPointsExt object");
     }
 
     // These types are not supported by this object
@@ -128,28 +128,32 @@ CRLDistributionPointsExtension::commit2Config(CA& ca, Type type) const
         BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
     }
 
-    if(isPresent()) {
+    if(isPresent())
+    {
         String extString;
 
         if(isCritical()) extString += "critical,";
 
         blocxx::List<LiteralValue>::const_iterator it = altNameList.begin();
-        for(;it != altNameList.end(); ++it) {
+        for(;it != altNameList.end(); ++it)
+        {
             extString += (*it).toString()+",";
         }
 
         ca.getConfig()->setValue(type2Section(type, true), "crlDistributionPoints",
                                  extString.erase(extString.length()-1));
-    } else {
+    }
+    else
+    {
         ca.getConfig()->deleteValue(type2Section(type, true), "crlDistributionPoints");
     }
 }
 
 bool
-CRLDistributionPointsExtension::valid() const
+CRLDistributionPointsExt::valid() const
 {
     if(!isPresent()) {
-        LOGIT_DEBUG("return CRLDistributionPointsExtension::valid() is true");
+        LOGIT_DEBUG("return CRLDistributionPointsExt::valid() is true");
         return true;
     }
 
@@ -164,26 +168,26 @@ CRLDistributionPointsExtension::valid() const
 }
 
 blocxx::StringArray
-CRLDistributionPointsExtension::verify() const
+CRLDistributionPointsExt::verify() const
 {
     blocxx::StringArray result;
     
     if(!isPresent()) return result;
     
     if(altNameList.empty()) {
-        result.append(String("No value for CRLDistributionPointsExtension."));
+        result.append(String("No value for CRLDistributionPointsExt."));
     }
     result.appendArray(checkLiteralValueList(altNameList));
     
-    LOGIT_DEBUG_STRINGARRAY("CRLDistributionPointsExtension::verify()", result);
+    LOGIT_DEBUG_STRINGARRAY("CRLDistributionPointsExt::verify()", result);
     return result;
 }
 
 blocxx::StringArray
-CRLDistributionPointsExtension::dump() const
+CRLDistributionPointsExt::dump() const
 {
     StringArray result;
-    result.append("CRLDistributionPointsExtension::dump()");
+    result.append("CRLDistributionPointsExt::dump()");
 
     result.appendArray(ExtensionBase::dump());
     if(!isPresent()) return result;

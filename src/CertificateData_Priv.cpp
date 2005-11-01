@@ -215,7 +215,7 @@ CertificateData_Priv::setSignature(const ByteBuffer& sig)
 }
 
 void
-CertificateData_Priv::setExtensions(const X509v3CertificateExtensions& ext)
+CertificateData_Priv::setExtensions(const X509v3CertificateExts& ext)
 {
     StringArray r = ext.verify();
     if(!r.empty()) {
@@ -435,7 +435,7 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 
     // get extensions
 
-    extensions = X509v3CertificateExtensions_Priv(x509->cert_info->extensions);
+    extensions = X509v3CertificateExts_Priv(x509->cert_info->extensions);
 
 
     EVP_PKEY_free(pkey);

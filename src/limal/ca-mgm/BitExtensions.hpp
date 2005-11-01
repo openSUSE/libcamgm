@@ -64,7 +64,7 @@ namespace CA_MGM_NAMESPACE {
      * This extension describes the usage of this
      * certificate
      */
-    class KeyUsageExtension : public BitExtension {
+    class KeyUsageExt : public BitExtension {
     public:
         enum KeyUsage {
             digitalSignature  = 0x0080, // KU_DIGITAL_SIGNATURE
@@ -78,17 +78,17 @@ namespace CA_MGM_NAMESPACE {
             decipherOnly      = 0x8000  // KU_DECIPHER_ONLY
         };
         
-        KeyUsageExtension();
-        KeyUsageExtension(CAConfig* caConfig, Type type);
+        KeyUsageExt();
+        KeyUsageExt(CAConfig* caConfig, Type type);
 
         /**
          * Create an object with a specific key usage set
          */
-        KeyUsageExtension(blocxx::UInt32 keyUsage);
-        KeyUsageExtension(const KeyUsageExtension& extension);
-        virtual ~KeyUsageExtension();
+        KeyUsageExt(blocxx::UInt32 keyUsage);
+        KeyUsageExt(const KeyUsageExt& extension);
+        virtual ~KeyUsageExt();
 
-        KeyUsageExtension& operator=(const KeyUsageExtension& extension);
+        KeyUsageExt& operator=(const KeyUsageExt& extension);
 
         /**
          * Set a new key usage
@@ -142,7 +142,7 @@ namespace CA_MGM_NAMESPACE {
      * This extension describes the usage of this
      * certificate (Netscape specific)
      */
-    class NsCertTypeExtension : public BitExtension {
+    class NsCertTypeExt : public BitExtension {
     public:
         enum NsCertType {
             client   = 0x0080, // NS_SSL_CLIENT
@@ -155,17 +155,17 @@ namespace CA_MGM_NAMESPACE {
             objCA    = 0x0001  // NS_OBJSIGN_CA
         };
         
-        NsCertTypeExtension();
-        NsCertTypeExtension(CAConfig* caConfig, Type type);
+        NsCertTypeExt();
+        NsCertTypeExt(CAConfig* caConfig, Type type);
 
         /**
          * Create an object with a specific certificate type set
          */
-        NsCertTypeExtension(blocxx::UInt32 nsCertTypes);
-        NsCertTypeExtension(const NsCertTypeExtension& extension);
-        virtual ~NsCertTypeExtension();
+        NsCertTypeExt(blocxx::UInt32 nsCertTypes);
+        NsCertTypeExt(const NsCertTypeExt& extension);
+        virtual ~NsCertTypeExt();
 
-        NsCertTypeExtension& operator=(const NsCertTypeExtension& extension);
+        NsCertTypeExt& operator=(const NsCertTypeExt& extension);
 
         /**
          * Set a new certificate type

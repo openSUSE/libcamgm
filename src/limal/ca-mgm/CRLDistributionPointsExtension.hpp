@@ -34,24 +34,33 @@ namespace CA_MGM_NAMESPACE {
     class CA;
     class CAConfig;
 
-    class CRLDistributionPointsExtension : public ExtensionBase {
+    class CRLDistributionPointsExt : public ExtensionBase {
     public:
-        CRLDistributionPointsExtension();
-        CRLDistributionPointsExtension(CAConfig* caConfig, Type type);
-        CRLDistributionPointsExtension(const CRLDistributionPointsExtension& extension);
-        virtual ~CRLDistributionPointsExtension();
+        CRLDistributionPointsExt();
+        CRLDistributionPointsExt(CAConfig* caConfig, Type type);
+        CRLDistributionPointsExt(const CRLDistributionPointsExt& extension);
+        virtual ~CRLDistributionPointsExt();
 
-        CRLDistributionPointsExtension& operator=(const CRLDistributionPointsExtension& extension);
+        CRLDistributionPointsExt&
+        operator=(const CRLDistributionPointsExt& extension);
 
-        void         setCRLDistributionPoints(blocxx::List<LiteralValue>);
-        blocxx::List<LiteralValue> getCRLDistributionPoints() const;
+        void
+        setCRLDistributionPoints(blocxx::List<LiteralValue>);
+        
+        blocxx::List<LiteralValue>
+        getCRLDistributionPoints() const;
 
-        virtual void commit2Config(CA& ca, Type type) const;
+        virtual void
+        commit2Config(CA& ca, Type type) const;
 
-        virtual bool                 valid() const;
-        virtual blocxx::StringArray  verify() const;
+        virtual bool
+        valid() const;
+        
+        virtual blocxx::StringArray
+        verify() const;
 
-        virtual blocxx::StringArray  dump() const;
+        virtual blocxx::StringArray
+        dump() const;
 
     private:
         blocxx::List<LiteralValue> altNameList;

@@ -44,45 +44,45 @@ namespace CA_MGM_NAMESPACE {
      * This class includes a collection of X509v3 extension for 
      * certificate requests.
      */
-    class X509v3RequestExtensions {
+    class X509v3RequestExts {
 
     public:
-        X509v3RequestExtensions();
-        X509v3RequestExtensions(CAConfig* caConfig, Type type);
-        X509v3RequestExtensions(const X509v3RequestExtensions& extensions);
-        virtual ~X509v3RequestExtensions();
+        X509v3RequestExts();
+        X509v3RequestExts(CAConfig* caConfig, Type type);
+        X509v3RequestExts(const X509v3RequestExts& extensions);
+        virtual ~X509v3RequestExts();
 
-        X509v3RequestExtensions&
-        operator=(const X509v3RequestExtensions& extensions);
+        X509v3RequestExts&
+        operator=(const X509v3RequestExts& extensions);
 
         void
-        setNsSslServerName(const NsSslServerNameExtension &ext);
+        setNsSslServerName(const NsSslServerNameExt &ext);
         
-        NsSslServerNameExtension
+        NsSslServerNameExt
         getNsSslServerName() const;
 
         void
-        setNsComment(const NsCommentExtension &ext);
+        setNsComment(const NsCommentExt &ext);
         
-        NsCommentExtension
+        NsCommentExt
         getNsComment() const;
 
         void
-        setNsCertType(const NsCertTypeExtension &ext);
+        setNsCertType(const NsCertTypeExt &ext);
         
-        NsCertTypeExtension
+        NsCertTypeExt
         getNsCertType() const;
 
         void
-        setKeyUsage(const KeyUsageExtension &ext);
+        setKeyUsage(const KeyUsageExt &ext);
         
-        KeyUsageExtension
+        KeyUsageExt
         getKeyUsage();
 
         void
-        setBasicConstraints(const BasicConstraintsExtension &ext);
+        setBasicConstraints(const BasicConstraintsExt &ext);
         
-        BasicConstraintsExtension
+        BasicConstraintsExt
         getBasicConstraints() const;
 
         void
@@ -92,15 +92,15 @@ namespace CA_MGM_NAMESPACE {
         getExtendedKeyUsage() const;
 
         void
-        setSubjectKeyIdentifier(const SubjectKeyIdentifierExtension &ext);
+        setSubjectKeyIdentifier(const SubjectKeyIdentifierExt &ext);
         
-        SubjectKeyIdentifierExtension
+        SubjectKeyIdentifierExt
         getSubjectKeyIdentifier() const;
 
         void
-        setSubjectAlternativeName(const SubjectAlternativeNameExtension &ext);
+        setSubjectAlternativeName(const SubjectAlternativeNameExt &ext);
         
-        SubjectAlternativeNameExtension
+        SubjectAlternativeNameExt
         getSubjectAlternativeName() const;
 
         void
@@ -119,19 +119,19 @@ namespace CA_MGM_NAMESPACE {
 
         /* String extensions */
 
-        NsSslServerNameExtension        nsSslServerName;
-        NsCommentExtension              nsComment;
+        NsSslServerNameExt        nsSslServerName;
+        NsCommentExt              nsComment;
 
         /* Bit Strings */
-        KeyUsageExtension               keyUsage; 
-        NsCertTypeExtension             nsCertType;
+        KeyUsageExt               keyUsage; 
+        NsCertTypeExt             nsCertType;
 
-        BasicConstraintsExtension       basicConstraints;
-        ExtendedKeyUsageExt             extendedKeyUsage;
-        SubjectKeyIdentifierExtension   subjectKeyIdentifier;
-        SubjectAlternativeNameExtension subjectAlternativeName;
+        BasicConstraintsExt       basicConstraints;
+        ExtendedKeyUsageExt       extendedKeyUsage;
+        SubjectKeyIdentifierExt   subjectKeyIdentifier;
+        SubjectAlternativeNameExt subjectAlternativeName;
 
-        // AuthorityInfoAccessExtension    authorityInfoAccess;  // ???
+        // AuthorityInfoAccessExt    authorityInfoAccess;  // ???
 
     };
 

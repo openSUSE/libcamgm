@@ -114,15 +114,15 @@ namespace CA_MGM_NAMESPACE {
         
     };
 
-    class CertificatePoliciesExtension : public ExtensionBase {
+    class CertificatePoliciesExt : public ExtensionBase {
     public:
-        CertificatePoliciesExtension();
-        CertificatePoliciesExtension(const blocxx::List<CertificatePolicy>& policies);
-        CertificatePoliciesExtension(CAConfig* caConfig, Type type);
-        CertificatePoliciesExtension(const CertificatePoliciesExtension& extension);
-        virtual ~CertificatePoliciesExtension();
+        CertificatePoliciesExt();
+        CertificatePoliciesExt(const blocxx::List<CertificatePolicy>& policies);
+        CertificatePoliciesExt(CAConfig* caConfig, Type type);
+        CertificatePoliciesExt(const CertificatePoliciesExt& extension);
+        virtual ~CertificatePoliciesExt();
 
-        CertificatePoliciesExtension& operator=(const CertificatePoliciesExtension& extension);
+        CertificatePoliciesExt& operator=(const CertificatePoliciesExt& extension);
 
         void                    enableIA5org(bool ia5org = true);
         bool                    isIA5orgEnabled() const;

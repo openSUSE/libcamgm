@@ -59,15 +59,15 @@ namespace CA_MGM_NAMESPACE {
        
     };
 
-    class NsBaseUrlExtension : public StringExtension { 
+    class NsBaseUrlExt : public StringExtension { 
     public:
-        NsBaseUrlExtension();
-        NsBaseUrlExtension(const String &v);
-        NsBaseUrlExtension(CAConfig* caConfig, Type type);
-        NsBaseUrlExtension(const NsBaseUrlExtension &extension);
-        virtual ~NsBaseUrlExtension();
+        NsBaseUrlExt();
+        NsBaseUrlExt(const String &v);
+        NsBaseUrlExt(CAConfig* caConfig, Type type);
+        NsBaseUrlExt(const NsBaseUrlExt &extension);
+        virtual ~NsBaseUrlExt();
 
-        NsBaseUrlExtension& operator=(const NsBaseUrlExtension& extension);
+        NsBaseUrlExt& operator=(const NsBaseUrlExt& extension);
 
         void           setValue(const String &v);
         String         getValue() const;
@@ -80,15 +80,15 @@ namespace CA_MGM_NAMESPACE {
         virtual blocxx::StringArray  dump() const;
     };
 
-    class NsRevocationUrlExtension : public StringExtension { 
+    class NsRevocationUrlExt : public StringExtension { 
     public:
-        NsRevocationUrlExtension();
-        NsRevocationUrlExtension(const String &v);
-        NsRevocationUrlExtension(CAConfig* caConfig, Type type);
-        NsRevocationUrlExtension(const NsRevocationUrlExtension &extension);
-        virtual ~NsRevocationUrlExtension();
+        NsRevocationUrlExt();
+        NsRevocationUrlExt(const String &v);
+        NsRevocationUrlExt(CAConfig* caConfig, Type type);
+        NsRevocationUrlExt(const NsRevocationUrlExt &extension);
+        virtual ~NsRevocationUrlExt();
 
-        NsRevocationUrlExtension& operator=(const NsRevocationUrlExtension& extension);
+        NsRevocationUrlExt& operator=(const NsRevocationUrlExt& extension);
 
         void           setValue(const String &v);
         String         getValue() const;
@@ -101,15 +101,15 @@ namespace CA_MGM_NAMESPACE {
         virtual blocxx::StringArray  dump() const;
     };
 
-    class NsCaRevocationUrlExtension : public StringExtension { 
+    class NsCaRevocationUrlExt : public StringExtension { 
     public:
-        NsCaRevocationUrlExtension();
-        NsCaRevocationUrlExtension(const String &v);
-        NsCaRevocationUrlExtension(CAConfig* caConfig, Type type);
-        NsCaRevocationUrlExtension(const NsCaRevocationUrlExtension &extension);
-        virtual ~NsCaRevocationUrlExtension();
+        NsCaRevocationUrlExt();
+        NsCaRevocationUrlExt(const String &v);
+        NsCaRevocationUrlExt(CAConfig* caConfig, Type type);
+        NsCaRevocationUrlExt(const NsCaRevocationUrlExt &extension);
+        virtual ~NsCaRevocationUrlExt();
 
-        NsCaRevocationUrlExtension& operator=(const NsCaRevocationUrlExtension& extension);
+        NsCaRevocationUrlExt& operator=(const NsCaRevocationUrlExt& extension);
 
         void           setValue(const String &v);
         String         getValue() const;
@@ -122,15 +122,15 @@ namespace CA_MGM_NAMESPACE {
         virtual blocxx::StringArray  dump() const;
     };
 
-    class NsRenewalUrlExtension : public StringExtension { 
+    class NsRenewalUrlExt : public StringExtension { 
     public:
-        NsRenewalUrlExtension();
-        NsRenewalUrlExtension(const String &v);
-        NsRenewalUrlExtension(CAConfig* caConfig, Type type);
-        NsRenewalUrlExtension(const NsRenewalUrlExtension &extension);
-        virtual ~NsRenewalUrlExtension();
+        NsRenewalUrlExt();
+        NsRenewalUrlExt(const String &v);
+        NsRenewalUrlExt(CAConfig* caConfig, Type type);
+        NsRenewalUrlExt(const NsRenewalUrlExt &extension);
+        virtual ~NsRenewalUrlExt();
 
-        NsRenewalUrlExtension& operator=(const NsRenewalUrlExtension& extension);
+        NsRenewalUrlExt& operator=(const NsRenewalUrlExt& extension);
 
         void           setValue(const String &v);
         String         getValue() const;
@@ -142,15 +142,15 @@ namespace CA_MGM_NAMESPACE {
 
         virtual blocxx::StringArray  dump() const;
     };
-    class NsCaPolicyUrlExtension : public StringExtension { 
+    class NsCaPolicyUrlExt : public StringExtension { 
     public:
-        NsCaPolicyUrlExtension();
-        NsCaPolicyUrlExtension(const String &v);
-        NsCaPolicyUrlExtension(CAConfig* caConfig, Type type);
-        NsCaPolicyUrlExtension(const NsCaPolicyUrlExtension &extension);
-        virtual ~NsCaPolicyUrlExtension();
+        NsCaPolicyUrlExt();
+        NsCaPolicyUrlExt(const String &v);
+        NsCaPolicyUrlExt(CAConfig* caConfig, Type type);
+        NsCaPolicyUrlExt(const NsCaPolicyUrlExt &extension);
+        virtual ~NsCaPolicyUrlExt();
 
-        NsCaPolicyUrlExtension& operator=(const NsCaPolicyUrlExtension& extension);
+        NsCaPolicyUrlExt& operator=(const NsCaPolicyUrlExt& extension);
 
         void           setValue(const String &v);
         String         getValue() const;
@@ -162,15 +162,15 @@ namespace CA_MGM_NAMESPACE {
 
         virtual blocxx::StringArray  dump() const;
     };
-    class NsSslServerNameExtension : public StringExtension { 
+    class NsSslServerNameExt : public StringExtension { 
     public:
-        NsSslServerNameExtension();
-        NsSslServerNameExtension(const String &v);
-        NsSslServerNameExtension(CAConfig* caConfig, Type type);
-        NsSslServerNameExtension(const NsSslServerNameExtension &extension);
-        virtual ~NsSslServerNameExtension();
+        NsSslServerNameExt();
+        NsSslServerNameExt(const String &v);
+        NsSslServerNameExt(CAConfig* caConfig, Type type);
+        NsSslServerNameExt(const NsSslServerNameExt &extension);
+        virtual ~NsSslServerNameExt();
 
-        NsSslServerNameExtension& operator=(const NsSslServerNameExtension& extension);
+        NsSslServerNameExt& operator=(const NsSslServerNameExt& extension);
 
         void           setValue(const String &v);
         String         getValue() const;
@@ -182,15 +182,15 @@ namespace CA_MGM_NAMESPACE {
 
         virtual blocxx::StringArray  dump() const;
     };
-    class NsCommentExtension : public StringExtension { 
+    class NsCommentExt : public StringExtension { 
     public:
-        NsCommentExtension();
-        NsCommentExtension(const String &v);
-        NsCommentExtension(CAConfig* caConfig, Type type);
-        NsCommentExtension(const NsCommentExtension &extension);
-        virtual ~NsCommentExtension();
+        NsCommentExt();
+        NsCommentExt(const String &v);
+        NsCommentExt(CAConfig* caConfig, Type type);
+        NsCommentExt(const NsCommentExt &extension);
+        virtual ~NsCommentExt();
 
-        NsCommentExtension& operator=(const NsCommentExtension& extension);
+        NsCommentExt& operator=(const NsCommentExt& extension);
 
         void           setValue(const String &v);
         String         getValue() const;

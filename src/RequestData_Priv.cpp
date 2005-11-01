@@ -188,7 +188,7 @@ RequestData_Priv::setSignature(const ByteBuffer &sig)
 }
 
 void
-RequestData_Priv::setExtensions(const X509v3RequestExtensions &ext)
+RequestData_Priv::setExtensions(const X509v3RequestExts &ext)
 {
     StringArray r = ext.verify();
     if(!r.empty()) {
@@ -406,7 +406,7 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
 
     // get extensions
 
-    extensions = X509v3RequestExtensions_Priv(X509_REQ_get_extensions(x509));
+    extensions = X509v3RequestExts_Priv(X509_REQ_get_extensions(x509));
 }
 
 }

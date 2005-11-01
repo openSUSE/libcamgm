@@ -42,40 +42,41 @@ using namespace limal;
 using namespace blocxx;
 
     
-X509v3CRLExtensions_Priv::X509v3CRLExtensions_Priv()
-    : X509v3CRLExtensions()
+X509v3CRLExts_Priv::X509v3CRLExts_Priv()
+    : X509v3CRLExts()
 {
 }
 
-X509v3CRLExtensions_Priv::X509v3CRLExtensions_Priv(STACK_OF(X509_EXTENSION) *extensions)
-    : X509v3CRLExtensions()
+X509v3CRLExts_Priv::X509v3CRLExts_Priv(STACK_OF(X509_EXTENSION) *extensions)
+    : X509v3CRLExts()
 {
 
-    // AuthorityKeyIdentifierExtension authorityKeyIdentifier;
+    // AuthorityKeyIdentifierExt authorityKeyIdentifier;
 
-    authorityKeyIdentifier = AuthorityKeyIdentifierExtension_Priv(extensions);
+    authorityKeyIdentifier = AuthorityKeyIdentifierExt_Priv(extensions);
 
-    // IssuerAlternativeNameExtension  issuerAlternativeName;
+    // IssuerAlternativeNameExt  issuerAlternativeName;
 
-    parseIssuerAlternativeNameExtension(extensions, issuerAlternativeName);
+    parseIssuerAlternativeNameExt(extensions, issuerAlternativeName);
 
 }
 
-X509v3CRLExtensions_Priv::X509v3CRLExtensions_Priv(const X509v3CRLExtensions_Priv& extensions)
-    : X509v3CRLExtensions(extensions)
+X509v3CRLExts_Priv::X509v3CRLExts_Priv(const X509v3CRLExts_Priv& extensions)
+    : X509v3CRLExts(extensions)
 {
 }
 
 
-X509v3CRLExtensions_Priv::~X509v3CRLExtensions_Priv()
+X509v3CRLExts_Priv::~X509v3CRLExts_Priv()
 {
 }
 
 void
-X509v3CRLExtensions_Priv::setAuthorityKeyIdentifier(const AuthorityKeyIdentifierExtension &ext)
+X509v3CRLExts_Priv::setAuthorityKeyIdentifier(const AuthorityKeyIdentifierExt &ext)
 {
     StringArray r = ext.verify();
-    if(!r.empty()) {
+    if(!r.empty())
+    {
         LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
@@ -83,10 +84,11 @@ X509v3CRLExtensions_Priv::setAuthorityKeyIdentifier(const AuthorityKeyIdentifier
 }
 
 void
-X509v3CRLExtensions_Priv::setIssuerAlternativeName(const IssuerAlternativeNameExtension &ext)
+X509v3CRLExts_Priv::setIssuerAlternativeName(const IssuerAlternativeNameExt &ext)
 {
     StringArray r = ext.verify();
-    if(!r.empty()) {
+    if(!r.empty())
+    {
         LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
@@ -95,34 +97,40 @@ X509v3CRLExtensions_Priv::setIssuerAlternativeName(const IssuerAlternativeNameEx
 
 
 //  private:
-X509v3CRLExtensions_Priv&
-X509v3CRLExtensions_Priv::operator=(const X509v3CRLExtensions_Priv& extensions)
+X509v3CRLExts_Priv&
+X509v3CRLExts_Priv::operator=(const X509v3CRLExts_Priv& extensions)
 {
     if(this == &extensions) return *this;
     
-    X509v3CRLExtensions::operator=(extensions);
+    X509v3CRLExts::operator=(extensions);
 
     return *this;
 }
 
 void 
-X509v3CRLExtensions_Priv::parseIssuerAlternativeNameExtension(STACK_OF(X509_EXTENSION) *cert,
-                                                              IssuerAlternativeNameExtension &ext)
+X509v3CRLExts_Priv::parseIssuerAlternativeNameExt(STACK_OF(X509_EXTENSION) *cert,
+                                                  IssuerAlternativeNameExt &ext)
 {
     int crit = 0;
     
     GENERAL_NAMES *gns = NULL;
-    gns = static_cast<GENERAL_NAMES *>(X509V3_get_d2i(cert, NID_issuer_alt_name, &crit, NULL));
+    gns = static_cast<GENERAL_NAMES *>(X509V3_get_d2i(cert,
+                                                      NID_issuer_alt_name,
+                                                      &crit,
+                                                      NULL));
     
-    if(gns == NULL) {
-        
-        if(crit == -1) {
+    if(gns == NULL)
+    {        
+        if(crit == -1)
+        {
             // extension not found
             ext.setPresent(false);
 
             return;
 
-        } else if(crit == -2) {
+        }
+        else if(crit == -2)
+        {
             // extension occurred more than once 
             LOGIT_ERROR("Extension occurred more than once");
             BLOCXX_THROW(limal::SyntaxException,

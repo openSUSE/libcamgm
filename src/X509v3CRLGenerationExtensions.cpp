@@ -35,27 +35,27 @@ namespace CA_MGM_NAMESPACE
 using namespace limal;
 using namespace blocxx;
 
-X509v3CRLGenerationExtensions::X509v3CRLGenerationExtensions()
+X509v3CRLGenerationExts::X509v3CRLGenerationExts()
 {
 }
 
-X509v3CRLGenerationExtensions::X509v3CRLGenerationExtensions(CAConfig* caConfig, Type type)
+X509v3CRLGenerationExts::X509v3CRLGenerationExts(CAConfig* caConfig, Type type)
     : authorityKeyIdentifier(caConfig, type),
       issuerAlternativeName(caConfig, type)
 {
 }
 
-X509v3CRLGenerationExtensions::X509v3CRLGenerationExtensions(const X509v3CRLGenerationExtensions& extensions)
+X509v3CRLGenerationExts::X509v3CRLGenerationExts(const X509v3CRLGenerationExts& extensions)
     : authorityKeyIdentifier(extensions.authorityKeyIdentifier),
       issuerAlternativeName(extensions.issuerAlternativeName)
 {
 }
 
-X509v3CRLGenerationExtensions::~X509v3CRLGenerationExtensions()
+X509v3CRLGenerationExts::~X509v3CRLGenerationExts()
 {}
 
-X509v3CRLGenerationExtensions&
-X509v3CRLGenerationExtensions::operator=(const X509v3CRLGenerationExtensions& extension)
+X509v3CRLGenerationExts&
+X509v3CRLGenerationExts::operator=(const X509v3CRLGenerationExts& extension)
 {
     if(this == &extension) return *this;
     
@@ -66,43 +66,43 @@ X509v3CRLGenerationExtensions::operator=(const X509v3CRLGenerationExtensions& ex
 }
 
 void
-X509v3CRLGenerationExtensions::setAuthorityKeyIdentifier(const AuthorityKeyIdentifierGenerateExtension &ext)
+X509v3CRLGenerationExts::setAuthorityKeyIdentifier(const AuthorityKeyIdentifierGenerateExt &ext)
 {
     if(!ext.valid()) {
         BLOCXX_THROW(limal::ValueException, 
-                     "X509v3CRLGenerationExtensions::setAuthorityKeyIdentifier invalid value");
+                     "X509v3CRLGenerationExts::setAuthorityKeyIdentifier invalid value");
     }
     authorityKeyIdentifier = ext;
 }
 
-AuthorityKeyIdentifierGenerateExtension
-X509v3CRLGenerationExtensions::getAuthorityKeyIdentifier() const
+AuthorityKeyIdentifierGenerateExt
+X509v3CRLGenerationExts::getAuthorityKeyIdentifier() const
 {
     return authorityKeyIdentifier;
 }
 
 void
-X509v3CRLGenerationExtensions::setIssuerAlternativeName(const IssuerAlternativeNameExtension &ext)
+X509v3CRLGenerationExts::setIssuerAlternativeName(const IssuerAlternativeNameExt &ext)
 {
     if(!ext.valid()) {
         BLOCXX_THROW(limal::ValueException, 
-                     "X509v3CRLGenerationExtensions::setIssuerAlternativeName invalid value");
+                     "X509v3CRLGenerationExts::setIssuerAlternativeName invalid value");
     }
     issuerAlternativeName = ext;
 }
 
-IssuerAlternativeNameExtension
-X509v3CRLGenerationExtensions::getIssuerAlternativeName() const
+IssuerAlternativeNameExt
+X509v3CRLGenerationExts::getIssuerAlternativeName() const
 {
     return issuerAlternativeName;
 }
 
 void
-X509v3CRLGenerationExtensions::commit2Config(CA& ca, Type type) const
+X509v3CRLGenerationExts::commit2Config(CA& ca, Type type) const
 {
     if(!valid()) {
-        LOGIT_ERROR("invalid X509v3RequestExtensions object");
-        BLOCXX_THROW(limal::ValueException, "invalid X509v3RequestExtensions object");
+        LOGIT_ERROR("invalid X509v3RequestExts object");
+        BLOCXX_THROW(limal::ValueException, "invalid X509v3RequestExts object");
     }
     
     authorityKeyIdentifier.commit2Config(ca, type);
@@ -110,7 +110,7 @@ X509v3CRLGenerationExtensions::commit2Config(CA& ca, Type type) const
 }
 
 bool
-X509v3CRLGenerationExtensions::valid() const
+X509v3CRLGenerationExts::valid() const
 {
     if(!authorityKeyIdentifier.valid()) return false;
     if(!issuerAlternativeName.valid())  return false;
@@ -118,22 +118,22 @@ X509v3CRLGenerationExtensions::valid() const
 }
 
 blocxx::StringArray
-X509v3CRLGenerationExtensions::verify() const
+X509v3CRLGenerationExts::verify() const
 {
     StringArray result;
 
     result.appendArray(authorityKeyIdentifier.verify());
     result.appendArray(issuerAlternativeName.verify());
     
-    LOGIT_DEBUG_STRINGARRAY("X509v3CRLGenerationExtensions::verify()", result);
+    LOGIT_DEBUG_STRINGARRAY("X509v3CRLGenerationExts::verify()", result);
     return result;;
 }
 
 blocxx::StringArray
-X509v3CRLGenerationExtensions::dump() const
+X509v3CRLGenerationExts::dump() const
 {
     StringArray result;
-    result.append("X509v3CRLGenerationExtensions::dump()");
+    result.append("X509v3CRLGenerationExts::dump()");
 
     result.appendArray(authorityKeyIdentifier.dump());
     result.appendArray(issuerAlternativeName.dump());

@@ -43,7 +43,7 @@ RequestGenerationData::RequestGenerationData()
       messageDigest(E_SHA1),
       challengePassword(""),
       unstructuredName(""),
-      extensions(X509v3RequestExtensions())
+      extensions(X509v3RequestExts())
 {
 }
 
@@ -53,7 +53,7 @@ RequestGenerationData::RequestGenerationData(CAConfig* caConfig, Type type)
       messageDigest(E_SHA1),
       challengePassword(""),
       unstructuredName(""),
-      extensions(X509v3RequestExtensions(caConfig, type))
+      extensions(X509v3RequestExts(caConfig, type))
 {
     keysize = caConfig->getValue(type2Section(type, false), "default_bits").toUInt32();
 
@@ -164,7 +164,7 @@ RequestGenerationData::getUnstructuredName() const
 }
 
 void
-RequestGenerationData::setExtensions(const X509v3RequestExtensions &ext)
+RequestGenerationData::setExtensions(const X509v3RequestExts &ext)
 {
     StringArray r = ext.verify();
     if(!r.empty()) {
@@ -174,7 +174,7 @@ RequestGenerationData::setExtensions(const X509v3RequestExtensions &ext)
     extensions = ext;
 }
 
-X509v3RequestExtensions
+X509v3RequestExts
 RequestGenerationData::getExtensions() const
 {
     return extensions;

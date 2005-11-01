@@ -50,7 +50,7 @@ namespace CA_MGM_NAMESPACE {
         void                setPublicKey(const ByteBuffer key);
         void                setSignatureAlgorithm(SigAlg alg);
         void                setSignature(const ByteBuffer &sig);
-        void                setExtensions(const X509v3RequestExtensions &ext);
+        void                setExtensions(const X509v3RequestExts &ext);
         void                setChallengePassword(const String &passwd);
         void                setUnstructuredName(const String &name);
 

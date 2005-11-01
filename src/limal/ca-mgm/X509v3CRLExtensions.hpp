@@ -37,25 +37,34 @@ namespace CA_MGM_NAMESPACE {
      * This class includes a collection of X509v3 extension for presenting CRLs
      * (Read-only data representation)
      */
-    class X509v3CRLExtensions {
+    class X509v3CRLExts {
     public:
-        X509v3CRLExtensions(const X509v3CRLExtensions& extensions);
-        virtual ~X509v3CRLExtensions();
+        X509v3CRLExts(const X509v3CRLExts& extensions);
+        virtual ~X509v3CRLExts();
 
-        X509v3CRLExtensions& operator=(const X509v3CRLExtensions& extensions);
+        X509v3CRLExts&
+        operator=(const X509v3CRLExts& extensions);
 
-        AuthorityKeyIdentifierExtension getAuthorityKeyIdentifier() const;
-        IssuerAlternativeNameExtension  getIssuerAlternativeName() const;
+        AuthorityKeyIdentifierExt
+        getAuthorityKeyIdentifier() const;
+        
+        IssuerAlternativeNameExt
+        getIssuerAlternativeName() const;
 
-        virtual bool                    valid() const;
-        virtual blocxx::StringArray     verify() const;
+        virtual bool
+        valid() const;
+        
+        virtual blocxx::StringArray
+        verify() const;
 
-        virtual blocxx::StringArray  dump() const;
+        virtual blocxx::StringArray
+        dump() const;
+        
     protected:
-        X509v3CRLExtensions();
+        X509v3CRLExts();
 
-        AuthorityKeyIdentifierExtension authorityKeyIdentifier;
-        IssuerAlternativeNameExtension  issuerAlternativeName;
+        AuthorityKeyIdentifierExt authorityKeyIdentifier;
+        IssuerAlternativeNameExt  issuerAlternativeName;
 
     };
 

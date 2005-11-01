@@ -32,18 +32,18 @@ namespace CA_MGM_NAMESPACE
 using namespace limal;
 using namespace blocxx;
 
-AuthorityKeyIdentifierExtension::AuthorityKeyIdentifierExtension(const AuthorityKeyIdentifierExtension& extension)
+AuthorityKeyIdentifierExt::AuthorityKeyIdentifierExt(const AuthorityKeyIdentifierExt& extension)
     : ExtensionBase(extension),
       keyid(extension.keyid),
       DirName(extension.DirName),
       serial(extension.serial)
 {}
 
-AuthorityKeyIdentifierExtension::~AuthorityKeyIdentifierExtension()
+AuthorityKeyIdentifierExt::~AuthorityKeyIdentifierExt()
 {}
 
-AuthorityKeyIdentifierExtension& 
-AuthorityKeyIdentifierExtension::operator=(const AuthorityKeyIdentifierExtension& extension)
+AuthorityKeyIdentifierExt& 
+AuthorityKeyIdentifierExt::operator=(const AuthorityKeyIdentifierExt& extension)
 {
     if(this == &extension) return *this;
 
@@ -56,52 +56,52 @@ AuthorityKeyIdentifierExtension::operator=(const AuthorityKeyIdentifierExtension
 }
 
 blocxx::String         
-AuthorityKeyIdentifierExtension::getKeyID() const
+AuthorityKeyIdentifierExt::getKeyID() const
 {
     if(!isPresent()) {
-        LOGIT_ERROR("AuthorityKeyIdentifierExtension is not present");
-        BLOCXX_THROW(limal::RuntimeException, "AuthorityKeyIdentifierExtension is not present");
+        LOGIT_ERROR("AuthorityKeyIdentifierExt is not present");
+        BLOCXX_THROW(limal::RuntimeException, "AuthorityKeyIdentifierExt is not present");
     }
     return keyid;
 }
 
 blocxx::String         
-AuthorityKeyIdentifierExtension::getDirName() const
+AuthorityKeyIdentifierExt::getDirName() const
 {
     if(!isPresent()) {
-        LOGIT_ERROR("AuthorityKeyIdentifierExtension is not present");
-        BLOCXX_THROW(limal::RuntimeException, "AuthorityKeyIdentifierExtension is not present");
+        LOGIT_ERROR("AuthorityKeyIdentifierExt is not present");
+        BLOCXX_THROW(limal::RuntimeException, "AuthorityKeyIdentifierExt is not present");
     }
     return DirName;
 }
 
 blocxx::String         
-AuthorityKeyIdentifierExtension::getSerial() const
+AuthorityKeyIdentifierExt::getSerial() const
 {
     if(!isPresent()) {
-        LOGIT_ERROR("AuthorityKeyIdentifierExtension is not present");
-        BLOCXX_THROW(limal::RuntimeException, "AuthorityKeyIdentifierExtension is not present");
+        LOGIT_ERROR("AuthorityKeyIdentifierExt is not present");
+        BLOCXX_THROW(limal::RuntimeException, "AuthorityKeyIdentifierExt is not present");
     }
     return serial;
 }
 
 bool
-AuthorityKeyIdentifierExtension::valid() const
+AuthorityKeyIdentifierExt::valid() const
 {
     return true;
 }
 
 blocxx::StringArray
-AuthorityKeyIdentifierExtension::verify() const
+AuthorityKeyIdentifierExt::verify() const
 {
     return blocxx::StringArray();
 }
 
 blocxx::StringArray
-AuthorityKeyIdentifierExtension::dump() const
+AuthorityKeyIdentifierExt::dump() const
 {
     StringArray result;
-    result.append("AuthorityKeyIdentifierExtension::dump()");
+    result.append("AuthorityKeyIdentifierExt::dump()");
 
     result.appendArray(ExtensionBase::dump());
     if(!isPresent()) return result;
@@ -115,14 +115,14 @@ AuthorityKeyIdentifierExtension::dump() const
         
 // protected
 
-AuthorityKeyIdentifierExtension::AuthorityKeyIdentifierExtension()
+AuthorityKeyIdentifierExt::AuthorityKeyIdentifierExt()
     : ExtensionBase()
 {}
 
 
 // private
 void 
-AuthorityKeyIdentifierExtension::commit2Config(CA&, Type) const
+AuthorityKeyIdentifierExt::commit2Config(CA&, Type) const
 {}
 
 }

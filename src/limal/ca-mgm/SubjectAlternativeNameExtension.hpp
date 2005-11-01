@@ -34,31 +34,43 @@ namespace CA_MGM_NAMESPACE {
     class CA;
     class CAConfig;
 
-    class SubjectAlternativeNameExtension : public ExtensionBase {
+    class SubjectAlternativeNameExt : public ExtensionBase {
     public:
-        SubjectAlternativeNameExtension();
-        SubjectAlternativeNameExtension(CAConfig* caConfig, Type type);
-        SubjectAlternativeNameExtension(bool copyEmail,
-                                        const blocxx::List<LiteralValue> &alternativeNameList);
-        SubjectAlternativeNameExtension(const SubjectAlternativeNameExtension& extension);
+        SubjectAlternativeNameExt();
         
-        virtual ~SubjectAlternativeNameExtension();
+        SubjectAlternativeNameExt(CAConfig* caConfig, Type type);
+        
+        SubjectAlternativeNameExt(bool copyEmail,
+                                  const blocxx::List<LiteralValue> &alternativeNameList = blocxx::List<LiteralValue>());
+        
+        SubjectAlternativeNameExt(const SubjectAlternativeNameExt& extension);
+        
+        virtual ~SubjectAlternativeNameExt();
 
-        SubjectAlternativeNameExtension& operator=(const SubjectAlternativeNameExtension& extension);
+        SubjectAlternativeNameExt&
+        operator=(const SubjectAlternativeNameExt& extension);
 
-        void  setSubjectAlternativeName(bool copyEmail, 
-                                        const blocxx::List<LiteralValue> &alternativeNameList = 
-                                        blocxx::List<LiteralValue>());
+        void
+        setSubjectAlternativeName(bool copyEmail, 
+                                  const blocxx::List<LiteralValue> &alternativeNameList = blocxx::List<LiteralValue>());
+        
+        bool
+        getCopyEmail() const;
+        
+        blocxx::List<LiteralValue>
+        getAlternativeNameList() const;
 
-        bool                       getCopyEmail() const;
-        blocxx::List<LiteralValue> getAlternativeNameList() const;
+        virtual void
+        commit2Config(CA& ca, Type type) const;
 
-        virtual void commit2Config(CA& ca, Type type) const;
+        virtual bool
+        valid() const;
+        
+        virtual blocxx::StringArray
+        verify() const;
 
-        virtual bool                 valid() const;
-        virtual blocxx::StringArray  verify() const;
-
-        virtual blocxx::StringArray  dump() const;
+        virtual blocxx::StringArray
+        dump() const;
 
     private:
         bool                           emailCopy;

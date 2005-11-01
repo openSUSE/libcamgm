@@ -43,51 +43,83 @@ namespace CA_MGM_NAMESPACE {
 
         virtual ~CertificateData();
 
-        CertificateData& operator=(const CertificateData& data);
+        CertificateData&
+        operator=(const CertificateData& data);
 
-        blocxx::UInt32 getVersion() const;
-        String         getSerial() const;
-        time_t         getStartDate() const;
-        time_t         getEndDate() const;
-        DNObject       getIssuerDN() const;
-        DNObject       getSubjectDN() const;
-        blocxx::UInt32 getKeysize() const;
-        KeyAlg         getPublicKeyAlgorithm() const;
-        String         getPublicKeyAlgorithmAsString() const;
-        limal::ByteBuffer getPublicKey() const;
-        SigAlg         getSignatureAlgorithm() const;
-        String         getSignatureAlgorithmAsString() const;
-        limal::ByteBuffer getSignature() const;
-        String         getFingerprint() const;
-        X509v3CertificateExtensions getExtensions() const;
+        blocxx::UInt32
+        getVersion() const;
+        
+        String
+        getSerial() const;
+        
+        time_t
+        getStartDate() const;
+        
+        time_t
+        getEndDate() const;
+        
+        DNObject
+        getIssuerDN() const;
+        
+        DNObject
+        getSubjectDN() const;
+        
+        blocxx::UInt32
+        getKeysize() const;
+        
+        KeyAlg
+        getPublicKeyAlgorithm() const;
+        
+        String
+        getPublicKeyAlgorithmAsString() const;
+        
+        limal::ByteBuffer
+        getPublicKey() const;
+        
+        SigAlg
+        getSignatureAlgorithm() const;
+        
+        String
+        getSignatureAlgorithmAsString() const;
+        
+        limal::ByteBuffer
+        getSignature() const;
+        
+        String
+        getFingerprint() const;
+        
+        X509v3CertificateExts
+        getExtensions() const;
                 
-        virtual bool                 valid() const;
-        virtual blocxx::StringArray  verify() const;
+        virtual bool
+        valid() const;
+        
+        virtual blocxx::StringArray
+        verify() const;
 
-        virtual blocxx::StringArray  dump() const;
+        virtual blocxx::StringArray
+        dump() const;
+        
     protected:
         CertificateData();
 
-        blocxx::UInt32   version;   // allowed 1, 2, 3
-        String           serial;    
-        time_t           notBefore; 
-        time_t           notAfter;  
+        blocxx::UInt32        version;   // allowed 1, 2, 3
+        String                serial;    
+        time_t                notBefore; 
+        time_t                notAfter;  
 
-        DNObject         issuer;
-        DNObject         subject;
-        blocxx::UInt32   keysize;
+        DNObject              issuer;
+        DNObject              subject;
+        blocxx::UInt32        keysize;
 
-        KeyAlg           pubkeyAlgorithm; 
+        KeyAlg                pubkeyAlgorithm; 
 
-        ByteBuffer       publicKey;  
+        ByteBuffer            publicKey;  
 
-        SigAlg           signatureAlgorithm;
-        ByteBuffer       signature;     
-                                         // mit private key der CA verschlüsselter Hash wert
-                                         // des Zertifikates
+        SigAlg                signatureAlgorithm;
+        ByteBuffer            signature;
 
-
-        X509v3CertificateExtensions extensions;
+        X509v3CertificateExts extensions;
 
     };
 

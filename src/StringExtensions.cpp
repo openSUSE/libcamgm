@@ -68,17 +68,17 @@ StringExtension::operator=(const StringExtension& extension)
 
 // #################################################################
 
-NsBaseUrlExtension::NsBaseUrlExtension(const String &v)
+NsBaseUrlExt::NsBaseUrlExt(const String &v)
     : StringExtension(v)
 {
     if(!initURICheck().isValid(v)) {
-        LOGIT_ERROR("invalid value for NsBaseUrlExtension");
-        BLOCXX_THROW(limal::ValueException, "invalid value for NsBaseUrlExtension");
+        LOGIT_ERROR("invalid value for NsBaseUrlExt");
+        BLOCXX_THROW(limal::ValueException, "invalid value for NsBaseUrlExt");
     }
     setPresent(true);
 }
 
-NsBaseUrlExtension::NsBaseUrlExtension(CAConfig* caConfig, Type type)
+NsBaseUrlExt::NsBaseUrlExt(CAConfig* caConfig, Type type)
     : StringExtension(String())
 {
     // These types are not supported by this object
@@ -102,15 +102,15 @@ NsBaseUrlExtension::NsBaseUrlExtension(CAConfig* caConfig, Type type)
     setPresent(p);
 }
 
-NsBaseUrlExtension::NsBaseUrlExtension(const NsBaseUrlExtension &extension)
+NsBaseUrlExt::NsBaseUrlExt(const NsBaseUrlExt &extension)
     : StringExtension(extension)
 {}
 
-NsBaseUrlExtension::~NsBaseUrlExtension()
+NsBaseUrlExt::~NsBaseUrlExt()
 {}
 
-NsBaseUrlExtension&
-NsBaseUrlExtension::operator=(const NsBaseUrlExtension& extension)
+NsBaseUrlExt&
+NsBaseUrlExt::operator=(const NsBaseUrlExt& extension)
 {
     if(this == &extension) return *this;
 
@@ -120,31 +120,31 @@ NsBaseUrlExtension::operator=(const NsBaseUrlExtension& extension)
 }
 
 void
-NsBaseUrlExtension::setValue(const String &v)
+NsBaseUrlExt::setValue(const String &v)
 {
     if(!initURICheck().isValid(v)) {
-        LOGIT_ERROR("invalid value for NsBaseUrlExtension");
-        BLOCXX_THROW(limal::ValueException, "invalid value for NsBaseUrlExtension");
+        LOGIT_ERROR("invalid value for NsBaseUrlExt");
+        BLOCXX_THROW(limal::ValueException, "invalid value for NsBaseUrlExt");
     }
     value = v;
     setPresent(true);
 }
 
 blocxx::String
-NsBaseUrlExtension::getValue() const
+NsBaseUrlExt::getValue() const
 {
     if(!isPresent()) {
-        BLOCXX_THROW(limal::RuntimeException, "NsBaseUrlExtension is not present");
+        BLOCXX_THROW(limal::RuntimeException, "NsBaseUrlExt is not present");
     }
     return value;
 }
 
 void
-NsBaseUrlExtension::commit2Config(CA& ca, Type type) const
+NsBaseUrlExt::commit2Config(CA& ca, Type type) const
 {
     if(!valid()) {
-        LOGIT_ERROR("invalid NsBaseUrlExtension object");
-        BLOCXX_THROW(limal::ValueException, "invalid NsBaseUrlExtension object");
+        LOGIT_ERROR("invalid NsBaseUrlExt object");
+        BLOCXX_THROW(limal::ValueException, "invalid NsBaseUrlExt object");
     }
 
     // This extension is not supported by type CRL
@@ -166,37 +166,37 @@ NsBaseUrlExtension::commit2Config(CA& ca, Type type) const
 }
 
 bool
-NsBaseUrlExtension::valid() const
+NsBaseUrlExt::valid() const
 {
     if(!isPresent()) return true;
 
     if(!initURICheck().isValid(value)) {
-        LOGIT_DEBUG("Wrong value for NsBaseUrlExtension:" << value);
+        LOGIT_DEBUG("Wrong value for NsBaseUrlExt:" << value);
         return false;
     }    
     return true;
 }
 
 blocxx::StringArray
-NsBaseUrlExtension::verify() const
+NsBaseUrlExt::verify() const
 {
     StringArray result;
 
     if(!isPresent()) return result;
 
     if(!initURICheck().isValid(value)) {
-        LOGIT_DEBUG("Wrong value for NsBaseUrlExtension:" << value);
-        result.append(Format("Wrong value for NsBaseUrlExtension: %1", value).toString());
+        LOGIT_DEBUG("Wrong value for NsBaseUrlExt:" << value);
+        result.append(Format("Wrong value for NsBaseUrlExt: %1", value).toString());
     }
-    LOGIT_DEBUG_STRINGARRAY("NsBaseUrlExtension::verify()", result);
+    LOGIT_DEBUG_STRINGARRAY("NsBaseUrlExt::verify()", result);
     return result;
 }
 
 blocxx::StringArray
-NsBaseUrlExtension::dump() const
+NsBaseUrlExt::dump() const
 {
     StringArray result;
-    result.append("NsBaseUrlExtension::dump()");
+    result.append("NsBaseUrlExt::dump()");
 
     result.appendArray(ExtensionBase::dump());
     if(!isPresent()) return result;
@@ -208,24 +208,24 @@ NsBaseUrlExtension::dump() const
 
 
 // private:
-NsBaseUrlExtension::NsBaseUrlExtension()
+NsBaseUrlExt::NsBaseUrlExt()
     : StringExtension(String())
 {}
 
 
 // #################################################################
 
-NsRevocationUrlExtension::NsRevocationUrlExtension(const String &v)
+NsRevocationUrlExt::NsRevocationUrlExt(const String &v)
     : StringExtension(v)
 {
     if(!initURICheck().isValid(v)) {
-        LOGIT_ERROR("invalid value for NsRevocationUrlExtension");
-        BLOCXX_THROW(limal::ValueException, "invalid value for NsRevocationUrlExtension");
+        LOGIT_ERROR("invalid value for NsRevocationUrlExt");
+        BLOCXX_THROW(limal::ValueException, "invalid value for NsRevocationUrlExt");
     }
     setPresent(true);
 }
 
-NsRevocationUrlExtension::NsRevocationUrlExtension(CAConfig* caConfig, Type type)
+NsRevocationUrlExt::NsRevocationUrlExt(CAConfig* caConfig, Type type)
     : StringExtension(String())
 {
     // These types are not supported by this object
@@ -249,15 +249,15 @@ NsRevocationUrlExtension::NsRevocationUrlExtension(CAConfig* caConfig, Type type
     setPresent(p);
 }
 
-NsRevocationUrlExtension::NsRevocationUrlExtension(const NsRevocationUrlExtension &extension)
+NsRevocationUrlExt::NsRevocationUrlExt(const NsRevocationUrlExt &extension)
     : StringExtension(extension)
 {}
 
-NsRevocationUrlExtension::~NsRevocationUrlExtension()
+NsRevocationUrlExt::~NsRevocationUrlExt()
 {}
 
-NsRevocationUrlExtension&
-NsRevocationUrlExtension::operator=(const NsRevocationUrlExtension& extension)
+NsRevocationUrlExt&
+NsRevocationUrlExt::operator=(const NsRevocationUrlExt& extension)
 {
     if(this == &extension) return *this;
 
@@ -267,31 +267,31 @@ NsRevocationUrlExtension::operator=(const NsRevocationUrlExtension& extension)
 }
 
 void
-NsRevocationUrlExtension::setValue(const String &v)
+NsRevocationUrlExt::setValue(const String &v)
 {
     if(!initURICheck().isValid(v)) {
-        LOGIT_ERROR("invalid value for NsRevocationUrlExtension");
-        BLOCXX_THROW(limal::ValueException, "invalid value for NsRevocationUrlExtension");
+        LOGIT_ERROR("invalid value for NsRevocationUrlExt");
+        BLOCXX_THROW(limal::ValueException, "invalid value for NsRevocationUrlExt");
     }
     value = v;
     setPresent(true);
 }
 
 blocxx::String
-NsRevocationUrlExtension::getValue() const
+NsRevocationUrlExt::getValue() const
 {
     if(!isPresent()) {
-        BLOCXX_THROW(limal::RuntimeException, "NsRevocationUrlExtension is not present");
+        BLOCXX_THROW(limal::RuntimeException, "NsRevocationUrlExt is not present");
     }
     return value;
 }
 
 void
-NsRevocationUrlExtension::commit2Config(CA& ca, Type type) const
+NsRevocationUrlExt::commit2Config(CA& ca, Type type) const
 {
     if(!valid()) {
-        LOGIT_ERROR("invalid NsRevocationUrlExtension object");
-        BLOCXX_THROW(limal::ValueException, "invalid NsRevocationUrlExtension object");
+        LOGIT_ERROR("invalid NsRevocationUrlExt object");
+        BLOCXX_THROW(limal::ValueException, "invalid NsRevocationUrlExt object");
     }
 
     // This extension is not supported by type CRL
@@ -314,37 +314,37 @@ NsRevocationUrlExtension::commit2Config(CA& ca, Type type) const
 }
 
 blocxx::StringArray
-NsRevocationUrlExtension::verify() const
+NsRevocationUrlExt::verify() const
 {
     StringArray result;
 
     if(!isPresent()) return result;
 
     if(!initURICheck().isValid(value)) {
-        LOGIT_DEBUG("Wrong value for NsRevocationUrlExtension:" << value);
-        result.append(Format("Wrong value for NsRevocationUrlExtension: %1", value).toString());
+        LOGIT_DEBUG("Wrong value for NsRevocationUrlExt:" << value);
+        result.append(Format("Wrong value for NsRevocationUrlExt: %1", value).toString());
     }
-    LOGIT_DEBUG_STRINGARRAY("NsRevocationUrlExtension::verify()", result);
+    LOGIT_DEBUG_STRINGARRAY("NsRevocationUrlExt::verify()", result);
     return result;
 }
 
 bool
-NsRevocationUrlExtension::valid() const
+NsRevocationUrlExt::valid() const
 {
     if(!isPresent()) return true;
 
     if(!initURICheck().isValid(value)) {
-        LOGIT_DEBUG("Wrong value for NsRevocationUrlExtension:" << value);
+        LOGIT_DEBUG("Wrong value for NsRevocationUrlExt:" << value);
         return false;
     }    
     return true;
 }
 
 blocxx::StringArray
-NsRevocationUrlExtension::dump() const
+NsRevocationUrlExt::dump() const
 {
     StringArray result;
-    result.append("NsRevocationUrlExtension::dump()");
+    result.append("NsRevocationUrlExt::dump()");
 
     result.appendArray(ExtensionBase::dump());
     if(!isPresent()) return result;
@@ -355,7 +355,7 @@ NsRevocationUrlExtension::dump() const
 }
 
 //    private:
-NsRevocationUrlExtension::NsRevocationUrlExtension()
+NsRevocationUrlExt::NsRevocationUrlExt()
     : StringExtension(String())
 {
 }
@@ -363,17 +363,17 @@ NsRevocationUrlExtension::NsRevocationUrlExtension()
 
 // #################################################################
 
-NsCaRevocationUrlExtension::NsCaRevocationUrlExtension(const String &v)
+NsCaRevocationUrlExt::NsCaRevocationUrlExt(const String &v)
     : StringExtension(v)
 {
     if(!initURICheck().isValid(v)) {
-        LOGIT_ERROR("invalid value for NsCaRevocationUrlExtension");
-        BLOCXX_THROW(limal::ValueException, "invalid value for NsCaRevocationUrlExtension");
+        LOGIT_ERROR("invalid value for NsCaRevocationUrlExt");
+        BLOCXX_THROW(limal::ValueException, "invalid value for NsCaRevocationUrlExt");
     }
     setPresent(true);
 }
 
-NsCaRevocationUrlExtension::NsCaRevocationUrlExtension(CAConfig* caConfig, Type type)
+NsCaRevocationUrlExt::NsCaRevocationUrlExt(CAConfig* caConfig, Type type)
     : StringExtension(String())
 {
     // These types are not supported by this object
@@ -397,15 +397,15 @@ NsCaRevocationUrlExtension::NsCaRevocationUrlExtension(CAConfig* caConfig, Type 
     setPresent(p);
 }
 
-NsCaRevocationUrlExtension::NsCaRevocationUrlExtension(const NsCaRevocationUrlExtension &extension)
+NsCaRevocationUrlExt::NsCaRevocationUrlExt(const NsCaRevocationUrlExt &extension)
     : StringExtension(extension)
 {}
 
-NsCaRevocationUrlExtension::~NsCaRevocationUrlExtension()
+NsCaRevocationUrlExt::~NsCaRevocationUrlExt()
 {}
 
-NsCaRevocationUrlExtension&
-NsCaRevocationUrlExtension::operator=(const NsCaRevocationUrlExtension& extension)
+NsCaRevocationUrlExt&
+NsCaRevocationUrlExt::operator=(const NsCaRevocationUrlExt& extension)
 {
     if(this == &extension) return *this;
 
@@ -415,31 +415,31 @@ NsCaRevocationUrlExtension::operator=(const NsCaRevocationUrlExtension& extensio
 }
 
 void
-NsCaRevocationUrlExtension::setValue(const String &v)
+NsCaRevocationUrlExt::setValue(const String &v)
 {
     if(!initURICheck().isValid(v)) {
-        LOGIT_ERROR("invalid value for NsCaRevocationUrlExtension");
-        BLOCXX_THROW(limal::ValueException, "invalid value for NsCaRevocationUrlExtension");
+        LOGIT_ERROR("invalid value for NsCaRevocationUrlExt");
+        BLOCXX_THROW(limal::ValueException, "invalid value for NsCaRevocationUrlExt");
     }
     value = v;
     setPresent(true);
 }
 
 blocxx::String
-NsCaRevocationUrlExtension::getValue() const
+NsCaRevocationUrlExt::getValue() const
 {
     if(!isPresent()) {
-        BLOCXX_THROW(limal::RuntimeException, "NsCaRevocationUrlExtension is not present");
+        BLOCXX_THROW(limal::RuntimeException, "NsCaRevocationUrlExt is not present");
     }
     return value;
 }
 
 void
-NsCaRevocationUrlExtension::commit2Config(CA& ca, Type type) const
+NsCaRevocationUrlExt::commit2Config(CA& ca, Type type) const
 {
     if(!valid()) {
-        LOGIT_ERROR("invalid NsCaRevocationUrlExtension object");
-        BLOCXX_THROW(limal::ValueException, "invalid NsCaRevocationUrlExtension object");
+        LOGIT_ERROR("invalid NsCaRevocationUrlExt object");
+        BLOCXX_THROW(limal::ValueException, "invalid NsCaRevocationUrlExt object");
     }
 
     // This extension is not supported by type CRL
@@ -462,37 +462,37 @@ NsCaRevocationUrlExtension::commit2Config(CA& ca, Type type) const
 }
 
 blocxx::StringArray
-NsCaRevocationUrlExtension::verify() const
+NsCaRevocationUrlExt::verify() const
 {
     StringArray result;
 
     if(!isPresent()) return result;
 
     if(!initURICheck().isValid(value)) {
-        LOGIT_DEBUG("Wrong value for NsCaRevocationUrlExtension:" << value);
-        result.append(Format("Wrong value for NsCaRevocationUrlExtension: %1", value).toString());
+        LOGIT_DEBUG("Wrong value for NsCaRevocationUrlExt:" << value);
+        result.append(Format("Wrong value for NsCaRevocationUrlExt: %1", value).toString());
     }
-    LOGIT_DEBUG_STRINGARRAY("NsCaRevocationUrlExtension::verify()", result);
+    LOGIT_DEBUG_STRINGARRAY("NsCaRevocationUrlExt::verify()", result);
     return result;
 }
 
 bool
-NsCaRevocationUrlExtension::valid() const
+NsCaRevocationUrlExt::valid() const
 {
     if(!isPresent()) return true;
 
     if(!initURICheck().isValid(value)) {
-        LOGIT_DEBUG("Wrong value for NsCaRevocationUrlExtension:" << value);
+        LOGIT_DEBUG("Wrong value for NsCaRevocationUrlExt:" << value);
         return false;
     }    
     return true;
 }
 
 blocxx::StringArray
-NsCaRevocationUrlExtension::dump() const
+NsCaRevocationUrlExt::dump() const
 {
     StringArray result;
-    result.append("NsCaRevocationUrlExtension::dump()");
+    result.append("NsCaRevocationUrlExt::dump()");
 
     result.appendArray(ExtensionBase::dump());
     if(!isPresent()) return result;
@@ -503,24 +503,24 @@ NsCaRevocationUrlExtension::dump() const
 }
 
 //  private:
-NsCaRevocationUrlExtension::NsCaRevocationUrlExtension()
+NsCaRevocationUrlExt::NsCaRevocationUrlExt()
     : StringExtension(String())
 {}
 
 
 // #################################################################
 
-NsRenewalUrlExtension::NsRenewalUrlExtension(const String &v)
+NsRenewalUrlExt::NsRenewalUrlExt(const String &v)
     : StringExtension(v)
 {
     if(!initURICheck().isValid(v)) {
-        LOGIT_ERROR("invalid value for NsRenewalUrlExtension");
-        BLOCXX_THROW(limal::ValueException, "invalid value for NsRenewalUrlExtension");
+        LOGIT_ERROR("invalid value for NsRenewalUrlExt");
+        BLOCXX_THROW(limal::ValueException, "invalid value for NsRenewalUrlExt");
     }
     setPresent(true);
 }
 
-NsRenewalUrlExtension::NsRenewalUrlExtension(CAConfig* caConfig, Type type)
+NsRenewalUrlExt::NsRenewalUrlExt(CAConfig* caConfig, Type type)
     : StringExtension(String())
 {
     // These types are not supported by this object
@@ -544,15 +544,15 @@ NsRenewalUrlExtension::NsRenewalUrlExtension(CAConfig* caConfig, Type type)
     setPresent(p);
 }
 
-NsRenewalUrlExtension::NsRenewalUrlExtension(const NsRenewalUrlExtension &extension)
+NsRenewalUrlExt::NsRenewalUrlExt(const NsRenewalUrlExt &extension)
     : StringExtension(extension)
 {}
 
-NsRenewalUrlExtension::~NsRenewalUrlExtension()
+NsRenewalUrlExt::~NsRenewalUrlExt()
 {}
 
-NsRenewalUrlExtension&
-NsRenewalUrlExtension::operator=(const NsRenewalUrlExtension& extension)
+NsRenewalUrlExt&
+NsRenewalUrlExt::operator=(const NsRenewalUrlExt& extension)
 {
     if(this == &extension) return *this;
 
@@ -562,31 +562,31 @@ NsRenewalUrlExtension::operator=(const NsRenewalUrlExtension& extension)
 }
 
 void
-NsRenewalUrlExtension::setValue(const String &v)
+NsRenewalUrlExt::setValue(const String &v)
 {
     if(!initURICheck().isValid(v)) {
-        LOGIT_ERROR("invalid value for NsRenewalUrlExtension");
-        BLOCXX_THROW(limal::ValueException, "invalid value for NsRenewalUrlExtension");
+        LOGIT_ERROR("invalid value for NsRenewalUrlExt");
+        BLOCXX_THROW(limal::ValueException, "invalid value for NsRenewalUrlExt");
     }
     value = v;
     setPresent(true);
 }
 
 blocxx::String
-NsRenewalUrlExtension::getValue() const
+NsRenewalUrlExt::getValue() const
 {
     if(!isPresent()) {
-        BLOCXX_THROW(limal::RuntimeException, "NsRenewalUrlExtension is not present");
+        BLOCXX_THROW(limal::RuntimeException, "NsRenewalUrlExt is not present");
     }
     return value;
 }
 
 void
-NsRenewalUrlExtension::commit2Config(CA& ca, Type type) const
+NsRenewalUrlExt::commit2Config(CA& ca, Type type) const
 {
     if(!valid()) {
-        LOGIT_ERROR("invalid NsRenewalUrlExtension object");
-        BLOCXX_THROW(limal::ValueException, "invalid NsRenewalUrlExtension object");
+        LOGIT_ERROR("invalid NsRenewalUrlExt object");
+        BLOCXX_THROW(limal::ValueException, "invalid NsRenewalUrlExt object");
     }
 
     // This extension is not supported by type CRL
@@ -609,37 +609,37 @@ NsRenewalUrlExtension::commit2Config(CA& ca, Type type) const
 }
 
 blocxx::StringArray
-NsRenewalUrlExtension::verify() const
+NsRenewalUrlExt::verify() const
 {
     StringArray result;
 
     if(!isPresent()) return result;
 
     if(!initURICheck().isValid(value)) {
-        LOGIT_DEBUG("Wrong value for NsRenewalUrlExtension:" << value);
-        result.append(Format("Wrong value for NsRenewalUrlExtension: %1", value).toString());
+        LOGIT_DEBUG("Wrong value for NsRenewalUrlExt:" << value);
+        result.append(Format("Wrong value for NsRenewalUrlExt: %1", value).toString());
     }
-    LOGIT_DEBUG_STRINGARRAY("NsRenewalUrlExtension::verify()", result);
+    LOGIT_DEBUG_STRINGARRAY("NsRenewalUrlExt::verify()", result);
     return result;
 }
 
 bool
-NsRenewalUrlExtension::valid() const
+NsRenewalUrlExt::valid() const
 {
     if(!isPresent()) return true;
 
     if(!initURICheck().isValid(value)) {
-        LOGIT_DEBUG("Wrong value for NsRenewalUrlExtension:" << value);
+        LOGIT_DEBUG("Wrong value for NsRenewalUrlExt:" << value);
         return false;
     }    
     return true;
 }
 
 blocxx::StringArray
-NsRenewalUrlExtension::dump() const
+NsRenewalUrlExt::dump() const
 {
     StringArray result;
-    result.append("NsRenewalUrlExtension::dump()");
+    result.append("NsRenewalUrlExt::dump()");
 
     result.appendArray(ExtensionBase::dump());
     if(!isPresent()) return result;
@@ -650,23 +650,23 @@ NsRenewalUrlExtension::dump() const
 }
 
 //    private:
-NsRenewalUrlExtension::NsRenewalUrlExtension()
+NsRenewalUrlExt::NsRenewalUrlExt()
     : StringExtension(String())
 {}
 
 // #################################################################
 
-NsCaPolicyUrlExtension::NsCaPolicyUrlExtension(const String &v)
+NsCaPolicyUrlExt::NsCaPolicyUrlExt(const String &v)
     : StringExtension(v)
 {
     if(!initURICheck().isValid(v)) {
-        LOGIT_ERROR("invalid value for NsCaPolicyUrlExtension");
-        BLOCXX_THROW(limal::ValueException, "invalid value for NsCaPolicyUrlExtension");
+        LOGIT_ERROR("invalid value for NsCaPolicyUrlExt");
+        BLOCXX_THROW(limal::ValueException, "invalid value for NsCaPolicyUrlExt");
     }
     setPresent(true);
 }
 
-NsCaPolicyUrlExtension::NsCaPolicyUrlExtension(CAConfig* caConfig, Type type)
+NsCaPolicyUrlExt::NsCaPolicyUrlExt(CAConfig* caConfig, Type type)
     : StringExtension(String())
 {
     // These types are not supported by this object
@@ -690,15 +690,15 @@ NsCaPolicyUrlExtension::NsCaPolicyUrlExtension(CAConfig* caConfig, Type type)
     setPresent(p);
 }
 
-NsCaPolicyUrlExtension::NsCaPolicyUrlExtension(const NsCaPolicyUrlExtension &extension)
+NsCaPolicyUrlExt::NsCaPolicyUrlExt(const NsCaPolicyUrlExt &extension)
     : StringExtension(extension)
 {}
 
-NsCaPolicyUrlExtension::~NsCaPolicyUrlExtension()
+NsCaPolicyUrlExt::~NsCaPolicyUrlExt()
 {}
 
-NsCaPolicyUrlExtension&
-NsCaPolicyUrlExtension::operator=(const NsCaPolicyUrlExtension& extension)
+NsCaPolicyUrlExt&
+NsCaPolicyUrlExt::operator=(const NsCaPolicyUrlExt& extension)
 {
     if(this == &extension) return *this;
 
@@ -708,31 +708,31 @@ NsCaPolicyUrlExtension::operator=(const NsCaPolicyUrlExtension& extension)
 }
 
 void
-NsCaPolicyUrlExtension::setValue(const String &v)
+NsCaPolicyUrlExt::setValue(const String &v)
 {
     if(!initURICheck().isValid(v)) {
-        LOGIT_ERROR("invalid value for NsCaPolicyUrlExtension");
-        BLOCXX_THROW(limal::ValueException, "invalid value for NsCaPolicyUrlExtension");
+        LOGIT_ERROR("invalid value for NsCaPolicyUrlExt");
+        BLOCXX_THROW(limal::ValueException, "invalid value for NsCaPolicyUrlExt");
     }
     value = v;
     setPresent(true);
 }
 
 blocxx::String
-NsCaPolicyUrlExtension::getValue() const
+NsCaPolicyUrlExt::getValue() const
 {
     if(!isPresent()) {
-        BLOCXX_THROW(limal::RuntimeException, "NsCaPolicyUrlExtension is not present");
+        BLOCXX_THROW(limal::RuntimeException, "NsCaPolicyUrlExt is not present");
     }
     return value;
 }
 
 void
-NsCaPolicyUrlExtension::commit2Config(CA& ca, Type type) const
+NsCaPolicyUrlExt::commit2Config(CA& ca, Type type) const
 {
     if(!valid()) {
-        LOGIT_ERROR("invalid NsCaPolicyUrlExtension object");
-        BLOCXX_THROW(limal::ValueException, "invalid NsCaPolicyUrlExtension object");
+        LOGIT_ERROR("invalid NsCaPolicyUrlExt object");
+        BLOCXX_THROW(limal::ValueException, "invalid NsCaPolicyUrlExt object");
     }
 
     // This extension is not supported by type CRL
@@ -755,37 +755,37 @@ NsCaPolicyUrlExtension::commit2Config(CA& ca, Type type) const
 }
 
 blocxx::StringArray
-NsCaPolicyUrlExtension::verify() const
+NsCaPolicyUrlExt::verify() const
 {
     StringArray result;
 
     if(!isPresent()) return result;
 
     if(!initURICheck().isValid(value)) {
-        LOGIT_DEBUG("Wrong value for NsCaPolicyUrlExtension:" << value);
-        result.append(Format("Wrong value for NsCaPolicyUrlExtension: %1", value).toString());
+        LOGIT_DEBUG("Wrong value for NsCaPolicyUrlExt:" << value);
+        result.append(Format("Wrong value for NsCaPolicyUrlExt: %1", value).toString());
     }
-    LOGIT_DEBUG_STRINGARRAY("NsCaPolicyUrlExtension::verify()", result);
+    LOGIT_DEBUG_STRINGARRAY("NsCaPolicyUrlExt::verify()", result);
     return result;
 }
 
 bool
-NsCaPolicyUrlExtension::valid() const
+NsCaPolicyUrlExt::valid() const
 {
     if(!isPresent()) return true;
 
     if(!initURICheck().isValid(value)) {
-        LOGIT_DEBUG("Wrong value for NsCaPolicyUrlExtension:" << value);
+        LOGIT_DEBUG("Wrong value for NsCaPolicyUrlExt:" << value);
         return false;
     }    
     return true;
 }
 
 blocxx::StringArray
-NsCaPolicyUrlExtension::dump() const
+NsCaPolicyUrlExt::dump() const
 {
     StringArray result;
-    result.append("NsCaPolicyUrlExtension::dump()");
+    result.append("NsCaPolicyUrlExt::dump()");
 
     result.appendArray(ExtensionBase::dump());
     if(!isPresent()) return result;
@@ -796,20 +796,20 @@ NsCaPolicyUrlExtension::dump() const
 }
 
 //    private:
-NsCaPolicyUrlExtension::NsCaPolicyUrlExtension()
+NsCaPolicyUrlExt::NsCaPolicyUrlExt()
     : StringExtension(String())
 {}
 
 
 // #################################################################
 
-NsSslServerNameExtension::NsSslServerNameExtension(const String &v)
+NsSslServerNameExt::NsSslServerNameExt(const String &v)
     : StringExtension(v)
 {
     setPresent(true);
 }
 
-NsSslServerNameExtension::NsSslServerNameExtension(CAConfig* caConfig, Type type)
+NsSslServerNameExt::NsSslServerNameExt(CAConfig* caConfig, Type type)
     : StringExtension(String())
 {
     // These types are not supported by this object
@@ -833,15 +833,15 @@ NsSslServerNameExtension::NsSslServerNameExtension(CAConfig* caConfig, Type type
     setPresent(p);
 }
 
-NsSslServerNameExtension::NsSslServerNameExtension(const NsSslServerNameExtension &extension)
+NsSslServerNameExt::NsSslServerNameExt(const NsSslServerNameExt &extension)
     : StringExtension(extension)
 {}
 
-NsSslServerNameExtension::~NsSslServerNameExtension()
+NsSslServerNameExt::~NsSslServerNameExt()
 {}
 
-NsSslServerNameExtension&
-NsSslServerNameExtension::operator=(const NsSslServerNameExtension& extension)
+NsSslServerNameExt&
+NsSslServerNameExt::operator=(const NsSslServerNameExt& extension)
 {
     if(this == &extension) return *this;
 
@@ -851,27 +851,27 @@ NsSslServerNameExtension::operator=(const NsSslServerNameExtension& extension)
 }
 
 void
-NsSslServerNameExtension::setValue(const String &v)
+NsSslServerNameExt::setValue(const String &v)
 {
     value = v;
     setPresent(true);
 }
 
 blocxx::String
-NsSslServerNameExtension::getValue() const
+NsSslServerNameExt::getValue() const
 {
     if(!isPresent()) {
-        BLOCXX_THROW(limal::RuntimeException, "NsSslServerNameExtension is not present");
+        BLOCXX_THROW(limal::RuntimeException, "NsSslServerNameExt is not present");
     }
     return value;
 }
 
 void
-NsSslServerNameExtension::commit2Config(CA& ca, Type type) const
+NsSslServerNameExt::commit2Config(CA& ca, Type type) const
 {
     if(!valid()) {
-        LOGIT_ERROR("invalid NsSslServerNameExtension object");
-        BLOCXX_THROW(limal::ValueException, "invalid NsSslServerNameExtension object");
+        LOGIT_ERROR("invalid NsSslServerNameExt object");
+        BLOCXX_THROW(limal::ValueException, "invalid NsSslServerNameExt object");
     }
 
     // This extension is not supported by type CRL
@@ -893,22 +893,22 @@ NsSslServerNameExtension::commit2Config(CA& ca, Type type) const
 }
 
 blocxx::StringArray
-NsSslServerNameExtension::verify() const
+NsSslServerNameExt::verify() const
 {
     return blocxx::StringArray();
 }
 
 bool
-NsSslServerNameExtension::valid() const
+NsSslServerNameExt::valid() const
 {
     return true;
 }
 
 blocxx::StringArray
-NsSslServerNameExtension::dump() const
+NsSslServerNameExt::dump() const
 {
     StringArray result;
-    result.append("NsSslServerNameExtension::dump()");
+    result.append("NsSslServerNameExt::dump()");
 
     result.appendArray(ExtensionBase::dump());
     if(!isPresent()) return result;
@@ -920,19 +920,19 @@ NsSslServerNameExtension::dump() const
 
 //    private:
 
-NsSslServerNameExtension::NsSslServerNameExtension()
+NsSslServerNameExt::NsSslServerNameExt()
     : StringExtension(String())
 {}
 
 // #################################################################
 
-NsCommentExtension::NsCommentExtension(const String &v)
+NsCommentExt::NsCommentExt(const String &v)
     : StringExtension(v)
 {
     setPresent(true);
 }
 
-NsCommentExtension::NsCommentExtension(CAConfig* caConfig, Type type)
+NsCommentExt::NsCommentExt(CAConfig* caConfig, Type type)
     : StringExtension(String())
 {
     // These types are not supported by this object
@@ -955,15 +955,15 @@ NsCommentExtension::NsCommentExtension(CAConfig* caConfig, Type type)
     setPresent(p);
 }
 
-NsCommentExtension::NsCommentExtension(const NsCommentExtension &extension)
+NsCommentExt::NsCommentExt(const NsCommentExt &extension)
     : StringExtension(extension)
 {}
 
-NsCommentExtension::~NsCommentExtension()
+NsCommentExt::~NsCommentExt()
 {}
 
-NsCommentExtension&
-NsCommentExtension::operator=(const NsCommentExtension& extension)
+NsCommentExt&
+NsCommentExt::operator=(const NsCommentExt& extension)
 {
     if(this == &extension) return *this;
 
@@ -973,27 +973,27 @@ NsCommentExtension::operator=(const NsCommentExtension& extension)
 }
 
 void
-NsCommentExtension::setValue(const String &v)
+NsCommentExt::setValue(const String &v)
 {
     value = v;
     setPresent(true);
 }
 
 blocxx::String
-NsCommentExtension::getValue() const
+NsCommentExt::getValue() const
 {
     if(!isPresent()) {
-        BLOCXX_THROW(limal::RuntimeException, "NsCommentExtension is not present");
+        BLOCXX_THROW(limal::RuntimeException, "NsCommentExt is not present");
     }
     return value;
 }
 
 void
-NsCommentExtension::commit2Config(CA& ca, Type type) const
+NsCommentExt::commit2Config(CA& ca, Type type) const
 {
     if(!valid()) {
-        LOGIT_ERROR("invalid NsCommentExtension object");
-        BLOCXX_THROW(limal::ValueException, "invalid NsCommentExtension object");
+        LOGIT_ERROR("invalid NsCommentExt object");
+        BLOCXX_THROW(limal::ValueException, "invalid NsCommentExt object");
     }
 
     // This extension is not supported by type CRL
@@ -1015,22 +1015,22 @@ NsCommentExtension::commit2Config(CA& ca, Type type) const
 }
 
 blocxx::StringArray
-NsCommentExtension::verify() const
+NsCommentExt::verify() const
 {
     return blocxx::StringArray();
 }
 
 bool
-NsCommentExtension::valid() const
+NsCommentExt::valid() const
 {
     return true;
 }
 
 blocxx::StringArray
-NsCommentExtension::dump() const
+NsCommentExt::dump() const
 {
     StringArray result;
-    result.append("NsCommentExtension::dump()");
+    result.append("NsCommentExt::dump()");
 
     result.appendArray(ExtensionBase::dump());
     if(!isPresent()) return result;
@@ -1041,7 +1041,7 @@ NsCommentExtension::dump() const
 }
 
 //    private:
-NsCommentExtension::NsCommentExtension()
+NsCommentExt::NsCommentExt()
     : StringExtension(String())
 {}
 

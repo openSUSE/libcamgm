@@ -40,74 +40,74 @@ using namespace limal;
 using namespace blocxx;
 
 
-X509v3RequestExtensions_Priv::X509v3RequestExtensions_Priv()
-    : X509v3RequestExtensions()
+X509v3RequestExts_Priv::X509v3RequestExts_Priv()
+    : X509v3RequestExts()
 {
 }
 
-X509v3RequestExtensions_Priv::X509v3RequestExtensions_Priv(STACK_OF(X509_EXTENSION)* extensions)
-    : X509v3RequestExtensions()
+X509v3RequestExts_Priv::X509v3RequestExts_Priv(STACK_OF(X509_EXTENSION)* extensions)
+    : X509v3RequestExts()
 {
-    // NsSslServerNameExtension   nsSslServerName;
+    // NsSslServerNameExt   nsSslServerName;
 
-    parseStringExtension(extensions, NID_netscape_ssl_server_name, nsSslServerName);
+    parseStringExt(extensions, NID_netscape_ssl_server_name, nsSslServerName);
 
-    // NsCommentExtension         nsComment;
+    // NsCommentExt         nsComment;
 
-    parseStringExtension(extensions, NID_netscape_comment, nsComment);
+    parseStringExt(extensions, NID_netscape_comment, nsComment);
 
-    // KeyUsageExtension   keyUsage; 
+    // KeyUsageExt   keyUsage; 
 
-    parseBitExtension(extensions, NID_key_usage, keyUsage);
+    parseBitExt(extensions, NID_key_usage, keyUsage);
 
-    // NsCertTypeExtension nsCertType;
+    // NsCertTypeExt nsCertType;
 
-    parseBitExtension(extensions, NID_netscape_cert_type, nsCertType);
+    parseBitExt(extensions, NID_netscape_cert_type, nsCertType);
 
-    // BasicConstraintsExtension       basicConstraints;
+    // BasicConstraintsExt       basicConstraints;
 
-    parseBasicConstraintsExtension(extensions, basicConstraints);
+    parseBasicConstraintsExt(extensions, basicConstraints);
 
     // ExtendedKeyUsageExt             extendedKeyUsage;
 
     parseExtendedKeyUsageExt(extensions, extendedKeyUsage);
 
-    // SubjectKeyIdentifierExtension   subjectKeyIdentifier;
+    // SubjectKeyIdentifierExt   subjectKeyIdentifier;
 
-    parseSubjectKeyIdentifierExtension(extensions, subjectKeyIdentifier);
+    parseSubjectKeyIdentifierExt(extensions, subjectKeyIdentifier);
 
-    // SubjectAlternativeNameExtension subjectAlternativeName;
+    // SubjectAlternativeNameExt subjectAlternativeName;
 
-    parseSubjectAlternativeNameExtension(extensions, subjectAlternativeName);
+    parseSubjectAlternativeNameExt(extensions, subjectAlternativeName);
 
 }
 
-X509v3RequestExtensions_Priv::X509v3RequestExtensions_Priv(const X509v3RequestExtensions_Priv& extensions)
-    : X509v3RequestExtensions(extensions)
+X509v3RequestExts_Priv::X509v3RequestExts_Priv(const X509v3RequestExts_Priv& extensions)
+    : X509v3RequestExts(extensions)
 {
 }
 
 
-X509v3RequestExtensions_Priv::~X509v3RequestExtensions_Priv()
+X509v3RequestExts_Priv::~X509v3RequestExts_Priv()
 {
 }
 
 
 //    private:
-X509v3RequestExtensions_Priv&
-X509v3RequestExtensions_Priv::operator=(const X509v3RequestExtensions_Priv& extensions)
+X509v3RequestExts_Priv&
+X509v3RequestExts_Priv::operator=(const X509v3RequestExts_Priv& extensions)
 {
     if(this == &extensions) return *this;
     
-    X509v3RequestExtensions::operator=(extensions);
+    X509v3RequestExts::operator=(extensions);
 
     return *this;
 }
 
 void
-X509v3RequestExtensions_Priv::parseStringExtension(STACK_OF(X509_EXTENSION) * cert, 
-                                                   int nid,
-                                                   StringExtension &ext)
+X509v3RequestExts_Priv::parseStringExt(STACK_OF(X509_EXTENSION) * cert, 
+                                       int nid,
+                                       StringExtension &ext)
 {
     int crit = 0;
     
@@ -160,9 +160,9 @@ X509v3RequestExtensions_Priv::parseStringExtension(STACK_OF(X509_EXTENSION) * ce
 }
 
 void
-X509v3RequestExtensions_Priv::parseBitExtension(STACK_OF(X509_EXTENSION)* cert, 
-                                                int nid,
-                                                BitExtension &ext)
+X509v3RequestExts_Priv::parseBitExt(STACK_OF(X509_EXTENSION)* cert, 
+                                    int nid,
+                                    BitExtension &ext)
 {
     int crit = 0;
     
@@ -218,8 +218,8 @@ X509v3RequestExtensions_Priv::parseBitExtension(STACK_OF(X509_EXTENSION)* cert,
 }
 
 void 
-X509v3RequestExtensions_Priv::parseExtendedKeyUsageExt(STACK_OF(X509_EXTENSION)* cert,
-                                                       ExtendedKeyUsageExt &ext)
+X509v3RequestExts_Priv::parseExtendedKeyUsageExt(STACK_OF(X509_EXTENSION)* cert,
+                                                 ExtendedKeyUsageExt &ext)
 {
     int crit = 0;
     
@@ -285,8 +285,8 @@ X509v3RequestExtensions_Priv::parseExtendedKeyUsageExt(STACK_OF(X509_EXTENSION)*
 }
 
 void 
-X509v3RequestExtensions_Priv::parseBasicConstraintsExtension(STACK_OF(X509_EXTENSION)* cert,
-                                                                 BasicConstraintsExtension &ext)
+X509v3RequestExts_Priv::parseBasicConstraintsExt(STACK_OF(X509_EXTENSION)* cert,
+                                                 BasicConstraintsExt &ext)
 {
     int crit = 0;
     
@@ -349,8 +349,8 @@ X509v3RequestExtensions_Priv::parseBasicConstraintsExtension(STACK_OF(X509_EXTEN
 }
 
 void 
-X509v3RequestExtensions_Priv::parseSubjectKeyIdentifierExtension(STACK_OF(X509_EXTENSION) *cert, 
-                                                                     SubjectKeyIdentifierExtension &ext)
+X509v3RequestExts_Priv::parseSubjectKeyIdentifierExt(STACK_OF(X509_EXTENSION) *cert, 
+                                                     SubjectKeyIdentifierExt &ext)
 {
     int crit = 0;
     
@@ -412,8 +412,8 @@ X509v3RequestExtensions_Priv::parseSubjectKeyIdentifierExtension(STACK_OF(X509_E
 }
 
 void 
-X509v3RequestExtensions_Priv::parseSubjectAlternativeNameExtension(STACK_OF(X509_EXTENSION) *cert,
-                                                                       SubjectAlternativeNameExtension &ext)
+X509v3RequestExts_Priv::parseSubjectAlternativeNameExt(STACK_OF(X509_EXTENSION) *cert,
+                                                       SubjectAlternativeNameExt &ext)
 {
     int crit = 0;
     

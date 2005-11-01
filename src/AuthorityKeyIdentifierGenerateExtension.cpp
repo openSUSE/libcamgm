@@ -30,12 +30,12 @@ using namespace limal;
 using namespace limal::ca_mgm;
 using namespace blocxx;
 
-AuthorityKeyIdentifierGenerateExtension::AuthorityKeyIdentifierGenerateExtension()
+AuthorityKeyIdentifierGenerateExt::AuthorityKeyIdentifierGenerateExt()
     : ExtensionBase(), keyid(KeyID_none), issuer(Issuer_none)
 {}
 
-AuthorityKeyIdentifierGenerateExtension::AuthorityKeyIdentifierGenerateExtension(CAConfig* caConfig,
-                                                                                 Type type)
+AuthorityKeyIdentifierGenerateExt::AuthorityKeyIdentifierGenerateExt(CAConfig* caConfig,
+                                                                     Type type)
     : ExtensionBase(), keyid(KeyID_none), issuer(Issuer_none)
 {
     // These types are not supported by this object
@@ -46,43 +46,45 @@ AuthorityKeyIdentifierGenerateExtension::AuthorityKeyIdentifierGenerateExtension
     }
 
     bool p = caConfig->exists(type2Section(type, true), "authorityKeyIdentifier");
-    if(p) {
+    if(p)
+    {
         StringArray   sp   = PerlRegEx("\\s*,\\s*")
             .split(caConfig->getValue(type2Section(type, true), "authorityKeyIdentifier"));
-        if(sp[0].equalsIgnoreCase("critical")) {
+        if(sp[0].equalsIgnoreCase("critical"))
+        {
             setCritical(true);
             sp.remove(0);
         }
 
         StringArray::const_iterator it = sp.begin();
-        for(; it != sp.end(); ++it) {
-
+        for(; it != sp.end(); ++it)
+        {
             if((*it).equalsIgnoreCase("keyid")) keyid = KeyID_normal;
             else if((*it).equalsIgnoreCase("keyid:always")) keyid = KeyID_always;
             else if((*it).equalsIgnoreCase("issuer")) issuer = Issuer_normal;
             else if((*it).equalsIgnoreCase("issuer:always")) issuer = Issuer_always;
-            
         }
     }
     setPresent(p);
 }
 
-AuthorityKeyIdentifierGenerateExtension::AuthorityKeyIdentifierGenerateExtension(KeyID kid, Issuer iss)
+AuthorityKeyIdentifierGenerateExt::AuthorityKeyIdentifierGenerateExt(KeyID kid,
+                                                                     Issuer iss)
     : ExtensionBase(), keyid(kid), issuer(iss)
 {
     setPresent(true);
 }
 
-AuthorityKeyIdentifierGenerateExtension::AuthorityKeyIdentifierGenerateExtension(const AuthorityKeyIdentifierGenerateExtension& extension)
+AuthorityKeyIdentifierGenerateExt::AuthorityKeyIdentifierGenerateExt(const AuthorityKeyIdentifierGenerateExt& extension)
     : ExtensionBase(extension), keyid(extension.keyid), issuer(extension.issuer)
 {}
 
-AuthorityKeyIdentifierGenerateExtension::~AuthorityKeyIdentifierGenerateExtension()
+AuthorityKeyIdentifierGenerateExt::~AuthorityKeyIdentifierGenerateExt()
 {}
 
 
-AuthorityKeyIdentifierGenerateExtension& 
-AuthorityKeyIdentifierGenerateExtension::operator=(const AuthorityKeyIdentifierGenerateExtension& extension)
+AuthorityKeyIdentifierGenerateExt& 
+AuthorityKeyIdentifierGenerateExt::operator=(const AuthorityKeyIdentifierGenerateExt& extension)
 {
     if(this == &extension) return *this;
 
@@ -94,45 +96,51 @@ AuthorityKeyIdentifierGenerateExtension::operator=(const AuthorityKeyIdentifierG
 }
 
 void
-AuthorityKeyIdentifierGenerateExtension::setKeyID(KeyID kid)
+AuthorityKeyIdentifierGenerateExt::setKeyID(KeyID kid)
 {
     keyid = kid;
     setPresent(true);
 }
 
-AuthorityKeyIdentifierGenerateExtension::KeyID
-AuthorityKeyIdentifierGenerateExtension::getKeyID() const
+AuthorityKeyIdentifierGenerateExt::KeyID
+AuthorityKeyIdentifierGenerateExt::getKeyID() const
 {
-    if(!isPresent()) {
-        LOGIT_ERROR("AuthorityKeyIdentifierGenerateExtension is not present");
-        BLOCXX_THROW(limal::RuntimeException, "AuthorityKeyIdentifierGenerateExtension is not present");
+    if(!isPresent())
+    {
+        LOGIT_ERROR("AuthorityKeyIdentifierGenerateExt is not present");
+        BLOCXX_THROW(limal::RuntimeException,
+                     "AuthorityKeyIdentifierGenerateExt is not present");
     }
     return keyid;
 }
 
 void
-AuthorityKeyIdentifierGenerateExtension::setIssuer(Issuer iss)
+AuthorityKeyIdentifierGenerateExt::setIssuer(Issuer iss)
 {
     issuer = iss;
     setPresent(true);
 }
 
-AuthorityKeyIdentifierGenerateExtension::Issuer
-AuthorityKeyIdentifierGenerateExtension::getIssuer() const
+AuthorityKeyIdentifierGenerateExt::Issuer
+AuthorityKeyIdentifierGenerateExt::getIssuer() const
 {
-    if(!isPresent()) {
-        LOGIT_ERROR("AuthorityKeyIdentifierGenerateExtension is not present");
-        BLOCXX_THROW(limal::RuntimeException, "AuthorityKeyIdentifierGenerateExtension is not present");
+    if(!isPresent())
+    {
+        LOGIT_ERROR("AuthorityKeyIdentifierGenerateExt is not present");
+        BLOCXX_THROW(limal::RuntimeException,
+                     "AuthorityKeyIdentifierGenerateExt is not present");
     }
     return issuer;
 }
 
 void
-AuthorityKeyIdentifierGenerateExtension::commit2Config(CA& ca, Type type) const
+AuthorityKeyIdentifierGenerateExt::commit2Config(CA& ca, Type type) const
 {
-    if(!valid()) {
-        LOGIT_ERROR("invalid AuthorityKeyIdentifierGenerateExtension object");
-        BLOCXX_THROW(limal::ValueException, "invalid AuthorityKeyIdentifierGenerateExtension object");
+    if(!valid())
+    {
+        LOGIT_ERROR("invalid AuthorityKeyIdentifierGenerateExt object");
+        BLOCXX_THROW(limal::ValueException,
+                     "invalid AuthorityKeyIdentifierGenerateExt object");
     }
 
     // These types are not supported by this object
@@ -148,26 +156,28 @@ AuthorityKeyIdentifierGenerateExtension::commit2Config(CA& ca, Type type) const
 
         if(isCritical()) extString += "critical,";
 
-        switch(keyid) {
-        case AuthorityKeyIdentifierGenerateExtension::KeyID_normal:
-            extString += "keyid,";
-            break;
-        case AuthorityKeyIdentifierGenerateExtension::KeyID_always:
-            extString += "keyid:always,";
-            break;
-        default:
-            break;
+        switch(keyid)
+        {
+            case AuthorityKeyIdentifierGenerateExt::KeyID_normal:
+                extString += "keyid,";
+                break;
+            case AuthorityKeyIdentifierGenerateExt::KeyID_always:
+                extString += "keyid:always,";
+                break;
+            default:
+                break;
         }
 
-        switch(issuer) {
-        case AuthorityKeyIdentifierGenerateExtension::Issuer_normal:
-            extString += "issuer,";
-            break;
-        case AuthorityKeyIdentifierGenerateExtension::Issuer_always:
-            extString += "issuer:always,";
-            break;
-        default:
-            break;
+        switch(issuer)
+        {
+            case AuthorityKeyIdentifierGenerateExt::Issuer_normal:
+                extString += "issuer,";
+                break;
+            case AuthorityKeyIdentifierGenerateExt::Issuer_always:
+                extString += "issuer:always,";
+                break;
+            default:
+                break;
         }
 
         ca.getConfig()->setValue(type2Section(type, true), "authorityKeyIdentifier",
@@ -180,38 +190,42 @@ AuthorityKeyIdentifierGenerateExtension::commit2Config(CA& ca, Type type) const
 }
 
 bool
-AuthorityKeyIdentifierGenerateExtension::valid() const
+AuthorityKeyIdentifierGenerateExt::valid() const
 {
-    if(!isPresent()) {
-        LOGIT_DEBUG("return AuthorityKeyIdentifierGenerateExtension::valid() is true");
+    if(!isPresent())
+    {
+        LOGIT_DEBUG("return AuthorityKeyIdentifierGenerateExt::valid() is true");
         return true;
     }
-    if(keyid == KeyID_none && issuer == Issuer_none) {
-        LOGIT_DEBUG("return AuthorityKeyIdentifierGenerateExtension::valid() is false");
+    if(keyid == KeyID_none && issuer == Issuer_none)
+    {
+        LOGIT_DEBUG("return AuthorityKeyIdentifierGenerateExt::valid() is false");
         return false;
     }
-    LOGIT_DEBUG("return AuthorityKeyIdentifierGenerateExtension::valid() is true");
+    LOGIT_DEBUG("return AuthorityKeyIdentifierGenerateExt::valid() is true");
     return true;
 }
 
 blocxx::StringArray
-AuthorityKeyIdentifierGenerateExtension::verify() const
+AuthorityKeyIdentifierGenerateExt::verify() const
 {
     blocxx::StringArray result;
 
     if(!isPresent()) return result;
-    if(keyid == KeyID_none && issuer == Issuer_none) {
-        result.append(String("Invalid value for keyid and issuer. At least one of both must be set"));
+    if(keyid == KeyID_none && issuer == Issuer_none)
+    {
+        result.append(String("Invalid value for keyid and issuer. ") +
+                      String("At least one of both must be set"));
     }
-    LOGIT_DEBUG_STRINGARRAY("AuthorityKeyIdentifierGenerateExtension::verify()", result);
+    LOGIT_DEBUG_STRINGARRAY("AuthorityKeyIdentifierGenerateExt::verify()", result);
     return result;
 }
 
 blocxx::StringArray
-AuthorityKeyIdentifierGenerateExtension::dump() const
+AuthorityKeyIdentifierGenerateExt::dump() const
 {
     StringArray result;
-    result.append("AuthorityKeyIdentifierGenerateExtension::dump()");
+    result.append("AuthorityKeyIdentifierGenerateExt::dump()");
 
     result.appendArray(ExtensionBase::dump());
     if(!isPresent()) return result;

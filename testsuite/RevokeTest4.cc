@@ -78,7 +78,7 @@ int main()
 
         cout << "Try to revoke it" << endl;
 
-        CRLReason reason(CRLReason::CACompromise);
+        CRLReason reason("CACompromise");
         reason.setCACompromiseDate(time(NULL)-1000);
 
         ca.revokeCertificate(c, reason);

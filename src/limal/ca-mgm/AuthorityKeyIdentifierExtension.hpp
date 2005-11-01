@@ -30,36 +30,41 @@ namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
-    class AuthorityKeyIdentifierExtension : public ExtensionBase {
+    class AuthorityKeyIdentifierExt : public ExtensionBase {
     public:
 
-        AuthorityKeyIdentifierExtension();
-        AuthorityKeyIdentifierExtension(const AuthorityKeyIdentifierExtension& extension);
-        virtual ~AuthorityKeyIdentifierExtension();
+        AuthorityKeyIdentifierExt();
+        AuthorityKeyIdentifierExt(const AuthorityKeyIdentifierExt& extension);
+        virtual ~AuthorityKeyIdentifierExt();
 
-        AuthorityKeyIdentifierExtension& operator=(const AuthorityKeyIdentifierExtension& extension);
+        AuthorityKeyIdentifierExt&
+        operator=(const AuthorityKeyIdentifierExt& extension);
 
         /**
          * Return the key ID  of the Authority
          */
-        String         getKeyID() const;
+        String
+        getKeyID() const;
 
         /**
          * Return the DirName of the Authority
          */
-        String         getDirName() const;
+        String
+        getDirName() const;
 
         /**
          * Return the serial number of the Authority
          */
-        String         getSerial() const;
+        String
+        getSerial() const;
 
         /**
          * Check if this object is valid
          *
          * @return true if this object is valid, otherwise false
          */
-        virtual bool                 valid() const;  
+        virtual bool
+        valid() const;  
 
         /**
          * Verify this object and return an Array with all
@@ -68,12 +73,14 @@ namespace CA_MGM_NAMESPACE {
          * @return Array with error messages. If this Array is empty this
          * object is valid
          */
-        virtual blocxx::StringArray  verify() const; 
+        virtual blocxx::StringArray
+        verify() const; 
         
         /**
          * Return the content of this object for debugging
          */
-        virtual blocxx::StringArray  dump() const;
+        virtual blocxx::StringArray
+        dump() const;
 
     protected:
 

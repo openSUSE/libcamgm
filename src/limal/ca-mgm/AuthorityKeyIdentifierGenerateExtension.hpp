@@ -39,7 +39,7 @@ namespace CA_MGM_NAMESPACE {
      * The issuer option copies the issuer and serial number from the issuer
      * certificate.
      */
-    class AuthorityKeyIdentifierGenerateExtension : public ExtensionBase {
+    class AuthorityKeyIdentifierGenerateExt : public ExtensionBase {
     public:
 
         enum KeyID {
@@ -54,38 +54,42 @@ namespace CA_MGM_NAMESPACE {
             Issuer_always  /*!< include issuer/serial or return error */
         };
 
-        AuthorityKeyIdentifierGenerateExtension();
-        AuthorityKeyIdentifierGenerateExtension(CAConfig* caConfig, Type type);
+        AuthorityKeyIdentifierGenerateExt();
+        AuthorityKeyIdentifierGenerateExt(CAConfig* caConfig, Type type);
 
         /**
          * Create an object with KeyID and Issuer option
          */
-        AuthorityKeyIdentifierGenerateExtension(KeyID kid, Issuer iss);
-        AuthorityKeyIdentifierGenerateExtension(const AuthorityKeyIdentifierGenerateExtension& extension);
-        virtual ~AuthorityKeyIdentifierGenerateExtension();
+        AuthorityKeyIdentifierGenerateExt(KeyID kid, Issuer iss);
+        AuthorityKeyIdentifierGenerateExt(const AuthorityKeyIdentifierGenerateExt& extension);
+        virtual ~AuthorityKeyIdentifierGenerateExt();
 
-        AuthorityKeyIdentifierGenerateExtension& 
-        operator=(const AuthorityKeyIdentifierGenerateExtension& extension);
+        AuthorityKeyIdentifierGenerateExt& 
+        operator=(const AuthorityKeyIdentifierGenerateExt& extension);
 
         /**
          * Set the Key ID
          */
-        void           setKeyID(KeyID kid);
+        void
+        setKeyID(KeyID kid);
 
         /**
          * Return the Key ID
          */
-        KeyID          getKeyID() const;
+        KeyID
+        getKeyID() const;
 
         /**
          * Set the issuer option
          */
-        void           setIssuer(Issuer iss);
+        void
+        setIssuer(Issuer iss);
 
         /**
          * Return the issuer option
          */
-        Issuer         getIssuer() const;
+        Issuer
+        getIssuer() const;
 
         /**
          * Write the informations of this object back to the configuration file
@@ -93,14 +97,16 @@ namespace CA_MGM_NAMESPACE {
          * @param ca the CA object which holds the config object
          * @param type the type describes the section of the config file
          */
-        virtual void   commit2Config(CA& ca, Type type) const;
+        virtual void
+        commit2Config(CA& ca, Type type) const;
 
         /**
          * Check if this object is valid
          *
          * @return true if this object is valid, otherwise false
          */
-        virtual bool                 valid() const;  
+        virtual bool
+        valid() const;  
 
         /**
          * Verify this object and return an Array with all
@@ -109,12 +115,14 @@ namespace CA_MGM_NAMESPACE {
          * @return Array with error messages. If this Array is empty this
          * object is valid
          */
-        virtual blocxx::StringArray  verify() const; 
+        virtual blocxx::StringArray
+        verify() const; 
 
         /**
          * Return the content of this object for debugging
          */
-        virtual blocxx::StringArray  dump() const;
+        virtual blocxx::StringArray
+        dump() const;
 
     private:
         KeyID  keyid;

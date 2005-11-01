@@ -34,32 +34,48 @@ namespace CA_MGM_NAMESPACE {
     class CA;
     class CAConfig;
 
-    class IssuerAlternativeNameExtension : public ExtensionBase {
+    class IssuerAlternativeNameExt : public ExtensionBase {
     public:
-        IssuerAlternativeNameExtension();
+        IssuerAlternativeNameExt();
 
-        IssuerAlternativeNameExtension(bool copyIssuer,
-                                       const blocxx::List<LiteralValue> &alternativeNameList);
-        IssuerAlternativeNameExtension(CAConfig* caConfig, Type type);
-        IssuerAlternativeNameExtension(const IssuerAlternativeNameExtension& extension);
-        virtual ~IssuerAlternativeNameExtension();
+        IssuerAlternativeNameExt(bool copyIssuer,
+                                 const blocxx::List<LiteralValue> &alternativeNameList);
+        
+        IssuerAlternativeNameExt(CAConfig* caConfig, Type type);
+        
+        IssuerAlternativeNameExt(const IssuerAlternativeNameExt& extension);
+        
+        virtual ~IssuerAlternativeNameExt();
 
-        IssuerAlternativeNameExtension& operator=(const IssuerAlternativeNameExtension& extension);
+        IssuerAlternativeNameExt&
+        operator=(const IssuerAlternativeNameExt& extension);
 
-        void  setCopyIssuer(bool copyIssuer);
-        bool  getCopyIssuer() const;
+        void
+        setCopyIssuer(bool copyIssuer);
+        
+        bool
+        getCopyIssuer() const;
 
-        void  setAlternativeNameList(const blocxx::List<LiteralValue> &alternativeNameList);
-        blocxx::List<LiteralValue> getAlternativeNameList() const;
+        void
+        setAlternativeNameList(const blocxx::List<LiteralValue> &alternativeNameList);
+        
+        blocxx::List<LiteralValue>
+        getAlternativeNameList() const;
 
-        void                   addIssuerAltName(const LiteralValue& altName);
+        void
+        addIssuerAltName(const LiteralValue& altName);
 
-        virtual void           commit2Config(CA& ca, Type type) const;
+        virtual void
+        commit2Config(CA& ca, Type type) const;
 
-        virtual bool                 valid() const;
-        virtual blocxx::StringArray  verify() const;
+        virtual bool
+        valid() const;
+        
+        virtual blocxx::StringArray
+        verify() const;
 
-        virtual blocxx::StringArray  dump() const;
+        virtual blocxx::StringArray
+        dump() const;
 
     private:
         bool issuerCopy;

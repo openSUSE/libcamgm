@@ -44,66 +44,66 @@ namespace CA_MGM_NAMESPACE {
     /**
      * @brief Read-only data representation of X509 V3 Certificate Extensions
      */
-    class X509v3CertificateExtensions {
+    class X509v3CertificateExts {
     public:
-        X509v3CertificateExtensions(const X509v3CertificateExtensions& extensions);
-        virtual ~X509v3CertificateExtensions();
+        X509v3CertificateExts(const X509v3CertificateExts& extensions);
+        virtual ~X509v3CertificateExts();
 
-        X509v3CertificateExtensions&
-        operator=(const X509v3CertificateExtensions& extensions);
+        X509v3CertificateExts&
+        operator=(const X509v3CertificateExts& extensions);
 
-        NsBaseUrlExtension
+        NsBaseUrlExt
         getNsBaseUrl() const;
         
-        NsRevocationUrlExtension
+        NsRevocationUrlExt
         getNsRevocationUrl() const;
         
-        NsCaRevocationUrlExtension
+        NsCaRevocationUrlExt
         getNsCaRevocationUrl() const;
         
-        NsRenewalUrlExtension
+        NsRenewalUrlExt
         getNsRenewalUrl() const;
         
-        NsCaPolicyUrlExtension
+        NsCaPolicyUrlExt
         getNsCaPolicyUrl() const;
         
-        NsSslServerNameExtension
+        NsSslServerNameExt
         getNsSslServerName() const;
         
-        NsCommentExtension
+        NsCommentExt
         getNsComment() const;
         
-        NsCertTypeExtension
+        NsCertTypeExt
         getNsCertType() const;
         
-        KeyUsageExtension
+        KeyUsageExt
         getKeyUsage() const;
         
-        BasicConstraintsExtension
+        BasicConstraintsExt
         getBasicConstraints() const;
         
         ExtendedKeyUsageExt
         getExtendedKeyUsage() const;
         
-        SubjectKeyIdentifierExtension
+        SubjectKeyIdentifierExt
         getSubjectKeyIdentifier() const;
         
-        AuthorityKeyIdentifierExtension
+        AuthorityKeyIdentifierExt
         getAuthorityKeyIdentifier() const;
         
-        SubjectAlternativeNameExtension
+        SubjectAlternativeNameExt
         getSubjectAlternativeName() const;
         
-        IssuerAlternativeNameExtension
+        IssuerAlternativeNameExt
         getIssuerAlternativeName() const;
         
-        AuthorityInfoAccessExtension
+        AuthorityInfoAccessExt
         getAuthorityInfoAccess() const;
         
-        CRLDistributionPointsExtension
+        CRLDistributionPointsExt
         getCRLDistributionPoints() const;
         
-        CertificatePoliciesExtension
+        CertificatePoliciesExt
         getCertificatePolicies() const;
         
         virtual bool
@@ -116,31 +116,31 @@ namespace CA_MGM_NAMESPACE {
         dump() const;
 
     protected:
-        X509v3CertificateExtensions();
+        X509v3CertificateExts();
         /* String extensions */
 
-        NsBaseUrlExtension              nsBaseUrl;
-        NsRevocationUrlExtension        nsRevocationUrl;
-        NsCaRevocationUrlExtension      nsCaRevocationUrl;
-        NsRenewalUrlExtension           nsRenewalUrl;
-        NsCaPolicyUrlExtension          nsCaPolicyUrl;
-        NsSslServerNameExtension        nsSslServerName;
-        NsCommentExtension              nsComment;
+        NsBaseUrlExt              nsBaseUrl;
+        NsRevocationUrlExt        nsRevocationUrl;
+        NsCaRevocationUrlExt      nsCaRevocationUrl;
+        NsRenewalUrlExt           nsRenewalUrl;
+        NsCaPolicyUrlExt          nsCaPolicyUrl;
+        NsSslServerNameExt        nsSslServerName;
+        NsCommentExt              nsComment;
 
         /* Bit Strings */
-        KeyUsageExtension               keyUsage; 
-        NsCertTypeExtension             nsCertType;
+        KeyUsageExt               keyUsage; 
+        NsCertTypeExt             nsCertType;
 
-        BasicConstraintsExtension       basicConstraints;
-        ExtendedKeyUsageExt             extendedKeyUsage;
-        SubjectKeyIdentifierExtension   subjectKeyIdentifier;
-        AuthorityKeyIdentifierExtension authorityKeyIdentifier;
-        SubjectAlternativeNameExtension subjectAlternativeName;
-        IssuerAlternativeNameExtension  issuerAlternativeName;
+        BasicConstraintsExt       basicConstraints;
+        ExtendedKeyUsageExt       extendedKeyUsage;
+        SubjectKeyIdentifierExt   subjectKeyIdentifier;
+        AuthorityKeyIdentifierExt authorityKeyIdentifier;
+        SubjectAlternativeNameExt subjectAlternativeName;
+        IssuerAlternativeNameExt  issuerAlternativeName;
 
-        AuthorityInfoAccessExtension    authorityInfoAccess;
-        CRLDistributionPointsExtension  crlDistributionPoints;
-        CertificatePoliciesExtension    certificatePolicies;
+        AuthorityInfoAccessExt    authorityInfoAccess;
+        CRLDistributionPointsExt  crlDistributionPoints;
+        CertificatePoliciesExt    certificatePolicies;
 
     };
 

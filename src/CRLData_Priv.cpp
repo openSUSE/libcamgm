@@ -301,7 +301,7 @@ CRLData_Priv::setSignature(const ByteBuffer& sig)
 }
 
 void
-CRLData_Priv::setExtensions(const X509v3CRLExtensions& ext)
+CRLData_Priv::setExtensions(const X509v3CRLExts& ext)
 {
     StringArray r = ext.verify();
     if(!r.empty()) {
@@ -445,7 +445,7 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
     signature = ByteBuffer((char*)x509->signature->data, x509->signature->length);
 
     // get extensions
-    extensions = X509v3CRLExtensions_Priv(x509->crl->extensions);
+    extensions = X509v3CRLExts_Priv(x509->crl->extensions);
       
     // get revocationData
 

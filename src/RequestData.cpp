@@ -122,7 +122,7 @@ RequestData::getFingerprint() const
     return String();
 }
 
-X509v3RequestExtensions
+X509v3RequestExts
 RequestData::getExtensions() const
 {
     return extensions;
@@ -233,7 +233,7 @@ RequestData::RequestData()
       publicKey(ByteBuffer()),
       signatureAlgorithm(E_SHA1RSA),
       signature(ByteBuffer()),
-      extensions(X509v3RequestExtensions_Priv()),
+      extensions(X509v3RequestExts_Priv()),
       challengePassword(""), 
       unstructuredName("")
 {

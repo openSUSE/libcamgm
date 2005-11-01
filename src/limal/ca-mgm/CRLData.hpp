@@ -39,16 +39,26 @@ namespace CA_MGM_NAMESPACE {
         RevocationEntry(const RevocationEntry& entry);
         virtual ~RevocationEntry();
         
-        RevocationEntry& operator=(const RevocationEntry& entry);
+        RevocationEntry&
+        operator=(const RevocationEntry& entry);
 
-        String      getSerial() const;
-        time_t      getRevocationDate() const;
-        CRLReason   getReason() const;
+        String
+        getSerial() const;
+        
+        time_t
+        getRevocationDate() const;
+        
+        CRLReason
+        getReason() const;
 
-        virtual bool                 valid() const;
-        virtual blocxx::StringArray  verify() const;
+        virtual bool
+        valid() const;
+        
+        virtual blocxx::StringArray
+        verify() const;
 
-        virtual blocxx::StringArray  dump() const;
+        virtual blocxx::StringArray
+        dump() const;
 
     protected:
 
@@ -68,43 +78,68 @@ namespace CA_MGM_NAMESPACE {
         CRLData(const CRLData& data);
         virtual ~CRLData();
 
-        CRLData& operator=(const CRLData& data);
+        CRLData&
+        operator=(const CRLData& data);
 
-        blocxx::Int32                getVersion() const;
-        time_t                       getLastUpdateDate() const;
-        time_t                       getNextUpdateDate() const;
-        DNObject                     getIssuerDN() const;
-        SigAlg                       getSignatureAlgorithm() const;
-        String                       getSignatureAlgorithmAsString() const; 
-        limal::ByteBuffer            getSignature() const;
-        X509v3CRLExtensions          getExtensions() const;
-        blocxx::Map<String, RevocationEntry> getRevocationData() const;
-        RevocationEntry              getRevocationEntry(const String& oid);
+        blocxx::Int32
+        getVersion() const;
+        
+        time_t
+        getLastUpdateDate() const;
+        
+        time_t
+        getNextUpdateDate() const;
+        
+        DNObject
+        getIssuerDN() const;
+        
+        SigAlg
+        getSignatureAlgorithm() const;
+        
+        String
+        getSignatureAlgorithmAsString() const;
+        
+        limal::ByteBuffer
+        getSignature() const;
+        
+        X509v3CRLExts
+        getExtensions() const;
+        
+        blocxx::Map<String, RevocationEntry>
+        getRevocationData() const;
+        
+        RevocationEntry
+        getRevocationEntry(const String& oid);
 
-        virtual bool                 valid() const;
-        virtual blocxx::StringArray  verify() const;
+        virtual bool
+        valid() const;
+        
+        virtual blocxx::StringArray
+        verify() const;
 
-        virtual blocxx::StringArray  dump() const;
+        virtual blocxx::StringArray
+        dump() const;
 
     protected:
         CRLData();
 
-        blocxx::Int32    version;
-        time_t           lastUpdate;
-        time_t           nextUpdate;
+        blocxx::Int32                        version;
+        time_t                               lastUpdate;
+        time_t                               nextUpdate;
 
-        DNObject         issuer;
+        DNObject                             issuer;
 
-        SigAlg           signatureAlgorithm;
-        ByteBuffer        signature;    
-                                        // mit private key der CA verschlüsselter Hash wert
-                                        // des Zertifikates
+        SigAlg                               signatureAlgorithm;
+        ByteBuffer                           signature;    
         
-        X509v3CRLExtensions extensions;
+        X509v3CRLExts                        extensions;
 
         blocxx::Map<String, RevocationEntry> revocationData;
 
-        blocxx::StringArray checkRevocationData(const blocxx::Map<String, RevocationEntry>& rd) const;
+
+        
+        blocxx::StringArray
+        checkRevocationData(const blocxx::Map<String, RevocationEntry>& rd) const;
 
     };
 

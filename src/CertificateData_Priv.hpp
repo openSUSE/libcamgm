@@ -72,7 +72,7 @@ namespace CA_MGM_NAMESPACE {
         
         void           setSignature(const ByteBuffer& sig);
 
-        void           setExtensions(const X509v3CertificateExtensions& ext);
+        void           setExtensions(const X509v3CertificateExts& ext);
 
     private:
         CertificateData_Priv& operator=(const CertificateData_Priv& data);

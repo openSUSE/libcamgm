@@ -33,11 +33,11 @@ namespace CA_MGM_NAMESPACE
 using namespace limal;
 using namespace blocxx;
 
-X509v3RequestExtensions::X509v3RequestExtensions()
+X509v3RequestExts::X509v3RequestExts()
 {
 }
 
-X509v3RequestExtensions::X509v3RequestExtensions(CAConfig* caConfig, Type type)
+X509v3RequestExts::X509v3RequestExts(CAConfig* caConfig, Type type)
     : nsSslServerName(caConfig, type),
       nsComment(caConfig, type),
       keyUsage(caConfig, type),
@@ -49,7 +49,7 @@ X509v3RequestExtensions::X509v3RequestExtensions(CAConfig* caConfig, Type type)
 {
 }
 
-X509v3RequestExtensions::X509v3RequestExtensions(const X509v3RequestExtensions& extensions)
+X509v3RequestExts::X509v3RequestExts(const X509v3RequestExts& extensions)
     : nsSslServerName(extensions.nsSslServerName),
       nsComment(extensions.nsComment),
       keyUsage(extensions.keyUsage),
@@ -61,11 +61,11 @@ X509v3RequestExtensions::X509v3RequestExtensions(const X509v3RequestExtensions& 
 {
 }
 
-X509v3RequestExtensions::~X509v3RequestExtensions()
+X509v3RequestExts::~X509v3RequestExts()
 {}
 
-X509v3RequestExtensions&
-X509v3RequestExtensions::operator=(const X509v3RequestExtensions& extensions)
+X509v3RequestExts&
+X509v3RequestExts::operator=(const X509v3RequestExts& extensions)
 {
     if(this == &extensions) return *this;
 
@@ -82,139 +82,139 @@ X509v3RequestExtensions::operator=(const X509v3RequestExtensions& extensions)
 }
 
 void
-X509v3RequestExtensions::setNsSslServerName(const NsSslServerNameExtension &ext)
+X509v3RequestExts::setNsSslServerName(const NsSslServerNameExt &ext)
 {
     if(!ext.valid()) {
         BLOCXX_THROW(limal::ValueException, 
-                     "X509v3RequestExtensions::setNsSslServerName invalid value");
+                     "X509v3RequestExts::setNsSslServerName invalid value");
     }
     nsSslServerName = ext;
 }
 
-NsSslServerNameExtension
-X509v3RequestExtensions::getNsSslServerName() const
+NsSslServerNameExt
+X509v3RequestExts::getNsSslServerName() const
 {
     return nsSslServerName;
 }
 
 void
-X509v3RequestExtensions::setNsComment(const NsCommentExtension &ext)
+X509v3RequestExts::setNsComment(const NsCommentExt &ext)
 {
     if(!ext.valid()) {
         BLOCXX_THROW(limal::ValueException, 
-                     "X509v3RequestExtensions::setNsComment invalid value");
+                     "X509v3RequestExts::setNsComment invalid value");
     }
     nsComment = ext;
 }
 
-NsCommentExtension
-X509v3RequestExtensions::getNsComment() const
+NsCommentExt
+X509v3RequestExts::getNsComment() const
 {
     return nsComment;
 }
 
 void
-X509v3RequestExtensions::setNsCertType(const NsCertTypeExtension &ext)
+X509v3RequestExts::setNsCertType(const NsCertTypeExt &ext)
 {
     if(!ext.valid()) {
         BLOCXX_THROW(limal::ValueException, 
-                     "X509v3RequestExtensions::setNsCertType invalid value");
+                     "X509v3RequestExts::setNsCertType invalid value");
     }
     nsCertType = ext;
 }
 
-NsCertTypeExtension
-X509v3RequestExtensions::getNsCertType() const
+NsCertTypeExt
+X509v3RequestExts::getNsCertType() const
 {
     return nsCertType;
 }
 
 void
-X509v3RequestExtensions::setKeyUsage(const KeyUsageExtension &ext)
+X509v3RequestExts::setKeyUsage(const KeyUsageExt &ext)
 {
     if(!ext.valid()) {
         BLOCXX_THROW(limal::ValueException, 
-                     "X509v3RequestExtensions::setKeyUsage invalid value");
+                     "X509v3RequestExts::setKeyUsage invalid value");
     }
     keyUsage = ext;
 }
 
-KeyUsageExtension
-X509v3RequestExtensions::getKeyUsage()
+KeyUsageExt
+X509v3RequestExts::getKeyUsage()
 {
     return keyUsage;
 }
 
 void
-X509v3RequestExtensions::setBasicConstraints(const BasicConstraintsExtension &ext)
+X509v3RequestExts::setBasicConstraints(const BasicConstraintsExt &ext)
 {
     if(!ext.valid()) {
         BLOCXX_THROW(limal::ValueException, 
-                     "X509v3RequestExtensions::setBasicConstraints invalid value");
+                     "X509v3RequestExts::setBasicConstraints invalid value");
     }
     basicConstraints = ext;
 }
 
-BasicConstraintsExtension
-X509v3RequestExtensions::getBasicConstraints() const
+BasicConstraintsExt
+X509v3RequestExts::getBasicConstraints() const
 {
     return basicConstraints;
 }
 
 void
-X509v3RequestExtensions::setExtendedKeyUsage(const ExtendedKeyUsageExt &ext)
+X509v3RequestExts::setExtendedKeyUsage(const ExtendedKeyUsageExt &ext)
 {
     if(!ext.valid()) {
         BLOCXX_THROW(limal::ValueException, 
-                     "X509v3RequestExtensions::setExtendedKeyUsage invalid value");
+                     "X509v3RequestExts::setExtendedKeyUsage invalid value");
     }
     extendedKeyUsage = ext;
 }
 
 ExtendedKeyUsageExt
-X509v3RequestExtensions::getExtendedKeyUsage() const
+X509v3RequestExts::getExtendedKeyUsage() const
 {
     return extendedKeyUsage;
 }
 
 void
-X509v3RequestExtensions::setSubjectKeyIdentifier(const SubjectKeyIdentifierExtension &ext)
+X509v3RequestExts::setSubjectKeyIdentifier(const SubjectKeyIdentifierExt &ext)
 {
     if(!ext.valid()) {
         BLOCXX_THROW(limal::ValueException, 
-                     "X509v3RequestExtensions::setSubjectKeyIdentifier invalid value");
+                     "X509v3RequestExts::setSubjectKeyIdentifier invalid value");
     }
     subjectKeyIdentifier = ext;
 }
 
-SubjectKeyIdentifierExtension
-X509v3RequestExtensions::getSubjectKeyIdentifier() const
+SubjectKeyIdentifierExt
+X509v3RequestExts::getSubjectKeyIdentifier() const
 {
     return subjectKeyIdentifier;
 }
 
 void
-X509v3RequestExtensions::setSubjectAlternativeName(const SubjectAlternativeNameExtension &ext)
+X509v3RequestExts::setSubjectAlternativeName(const SubjectAlternativeNameExt &ext)
 {
     if(!ext.valid()) {
         BLOCXX_THROW(limal::ValueException, 
-                     "X509v3RequestExtensions::setSubjectAlternativeName invalid value");
+                     "X509v3RequestExts::setSubjectAlternativeName invalid value");
     }
     subjectAlternativeName = ext;
 }
 
-SubjectAlternativeNameExtension
-X509v3RequestExtensions::getSubjectAlternativeName() const
+SubjectAlternativeNameExt
+X509v3RequestExts::getSubjectAlternativeName() const
 {
     return subjectAlternativeName;
 }
 
 void
-X509v3RequestExtensions::commit2Config(CA& ca, Type type) const
+X509v3RequestExts::commit2Config(CA& ca, Type type) const
 {
     if(!valid()) {
-        LOGIT_ERROR("invalid X509v3RequestExtensions object");
-        BLOCXX_THROW(limal::ValueException, "invalid X509v3RequestExtensions object");
+        LOGIT_ERROR("invalid X509v3RequestExts object");
+        BLOCXX_THROW(limal::ValueException, "invalid X509v3RequestExts object");
     }
     nsSslServerName.commit2Config(ca, type);
     nsComment.commit2Config(ca, type);
@@ -227,7 +227,7 @@ X509v3RequestExtensions::commit2Config(CA& ca, Type type) const
 }
 
 bool
-X509v3RequestExtensions::valid() const
+X509v3RequestExts::valid() const
 {
     if(!nsSslServerName.valid()) return false;
     if(!nsComment.valid()) return false;
@@ -241,7 +241,7 @@ X509v3RequestExtensions::valid() const
 }
 
 blocxx::StringArray
-X509v3RequestExtensions::verify() const
+X509v3RequestExts::verify() const
 {
     StringArray result;
 
@@ -254,15 +254,15 @@ X509v3RequestExtensions::verify() const
     result.appendArray(subjectKeyIdentifier.verify());
     result.appendArray(subjectAlternativeName.verify());
 
-    LOGIT_DEBUG_STRINGARRAY("X509v3RequestExtensions::verify()", result);
+    LOGIT_DEBUG_STRINGARRAY("X509v3RequestExts::verify()", result);
     return result;
 }
 
 blocxx::StringArray
-X509v3RequestExtensions::dump() const
+X509v3RequestExts::dump() const
 {
     StringArray result;
-    result.append("X509v3RequestExtensions::dump()");
+    result.append("X509v3RequestExts::dump()");
 
     result.appendArray(nsSslServerName.dump());
     result.appendArray(nsComment.dump());

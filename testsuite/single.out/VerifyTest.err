@@ -4,16 +4,16 @@ DEBUG ca-mgm - ExtensionBase::setPresent(): true
 DEBUG ca-mgm - type2Section: type=6 result=v3_crl
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=6 result=ca
-DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExtension::valid() is true
-DEBUG ca-mgm - return IssuerAlternativeNameExtension::valid() ist true
-DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExtension::valid() is true
-DEBUG ca-mgm - return IssuerAlternativeNameExtension::valid() ist true
+DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExt::valid() is true
+DEBUG ca-mgm - return IssuerAlternativeNameExt::valid() is true
+DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExt::valid() is true
+DEBUG ca-mgm - return IssuerAlternativeNameExt::valid() is true
 DEBUG ca-mgm - type2Section: type=6 result=ca
-DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExtension::valid() is true
-DEBUG ca-mgm - return IssuerAlternativeNameExtension::valid() ist true
-DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExtension::valid() is true
+DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExt::valid() is true
+DEBUG ca-mgm - return IssuerAlternativeNameExt::valid() is true
+DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExt::valid() is true
 DEBUG ca-mgm - type2Section: type=6 result=v3_crl
-DEBUG ca-mgm - return IssuerAlternativeNameExtension::valid() ist true
+DEBUG ca-mgm - return IssuerAlternativeNameExt::valid() is true
 DEBUG ca-mgm - type2Section: type=6 result=v3_crl
 DEBUG ca-mgm - Command: /usr/bin/openssl ca -gencrl -config ./TestRepos//Test_CA2/openssl.cnf -out ./TestRepos//Test_CA2/crl/crl.pem -keyfile ./TestRepos//Test_CA2/cacert.key -cert ./TestRepos//Test_CA2/cacert.pem -passin env:pass -crlhours 24 -crlexts v3_crl 
 DEBUG ca-mgm - openssl stderr:Using configuration from ./TestRepos//Test_CA2/openssl.cnf

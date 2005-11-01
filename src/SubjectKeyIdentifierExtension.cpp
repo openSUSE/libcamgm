@@ -36,37 +36,50 @@ namespace CA_MGM_NAMESPACE
 using namespace limal;
 using namespace blocxx;
 
-SubjectKeyIdentifierExtension::SubjectKeyIdentifierExtension()
-    : ExtensionBase(), autodetect(false), keyid(String())
+SubjectKeyIdentifierExt::SubjectKeyIdentifierExt()
+    : ExtensionBase(),
+      autodetect(false),
+      keyid(String())
 {}
 
-SubjectKeyIdentifierExtension::SubjectKeyIdentifierExtension(CAConfig* caConfig, Type type)
-    : ExtensionBase(), autodetect(false), keyid(String())
+SubjectKeyIdentifierExt::SubjectKeyIdentifierExt(CAConfig* caConfig, Type type)
+    : ExtensionBase(),
+      autodetect(false),
+      keyid(String())
 {
     // These types are not supported by this object
     if(type == E_CRL)
     {
         LOGIT_ERROR("wrong type" << type);
-        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1",
+                                                   type).c_str());
     }
 
     bool p = caConfig->exists(type2Section(type, true), "subjectKeyIdentifier");
-    if(p) {
+    if(p)
+    {
         String        str;
 
         StringArray   sp   = PerlRegEx("\\s*,\\s*")
             .split(caConfig->getValue(type2Section(type, true), "subjectKeyIdentifier"));
-        if(sp[0].equalsIgnoreCase("critical")) {
+
+        if(sp[0].equalsIgnoreCase("critical"))
+        {
             setCritical(true);
             str = sp[1];
-        } else {
+        }
+        else
+        {
             str = sp[0];
         }
 
-        if(str.equalsIgnoreCase("hash")) {
+        if(str.equalsIgnoreCase("hash"))
+        {
             this->autodetect = true;
             this->keyid      = String();
-        } else {
+        }
+        else
+        {
             this->autodetect = false;
             this->keyid      = str;
         }
@@ -74,26 +87,32 @@ SubjectKeyIdentifierExtension::SubjectKeyIdentifierExtension(CAConfig* caConfig,
     setPresent(p);
 }
 
-SubjectKeyIdentifierExtension::SubjectKeyIdentifierExtension(bool autoDetect, const String& keyid)
-    : ExtensionBase(), autodetect(autoDetect), keyid(keyid)
+SubjectKeyIdentifierExt::SubjectKeyIdentifierExt(bool autoDetect, const String& keyid)
+    : ExtensionBase(),
+      autodetect(autoDetect),
+      keyid(keyid)
 {
-    if(!keyid.empty() && !initHexCheck().isValid(keyid)) {
+    if(!keyid.empty() &&
+       !initHexCheck().isValid(keyid))
+    {
         LOGIT_ERROR("invalid KeyID");
         BLOCXX_THROW(limal::ValueException, "invalid KeyID");
     }
     setPresent(true);
 }
 
-SubjectKeyIdentifierExtension::SubjectKeyIdentifierExtension(const SubjectKeyIdentifierExtension& extension)
-    : ExtensionBase(extension), autodetect(extension.autodetect), keyid(extension.keyid)
+SubjectKeyIdentifierExt::SubjectKeyIdentifierExt(const SubjectKeyIdentifierExt& extension)
+    : ExtensionBase(extension),
+      autodetect(extension.autodetect),
+      keyid(extension.keyid)
 {}
 
-SubjectKeyIdentifierExtension::~SubjectKeyIdentifierExtension()
+SubjectKeyIdentifierExt::~SubjectKeyIdentifierExt()
 {}
 
 
-SubjectKeyIdentifierExtension&
-SubjectKeyIdentifierExtension::operator=(const SubjectKeyIdentifierExtension& extension)
+SubjectKeyIdentifierExt&
+SubjectKeyIdentifierExt::operator=(const SubjectKeyIdentifierExt& extension)
 {
     if(this == &extension) return *this;
     
@@ -106,10 +125,11 @@ SubjectKeyIdentifierExtension::operator=(const SubjectKeyIdentifierExtension& ex
 }
 
 void
-SubjectKeyIdentifierExtension::setSubjectKeyIdentifier(bool autoDetect,
-                                                       const String& keyId)
+SubjectKeyIdentifierExt::setSubjectKeyIdentifier(bool autoDetect,
+                                                 const String& keyId)
 {
-    if(!keyId.empty() && !initHexCheck().isValid(keyId)) {
+    if(!keyId.empty() && !initHexCheck().isValid(keyId))
+    {
         LOGIT_ERROR("invalid KeyID");
         BLOCXX_THROW(limal::ValueException, "invalid KeyID");
     }
@@ -119,74 +139,90 @@ SubjectKeyIdentifierExtension::setSubjectKeyIdentifier(bool autoDetect,
 }
 
 bool
-SubjectKeyIdentifierExtension::isAutoDetectionEnabled() const
+SubjectKeyIdentifierExt::isAutoDetectionEnabled() const
 {
-    if(!isPresent()) {
-        BLOCXX_THROW(limal::RuntimeException, "SubjectKeyIdentifierExtension is not present");
+    if(!isPresent())
+    {
+        BLOCXX_THROW(limal::RuntimeException,
+                     "SubjectKeyIdentifierExt is not present");
     }
     return autodetect;
 }
 
 blocxx::String
-SubjectKeyIdentifierExtension::getKeyID() const
+SubjectKeyIdentifierExt::getKeyID() const
 {
-    if(!isPresent()) {
-        BLOCXX_THROW(limal::RuntimeException, "SubjectKeyIdentifierExtension is not present");
+    if(!isPresent())
+    {
+        BLOCXX_THROW(limal::RuntimeException,
+                     "SubjectKeyIdentifierExt is not present");
     }
     return keyid;
 }
 
 
 void
-SubjectKeyIdentifierExtension::commit2Config(CA& ca, Type type) const
+SubjectKeyIdentifierExt::commit2Config(CA& ca, Type type) const
 {
-    if(!valid()) {
-        LOGIT_ERROR("invalid SubjectKeyIdentifierExtension object");
-        BLOCXX_THROW(limal::ValueException, "invalid SubjectKeyIdentifierExtension object");
+    if(!valid())
+    {
+        LOGIT_ERROR("invalid SubjectKeyIdentifierExt object");
+        BLOCXX_THROW(limal::ValueException,
+                     "invalid SubjectKeyIdentifierExt object");
     }
 
     // This extension is not supported by type CRL
-    if(type == E_CRL) {
+    if(type == E_CRL)
+    {
         LOGIT_ERROR("wrong type" << type);
-        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1",
+                                                   type).c_str());
     }
 
-    if(isPresent()) {
+    if(isPresent())
+    {
         String extString;
 
         if(isCritical()) extString += "critical,";
-        if(autodetect) {
-            extString += "hash";
-        } else {
-            extString += keyid;
-        }
-
-        ca.getConfig()->setValue(type2Section(type, true), "subjectKeyIdentifier", extString);
-    } else {
-        ca.getConfig()->deleteValue(type2Section(type, true), "subjectKeyIdentifier");
+        if(autodetect)   extString += "hash";
+        else             extString += keyid;
+        
+        ca.getConfig()->setValue(type2Section(type, true),
+                                 "subjectKeyIdentifier", extString);
+    }
+    else
+    {
+        ca.getConfig()->deleteValue(type2Section(type, true),
+                                    "subjectKeyIdentifier");
     }
 }
 
 bool
-SubjectKeyIdentifierExtension::valid() const
+SubjectKeyIdentifierExt::valid() const
 {
     if(!isPresent()) return true;
 
-    if(!autodetect && keyid.empty()) {
-        LOGIT_DEBUG(Format("Wrong value for SubjectKeyIdentifierExtension: autodetect(%1), keyId(%2)",
+    if(!autodetect && keyid.empty())
+    {
+        LOGIT_DEBUG(String("Wrong value for SubjectKeyIdentifierExt: ") +
+                    Format("autodetect(%1), keyId(%2)",
                            autodetect?"true":"false", keyid));
         return false;
     }
 
-    if(autodetect && !keyid.empty()) {
-        LOGIT_DEBUG(Format("Wrong value for SubjectKeyIdentifierExtension: autodetect(%1), keyId(%2)",
+    if(autodetect && !keyid.empty())
+    {
+        LOGIT_DEBUG(String("Wrong value for SubjectKeyIdentifierExt: ") +
+                    Format("autodetect(%1), keyId(%2)",
                            autodetect?"true":"false", keyid));
         return false;
     }
-    if(!keyid.empty()) {
+    if(!keyid.empty())
+    {
         ValueCheck check = initHexCheck();
-        if(!check.isValid(keyid)) {
-            LOGIT_DEBUG("Wrong keyID in SubjectKeyIdentifierExtension:" << keyid);
+        if(!check.isValid(keyid))
+        {
+            LOGIT_DEBUG("Wrong keyID in SubjectKeyIdentifierExt:" << keyid);
             return false;
         }
     }
@@ -194,37 +230,45 @@ SubjectKeyIdentifierExtension::valid() const
 }
 
 blocxx::StringArray
-SubjectKeyIdentifierExtension::verify() const
+SubjectKeyIdentifierExt::verify() const
 {
     StringArray result;
 
     if(!isPresent()) return result;
 
-    if(!autodetect && keyid.empty()) {
-        result.append(Format("Wrong value for SubjectKeyIdentifierExtension: autodetect(%1), keyId(%2)", 
-                             autodetect?"true":"false", keyid.c_str()).toString());
+    if(!autodetect && keyid.empty())
+    {
+        result.append(String("Wrong value for SubjectKeyIdentifierExt: ") +
+                      Format("autodetect(%1), keyId(%2)", 
+                             autodetect?"true":"false",
+                             keyid.c_str()).toString());
     }
 
-    if(autodetect && !keyid.empty()) {
-        result.append(Format("Wrong value for SubjectKeyIdentifierExtension: autodetect(%1), keyId(%2)", 
-                             autodetect?"true":"false", keyid.c_str()).toString());
+    if(autodetect && !keyid.empty())
+    {
+        result.append(String("Wrong value for SubjectKeyIdentifierExt: ") +
+                      Format("autodetect(%1), keyId(%2)", 
+                             autodetect?"true":"false",
+                             keyid.c_str()).toString());
     }
-    if(!keyid.empty()) {
+    if(!keyid.empty())
+    {
         ValueCheck check = initHexCheck();
-        if(!check.isValid(keyid)) {
-            result.append(Format("Wrong keyID in SubjectKeyIdentifierExtension: %1",
+        if(!check.isValid(keyid))
+        {
+            result.append(Format("Wrong keyID in SubjectKeyIdentifierExt: %1",
                                  keyid.c_str()).toString());
         }
     }
-    LOGIT_DEBUG_STRINGARRAY("SubjectKeyIdentifierExtension::verify()", result);
+    LOGIT_DEBUG_STRINGARRAY("SubjectKeyIdentifierExt::verify()", result);
     return result;
 }
 
 blocxx::StringArray
-SubjectKeyIdentifierExtension::dump() const
+SubjectKeyIdentifierExt::dump() const
 {
     StringArray result;
-    result.append("SubjectKeyIdentifierExtension::dump()");
+    result.append("SubjectKeyIdentifierExt::dump()");
 
     result.appendArray(ExtensionBase::dump());
     if(!isPresent()) return result;

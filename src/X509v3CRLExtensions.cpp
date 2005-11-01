@@ -33,17 +33,17 @@ namespace CA_MGM_NAMESPACE
 using namespace limal;
 using namespace blocxx;
 
-X509v3CRLExtensions::X509v3CRLExtensions(const X509v3CRLExtensions& extensions)
+X509v3CRLExts::X509v3CRLExts(const X509v3CRLExts& extensions)
     : authorityKeyIdentifier(extensions.authorityKeyIdentifier),
       issuerAlternativeName(extensions.issuerAlternativeName)
 {
 }
 
-X509v3CRLExtensions::~X509v3CRLExtensions()
+X509v3CRLExts::~X509v3CRLExts()
 {}
 
-X509v3CRLExtensions&
-X509v3CRLExtensions::operator=(const X509v3CRLExtensions& extensions)
+X509v3CRLExts&
+X509v3CRLExts::operator=(const X509v3CRLExts& extensions)
 {
     if(this == &extensions) return *this;
     
@@ -53,20 +53,20 @@ X509v3CRLExtensions::operator=(const X509v3CRLExtensions& extensions)
     return *this;
 }
 
-AuthorityKeyIdentifierExtension
-X509v3CRLExtensions::getAuthorityKeyIdentifier() const
+AuthorityKeyIdentifierExt
+X509v3CRLExts::getAuthorityKeyIdentifier() const
 {
     return authorityKeyIdentifier;
 }
 
-IssuerAlternativeNameExtension
-X509v3CRLExtensions::getIssuerAlternativeName() const
+IssuerAlternativeNameExt
+X509v3CRLExts::getIssuerAlternativeName() const
 {
     return issuerAlternativeName;
 }
 
 bool
-X509v3CRLExtensions::valid() const
+X509v3CRLExts::valid() const
 {
     if(!authorityKeyIdentifier.valid()) return false;
     if(!issuerAlternativeName.valid())  return false;
@@ -74,22 +74,22 @@ X509v3CRLExtensions::valid() const
 }
 
 blocxx::StringArray
-X509v3CRLExtensions::verify() const
+X509v3CRLExts::verify() const
 {
     StringArray result;
 
     result.appendArray(authorityKeyIdentifier.verify());
     result.appendArray(issuerAlternativeName.verify());
     
-    LOGIT_DEBUG_STRINGARRAY("X509v3CRLExtensions::verify()", result);
+    LOGIT_DEBUG_STRINGARRAY("X509v3CRLExts::verify()", result);
     return result;;
 }
 
 blocxx::StringArray
-X509v3CRLExtensions::dump() const
+X509v3CRLExts::dump() const
 {
     StringArray result;
-    result.append("X509v3CRLExtensions::dump()");
+    result.append("X509v3CRLExts::dump()");
 
     result.appendArray(authorityKeyIdentifier.dump());
     result.appendArray(issuerAlternativeName.dump());
@@ -98,7 +98,7 @@ X509v3CRLExtensions::dump() const
 }
 
 //    protected:
-X509v3CRLExtensions::X509v3CRLExtensions()
+X509v3CRLExts::X509v3CRLExts()
 {
 }
 

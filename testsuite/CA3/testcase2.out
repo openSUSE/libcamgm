@@ -7,41 +7,41 @@ creating CA object
 CertificateIssueData::dump()
 notAfter - notBefore (in days)= 365
 MessageDigest = 0
-X509v3CertificateIssueExtensions::dump()
-NsBaseUrlExtension::dump()
+X509v3CertificateIssueExts::dump()
+NsBaseUrlExt::dump()
 ExtensionBase::dump()
 is Present = false
-NsRevocationUrlExtension::dump()
+NsRevocationUrlExt::dump()
 ExtensionBase::dump()
 is Present = false
-NsCaRevocationUrlExtension::dump()
+NsCaRevocationUrlExt::dump()
 ExtensionBase::dump()
 is Present = false
-NsRenewalUrlExtension::dump()
+NsRenewalUrlExt::dump()
 ExtensionBase::dump()
 is Present = false
-NsCaPolicyUrlExtension::dump()
+NsCaPolicyUrlExt::dump()
 ExtensionBase::dump()
 is Present = false
-NsSslServerNameExtension::dump()
+NsSslServerNameExt::dump()
 ExtensionBase::dump()
 is Present = false
-NsCommentExtension::dump()
+NsCommentExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 NS Comment = "YaST Generated Client Certificate"
-KeyUsageExtension::dump()
+KeyUsageExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 KeyUsage = 0x00e0
-NsCertTypeExtension::dump()
+NsCertTypeExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 NsCertType = 0xb0
-BasicConstraintsExtension::dump()
+BasicConstraintsExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
@@ -50,35 +50,35 @@ pathlen = -1
 ExtendedKeyUsageExt::dump()
 ExtensionBase::dump()
 is Present = false
-SubjectKeyIdentifierExtension::dump()
+SubjectKeyIdentifierExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 Autodetect = true
 KeyID = 
-AuthorityKeyIdentifierGenerateExtension::dump()
+AuthorityKeyIdentifierGenerateExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 KeyID = 1
 Issuer = 2
-SubjectAlternativeNameExtension::dump()
+SubjectAlternativeNameExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 email:copy = true
-IssuerAlternativeNameExtension::dump()
+IssuerAlternativeNameExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 Issuer:copy = true
-AuthorityInfoAccessExtension::dump()
+AuthorityInfoAccessExt::dump()
 ExtensionBase::dump()
 is Present = false
-CRLDistributionPointsExtension::dump()
+CRLDistributionPointsExt::dump()
 ExtensionBase::dump()
 is Present = false
-CertificatePoliciesExtension::dump()
+CertificatePoliciesExt::dump()
 ExtensionBase::dump()
 is Present = false
 creating CA object
@@ -88,59 +88,59 @@ creating CA object
 CertificateIssueData::dump()
 notAfter - notBefore (in days)= 365
 MessageDigest = 2
-X509v3CertificateIssueExtensions::dump()
-NsBaseUrlExtension::dump()
+X509v3CertificateIssueExts::dump()
+NsBaseUrlExt::dump()
 ExtensionBase::dump()
 is Present = false
-NsRevocationUrlExtension::dump()
+NsRevocationUrlExt::dump()
 ExtensionBase::dump()
 is Present = false
-NsCaRevocationUrlExtension::dump()
+NsCaRevocationUrlExt::dump()
 ExtensionBase::dump()
 is Present = false
-NsRenewalUrlExtension::dump()
+NsRenewalUrlExt::dump()
 ExtensionBase::dump()
 is Present = false
-NsCaPolicyUrlExtension::dump()
+NsCaPolicyUrlExt::dump()
 ExtensionBase::dump()
 is Present = false
-NsSslServerNameExtension::dump()
+NsSslServerNameExt::dump()
 ExtensionBase::dump()
 is Present = false
-NsCommentExtension::dump()
+NsCommentExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 NS Comment = "YaST Generated Client Certificate"
-KeyUsageExtension::dump()
+KeyUsageExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 KeyUsage = 0x00c0
-NsCertTypeExtension::dump()
+NsCertTypeExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 NsCertType = 0xa0
-BasicConstraintsExtension::dump()
+BasicConstraintsExt::dump()
 ExtensionBase::dump()
 is Present = false
 ExtendedKeyUsageExt::dump()
 ExtensionBase::dump()
 is Present = false
-SubjectKeyIdentifierExtension::dump()
+SubjectKeyIdentifierExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 Autodetect = false
 KeyID = a1:32:53:4e
-AuthorityKeyIdentifierGenerateExtension::dump()
+AuthorityKeyIdentifierGenerateExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 KeyID = 2
 Issuer = 1
-SubjectAlternativeNameExtension::dump()
+SubjectAlternativeNameExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
@@ -149,12 +149,12 @@ LiteralValue::dump()
 email:mc@suse.de
 LiteralValue::dump()
 URI:http://w3.suse.de/~mc/
-IssuerAlternativeNameExtension::dump()
+IssuerAlternativeNameExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 Issuer:copy = true
-AuthorityInfoAccessExtension::dump()
+AuthorityInfoAccessExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
@@ -162,10 +162,10 @@ AuthorityInformation::dump()
 accessOID = caIssuers
 LiteralValue::dump()
 URI:http://ocsp.my.host/
-CRLDistributionPointsExtension::dump()
+CRLDistributionPointsExt::dump()
 ExtensionBase::dump()
 is Present = false
-CertificatePoliciesExtension::dump()
+CertificatePoliciesExt::dump()
 ExtensionBase::dump()
 is Present = false
 DONE

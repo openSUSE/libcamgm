@@ -39,15 +39,15 @@ namespace CA_MGM_NAMESPACE {
      * The pathlen parameter indicates the maximum number of CAs that can appear
      * below this one in a chain.
      */
-    class BasicConstraintsExtension : public ExtensionBase {
+    class BasicConstraintsExt : public ExtensionBase {
     public:
-        BasicConstraintsExtension();
-        BasicConstraintsExtension(CAConfig* caConfig, Type type);
-        BasicConstraintsExtension(bool isCa, blocxx::Int32 pathLength=-1);
-        BasicConstraintsExtension(const BasicConstraintsExtension& extension);
-        virtual ~BasicConstraintsExtension();
+        BasicConstraintsExt();
+        BasicConstraintsExt(CAConfig* caConfig, Type type);
+        BasicConstraintsExt(bool isCa, blocxx::Int32 pathLength=-1);
+        BasicConstraintsExt(const BasicConstraintsExt& extension);
+        virtual ~BasicConstraintsExt();
 
-        BasicConstraintsExtension& operator=(const BasicConstraintsExtension& extension);
+        BasicConstraintsExt& operator=(const BasicConstraintsExt& extension);
 
         /**
          * Set the ca parameter and the path length.

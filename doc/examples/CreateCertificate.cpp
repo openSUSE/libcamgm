@@ -73,28 +73,28 @@ int main()
 
         CertificateIssueData cid = ca.getIssueDefaults(E_Client_Cert);
 
-        // ------------------------ create netscape extension -----------------------------
+        // ---------------------- create netscape extension -------------------------
 
-        NsBaseUrlExtension nsBaseUrl("http://www.my-company.com/");
-        NsRevocationUrlExtension nsRevocationUrl("http://www.my-company.com/revoke.pl");
-        NsCaRevocationUrlExtension nsCaRevocationUrl("http://www.my-company.com/CArevoke.pl");
-        NsRenewalUrlExtension nsRenewalUrl("http://www.my-company.com/renew.pl");
-        NsCaPolicyUrlExtension nsCaPolicyUrl("http://www.my-company.com/policy.html");
-        NsSslServerNameExtension nsSslServerName("*.my-company.com");
-        NsCommentExtension nsComment("My Company Certificate");
+        NsBaseUrlExt nsBaseUrl("http://www.my-company.com/");
+        NsRevocationUrlExt nsRevocationUrl("http://www.my-company.com/revoke.pl");
+        NsCaRevocationUrlExt nsCaRevocationUrl("http://www.my-company.com/CArevoke.pl");
+        NsRenewalUrlExt nsRenewalUrl("http://www.my-company.com/renew.pl");
+        NsCaPolicyUrlExt nsCaPolicyUrl("http://www.my-company.com/policy.html");
+        NsSslServerNameExt nsSslServerName("*.my-company.com");
+        NsCommentExt nsComment("My Company Certificate");
 
-        // ------------------------ create bit extension -----------------------------
+        // ---------------------- create bit extension -----------------------------
 
-        KeyUsageExtension   ku(KeyUsageExtension::decipherOnly);
-        NsCertTypeExtension nsCertType(NsCertTypeExtension::objCA | 
-                                       NsCertTypeExtension::emailCA |
-                                       NsCertTypeExtension::sslCA);
+        KeyUsageExt   ku(KeyUsageExt::decipherOnly);
+        NsCertTypeExt nsCertType(NsCertTypeExt::objCA | 
+                                 NsCertTypeExt::emailCA |
+                                 NsCertTypeExt::sslCA);
 
-        // ----------------- create basic constrains extension -----------------------
+        // -------------- create basic constrains extension -----------------------
 
-        BasicConstraintsExtension basicConstraints(true, 3);
+        BasicConstraintsExt basicConstraints(true, 3);
 
-        // ----------------- create extended keyUsage extension ----------------------
+        // -------------- create extended keyUsage extension ----------------------
 
         StringList sl;
         sl.push_back("2.3.4.5");
@@ -105,15 +105,15 @@ int main()
 
         ExtendedKeyUsageExt extendedKeyUsage( sl );
 
-        // ------------------------ create key identifier extension -----------------------------
+        // ----------------- create key identifier extension ---------------------
         
-        SubjectKeyIdentifierExtension subjectKeyIdentifier(true);
-        AuthorityKeyIdentifierGenerateExtension 
+        SubjectKeyIdentifierExt subjectKeyIdentifier(true);
+        AuthorityKeyIdentifierGenerateExt 
             authorityKeyIdentifier(
-                                   AuthorityKeyIdentifierGenerateExtension::KeyID_always,
-                                   AuthorityKeyIdentifierGenerateExtension::Issuer_always);
+                                   AuthorityKeyIdentifierGenerateExt::KeyID_always,
+                                   AuthorityKeyIdentifierGenerateExt::Issuer_always);
 
-        // ------------------------ create alternative extension -----------------------------
+        // ------------------ create alternative extension -----------------------
         
         List<LiteralValue> list;
         list.push_back(LiteralValue("IP", "164.34.35.184"));
@@ -122,29 +122,32 @@ int main()
         list.push_back(LiteralValue("email", "me@my-company.com"));
         list.push_back(LiteralValue("URI", "http://www.my-company.com/"));
         
-        SubjectAlternativeNameExtension subjectAlternativeName(true, list);
-        IssuerAlternativeNameExtension issuerAlternativeName(true, list);
+        SubjectAlternativeNameExt subjectAlternativeName(true, list);
+        IssuerAlternativeNameExt issuerAlternativeName(true, list);
 
-        // ---------------- create authority information extension ------------------------
+        // -------------- create authority information extension ------------------
        
         List<AuthorityInformation> info;
         info.push_back(AuthorityInformation("OCSP", 
-                                            LiteralValue("URI", "http://www.my-company.com/ocsp.pl")));
+                                            LiteralValue("URI",
+                                                         "http://www.my-company.com/ocsp.pl")));
         info.push_back(AuthorityInformation("caIssuers", 
-                                            LiteralValue("URI", "http://www.my-company.com/caIssuer.html")));
+                                            LiteralValue("URI",
+                                                         "http://www.my-company.com/caIssuer.html")));
 
-        AuthorityInfoAccessExtension authorityInfoAccess;
+        AuthorityInfoAccessExt authorityInfoAccess;
         authorityInfoAccess.setAuthorityInformation(info);
 
-        // ------------------------ create CRL dist point extension -----------------------
+        // -------------------- create CRL dist point extension -------------------
 
         List<LiteralValue> crldist;
-        crldist.push_back(LiteralValue("URI", "ldap://ldap.my-company.com/?ou=PKI%2ddc=my-company%2ddc=com"));
+        crldist.push_back(LiteralValue("URI",
+                                       "ldap://ldap.my-company.com/?ou=PKI%2ddc=my-company%2ddc=com"));
 
-        CRLDistributionPointsExtension crlDistributionPoints;
+        CRLDistributionPointsExt crlDistributionPoints;
         crlDistributionPoints.setCRLDistributionPoints(crldist);
 
-        // -------------------- create certificate policy extension -----------------------
+        // ------------------ create certificate policy extension ------------------
 
         blocxx::List<CertificatePolicy> p;
         p.push_back(CertificatePolicy("1.12.35.1"));
@@ -171,13 +174,13 @@ int main()
         p2.setUserNoticeList(unl);
         p.push_back(p2);
 
-        CertificatePoliciesExtension certificatePolicies(p);
+        CertificatePoliciesExt certificatePolicies(p);
         
-        // ------------------------ get current extensions -----------------------------
+        // ---------------------- get current extensions --------------------------
 
-        X509v3CertificateIssueExtensions ex = cid.getExtensions();
+        X509v3CertificateIssueExts ex = cid.getExtensions();
 
-        // ------------------------ set new extensions -----------------------------
+        // ------------------------ set new extensions ----------------------------
 
         ex.setNsBaseUrl(nsBaseUrl);
         ex.setNsRevocationUrl(nsRevocationUrl);

@@ -31,41 +31,41 @@ namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
-    class X509v3RequestExtensions_Priv : public X509v3RequestExtensions {
+    class X509v3RequestExts_Priv : public X509v3RequestExts {
     public:
-        X509v3RequestExtensions_Priv();
-        X509v3RequestExtensions_Priv(STACK_OF(X509_EXTENSION)* extensions);
-        X509v3RequestExtensions_Priv(const X509v3RequestExtensions_Priv& extensions);
-        virtual ~X509v3RequestExtensions_Priv();
+        X509v3RequestExts_Priv();
+        X509v3RequestExts_Priv(STACK_OF(X509_EXTENSION)* extensions);
+        X509v3RequestExts_Priv(const X509v3RequestExts_Priv& extensions);
+        virtual ~X509v3RequestExts_Priv();
 
     private:
 
-        X509v3RequestExtensions_Priv&
-        operator=(const X509v3RequestExtensions_Priv& extensions);
+        X509v3RequestExts_Priv&
+        operator=(const X509v3RequestExts_Priv& extensions);
 
         void
-        parseStringExtension(STACK_OF(X509_EXTENSION)* cert,
-                             int nid, StringExtension &ext);
+        parseStringExt(STACK_OF(X509_EXTENSION)* cert,
+                       int nid, StringExtension &ext);
 
         void
-        parseBitExtension(STACK_OF(X509_EXTENSION)* cert,
-                          int nid, BitExtension &ext);
-
+        parseBitExt(STACK_OF(X509_EXTENSION)* cert,
+                    int nid, BitExtension &ext);
+        
         void
         parseExtendedKeyUsageExt(STACK_OF(X509_EXTENSION)* cert,
                                  ExtendedKeyUsageExt &ext);
+        
+        void
+        parseBasicConstraintsExt(STACK_OF(X509_EXTENSION)* cert,
+                                 BasicConstraintsExt &ext);
+        
+        void
+        parseSubjectKeyIdentifierExt(STACK_OF(X509_EXTENSION) *cert,
+                                     SubjectKeyIdentifierExt &ext);
 
         void
-        parseBasicConstraintsExtension(STACK_OF(X509_EXTENSION)* cert,
-                                       BasicConstraintsExtension &ext);
-
-        void
-        parseSubjectKeyIdentifierExtension(STACK_OF(X509_EXTENSION) *cert,
-                                           SubjectKeyIdentifierExtension &ext);
-
-        void
-        parseSubjectAlternativeNameExtension(STACK_OF(X509_EXTENSION) *cert,
-                                             SubjectAlternativeNameExtension &ext);
+        parseSubjectAlternativeNameExt(STACK_OF(X509_EXTENSION) *cert,
+                                       SubjectAlternativeNameExt &ext);
 
     };
 }

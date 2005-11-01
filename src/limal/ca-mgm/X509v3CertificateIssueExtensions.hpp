@@ -51,74 +51,74 @@ namespace CA_MGM_NAMESPACE
      *
      * This class includes a collection of X509v3 extension for signing a certificate
      */
-    class X509v3CertificateIssueExtensions {
+    class X509v3CertificateIssueExts {
     public:
-        X509v3CertificateIssueExtensions();
-        X509v3CertificateIssueExtensions(CAConfig* caConfig, Type type);
-        X509v3CertificateIssueExtensions(const X509v3CertificateIssueExtensions& extensions);
-        virtual ~X509v3CertificateIssueExtensions();
+        X509v3CertificateIssueExts();
+        X509v3CertificateIssueExts(CAConfig* caConfig, Type type);
+        X509v3CertificateIssueExts(const X509v3CertificateIssueExts& extensions);
+        virtual ~X509v3CertificateIssueExts();
 
-        X509v3CertificateIssueExtensions&
-        operator=(const X509v3CertificateIssueExtensions& extensions);
+        X509v3CertificateIssueExts&
+        operator=(const X509v3CertificateIssueExts& extensions);
 
         void
-        setNsBaseUrl(const NsBaseUrlExtension &ext);
+        setNsBaseUrl(const NsBaseUrlExt &ext);
         
-        NsBaseUrlExtension
+        NsBaseUrlExt
         getNsBaseUrl() const;
 
         void
-        setNsRevocationUrl(const NsRevocationUrlExtension &ext);
+        setNsRevocationUrl(const NsRevocationUrlExt &ext);
         
-        NsRevocationUrlExtension
+        NsRevocationUrlExt
         getNsRevocationUrl() const;
 
         void
-        setNsCaRevocationUrl(const NsCaRevocationUrlExtension &ext);
+        setNsCaRevocationUrl(const NsCaRevocationUrlExt &ext);
         
-        NsCaRevocationUrlExtension
+        NsCaRevocationUrlExt
         getNsCaRevocationUrl() const;
 
         void
-        setNsRenewalUrl(const NsRenewalUrlExtension &ext);
+        setNsRenewalUrl(const NsRenewalUrlExt &ext);
         
-        NsRenewalUrlExtension
+        NsRenewalUrlExt
         getNsRenewalUrl() const;
 
         void
-        setNsCaPolicyUrl(const NsCaPolicyUrlExtension &ext);
+        setNsCaPolicyUrl(const NsCaPolicyUrlExt &ext);
         
-        NsCaPolicyUrlExtension
+        NsCaPolicyUrlExt
         getNsCaPolicyUrl();
 
         void
-        setNsSslServerName(const NsSslServerNameExtension &ext);
+        setNsSslServerName(const NsSslServerNameExt &ext);
         
-        NsSslServerNameExtension
+        NsSslServerNameExt
         getNsSslServerName() const;
 
         void
-        setNsComment(const NsCommentExtension &ext);
+        setNsComment(const NsCommentExt &ext);
         
-        NsCommentExtension
+        NsCommentExt
         getNsComment() const;
 
         void
-        setNsCertType(const NsCertTypeExtension &ext);
+        setNsCertType(const NsCertTypeExt &ext);
         
-        NsCertTypeExtension
+        NsCertTypeExt
         getNsCertType() const;
 
         void
-        setKeyUsage(const KeyUsageExtension &ext);
+        setKeyUsage(const KeyUsageExt &ext);
         
-        KeyUsageExtension
+        KeyUsageExt
         getKeyUsage();
 
         void
-        setBasicConstraints(const BasicConstraintsExtension &ext);
+        setBasicConstraints(const BasicConstraintsExt &ext);
         
-        BasicConstraintsExtension
+        BasicConstraintsExt
         getBasicConstraints() const;
 
         void
@@ -128,45 +128,45 @@ namespace CA_MGM_NAMESPACE
         getExtendedKeyUsage() const;
 
         void
-        setSubjectKeyIdentifier(const SubjectKeyIdentifierExtension &ext);
+        setSubjectKeyIdentifier(const SubjectKeyIdentifierExt &ext);
         
-        SubjectKeyIdentifierExtension
+        SubjectKeyIdentifierExt
         getSubjectKeyIdentifier() const;
 
         void
-        setAuthorityKeyIdentifier(const AuthorityKeyIdentifierGenerateExtension &ext);
+        setAuthorityKeyIdentifier(const AuthorityKeyIdentifierGenerateExt &ext);
         
-        AuthorityKeyIdentifierGenerateExtension
+        AuthorityKeyIdentifierGenerateExt
         getAuthorityKeyIdentifier() const;
 
         void
-        setSubjectAlternativeName(const SubjectAlternativeNameExtension &ext);
+        setSubjectAlternativeName(const SubjectAlternativeNameExt &ext);
         
-        SubjectAlternativeNameExtension
+        SubjectAlternativeNameExt
         getSubjectAlternativeName() const;
         
         void
-        setIssuerAlternativeName(const IssuerAlternativeNameExtension &ext);
+        setIssuerAlternativeName(const IssuerAlternativeNameExt &ext);
         
-        IssuerAlternativeNameExtension
+        IssuerAlternativeNameExt
         getIssuerAlternativeName() const;
                                                                      
         void
-        setAuthorityInfoAccess(const AuthorityInfoAccessExtension &ext);
+        setAuthorityInfoAccess(const AuthorityInfoAccessExt &ext);
         
-        AuthorityInfoAccessExtension
+        AuthorityInfoAccessExt
         getAuthorityInfoAccess() const;
 
         void
-        setCRLDistributionPoints(const CRLDistributionPointsExtension &ext);
+        setCRLDistributionPoints(const CRLDistributionPointsExt &ext);
         
-        CRLDistributionPointsExtension
+        CRLDistributionPointsExt
         getCRLDistributionPoints() const;
 
         void
-        setCertificatePolicies(const CertificatePoliciesExtension &ext);
+        setCertificatePolicies(const CertificatePoliciesExt &ext);
         
-        CertificatePoliciesExtension
+        CertificatePoliciesExt
         getCertificatePolicies() const;
 
         void
@@ -184,28 +184,28 @@ namespace CA_MGM_NAMESPACE
     private:
         /* String extensions */
 
-        NsBaseUrlExtension                      nsBaseUrl;
-        NsRevocationUrlExtension                nsRevocationUrl;
-        NsCaRevocationUrlExtension              nsCaRevocationUrl;
-        NsRenewalUrlExtension                   nsRenewalUrl;
-        NsCaPolicyUrlExtension                  nsCaPolicyUrl;
-        NsSslServerNameExtension                nsSslServerName;
-        NsCommentExtension                      nsComment;
+        NsBaseUrlExt                      nsBaseUrl;
+        NsRevocationUrlExt                nsRevocationUrl;
+        NsCaRevocationUrlExt              nsCaRevocationUrl;
+        NsRenewalUrlExt                   nsRenewalUrl;
+        NsCaPolicyUrlExt                  nsCaPolicyUrl;
+        NsSslServerNameExt                nsSslServerName;
+        NsCommentExt                      nsComment;
 
         /* Bit Strings */
-        KeyUsageExtension                       keyUsage;
-        NsCertTypeExtension                     nsCertType;
+        KeyUsageExt                       keyUsage;
+        NsCertTypeExt                     nsCertType;
 
-        BasicConstraintsExtension               basicConstraints;
-        ExtendedKeyUsageExt                     extendedKeyUsage;
-        SubjectKeyIdentifierExtension           subjectKeyIdentifier;
-        AuthorityKeyIdentifierGenerateExtension authorityKeyIdentifier;
-        SubjectAlternativeNameExtension         subjectAlternativeName;
-        IssuerAlternativeNameExtension          issuerAlternativeName;
+        BasicConstraintsExt               basicConstraints;
+        ExtendedKeyUsageExt               extendedKeyUsage;
+        SubjectKeyIdentifierExt           subjectKeyIdentifier;
+        AuthorityKeyIdentifierGenerateExt authorityKeyIdentifier;
+        SubjectAlternativeNameExt         subjectAlternativeName;
+        IssuerAlternativeNameExt          issuerAlternativeName;
 
-        AuthorityInfoAccessExtension            authorityInfoAccess;
-        CRLDistributionPointsExtension          crlDistributionPoints;
-        CertificatePoliciesExtension            certificatePolicies;
+        AuthorityInfoAccessExt            authorityInfoAccess;
+        CRLDistributionPointsExt          crlDistributionPoints;
+        CertificatePoliciesExt            certificatePolicies;
 
     };
 

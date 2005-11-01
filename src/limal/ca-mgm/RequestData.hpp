@@ -42,34 +42,60 @@ namespace CA_MGM_NAMESPACE {
         RequestData(const RequestData& data);
         virtual ~RequestData();
 
-        RequestData& operator=(const RequestData& data);
+        RequestData&
+        operator=(const RequestData& data);
 
-        blocxx::UInt32      getVersion() const;
-        blocxx::UInt32      getKeysize() const;
-        DNObject            getSubject() const;
-        KeyAlg              getKeyAlgorithm() const;
-        limal::ByteBuffer   getPublicKey() const;
-        SigAlg              getSignatureAlgorithm() const;
-        limal::ByteBuffer   getSignature() const;
-        String              getFingerprint() const;
-        X509v3RequestExtensions getExtensions() const;
-        String              getChallengePassword() const;
-        String              getUnstructuredName() const;
+        blocxx::UInt32
+        getVersion() const;
+        
+        blocxx::UInt32
+        getKeysize() const;
+        
+        DNObject
+        getSubject() const;
+        
+        KeyAlg
+        getKeyAlgorithm() const;
+        
+        limal::ByteBuffer
+        getPublicKey() const;
+        
+        SigAlg
+        getSignatureAlgorithm() const;
+        
+        limal::ByteBuffer
+        getSignature() const;
+        
+        String
+        getFingerprint() const;
+        
+        X509v3RequestExts
+        getExtensions() const;
+        
+        String
+        getChallengePassword() const;
+        
+        String
+        getUnstructuredName() const;
 
-        virtual bool                 valid() const;
-        virtual blocxx::StringArray  verify() const;
+        virtual bool
+        valid() const;
+        
+        virtual blocxx::StringArray
+        verify() const;
 
-        virtual blocxx::StringArray  dump() const;
+        virtual blocxx::StringArray
+        dump() const;
 
     protected:
         RequestData();
 
-        blocxx::UInt32   version;
+        blocxx::UInt32    version;
 
-        DNObject         subject;
-        blocxx::UInt32   keysize;
+        DNObject          subject;
+        blocxx::UInt32    keysize;
 
-        KeyAlg           pubkeyAlgorithm; // oder enum?
+        KeyAlg            pubkeyAlgorithm; // oder enum?
 
         // DER des public key
         //   man EVP_PKEY_set1_RSA
@@ -78,16 +104,16 @@ namespace CA_MGM_NAMESPACE {
         //   man d2i_RSAPublicKey     => d2i == DER to internal
         ByteBuffer        publicKey;  
 
-        SigAlg           signatureAlgorithm;
+        SigAlg            signatureAlgorithm;
         ByteBuffer        signature;    
                                         // mit private key verschlüsselter Hash wert
                                         // des Requests
 
-        X509v3RequestExtensions extensions;
+        X509v3RequestExts extensions;
 
         // attributes 
-        String challengePassword;
-        String unstructuredName;
+        String            challengePassword;
+        String            unstructuredName;
 
 
     };

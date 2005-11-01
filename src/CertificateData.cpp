@@ -178,7 +178,7 @@ CertificateData::getFingerprint() const
     return String();
 }
 
-X509v3CertificateExtensions
+X509v3CertificateExts
 CertificateData::getExtensions() const
 {
     return extensions;
@@ -299,7 +299,7 @@ CertificateData::CertificateData()
       issuer(DNObject()), subject(DNObject()),
       keysize(2048), pubkeyAlgorithm(E_RSA),
       publicKey(ByteBuffer()), signatureAlgorithm(E_SHA1RSA),
-      signature(ByteBuffer()), extensions(X509v3CertificateExtensions_Priv())
+      signature(ByteBuffer()), extensions(X509v3CertificateExts_Priv())
 {
 }
 

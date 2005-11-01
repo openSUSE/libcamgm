@@ -490,24 +490,26 @@ OpenSSLUtils::revokeCertificate(const blocxx::String &caCertFile,
         debugCmd += "-nouniqueDN ";
     }
     
-    if(reason.getReason() != CRLReason::none) {
-        
-        String reasonStr = reason.getReasonAsString();
+    if(!reason.getReason().equalsIgnoreCase("none"))
+    {        
+        String reasonStr = reason.getReason();
 
-        if(reasonStr == "certificateHold") {
-
+        if(reasonStr.equalsIgnoreCase("certificateHold"))
+        {
             debugCmd += "-crl_hold " + reason.getHoldInstruction() + " ";
-
-        } else if(reasonStr == "keyCompromise") {
-
-            debugCmd += "-crl_compromise " + reason.getKeyCompromiseDateAsString() + " ";
-
-        } else if(reasonStr == "CACompromise") {
-
-            debugCmd += "-crl_CA_compromise " + reason.getCACompromiseDateAsString() + " ";
-
-        } else {
-
+        }
+        else if(reasonStr.equalsIgnoreCase("keyCompromise"))
+        {
+            debugCmd += "-crl_compromise " +
+                        reason.getKeyCompromiseDateAsString() + " ";
+        }
+        else if(reasonStr.equalsIgnoreCase("CACompromise"))
+        {
+            debugCmd += "-crl_CA_compromise " +
+                        reason.getCACompromiseDateAsString() + " ";
+        }
+        else
+        {
             debugCmd += "-crl_reason " + reasonStr + " ";
         }
     }

@@ -44,24 +44,24 @@ Keysize = 2048
 MessageDigest = 0
 Challenge Password = 
 Unstructured Name = 
-X509v3RequestExtensions::dump()
-NsSslServerNameExtension::dump()
+X509v3RequestExts::dump()
+NsSslServerNameExt::dump()
 ExtensionBase::dump()
 is Present = false
-NsCommentExtension::dump()
+NsCommentExt::dump()
 ExtensionBase::dump()
 is Present = false
-KeyUsageExtension::dump()
+KeyUsageExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 KeyUsage = 0x0006
-NsCertTypeExtension::dump()
+NsCertTypeExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 NsCertType = 0x06
-BasicConstraintsExtension::dump()
+BasicConstraintsExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
@@ -70,10 +70,10 @@ pathlen = -1
 ExtendedKeyUsageExt::dump()
 ExtensionBase::dump()
 is Present = false
-SubjectKeyIdentifierExtension::dump()
+SubjectKeyIdentifierExt::dump()
 ExtensionBase::dump()
 is Present = false
-SubjectAlternativeNameExtension::dump()
+SubjectAlternativeNameExt::dump()
 ExtensionBase::dump()
 is Present = false
 ======================== getIssueDefaults =================
@@ -82,41 +82,41 @@ is Present = false
 CertificateIssueData::dump()
 notAfter - notBefore (in days)= 1500
 MessageDigest = 0
-X509v3CertificateIssueExtensions::dump()
-NsBaseUrlExtension::dump()
+X509v3CertificateIssueExts::dump()
+NsBaseUrlExt::dump()
 ExtensionBase::dump()
 is Present = false
-NsRevocationUrlExtension::dump()
+NsRevocationUrlExt::dump()
 ExtensionBase::dump()
 is Present = false
-NsCaRevocationUrlExtension::dump()
+NsCaRevocationUrlExt::dump()
 ExtensionBase::dump()
 is Present = false
-NsRenewalUrlExtension::dump()
+NsRenewalUrlExt::dump()
 ExtensionBase::dump()
 is Present = false
-NsCaPolicyUrlExtension::dump()
+NsCaPolicyUrlExt::dump()
 ExtensionBase::dump()
 is Present = false
-NsSslServerNameExtension::dump()
+NsSslServerNameExt::dump()
 ExtensionBase::dump()
 is Present = false
-NsCommentExtension::dump()
+NsCommentExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 NS Comment = "YaST Generated CA Certificate"
-KeyUsageExtension::dump()
+KeyUsageExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 KeyUsage = 0x0006
-NsCertTypeExtension::dump()
+NsCertTypeExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 NsCertType = 0x06
-BasicConstraintsExtension::dump()
+BasicConstraintsExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = true
@@ -125,35 +125,35 @@ pathlen = -1
 ExtendedKeyUsageExt::dump()
 ExtensionBase::dump()
 is Present = false
-SubjectKeyIdentifierExtension::dump()
+SubjectKeyIdentifierExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 Autodetect = true
 KeyID = 
-AuthorityKeyIdentifierGenerateExtension::dump()
+AuthorityKeyIdentifierGenerateExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 KeyID = 2
 Issuer = 2
-SubjectAlternativeNameExtension::dump()
+SubjectAlternativeNameExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 email:copy = true
-IssuerAlternativeNameExtension::dump()
+IssuerAlternativeNameExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 Issuer:copy = true
-AuthorityInfoAccessExtension::dump()
+AuthorityInfoAccessExt::dump()
 ExtensionBase::dump()
 is Present = false
-CRLDistributionPointsExtension::dump()
+CRLDistributionPointsExt::dump()
 ExtensionBase::dump()
 is Present = false
-CertificatePoliciesExtension::dump()
+CertificatePoliciesExt::dump()
 ExtensionBase::dump()
 is Present = false
 ======================== getCRLDefaults =================
@@ -161,14 +161,14 @@ is Present = false
 ======================== call dump() =================
 CRLGenerationData::dump()
 CRL Hours = 24
-X509v3CRLGenerationExtensions::dump()
-AuthorityKeyIdentifierGenerateExtension::dump()
+X509v3CRLGenerationExts::dump()
+AuthorityKeyIdentifierGenerateExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
 KeyID = 2
 Issuer = 2
-IssuerAlternativeNameExtension::dump()
+IssuerAlternativeNameExt::dump()
 ExtensionBase::dump()
 is Present = false
 DONE

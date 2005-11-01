@@ -33,33 +33,42 @@ namespace CA_MGM_NAMESPACE {
     class CA;
     class CAConfig;
 
-    class SubjectKeyIdentifierExtension : public ExtensionBase {
+    class SubjectKeyIdentifierExt : public ExtensionBase {
     public:
-        SubjectKeyIdentifierExtension();
-        SubjectKeyIdentifierExtension(CAConfig* caConfig, Type type);
-        SubjectKeyIdentifierExtension(bool autoDetect, const String& keyid = String());
-        SubjectKeyIdentifierExtension(const SubjectKeyIdentifierExtension& extension);
-        virtual ~SubjectKeyIdentifierExtension();
+        SubjectKeyIdentifierExt();
+        SubjectKeyIdentifierExt(CAConfig* caConfig, Type type);
+        SubjectKeyIdentifierExt(bool autoDetect, const String& keyid = String());
+        SubjectKeyIdentifierExt(const SubjectKeyIdentifierExt& extension);
+        virtual ~SubjectKeyIdentifierExt();
 
-        SubjectKeyIdentifierExtension& operator=(const SubjectKeyIdentifierExtension& extension);
+        SubjectKeyIdentifierExt&
+        operator=(const SubjectKeyIdentifierExt& extension);
 
-        void setSubjectKeyIdentifier(bool autoDetect, const String& keyId = String());
+        void
+        setSubjectKeyIdentifier(bool autoDetect, const String& keyId = String());
 
-        bool   isAutoDetectionEnabled() const;
+        bool
+        isAutoDetectionEnabled() const;
 
         /**
          * Get the keyID.
          *
          * @return the keyID
          */
-        String getKeyID() const;
+        String
+        getKeyID() const;
 
-        virtual void commit2Config(CA& ca, Type type) const;
+        virtual void
+        commit2Config(CA& ca, Type type) const;
 
-        virtual bool                 valid() const;
-        virtual blocxx::StringArray  verify() const;
+        virtual bool
+        valid() const;
+        
+        virtual blocxx::StringArray
+        verify() const;
 
-        virtual blocxx::StringArray  dump() const;
+        virtual blocxx::StringArray
+        dump() const;
 
     private:
 

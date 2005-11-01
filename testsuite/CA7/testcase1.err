@@ -4,14 +4,14 @@ DEBUG ca-mgm - ExtensionBase::setPresent(): true
 DEBUG ca-mgm - type2Section: type=6 result=v3_crl
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=6 result=ca
-DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExtension::valid() is true
-DEBUG ca-mgm - return IssuerAlternativeNameExtension::valid() ist true
+DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExt::valid() is true
+DEBUG ca-mgm - return IssuerAlternativeNameExt::valid() is true
 DEBUG ca-mgm - type2Section: type=6 result=ca
-DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExtension::valid() is true
-DEBUG ca-mgm - return IssuerAlternativeNameExtension::valid() ist true
-DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExtension::valid() is true
+DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExt::valid() is true
+DEBUG ca-mgm - return IssuerAlternativeNameExt::valid() is true
+DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExt::valid() is true
 DEBUG ca-mgm - type2Section: type=6 result=v3_crl
-DEBUG ca-mgm - return IssuerAlternativeNameExtension::valid() ist true
+DEBUG ca-mgm - return IssuerAlternativeNameExt::valid() is true
 DEBUG ca-mgm - type2Section: type=6 result=v3_crl
 DEBUG ca-mgm - type2Section: type=6 result=v3_crl
 DEBUG ca-mgm - type2Section: type=6 result=v3_crl
@@ -27,14 +27,14 @@ DEBUG ca-mgm - type2Section: type=6 result=v3_crl
 DEBUG ca-mgm - type2Section: type=6 result=v3_crl
 DEBUG ca-mgm - ExtensionBase::setPresent(): true
 DEBUG ca-mgm - type2Section: type=6 result=ca
-DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExtension::valid() is true
-DEBUG ca-mgm - return IssuerAlternativeNameExtension::valid() ist true
+DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExt::valid() is true
+DEBUG ca-mgm - return IssuerAlternativeNameExt::valid() is true
 DEBUG ca-mgm - type2Section: type=6 result=ca
-DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExtension::valid() is true
-DEBUG ca-mgm - return IssuerAlternativeNameExtension::valid() ist true
-DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExtension::valid() is true
+DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExt::valid() is true
+DEBUG ca-mgm - return IssuerAlternativeNameExt::valid() is true
+DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExt::valid() is true
 DEBUG ca-mgm - type2Section: type=6 result=v3_crl
-DEBUG ca-mgm - return IssuerAlternativeNameExtension::valid() ist true
+DEBUG ca-mgm - return IssuerAlternativeNameExt::valid() is true
 DEBUG ca-mgm - type2Section: type=6 result=v3_crl
 DEBUG ca-mgm - type2Section: type=6 result=v3_crl
 DEBUG ca-mgm - type2Section: type=6 result=v3_crl

@@ -547,12 +547,16 @@ CertificatePolicy::checkNoticeList(const blocxx::List<UserNotice>& list) const
 
 // ###################################################################################
 
-CertificatePoliciesExtension::CertificatePoliciesExtension()
-    : ExtensionBase(), ia5org(false), policies(blocxx::List<CertificatePolicy>())
+CertificatePoliciesExt::CertificatePoliciesExt()
+    : ExtensionBase(),
+      ia5org(false),
+      policies(blocxx::List<CertificatePolicy>())
 {}
 
-CertificatePoliciesExtension::CertificatePoliciesExtension(const blocxx::List<CertificatePolicy>& policies)
-    : ExtensionBase(), ia5org(false), policies(policies)
+CertificatePoliciesExt::CertificatePoliciesExt(const blocxx::List<CertificatePolicy>& policies)
+    : ExtensionBase(),
+      ia5org(false),
+      policies(policies)
 {
     StringArray r = checkPolicies(this->policies);
     if(!r.empty()) {
@@ -562,8 +566,10 @@ CertificatePoliciesExtension::CertificatePoliciesExtension(const blocxx::List<Ce
     setPresent(true);
 }
 
-CertificatePoliciesExtension::CertificatePoliciesExtension(CAConfig* caConfig, Type type)
-    : ExtensionBase(), ia5org(false), policies(blocxx::List<CertificatePolicy>())
+CertificatePoliciesExt::CertificatePoliciesExt(CAConfig* caConfig, Type type)
+    : ExtensionBase(),
+      ia5org(false),
+      policies(blocxx::List<CertificatePolicy>())
 {
     // These types are not supported by this object
     if(type == E_CRL        || type == E_Client_Req ||
@@ -574,22 +580,31 @@ CertificatePoliciesExtension::CertificatePoliciesExtension(CAConfig* caConfig, T
     }
 
     bool p = caConfig->exists(type2Section(type, true), "certificatePolicies");
-    if(p) {
+    if(p)
+    {
         ValueCheck    check = initOIDCheck();
         StringArray   sp    = PerlRegEx("\\s*,\\s*")
             .split(caConfig->getValue(type2Section(type, true), "certificatePolicies"));
-        if(sp[0].equalsIgnoreCase("critical"))  {
+
+        if(sp[0].equalsIgnoreCase("critical"))
+        {
             setCritical(true);
             sp.remove(0);
         }
 
         StringArray::const_iterator it = sp.begin();
-        for(; it != sp.end(); ++it) {
-            if((*it).equalsIgnoreCase("ia5org")) {
+        for(; it != sp.end(); ++it)
+        {
+            if((*it).equalsIgnoreCase("ia5org"))
+            {
                 ia5org = true;
-            } else if(check.isValid(*it)) {
+            }
+            else if(check.isValid(*it))
+            {
                 policies.push_back(CertificatePolicy(*it));
-            } else if((*it).startsWith("@")) {
+            }
+            else if((*it).startsWith("@"))
+            {
                 CertificatePolicy cp = CertificatePolicy();
                 cp.initWithSection(caConfig, type, (*it).substring(1));
                 policies.push_back(cp);
@@ -599,15 +614,17 @@ CertificatePoliciesExtension::CertificatePoliciesExtension(CAConfig* caConfig, T
     setPresent(p);
 }
 
-CertificatePoliciesExtension::CertificatePoliciesExtension(const CertificatePoliciesExtension& extension)
-    : ExtensionBase(extension), ia5org(extension.ia5org), policies(extension.policies)
+CertificatePoliciesExt::CertificatePoliciesExt(const CertificatePoliciesExt& extension)
+    : ExtensionBase(extension),
+      ia5org(extension.ia5org),
+      policies(extension.policies)
 {}
 
-CertificatePoliciesExtension::~CertificatePoliciesExtension()
+CertificatePoliciesExt::~CertificatePoliciesExt()
 {}
 
-CertificatePoliciesExtension&
-CertificatePoliciesExtension::operator=(const CertificatePoliciesExtension& extension)
+CertificatePoliciesExt&
+CertificatePoliciesExt::operator=(const CertificatePoliciesExt& extension)
 {
     if(this == &extension) return *this;
     
@@ -620,22 +637,22 @@ CertificatePoliciesExtension::operator=(const CertificatePoliciesExtension& exte
 }
 
 void
-CertificatePoliciesExtension::enableIA5org(bool ia5org)
+CertificatePoliciesExt::enableIA5org(bool ia5org)
 {
     this->ia5org = ia5org;
 }
 
 bool
-CertificatePoliciesExtension::isIA5orgEnabled() const
+CertificatePoliciesExt::isIA5orgEnabled() const
 {
     if(!isPresent()) {
-        BLOCXX_THROW(limal::RuntimeException, "CertificatePoliciesExtension is not present");
+        BLOCXX_THROW(limal::RuntimeException, "CertificatePoliciesExt is not present");
     }
     return ia5org;
 }
 
 void
-CertificatePoliciesExtension::setPolicies(const blocxx::List<CertificatePolicy>& policies)
+CertificatePoliciesExt::setPolicies(const blocxx::List<CertificatePolicy>& policies)
 {
     StringArray r = checkPolicies(policies);
     if(!r.empty()) {
@@ -648,21 +665,21 @@ CertificatePoliciesExtension::setPolicies(const blocxx::List<CertificatePolicy>&
 }
 
 blocxx::List<CertificatePolicy>
-CertificatePoliciesExtension::getPolicies() const
+CertificatePoliciesExt::getPolicies() const
 {
     if(!isPresent()) {
-        BLOCXX_THROW(limal::RuntimeException, "CertificatePoliciesExtension is not present");
+        BLOCXX_THROW(limal::RuntimeException, "CertificatePoliciesExt is not present");
     }
     return policies;
 }
 
 
 void
-CertificatePoliciesExtension::commit2Config(CA& ca, Type type) const
+CertificatePoliciesExt::commit2Config(CA& ca, Type type) const
 {
     if(!valid()) {
-        LOGIT_ERROR("invalid CertificatePoliciesExtension object");
-        BLOCXX_THROW(limal::ValueException, "invalid CertificatePoliciesExtension object");
+        LOGIT_ERROR("invalid CertificatePoliciesExt object");
+        BLOCXX_THROW(limal::ValueException, "invalid CertificatePoliciesExt object");
     }
 
     // These types are not supported by this object
@@ -693,7 +710,7 @@ CertificatePoliciesExtension::commit2Config(CA& ca, Type type) const
 }
 
 bool
-CertificatePoliciesExtension::valid() const
+CertificatePoliciesExt::valid() const
 {
     if(!isPresent()) return true;
 
@@ -710,7 +727,7 @@ CertificatePoliciesExtension::valid() const
 }
 
 blocxx::StringArray
-CertificatePoliciesExtension::verify() const
+CertificatePoliciesExt::verify() const
 {
     StringArray result;
 
@@ -721,16 +738,16 @@ CertificatePoliciesExtension::verify() const
     }
     result.appendArray(checkPolicies(policies));
     
-    LOGIT_DEBUG_STRINGARRAY("CertificatePoliciesExtension::verify()", result);
+    LOGIT_DEBUG_STRINGARRAY("CertificatePoliciesExt::verify()", result);
     
     return result;
 }
 
 blocxx::StringArray
-CertificatePoliciesExtension::dump() const
+CertificatePoliciesExt::dump() const
 {
     StringArray result;
-    result.append("CertificatePoliciesExtension::dump()");
+    result.append("CertificatePoliciesExt::dump()");
 
     result.appendArray(ExtensionBase::dump());
     if(!isPresent()) return result;
@@ -746,7 +763,7 @@ CertificatePoliciesExtension::dump() const
 
 
 blocxx::StringArray
-CertificatePoliciesExtension::checkPolicies(const blocxx::List<CertificatePolicy>& pl) const
+CertificatePoliciesExt::checkPolicies(const blocxx::List<CertificatePolicy>& pl) const
 {
     StringArray result;
     blocxx::List<CertificatePolicy>::const_iterator it = pl.begin();

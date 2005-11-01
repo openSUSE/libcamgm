@@ -35,12 +35,12 @@ using namespace limal;
 using namespace blocxx;
 
 
-IssuerAlternativeNameExtension::IssuerAlternativeNameExtension()
+IssuerAlternativeNameExt::IssuerAlternativeNameExt()
     :ExtensionBase(), issuerCopy(false), altNameList(blocxx::List<LiteralValue>())
 {}
 
-IssuerAlternativeNameExtension::IssuerAlternativeNameExtension(bool copyIssuer, 
-                                                               const blocxx::List<LiteralValue> &alternativeNameList)
+IssuerAlternativeNameExt::IssuerAlternativeNameExt(bool copyIssuer, 
+                                                   const blocxx::List<LiteralValue> &alternativeNameList)
     :ExtensionBase(), issuerCopy(copyIssuer), altNameList(alternativeNameList)
 {
     StringArray r = checkLiteralValueList(alternativeNameList);
@@ -51,7 +51,7 @@ IssuerAlternativeNameExtension::IssuerAlternativeNameExtension(bool copyIssuer,
     setPresent(true);
 }
 
-IssuerAlternativeNameExtension::IssuerAlternativeNameExtension(CAConfig* caConfig, Type type)
+IssuerAlternativeNameExt::IssuerAlternativeNameExt(CAConfig* caConfig, Type type)
     :ExtensionBase(), issuerCopy(false), altNameList(blocxx::List<LiteralValue>())
 {
     // These types are not supported by this object
@@ -89,16 +89,16 @@ IssuerAlternativeNameExtension::IssuerAlternativeNameExtension(CAConfig* caConfi
     setPresent(p);
 }
 
-IssuerAlternativeNameExtension::IssuerAlternativeNameExtension(const IssuerAlternativeNameExtension& extension)
+IssuerAlternativeNameExt::IssuerAlternativeNameExt(const IssuerAlternativeNameExt& extension)
     :ExtensionBase(extension), issuerCopy(extension.issuerCopy),
      altNameList(extension.altNameList)
 {}
 
-IssuerAlternativeNameExtension::~IssuerAlternativeNameExtension()
+IssuerAlternativeNameExt::~IssuerAlternativeNameExt()
 {}
 
-IssuerAlternativeNameExtension&
-IssuerAlternativeNameExtension::operator=(const IssuerAlternativeNameExtension& extension)
+IssuerAlternativeNameExt&
+IssuerAlternativeNameExt::operator=(const IssuerAlternativeNameExt& extension)
 {
     if(this == &extension) return *this;
     
@@ -110,24 +110,24 @@ IssuerAlternativeNameExtension::operator=(const IssuerAlternativeNameExtension& 
 }
 
 void
-IssuerAlternativeNameExtension::setCopyIssuer(bool copyIssuer)
+IssuerAlternativeNameExt::setCopyIssuer(bool copyIssuer)
 {
     issuerCopy = copyIssuer;
     setPresent(true);
 }
 
 bool
-IssuerAlternativeNameExtension::getCopyIssuer() const
+IssuerAlternativeNameExt::getCopyIssuer() const
 {
     if(!isPresent()) {
-        LOGIT_ERROR("IssuerAlternativeNameExtension is not present");
-        BLOCXX_THROW(limal::RuntimeException, "IssuerAlternativeNameExtension is not present");
+        LOGIT_ERROR("IssuerAlternativeNameExt is not present");
+        BLOCXX_THROW(limal::RuntimeException, "IssuerAlternativeNameExt is not present");
     }
     return issuerCopy;
 }
 
 void
-IssuerAlternativeNameExtension::setAlternativeNameList(const blocxx::List<LiteralValue> &alternativeNameList)
+IssuerAlternativeNameExt::setAlternativeNameList(const blocxx::List<LiteralValue> &alternativeNameList)
 {
     StringArray r = checkLiteralValueList(alternativeNameList);
     if(!r.empty()) {
@@ -139,22 +139,22 @@ IssuerAlternativeNameExtension::setAlternativeNameList(const blocxx::List<Litera
 }
 
 blocxx::List<LiteralValue>
-IssuerAlternativeNameExtension::getAlternativeNameList() const
+IssuerAlternativeNameExt::getAlternativeNameList() const
 {
     if(!isPresent()) {
-        LOGIT_ERROR("IssuerAlternativeNameExtension is not present");
-        BLOCXX_THROW(limal::RuntimeException, "IssuerAlternativeNameExtension is not present");
+        LOGIT_ERROR("IssuerAlternativeNameExt is not present");
+        BLOCXX_THROW(limal::RuntimeException, "IssuerAlternativeNameExt is not present");
     }
     return altNameList;
 }
 
 void
-IssuerAlternativeNameExtension::addIssuerAltName(const LiteralValue& altName)
+IssuerAlternativeNameExt::addIssuerAltName(const LiteralValue& altName)
 {
     if(!altName.valid()) {
-        LOGIT_ERROR("invalid literal value for IssuerAlternativeNameExtension");
+        LOGIT_ERROR("invalid literal value for IssuerAlternativeNameExt");
         BLOCXX_THROW(limal::ValueException, 
-                     "invalid literal value for IssuerAlternativeNameExtension");
+                     "invalid literal value for IssuerAlternativeNameExt");
     }
     altNameList.push_back(altName);
     setPresent(true);
@@ -162,11 +162,11 @@ IssuerAlternativeNameExtension::addIssuerAltName(const LiteralValue& altName)
 
 
 void
-IssuerAlternativeNameExtension::commit2Config(CA& ca, Type type) const
+IssuerAlternativeNameExt::commit2Config(CA& ca, Type type) const
 {
     if(!valid()) {
-        LOGIT_ERROR("invalid IssuerAlternativeNameExtension object");
-        BLOCXX_THROW(limal::ValueException, "invalid IssuerAlternativeNameExtension object");
+        LOGIT_ERROR("invalid IssuerAlternativeNameExt object");
+        BLOCXX_THROW(limal::ValueException, "invalid IssuerAlternativeNameExt object");
     }
 
     // These types are not supported by this object
@@ -195,15 +195,15 @@ IssuerAlternativeNameExtension::commit2Config(CA& ca, Type type) const
 }
 
 bool
-IssuerAlternativeNameExtension::valid() const
+IssuerAlternativeNameExt::valid() const
 {
     if(!isPresent()) {
-        LOGIT_DEBUG("return IssuerAlternativeNameExtension::valid() ist true");
+        LOGIT_DEBUG("return IssuerAlternativeNameExt::valid() is true");
         return true;
     }
 
     if(!issuerCopy && altNameList.empty()) {
-        LOGIT_DEBUG("return IssuerAlternativeNameExtension::valid() ist false");
+        LOGIT_DEBUG("return IssuerAlternativeNameExt::valid() is false");
         return false;
     }
     StringArray r = checkLiteralValueList(altNameList);
@@ -211,32 +211,32 @@ IssuerAlternativeNameExtension::valid() const
         LOGIT_DEBUG(r[0]);
         return false;
     }
-    LOGIT_DEBUG("return IssuerAlternativeNameExtension::valid() ist true");
+    LOGIT_DEBUG("return IssuerAlternativeNameExt::valid() is true");
     return true;
 }
 
 blocxx::StringArray
-IssuerAlternativeNameExtension::verify() const
+IssuerAlternativeNameExt::verify() const
 {
     blocxx::StringArray result;
 
     if(!isPresent()) return result;
 
     if(!issuerCopy && altNameList.empty()) {
-        result.append(String("invalid value for IssuerAlternativeNameExtension"));
+        result.append(String("invalid value for IssuerAlternativeNameExt"));
     }
     result.appendArray(checkLiteralValueList(altNameList));
 
-    LOGIT_DEBUG_STRINGARRAY("IssuerAlternativeNameExtension::verify()", result);
+    LOGIT_DEBUG_STRINGARRAY("IssuerAlternativeNameExt::verify()", result);
 
     return result;
 }
 
 blocxx::StringArray
-IssuerAlternativeNameExtension::dump() const
+IssuerAlternativeNameExt::dump() const
 {
     StringArray result;
-    result.append("IssuerAlternativeNameExtension::dump()");
+    result.append("IssuerAlternativeNameExt::dump()");
 
     result.appendArray(ExtensionBase::dump());
     if(!isPresent()) return result;

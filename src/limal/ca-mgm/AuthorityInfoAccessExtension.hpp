@@ -64,7 +64,8 @@ namespace CA_MGM_NAMESPACE {
          */
         AuthorityInformation(const AuthorityInformation& ai);
 
-        AuthorityInformation&   operator=(const AuthorityInformation& ai);
+        AuthorityInformation&
+        operator=(const AuthorityInformation& ai);
 
         /**
          * Set new Authority Informations
@@ -73,25 +74,29 @@ namespace CA_MGM_NAMESPACE {
          * @param location location of the information
          *
          */
-        void                    setAuthorityInformation(const String &accessOID, 
-                                                        const LiteralValue& location);
+        void
+        setAuthorityInformation(const String &accessOID, 
+                                const LiteralValue& location);
 
         /**
          * Return the access OID
          */
-        String                  getAccessOID() const;
+        String
+        getAccessOID() const;
 
         /**
          * Return the location object
          */
-        LiteralValue            getLocation() const;
+        LiteralValue
+        getLocation() const;
 
         /**
          * Check if this object is valid
          *
          * @return true if this object is valid, otherwise false
          */
-        bool                    valid() const;
+        bool
+        valid() const;
 
         /**
          * Verify this object and return an Array with all
@@ -100,15 +105,20 @@ namespace CA_MGM_NAMESPACE {
          * @return Array with error messages. If this Array is empty this
          * object is valid
          */
-        blocxx::Array<String>   verify() const;
+        blocxx::Array<String>
+        verify() const;
 
         /**
          * Return the content of this object for debugging
          */
-        blocxx::Array<String>   dump() const;
+        blocxx::Array<String>
+        dump() const;
 
-        friend bool operator==(const AuthorityInformation &l, const AuthorityInformation &r);
-        friend bool operator<(const AuthorityInformation &l, const AuthorityInformation &r);
+        friend bool
+        operator==(const AuthorityInformation &l, const AuthorityInformation &r);
+        
+        friend bool
+        operator<(const AuthorityInformation &l, const AuthorityInformation &r);
         
     private:
         String                  accessOID;
@@ -128,33 +138,34 @@ namespace CA_MGM_NAMESPACE {
      *   List<AuthorityInformation> list;
      *   list.push_back(ai);
      *
-     *   AuthorityInfoAccessExtension aie;
+     *   AuthorityInfoAccessExt aie;
      *   aie.setAuthorityInformation(list);
      *
      * @endcode
      */
-    class AuthorityInfoAccessExtension : public ExtensionBase {
+    class AuthorityInfoAccessExt : public ExtensionBase {
     public:
 
         /**
          * Construct an empty object
          */
-        AuthorityInfoAccessExtension();
+        AuthorityInfoAccessExt();
 
-        AuthorityInfoAccessExtension(const AuthorityInfoAccessExtension& extension);
+        AuthorityInfoAccessExt(const AuthorityInfoAccessExt& extension);
 
         /**
-         * Construct an AuthorityInfoAccessExtension object from a config object
+         * Construct an AuthorityInfoAccessExt object from a config object
          *
          * @param caConfig object of the configuration file
          * @param type the type describes the section of the config file
          *
          */
-        AuthorityInfoAccessExtension(CAConfig* caConfig, Type type);
+        AuthorityInfoAccessExt(CAConfig* caConfig, Type type);
 
-        virtual ~AuthorityInfoAccessExtension();
+        virtual ~AuthorityInfoAccessExt();
 
-        AuthorityInfoAccessExtension& operator=(const AuthorityInfoAccessExtension& extension);
+        AuthorityInfoAccessExt&
+        operator=(const AuthorityInfoAccessExt& extension);
 
         /**
          * Set a new list of Authority Informations
@@ -174,14 +185,16 @@ namespace CA_MGM_NAMESPACE {
          * @param ca the CA object which holds the config object
          * @param type the type describes the section of the config file
          */
-        virtual void commit2Config(CA& ca, Type type) const;
+        virtual void
+        commit2Config(CA& ca, Type type) const;
 
         /**
          * Check if this object is valid
          *
          * @return true if this object is valid, otherwise false
          */
-        virtual bool                 valid() const; 
+        virtual bool
+        valid() const; 
 
         /**
          * Verify this object and return an Array with all
@@ -190,12 +203,14 @@ namespace CA_MGM_NAMESPACE {
          * @return Array with error messages. If this Array is empty this
          * object is valid
          */
-        virtual blocxx::StringArray  verify() const;
+        virtual blocxx::StringArray
+        verify() const;
 
         /**
          * Return the content of this object for debugging
          */
-        virtual blocxx::StringArray  dump() const;
+        virtual blocxx::StringArray
+        dump() const;
 
     private:
         blocxx::List<AuthorityInformation> info;
