@@ -16,6 +16,7 @@
 %include limal/ca-mgm/ExtensionBase.hpp
 %include limal/ca-mgm/StringExtensions.hpp
 %include limal/ca-mgm/BitExtensions.hpp
+%include limal/ca-mgm/ExtendedKeyUsageExt.hpp
 %include limal/ca-mgm/BasicConstraintsExtension.hpp
 %include limal/ca-mgm/SubjectKeyIdentifierExtension.hpp
 %include limal/ca-mgm/SubjectAlternativeNameExtension.hpp

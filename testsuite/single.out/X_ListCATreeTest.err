@@ -149,8 +149,6 @@ DEBUG ca-mgm - ExtensionBase::setPresent(): true
 DEBUG ca-mgm - ExtensionBase::setCritical(): true
 DEBUG ca-mgm - ExtensionBase::setPresent(): true
 DEBUG ca-mgm - ExtensionBase::setPresent(): true
-DEBUG ca-mgm - ExtensionBase::setPresent(): true
-DEBUG ca-mgm - ExtensionBase::setPresent(): true
 DEBUG ca-mgm - ExtensionBase::setCritical(): false
 DEBUG ca-mgm - ExtensionBase::setPresent(): true
 DEBUG ca-mgm - ExtensionBase::setPresent(): true

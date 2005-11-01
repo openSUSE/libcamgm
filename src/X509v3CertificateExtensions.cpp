@@ -146,7 +146,7 @@ X509v3CertificateExtensions::getBasicConstraints() const
     return basicConstraints;
 }
 
-ExtendedKeyUsageExtension
+ExtendedKeyUsageExt
 X509v3CertificateExtensions::getExtendedKeyUsage() const
 {
     return extendedKeyUsage;

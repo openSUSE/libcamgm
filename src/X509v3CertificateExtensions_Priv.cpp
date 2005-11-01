@@ -60,7 +60,8 @@ X509v3CertificateExtensions_Priv::X509v3CertificateExtensions_Priv(STACK_OF(X509
 
     // NsCaRevocationUrlExtension nsCaRevocationUrl;
     
-    parseStringExtension(extensions, NID_netscape_ca_revocation_url, nsCaRevocationUrl);
+    parseStringExtension(extensions, NID_netscape_ca_revocation_url,
+                         nsCaRevocationUrl);
 
     // NsRenewalUrlExtension      nsRenewalUrl;
 
@@ -92,7 +93,7 @@ X509v3CertificateExtensions_Priv::X509v3CertificateExtensions_Priv(STACK_OF(X509
 
     // ExtendedKeyUsageExtension       extendedKeyUsage;
 
-    parseExtKeyUsageExtension(extensions, extendedKeyUsage);
+    parseExtendedKeyUsageExt(extensions, extendedKeyUsage);
 
     // SubjectKeyIdentifierExtension   subjectKeyIdentifier;
 
@@ -138,7 +139,8 @@ void
 X509v3CertificateExtensions_Priv::setNsBaseUrl(const NsBaseUrlExtension &ext)
 {
     StringArray r = ext.verify();
-    if(!r.empty()) {
+    if(!r.empty())
+    {
         LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
@@ -149,7 +151,8 @@ void
 X509v3CertificateExtensions_Priv::setNsRevocationUrl(const NsRevocationUrlExtension &ext)
 {
     StringArray r = ext.verify();
-    if(!r.empty()) {
+    if(!r.empty())
+    {
         LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
@@ -160,7 +163,8 @@ void
 X509v3CertificateExtensions_Priv::setNsCaRevocationUrl(const NsCaRevocationUrlExtension &ext)
 {
     StringArray r = ext.verify();
-    if(!r.empty()) {
+    if(!r.empty())
+    {
         LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
@@ -171,7 +175,8 @@ void
 X509v3CertificateExtensions_Priv::setNsRenewalUrl(const NsRenewalUrlExtension &ext)
 {
     StringArray r = ext.verify();
-    if(!r.empty()) {
+    if(!r.empty())
+    {
         LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
@@ -182,7 +187,8 @@ void
 X509v3CertificateExtensions_Priv::setNsCaPolicyUrl(const NsCaPolicyUrlExtension &ext)
 {
     StringArray r = ext.verify();
-    if(!r.empty()) {
+    if(!r.empty())
+    {
         LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
@@ -193,7 +199,8 @@ void
 X509v3CertificateExtensions_Priv::setNsSslServerName(const NsSslServerNameExtension &ext)
 {
     StringArray r = ext.verify();
-    if(!r.empty()) {
+    if(!r.empty())
+    {
         LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
@@ -204,7 +211,8 @@ void
 X509v3CertificateExtensions_Priv::setNsComment(const NsCommentExtension &ext)
 {
     StringArray r = ext.verify();
-    if(!r.empty()) {
+    if(!r.empty())
+    {
         LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
@@ -215,7 +223,8 @@ void
 X509v3CertificateExtensions_Priv::setNsCertType(const NsCertTypeExtension &ext)
 {
     StringArray r = ext.verify();
-    if(!r.empty()) {
+    if(!r.empty())
+    {
         LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
@@ -226,7 +235,8 @@ void
 X509v3CertificateExtensions_Priv::setKeyUsage(const KeyUsageExtension &ext)
 {
     StringArray r = ext.verify();
-    if(!r.empty()) {
+    if(!r.empty())
+    {
         LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
@@ -237,7 +247,8 @@ void
 X509v3CertificateExtensions_Priv::setBasicConstraints(const BasicConstraintsExtension &ext)
 {
     StringArray r = ext.verify();
-    if(!r.empty()) {
+    if(!r.empty())
+    {
         LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
@@ -245,10 +256,11 @@ X509v3CertificateExtensions_Priv::setBasicConstraints(const BasicConstraintsExte
 }
 
 void
-X509v3CertificateExtensions_Priv::setExtendedKeyUsage(const ExtendedKeyUsageExtension &ext)
+X509v3CertificateExtensions_Priv::setExtendedKeyUsage(const ExtendedKeyUsageExt &ext)
 {
     StringArray r = ext.verify();
-    if(!r.empty()) {
+    if(!r.empty())
+    {
         LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
@@ -259,7 +271,8 @@ void
 X509v3CertificateExtensions_Priv::setSubjectKeyIdentifier(const SubjectKeyIdentifierExtension &ext)
 {
     StringArray r = ext.verify();
-    if(!r.empty()) {
+    if(!r.empty())
+    {
         LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
@@ -270,7 +283,8 @@ void
 X509v3CertificateExtensions_Priv::setAuthorityKeyIdentifier(const AuthorityKeyIdentifierExtension &ext)
 {
     StringArray r = ext.verify();
-    if(!r.empty()) {
+    if(!r.empty())
+    {
         LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
@@ -281,7 +295,8 @@ void
 X509v3CertificateExtensions_Priv::setSubjectAlternativeName(const SubjectAlternativeNameExtension &ext)
 {
     StringArray r = ext.verify();
-    if(!r.empty()) {
+    if(!r.empty())
+    {
         LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
@@ -292,7 +307,8 @@ void
 X509v3CertificateExtensions_Priv::setIssuerAlternativeName(const IssuerAlternativeNameExtension &ext)
 {
     StringArray r = ext.verify();
-    if(!r.empty()) {
+    if(!r.empty())
+    {
         LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
@@ -303,7 +319,8 @@ void
 X509v3CertificateExtensions_Priv::setAuthorityInfoAccess(const AuthorityInfoAccessExtension &ext)
 {
     StringArray r = ext.verify();
-    if(!r.empty()) {
+    if(!r.empty())
+    {
         LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
@@ -314,7 +331,8 @@ void
 X509v3CertificateExtensions_Priv::setCRLDistributionPoints(const CRLDistributionPointsExtension &ext)
 {
     StringArray r = ext.verify();
-    if(!r.empty()) {
+    if(!r.empty())
+    {
         LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
@@ -325,7 +343,8 @@ void
 X509v3CertificateExtensions_Priv::setCertificatePolicies(const CertificatePoliciesExtension &ext)
 {
     StringArray r = ext.verify();
-    if(!r.empty()) {
+    if(!r.empty())
+    {
         LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
@@ -443,54 +462,64 @@ void X509v3CertificateExtensions_Priv::parseBitExtension(STACK_OF(X509_EXTENSION
 }
 
 void 
-X509v3CertificateExtensions_Priv::parseExtKeyUsageExtension(STACK_OF(X509_EXTENSION)* cert,
-                                                            ExtendedKeyUsageExtension &ext)
+X509v3CertificateExtensions_Priv::parseExtendedKeyUsageExt(STACK_OF(X509_EXTENSION)* cert,
+                                                           ExtendedKeyUsageExt &ext)
 {
     int crit = 0;
     
     EXTENDED_KEY_USAGE *eku = NULL;
-    eku = static_cast<EXTENDED_KEY_USAGE *>(X509V3_get_d2i(cert, NID_ext_key_usage, &crit, NULL));
-    
-    if(eku == NULL) {
-        
-        if(crit == -1) {
+    eku = static_cast<EXTENDED_KEY_USAGE *>(X509V3_get_d2i(cert,
+                                                           NID_ext_key_usage,
+                                                           &crit, NULL));
+    if(eku == NULL)
+    {
+        if(crit == -1)
+        {
             // extension not found
             ext.setPresent(false);
 
             return;
-
-        } else if(crit == -2) {
+        }
+        else if(crit == -2)
+        {
             // extension occurred more than once 
             LOGIT_ERROR("Extension occurred more than once");
             BLOCXX_THROW(limal::SyntaxException,
                          "Extension occurred more than once");
-
         }
 
         LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
         BLOCXX_THROW(limal::SyntaxException,
-                     Format("Unable to parse the certificate (Crit: %2)", crit).c_str());
+                     Format("Unable to parse the certificate (Crit: %2)",
+                            crit).c_str());
     }
 
     int i;
     ASN1_OBJECT *obj;
     char obj_tmp[80];
     StringList usageList;
-    for(i = 0; i < sk_ASN1_OBJECT_num(eku); i++) {
+    for(i = 0; i < sk_ASN1_OBJECT_num(eku); i++)
+    {
         obj = sk_ASN1_OBJECT_value(eku, i);
         i2t_ASN1_OBJECT(obj_tmp, 80, obj);
         int nid = OBJ_txt2nid(obj_tmp);
-        if(nid == 0) {
+        if(nid == 0)
+        {
             usageList.push_back(obj_tmp);
-        } else {
+        }
+        else
+        {
             usageList.push_back(String(OBJ_nid2sn(nid)));
         }
     }
     ext.setExtendedKeyUsage(usageList);
 
-    if(crit == 1) {
+    if(crit == 1)
+    {
         ext.setCritical(true);
-    } else {
+    }
+    else
+    {
         ext.setCritical(false);
     }
 

@@ -26,6 +26,7 @@
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <limal/ca-mgm/StringExtensions.hpp>
 #include  <limal/ca-mgm/BitExtensions.hpp>
+#include  <limal/ca-mgm/ExtendedKeyUsageExt.hpp>
 #include  <limal/ca-mgm/BasicConstraintsExtension.hpp>
 #include  <limal/ca-mgm/SubjectKeyIdentifierExtension.hpp>
 #include  <limal/ca-mgm/SubjectKeyIdentifierExtension.hpp>
@@ -48,50 +49,90 @@ namespace CA_MGM_NAMESPACE {
         X509v3CertificateExtensions(const X509v3CertificateExtensions& extensions);
         virtual ~X509v3CertificateExtensions();
 
-        X509v3CertificateExtensions& operator=(const X509v3CertificateExtensions& extensions);
+        X509v3CertificateExtensions&
+        operator=(const X509v3CertificateExtensions& extensions);
 
-        NsBaseUrlExtension              getNsBaseUrl() const;
-        NsRevocationUrlExtension        getNsRevocationUrl() const;
-        NsCaRevocationUrlExtension      getNsCaRevocationUrl() const;
-        NsRenewalUrlExtension           getNsRenewalUrl() const;
-        NsCaPolicyUrlExtension          getNsCaPolicyUrl() const;
-        NsSslServerNameExtension        getNsSslServerName() const;
-        NsCommentExtension              getNsComment() const;
-        NsCertTypeExtension             getNsCertType() const;
-        KeyUsageExtension               getKeyUsage() const;
-        BasicConstraintsExtension       getBasicConstraints() const;
-        ExtendedKeyUsageExtension       getExtendedKeyUsage() const;
-        SubjectKeyIdentifierExtension   getSubjectKeyIdentifier() const;
-        AuthorityKeyIdentifierExtension getAuthorityKeyIdentifier() const;
-        SubjectAlternativeNameExtension getSubjectAlternativeName() const;
-        IssuerAlternativeNameExtension  getIssuerAlternativeName() const;
-        AuthorityInfoAccessExtension    getAuthorityInfoAccess() const;
-        CRLDistributionPointsExtension  getCRLDistributionPoints() const;
-        CertificatePoliciesExtension    getCertificatePolicies() const;
+        NsBaseUrlExtension
+        getNsBaseUrl() const;
         
-        virtual bool                 valid() const;
-        virtual blocxx::StringArray  verify() const;
+        NsRevocationUrlExtension
+        getNsRevocationUrl() const;
+        
+        NsCaRevocationUrlExtension
+        getNsCaRevocationUrl() const;
+        
+        NsRenewalUrlExtension
+        getNsRenewalUrl() const;
+        
+        NsCaPolicyUrlExtension
+        getNsCaPolicyUrl() const;
+        
+        NsSslServerNameExtension
+        getNsSslServerName() const;
+        
+        NsCommentExtension
+        getNsComment() const;
+        
+        NsCertTypeExtension
+        getNsCertType() const;
+        
+        KeyUsageExtension
+        getKeyUsage() const;
+        
+        BasicConstraintsExtension
+        getBasicConstraints() const;
+        
+        ExtendedKeyUsageExt
+        getExtendedKeyUsage() const;
+        
+        SubjectKeyIdentifierExtension
+        getSubjectKeyIdentifier() const;
+        
+        AuthorityKeyIdentifierExtension
+        getAuthorityKeyIdentifier() const;
+        
+        SubjectAlternativeNameExtension
+        getSubjectAlternativeName() const;
+        
+        IssuerAlternativeNameExtension
+        getIssuerAlternativeName() const;
+        
+        AuthorityInfoAccessExtension
+        getAuthorityInfoAccess() const;
+        
+        CRLDistributionPointsExtension
+        getCRLDistributionPoints() const;
+        
+        CertificatePoliciesExtension
+        getCertificatePolicies() const;
+        
+        virtual bool
+        valid() const;
+        
+        virtual blocxx::StringArray
+        verify() const;
 
-        virtual blocxx::StringArray  dump() const;
+        virtual blocxx::StringArray
+        dump() const;
 
     protected:
         X509v3CertificateExtensions();
         /* String extensions */
 
-        NsBaseUrlExtension         nsBaseUrl;
-        NsRevocationUrlExtension   nsRevocationUrl;
-        NsCaRevocationUrlExtension nsCaRevocationUrl;
-        NsRenewalUrlExtension      nsRenewalUrl;
-        NsCaPolicyUrlExtension     nsCaPolicyUrl;
-        NsSslServerNameExtension   nsSslServerName;
-        NsCommentExtension         nsComment;
+        NsBaseUrlExtension              nsBaseUrl;
+        NsRevocationUrlExtension        nsRevocationUrl;
+        NsCaRevocationUrlExtension      nsCaRevocationUrl;
+        NsRenewalUrlExtension           nsRenewalUrl;
+        NsCaPolicyUrlExtension          nsCaPolicyUrl;
+        NsSslServerNameExtension        nsSslServerName;
+        NsCommentExtension              nsComment;
 
         /* Bit Strings */
-        KeyUsageExtension   keyUsage; 
-        NsCertTypeExtension nsCertType;
+        KeyUsageExtension               keyUsage; 
+        NsCertTypeExtension             nsCertType;
 
         BasicConstraintsExtension       basicConstraints;
-        ExtendedKeyUsageExtension       extendedKeyUsage;
+        ExtendedKeyUsageExt             extendedKeyUsage;
         SubjectKeyIdentifierExtension   subjectKeyIdentifier;
         AuthorityKeyIdentifierExtension authorityKeyIdentifier;
         SubjectAlternativeNameExtension subjectAlternativeName;

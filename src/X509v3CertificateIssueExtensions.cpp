@@ -39,7 +39,8 @@ X509v3CertificateIssueExtensions::X509v3CertificateIssueExtensions()
 {
 }
 
-X509v3CertificateIssueExtensions::X509v3CertificateIssueExtensions(CAConfig* caConfig, Type type)
+X509v3CertificateIssueExtensions::X509v3CertificateIssueExtensions(CAConfig* caConfig,
+                                                                   Type type)
     : nsBaseUrl(caConfig, type),
       nsRevocationUrl(caConfig, type),
       nsCaRevocationUrl(caConfig, type),
@@ -116,7 +117,8 @@ X509v3CertificateIssueExtensions::operator=(const X509v3CertificateIssueExtensio
 void
 X509v3CertificateIssueExtensions::setNsBaseUrl(const NsBaseUrlExtension &ext)
 {
-    if(!ext.valid()) {
+    if(!ext.valid())
+    {
         BLOCXX_THROW(limal::ValueException, 
                      "X509v3CertificateIssueExtensions::setNsBaseUrl invalid value");
     }
@@ -132,7 +134,8 @@ X509v3CertificateIssueExtensions::getNsBaseUrl() const
 void
 X509v3CertificateIssueExtensions::setNsRevocationUrl(const NsRevocationUrlExtension &ext)
 {
-    if(!ext.valid()) {
+    if(!ext.valid())
+    {
         BLOCXX_THROW(limal::ValueException, 
                      "X509v3CertificateIssueExtensions::setNsRevocationUrl invalid value");
     }
@@ -148,7 +151,8 @@ X509v3CertificateIssueExtensions::getNsRevocationUrl() const
 void
 X509v3CertificateIssueExtensions::setNsCaRevocationUrl(const NsCaRevocationUrlExtension &ext)
 {
-    if(!ext.valid()) {
+    if(!ext.valid())
+    {
         BLOCXX_THROW(limal::ValueException, 
                      "X509v3CertificateIssueExtensions::setNsCaRevocationUrl invalid value");
     }
@@ -164,7 +168,8 @@ X509v3CertificateIssueExtensions::getNsCaRevocationUrl() const
 void
 X509v3CertificateIssueExtensions::setNsRenewalUrl(const NsRenewalUrlExtension &ext)
 {
-    if(!ext.valid()) {
+    if(!ext.valid())
+    {
         BLOCXX_THROW(limal::ValueException, 
                      "X509v3CertificateIssueExtensions::setNsRenewalUrl invalid value");
     }
@@ -180,7 +185,8 @@ X509v3CertificateIssueExtensions::getNsRenewalUrl() const
 void
 X509v3CertificateIssueExtensions::setNsCaPolicyUrl(const NsCaPolicyUrlExtension &ext)
 {
-    if(!ext.valid()) {
+    if(!ext.valid())
+    {
         BLOCXX_THROW(limal::ValueException, 
                      "X509v3CertificateIssueExtensions::setNsCaPolicyUrl invalid value");
     }
@@ -196,7 +202,8 @@ X509v3CertificateIssueExtensions::getNsCaPolicyUrl()
 void
 X509v3CertificateIssueExtensions::setNsSslServerName(const NsSslServerNameExtension &ext)
 {
-    if(!ext.valid()) {
+    if(!ext.valid())
+    {
         BLOCXX_THROW(limal::ValueException, 
                      "X509v3CertificateIssueExtensions::setNsSslServerName invalid value");
     }
@@ -212,7 +219,8 @@ X509v3CertificateIssueExtensions::getNsSslServerName() const
 void
 X509v3CertificateIssueExtensions::setNsComment(const NsCommentExtension &ext)
 {
-    if(!ext.valid()) {
+    if(!ext.valid())
+    {
         BLOCXX_THROW(limal::ValueException, 
                      "X509v3CertificateIssueExtensions::setNsComment invalid value");
     }
@@ -228,7 +236,8 @@ X509v3CertificateIssueExtensions::getNsComment() const
 void
 X509v3CertificateIssueExtensions::setNsCertType(const NsCertTypeExtension &ext)
 {
-    if(!ext.valid()) {
+    if(!ext.valid())
+    {
         BLOCXX_THROW(limal::ValueException, 
                      "X509v3CertificateIssueExtensions::setNsCertType invalid value");
     }
@@ -244,7 +253,8 @@ X509v3CertificateIssueExtensions::getNsCertType() const
 void
 X509v3CertificateIssueExtensions::setKeyUsage(const KeyUsageExtension &ext)
 {
-    if(!ext.valid()) {
+    if(!ext.valid())
+    {
         BLOCXX_THROW(limal::ValueException, 
                      "X509v3CertificateIssueExtensions::setKeyUsage invalid value");
     }
@@ -260,7 +270,8 @@ X509v3CertificateIssueExtensions::getKeyUsage()
 void
 X509v3CertificateIssueExtensions::setBasicConstraints(const BasicConstraintsExtension &ext)
 {
-    if(!ext.valid()) {
+    if(!ext.valid())
+    {
         BLOCXX_THROW(limal::ValueException, 
                      "X509v3CertificateIssueExtensions::setBasicConstraints invalid value");
     }
@@ -274,16 +285,17 @@ X509v3CertificateIssueExtensions::getBasicConstraints() const
 }
 
 void
-X509v3CertificateIssueExtensions::setExtendedKeyUsage(const ExtendedKeyUsageExtension &ext)
+X509v3CertificateIssueExtensions::setExtendedKeyUsage(const ExtendedKeyUsageExt &ext)
 {
-    if(!ext.valid()) {
+    if(!ext.valid())
+    {
         BLOCXX_THROW(limal::ValueException, 
                      "X509v3CertificateIssueExtensions::setExtendedKeyUsage invalid value");
     }
     extendedKeyUsage = ext;
 }
 
-ExtendedKeyUsageExtension
+ExtendedKeyUsageExt
 X509v3CertificateIssueExtensions::getExtendedKeyUsage() const
 {
     return extendedKeyUsage;
@@ -292,7 +304,8 @@ X509v3CertificateIssueExtensions::getExtendedKeyUsage() const
 void
 X509v3CertificateIssueExtensions::setSubjectKeyIdentifier(const SubjectKeyIdentifierExtension &ext)
 {
-    if(!ext.valid()) {
+    if(!ext.valid())
+    {
         BLOCXX_THROW(limal::ValueException, 
                      "X509v3CertificateIssueExtensions::setSubjectKeyIdentifier invalid value");
     }
@@ -308,7 +321,8 @@ X509v3CertificateIssueExtensions::getSubjectKeyIdentifier() const
 void
 X509v3CertificateIssueExtensions::setAuthorityKeyIdentifier(const AuthorityKeyIdentifierGenerateExtension &ext)
 {
-    if(!ext.valid()) {
+    if(!ext.valid())
+    {
         BLOCXX_THROW(limal::ValueException, 
                      "X509v3CertificateIssueExtensions::setAuthorityKeyIdentifier invalid value");
     }
@@ -324,7 +338,8 @@ X509v3CertificateIssueExtensions::getAuthorityKeyIdentifier() const
 void
 X509v3CertificateIssueExtensions::setSubjectAlternativeName(const SubjectAlternativeNameExtension &ext)
 {
-    if(!ext.valid()) {
+    if(!ext.valid())
+    {
         BLOCXX_THROW(limal::ValueException, 
                      "X509v3CertificateIssueExtensions::setSubjectAlternativeName invalid value");
     }
@@ -340,7 +355,8 @@ X509v3CertificateIssueExtensions::getSubjectAlternativeName() const
 void
 X509v3CertificateIssueExtensions::setIssuerAlternativeName(const IssuerAlternativeNameExtension &ext)
 {
-    if(!ext.valid()) {
+    if(!ext.valid())
+    {
         BLOCXX_THROW(limal::ValueException, 
                      "X509v3CertificateIssueExtensions::setIssuerAlternativeName invalid value");
     }
@@ -356,7 +372,8 @@ X509v3CertificateIssueExtensions::getIssuerAlternativeName() const
 void
 X509v3CertificateIssueExtensions::setAuthorityInfoAccess(const AuthorityInfoAccessExtension &ext)
 {
-    if(!ext.valid()) {
+    if(!ext.valid())
+    {
         BLOCXX_THROW(limal::ValueException, 
                      "X509v3CertificateIssueExtensions::setAuthorityInfoAccess invalid value");
     }
@@ -372,7 +389,8 @@ X509v3CertificateIssueExtensions::getAuthorityInfoAccess() const
 void
 X509v3CertificateIssueExtensions::setCRLDistributionPoints(const CRLDistributionPointsExtension &ext)
 {
-    if(!ext.valid()) {
+    if(!ext.valid())
+    {
         BLOCXX_THROW(limal::ValueException, 
                      "X509v3CertificateIssueExtensions::setCRLDistributionPoints invalid value");
     }
@@ -388,7 +406,8 @@ X509v3CertificateIssueExtensions::getCRLDistributionPoints() const
 void
 X509v3CertificateIssueExtensions::setCertificatePolicies(const CertificatePoliciesExtension &ext)
 {
-    if(!ext.valid()) {
+    if(!ext.valid())
+    {
         BLOCXX_THROW(limal::ValueException, 
                      "X509v3CertificateIssueExtensions::setCertificatePolicies invalid value");
     }
@@ -404,7 +423,8 @@ X509v3CertificateIssueExtensions::getCertificatePolicies() const
 void
 X509v3CertificateIssueExtensions::commit2Config(CA& ca, Type type) const
 {
-    if(!valid()) {
+    if(!valid())
+    {
         LOGIT_ERROR("invalid X509v3RequestExtensions object");
         BLOCXX_THROW(limal::ValueException, "invalid X509v3RequestExtensions object");
     }

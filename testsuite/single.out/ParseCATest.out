@@ -82,7 +82,7 @@ is Present = true
 is Critical = true
 CA = true
 pathlen = -1
-ExtendedKeyUsageExtension::dump()
+ExtendedKeyUsageExt::dump()
 ExtensionBase::dump()
 is Present = false
 SubjectKeyIdentifierExtension::dump()

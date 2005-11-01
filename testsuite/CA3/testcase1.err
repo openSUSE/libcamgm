@@ -98,8 +98,6 @@ DEBUG ca-mgm - Parse ExtendedKeyUsage
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): true
-DEBUG ca-mgm - ExtensionBase::setPresent(): true
-DEBUG ca-mgm - ExtensionBase::setPresent(): true
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): true

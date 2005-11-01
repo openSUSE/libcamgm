@@ -20,6 +20,7 @@ liblimal_ca_mgm_la_SOURCES  =	\
 	AuthorityKeyIdentifierGenerateExtension.cpp \
 	BasicConstraintsExtension.cpp \
 	BitExtensions.cpp \
+	ExtendedKeyUsageExt.cpp \
 	CAConfig.cpp \
 	CA.cpp \
 	CertificateData.cpp \

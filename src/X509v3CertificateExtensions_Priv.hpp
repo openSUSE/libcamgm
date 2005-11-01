@@ -38,56 +38,104 @@ namespace CA_MGM_NAMESPACE {
         X509v3CertificateExtensions_Priv(const X509v3CertificateExtensions_Priv& extensions);
         virtual ~X509v3CertificateExtensions_Priv();
 
-        void   setNsBaseUrl(const NsBaseUrlExtension &ext);
-        void   setNsRevocationUrl(const NsRevocationUrlExtension &ext);
-        void   setNsCaRevocationUrl(const NsCaRevocationUrlExtension &ext);
-        void   setNsRenewalUrl(const NsRenewalUrlExtension &ext);
-        void   setNsCaPolicyUrl(const NsCaPolicyUrlExtension &ext);
-        void   setNsSslServerName(const NsSslServerNameExtension &ext);
-        void   setNsComment(const NsCommentExtension &ext);
-        void   setNsCertType(const NsCertTypeExtension &ext);
-        void   setKeyUsage(const KeyUsageExtension &ext);
-        void   setBasicConstraints(const BasicConstraintsExtension &ext);
-        void   setExtendedKeyUsage(const ExtendedKeyUsageExtension &ext);
-        void   setSubjectKeyIdentifier(const SubjectKeyIdentifierExtension &ext);
-        void   setAuthorityKeyIdentifier(const AuthorityKeyIdentifierExtension &ext);
-        void   setSubjectAlternativeName(const SubjectAlternativeNameExtension &ext);
-        void   setIssuerAlternativeName(const IssuerAlternativeNameExtension &ext);
-        void   setAuthorityInfoAccess(const AuthorityInfoAccessExtension &ext);
-        void   setCRLDistributionPoints(const CRLDistributionPointsExtension &ext);
-        void   setCertificatePolicies(const CertificatePoliciesExtension &ext);
+        void
+        setNsBaseUrl(const NsBaseUrlExtension &ext);
+        
+        void
+        setNsRevocationUrl(const NsRevocationUrlExtension &ext);
+        
+        void
+        setNsCaRevocationUrl(const NsCaRevocationUrlExtension &ext);
+        
+        void
+        setNsRenewalUrl(const NsRenewalUrlExtension &ext);
+        
+        void
+        setNsCaPolicyUrl(const NsCaPolicyUrlExtension &ext);
+        
+        void
+        setNsSslServerName(const NsSslServerNameExtension &ext);
+        
+        void
+        setNsComment(const NsCommentExtension &ext);
+        
+        void
+        setNsCertType(const NsCertTypeExtension &ext);
+        
+        void
+        setKeyUsage(const KeyUsageExtension &ext);
+        
+        void
+        setBasicConstraints(const BasicConstraintsExtension &ext);
+        
+        void
+        setExtendedKeyUsage(const ExtendedKeyUsageExt &ext);
+        
+        void
+        setSubjectKeyIdentifier(const SubjectKeyIdentifierExtension &ext);
+        
+        void
+        setAuthorityKeyIdentifier(const AuthorityKeyIdentifierExtension &ext);
+        
+        void
+        setSubjectAlternativeName(const SubjectAlternativeNameExtension &ext);
+        
+        void
+        setIssuerAlternativeName(const IssuerAlternativeNameExtension &ext);
+        
+        void
+        setAuthorityInfoAccess(const AuthorityInfoAccessExtension &ext);
+        
+        void
+        setCRLDistributionPoints(const CRLDistributionPointsExtension &ext);
+        
+        void
+        setCertificatePolicies(const CertificatePoliciesExtension &ext);
 
     private:
 
-        X509v3CertificateExtensions_Priv& operator=(const X509v3CertificateExtensions_Priv& extensions);
+        X509v3CertificateExtensions_Priv&
+        operator=(const X509v3CertificateExtensions_Priv& extensions);
 
-        void parseStringExtension(STACK_OF(X509_EXTENSION)* cert, int nid, StringExtension &ext);
+        void
+        parseStringExtension(STACK_OF(X509_EXTENSION)* cert,
+                             int nid, StringExtension &ext);
 
-        void parseBitExtension(STACK_OF(X509_EXTENSION)* cert, int nid, BitExtension &ext);
+        void
+        parseBitExtension(STACK_OF(X509_EXTENSION)* cert,
+                          int nid, BitExtension &ext);
 
-        void parseExtKeyUsageExtension(STACK_OF(X509_EXTENSION)* cert, ExtendedKeyUsageExtension &ext);
+        void
+        parseExtendedKeyUsageExt(STACK_OF(X509_EXTENSION)* cert,
+                                 ExtendedKeyUsageExt &ext);
 
-        void parseBasicConstraintsExtension(STACK_OF(X509_EXTENSION)* cert, BasicConstraintsExtension &ext);
+        void
+        parseBasicConstraintsExtension(STACK_OF(X509_EXTENSION)* cert,
+                                       BasicConstraintsExtension &ext);
 
-        void parseSubjectKeyIdentifierExtension(STACK_OF(X509_EXTENSION) *cert,
-                                                SubjectKeyIdentifierExtension &ext);
+        void
+        parseSubjectKeyIdentifierExtension(STACK_OF(X509_EXTENSION) *cert,
+                                           SubjectKeyIdentifierExtension &ext);
 
-        void parseSubjectAlternativeNameExtension(STACK_OF(X509_EXTENSION) *cert,
-                                                  SubjectAlternativeNameExtension &ext);
+        void
+        parseSubjectAlternativeNameExtension(STACK_OF(X509_EXTENSION) *cert,
+                                             SubjectAlternativeNameExtension &ext);
 
-        void parseIssuerAlternativeNameExtension(STACK_OF(X509_EXTENSION) *cert,
-                                                 IssuerAlternativeNameExtension &ext);
+        void
+        parseIssuerAlternativeNameExtension(STACK_OF(X509_EXTENSION) *cert,
+                                            IssuerAlternativeNameExtension &ext);
 
-        void parseCRLDistributionPointsExtension(STACK_OF(X509_EXTENSION) *cert,
-                                                 CRLDistributionPointsExtension &ext);
+        void
+        parseCRLDistributionPointsExtension(STACK_OF(X509_EXTENSION) *cert,
+                                            CRLDistributionPointsExtension &ext);
 
-        void parseAuthorityInfoAccessExtension(STACK_OF(X509_EXTENSION) *cert,
-                                               AuthorityInfoAccessExtension &ext);
+        void
+        parseAuthorityInfoAccessExtension(STACK_OF(X509_EXTENSION) *cert,
+                                          AuthorityInfoAccessExtension &ext);
 
-        void parseCertificatePoliciesExtension(STACK_OF(X509_EXTENSION) *cert,
-                                               CertificatePoliciesExtension &ext);
-
-
+        void
+        parseCertificatePoliciesExtension(STACK_OF(X509_EXTENSION) *cert,
+                                          CertificatePoliciesExtension &ext);
     };
 
 }

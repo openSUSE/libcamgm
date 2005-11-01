@@ -12,6 +12,7 @@ pkglimalinclude_HEADERS =   \
         AuthorityKeyIdentifierGenerateExtension.hpp \
         BasicConstraintsExtension.hpp \
         BitExtensions.hpp \
+        ExtendedKeyUsageExt.hpp \
         CAConfig.hpp \
         CA.hpp \
         CertificateData.hpp \

@@ -162,7 +162,7 @@ X509v3RequestExtensions::getBasicConstraints() const
 }
 
 void
-X509v3RequestExtensions::setExtendedKeyUsage(const ExtendedKeyUsageExtension &ext)
+X509v3RequestExtensions::setExtendedKeyUsage(const ExtendedKeyUsageExt &ext)
 {
     if(!ext.valid()) {
         BLOCXX_THROW(limal::ValueException, 
@@ -171,7 +171,7 @@ X509v3RequestExtensions::setExtendedKeyUsage(const ExtendedKeyUsageExtension &ex
     extendedKeyUsage = ext;
 }
 
-ExtendedKeyUsageExtension
+ExtendedKeyUsageExt
 X509v3RequestExtensions::getExtendedKeyUsage() const
 {
     return extendedKeyUsage;

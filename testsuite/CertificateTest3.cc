@@ -103,12 +103,12 @@ int main()
         StringList sl;
         sl.push_back("2.3.4.5");
         sl.push_back("2.12.10.39");
+        sl.push_back("codeSigning");
+        sl.push_back("msCTLSign");
+        sl.push_back("nsSGC");
 
-        ExtendedKeyUsageExtension extendedKeyUsage(ExtendedKeyUsageExtension::codeSigning |
-                                                   ExtendedKeyUsageExtension::msCTLSign |
-                                                   ExtendedKeyUsageExtension::nsSGC,
-                                                   sl);
-
+        ExtendedKeyUsageExt extendedKeyUsage( sl );
+        
         // ------------------------ create key identifier extension -----------------------------
         
         SubjectKeyIdentifierExtension subjectKeyIdentifier(true);

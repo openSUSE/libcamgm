@@ -47,7 +47,7 @@ is Present = true
 is Critical = false
 CA = false
 pathlen = -1
-ExtendedKeyUsageExtension::dump()
+ExtendedKeyUsageExt::dump()
 ExtensionBase::dump()
 is Present = false
 SubjectKeyIdentifierExtension::dump()
@@ -125,7 +125,7 @@ NsCertType = 0xa0
 BasicConstraintsExtension::dump()
 ExtensionBase::dump()
 is Present = false
-ExtendedKeyUsageExtension::dump()
+ExtendedKeyUsageExt::dump()
 ExtensionBase::dump()
 is Present = false
 SubjectKeyIdentifierExtension::dump()

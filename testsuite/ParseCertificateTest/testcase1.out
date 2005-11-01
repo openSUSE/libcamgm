@@ -95,13 +95,15 @@ is Present = true
 is Critical = false
 CA = true
 pathlen = 3
-ExtendedKeyUsageExtension::dump()
+ExtendedKeyUsageExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
-Extended KeyUsage = 0x0484
-Additional OID = 2.3.4.5
-Additional OID = 2.12.10.39
+Extended KeyUsage = codeSigning
+Extended KeyUsage = msCTLSign
+Extended KeyUsage = nsSGC
+Extended KeyUsage = 2.3.4.5
+Extended KeyUsage = 2.12.10.39
 SubjectKeyIdentifierExtension::dump()
 ExtensionBase::dump()
 is Present = true

@@ -26,6 +26,7 @@
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <limal/ca-mgm/StringExtensions.hpp>
 #include  <limal/ca-mgm/BitExtensions.hpp>
+#include  <limal/ca-mgm/ExtendedKeyUsageExt.hpp>
 #include  <limal/ca-mgm/BasicConstraintsExtension.hpp>
 #include  <limal/ca-mgm/SubjectKeyIdentifierExtension.hpp>
 #include  <limal/ca-mgm/SubjectAlternativeNameExtension.hpp>
@@ -51,52 +52,82 @@ namespace CA_MGM_NAMESPACE {
         X509v3RequestExtensions(const X509v3RequestExtensions& extensions);
         virtual ~X509v3RequestExtensions();
 
-        X509v3RequestExtensions& operator=(const X509v3RequestExtensions& extensions);
+        X509v3RequestExtensions&
+        operator=(const X509v3RequestExtensions& extensions);
 
-        void                            setNsSslServerName(const NsSslServerNameExtension &ext);
-        NsSslServerNameExtension        getNsSslServerName() const;
+        void
+        setNsSslServerName(const NsSslServerNameExtension &ext);
+        
+        NsSslServerNameExtension
+        getNsSslServerName() const;
 
-        void                            setNsComment(const NsCommentExtension &ext);
-        NsCommentExtension              getNsComment() const;
+        void
+        setNsComment(const NsCommentExtension &ext);
+        
+        NsCommentExtension
+        getNsComment() const;
 
-        void                            setNsCertType(const NsCertTypeExtension &ext);
-        NsCertTypeExtension             getNsCertType() const;
+        void
+        setNsCertType(const NsCertTypeExtension &ext);
+        
+        NsCertTypeExtension
+        getNsCertType() const;
 
-        void                            setKeyUsage(const KeyUsageExtension &ext);
-        KeyUsageExtension               getKeyUsage();
+        void
+        setKeyUsage(const KeyUsageExtension &ext);
+        
+        KeyUsageExtension
+        getKeyUsage();
 
-        void                            setBasicConstraints(const BasicConstraintsExtension &ext);
-        BasicConstraintsExtension       getBasicConstraints() const;
+        void
+        setBasicConstraints(const BasicConstraintsExtension &ext);
+        
+        BasicConstraintsExtension
+        getBasicConstraints() const;
 
-        void                            setExtendedKeyUsage(const ExtendedKeyUsageExtension &ext);
-        ExtendedKeyUsageExtension       getExtendedKeyUsage() const;
+        void
+        setExtendedKeyUsage(const ExtendedKeyUsageExt &ext);
+        
+        ExtendedKeyUsageExt
+        getExtendedKeyUsage() const;
 
-        void                            setSubjectKeyIdentifier(const SubjectKeyIdentifierExtension &ext);
-        SubjectKeyIdentifierExtension   getSubjectKeyIdentifier() const;
+        void
+        setSubjectKeyIdentifier(const SubjectKeyIdentifierExtension &ext);
+        
+        SubjectKeyIdentifierExtension
+        getSubjectKeyIdentifier() const;
 
-        void                            setSubjectAlternativeName(const SubjectAlternativeNameExtension &ext);
-        SubjectAlternativeNameExtension getSubjectAlternativeName() const;
+        void
+        setSubjectAlternativeName(const SubjectAlternativeNameExtension &ext);
+        
+        SubjectAlternativeNameExtension
+        getSubjectAlternativeName() const;
 
-        void                            commit2Config(CA& ca, Type type) const;
+        void
+        commit2Config(CA& ca, Type type) const;
 
-        virtual bool                    valid() const;
-        virtual blocxx::StringArray     verify() const;
+        virtual bool
+        valid() const;
+        
+        virtual blocxx::StringArray
+        verify() const;
 
-        virtual blocxx::StringArray  dump() const;
+        virtual blocxx::StringArray
+        dump() const;
 
     protected:
 
         /* String extensions */
 
-        NsSslServerNameExtension   nsSslServerName;
-        NsCommentExtension         nsComment;
+        NsSslServerNameExtension        nsSslServerName;
+        NsCommentExtension              nsComment;
 
         /* Bit Strings */
-        KeyUsageExtension   keyUsage; 
-        NsCertTypeExtension nsCertType;
+        KeyUsageExtension               keyUsage; 
+        NsCertTypeExtension             nsCertType;
 
         BasicConstraintsExtension       basicConstraints;
-        ExtendedKeyUsageExtension       extendedKeyUsage;
+        ExtendedKeyUsageExt             extendedKeyUsage;
         SubjectKeyIdentifierExtension   subjectKeyIdentifier;
         SubjectAlternativeNameExtension subjectAlternativeName;
 

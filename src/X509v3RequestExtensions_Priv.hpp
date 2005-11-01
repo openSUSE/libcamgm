@@ -40,21 +40,32 @@ namespace CA_MGM_NAMESPACE {
 
     private:
 
-        X509v3RequestExtensions_Priv& operator=(const X509v3RequestExtensions_Priv& extensions);
+        X509v3RequestExtensions_Priv&
+        operator=(const X509v3RequestExtensions_Priv& extensions);
 
-        void parseStringExtension(STACK_OF(X509_EXTENSION)* cert, int nid, StringExtension &ext);
+        void
+        parseStringExtension(STACK_OF(X509_EXTENSION)* cert,
+                             int nid, StringExtension &ext);
 
-        void parseBitExtension(STACK_OF(X509_EXTENSION)* cert, int nid, BitExtension &ext);
+        void
+        parseBitExtension(STACK_OF(X509_EXTENSION)* cert,
+                          int nid, BitExtension &ext);
 
-        void parseExtKeyUsageExtension(STACK_OF(X509_EXTENSION)* cert, ExtendedKeyUsageExtension &ext);
+        void
+        parseExtendedKeyUsageExt(STACK_OF(X509_EXTENSION)* cert,
+                                 ExtendedKeyUsageExt &ext);
 
-        void parseBasicConstraintsExtension(STACK_OF(X509_EXTENSION)* cert, BasicConstraintsExtension &ext);
+        void
+        parseBasicConstraintsExtension(STACK_OF(X509_EXTENSION)* cert,
+                                       BasicConstraintsExtension &ext);
 
-        void parseSubjectKeyIdentifierExtension(STACK_OF(X509_EXTENSION) *cert,
-                                                SubjectKeyIdentifierExtension &ext);
+        void
+        parseSubjectKeyIdentifierExtension(STACK_OF(X509_EXTENSION) *cert,
+                                           SubjectKeyIdentifierExtension &ext);
 
-        void parseSubjectAlternativeNameExtension(STACK_OF(X509_EXTENSION) *cert,
-                                                  SubjectAlternativeNameExtension &ext);
+        void
+        parseSubjectAlternativeNameExtension(STACK_OF(X509_EXTENSION) *cert,
+                                             SubjectAlternativeNameExtension &ext);
 
     };
 }

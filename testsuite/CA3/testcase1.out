@@ -47,7 +47,7 @@ is Present = true
 is Critical = true
 CA = true
 pathlen = -1
-ExtendedKeyUsageExtension::dump()
+ExtendedKeyUsageExt::dump()
 ExtensionBase::dump()
 is Present = false
 SubjectKeyIdentifierExtension::dump()
@@ -140,12 +140,14 @@ is Present = true
 is Critical = true
 CA = true
 pathlen = 5
-ExtendedKeyUsageExtension::dump()
+ExtendedKeyUsageExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
-Extended KeyUsage = 0x0508
-Additional OID = 87.23.6.109
+Extended KeyUsage = emailProtection
+Extended KeyUsage = msSGC
+Extended KeyUsage = nsSGC
+Extended KeyUsage = 87.23.6.109
 SubjectKeyIdentifierExtension::dump()
 ExtensionBase::dump()
 is Present = true
