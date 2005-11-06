@@ -562,7 +562,8 @@ namespace CA_MGM_NAMESPACE
          *
          * @return Array of Strings of available CAs
          */
-        static blocxx::Array<blocxx::String> getCAList(const String& repos=REPOSITORY);
+        static blocxx::Array<blocxx::String>
+		getCAList(const String& repos=REPOSITORY);
         
         /**
          * Return a table of the available CAs and its issuer.
@@ -581,7 +582,7 @@ namespace CA_MGM_NAMESPACE
          *
          * @return a list of lists of the available CAs 
          */
-        static blocxx::List<blocxx::List<blocxx::String> >
+        static blocxx::List<blocxx::Array<blocxx::String> >
         getCATree(const String& repos=REPOSITORY);
 
         /**
@@ -593,7 +594,8 @@ namespace CA_MGM_NAMESPACE
          *
          * @return a CertificateIssueData object with the current defaults
          */
-        static CertificateIssueData  getRootCAIssueDefaults(const String& repos=REPOSITORY);
+        static CertificateIssueData
+		getRootCAIssueDefaults(const String& repos=REPOSITORY);
 
         /**
          * Get a RequestGenerationData object with current request default
@@ -604,7 +606,8 @@ namespace CA_MGM_NAMESPACE
          *
          * @return a RequestGenerationData object with the current defaults
          */
-        static RequestGenerationData getRootCARequestDefaults(const String& repos=REPOSITORY);
+        static RequestGenerationData
+		getRootCARequestDefaults(const String& repos=REPOSITORY);
 
 
         /**
@@ -622,11 +625,12 @@ namespace CA_MGM_NAMESPACE
          * @param repos the path to the repository root directory
          *
          */
-        static void deleteCA(const String& caName,
-                             const String& caPasswd,
-                             bool force = false,
-                             const String& repos = REPOSITORY);
-
+        static void
+		deleteCA(const String& caName,
+				 const String& caPasswd,
+				 bool force = false,
+				 const String& repos = REPOSITORY);
+		
     private:
         String caName;
         String caPasswd;

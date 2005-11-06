@@ -51,28 +51,28 @@ using namespace blocxx;
 class CATreeCompare {
 
 public:
-    int operator()(const blocxx::List<blocxx::String> &l, const blocxx::List<blocxx::String> r) const {
-
-        if(l.back() == "" && r.back() != "") {
-
+    int operator()(const blocxx::Array<blocxx::String> &l,
+				   const blocxx::Array<blocxx::String> r) const
+	{
+        if(l.back() == "" && r.back() != "")
+		{
             return true;
-
-        } else if(l.back() != "" && r.back() == "") {
-
+        }
+		else if(l.back() != "" && r.back() == "")
+		{
             return false;
-
-        } else if(l.back() == r.back()) {
-
+        }
+		else if(l.back() == r.back())
+		{
             return l.front() < r.front();
-
-        } else if(l.back() == r.front()) {
-
+        }
+		else if(l.back() == r.front())
+		{
             return false;
-
-        } else if(l.front() == r.back()) {
-
+        }
+		else if(l.front() == r.back())
+		{
             return true;
-
         }
         return l.front() < r.front();
     }
@@ -1294,10 +1294,10 @@ CA::getCAList(const String& repos)
 }
 
         
-blocxx::List<blocxx::List<blocxx::String> >
+blocxx::List<blocxx::Array<blocxx::String> >
 CA::getCATree(const String& repos)
 {
-    List<List<String> > ret;
+    List<Array<String> > ret;
 
     Array<String> caList = CA::getCAList(repos);
 
@@ -1329,7 +1329,7 @@ CA::getCATree(const String& repos)
         if( ((*chit).second)[0] == ((*chit).second)[1] ) {
 
             // root CA
-            List<String> d;
+            Array<String> d;
             d.push_back((*chit).first);
             d.push_back("");
 
@@ -1344,7 +1344,7 @@ CA::getCATree(const String& repos)
                 //       issuer          ==       subject
                 if(  ((*chit).second)[1] == ((*chitnew).second)[0]  ) {
 
-                    List<String> d;
+                    Array<String> d;
                     d.push_back((*chit).first);
                     d.push_back((*chitnew).first);
                     
@@ -1356,9 +1356,9 @@ CA::getCATree(const String& repos)
         }
     }
 
-    ret.sort(CATreeCompare());
+	ret.sort(CATreeCompare());
 
-    return ret;
+	return ret;
 }
 
 CertificateIssueData
