@@ -8,6 +8,8 @@
 #include <limal/ca-mgm/CA.hpp>
 %}
 
+typedef blocxx::Array<blocxx::String> StringArray;
+
 %include limal/ca-mgm/config.h
 %include limal/ca-mgm/CommonData.hpp
 %include limal/ca-mgm/DNObject.hpp
@@ -58,6 +60,7 @@
 %template(StringArray) blocxx::Array<blocxx::String>;
 %template(StringList)  blocxx::List<blocxx::String>;
 %template(Int32List)   blocxx::List<blocxx::Int32>;
+%template(StringArrayList) blocxx::List<blocxx::Array<blocxx::String> >;
 
 %template(AuthorityInformationList) blocxx::List<limal::ca_mgm::AuthorityInformation>;
 %template(UserNoticeList)           blocxx::List<limal::ca_mgm::UserNotice>;
