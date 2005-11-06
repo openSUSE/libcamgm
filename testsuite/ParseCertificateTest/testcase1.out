@@ -6,6 +6,7 @@ Version = 3
 Serial = 08
 notBefore = 1124792804
 notAfter = 1156328804
+Fingerprint = SHA1:D9:56:16:A0:EC:D4:5B:9A:80:A4:86:B4:53:AF:CE:BB:30:E7:99:36
 DNObject::dump()
 RDNObject::dump()
 countryName=DE

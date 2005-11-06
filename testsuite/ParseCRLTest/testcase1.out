@@ -5,6 +5,7 @@ got the data
 dump the data
 CRLData::dump()
 Version = 2
+Fingerprint = SHA1:6B:7B:F1:F9:25:1A:79:BD:27:C2:3E:31:0F:FC:C2:F9:19:74:34:10
 last Update = 1125322848
 next Update = 1125409248
 DNObject::dump()
