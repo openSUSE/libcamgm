@@ -65,7 +65,7 @@ RevocationEntry_Priv::RevocationEntry_Priv(X509_REVOKED *rev)
     
     LOGIT_DEBUG("=>=> New Entry with Serial: " << sbuf);
     setSerial(sbuf); 
-    
+	
     // get revocationDate
 
     char *cbuf = new char[rev->revocationDate->length + 1];
@@ -343,6 +343,28 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
     // get version
     version = X509_CRL_get_version(x509) + 1;
 
+	// get fingerprint
+
+	unsigned char *ustringval = NULL;
+	unsigned char md[EVP_MAX_MD_SIZE];
+	unsigned int n = 0;
+	
+	BIO *bioFP           = BIO_new(BIO_s_mem());
+	const EVP_MD *digest = EVP_sha1();
+	
+	if(X509_CRL_digest(x509, digest, md, &n))
+	{
+		BIO_printf(bioFP, "%s:", OBJ_nid2sn(EVP_MD_type(digest)));
+		for (unsigned int j=0; j<n; j++)
+		{
+			BIO_printf (bioFP, "%02X",md[j]);
+			if (j+1 != n) BIO_printf(bioFP,":");
+		}
+	}
+	n = BIO_get_mem_data(bioFP, &ustringval);
+	fingerprint = String(reinterpret_cast<const char*>(ustringval), n);
+	BIO_free(bioFP);
+
     // get lastUpdate
     ASN1_TIME *t   = X509_CRL_get_lastUpdate(x509);
     char      *cbuf = new char[t->length + 1];
@@ -413,9 +435,10 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
     issuer = DNObject_Priv(x509->crl->issuer);
 
     // get signatureAlgorithm
+	n = 0;
     BIO *bio = BIO_new(BIO_s_mem());
     i2a_ASN1_OBJECT(bio, x509->sig_alg->algorithm);
-    int n = BIO_get_mem_data(bio, &cbuf);
+    n = BIO_get_mem_data(bio, &cbuf);
 
     sbuf = String(cbuf, n);
     BIO_free(bio);

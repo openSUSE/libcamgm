@@ -122,7 +122,8 @@ RevocationEntry::dump() const
 // ##################################################################
 
 CRLData::CRLData(const CRLData& data)
-    : version(data.version), lastUpdate(data.lastUpdate),
+    : version(data.version), fingerprint(data.fingerprint),
+	  lastUpdate(data.lastUpdate),
       nextUpdate(data.nextUpdate), issuer(data.issuer),
       signatureAlgorithm(data.signatureAlgorithm), signature(data.signature),
       extensions(data.extensions), revocationData(data.revocationData)
@@ -139,6 +140,7 @@ CRLData::operator=(const CRLData& data)
     if(this == &data) return *this;
 
     version            = data.version;
+	fingerprint        = data.fingerprint;
     lastUpdate         = data.lastUpdate;
     nextUpdate         = data.nextUpdate;
     issuer             = data.issuer;
@@ -154,6 +156,12 @@ blocxx::Int32
 CRLData::getVersion() const
 {
     return version;
+}
+
+blocxx::String
+CRLData::getFingerprint() const
+{
+	return fingerprint;
 }
 
 time_t
@@ -273,6 +281,7 @@ CRLData::dump() const
     result.append("CRLData::dump()");
 
     result.append("Version = " + String(version));
+    result.append("Fingerprint = " + fingerprint);
     result.append("last Update = " + String(lastUpdate));
     result.append("next Update = " + String(nextUpdate));
     result.appendArray(issuer.dump());
@@ -299,7 +308,7 @@ CRLData::dump() const
 
 //    protected:
 CRLData::CRLData()
-    : version(0), lastUpdate(0),
+    : version(0), fingerprint(""), lastUpdate(0),
       nextUpdate(0), issuer(DNObject()),
       signatureAlgorithm(E_SHA1RSA), signature(ByteBuffer()),
       extensions(X509v3CRLExts_Priv()), 

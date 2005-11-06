@@ -44,7 +44,7 @@ namespace CA_MGM_NAMESPACE {
 
         String
         getSerial() const;
-        
+
         time_t
         getRevocationDate() const;
         
@@ -63,6 +63,7 @@ namespace CA_MGM_NAMESPACE {
     protected:
 
         String      serial;
+		String      fingerprint;
         time_t      revocationDate;
         CRLReason   revocationReason;
 
@@ -84,8 +85,11 @@ namespace CA_MGM_NAMESPACE {
         blocxx::Int32
         getVersion() const;
         
-        time_t
-        getLastUpdateDate() const;
+		String
+		getFingerprint() const;
+		
+		time_t
+		getLastUpdateDate() const;
         
         time_t
         getNextUpdateDate() const;
@@ -124,6 +128,7 @@ namespace CA_MGM_NAMESPACE {
         CRLData();
 
         blocxx::Int32                        version;
+		String                               fingerprint;
         time_t                               lastUpdate;
         time_t                               nextUpdate;
 

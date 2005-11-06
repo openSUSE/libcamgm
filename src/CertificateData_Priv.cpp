@@ -53,8 +53,8 @@ CertificateData_Priv::CertificateData_Priv()
 }
 
 CertificateData_Priv::CertificateData_Priv(const ByteBuffer &certificate,
-                                           FormatType formatType)
-    : CertificateData()
+										   FormatType formatType)
+	: CertificateData()
 {
     BIO  *bio;
     X509 *x509 = NULL;
@@ -315,7 +315,29 @@ CertificateData_Priv::parseCertificate(X509 *x509)
                   sa[4].toInt(), sa[5].toInt(), sa[6].toInt(),
                   0, DateTime::E_UTC_TIME);
     notAfter = dt.get();
-    
+
+	// fingerprint
+	
+	unsigned char *ustringval = NULL;
+	unsigned char md[EVP_MAX_MD_SIZE];
+	unsigned int n = 0;
+	
+	BIO *bioFP           = BIO_new(BIO_s_mem());
+	const EVP_MD *digest = EVP_sha1();
+	
+	if(X509_digest(x509, digest, md, &n))
+	{
+		BIO_printf(bioFP, "%s:", OBJ_nid2sn(EVP_MD_type(digest)));
+		for (unsigned int j=0; j<n; j++)
+		{
+			BIO_printf (bioFP, "%02X",md[j]);
+			if (j+1 != n) BIO_printf(bioFP,":");
+		}
+	}
+	n = BIO_get_mem_data(bioFP, &ustringval);
+	fingerprint = String(reinterpret_cast<const char*>(ustringval), n);
+	BIO_free(bioFP);
+	
     // get issuer
     
     issuer = DNObject_Priv(X509_get_issuer_name(x509));
@@ -398,10 +420,11 @@ CertificateData_Priv::parseCertificate(X509 *x509)
     }
 
     // get signatureAlgorithm
-
+	
+	n = 0;
     BIO *bio = BIO_new(BIO_s_mem());
     i2a_ASN1_OBJECT(bio, x509->cert_info->signature->algorithm);
-    int n = BIO_get_mem_data(bio, &cbuf);
+    n = BIO_get_mem_data(bio, &cbuf);
 
     sbuf = String(cbuf, n);
     BIO_free(bio);

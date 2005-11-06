@@ -104,7 +104,8 @@ namespace CA_MGM_NAMESPACE {
         CertificateData();
 
         blocxx::UInt32        version;   // allowed 1, 2, 3
-        String                serial;    
+        String                serial;
+		String                fingerprint;
         time_t                notBefore; 
         time_t                notAfter;  
 

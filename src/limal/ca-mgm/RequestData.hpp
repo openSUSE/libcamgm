@@ -66,9 +66,6 @@ namespace CA_MGM_NAMESPACE {
         limal::ByteBuffer
         getSignature() const;
         
-        String
-        getFingerprint() const;
-        
         X509v3RequestExts
         getExtensions() const;
         

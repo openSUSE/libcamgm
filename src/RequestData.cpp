@@ -116,12 +116,6 @@ RequestData::getSignature() const
     return signature;
 }
 
-blocxx::String
-RequestData::getFingerprint() const
-{
-    return String();
-}
-
 X509v3RequestExts
 RequestData::getExtensions() const
 {
