@@ -66,8 +66,8 @@ int main()
         rgd.setSubject(dn);
 
         CertificateIssueData cid = ca.getIssueDefaults(E_CA_Cert);
-        cid.setCertifiyPeriode(cid.getStartDate(), 
-                               cid.getStartDate() + 63072000); // startDate + 2 Years
+        cid.setCertifyPeriode(cid.getStartDate(), 
+							  cid.getStartDate() + 63072000); // startDate + 2 Years
 
         ca.createSubCA("SubCA_Test", "system", rgd, cid);
 
