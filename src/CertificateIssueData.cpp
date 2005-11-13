@@ -93,7 +93,7 @@ CertificateIssueData::operator=(const CertificateIssueData& data)
 }
 
 void
-CertificateIssueData::setCertifiyPeriode(time_t start, time_t end)
+CertificateIssueData::setCertifyPeriode(time_t start, time_t end)
 {
     notBefore = start;
     notAfter  = end;

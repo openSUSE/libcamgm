@@ -156,7 +156,7 @@ CertificateData_Priv::setSerial(const String& serial)
 }
 
 void
-CertificateData_Priv::setCertifiyPeriode(time_t start, time_t end)
+CertificateData_Priv::setCertifyPeriode(time_t start, time_t end)
 {
     notBefore = start;
     notAfter  = end;

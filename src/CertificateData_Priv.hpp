@@ -56,7 +56,7 @@ namespace CA_MGM_NAMESPACE {
 
         void           setSerial(const String& serial);
         
-        void           setCertifiyPeriode(time_t start, time_t end);
+        void           setCertifyPeriode(time_t start, time_t end);
         
         void           setIssuerDN(const DNObject& issuer);
         

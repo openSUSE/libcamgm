@@ -55,8 +55,8 @@ namespace CA_MGM_NAMESPACE
         CertificateIssueData&
         operator=(const CertificateIssueData& data);
 
-        void
-        setCertifiyPeriode(time_t start, time_t end);
+		void
+		setCertifyPeriode(time_t start, time_t end);
         
         time_t
         getStartDate() const;
