@@ -43,7 +43,8 @@ CertificateData::CertificateData(const CertificateData& data)
 	  issuer(data.issuer), subject(data.subject),
 	  keysize(data.keysize), pubkeyAlgorithm(data.pubkeyAlgorithm),
 	  publicKey(data.publicKey), signatureAlgorithm(data.signatureAlgorithm),
-	  signature(data.signature), extensions(data.extensions)
+	  signature(data.signature), extensions(data.extensions),
+	  text(data.text), extText(data.extText)
 {}
 
 CertificateData::~CertificateData()
@@ -68,6 +69,8 @@ CertificateData::operator=(const CertificateData& data)
 	signatureAlgorithm = data.signatureAlgorithm;
 	signature          = data.signature;
 	extensions         = data.extensions;
+	text               = data.text;
+	extText            = data.extText;
 	
 	return *this;
 }
@@ -184,6 +187,18 @@ X509v3CertificateExts
 CertificateData::getExtensions() const
 {
 	return extensions;
+}
+
+String
+CertificateData::getCertificateAsText() const
+{
+	return text;
+}
+
+String
+CertificateData::getExtensionsAsText() const
+{
+	return extText;
 }
 
 bool
@@ -317,7 +332,8 @@ CertificateData::CertificateData()
 	  issuer(DNObject()), subject(DNObject()),
 	  keysize(2048), pubkeyAlgorithm(E_RSA),
 	  publicKey(ByteBuffer()), signatureAlgorithm(E_SHA1RSA),
-	  signature(ByteBuffer()), extensions(X509v3CertificateExts_Priv())
+	  signature(ByteBuffer()), extensions(X509v3CertificateExts_Priv()),
+	  text(""), extText("")
 {}
 
 }

@@ -461,6 +461,27 @@ CertificateData_Priv::parseCertificate(X509 *x509)
     extensions = X509v3CertificateExts_Priv(x509->cert_info->extensions);
 
 
+    // get human readable format
+
+    BIO *bio2 = BIO_new(BIO_s_mem());
+
+	X509_print_ex(bio2, x509, 0, 0);
+	n = BIO_get_mem_data(bio2, &ustringval);
+
+	text = String((const char*)ustringval, n);
+	BIO_free(bio2);
+
+	ustringval = NULL;
+	
+	BIO *bio3 = BIO_new(BIO_s_mem());
+
+	X509V3_extensions_print(bio3, NULL, x509->cert_info->extensions, 0, 4);
+	n = BIO_get_mem_data(bio3, &ustringval);
+	
+	extText = String((const char*)ustringval, n);
+	BIO_free(bio3);
+
+    
     EVP_PKEY_free(pkey);
 }
 

@@ -90,7 +90,21 @@ namespace CA_MGM_NAMESPACE {
         
         X509v3CertificateExts
         getExtensions() const;
-                
+
+    	/**
+    	 * Return the Certificate data as human readable text.
+    	 * (Format may change)
+    	 */
+    	String
+    	getCertificateAsText() const;
+
+    	/**
+    	 * Return the Certificate extensions as human readable text.
+    	 * (Format may change)
+    	 */
+    	String
+    	getExtensionsAsText() const;
+    	
         virtual bool
         valid() const;
         
@@ -122,6 +136,9 @@ namespace CA_MGM_NAMESPACE {
 
         X509v3CertificateExts extensions;
 
+    	String                text;
+    	String                extText;
+    	
     };
 
 }
