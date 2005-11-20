@@ -115,6 +115,20 @@ namespace CA_MGM_NAMESPACE {
         RevocationEntry
         getRevocationEntry(const String& oid);
 
+    	/**
+    	 * Return the CRL data as human readable text.
+    	 * (Format may change)
+    	 */
+    	String
+    	getCRLAsText() const;
+
+    	/**
+    	 * Return the CRL extensions as human readable text.
+    	 * (Format may change)
+    	 */
+    	String
+    	getExtensionsAsText() const;
+    	
         virtual bool
         valid() const;
         
@@ -141,8 +155,10 @@ namespace CA_MGM_NAMESPACE {
 
         blocxx::Map<String, RevocationEntry> revocationData;
 
+    	String                               text;
+    	String                               extText;
 
-        
+    	
         blocxx::StringArray
         checkRevocationData(const blocxx::Map<String, RevocationEntry>& rd) const;
 

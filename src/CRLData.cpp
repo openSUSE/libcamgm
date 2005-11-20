@@ -126,7 +126,8 @@ CRLData::CRLData(const CRLData& data)
 	  lastUpdate(data.lastUpdate),
       nextUpdate(data.nextUpdate), issuer(data.issuer),
       signatureAlgorithm(data.signatureAlgorithm), signature(data.signature),
-      extensions(data.extensions), revocationData(data.revocationData)
+      extensions(data.extensions), revocationData(data.revocationData),
+      text(data.text), extText(data.extText)
 {
 }
 
@@ -148,6 +149,8 @@ CRLData::operator=(const CRLData& data)
     signature          = data.signature;
     extensions         = data.extensions;
     revocationData     = data.revocationData;
+    text               = data.text;
+    extText            = data.extText;
 
     return *this;
 }
@@ -221,6 +224,18 @@ CRLData::getRevocationEntry(const String& oid)
     }
     LOGIT_ERROR("Entry not found: " << oid);
     BLOCXX_THROW(limal::ValueException, "Entry not found");
+}
+
+blocxx::String
+CRLData::getCRLAsText() const
+{
+	return text;
+}
+
+blocxx::String
+CRLData::getExtensionsAsText() const
+{
+	return extText;
 }
 
 bool
@@ -312,7 +327,9 @@ CRLData::CRLData()
       nextUpdate(0), issuer(DNObject()),
       signatureAlgorithm(E_SHA1RSA), signature(ByteBuffer()),
       extensions(X509v3CRLExts_Priv()), 
-      revocationData(blocxx::Map<String, RevocationEntry>())
+      revocationData(blocxx::Map<String, RevocationEntry>()),
+      text(""), extText("")
+	
 {
 }
 
