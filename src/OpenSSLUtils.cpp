@@ -403,6 +403,7 @@ OpenSSLUtils::signRequest(const String &requestFile,
     StringArray cmd = PerlRegEx("\\s").split(debugCmd);
     
     LOGIT_DEBUG("Command: " << debugCmd);
+    //LOGIT_DEBUG("PASSWORD: " << caPassword);
     
     blocxx::EnvVars env;
     env.addVar("PATH", "/usr/bin/");
@@ -500,13 +501,27 @@ OpenSSLUtils::revokeCertificate(const blocxx::String &caCertFile,
         }
         else if(reasonStr.equalsIgnoreCase("keyCompromise"))
         {
-            debugCmd += "-crl_compromise " +
-                        reason.getKeyCompromiseDateAsString() + " ";
+        	if(reason.getKeyCompromiseDateAsString() == "")
+        	{
+        		debugCmd += "-crl_reason keyCompromise ";
+        	}
+        	else
+        	{
+        		debugCmd += "-crl_compromise " +
+        			reason.getKeyCompromiseDateAsString() + " ";
+        	}
         }
         else if(reasonStr.equalsIgnoreCase("CACompromise"))
         {
-            debugCmd += "-crl_CA_compromise " +
-                        reason.getCACompromiseDateAsString() + " ";
+        	if(reason.getCACompromiseDateAsString() == "")
+        	{
+        		debugCmd += "-crl_reason CACompromise ";
+        	}
+        	else
+        	{
+        		debugCmd += "-crl_CA_compromise " +
+        			reason.getCACompromiseDateAsString() + " ";
+        	}
         }
         else
         {
