@@ -30,78 +30,79 @@ namespace LIMAL_NAMESPACE {
 namespace CA_MGM_NAMESPACE {
 
 
-    class CRLReason {
-    public:
+	class CRLReason {
+	public:
 
-        CRLReason();
-        CRLReason(const String& reason);
-        CRLReason(const CRLReason& reason);
-        virtual ~CRLReason();
+		CRLReason();
+		CRLReason(const String& reason);
+		CRLReason(const CRLReason& reason);
+		virtual ~CRLReason();
 
-        CRLReason& operator=(const CRLReason& reason);
+		CRLReason& operator=(const CRLReason& reason);
 
-        void
-        setReason(const String& reason);
+		void
+		setReason(const String& reason);
         
-        String
-        getReason() const;
+		String
+		getReason() const;
         
-        void
-        setHoldInstruction(const String& holdInstruction);
+		void
+		setHoldInstruction(const String& holdInstruction);
         
-        String
-        getHoldInstruction() const;
+		String
+		getHoldInstruction() const;
 
-        void
-        setKeyCompromiseDate(time_t compromiseDate);
+		void
+		setKeyCompromiseDate(time_t compromiseDate);
         
-        time_t
-        getKeyCompromiseDate() const;
+		time_t
+		getKeyCompromiseDate() const;
         
-        String
-        getKeyCompromiseDateAsString() const;
+		String
+		getKeyCompromiseDateAsString() const;
 
-        void
-        setCACompromiseDate(time_t compromiseDate);
+		void
+		setCACompromiseDate(time_t compromiseDate);
         
-        time_t
-        getCACompromiseDate() const;
+		time_t
+		getCACompromiseDate() const;
         
-        String
-        getCACompromiseDateAsString() const;
+		String
+		getCACompromiseDateAsString() const;
 
-        virtual bool
-        valid() const;
+		virtual bool
+		valid() const;
         
-        virtual blocxx::StringArray
-        verify() const;
+		virtual blocxx::StringArray
+		verify() const;
 
-        virtual blocxx::StringArray
-        dump() const;
+		virtual blocxx::StringArray
+		dump() const;
 
-    private:
+	private:
 
-        String         reason;
+		String         reason;
 
-        // used if reason is keyCompromise or CACompromise,
-        time_t         compromiseDate;
+		// used if reason is keyCompromise or CACompromise.
+		// 0 == no compromise Date set
+		time_t         compromiseDate;
 
-        // used if reason is certificateHold
-        // possible values: 
-        //    holdInstructionNone,
-        //    holdInstructionCallIssuer, 
-        //    holdInstructionReject
-        // or an OID
-        String         holdInstruction;
+		// used if reason is certificateHold
+		// possible values: 
+		//    holdInstructionNone,
+		//    holdInstructionCallIssuer, 
+		//    holdInstructionReject
+		// or an OID
+		String         holdInstruction;
 
         
-        blocxx::String
-        checkHoldInstruction(const String& hi) const;
+		blocxx::String
+		checkHoldInstruction(const String& hi) const;
         
-        bool
-        checkReason(const String& reason) const;
+		bool
+		checkReason(const String& reason) const;
                 
-    };
+	};
 
 }
 }
