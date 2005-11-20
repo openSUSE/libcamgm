@@ -75,6 +75,20 @@ namespace CA_MGM_NAMESPACE {
         String
         getUnstructuredName() const;
 
+    	/**
+    	 * Return the Request in a human readable format
+    	 * (Format may change)
+    	 */
+    	String
+    	getRequestAsText() const;
+
+    	/**
+    	 * Return the Request extensions in a human readable format
+    	 * (Format may change)
+    	 */
+    	String
+    	getExtensionsAsText() const;
+    	
         virtual bool
         valid() const;
         
@@ -112,6 +126,8 @@ namespace CA_MGM_NAMESPACE {
         String            challengePassword;
         String            unstructuredName;
 
+    	String            text;
+    	String            extText;
 
     };
 

@@ -407,6 +407,28 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
     // get extensions
 
     extensions = X509v3RequestExts_Priv(X509_REQ_get_extensions(x509));
+
+    // get human readable format
+
+    unsigned char *ustringval = NULL;
+    BIO *bio2 = BIO_new(BIO_s_mem());
+
+	X509_REQ_print_ex(bio2, x509, 0, 0);
+	n = BIO_get_mem_data(bio2, &ustringval);
+
+	text = String((const char*)ustringval, n);
+	BIO_free(bio2);
+
+	ustringval = NULL;
+	
+	BIO *bio3 = BIO_new(BIO_s_mem());
+
+	X509V3_extensions_print(bio3, NULL, X509_REQ_get_extensions(x509), 0, 4);
+	n = BIO_get_mem_data(bio3, &ustringval);
+	
+	extText = String((const char*)ustringval, n);
+	BIO_free(bio3);
+
 }
 
 }

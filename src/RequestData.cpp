@@ -47,7 +47,9 @@ RequestData::RequestData(const RequestData& data)
       signature(data.signature),
       extensions(data.extensions),
       challengePassword(data.challengePassword), 
-      unstructuredName(data.unstructuredName)
+      unstructuredName(data.unstructuredName),
+      text(data.text),
+      extText(data.extText)
 {
 }
 
@@ -70,6 +72,8 @@ RequestData::operator=(const RequestData& data)
     extensions         = data.extensions;
     challengePassword  = data.challengePassword;
     unstructuredName   = data.unstructuredName;
+    text               = data.text;
+    extText            = data.extText;
 
     return *this;
 }
@@ -132,6 +136,18 @@ blocxx::String
 RequestData::getUnstructuredName() const
 {
     return unstructuredName;
+}
+
+blocxx::String
+RequestData::getRequestAsText() const
+{
+	return text;
+}
+
+blocxx::String
+RequestData::getExtensionsAsText() const
+{
+	return extText;
 }
 
 bool
@@ -229,7 +245,9 @@ RequestData::RequestData()
       signature(ByteBuffer()),
       extensions(X509v3RequestExts_Priv()),
       challengePassword(""), 
-      unstructuredName("")
+      unstructuredName(""),
+      text(""),
+      extText("")
 {
 }
 
