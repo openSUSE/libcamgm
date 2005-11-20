@@ -89,6 +89,13 @@ CA::CA(const String& caName, const String& caPasswd, const String& repos)
 		LOGIT_ERROR("Empty CA name.");
 		BLOCXX_THROW(limal::ValueException, "Empty CA name.");
 	}
+	path::PathInfo pi(repositoryDir+"/"+caName+"/openssl.cnf.tmpl");
+	if(!pi.exists())
+	{
+		LOGIT_ERROR("Template does not exists: " << pi.toString());
+		BLOCXX_THROW(limal::SystemException,
+		             Format("Template does not exists: %1", pi.toString()).c_str());
+	}
 }
 
 CA::~CA()
@@ -103,7 +110,7 @@ CA::~CA()
 	}
 }
         
-void
+blocxx::String
 CA::createSubCA(const String& newCaName,
                 const String& keyPasswd,
                 const RequestGenerationData& caRequestData,
@@ -177,6 +184,8 @@ CA::createSubCA(const String& newCaName,
 	}
 
 	rehashCAs(repositoryDir + "/.cas/");
+
+	return certificate;
 }
 
 
@@ -370,6 +379,9 @@ CA::revokeCertificate(const String& certificateName,
 		BLOCXX_THROW(limal::ValueException, "Invalid CRL reason");
 	}
 
+	// copy template to config
+	initConfigFile();
+
 	OpenSSLUtils ost(repositoryDir + "/" + caName + "/" + "openssl.cnf");
 
 	ost.revokeCertificate(repositoryDir + "/" + caName + "/cacert.pem",
@@ -415,8 +427,8 @@ CA::createCRL(const CRLGenerationData& crlData)
 }
 
 blocxx::String
-CA::importRequest(const ByteBuffer& request,
-                  FormatType formatType)
+CA::importRequestData(const ByteBuffer& request,
+                      FormatType formatType)
 {
 	RequestData rd = RequestData_Priv(request, formatType);
     
@@ -480,7 +492,7 @@ CA::importRequest(const String& requestFile,
 {
 	ByteBuffer ba = LocalManagement::readFile(requestFile);
     
-	return importRequest(ba, formatType);
+	return importRequestData(ba, formatType);
 }
 
 CertificateIssueData
@@ -951,8 +963,10 @@ CA::deleteCertificate(const String& certificateName,
 {
 	path::PathInfo certFile(repositoryDir + "/" + caName + "/newcerts/" + certificateName + ".pem");
 	if(!certFile.exists()) {
-		LOGIT_ERROR("Certificate does not exist.");
-		BLOCXX_THROW(limal::ValueException, "Certificate does not exist.");
+		LOGIT_ERROR("Certificate does not exist." << certFile.toString());
+		BLOCXX_THROW(limal::ValueException,
+		             Format("Certificate does not exist. %1",
+		                    certFile.toString()).c_str());
 	}
 
 	initConfigFile();

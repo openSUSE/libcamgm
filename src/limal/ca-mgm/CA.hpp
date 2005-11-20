@@ -50,8 +50,8 @@ namespace CA_MGM_NAMESPACE
      * have a look at the <a href="examples.html">example page</a>
      *
      */
-    class CA
-    {
+	class CA
+	{
     public:
         /**
          * Construct a CA object. 
@@ -60,12 +60,12 @@ namespace CA_MGM_NAMESPACE
          * @param caPasswd the password of this CA.
          * @param repos directory path to the repository root
          */
-        CA(const String& caName, const String& caPasswd, const String& repos=REPOSITORY);
+		CA(const String& caName, const String& caPasswd, const String& repos=REPOSITORY);
         
         /**
          * Destructor of CA.
          */
-        ~CA();
+		~CA();
         
 
         /**
@@ -77,12 +77,14 @@ namespace CA_MGM_NAMESPACE
          * @param caRequestData data for the request generation
          * @param caIssueData the required data to sign the request
          *
+         * @return The name of the certificate file
          */
-        void createSubCA(const String& newCaName,
-                         const String& keyPasswd,
-                         const RequestGenerationData& caRequestData,
-                         const CertificateIssueData& caIssueData);
-
+		String
+		createSubCA(const String& newCaName,
+    	            const String& keyPasswd,
+                    const RequestGenerationData& caRequestData,
+                    const CertificateIssueData& caIssueData);
+    	
         /**
          * Create a certificate request in the specified CA
          * On error this method throws exceptions.
@@ -93,9 +95,10 @@ namespace CA_MGM_NAMESPACE
          *
          * @return the name of the new request
          */
-        String createRequest(const String& keyPasswd,
-                             const RequestGenerationData& requestData,
-                             Type requestType);
+		String
+		createRequest(const String& keyPasswd,
+		              const RequestGenerationData& requestData,
+		              Type requestType);
 
 
         /**
@@ -108,9 +111,10 @@ namespace CA_MGM_NAMESPACE
          *
          * @return the name of the certificate
          */
-        String issueCertificate(const String& requestName,
-                                const CertificateIssueData& issueData,
-                                Type certType);
+		String
+		issueCertificate(const String& requestName,
+		                 const CertificateIssueData& issueData,
+		                 Type certType);
 
         /**
          * Create a certificate in the specified CA
@@ -123,10 +127,11 @@ namespace CA_MGM_NAMESPACE
          *
          * @return the name of the certificate
          */    
-        String createCertificate(const String& keyPasswd,
-                                 const RequestGenerationData& requestData,
-                                 const CertificateIssueData&  certificateData,
-                                 Type type);
+		String
+		createCertificate(const String& keyPasswd,
+		                  const RequestGenerationData& requestData,
+		                  const CertificateIssueData&  certificateData,
+		                  Type type);
 
 
         /**
@@ -140,17 +145,19 @@ namespace CA_MGM_NAMESPACE
          * why this certificate is revoked.
          *
          */
-        void revokeCertificate(const String& certificateName,
-                               const CRLReason& crlReason = CRLReason());
-
-        /**
+		void
+		revokeCertificate(const String& certificateName,
+		                  const CRLReason& crlReason = CRLReason());
+		
+		/**
          * Create a new CRL with the specified data.
          * On error this method throws exceptions.
          *
          * @param crlData the data for the new CRL
          *
          */
-        void createCRL(const CRLGenerationData& crlData);
+		void
+		createCRL(const CRLGenerationData& crlData);
 
         /**
          * Import a request in a CA repository.
@@ -161,8 +168,9 @@ namespace CA_MGM_NAMESPACE
          *
          * @return the name of the request
          */
-        String importRequest(const limal::ByteBuffer& request,
-                             FormatType formatType = E_PEM);
+		String
+		importRequestData(const limal::ByteBuffer& request,
+		                  FormatType formatType = E_PEM);
 
         /**
          * Import a request in a CA repository.
@@ -173,8 +181,9 @@ namespace CA_MGM_NAMESPACE
          *
          * @return the name of the request
          */
-        String importRequest(const String& requestFile,
-                             FormatType formatType = E_PEM);
+		String
+		importRequest(const String& requestFile,
+		              FormatType formatType = E_PEM);
 
 
         /**
@@ -186,7 +195,8 @@ namespace CA_MGM_NAMESPACE
          *
          * @return a CertificateIssueData object with the current defaults
          */
-        CertificateIssueData  getIssueDefaults(Type type);
+		CertificateIssueData
+		getIssueDefaults(Type type);
 
         /**
          * Get a RequestGenerationData object with current request default
@@ -197,7 +207,8 @@ namespace CA_MGM_NAMESPACE
          *
          * @return a RequestGenerationData object with the current defaults
          */
-        RequestGenerationData getRequestDefaults(Type type);
+		RequestGenerationData
+		getRequestDefaults(Type type);
 
         /**
          * Get a CRLGenerationData object with current default
@@ -206,7 +217,8 @@ namespace CA_MGM_NAMESPACE
          *
          * @return a CRLGenerationData object with the current defaults
          */
-        CRLGenerationData     getCRLDefaults();
+		CRLGenerationData
+		getCRLDefaults();
 
         /**
          * Set the signing defaults for this CA and the specific certType
@@ -216,8 +228,9 @@ namespace CA_MGM_NAMESPACE
          * @param defaults the new certificate defaults
          *
          */
-        void  setIssueDefaults(Type type,
-                               const CertificateIssueData& defaults);
+		void
+		setIssueDefaults(Type type,
+		                 const CertificateIssueData& defaults);
 
         /**
          * Set the request defaults for this CA and the specific certType
@@ -227,8 +240,9 @@ namespace CA_MGM_NAMESPACE
          * @param defaults the new certificate defaults
          *
          */
-        void  setRequestDefaults(Type type,
-                                 const RequestGenerationData& defaults);
+		void
+		setRequestDefaults(Type type,
+		                   const RequestGenerationData& defaults);
 
         /**
          * Set CRL defaults for this CA
@@ -237,7 +251,8 @@ namespace CA_MGM_NAMESPACE
          * @param defaults the new CRL defaults
          *
          */
-        void  setCRLDefaults(const CRLGenerationData& defaults);
+		void
+		setCRLDefaults(const CRLGenerationData& defaults);
            
 
         /**
@@ -258,7 +273,8 @@ namespace CA_MGM_NAMESPACE
          *   <li>status (The status of the certificate: "valid", "revoked", "expired")</li>
          * </ul>
          */
-        blocxx::Array<blocxx::Map<blocxx::String, blocxx::String> > getCertificateList();
+		blocxx::Array<blocxx::Map<blocxx::String, blocxx::String> >
+		getCertificateList();
 
 
         /**
@@ -279,7 +295,8 @@ namespace CA_MGM_NAMESPACE
          *   <li>date</li>
          * </ul>
          */
-        blocxx::Array<blocxx::Map<blocxx::String, blocxx::String> > getRequestList();
+		blocxx::Array<blocxx::Map<blocxx::String, blocxx::String> >
+		getRequestList();
 
 
 
@@ -289,7 +306,8 @@ namespace CA_MGM_NAMESPACE
          *
          * @return the CA data
          */
-        CertificateData getCA();
+		CertificateData
+		getCA();
 
         /**
          * Parse a request and return the data.
@@ -299,7 +317,8 @@ namespace CA_MGM_NAMESPACE
          *
          * @return the request data
          */
-        RequestData getRequest(const String& requestName);
+		RequestData
+		getRequest(const String& requestName);
 
         /**
          * Parse a certificate and return the data.
@@ -309,7 +328,8 @@ namespace CA_MGM_NAMESPACE
          *
          * @return the certificate data
          */
-        CertificateData getCertificate(const String& certificateName);
+		CertificateData
+		getCertificate(const String& certificateName);
 
 
         /**
@@ -318,7 +338,8 @@ namespace CA_MGM_NAMESPACE
          *
          * @return the CRL data
          */
-        CRLData getCRL();
+		CRLData
+		getCRL();
 
        
         /** 
@@ -329,7 +350,8 @@ namespace CA_MGM_NAMESPACE
          *
          * @return this CA certificate
          */
-        limal::ByteBuffer exportCACert(FormatType exportType);
+		limal::ByteBuffer
+		exportCACert(FormatType exportType);
         
         /**
          * Return the CA private key in PEM format.
@@ -343,7 +365,8 @@ namespace CA_MGM_NAMESPACE
          *
          * @return the private key of the CA in PEM format
          */
-        limal::ByteBuffer exportCAKeyAsPEM(const String& newPassword);
+		limal::ByteBuffer
+		exportCAKeyAsPEM(const String& newPassword);
 
         /**
          * Return the CA private key in DER format.
@@ -352,7 +375,8 @@ namespace CA_MGM_NAMESPACE
          *
          * @return the private key of the CA in DER format
          */
-        limal::ByteBuffer exportCAKeyAsDER();
+		limal::ByteBuffer
+		exportCAKeyAsDER();
         
         /**
          * Return the CA certificate in PKCS12 format.
@@ -366,8 +390,9 @@ namespace CA_MGM_NAMESPACE
          *
          * @return the data in PKCS12 format
          */
-        limal::ByteBuffer exportCAasPKCS12(const String& p12Password,
-                                           bool withChain = false);
+		limal::ByteBuffer
+		exportCAasPKCS12(const String& p12Password,
+		                 bool withChain = false);
         
         
         /** 
@@ -381,8 +406,9 @@ namespace CA_MGM_NAMESPACE
          * @return the certificate data
          *
          */
-        limal::ByteBuffer exportCertificate(const String& certificateName,
-                                            FormatType exportType);
+		limal::ByteBuffer
+		exportCertificate(const String& certificateName,
+		                  FormatType exportType);
         
         /**
          * Return the certificate private key in PEM format.
@@ -398,9 +424,10 @@ namespace CA_MGM_NAMESPACE
          *
          * @return the private key of the certificate in PEM format
          */
-        limal::ByteBuffer exportCertificateKeyAsPEM(const String& certificateName,
-                                                    const String& keyPassword,
-                                                    const String& newPassword);
+		limal::ByteBuffer
+		exportCertificateKeyAsPEM(const String& certificateName,
+		                          const String& keyPassword,
+		                          const String& newPassword);
 
         /**
          * Return the certificate private key in DER format.
@@ -412,8 +439,9 @@ namespace CA_MGM_NAMESPACE
          *
          * @return the private key in DER format
          */
-        limal::ByteBuffer exportCertificateKeyAsDER(const String& certificateName,
-                                                    const String& keyPassword);
+		limal::ByteBuffer
+		exportCertificateKeyAsDER(const String& certificateName,
+		                          const String& keyPassword);
         
         /**
          * Return the certificate in PKCS12 format.
@@ -429,11 +457,12 @@ namespace CA_MGM_NAMESPACE
          *
          * @return the data in PKCS12 format
          */
-        limal::ByteBuffer exportCertificateAsPKCS12(const String& certificateName,
-                                                    const String& keyPassword,
-                                                    const String& p12Password,
-                                                    bool withChain = false);
-
+		limal::ByteBuffer
+		exportCertificateAsPKCS12(const String& certificateName,
+		                          const String& keyPassword,
+		                          const String& p12Password,
+		                          bool withChain = false);
+		
         /**
          * Export the CRL of this CA in the requested format type.
          * On error this method throws exceptions.
@@ -442,7 +471,8 @@ namespace CA_MGM_NAMESPACE
          *
          * @return the CRL in the requested format
          */
-        limal::ByteBuffer exportCRL(FormatType exportType);
+		limal::ByteBuffer
+		exportCRL(FormatType exportType);
 
 
         /**
@@ -453,7 +483,8 @@ namespace CA_MGM_NAMESPACE
          * @param requestName the name of the request
          *
          */
-        void deleteRequest(const String& requestName);
+		void
+		deleteRequest(const String& requestName);
 
         /**
          * Delete the specified certificate together with the corresponding 
@@ -466,8 +497,9 @@ namespace CA_MGM_NAMESPACE
          * will be deleted
          *
          */
-        void deleteCertificate(const String& certificateName, 
-                               bool requestToo = true);
+		void
+		deleteCertificate(const String& certificateName, 
+		                  bool requestToo = true);
 
 
         /**
@@ -475,7 +507,8 @@ namespace CA_MGM_NAMESPACE
          * On error this method throws exceptions.
          *
          */
-        void updateDB();
+		void
+		updateDB();
         
         /**
          * Verify a certificate.
@@ -498,16 +531,18 @@ namespace CA_MGM_NAMESPACE
          *
          * @return true if the certificate is valid, otherwise false.
          */
-        bool verifyCertificate(const String& certificateName,
-                               bool crlCheck = true,
-                               const String& purpose = String("any"));
+       bool
+       verifyCertificate(const String& certificateName,
+                         bool crlCheck = true,
+                         const String& purpose = String("any"));
 
         /**
          * Return the current config object
          *
          * @return the config object
          */
-        CAConfig* getConfig();
+		CAConfig*
+		getConfig();
 
 
         /* ##########################################################################
@@ -527,11 +562,11 @@ namespace CA_MGM_NAMESPACE
          * @param repos the path to the repository root directory
          *
          */
-        static void
-        createRootCA(const String& caName,
-                     const String& caPasswd,
-                     const RequestGenerationData& caRequestData,
-                     const CertificateIssueData& caIssueData,
+		static void
+		createRootCA(const String& caName,
+		             const String& caPasswd,
+		             const RequestGenerationData& caRequestData,
+		             const CertificateIssueData& caIssueData,
                      const String& repos=REPOSITORY);
         
 
@@ -547,12 +582,12 @@ namespace CA_MGM_NAMESPACE
          * @param repos the path to the repository root directory
          *
          */
-        static void
-        importCA(const String& caName,
-                 const limal::ByteBuffer& caCertificate,
-                 const limal::ByteBuffer& caKey,
+		static void
+		importCA(const String& caName,
+		         const limal::ByteBuffer& caCertificate,
+		         const limal::ByteBuffer& caKey,
                  const String& caPasswd = String(),
-                 const String& repos=REPOSITORY);
+		         const String& repos=REPOSITORY);
 
         /**
          * Get a list of available CAs
@@ -562,7 +597,7 @@ namespace CA_MGM_NAMESPACE
          *
          * @return Array of Strings of available CAs
          */
-        static blocxx::Array<blocxx::String>
+		static blocxx::Array<blocxx::String>
 		getCAList(const String& repos=REPOSITORY);
         
         /**
@@ -582,8 +617,8 @@ namespace CA_MGM_NAMESPACE
          *
          * @return a list of lists of the available CAs 
          */
-        static blocxx::List<blocxx::Array<blocxx::String> >
-        getCATree(const String& repos=REPOSITORY);
+		static blocxx::List<blocxx::Array<blocxx::String> >
+		getCATree(const String& repos=REPOSITORY);
 
         /**
          * Get a CertificateIssueData object with current signing default
@@ -594,7 +629,7 @@ namespace CA_MGM_NAMESPACE
          *
          * @return a CertificateIssueData object with the current defaults
          */
-        static CertificateIssueData
+		static CertificateIssueData
 		getRootCAIssueDefaults(const String& repos=REPOSITORY);
 
         /**
@@ -606,7 +641,7 @@ namespace CA_MGM_NAMESPACE
          *
          * @return a RequestGenerationData object with the current defaults
          */
-        static RequestGenerationData
+		static RequestGenerationData
 		getRootCARequestDefaults(const String& repos=REPOSITORY);
 
 
@@ -625,24 +660,25 @@ namespace CA_MGM_NAMESPACE
          * @param repos the path to the repository root directory
          *
          */
-        static void
+		static void
 		deleteCA(const String& caName,
-				 const String& caPasswd,
-				 bool force = false,
-				 const String& repos = REPOSITORY);
+		         const String& caPasswd,
+		         bool force = false,
+		         const String& repos = REPOSITORY);
 		
     private:
-        String caName;
-        String caPasswd;
-        String repositoryDir;
+		String caName;
+		String caPasswd;
+		String repositoryDir;
 
-        CAConfig *config; 
-        CAConfig *templ; 
+		CAConfig *config; 
+		CAConfig *templ; 
 
-        CA();
-        CA(const CA&);
+		CA();
+		CA(const CA&);
 
-        CA& operator=(const CA&);
+		CA&
+		operator=(const CA&);
 
         /**
          * Check if the given dn matches the policy defined in the 
@@ -653,7 +689,8 @@ namespace CA_MGM_NAMESPACE
          * @param type the Type of the certificate which should be signed
          *
          */
-        void checkDNPolicy(const DNObject& dn, Type type);
+		void
+		checkDNPolicy(const DNObject& dn, Type type);
 
         /**
          * Initialize the config file
@@ -661,13 +698,15 @@ namespace CA_MGM_NAMESPACE
          *
          * Copy the template to a configfile and create the config object
          */
-        void initConfigFile();
+		void
+		initConfigFile();
 
         /**
          * Copy Config file to template
          * On error this method throws exceptions.
          */
-        void commitConfig2Template();
+		void
+		commitConfig2Template();
 
     };
     
