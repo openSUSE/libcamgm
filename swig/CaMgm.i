@@ -59,8 +59,10 @@ typedef blocxx::Array<blocxx::String> StringArray;
 
 %template(StringArray) blocxx::Array<blocxx::String>;
 %template(StringList)  blocxx::List<blocxx::String>;
+%template(StringMap)  blocxx::Map<blocxx::String, blocxx::String>;
 %template(Int32List)   blocxx::List<blocxx::Int32>;
 %template(StringArrayList) blocxx::List<blocxx::Array<blocxx::String> >;
+%template(StringMapArray)  blocxx::Array<blocxx::Map<blocxx::String, blocxx::String> >;
 
 %template(AuthorityInformationList) blocxx::List<limal::ca_mgm::AuthorityInformation>;
 %template(UserNoticeList)           blocxx::List<limal::ca_mgm::UserNotice>;
