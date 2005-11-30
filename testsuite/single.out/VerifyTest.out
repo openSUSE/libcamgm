@@ -1,13 +1,13 @@
 START
 =================== start Verify Test ======================
-08: Verify success
-06: Verify failed: Found revoked certificate
-02: Verify success
-05: Verify failed: Found revoked certificate
-03: Verify failed: Found revoked certificate
-07: Verify success
 01: Verify success
+02: Verify success
+03: Verify failed: Found revoked certificate
 04: Verify failed: Found revoked certificate
+05: Verify failed: Found revoked certificate
+06: Verify failed: Found revoked certificate
+07: Verify success
+08: Verify success
 09: Verify failed: Found revoked certificate
 =================== end List tests ========================
 DONE
