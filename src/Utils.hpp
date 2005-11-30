@@ -216,7 +216,10 @@ inline int rehashCAs(const blocxx::String &repositoryDir)
         LOGIT_INFO("c_rehash stderr:" << errOutput);
     }
     if(!stdOutput.empty()) {
-        LOGIT_DEBUG("c_rehash stdout:" << stdOutput);
+    	// this output here is not so important and makes trouble
+    	// in testcases
+    	//
+    	//LOGIT_DEBUG("c_rehash stdout:" << stdOutput);
     }
     return status;
 }
