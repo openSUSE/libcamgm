@@ -1515,6 +1515,8 @@ OpenSSLUtils::listCA(const String &repository)
                             repository, System::errorMsg(r), r).c_str());
     }
 
+    tmpList.sort();
+    
     List<String>::const_iterator cont;
 
     path::PathInfo pi(repository);
@@ -1711,6 +1713,8 @@ OpenSSLUtils::listRequests(const String &caName,
                             reqDir, System::errorMsg(r), r).c_str());
     }
 
+    tmpList.sort();
+    
     Array<Array<String> >        camdb = OpenSSLUtils::parseCAMDB(caName, repository);
     List<String>::const_iterator cont;
     path::PathInfo pi(reqDir);
@@ -1849,6 +1853,8 @@ OpenSSLUtils::listCertificates(const String &caName,
                             certDir, System::errorMsg(r), r).c_str());
     }
 
+    tmpList.sort();
+    
     Array<Array<String> >        indexTXT = OpenSSLUtils::parseIndexTXT(caName, repository);
     List<String>::const_iterator cont;
     path::PathInfo pi(certDir);
