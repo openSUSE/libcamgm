@@ -65,7 +65,10 @@ int main()
                 blocxx::String serial  = sa[1];
                 blocxx::String request = sa[2];
 
-                if(i == 0 && state != "Valid")
+                //cerr << "i == " << i << " State == " << state << endl;
+
+                
+                if(i == 1 && state != "Valid")
                 {
                     path::PathInfo certFile("./TestRepos/Test_CA1/newcerts/" +
                                             certificateName + ".pem");
@@ -73,52 +76,6 @@ int main()
                     {                        
                         ca.deleteCertificate(certificateName);
 
-                        certFile.stat();
-                        if(!certFile.exists())
-                        {
-                            cout << "Take 0: Delete Certificate successfull." << endl;
-                        }
-                        else
-                        {
-                            cout << "Take 0: Delete Certificate failed." << endl;
-                        }
-
-                        path::PathInfo keyFile("./TestRepos/Test_CA1/keys/" +
-                                               request + ".key");
-                        if(!keyFile.exists())
-                        {
-                            cout << "Take 0: Delete Key successfull." << endl;
-                        }
-                        else
-                        {
-                            cout << "Take 0: Delete Key failed." << endl;
-                        }
-
-                        path::PathInfo reqFile("./TestRepos/Test_CA1/req/" +
-                                               request + ".req");
-                        if(!reqFile.exists())
-                        {
-                            cout << "Take 0: Delete Request successfull." << endl;
-                        }
-                        else
-                        {
-                            cout << "Take 0: Delete Request failed." << endl;
-                        }
-                    }
-                    else
-                    {
-                        cout << "Take 0: Certificate not found." << endl;
-                    }
-                    i++;
-                }
-                else if(i == 1 && state != "Valid")
-                {
-                    path::PathInfo certFile("./TestRepos/Test_CA1/newcerts/" +
-                                            certificateName + ".pem");
-                    if(certFile.exists())
-                    {                        
-                        ca.deleteCertificate(certificateName, false);
-                        
                         certFile.stat();
                         if(!certFile.exists())
                         {
@@ -133,22 +90,22 @@ int main()
                                                request + ".key");
                         if(!keyFile.exists())
                         {
-                            cout << "Take 1: Key not exists. !!! Wrong !!!" << endl;
+                            cout << "Take 1: Delete Key successfull." << endl;
                         }
                         else
                         {
-                            cout << "Take 1: Key still exists. !!! OK !!!" << endl;
+                            cout << "Take 1: Delete Key failed." << endl;
                         }
 
                         path::PathInfo reqFile("./TestRepos/Test_CA1/req/" +
                                                request + ".req");
                         if(!reqFile.exists())
                         {
-                            cout << "Take 1: Request not exists. !!! Wrong !!!" << endl;
+                            cout << "Take 1: Delete Request successfull." << endl;
                         }
                         else
                         {
-                            cout << "Take 1: Request still exists. !!! OK !!!" << endl;
+                            cout << "Take 1: Delete Request failed." << endl;
                         }
                     }
                     else
@@ -157,7 +114,53 @@ int main()
                     }
                     i++;
                 }
-                else if(i == 2 && state == "Valid")
+                else if(i == 2 && state != "Valid")
+                {
+                    path::PathInfo certFile("./TestRepos/Test_CA1/newcerts/" +
+                                            certificateName + ".pem");
+                    if(certFile.exists())
+                    {                        
+                        ca.deleteCertificate(certificateName, false);
+                        
+                        certFile.stat();
+                        if(!certFile.exists())
+                        {
+                            cout << "Take 2: Delete Certificate successfull." << endl;
+                        }
+                        else
+                        {
+                            cout << "Take 2: Delete Certificate failed." << endl;
+                        }
+
+                        path::PathInfo keyFile("./TestRepos/Test_CA1/keys/" +
+                                               request + ".key");
+                        if(!keyFile.exists())
+                        {
+                            cout << "Take 2: Key not exists. !!! Wrong !!!" << endl;
+                        }
+                        else
+                        {
+                            cout << "Take 2: Key still exists. !!! OK !!!" << endl;
+                        }
+
+                        path::PathInfo reqFile("./TestRepos/Test_CA1/req/" +
+                                               request + ".req");
+                        if(!reqFile.exists())
+                        {
+                            cout << "Take 2: Request not exists. !!! Wrong !!!" << endl;
+                        }
+                        else
+                        {
+                            cout << "Take 2: Request still exists. !!! OK !!!" << endl;
+                        }
+                    }
+                    else
+                    {
+                        cout << "Take 2: Certificate not found." << endl;
+                    }
+                    i++;
+                }
+                else if(i == 0 && state == "Valid")
                 {
                     path::PathInfo certFile("./TestRepos/Test_CA1/newcerts/" +
                                             certificateName + ".pem");
@@ -170,21 +173,21 @@ int main()
                             certFile.stat();
                             if(!certFile.exists())
                             {
-                                cout << "Take 2: Delete Certificate successfull." << endl;
+                                cout << "Take 0: Delete Certificate successfull." << endl;
                             }
                             else
                             {
-                                cout << "Take 2: Delete Certificate failed." << endl;
+                                cout << "Take 0: Delete Certificate failed." << endl;
                             }
                         }
                         catch(RuntimeException &e)
                         {
-                            cout << "Take 2: Delete Certificate failed. This is ok" << endl;
+                            cout << "Take 0: Delete Certificate failed. This is ok" << endl;
                         }
                     }
                     else
                     {
-                        cout << "Take 2: Certificate not found." << endl;
+                        cout << "Take 0: Certificate not found." << endl;
                     }
                     i++;
                 }
