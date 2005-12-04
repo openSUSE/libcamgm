@@ -1038,18 +1038,15 @@ CA::updateDB()
     
 	if(db.size() != 0) {
 		initConfigFile();
-        
+		
 		OpenSSLUtils ost(repositoryDir + "/" + caName + "/" + "openssl.cnf");
-        
+		
 		ost.updateDB(repositoryDir + "/" + caName + "/cacert.pem",
 		             repositoryDir + "/" + caName + "/cacert.key",
 		             caPasswd);
-        
-	} else {
-		LOGIT_ERROR("Invalid password");
-		BLOCXX_THROW(limal::RuntimeException,
-		             "Invalid password");
+		
 	}
+	// else => empty index.txt no database to update
 }
         
 bool
