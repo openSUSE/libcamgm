@@ -183,36 +183,39 @@ RequestGenerationData::getExtensions() const
 void
 RequestGenerationData::commit2Config(CA& ca, Type type) const
 {
-    if(!valid()) {
-        LOGIT_ERROR("invalid RequestGenerationData object");
-        BLOCXX_THROW(limal::ValueException, "invalid RequestGenerationData object");
-    }
+	// do not use this->valid(); it checks for subject too
+	// subject.valid() is not needed here
+	if(!extensions.valid()) 
+	{
+		LOGIT_ERROR("invalid RequestGenerationData object");
+		BLOCXX_THROW(limal::ValueException, "invalid RequestGenerationData object");
+	}
 
-    if(type == E_CRL         || type == E_Client_Cert ||
-       type == E_Server_Cert || type == E_CA_Cert )
-    {
-        LOGIT_ERROR("wrong type" << type);
-        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
-    }
+	if(type == E_CRL         || type == E_Client_Cert ||
+	   type == E_Server_Cert || type == E_CA_Cert )
+	{
+		LOGIT_ERROR("wrong type" << type);
+		BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+	}
 
-    ca.getConfig()->setValue(type2Section(type, false), "default_bits", String(keysize));
+	ca.getConfig()->setValue(type2Section(type, false), "default_bits", String(keysize));
 
-    String md("sha1");
-    switch(messageDigest)
-    {
-        case E_SHA1:
-            md = "sha1";
-            break;
-        case E_MD5:
-            md = "md5";
-            break;
-        case E_MDC2:
-            md = "mdc2";
-            break;
-    }
-    ca.getConfig()->setValue(type2Section(type, false), "default_md", md);
+	String md("sha1");
+	switch(messageDigest)
+	{
+		case E_SHA1:
+			md = "sha1";
+			break;
+		case E_MD5:
+			md = "md5";
+			break;
+		case E_MDC2:
+			md = "mdc2";
+			break;
+	}
+	ca.getConfig()->setValue(type2Section(type, false), "default_md", md);
 
-    extensions.commit2Config(ca, type);
+	extensions.commit2Config(ca, type);
 }
 
 bool
