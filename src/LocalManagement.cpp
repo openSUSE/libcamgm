@@ -317,7 +317,7 @@ LocalManagement::importAsLocalCertificate(const ByteBuffer &pkcs12Data,
         }
         
         writeFile(ByteBuffer(serverKey.c_str(), serverKey.length()),
-                  destinationKeyFile, 0600);
+                  destinationKeyFile, true, 0600);
 
 
         pi.stat(destinationCAsDir);
