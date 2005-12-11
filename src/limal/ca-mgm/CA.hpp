@@ -494,7 +494,7 @@ namespace CA_MGM_NAMESPACE
          *
          * @param certificateName the certificate to delete
          * @param requestToo if set to true also request and key file 
-         * will be deleted
+         * will be deleted if they exists
          *
          */
 		void

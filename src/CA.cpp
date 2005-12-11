@@ -962,7 +962,8 @@ CA::deleteCertificate(const String& certificateName,
                       bool requestToo)
 {
 	path::PathInfo certFile(repositoryDir + "/" + caName + "/newcerts/" + certificateName + ".pem");
-	if(!certFile.exists()) {
+	if(!certFile.exists())
+	{
 		LOGIT_ERROR("Certificate does not exist." << certFile.toString());
 		BLOCXX_THROW(limal::ValueException,
 		             Format("Certificate does not exist. %1",
@@ -995,19 +996,35 @@ CA::deleteCertificate(const String& certificateName,
 
 	String state = ost.status(serial);
 
-	if( state.equalsIgnoreCase("Revoked") ||
-	   state.equalsIgnoreCase("Expired")) {
-
-		if(requestToo) {
-			deleteRequest(request);
+	if(state.equalsIgnoreCase("Revoked") ||
+	   state.equalsIgnoreCase("Expired"))
+	{
+		if(requestToo)
+		{
+			try
+			{
+				deleteRequest(request);
+			}
+			catch(limal::SystemException &e)
+			{
+				String msg = e.what();
+				if(!PerlRegEx("does\\s+not\\s+exist").match(msg))
+				{
+					throw;
+				}
+				// else if the request file does not exist everything is ok
+			}
 		}
 
 		int r = path::removeFile(certFile.toString());
-		if(r != 0) {
+		if(r != 0)
+		{
 			BLOCXX_THROW(limal::SystemException, 
 			             Format("Removing the certificate failed: %1.", r).c_str());
 		}
-	} else {
+	}
+	else
+	{
 		String dummy = 
 			String("Only revoked or expired certificates can be deleted. ") +
 			"The status of the certificate is '" + state + "'.";
@@ -1325,8 +1342,8 @@ CA::getCATree(const String& repos)
 	Map<String, Array<String> > caHash;
 
 	Array<String>::const_iterator it = caList.begin();
-	for(; it != caList.end(); ++it) {
-
+	for(; it != caList.end(); ++it)
+	{
 		CertificateData caData = 
 			LocalManagement::getCertificate(repos + "/" + (*it) + "/cacert.pem",
 			                                E_PEM);
@@ -1335,14 +1352,13 @@ CA::getCATree(const String& repos)
 		d.push_back(caData.getSubjectDN().getOpenSSLString());
 		d.push_back(caData.getIssuerDN().getOpenSSLString());
 		caHash[*it] = d;
-        
 	}
 
 
 	Map<String, Array<String> >::const_iterator chit = caHash.begin();
 	for(; chit != caHash.end(); ++chit) {
 
-		//       issuer         ==       subject
+		//       subject        ==       issuer
 		if( ((*chit).second)[0] == ((*chit).second)[1] ) {
 
 			// root CA
@@ -1353,22 +1369,33 @@ CA::getCATree(const String& repos)
 			ret.push_back(d);   // push_front() ?
 
 		} else {
-
+			bool issuerFound = false;
+			
 			// sub CA; find caName of the issuer
 			Map<String, Array<String> >::const_iterator chitnew = caHash.begin();
 			for(; chitnew != caHash.end(); ++chitnew) {
 
 				//       issuer          ==       subject
-				if(  ((*chit).second)[1] == ((*chitnew).second)[0]  ) {
-
+				if(  ((*chit).second)[1] == ((*chitnew).second)[0]  )
+				{
 					Array<String> d;
 					d.push_back((*chit).first);
 					d.push_back((*chitnew).first);
                     
 					ret.push_back(d);
-
+					issuerFound = true;
 					break;
 				}
+			}
+
+			if(!issuerFound)
+			{
+				// the issuer is not in our repository
+				Array<String> d;
+				d.push_back((*chit).first);
+				d.push_back("");
+				
+				ret.push_back(d);
 			}
 		}
 	}
