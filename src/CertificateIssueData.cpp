@@ -203,7 +203,7 @@ CertificateIssueData::valid() const
         return false;
     }
     if(notAfter <= notBefore) {
-        LOGIT_DEBUG("invalid notAfter:" << notAfter);
+    	LOGIT_DEBUG("invalid notAfter:" << notAfter << " notBefore = " <<notBefore);
         return false;
     }
 
@@ -215,20 +215,23 @@ CertificateIssueData::valid() const
 blocxx::StringArray
 CertificateIssueData::verify() const
 {
-    StringArray result;
+	StringArray result;
 
-    if(notBefore == 0) {
-        result.append(Format("invalid notBefore: %1", notBefore).toString());
-    }
-    if(notAfter <= notBefore) {
-        result.append(Format("invalid notAfter: %1", notAfter).toString());
-    }
+	if(notBefore == 0)
+	{
+		result.append(Format("invalid notBefore: %1", notBefore).toString());
+	}
+	if(notAfter <= notBefore)
+	{
+		result.append(Format("invalid notAfter %1 <= notBefore %2", notAfter, notBefore)
+		              .toString());
+	}
 
-    result.appendArray(extensions.verify());
+	result.appendArray(extensions.verify());
     
-    LOGIT_DEBUG_STRINGARRAY("CertificateIssueData::verify()", result);
+	LOGIT_DEBUG_STRINGARRAY("CertificateIssueData::verify()", result);
 
-    return result;
+	return result;
 }
 
 blocxx::StringArray
