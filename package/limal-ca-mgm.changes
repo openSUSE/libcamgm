@@ -1,4 +1,13 @@
 -------------------------------------------------------------------
+Mon Dec 12 11:29:10 CET 2005 - mc@suse.de
+
+- version 1.1.1
+- fix permissions during write private key 
+- fix getCATree(); show imported CAs where the root ca 
+  is not in the repository
+- fix deleteCertificate(); do not fail if request does not exists
+
+-------------------------------------------------------------------
 Wed Nov 30 15:13:57 CET 2005 - mc@suse.de
 
 - initial version 1.1.0
