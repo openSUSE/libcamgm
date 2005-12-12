@@ -28,6 +28,7 @@ Summary:	-
 @INSTALL@
 mkdir -p $RPM_BUILD_ROOT/var/lib/
 install -d -m 0700 $RPM_BUILD_ROOT/var/lib/CAM
+install -d -m 0755 $RPM_BUILD_ROOT/var/lib/CAM/.cas/
 install -m 0644 %{_builddir}/%{name}-%{version}/src/openssl.cnf.tmpl $RPM_BUILD_ROOT/var/lib/CAM/
 
 @CLEAN@
@@ -36,6 +37,7 @@ install -m 0644 %{_builddir}/%{name}-%{version}/src/openssl.cnf.tmpl $RPM_BUILD_
 %defattr(-,root,root)
 %dir @limallibdir@
 %attr(0700,root,root) %dir /var/lib/CAM
+%attr(0755,root,root) %dir /var/lib/CAM/.cas
 %config /var/lib/CAM/openssl.cnf.tmpl
 @limallibdir@/lib*.so.*
 
