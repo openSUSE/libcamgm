@@ -75,23 +75,6 @@ INFO  ca-mgm -     Entry   localityName : optional
 INFO  ca-mgm -     Entry   organizationName : optional
 INFO  ca-mgm -     Entry   organizationalUnitName : optional
 INFO  ca-mgm -     Entry   stateOrProvinceName : optional
-INFO  ca-mgm -   Section req
-INFO  ca-mgm -     SectionComment 
-#utf8                = yes
-
-# section, how to create a request
-# 
-# x509_extensions is for self signed CA
-# required section
-
-INFO  ca-mgm -     Entry   attributes : req_attributes
-INFO  ca-mgm -     Entry   default_bits : 2048
-INFO  ca-mgm -     Entry   default_keyfile : privkey.pem
-INFO  ca-mgm -     Entry   default_md : sha1
-INFO  ca-mgm -     Entry   distinguished_name : req_distinguished_name
-INFO  ca-mgm -     Entry   req_extensions : v3_req
-INFO  ca-mgm -     Entry   string_mask : nombstr
-INFO  ca-mgm -     Entry   x509_extensions : v3_ca
 INFO  ca-mgm -   Section req_attributes
 INFO  ca-mgm -     SectionComment 
 
@@ -99,6 +82,24 @@ INFO  ca-mgm -     Entry   challengePassword : A challenge password
 INFO  ca-mgm -     Entry   challengePassword_max : 20
 INFO  ca-mgm -     Entry   challengePassword_min : 4
 INFO  ca-mgm -     Entry   unstructuredName : An optional company name
+INFO  ca-mgm -   Section req_ca
+INFO  ca-mgm -     Entry   attributes : req_attributes
+INFO  ca-mgm -     Entry   default_bits : 2048
+INFO  ca-mgm -     Entry   default_keyfile : privkey.pem
+INFO  ca-mgm -     Entry   default_md : sha1
+INFO  ca-mgm -     Entry   distinguished_name : req_distinguished_name
+INFO  ca-mgm -     Entry   req_extensions : v3_req_ca
+INFO  ca-mgm -     Entry   string_mask : nombstr
+INFO  ca-mgm -     Entry   x509_extensions : v3_ca
+INFO  ca-mgm -   Section req_client
+INFO  ca-mgm -     Entry   attributes : req_attributes
+INFO  ca-mgm -     Entry   default_bits : 2048
+INFO  ca-mgm -     Entry   default_keyfile : privkey.pem
+INFO  ca-mgm -     Entry   default_md : sha1
+INFO  ca-mgm -     Entry   distinguished_name : req_distinguished_name
+INFO  ca-mgm -     Entry   req_extensions : v3_req_client
+INFO  ca-mgm -     Entry   string_mask : nombstr
+INFO  ca-mgm -     Entry   x509_extensions : v3_ca
 INFO  ca-mgm -   Section req_distinguished_name
 INFO  ca-mgm -     SectionComment 
 
@@ -113,6 +114,15 @@ INFO  ca-mgm -     Entry   localityName : Locality Name (eg, city)
 INFO  ca-mgm -     Entry   organizationName : Organization Name (eg, company)
 INFO  ca-mgm -     Entry   organizationalUnitName : Organizational Unit Name (eg, section)
 INFO  ca-mgm -     Entry   stateOrProvinceName : State or Province Name (full name)
+INFO  ca-mgm -   Section req_server
+INFO  ca-mgm -     Entry   attributes : req_attributes
+INFO  ca-mgm -     Entry   default_bits : 2048
+INFO  ca-mgm -     Entry   default_keyfile : privkey.pem
+INFO  ca-mgm -     Entry   default_md : sha1
+INFO  ca-mgm -     Entry   distinguished_name : req_distinguished_name
+INFO  ca-mgm -     Entry   req_extensions : v3_req_server
+INFO  ca-mgm -     Entry   string_mask : nombstr
+INFO  ca-mgm -     Entry   x509_extensions : v3_ca
 INFO  ca-mgm -   Section server_cert
 INFO  ca-mgm -     SectionComment 
 #utf8                = yes
@@ -165,9 +175,13 @@ INFO  ca-mgm -   Section v3_crl
 INFO  ca-mgm -     SectionComment 
 
 INFO  ca-mgm -     Entry   authorityKeyIdentifier : keyid:always,issuer:always
-INFO  ca-mgm -   Section v3_req
-INFO  ca-mgm -     SectionComment 
-
+INFO  ca-mgm -   Section v3_req_ca
+INFO  ca-mgm -     Entry   basicConstraints : CA:TRUE
+INFO  ca-mgm -     Entry   keyUsage : nonRepudiation, digitalSignature, keyEncipherment
+INFO  ca-mgm -   Section v3_req_client
+INFO  ca-mgm -     Entry   basicConstraints : CA:FALSE
+INFO  ca-mgm -     Entry   keyUsage : nonRepudiation, digitalSignature, keyEncipherment
+INFO  ca-mgm -   Section v3_req_server
 INFO  ca-mgm -     Entry   basicConstraints : CA:TRUE
 INFO  ca-mgm -   Section v3_server
 INFO  ca-mgm -     SectionComment 
