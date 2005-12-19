@@ -2053,7 +2053,7 @@ OpenSSLUtils::createCaInfrastructure(const String &caName,
 
         StringArray tmplArray = PerlRegEx("\n").split(String(tmpl.data(), tmpl.size()), true);
 
-        PerlRegEx                   dirR("^dir=");
+        PerlRegEx                   dirR("^\\s*dir\\s*=");
         String                      newConf;
         StringArray::const_iterator line;
 
@@ -2061,7 +2061,7 @@ OpenSSLUtils::createCaInfrastructure(const String &caName,
 
             if(dirR.match(*line)) {
 
-                newConf += "dir=" + pi.toString() + "/\n";
+                newConf += "dir = " + pi.toString() + "/\n";
 
             } else {
                 
