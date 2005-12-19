@@ -35,8 +35,8 @@ int main()
     LIMAL_SLOG(limal::Logger("ca-mgm"),
                "DEBUG", "file openssl.cnf.tmpl.test parsed.");
     
-    configNew->setValue ("v3_req", "basicConstraints", "CA:TRUE");
-    configNew->deleteValue ("v3_req", "keyUsage");
+    configNew->setValue ("v3_req_server", "basicConstraints", "CA:TRUE");
+    configNew->deleteValue ("v3_req_server", "keyUsage");
     
     CAConfig *configDump = new CAConfig("openssl.cnf.tmpl.test");
     configDump->dump();
