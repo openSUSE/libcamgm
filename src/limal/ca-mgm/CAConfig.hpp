@@ -98,7 +98,12 @@ namespace CA_MGM_NAMESPACE
         CAConfig& operator=(const CAConfig&);
         
         void dumpTree(INI::Section *section, int level = 0);
-        
+
+    	/**
+    	 * Check the format of the template and fix it if required.
+    	 * (SLES9 => SLES10 update)
+    	 */
+    	void validateAndFix();
     };
     
 }

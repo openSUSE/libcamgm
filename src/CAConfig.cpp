@@ -73,6 +73,8 @@ CAConfig::CAConfig(const String &file)
     parser->initMachine (options, commentsDescr, sectionDescr, entryDescr, rewrites);
     parser->initFiles (file);
     parser->parse();
+
+    validateAndFix();
 }
 
 CAConfig::~CAConfig()
@@ -243,6 +245,68 @@ CAConfig&
 CAConfig::operator=(const CAConfig&)
 {
     return *this;
+}
+
+void
+CAConfig::validateAndFix()
+{
+	bool didChanges = false;
+	
+	limal::INI::SectionMap sections = parser->iniFile.getSections();
+
+	if(sections.find("req") != sections.end())
+	{
+		LOGIT_INFO("Found req section: converting req to req_ca, req_client, req_server");
+
+		if(sections.find("req_ca") == sections.end())
+		{
+			// convert req to req_ca
+			copySection("req", "req_ca");
+			setValue("req_ca", "req_extensions", "v3_req_ca");
+		}
+		if(sections.find("req_client") == sections.end())
+		{
+			// convert req to req_client
+			copySection("req", "req_client");
+			setValue("req_client", "req_extensions", "v3_req_client");
+		}
+		if(sections.find("req_server") == sections.end())
+		{
+			// convert req to req_server
+			copySection("req", "req_server");
+			setValue("req_server", "req_extensions", "v3_req_server");
+		}
+		parser->iniFile.delSection("req");
+		didChanges = true;
+		
+	}
+	if(sections.find("v3_req") != sections.end())
+	{
+		LOGIT_INFO("Found v3_req section: converting v3_req to v3_req_ca, v3_req_client, v3_req_server");
+		
+		if(sections.find("v3_req_ca") == sections.end())
+		{
+			// convert v3_req to v3_req_ca
+			copySection("v3_req", "v3_req_ca");
+			setValue("v3_req_ca", "basicConstraints", "CA:TRUE");
+		}
+		if(sections.find("v3_req_client") == sections.end())
+		{
+			// convert v3_req to v3_req_client
+			copySection("v3_req", "v3_req_client");
+		}
+		if(sections.find("v3_req_server") == sections.end())
+		{
+			// convert v3_req to v3_req_server
+			copySection("v3_req", "v3_req_server");
+		}
+		parser->iniFile.delSection("v3_req");
+		didChanges = true;
+	}
+	if(didChanges)
+	{
+		parser->write();
+	}
 }
 
 
