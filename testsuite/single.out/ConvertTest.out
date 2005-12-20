@@ -1,0 +1,22 @@
+START
+===================== Test x509Convert =====================
+Got DER certificate
+Got PEM certificate
+correct
+===================== Test reqConvert =====================
+Got DER request
+Got PEM request
+correct
+===================== Test crlConvert =====================
+Got DER CRL
+Got PEM CRL
+correct
+===================== Test rsaConvert =====================
+Got DER Key
+Got PEM Key
+correct encryption
+===================== Test pkcs12Convert =====================
+Got PKCS12 data
+Got PEM 
+correct encryption
+DONE

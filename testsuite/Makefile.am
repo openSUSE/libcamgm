@@ -29,7 +29,8 @@ noinst_PROGRAMS = CAConfig.single CA1.single CA2.multi \
                   RevokeTest5.single ImportRequestTest.single \
                   DeleteCATest.single ImportCATest.single \
                   X_ListCATreeTest.single ExportTest.single \
-                  ImportCommonCertificateTest.single
+                  ImportCommonCertificateTest.single \
+                  ConvertTest.single
 
 CAConfig_single_SOURCES = CAConfig.cc
 
@@ -98,6 +99,8 @@ X_ListCATreeTest_single_SOURCES = ListCATreeTest.cc
 ExportTest_single_SOURCES = ExportTest.cc
 
 ImportCommonCertificateTest_single_SOURCES = ImportCommonCertificateTest.cc
+
+ConvertTest_single_SOURCES = ConvertTest.cc
 
 clean-local:
 	rm -f tmp.err.* tmp.out.* site.exp site.bak openssl.cnf.tmpl.test
