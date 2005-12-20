@@ -133,6 +133,11 @@ namespace CA_MGM_NAMESPACE {
 		           FormatType inform,
 		           FormatType outform );
 
+		static ByteBuffer
+		reqConvert(const ByteBuffer &req,
+		           FormatType inform,
+		           FormatType outform );
+
 		/**
          * certificate and key has to be in PEM format
          */

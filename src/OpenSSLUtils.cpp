@@ -1259,6 +1259,85 @@ OpenSSLUtils::crlConvert(const ByteBuffer &crl,
 }
 
 limal::ByteBuffer
+OpenSSLUtils::reqConvert(const ByteBuffer &req,
+                         FormatType inform,
+                         FormatType outform )
+{
+    // FIXME: use tmp file 
+    blocxx::String inFileName(::tempnam("/tmp/", "reqIn"));
+    blocxx::String outFileName(::tempnam("/tmp/", "reqOt"));
+    
+    LocalManagement::writeFile(req, inFileName,
+                               false, 0600);
+    
+    blocxx::String debugCmd;
+    
+    debugCmd += limal::ca_mgm::OPENSSL_COMMAND + " ";
+    debugCmd += "req ";
+    debugCmd += "-in ";
+    debugCmd += inFileName + " ";
+    debugCmd += "-out ";
+    debugCmd += outFileName + " ";
+    debugCmd += "-inform ";
+    
+    switch(inform) {
+    case E_PEM:
+        debugCmd += "PEM ";
+        break;
+    case E_DER:
+        debugCmd += "DER ";
+        break;
+    }
+    
+    debugCmd += "-outform ";
+    
+    switch(outform) {
+    case E_PEM:
+        debugCmd += "PEM ";
+        break;
+     case E_DER:
+         debugCmd += "DER ";
+         break;
+    }
+    
+     StringArray cmd = PerlRegEx("\\s").split(debugCmd);
+
+     LOGIT_DEBUG("Command: " << debugCmd);
+
+     blocxx::EnvVars env;
+     env.addVar("PATH", "/usr/bin/");
+     env.addVar("RANDFILE", "./.rnd");
+     blocxx::String stdOutput;
+     blocxx::String errOutput;
+     int            status    = 0;
+
+     try {
+
+         blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
+
+     } catch(blocxx::Exception& e) {
+         LOGIT_ERROR( "openssl exception:" << e);
+         status = -1;
+     }
+     if(status != 0) {
+         LOGIT_INFO( "openssl status:" << blocxx::String(status));
+     }
+     if(!errOutput.empty()) {
+         LOGIT_ERROR("openssl stderr:" << errOutput);
+     }
+     if(!stdOutput.empty()) {
+         LOGIT_DEBUG("openssl stdout:" << stdOutput);
+     }
+
+     ByteBuffer out = LocalManagement::readFile(outFileName);
+
+     path::removeFile(inFileName);
+     path::removeFile(outFileName);
+
+    return out;
+}
+
+limal::ByteBuffer
 OpenSSLUtils::createPKCS12(const ByteBuffer &certificate,
                            const ByteBuffer &key,
                            const String     &inPassword,
