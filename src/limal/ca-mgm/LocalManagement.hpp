@@ -205,6 +205,73 @@ namespace CA_MGM_NAMESPACE {
                   const String &file,
                   bool overwrite = true,
                   mode_t mode = 0644);
+
+    	/**
+    	 * Convert a certificate from PEM/DER to DER/PEM format
+    	 *
+    	 */
+    	static limal::ByteBuffer
+    	x509Convert(const limal::ByteBuffer &certificate,
+    	            FormatType inform,
+    	            FormatType outform );
+
+    	/**
+    	 * Convert a rsa key from PEM/DER to DER/PEM.
+    	 * This function can also be used to set a new
+    	 * password or remove the encryption from the key.
+    	 * An encrypted key is only available if the format is PEM.
+    	 *
+    	 * @param key the key data
+    	 * @param inform the format of the key data
+    	 * @param outform the output format of the key
+    	 * @param inPassword the password for the key data. "" == no password set.
+    	 * @param outPassword the new password for the key. "" == no password for the new key.
+    	 * @param algorithm the encryption algorithm for the key
+    	 *        valid values are: des, des3, aes128, aes192, aes256
+    	 */
+    	static limal::ByteBuffer
+    	rsaConvert(const limal::ByteBuffer &key,
+    	           FormatType inform,
+    	           FormatType outform,
+    	           const String &inPassword,
+    	           const String &outPassword,
+    	           const String &algorithm = "des3" );
+
+    	/**
+    	 * Convert a CRL from PEM/DER to DER/PEM format
+    	 */
+    	static limal::ByteBuffer
+    	crlConvert(const limal::ByteBuffer &crl,
+    	           FormatType inform,
+    	           FormatType outform );
+
+    	static limal::ByteBuffer
+    	reqConvert(const limal::ByteBuffer &req,
+    	           FormatType inform,
+    	           FormatType outform );
+
+    	
+    	/**
+    	 * Create a PKCS12 bundle.
+    	 * Certificate and key has to be in PEM format
+    	 */
+    	static limal::ByteBuffer
+    	createPKCS12(const limal::ByteBuffer &certificate,
+    	             const limal::ByteBuffer &key,
+    	             const String            &inPassword,
+    	             const String            &outPassword,
+    	             const limal::ByteBuffer &caCert,
+    	             const String            &caPath,
+    	             bool                     withChain = false);
+    	
+    	/**
+    	 * Convert PKCS12 to PEM format
+    	 */
+    	static limal::ByteBuffer
+    	pkcs12ToPEM(const limal::ByteBuffer &pkcs12,
+    	            const String            &inPassword,
+    	            const String            &outPassword,
+    	            const String            &algorithm = "des3");
     };
 }
 }

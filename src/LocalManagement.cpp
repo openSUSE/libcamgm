@@ -74,7 +74,7 @@ LocalManagement::importAsLocalCertificate(const ByteBuffer &pkcs12Data,
                                           const String     &destinationCertFile,
                                           const String     &destinationKeyFile)
 {
-    ByteBuffer out = OpenSSLUtils::pkcs12ToPEM(pkcs12Data, password, "");
+	ByteBuffer out = OpenSSLUtils::pkcs12ToPEM(pkcs12Data, password, "");
 
     String data(out.data(), out.size());
     
@@ -547,6 +547,65 @@ LocalManagement::writeFile(const ByteBuffer& data,
     fileObject.unlock();
     fileObject.close();
 }
+
+ByteBuffer
+LocalManagement::x509Convert(const ByteBuffer &certificate, FormatType inform,
+                             FormatType outform)
+{
+	return OpenSSLUtils::x509Convert(certificate, inform, outform);	
+}
+
+ByteBuffer
+LocalManagement::rsaConvert(const ByteBuffer &key,
+                            FormatType inform,
+                            FormatType outform,
+                            const String &inPassword,
+                            const String &outPassword,
+                            const String &algorithm)
+{
+	return OpenSSLUtils::rsaConvert(key, inform, outform,
+	                                inPassword, outPassword, algorithm);
+}
+
+ByteBuffer
+LocalManagement::crlConvert(const ByteBuffer &crl,
+                            FormatType inform,
+                            FormatType outform)
+{
+	return OpenSSLUtils::crlConvert(crl, inform, outform);
+}
+
+ByteBuffer
+LocalManagement::reqConvert(const ByteBuffer &req,
+                            FormatType inform,
+                            FormatType outform )
+{
+	return OpenSSLUtils::reqConvert(req, inform, outform);
+}
+	
+ByteBuffer
+LocalManagement::createPKCS12(const ByteBuffer &certificate,
+                              const ByteBuffer &key,
+                              const String     &inPassword,
+                              const String     &outPassword,
+                              const ByteBuffer &caCert,
+                              const String     &caPath,
+                              bool              withChain )
+{
+	return OpenSSLUtils::createPKCS12(certificate, key, inPassword,
+	                                  outPassword, caCert, caPath, withChain);
+}
+
+ByteBuffer
+LocalManagement::pkcs12ToPEM(const ByteBuffer &pkcs12,
+                             const String     &inPassword,
+                             const String     &outPassword,
+                             const String     &algorithm)
+{
+	return OpenSSLUtils::pkcs12ToPEM(pkcs12, inPassword,
+	                                 outPassword, algorithm);
+}
+
 
 }
 }
