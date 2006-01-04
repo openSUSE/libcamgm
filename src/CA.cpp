@@ -206,6 +206,11 @@ CA::createRequest(const String& keyPasswd,
 		BLOCXX_THROW(limal::ValueException, "Invalid request data");
 	}
   
+	// copy template to config
+	initConfigFile();
+
+	removeDefaultsFromConfig();
+	
 	OpenSSLUtils ost(repositoryDir + "/" + caName + "/" + "openssl.cnf");
 
 	String opensslDN = requestData.getSubject().getOpenSSLString();
@@ -227,9 +232,6 @@ CA::createRequest(const String& keyPasswd,
 		             Format("Duplicate DN. Request '%1.req' already exists.", request).c_str());
 	}
 
-	// copy template to config
-	initConfigFile();
-    
 	// write request data to config
 	requestData.commit2Config(*this, requestType);
 
@@ -1165,7 +1167,9 @@ CA::createRootCA(const String& caName,
 
 	// copy template to config
 	tmpCA.initConfigFile();
-    
+	
+	tmpCA.removeDefaultsFromConfig();
+
 	// write request data to config
 	caRequestData.commit2Config(tmpCA, E_CA_Req);
 
@@ -1697,6 +1701,45 @@ CA::commitConfig2Template()
 		BLOCXX_THROW(limal::RuntimeException, "config not initialized");
 	}
 }
+
+void
+CA::removeDefaultsFromConfig()
+{
+	if(!config)
+	{
+		LOGIT_ERROR("config not initialized");
+		BLOCXX_THROW(limal::RuntimeException, "config not initialized");
+	}
+	
+	bool p = config->exists("req_ca", "distinguished_name");
+	if(!p)
+	{
+		LOGIT_ERROR("missing section 'distinguished_name' in config file");
+		BLOCXX_THROW(limal::SyntaxException,
+		             "missing section 'distinguished_name' in config file");
+	}
+	String dnSect = config->getValue("req_ca", "distinguished_name");
+	
+	StringList dnKeys = config->getKeylist(dnSect);
+	
+	if(dnKeys.empty())
+	{
+		LOGIT_ERROR("Can not parse Section " << dnSect);
+		BLOCXX_THROW(limal::SyntaxException,
+		             Format("Can not parse Section %1", dnSect).c_str());
+	}
+	StringList::const_iterator it = dnKeys.begin();
+	
+	for(; it != dnKeys.end(); ++it)
+	{
+		if((*it).endsWith("_default", String::E_CASE_INSENSITIVE))
+		{
+			// delete the default value
+			config->deleteValue(dnSect, *it);
+		}
+	}
+}
+
 
 }
 }

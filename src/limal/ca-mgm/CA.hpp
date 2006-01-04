@@ -708,6 +708,11 @@ namespace CA_MGM_NAMESPACE
 		void
 		commitConfig2Template();
 
+		/**
+		 * remove _default values from configfile
+		 */
+		void
+		removeDefaultsFromConfig();
     };
     
 }       // End of CA_MGM_NAMESPACE
