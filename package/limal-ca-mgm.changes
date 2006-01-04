@@ -1,4 +1,12 @@
 -------------------------------------------------------------------
+Wed Jan  4 11:03:09 CET 2006 - mc@suse.de
+
+- version 1.1.4
+- unify methods of SubjectAlternativeNameExt and 
+  IssuerAlternativeNameExt 
+- implement writing DN default values to config
+
+-------------------------------------------------------------------
 Tue Dec 20 14:17:17 CET 2005 - mc@suse.de
 
 - version 1.1.3
