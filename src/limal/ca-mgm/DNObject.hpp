@@ -84,9 +84,10 @@ namespace CA_MGM_NAMESPACE {
         
         virtual blocxx::StringArray  dump() const;
 
-    private:
+    protected:
         blocxx::List<RDNObject> dn;
 
+    private:
         blocxx::StringArray     checkRDNList(const blocxx::List<RDNObject>& list) const;
 
     };
