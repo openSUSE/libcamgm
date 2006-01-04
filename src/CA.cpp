@@ -185,6 +185,13 @@ CA::createSubCA(const String& newCaName,
 
 	rehashCAs(repositoryDir + "/.cas/");
 
+	// write DN defaults
+	CA tmpCA = CA(newCaName, keyPasswd, repositoryDir);
+	tmpCA.initConfigFile();
+	DNObject_Priv dnp( caRequestData.getSubject() );
+	dnp.setDefaults2Config(tmpCA);
+	tmpCA.commitConfig2Template();
+
 	return certificate;
 }
 
@@ -1204,6 +1211,12 @@ CA::createRootCA(const String& caName,
 	}
     
 	rehashCAs(repos + "/.cas/");
+
+	// write DN defaults
+	tmpCA.initConfigFile();
+	DNObject_Priv dnp( caRequestData.getSubject() );
+	dnp.setDefaults2Config(tmpCA);
+	tmpCA.commitConfig2Template();
 }
        
 
@@ -1314,6 +1327,13 @@ CA::importCA(const String& caName,
 	}
 
 	rehashCAs(repos + "/.cas/");
+
+	// write DN defaults
+	CA tmpCA = CA(caName, caPasswd, repos);
+	tmpCA.initConfigFile();
+	DNObject_Priv dnp( cad.getSubjectDN() );
+	dnp.setDefaults2Config(tmpCA);
+	tmpCA.commitConfig2Template();
 }
 
 
