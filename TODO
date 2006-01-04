@@ -1,4 +1,1 @@
 
-- compare functions in SubjectAlternativeNameExt and IssuerAlternativeNameExt
-  unify them if needed
-- set subject defaults correct (DNObject)
