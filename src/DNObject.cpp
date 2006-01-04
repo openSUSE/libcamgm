@@ -268,8 +268,6 @@ DNObject::DNObject(CAConfig* caConfig, Type type)
     String min("0");
     String max("0");
 
-    Array<Map<String, String> > configDN;
-
     for(; it != dnKeys.end(); ++it) {
 
         if((*it).endsWith("_default", String::E_CASE_INSENSITIVE)) {
