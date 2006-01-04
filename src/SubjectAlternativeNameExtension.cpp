@@ -126,8 +126,14 @@ SubjectAlternativeNameExt::operator=(const SubjectAlternativeNameExt& extension)
 }
 
 void
-SubjectAlternativeNameExt::setSubjectAlternativeName(bool copyEmail, 
-                                                     const blocxx::List<LiteralValue> &alternativeNameList)
+SubjectAlternativeNameExt::setCopyEmail(bool copyEmail)
+{
+	emailCopy = copyEmail;
+	setPresent(true);
+}
+
+void
+SubjectAlternativeNameExt::setAlternativeNameList(const blocxx::List<LiteralValue> &alternativeNameList)
 {
     StringArray r = checkLiteralValueList(alternativeNameList);
     if(!r.empty())
@@ -135,7 +141,6 @@ SubjectAlternativeNameExt::setSubjectAlternativeName(bool copyEmail,
         LOGIT_ERROR(r[0]);
         BLOCXX_THROW(limal::ValueException, r[0].c_str());
     }
-    emailCopy = copyEmail;
     altNameList = alternativeNameList;
     setPresent(true);
 }

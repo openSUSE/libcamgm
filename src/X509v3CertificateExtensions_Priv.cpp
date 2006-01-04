@@ -728,7 +728,8 @@ X509v3CertificateExts_Priv::parseSubjectAlternativeNameExt(STACK_OF(X509_EXTENSI
 
     if(!lvList.empty())
     {
-        ext.setSubjectAlternativeName(false, lvList);
+    	ext.setCopyEmail(false);
+        ext.setAlternativeNameList(lvList);
     }
     else
     {

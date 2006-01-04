@@ -467,7 +467,8 @@ X509v3RequestExts_Priv::parseSubjectAlternativeNameExt(STACK_OF(X509_EXTENSION) 
 
     if(!lvList.empty())
     {
-        ext.setSubjectAlternativeName(false, lvList);
+    	ext.setCopyEmail(false);
+        ext.setAlternativeNameList(lvList);
     }
     else
     {        

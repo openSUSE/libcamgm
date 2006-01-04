@@ -31,51 +31,53 @@ namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
-    class CA;
-    class CAConfig;
+	class CA;
+	class CAConfig;
 
-    class SubjectAlternativeNameExt : public ExtensionBase {
-    public:
-        SubjectAlternativeNameExt();
+	class SubjectAlternativeNameExt : public ExtensionBase {
+	public:
+		SubjectAlternativeNameExt();
         
-        SubjectAlternativeNameExt(CAConfig* caConfig, Type type);
+		SubjectAlternativeNameExt(CAConfig* caConfig, Type type);
         
-        SubjectAlternativeNameExt(bool copyEmail,
-                                  const blocxx::List<LiteralValue> &alternativeNameList = blocxx::List<LiteralValue>());
+		SubjectAlternativeNameExt(bool copyEmail,
+		                          const blocxx::List<LiteralValue> &alternativeNameList = blocxx::List<LiteralValue>());
         
-        SubjectAlternativeNameExt(const SubjectAlternativeNameExt& extension);
-        
-        virtual ~SubjectAlternativeNameExt();
+		SubjectAlternativeNameExt(const SubjectAlternativeNameExt& extension);
+		
+		virtual ~SubjectAlternativeNameExt();
+		
+		SubjectAlternativeNameExt&
+		operator=(const SubjectAlternativeNameExt& extension);
 
-        SubjectAlternativeNameExt&
-        operator=(const SubjectAlternativeNameExt& extension);
-
-        void
-        setSubjectAlternativeName(bool copyEmail, 
-                                  const blocxx::List<LiteralValue> &alternativeNameList = blocxx::List<LiteralValue>());
-        
-        bool
-        getCopyEmail() const;
-        
-        blocxx::List<LiteralValue>
-        getAlternativeNameList() const;
-
-        virtual void
-        commit2Config(CA& ca, Type type) const;
-
-        virtual bool
-        valid() const;
-        
-        virtual blocxx::StringArray
-        verify() const;
-
-        virtual blocxx::StringArray
-        dump() const;
-
-    private:
-        bool                           emailCopy;
-        blocxx::List<LiteralValue>     altNameList;
-    };
+		void
+		setCopyEmail(bool copyEmail);		                          
+		
+		void
+		setAlternativeNameList(const blocxx::List<LiteralValue> &alternativeNameList = blocxx::List<LiteralValue>());
+		
+		bool
+		getCopyEmail() const;
+		
+		blocxx::List<LiteralValue>
+		getAlternativeNameList() const;
+		
+		virtual void
+		commit2Config(CA& ca, Type type) const;
+		
+		virtual bool
+		valid() const;
+		
+		virtual blocxx::StringArray
+		verify() const;
+		
+		virtual blocxx::StringArray
+		dump() const;
+		
+	private:
+		bool                           emailCopy;
+		blocxx::List<LiteralValue>     altNameList;
+	};
 
 }
 }
