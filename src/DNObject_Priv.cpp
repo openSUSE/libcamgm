@@ -20,6 +20,7 @@
 
 /-*/
 
+#include  <limal/ca-mgm/CA.hpp>
 #include  "DNObject_Priv.hpp"
 #include  "Utils.hpp"
 
@@ -176,6 +177,11 @@ DNObject_Priv::DNObject_Priv(const DNObject_Priv& obj)
 {
 }
 
+DNObject_Priv::DNObject_Priv(const DNObject& obj)
+    : DNObject(obj)
+{
+}
+
 DNObject_Priv&
 DNObject_Priv::operator=(const DNObject_Priv& obj)
 {
@@ -184,6 +190,87 @@ DNObject_Priv::operator=(const DNObject_Priv& obj)
     DNObject::operator=(obj);
 
     return *this;
+}
+void
+DNObject_Priv::setDefaults2Config(CA& ca)
+{
+	bool p = ca.getConfig()->exists("req_ca", "distinguished_name");
+	if(!p)
+	{
+		LOGIT_ERROR("missing section 'distinguished_name' in config file");
+		BLOCXX_THROW(limal::SyntaxException, 
+		             "missing section 'distinguished_name' in config file");
+	}
+	String dnSect = ca.getConfig()->getValue("req_ca", "distinguished_name");
+	
+	StringList dnKeys = ca.getConfig()->getKeylist(dnSect);
+	
+	if(dnKeys.empty())
+	{
+		LOGIT_ERROR("Can not parse Section " << dnSect);
+		BLOCXX_THROW(limal::SyntaxException, 
+		             Format("Can not parse Section %1", dnSect).c_str());
+	}
+	StringList::const_iterator it = dnKeys.begin();
+	Array<Array<blocxx::String> > newDNSect;
+	
+	String lastFieldName;
+	String defaultValue;
+	
+	for(; it != dnKeys.end(); ++it)
+	{
+		if((*it).endsWith("_default", String::E_CASE_INSENSITIVE))
+		{
+			// delete the old default value
+			// if there is a new one we add it later
+			ca.getConfig()->deleteValue(dnSect, *it);
+			continue;
+		}
+		if(lastFieldName != *it)
+		{
+			// we enter a new fieldName
+			// let's have a look if we need and have a default for lastFieldName
+
+			if(!(lastFieldName.startsWith("commonName", String::E_CASE_INSENSITIVE) ||
+			     lastFieldName.startsWith("emailAddress", String::E_CASE_INSENSITIVE)))
+			{
+				// do we have a default for lastFiledName?
+				blocxx::List<RDNObject>::const_iterator rdnIT;
+				
+				for(rdnIT = dn.begin(); rdnIT != dn.end(); ++rdnIT)
+				{
+					if((*rdnIT).getType() == lastFieldName)
+					{
+						defaultValue = (*rdnIT).getValue();
+						break;
+					}
+				}
+				if(defaultValue != "")
+				{
+					Array<blocxx::String> line(2, "");
+					line[0] = lastFieldName + "_default";
+					line[1] = defaultValue;
+					newDNSect.push_back(line);
+				}
+			}
+			
+			lastFieldName = *it;
+			defaultValue = "";
+		}
+
+		Array<blocxx::String> line(2, "");
+		line[0] = *it;
+		line[1] = ca.getConfig()->getValue(dnSect, *it);
+		newDNSect.push_back(line);
+		ca.getConfig()->deleteValue(dnSect, *it);
+	}
+
+	Array<Array<blocxx::String> >::const_iterator newIT;
+
+	for(newIT = newDNSect.begin(); newIT != newDNSect.end(); ++newIT)
+	{
+		ca.getConfig()->setValue(dnSect, (*newIT)[0], (*newIT)[1]);
+	}
 }
 
 }

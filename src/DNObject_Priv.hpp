@@ -31,6 +31,8 @@ namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
+	class CA;
+	
     class RDNObject_Priv : public RDNObject {
     public:
         RDNObject_Priv();
@@ -57,13 +59,17 @@ namespace CA_MGM_NAMESPACE {
 
     };
 
-    class DNObject_Priv : public DNObject {
-    public:
-        DNObject_Priv(X509_NAME *x509_name);
-        DNObject_Priv(const DNObject_Priv& obj);    
-        virtual ~DNObject_Priv();
-
-        DNObject_Priv& operator=(const DNObject_Priv& obj);
+	class DNObject_Priv : public DNObject {
+	public:
+		DNObject_Priv(X509_NAME *x509_name);
+		DNObject_Priv(const DNObject_Priv& obj);    
+		DNObject_Priv(const DNObject& obj);    
+		virtual ~DNObject_Priv();
+		
+		DNObject_Priv& operator=(const DNObject_Priv& obj);
+		
+		void
+		setDefaults2Config(CA& ca);
     };
 
 }
