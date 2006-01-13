@@ -99,7 +99,7 @@ RequestGenerationData::operator=(const RequestGenerationData& data)
 }
 
 void
-RequestGenerationData::setSubject(const DNObject dn)
+RequestGenerationData::setSubjectDN(const DNObject dn)
 {
     StringArray r = dn.verify();
     if(!r.empty()) {
@@ -110,7 +110,7 @@ RequestGenerationData::setSubject(const DNObject dn)
 }
 
 DNObject
-RequestGenerationData::getSubject() const
+RequestGenerationData::getSubjectDN() const
 {
     return subject;
 }

@@ -45,7 +45,7 @@ namespace CA_MGM_NAMESPACE {
 
         void                setVersion(blocxx::UInt32 v);
         void                setKeysize(blocxx::UInt32 size);
-        void                setSubject(const DNObject dn);
+        void                setSubjectDN(const DNObject dn);
         void                setKeyAlgorithm(KeyAlg alg);
         void                setPublicKey(const ByteBuffer key);
         void                setSignatureAlgorithm(SigAlg alg);

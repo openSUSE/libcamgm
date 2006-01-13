@@ -56,10 +56,10 @@ namespace CA_MGM_NAMESPACE
         operator=(const RequestGenerationData& data);
 
         void
-        setSubject(const DNObject dn);
+        setSubjectDN(const DNObject dn);
         
         DNObject
-        getSubject() const;
+        getSubjectDN() const;
 
         void
         setKeysize(blocxx::UInt32 size);

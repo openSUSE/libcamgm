@@ -43,7 +43,7 @@ int main()
 
         RequestGenerationData rgd = ca.getRequestDefaults(E_Server_Req);
 
-        List<RDNObject> dnl = rgd.getSubject().getDN();
+        List<RDNObject> dnl = rgd.getSubjectDN().getDN();
         List<RDNObject>::iterator dnit;
         
         // ------------------------ fill the Subject (DN) -------------------
@@ -67,7 +67,7 @@ int main()
         }
         
         DNObject dn(dnl);
-        rgd.setSubject(dn);
+        rgd.setSubjectDN(dn);
 
         // ------------------------ get issue defaults ---------------------
 

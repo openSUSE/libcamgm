@@ -91,7 +91,7 @@ RequestData::getKeysize() const
 }
 
 DNObject
-RequestData::getSubject() const
+RequestData::getSubjectDN() const
 {
     return subject;
 }

@@ -42,7 +42,7 @@ int main()
         RequestGenerationData rgd = CA::getRootCARequestDefaults("./TestRepos/");
         CertificateIssueData  cid = CA::getRootCAIssueDefaults("./TestRepos/");
         
-        List<RDNObject> dnl = rgd.getSubject().getDN();
+        List<RDNObject> dnl = rgd.getSubjectDN().getDN();
         List<RDNObject>::iterator dnit;
 
         for(dnit = dnl.begin(); dnit != dnl.end(); ++dnit)
@@ -64,7 +64,7 @@ int main()
         }
         
         DNObject dn(dnl);
-        rgd.setSubject(dn);
+        rgd.setSubjectDN(dn);
         
         CA::createRootCA("Test_CA", "system", rgd, cid, "./TestRepos/");
 

@@ -94,7 +94,7 @@ int main(int argc, char **argv)
 
             cout << "============= write back unchanged" << endl; 
 
-            List<RDNObject> dnl = rgd.getSubject().getDN();
+            List<RDNObject> dnl = rgd.getSubjectDN().getDN();
             List<RDNObject>::iterator dnit;
             for(dnit = dnl.begin(); dnit != dnl.end(); ++dnit)
             {
@@ -109,7 +109,7 @@ int main(int argc, char **argv)
             }
 
             DNObject dn(dnl);
-            rgd.setSubject(dn);
+            rgd.setSubjectDN(dn);
             ca.setRequestDefaults(t, rgd);
             
             cout << "============= re-read" << endl; 

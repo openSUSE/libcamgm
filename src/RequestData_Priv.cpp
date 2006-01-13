@@ -153,7 +153,7 @@ RequestData_Priv::setKeysize(blocxx::UInt32 size)
 }
 
 void
-RequestData_Priv::setSubject(const DNObject dn)
+RequestData_Priv::setSubjectDN(const DNObject dn)
 {
     StringArray r = dn.verify();
     if(!r.empty()) {

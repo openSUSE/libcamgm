@@ -52,7 +52,7 @@ namespace CA_MGM_NAMESPACE {
         getKeysize() const;
         
         DNObject
-        getSubject() const;
+        getSubjectDN() const;
         
         KeyAlg
         getKeyAlgorithm() const;

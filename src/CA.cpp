@@ -188,7 +188,7 @@ CA::createSubCA(const String& newCaName,
 	// write DN defaults
 	CA tmpCA = CA(newCaName, keyPasswd, repositoryDir);
 	tmpCA.initConfigFile();
-	DNObject_Priv dnp( caRequestData.getSubject() );
+	DNObject_Priv dnp( caRequestData.getSubjectDN() );
 	dnp.setDefaults2Config(tmpCA);
 	tmpCA.commitConfig2Template();
 
@@ -213,7 +213,7 @@ CA::createRequest(const String& keyPasswd,
 	
 	OpenSSLUtils ost(repositoryDir + "/" + caName + "/" + "openssl.cnf");
 
-	String opensslDN = requestData.getSubject().getOpenSSLString();
+	String opensslDN = requestData.getSubjectDN().getOpenSSLString();
 	blocxx::MD5 md5(opensslDN);
 	String request = md5.toString() + "-" +
 		String(blocxx::DateTime::getCurrent().get());
@@ -246,7 +246,7 @@ CA::createRequest(const String& keyPasswd,
 
 	// create request
 
-	ost.createRequest(requestData.getSubject(),
+	ost.createRequest(requestData.getSubjectDN(),
 	                  repositoryDir + "/" + caName + "/req/"+ request + ".req",
 	                  repositoryDir + "/" + caName + "/keys/"+ request + ".key",
 	                  keyPasswd,
@@ -301,7 +301,7 @@ CA::issueCertificate(const String& requestName,
 	// Check the DN Policy
 	RequestData rdata = getRequest(requestName);
 
-	checkDNPolicy(rdata.getSubject(), certType);
+	checkDNPolicy(rdata.getSubjectDN(), certType);
 
 	// copy template to config
 	initConfigFile();
@@ -441,7 +441,7 @@ CA::importRequestData(const ByteBuffer& request,
 {
 	RequestData rd = RequestData_Priv(request, formatType);
     
-	String name = rd.getSubject().getOpenSSLString();
+	String name = rd.getSubjectDN().getOpenSSLString();
     
 	blocxx::MD5 md5(name);
     
@@ -1185,7 +1185,7 @@ CA::createRootCA(const String& caName,
 
 
 	// create request
-	ost.createRequest(caRequestData.getSubject(),
+	ost.createRequest(caRequestData.getSubjectDN(),
 	                  repos + "/" + caName + "/" + "cacert.req",
 	                  repos + "/" + caName + "/" + "cacert.key",
 	                  caPasswd,
@@ -1218,7 +1218,7 @@ CA::createRootCA(const String& caName,
 
 	// write DN defaults
 	tmpCA.initConfigFile();
-	DNObject_Priv dnp( caRequestData.getSubject() );
+	DNObject_Priv dnp( caRequestData.getSubjectDN() );
 	dnp.setDefaults2Config(tmpCA);
 	tmpCA.commitConfig2Template();
 }
