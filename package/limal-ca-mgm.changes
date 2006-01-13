@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Fri Jan 13 16:48:29 CET 2006 - mc@suse.de
+
+- version 1.1.5
+- rename RequestData set/getSubject to set/getSubjectDN
+  to be compatible with CertificateData and CRLData 
+
+-------------------------------------------------------------------
 Wed Jan  4 11:03:09 CET 2006 - mc@suse.de
 
 - version 1.1.4
