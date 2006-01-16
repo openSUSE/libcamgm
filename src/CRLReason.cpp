@@ -119,6 +119,7 @@ CRLReason::setHoldInstruction(const String& holdInstruction)
 	}
 
 	this->holdInstruction = holdInstruction;
+	this->reason = "certificateHold";
 }
 
 // ----------------------------------------------------------------------------
@@ -140,6 +141,7 @@ void
 CRLReason::setKeyCompromiseDate(time_t compromiseDate)
 {
 	this->compromiseDate  = compromiseDate;
+	this->reason = "keyCompromise";
 }
 
 // ----------------------------------------------------------------------------
@@ -182,6 +184,7 @@ void
 CRLReason::setCACompromiseDate(time_t compromiseDate)
 {
 	this->compromiseDate  = compromiseDate;
+	this->reason = "CACompromise";
 }
 
 // ----------------------------------------------------------------------------
