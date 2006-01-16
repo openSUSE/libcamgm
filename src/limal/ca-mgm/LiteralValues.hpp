@@ -29,19 +29,58 @@ namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
+	/**
+	 * A Literal Value is a pair of a type and a value
+	 * Valid types are: URI, DNS, RID, IP and email
+	 */
     class LiteralValue {
     public:
         LiteralValue();
+
+    	/**
+    	 * Constructor
+    	 *
+    	 * @param type Valid types are: URI, DNS, RID, IP and email
+    	 * @param value a value for the type
+    	 */
         LiteralValue(const String &type, const String &value);
+
+    	/**
+    	 * Constructor
+    	 *
+    	 * @param value in the form <type>:<value>
+    	 *              Valid types are: URI, DNS, RID, IP and email
+    	 */
         LiteralValue(const String& value);
         LiteralValue(const LiteralValue& value);
 
         LiteralValue& operator=(const LiteralValue& value);
         virtual ~LiteralValue();
 
+    	/**
+    	 * Set new values
+    	 *
+    	 * @param type Valid types are: URI, DNS, RID, IP and email
+    	 * @param value a value for the type
+    	 */
         virtual void   setLiteral(const String &type, const String &value);
-        virtual void   setValue(const String &value);
+
+    	/**
+    	 * Set new values
+    	 *
+    	 * @param value in the form <type>:<value>
+    	 *              Valid types are: URI, DNS, RID, IP and email
+    	 */
+    	virtual void   setValue(const String &value);
+
+    	/**
+    	 * Return the type of this Literal Value
+    	 */
         virtual String getType() const;
+
+    	/**
+    	 * Return the value of this Literal Value
+    	 */
         virtual String getValue() const;
 
         virtual bool                valid() const;
@@ -49,6 +88,9 @@ namespace CA_MGM_NAMESPACE {
 
         virtual blocxx::StringArray  dump() const;
 
+    	/**
+    	 * Return the LiteralValue in the form <type>:<value>
+    	 */
         virtual String              toString() const;
 
         friend bool operator==(const LiteralValue &l, const LiteralValue &r);
