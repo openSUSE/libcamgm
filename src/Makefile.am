@@ -61,6 +61,8 @@ liblimal_ca_mgm_la_LDFLAGS  = \
 	-version-info $(LIB_VERSION_INFO) \
 	$(LIMAL_LIBS)
 
+liblimal_ca_mgm_la_LIBADD = $(LIB_SSL)
+
 CLEANFILES     = *~
 DISTCLEANFILES = Commands.hpp
 EXTRA_DIST     = *.hpp Commands.hpp.in openssl.cnf.tmpl

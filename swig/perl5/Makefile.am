@@ -10,7 +10,7 @@ VENDOR_ARCH  = $(shell $(PERL) -MConfig -e 'print $$Config{installvendorarch};')
 INCLUDES     = -I$(top_builddir)/src -I$(top_srcdir)/src $(LIMAL_CFLAGS) $(PERL_CC)
 
 # FIXME:
-LIBS         = -L$(top_builddir)/src/.libs -Wl,-rpath,$(limallibdir) -llimal-ca-mgm $(LIMAL_LIBS) $(PERL_LD)
+LIBS         = -L$(top_builddir)/src/.libs -Wl,-rpath,$(limallibdir) -llimal-ca-mgm $(LIMAL_LIBS) $(LIB_SSL) $(PERL_LD) 
 
 # FIXME:
 CXXFLAGS    += -Wno-unused -fPIC -DPIC
