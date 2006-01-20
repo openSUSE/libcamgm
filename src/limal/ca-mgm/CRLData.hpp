@@ -63,7 +63,6 @@ namespace CA_MGM_NAMESPACE {
     protected:
 
         String      serial;
-		String      fingerprint;
         time_t      revocationDate;
         CRLReason   revocationReason;
 
