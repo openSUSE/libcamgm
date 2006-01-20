@@ -194,7 +194,19 @@ CRLData::getSignatureAlgorithm() const
 blocxx::String
 CRLData::getSignatureAlgorithmAsString() const
 {
-    return String();
+	switch(m_impl->signatureAlgorithm)
+	{
+	case E_SHA1RSA:
+		return "SHA1RSA";
+		break;
+	case E_MD5RSA:
+		return "MD5RSA";
+		break;
+	case E_SHA1DSA:
+		return "SHA1DSA";
+		break;
+	}
+	return String();
 }
 
 ByteBuffer
