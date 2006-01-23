@@ -1,4 +1,16 @@
 -------------------------------------------------------------------
+Mon Jan 23 12:07:36 CET 2006 - mc@suse.de
+
+- version 1.1.7
+- improve binary compatibility for the future 
+
+-------------------------------------------------------------------
+Fri Jan 20 18:26:37 CET 2006 - mc@suse.de
+
+- remove unused member 
+- implement getSignatureAlgorithmAsString() in CRLData
+
+-------------------------------------------------------------------
 Tue Jan 17 13:17:51 CET 2006 - mc@suse.de
 
 - version 1.1.6
