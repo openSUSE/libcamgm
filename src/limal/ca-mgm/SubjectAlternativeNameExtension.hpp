@@ -26,6 +26,7 @@
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <limal/ca-mgm/ExtensionBase.hpp>
 #include  <limal/ca-mgm/LiteralValues.hpp>
+#include  <blocxx/COWIntrusiveReference.hpp>
 
 namespace LIMAL_NAMESPACE {
 
@@ -33,7 +34,8 @@ namespace CA_MGM_NAMESPACE {
 
 	class CA;
 	class CAConfig;
-
+	class SubjectAlternativeNameExtImpl;
+	
 	class SubjectAlternativeNameExt : public ExtensionBase {
 	public:
 		SubjectAlternativeNameExt();
@@ -75,8 +77,7 @@ namespace CA_MGM_NAMESPACE {
 		dump() const;
 		
 	private:
-		bool                           emailCopy;
-		blocxx::List<LiteralValue>     altNameList;
+		blocxx::COWIntrusiveReference<SubjectAlternativeNameExtImpl> m_impl;
 	};
 
 }

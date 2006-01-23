@@ -30,81 +30,92 @@
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <limal/INIParser.hpp>
+#include  <blocxx/COWIntrusiveReference.hpp>
 
 
 namespace LIMAL_NAMESPACE
 {
 namespace CA_MGM_NAMESPACE
 {
-    /**
+
+	class CAConfigImpl;
+	
+	/**
      * Class for reading and writing the openssl.cnf
      */
-    class CAConfig {
-    public:
+	class CAConfig
+	{
+	public:
 
-        /**
-         * Create a new object from <b>file</b>
-         */
-        CAConfig(const String &file);
-        ~CAConfig();
+		/**
+		 * Create a new object from <b>file</b>
+		 */
+		CAConfig(const String &file);
+		~CAConfig();
 
-        /**
-         * Set a new value in Section <b>section</b> with the Key <b>key</b>.
-         */
-        void     setValue(const String &section, const String &key, const String &value);
+		/**
+		 * Set a new value in Section <b>section</b> with the Key <b>key</b>.
+		 */
+		void
+		setValue(const String &section, const String &key, const String &value);
 
-        /**
-         * Delete the Key <b>key</b> in Section <b>section</b>
-         */
-        void     deleteValue(const String &section, const String &key);
+		/**
+		 * Delete the Key <b>key</b> in Section <b>section</b>
+		 */
+		void
+		deleteValue(const String &section, const String &key);
 
-        /**
-         * Get the value of Section  <b>section</b> with the Key <b>key</b>.
-         */
-        String   getValue(const String &section, const String &key) const;
+		/**
+		 * Get the value of Section  <b>section</b> with the Key <b>key</b>.
+		 */
+		String
+		getValue(const String &section, const String &key) const;
 
-        /**
-         * Check if Key <b>key</b> in Section <b>section</b> exists.
-         */
-        bool     exists(const String &section, const String &key) const;
+		/**
+		 * Check if Key <b>key</b> in Section <b>section</b> exists.
+		 */
+		bool
+		exists(const String &section, const String &key) const;
 
-        /**
-         * Return a List of all Keys in Section <b>section</b>.
-         */
-        blocxx::List<blocxx::String> getKeylist(const String &section) const;
+		/**
+		 * Return a List of all Keys in Section <b>section</b>.
+		 */
+		blocxx::List<blocxx::String>
+		getKeylist(const String &section) const;
 
-        /**
-         * Copy all Keys and values from Section <b>srcSection</b> to
-         * Section <b>destSection</b>.
-         */
-        void     copySection(const String &srcSection, const String &destSection);
+		/**
+		 * Copy all Keys and values from Section <b>srcSection</b> to
+		 * Section <b>destSection</b>.
+		 */
+		void
+		copySection(const String &srcSection, const String &destSection);
 
-        /**
-         * Clone this object
-         *
-         * @param file a new filename for this object
-         */
-        CAConfig *clone(const String &file);
+		/**
+		 * Clone this object
+		 *
+		 * @param file a new filename for this object
+		 */
+		CAConfig*
+		clone(const String &file);
 
-        void	 dump();
+		void	 dump();
 
 
-    private:
-        INI::INIParser 	*parser;
-        String		srcFilename;
+	private:
+		blocxx::COWIntrusiveReference<CAConfigImpl> m_impl;
+
+		CAConfig();
+		CAConfig(const CAConfig&);
+		CAConfig& operator=(const CAConfig&);
         
-        CAConfig();
-        CAConfig(const CAConfig&);
-        CAConfig& operator=(const CAConfig&);
-        
-        void dumpTree(INI::Section *section, int level = 0);
+		void dumpTree(INI::Section *section, int level = 0);
 
-    	/**
-    	 * Check the format of the template and fix it if required.
-    	 * (SLES9 => SLES10 update)
-    	 */
-    	void validateAndFix();
-    };
+		/**
+		 * Check the format of the template and fix it if required.
+		 * (SLES9 => SLES10 update)
+		 */
+		void validateAndFix();
+	};
     
 }
 }

@@ -24,11 +24,13 @@
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
+#include  <blocxx/COWIntrusiveReference.hpp>
 
 namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
+	class CRLReasonImpl;
 
 	class CRLReason {
 	public:
@@ -114,22 +116,8 @@ namespace CA_MGM_NAMESPACE {
 		dump() const;
 
 	private:
-
-		String         reason;
-
-		// used if reason is keyCompromise or CACompromise.
-		// 0 == no compromise Date set
-		time_t         compromiseDate;
-
-		// used if reason is certificateHold
-		// possible values: 
-		//    holdInstructionNone,
-		//    holdInstructionCallIssuer, 
-		//    holdInstructionReject
-		// or an OID
-		String         holdInstruction;
-
-        
+		blocxx::COWIntrusiveReference<CRLReasonImpl> m_impl;
+       
 		blocxx::String
 		checkHoldInstruction(const String& hi) const;
         

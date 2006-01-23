@@ -1,3 +1,5 @@
+DEBUG ca-mgm - type2Section: type=5 result=ca
+DEBUG ca-mgm - type2Section: type=5 result=ca
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
@@ -52,8 +54,6 @@ DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
-DEBUG ca-mgm - type2Section: type=5 result=ca
-DEBUG ca-mgm - type2Section: type=5 result=ca
 DEBUG ca-mgm - return BasicConstraintsExt::valid() is true
 DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExt::valid() is true
 DEBUG ca-mgm - return IssuerAlternativeNameExt::valid() is true
@@ -89,6 +89,8 @@ DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - return CRLDistributionPointsExt::valid() is true
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=ca
+DEBUG ca-mgm - type2Section: type=5 result=ca
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
@@ -143,9 +145,9 @@ DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
-DEBUG ca-mgm - type2Section: type=5 result=ca
-DEBUG ca-mgm - type2Section: type=5 result=ca
 DEBUG limal - removeFile ./TestRepos/ca1_test/openssl.cnf
+DEBUG ca-mgm - type2Section: type=5 result=ca
+DEBUG ca-mgm - type2Section: type=5 result=ca
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): true
@@ -210,8 +212,6 @@ DEBUG ca-mgm - ExtensionBase::setPresent(): true
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): true
-DEBUG ca-mgm - type2Section: type=5 result=ca
-DEBUG ca-mgm - type2Section: type=5 result=ca
 DEBUG ca-mgm - return BasicConstraintsExt::valid() is true
 DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExt::valid() is true
 DEBUG ca-mgm - return IssuerAlternativeNameExt::valid() is true
@@ -249,6 +249,8 @@ DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG ca-mgm - type2Section: type=5 result=ca
+DEBUG ca-mgm - type2Section: type=5 result=ca
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): true
@@ -313,6 +315,4 @@ DEBUG ca-mgm - ExtensionBase::setPresent(): true
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): true
-DEBUG ca-mgm - type2Section: type=5 result=ca
-DEBUG ca-mgm - type2Section: type=5 result=ca
 DEBUG limal - removeFile ./TestRepos/ca2_test/openssl.cnf

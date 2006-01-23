@@ -25,6 +25,7 @@
 #include  <limal/ca-mgm/CA.hpp>
 #include  <limal/Exception.hpp>
 #include  <blocxx/Format.hpp>
+#include  <blocxx/COWIntrusiveCountableBase.hpp>
 
 #include  "Utils.hpp"
 
@@ -36,148 +37,183 @@ namespace CA_MGM_NAMESPACE
 using namespace limal;
 using namespace blocxx;
 
-
-RequestGenerationData::RequestGenerationData()
-    : subject(DNObject()),
-      keysize(0),
-      messageDigest(E_SHA1),
-      challengePassword(""),
-      unstructuredName(""),
-      extensions(X509v3RequestExts())
+class RequestGenerationDataImpl : public blocxx::COWIntrusiveCountableBase
 {
-}
+	public:
+	RequestGenerationDataImpl()
+		: subject(DNObject())
+		, keysize(0)
+		, messageDigest(E_SHA1)
+		, challengePassword("")
+		, unstructuredName("")
+		, extensions(X509v3RequestExts())
+	{}
+
+	RequestGenerationDataImpl(const RequestGenerationDataImpl& impl)
+		: COWIntrusiveCountableBase(impl)
+		, subject(impl.subject)
+		, keysize(impl.keysize)
+		, messageDigest(impl.messageDigest)
+		, challengePassword(impl.challengePassword)
+		, unstructuredName(impl.unstructuredName)
+		, extensions(impl.extensions)
+	{}
+
+	~RequestGenerationDataImpl() {}
+
+	RequestGenerationDataImpl* clone() const
+	{
+		return new RequestGenerationDataImpl(*this);
+	}
+
+	DNObject          subject;
+	blocxx::UInt32    keysize;
+	
+	// KeyAlg         pubkeyAlgorithm;  // at the beginning we only support rsa
+	
+	
+	MD                messageDigest;       // parameter default_md
+	
+	// attributes
+	String            challengePassword;
+	String            unstructuredName;
+	
+	X509v3RequestExts extensions;
+
+};
+
+	
+RequestGenerationData::RequestGenerationData()
+	: m_impl(new RequestGenerationDataImpl())
+{}
 
 RequestGenerationData::RequestGenerationData(CAConfig* caConfig, Type type)
-    : subject(DNObject(caConfig, type)),
-      keysize(0),
-      messageDigest(E_SHA1),
-      challengePassword(""),
-      unstructuredName(""),
-      extensions(X509v3RequestExts(caConfig, type))
+	: m_impl(new RequestGenerationDataImpl())
 {
-    keysize = caConfig->getValue(type2Section(type, false), "default_bits").toUInt32();
+	m_impl->subject = DNObject(caConfig, type);
+	m_impl->extensions = X509v3RequestExts(caConfig, type);
+	m_impl->keysize = caConfig->getValue(type2Section(type, false), "default_bits").toUInt32();
 
-    String md = caConfig->getValue(type2Section(type, false), "default_md");
-    if(md.equalsIgnoreCase("sha1")) {
-        messageDigest = E_SHA1;
-    } else if(md.equalsIgnoreCase("md5")) {
-        messageDigest = E_MD5;
-    } else if(md.equalsIgnoreCase("mdc2")) {
-        messageDigest = E_MDC2;
-    } else {
-        LOGIT_INFO("unsupported message digest: " << md);
-        LOGIT_INFO("select default sha1.");
-        messageDigest = E_SHA1;
-    }
+	String md = caConfig->getValue(type2Section(type, false), "default_md");
+	if(md.equalsIgnoreCase("sha1"))
+	{
+		m_impl->messageDigest = E_SHA1;
+	}
+	else if(md.equalsIgnoreCase("md5"))
+	{
+		m_impl->messageDigest = E_MD5;
+	}
+	else if(md.equalsIgnoreCase("mdc2"))
+	{
+		m_impl->messageDigest = E_MDC2;
+	}
+	else
+	{
+		LOGIT_INFO("unsupported message digest: " << md);
+		LOGIT_INFO("select default sha1.");
+		m_impl->messageDigest = E_SHA1;
+	}
 }
 
 RequestGenerationData::RequestGenerationData(const RequestGenerationData& data)
-    : subject(data.subject),
-      keysize(data.keysize),
-      messageDigest(data.messageDigest),
-      challengePassword(data.challengePassword),
-      unstructuredName(data.unstructuredName),
-      extensions(data.extensions)
+	: m_impl(data.m_impl)
 {}
 
 RequestGenerationData::~RequestGenerationData()
-{
-}
+{}
 
 RequestGenerationData&
 RequestGenerationData::operator=(const RequestGenerationData& data)
 {
-    if(this == &data) return *this;
+	if(this == &data) return *this;
 
-    subject           = data.subject;
-    keysize           = data.keysize;
-    messageDigest     = data.messageDigest;
-    challengePassword = data.challengePassword;
-    unstructuredName  = data.unstructuredName;
-    extensions        = data.extensions;
-    return *this;
+	m_impl = data.m_impl;
+
+	return *this;
 }
 
 void
 RequestGenerationData::setSubjectDN(const DNObject dn)
 {
-    StringArray r = dn.verify();
-    if(!r.empty()) {
-        LOGIT_ERROR(r[0]);
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
-    }
-    subject = dn;
+	StringArray r = dn.verify();
+	if(!r.empty())
+	{
+		LOGIT_ERROR(r[0]);
+		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+	}
+	m_impl->subject = dn;
 }
 
 DNObject
 RequestGenerationData::getSubjectDN() const
 {
-    return subject;
+	return m_impl->subject;
 }
 
 void
 RequestGenerationData::setKeysize(blocxx::UInt32 size)
 {
-    keysize = size;
+	m_impl->keysize = size;
 }
 
 blocxx::UInt32
 RequestGenerationData::getKeysize() const
 {
-    return keysize;
+	return m_impl->keysize;
 }
 
 void
 RequestGenerationData::setMessageDigest(MD md)
 {
-    messageDigest = md;
+	m_impl->messageDigest = md;
 }
 
 MD 
 RequestGenerationData::getMessageDigest() const
 {
-    return messageDigest;
+	return m_impl->messageDigest;
 }
 
 void
 RequestGenerationData::setChallengePassword(const String &passwd)
 {
-    challengePassword = passwd;
+	m_impl->challengePassword = passwd;
 }
 
 blocxx::String
 RequestGenerationData::getChallengePassword() const
 {
-    return challengePassword;
+	return m_impl->challengePassword;
 }
 
 void
 RequestGenerationData::setUnstructuredName(const String &name)
 {
-    unstructuredName = name;
+	m_impl->unstructuredName = name;
 }
 
 blocxx::String
 RequestGenerationData::getUnstructuredName() const
 {
-    return unstructuredName;
+	return m_impl->unstructuredName;
 }
 
 void
 RequestGenerationData::setExtensions(const X509v3RequestExts &ext)
 {
-    StringArray r = ext.verify();
-    if(!r.empty()) {
-        LOGIT_ERROR(r[0]);
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
-    }
-    extensions = ext;
+	StringArray r = ext.verify();
+	if(!r.empty())
+	{
+		LOGIT_ERROR(r[0]);
+		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+	}
+	m_impl->extensions = ext;
 }
 
 X509v3RequestExts
 RequestGenerationData::getExtensions() const
 {
-    return extensions;
+	return m_impl->extensions;
 }
 
 void
@@ -185,7 +221,7 @@ RequestGenerationData::commit2Config(CA& ca, Type type) const
 {
 	// do not use this->valid(); it checks for subject too
 	// subject.valid() is not needed here
-	if(!extensions.valid()) 
+	if(!m_impl->extensions.valid()) 
 	{
 		LOGIT_ERROR("invalid RequestGenerationData object");
 		BLOCXX_THROW(limal::ValueException, "invalid RequestGenerationData object");
@@ -198,10 +234,10 @@ RequestGenerationData::commit2Config(CA& ca, Type type) const
 		BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
 	}
 
-	ca.getConfig()->setValue(type2Section(type, false), "default_bits", String(keysize));
+	ca.getConfig()->setValue(type2Section(type, false), "default_bits", String(m_impl->keysize));
 
 	String md("sha1");
-	switch(messageDigest)
+	switch(m_impl->messageDigest)
 	{
 		case E_SHA1:
 			md = "sha1";
@@ -215,49 +251,49 @@ RequestGenerationData::commit2Config(CA& ca, Type type) const
 	}
 	ca.getConfig()->setValue(type2Section(type, false), "default_md", md);
 
-	extensions.commit2Config(ca, type);
+	m_impl->extensions.commit2Config(ca, type);
 }
 
 bool
 RequestGenerationData::valid() const
 {
-    if(!subject.valid()) return false;
+	if(!m_impl->subject.valid()) return false;
 
-    // keysize??
+	// keysize??
 
-    return extensions.valid();
+	return m_impl->extensions.valid();
 }
 
 blocxx::StringArray
 RequestGenerationData::verify() const
 {
-    StringArray result;
+	StringArray result;
 
-    result.appendArray(subject.verify());
+	result.appendArray(m_impl->subject.verify());
 
-    // keysize??
+	// keysize??
 
-    result.appendArray(extensions.verify());
+	result.appendArray(m_impl->extensions.verify());
 
-    LOGIT_DEBUG_STRINGARRAY("RequestGenerationData::verify()", result);
+	LOGIT_DEBUG_STRINGARRAY("RequestGenerationData::verify()", result);
 
-    return result;
+	return result;
 }
 
 blocxx::StringArray
 RequestGenerationData::dump() const
 {
-    StringArray result;
-    result.append("RequestGenerationData::dump()");
+	StringArray result;
+	result.append("RequestGenerationData::dump()");
 
-    result.appendArray(subject.dump());
-    result.append("Keysize = " + String(keysize));
-    result.append("MessageDigest = " + String(messageDigest));
-    result.append("Challenge Password = " + challengePassword);
-    result.append("Unstructured Name = " + unstructuredName);
-    result.appendArray(extensions.dump());
+	result.appendArray(m_impl->subject.dump());
+	result.append("Keysize = " + String(m_impl->keysize));
+	result.append("MessageDigest = " + String(m_impl->messageDigest));
+	result.append("Challenge Password = " + m_impl->challengePassword);
+	result.append("Unstructured Name = " + m_impl->unstructuredName);
+	result.appendArray(m_impl->extensions.dump());
 
-    return result;
+	return result;
 }
 
 }

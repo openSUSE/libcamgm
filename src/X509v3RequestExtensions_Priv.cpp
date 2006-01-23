@@ -29,6 +29,7 @@
 #include <openssl/x509.h>
 #include <openssl/evp.h>
 
+#include  "X509v3RequestExtensionsImpl.hpp"
 #include  "Utils.hpp"
 
 namespace LIMAL_NAMESPACE
@@ -41,67 +42,68 @@ using namespace blocxx;
 
 
 X509v3RequestExts_Priv::X509v3RequestExts_Priv()
-    : X509v3RequestExts()
-{
-}
-
+	: X509v3RequestExts()
+{}
+	
 X509v3RequestExts_Priv::X509v3RequestExts_Priv(STACK_OF(X509_EXTENSION)* extensions)
-    : X509v3RequestExts()
+	: X509v3RequestExts()
 {
-    // NsSslServerNameExt   nsSslServerName;
+	// NsSslServerNameExt   nsSslServerName;
 
-    parseStringExt(extensions, NID_netscape_ssl_server_name, nsSslServerName);
+	parseStringExt(extensions, NID_netscape_ssl_server_name,
+	               m_impl->nsSslServerName);
 
-    // NsCommentExt         nsComment;
+	// NsCommentExt         nsComment;
 
-    parseStringExt(extensions, NID_netscape_comment, nsComment);
+	parseStringExt(extensions, NID_netscape_comment,
+	               m_impl->nsComment);
 
-    // KeyUsageExt   keyUsage; 
+	// KeyUsageExt   keyUsage; 
 
-    parseBitExt(extensions, NID_key_usage, keyUsage);
+	parseBitExt(extensions, NID_key_usage, m_impl->keyUsage);
 
-    // NsCertTypeExt nsCertType;
+	// NsCertTypeExt nsCertType;
 
-    parseBitExt(extensions, NID_netscape_cert_type, nsCertType);
+	parseBitExt(extensions, NID_netscape_cert_type, m_impl->nsCertType);
 
-    // BasicConstraintsExt       basicConstraints;
+	// BasicConstraintsExt       basicConstraints;
 
-    parseBasicConstraintsExt(extensions, basicConstraints);
+	parseBasicConstraintsExt(extensions, m_impl->basicConstraints);
 
-    // ExtendedKeyUsageExt             extendedKeyUsage;
+	// ExtendedKeyUsageExt             extendedKeyUsage;
 
-    parseExtendedKeyUsageExt(extensions, extendedKeyUsage);
+	parseExtendedKeyUsageExt(extensions, m_impl->extendedKeyUsage);
 
-    // SubjectKeyIdentifierExt   subjectKeyIdentifier;
+	// SubjectKeyIdentifierExt   subjectKeyIdentifier;
 
-    parseSubjectKeyIdentifierExt(extensions, subjectKeyIdentifier);
+	parseSubjectKeyIdentifierExt(extensions,
+	                             m_impl->subjectKeyIdentifier);
 
-    // SubjectAlternativeNameExt subjectAlternativeName;
+	// SubjectAlternativeNameExt subjectAlternativeName;
 
-    parseSubjectAlternativeNameExt(extensions, subjectAlternativeName);
+	parseSubjectAlternativeNameExt(extensions,
+	                               m_impl->subjectAlternativeName);
 
 }
 
 X509v3RequestExts_Priv::X509v3RequestExts_Priv(const X509v3RequestExts_Priv& extensions)
-    : X509v3RequestExts(extensions)
-{
-}
+	: X509v3RequestExts(extensions)
+{}
 
 
 X509v3RequestExts_Priv::~X509v3RequestExts_Priv()
-{
-}
+{}
 
 
 //    private:
 X509v3RequestExts_Priv&
 X509v3RequestExts_Priv::operator=(const X509v3RequestExts_Priv& extensions)
 {
-    if(this == &extensions) return *this;
+	if(this == &extensions) return *this;
     
-    X509v3RequestExts::operator=(extensions);
+	X509v3RequestExts::operator=(extensions);
 
-    return *this;
+	return *this;
 }
 
 void
@@ -109,54 +111,54 @@ X509v3RequestExts_Priv::parseStringExt(STACK_OF(X509_EXTENSION) * cert,
                                        int nid,
                                        StringExtension &ext)
 {
-    int crit = 0;
+	int crit = 0;
     
-    ASN1_STRING *str = NULL;
-    str = static_cast<ASN1_STRING *>(X509V3_get_d2i(cert, nid, &crit, NULL));
+	ASN1_STRING *str = NULL;
+	str = static_cast<ASN1_STRING *>(X509V3_get_d2i(cert, nid, &crit, NULL));
     
-    if(str == NULL)
-    {        
-        if(crit == -1)
-        {
-            // extension not found
-            ext.setPresent(false);
+	if(str == NULL)
+	{        
+		if(crit == -1)
+		{
+			// extension not found
+			ext.setPresent(false);
 
-            return;
+			return;
+		}
+		else if(crit == -2)
+		{
+			// extension occurred more than once 
+			LOGIT_ERROR("Extension occurred more than once: " << nid);
+			BLOCXX_THROW(limal::SyntaxException,
+			             Format("Extension occurred more than once: %1",
+			                    nid).c_str());
+		}
 
-        }
-        else if(crit == -2)
-        {
-            // extension occurred more than once 
-            LOGIT_ERROR("Extension occurred more than once: " << nid);
-            BLOCXX_THROW(limal::SyntaxException,
-                         Format("Extension occurred more than once: %1", nid).c_str());
-        }
-
-        LOGIT_ERROR("Unable to parse the certificate (NID:" << nid <<
-                    " Crit:" << crit << ")");
-        BLOCXX_THROW(limal::SyntaxException,
-                     Format("Unable to parse the certificate (NID: %1 Crit: %2)",
-                            nid, crit).c_str());
-    }
+		LOGIT_ERROR("Unable to parse the certificate (NID:" << nid <<
+		            " Crit:" << crit << ")");
+		BLOCXX_THROW(limal::SyntaxException,
+		             Format("Unable to parse the certificate (NID: %1 Crit: %2)",
+		                    nid, crit).c_str());
+	}
     
-    char *s = new char[str->length +1];
-    memcpy(s, str->data, str->length);
-    s[str->length] = '\0';
+	char *s = new char[str->length +1];
+	memcpy(s, str->data, str->length);
+	s[str->length] = '\0';
 
-    ext.setValue(s);
+	ext.setValue(s);
 
-    delete [] s;
+	delete [] s;
 
-    if(crit == 1)
-    {
-        ext.setCritical(true);
-    }
-    else
-    {
-        ext.setCritical(false);
-    }
+	if(crit == 1)
+	{
+		ext.setCritical(true);
+	}
+	else
+	{
+		ext.setCritical(false);
+	}
 
-    ASN1_STRING_free(str);
+	ASN1_STRING_free(str);
 }
 
 void
@@ -164,318 +166,317 @@ X509v3RequestExts_Priv::parseBitExt(STACK_OF(X509_EXTENSION)* cert,
                                     int nid,
                                     BitExtension &ext)
 {
-    int crit = 0;
+	int crit = 0;
     
-    ASN1_BIT_STRING *bit = NULL;
-    bit = static_cast<ASN1_BIT_STRING *>(X509V3_get_d2i(cert, nid, &crit, NULL));
+	ASN1_BIT_STRING *bit = NULL;
+	bit = static_cast<ASN1_BIT_STRING *>(X509V3_get_d2i(cert, nid, &crit, NULL));
     
-    if(bit == NULL)
-    {        
-        if(crit == -1)
-        {
-            // extension not found
-            ext.setPresent(false);
+	if(bit == NULL)
+	{        
+		if(crit == -1)
+		{
+			// extension not found
+			ext.setPresent(false);
 
-            return;
-        }
-        else if(crit == -2)
-        {
-            // extension occurred more than once 
-            LOGIT_ERROR("Extension occurred more than once: " << nid);
-            BLOCXX_THROW(limal::SyntaxException,
-                         Format("Extension occurred more than once: %1", nid).c_str());
-        }
+			return;
+		}
+		else if(crit == -2)
+		{
+			// extension occurred more than once 
+			LOGIT_ERROR("Extension occurred more than once: " << nid);
+			BLOCXX_THROW(limal::SyntaxException,
+			             Format("Extension occurred more than once: %1",
+			                    nid).c_str());
+		}
 
-        LOGIT_ERROR("Unable to parse the certificate (NID:" << nid <<
-                    " Crit:" << crit << ")");
-        BLOCXX_THROW(limal::SyntaxException,
-                     Format("Unable to parse the certificate (NID: %1 Crit: %2)",
-                            nid, crit).c_str());
-    }
+		LOGIT_ERROR("Unable to parse the certificate (NID:" << nid <<
+		            " Crit:" << crit << ")");
+		BLOCXX_THROW(limal::SyntaxException,
+		             Format("Unable to parse the certificate (NID: %1 Crit: %2)",
+		                    nid, crit).c_str());
+	}
     
-    int len = bit->length -1;
-    UInt32 ret = 0;
+	int len = bit->length -1;
+	UInt32 ret = 0;
     
-    for(; len >= 0; --len)
-    {        
-        int bits = bit->data[len];
-        int shift = bits<<(len*8);
-        ret |= shift;
-    }
+	for(; len >= 0; --len)
+	{        
+		int bits = bit->data[len];
+		int shift = bits<<(len*8);
+		ret |= shift;
+	}
     
-    ext.setValue(ret);
+	ext.setValue(ret);
 
-    if(crit == 1)
-    {
-        ext.setCritical(true);
-    }
-    else
-    {
-        ext.setCritical(false);
-    }
+	if(crit == 1)
+	{
+		ext.setCritical(true);
+	}
+	else
+	{
+		ext.setCritical(false);
+	}
 
-    ASN1_STRING_free(bit);
+	ASN1_STRING_free(bit);
 }
 
 void 
 X509v3RequestExts_Priv::parseExtendedKeyUsageExt(STACK_OF(X509_EXTENSION)* cert,
                                                  ExtendedKeyUsageExt &ext)
 {
-    int crit = 0;
+	int crit = 0;
     
-    EXTENDED_KEY_USAGE *eku = NULL;
-    eku = static_cast<EXTENDED_KEY_USAGE *>(X509V3_get_d2i(cert,
-                                                           NID_ext_key_usage,
-                                                           &crit, NULL));
+	EXTENDED_KEY_USAGE *eku = NULL;
+	eku = static_cast<EXTENDED_KEY_USAGE *>(X509V3_get_d2i(cert,
+	                                                       NID_ext_key_usage,
+	                                                       &crit, NULL));
     
-    if(eku == NULL)
-    {        
-        if(crit == -1)
-        {
-            // extension not found
-            ext.setPresent(false);
+	if(eku == NULL)
+	{        
+		if(crit == -1)
+		{
+			// extension not found
+			ext.setPresent(false);
 
-            return;
-        }
-        else if(crit == -2)
-        {
-            // extension occurred more than once 
-            LOGIT_ERROR("Extension occurred more than once");
-            BLOCXX_THROW(limal::SyntaxException,
-                         "Extension occurred more than once");
-        }
+			return;
+		}
+		else if(crit == -2)
+		{
+			// extension occurred more than once 
+			LOGIT_ERROR("Extension occurred more than once");
+			BLOCXX_THROW(limal::SyntaxException,
+			             "Extension occurred more than once");
+		}
 
-        LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
-        BLOCXX_THROW(limal::SyntaxException,
-                     Format("Unable to parse the certificate (Crit: %2)",
-                            crit).c_str());
-    }
+		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
+		BLOCXX_THROW(limal::SyntaxException,
+		             Format("Unable to parse the certificate (Crit: %2)",
+		                    crit).c_str());
+	}
 
-    int i;
-    ASN1_OBJECT *obj;
-    char obj_tmp[80];
-    StringList usageList;
+	int i;
+	ASN1_OBJECT *obj;
+	char obj_tmp[80];
+	StringList usageList;
     
-    for(i = 0; i < sk_ASN1_OBJECT_num(eku); i++)
-    {
-        obj = sk_ASN1_OBJECT_value(eku, i);
-        i2t_ASN1_OBJECT(obj_tmp, 80, obj);
-        int nid = OBJ_txt2nid(obj_tmp);
-        if(nid == 0)
-        {
-            usageList.push_back(obj_tmp);
-        }
-        else
-        {
-            usageList.push_back(String(OBJ_nid2sn(nid)));
-        }
-    }
-    ext.setExtendedKeyUsage(usageList);
+	for(i = 0; i < sk_ASN1_OBJECT_num(eku); i++)
+	{
+		obj = sk_ASN1_OBJECT_value(eku, i);
+		i2t_ASN1_OBJECT(obj_tmp, 80, obj);
+		int nid = OBJ_txt2nid(obj_tmp);
+		if(nid == 0)
+		{
+			usageList.push_back(obj_tmp);
+		}
+		else
+		{
+			usageList.push_back(String(OBJ_nid2sn(nid)));
+		}
+	}
+	ext.setExtendedKeyUsage(usageList);
 
-    if(crit == 1)
-    {
-        ext.setCritical(true);
-    }
-    else
-    {
-        ext.setCritical(false);
-    }
+	if(crit == 1)
+	{
+		ext.setCritical(true);
+	}
+	else
+	{
+		ext.setCritical(false);
+	}
 
-    EXTENDED_KEY_USAGE_free(eku);
+	EXTENDED_KEY_USAGE_free(eku);
 }
 
 void 
 X509v3RequestExts_Priv::parseBasicConstraintsExt(STACK_OF(X509_EXTENSION)* cert,
                                                  BasicConstraintsExt &ext)
 {
-    int crit = 0;
+	int crit = 0;
     
-    BASIC_CONSTRAINTS *bs = NULL;
-    bs = static_cast<BASIC_CONSTRAINTS *>(X509V3_get_d2i(cert,
-                                                         NID_basic_constraints,
-                                                         &crit, NULL));
-    
-    if(bs == NULL)
-    {        
-        if(crit == -1)
-        {
-            // extension not found
-            ext.setPresent(false);
+	BASIC_CONSTRAINTS *bs = NULL;
+	bs = static_cast<BASIC_CONSTRAINTS *>(X509V3_get_d2i(cert,
+	                                                     NID_basic_constraints,
+	                                                     &crit, NULL));
+	if(bs == NULL)
+	{        
+		if(crit == -1)
+		{
+			// extension not found
+			ext.setPresent(false);
 
-            return;
-        }
-        else if(crit == -2)
-        {
-            // extension occurred more than once 
-            LOGIT_ERROR("Extension occurred more than once");
-            BLOCXX_THROW(limal::SyntaxException,
-                         "Extension occurred more than once");
-        }
+			return;
+		}
+		else if(crit == -2)
+		{
+			// extension occurred more than once 
+			LOGIT_ERROR("Extension occurred more than once");
+			BLOCXX_THROW(limal::SyntaxException,
+			             "Extension occurred more than once");
+		}
 
-        LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
-        BLOCXX_THROW(limal::SyntaxException,
-                     Format("Unable to parse the certificate (Crit: %2)",
-                            crit).c_str());
-    }
+		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
+		BLOCXX_THROW(limal::SyntaxException,
+		             Format("Unable to parse the certificate (Crit: %2)",
+		                    crit).c_str());
+	}
 
-    bool  ca = false;
-    Int32 pl = -1;
+	bool  ca = false;
+	Int32 pl = -1;
 
-    if(bs->ca)
-    {
-        ca = true;
+	if(bs->ca)
+	{
+		ca = true;
 
-        if(bs->pathlen)
-        {
-            if(bs->pathlen->type != V_ASN1_NEG_INTEGER)
-            {
-                pl = ASN1_INTEGER_get(bs->pathlen);
-            }
-        }
-    }
+		if(bs->pathlen)
+		{
+			if(bs->pathlen->type != V_ASN1_NEG_INTEGER)
+			{
+				pl = ASN1_INTEGER_get(bs->pathlen);
+			}
+		}
+	}
 
-    ext.setBasicConstraints(ca, pl);
+	ext.setBasicConstraints(ca, pl);
 
-    if(crit == 1)
-    {
-        ext.setCritical(true);
-    }
-    else
-    {
-        ext.setCritical(false);
-    }
+	if(crit == 1)
+	{
+		ext.setCritical(true);
+	}
+	else
+	{
+		ext.setCritical(false);
+	}
 
-    BASIC_CONSTRAINTS_free(bs);
+	BASIC_CONSTRAINTS_free(bs);
 }
 
 void 
 X509v3RequestExts_Priv::parseSubjectKeyIdentifierExt(STACK_OF(X509_EXTENSION) *cert, 
                                                      SubjectKeyIdentifierExt &ext)
 {
-    int crit = 0;
+	int crit = 0;
     
-    ASN1_OCTET_STRING *ski = NULL;
-    ski = static_cast<ASN1_OCTET_STRING *>(X509V3_get_d2i(cert,
-                                                          NID_subject_key_identifier,
-                                                          &crit, NULL));
-    
-    if(ski == NULL)
-    {        
-        if(crit == -1)
-        {
-            // extension not found
-            ext.setPresent(false);
+	ASN1_OCTET_STRING *ski = NULL;
+	ski = static_cast<ASN1_OCTET_STRING *>(X509V3_get_d2i(cert,
+	                                                      NID_subject_key_identifier,
+	                                                      &crit, NULL));
+	if(ski == NULL)
+	{        
+		if(crit == -1)
+		{
+			// extension not found
+			ext.setPresent(false);
 
-            return;
-        }
-        else if(crit == -2)
-        {
-            // extension occurred more than once 
-            LOGIT_ERROR("Extension occurred more than once");
-            BLOCXX_THROW(limal::SyntaxException,
-                         "Extension occurred more than once");
+			return;
+		}
+		else if(crit == -2)
+		{
+			// extension occurred more than once 
+			LOGIT_ERROR("Extension occurred more than once");
+			BLOCXX_THROW(limal::SyntaxException,
+			             "Extension occurred more than once");
 
-        }
+		}
 
-        LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
-        BLOCXX_THROW(limal::SyntaxException,
-                     Format("Unable to parse the certificate (Crit: %2)",
-                            crit).c_str());
-    }
+		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
+		BLOCXX_THROW(limal::SyntaxException,
+		             Format("Unable to parse the certificate (Crit: %2)",
+		                    crit).c_str());
+	}
 
-    String s;
+	String s;
 
-    for(int i = 0; i < ski->length; ++i)
-    {
-        String d;
-        d.format("%02x", ski->data[i]);
+	for(int i = 0; i < ski->length; ++i)
+	{
+		String d;
+		d.format("%02x", ski->data[i]);
 
-        s += d;
-        if( (i+1) < ski->length)
-        {
-            s += ":";
-        }
-    }
+		s += d;
+		if( (i+1) < ski->length)
+		{
+			s += ":";
+		}
+	}
 
-    ext.setSubjectKeyIdentifier(false, s);
+	ext.setSubjectKeyIdentifier(false, s);
 
-    if(crit == 1)
-    {
-        ext.setCritical(true);
-    }
-    else
-    {
-        ext.setCritical(false);
-    }
+	if(crit == 1)
+	{
+		ext.setCritical(true);
+	}
+	else
+	{
+		ext.setCritical(false);
+	}
 
-    ASN1_OCTET_STRING_free(ski);
+	ASN1_OCTET_STRING_free(ski);
 }
 
 void 
 X509v3RequestExts_Priv::parseSubjectAlternativeNameExt(STACK_OF(X509_EXTENSION) *cert,
                                                        SubjectAlternativeNameExt &ext)
 {
-    int crit = 0;
+	int crit = 0;
     
-    GENERAL_NAMES *gns = NULL;
-    gns = static_cast<GENERAL_NAMES *>(X509V3_get_d2i(cert, NID_subject_alt_name, &crit, NULL));
+	GENERAL_NAMES *gns = NULL;
+	gns = static_cast<GENERAL_NAMES *>(X509V3_get_d2i(cert, NID_subject_alt_name, &crit, NULL));
     
-    if(gns == NULL)
-    {        
-        if(crit == -1)
-        {
-            // extension not found
-            ext.setPresent(false);
+	if(gns == NULL)
+	{        
+		if(crit == -1)
+		{
+			// extension not found
+			ext.setPresent(false);
 
-            return;
-        }
-        else if(crit == -2)
-        {
-            // extension occurred more than once 
-            LOGIT_ERROR("Extension occurred more than once");
-            BLOCXX_THROW(limal::SyntaxException,
-                         "Extension occurred more than once");
-        }
+			return;
+		}
+		else if(crit == -2)
+		{
+			// extension occurred more than once 
+			LOGIT_ERROR("Extension occurred more than once");
+			BLOCXX_THROW(limal::SyntaxException,
+			             "Extension occurred more than once");
+		}
 
-        LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
-        BLOCXX_THROW(limal::SyntaxException,
-                     Format("Unable to parse the certificate (Crit: %2)",
-                            crit).c_str());
-    }
+		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
+		BLOCXX_THROW(limal::SyntaxException,
+		             Format("Unable to parse the certificate (Crit: %2)",
+		                    crit).c_str());
+	}
     
-    int j;
-    GENERAL_NAME *gen;
-    blocxx::List<LiteralValue> lvList;
+	int j;
+	GENERAL_NAME *gen;
+	blocxx::List<LiteralValue> lvList;
 
-    for(j = 0; j < sk_GENERAL_NAME_num(gns); j++)
-    {
-        gen = sk_GENERAL_NAME_value(gns, j);
+	for(j = 0; j < sk_GENERAL_NAME_num(gns); j++)
+	{
+		gen = sk_GENERAL_NAME_value(gns, j);
 
-        LiteralValue lv = gn2lv(gen);
+		LiteralValue lv = gn2lv(gen);
 
-        lvList.push_back(lv);
-    }
+		lvList.push_back(lv);
+	}
 
-    if(crit == 1)
-    {
-        ext.setCritical(true);
-    }
-    else
-    {
-        ext.setCritical(false);
-    }
+	if(crit == 1)
+	{
+		ext.setCritical(true);
+	}
+	else
+	{
+		ext.setCritical(false);
+	}
 
-    if(!lvList.empty())
-    {
-    	ext.setCopyEmail(false);
-        ext.setAlternativeNameList(lvList);
-    }
-    else
-    {        
-        ext.setPresent(false);
-    }
+	if(!lvList.empty())
+	{
+		ext.setCopyEmail(false);
+		ext.setAlternativeNameList(lvList);
+	}
+	else
+	{        
+		ext.setPresent(false);
+	}
 
-    GENERAL_NAMES_free(gns);
+	GENERAL_NAMES_free(gns);
 }
 
 }

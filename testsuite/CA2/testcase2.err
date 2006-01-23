@@ -33,6 +33,8 @@ DEBUG ca-mgm - RDNObject::verify()(1/1):Value() is too small. Value has to be a 
 DEBUG ca-mgm - DNObject::verify()(1/1):Value() is too small. Value has to be a minimal length of 2
 DEBUG ca-mgm - RequestGenerationData::verify()(1/1):Value() is too small. Value has to be a minimal length of 2
 DEBUG limal - removeFile ./TestRepos/ca1_test/openssl.cnf
+DEBUG IniParser - File ./TestRepos//ca1_test/openssl.cnf did not change. Not saving.
+DEBUG IniParser - File ./TestRepos//ca1_test/openssl.cnf.tmpl did not change. Not saving.
 DEBUG ca-mgm - type2Section: type=0 result=req_client
 DEBUG ca-mgm - type2Section: type=0 result=req_client
 DEBUG ca-mgm - type2Section: type=0 result=v3_req_client
@@ -66,3 +68,5 @@ DEBUG ca-mgm - RDNObject::verify()(1/1):Value() is too small. Value has to be a 
 DEBUG ca-mgm - DNObject::verify()(1/1):Value() is too small. Value has to be a minimal length of 2
 DEBUG ca-mgm - RequestGenerationData::verify()(1/1):Value() is too small. Value has to be a minimal length of 2
 DEBUG limal - removeFile ./TestRepos/ca2_test/openssl.cnf
+DEBUG IniParser - File ./TestRepos//ca2_test/openssl.cnf did not change. Not saving.
+DEBUG IniParser - File ./TestRepos//ca2_test/openssl.cnf.tmpl did not change. Not saving.

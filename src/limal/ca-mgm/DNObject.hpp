@@ -24,73 +24,71 @@
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
+#include  <blocxx/COWIntrusiveReference.hpp>
 
 namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
-    class CAConfig;
+	class CAConfig;
+	class RDNObjectImpl;
+	class DNObjectImpl;
+	
+	class RDNObject {
+	public:
+		RDNObject();
+		RDNObject(const RDNObject& rdn);
+		virtual ~RDNObject();
 
-    class RDNObject {
-    public:
-        RDNObject();
-        RDNObject(const RDNObject& rdn);
-        virtual ~RDNObject();
+		RDNObject& operator=(const RDNObject& rdn);
 
-        RDNObject& operator=(const RDNObject& rdn);
+		void   setRDNValue(const String& value);
 
-        void   setRDNValue(const String& value);
+		String getType() const;
+		String getValue() const;
 
-        String getType() const;
-        String getValue() const;
+		String getOpenSSLValue() const;
 
-        String getOpenSSLValue() const;
+		virtual bool                 valid() const;
+		virtual blocxx::StringArray  verify() const;
 
-        virtual bool                 valid() const;
-        virtual blocxx::StringArray  verify() const;
+		virtual blocxx::StringArray  dump() const;
 
-        virtual blocxx::StringArray  dump() const;
+		friend bool operator==(const RDNObject &l, const RDNObject &r);
+		friend bool operator<(const RDNObject &l, const RDNObject &r);
 
-        friend bool operator==(const RDNObject &l, const RDNObject &r);
-        friend bool operator<(const RDNObject &l, const RDNObject &r);
+					          		            		protected:
+		blocxx::COWIntrusiveReference<RDNObjectImpl> m_impl;
+    	
+	};
 
-    protected:
-        String type;
-        String value;
+	class DNObject {
+	public:
+		DNObject();
+		DNObject(CAConfig* caConfig, Type type);
+		DNObject(const blocxx::List<RDNObject> &dn);
+		DNObject(const DNObject& dn);
+		virtual ~DNObject();
 
-        String prompt;
-        blocxx::UInt32 min;
-        blocxx::UInt32 max;
+		DNObject& operator=(const DNObject& dn);
 
-    };
+		void                         setDN(const blocxx::List<RDNObject> &dn);
+		blocxx::List<RDNObject>      getDN() const;
 
-    class DNObject {
-    public:
-        DNObject();
-        DNObject(CAConfig* caConfig, Type type);
-        DNObject(const blocxx::List<RDNObject> &dn);
-        DNObject(const DNObject& dn);
-        virtual ~DNObject();
+		String                       getOpenSSLString() const;
 
-        DNObject& operator=(const DNObject& dn);
-
-        void                         setDN(const blocxx::List<RDNObject> &dn);
-        blocxx::List<RDNObject>      getDN() const;
-
-        String                       getOpenSSLString() const;
-
-        virtual bool                 valid() const;
-        virtual blocxx::StringArray  verify() const;
+		virtual bool                 valid() const;
+		virtual blocxx::StringArray  verify() const;
         
-        virtual blocxx::StringArray  dump() const;
+		virtual blocxx::StringArray  dump() const;
 
-    protected:
-        blocxx::List<RDNObject> dn;
-
-    private:
-        blocxx::StringArray     checkRDNList(const blocxx::List<RDNObject>& list) const;
-
-    };
+	protected:
+		blocxx::COWIntrusiveReference<DNObjectImpl> m_impl;
+    	
+	private:
+		blocxx::StringArray
+		checkRDNList(const blocxx::List<RDNObject>& list) const;
+	};
 
 }
 }

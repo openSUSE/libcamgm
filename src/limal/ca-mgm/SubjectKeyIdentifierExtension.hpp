@@ -25,56 +25,56 @@
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <limal/ca-mgm/ExtensionBase.hpp>
+#include  <blocxx/COWIntrusiveReference.hpp>
 
 namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
-    class CA;
-    class CAConfig;
+	class CA;
+	class CAConfig;
+	class SubjectKeyIdentifierExtImpl;
+	
+	class SubjectKeyIdentifierExt : public ExtensionBase {
+	public:
+		SubjectKeyIdentifierExt();
+		SubjectKeyIdentifierExt(CAConfig* caConfig, Type type);
+		SubjectKeyIdentifierExt(bool autoDetect, const String& keyid = String());
+		SubjectKeyIdentifierExt(const SubjectKeyIdentifierExt& extension);
+		virtual ~SubjectKeyIdentifierExt();
 
-    class SubjectKeyIdentifierExt : public ExtensionBase {
-    public:
-        SubjectKeyIdentifierExt();
-        SubjectKeyIdentifierExt(CAConfig* caConfig, Type type);
-        SubjectKeyIdentifierExt(bool autoDetect, const String& keyid = String());
-        SubjectKeyIdentifierExt(const SubjectKeyIdentifierExt& extension);
-        virtual ~SubjectKeyIdentifierExt();
+		SubjectKeyIdentifierExt&
+		operator=(const SubjectKeyIdentifierExt& extension);
 
-        SubjectKeyIdentifierExt&
-        operator=(const SubjectKeyIdentifierExt& extension);
+		void
+		setSubjectKeyIdentifier(bool autoDetect, const String& keyId = String());
 
-        void
-        setSubjectKeyIdentifier(bool autoDetect, const String& keyId = String());
+		bool
+		isAutoDetectionEnabled() const;
 
-        bool
-        isAutoDetectionEnabled() const;
+		/**
+		 * Get the keyID.
+		 *
+		 * @return the keyID
+		 */
+		String
+		getKeyID() const;
 
-        /**
-         * Get the keyID.
-         *
-         * @return the keyID
-         */
-        String
-        getKeyID() const;
+		virtual void
+		commit2Config(CA& ca, Type type) const;
 
-        virtual void
-        commit2Config(CA& ca, Type type) const;
-
-        virtual bool
-        valid() const;
+		virtual bool
+		valid() const;
         
-        virtual blocxx::StringArray
-        verify() const;
+		virtual blocxx::StringArray
+		verify() const;
 
-        virtual blocxx::StringArray
-        dump() const;
+		virtual blocxx::StringArray
+		dump() const;
 
-    private:
-
-        bool   autodetect;  // ??
-        String keyid;
-    };
+	private:
+		blocxx::COWIntrusiveReference<SubjectKeyIdentifierExtImpl> m_impl;
+	};
 
 }
 }

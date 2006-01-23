@@ -25,6 +25,7 @@
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <limal/ca-mgm/ExtensionBase.hpp>
+#include  <blocxx/COWIntrusiveReference.hpp>
 
 namespace LIMAL_NAMESPACE {
 
@@ -32,7 +33,10 @@ namespace CA_MGM_NAMESPACE {
 
     class CA;
     class CAConfig;
-
+	class UserNoticeImpl;
+	class CertificatePolicyImpl;
+	class CertificatePoliciesExtImpl;
+	
     class UserNotice {
     public:
         UserNotice();
@@ -63,14 +67,8 @@ namespace CA_MGM_NAMESPACE {
         friend bool operator<(const UserNotice &l, const UserNotice &r);
 
     private:
-        String              explicitText;      // max 200 characters
-
-        // The organization and noticeNumbers options
-        // (if included) must BOTH be present.
-
-        String                      organization;      // max 200 characters 
-        blocxx::List<blocxx::Int32> noticeNumbers;
-
+    	blocxx::COWIntrusiveReference<UserNoticeImpl> m_impl;
+    	
     };
 
     class CertificatePolicy {
@@ -104,14 +102,13 @@ namespace CA_MGM_NAMESPACE {
         friend bool operator<(const CertificatePolicy &l, const CertificatePolicy &r);
 
     private:
-        String                   policyIdentifier;  // required
-        StringList               cpsURI;            // Certification Practice Statement
-
-        blocxx::List<UserNotice> noticeList;
-
-        blocxx::StringArray      checkCpsURIs(const StringList& cpsURIs) const;
-        blocxx::StringArray      checkNoticeList(const blocxx::List<UserNotice>& list) const;
-        
+    	blocxx::COWIntrusiveReference<CertificatePolicyImpl> m_impl;
+    	
+    	blocxx::StringArray
+    	checkCpsURIs(const StringList& cpsURIs) const;
+    	
+    	blocxx::StringArray
+    	checkNoticeList(const blocxx::List<UserNotice>& list) const;
     };
 
     class CertificatePoliciesExt : public ExtensionBase {
@@ -138,10 +135,8 @@ namespace CA_MGM_NAMESPACE {
         virtual blocxx::StringArray  dump() const;
 
     private:
-
-        bool ia5org;
-        blocxx::List<CertificatePolicy> policies;
-
+    	blocxx::COWIntrusiveReference<CertificatePoliciesExtImpl> m_impl;
+    	
         blocxx::StringArray             checkPolicies(const blocxx::List<CertificatePolicy>& pl) const;
 
     };

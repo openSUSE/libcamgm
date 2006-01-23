@@ -26,45 +26,49 @@
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <limal/ca-mgm/ExtensionBase.hpp>
 #include  <limal/ca-mgm/LiteralValues.hpp>
+#include  <blocxx/COWIntrusiveReference.hpp>
 
 namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
-    class CA;
-    class CAConfig;
+	class CA;
+	class CAConfig;
+	class CRLDistributionPointsExtImpl;
+	
+	class CRLDistributionPointsExt : public ExtensionBase
+	{
+	public:
+		CRLDistributionPointsExt();
+		CRLDistributionPointsExt(CAConfig* caConfig, Type type);
+		CRLDistributionPointsExt(const CRLDistributionPointsExt& extension);
+		virtual ~CRLDistributionPointsExt();
 
-    class CRLDistributionPointsExt : public ExtensionBase {
-    public:
-        CRLDistributionPointsExt();
-        CRLDistributionPointsExt(CAConfig* caConfig, Type type);
-        CRLDistributionPointsExt(const CRLDistributionPointsExt& extension);
-        virtual ~CRLDistributionPointsExt();
+		CRLDistributionPointsExt&
+		operator=(const CRLDistributionPointsExt& extension);
 
-        CRLDistributionPointsExt&
-        operator=(const CRLDistributionPointsExt& extension);
-
-        void
-        setCRLDistributionPoints(blocxx::List<LiteralValue>);
+		void
+		setCRLDistributionPoints(blocxx::List<LiteralValue>);
         
-        blocxx::List<LiteralValue>
-        getCRLDistributionPoints() const;
+		blocxx::List<LiteralValue>
+		getCRLDistributionPoints() const;
 
-        virtual void
-        commit2Config(CA& ca, Type type) const;
+		virtual void
+		commit2Config(CA& ca, Type type) const;
 
-        virtual bool
-        valid() const;
+		virtual bool
+		valid() const;
         
-        virtual blocxx::StringArray
-        verify() const;
+		virtual blocxx::StringArray
+		verify() const;
 
-        virtual blocxx::StringArray
-        dump() const;
+		virtual blocxx::StringArray
+		dump() const;
 
-    private:
-        blocxx::List<LiteralValue> altNameList;
-    };
+	private:
+		blocxx::COWIntrusiveReference<CRLDistributionPointsExtImpl> m_impl;
+		
+	};
 
 }
 }

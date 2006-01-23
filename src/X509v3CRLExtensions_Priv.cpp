@@ -30,6 +30,7 @@
 #include <openssl/x509.h>
 #include <openssl/evp.h>
 
+#include  "X509v3CRLExtensionsImpl.hpp"
 #include  "Utils.hpp"
 #include  "AuthorityKeyIdentifierExtension_Priv.hpp"
 
@@ -43,56 +44,53 @@ using namespace blocxx;
 
     
 X509v3CRLExts_Priv::X509v3CRLExts_Priv()
-    : X509v3CRLExts()
-{
-}
-
+	: X509v3CRLExts()
+{}
+	
 X509v3CRLExts_Priv::X509v3CRLExts_Priv(STACK_OF(X509_EXTENSION) *extensions)
-    : X509v3CRLExts()
+	: X509v3CRLExts()
 {
+	// AuthorityKeyIdentifierExt authorityKeyIdentifier;
+	
+	m_impl->authorityKeyIdentifier = AuthorityKeyIdentifierExt_Priv(extensions);
 
-    // AuthorityKeyIdentifierExt authorityKeyIdentifier;
+	// IssuerAlternativeNameExt  issuerAlternativeName;
 
-    authorityKeyIdentifier = AuthorityKeyIdentifierExt_Priv(extensions);
-
-    // IssuerAlternativeNameExt  issuerAlternativeName;
-
-    parseIssuerAlternativeNameExt(extensions, issuerAlternativeName);
+	parseIssuerAlternativeNameExt(extensions,
+	                              m_impl->issuerAlternativeName);
 
 }
 
 X509v3CRLExts_Priv::X509v3CRLExts_Priv(const X509v3CRLExts_Priv& extensions)
-    : X509v3CRLExts(extensions)
-{
-}
+	: X509v3CRLExts(extensions)
+{}
 
 
 X509v3CRLExts_Priv::~X509v3CRLExts_Priv()
-{
-}
+{}
 
 void
 X509v3CRLExts_Priv::setAuthorityKeyIdentifier(const AuthorityKeyIdentifierExt &ext)
 {
-    StringArray r = ext.verify();
-    if(!r.empty())
-    {
-        LOGIT_ERROR(r[0]);
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
-    }
-    authorityKeyIdentifier = ext;
+	StringArray r = ext.verify();
+	if(!r.empty())
+	{
+		LOGIT_ERROR(r[0]);
+		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+	}
+	m_impl->authorityKeyIdentifier = ext;
 }
 
 void
 X509v3CRLExts_Priv::setIssuerAlternativeName(const IssuerAlternativeNameExt &ext)
 {
-    StringArray r = ext.verify();
-    if(!r.empty())
-    {
-        LOGIT_ERROR(r[0]);
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
-    }
-    issuerAlternativeName = ext;
+	StringArray r = ext.verify();
+	if(!r.empty())
+	{
+		LOGIT_ERROR(r[0]);
+		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+	}
+	m_impl->issuerAlternativeName = ext;
 }
 
 
@@ -100,80 +98,81 @@ X509v3CRLExts_Priv::setIssuerAlternativeName(const IssuerAlternativeNameExt &ext
 X509v3CRLExts_Priv&
 X509v3CRLExts_Priv::operator=(const X509v3CRLExts_Priv& extensions)
 {
-    if(this == &extensions) return *this;
+	if(this == &extensions) return *this;
     
-    X509v3CRLExts::operator=(extensions);
+	X509v3CRLExts::operator=(extensions);
 
-    return *this;
+	return *this;
 }
 
 void 
 X509v3CRLExts_Priv::parseIssuerAlternativeNameExt(STACK_OF(X509_EXTENSION) *cert,
                                                   IssuerAlternativeNameExt &ext)
 {
-    int crit = 0;
+	int crit = 0;
     
-    GENERAL_NAMES *gns = NULL;
-    gns = static_cast<GENERAL_NAMES *>(X509V3_get_d2i(cert,
-                                                      NID_issuer_alt_name,
-                                                      &crit,
-                                                      NULL));
+	GENERAL_NAMES *gns = NULL;
+	gns = static_cast<GENERAL_NAMES *>(X509V3_get_d2i(cert,
+	                                                  NID_issuer_alt_name,
+	                                                  &crit,
+	                                                  NULL));
     
-    if(gns == NULL)
-    {        
-        if(crit == -1)
-        {
-            // extension not found
-            ext.setPresent(false);
+	if(gns == NULL)
+	{        
+		if(crit == -1)
+		{
+			// extension not found
+			ext.setPresent(false);
 
-            return;
+			return;
+		}
+		else if(crit == -2)
+		{
+			// extension occurred more than once 
+			LOGIT_ERROR("Extension occurred more than once");
+			BLOCXX_THROW(limal::SyntaxException,
+			             "Extension occurred more than once");
+		}
 
-        }
-        else if(crit == -2)
-        {
-            // extension occurred more than once 
-            LOGIT_ERROR("Extension occurred more than once");
-            BLOCXX_THROW(limal::SyntaxException,
-                         "Extension occurred more than once");
-
-        }
-
-        LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
-        BLOCXX_THROW(limal::SyntaxException,
-                     Format("Unable to parse the certificate (Crit: %2)", crit).c_str());
-    }
+		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
+		BLOCXX_THROW(limal::SyntaxException,
+		             Format("Unable to parse the certificate (Crit: %2)",
+		                    crit).c_str());
+	}
     
-    int j;
-    GENERAL_NAME *gen;
-    blocxx::List<LiteralValue> lvList;
+	int j;
+	GENERAL_NAME *gen;
+	blocxx::List<LiteralValue> lvList;
 
-    for(j = 0; j < sk_GENERAL_NAME_num(gns); j++) {
+	for(j = 0; j < sk_GENERAL_NAME_num(gns); j++)
+	{
+		gen = sk_GENERAL_NAME_value(gns, j);
 
-        gen = sk_GENERAL_NAME_value(gns, j);
+		LiteralValue lv = gn2lv(gen);
 
-        LiteralValue lv = gn2lv(gen);
+		lvList.push_back(lv);
+	}
 
-        lvList.push_back(lv);
-    }
+	if(crit == 1)
+	{
+		ext.setCritical(true);
+	}
+	else
+	{
+		ext.setCritical(false);
+	}
 
-    if(crit == 1) {
-        ext.setCritical(true);
-    } else {
-        ext.setCritical(false);
-    }
+	if(!lvList.empty())
+	{
+		ext.setCopyIssuer(false);
+		ext.setAlternativeNameList(lvList);
+	}
+	else
+	{
+		ext.setPresent(false);
+	}
 
-    if(!lvList.empty()) {
-
-        ext.setCopyIssuer(false);
-        ext.setAlternativeNameList(lvList);
-
-    } else {
-
-        ext.setPresent(false);
-
-    }
-
-    GENERAL_NAMES_free(gns);
+	GENERAL_NAMES_free(gns);
 }
 
 }

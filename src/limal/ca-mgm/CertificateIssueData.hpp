@@ -27,108 +27,105 @@
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <limal/ca-mgm/CA.hpp>
 #include  <limal/ca-mgm/X509v3CertificateIssueExtensions.hpp>
+#include  <blocxx/COWIntrusiveReference.hpp>
 
 namespace LIMAL_NAMESPACE
 {
 namespace CA_MGM_NAMESPACE
 {
 
+	class CertificateIssueDataImpl;
+	
     /**
      * @brief Data representation for signing a certificate
      *
      * This class is a data representation for signing a certificate
      */
-    class CertificateIssueData {
-    public:
-        CertificateIssueData();
+	class CertificateIssueData {
+	public:
+		CertificateIssueData();
 
-        /**
-         * Initialize this object with the defaults of the CA 
-         * and Type
-         */
-        CertificateIssueData(CAConfig* caConfig, Type type);
+		/**
+		 * Initialize this object with the defaults of the CA 
+		 * and Type
+		 */
+		CertificateIssueData(CAConfig* caConfig, Type type);
 
-        CertificateIssueData(const CertificateIssueData& data);
+		CertificateIssueData(const CertificateIssueData& data);
 
-        virtual ~CertificateIssueData();
+		virtual ~CertificateIssueData();
 
-        CertificateIssueData&
-        operator=(const CertificateIssueData& data);
+		CertificateIssueData&
+		operator=(const CertificateIssueData& data);
 
 		void
 		setCertifyPeriode(time_t start, time_t end);
         
-        time_t
-        getStartDate() const;
+		time_t
+		getStartDate() const;
         
-        time_t
-        getEndDate() const;
+		time_t
+		getEndDate() const;
 
-        /**
-         * Returns the start date as string for openssl (GMT)
-         */ 
-        blocxx::String
-        getStartDateAsString() const;
+		/**
+		 * Returns the start date as string for openssl (GMT)
+		 */ 
+		blocxx::String
+		getStartDateAsString() const;
 
-        /**
-         * Returns the end date as string for openssl (GMT)
-         */ 
-        blocxx::String
-        getEndDateAsString() const;
+		/**
+		 * Returns the end date as string for openssl (GMT)
+		 */ 
+		blocxx::String
+		getEndDateAsString() const;
 
-        void
-        setMessageDigest(MD md);
+		void
+		setMessageDigest(MD md);
         
-        MD
-        getMessageDigest() const;
+		MD
+		getMessageDigest() const;
 
-        void
-        setExtensions(const X509v3CertificateIssueExts& ext);
+		void
+		setExtensions(const X509v3CertificateIssueExts& ext);
         
-        X509v3CertificateIssueExts
-        getExtensions() const;
+		X509v3CertificateIssueExts
+		getExtensions() const;
 
-        /** 
-         * Write memory data to config file
-         */
-        void
-        commit2Config(CA& ca, Type type) const;
+		/** 
+		 * Write memory data to config file
+		 */
+		void
+		commit2Config(CA& ca, Type type) const;
 
-        /**
-         * Check if this object is valid
-         *
-         * @return true if this object is valid, otherwise false
-         */
-        virtual bool
-        valid() const;
+		/**
+		 * Check if this object is valid
+		 *
+		 * @return true if this object is valid, otherwise false
+		 */
+		virtual bool
+		valid() const;
 
-        /**
-         * Verify this object and return an Array with all
-         * error messages.
-         *
-         * @return Array with error messages. If this Array is empty this
-         * object is valid
-         */
-        virtual blocxx::StringArray
-        verify() const;
+		/**
+		 * Verify this object and return an Array with all
+		 * error messages.
+		 *
+		 * @return Array with error messages. If this Array is empty this
+		 * object is valid
+		 */
+		virtual blocxx::StringArray
+		verify() const;
 
-        /**
-         * Return the content of this object for debugging
-         */
-        virtual blocxx::StringArray
-        dump() const;
+		/**
+		 * Return the content of this object for debugging
+		 */
+		virtual blocxx::StringArray
+		dump() const;
 
-    private:
-        time_t                     notBefore;
-        time_t                     notAfter;
+	private:
+		blocxx::COWIntrusiveReference<CertificateIssueDataImpl> m_impl;
+    	
 
-        // KeyAlg        pubkeyAlgorithm; // at the beginning we only support rsa
-
-        MD                         messageDigest; // parameter default_md
-
-        X509v3CertificateIssueExts extensions;
-
-    };
+	};
 
 }
 }

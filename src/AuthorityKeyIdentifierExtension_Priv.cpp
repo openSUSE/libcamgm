@@ -39,137 +39,127 @@ using namespace limal;
 using namespace blocxx;
 
 AuthorityKeyIdentifierExt_Priv::AuthorityKeyIdentifierExt_Priv()
-    : AuthorityKeyIdentifierExt()
+	: AuthorityKeyIdentifierExt()
 {
 }
-
+	
 AuthorityKeyIdentifierExt_Priv::AuthorityKeyIdentifierExt_Priv(STACK_OF(X509_EXTENSION)* extensions)
-    : AuthorityKeyIdentifierExt()
+	: AuthorityKeyIdentifierExt()
 {
-    int crit = 0;
+	int crit = 0;
     
-    AUTHORITY_KEYID *aki = NULL;
-    aki = static_cast<AUTHORITY_KEYID *>(X509V3_get_d2i(extensions,
-                                                        NID_authority_key_identifier,
-                                                        &crit, NULL));
+	AUTHORITY_KEYID *aki = NULL;
+	aki = static_cast<AUTHORITY_KEYID *>(X509V3_get_d2i(extensions,
+	                                                    NID_authority_key_identifier,
+	                                                    &crit, NULL));
     
-    if(aki == NULL)
-    {
-        if(crit == -1)
-        {
-            // extension not found
-            setPresent(false);
+	if(aki == NULL)
+	{
+		if(crit == -1)
+		{
+			// extension not found
+			setPresent(false);
 
-            return;
-        }
-        else if(crit == -2)
-        {
-            // extension occurred more than once 
-            LOGIT_ERROR("Extension occurred more than once");
-            BLOCXX_THROW(limal::SyntaxException,
-                         "Extension occurred more than once");
-        }
+			return;
+		}
+		else if(crit == -2)
+		{
+			// extension occurred more than once 
+			LOGIT_ERROR("Extension occurred more than once");
+			BLOCXX_THROW(limal::SyntaxException,
+			             "Extension occurred more than once");
+		}
 
-        LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
-        BLOCXX_THROW(limal::SyntaxException,
-                     Format("Unable to parse the certificate (Crit: %2)",
-                            crit).c_str());
-    }
+		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
+		BLOCXX_THROW(limal::SyntaxException,
+		             Format("Unable to parse the certificate (Crit: %2)",
+		                    crit).c_str());
+	}
 
-    if(aki->keyid)
-    {
-        for(int i = 0; i < aki->keyid->length; ++i)
-        {
-            String d;
-            d.format("%02x", aki->keyid->data[i]);
+	if(aki->keyid)
+	{
+		String tmpKeyID;
+    	
+		for(int i = 0; i < aki->keyid->length; ++i)
+		{
+			String d;
+			d.format("%02x", aki->keyid->data[i]);
 
-            keyid += d;
-            if( (i+1) < aki->keyid->length)
-            {
-                keyid += ":";
-            }
-        }
-    }
+			tmpKeyID += d;
+			if( (i+1) < aki->keyid->length)
+			{
+				tmpKeyID += ":";
+			}
+		}
+		setKeyID(tmpKeyID);
+	}
     
-    if(aki->issuer)
-    {
-        int j;
-        GENERAL_NAME *gen;
-        for(j = 0; j < sk_GENERAL_NAME_num(aki->issuer); j++)
-        {
-            gen = sk_GENERAL_NAME_value(aki->issuer, j);
+	if(aki->issuer)
+	{
+		int j;
+		GENERAL_NAME *gen;
+		String tmpDirName;
+        
+		for(j = 0; j < sk_GENERAL_NAME_num(aki->issuer); j++)
+		{
+			gen = sk_GENERAL_NAME_value(aki->issuer, j);
             
-            if(gen->type == GEN_DIRNAME)
-            {                
-                char oline[256];
-                X509_NAME_oneline(gen->d.dirn, oline, 256);
+			if(gen->type == GEN_DIRNAME)
+			{                
+				char oline[256];
+				X509_NAME_oneline(gen->d.dirn, oline, 256);
                 
-                DirName += oline;
+				tmpDirName += oline;
                 
-                if( (j+1) < sk_GENERAL_NAME_num(aki->issuer) )
-                {
-                    DirName += '\n';
-                }
-            }
-        }
-    }
+				if( (j+1) < sk_GENERAL_NAME_num(aki->issuer) )
+				{
+					tmpDirName += '\n';
+				}
+			}
+		}
+		setDirName(tmpDirName);
+	}
 
-    if(aki->serial)
-    {
-        for(int i = 0; i < aki->serial->length; ++i)
-        {
-            String d;
-            d.format("%02x", aki->serial->data[i]);
+	if(aki->serial)
+	{
+		String tmpSerial;
+    	
+		for(int i = 0; i < aki->serial->length; ++i)
+		{
+			String d;
+			d.format("%02x", aki->serial->data[i]);
 
-            serial += d;
-            if( (i+1) < aki->serial->length)
-            {
-                serial += ":";
-            }
-        }
-    }
+			tmpSerial += d;
+			if( (i+1) < aki->serial->length)
+			{
+				tmpSerial += ":";
+			}
+		}
+		setSerial(tmpSerial);
+	}
 
-    setPresent(true);
+	setPresent(true);
 
-    AUTHORITY_KEYID_free(aki);
+	AUTHORITY_KEYID_free(aki);
 }
 
 AuthorityKeyIdentifierExt_Priv::AuthorityKeyIdentifierExt_Priv(const AuthorityKeyIdentifierExt_Priv& extension)
-    : AuthorityKeyIdentifierExt(extension)
-{
-}
+	: AuthorityKeyIdentifierExt(extension)
+{}
 
 AuthorityKeyIdentifierExt_Priv::~AuthorityKeyIdentifierExt_Priv()
-{
-}
+{}
 
 AuthorityKeyIdentifierExt_Priv&
 AuthorityKeyIdentifierExt_Priv::operator=(const AuthorityKeyIdentifierExt_Priv& extension)
 {
-    if(this == &extension) return *this;
+	if(this == &extension) return *this;
     
-    AuthorityKeyIdentifierExt::operator=(extension);
+	AuthorityKeyIdentifierExt::operator=(extension);
     
-    return *this;
+	return *this;
 }
         
-void
-AuthorityKeyIdentifierExt_Priv::setKeyID(const String& kid)
-{
-    keyid = kid;
-}
-
-void
-AuthorityKeyIdentifierExt_Priv::setDirName(const String& dirName)
-{
-    this->DirName = dirName;
-}
-
-void
-AuthorityKeyIdentifierExt_Priv::setSerial(const String& serial)
-{
-    this->serial = serial;
-}
 
 }
 }

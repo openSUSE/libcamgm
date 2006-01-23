@@ -24,6 +24,7 @@
 #include  <limal/ValueRegExCheck.hpp>
 #include  <limal/Exception.hpp>
 #include  <blocxx/Format.hpp>
+#include  <blocxx/COWIntrusiveCountableBase.hpp>
 
 #include  "Utils.hpp"
 
@@ -35,48 +36,91 @@ namespace CA_MGM_NAMESPACE
 using namespace limal;
 using namespace blocxx;
 
+
+class LiteralValueImpl : public blocxx::COWIntrusiveCountableBase
+{
+	public:
+	String literalType;
+	String literalValue;
+	
+	LiteralValueImpl()
+		: literalType(String()), literalValue(String())
+	{}
+
+	LiteralValueImpl(const String& type,
+	                 const String& value)
+		: literalType(type), literalValue(value)
+	{}
+
+	LiteralValueImpl(const LiteralValueImpl &lv)
+		: blocxx::COWIntrusiveCountableBase(lv),
+		  literalType(lv.literalType),
+		  literalValue(lv.literalValue)
+	{}
+
+	virtual ~LiteralValueImpl() {}
+
+	LiteralValueImpl* clone() const
+	{
+		return new LiteralValueImpl(*this);
+	}
+};
+
+	
 LiteralValue::LiteralValue() 
-    : literalType(String()), literalValue(String()) 
+	: m_impl(new LiteralValueImpl())
 {}
 
 LiteralValue::LiteralValue(const String &type, const String &value) 
-    : literalType(type), literalValue(value) 
+    : m_impl(new LiteralValueImpl(type, value))
 {
-    StringArray r = this->verify();
-    if(!r.empty()) {
-        LOGIT_ERROR(r[0]);
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
-    }
+	StringArray r = this->verify();
+	if(!r.empty())
+	{
+		LOGIT_ERROR(r[0]);
+		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+	}
 }
 
 LiteralValue::LiteralValue(const String& value)
-    : literalType(String()), literalValue(String())
+	: m_impl(new LiteralValueImpl())
 {
-    StringArray   sp   = PerlRegEx("^(\\w+):(.*)$").capture(value);
+	StringArray   sp   = PerlRegEx("^(\\w+):(.*)$").capture(value);
     
-    if(sp[1].equalsIgnoreCase("email")) {
-        literalType  = sp[1];
-        literalValue = sp[2];
-    } else if(sp[1].equalsIgnoreCase("URI")) {
-        literalType  = sp[1];
-        literalValue = sp[2];
-    } else if(sp[1].equalsIgnoreCase("DNS")) {
-        literalType  = sp[1];
-        literalValue = sp[2];
-    } else if(sp[1].equalsIgnoreCase("RID")) {
-        literalType  = sp[1];
-        literalValue = sp[2];
-    } else if(sp[1].equalsIgnoreCase("IP")) {
-        literalType  = sp[1];
-        literalValue = sp[2];
-    } else {
-        LOGIT_DEBUG("unknown type: "<< sp[1] << " = " << sp[2]);
-        BLOCXX_THROW(limal::ValueException , "unknown type");
-    }
+	if(sp[1].equalsIgnoreCase("email"))
+	{
+		m_impl->literalType  = sp[1];
+		m_impl->literalValue = sp[2];
+	}
+	else if(sp[1].equalsIgnoreCase("URI"))
+	{
+		m_impl->literalType  = sp[1];
+		m_impl->literalValue = sp[2];
+	}
+	else if(sp[1].equalsIgnoreCase("DNS"))
+	{
+		m_impl->literalType  = sp[1];
+		m_impl->literalValue = sp[2];
+	}
+	else if(sp[1].equalsIgnoreCase("RID"))
+	{
+		m_impl->literalType  = sp[1];
+		m_impl->literalValue = sp[2];
+	}
+	else if(sp[1].equalsIgnoreCase("IP"))
+	{
+		m_impl->literalType  = sp[1];
+		m_impl->literalValue = sp[2];
+	}
+	else
+	{
+		LOGIT_DEBUG("unknown type: "<< sp[1] << " = " << sp[2]);
+		BLOCXX_THROW(limal::ValueException , "unknown type");
+	}
 }
 
 LiteralValue::LiteralValue(const LiteralValue& value)
-    : literalType(value.literalType), literalValue(value.literalValue)
+	: m_impl(value.m_impl)
 {}
 
 
@@ -85,9 +129,8 @@ LiteralValue::operator=(const LiteralValue& value)
 {
     if(this == &value) return *this;
 
-    literalValue = value.literalValue;
-    literalType = value.literalType;
-
+    m_impl = value.m_impl;
+    
     return *this;
 }
 
@@ -98,147 +141,187 @@ LiteralValue::~LiteralValue()
 void
 LiteralValue::setLiteral(const String &type, const String &value)
 {
-    String dType = literalType;
-    String dValue = literalValue;
-
-    literalType = type;
-    literalValue = value;
-
-    StringArray r = this->verify();
-    if(!r.empty()) {
-        literalType = dType;
-        literalValue = dValue;
-        
-        LOGIT_ERROR(r[0]);
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
-    }
+	String dType = m_impl->literalType;
+	String dValue = m_impl->literalValue;
+	
+	m_impl->literalType = type;
+	m_impl->literalValue = value;
+	
+	StringArray r = this->verify();
+	if(!r.empty())
+	{
+		m_impl->literalType = dType;
+		m_impl->literalValue = dValue;
+		
+		LOGIT_ERROR(r[0]);
+		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+	}
 }
 
 void
 LiteralValue::setValue(const String &value) 
 {
-    String dValue = literalValue;
+	String dValue = m_impl->literalValue;
     
-    literalValue = value; 
+	m_impl->literalValue = value; 
 
-    StringArray r = this->verify();
-    if(!r.empty()) {
-        literalValue = dValue;
-        
-        LOGIT_ERROR(r[0]);
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
-    }
+	StringArray r = this->verify();
+	if(!r.empty())
+	{
+		m_impl->literalValue = dValue;
+		
+		LOGIT_ERROR(r[0]);
+		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+	}
 }
 
 blocxx::String
 LiteralValue::getValue() const 
 {
-    return literalValue; 
+	return m_impl->literalValue; 
 }
 
 blocxx::String
 LiteralValue::getType() const
 {
-    return literalType;
+	return m_impl->literalType;
 }
 
 bool
 LiteralValue::valid() const
 {
-    if(literalType == "email") {
-        ValueCheck check = initEmailCheck();
-        if(!check.isValid(literalValue)) {
-            LOGIT_DEBUG("Wrong LiteralValue for type 'email': " << literalValue);
-            return false;
-        }
-    } else if(literalType == "URI") {
-        ValueCheck check = initURICheck();
-        if(!check.isValid(literalValue)) {
-            LOGIT_DEBUG("Wrong LiteralValue for type 'URI': " << literalValue);
-            return false;
-        }
-    } else if(literalType == "DNS") {
-        ValueCheck check = initDNSCheck();
-        if(!check.isValid(literalValue)) {
-            LOGIT_DEBUG("Wrong LiteralValue for type 'DNS': " << literalValue);
-            return false;
-        }
-    } else if(literalType == "RID") {
-        ValueCheck check = initOIDCheck();
-        if(!check.isValid(literalValue)) {
-            LOGIT_DEBUG("Wrong LiteralValue for type 'RID': " << literalValue);
-            return false;
-        }
-    } else if(literalType == "IP") {
-        ValueCheck check = initIPCheck();
-        if(!check.isValid(literalValue)) {
-            LOGIT_DEBUG("Wrong LiteralValue for type 'IP': " << literalValue);
-            return false;
-        }
-    } else {
-        LOGIT_DEBUG("Unknown Type in LiteralValue: " << literalType);
-        return false;
-    }
-    return true;
+	if(m_impl->literalType == "email")
+	{
+		ValueCheck check = initEmailCheck();
+		if(!check.isValid(m_impl->literalValue))
+		{
+			LOGIT_DEBUG("Wrong LiteralValue for type 'email': " << m_impl->literalValue);
+			return false;
+		}
+	}
+	else if(m_impl->literalType == "URI")
+	{
+		ValueCheck check = initURICheck();
+		if(!check.isValid(m_impl->literalValue))
+		{
+			LOGIT_DEBUG("Wrong LiteralValue for type 'URI': " << m_impl->literalValue);
+			return false;
+		}
+	}
+	else if(m_impl->literalType == "DNS")
+	{
+		ValueCheck check = initDNSCheck();
+		if(!check.isValid(m_impl->literalValue))
+		{
+			LOGIT_DEBUG("Wrong LiteralValue for type 'DNS': " << m_impl->literalValue);
+			return false;
+		}
+	}
+	else if(m_impl->literalType == "RID")
+	{
+		ValueCheck check = initOIDCheck();
+		if(!check.isValid(m_impl->literalValue))
+		{
+			LOGIT_DEBUG("Wrong LiteralValue for type 'RID': " << m_impl->literalValue);
+			return false;
+		}
+	}
+	else if(m_impl->literalType == "IP")
+	{
+		ValueCheck check = initIPCheck();
+		if(!check.isValid(m_impl->literalValue))
+		{
+			LOGIT_DEBUG("Wrong LiteralValue for type 'IP': " << m_impl->literalValue);
+			return false;
+		}
+	}
+	else
+	{
+		LOGIT_DEBUG("Unknown Type in LiteralValue: " << m_impl->literalType);
+		return false;
+	}
+	return true;
 }
 
 blocxx::StringArray
 LiteralValue::verify() const
 {
-    StringArray result;
+	StringArray result;
 
-    if(literalType == "email") {
-        ValueCheck check = initEmailCheck();
-        if(!check.isValid(literalValue)) {
-            LOGIT_DEBUG("Wrong LiteralValue for type 'email': " << literalValue);
-            result.append(Format("Wrong LiteralValue for type 'email': %1", literalValue).toString());
-        }
-    } else if(literalType == "URI") {
-        ValueCheck check = initURICheck();
-        if(!check.isValid(literalValue)) {
-            LOGIT_DEBUG("Wrong LiteralValue for type 'URI': " << literalValue);
-            result.append(Format("Wrong LiteralValue for type 'URI': %1", literalValue).toString());
-        }
-    } else if(literalType == "DNS") {
-        ValueCheck check = initDNSCheck();
-        if(!check.isValid(literalValue)) {
-            LOGIT_DEBUG("Wrong LiteralValue for type 'DNS': " << literalValue);
-            result.append(Format("Wrong LiteralValue for type 'DNS': %1", literalValue).toString());
-        }
-    } else if(literalType == "RID") {
-        ValueCheck check = initOIDCheck();
-        if(!check.isValid(literalValue)) {
-            LOGIT_DEBUG("Wrong LiteralValue for type 'RID': " << literalValue);
-            result.append(Format("Wrong LiteralValue for type 'RID': %1", literalValue).toString());
-        }
-    } else if(literalType == "IP") {
-        ValueCheck check = initIPCheck();
-        if(!check.isValid(literalValue)) {
-            LOGIT_DEBUG("Wrong LiteralValue for type 'IP': " << literalValue);
-            result.append(Format("Wrong LiteralValue for type 'IP': %1", literalValue).toString());
-        }
-    } else {
-        LOGIT_DEBUG("Unknown Type in LiteralValue: " << literalType);
-        result.append(Format("Unknown Type in LiteralValue: %1", literalType).toString());
-    }
-    return result;
+	if(m_impl->literalType == "email")
+	{
+		ValueCheck check = initEmailCheck();
+		if(!check.isValid(m_impl->literalValue))
+		{
+			LOGIT_DEBUG("Wrong LiteralValue for type 'email': " << m_impl->literalValue);
+			result.append(Format("Wrong LiteralValue for type 'email': %1",
+			                     m_impl->literalValue).toString());
+		}
+	}
+	else if(m_impl->literalType == "URI")
+	{
+		ValueCheck check = initURICheck();
+		if(!check.isValid(m_impl->literalValue))
+		{
+			LOGIT_DEBUG("Wrong LiteralValue for type 'URI': " << m_impl->literalValue);
+			result.append(Format("Wrong LiteralValue for type 'URI': %1",
+			                     m_impl->literalValue).toString());
+		}
+	}
+	else if(m_impl->literalType == "DNS")
+	{
+		ValueCheck check = initDNSCheck();
+		if(!check.isValid(m_impl->literalValue))
+		{
+			LOGIT_DEBUG("Wrong LiteralValue for type 'DNS': " << m_impl->literalValue);
+			result.append(Format("Wrong LiteralValue for type 'DNS': %1",
+			                     m_impl->literalValue).toString());
+		}
+	}
+	else if(m_impl->literalType == "RID")
+	{
+		ValueCheck check = initOIDCheck();
+		if(!check.isValid(m_impl->literalValue))
+		{
+			LOGIT_DEBUG("Wrong LiteralValue for type 'RID': " << m_impl->literalValue);
+			result.append(Format("Wrong LiteralValue for type 'RID': %1",
+			                     m_impl->literalValue).toString());
+		}
+	}
+	else if(m_impl->literalType == "IP")
+	{
+		ValueCheck check = initIPCheck();
+		if(!check.isValid(m_impl->literalValue))
+		{
+			LOGIT_DEBUG("Wrong LiteralValue for type 'IP': " << m_impl->literalValue);
+			result.append(Format("Wrong LiteralValue for type 'IP': %1",
+			                     m_impl->literalValue).toString());
+		}
+	}
+	else
+	{
+		LOGIT_DEBUG("Unknown Type in LiteralValue: " << m_impl->literalType);
+		result.append(Format("Unknown Type in LiteralValue: %1",
+		                     m_impl->literalType).toString());
+	}
+	return result;
 }
 
 blocxx::String
 LiteralValue::toString() const
 {
-    return (literalType + ":" + literalValue);
+	return (m_impl->literalType + ":" + m_impl->literalValue);
 }
 
 blocxx::StringArray
 LiteralValue::dump() const
 {
-    StringArray result;
-    result.append("LiteralValue::dump()");
-
-    result.append(literalType + ":" + literalValue);
-
-    return result;
+	StringArray result;
+	result.append("LiteralValue::dump()");
+	
+	result.append(m_impl->literalType + ":" + m_impl->literalValue);
+	
+	return result;
 }
 
 // ------------------------------------------
@@ -248,29 +331,29 @@ LiteralValue::dump() const
 bool
 operator==(const LiteralValue &l, const LiteralValue &r)
 {
-    if(l.getType() == r.getType() &&
-       l.getValue() == r.getValue())
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+	if(l.getType() == r.getType() &&
+	   l.getValue() == r.getValue())
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 bool
 operator<(const LiteralValue &l, const LiteralValue &r)
 {
-    if(l.getType() < r.getType() ||
-       l.getValue() < r.getValue())
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+	if(l.getType() < r.getType() ||
+	   l.getValue() < r.getValue())
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 }

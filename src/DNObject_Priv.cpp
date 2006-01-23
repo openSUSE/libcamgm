@@ -21,7 +21,9 @@
 /-*/
 
 #include  <limal/ca-mgm/CA.hpp>
+#include  "DNObjectImpl.hpp"
 #include  "DNObject_Priv.hpp"
+
 #include  "Utils.hpp"
 
 namespace LIMAL_NAMESPACE
@@ -33,21 +35,20 @@ using namespace limal;
 using namespace blocxx;
 
 RDNObject_Priv::RDNObject_Priv()
-    : RDNObject()
-{
-}
-
+	: RDNObject()
+{}
+	
 RDNObject_Priv::RDNObject_Priv(const String& type, const String& value,
                                const String&  prompt,
                                blocxx::UInt32 min,
                                blocxx::UInt32 max)
-    : RDNObject()
+	: RDNObject()
 {
-    this->type   = type;
-    this->value  = value;
-    this->prompt = prompt;
-    this->min    = min;
-    this->max    = max;
+	m_impl->type   = type;
+	m_impl->value  = value;
+	m_impl->prompt = prompt;
+	m_impl->min    = min;
+	m_impl->max    = max;
 }
 
 RDNObject_Priv::~RDNObject_Priv()
@@ -59,138 +60,132 @@ RDNObject_Priv::setRDN(const String& type, const String& value,
                        blocxx::UInt32 min,
                        blocxx::UInt32 max)
 {
-    this->type   = type;
-    this->value  = value;
-    this->prompt = prompt;
-    this->min    = min;
-    this->max    = max;
+	m_impl->type   = type;
+	m_impl->value  = value;
+	m_impl->prompt = prompt;
+	m_impl->min    = min;
+	m_impl->max    = max;
 }
 
 
 // ##############################################################
 
 DNObject_Priv::DNObject_Priv(X509_NAME *x509_name)
-    : DNObject()
+	: DNObject()
 {
-    BIO *bio = BIO_new(BIO_s_mem());
-    if(!bio) {
-
-        LOGIT_ERROR("Can not create a memory BIO");
-        BLOCXX_THROW(limal::MemoryException, "Can not create a memory BIO");
-        
-    }
+	BIO *bio = BIO_new(BIO_s_mem());
+	if(!bio)
+	{
+		LOGIT_ERROR("Can not create a memory BIO");
+		BLOCXX_THROW(limal::MemoryException, "Can not create a memory BIO");
+	}
     
-    X509_NAME_print_ex(bio, x509_name, 0, 
-                       ASN1_STRFLGS_ESC_CTRL |
-                       ASN1_STRFLGS_ESC_MSB  |
-                       XN_FLAG_SEP_MULTILINE |
-                       XN_FLAG_FN_LN         |
-                       XN_FLAG_SPC_EQ
-                       );
+	X509_NAME_print_ex(bio, x509_name, 0, 
+	                   ASN1_STRFLGS_ESC_CTRL |
+	                   ASN1_STRFLGS_ESC_MSB  |
+	                   XN_FLAG_SEP_MULTILINE |
+	                   XN_FLAG_FN_LN         |
+	                   XN_FLAG_SPC_EQ
+	                   );
     
-    // XN_FLAG_SPC_EQ        |     // space after '='
-    // XN_FLAG_FN_LN         |     // long names (commonName)
-    // XN_FLAG_FN_ALIGN            // add spaces for a nice output
+	// XN_FLAG_SPC_EQ        |     // space after '='
+	// XN_FLAG_FN_LN         |     // long names (commonName)
+	// XN_FLAG_FN_ALIGN            // add spaces for a nice output
 
-    char *d = NULL;
+	char *d = NULL;
 
-    int n = BIO_get_mem_data(bio, &d);
+	int n = BIO_get_mem_data(bio, &d);
 
-    String      name(d, n);
-    PerlRegEx   re("(^[\\w]+)\\s=\\s(.+)$");
-    StringArray lines = name.tokenize("\n");
+	String      name(d, n);
+	PerlRegEx   re("(^[\\w]+)\\s=\\s(.+)$");
+	StringArray lines = name.tokenize("\n");
 
-    /* 
-     * This is one option.
-     *
-    for(uint j = 0 ; j < lines.size(); ++j) {
+	/* 
+	 * This is one option.
+	 *
+	 for(uint j = 0 ; j < lines.size(); ++j) {
 
-        StringArray vals = re.capture(lines[j]);
+	 StringArray vals = re.capture(lines[j]);
 
-        if(vals.size() != 3) {
+	 if(vals.size() != 3) {
             
-            BIO_free(bio);
+	 BIO_free(bio);
 
-            LOGIT_ERROR("Can not parse DN line: " << lines[j]);
-            BLOCXX_THROW(limal::RuntimeException, 
-                         Format("Can not parse DN line: %1", lines[j]).c_str());
+	 LOGIT_ERROR("Can not parse DN line: " << lines[j]);
+	 BLOCXX_THROW(limal::RuntimeException, 
+	 Format("Can not parse DN line: %1", lines[j]).c_str());
 
-        }
+	 }
 
-        List<RDNObject>::iterator it = dn.begin();
-        bool found                   = false;
+	 List<RDNObject>::iterator it = dn.begin();
+	 bool found                   = false;
 
-        for(; it != dn.end(); ++it) {
+	 for(; it != dn.end(); ++it) {
 
-            if( (*it).getType() == vals[1] ) {
+	 if( (*it).getType() == vals[1] ) {
 
-                (*it).setRDNValue(vals[2]);
-                found = true;
+	 (*it).setRDNValue(vals[2]);
+	 found = true;
 
-            }
+	 }
 
-        }
+	 }
 
-        if(!found) {
-            // What to do here?
+	 if(!found) {
+	 // What to do here?
 
-            LOGIT_INFO("DN does not match the policy: '" << lines[j] << "'");
-        }
-    }
+	 LOGIT_INFO("DN does not match the policy: '" << lines[j] << "'");
+	 }
+	 }
 
-    */
+	*/
 
-    /* and this is the other option */
+	/* and this is the other option */
 
-    List<RDNObject> tmpDN;
+	List<RDNObject> tmpDN;
 
-    for(uint j = 0 ; j < lines.size(); ++j) {
+	for(uint j = 0 ; j < lines.size(); ++j)
+	{
+		StringArray vals = re.capture(lines[j]);
 
-        StringArray vals = re.capture(lines[j]);
+		if(vals.size() != 3)
+		{            
+			BIO_free(bio);
 
-        if(vals.size() != 3) {
-            
-            BIO_free(bio);
+			LOGIT_ERROR("Can not parse DN line: " << lines[j]);
+			BLOCXX_THROW(limal::RuntimeException, 
+			             Format("Can not parse DN line: %1", lines[j]).c_str());
+		}
 
-            LOGIT_ERROR("Can not parse DN line: " << lines[j]);
-            BLOCXX_THROW(limal::RuntimeException, 
-                         Format("Can not parse DN line: %1", lines[j]).c_str());
-
-        }
-
-        tmpDN.push_back(RDNObject_Priv(vals[1], vals[2]));
-
-    }
+		tmpDN.push_back(RDNObject_Priv(vals[1], vals[2]));
+	}
     
-    setDN(tmpDN);
+	setDN(tmpDN);
     
-    BIO_free(bio);
-
+	BIO_free(bio);
 }
 
 DNObject_Priv::~DNObject_Priv()
-{
-}
+{}
 
 DNObject_Priv::DNObject_Priv(const DNObject_Priv& obj)
-    : DNObject(obj)
-{
-}
+	: DNObject(obj)
+{}
 
 DNObject_Priv::DNObject_Priv(const DNObject& obj)
-    : DNObject(obj)
-{
-}
+	: DNObject(obj)
+{}
 
 DNObject_Priv&
 DNObject_Priv::operator=(const DNObject_Priv& obj)
 {
-    if(this == &obj) return *this;
+	if(this == &obj) return *this;
     
-    DNObject::operator=(obj);
+	DNObject::operator=(obj);
 
-    return *this;
+	return *this;
 }
+
 void
 DNObject_Priv::setDefaults2Config(CA& ca)
 {
@@ -237,7 +232,7 @@ DNObject_Priv::setDefaults2Config(CA& ca)
 				// do we have a default for lastFiledName?
 				blocxx::List<RDNObject>::const_iterator rdnIT;
 				
-				for(rdnIT = dn.begin(); rdnIT != dn.end(); ++rdnIT)
+				for(rdnIT = m_impl->dn.begin(); rdnIT != m_impl->dn.end(); ++rdnIT)
 				{
 					if((*rdnIT).getType() == lastFieldName)
 					{

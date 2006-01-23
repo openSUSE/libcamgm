@@ -27,60 +27,60 @@
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <limal/ca-mgm/AuthorityKeyIdentifierGenerateExtension.hpp>
 #include  <limal/ca-mgm/IssuerAlternativeNameExtension.hpp>
+#include  <blocxx/COWIntrusiveReference.hpp>
 
 namespace LIMAL_NAMESPACE
 {
 namespace CA_MGM_NAMESPACE
 {
 
-    class CA;
-    class CAConfig;
-
+	class CA;
+	class CAConfig;
+	class X509v3CRLGenerationExtsImpl;
+	
     /**
      * @brief Collection of X509v3 extension for generating CRLs
      *
      * This class includes a collection of X509v3 extension for generating CRLs
      */
-    class X509v3CRLGenerationExts {
-    public:
-        X509v3CRLGenerationExts();
-        X509v3CRLGenerationExts(CAConfig* caConfig, Type type);
-        X509v3CRLGenerationExts(const X509v3CRLGenerationExts& extensions);
-        virtual ~X509v3CRLGenerationExts();
+	class X509v3CRLGenerationExts {
+	public:
+		X509v3CRLGenerationExts();
+		X509v3CRLGenerationExts(CAConfig* caConfig, Type type);
+		X509v3CRLGenerationExts(const X509v3CRLGenerationExts& extensions);
+		virtual ~X509v3CRLGenerationExts();
 
-        X509v3CRLGenerationExts&
-        operator=(const X509v3CRLGenerationExts& extension);
+		X509v3CRLGenerationExts&
+		operator=(const X509v3CRLGenerationExts& extension);
 
-        void
-        setAuthorityKeyIdentifier(const AuthorityKeyIdentifierGenerateExt &ext);
+		void
+		setAuthorityKeyIdentifier(const AuthorityKeyIdentifierGenerateExt &ext);
         
-        AuthorityKeyIdentifierGenerateExt
-        getAuthorityKeyIdentifier() const;
+		AuthorityKeyIdentifierGenerateExt
+		getAuthorityKeyIdentifier() const;
         
-        void
-        setIssuerAlternativeName(const IssuerAlternativeNameExt &ext);
+		void
+		setIssuerAlternativeName(const IssuerAlternativeNameExt &ext);
         
-        IssuerAlternativeNameExt
-        getIssuerAlternativeName() const;
+		IssuerAlternativeNameExt
+		getIssuerAlternativeName() const;
         
-        void
-        commit2Config(CA& ca, Type type) const;
+		void
+		commit2Config(CA& ca, Type type) const;
 
-        virtual bool
-        valid() const;
+		virtual bool
+		valid() const;
         
-        virtual blocxx::StringArray
-        verify() const;
+		virtual blocxx::StringArray
+		verify() const;
 
-        virtual blocxx::StringArray
-        dump() const;
+		virtual blocxx::StringArray
+		dump() const;
 
-    private:
-        
-        AuthorityKeyIdentifierGenerateExt authorityKeyIdentifier;
-        IssuerAlternativeNameExt          issuerAlternativeName;
-
-    };
+	private:
+		blocxx::COWIntrusiveReference<X509v3CRLGenerationExtsImpl> m_impl;
+    	
+	};
 
 }
 }

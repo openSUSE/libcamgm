@@ -26,23 +26,26 @@
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <limal/ca-mgm/LiteralValues.hpp>
 #include  <limal/ca-mgm/ExtensionBase.hpp>
+#include  <blocxx/COWIntrusiveReference.hpp>
 
 namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
-    class CA;
-    class CAConfig;
+	class CA;
+	class CAConfig;
+	class AuthorityInformationImpl;
+	class AuthorityInfoAccessExtImpl;
+	
+	class AuthorityInformation {
 
-    class AuthorityInformation {
+	public:
+		/**
+		 * Construct an empty AuthorityInformation object
+		 */
+		AuthorityInformation();
 
-    public:
-        /**
-         * Construct an empty AuthorityInformation object
-         */
-        AuthorityInformation();
-
-        /**
+		/**
          * Construct an object with access OID and location
          *
          * @code
@@ -56,47 +59,53 @@ namespace CA_MGM_NAMESPACE {
          * @param location location of the information
          *
          */
-        AuthorityInformation(const String &accessOID, 
-                             const LiteralValue& location);
+		AuthorityInformation(const String &accessOID, 
+		                     const LiteralValue& location);
 
-        /**
+		/**
          * Copy an AuthorityInformation object
          */
-        AuthorityInformation(const AuthorityInformation& ai);
+		AuthorityInformation(const AuthorityInformation& ai);
 
-        AuthorityInformation&
-        operator=(const AuthorityInformation& ai);
+		/**
+		 * Destructor
+		 */
+		~AuthorityInformation();
+		
+		
+		AuthorityInformation&
+		operator=(const AuthorityInformation& ai);
 
-        /**
+		/**
          * Set new Authority Informations
          *
          * @param accessOID <b>OCSP</b>, <b>caIssuers</b> or any valid OID
          * @param location location of the information
          *
          */
-        void
-        setAuthorityInformation(const String &accessOID, 
-                                const LiteralValue& location);
+		void
+		setAuthorityInformation(const String &accessOID, 
+		                        const LiteralValue& location);
 
-        /**
+		/**
          * Return the access OID
          */
-        String
-        getAccessOID() const;
+		String
+		getAccessOID() const;
 
         /**
          * Return the location object
          */
-        LiteralValue
-        getLocation() const;
+		LiteralValue
+		getLocation() const;
 
         /**
          * Check if this object is valid
          *
          * @return true if this object is valid, otherwise false
          */
-        bool
-        valid() const;
+		bool
+		valid() const;
 
         /**
          * Verify this object and return an Array with all
@@ -105,26 +114,25 @@ namespace CA_MGM_NAMESPACE {
          * @return Array with error messages. If this Array is empty this
          * object is valid
          */
-        blocxx::Array<String>
-        verify() const;
+		blocxx::Array<String>
+		verify() const;
 
         /**
          * Return the content of this object for debugging
          */
-        blocxx::Array<String>
-        dump() const;
+		blocxx::Array<String>
+		dump() const;
 
-        friend bool
-        operator==(const AuthorityInformation &l, const AuthorityInformation &r);
+		friend bool
+		operator==(const AuthorityInformation &l, const AuthorityInformation &r);
         
-        friend bool
-        operator<(const AuthorityInformation &l, const AuthorityInformation &r);
+		friend bool
+		operator<(const AuthorityInformation &l, const AuthorityInformation &r);
         
-    private:
-        String                  accessOID;
-        LiteralValue            location;
+	private:
+		blocxx::COWIntrusiveReference<AuthorityInformationImpl> m_impl;
 
-    };
+	};
 
     /**
      * The authority information access extension gives details
@@ -213,8 +221,8 @@ namespace CA_MGM_NAMESPACE {
         dump() const;
 
     private:
-        blocxx::List<AuthorityInformation> info;
-   
+    	blocxx::COWIntrusiveReference<AuthorityInfoAccessExtImpl> m_impl;
+    	
     };
 
 }

@@ -11,7 +11,7 @@
 |                                         (C) SUSE Linux Products GmbH |
 \----------------------------------------------------------------------/
 
-  File:       ExtensionBase.hpp
+  File:       X509v3CertificateExtensionsImpl.hpp
 
   Author:     <Michael Calmer>     <mc@suse.de>
   Maintainer: <Michael Calmer>     <mc@suse.de>
@@ -19,49 +19,41 @@
   Purpose:
 
 /-*/
-#ifndef    LIMAL_CA_MGM_EXTENSION_BASE_HPP
-#define    LIMAL_CA_MGM_EXTENSION_BASE_HPP
+#ifndef    LIMAL_CA_MGM_X509V3_CRL_EXTS_IMPL_HPP
+#define    LIMAL_CA_MGM_X509V3_CRL_EXTS_IMPL_HPP
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
-#include  <blocxx/COWIntrusiveReference.hpp>
+#include  <blocxx/COWIntrusiveCountableBase.hpp>
 
 namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
-	class CA;
-	class ExtensionBaseImpl;
-	
-	class ExtensionBase {
-
+	class X509v3CRLExtsImpl : public blocxx::COWIntrusiveCountableBase
+	{
 	public:
-		ExtensionBase(bool extPresent = false, bool extCritical = false);
+		X509v3CRLExtsImpl()
+			: authorityKeyIdentifier(AuthorityKeyIdentifierExt()),
+			  issuerAlternativeName(IssuerAlternativeNameExt())
+		{}
 
-		ExtensionBase(const ExtensionBase& extension);
+		X509v3CRLExtsImpl(const X509v3CRLExtsImpl& impl)
+			: COWIntrusiveCountableBase(impl),
+			  authorityKeyIdentifier(impl.authorityKeyIdentifier),
+			  issuerAlternativeName(impl.issuerAlternativeName)
+		{}
 
-		virtual ~ExtensionBase();
+		~X509v3CRLExtsImpl() {}
 
-		ExtensionBase& operator=(const ExtensionBase& extension);
+		X509v3CRLExtsImpl* clone() const
+		{
+			return new X509v3CRLExtsImpl(*this);
+		}
 
-		void   setPresent(bool extPresent);
-		void   setCritical(bool extCritical);
-
-		bool   isCritical() const;
-		bool   isPresent() const;
-
-		virtual void commit2Config(CA& ca, Type type) const = 0;
-
-		virtual bool                 valid() const =0;
-		virtual blocxx::StringArray  verify() const =0;
-
-		virtual blocxx::StringArray  dump() const;
-
-	private:
-		blocxx::COWIntrusiveReference<ExtensionBaseImpl> m_impl;
+		AuthorityKeyIdentifierExt authorityKeyIdentifier;
+		IssuerAlternativeNameExt  issuerAlternativeName;
 	};
-
 }
 }
-
-#endif // LIMAL_CA_MGM_EXTENSION_BASE_HPP
+#endif     /* LIMAL_CA_MGM_X509V3_CRL_EXTS_IMPL_HPP */

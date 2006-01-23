@@ -30,6 +30,7 @@
 #include  <limal/ca-mgm/BasicConstraintsExtension.hpp>
 #include  <limal/ca-mgm/SubjectKeyIdentifierExtension.hpp>
 #include  <limal/ca-mgm/SubjectAlternativeNameExtension.hpp>
+#include  <blocxx/COWIntrusiveReference.hpp>
 
 namespace LIMAL_NAMESPACE {
 
@@ -37,7 +38,8 @@ namespace CA_MGM_NAMESPACE {
 
     class CA;
     class CAConfig;
-
+	class X509v3RequestExtsImpl;
+	
     /**
      * @brief Collection of X509v3 extension for certificate requests
      *
@@ -116,22 +118,7 @@ namespace CA_MGM_NAMESPACE {
         dump() const;
 
     protected:
-
-        /* String extensions */
-
-        NsSslServerNameExt        nsSslServerName;
-        NsCommentExt              nsComment;
-
-        /* Bit Strings */
-        KeyUsageExt               keyUsage; 
-        NsCertTypeExt             nsCertType;
-
-        BasicConstraintsExt       basicConstraints;
-        ExtendedKeyUsageExt       extendedKeyUsage;
-        SubjectKeyIdentifierExt   subjectKeyIdentifier;
-        SubjectAlternativeNameExt subjectAlternativeName;
-
-        // AuthorityInfoAccessExt    authorityInfoAccess;  // ???
+    	blocxx::COWIntrusiveReference<X509v3RequestExtsImpl> m_impl;
 
     };
 

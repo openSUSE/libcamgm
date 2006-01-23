@@ -27,119 +27,102 @@
 #include  <limal/ca-mgm/X509v3CertificateExtensions.hpp>
 #include  <limal/ca-mgm/DNObject.hpp>
 #include  <limal/ByteBuffer.hpp>
+#include  <blocxx/COWIntrusiveReference.hpp>
 
 namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
+	class CertificateDataImpl;
+	
     /**
      * @brief Read-only data representation of a certificate
      *
      * This class is a read-only data representation of a certificate
      */
-    class CertificateData {
-    public:
-        CertificateData(const CertificateData& data);
+	class CertificateData {
+	public:
+		CertificateData(const CertificateData& data);
 
-        virtual ~CertificateData();
+		virtual ~CertificateData();
 
-        CertificateData&
-        operator=(const CertificateData& data);
+		CertificateData&
+		operator=(const CertificateData& data);
 
-        blocxx::UInt32
-        getVersion() const;
+		blocxx::UInt32
+		getVersion() const;
         
-        String
-        getSerial() const;
+		String
+		getSerial() const;
         
-        time_t
-        getStartDate() const;
+		time_t
+		getStartDate() const;
         
-        time_t
-        getEndDate() const;
+		time_t
+		getEndDate() const;
         
-        DNObject
-        getIssuerDN() const;
+		DNObject
+		getIssuerDN() const;
         
-        DNObject
-        getSubjectDN() const;
+		DNObject
+		getSubjectDN() const;
         
-        blocxx::UInt32
-        getKeysize() const;
+		blocxx::UInt32
+		getKeysize() const;
         
-        KeyAlg
-        getPublicKeyAlgorithm() const;
+		KeyAlg
+		getPublicKeyAlgorithm() const;
         
-        String
-        getPublicKeyAlgorithmAsString() const;
+		String
+		getPublicKeyAlgorithmAsString() const;
         
-        limal::ByteBuffer
-        getPublicKey() const;
+		limal::ByteBuffer
+		getPublicKey() const;
         
-        SigAlg
-        getSignatureAlgorithm() const;
+		SigAlg
+		getSignatureAlgorithm() const;
         
-        String
-        getSignatureAlgorithmAsString() const;
+		String
+		getSignatureAlgorithmAsString() const;
         
-        limal::ByteBuffer
-        getSignature() const;
+		limal::ByteBuffer
+		getSignature() const;
         
-        String
-        getFingerprint() const;
+		String
+		getFingerprint() const;
         
-        X509v3CertificateExts
-        getExtensions() const;
+		X509v3CertificateExts
+		getExtensions() const;
 
-    	/**
-    	 * Return the Certificate data as human readable text.
-    	 * (Format may change)
-    	 */
-    	String
-    	getCertificateAsText() const;
+		/**
+		 * Return the Certificate data as human readable text.
+		 * (Format may change)
+		 */
+		String
+		getCertificateAsText() const;
 
-    	/**
-    	 * Return the Certificate extensions as human readable text.
-    	 * (Format may change)
-    	 */
-    	String
-    	getExtensionsAsText() const;
+		/**
+		 * Return the Certificate extensions as human readable text.
+		 * (Format may change)
+		 */
+		String
+		getExtensionsAsText() const;
     	
-        virtual bool
-        valid() const;
+		virtual bool
+		valid() const;
         
-        virtual blocxx::StringArray
-        verify() const;
+		virtual blocxx::StringArray
+		verify() const;
 
-        virtual blocxx::StringArray
-        dump() const;
+		virtual blocxx::StringArray
+		dump() const;
         
-    protected:
-        CertificateData();
+	protected:
+		CertificateData();
 
-        blocxx::UInt32        version;   // allowed 1, 2, 3
-        String                serial;
-		String                fingerprint;
-        time_t                notBefore; 
-        time_t                notAfter;  
 
-        DNObject              issuer;
-        DNObject              subject;
-        blocxx::UInt32        keysize;
-
-        KeyAlg                pubkeyAlgorithm; 
-
-        ByteBuffer            publicKey;  
-
-        SigAlg                signatureAlgorithm;
-        ByteBuffer            signature;
-
-        X509v3CertificateExts extensions;
-
-    	String                text;
-    	String                extText;
-    	
-    };
+		blocxx::COWIntrusiveReference<CertificateDataImpl> m_impl;
+	};
 
 }
 }

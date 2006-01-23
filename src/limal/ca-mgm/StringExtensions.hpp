@@ -25,183 +25,185 @@
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <limal/ca-mgm/ExtensionBase.hpp>
+#include  <blocxx/COWIntrusiveReference.hpp>
 
 namespace LIMAL_NAMESPACE {
     
 namespace CA_MGM_NAMESPACE {
 
-    class CA;
-    class CAConfig;
-    
-    class StringExtension : public ExtensionBase {
+	class CA;
+	class CAConfig;
+	class StringExtensionImpl;
+	
+	class StringExtension : public ExtensionBase {
         
-    public:
-        StringExtension();
-        virtual ~StringExtension();
+	public:
+		StringExtension();
+		virtual ~StringExtension();
 
-        virtual void   setValue(const String &v) = 0;
-        virtual String getValue() const = 0;
+		virtual void   setValue(const String &v) = 0;
+		virtual String getValue() const = 0;
         
-        virtual void commit2Config(CA& ca, Type type) const = 0;
+		virtual void commit2Config(CA& ca, Type type) const = 0;
         
-        virtual bool                 valid() const = 0;
-        virtual blocxx::StringArray  verify() const = 0;
+		virtual bool                 valid() const = 0;
+		virtual blocxx::StringArray  verify() const = 0;
 
-        virtual blocxx::StringArray  dump() const = 0;
+		virtual blocxx::StringArray  dump() const = 0;
 
-    protected:
-        StringExtension(const String &v );
-        StringExtension(const StringExtension& extension);
+	protected:
+		StringExtension(const String &v );
+		StringExtension(const StringExtension& extension);
         
-        StringExtension& operator=(const StringExtension& extension);
-        
-        String value;
-       
-    };
+		StringExtension& operator=(const StringExtension& extension);
 
-    class NsBaseUrlExt : public StringExtension { 
-    public:
-        NsBaseUrlExt();
-        NsBaseUrlExt(const String &v);
-        NsBaseUrlExt(CAConfig* caConfig, Type type);
-        NsBaseUrlExt(const NsBaseUrlExt &extension);
-        virtual ~NsBaseUrlExt();
+		blocxx::COWIntrusiveReference<StringExtensionImpl> m_impl;
+    	
+	};
 
-        NsBaseUrlExt& operator=(const NsBaseUrlExt& extension);
+	class NsBaseUrlExt : public StringExtension { 
+	public:
+		NsBaseUrlExt();
+		NsBaseUrlExt(const String &v);
+		NsBaseUrlExt(CAConfig* caConfig, Type type);
+		NsBaseUrlExt(const NsBaseUrlExt &extension);
+		virtual ~NsBaseUrlExt();
 
-        void           setValue(const String &v);
-        String         getValue() const;
+		NsBaseUrlExt& operator=(const NsBaseUrlExt& extension);
 
-        virtual void commit2Config(CA& ca, Type type) const ;
+		void           setValue(const String &v);
+		String         getValue() const;
 
-        virtual bool                 valid() const;
-        virtual blocxx::StringArray  verify() const;
+		virtual void commit2Config(CA& ca, Type type) const ;
 
-        virtual blocxx::StringArray  dump() const;
-    };
+		virtual bool                 valid() const;
+		virtual blocxx::StringArray  verify() const;
 
-    class NsRevocationUrlExt : public StringExtension { 
-    public:
-        NsRevocationUrlExt();
-        NsRevocationUrlExt(const String &v);
-        NsRevocationUrlExt(CAConfig* caConfig, Type type);
-        NsRevocationUrlExt(const NsRevocationUrlExt &extension);
-        virtual ~NsRevocationUrlExt();
+		virtual blocxx::StringArray  dump() const;
+	};
 
-        NsRevocationUrlExt& operator=(const NsRevocationUrlExt& extension);
+	class NsRevocationUrlExt : public StringExtension { 
+	public:
+		NsRevocationUrlExt();
+		NsRevocationUrlExt(const String &v);
+		NsRevocationUrlExt(CAConfig* caConfig, Type type);
+		NsRevocationUrlExt(const NsRevocationUrlExt &extension);
+		virtual ~NsRevocationUrlExt();
 
-        void           setValue(const String &v);
-        String         getValue() const;
+		NsRevocationUrlExt& operator=(const NsRevocationUrlExt& extension);
 
-        virtual void commit2Config(CA& ca, Type type) const;
+		void           setValue(const String &v);
+		String         getValue() const;
 
-        virtual bool                 valid() const;
-        virtual blocxx::StringArray  verify() const;
+		virtual void commit2Config(CA& ca, Type type) const;
 
-        virtual blocxx::StringArray  dump() const;
-    };
+		virtual bool                 valid() const;
+		virtual blocxx::StringArray  verify() const;
 
-    class NsCaRevocationUrlExt : public StringExtension { 
-    public:
-        NsCaRevocationUrlExt();
-        NsCaRevocationUrlExt(const String &v);
-        NsCaRevocationUrlExt(CAConfig* caConfig, Type type);
-        NsCaRevocationUrlExt(const NsCaRevocationUrlExt &extension);
-        virtual ~NsCaRevocationUrlExt();
+		virtual blocxx::StringArray  dump() const;
+	};
 
-        NsCaRevocationUrlExt& operator=(const NsCaRevocationUrlExt& extension);
+	class NsCaRevocationUrlExt : public StringExtension { 
+	public:
+		NsCaRevocationUrlExt();
+		NsCaRevocationUrlExt(const String &v);
+		NsCaRevocationUrlExt(CAConfig* caConfig, Type type);
+		NsCaRevocationUrlExt(const NsCaRevocationUrlExt &extension);
+		virtual ~NsCaRevocationUrlExt();
 
-        void           setValue(const String &v);
-        String         getValue() const;
+		NsCaRevocationUrlExt& operator=(const NsCaRevocationUrlExt& extension);
 
-        virtual void commit2Config(CA& ca, Type type) const; 
+		void           setValue(const String &v);
+		String         getValue() const;
 
-        virtual bool                 valid() const;
-        virtual blocxx::StringArray  verify() const;
+		virtual void commit2Config(CA& ca, Type type) const; 
 
-        virtual blocxx::StringArray  dump() const;
-    };
+		virtual bool                 valid() const;
+		virtual blocxx::StringArray  verify() const;
 
-    class NsRenewalUrlExt : public StringExtension { 
-    public:
-        NsRenewalUrlExt();
-        NsRenewalUrlExt(const String &v);
-        NsRenewalUrlExt(CAConfig* caConfig, Type type);
-        NsRenewalUrlExt(const NsRenewalUrlExt &extension);
-        virtual ~NsRenewalUrlExt();
+		virtual blocxx::StringArray  dump() const;
+	};
 
-        NsRenewalUrlExt& operator=(const NsRenewalUrlExt& extension);
+	class NsRenewalUrlExt : public StringExtension { 
+	public:
+		NsRenewalUrlExt();
+		NsRenewalUrlExt(const String &v);
+		NsRenewalUrlExt(CAConfig* caConfig, Type type);
+		NsRenewalUrlExt(const NsRenewalUrlExt &extension);
+		virtual ~NsRenewalUrlExt();
 
-        void           setValue(const String &v);
-        String         getValue() const;
+		NsRenewalUrlExt& operator=(const NsRenewalUrlExt& extension);
 
-        virtual void commit2Config(CA& ca, Type type) const;
+		void           setValue(const String &v);
+		String         getValue() const;
 
-        virtual bool                 valid() const;
-        virtual blocxx::StringArray  verify() const;
+		virtual void commit2Config(CA& ca, Type type) const;
 
-        virtual blocxx::StringArray  dump() const;
-    };
-    class NsCaPolicyUrlExt : public StringExtension { 
-    public:
-        NsCaPolicyUrlExt();
-        NsCaPolicyUrlExt(const String &v);
-        NsCaPolicyUrlExt(CAConfig* caConfig, Type type);
-        NsCaPolicyUrlExt(const NsCaPolicyUrlExt &extension);
-        virtual ~NsCaPolicyUrlExt();
+		virtual bool                 valid() const;
+		virtual blocxx::StringArray  verify() const;
 
-        NsCaPolicyUrlExt& operator=(const NsCaPolicyUrlExt& extension);
+		virtual blocxx::StringArray  dump() const;
+	};
+	class NsCaPolicyUrlExt : public StringExtension { 
+	public:
+		NsCaPolicyUrlExt();
+		NsCaPolicyUrlExt(const String &v);
+		NsCaPolicyUrlExt(CAConfig* caConfig, Type type);
+		NsCaPolicyUrlExt(const NsCaPolicyUrlExt &extension);
+		virtual ~NsCaPolicyUrlExt();
 
-        void           setValue(const String &v);
-        String         getValue() const;
+		NsCaPolicyUrlExt& operator=(const NsCaPolicyUrlExt& extension);
 
-        virtual void commit2Config(CA& ca, Type type) const; 
+		void           setValue(const String &v);
+		String         getValue() const;
 
-        virtual bool                 valid() const;
-        virtual blocxx::StringArray  verify() const;
+		virtual void commit2Config(CA& ca, Type type) const; 
 
-        virtual blocxx::StringArray  dump() const;
-    };
-    class NsSslServerNameExt : public StringExtension { 
-    public:
-        NsSslServerNameExt();
-        NsSslServerNameExt(const String &v);
-        NsSslServerNameExt(CAConfig* caConfig, Type type);
-        NsSslServerNameExt(const NsSslServerNameExt &extension);
-        virtual ~NsSslServerNameExt();
+		virtual bool                 valid() const;
+		virtual blocxx::StringArray  verify() const;
 
-        NsSslServerNameExt& operator=(const NsSslServerNameExt& extension);
+		virtual blocxx::StringArray  dump() const;
+	};
+	class NsSslServerNameExt : public StringExtension { 
+	public:
+		NsSslServerNameExt();
+		NsSslServerNameExt(const String &v);
+		NsSslServerNameExt(CAConfig* caConfig, Type type);
+		NsSslServerNameExt(const NsSslServerNameExt &extension);
+		virtual ~NsSslServerNameExt();
 
-        void           setValue(const String &v);
-        String         getValue() const;
+		NsSslServerNameExt& operator=(const NsSslServerNameExt& extension);
 
-        virtual void commit2Config(CA& ca, Type type) const;
+		void           setValue(const String &v);
+		String         getValue() const;
 
-        virtual bool                 valid() const;
-        virtual blocxx::StringArray  verify() const;
+		virtual void commit2Config(CA& ca, Type type) const;
 
-        virtual blocxx::StringArray  dump() const;
-    };
-    class NsCommentExt : public StringExtension { 
-    public:
-        NsCommentExt();
-        NsCommentExt(const String &v);
-        NsCommentExt(CAConfig* caConfig, Type type);
-        NsCommentExt(const NsCommentExt &extension);
-        virtual ~NsCommentExt();
+		virtual bool                 valid() const;
+		virtual blocxx::StringArray  verify() const;
 
-        NsCommentExt& operator=(const NsCommentExt& extension);
+		virtual blocxx::StringArray  dump() const;
+	};
+	class NsCommentExt : public StringExtension { 
+	public:
+		NsCommentExt();
+		NsCommentExt(const String &v);
+		NsCommentExt(CAConfig* caConfig, Type type);
+		NsCommentExt(const NsCommentExt &extension);
+		virtual ~NsCommentExt();
 
-        void           setValue(const String &v);
-        String         getValue() const;
+		NsCommentExt& operator=(const NsCommentExt& extension);
 
-        virtual void commit2Config(CA& ca, Type type) const;
+		void           setValue(const String &v);
+		String         getValue() const;
 
-        virtual bool                 valid() const;
-        virtual blocxx::StringArray  verify() const;
+		virtual void commit2Config(CA& ca, Type type) const;
 
-        virtual blocxx::StringArray  dump() const;
-    };
+		virtual bool                 valid() const;
+		virtual blocxx::StringArray  verify() const;
+
+		virtual blocxx::StringArray  dump() const;
+	};
 
 }
 }

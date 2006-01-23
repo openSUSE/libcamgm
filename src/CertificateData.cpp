@@ -24,7 +24,9 @@
 #include  <limal/ValueRegExCheck.hpp>
 #include  <limal/Exception.hpp>
 #include  <blocxx/Format.hpp>
+#include  <blocxx/COWIntrusiveCountableBase.hpp>
 
+#include  "CertificateDataImpl.hpp"
 #include  "Utils.hpp"
 #include  "X509v3CertificateExtensions_Priv.hpp"
 
@@ -36,41 +38,20 @@ namespace CA_MGM_NAMESPACE
 using namespace limal;
 using namespace blocxx;
 
+	
 CertificateData::CertificateData(const CertificateData& data)
-	: version(data.version), serial(data.serial),
-	  fingerprint(data.fingerprint),
-	  notBefore(data.notBefore), notAfter(data.notAfter),
-	  issuer(data.issuer), subject(data.subject),
-	  keysize(data.keysize), pubkeyAlgorithm(data.pubkeyAlgorithm),
-	  publicKey(data.publicKey), signatureAlgorithm(data.signatureAlgorithm),
-	  signature(data.signature), extensions(data.extensions),
-	  text(data.text), extText(data.extText)
+	: m_impl(data.m_impl)
 {}
 
 CertificateData::~CertificateData()
 {}
 
-
 CertificateData& 
 CertificateData::operator=(const CertificateData& data)
 {
 	if(this == &data) return *this;
-
-	version            = data.version;
-	serial             = data.serial;
-	fingerprint        = data.fingerprint;
-	notBefore          = data.notBefore;
-	notAfter           = data.notAfter;
-	issuer             = data.issuer;
-	subject            = data.subject;
-	keysize            = data.keysize;
-	pubkeyAlgorithm    = data.pubkeyAlgorithm;
-	publicKey          = data.publicKey;
-	signatureAlgorithm = data.signatureAlgorithm;
-	signature          = data.signature;
-	extensions         = data.extensions;
-	text               = data.text;
-	extText            = data.extText;
+	
+	m_impl = data.m_impl;
 	
 	return *this;
 }
@@ -78,55 +59,55 @@ CertificateData::operator=(const CertificateData& data)
 blocxx::UInt32 
 CertificateData::getVersion() const
 {
-	return version;
+	return m_impl->version;
 }
 
 blocxx::String
 CertificateData::getSerial() const
 {
-	return serial;
+	return m_impl->serial;
 }
 
 time_t
 CertificateData::getStartDate() const
 {
-	return notBefore;
+	return m_impl->notBefore;
 }
 
 time_t
 CertificateData::getEndDate() const
 {
-	return notAfter;
+	return m_impl->notAfter;
 }
 
 DNObject
 CertificateData::getIssuerDN() const
 {
-	return issuer;
+	return m_impl->issuer;
 }
 
 DNObject
 CertificateData::getSubjectDN() const
 {
-	return subject;
+	return m_impl->subject;
 }
 
 blocxx::UInt32
 CertificateData::getKeysize() const
 {
-	return keysize;
+	return m_impl->keysize;
 }
 
 KeyAlg
 CertificateData::getPublicKeyAlgorithm() const
 {
-	return pubkeyAlgorithm;
+	return m_impl->pubkeyAlgorithm;
 }
 
 blocxx::String
 CertificateData::getPublicKeyAlgorithmAsString() const
 {
-	switch(pubkeyAlgorithm)
+	switch(m_impl->pubkeyAlgorithm)
 	{
 		case E_RSA:
 			return "RSA";
@@ -144,19 +125,19 @@ CertificateData::getPublicKeyAlgorithmAsString() const
 ByteBuffer
 CertificateData::getPublicKey() const
 {
-	return publicKey;
+	return m_impl->publicKey;
 }
 
 SigAlg
 CertificateData::getSignatureAlgorithm() const
 {
-	return signatureAlgorithm;
+	return m_impl->signatureAlgorithm;
 }
 
 blocxx::String
 CertificateData::getSignatureAlgorithmAsString() const
 {
-	switch(signatureAlgorithm)
+	switch(m_impl->signatureAlgorithm)
 	{
 		case E_SHA1RSA:
 			return "SHA1RSA";
@@ -174,72 +155,72 @@ CertificateData::getSignatureAlgorithmAsString() const
 ByteBuffer
 CertificateData::getSignature() const
 {
-	return signature;
+	return m_impl->signature;
 }
 
 blocxx::String
 CertificateData::getFingerprint() const
 {
-	return fingerprint;
+	return m_impl->fingerprint;
 }
 
 X509v3CertificateExts
 CertificateData::getExtensions() const
 {
-	return extensions;
+	return m_impl->extensions;
 }
 
 String
 CertificateData::getCertificateAsText() const
 {
-	return text;
+	return m_impl->text;
 }
 
 String
 CertificateData::getExtensionsAsText() const
 {
-	return extText;
+	return m_impl->extText;
 }
 
 bool
 CertificateData::valid() const
 {
-	if(version < 1 || version > 3)
+	if(m_impl->version < 1 || m_impl->version > 3)
 	{
-		LOGIT_DEBUG("invalid version:" << version);
+		LOGIT_DEBUG("invalid version:" << m_impl->version);
 		return false;
 	}
 
-	if(!initHexCheck().isValid(serial))
+	if(!initHexCheck().isValid(m_impl->serial))
 	{
-		LOGIT_DEBUG("invalid serial:" << serial);
+		LOGIT_DEBUG("invalid serial:" << m_impl->serial);
 		return false;
 	}
 
-	if(notBefore == 0)
+	if(m_impl->notBefore == 0)
 	{
-		LOGIT_DEBUG("invalid notBefore:" << notBefore);
+		LOGIT_DEBUG("invalid notBefore:" << m_impl->notBefore);
 		return false;
 	}
 	
-	if(notAfter <= notBefore)
+	if(m_impl->notAfter <= m_impl->notBefore)
 	{
-		LOGIT_DEBUG("invalid notAfter:" << notAfter);
+		LOGIT_DEBUG("invalid notAfter:" << m_impl->notAfter);
 		return false;
 	}
 	
-	if(!issuer.valid())  return false;
-	if(!subject.valid()) return false;
+	if(!m_impl->issuer.valid())  return false;
+	if(!m_impl->subject.valid()) return false;
 
 	// keysize ?
 
-	if(publicKey.empty())
+	if(m_impl->publicKey.empty())
 	{
 		LOGIT_DEBUG("invalid publicKey");
 		return false;
 	}
 
-	if(!extensions.valid()) return false;
+	if(!m_impl->extensions.valid()) return false;
    
 	return true;
 }
@@ -249,35 +230,35 @@ CertificateData::verify() const
 {
 	StringArray result;
 
-	if(version < 1 || version > 3)
+	if(m_impl->version < 1 || m_impl->version > 3)
 	{
-		result.append(Format("invalid version: %1", version).toString());
+		result.append(Format("invalid version: %1", m_impl->version).toString());
 	}
 
-	if(!initHexCheck().isValid(serial))
+	if(!initHexCheck().isValid(m_impl->serial))
 	{
-		result.append(Format("invalid serial: %1", serial).toString());
+		result.append(Format("invalid serial: %1", m_impl->serial).toString());
 	}
 
-	if(notBefore == 0)
+	if(m_impl->notBefore == 0)
 	{
-		result.append(Format("invalid notBefore: %1", notBefore).toString());
+		result.append(Format("invalid notBefore: %1", m_impl->notBefore).toString());
 	}
-	if(notAfter <= notBefore)
+	if(m_impl->notAfter <= m_impl->notBefore)
 	{
-		result.append(Format("invalid notAfter: %1", notAfter).toString());
+		result.append(Format("invalid notAfter: %1", m_impl->notAfter).toString());
 	}
-	result.appendArray(issuer.verify());
-	result.appendArray(subject.verify());
+	result.appendArray(m_impl->issuer.verify());
+	result.appendArray(m_impl->subject.verify());
 
 	// keysize ?
 
-	if(publicKey.empty())
+	if(m_impl->publicKey.empty())
 	{
 		result.append("invalid publicKey");
 	}
 
-	result.appendArray(extensions.verify());
+	result.appendArray(m_impl->extensions.verify());
    
 	LOGIT_DEBUG_STRINGARRAY("CertificateData::verify()", result);
 
@@ -290,51 +271,45 @@ CertificateData::dump() const
 	StringArray result;
 	result.append("CertificateData::dump()");
 
-	result.append("Version = " + String(version));
-	result.append("Serial = " + serial);
-	result.append("notBefore = " + String(notBefore));
-	result.append("notAfter = " + String(notAfter));
-	result.append("Fingerprint = " + fingerprint);
-	result.appendArray(issuer.dump());
-	result.appendArray(subject.dump());
-	result.append("Keysize = " + String(keysize));
-	result.append("public key algorithm = " + String(pubkeyAlgorithm));
+	result.append("Version = " + String(m_impl->version));
+	result.append("Serial = " + m_impl->serial);
+	result.append("notBefore = " + String(m_impl->notBefore));
+	result.append("notAfter = " + String(m_impl->notAfter));
+	result.append("Fingerprint = " + m_impl->fingerprint);
+	result.appendArray(m_impl->issuer.dump());
+	result.appendArray(m_impl->subject.dump());
+	result.append("Keysize = " + String(m_impl->keysize));
+	result.append("public key algorithm = " + String(m_impl->pubkeyAlgorithm));
 
 	String pk;
-	for(size_t i = 0; i < publicKey.size(); ++i)
+	for(size_t i = 0; i < m_impl->publicKey.size(); ++i)
 	{
 		String s;
-		s.format("%02x", (UInt8)publicKey[i]);
+		s.format("%02x", (UInt8)m_impl->publicKey[i]);
 		pk += s + ":";
 	}
 	result.append("public Key = " + pk);
-	result.append("signatureAlgorithm = "+ String(signatureAlgorithm));
+	result.append("signatureAlgorithm = "+ String(m_impl->signatureAlgorithm));
 
 	String s;
-	for(uint i = 0; i < signature.size(); ++i)
+	for(uint i = 0; i < m_impl->signature.size(); ++i)
 	{
 		String d;
-		d.format("%02x:", (UInt8)signature[i]);
+		d.format("%02x:", (UInt8)m_impl->signature[i]);
 		s += d;
 	}
 
 	result.append("Signature = " + s);
-	result.appendArray(extensions.dump());
+	result.appendArray(m_impl->extensions.dump());
 
 	return result;
 }
 
 //    protected
 CertificateData::CertificateData()
-	: version(0), serial(""),
-	  fingerprint(""),
-	  notBefore(0), notAfter(0),
-	  issuer(DNObject()), subject(DNObject()),
-	  keysize(2048), pubkeyAlgorithm(E_RSA),
-	  publicKey(ByteBuffer()), signatureAlgorithm(E_SHA1RSA),
-	  signature(ByteBuffer()), extensions(X509v3CertificateExts_Priv()),
-	  text(""), extText("")
+	: m_impl(new CertificateDataImpl())
 {}
+
 
 }
 }

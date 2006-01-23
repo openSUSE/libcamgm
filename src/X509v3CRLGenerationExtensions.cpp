@@ -24,6 +24,7 @@
 #include  <limal/ca-mgm/X509v3CRLGenerationExtensions.hpp>
 #include  <limal/ca-mgm/CA.hpp>
 #include  <limal/Exception.hpp>
+#include  <blocxx/COWIntrusiveCountableBase.hpp>
 
 #include  "Utils.hpp"
 
@@ -35,21 +36,49 @@ namespace CA_MGM_NAMESPACE
 using namespace limal;
 using namespace blocxx;
 
-X509v3CRLGenerationExts::X509v3CRLGenerationExts()
+class X509v3CRLGenerationExtsImpl : public blocxx::COWIntrusiveCountableBase
 {
-}
+	public:
+	X509v3CRLGenerationExtsImpl()
+		: authorityKeyIdentifier(AuthorityKeyIdentifierGenerateExt()),
+		  issuerAlternativeName(IssuerAlternativeNameExt())
+ 
+	{}
+
+	X509v3CRLGenerationExtsImpl(CAConfig* caConfig, Type type)
+		: authorityKeyIdentifier(caConfig, type),
+		  issuerAlternativeName(caConfig, type)
+	{}
+
+	X509v3CRLGenerationExtsImpl(const X509v3CRLGenerationExtsImpl& impl)
+		: COWIntrusiveCountableBase(impl),
+		  authorityKeyIdentifier(impl.authorityKeyIdentifier),
+		  issuerAlternativeName(impl.issuerAlternativeName)
+	{}
+
+	~X509v3CRLGenerationExtsImpl() {}
+
+	X509v3CRLGenerationExtsImpl* clone() const
+	{
+		return new X509v3CRLGenerationExtsImpl(*this);
+	}
+
+	AuthorityKeyIdentifierGenerateExt authorityKeyIdentifier;
+	IssuerAlternativeNameExt          issuerAlternativeName;
+};
+
+	
+X509v3CRLGenerationExts::X509v3CRLGenerationExts()
+	: m_impl(new X509v3CRLGenerationExtsImpl())
+{}
 
 X509v3CRLGenerationExts::X509v3CRLGenerationExts(CAConfig* caConfig, Type type)
-    : authorityKeyIdentifier(caConfig, type),
-      issuerAlternativeName(caConfig, type)
-{
-}
+	: m_impl(new X509v3CRLGenerationExtsImpl(caConfig, type))
+{}
 
 X509v3CRLGenerationExts::X509v3CRLGenerationExts(const X509v3CRLGenerationExts& extensions)
-    : authorityKeyIdentifier(extensions.authorityKeyIdentifier),
-      issuerAlternativeName(extensions.issuerAlternativeName)
-{
-}
+	: m_impl(extensions.m_impl)
+{}
 
 X509v3CRLGenerationExts::~X509v3CRLGenerationExts()
 {}
@@ -57,88 +86,90 @@ X509v3CRLGenerationExts::~X509v3CRLGenerationExts()
 X509v3CRLGenerationExts&
 X509v3CRLGenerationExts::operator=(const X509v3CRLGenerationExts& extension)
 {
-    if(this == &extension) return *this;
+	if(this == &extension) return *this;
     
-    authorityKeyIdentifier = extension.authorityKeyIdentifier;
-    issuerAlternativeName  = extension.issuerAlternativeName;
+	m_impl = extension.m_impl;
     
-    return *this;
+	return *this;
 }
 
 void
 X509v3CRLGenerationExts::setAuthorityKeyIdentifier(const AuthorityKeyIdentifierGenerateExt &ext)
 {
-    if(!ext.valid()) {
-        BLOCXX_THROW(limal::ValueException, 
-                     "X509v3CRLGenerationExts::setAuthorityKeyIdentifier invalid value");
-    }
-    authorityKeyIdentifier = ext;
+	if(!ext.valid())
+	{
+		BLOCXX_THROW(limal::ValueException, 
+		             "X509v3CRLGenerationExts::setAuthorityKeyIdentifier invalid value");
+	}
+	m_impl->authorityKeyIdentifier = ext;
 }
 
 AuthorityKeyIdentifierGenerateExt
 X509v3CRLGenerationExts::getAuthorityKeyIdentifier() const
 {
-    return authorityKeyIdentifier;
+	return m_impl->authorityKeyIdentifier;
 }
 
 void
 X509v3CRLGenerationExts::setIssuerAlternativeName(const IssuerAlternativeNameExt &ext)
 {
-    if(!ext.valid()) {
-        BLOCXX_THROW(limal::ValueException, 
-                     "X509v3CRLGenerationExts::setIssuerAlternativeName invalid value");
-    }
-    issuerAlternativeName = ext;
+	if(!ext.valid())
+	{
+		BLOCXX_THROW(limal::ValueException, 
+		             "X509v3CRLGenerationExts::setIssuerAlternativeName invalid value");
+	}
+	m_impl->issuerAlternativeName = ext;
 }
 
 IssuerAlternativeNameExt
 X509v3CRLGenerationExts::getIssuerAlternativeName() const
 {
-    return issuerAlternativeName;
+	return m_impl->issuerAlternativeName;
 }
 
 void
 X509v3CRLGenerationExts::commit2Config(CA& ca, Type type) const
 {
-    if(!valid()) {
-        LOGIT_ERROR("invalid X509v3RequestExts object");
-        BLOCXX_THROW(limal::ValueException, "invalid X509v3RequestExts object");
-    }
+	if(!valid())
+	{
+		LOGIT_ERROR("invalid X509v3RequestExts object");
+		BLOCXX_THROW(limal::ValueException, "invalid X509v3RequestExts object");
+	}
     
-    authorityKeyIdentifier.commit2Config(ca, type);
-    issuerAlternativeName.commit2Config(ca, type);
+	m_impl->authorityKeyIdentifier.commit2Config(ca, type);
+	m_impl->issuerAlternativeName.commit2Config(ca, type);
 }
 
 bool
 X509v3CRLGenerationExts::valid() const
 {
-    if(!authorityKeyIdentifier.valid()) return false;
-    if(!issuerAlternativeName.valid())  return false;
-    return true;
+	if(!m_impl->authorityKeyIdentifier.valid()) return false;
+	if(!m_impl->issuerAlternativeName.valid())  return false;
+	return true;
 }
 
 blocxx::StringArray
 X509v3CRLGenerationExts::verify() const
 {
-    StringArray result;
+	StringArray result;
 
-    result.appendArray(authorityKeyIdentifier.verify());
-    result.appendArray(issuerAlternativeName.verify());
+	result.appendArray(m_impl->authorityKeyIdentifier.verify());
+	result.appendArray(m_impl->issuerAlternativeName.verify());
     
-    LOGIT_DEBUG_STRINGARRAY("X509v3CRLGenerationExts::verify()", result);
-    return result;;
+	LOGIT_DEBUG_STRINGARRAY("X509v3CRLGenerationExts::verify()", result);
+	return result;;
 }
 
 blocxx::StringArray
 X509v3CRLGenerationExts::dump() const
 {
-    StringArray result;
-    result.append("X509v3CRLGenerationExts::dump()");
+	StringArray result;
+	result.append("X509v3CRLGenerationExts::dump()");
 
-    result.appendArray(authorityKeyIdentifier.dump());
-    result.appendArray(issuerAlternativeName.dump());
+	result.appendArray(m_impl->authorityKeyIdentifier.dump());
+	result.appendArray(m_impl->issuerAlternativeName.dump());
 
-    return result;
+	return result;
 }
 
 }

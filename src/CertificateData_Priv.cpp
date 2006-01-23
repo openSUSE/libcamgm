@@ -35,6 +35,7 @@
 #include  <limal/Exception.hpp>
 #include  <limal/PathInfo.hpp>
 
+#include  "CertificateDataImpl.hpp"
 #include  "Utils.hpp"
 #include  "DNObject_Priv.hpp"
 #include  "X509v3CertificateExtensions_Priv.hpp"
@@ -48,90 +49,86 @@ using namespace limal;
 using namespace blocxx;
 
 CertificateData_Priv::CertificateData_Priv()
-    : CertificateData()
-{
-}
+	: CertificateData()
+{}
 
 CertificateData_Priv::CertificateData_Priv(const ByteBuffer &certificate,
-										   FormatType formatType)
+                                           FormatType formatType)
 	: CertificateData()
 {
-    BIO  *bio;
-    X509 *x509 = NULL;
+	BIO  *bio;
+	X509 *x509 = NULL;
 
-    unsigned char *d = (unsigned char*)certificate.data();
+	unsigned char *d = (unsigned char*)certificate.data();
 
-    if( formatType == E_PEM ) {
+	if( formatType == E_PEM )
+	{
+		// load the certificate into a memory bio 
+		bio = BIO_new_mem_buf(d, certificate.size());
 
-        // load the certificate into a memory bio 
-        bio = BIO_new_mem_buf(d, certificate.size());
+		if(!bio)
+		{            
+			LOGIT_ERROR("Can not create a memory BIO");
+			BLOCXX_THROW(limal::MemoryException, "Can not create a memory BIO");
+		}
 
-        if(!bio) {
-            
-            LOGIT_ERROR("Can not create a memory BIO");
-            BLOCXX_THROW(limal::MemoryException, "Can not create a memory BIO");
-            
-        }
+		// create the X509 structure
+		x509 = PEM_read_bio_X509(bio, NULL, 0, NULL);
+		BIO_free(bio);
 
-        // create the X509 structure
-        x509 = PEM_read_bio_X509(bio, NULL, 0, NULL);
-        BIO_free(bio);
-
-    } else {
-
-        // => DER
-
+	}
+	else
+	{
+		// => DER
 #if OPENSSL_VERSION_NUMBER >= 0x0090801fL        
-        const unsigned char *d2 = NULL;
-        d2 = (const unsigned char*)d;
+		const unsigned char *d2 = NULL;
+		d2 = (const unsigned char*)d;
 #else
-        unsigned char *d2 = NULL;
-        d2 = d;
+		unsigned char *d2 = NULL;
+		d2 = d;
 #endif
         
-        x509 = d2i_X509(NULL, &d2, certificate.size());
+		x509 = d2i_X509(NULL, &d2, certificate.size());
 
-        d2 = NULL;
+		d2 = NULL;
 
-    }
+	}
 
-    if(x509 == NULL) {
+	if(x509 == NULL)
+	{
+		LOGIT_ERROR("Can not parse certificate");
+		BLOCXX_THROW(limal::RuntimeException, "Can not parse certificate");
+	}
 
-        LOGIT_ERROR("Can not parse certificate");
-        BLOCXX_THROW(limal::RuntimeException, "Can not parse certificate");
+	try
+	{
+		parseCertificate(x509);
+	}
+	catch(Exception &e)
+	{
+		X509_free(x509);
 
-    }
-
-    try {
-
-        parseCertificate(x509);
-
-    } catch(Exception &e) {
-
-        X509_free(x509);
-
-        BLOCXX_THROW_SUBEX(limal::SyntaxException,
-                           "Error at parsing the certificate",
-                           e);
-
-    }
+		BLOCXX_THROW_SUBEX(limal::SyntaxException,
+		                   "Error at parsing the certificate",
+		                   e);
+	}
     
-    X509_free(x509);
+	X509_free(x509);
 
 }
 
 CertificateData_Priv::CertificateData_Priv(const String &certificatePath,
                                            FormatType formatType)
-    : CertificateData()
+	: CertificateData()
 {
-    ByteBuffer ba = LocalManagement::readFile(certificatePath);
+	ByteBuffer ba = LocalManagement::readFile(certificatePath);
     
-    // FIXME: I do not know if this is the right way :-)
-    *this = CertificateData_Priv(ba, formatType);
+	// FIXME: I do not know if this is the right way :-)
+	*this = CertificateData_Priv(ba, formatType);
 }
 
 CertificateData_Priv::CertificateData_Priv(const CertificateData_Priv& data)
-    : CertificateData(data)
+	: CertificateData(data)
 {
 }
 
@@ -142,87 +139,109 @@ CertificateData_Priv::~CertificateData_Priv()
 void
 CertificateData_Priv::setVersion(blocxx::UInt32 v)
 {
-    version = v;
+	m_impl->version = v;
 }
 
 void
 CertificateData_Priv::setSerial(const String& serial)
 {
-    if(!initHexCheck().isValid(serial)) {
-        LOGIT_ERROR("invalid serial: " << serial);
-        BLOCXX_THROW(limal::ValueException, Format("invalid serial: %1", serial).c_str());
-    }
-    this->serial = serial;
+	if(!initHexCheck().isValid(serial))
+	{
+		LOGIT_ERROR("invalid serial: " << serial);
+		BLOCXX_THROW(limal::ValueException, Format("invalid serial: %1", serial).c_str());
+	}
+	m_impl->serial = serial;
 }
 
 void
 CertificateData_Priv::setCertifyPeriode(time_t start, time_t end)
 {
-    notBefore = start;
-    notAfter  = end;
+	m_impl->notBefore = start;
+	m_impl->notAfter  = end;
 }
 
 void
 CertificateData_Priv::setIssuerDN(const DNObject& issuer)
 {
-    StringArray r = issuer.verify();
-    if(!r.empty()) {
-        LOGIT_ERROR(r[0]);
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
-    }
-    this->issuer = issuer;
+	StringArray r = issuer.verify();
+	if(!r.empty())
+	{
+		LOGIT_ERROR(r[0]);
+		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+	}
+	m_impl->issuer = issuer;
 }
 
 void
 CertificateData_Priv::setSubjectDN(const DNObject& subject)
 {
-    StringArray r = subject.verify();
-    if(!r.empty()) {
-        LOGIT_ERROR(r[0]);
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
-    }
-    this->subject = subject;
+	StringArray r = subject.verify();
+	if(!r.empty())
+	{
+		LOGIT_ERROR(r[0]);
+		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+	}
+	m_impl->subject = subject;
 }
 
 void
 CertificateData_Priv::setKeysize(blocxx::UInt32 size)
 {
-    keysize = size;
+	m_impl->keysize = size;
 }
 
 void
 CertificateData_Priv::setPublicKeyAlgorithm(KeyAlg pubKeyAlg)
 {
-    pubkeyAlgorithm = pubKeyAlg;
+	m_impl->pubkeyAlgorithm = pubKeyAlg;
 }
 
 void
 CertificateData_Priv::setPublicKey(const ByteBuffer derPublicKey)
 {
-    publicKey = derPublicKey;
+	m_impl->publicKey = derPublicKey;
 }
 
 void
 CertificateData_Priv::setSignatureAlgorithm(SigAlg sigAlg)
 {
-    signatureAlgorithm = sigAlg;
+	m_impl->signatureAlgorithm = sigAlg;
 }
 
 void
 CertificateData_Priv::setSignature(const ByteBuffer& sig)
 {
-    signature = sig;
+	m_impl->signature = sig;
 }
 
 void
 CertificateData_Priv::setExtensions(const X509v3CertificateExts& ext)
 {
-    StringArray r = ext.verify();
-    if(!r.empty()) {
-        LOGIT_ERROR(r[0]);
-        BLOCXX_THROW(limal::ValueException, r[0].c_str());
-    }
-    extensions = ext;
+	StringArray r = ext.verify();
+	if(!r.empty())
+	{
+		LOGIT_ERROR(r[0]);
+		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+	}
+	m_impl->extensions = ext;
+}
+
+void
+CertificateData_Priv::setFingerprint(const String& fp)
+{
+	m_impl->fingerprint = fp;
+}
+
+void
+CertificateData_Priv::setText(const String& txt)
+{
+	m_impl->text = txt;
+}
+
+void
+CertificateData_Priv::setExtText(const String& extText)
+{
+	m_impl->extText = extText;
 }
 
 //    private:
@@ -231,91 +250,96 @@ CertificateData_Priv::setExtensions(const X509v3CertificateExts& ext)
 CertificateData_Priv&
 CertificateData_Priv::operator=(const CertificateData_Priv& data)
 {
-    if(this == &data) return *this;
+	if(this == &data) return *this;
     
-    CertificateData::operator=(data);
+	CertificateData::operator=(data);
     
-    return *this;
+	return *this;
 }
 
 void
 CertificateData_Priv::parseCertificate(X509 *x509) 
 {
+	// get version
+	setVersion(X509_get_version(x509) + 1);
+	
+	// get serial
+	//
+	// convert to hexadecimal version of the serial number
+	String serial;
+	serial.format("%02llx",
+	              String(i2s_ASN1_INTEGER(NULL,X509_get_serialNumber(x509))).toUInt64());
+	setSerial(serial);
+
+	// get notBefore
+	ASN1_TIME *t   = X509_get_notBefore(x509);
+	char      *cbuf = new char[t->length + 1];
+
+	memcpy(cbuf, t->data, t->length);
+	cbuf[t->length] = '\0';
+
+	String sbuf = String(cbuf);
+	delete [] cbuf;
+
+	PerlRegEx r("^(\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)Z$");
+	StringArray sa = r.capture(sbuf);
     
+	if(sa.size() != 7)
+	{
+		LOGIT_ERROR("Can not parse date: " << sbuf);
+		BLOCXX_THROW(limal::RuntimeException, 
+		             Format("Can not parse date: %1", sbuf).c_str());
+	}
+	int year = 1970;
+	if(sa[1].toInt() >= 70 && sa[1].toInt() <= 99)
+	{
+		year = sa[1].toInt() + 1900;
+	}
+	else
+	{
+		year = sa[1].toInt() + 2000;
+	}
 
-    // get version
-    version = X509_get_version(x509) + 1;
+	DateTime dt(year, sa[2].toInt(), sa[3].toInt(),
+	            sa[4].toInt(), sa[5].toInt(), sa[6].toInt(),
+	            0, DateTime::E_UTC_TIME);
     
-    // get serial
-    //
-    // convert to hexadecimal version of the serial number 
-    serial.format("%02llx",
-                  String(i2s_ASN1_INTEGER(NULL,X509_get_serialNumber(x509))).toUInt64());
-    
-
-    // get notBefore
-    ASN1_TIME *t   = X509_get_notBefore(x509);
-    char      *cbuf = new char[t->length + 1];
-
-    memcpy(cbuf, t->data, t->length);
-    cbuf[t->length] = '\0';
-
-    String sbuf = String(cbuf);
-    delete [] cbuf;
-
-    PerlRegEx r("^(\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)Z$");
-    StringArray sa = r.capture(sbuf);
-    
-    if(sa.size() != 7) {
-
-        LOGIT_ERROR("Can not parse date: " << sbuf);
-        BLOCXX_THROW(limal::RuntimeException, 
-                     Format("Can not parse date: %1", sbuf).c_str());
-
-    }
-    int year = 1970;
-    if(sa[1].toInt() >= 70 && sa[1].toInt() <= 99) {
-        year = sa[1].toInt() + 1900;
-    } else {
-        year = sa[1].toInt() + 2000;
-    }
-
-    DateTime dt(year, sa[2].toInt(), sa[3].toInt(),
-                sa[4].toInt(), sa[5].toInt(), sa[6].toInt(),
-                0, DateTime::E_UTC_TIME);
-    notBefore = dt.get();
+	time_t notBefore = dt.get();
 
     // get notAfter
-    t    = X509_get_notAfter(x509);
-    cbuf = new char[t->length + 1];
+	t    = X509_get_notAfter(x509);
+	cbuf = new char[t->length + 1];
 
-    memcpy(cbuf, t->data, t->length);
-    cbuf[t->length] = '\0';
+	memcpy(cbuf, t->data, t->length);
+	cbuf[t->length] = '\0';
 
-    sbuf = String(cbuf);
-    delete [] cbuf;
+	sbuf = String(cbuf);
+	delete [] cbuf;
 
-    sa = r.capture(sbuf);
+	sa = r.capture(sbuf);
     
-    if(sa.size() != 7) {
-
-        LOGIT_ERROR("Can not parse date: " << sbuf);
-        BLOCXX_THROW(limal::RuntimeException, 
-                     Format("Can not parse date: %1", sbuf).c_str());
-
-    }
-    year = 1970;
-    if(sa[1].toInt() >= 70 && sa[1].toInt() <= 99) {
-        year = sa[1].toInt() + 1900;
-    } else {
-        year = sa[1].toInt() + 2000;
-    }
+	if(sa.size() != 7)
+	{
+		LOGIT_ERROR("Can not parse date: " << sbuf);
+		BLOCXX_THROW(limal::RuntimeException, 
+		             Format("Can not parse date: %1", sbuf).c_str());
+	}
+	year = 1970;
+	if(sa[1].toInt() >= 70 && sa[1].toInt() <= 99)
+	{
+		year = sa[1].toInt() + 1900;
+	}
+	else
+	{
+		year = sa[1].toInt() + 2000;
+	}
     
-    dt = DateTime(year, sa[2].toInt(), sa[3].toInt(),
-                  sa[4].toInt(), sa[5].toInt(), sa[6].toInt(),
-                  0, DateTime::E_UTC_TIME);
-    notAfter = dt.get();
-
+	dt = DateTime(year, sa[2].toInt(), sa[3].toInt(),
+	              sa[4].toInt(), sa[5].toInt(), sa[6].toInt(),
+	              0, DateTime::E_UTC_TIME);
+    
+	setCertifyPeriode(notBefore, dt.get());
+    
 	// fingerprint
 	
 	unsigned char *ustringval = NULL;
@@ -335,140 +359,139 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 		}
 	}
 	n = BIO_get_mem_data(bioFP, &ustringval);
-	fingerprint = String(reinterpret_cast<const char*>(ustringval), n);
+	setFingerprint( String(reinterpret_cast<const char*>(ustringval), n));
 	BIO_free(bioFP);
 	
     // get issuer
     
-    issuer = DNObject_Priv(X509_get_issuer_name(x509));
+	setIssuerDN( DNObject_Priv(X509_get_issuer_name(x509)));
     
-    // get subject
+	// get subject
     
-    subject = DNObject_Priv(X509_get_subject_name(x509));
+	setSubjectDN( DNObject_Priv(X509_get_subject_name(x509)));
     
-    // get public key
-    EVP_PKEY *pkey = X509_get_pubkey(x509);
+	// get public key
+	EVP_PKEY *pkey = X509_get_pubkey(x509);
     
-    if(pkey == NULL) {
-        
-        LOGIT_ERROR("Unable to get public key");
-        BLOCXX_THROW(limal::RuntimeException, "Unable to get public key");
-        
-    }
+	if(pkey == NULL)
+	{        
+		LOGIT_ERROR("Unable to get public key");
+		BLOCXX_THROW(limal::RuntimeException, "Unable to get public key");
+	}
     
-    if(pkey->type == EVP_PKEY_RSA) {
+	if(pkey->type == EVP_PKEY_RSA)
+	{
+		rsa_st *rsa = EVP_PKEY_get1_RSA(pkey);
         
-        rsa_st *rsa = EVP_PKEY_get1_RSA(pkey);
+		if(!rsa)
+		{
+			LOGIT_ERROR("could not get RSA key");
+			BLOCXX_THROW(limal::RuntimeException, "could not get RSA key");
+		}
         
-        if(!rsa) {
-            LOGIT_ERROR("could not get RSA key");
-            BLOCXX_THROW(limal::RuntimeException, "could not get RSA key");
-        }
+		unsigned char *y = NULL;
         
-        unsigned char *y = NULL;
-        
-        int len  = i2d_RSA_PUBKEY(rsa, &y);
+		int len  = i2d_RSA_PUBKEY(rsa, &y);
 
-        publicKey = ByteBuffer((char*)y, len);
+		setPublicKey( ByteBuffer((char*)y, len));
         
-        free(y); // ??
-        RSA_free(rsa);
-            
-    } else {
-        // unsupported type
+		free(y); // ??
+		RSA_free(rsa);
+	}
+	else
+	{
+		// unsupported type
         
-        EVP_PKEY_free(pkey);
+		EVP_PKEY_free(pkey);
         
-        LOGIT_ERROR("Unsupported public key type");
-        BLOCXX_THROW(limal::RuntimeException, "Unsupported public key type");
-        
-    }
+		LOGIT_ERROR("Unsupported public key type");
+		BLOCXX_THROW(limal::RuntimeException, "Unsupported public key type");
+	}
 
-    // get keysize
-    if (pkey->type == EVP_PKEY_RSA) {
-        keysize = BN_num_bits(pkey->pkey.rsa->n);
-    }
-    // no need for else; unsupported key type was fetched before
+	// get keysize
+	if (pkey->type == EVP_PKEY_RSA)
+	{
+		setKeysize( BN_num_bits(pkey->pkey.rsa->n));
+	}
+	// no need for else; unsupported key type was fetched before
 
 
     // get pubkeyAlgorithm
 
-    if(pkey->type == EVP_PKEY_RSA || 
-       pkey->type == EVP_PKEY_RSA2 ) {
+	if(pkey->type == EVP_PKEY_RSA || 
+	   pkey->type == EVP_PKEY_RSA2 )
+	{
+		setPublicKeyAlgorithm( E_RSA );
+	}
+	else if(pkey->type == EVP_PKEY_DSA  || 
+	        pkey->type == EVP_PKEY_DSA1 || 
+	        pkey->type == EVP_PKEY_DSA2 ||
+	        pkey->type == EVP_PKEY_DSA3 ||
+	        pkey->type == EVP_PKEY_DSA4  )
+	{
+		setPublicKeyAlgorithm( E_DSA );
+	}
+	else if(pkey->type == EVP_PKEY_DH )
+	{
+		setPublicKeyAlgorithm( E_DH );
+	}
+	else
+	{
+		EVP_PKEY_free(pkey);
 
-        pubkeyAlgorithm = E_RSA;
+		LOGIT_ERROR("Unsupported public key algorithm");
+		BLOCXX_THROW(limal::RuntimeException, "Unsupported public key algorithm");
+	}
 
-    } else if(pkey->type == EVP_PKEY_DSA  || 
-              pkey->type == EVP_PKEY_DSA1 || 
-              pkey->type == EVP_PKEY_DSA2 ||
-              pkey->type == EVP_PKEY_DSA3 ||
-              pkey->type == EVP_PKEY_DSA4  ) {
-
-        pubkeyAlgorithm = E_DSA;
-
-    } else if(pkey->type == EVP_PKEY_DH ) {
-
-        pubkeyAlgorithm = E_DH;
-
-    } else {
-
-        EVP_PKEY_free(pkey);
-
-        LOGIT_ERROR("Unsupported public key algorithm");
-        BLOCXX_THROW(limal::RuntimeException, "Unsupported public key algorithm");
-        
-    }
-
-    // get signatureAlgorithm
+	// get signatureAlgorithm
 	
 	n = 0;
-    BIO *bio = BIO_new(BIO_s_mem());
-    i2a_ASN1_OBJECT(bio, x509->cert_info->signature->algorithm);
-    n = BIO_get_mem_data(bio, &cbuf);
+	BIO *bio = BIO_new(BIO_s_mem());
+	i2a_ASN1_OBJECT(bio, x509->cert_info->signature->algorithm);
+	n = BIO_get_mem_data(bio, &cbuf);
 
-    sbuf = String(cbuf, n);
-    BIO_free(bio);
+	sbuf = String(cbuf, n);
+	BIO_free(bio);
     
-    if(sbuf.equalsIgnoreCase("sha1WithRSAEncryption") ) {
+	if(sbuf.equalsIgnoreCase("sha1WithRSAEncryption") )
+	{
+		setSignatureAlgorithm( E_SHA1RSA );
+	}
+	else if(sbuf.equalsIgnoreCase("md5WithRSAEncryption") )
+	{
+		setSignatureAlgorithm( E_MD5RSA );
+	}
+	else if(sbuf.equalsIgnoreCase("dsaWithSHA1") )
+	{
+		setSignatureAlgorithm( E_SHA1DSA );
+	}
+	else
+	{
+		EVP_PKEY_free(pkey);
+    	
+		LOGIT_ERROR("Unsupported signature algorithm: '" << sbuf << "'");
+		BLOCXX_THROW(limal::RuntimeException, 
+		             Format("Unsupported signature algorithm: '%1'", sbuf).c_str());
+	}
 
-        signatureAlgorithm = E_SHA1RSA;
+	// get signature
 
-    } else if(sbuf.equalsIgnoreCase("md5WithRSAEncryption") ) {
-
-        signatureAlgorithm = E_MD5RSA;
-    
-    } else if(sbuf.equalsIgnoreCase("dsaWithSHA1") ) {
-
-        signatureAlgorithm = E_SHA1DSA;
-
-    } else {
-
-        EVP_PKEY_free(pkey);
-
-        LOGIT_ERROR("Unsupported signature algorithm: '" << sbuf << "'");
-        BLOCXX_THROW(limal::RuntimeException, 
-                     Format("Unsupported signature algorithm: '%1'", sbuf).c_str());
-
-    }
-
-    // get signature
-
-    signature = ByteBuffer((char*)x509->signature->data, x509->signature->length);
-
-
-    // get extensions
-
-    extensions = X509v3CertificateExts_Priv(x509->cert_info->extensions);
+	setSignature( ByteBuffer((char*)x509->signature->data, x509->signature->length));
 
 
-    // get human readable format
+	// get extensions
 
-    BIO *bio2 = BIO_new(BIO_s_mem());
+	setExtensions( X509v3CertificateExts_Priv(x509->cert_info->extensions));
+
+
+	// get human readable format
+
+	BIO *bio2 = BIO_new(BIO_s_mem());
 
 	X509_print_ex(bio2, x509, 0, 0);
 	n = BIO_get_mem_data(bio2, &ustringval);
 
-	text = String((const char*)ustringval, n);
+	setText( String((const char*)ustringval, n));
 	BIO_free(bio2);
 
 	ustringval = NULL;
@@ -478,11 +501,10 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 	X509V3_extensions_print(bio3, NULL, x509->cert_info->extensions, 0, 4);
 	n = BIO_get_mem_data(bio3, &ustringval);
 	
-	extText = String((const char*)ustringval, n);
+	setExtText( String((const char*)ustringval, n));
 	BIO_free(bio3);
-
     
-    EVP_PKEY_free(pkey);
+	EVP_PKEY_free(pkey);
 }
 
 }

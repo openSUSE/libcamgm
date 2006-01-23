@@ -28,61 +28,62 @@
 #include  <limal/ca-mgm/DNObject.hpp>
 #include  <limal/ca-mgm/X509v3CRLExtensions.hpp>
 #include  <limal/ByteBuffer.hpp>
+#include  <blocxx/COWIntrusiveReference.hpp>
 
 namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
-    class RevocationEntry {
-    public:
-        RevocationEntry();
-        RevocationEntry(const RevocationEntry& entry);
-        virtual ~RevocationEntry();
+	class RevocationEntryImpl;
+	class CRLDataImpl;
+	
+	class RevocationEntry {
+	public:
+		RevocationEntry();
+		RevocationEntry(const RevocationEntry& entry);
+		virtual ~RevocationEntry();
         
-        RevocationEntry&
-        operator=(const RevocationEntry& entry);
+		RevocationEntry&
+		operator=(const RevocationEntry& entry);
 
-        String
-        getSerial() const;
+		String
+		getSerial() const;
 
-        time_t
-        getRevocationDate() const;
+		time_t
+		getRevocationDate() const;
         
-        CRLReason
-        getReason() const;
+		CRLReason
+		getReason() const;
 
-        virtual bool
-        valid() const;
+		virtual bool
+		valid() const;
         
-        virtual blocxx::StringArray
-        verify() const;
+		virtual blocxx::StringArray
+		verify() const;
 
-        virtual blocxx::StringArray
-        dump() const;
+		virtual blocxx::StringArray
+		dump() const;
 
-    protected:
+	protected:
+		blocxx::COWIntrusiveReference<RevocationEntryImpl> m_impl;
 
-        String      serial;
-        time_t      revocationDate;
-        CRLReason   revocationReason;
+	};
 
-    };
-
-    /**
+	/**
      * @brief Read-only data representation of a CRL
      *
      * This class is a read-only data representation of a CRL.
      */
-    class CRLData {
-    public:
-        CRLData(const CRLData& data);
-        virtual ~CRLData();
+	class CRLData {
+	public:
+		CRLData(const CRLData& data);
+		virtual ~CRLData();
 
-        CRLData&
-        operator=(const CRLData& data);
+		CRLData&
+		operator=(const CRLData& data);
 
-        blocxx::Int32
-        getVersion() const;
+		blocxx::Int32
+		getVersion() const;
         
 		String
 		getFingerprint() const;
@@ -90,78 +91,62 @@ namespace CA_MGM_NAMESPACE {
 		time_t
 		getLastUpdateDate() const;
         
-        time_t
-        getNextUpdateDate() const;
+		time_t
+		getNextUpdateDate() const;
         
-        DNObject
-        getIssuerDN() const;
+		DNObject
+		getIssuerDN() const;
         
-        SigAlg
-        getSignatureAlgorithm() const;
+		SigAlg
+		getSignatureAlgorithm() const;
         
-        String
-        getSignatureAlgorithmAsString() const;
+		String
+		getSignatureAlgorithmAsString() const;
         
-        limal::ByteBuffer
-        getSignature() const;
+		limal::ByteBuffer
+		getSignature() const;
         
-        X509v3CRLExts
-        getExtensions() const;
+		X509v3CRLExts
+		getExtensions() const;
         
-        blocxx::Map<String, RevocationEntry>
-        getRevocationData() const;
+		blocxx::Map<String, RevocationEntry>
+		getRevocationData() const;
         
-        RevocationEntry
-        getRevocationEntry(const String& oid);
+		RevocationEntry
+		getRevocationEntry(const String& oid);
 
-    	/**
-    	 * Return the CRL data as human readable text.
-    	 * (Format may change)
-    	 */
-    	String
-    	getCRLAsText() const;
+		/**
+		 * Return the CRL data as human readable text.
+		 * (Format may change)
+		 */
+		String
+		getCRLAsText() const;
 
-    	/**
-    	 * Return the CRL extensions as human readable text.
-    	 * (Format may change)
-    	 */
-    	String
-    	getExtensionsAsText() const;
+		/**
+		 * Return the CRL extensions as human readable text.
+		 * (Format may change)
+		 */
+		String
+		getExtensionsAsText() const;
     	
-        virtual bool
-        valid() const;
+		virtual bool
+		valid() const;
         
-        virtual blocxx::StringArray
-        verify() const;
+		virtual blocxx::StringArray
+		verify() const;
 
-        virtual blocxx::StringArray
-        dump() const;
+		virtual blocxx::StringArray
+		dump() const;
 
-    protected:
-        CRLData();
+	protected:
+		blocxx::COWIntrusiveReference<CRLDataImpl> m_impl;
 
-        blocxx::Int32                        version;
-		String                               fingerprint;
-        time_t                               lastUpdate;
-        time_t                               nextUpdate;
+		CRLData();
+    	    	
+		blocxx::StringArray
+		checkRevocationData(const blocxx::Map<String, RevocationEntry>& rd) const;
 
-        DNObject                             issuer;
-
-        SigAlg                               signatureAlgorithm;
-        ByteBuffer                           signature;    
-        
-        X509v3CRLExts                        extensions;
-
-        blocxx::Map<String, RevocationEntry> revocationData;
-
-    	String                               text;
-    	String                               extText;
-
-    	
-        blocxx::StringArray
-        checkRevocationData(const blocxx::Map<String, RevocationEntry>& rd) const;
-
-    };
+	};
 
 }
 }

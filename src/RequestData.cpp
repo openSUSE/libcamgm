@@ -26,6 +26,7 @@
 #include  <blocxx/Format.hpp>
 
 #include  "Utils.hpp"
+#include  "RequestDataImpl.hpp"
 #include  "X509v3RequestExtensions_Priv.hpp"
 
 namespace LIMAL_NAMESPACE
@@ -38,218 +39,188 @@ using namespace blocxx;
 
 
 RequestData::RequestData(const RequestData& data)
-    : version(data.version),
-      subject(data.subject),
-      keysize(data.keysize),
-      pubkeyAlgorithm(data.pubkeyAlgorithm),
-      publicKey(data.publicKey),
-      signatureAlgorithm(data.signatureAlgorithm),
-      signature(data.signature),
-      extensions(data.extensions),
-      challengePassword(data.challengePassword), 
-      unstructuredName(data.unstructuredName),
-      text(data.text),
-      extText(data.extText)
-{
-}
-
+	: m_impl(data.m_impl)
+{}
+	
 RequestData::~RequestData()
-{
-}
+{}
 
 RequestData&
 RequestData::operator=(const RequestData& data)
 {
-    if(this == &data) return *this;
+	if(this == &data) return *this;
 
-    version            = data.version;
-    subject            = data.subject;
-    keysize            = data.keysize;
-    pubkeyAlgorithm    = data.pubkeyAlgorithm;
-    publicKey          = data.publicKey;
-    signatureAlgorithm = data.signatureAlgorithm;
-    signature          = data.signature;
-    extensions         = data.extensions;
-    challengePassword  = data.challengePassword;
-    unstructuredName   = data.unstructuredName;
-    text               = data.text;
-    extText            = data.extText;
+	m_impl = data.m_impl;
 
-    return *this;
+	return *this;
 }
 
 blocxx::UInt32
 RequestData::getVersion() const
 {
-    return version;
+	return m_impl->version;
 }
 
 blocxx::UInt32
 RequestData::getKeysize() const
 {
-    return keysize;
+	return m_impl->keysize;
 }
 
 DNObject
 RequestData::getSubjectDN() const
 {
-    return subject;
+	return m_impl->subject;
 }
 
 KeyAlg
 RequestData::getKeyAlgorithm() const
 {
-    return pubkeyAlgorithm;
+	return m_impl->pubkeyAlgorithm;
 }
 
 ByteBuffer
 RequestData::getPublicKey() const
 {
-    return publicKey;
+	return m_impl->publicKey;
 }
 
 SigAlg
 RequestData::getSignatureAlgorithm() const
 {
-    return signatureAlgorithm;
+	return m_impl->signatureAlgorithm;
 }
 
 ByteBuffer
 RequestData::getSignature() const
 {
-    return signature;
+	return m_impl->signature;
 }
 
 X509v3RequestExts
 RequestData::getExtensions() const
 {
-    return extensions;
+	return m_impl->extensions;
 }
 
 blocxx::String
 RequestData::getChallengePassword() const
 {
-    return challengePassword;
+	return m_impl->challengePassword;
 }
 
 blocxx::String
 RequestData::getUnstructuredName() const
 {
-    return unstructuredName;
+	return m_impl->unstructuredName;
 }
 
 blocxx::String
 RequestData::getRequestAsText() const
 {
-	return text;
+	return m_impl->text;
 }
 
 blocxx::String
 RequestData::getExtensionsAsText() const
 {
-	return extText;
+	return m_impl->extText;
 }
 
 bool
 RequestData::valid() const
 {
-    if(version < 1 || version > 1) {
-        LOGIT_DEBUG("invalid version:" << version);
-        return false;
-    }
+	if(m_impl->version < 1 || m_impl->version > 1)
+	{
+		LOGIT_DEBUG("invalid version:" << m_impl->version);
+		return false;
+	}
 
-    if(!subject.valid()) return false;
+	if(!m_impl->subject.valid()) return false;
 
-    // keysize ?
+	// keysize ?
 
-    if(publicKey.empty()) {
-        LOGIT_DEBUG("invalid publicKey");
-        return false;
-    }
+	if(m_impl->publicKey.empty())
+	{
+		LOGIT_DEBUG("invalid publicKey");
+		return false;
+	}
 
-    if(!extensions.valid()) return false;
+	if(!m_impl->extensions.valid()) return false;
 
-    return true;
+	return true;
 }
 
 blocxx::StringArray
 RequestData::verify() const
 {
-    StringArray result;
+	StringArray result;
 
-    if(version < 1 || version > 1) {
-        result.append(Format("invalid version: %1", version).toString());
-    }
+	if(m_impl->version < 1 || m_impl->version > 1)
+	{
+		result.append(Format("invalid version: %1", m_impl->version).toString());
+	}
 
-    result.appendArray(subject.verify());
+	result.appendArray(m_impl->subject.verify());
 
-    // keysize ?
+	// keysize ?
 
-    if(publicKey.empty()) {
-        result.append("invalid publicKey");
-    }
+	if(m_impl->publicKey.empty())
+	{
+		result.append("invalid publicKey");
+	}
 
-    result.appendArray(extensions.verify());
+	result.appendArray(m_impl->extensions.verify());
 
-    LOGIT_DEBUG_STRINGARRAY("CertificateData::verify()", result);
+	LOGIT_DEBUG_STRINGARRAY("CertificateData::verify()", result);
 
-    return result;
+	return result;
 }
 
 blocxx::StringArray
 RequestData::dump() const
 {
-    StringArray result;
-    result.append("RequestData::dump()");
+	StringArray result;
+	result.append("RequestData::dump()");
     
-    result.append("Version = " + String(version));
-    result.appendArray(subject.dump());
-    result.append("Keysize = " + String(keysize));
-    result.append("pubkeyAlgorithm = " + String(pubkeyAlgorithm));
+	result.append("Version = " + String(m_impl->version));
+	result.appendArray(m_impl->subject.dump());
+	result.append("Keysize = " + String(m_impl->keysize));
+	result.append("pubkeyAlgorithm = " + String(m_impl->pubkeyAlgorithm));
     
-    String pk;
-    for(size_t i = 0; i < publicKey.size(); ++i) {
-        String s;
-        s.format("%02x", (UInt8)publicKey[i]);
-        pk += s + ":";
-    }
-    result.append("public Key = " + pk);
+	String pk;
+	for(size_t i = 0; i < m_impl->publicKey.size(); ++i)
+	{
+		String s;
+		s.format("%02x", static_cast<UInt8>(m_impl->publicKey[i]));
+		pk += s + ":";
+	}
+	result.append("public Key = " + pk);
     
-    result.append("signatureAlgorithm = "+ String(signatureAlgorithm));
+	result.append("signatureAlgorithm = "+ String(m_impl->signatureAlgorithm));
 
-    String s;
-    for(uint i = 0; i < signature.size(); ++i) {
-        String d;
-        d.format("%02x:", (UInt8)signature[i]);
-        s += d;
-    }
+	String s;
+	for(uint i = 0; i < m_impl->signature.size(); ++i)
+	{
+		String d;
+		d.format("%02x:", static_cast<UInt8>(m_impl->signature[i]));
+		s += d;
+	}
 
-    result.append("Signature = " + s);
+	result.append("Signature = " + s);
 
-    result.appendArray(extensions.dump());
-    result.append("Challenge Password = " + challengePassword);
-    result.append("Unstructured Name = " + unstructuredName);
+	result.appendArray(m_impl->extensions.dump());
+	result.append("Challenge Password = " + m_impl->challengePassword);
+	result.append("Unstructured Name = " + m_impl->unstructuredName);
     
-    return result;
+	return result;
 }
 
 
 //    protected:
 RequestData::RequestData()
-    : version(0),
-      subject(DNObject()),
-      keysize(0),
-      pubkeyAlgorithm(E_RSA),
-      publicKey(ByteBuffer()),
-      signatureAlgorithm(E_SHA1RSA),
-      signature(ByteBuffer()),
-      extensions(X509v3RequestExts_Priv()),
-      challengePassword(""), 
-      unstructuredName(""),
-      text(""),
-      extText("")
-{
-}
+	: m_impl(new RequestDataImpl())
+{}
 
 }
 }
