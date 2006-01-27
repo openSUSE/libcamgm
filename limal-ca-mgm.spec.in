@@ -1,7 +1,7 @@
 @HEADER-COMMENT@
 
-# neededforbuild  limal-devel-packages pcre pcre-devel openssl-devel 
 @HEADER@
+BuildRequires: curl gcc-c++ limal-devel limal-devtools openssl-devel perl-gettext sgml-skel
 Summary:	-
 
 %description
