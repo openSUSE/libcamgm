@@ -63,5 +63,5 @@ install-data-local:
 	mkdir -p $(DESTDIR)/$(VENDOR_ARCH)/auto/LIMAL/CaMgm
 	mkdir -p $(DESTDIR)/$(VENDOR_ARCH)/LIMAL/
 	install -m 644 $(NAME).pm $(DESTDIR)/$(VENDOR_ARCH)/LIMAL/
-	install -m 644 $(NAME).so $(DESTDIR)/$(VENDOR_ARCH)/auto/LIMAL/CaMgm
+	install -m 755 $(NAME).so $(DESTDIR)/$(VENDOR_ARCH)/auto/LIMAL/CaMgm
 
