@@ -8,6 +8,8 @@
 #include <limal/ca-mgm/CA.hpp>
 %}
 
+typedef blocxx::Array<blocxx::String> StringArray;
+
 %include limal/ca-mgm/config.h
 %include limal/ca-mgm/CommonData.hpp
 %include limal/ca-mgm/DNObject.hpp
