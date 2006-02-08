@@ -15,7 +15,6 @@ Summary:	-
 -
 
 @HEADER-PERL@
-Requires: limal-perl
 Summary:	-
 
 %description perl
