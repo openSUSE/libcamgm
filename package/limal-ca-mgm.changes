@@ -1,4 +1,13 @@
 -------------------------------------------------------------------
+Wed Feb  8 15:46:02 CET 2006 - mc@suse.de
+
+- version 1.1.9
+- remove some template definitions
+  provided via %import in LIMAL now
+  (part of fix for [#149073])
+- add a perl testcase
+
+-------------------------------------------------------------------
 Fri Jan 27 11:37:25 CET 2006 - mc@suse.de
 
 - version 1.1.8
