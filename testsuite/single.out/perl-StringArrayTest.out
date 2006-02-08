@@ -1,0 +1,74 @@
+$VAR1 = bless( {}, 'LIMAL::StringArray' );
+RequestGenerationData::dump()
+DNObject::dump()
+RDNObject::dump()
+countryName=
+Prompt:Country Name (2 letter code)
+Min:2
+Max:2
+RDNObject::dump()
+stateOrProvinceName=
+Prompt:State or Province Name (full name)
+Min:0
+Max:0
+RDNObject::dump()
+localityName=
+Prompt:Locality Name (eg, city)
+Min:0
+Max:0
+RDNObject::dump()
+organizationName=
+Prompt:Organization Name (eg, company)
+Min:0
+Max:0
+RDNObject::dump()
+organizationalUnitName=
+Prompt:Organizational Unit Name (eg, section)
+Min:0
+Max:0
+RDNObject::dump()
+commonName=
+Prompt:Common Name (eg, YOUR name)
+Min:0
+Max:64
+RDNObject::dump()
+emailAddress=
+Prompt:Email Address
+Min:0
+Max:64
+Keysize = 2048
+MessageDigest = 0
+Challenge Password = 
+Unstructured Name = 
+X509v3RequestExts::dump()
+NsSslServerNameExt::dump()
+ExtensionBase::dump()
+is Present = false
+NsCommentExt::dump()
+ExtensionBase::dump()
+is Present = false
+KeyUsageExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+KeyUsage = 0x00e0
+NsCertTypeExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+NsCertType = 0xb0
+BasicConstraintsExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+CA = false
+pathlen = -1
+ExtendedKeyUsageExt::dump()
+ExtensionBase::dump()
+is Present = false
+SubjectKeyIdentifierExt::dump()
+ExtensionBase::dump()
+is Present = false
+SubjectAlternativeNameExt::dump()
+ExtensionBase::dump()
+is Present = false
