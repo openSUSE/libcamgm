@@ -1,5 +1,9 @@
 #!/usr/bin/perl -w
 
+BEGIN {
+        push @INC, '../swig/perl5';
+}
+
 use strict;
 use LIMAL;
 use LIMAL::CaMgm;
