@@ -1,0 +1,103 @@
+#!/usr/bin/perl -w
+
+BEGIN 
+{
+        push @INC, '../swig/perl5';
+}
+
+use strict;
+use LIMAL;
+use LIMAL::CaMgm;
+use Data::Dumper;
+
+my $ca = new LIMAL::CaMgm::CA("Test_CA1", "system", "./TestRepos/");
+my $rgd = $ca->getRequestDefaults($LIMAL::CaMgm::E_Client_Req);
+
+my $strArr = $rgd->dump();
+
+print Data::Dumper->Dump([$strArr]);
+
+
+my $int32list = new LIMAL::Int32List();
+$int32list->push_back(1);
+$int32list->push_back(5);
+$int32list->push_back(56836564);
+
+
+my $userNotice = new LIMAL::CaMgm::UserNotice();
+$userNotice->setOrganizationNotice("Organisation text",
+                                   $int32list);
+
+
+my $copy = $userNotice->getNoticeNumbers();
+print Data::Dumper->Dump([$copy]);
+
+for(my $it = $copy->begin();
+    !$copy->iterator_equal($it, $copy->end());
+    $copy->iterator_incr($it))
+{
+    print $copy->iterator_value($it)."\t\t";
+    if(Data::Dumper->Dump([$it]) =~ /_p_blocxx__ListTblocxx__Int32_t__iterator/)
+    {
+        print "_p_blocxx__ListTblocxx__Int32_t__iterator\n";
+    }
+}
+
+my $stringList = new LIMAL::StringList();
+$stringList->push_back("serverAuth");
+$stringList->push_back("nsSGC");
+$stringList->push_back("1.5.2.6");
+
+my $ExtKeyUsage = new LIMAL::CaMgm::ExtendedKeyUsageExt($stringList);
+
+my $outList = $ExtKeyUsage->getExtendedKeyUsage();
+
+print Data::Dumper->Dump([$outList]);
+for(my $it = $outList->begin();
+    !$outList->iterator_equal($it, $outList->end());
+    $outList->iterator_incr($it))
+{
+    print $outList->iterator_value($it)."\t\t";
+    if(Data::Dumper->Dump([$it]) =~ /_p_blocxx__ListTblocxx__String_t__iterator/)
+    {
+        print "_p_blocxx__ListTblocxx__String_t__iterator\n";
+    }
+}
+
+my $stringMapArray = $ca->getCertificateList();
+print Data::Dumper->Dump([$stringMapArray]);
+
+for(my $i = 0;
+    $i < $stringMapArray->size();
+    $i++)
+{
+    my $stringMap = $stringMapArray->getitem($i);
+    print Data::Dumper->Dump([$stringMap]);
+
+    for(my $it = $stringMap->begin();
+        !$stringMap->iterator_equal($it, $stringMap->end());
+        $stringMap->iterator_incr($it))
+    {
+        if($stringMap->iterator_key($it) eq "certificate") 
+        {
+            my $v = "";
+            $stringMap->iterator_value($it) =~ /^([[:xdigit:]]+:[[:xdigit:]]+)-*\d*$/;
+            $v = $1 if(defined $1);
+            
+            print $stringMap->iterator_key($it)." = ".$v."\n";
+        }
+        else
+        {
+            print $stringMap->iterator_key($it)." = ".$stringMap->iterator_value($it)."\n";
+        }
+    }
+}
+
+
+exit 0;
+
+                             
+
+
+
+

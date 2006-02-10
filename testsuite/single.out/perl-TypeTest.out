@@ -1,0 +1,59 @@
+$VAR1 = bless( {}, 'LIMAL::StringArray' );
+$VAR1 = bless( {}, 'LIMAL::Int32List' );
+1		_p_blocxx__ListTblocxx__Int32_t__iterator
+5		_p_blocxx__ListTblocxx__Int32_t__iterator
+56836564		_p_blocxx__ListTblocxx__Int32_t__iterator
+$VAR1 = bless( {}, 'LIMAL::StringList' );
+serverAuth		_p_blocxx__ListTblocxx__String_t__iterator
+nsSGC		_p_blocxx__ListTblocxx__String_t__iterator
+1.5.2.6		_p_blocxx__ListTblocxx__String_t__iterator
+$VAR1 = bless( {}, 'LIMAL::CaMgm::StringMapArray' );
+$VAR1 = bless( {}, 'LIMAL::StringMap' );
+certificate = 01:b4d4e48e6de644c953290eb2854a6ced
+commonName = Test CA/SUSE Inc.\Gmbh
+country = DE
+emailAddress = suse@suse.de
+serial = 01
+status = Valid
+$VAR1 = bless( {}, 'LIMAL::StringMap' );
+certificate = 02:bc5324c7f5c2a27492fb6795745b596b
+commonName = Test Server Certificate/SUSE Inc.\Gmbh
+country = DE
+emailAddress = suse@suse.de
+serial = 02
+status = Valid
+$VAR1 = bless( {}, 'LIMAL::StringMap' );
+certificate = 03:40717a16174dc4d516f6fa7ee8eeb18c
+commonName = Full Test Certificate
+country = DE
+emailAddress = suse@suse.de
+serial = 03
+status = Valid
+$VAR1 = bless( {}, 'LIMAL::StringMap' );
+certificate = 06:9198f6798d9da70d7cbfb67b610633f5
+commonName = Test Certificate for revocation 3
+country = DE
+emailAddress = suse@suse.de
+serial = 06
+status = Revoked
+$VAR1 = bless( {}, 'LIMAL::StringMap' );
+certificate = 07:3e248858337c2b46dc67a0f9389376dd
+commonName = Test Certificate for revocation 4
+country = DE
+emailAddress = suse@suse.de
+serial = 07
+status = Revoked
+$VAR1 = bless( {}, 'LIMAL::StringMap' );
+certificate = 08:bf04fdd95062554800c1556085f47063
+commonName = Test Certificate for revocation 5 oid test
+country = DE
+emailAddress = suse@suse.de
+serial = 08
+status = Revoked
+$VAR1 = bless( {}, 'LIMAL::StringMap' );
+certificate = 09:9797ac11af29f94b82c1e5b0499ab5f2
+commonName = Test Sub CA
+country = DE
+emailAddress = suse@suse.de
+serial = 09
+status = Valid
