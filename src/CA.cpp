@@ -1668,6 +1668,8 @@ CA::checkDNPolicy(const DNObject& dn, Type type)
 		// could be optional, supplied or match
 		String policyString = m_impl->config->getValue(policySect, *it);
 
+		LOGIT_DEBUG("PolicyKey:" << *it << "  PolicyString:"<< policyString);
+		
 		if(policyString.equalsIgnoreCase("optional"))
 		{
 			// do not care
@@ -1675,14 +1677,19 @@ CA::checkDNPolicy(const DNObject& dn, Type type)
 		}
 		else if(policyString.equalsIgnoreCase("supplied"))
 		{
-			// we need a value
+			policyFound = true;
 
+			// we need a value
+			bool foundInDN = false;
+			
 			blocxx::List<RDNObject>::const_iterator rdnit = l.begin();
 
 			for(; rdnit != l.end(); ++rdnit)
 			{
 				if( (*it).equalsIgnoreCase( (*rdnit).getType() ) )
-				{                    
+				{
+					foundInDN = true;
+					
 					if( (*rdnit).getValue().empty() )
 					{
 						LOGIT_ERROR("Invalid value for '" << *it << "'. This part has to have a value");
@@ -1690,10 +1697,14 @@ CA::checkDNPolicy(const DNObject& dn, Type type)
 						             Format("Invalid value for '%1'. This part has to have a value", 
 						                    *it).c_str());
 					}
-
-					policyFound = true;
-					break;
 				}
+			}
+			if(!foundInDN)
+			{
+				LOGIT_ERROR("Invalid value for '" << *it << "'. This part has to have a value");
+				BLOCXX_THROW(limal::ValueException,
+				             Format("Invalid value for '%1'. This part has to have a value", 
+				                    *it).c_str());
 			}
 		}
 		else if(policyString.equalsIgnoreCase("match"))
