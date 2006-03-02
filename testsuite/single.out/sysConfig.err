@@ -1,0 +1,54 @@
+DEBUG parser - file iniParser/sysconfig.ini.test parsed.
+INFO  parser -   
+INFO  parser -   SectionComment 
+INFO  parser -   Comment ALSO : 
+INFO  parser -   Entry   ALSO : ' apostrophes are allowed '
+INFO  parser -   Comment DEFAULT_LANGUAGE : #
+# This language is used in YaST. This is also the default
+# for local users, if RC_LANG and RC_LC_ALL are not set. Root
+# uses this language if ROOT_USES_LANG is set to "YES"
+#
+
+INFO  parser -   Entry   DEFAULT_LANGUAGE : english
+INFO  parser -   Comment ENABLE_SUSECONFIG : #
+# Some people don't want SuSEconfig to modify the system. With this
+# entry you can disable SuSEconfig completely. 
+# Please don't contact our support if you have trouble configuring your 
+# system after having disabled SuSEconfig.  (yes/no)
+#
+
+INFO  parser -   Entry   ENABLE_SUSECONFIG : yes
+INFO  parser -   Comment SEP2 : 
+INFO  parser -   Entry   SEP2 : huhu \
+      hoho \
+      hehe 
+INFO  parser -   Comment SEPARATED : #
+# ...
+
+INFO  parser -   Entry   SEPARATED : abc abc abccba cba cba
+DEBUG IniParser - Adding value .value.DEFAULT_LANGUAGE2=german
+DEBUG parser - file iniParser/sysconfig.ini.test parsed AGAIN.
+INFO  parser -   
+INFO  parser -   SectionComment 
+INFO  parser -   Comment ALSO : 
+INFO  parser -   Entry   ALSO : ' apostrophes are allowed '
+INFO  parser -   Comment DEFAULT_LANGUAGE2 : 
+INFO  parser -   Entry   DEFAULT_LANGUAGE2 : german
+INFO  parser -   Comment ENABLE_SUSECONFIG : #
+# Some people don't want SuSEconfig to modify the system. With this
+# entry you can disable SuSEconfig completely. 
+# Please don't contact our support if you have trouble configuring your 
+# system after having disabled SuSEconfig.  (yes/no)
+#
+
+INFO  parser -   Entry   ENABLE_SUSECONFIG : no
+INFO  parser -   Comment SEP2 : 
+INFO  parser -   Entry   SEP2 : huhu \
+      hoho \
+      hehe 
+INFO  parser -   Comment SEPARATED : #
+# ...
+
+INFO  parser -   Entry   SEPARATED : abc abc abccba cba cba
+DEBUG IniParser - File iniParser/sysconfig.ini.test did not change. Not saving.
+DEBUG IniParser - File iniParser/sysconfig.ini.test did not change. Not saving.

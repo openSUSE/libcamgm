@@ -1,0 +1,95 @@
+ERROR IniParser - iniParser/comment.in:15 Nothing to close.
+ERROR IniParser - iniParser/comment.in:17 Nothing to close.
+DEBUG parser - Configuration file iniParser/comment.in parsed.
+INFO  parser -   
+INFO  parser -   SectionComment 
+INFO  parser -   Comment comment1 : ; comment description
+
+INFO  parser -   Entry   comment1 : ^[ \t]*;.*
+INFO  parser -   Comment comment2 : 
+INFO  parser -   Entry   comment2 : ^[ \t]*$
+INFO  parser -   Comment comment3 : 
+INFO  parser -   Entry   comment3 : ;.*
+INFO  parser -   Comment comment4 : 
+INFO  parser -   Entry   comment4 : \{[^}]*\}
+INFO  parser -   Comment match1 : ; entry READ description
+
+INFO  parser -   Entry   match1 : ^[ \t]*([^=]*[^ \t=])[ \t]*=[ \t]*(.*[^ \t]|)[ \t]*$
+INFO  parser -   Comment option1 : ; options 
+
+INFO  parser -   Entry   option1 : GLOBAL_VALUES
+INFO  parser -   Comment secBeginReg1 : 
+INFO  parser -   Entry   secBeginReg1 : [ \t]*\+([A-z0-9_]+)[ \t]*
+INFO  parser -   Comment secBeginWrite1 : 
+INFO  parser -   Entry   secBeginWrite1 : +%s
+INFO  parser -   Comment secEndReg1 : 
+INFO  parser -   Entry   secEndReg1 : [ \t]*\-([A-z0-9_]+)[ \t]*
+INFO  parser -   Comment secEndWrite1 : 
+INFO  parser -   Entry   secEndWrite1 : -%s
+INFO  parser -   Comment write1 : ; entry WRITE description
+
+INFO  parser -   Entry   write1 : %s=%s
+INFO  parser -   Section add1
+INFO  parser -     SectionComment ; write command
+
+INFO  parser -     Comment level :   ; comment for level
+
+INFO  parser -     Entry   level : value_toplevel
+INFO  parser -     Section section_foo
+INFO  parser -       SectionComment   ; comment for section_foo
+
+INFO  parser -       Comment foo_key :     ; comment for foo_key
+
+INFO  parser -       Entry   foo_key : foo_value
+INFO  parser -   Section add2
+INFO  parser -       SectionComment 
+INFO  parser -       Section Main
+INFO  parser -         SectionComment   ; comemnt for main
+
+DEBUG parser - file iniParser/comment.ini.test parsed.
+INFO  parser -   
+INFO  parser -   SectionComment 
+INFO  parser -   Section Main
+INFO  parser -     SectionComment 
+INFO  parser -     Comment Key : 
+INFO  parser -     Entry   Key : Val
+INFO  parser -     Section Sub
+INFO  parser -       SectionComment 
+INFO  parser -       Comment Key : 
+INFO  parser -       Entry   Key : Val
+INFO  parser -       Section Sub
+INFO  parser -         SectionComment 
+INFO  parser -         Comment Key : 
+INFO  parser -         Entry   Key : Val
+DEBUG IniParser - Adding value .value.level=value_toplevel
+INFO  parser - Creating Subsection  section_foo
+DEBUG IniParser - Adding section .section.section_foo
+DEBUG IniParser - Adding value .value.section_foo.foo_key=foo_value
+DEBUG parser - file iniParser/comment.ini.test parsed AGAIN.
+INFO  parser -   
+INFO  parser -   SectionComment 
+INFO  parser -   Comment level :   ; comment for level
+
+INFO  parser -   Entry   level : value_toplevel
+INFO  parser -   Section Main
+INFO  parser -     SectionComment   ; comemnt for main
+
+INFO  parser -     Comment Key : 
+INFO  parser -     Entry   Key : Val
+INFO  parser -     Section Sub
+INFO  parser -       SectionComment 
+INFO  parser -       Comment Key : 
+INFO  parser -       Entry   Key : Val
+INFO  parser -       Section Sub
+INFO  parser -         SectionComment 
+INFO  parser -         Comment Key : 
+INFO  parser -         Entry   Key : Val
+INFO  parser -   Section section_foo
+INFO  parser -       SectionComment   ; comment for section_foo
+
+INFO  parser -       Comment foo_key :     ; comment for foo_key
+
+INFO  parser -       Entry   foo_key : foo_value
+DEBUG IniParser - File iniParser/comment.ini.test did not change. Not saving.
+DEBUG IniParser - File iniParser/comment.ini.test did not change. Not saving.
+DEBUG IniParser - File iniParser/comment.in did not change. Not saving.

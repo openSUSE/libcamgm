@@ -1,0 +1,131 @@
+ERROR IniParser - iniParser/select1.in:15 Nothing to close.
+ERROR IniParser - iniParser/select1.in:17 Nothing to close.
+DEBUG parser - Configuration file iniParser/select1.in parsed.
+INFO  parser -   
+INFO  parser -   SectionComment 
+INFO  parser -   Comment comment1 : ; comment description
+
+INFO  parser -   Entry   comment1 : ^[ \t]*;.*
+INFO  parser -   Comment comment2 : 
+INFO  parser -   Entry   comment2 : ^[ \t]*$
+INFO  parser -   Comment comment3 : 
+INFO  parser -   Entry   comment3 : ;.*
+INFO  parser -   Comment comment4 : 
+INFO  parser -   Entry   comment4 : \{[^}]*\}
+INFO  parser -   Comment match1 : ; entry READ description
+
+INFO  parser -   Entry   match1 : ^[ \t]*([^=]*[^ \t=])[ \t]*=[ \t]*(.*[^ \t]|)[ \t]*$
+INFO  parser -   Comment option1 : ; options 
+
+INFO  parser -   Entry   option1 : GLOBAL_VALUES
+INFO  parser -   Comment secBeginReg1 : 
+INFO  parser -   Entry   secBeginReg1 : [ \t]*\+([A-z0-9_]+)[ \t]*
+INFO  parser -   Comment secBeginWrite1 : 
+INFO  parser -   Entry   secBeginWrite1 : +%s
+INFO  parser -   Comment secEndReg1 : 
+INFO  parser -   Entry   secEndReg1 : [ \t]*\-([A-z0-9_]+)[ \t]*
+INFO  parser -   Comment secEndWrite1 : 
+INFO  parser -   Entry   secEndWrite1 : -%s
+INFO  parser -   Comment write1 : ; entry WRITE description
+
+INFO  parser -   Entry   write1 : %s=%s
+INFO  parser -   Section searchEntry1
+INFO  parser -     SectionComment 
+INFO  parser -     Comment Val* : 
+INFO  parser -     Entry   Val* : true
+INFO  parser -     Comment val* : 
+INFO  parser -     Entry   val* : true
+INFO  parser -     Comment val** : 
+INFO  parser -     Entry   val** : false
+INFO  parser -   Section searchSection1
+INFO  parser -       SectionComment 
+INFO  parser -       Comment Section* : 
+INFO  parser -       Entry   Section* : false
+INFO  parser -       Section searchSection1
+INFO  parser -         SectionComment 
+DEBUG parser - file iniParser/select1.ini.test parsed.
+INFO  parser -   
+INFO  parser -   SectionComment 
+INFO  parser -   Comment Val1 : 
+
+INFO  parser -   Entry   Val1 : value21top
+INFO  parser -   Comment Val2 : 
+INFO  parser -   Entry   Val2 : value22top
+INFO  parser -   Comment Val3 : 
+INFO  parser -   Entry   Val3 : value23top
+INFO  parser -   Section Section1
+INFO  parser -     SectionComment ; first line comment
+; second line comment
+
+INFO  parser -     Comment Val1 : 
+INFO  parser -     Entry   Val1 : value11
+INFO  parser -     Comment Val2 : 
+INFO  parser -     Entry   Val2 : value12
+INFO  parser -     Comment Val3 : 
+INFO  parser -     Entry   Val3 : value13
+INFO  parser -     Section Section1
+INFO  parser -       SectionComment 
+INFO  parser -       Comment Val1 : 
+INFO  parser -       Entry   Val1 : value 111
+INFO  parser -       Comment Val2 : 
+INFO  parser -       Entry   Val2 : value 222
+INFO  parser -   Section Section2
+INFO  parser -       SectionComment 
+
+INFO  parser -       Comment Val1 : 
+INFO  parser -       Entry   Val1 : value21
+INFO  parser -       Comment Val2 : 
+INFO  parser -       Entry   Val2 : value22
+INFO  parser -       Comment Val3 : 
+INFO  parser -       Entry   Val3 : value23
+INFO  parser - Searching for Entry: Val* Ignore case : true
+INFO  parser -   found Val1 : value21top
+INFO  parser -   found Val2 : value22top
+INFO  parser -   found Val3 : value23top
+INFO  parser - Searching for Entry: val* Ignore case : true
+INFO  parser -   found Val1 : value21top
+INFO  parser -   found Val2 : value22top
+INFO  parser -   found Val3 : value23top
+INFO  parser - Searching for Entry: val** Ignore case : false
+INFO  parser - Searching for Section: Section* Ignore case : false
+INFO  parser -   found Section1
+INFO  parser -   found Section2
+DEBUG IniParser - File iniParser/select1.ini.test did not change. Not saving.
+DEBUG parser - file iniParser/select1.ini.test parsed AGAIN.
+INFO  parser -   
+INFO  parser -   SectionComment 
+INFO  parser -   Comment Val1 : 
+
+INFO  parser -   Entry   Val1 : value21top
+INFO  parser -   Comment Val2 : 
+INFO  parser -   Entry   Val2 : value22top
+INFO  parser -   Comment Val3 : 
+INFO  parser -   Entry   Val3 : value23top
+INFO  parser -   Section Section1
+INFO  parser -     SectionComment ; first line comment
+; second line comment
+
+INFO  parser -     Comment Val1 : 
+INFO  parser -     Entry   Val1 : value11
+INFO  parser -     Comment Val2 : 
+INFO  parser -     Entry   Val2 : value12
+INFO  parser -     Comment Val3 : 
+INFO  parser -     Entry   Val3 : value13
+INFO  parser -     Section Section1
+INFO  parser -       SectionComment 
+INFO  parser -       Comment Val1 : 
+INFO  parser -       Entry   Val1 : value 111
+INFO  parser -       Comment Val2 : 
+INFO  parser -       Entry   Val2 : value 222
+INFO  parser -   Section Section2
+INFO  parser -       SectionComment 
+
+INFO  parser -       Comment Val1 : 
+INFO  parser -       Entry   Val1 : value21
+INFO  parser -       Comment Val2 : 
+INFO  parser -       Entry   Val2 : value22
+INFO  parser -       Comment Val3 : 
+INFO  parser -       Entry   Val3 : value23
+DEBUG IniParser - File iniParser/select1.ini.test did not change. Not saving.
+DEBUG IniParser - File iniParser/select1.ini.test did not change. Not saving.
+DEBUG IniParser - File iniParser/select1.in did not change. Not saving.

@@ -1,0 +1,48 @@
+
+; options 
+
+option1 = GLOBAL_VALUES
+
+; comment description
+
+comment1 = ^[ \t]*;.*
+comment2 = ^[ \t]*$
+comment3 = ;.*
+comment4 = \{[^}]*\}
+
+; section description
+
+secBeginReg1 = [ \t]*\+([A-Za-z0-9_]+)[ \t]*
+secBeginWrite1 = +%s
+secEndReg1 = [ \t]*\-([A-Za-z0-9_]+)[ \t]*
+secEndWrite1 = -%s
+
+; entry READ description
+
+match1 = ^[ \t]*([^=]*[^ \t=])[ \t]*=[ \t]*(.*[^ \t]|)[ \t]*$
+
+; entry WRITE description
+
+write1 = %s=%s
+
+; delete key level on toplevel 
++delete1
+level= ""
+-delete1
+
+; delete Val2 in Section1.Section1
+
++delete2
+  +Section1
+    +Section1
+       Val2 = ""
+    -Section1
+  -Section1
+-delete2
+
+; delete Section2
+
++delete3
+  +Section2
+  -Section2
+-delete3

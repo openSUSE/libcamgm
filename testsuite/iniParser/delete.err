@@ -1,0 +1,101 @@
+ERROR IniParser - iniParser/delete.in:15 Nothing to close.
+ERROR IniParser - iniParser/delete.in:17 Nothing to close.
+DEBUG parser - Configuration file iniParser/delete.in parsed.
+INFO  parser -   
+INFO  parser -   SectionComment 
+INFO  parser -   Comment comment1 : ; comment description
+
+INFO  parser -   Entry   comment1 : ^[ \t]*;.*
+INFO  parser -   Comment comment2 : 
+INFO  parser -   Entry   comment2 : ^[ \t]*$
+INFO  parser -   Comment comment3 : 
+INFO  parser -   Entry   comment3 : ;.*
+INFO  parser -   Comment comment4 : 
+INFO  parser -   Entry   comment4 : \{[^}]*\}
+INFO  parser -   Comment match1 : ; entry READ description
+
+INFO  parser -   Entry   match1 : ^[ \t]*([^=]*[^ \t=])[ \t]*=[ \t]*(.*[^ \t]|)[ \t]*$
+INFO  parser -   Comment option1 : ; options 
+
+INFO  parser -   Entry   option1 : GLOBAL_VALUES
+INFO  parser -   Comment secBeginReg1 : 
+INFO  parser -   Entry   secBeginReg1 : [ \t]*\+([A-z0-9_]+)[ \t]*
+INFO  parser -   Comment secBeginWrite1 : 
+INFO  parser -   Entry   secBeginWrite1 : +%s
+INFO  parser -   Comment secEndReg1 : 
+INFO  parser -   Entry   secEndReg1 : [ \t]*\-([A-z0-9_]+)[ \t]*
+INFO  parser -   Comment secEndWrite1 : 
+INFO  parser -   Entry   secEndWrite1 : -%s
+INFO  parser -   Comment write1 : ; entry WRITE description
+
+INFO  parser -   Entry   write1 : %s=%s
+INFO  parser -   Section delete1
+INFO  parser -     SectionComment ; delete key level on toplevel 
+
+INFO  parser -     Comment level : 
+INFO  parser -     Entry   level : ""
+INFO  parser -   Section delete2
+INFO  parser -       SectionComment ; delete Val2 in Section1.Section1
+
+INFO  parser -       Section Section1
+INFO  parser -         SectionComment 
+INFO  parser -         Section Section1
+INFO  parser -           SectionComment 
+INFO  parser -           Comment Val2 : 
+INFO  parser -           Entry   Val2 : ""
+INFO  parser -   Section delete3
+INFO  parser -         SectionComment ; delete Section2
+
+INFO  parser -         Section Section2
+INFO  parser -           SectionComment 
+DEBUG parser - file iniParser/delete.ini.test parsed.
+INFO  parser -   
+INFO  parser -   SectionComment 
+INFO  parser -   Comment level : ; first line comment
+; second line comment
+
+INFO  parser -   Entry   level : value
+INFO  parser -   Section Section1
+INFO  parser -     SectionComment 
+INFO  parser -     Comment Val1 : 
+INFO  parser -     Entry   Val1 : value11
+INFO  parser -     Comment Val2 : 
+INFO  parser -     Entry   Val2 : value12
+INFO  parser -     Comment Val3 : 
+INFO  parser -     Entry   Val3 : value13
+INFO  parser -     Section Section1
+INFO  parser -       SectionComment 
+INFO  parser -       Comment Val1 : 
+INFO  parser -       Entry   Val1 : value 111
+INFO  parser -       Comment Val2 : 
+INFO  parser -       Entry   Val2 : value 222
+INFO  parser -   Section Section2
+INFO  parser -       SectionComment 
+
+INFO  parser -       Comment Val1 : 
+INFO  parser -       Entry   Val1 : value21
+INFO  parser -       Comment Val2 : 
+INFO  parser -       Entry   Val2 : value22
+INFO  parser -       Comment Val3 : 
+INFO  parser -       Entry   Val3 : value23
+INFO  parser - Deleting Entry: level
+INFO  parser - Deleting Entry: Val2
+INFO  parser - Deleting Section: Section2
+DEBUG parser - file iniParser/delete.ini.test parsed AGAIN.
+INFO  parser -   
+INFO  parser -   SectionComment 
+INFO  parser -   Section Section1
+INFO  parser -     SectionComment 
+INFO  parser -     Comment Val1 : 
+INFO  parser -     Entry   Val1 : value11
+INFO  parser -     Comment Val2 : 
+INFO  parser -     Entry   Val2 : value12
+INFO  parser -     Comment Val3 : 
+INFO  parser -     Entry   Val3 : value13
+INFO  parser -     Section Section1
+INFO  parser -       SectionComment 
+INFO  parser -       Comment Val1 : 
+INFO  parser -       Entry   Val1 : value 111
+DEBUG IniParser - File iniParser/delete.ini.test did not change. Not saving.
+DEBUG IniParser - File iniParser/delete.ini.test did not change. Not saving.
+DEBUG IniParser - File iniParser/delete.in did not change. Not saving.

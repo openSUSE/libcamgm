@@ -53,7 +53,10 @@ liblimal_ca_mgm_la_SOURCES  =	\
 	X509v3CRLExtensions_Priv.cpp \
 	X509v3RequestExtensions_Priv.cpp \
 	CRLReason_Priv.cpp \
-	OpenSSLUtils.cpp
+	OpenSSLUtils.cpp \
+	INIParser/IniFile.cpp   \
+	INIParser/IniParser.cpp \
+	INIParser/INIParser.cpp
 
 liblimal_ca_mgm_la_CXXFLAGS = $(LIMAL_CFLAGS)
 
@@ -65,4 +68,6 @@ liblimal_ca_mgm_la_LIBADD = $(LIB_SSL)
 
 CLEANFILES     = *~
 DISTCLEANFILES = Commands.hpp
-EXTRA_DIST     = *.hpp Commands.hpp.in openssl.cnf.tmpl
+EXTRA_DIST     = *.hpp Commands.hpp.in openssl.cnf.tmpl \
+                 INIParser/*.h INIParser/*.hpp
+

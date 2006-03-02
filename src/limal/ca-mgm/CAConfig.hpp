@@ -29,7 +29,6 @@
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
-#include  <limal/INIParser.hpp>
 #include  <blocxx/COWIntrusiveReference.hpp>
 
 
@@ -108,7 +107,8 @@ namespace CA_MGM_NAMESPACE
 		CAConfig(const CAConfig&);
 		CAConfig& operator=(const CAConfig&);
         
-		void dumpTree(INI::Section *section, int level = 0);
+		class CASection;
+		void dumpTree(CASection *section, int level = 0);
 
 		/**
 		 * Check the format of the template and fix it if required.

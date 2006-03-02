@@ -23,8 +23,9 @@
 #include <fstream>
 #include <iostream>
 #include  <limal/ca-mgm/CAConfig.hpp>
-#include  "Utils.hpp"
 #include  <blocxx/COWIntrusiveCountableBase.hpp>
+#include  "Utils.hpp"
+#include  "INIParser/INIParser.hpp"
 
 namespace LIMAL_NAMESPACE
 {
@@ -35,6 +36,11 @@ using namespace limal;
 using namespace blocxx;
 using namespace limal::INI;
 using namespace std;
+
+struct CAConfig::CASection
+{
+	INI::Section *section;
+};
 
 class CAConfigImpl : public blocxx::COWIntrusiveCountableBase
 {
@@ -113,7 +119,7 @@ CAConfig::~CAConfig()
 {}
 
 void
-CAConfig::dumpTree(Section *section, int level)
+CAConfig::dumpTree(CASection *casection, int level)
 {
 	String tab = "";
 	for (int i = 0; i <= level; i++) tab += "  ";
@@ -121,12 +127,12 @@ CAConfig::dumpTree(Section *section, int level)
 	if (level == 0)
 		LOGIT_INFO (tab);
 
-	String sectionComment = section->getComment();
+	String sectionComment = casection->section->getComment();
 	if (sectionComment.length() > 0)
 		LOGIT_INFO (tab <<
-		            "SectionComment " << section->getComment());
+		            "SectionComment " << casection->section->getComment());
 
-	EntryMap eMap= section->getEntries();
+	EntryMap eMap= casection->section->getEntries();
 	for (EntryMap::iterator i = eMap.begin(); i != eMap.end(); i++)
 	{
 		Entry entry = i->second;
@@ -138,13 +144,15 @@ CAConfig::dumpTree(Section *section, int level)
 		            "Entry   " << i->first << " : " << entry.getValue());
 	}
 
-	SectionMap sMap = section->getSections();
+	SectionMap sMap = casection->section->getSections();
 	for (SectionMap::iterator i = sMap.begin(); i != sMap.end(); i++)
 	{
 		Section sec = i->second;
 		LOGIT_INFO (tab <<
 		            "Section " << i->first);
-		dumpTree (&sec, level+1);
+		CASection cas;
+		cas.section = &sec;
+		dumpTree (&cas, level+1);
 	}
 }
 
@@ -259,7 +267,9 @@ CAConfig::clone(const String &file)
 void
 CAConfig::dump()
 {
-	dumpTree(&(m_impl->parser.iniFile));
+	CASection cas;
+	cas.section = &(m_impl->parser.iniFile);
+	dumpTree(&cas);
 }    
 
 // private
