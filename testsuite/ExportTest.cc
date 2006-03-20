@@ -160,7 +160,7 @@ int main()
 
         cout << "==================== ca.exportCertificate(PEM); ======================" << endl; 
 
-        ba = ca2.exportCertificate("01:9528e1d8783f83b662fca6085a8c1467-1111161258", E_PEM);
+        ba = ca2.exportCertificate("04:9528e1d8783f83b662fca6085a8c1467-1111161258", E_PEM);
         
         cd = LocalManagement::getCertificate(ba, E_PEM);
 
@@ -168,7 +168,7 @@ int main()
 
         cout << "==================== ca.exportCertificate(DER); ======================" << endl; 
 
-        ba = ca2.exportCertificate("01:9528e1d8783f83b662fca6085a8c1467-1111161258", E_DER);
+        ba = ca2.exportCertificate("04:9528e1d8783f83b662fca6085a8c1467-1111161258", E_DER);
         
         cd = LocalManagement::getCertificate(ba, E_DER);
 
@@ -176,7 +176,7 @@ int main()
 
         cout << "================== ca.exportCertificateKeyAsPEM(decr); ===================" << endl; 
 
-        ba = ca2.exportCertificateKeyAsPEM("01:9528e1d8783f83b662fca6085a8c1467-1111161258",
+        ba = ca2.exportCertificateKeyAsPEM("04:9528e1d8783f83b662fca6085a8c1467-1111161258",
                                            "system", "");
         
         LocalManagement::writeFile(ba, "./TestRepos3/testKey.key");
@@ -202,7 +202,7 @@ int main()
 
         cout << "============ ca.exportexportCertificateKeyAsPEM('tralla'); =============" << endl; 
 
-        ba = ca2.exportCertificateKeyAsPEM("01:9528e1d8783f83b662fca6085a8c1467-1111161258",
+        ba = ca2.exportCertificateKeyAsPEM("04:9528e1d8783f83b662fca6085a8c1467-1111161258",
                                            "system", "tralla");
         
         LocalManagement::writeFile(ba, "./TestRepos3/testKey2.key");
@@ -228,7 +228,7 @@ int main()
 
         cout << "==================== ca.exportCertificateKeyAsDER(); ======================" << endl; 
 
-        ba = ca2.exportCertificateKeyAsDER("01:9528e1d8783f83b662fca6085a8c1467-1111161258",
+        ba = ca2.exportCertificateKeyAsDER("04:9528e1d8783f83b662fca6085a8c1467-1111161258",
                                            "system");
         
         LocalManagement::writeFile(ba, "./TestRepos3/testKeyDER.key");
@@ -244,7 +244,7 @@ int main()
 
         cout << "============= ca.exportCertificateAsPKCS12(..., false); ==================" << endl; 
 
-        ba = ca2.exportCertificateAsPKCS12("01:9528e1d8783f83b662fca6085a8c1467-1111161258",
+        ba = ca2.exportCertificateAsPKCS12("04:9528e1d8783f83b662fca6085a8c1467-1111161258",
                                            "system", "tralla", false);
         
         LocalManagement::writeFile(ba, "./TestRepos3/testCert.p12");
@@ -260,7 +260,7 @@ int main()
         
         cout << "=============== ca.exportCertificateAsPKCS12(..., true); ================" << endl; 
 
-        ba = ca2.exportCertificateAsPKCS12("01:9528e1d8783f83b662fca6085a8c1467-1111161258",
+        ba = ca2.exportCertificateAsPKCS12("04:9528e1d8783f83b662fca6085a8c1467-1111161258",
                                            "system", "tralla", true);
         
         LocalManagement::writeFile(ba, "./TestRepos3/testCertChain.p12");
