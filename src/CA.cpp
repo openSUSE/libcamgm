@@ -81,6 +81,27 @@ class CAImpl : public blocxx::COWIntrusiveCountableBase
 		return new CAImpl(*this);
 	}
 
+	String
+	initConfigFile()
+	{
+		if(templ)
+		{
+			if(config)
+			{
+				delete config;
+				config = NULL;
+			}
+			config = templ->clone(repositoryDir + "/" + caName + "/openssl.cnf");
+			return config->filename();
+		}
+		else
+		{
+			LOGIT_ERROR("template not initialized");
+			BLOCXX_THROW(limal::RuntimeException, "template not initialized");
+		}
+		return "";
+	}
+	
 	String caName;
 	String caPasswd;
 	String repositoryDir;
@@ -151,14 +172,17 @@ CA::CA(const String& caName, const String& caPasswd, const String& repos)
 
 CA::~CA()
 {
-	path::PathInfo pi(m_impl->repositoryDir+"/"+m_impl->caName+"/openssl.cnf");
-	if(pi.exists())
+	if(m_impl->config)
 	{
-		int r = path::removeFile(m_impl->repositoryDir+"/"+m_impl->caName+"/openssl.cnf");
-        
-		if(r != 0)
+		path::PathInfo pi(m_impl->config->filename());
+		if(pi.exists())
 		{
-			LOGIT_INFO("Remove of openssl.cnf failed: " << r);
+			int r = path::removeFile(m_impl->config->filename());
+			
+			if(r != 0)
+			{
+				LOGIT_INFO("Remove of openssl.cnf failed: " << r);
+			}
 		}
 	}
 }
@@ -261,11 +285,11 @@ CA::createRequest(const String& keyPasswd,
 	}
   
 	// copy template to config
-	initConfigFile();
+	String configFilename = initConfigFile();
 
 	removeDefaultsFromConfig();
 	
-	OpenSSLUtils ost(m_impl->repositoryDir + "/" + m_impl->caName + "/" + "openssl.cnf");
+	OpenSSLUtils ost(configFilename);
 
 	String opensslDN = requestData.getSubjectDN().getOpenSSLString();
 	blocxx::MD5 md5(opensslDN);
@@ -361,12 +385,12 @@ CA::issueCertificate(const String& requestName,
 	checkDNPolicy(rdata.getSubjectDN(), certType);
 
 	// copy template to config
-	initConfigFile();
+	String configFilename = initConfigFile();
     
 	// write data to config
 	issueData.commit2Config(*this, certType);
 
-	OpenSSLUtils ost(m_impl->repositoryDir + "/" + m_impl->caName + "/" + "openssl.cnf");
+	OpenSSLUtils ost(configFilename);
 
 	ost.signRequest(m_impl->repositoryDir + "/" + m_impl->caName + "/req/"+ requestName + ".req",
 	                m_impl->repositoryDir + "/" + m_impl->caName + "/newcerts/" + certificate + ".pem",
@@ -456,9 +480,9 @@ CA::revokeCertificate(const String& certificateName,
 	}
 
 	// copy template to config
-	initConfigFile();
+	String configFilename = initConfigFile();
 
-	OpenSSLUtils ost(m_impl->repositoryDir + "/" + m_impl->caName + "/" + "openssl.cnf");
+	OpenSSLUtils ost(configFilename);
 
 	ost.revokeCertificate(m_impl->repositoryDir + "/" + m_impl->caName + "/cacert.pem",
 	                      m_impl->repositoryDir + "/" + m_impl->caName + "/cacert.key",
@@ -466,7 +490,6 @@ CA::revokeCertificate(const String& certificateName,
 	                      m_impl->repositoryDir + "/" + m_impl->caName + "/newcerts/" +
 	                      certificateName + ".pem",
 	                      crlReason);
-
 }
 
 
@@ -480,12 +503,12 @@ CA::createCRL(const CRLGenerationData& crlData)
 	}
 
 	// copy template to config
-	initConfigFile();
+	String configFilename = initConfigFile();
     
 	// write crl data to config
 	crlData.commit2Config(*this, E_CRL);
 
-	OpenSSLUtils ost(m_impl->repositoryDir + "/" + m_impl->caName + "/" + "openssl.cnf");
+	OpenSSLUtils ost(configFilename);
 
 	ost.issueCRL(m_impl->repositoryDir + "/" + m_impl->caName + "/cacert.pem",
 	             m_impl->repositoryDir + "/" + m_impl->caName + "/cacert.key",
@@ -1035,9 +1058,9 @@ CA::deleteCertificate(const String& certificateName,
 		                    certFile.toString()).c_str());
 	}
 
-	initConfigFile();
+	String configFilename = initConfigFile();
 
-	OpenSSLUtils ost(m_impl->repositoryDir + "/" + m_impl->caName + "/" + "openssl.cnf");
+	OpenSSLUtils ost(configFilename);
 
 	bool passOK = ost.checkKey(m_impl->caName, m_impl->caPasswd, "cacert", m_impl->repositoryDir);
     
@@ -1123,13 +1146,13 @@ CA::updateDB()
     
 	if(db.size() != 0)
 	{
-		initConfigFile();
+		String configFilename = initConfigFile();
 		
-		OpenSSLUtils ost(m_impl->repositoryDir + "/" + m_impl->caName + "/" + "openssl.cnf");
+		OpenSSLUtils ost2(configFilename);
 		
-		ost.updateDB(m_impl->repositoryDir + "/" + m_impl->caName + "/cacert.pem",
-		             m_impl->repositoryDir + "/" + m_impl->caName + "/cacert.key",
-		             m_impl->caPasswd);
+		ost2.updateDB(m_impl->repositoryDir + "/" + m_impl->caName + "/cacert.pem",
+		              m_impl->repositoryDir + "/" + m_impl->caName + "/cacert.key",
+		              m_impl->caPasswd);
 		
 	}
 	// else => empty index.txt no database to update
@@ -1161,9 +1184,9 @@ CA::verifyCertificate(const String& certificateName,
 		             Format("Invalid purpose: %", purpose).c_str());
 	}
 
-	initConfigFile();
+	String configFilename = initConfigFile();
     
-	OpenSSLUtils ost(m_impl->repositoryDir + "/" + m_impl->caName + "/" + "openssl.cnf");
+	OpenSSLUtils ost(configFilename);
 
 	String ret = ost.verify(certFile.toString(),
 	                        m_impl->repositoryDir + "/.cas/",
@@ -1229,7 +1252,7 @@ CA::createRootCA(const String& caName,
 	CA tmpCA = CA(caName, caPasswd, repos);
 
 	// copy template to config
-	tmpCA.initConfigFile();
+	String configFilename = tmpCA.initConfigFile();
 	
 	tmpCA.removeDefaultsFromConfig();
 
@@ -1239,7 +1262,7 @@ CA::createRootCA(const String& caName,
 	// copy Section, because "req" is hard coded in openssl :-(
 	tmpCA.getConfig()->copySection(type2Section(E_CA_Req, false), "req");
 
-	OpenSSLUtils ost(repos + "/" + caName + "/" + "openssl.cnf");
+	OpenSSLUtils ost(configFilename);
 
 	// create key
 
@@ -1280,7 +1303,7 @@ CA::createRootCA(const String& caName,
     
 	rehashCAs(repos + "/.cas/");
 
-	// write DN defaults
+	// reinit the config , write the defaults and copy back to template
 	tmpCA.initConfigFile();
 	DNObject_Priv dnp( caRequestData.getSubjectDN() );
 	dnp.setDefaults2Config(tmpCA);
@@ -1526,7 +1549,6 @@ CA::deleteCA(const String& caName,
 	{
 		LOGIT_ERROR("Empty CA name.");
 		BLOCXX_THROW(limal::ValueException, "Empty CA name.");
-
 	}
 
 	path::PathInfo pi(repos + "/" + caName);
@@ -1571,7 +1593,6 @@ CA::deleteCA(const String& caName,
 			{
 				LOGIT_DEBUG("CA is expired");
 			}
-
 		}
 		else
 		{
@@ -1760,25 +1781,10 @@ CA::checkDNPolicy(const DNObject& dn, Type type)
 	return;
 }
 
-void
+String
 CA::initConfigFile()
 {
-	if(m_impl->templ)
-	{
-		if(m_impl->config)
-		{
-			delete m_impl->config;
-			m_impl->config = NULL;
-		}
-		m_impl->config = m_impl->templ->clone(m_impl->repositoryDir +
-		                                      "/" + m_impl->caName  +
-		                                      "/openssl.cnf");
-	}
-	else
-	{
-		LOGIT_ERROR("template not initialized");
-		BLOCXX_THROW(limal::RuntimeException, "template not initialized");
-	}
+	return m_impl->initConfigFile();
 }
 
 void

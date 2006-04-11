@@ -696,8 +696,10 @@ namespace CA_MGM_NAMESPACE
 		 * On error this method throws exceptions.
 		 *
 		 * Copy the template to a configfile and create the config object
+		 *
+		 * @return the name of the config file
 		 */
-		void
+		String
 		initConfigFile();
 
 		/**
