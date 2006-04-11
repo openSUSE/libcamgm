@@ -264,6 +264,12 @@ CAConfig::clone(const String &file)
 	return new CAConfig (file);	
 }
 
+String
+CAConfig::filename() const
+{
+	return m_impl->srcFilename;
+}
+
 void
 CAConfig::dump()
 {

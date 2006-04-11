@@ -97,6 +97,12 @@ namespace CA_MGM_NAMESPACE
 		CAConfig*
 		clone(const String &file);
 
+		/**
+		 * return current filename
+		 */
+		String
+		filename() const;
+		
 		void	 dump();
 
 
