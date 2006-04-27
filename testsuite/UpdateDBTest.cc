@@ -56,9 +56,9 @@ int main()
             
             ca2.updateDB();
         }
-        catch(RuntimeException &re)
+        catch(ValueException &re)
         {
-            cout << "Got RuntimeException. This is ok!" << endl;
+            cout << "Got ValueException. This is ok!" << endl;
         }
         cout << "=================== end Update DB ========================" << endl;
         
