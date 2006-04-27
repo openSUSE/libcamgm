@@ -1,3 +1,4 @@
+DEBUG ca-mgm - Command: /usr/bin/openssl rsa -noout -in ./TestRepos//Test_CA2/cacert.key -passin env:PASSWORD 
 DEBUG limal - readDir ./TestRepos/Test_CA2/req 
 DEBUG IniParser - File ./TestRepos//Test_CA2/openssl.cnf.tmpl did not change. Not saving.
 DEBUG ca-mgm - Command: /usr/bin/openssl rsa -noout -in ./TestRepos//Test_CA2/cacert.key -passin env:PASSWORD 

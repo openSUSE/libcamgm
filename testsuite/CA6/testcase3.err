@@ -1,3 +1,4 @@
+DEBUG ca-mgm - Command: /usr/bin/openssl rsa -noout -in ./TestRepos//ca1_test/cacert.key -passin env:PASSWORD 
 DEBUG ca-mgm - type2Section: type=4 result=server_cert
 DEBUG ca-mgm - type2Section: type=4 result=server_cert
 DEBUG ca-mgm - type2Section: type=4 result=v3_server
@@ -142,6 +143,7 @@ DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=4 result=v3_server
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG limal - removeFile ./TestRepos/ca1_test/openssl.cnf
+DEBUG ca-mgm - Command: /usr/bin/openssl rsa -noout -in ./TestRepos//ca2_test/cacert.key -passin env:PASSWORD 
 DEBUG ca-mgm - type2Section: type=4 result=server_cert
 DEBUG ca-mgm - type2Section: type=4 result=server_cert
 DEBUG ca-mgm - type2Section: type=4 result=v3_server
