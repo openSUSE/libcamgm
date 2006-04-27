@@ -59,7 +59,7 @@ namespace CA_MGM_NAMESPACE {
 		/**
 		 * Set the ca parameter and the path length.
 		 *
-		 * @param isCA set it to true if you want a CA, otherwise false.
+		 * @param isCa set it to true if you want a CA, otherwise false.
 		 * @param pathLength maximum number of CAs that can appear below this one in a chain;
 		 * -1 means no path Length is set.
 		 */

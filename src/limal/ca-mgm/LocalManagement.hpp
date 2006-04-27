@@ -102,7 +102,7 @@ namespace CA_MGM_NAMESPACE {
          *
          */
         static void
-        importCommonServerCertificate(const limal::ByteBuffer &pkcs12File,
+        importCommonServerCertificate(const limal::ByteBuffer &pkcs12Data,
                                       const String            &password);
         
         /**

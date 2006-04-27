@@ -51,7 +51,7 @@ namespace CA_MGM_NAMESPACE {
 		/**
 		 * Constructor
 		 *
-		 * @param value in the form <type>:<value>
+		 * @param value in the form &lt;type&gt;:&lt;value&gt;
 		 *              Valid types are: URI, DNS, RID, IP and email
 		 */
 		LiteralValue(const String& value);
@@ -78,7 +78,7 @@ namespace CA_MGM_NAMESPACE {
 		/**
 		 * Set new values
 		 *
-		 * @param value in the form <type>:<value>
+		 * @param value in the form &lt;type&gt;:&lt;value&gt;
 		 *              Valid types are: URI, DNS, RID, IP and email
 		 */
 		void
@@ -106,7 +106,7 @@ namespace CA_MGM_NAMESPACE {
 		dump() const;
 
 		/**
-		 * Return the LiteralValue in the form <type>:<value>
+		 * Return the LiteralValue in the form &lt;type&gt;:&lt;value&gt;
 		 */
 		String
 		toString() const;

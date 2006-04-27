@@ -21,7 +21,7 @@
 /-*/
 
 /**
- * @file   Ca.hpp
+ * @file   CA.hpp
  * @brief  This is a short description of the library.
  */
 #ifndef    LIMAL_CA_HPP
@@ -470,7 +470,7 @@ namespace CA_MGM_NAMESPACE
 		 * Export the CRL of this CA in the requested format type.
 		 * On error this method throws exceptions.
 		 *
-		 * @param exportFormat the format type
+		 * @param exportType the format type
 		 *
 		 * @return the CRL in the requested format
 		 */
