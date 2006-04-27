@@ -45,9 +45,13 @@ namespace CA_MGM_NAMESPACE {
 		X509v3CRLExts(const X509v3CRLExts& extensions);
 		virtual ~X509v3CRLExts();
 
+#ifndef SWIG
+
 		X509v3CRLExts&
 		operator=(const X509v3CRLExts& extensions);
 
+#endif
+		
 		AuthorityKeyIdentifierExt
 		getAuthorityKeyIdentifier() const;
         

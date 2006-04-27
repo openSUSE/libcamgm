@@ -57,8 +57,12 @@ namespace CA_MGM_NAMESPACE {
 		LiteralValue(const String& value);
 		LiteralValue(const LiteralValue& value);
 
+#ifndef SWIG
+
 		LiteralValue&
 		operator=(const LiteralValue& value);
+
+#endif
 		
 		virtual ~LiteralValue();
 
@@ -107,12 +111,16 @@ namespace CA_MGM_NAMESPACE {
 		String
 		toString() const;
 
+#ifndef SWIG
+
 		friend bool
 		operator==(const LiteralValue &l, const LiteralValue &r);
-		
+
 		friend bool
 		operator<(const LiteralValue &l, const LiteralValue &r);
 
+#endif
+		
 	private:
 		blocxx::COWIntrusiveReference<LiteralValueImpl> m_impl;
     	

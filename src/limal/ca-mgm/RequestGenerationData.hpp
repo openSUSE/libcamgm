@@ -54,9 +54,13 @@ namespace CA_MGM_NAMESPACE
 		RequestGenerationData(const RequestGenerationData& data);
 		virtual ~RequestGenerationData();
 
+#ifndef SWIG
+
 		RequestGenerationData&
 		operator=(const RequestGenerationData& data);
 
+#endif
+		
 		void
 		setSubjectDN(const DNObject dn);
         

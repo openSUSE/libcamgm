@@ -54,9 +54,13 @@ namespace CA_MGM_NAMESPACE {
         X509v3RequestExts(const X509v3RequestExts& extensions);
         virtual ~X509v3RequestExts();
 
-        X509v3RequestExts&
+#ifndef SWIG
+
+    	X509v3RequestExts&
         operator=(const X509v3RequestExts& extensions);
 
+#endif
+    	
         void
         setNsSslServerName(const NsSslServerNameExt &ext);
         

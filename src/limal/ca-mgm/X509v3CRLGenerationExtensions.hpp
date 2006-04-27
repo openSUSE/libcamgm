@@ -50,9 +50,13 @@ namespace CA_MGM_NAMESPACE
 		X509v3CRLGenerationExts(const X509v3CRLGenerationExts& extensions);
 		virtual ~X509v3CRLGenerationExts();
 
+#ifndef SWIG
+
 		X509v3CRLGenerationExts&
 		operator=(const X509v3CRLGenerationExts& extension);
 
+#endif
+		
 		void
 		setAuthorityKeyIdentifier(const AuthorityKeyIdentifierGenerateExt &ext);
         

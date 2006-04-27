@@ -50,8 +50,12 @@ namespace CA_MGM_NAMESPACE {
 		BasicConstraintsExt(const BasicConstraintsExt& extension);
 		virtual ~BasicConstraintsExt();
 
+#ifndef SWIG
+
 		BasicConstraintsExt& operator=(const BasicConstraintsExt& extension);
 
+#endif
+		
 		/**
 		 * Set the ca parameter and the path length.
 		 *

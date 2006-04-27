@@ -45,9 +45,13 @@ namespace CA_MGM_NAMESPACE {
 		RequestData(const RequestData& data);
 		virtual ~RequestData();
 
+#ifndef SWIG
+
 		RequestData&
 		operator=(const RequestData& data);
 
+#endif
+		
 		blocxx::UInt32
 		getVersion() const;
         

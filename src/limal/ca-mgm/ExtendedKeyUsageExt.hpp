@@ -56,9 +56,13 @@ namespace CA_MGM_NAMESPACE {
         
 		virtual ~ExtendedKeyUsageExt();
 
+#ifndef SWIG
+
 		ExtendedKeyUsageExt&
 		operator=(const ExtendedKeyUsageExt& extension);
 
+#endif
+		
 		/**
 		 * Set new extended key usage.
 		 *

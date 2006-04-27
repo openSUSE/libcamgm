@@ -71,11 +71,14 @@ namespace CA_MGM_NAMESPACE {
 		 * Destructor
 		 */
 		~AuthorityInformation();
-		
-		
+				
+#ifndef SWIG
+
 		AuthorityInformation&
 		operator=(const AuthorityInformation& ai);
 
+#endif
+		
 		/**
          * Set new Authority Informations
          *
@@ -123,12 +126,16 @@ namespace CA_MGM_NAMESPACE {
 		blocxx::Array<String>
 		dump() const;
 
+#ifndef SWIG
+
 		friend bool
 		operator==(const AuthorityInformation &l, const AuthorityInformation &r);
         
 		friend bool
 		operator<(const AuthorityInformation &l, const AuthorityInformation &r);
-        
+
+#endif
+		
 	private:
 		blocxx::COWIntrusiveReference<AuthorityInformationImpl> m_impl;
 
@@ -172,9 +179,13 @@ namespace CA_MGM_NAMESPACE {
 
         virtual ~AuthorityInfoAccessExt();
 
-        AuthorityInfoAccessExt&
+#ifndef SWIG
+
+    	AuthorityInfoAccessExt&
         operator=(const AuthorityInfoAccessExt& extension);
 
+#endif
+    	
         /**
          * Set a new list of Authority Informations
          */

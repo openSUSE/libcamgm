@@ -44,9 +44,13 @@ namespace CA_MGM_NAMESPACE {
 		CRLDistributionPointsExt(const CRLDistributionPointsExt& extension);
 		virtual ~CRLDistributionPointsExt();
 
+#ifndef SWIG
+
 		CRLDistributionPointsExt&
 		operator=(const CRLDistributionPointsExt& extension);
 
+#endif
+		
 		void
 		setCRLDistributionPoints(blocxx::List<LiteralValue>);
         

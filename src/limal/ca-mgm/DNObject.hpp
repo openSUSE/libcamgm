@@ -40,8 +40,11 @@ namespace CA_MGM_NAMESPACE {
 		RDNObject(const RDNObject& rdn);
 		virtual ~RDNObject();
 
+#ifndef SWIG
+		
 		RDNObject& operator=(const RDNObject& rdn);
 
+#endif
 		void   setRDNValue(const String& value);
 
 		String getType() const;
@@ -54,10 +57,14 @@ namespace CA_MGM_NAMESPACE {
 
 		virtual blocxx::StringArray  dump() const;
 
+#ifndef SWIG
+
 		friend bool operator==(const RDNObject &l, const RDNObject &r);
 		friend bool operator<(const RDNObject &l, const RDNObject &r);
 
-					          		            		protected:
+#endif
+		
+	protected:
 		blocxx::COWIntrusiveReference<RDNObjectImpl> m_impl;
     	
 	};
@@ -70,8 +77,12 @@ namespace CA_MGM_NAMESPACE {
 		DNObject(const DNObject& dn);
 		virtual ~DNObject();
 
+#ifndef SWIG
+
 		DNObject& operator=(const DNObject& dn);
 
+#endif
+		
 		void                         setDN(const blocxx::List<RDNObject> &dn);
 		blocxx::List<RDNObject>      getDN() const;
 

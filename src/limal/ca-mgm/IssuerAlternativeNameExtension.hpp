@@ -49,9 +49,13 @@ namespace CA_MGM_NAMESPACE {
         
 		virtual ~IssuerAlternativeNameExt();
 
+#ifndef SWIG
+
 		IssuerAlternativeNameExt&
 		operator=(const IssuerAlternativeNameExt& extension);
 
+#endif
+		
 		void
 		setCopyIssuer(bool copyIssuer);
         

@@ -49,9 +49,13 @@ namespace CA_MGM_NAMESPACE
 		CRLGenerationData(const CRLGenerationData& data);
 		virtual ~CRLGenerationData();
         
+#ifndef SWIG
+
 		CRLGenerationData&
 		operator=(const CRLGenerationData& data);
 
+#endif
+		
 		void
 		setCRLLifeTime(blocxx::UInt32 hours);
         

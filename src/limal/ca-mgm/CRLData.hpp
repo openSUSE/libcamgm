@@ -43,9 +43,13 @@ namespace CA_MGM_NAMESPACE {
 		RevocationEntry(const RevocationEntry& entry);
 		virtual ~RevocationEntry();
         
+#ifndef SWIG
+
 		RevocationEntry&
 		operator=(const RevocationEntry& entry);
 
+#endif
+		
 		String
 		getSerial() const;
 
@@ -79,9 +83,13 @@ namespace CA_MGM_NAMESPACE {
 		CRLData(const CRLData& data);
 		virtual ~CRLData();
 
+#ifndef SWIG
+
 		CRLData&
 		operator=(const CRLData& data);
 
+#endif
+		
 		blocxx::Int32
 		getVersion() const;
         

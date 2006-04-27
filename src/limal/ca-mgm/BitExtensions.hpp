@@ -46,8 +46,12 @@ namespace CA_MGM_NAMESPACE {
 		BitExtension(const BitExtension& extension);
 		virtual ~BitExtension();
 
+#ifndef SWIG
+
 		BitExtension&  operator=(const BitExtension& extension);
 
+#endif
+		
 		void           setValue(blocxx::UInt32 value);
 		blocxx::UInt32 getValue() const;
 
@@ -91,8 +95,12 @@ namespace CA_MGM_NAMESPACE {
 		KeyUsageExt(const KeyUsageExt& extension);
 		virtual ~KeyUsageExt();
 
+#ifndef SWIG
+
 		KeyUsageExt& operator=(const KeyUsageExt& extension);
 
+#endif
+		
 		/**
 		 * Set a new key usage
 		 */
@@ -168,8 +176,12 @@ namespace CA_MGM_NAMESPACE {
 		NsCertTypeExt(const NsCertTypeExt& extension);
 		virtual ~NsCertTypeExt();
 
+#ifndef SWIG
+
 		NsCertTypeExt& operator=(const NsCertTypeExt& extension);
 
+#endif
+		
 		/**
 		 * Set a new certificate type
 		 */

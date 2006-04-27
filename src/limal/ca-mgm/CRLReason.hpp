@@ -48,7 +48,12 @@ namespace CA_MGM_NAMESPACE {
 		CRLReason(const CRLReason& reason);
 		virtual ~CRLReason();
 
-		CRLReason& operator=(const CRLReason& reason);
+#ifndef SWIG
+
+		CRLReason&
+		operator=(const CRLReason& reason);
+
+#endif
 
 		/**
 		 * Set a new revocation reason

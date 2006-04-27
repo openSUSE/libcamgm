@@ -43,9 +43,13 @@ namespace CA_MGM_NAMESPACE {
 		SubjectKeyIdentifierExt(const SubjectKeyIdentifierExt& extension);
 		virtual ~SubjectKeyIdentifierExt();
 
+#ifndef SWIG
+
 		SubjectKeyIdentifierExt&
 		operator=(const SubjectKeyIdentifierExt& extension);
 
+#endif
+		
 		void
 		setSubjectKeyIdentifier(bool autoDetect, const String& keyId = String());
 

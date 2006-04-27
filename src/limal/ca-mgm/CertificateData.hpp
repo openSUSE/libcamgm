@@ -46,9 +46,13 @@ namespace CA_MGM_NAMESPACE {
 
 		virtual ~CertificateData();
 
+#ifndef SWIG
+
 		CertificateData&
 		operator=(const CertificateData& data);
 
+#endif
+		
 		blocxx::UInt32
 		getVersion() const;
         

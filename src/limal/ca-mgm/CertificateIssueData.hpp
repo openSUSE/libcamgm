@@ -55,9 +55,13 @@ namespace CA_MGM_NAMESPACE
 
 		virtual ~CertificateIssueData();
 
+#ifndef SWIG
+
 		CertificateIssueData&
 		operator=(const CertificateIssueData& data);
 
+#endif
+		
 		void
 		setCertifyPeriode(time_t start, time_t end);
         

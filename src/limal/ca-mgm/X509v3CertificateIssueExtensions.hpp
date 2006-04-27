@@ -60,9 +60,13 @@ namespace CA_MGM_NAMESPACE
 		X509v3CertificateIssueExts(const X509v3CertificateIssueExts& extensions);
 		virtual ~X509v3CertificateIssueExts();
 
+#ifndef SWIG
+
 		X509v3CertificateIssueExts&
 		operator=(const X509v3CertificateIssueExts& extensions);
 
+#endif
+		
 		void
 		setNsBaseUrl(const NsBaseUrlExt &ext);
         

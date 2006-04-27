@@ -66,9 +66,13 @@ namespace CA_MGM_NAMESPACE {
 		AuthorityKeyIdentifierGenerateExt(const AuthorityKeyIdentifierGenerateExt& extension);
 		virtual ~AuthorityKeyIdentifierGenerateExt();
 
+#ifndef SWIG
+
 		AuthorityKeyIdentifierGenerateExt& 
 		operator=(const AuthorityKeyIdentifierGenerateExt& extension);
 
+#endif
+		
 		/**
 		 * Set the Key ID
 		 */

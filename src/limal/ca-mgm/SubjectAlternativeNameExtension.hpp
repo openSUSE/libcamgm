@@ -49,9 +49,13 @@ namespace CA_MGM_NAMESPACE {
 		
 		virtual ~SubjectAlternativeNameExt();
 		
+#ifndef SWIG
+
 		SubjectAlternativeNameExt&
 		operator=(const SubjectAlternativeNameExt& extension);
 
+#endif
+		
 		void
 		setCopyEmail(bool copyEmail);		                          
 		

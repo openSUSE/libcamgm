@@ -42,8 +42,12 @@ namespace CA_MGM_NAMESPACE {
 
 		virtual ~ExtensionBase();
 
+#ifndef SWIG
+
 		ExtensionBase& operator=(const ExtensionBase& extension);
 
+#endif
+		
 		void   setPresent(bool extPresent);
 		void   setCritical(bool extCritical);
 

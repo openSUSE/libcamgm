@@ -69,8 +69,12 @@ namespace CA_MGM_NAMESPACE {
 		NsBaseUrlExt(const NsBaseUrlExt &extension);
 		virtual ~NsBaseUrlExt();
 
+#ifndef SWIG
+
 		NsBaseUrlExt& operator=(const NsBaseUrlExt& extension);
 
+#endif
+		
 		void           setValue(const String &v);
 		String         getValue() const;
 
@@ -90,8 +94,12 @@ namespace CA_MGM_NAMESPACE {
 		NsRevocationUrlExt(const NsRevocationUrlExt &extension);
 		virtual ~NsRevocationUrlExt();
 
+#ifndef SWIG
+
 		NsRevocationUrlExt& operator=(const NsRevocationUrlExt& extension);
 
+#endif
+		
 		void           setValue(const String &v);
 		String         getValue() const;
 
@@ -111,8 +119,12 @@ namespace CA_MGM_NAMESPACE {
 		NsCaRevocationUrlExt(const NsCaRevocationUrlExt &extension);
 		virtual ~NsCaRevocationUrlExt();
 
+#ifndef SWIG
+
 		NsCaRevocationUrlExt& operator=(const NsCaRevocationUrlExt& extension);
 
+#endif
+		
 		void           setValue(const String &v);
 		String         getValue() const;
 
@@ -132,8 +144,12 @@ namespace CA_MGM_NAMESPACE {
 		NsRenewalUrlExt(const NsRenewalUrlExt &extension);
 		virtual ~NsRenewalUrlExt();
 
+#ifndef SWIG
+
 		NsRenewalUrlExt& operator=(const NsRenewalUrlExt& extension);
 
+#endif
+		
 		void           setValue(const String &v);
 		String         getValue() const;
 
@@ -152,8 +168,12 @@ namespace CA_MGM_NAMESPACE {
 		NsCaPolicyUrlExt(const NsCaPolicyUrlExt &extension);
 		virtual ~NsCaPolicyUrlExt();
 
+#ifndef SWIG
+
 		NsCaPolicyUrlExt& operator=(const NsCaPolicyUrlExt& extension);
 
+#endif
+		
 		void           setValue(const String &v);
 		String         getValue() const;
 
@@ -172,8 +192,12 @@ namespace CA_MGM_NAMESPACE {
 		NsSslServerNameExt(const NsSslServerNameExt &extension);
 		virtual ~NsSslServerNameExt();
 
+#ifndef SWIG
+
 		NsSslServerNameExt& operator=(const NsSslServerNameExt& extension);
 
+#endif
+		
 		void           setValue(const String &v);
 		String         getValue() const;
 
@@ -192,8 +216,12 @@ namespace CA_MGM_NAMESPACE {
 		NsCommentExt(const NsCommentExt &extension);
 		virtual ~NsCommentExt();
 
+#ifndef SWIG
+
 		NsCommentExt& operator=(const NsCommentExt& extension);
 
+#endif
+		
 		void           setValue(const String &v);
 		String         getValue() const;
 
