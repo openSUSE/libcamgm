@@ -1,0 +1,11 @@
+-------------------------------------------------------------------
+Thu Apr 27 15:54:31 CEST 2006 - mc@suse.de
+
+- CA.cppmove caPasswd check to the constructor
+- *.hpp: reduce swig warnings; hide operators with #ifndef SWIG
+
+-------------------------------------------------------------------
+Tue Apr 11 15:57:34 CEST 2006 - mc@suse.de
+
+- CA.cpp: initConfigFile() returns now the filename of the configfile.
+- CA.cpp: use filename from the config object to initialize OpenSSLUtils
