@@ -150,7 +150,6 @@ public:
 
 
 CA::CA(const String& caName, const String& caPasswd, const String& repos)
-	: m_impl(new CAImpl(caName, caPasswd, repos))
 {
 
 	if(caName.empty())
@@ -167,6 +166,18 @@ CA::CA(const String& caName, const String& caPasswd, const String& repos)
 		             Format("Template does not exists: %1", pi.toString()).c_str());
 	}
 
+	OpenSSLUtils ost(pi.toString());
+
+	bool passOK = ost.checkKey(caName, caPasswd, "cacert", repos);
+    
+	if(!passOK)
+	{
+		LOGIT_ERROR("Invalid CA password");
+		BLOCXX_THROW(limal::ValueException, "Invalid CA password");
+	}
+
+	m_impl = new CAImpl(caName, caPasswd, repos);
+	
 	m_impl->templ = new CAConfig(repos+"/"+caName+"/openssl.cnf.tmpl");
 }
 
@@ -703,16 +714,6 @@ CA::exportCACert(FormatType exportType)
 {
 	ByteBuffer ret;
 
-	OpenSSLUtils ost(m_impl->repositoryDir + "/" + m_impl->caName + "/openssl.cnf.tmpl");
-
-	bool passOK = ost.checkKey(m_impl->caName, m_impl->caPasswd, "cacert", m_impl->repositoryDir);
-    
-	if(!passOK)
-	{
-		LOGIT_ERROR("Invalid CA password");
-		BLOCXX_THROW(limal::ValueException, "Invalid CA password");
-	}
-
 	ret = LocalManagement::readFile(m_impl->repositoryDir + "/" + m_impl->caName + "/cacert.pem");
 
 	if( exportType == E_DER )
@@ -736,16 +737,6 @@ CA::exportCAKeyAsPEM(const String& newPassword)
 {
 	ByteBuffer ret;
 
-	OpenSSLUtils ost(m_impl->repositoryDir + "/" + m_impl->caName + "/openssl.cnf.tmpl");
-
-	bool passOK = ost.checkKey(m_impl->caName, m_impl->caPasswd, "cacert", m_impl->repositoryDir);
-    
-	if(!passOK)
-	{
-		LOGIT_ERROR("Invalid CA password");
-		BLOCXX_THROW(limal::ValueException, "Invalid CA password");
-	}
-
 	ret = LocalManagement::readFile(m_impl->repositoryDir + "/" + m_impl->caName + "/cacert.key");
 
 	ret = OpenSSLUtils::rsaConvert(ret, E_PEM, E_PEM, m_impl->caPasswd, newPassword);
@@ -761,16 +752,6 @@ ByteBuffer
 CA::exportCAKeyAsDER()
 {
 	ByteBuffer ret;
-
-	OpenSSLUtils ost(m_impl->repositoryDir + "/" + m_impl->caName + "/openssl.cnf.tmpl");
-
-	bool passOK = ost.checkKey(m_impl->caName, m_impl->caPasswd, "cacert", m_impl->repositoryDir);
-    
-	if(!passOK)
-	{
-		LOGIT_ERROR("Invalid CA password");
-		BLOCXX_THROW(limal::ValueException, "Invalid CA password");
-	}
 
 	ret = LocalManagement::readFile(m_impl->repositoryDir + "/" + m_impl->caName + "/cacert.key");
 
@@ -789,16 +770,6 @@ CA::exportCAasPKCS12(const String& p12Password,
                      bool withChain)
 {
 	ByteBuffer ret;
-
-	OpenSSLUtils ost(m_impl->repositoryDir + "/" + m_impl->caName + "/openssl.cnf.tmpl");
-
-	bool passOK = ost.checkKey(m_impl->caName, m_impl->caPasswd, "cacert", m_impl->repositoryDir);
-    
-	if(!passOK)
-	{
-		LOGIT_ERROR("Invalid CA password");
-		BLOCXX_THROW(limal::ValueException, "Invalid CA password");
-	}
 
 	ret = OpenSSLUtils::createPKCS12
 		(LocalManagement::readFile(m_impl->repositoryDir + "/" + m_impl->caName + "/" + "cacert.pem"),
@@ -821,16 +792,6 @@ CA::exportCertificate(const String& certificateName,
                       FormatType exportType)
 {
 	ByteBuffer ret;
-
-	OpenSSLUtils ost(m_impl->repositoryDir + "/" + m_impl->caName + "/openssl.cnf.tmpl");
-
-	bool passOK = ost.checkKey(m_impl->caName, m_impl->caPasswd, "cacert", m_impl->repositoryDir);
-    
-	if(!passOK)
-	{
-		LOGIT_ERROR("Invalid CA password");
-		BLOCXX_THROW(limal::ValueException, "Invalid CA password");
-	}
 
 	ret = LocalManagement::readFile(m_impl->repositoryDir + "/" + m_impl->caName + "/newcerts/" + 
 	                                certificateName + ".pem");
@@ -855,16 +816,6 @@ CA::exportCertificateKeyAsPEM(const String& certificateName,
                               const String& newPassword)
 {
 	ByteBuffer ret;
-
-	OpenSSLUtils ost(m_impl->repositoryDir + "/" + m_impl->caName + "/openssl.cnf.tmpl");
-
-	bool passOK = ost.checkKey(m_impl->caName, m_impl->caPasswd, "cacert", m_impl->repositoryDir);
-    
-	if(!passOK)
-	{
-		LOGIT_ERROR("Invalid CA password");
-		BLOCXX_THROW(limal::ValueException, "Invalid CA password");
-	}
 
 	PerlRegEx rReq("^[[:xdigit:]]+:([[:xdigit:]]+[\\d-]*)$");
 	StringArray sa = rReq.capture(certificateName);
@@ -892,16 +843,6 @@ CA::exportCertificateKeyAsDER(const String& certificateName,
                               const String& keyPassword)
 {
 	ByteBuffer ret;
-
-	OpenSSLUtils ost(m_impl->repositoryDir + "/" + m_impl->caName + "/openssl.cnf.tmpl");
-
-	bool passOK = ost.checkKey(m_impl->caName, m_impl->caPasswd, "cacert", m_impl->repositoryDir);
-    
-	if(!passOK)
-	{
-		LOGIT_ERROR("Invalid CA password");
-		BLOCXX_THROW(limal::ValueException, "Invalid CA password");
-	}
 
 	PerlRegEx rReq("^[[:xdigit:]]+:([[:xdigit:]]+[\\d-]*)$");
 	StringArray sa = rReq.capture(certificateName);
@@ -932,16 +873,6 @@ CA::exportCertificateAsPKCS12(const String& certificateName,
                               bool withChain)
 {
 	ByteBuffer ret;
-
-	OpenSSLUtils ost(m_impl->repositoryDir + "/" + m_impl->caName + "/openssl.cnf.tmpl");
-
-	bool passOK = ost.checkKey(m_impl->caName, m_impl->caPasswd, "cacert", m_impl->repositoryDir);
-    
-	if(!passOK)
-	{
-		LOGIT_ERROR("Invalid CA password");
-		BLOCXX_THROW(limal::ValueException, "Invalid CA password");
-	}
 
 	PerlRegEx rReq("^[[:xdigit:]]+:([[:xdigit:]]+[\\d-]*)$");
 	StringArray sa = rReq.capture(certificateName);
@@ -982,16 +913,6 @@ CA::exportCRL(FormatType exportType)
 {
 	ByteBuffer ret;
 
-	OpenSSLUtils ost(m_impl->repositoryDir + "/" + m_impl->caName + "/openssl.cnf.tmpl");
-
-	bool passOK = ost.checkKey(m_impl->caName, m_impl->caPasswd, "cacert", m_impl->repositoryDir);
-    
-	if(!passOK)
-	{
-		LOGIT_ERROR("Invalid CA password");
-		BLOCXX_THROW(limal::ValueException, "Invalid CA password");
-	}
-
 	ret = LocalManagement::readFile(m_impl->repositoryDir + "/" + m_impl->caName + "/crl/crl.pem");
 
 	if( exportType == E_DER )
@@ -1014,16 +935,6 @@ CA::deleteRequest(const String& requestName)
 		                                            reqFile.toString()).c_str());
 	}
     
-	OpenSSLUtils ost(m_impl->repositoryDir + "/" + m_impl->caName + "/openssl.cnf.tmpl");
-
-	bool passOK = ost.checkKey(m_impl->caName, m_impl->caPasswd, "cacert", m_impl->repositoryDir);
-   
-	if(!passOK)
-	{
-		LOGIT_ERROR("Invalid CA password");
-		BLOCXX_THROW(limal::ValueException, "Invalid CA password");
-	}
-
 	OpenSSLUtils::delCAM(m_impl->caName, requestName, m_impl->repositoryDir);
 
 	path::PathInfo keyFile(m_impl->repositoryDir + "/" + m_impl->caName + "/keys/" + requestName + ".key");
@@ -1058,18 +969,6 @@ CA::deleteCertificate(const String& certificateName,
 		                    certFile.toString()).c_str());
 	}
 
-	String configFilename = initConfigFile();
-
-	OpenSSLUtils ost(configFilename);
-
-	bool passOK = ost.checkKey(m_impl->caName, m_impl->caPasswd, "cacert", m_impl->repositoryDir);
-    
-	if(!passOK)
-	{
-		LOGIT_ERROR("Invalid CA password");
-		BLOCXX_THROW(limal::ValueException, "Invalid CA password");
-	}
-    
 	PerlRegEx p("^([[:xdigit:]]+):([[:xdigit:]]+[\\d-]*)$");
 	StringArray sa = p.capture(certificateName);
 
@@ -1082,6 +981,10 @@ CA::deleteCertificate(const String& certificateName,
 
 	String serial  = sa[1];
 	String request = sa[2];
+
+	String configFilename = initConfigFile();
+
+	OpenSSLUtils ost(configFilename);
 
 	String state = ost.status(serial);
 
@@ -1133,26 +1036,15 @@ CA::updateDB()
 		BLOCXX_THROW(limal::RuntimeException, "Database not found.");
 	}
 
-	OpenSSLUtils ost(m_impl->repositoryDir + "/" + m_impl->caName + "/openssl.cnf.tmpl");
-
-	bool passOK = ost.checkKey(m_impl->caName, m_impl->caPasswd, "cacert", m_impl->repositoryDir);
-
-	if(!passOK)
-	{
-		LOGIT_ERROR("Invalid password");
-		BLOCXX_THROW(limal::RuntimeException,
-		             "Invalid password");
-	}
-    
 	if(db.size() != 0)
 	{
 		String configFilename = initConfigFile();
 		
-		OpenSSLUtils ost2(configFilename);
+		OpenSSLUtils ost(configFilename);
 		
-		ost2.updateDB(m_impl->repositoryDir + "/" + m_impl->caName + "/cacert.pem",
-		              m_impl->repositoryDir + "/" + m_impl->caName + "/cacert.key",
-		              m_impl->caPasswd);
+		ost.updateDB(m_impl->repositoryDir + "/" + m_impl->caName + "/cacert.pem",
+		             m_impl->repositoryDir + "/" + m_impl->caName + "/cacert.key",
+		             m_impl->caPasswd);
 		
 	}
 	// else => empty index.txt no database to update
@@ -1247,7 +1139,16 @@ CA::createRootCA(const String& caName,
 		                   "Error during create CA infrastructure",
 		                   e);
 	}
+
+	{
+		OpenSSLUtils ost(repos + "/openssl.cnf.tmpl");
     
+		// create key
+		
+		ost.createRSAKey(repos + "/" + caName + "/" + "cacert.key",
+		                 caPasswd, caRequestData.getKeysize());
+	}
+
 	// Create CA Object
 	CA tmpCA = CA(caName, caPasswd, repos);
 
@@ -1263,13 +1164,7 @@ CA::createRootCA(const String& caName,
 	tmpCA.getConfig()->copySection(type2Section(E_CA_Req, false), "req");
 
 	OpenSSLUtils ost(configFilename);
-
-	// create key
-
-	ost.createRSAKey(repos + "/" + caName + "/" + "cacert.key",
-	                 caPasswd, caRequestData.getKeysize());
-
-
+	
 	// create request
 	ost.createRequest(caRequestData.getSubjectDN(),
 	                  repos + "/" + caName + "/" + "cacert.req",
@@ -1598,7 +1493,6 @@ CA::deleteCA(const String& caName,
 		{
 			LOGIT_DEBUG("No index file or index file is empty");
 		}
-
 	}
 	else
 	{
