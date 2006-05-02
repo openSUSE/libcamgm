@@ -83,7 +83,7 @@ namespace CA_MGM_NAMESPACE {
         setKeyUsage(const KeyUsageExt &ext);
         
         KeyUsageExt
-        getKeyUsage();
+        getKeyUsage() const;
 
         void
         setBasicConstraints(const BasicConstraintsExt &ext);

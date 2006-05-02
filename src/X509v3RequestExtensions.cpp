@@ -124,7 +124,7 @@ X509v3RequestExts::setKeyUsage(const KeyUsageExt &ext)
 }
 
 KeyUsageExt
-X509v3RequestExts::getKeyUsage()
+X509v3RequestExts::getKeyUsage() const
 {
 	return m_impl->keyUsage;
 }

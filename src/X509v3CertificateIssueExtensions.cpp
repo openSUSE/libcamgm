@@ -245,7 +245,7 @@ X509v3CertificateIssueExts::setNsCaPolicyUrl(const NsCaPolicyUrlExt &ext)
 }
 
 NsCaPolicyUrlExt
-X509v3CertificateIssueExts::getNsCaPolicyUrl()
+X509v3CertificateIssueExts::getNsCaPolicyUrl() const
 {
 	return m_impl->nsCaPolicyUrl;
 }
@@ -313,7 +313,7 @@ X509v3CertificateIssueExts::setKeyUsage(const KeyUsageExt &ext)
 }
 
 KeyUsageExt
-X509v3CertificateIssueExts::getKeyUsage()
+X509v3CertificateIssueExts::getKeyUsage() const
 {
 	return m_impl->keyUsage;
 }

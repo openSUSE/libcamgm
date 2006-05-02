@@ -95,7 +95,7 @@ namespace CA_MGM_NAMESPACE
 		setNsCaPolicyUrl(const NsCaPolicyUrlExt &ext);
         
 		NsCaPolicyUrlExt
-		getNsCaPolicyUrl();
+		getNsCaPolicyUrl() const;
 
 		void
 		setNsSslServerName(const NsSslServerNameExt &ext);
@@ -119,7 +119,7 @@ namespace CA_MGM_NAMESPACE
 		setKeyUsage(const KeyUsageExt &ext);
         
 		KeyUsageExt
-		getKeyUsage();
+		getKeyUsage() const;
 
 		void
 		setBasicConstraints(const BasicConstraintsExt &ext);
