@@ -63,11 +63,17 @@ namespace CA_MGM_NAMESPACE
 		AuthorityKeyIdentifierGenerateExt
 		getAuthorityKeyIdentifier() const;
         
+		AuthorityKeyIdentifierGenerateExt&
+		authorityKeyIdentifier();
+        
 		void
 		setIssuerAlternativeName(const IssuerAlternativeNameExt &ext);
         
 		IssuerAlternativeNameExt
 		getIssuerAlternativeName() const;
+		
+		IssuerAlternativeNameExt&
+		issuerAlternativeName();
         
 		void
 		commit2Config(CA& ca, Type type) const;

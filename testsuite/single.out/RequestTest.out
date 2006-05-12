@@ -1,0 +1,55 @@
+START
+DN Key countryName
+DN Key stateOrProvinceName
+DN Key localityName
+DN Key organizationName
+DN Key organizationalUnitName
+DN Key commonName
+DN Key emailAddress
+RETURN Request 
+Request exists: true
+X509v3RequestExts::dump()
+NsSslServerNameExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+SSL server name = *.my-company.com
+NsCommentExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+NS Comment = My Company Certificate
+KeyUsageExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+KeyUsage = 0x0080
+NsCertTypeExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+NsCertType = 0xa0
+BasicConstraintsExt::dump()
+ExtensionBase::dump()
+is Present = false
+ExtendedKeyUsageExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+Extended KeyUsage = 2.3.4.5
+Extended KeyUsage = 2.12.10.39
+SubjectKeyIdentifierExt::dump()
+ExtensionBase::dump()
+is Present = false
+SubjectAlternativeNameExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+email:copy = false
+LiteralValue::dump()
+email:suse@suse.de
+LiteralValue::dump()
+email:me@my-company.com
+LiteralValue::dump()
+URI:http://www.my-company.com/
+DONE

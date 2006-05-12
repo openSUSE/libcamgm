@@ -68,6 +68,9 @@ namespace CA_MGM_NAMESPACE
 		X509v3CRLGenerationExts
 		getExtensions() const;
 
+		X509v3CRLGenerationExts&
+		extensions();
+
 		void
 		commit2Config(CA& ca, Type type) const;
 

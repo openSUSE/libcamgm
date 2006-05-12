@@ -216,6 +216,12 @@ RequestGenerationData::getExtensions() const
 	return m_impl->extensions;
 }
 
+X509v3RequestExts&
+RequestGenerationData::extensions()
+{
+	return m_impl->extensions;
+}
+
 void
 RequestGenerationData::commit2Config(CA& ca, Type type) const
 {

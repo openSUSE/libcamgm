@@ -93,9 +93,12 @@ namespace CA_MGM_NAMESPACE
 
 		void
 		setExtensions(const X509v3RequestExts &ext);
-        
+		
 		X509v3RequestExts
 		getExtensions() const;
+
+		X509v3RequestExts&
+		extensions();
 
 		/**
 		 * write configuration file

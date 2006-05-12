@@ -1,0 +1,22 @@
+START
+CRL file available and greater then 0
+X509v3CRLExts::dump()
+AuthorityKeyIdentifierExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+KeyID = c6:89:52:90:26:46:f1:c4:1b:80:99:74:a5:b5:76:94:bd:da:81:21
+DirName = /C=DE/CN=Test CA/emailAddress=suse@suse.de
+serial = c9:d1:26:e7:ac:d4:49:e6
+IssuerAlternativeNameExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+Issuer:copy = false
+LiteralValue::dump()
+email:suse@suse.de
+LiteralValue::dump()
+email:me@my-company.com
+LiteralValue::dump()
+URI:http://www.my-company.com/
+DONE

@@ -110,6 +110,12 @@ X509v3CRLGenerationExts::getAuthorityKeyIdentifier() const
 	return m_impl->authorityKeyIdentifier;
 }
 
+AuthorityKeyIdentifierGenerateExt&
+X509v3CRLGenerationExts::authorityKeyIdentifier()
+{
+	return m_impl->authorityKeyIdentifier;
+}
+
 void
 X509v3CRLGenerationExts::setIssuerAlternativeName(const IssuerAlternativeNameExt &ext)
 {
@@ -123,6 +129,12 @@ X509v3CRLGenerationExts::setIssuerAlternativeName(const IssuerAlternativeNameExt
 
 IssuerAlternativeNameExt
 X509v3CRLGenerationExts::getIssuerAlternativeName() const
+{
+	return m_impl->issuerAlternativeName;
+}
+
+IssuerAlternativeNameExt&
+X509v3CRLGenerationExts::issuerAlternativeName()
 {
 	return m_impl->issuerAlternativeName;
 }

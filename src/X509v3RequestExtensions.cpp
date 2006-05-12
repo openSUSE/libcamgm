@@ -78,6 +78,12 @@ X509v3RequestExts::getNsSslServerName() const
 	return m_impl->nsSslServerName;
 }
 
+NsSslServerNameExt&
+X509v3RequestExts::nsSslServerName()
+{
+	return m_impl->nsSslServerName;
+}
+
 void
 X509v3RequestExts::setNsComment(const NsCommentExt &ext)
 {
@@ -91,6 +97,12 @@ X509v3RequestExts::setNsComment(const NsCommentExt &ext)
 
 NsCommentExt
 X509v3RequestExts::getNsComment() const
+{
+	return m_impl->nsComment;
+}
+
+NsCommentExt&
+X509v3RequestExts::nsComment()
 {
 	return m_impl->nsComment;
 }
@@ -112,6 +124,12 @@ X509v3RequestExts::getNsCertType() const
 	return m_impl->nsCertType;
 }
 
+NsCertTypeExt&
+X509v3RequestExts::nsCertType()
+{
+	return m_impl->nsCertType;
+}
+
 void
 X509v3RequestExts::setKeyUsage(const KeyUsageExt &ext)
 {
@@ -125,6 +143,12 @@ X509v3RequestExts::setKeyUsage(const KeyUsageExt &ext)
 
 KeyUsageExt
 X509v3RequestExts::getKeyUsage() const
+{
+	return m_impl->keyUsage;
+}
+
+KeyUsageExt&
+X509v3RequestExts::keyUsage()
 {
 	return m_impl->keyUsage;
 }
@@ -146,6 +170,12 @@ X509v3RequestExts::getBasicConstraints() const
 	return m_impl->basicConstraints;
 }
 
+BasicConstraintsExt&
+X509v3RequestExts::basicConstraints()
+{
+	return m_impl->basicConstraints;
+}
+
 void
 X509v3RequestExts::setExtendedKeyUsage(const ExtendedKeyUsageExt &ext)
 {
@@ -159,6 +189,12 @@ X509v3RequestExts::setExtendedKeyUsage(const ExtendedKeyUsageExt &ext)
 
 ExtendedKeyUsageExt
 X509v3RequestExts::getExtendedKeyUsage() const
+{
+	return m_impl->extendedKeyUsage;
+}
+
+ExtendedKeyUsageExt&
+X509v3RequestExts::extendedKeyUsage()
 {
 	return m_impl->extendedKeyUsage;
 }
@@ -180,6 +216,12 @@ X509v3RequestExts::getSubjectKeyIdentifier() const
 	return m_impl->subjectKeyIdentifier;
 }
 
+SubjectKeyIdentifierExt&
+X509v3RequestExts::subjectKeyIdentifier()
+{
+	return m_impl->subjectKeyIdentifier;
+}
+
 void
 X509v3RequestExts::setSubjectAlternativeName(const SubjectAlternativeNameExt &ext)
 {
@@ -193,6 +235,12 @@ X509v3RequestExts::setSubjectAlternativeName(const SubjectAlternativeNameExt &ex
 
 SubjectAlternativeNameExt
 X509v3RequestExts::getSubjectAlternativeName() const
+{
+	return m_impl->subjectAlternativeName;
+}
+
+SubjectAlternativeNameExt&
+X509v3RequestExts::subjectAlternativeName()
 {
 	return m_impl->subjectAlternativeName;
 }

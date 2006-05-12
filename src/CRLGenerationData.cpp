@@ -140,6 +140,12 @@ CRLGenerationData::getExtensions() const
 	return m_impl->extensions;
 }
 
+X509v3CRLGenerationExts&
+CRLGenerationData::extensions()
+{
+	return m_impl->extensions;
+}
+
 void
 CRLGenerationData::commit2Config(CA& ca, Type type) const
 {
