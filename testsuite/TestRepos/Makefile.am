@@ -23,7 +23,7 @@ clean-local:
 	rm -f Test_CA1/index.txt.old
 	rm -f Test_CA1/.rand
 	rm -f Test_CA1/index.txt.attr.old
-	rm -r .rand
+	rm -f .rand
 
 
 MAINTAINERCLEANFILES = Makefile.in
