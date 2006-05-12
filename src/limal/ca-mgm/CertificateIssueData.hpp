@@ -95,6 +95,9 @@ namespace CA_MGM_NAMESPACE
 		X509v3CertificateIssueExts
 		getExtensions() const;
 
+		X509v3CertificateIssueExts&
+		extensions();
+
 		/** 
 		 * Write memory data to config file
 		 */

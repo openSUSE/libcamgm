@@ -182,6 +182,12 @@ X509v3CertificateIssueExts::getNsBaseUrl() const
 	return m_impl->nsBaseUrl;
 }
 
+NsBaseUrlExt&
+X509v3CertificateIssueExts::nsBaseUrl()
+{
+	return m_impl->nsBaseUrl;
+}
+
 void
 X509v3CertificateIssueExts::setNsRevocationUrl(const NsRevocationUrlExt &ext)
 {
@@ -195,6 +201,12 @@ X509v3CertificateIssueExts::setNsRevocationUrl(const NsRevocationUrlExt &ext)
 
 NsRevocationUrlExt
 X509v3CertificateIssueExts::getNsRevocationUrl() const
+{
+	return m_impl->nsRevocationUrl;
+}
+
+NsRevocationUrlExt&
+X509v3CertificateIssueExts::nsRevocationUrl()
 {
 	return m_impl->nsRevocationUrl;
 }
@@ -216,6 +228,12 @@ X509v3CertificateIssueExts::getNsCaRevocationUrl() const
 	return m_impl->nsCaRevocationUrl;
 }
 
+NsCaRevocationUrlExt&
+X509v3CertificateIssueExts::nsCaRevocationUrl()
+{
+	return m_impl->nsCaRevocationUrl;
+}
+
 void
 X509v3CertificateIssueExts::setNsRenewalUrl(const NsRenewalUrlExt &ext)
 {
@@ -229,6 +247,12 @@ X509v3CertificateIssueExts::setNsRenewalUrl(const NsRenewalUrlExt &ext)
 
 NsRenewalUrlExt
 X509v3CertificateIssueExts::getNsRenewalUrl() const
+{
+	return m_impl->nsRenewalUrl;
+}
+
+NsRenewalUrlExt&
+X509v3CertificateIssueExts::nsRenewalUrl()
 {
 	return m_impl->nsRenewalUrl;
 }
@@ -250,6 +274,12 @@ X509v3CertificateIssueExts::getNsCaPolicyUrl() const
 	return m_impl->nsCaPolicyUrl;
 }
 
+NsCaPolicyUrlExt&
+X509v3CertificateIssueExts::nsCaPolicyUrl()
+{
+	return m_impl->nsCaPolicyUrl;
+}
+
 void
 X509v3CertificateIssueExts::setNsSslServerName(const NsSslServerNameExt &ext)
 {
@@ -263,6 +293,12 @@ X509v3CertificateIssueExts::setNsSslServerName(const NsSslServerNameExt &ext)
 
 NsSslServerNameExt
 X509v3CertificateIssueExts::getNsSslServerName() const
+{
+	return m_impl->nsSslServerName;
+}
+
+NsSslServerNameExt&
+X509v3CertificateIssueExts::nsSslServerName()
 {
 	return m_impl->nsSslServerName;
 }
@@ -284,6 +320,12 @@ X509v3CertificateIssueExts::getNsComment() const
 	return m_impl->nsComment;
 }
 
+NsCommentExt&
+X509v3CertificateIssueExts::nsComment()
+{
+	return m_impl->nsComment;
+}
+
 void
 X509v3CertificateIssueExts::setNsCertType(const NsCertTypeExt &ext)
 {
@@ -297,6 +339,12 @@ X509v3CertificateIssueExts::setNsCertType(const NsCertTypeExt &ext)
 
 NsCertTypeExt
 X509v3CertificateIssueExts::getNsCertType() const
+{
+	return m_impl->nsCertType;
+}
+
+NsCertTypeExt&
+X509v3CertificateIssueExts::nsCertType()
 {
 	return m_impl->nsCertType;
 }
@@ -318,6 +366,12 @@ X509v3CertificateIssueExts::getKeyUsage() const
 	return m_impl->keyUsage;
 }
 
+KeyUsageExt&
+X509v3CertificateIssueExts::keyUsage()
+{
+	return m_impl->keyUsage;
+}
+
 void
 X509v3CertificateIssueExts::setBasicConstraints(const BasicConstraintsExt &ext)
 {
@@ -331,6 +385,12 @@ X509v3CertificateIssueExts::setBasicConstraints(const BasicConstraintsExt &ext)
 
 BasicConstraintsExt
 X509v3CertificateIssueExts::getBasicConstraints() const
+{
+	return m_impl->basicConstraints;
+}
+
+BasicConstraintsExt&
+X509v3CertificateIssueExts::basicConstraints()
 {
 	return m_impl->basicConstraints;
 }
@@ -352,6 +412,12 @@ X509v3CertificateIssueExts::getExtendedKeyUsage() const
 	return m_impl->extendedKeyUsage;
 }
 
+ExtendedKeyUsageExt&
+X509v3CertificateIssueExts::extendedKeyUsage()
+{
+	return m_impl->extendedKeyUsage;
+}
+
 void
 X509v3CertificateIssueExts::setSubjectKeyIdentifier(const SubjectKeyIdentifierExt &ext)
 {
@@ -365,6 +431,12 @@ X509v3CertificateIssueExts::setSubjectKeyIdentifier(const SubjectKeyIdentifierEx
 
 SubjectKeyIdentifierExt
 X509v3CertificateIssueExts::getSubjectKeyIdentifier() const
+{
+	return m_impl->subjectKeyIdentifier;
+}
+
+SubjectKeyIdentifierExt&
+X509v3CertificateIssueExts::subjectKeyIdentifier()
 {
 	return m_impl->subjectKeyIdentifier;
 }
@@ -386,6 +458,12 @@ X509v3CertificateIssueExts::getAuthorityKeyIdentifier() const
 	return m_impl->authorityKeyIdentifier;
 }
 
+AuthorityKeyIdentifierGenerateExt&
+X509v3CertificateIssueExts::authorityKeyIdentifier()
+{
+	return m_impl->authorityKeyIdentifier;
+}
+
 void
 X509v3CertificateIssueExts::setSubjectAlternativeName(const SubjectAlternativeNameExt &ext)
 {
@@ -402,7 +480,13 @@ X509v3CertificateIssueExts::getSubjectAlternativeName() const
 {
 	return m_impl->subjectAlternativeName;
 }
-        
+
+SubjectAlternativeNameExt&
+X509v3CertificateIssueExts::subjectAlternativeName()
+{
+	return m_impl->subjectAlternativeName;
+}
+
 void
 X509v3CertificateIssueExts::setIssuerAlternativeName(const IssuerAlternativeNameExt &ext)
 {
@@ -419,7 +503,13 @@ X509v3CertificateIssueExts::getIssuerAlternativeName() const
 {
 	return m_impl->issuerAlternativeName;
 }
-                                                                     
+
+IssuerAlternativeNameExt&
+X509v3CertificateIssueExts::issuerAlternativeName()
+{
+	return m_impl->issuerAlternativeName;
+}
+
 void
 X509v3CertificateIssueExts::setAuthorityInfoAccess(const AuthorityInfoAccessExt &ext)
 {
@@ -433,6 +523,12 @@ X509v3CertificateIssueExts::setAuthorityInfoAccess(const AuthorityInfoAccessExt 
 
 AuthorityInfoAccessExt
 X509v3CertificateIssueExts::getAuthorityInfoAccess() const
+{
+	return m_impl->authorityInfoAccess;
+}
+
+AuthorityInfoAccessExt&
+X509v3CertificateIssueExts::authorityInfoAccess()
 {
 	return m_impl->authorityInfoAccess;
 }
@@ -454,6 +550,12 @@ X509v3CertificateIssueExts::getCRLDistributionPoints() const
 	return m_impl->crlDistributionPoints;
 }
 
+CRLDistributionPointsExt&
+X509v3CertificateIssueExts::crlDistributionPoints()
+{
+	return m_impl->crlDistributionPoints;
+}
+
 void
 X509v3CertificateIssueExts::setCertificatePolicies(const CertificatePoliciesExt &ext)
 {
@@ -467,6 +569,12 @@ X509v3CertificateIssueExts::setCertificatePolicies(const CertificatePoliciesExt 
 
 CertificatePoliciesExt
 X509v3CertificateIssueExts::getCertificatePolicies() const
+{
+	return m_impl->certificatePolicies;
+}
+
+CertificatePoliciesExt&
+X509v3CertificateIssueExts::certificatePolicies()
 {
 	return m_impl->certificatePolicies;
 }

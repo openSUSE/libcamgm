@@ -1,6 +1,7 @@
 
-check:
-	echo "clean before check"
+check: clean-local
+
+clean-local:
 	rm -rf Test_CA/
 	rm -rf Test_CA3/
 	rm -rf SubCA_Test/
@@ -16,14 +17,13 @@ check:
 	cp Test_CA2/cacert.pem .cas/Test_CA2.pem
 	cp Test_CA2/crl/crl.pem .cas/crl_Test_CA2.pem
 	c_rehash .cas/
-
-clean-local: check
 	rm -f ca1_test/openssl.cnf
 	rm -f ca2_test/openssl.cnf
 	rm -f Test_CA1/serial.old
 	rm -f Test_CA1/index.txt.old
 	rm -f Test_CA1/.rand
 	rm -f Test_CA1/index.txt.attr.old
+	rm -r .rand
 
 
 MAINTAINERCLEANFILES = Makefile.in

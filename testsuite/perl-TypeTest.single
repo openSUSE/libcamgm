@@ -2,7 +2,7 @@
 
 BEGIN 
 {
-        push @INC, '../swig/perl5';
+    unshift @INC, '../swig/perl5';
 }
 
 use strict;

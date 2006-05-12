@@ -73,11 +73,17 @@ namespace CA_MGM_NAMESPACE
 		NsBaseUrlExt
 		getNsBaseUrl() const;
 
+		NsBaseUrlExt&
+		nsBaseUrl();
+
 		void
 		setNsRevocationUrl(const NsRevocationUrlExt &ext);
         
 		NsRevocationUrlExt
 		getNsRevocationUrl() const;
+
+		NsRevocationUrlExt&
+		nsRevocationUrl();
 
 		void
 		setNsCaRevocationUrl(const NsCaRevocationUrlExt &ext);
@@ -85,11 +91,17 @@ namespace CA_MGM_NAMESPACE
 		NsCaRevocationUrlExt
 		getNsCaRevocationUrl() const;
 
+		NsCaRevocationUrlExt&
+		nsCaRevocationUrl();
+
 		void
 		setNsRenewalUrl(const NsRenewalUrlExt &ext);
         
 		NsRenewalUrlExt
 		getNsRenewalUrl() const;
+
+		NsRenewalUrlExt&
+		nsRenewalUrl();
 
 		void
 		setNsCaPolicyUrl(const NsCaPolicyUrlExt &ext);
@@ -97,11 +109,17 @@ namespace CA_MGM_NAMESPACE
 		NsCaPolicyUrlExt
 		getNsCaPolicyUrl() const;
 
+		NsCaPolicyUrlExt&
+		nsCaPolicyUrl();
+
 		void
 		setNsSslServerName(const NsSslServerNameExt &ext);
         
 		NsSslServerNameExt
 		getNsSslServerName() const;
+
+		NsSslServerNameExt&
+		nsSslServerName();
 
 		void
 		setNsComment(const NsCommentExt &ext);
@@ -109,11 +127,17 @@ namespace CA_MGM_NAMESPACE
 		NsCommentExt
 		getNsComment() const;
 
+		NsCommentExt&
+		nsComment();
+
 		void
 		setNsCertType(const NsCertTypeExt &ext);
         
 		NsCertTypeExt
 		getNsCertType() const;
+
+		NsCertTypeExt&
+		nsCertType();
 
 		void
 		setKeyUsage(const KeyUsageExt &ext);
@@ -121,11 +145,17 @@ namespace CA_MGM_NAMESPACE
 		KeyUsageExt
 		getKeyUsage() const;
 
+		KeyUsageExt&
+		keyUsage();
+
 		void
 		setBasicConstraints(const BasicConstraintsExt &ext);
         
 		BasicConstraintsExt
 		getBasicConstraints() const;
+
+		BasicConstraintsExt&
+		basicConstraints();
 
 		void
 		setExtendedKeyUsage(const ExtendedKeyUsageExt &ext);
@@ -133,11 +163,17 @@ namespace CA_MGM_NAMESPACE
 		ExtendedKeyUsageExt
 		getExtendedKeyUsage() const;
 
+		ExtendedKeyUsageExt&
+		extendedKeyUsage();
+
 		void
 		setSubjectKeyIdentifier(const SubjectKeyIdentifierExt &ext);
         
 		SubjectKeyIdentifierExt
 		getSubjectKeyIdentifier() const;
+
+		SubjectKeyIdentifierExt&
+		subjectKeyIdentifier();
 
 		void
 		setAuthorityKeyIdentifier(const AuthorityKeyIdentifierGenerateExt &ext);
@@ -145,17 +181,26 @@ namespace CA_MGM_NAMESPACE
 		AuthorityKeyIdentifierGenerateExt
 		getAuthorityKeyIdentifier() const;
 
+		AuthorityKeyIdentifierGenerateExt&
+		authorityKeyIdentifier();
+
 		void
 		setSubjectAlternativeName(const SubjectAlternativeNameExt &ext);
         
 		SubjectAlternativeNameExt
 		getSubjectAlternativeName() const;
-        
+
+		SubjectAlternativeNameExt&
+		subjectAlternativeName();
+
 		void
 		setIssuerAlternativeName(const IssuerAlternativeNameExt &ext);
         
-		IssuerAlternativeNameExt
+ 		IssuerAlternativeNameExt
 		getIssuerAlternativeName() const;
+
+		IssuerAlternativeNameExt&
+		issuerAlternativeName();
                                                                      
 		void
 		setAuthorityInfoAccess(const AuthorityInfoAccessExt &ext);
@@ -163,17 +208,26 @@ namespace CA_MGM_NAMESPACE
 		AuthorityInfoAccessExt
 		getAuthorityInfoAccess() const;
 
+		AuthorityInfoAccessExt&
+		authorityInfoAccess();
+
 		void
 		setCRLDistributionPoints(const CRLDistributionPointsExt &ext);
         
 		CRLDistributionPointsExt
 		getCRLDistributionPoints() const;
 
+		CRLDistributionPointsExt&
+		crlDistributionPoints();
+
 		void
 		setCertificatePolicies(const CertificatePoliciesExt &ext);
         
 		CertificatePoliciesExt
 		getCertificatePolicies() const;
+
+		CertificatePoliciesExt&
+		certificatePolicies();
 
 		void
 		commit2Config(CA& ca, Type type) const;
