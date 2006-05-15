@@ -8,6 +8,22 @@ DN Key commonName
 DN Key emailAddress
 RETURN Request 
 Request exists: true
+DNObject::dump()
+RDNObject::dump()
+countryName=DE
+Prompt:
+Min:0
+Max:0
+RDNObject::dump()
+commonName=Test Request
+Prompt:
+Min:0
+Max:0
+RDNObject::dump()
+emailAddress=suse@suse.de
+Prompt:
+Min:0
+Max:0
 X509v3RequestExts::dump()
 NsSslServerNameExt::dump()
 ExtensionBase::dump()

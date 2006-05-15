@@ -150,6 +150,12 @@ RequestGenerationData::getSubjectDN() const
 	return m_impl->subject;
 }
 
+DNObject&
+RequestGenerationData::subjectDN()
+{
+	return m_impl->subject;
+}
+
 void
 RequestGenerationData::setKeysize(blocxx::UInt32 size)
 {

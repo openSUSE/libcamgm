@@ -1,0 +1,103 @@
+#!/usr/bin/perl -w
+
+BEGIN 
+{
+    unshift @INC, '../swig/perl5';
+}
+
+use strict;
+use LIMAL;
+use LIMAL::CaMgm;
+use Data::Dumper;
+
+print "START\n";
+
+my $ca = new LIMAL::CaMgm::CA("Test_CA1", "system", "./TestRepos/");
+my $rgd = $ca->getRequestDefaults($LIMAL::CaMgm::E_Server_Req);
+
+my $rdnlist = $rgd->subjectDN()->getDN();
+
+for(my $it = $rdnlist->begin();
+    !$rdnlist->iterator_equal($it, $rdnlist->end());
+    $rdnlist->iterator_incr($it))
+{
+    print "DN Key ", $rdnlist->iterator_value($it)->getType(), "\n";
+    
+            
+    if($rdnlist->iterator_value($it)->getType() eq "countryName")
+    {
+        $rdnlist->iterator_value($it)->setRDNValue("DE");
+    }
+    elsif($rdnlist->iterator_value($it)->getType() eq "commonName")
+    {
+        $rdnlist->iterator_value($it)->setRDNValue("Test Request");
+    }
+    elsif($rdnlist->iterator_value($it)->getType() eq "emailAddress")
+    {
+        $rdnlist->iterator_value($it)->setRDNValue('suse@suse.de');
+    }
+}
+
+$rgd->subjectDN()->setDN($rdnlist);
+
+$rgd->extensions()->nsSslServerName()->setValue("*.my-company.com");
+$rgd->extensions()->nsComment()->setValue("My Company Certificate");
+
+
+$rgd->extensions()->keyUsage()->setKeyUsage($LIMAL::CaMgm::KeyUsageExt::digitalSignature);
+$rgd->extensions()->nsCertType()->setNsCertType($LIMAL::CaMgm::NsCertTypeExt::client | 
+                                                $LIMAL::CaMgm::NsCertTypeExt::email);
+
+
+$rgd->extensions()->basicConstraints()->setPresent(0);
+
+my $sl = new LIMAL::StringList();
+$sl->push_back("2.3.4.5");
+$sl->push_back("2.12.10.39");
+
+$rgd->extensions()->extendedKeyUsage()->setExtendedKeyUsage( $sl );
+
+my $list = new LIMAL::CaMgm::LiteralValueList();
+               
+$list->push_back(new LIMAL::CaMgm::LiteralValue("email", 'me@my-company.com'));
+$list->push_back(new LIMAL::CaMgm::LiteralValue("URI", "http://www.my-company.com/"));
+        
+$rgd->extensions()->subjectAlternativeName()->setCopyEmail(1);
+$rgd->extensions()->subjectAlternativeName()->setAlternativeNameList($list);
+
+
+my $r = $ca->createRequest("system", $rgd, $LIMAL::CaMgm::E_Server_Req);
+
+print "RETURN Request \n";
+
+if( -e "./TestRepos/Test_CA1/req/$r.req") 
+{                             
+    print "Request exists: true\n";
+}
+
+my $cd = $ca->getRequest($r);
+
+my $ret = $cd->getSubjectDN()->dump();
+
+$ret->appendArray($cd->getExtensions()->dump());
+       
+for(my $it = $ret->begin();
+    !$ret->iterator_equal($it, $ret->end());
+    $ret->iterator_incr($it))
+{
+    if($ret->iterator_value($it) =~ /^KeyID/)
+    {
+        print "found KeyID\n";
+    }
+    else
+    {
+        print $ret->iterator_value($it)."\n";
+    }
+}
+
+print "DONE\n";
+
+
+
+
+

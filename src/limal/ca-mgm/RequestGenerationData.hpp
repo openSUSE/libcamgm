@@ -67,6 +67,9 @@ namespace CA_MGM_NAMESPACE
 		DNObject
 		getSubjectDN() const;
 
+		DNObject&
+		subjectDN();
+
 		void
 		setKeysize(blocxx::UInt32 size);
         
