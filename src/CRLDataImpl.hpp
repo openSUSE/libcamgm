@@ -91,7 +91,14 @@ namespace CA_MGM_NAMESPACE {
 			, x509(X509_CRL_dup(impl.x509))
 		{}
 
-		~CRLDataImpl() {}
+		~CRLDataImpl()
+		{
+			if(x509 != NULL)
+			{
+				X509_CRL_free(x509);
+				x509 = NULL;
+			}
+		}
 
 		CRLDataImpl* clone() const
 		{
