@@ -56,65 +56,7 @@ CertificateData_Priv::CertificateData_Priv(const ByteBuffer &certificate,
                                            FormatType formatType)
 	: CertificateData()
 {
-	BIO  *bio;
-	X509 *x509 = NULL;
-
-	unsigned char *d = (unsigned char*)certificate.data();
-
-	if( formatType == E_PEM )
-	{
-		// load the certificate into a memory bio 
-		bio = BIO_new_mem_buf(d, certificate.size());
-
-		if(!bio)
-		{            
-			LOGIT_ERROR("Can not create a memory BIO");
-			BLOCXX_THROW(limal::MemoryException, "Can not create a memory BIO");
-		}
-
-		// create the X509 structure
-		x509 = PEM_read_bio_X509(bio, NULL, 0, NULL);
-		BIO_free(bio);
-
-	}
-	else
-	{
-		// => DER
-#if OPENSSL_VERSION_NUMBER >= 0x0090801fL        
-		const unsigned char *d2 = NULL;
-		d2 = (const unsigned char*)d;
-#else
-		unsigned char *d2 = NULL;
-		d2 = d;
-#endif
-        
-		x509 = d2i_X509(NULL, &d2, certificate.size());
-
-		d2 = NULL;
-
-	}
-
-	if(x509 == NULL)
-	{
-		LOGIT_ERROR("Can not parse certificate");
-		BLOCXX_THROW(limal::RuntimeException, "Can not parse certificate");
-	}
-
-	try
-	{
-		parseCertificate(x509);
-	}
-	catch(Exception &e)
-	{
-		X509_free(x509);
-
-		BLOCXX_THROW_SUBEX(limal::SyntaxException,
-		                   "Error at parsing the certificate",
-		                   e);
-	}
-    
-	X509_free(x509);
-
+	init(certificate, formatType);
 }
 
 CertificateData_Priv::CertificateData_Priv(const String &certificatePath,
@@ -122,9 +64,8 @@ CertificateData_Priv::CertificateData_Priv(const String &certificatePath,
 	: CertificateData()
 {
 	ByteBuffer ba = LocalManagement::readFile(certificatePath);
-    
-	// FIXME: I do not know if this is the right way :-)
-	*this = CertificateData_Priv(ba, formatType);
+
+	init(ba, formatType);
 }
 
 CertificateData_Priv::CertificateData_Priv(const CertificateData_Priv& data)
@@ -232,20 +173,8 @@ CertificateData_Priv::setFingerprint(const String& fp)
 	m_impl->fingerprint = fp;
 }
 
-void
-CertificateData_Priv::setText(const String& txt)
-{
-	m_impl->text = txt;
-}
-
-void
-CertificateData_Priv::setExtText(const String& extText)
-{
-	m_impl->extText = extText;
-}
 
 //    private:
-
 
 CertificateData_Priv&
 CertificateData_Priv::operator=(const CertificateData_Priv& data)
@@ -255,6 +184,66 @@ CertificateData_Priv::operator=(const CertificateData_Priv& data)
 	CertificateData::operator=(data);
     
 	return *this;
+}
+
+void
+CertificateData_Priv::init(const ByteBuffer &certificate, FormatType formatType)
+{
+	BIO           *bio;
+	unsigned char *d = (unsigned char*)certificate.data();
+
+	if( formatType == E_PEM )
+	{
+		// load the certificate into a memory bio 
+		bio = BIO_new_mem_buf(d, certificate.size());
+
+		if(!bio)
+		{            
+			LOGIT_ERROR("Can not create a memory BIO");
+			BLOCXX_THROW(limal::MemoryException, "Can not create a memory BIO");
+		}
+
+		// create the X509 structure
+		m_impl->x509 = PEM_read_bio_X509(bio, NULL, 0, NULL);
+		BIO_free(bio);
+
+	}
+	else
+	{
+		// => DER
+#if OPENSSL_VERSION_NUMBER >= 0x0090801fL        
+		const unsigned char *d2 = NULL;
+		d2 = (const unsigned char*)d;
+#else
+		unsigned char *d2 = NULL;
+		d2 = d;
+#endif
+        
+		m_impl->x509 = d2i_X509(NULL, &d2, certificate.size());
+
+		d2 = NULL;
+
+	}
+
+	if(m_impl->x509 == NULL)
+	{
+		LOGIT_ERROR("Can not parse certificate");
+		BLOCXX_THROW(limal::RuntimeException, "Can not parse certificate");
+	}
+
+	try
+	{
+		parseCertificate(m_impl->x509);
+	}
+	catch(Exception &e)
+	{
+		X509_free(m_impl->x509);
+		m_impl->x509 = NULL;
+
+		BLOCXX_THROW_SUBEX(limal::SyntaxException,
+		                   "Error at parsing the certificate",
+		                   e);
+	}
 }
 
 void
@@ -482,27 +471,6 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 	// get extensions
 
 	setExtensions( X509v3CertificateExts_Priv(x509->cert_info->extensions));
-
-
-	// get human readable format
-
-	BIO *bio2 = BIO_new(BIO_s_mem());
-
-	X509_print_ex(bio2, x509, 0, 0);
-	n = BIO_get_mem_data(bio2, &ustringval);
-
-	setText( String((const char*)ustringval, n));
-	BIO_free(bio2);
-
-	ustringval = NULL;
-	
-	BIO *bio3 = BIO_new(BIO_s_mem());
-
-	X509V3_extensions_print(bio3, NULL, x509->cert_info->extensions, 0, 4);
-	n = BIO_get_mem_data(bio3, &ustringval);
-	
-	setExtText( String((const char*)ustringval, n));
-	BIO_free(bio3);
     
 	EVP_PKEY_free(pkey);
 }

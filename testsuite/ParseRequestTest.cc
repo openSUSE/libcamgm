@@ -80,6 +80,10 @@ int main(int argc, char **argv)
             {                
                 cout << "> " << (*it) << endl;
             }
+
+            cout << cd.getRequestAsText() << endl;
+            cout << cd.getExtensionsAsText() << endl;
+            
         }
         catch(Exception& e)
         {

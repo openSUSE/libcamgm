@@ -36,14 +36,20 @@ namespace CA_MGM_NAMESPACE {
 	{
 	public:
 		CertificateDataImpl()
-			: version(0), serial(""),
-			  fingerprint(""),
-			  notBefore(0), notAfter(0),
-			  issuer(DNObject()), subject(DNObject()),
-			  keysize(2048), pubkeyAlgorithm(E_RSA),
-			  publicKey(ByteBuffer()), signatureAlgorithm(E_SHA1RSA),
-			  signature(ByteBuffer()), extensions(X509v3CertificateExts_Priv()),
-			  text(""), extText("")
+			: version(0)
+			, serial("")
+			, fingerprint("")
+			, notBefore(0)
+			, notAfter(0)
+			, issuer(DNObject())
+			, subject(DNObject())
+			, keysize(2048)
+			, pubkeyAlgorithm(E_RSA)
+			, publicKey(ByteBuffer())
+			, signatureAlgorithm(E_SHA1RSA)
+			, signature(ByteBuffer())
+			, extensions(X509v3CertificateExts_Priv())
+			, x509(NULL)
 		{}
 		
 		CertificateDataImpl(const CertificateDataImpl& impl)
@@ -61,11 +67,17 @@ namespace CA_MGM_NAMESPACE {
 			, signatureAlgorithm(impl.signatureAlgorithm)
 			, signature(impl.signature)
 			, extensions(impl.extensions)
-			, text(impl.text)
-			, extText(impl.extText)
+			, x509(X509_dup(impl.x509))
 		{}
 		
-		~CertificateDataImpl() {}
+		~CertificateDataImpl()
+		{
+			if(x509 != NULL)
+			{
+				X509_free(x509);
+				x509 = NULL;
+			}
+		}
 		
 		CertificateDataImpl* clone() const
 		{
@@ -91,8 +103,7 @@ namespace CA_MGM_NAMESPACE {
 		
 		X509v3CertificateExts extensions;
 		
-		String                text;
-		String                extText;
+		X509                  *x509;
 		
 	};
 

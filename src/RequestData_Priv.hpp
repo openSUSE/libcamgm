@@ -59,6 +59,8 @@ namespace CA_MGM_NAMESPACE {
         RequestData_Priv&   operator=(const RequestData_Priv& data);
 
         void                parseRequest(X509_REQ *x509);
+    	void                init(const ByteBuffer& request, 
+    	                         FormatType formatType);
     };
 
 }

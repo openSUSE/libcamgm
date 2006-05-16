@@ -89,16 +89,14 @@ namespace CA_MGM_NAMESPACE {
 		void
 		setFingerprint(const String& fp);
 
-		void
-		setText(const String& txt);
-
-		void
-		setExtText(const String& extText);
-
 	private:
 		CertificateData_Priv& operator=(const CertificateData_Priv& data);
 		
-		void           parseCertificate(X509 *x509);
+		void
+		init(const ByteBuffer &certificate, FormatType formatType);
+
+		void
+		parseCertificate(X509 *x509);
 	};
     
 }

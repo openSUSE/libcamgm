@@ -57,61 +57,7 @@ RequestData_Priv::RequestData_Priv(const ByteBuffer& request,
                                    FormatType formatType)
 	: RequestData()
 {
-	BIO *bio;
-	X509_REQ *x509 = NULL;
-	
-	unsigned char *d = (unsigned char*)request.data();
-
-	if( formatType == E_PEM )
-	{
-		bio = BIO_new_mem_buf(d, request.size());
-    	
-		if(!bio)
-		{            
-			LOGIT_ERROR("Can not create a memory BIO");
-			BLOCXX_THROW(limal::MemoryException, "Can not create a memory BIO");
-		}
-
-		// create the X509 structure
-		x509 = PEM_read_bio_X509_REQ(bio, NULL, 0, NULL);
-		BIO_free(bio);
-	}
-	else
-	{
-		// => DER
-#if OPENSSL_VERSION_NUMBER >= 0x0090801fL        
-		const unsigned char *d2 = NULL;
-		d2 = (const unsigned char*)d;
-#else
-		unsigned char *d2 = NULL;
-		d2 = d;
-#endif
-        
-		x509 = d2i_X509_REQ(NULL, &d2, request.size());
-
-		d2 = NULL;
-	}
-
-	if(x509 == NULL)
-	{
-		LOGIT_ERROR("Can not parse request");
-		BLOCXX_THROW(limal::RuntimeException, "Can not parse request");
-	}
-
-	try
-	{
-		parseRequest(x509);
-	}
-	catch(Exception &e)
-	{        
-		X509_REQ_free(x509);
-    	
-		BLOCXX_THROW_SUBEX(limal::SyntaxException,
-		                   "Error at parsing the request",
-		                   e);
-	}
-
-	X509_REQ_free(x509);
+	init(request, formatType);
 }
 
 RequestData_Priv::RequestData_Priv(const String& requestPath, 
@@ -120,9 +66,8 @@ RequestData_Priv::RequestData_Priv(const String& requestPath,
 {
 	
 	ByteBuffer ba = LocalManagement::readFile(requestPath);
-
-	// FIXME: I do not know if this is the right way :-)
-	*this = RequestData_Priv(ba, formatType);
+	
+	init(ba, formatType);
 }
 
 RequestData_Priv::RequestData_Priv(const RequestData_Priv& data)
@@ -400,28 +345,64 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
 	// get extensions
 
 	m_impl->extensions = X509v3RequestExts_Priv(X509_REQ_get_extensions(x509));
+}
 
-	// get human readable format
+void
+RequestData_Priv::init(const ByteBuffer& request, 
+                       FormatType formatType)
+{
+	BIO *bio;
+	unsigned char *d = (unsigned char*)request.data();
 
-	unsigned char *ustringval = NULL;
-	BIO *bio2 = BIO_new(BIO_s_mem());
+	if( formatType == E_PEM )
+	{
+		bio = BIO_new_mem_buf(d, request.size());
+    	
+		if(!bio)
+		{            
+			LOGIT_ERROR("Can not create a memory BIO");
+			BLOCXX_THROW(limal::MemoryException, "Can not create a memory BIO");
+		}
 
-	X509_REQ_print_ex(bio2, x509, 0, 0);
-	n = BIO_get_mem_data(bio2, &ustringval);
+		// create the X509 structure
+		m_impl->x509 = PEM_read_bio_X509_REQ(bio, NULL, 0, NULL);
+		BIO_free(bio);
+	}
+	else
+	{
+		// => DER
+#if OPENSSL_VERSION_NUMBER >= 0x0090801fL        
+		const unsigned char *d2 = NULL;
+		d2 = (const unsigned char*)d;
+#else
+		unsigned char *d2 = NULL;
+		d2 = d;
+#endif
+        
+		m_impl->x509 = d2i_X509_REQ(NULL, &d2, request.size());
 
-	m_impl->text = String((const char*)ustringval, n);
-	BIO_free(bio2);
+		d2 = NULL;
+	}
 
-	ustringval = NULL;
-	
-	BIO *bio3 = BIO_new(BIO_s_mem());
+	if(m_impl->x509 == NULL)
+	{
+		LOGIT_ERROR("Can not parse request");
+		BLOCXX_THROW(limal::RuntimeException, "Can not parse request");
+	}
 
-	X509V3_extensions_print(bio3, NULL, X509_REQ_get_extensions(x509), 0, 4);
-	n = BIO_get_mem_data(bio3, &ustringval);
-	
-	m_impl->extText = String((const char*)ustringval, n);
-	BIO_free(bio3);
-
+	try
+	{
+		parseRequest(m_impl->x509);
+	}
+	catch(Exception &e)
+	{        
+		X509_REQ_free(m_impl->x509);
+		m_impl->x509 = NULL;
+    	
+		BLOCXX_THROW_SUBEX(limal::SyntaxException,
+		                   "Error at parsing the request",
+		                   e);
+	}
 }
 
 }

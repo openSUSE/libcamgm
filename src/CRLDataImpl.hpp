@@ -74,8 +74,7 @@ namespace CA_MGM_NAMESPACE {
 			, signature(ByteBuffer())
 			, extensions(X509v3CRLExts_Priv())
 			, revocationData(blocxx::Map<String, RevocationEntry>())
-			, text("")
-			, extText("")
+			, x509(NULL)
 		{}
 
 		CRLDataImpl(const CRLDataImpl& impl)
@@ -89,8 +88,7 @@ namespace CA_MGM_NAMESPACE {
 			, signature(impl.signature)
 			, extensions(impl.extensions)
 			, revocationData(impl.revocationData)
-			, text(impl.text)
-			, extText(impl.extText)
+			, x509(X509_CRL_dup(impl.x509))
 		{}
 
 		~CRLDataImpl() {}
@@ -114,9 +112,7 @@ namespace CA_MGM_NAMESPACE {
 	
 		blocxx::Map<String, RevocationEntry> revocationData;
 
-		String                               text;
-		String                               extText;
-
+		X509_CRL                             *x509;
 	};
 }
 }

@@ -87,16 +87,12 @@ namespace CA_MGM_NAMESPACE {
 		void
 		setRevocationData(const blocxx::Map<String, RevocationEntry>& data);
 
-		void
-		setText(const String& text);
-		
-		void
-		setExtText(const String& extText);
-
 	private:
 		CRLData_Priv& operator=(const CRLData_Priv& data);
 
 		void   parseCRL(X509_CRL *x509);
+		void   init(const ByteBuffer &crl, FormatType formatType);
+
 	};
 
 }

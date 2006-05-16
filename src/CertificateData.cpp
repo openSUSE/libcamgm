@@ -173,13 +173,33 @@ CertificateData::getExtensions() const
 String
 CertificateData::getCertificateAsText() const
 {
-	return m_impl->text;
+	unsigned char *ustringval = NULL;
+	unsigned int n = 0;
+	BIO *bio = BIO_new(BIO_s_mem());
+	
+	X509_print_ex(bio, m_impl->x509, 0, 0);
+	n = BIO_get_mem_data(bio, &ustringval);
+	
+	String text = String((const char*)ustringval, n);
+	BIO_free(bio);
+	
+	return text;
 }
 
 String
 CertificateData::getExtensionsAsText() const
 {
-	return m_impl->extText;
+	unsigned char *ustringval = NULL;
+	unsigned int n = 0;
+	BIO *bio = BIO_new(BIO_s_mem());
+
+	X509V3_extensions_print(bio, NULL, m_impl->x509->cert_info->extensions, 0, 4);
+	n = BIO_get_mem_data(bio, &ustringval);
+	
+	String extText = String((const char*)ustringval, n);
+	BIO_free(bio);
+
+	return extText;
 }
 
 bool

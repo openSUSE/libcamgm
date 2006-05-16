@@ -186,63 +186,7 @@ CRLData_Priv::CRLData_Priv(const ByteBuffer &crl,
                            FormatType formatType)
 	: CRLData()
 {
-	BIO *bio;
-	X509_CRL *x509 = NULL;
-
-	unsigned char *d = (unsigned char*)crl.data();
-
-	if( formatType == E_PEM )
-	{
-		// load the crl into a memory bio
-		bio = BIO_new_mem_buf(d, crl.size());
-
-		if(!bio)
-		{            
-			LOGIT_ERROR("Can not create a memory BIO");
-			BLOCXX_THROW(limal::MemoryException, "Can not create a memory BIO");
-		}
-
-		// create the X509 structure
-		x509 = PEM_read_bio_X509_CRL(bio, NULL, 0, NULL);
-		BIO_free(bio);
-	}
-	else
-	{
-		// => DER
-
-#if OPENSSL_VERSION_NUMBER >= 0x0090801fL        
-		const unsigned char *d2 = NULL;
-		d2 = (const unsigned char*)d;
-#else
-		unsigned char *d2 = NULL;
-		d2 = d;
-#endif
-        
-		x509 = d2i_X509_CRL(NULL, &d2, crl.size());
-
-		d2 = NULL;
-	}
-
-	if(x509 == NULL)
-	{
-		LOGIT_ERROR("Can not parse CRL");
-		BLOCXX_THROW(limal::RuntimeException, "Can not parse CRL");
-	}
-
-	try
-	{
-		parseCRL(x509);
-	}
-	catch(Exception &e)
-	{
-		X509_CRL_free(x509);
-
-		BLOCXX_THROW_SUBEX(limal::SyntaxException,
-		                   "Error at parsing the CRL",
-		                   e);
-	}
-    
-	X509_CRL_free(x509);
+	init(crl, formatType);
 }
 
 
@@ -252,8 +196,7 @@ CRLData_Priv::CRLData_Priv(const String &crlPath,
 {
 	ByteBuffer ba = LocalManagement::readFile(crlPath);
 
-	// FIXME: I do not know if this is the right way :-)
-	*this = CRLData_Priv(ba, formatType);
+	init(ba, formatType);
 }
 
 CRLData_Priv::CRLData_Priv(const CRLData_Priv& data)
@@ -329,17 +272,6 @@ CRLData_Priv::setRevocationData(const blocxx::Map<String, RevocationEntry>& data
 		BLOCXX_THROW(limal::ValueException, r[0].c_str());
 	}
 	m_impl->revocationData = data;
-}
-void
-CRLData_Priv::setText(const String& text)
-{
-	m_impl->text = text;
-}
-
-void
-CRLData_Priv::setExtText(const String& extText)
-{
-	m_impl->extText = extText;
 }
 
 //  private:
@@ -505,26 +437,68 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
 		revData[ser] = revEntry;
 	}
 	setRevocationData(revData);
-    
-	ustringval = NULL;
-	BIO *bio2 = BIO_new(BIO_s_mem());
-        
-	X509_CRL_print(bio2, x509);
-	n = BIO_get_mem_data(bio2, &ustringval);
-
-	setText( String((const char*)ustringval, n));
-	BIO_free(bio2);
-
-	ustringval = NULL;
-	
-	BIO *bio3 = BIO_new(BIO_s_mem());
-
-	X509V3_extensions_print(bio3, NULL, x509->crl->extensions, 0, 4);
-	n = BIO_get_mem_data(bio3, &ustringval);
-	
-	setExtText(String((const char*)ustringval, n));
-	BIO_free(bio3);
 }
+
+void
+CRLData_Priv::init(const ByteBuffer &crl, FormatType formatType)
+{
+	BIO *bio;
+	unsigned char *d = (unsigned char*)crl.data();
+	
+	if( formatType == E_PEM )
+	{
+		// load the crl into a memory bio
+		bio = BIO_new_mem_buf(d, crl.size());
+
+		if(!bio)
+		{            
+			LOGIT_ERROR("Can not create a memory BIO");
+			BLOCXX_THROW(limal::MemoryException, "Can not create a memory BIO");
+		}
+
+		// create the X509 structure
+		m_impl->x509 = PEM_read_bio_X509_CRL(bio, NULL, 0, NULL);
+		BIO_free(bio);
+	}
+	else
+	{
+		// => DER
+
+#if OPENSSL_VERSION_NUMBER >= 0x0090801fL        
+		const unsigned char *d2 = NULL;
+		d2 = (const unsigned char*)d;
+#else
+		unsigned char *d2 = NULL;
+		d2 = d;
+#endif
+        
+		m_impl->x509 = d2i_X509_CRL(NULL, &d2, crl.size());
+
+		d2 = NULL;
+	}
+
+	if(m_impl->x509 == NULL)
+	{
+		LOGIT_ERROR("Can not parse CRL");
+		BLOCXX_THROW(limal::RuntimeException, "Can not parse CRL");
+	}
+
+	try
+	{
+		parseCRL(m_impl->x509);
+	}
+	catch(Exception &e)
+	{
+		X509_CRL_free(m_impl->x509);
+		m_impl->x509 = NULL;
+		
+		BLOCXX_THROW_SUBEX(limal::SyntaxException,
+		                   "Error at parsing the CRL",
+		                   e);
+	}
+}
+
+
 
 }
 }

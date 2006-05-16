@@ -47,8 +47,7 @@ namespace CA_MGM_NAMESPACE {
 			, extensions(X509v3RequestExts_Priv())
 			, challengePassword("")
 			, unstructuredName("")
-			, text("")
-			, extText("")
+			, x509(NULL)
 		{}
 
 		RequestDataImpl(const RequestDataImpl& impl)
@@ -63,11 +62,17 @@ namespace CA_MGM_NAMESPACE {
 			, extensions(impl.extensions)
 			, challengePassword(impl.challengePassword)
 			, unstructuredName(impl.unstructuredName)
-			, text(impl.text)
-			, extText(impl.extText)
+			, x509(X509_REQ_dup(impl.x509))
 		{}
 
-		~RequestDataImpl() {}
+		~RequestDataImpl()
+		{
+			if(x509 != NULL)
+			{
+				X509_REQ_free(x509);
+				x509 = NULL;
+			}
+		}
 
 		RequestDataImpl* clone() const
 		{
@@ -97,11 +102,8 @@ namespace CA_MGM_NAMESPACE {
 		String            challengePassword;
 		String            unstructuredName;
 
-		String            text;
-		String            extText;
-
+		X509_REQ          *x509;
 	};
-
 }
 }
 

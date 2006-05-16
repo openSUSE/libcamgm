@@ -225,13 +225,33 @@ CRLData::getRevocationEntry(const String& oid)
 blocxx::String
 CRLData::getCRLAsText() const
 {
-	return m_impl->text;
+	unsigned char *ustringval = NULL;
+	unsigned int n = 0;
+	BIO *bio = BIO_new(BIO_s_mem());
+
+	X509_CRL_print(bio, m_impl->x509);
+	n = BIO_get_mem_data(bio, &ustringval);
+
+	String text = String((const char*)ustringval, n);
+	BIO_free(bio);
+	
+	return text;
 }
 
 blocxx::String
 CRLData::getExtensionsAsText() const
 {
-	return m_impl->extText;
+	unsigned char *ustringval = NULL;
+	unsigned int n = 0;
+	BIO *bio = BIO_new(BIO_s_mem());
+	
+	X509V3_extensions_print(bio, NULL, m_impl->x509->crl->extensions, 0, 4);
+	n = BIO_get_mem_data(bio, &ustringval);
+
+	String extText = String((const char*)ustringval, n);
+	BIO_free(bio);
+	
+	return extText;
 }
 
 bool
