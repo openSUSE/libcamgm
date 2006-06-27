@@ -441,8 +441,9 @@ LocalManagement::readFile(const String& file)
     if(!filePi.exists()) {
 
         LOGIT_ERROR("File not found: " << filePi.toString());
-        BLOCXX_THROW(limal::RuntimeException,
-                     Format("File not found: %1", filePi.toString()).c_str());
+        BLOCXX_THROW_ERR(limal::RuntimeException,
+                         Format("File not found: %1", filePi.toString()).c_str(),
+                         E_FILE_NOT_FOUND);
         
     }
 
@@ -502,9 +503,10 @@ LocalManagement::writeFile(const ByteBuffer& data,
     path::PathInfo pi(file);
     if(pi.exists() && !overwrite) {
         
-        LOGIT_ERROR ("File already exists: " << file );
-        BLOCXX_THROW(limal::SystemException,
-                     Format("CFile already exists: %1", file).c_str());
+    	LOGIT_ERROR ("File already exists: " << file );
+    	BLOCXX_THROW_ERR(limal::SystemException,
+                         Format("File already exists: %1", file).c_str(),
+    	                 E_FILE_EXISTS);
         
     }
 

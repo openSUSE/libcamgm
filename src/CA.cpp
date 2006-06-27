@@ -162,8 +162,9 @@ CA::CA(const String& caName, const String& caPasswd, const String& repos)
 	if(!pi.exists())
 	{
 		LOGIT_ERROR("Template does not exists: " << pi.toString());
-		BLOCXX_THROW(limal::SystemException,
-		             Format("Template does not exists: %1", pi.toString()).c_str());
+		BLOCXX_THROW_ERR(limal::SystemException,
+		                 Format("Template does not exists: %1", pi.toString()).c_str(),
+		                 E_FILE_NOT_FOUND);
 	}
 
 	OpenSSLUtils ost(pi.toString());
@@ -480,8 +481,9 @@ CA::revokeCertificate(const String& certificateName,
 	if(!pi.exists())
 	{
 		LOGIT_ERROR("File '" << certificateName << ".pem' not found in repository");
-		BLOCXX_THROW(limal::SystemException,
-		             Format("File '%1' not found in repositoy", certificateName).c_str());
+		BLOCXX_THROW_ERR(limal::SystemException,
+		                 Format("File '%1' not found in repositoy", certificateName).c_str(),
+		                 E_FILE_NOT_FOUND);
 	}
 
 	if(!crlReason.valid())
@@ -1451,8 +1453,9 @@ CA::deleteCA(const String& caName,
 	if(!pi.exists())
 	{
 		LOGIT_ERROR("CA name does not exist.(" << pi.toString() << ")");
-		BLOCXX_THROW(limal::ValueException, 
-		             Format("CA name does not exist.(%1)", pi.toString()).c_str());
+		BLOCXX_THROW_ERR(limal::ValueException, 
+		                 Format("CA name does not exist.(%1)", pi.toString()).c_str(),
+		                 E_FILE_NOT_FOUND);
 	}
     
 	OpenSSLUtils ost(repos + "/" + caName + "/openssl.cnf.tmpl");
