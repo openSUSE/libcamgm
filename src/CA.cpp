@@ -1607,23 +1607,86 @@ CA::checkDNPolicy(const DNObject& dn, Type type)
 					
 					if( (*rdnit).getValue().empty() )
 					{
-						LOGIT_ERROR("Invalid value for '" << *it << "'. This part has to have a value");
-						BLOCXX_THROW(limal::ValueException,
-						             Format("Invalid value for '%1'. This part has to have a value", 
-						                    *it).c_str());
+						int errorCode = E_GENERIC;
+						if(*it == "countryName")
+						{
+							errorCode = E_C_EMPTY;
+						}
+						else if(*it == "stateOrProvinceName")
+						{
+							errorCode = E_ST_EMPTY;
+						}
+						else if(*it == "localityName")
+						{
+							errorCode = E_L_EMPTY;
+						}
+						else if(*it == "organizationName")
+						{
+							errorCode = E_O_EMPTY;
+						}
+						else if(*it == "organizationalUnitName")
+						{
+							errorCode = E_OU_EMPTY;
+						}
+						else if(*it == "commonName")
+						{
+							errorCode = E_CN_EMPTY;
+						}
+						else if(*it == "emailAddress")
+						{
+							errorCode = E_EM_EMPTY;
+						} 
+						
+						LOGIT_ERROR("Field '" << *it << "' must have a value");
+						BLOCXX_THROW_ERR(limal::ValueException,
+						                 Format("Field '%1' must have a value.", 
+						                        *it).c_str(),
+						                 errorCode);
 					}
 				}
 			}
 			if(!foundInDN)
 			{
-				LOGIT_ERROR("Invalid value for '" << *it << "'. This part has to have a value");
-				BLOCXX_THROW(limal::ValueException,
-				             Format("Invalid value for '%1'. This part has to have a value", 
-				                    *it).c_str());
+				int errorCode = E_GENERIC;
+				if(*it == "countryName")
+				{
+					errorCode = E_C_NF;
+				}
+				else if(*it == "stateOrProvinceName")
+				{
+					errorCode = E_ST_NF;
+				}
+				else if(*it == "localityName")
+				{
+					errorCode = E_L_NF;
+				}
+				else if(*it == "organizationName")
+				{
+					errorCode = E_O_NF;
+				}
+				else if(*it == "organizationalUnitName")
+				{
+					errorCode = E_OU_NF;
+				}
+				else if(*it == "commonName")
+				{
+					errorCode = E_CN_NF;
+				}
+				else if(*it == "emailAddress")
+				{
+					errorCode = E_EM_NF;
+				}
+				LOGIT_ERROR("The '" << *it << "' field must be defined.");
+				BLOCXX_THROW_ERR(limal::ValueException,
+				                 Format("The '%1' field must be defined.", *it).c_str(),
+				                 errorCode);
 			}
 		}
 		else if(policyString.equalsIgnoreCase("match"))
-		{         
+		{
+			String caMatchValue;
+			String reqMatchValue;
+			
 			// read the CA and check the value
 			// *it == key (e.g. commonName, emailAddress, ...
 
@@ -1643,23 +1706,66 @@ CA::checkDNPolicy(const DNObject& dn, Type type)
                     
 			blocxx::List<RDNObject>::const_iterator caRdnIT = caDNList.begin();
 			for(; caRdnIT != caDNList.end(); ++caRdnIT)
-			{                        
-				if((*caRdnIT).getType() == rdn2check.getType() &&
-				   (*rdnit).getValue()  == rdn2check.getValue())
-				{                            
-					validMatch = true;
-					break;
+			{
+
+				LOGIT_DEBUG("Type (ca == request): " <<(*caRdnIT).getType() << "==" << rdn2check.getType());
+				LOGIT_DEBUG("Value(ca == request): " <<(*caRdnIT).getValue() << "==" << rdn2check.getValue());
+				
+				if((*caRdnIT).getType().equalsIgnoreCase(rdn2check.getType()))
+				{
+					if((*caRdnIT).getValue()  == rdn2check.getValue())
+					{
+						validMatch = true;
+						break;
+					}
+					else
+					{
+						caMatchValue = (*caRdnIT).getValue();
+						reqMatchValue = rdn2check.getValue();
+					}
 				}
 			}
-
+			
 			if(!validMatch)
 			{
+				int errorCode = E_GENERIC;
+				if(*it == "countryName")
+				{
+					errorCode = E_C_NM;
+				}
+				else if(*it == "stateOrProvinceName")
+				{
+					errorCode = E_ST_NM;
+				}
+				else if(*it == "localityName")
+				{
+					errorCode = E_L_NM;
+				}
+				else if(*it == "organizationName")
+				{
+					errorCode = E_O_NM;
+				}
+				else if(*it == "organizationalUnitName")
+				{
+					errorCode = E_OU_NM;
+				}
+				else if(*it == "commonName")
+				{
+					errorCode = E_CN_NM;
+				}
+				else if(*it == "emailAddress")
+				{
+					errorCode = E_EM_NM;
+				}
+
 				// policy does not match
-				LOGIT_ERROR("Invalid value for '" << *it << 
-				            "'. This part has to match the CA Subject.");
-				BLOCXX_THROW(limal::ValueException,
-				             (Format("Invalid value for '%1'.", *it) + 
-				              "This part has to match the CA Subject").c_str());
+				LOGIT_ERROR("The '"<<*it<<"' field needed to be the same in the CA certificate ("<<
+				            caMatchValue<<") and the request ("<< reqMatchValue <<")");
+
+				BLOCXX_THROW_ERR(limal::ValueException,
+				                 Format("The '%1' field needed to be the same in the CA certificate (%2) and the request (%3)",
+				                        *it, caMatchValue, reqMatchValue).c_str(),
+				                 errorCode);
 			}
 			
 			policyFound = true;
