@@ -1,0 +1,119 @@
+#!/usr/bin/perl -w
+
+BEGIN 
+{
+    unshift @INC, '../swig/perl5';
+}
+
+use strict;
+use LIMAL;
+use LIMAL::CaMgm;
+use Data::Dumper;
+
+my $comp = new LIMAL::StringArray();
+$comp->push_back("*");
+
+my $cat = new LIMAL::StringArray();
+$cat->push_back("INFO");
+
+my $logref = LIMAL::Logger::createCerrLogger("$0", $comp, $cat,
+                                             "%-6p %c [%M:%L] %m");
+LIMAL::Logger::setDefaultLogger($logref);
+
+print "START\n";
+
+my $ca = new LIMAL::CaMgm::CA("Test_CA1", "system", "./TestRepos/");
+my $rgd = $ca->getRequestDefaults($LIMAL::CaMgm::E_Client_Req);
+
+my $rdnlist = $rgd->getSubjectDN()->getDN();
+
+for(my $it = $rdnlist->begin();
+    !$rdnlist->iterator_equal($it, $rdnlist->end());
+    $rdnlist->iterator_incr($it))
+{
+    print "DN Key ", $rdnlist->iterator_value($it)->getType(), "\n";
+    
+            
+    if($rdnlist->iterator_value($it)->getType() eq "countryName")
+    {
+        $rdnlist->iterator_value($it)->setRDNValue("DE");
+    }
+    elsif($rdnlist->iterator_value($it)->getType() eq "commonName")
+    {
+        $rdnlist->iterator_value($it)->setRDNValue("Full Test Certificate");
+    }
+    #elsif($rdnlist->iterator_value($it)->getType() eq "emailAddress")
+    #{
+    #    $rdnlist->iterator_value($it)->setRDNValue('suse@suse.de');
+    #}
+}
+
+
+my $dn = new LIMAL::CaMgm::DNObject($rdnlist);
+$rgd->setSubjectDN($dn);
+
+my $cid = "";
+
+eval{
+    $cid = $ca->getIssueDefaults($LIMAL::CaMgm::E_Client_Cert);
+};
+if($@) 
+{
+    use Data::Dumper;
+    
+    print "1:".Data::Dumper->Dump([$@]);
+    print $@->{type}.":".$@->{code}.":".$@->{message}."\n";
+    
+    exit 0;
+}
+
+
+my $c = undef;
+
+#---------------------------------------------------------------------------------
+eval {
+        
+    $c = $ca->createCertificate("system", $rgd, $cid, $LIMAL::CaMgm::E_Client_Cert);
+
+};
+if($@) 
+{
+    use Data::Dumper;
+    
+    print "2:".Data::Dumper->Dump([$@]);
+    print $@->{type}.":".$@->{code}.":".$@->{message}."\n";
+    
+    exit 0;
+}
+
+print "RETURN Certificate \n";
+
+if( -e "./TestRepos/Test_CA1/newcerts/$c.pem") 
+{                             
+    print "Certificate exists: true\n";
+}
+
+my $cd = $ca->getCertificate($c);
+        
+my $ret = $cd->getExtensions()->dump();
+        
+for(my $it = $ret->begin();
+    !$ret->iterator_equal($it, $ret->end());
+    $ret->iterator_incr($it))
+{
+    if($ret->iterator_value($it) =~ /^KeyID/)
+    {
+        print "found KeyID\n";
+    }
+    else
+    {
+        print $ret->iterator_value($it)."\n";
+    }
+}
+
+print "DONE\n";
+
+
+
+
+

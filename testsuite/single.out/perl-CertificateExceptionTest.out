@@ -1,0 +1,23 @@
+START
+DN Key countryName
+DN Key stateOrProvinceName
+DN Key localityName
+DN Key organizationName
+DN Key organizationalUnitName
+DN Key commonName
+DN Key emailAddress
+2:$VAR1 = {
+          'subexception' => {
+                              'file' => 'CA.cpp',
+                              'type' => 'ValueException',
+                              'line' => 1767,
+                              'message' => 'The \'emailAddress\' field must be defined.',
+                              'code' => -116
+                            },
+          'file' => 'CA.cpp',
+          'type' => 'RuntimeException',
+          'line' => 432,
+          'message' => 'issueCertificate() failed',
+          'code' => -1
+        };
+RuntimeException:-1:issueCertificate() failed
