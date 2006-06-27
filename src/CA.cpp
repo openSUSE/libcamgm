@@ -173,7 +173,7 @@ CA::CA(const String& caName, const String& caPasswd, const String& repos)
 	if(!passOK)
 	{
 		LOGIT_ERROR("Invalid CA password");
-		BLOCXX_THROW(limal::ValueException, "Invalid CA password");
+		BLOCXX_THROW_ERR(limal::ValueException, "Invalid CA password", E_INVALID_PASSWD);
 	}
 
 	m_impl = new CAImpl(caName, caPasswd, repos);
@@ -1462,7 +1462,7 @@ CA::deleteCA(const String& caName,
 	if(!ret)
 	{
 		LOGIT_ERROR("Invalid CA password");
-		BLOCXX_THROW(limal::ValueException, "Invalid CA password");
+		BLOCXX_THROW_ERR(limal::ValueException, "Invalid CA password", E_INVALID_PASSWD);
 	}
 
 	if(!force)

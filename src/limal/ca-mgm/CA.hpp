@@ -81,6 +81,7 @@ namespace CA_MGM_NAMESPACE
 			E_OU_NM    = -124,
 			E_CN_NM    = -125,
 			E_EM_NM    = -126,
+			E_INVALID_PASSWD = -200 // invalid password
 		};
 		
 		
