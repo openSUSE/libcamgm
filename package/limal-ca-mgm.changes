@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Wed Jun 28 17:59:40 CEST 2006 - mc@suse.de
+
+- Added new i18n utilities
+- Added i18n macro to all exception messages 
+
+-------------------------------------------------------------------
 Mon Mar 20 11:49:01 CET 2006 - mc@suse.de
 
 - version 1.1.13
