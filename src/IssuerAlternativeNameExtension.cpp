@@ -94,7 +94,8 @@ IssuerAlternativeNameExt::IssuerAlternativeNameExt(CAConfig* caConfig, Type type
 	if(type == E_Client_Req || type == E_Server_Req || type == E_CA_Req)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+		BLOCXX_THROW(limal::ValueException,
+		             Format(__("Wrong type: %1"), type).c_str());
 	}
 
 	bool p = caConfig->exists(type2Section(type, true), "issuerAltName");
@@ -161,7 +162,8 @@ IssuerAlternativeNameExt::getCopyIssuer() const
 	if(!isPresent())
 	{
 		LOGIT_ERROR("IssuerAlternativeNameExt is not present");
-		BLOCXX_THROW(limal::RuntimeException, "IssuerAlternativeNameExt is not present");
+		BLOCXX_THROW(limal::RuntimeException,
+		             __("IssuerAlternativeNameExt is not present"));
 	}
 	return m_impl->issuerCopy;
 }
@@ -185,7 +187,8 @@ IssuerAlternativeNameExt::getAlternativeNameList() const
 	if(!isPresent())
 	{
 		LOGIT_ERROR("IssuerAlternativeNameExt is not present");
-		BLOCXX_THROW(limal::RuntimeException, "IssuerAlternativeNameExt is not present");
+		BLOCXX_THROW(limal::RuntimeException,
+		             __("IssuerAlternativeNameExt is not present"));
 	}
 	return m_impl->altNameList;
 }
@@ -197,7 +200,7 @@ IssuerAlternativeNameExt::addIssuerAltName(const LiteralValue& altName)
 	{
 		LOGIT_ERROR("invalid literal value for IssuerAlternativeNameExt");
 		BLOCXX_THROW(limal::ValueException, 
-		             "invalid literal value for IssuerAlternativeNameExt");
+		             __("Invalid literal value for IssuerAlternativeNameExt"));
 	}
 	m_impl->altNameList.push_back(altName);
 	setPresent(true);
@@ -209,14 +212,16 @@ IssuerAlternativeNameExt::commit2Config(CA& ca, Type type) const
 	if(!valid())
 	{
 		LOGIT_ERROR("invalid IssuerAlternativeNameExt object");
-		BLOCXX_THROW(limal::ValueException, "invalid IssuerAlternativeNameExt object");
+		BLOCXX_THROW(limal::ValueException,
+		             __("Invalid IssuerAlternativeNameExt object"));
 	}
 
 	// These types are not supported by this object
 	if(type == E_Client_Req || type == E_Server_Req || type == E_CA_Req)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+		BLOCXX_THROW(limal::ValueException,
+		             Format(__("Wrong type: %1"), type).c_str());
 	}
 
 	if(isPresent())

@@ -10,14 +10,14 @@ DN Key emailAddress
           'subexception' => {
                               'file' => 'CA.cpp',
                               'type' => 'ValueException',
-                              'line' => 1682,
+                              'line' => 1687,
                               'message' => 'The \'emailAddress\' field must be defined.',
                               'code' => -116
                             },
           'file' => 'CA.cpp',
           'type' => 'RuntimeException',
-          'line' => 467,
-          'message' => 'issueCertificate() failed',
+          'line' => 471,
+          'message' => 'Issue the certificate failed',
           'code' => -1
         };
-RuntimeException:-1:issueCertificate() failed
+RuntimeException:-1:Issue the certificate failed

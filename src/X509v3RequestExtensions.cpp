@@ -67,7 +67,7 @@ X509v3RequestExts::setNsSslServerName(const NsSslServerNameExt &ext)
 	if(!ext.valid())
 	{
 		BLOCXX_THROW(limal::ValueException, 
-		             "X509v3RequestExts::setNsSslServerName invalid value");
+		             __("X509v3RequestExts::setNsSslServerName invalid value"));
 	}
 	m_impl->nsSslServerName = ext;
 }
@@ -90,7 +90,7 @@ X509v3RequestExts::setNsComment(const NsCommentExt &ext)
 	if(!ext.valid())
 	{
 		BLOCXX_THROW(limal::ValueException, 
-		             "X509v3RequestExts::setNsComment invalid value");
+		             __("X509v3RequestExts::setNsComment invalid value"));
 	}
 	m_impl->nsComment = ext;
 }
@@ -113,7 +113,7 @@ X509v3RequestExts::setNsCertType(const NsCertTypeExt &ext)
 	if(!ext.valid())
 	{
 		BLOCXX_THROW(limal::ValueException, 
-		             "X509v3RequestExts::setNsCertType invalid value");
+		             __("X509v3RequestExts::setNsCertType invalid value"));
 	}
 	m_impl->nsCertType = ext;
 }
@@ -136,7 +136,7 @@ X509v3RequestExts::setKeyUsage(const KeyUsageExt &ext)
 	if(!ext.valid())
 	{
 		BLOCXX_THROW(limal::ValueException, 
-		             "X509v3RequestExts::setKeyUsage invalid value");
+		             __("X509v3RequestExts::setKeyUsage invalid value"));
 	}
 	m_impl->keyUsage = ext;
 }
@@ -159,7 +159,7 @@ X509v3RequestExts::setBasicConstraints(const BasicConstraintsExt &ext)
 	if(!ext.valid())
 	{
 		BLOCXX_THROW(limal::ValueException, 
-		             "X509v3RequestExts::setBasicConstraints invalid value");
+		             __("X509v3RequestExts::setBasicConstraints invalid value"));
 	}
 	m_impl->basicConstraints = ext;
 }
@@ -182,7 +182,7 @@ X509v3RequestExts::setExtendedKeyUsage(const ExtendedKeyUsageExt &ext)
 	if(!ext.valid())
 	{
 		BLOCXX_THROW(limal::ValueException, 
-		             "X509v3RequestExts::setExtendedKeyUsage invalid value");
+		             __("X509v3RequestExts::setExtendedKeyUsage invalid value"));
 	}
 	m_impl->extendedKeyUsage = ext;
 }
@@ -205,7 +205,7 @@ X509v3RequestExts::setSubjectKeyIdentifier(const SubjectKeyIdentifierExt &ext)
 	if(!ext.valid())
 	{
 		BLOCXX_THROW(limal::ValueException, 
-		             "X509v3RequestExts::setSubjectKeyIdentifier invalid value");
+		             __("X509v3RequestExts::setSubjectKeyIdentifier invalid value"));
 	}
 	m_impl->subjectKeyIdentifier = ext;
 }
@@ -228,7 +228,7 @@ X509v3RequestExts::setSubjectAlternativeName(const SubjectAlternativeNameExt &ex
 	if(!ext.valid())
 	{
 		BLOCXX_THROW(limal::ValueException, 
-		             "X509v3RequestExts::setSubjectAlternativeName invalid value");
+		             __("X509v3RequestExts::setSubjectAlternativeName invalid value"));
 	}
 	m_impl->subjectAlternativeName = ext;
 }
@@ -251,7 +251,8 @@ X509v3RequestExts::commit2Config(CA& ca, Type type) const
 	if(!valid())
 	{
 		LOGIT_ERROR("invalid X509v3RequestExts object");
-		BLOCXX_THROW(limal::ValueException, "invalid X509v3RequestExts object");
+		BLOCXX_THROW(limal::ValueException,
+		             __("Invalid X509v3RequestExts object"));
 	}
 	m_impl->nsSslServerName.commit2Config(ca, type);
 	m_impl->nsComment.commit2Config(ca, type);

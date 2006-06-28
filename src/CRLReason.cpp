@@ -97,7 +97,7 @@ CRLReason::CRLReason(const String& reason)
 	if(!checkReason(reason))
 	{
 		BLOCXX_THROW(limal::ValueException,
-		             Format("Invalid revoke reason: %1", reason).c_str());
+		             Format(__("Invalid revoke reason: %1"), reason).c_str());
 	}
 }
 
@@ -132,7 +132,7 @@ CRLReason::setReason(const String& reason)
 	if(!checkReason(reason))
 	{
 		BLOCXX_THROW(limal::ValueException,
-		             Format("Invalid revoke reason: %1", reason).c_str());
+		             Format(__("Invalid revoke reason: %1"), reason).c_str());
 	}
 	m_impl->reason = reason;
 }
@@ -169,7 +169,8 @@ CRLReason::getHoldInstruction() const
 	if(!m_impl->reason.equalsIgnoreCase("certificateHold"))
 	{
 		LOGIT_ERROR("Reason is not certificateHold");
-		BLOCXX_THROW(limal::RuntimeException, "Reason is not certificateHold");
+		BLOCXX_THROW(limal::RuntimeException,
+		             __("Reason is not certificateHold"));
 	}
 	return m_impl->holdInstruction;
 }
@@ -191,7 +192,8 @@ CRLReason::getKeyCompromiseDate() const
 	if(!m_impl->reason.equalsIgnoreCase("keyCompromise"))
 	{
 		LOGIT_ERROR("Reason is not keyCompromise");
-		BLOCXX_THROW(limal::RuntimeException, "Reason is not keyCompromise");
+		BLOCXX_THROW(limal::RuntimeException,
+		             __("Reason is not keyCompromise"));
 	}
 	return m_impl->compromiseDate;
 }
@@ -204,7 +206,8 @@ CRLReason::getKeyCompromiseDateAsString() const
 	if(!m_impl->reason.equalsIgnoreCase("keyCompromise"))
 	{
 		LOGIT_ERROR("Reason is not keyCompromise");
-		BLOCXX_THROW(limal::RuntimeException, "Reason is not keyCompromise");
+		BLOCXX_THROW(limal::RuntimeException,
+		             __("Reason is not keyCompromise"));
 	}
 	String time;
 
@@ -234,7 +237,8 @@ CRLReason::getCACompromiseDate() const
 	if(!m_impl->reason.equalsIgnoreCase("CACompromise"))
 	{
 		LOGIT_ERROR("Reason is not CACompromise");
-		BLOCXX_THROW(limal::RuntimeException, "Reason is not CACompromise");
+		BLOCXX_THROW(limal::RuntimeException,
+		             __("Reason is not CACompromise"));
 	}
 	return m_impl->compromiseDate;
 }
@@ -247,7 +251,8 @@ CRLReason::getCACompromiseDateAsString() const
 	if(!m_impl->reason.equalsIgnoreCase("CACompromise"))
 	{
 		LOGIT_ERROR("Reason is not CACompromise");
-		BLOCXX_THROW(limal::RuntimeException, "Reason is not CACompromise");
+		BLOCXX_THROW(limal::RuntimeException,
+		             __("Reason is not CACompromise"));
 	}
 	String time;
 	

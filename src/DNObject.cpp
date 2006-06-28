@@ -106,7 +106,8 @@ RDNObject::getOpenSSLValue() const
 	else
 	{
 		LOGIT_ERROR("Invalid type:" << m_impl->type);
-		BLOCXX_THROW(limal::ValueException, Format("Invalid type:%1", m_impl->type).c_str());
+		BLOCXX_THROW(limal::ValueException,
+		             Format(__("Invalid type: %1"), m_impl->type).c_str());
 	}
 
 	PerlRegEx regex("([\\\\/])");
@@ -245,7 +246,8 @@ DNObject::DNObject(CAConfig* caConfig, Type type)
 	   type == E_CA_Cert     || type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+		BLOCXX_THROW(limal::ValueException,
+		             Format(__("Wrong type: %1"), type).c_str());
 	}
 
 	bool p = caConfig->exists(type2Section(type, false), "distinguished_name");
@@ -253,7 +255,7 @@ DNObject::DNObject(CAConfig* caConfig, Type type)
 	{
 		LOGIT_ERROR("missing section 'distinguished_name' in config file");
 		BLOCXX_THROW(limal::SyntaxException, 
-		             "missing section 'distinguished_name' in config file");
+		             __("Missing section 'distinguished_name' in config file"));
 	}
 	String dnSect = caConfig->getValue(type2Section(type, false), 
 	                                   "distinguished_name");
@@ -264,7 +266,7 @@ DNObject::DNObject(CAConfig* caConfig, Type type)
 	{
 		LOGIT_ERROR("Can not parse Section " << dnSect);
 		BLOCXX_THROW(limal::SyntaxException, 
-		             Format("Can not parse Section %1", dnSect).c_str());
+		             Format(__("Can not parse Section %1"), dnSect).c_str());
 	}
 	StringList::const_iterator it = dnKeys.begin();
 

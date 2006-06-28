@@ -219,7 +219,8 @@ CRLData::getRevocationEntry(const String& oid)
 		return (*(m_impl->revocationData.find(oid))).second;
 	}
 	LOGIT_ERROR("Entry not found: " << oid);
-	BLOCXX_THROW(limal::ValueException, "Entry not found");
+	BLOCXX_THROW(limal::ValueException,
+	             __("Entry not found"));
 }
 
 blocxx::String

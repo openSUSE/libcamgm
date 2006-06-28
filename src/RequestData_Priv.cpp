@@ -178,7 +178,8 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
 	if(pkey == NULL)
 	{
 		LOGIT_ERROR("Unable to get public key");
-		BLOCXX_THROW(limal::RuntimeException, "Unable to get public key");
+		BLOCXX_THROW(limal::RuntimeException,
+		             __("Unable to get public key"));
 	}
 
 	if(pkey->type == EVP_PKEY_RSA)
@@ -188,7 +189,8 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
 		if(!rsa)
 		{
 			LOGIT_ERROR("could not get RSA key");
-			BLOCXX_THROW(limal::RuntimeException, "could not get RSA key");
+			BLOCXX_THROW(limal::RuntimeException,
+			             __("Could not get RSA key"));
 		}
 
 		unsigned char *y = NULL;
@@ -207,7 +209,8 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
 		EVP_PKEY_free(pkey);
 
 		LOGIT_ERROR("Unsupported public key type");
-		BLOCXX_THROW(limal::RuntimeException, "Unsupported public key type");
+		BLOCXX_THROW(limal::RuntimeException,
+		             __("Unsupported public key type"));
 	}
 
 	// get keysize
@@ -239,7 +242,8 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
 		EVP_PKEY_free(pkey);
     	
 		LOGIT_ERROR("Unsupported public key algorithm");
-		BLOCXX_THROW(limal::RuntimeException, "Unsupported public key algorithm");
+		BLOCXX_THROW(limal::RuntimeException,
+		             __("Unsupported public key algorithm"));
 	}
 
 	// get signatureAlgorithm
@@ -269,7 +273,7 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
 
 		LOGIT_ERROR("Unsupported signature algorithm: '" << sbuf << "'");
 		BLOCXX_THROW(limal::RuntimeException,
-		             Format("Unsupported signature algorithm: '%1'", sbuf).c_str());
+		             Format(__("Unsupported signature algorithm: '%1'"), sbuf).c_str());
 	}
 
 	// get signature
@@ -361,7 +365,8 @@ RequestData_Priv::init(const ByteBuffer& request,
 		if(!bio)
 		{            
 			LOGIT_ERROR("Can not create a memory BIO");
-			BLOCXX_THROW(limal::MemoryException, "Can not create a memory BIO");
+			BLOCXX_THROW(limal::MemoryException,
+			             __("Can not create a memory BIO"));
 		}
 
 		// create the X509 structure
@@ -387,7 +392,8 @@ RequestData_Priv::init(const ByteBuffer& request,
 	if(m_impl->x509 == NULL)
 	{
 		LOGIT_ERROR("Can not parse request");
-		BLOCXX_THROW(limal::RuntimeException, "Can not parse request");
+		BLOCXX_THROW(limal::RuntimeException,
+		             __("Can not parse request"));
 	}
 
 	try
@@ -400,7 +406,7 @@ RequestData_Priv::init(const ByteBuffer& request,
 		m_impl->x509 = NULL;
     	
 		BLOCXX_THROW_SUBEX(limal::SyntaxException,
-		                   "Error at parsing the request",
+		                   __("Error at parsing the request"),
 		                   e);
 	}
 }

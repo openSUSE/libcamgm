@@ -152,13 +152,15 @@ CRLGenerationData::commit2Config(CA& ca, Type type) const
 	if(!valid())
 	{
 		LOGIT_ERROR("invalid CRLGenerationData object");
-		BLOCXX_THROW(limal::ValueException, "invalid CRLGenerationData object");
+		BLOCXX_THROW(limal::ValueException,
+		             __("Invalid CRLGenerationData object"));
 	}
 	// These types are not supported by this object
 	if(type != E_CRL)
 	{        
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+		BLOCXX_THROW(limal::ValueException,
+		             Format(__("Wrong type: %1"), type).c_str());
 	}
 
 	ca.getConfig()->setValue(type2Section(type, false),

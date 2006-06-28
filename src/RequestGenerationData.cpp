@@ -236,14 +236,16 @@ RequestGenerationData::commit2Config(CA& ca, Type type) const
 	if(!m_impl->extensions.valid()) 
 	{
 		LOGIT_ERROR("invalid RequestGenerationData object");
-		BLOCXX_THROW(limal::ValueException, "invalid RequestGenerationData object");
+		BLOCXX_THROW(limal::ValueException,
+		             __("Invalid RequestGenerationData object"));
 	}
 
 	if(type == E_CRL         || type == E_Client_Cert ||
 	   type == E_Server_Cert || type == E_CA_Cert )
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+		BLOCXX_THROW(limal::ValueException,
+		             Format(__("Wrong type: %1"), type).c_str());
 	}
 
 	ca.getConfig()->setValue(type2Section(type, false), "default_bits", String(m_impl->keysize));

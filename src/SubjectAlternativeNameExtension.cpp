@@ -1,4 +1,3 @@
-
 /*---------------------------------------------------------------------\
 |                                                                      |
 |                     _     _   _   _     __     _                     |
@@ -82,7 +81,8 @@ SubjectAlternativeNameExt::SubjectAlternativeNameExt(CAConfig* caConfig, Type ty
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+		BLOCXX_THROW(limal::ValueException,
+		             Format(__("Wrong type: %1"), type).c_str());
 	}
 
 	bool p = caConfig->exists(type2Section(type, true), "subjectAltName");
@@ -180,7 +180,7 @@ SubjectAlternativeNameExt::getCopyEmail() const
 	if(!isPresent())
 	{
 		BLOCXX_THROW(limal::RuntimeException,
-		             "SubjectAlternativeNameExt is not present");
+		             __("SubjectAlternativeNameExt is not present"));
 	}
 	return m_impl->emailCopy;
 }
@@ -191,7 +191,7 @@ SubjectAlternativeNameExt::getAlternativeNameList() const
 	if(!isPresent())
 	{
 		BLOCXX_THROW(limal::RuntimeException,
-		             "SubjectAlternativeNameExt is not present");
+		             __("SubjectAlternativeNameExt is not present"));
 	}
 	return m_impl->altNameList;
 }
@@ -204,15 +204,15 @@ SubjectAlternativeNameExt::commit2Config(CA& ca, Type type) const
 	{
 		LOGIT_ERROR("invalid SubjectAlternativeNameExt object");
 		BLOCXX_THROW(limal::ValueException,
-		             "invalid SubjectAlternativeNameExt object");
+		             __("Invalid SubjectAlternativeNameExt object"));
 	}
 
 	// This extension is not supported by type CRL
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException, Format("wrong type: %1",
-		                                           type).c_str());
+		BLOCXX_THROW(limal::ValueException,
+		             Format(__("Wrong type: %1"), type).c_str());
 	}
 
 	if(isPresent())

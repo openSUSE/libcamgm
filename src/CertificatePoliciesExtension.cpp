@@ -165,7 +165,8 @@ UserNotice::initWithSection(CAConfig* caConfig, Type type, const String& section
        type == E_Server_Req || type == E_CA_Req      )
     {
         LOGIT_ERROR("wrong type" << type);
-        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+        BLOCXX_THROW(limal::ValueException,
+                     Format(__("Wrong type: %1"), type).c_str());
     }
     
     bool p = caConfig->exists(sectionName, "explicitText");
@@ -211,7 +212,8 @@ UserNotice::setExplicitText(const String& text)
     if(text.length() > 200)
     {
     	LOGIT_ERROR("text to long");
-    	BLOCXX_THROW(limal::ValueException, "text to long");
+    	BLOCXX_THROW(limal::ValueException,
+    	             __("Text too long"));
     }
     
     m_impl->explicitText = text;
@@ -249,7 +251,8 @@ UserNotice::commit2Config(CA& ca, Type type, blocxx::UInt32 num) const
     if(!valid())
     {
         LOGIT_ERROR("invalid UserNotice object");
-        BLOCXX_THROW(limal::ValueException, "invalid UserNotice object");
+        BLOCXX_THROW(limal::ValueException,
+                     __("Invalid UserNotice object"));
     }
 
     // These types are not supported by this object
@@ -257,7 +260,8 @@ UserNotice::commit2Config(CA& ca, Type type, blocxx::UInt32 num) const
        type == E_Server_Req || type == E_CA_Req      )
     {
         LOGIT_ERROR("wrong type" << type);
-        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+        BLOCXX_THROW(limal::ValueException,
+                     Format(__("Wrong type: %1"), type).c_str());
     }
 
     // we need a User Notice section
@@ -387,7 +391,7 @@ CertificatePolicy::CertificatePolicy(const String& policyIdentifier)
 	{
 		LOGIT_ERROR("invalid value for policyIdentifier" << policyIdentifier);
 		BLOCXX_THROW(limal::ValueException ,
-		             Format("invalid value for policyIdentifier: %1", policyIdentifier).c_str());
+		             Format(__("invalid value for policyIdentifier: %1"), policyIdentifier).c_str());
 	}
 }
 
@@ -416,7 +420,8 @@ CertificatePolicy::initWithSection(CAConfig* caConfig, Type type, const String& 
        type == E_Server_Req || type == E_CA_Req      )
     {
         LOGIT_ERROR("wrong type" << type);
-        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+        BLOCXX_THROW(limal::ValueException,
+                     Format(__("Wrong type: %1"), type).c_str());
     }
     
     bool p = caConfig->exists(sectionName, "policyIdentifier");
@@ -450,7 +455,7 @@ CertificatePolicy::setPolicyIdentifier(const String& policyIdentifier)
     {
     	LOGIT_ERROR("invalid value for policyIdentifier" << policyIdentifier);
     	BLOCXX_THROW(limal::ValueException,
-                     Format("invalid value for policyIdentifier: %1", policyIdentifier).c_str());
+                     Format(__("Invalid value for policyIdentifier: %1"), policyIdentifier).c_str());
     }
     
     m_impl->policyIdentifier = policyIdentifier;
@@ -504,7 +509,8 @@ CertificatePolicy::commit2Config(CA& ca, Type type, blocxx::UInt32 num) const
     if(!valid())
     {
         LOGIT_ERROR("invalid CertificatePolicy object");
-        BLOCXX_THROW(limal::ValueException, "invalid CertificatePolicy object");
+        BLOCXX_THROW(limal::ValueException,
+                     __("Invalid CertificatePolicy object"));
     }
 
     // These types are not supported by this object
@@ -512,7 +518,8 @@ CertificatePolicy::commit2Config(CA& ca, Type type, blocxx::UInt32 num) const
        type == E_Server_Req || type == E_CA_Req      )
     {
         LOGIT_ERROR("wrong type" << type);
-        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+        BLOCXX_THROW(limal::ValueException,
+                     Format(__("Wrong type: %1"), type).c_str());
     }
 
     if(m_impl->cpsURI.empty()) {
@@ -701,7 +708,8 @@ CertificatePoliciesExt::CertificatePoliciesExt(CAConfig* caConfig, Type type)
        type == E_Server_Req || type == E_CA_Req      )
     {
         LOGIT_ERROR("wrong type" << type);
-        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+        BLOCXX_THROW(limal::ValueException,
+                     Format(__("Wrong type: %1"), type).c_str());
     }
 
     bool p = caConfig->exists(type2Section(type, true), "certificatePolicies");
@@ -770,7 +778,8 @@ CertificatePoliciesExt::isIA5orgEnabled() const
 {
     if(!isPresent())
     {
-    	BLOCXX_THROW(limal::RuntimeException, "CertificatePoliciesExt is not present");
+    	BLOCXX_THROW(limal::RuntimeException,
+    	             __("CertificatePoliciesExt is not present"));
     }
     return m_impl->ia5org;
 }
@@ -794,7 +803,8 @@ CertificatePoliciesExt::getPolicies() const
 {
     if(!isPresent())
     {
-        BLOCXX_THROW(limal::RuntimeException, "CertificatePoliciesExt is not present");
+        BLOCXX_THROW(limal::RuntimeException,
+                     __("CertificatePoliciesExt is not present"));
     }
     return m_impl->policies;
 }
@@ -806,7 +816,8 @@ CertificatePoliciesExt::commit2Config(CA& ca, Type type) const
     if(!valid())
     {
         LOGIT_ERROR("invalid CertificatePoliciesExt object");
-        BLOCXX_THROW(limal::ValueException, "invalid CertificatePoliciesExt object");
+        BLOCXX_THROW(limal::ValueException,
+                     __("Invalid CertificatePoliciesExt object"));
     }
 
     // These types are not supported by this object
@@ -814,7 +825,8 @@ CertificatePoliciesExt::commit2Config(CA& ca, Type type) const
        type == E_Server_Req || type == E_CA_Req      )
     {
         LOGIT_ERROR("wrong type" << type);
-        BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+        BLOCXX_THROW(limal::ValueException,
+                     Format(__("Wrong type: %1"), type).c_str());
     }
 
     if(isPresent())

@@ -71,6 +71,43 @@ namespace CA_MGM_NAMESPACE
         }                                                               \
     } 
 
+// -------------------------------------------------------------------
+
+	/**
+	 * @{
+	 * Internationalization gettext-wrapper functions.
+	 * This functions initialize the text domain 'i18n_domain'
+	 * once and finally forward the calls to the d*gettext
+	 * functions using 'i18n_domain' as text domain.
+	 *
+	 * @param msgid  The singular message to be translated.
+	 * @param plural The plural message to be translated.
+	 * @param n      The number of the plural message.
+	 * @return The translated message or msgid.
+	 */
+	const char *       gettext (const char *msgid);
+	const char *       gettext (const char *msgid,
+	                            const char *plural,
+	                            unsigned long int n);
+	/* @} */
+
+// -------------------------------------------------------------------
+/**
+ * Text domain for the ca-mgm library.
+ */
+#define i18n_domain     "limal-ca-mgm"
+
+
+// -------------------------------------------------------------------
+/**
+ * Internationalization helper macro.
+ */
+#define __(MSG)  limal::ca_mgm::gettext( MSG )
+
+
+// -------------------------------------------------------------------
+
+	
 // FIXME: what is the format of a hex number?? 0a:0f or 0a0f
 //        currently allowed is both
 inline limal::ValueCheck initHexCheck() {

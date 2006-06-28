@@ -14,6 +14,7 @@ limallib_LTLIBRARIES = liblimal-ca-mgm.la
 
 liblimal_ca_mgm_la_SOURCES  =	\
 	config.cpp \
+    Utils.cpp  \
 	ExtensionBase.cpp \
 	LiteralValues.cpp \
 	AuthorityInfoAccessExtension.cpp \

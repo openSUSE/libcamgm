@@ -73,8 +73,8 @@ ExtendedKeyUsageExt::ExtendedKeyUsageExt(CAConfig* caConfig, Type type)
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException, Format("wrong type: %1",
-		                                           type).c_str());
+		BLOCXX_THROW(limal::ValueException,
+		             Format(__("Wrong type: %1"), type).c_str());
 	}
 
 	bool p = caConfig->exists(type2Section(type, true), "extendedKeyUsage");
@@ -119,14 +119,15 @@ ExtendedKeyUsageExt::ExtendedKeyUsageExt(const StringList& extKeyUsages)
 		{
 			LOGIT_INFO("Unknown ExtendedKeyUsage option: " << (*it));
 			BLOCXX_THROW(limal::ValueException,
-			             Format("invalid ExtendedKeyUsage option: %1",
+			             Format(__("Invalid ExtendedKeyUsage option: %1"),
 			                    *it).c_str());
 		}
 	}
     
 	if(m_impl->usage.empty())
 	{
-		BLOCXX_THROW(limal::ValueException, "invalid ExtendedKeyUsageExt.");
+		BLOCXX_THROW(limal::ValueException,
+		             __("Invalid ExtendedKeyUsageExt."));
 	}
     
 	setPresent(true);
@@ -167,14 +168,15 @@ ExtendedKeyUsageExt::setExtendedKeyUsage(const StringList& usageList)
 		{
 			LOGIT_INFO("Unknown ExtendedKeyUsage option: " << (*it));
 			BLOCXX_THROW(limal::ValueException,
-			             Format("invalid ExtendedKeyUsage option: %1",
+			             Format(__("Invalid ExtendedKeyUsage option: %1"),
 			                    *it).c_str());
 		}
 	}
 
 	if(m_impl->usage.empty())
 	{
-		BLOCXX_THROW(limal::ValueException, "invalid ExtendedKeyUsageExt.");
+		BLOCXX_THROW(limal::ValueException,
+		             __("Invalid ExtendedKeyUsageExt."));
 	}
 
 	setPresent(true);
@@ -187,7 +189,7 @@ ExtendedKeyUsageExt::getExtendedKeyUsage() const
 	if(!isPresent())
 	{
 		BLOCXX_THROW(limal::RuntimeException,
-		             "ExtendedKeyUsageExt is not present");
+		             __("ExtendedKeyUsageExt is not present"));
 	}
 	return m_impl->usage;
 }
@@ -215,14 +217,16 @@ ExtendedKeyUsageExt::commit2Config(CA& ca, Type type) const
 	if(!valid())
 	{
 		LOGIT_ERROR("invalid ExtendedKeyUsageExt object");
-		BLOCXX_THROW(limal::ValueException, "invalid ExtendedKeyUsageExt object");
+		BLOCXX_THROW(limal::ValueException,
+		             __("Invalid ExtendedKeyUsageExt object"));
 	}
 
 	// This extension is not supported by type CRL
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+		BLOCXX_THROW(limal::ValueException,
+		             Format(__("Wrong type: %1"), type).c_str());
 	}
 
 	if(isPresent())

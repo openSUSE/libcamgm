@@ -81,8 +81,8 @@ SubjectKeyIdentifierExt::SubjectKeyIdentifierExt(CAConfig* caConfig, Type type)
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException, Format("wrong type: %1",
-		                                           type).c_str());
+		BLOCXX_THROW(limal::ValueException,
+		             Format(__("Wrong type: %1"), type).c_str());
 	}
 
 	bool p = caConfig->exists(type2Section(type, true), "subjectKeyIdentifier");
@@ -125,7 +125,8 @@ SubjectKeyIdentifierExt::SubjectKeyIdentifierExt(bool autoDetect, const String& 
 	   !initHexCheck().isValid(keyid))
 	{
 		LOGIT_ERROR("invalid KeyID");
-		BLOCXX_THROW(limal::ValueException, "invalid KeyID");
+		BLOCXX_THROW(limal::ValueException,
+		             __("Invalid KeyID"));
 	}
 	setPresent(true);
 }
@@ -158,7 +159,8 @@ SubjectKeyIdentifierExt::setSubjectKeyIdentifier(bool autoDetect,
 	if(!keyId.empty() && !initHexCheck().isValid(keyId))
 	{
 		LOGIT_ERROR("invalid KeyID");
-		BLOCXX_THROW(limal::ValueException, "invalid KeyID");
+		BLOCXX_THROW(limal::ValueException,
+		             __("Invalid KeyID"));
 	}
 	m_impl->autodetect = autoDetect;
 	m_impl->keyid      = keyId;
@@ -171,7 +173,7 @@ SubjectKeyIdentifierExt::isAutoDetectionEnabled() const
 	if(!isPresent())
 	{
 		BLOCXX_THROW(limal::RuntimeException,
-		             "SubjectKeyIdentifierExt is not present");
+		             __("SubjectKeyIdentifierExt is not present"));
 	}
 	return m_impl->autodetect;
 }
@@ -182,7 +184,7 @@ SubjectKeyIdentifierExt::getKeyID() const
 	if(!isPresent())
 	{
 		BLOCXX_THROW(limal::RuntimeException,
-		             "SubjectKeyIdentifierExt is not present");
+		             __("SubjectKeyIdentifierExt is not present"));
 	}
 	return m_impl->keyid;
 }
@@ -195,15 +197,15 @@ SubjectKeyIdentifierExt::commit2Config(CA& ca, Type type) const
 	{
 		LOGIT_ERROR("invalid SubjectKeyIdentifierExt object");
 		BLOCXX_THROW(limal::ValueException,
-		             "invalid SubjectKeyIdentifierExt object");
+		             __("Invalid SubjectKeyIdentifierExt object"));
 	}
 
 	// This extension is not supported by type CRL
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException, Format("wrong type: %1",
-		                                           type).c_str());
+		BLOCXX_THROW(limal::ValueException,
+		             Format(__("Wrong type: %1"), type).c_str());
 	}
 
 	if(isPresent())

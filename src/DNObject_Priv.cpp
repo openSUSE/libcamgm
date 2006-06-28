@@ -77,7 +77,8 @@ DNObject_Priv::DNObject_Priv(X509_NAME *x509_name)
 	if(!bio)
 	{
 		LOGIT_ERROR("Can not create a memory BIO");
-		BLOCXX_THROW(limal::MemoryException, "Can not create a memory BIO");
+		BLOCXX_THROW(limal::MemoryException,
+		             __("Can not create a memory BIO"));
 	}
     
 	X509_NAME_print_ex(bio, x509_name, 0, 
@@ -154,7 +155,7 @@ DNObject_Priv::DNObject_Priv(X509_NAME *x509_name)
 
 			LOGIT_ERROR("Can not parse DN line: " << lines[j]);
 			BLOCXX_THROW(limal::RuntimeException, 
-			             Format("Can not parse DN line: %1", lines[j]).c_str());
+			             Format(__("Can not parse DN line: %1"), lines[j]).c_str());
 		}
 
 		tmpDN.push_back(RDNObject_Priv(vals[1], vals[2]));
@@ -194,7 +195,7 @@ DNObject_Priv::setDefaults2Config(CA& ca)
 	{
 		LOGIT_ERROR("missing section 'distinguished_name' in config file");
 		BLOCXX_THROW(limal::SyntaxException, 
-		             "missing section 'distinguished_name' in config file");
+		             __("Missing section 'distinguished_name' in config file"));
 	}
 	String dnSect = ca.getConfig()->getValue("req_ca", "distinguished_name");
 	
@@ -204,7 +205,7 @@ DNObject_Priv::setDefaults2Config(CA& ca)
 	{
 		LOGIT_ERROR("Can not parse Section " << dnSect);
 		BLOCXX_THROW(limal::SyntaxException, 
-		             Format("Can not parse Section %1", dnSect).c_str());
+		             Format(__("Can not parse Section %1"), dnSect).c_str());
 	}
 	StringList::const_iterator it = dnKeys.begin();
 	Array<Array<blocxx::String> > newDNSect;

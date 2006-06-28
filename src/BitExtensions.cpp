@@ -107,7 +107,8 @@ BitExtension::getValue() const
 {
 	if(!isPresent())
 	{
-		BLOCXX_THROW(limal::RuntimeException, "This BitExtension is not present");
+		BLOCXX_THROW(limal::RuntimeException,
+		             __("This BitExtension is not present"));
 	}
 	return m_impl->value;
 }
@@ -129,7 +130,8 @@ KeyUsageExt::KeyUsageExt(CAConfig* caConfig, Type type)
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+		BLOCXX_THROW(limal::ValueException,
+		             Format(__("Wrong type: %1"), type).c_str());
 	}
 
 	bool p = caConfig->exists(type2Section(type, true), "keyUsage");
@@ -168,7 +170,8 @@ KeyUsageExt::KeyUsageExt(blocxx::UInt32 keyUsage)
 {
 	if(!validKeyUsage(keyUsage))
 	{
-		BLOCXX_THROW(limal::ValueException, "invalid value for keyUsage");
+		BLOCXX_THROW(limal::ValueException,
+		             __("Invalid value for keyUsage"));
 	}
 	setPresent(true);
 }
@@ -196,7 +199,8 @@ KeyUsageExt::setKeyUsage(blocxx::UInt32 keyUsage)
 {
 	if(!validKeyUsage(keyUsage))
 	{
-		BLOCXX_THROW(limal::ValueException, "invalid value for keyUsage");
+		BLOCXX_THROW(limal::ValueException,
+		             __("Invalid value for keyUsage"));
 	}
 	setValue(keyUsage);
 	setPresent(true);
@@ -207,7 +211,8 @@ KeyUsageExt::getKeyUsage() const
 {
 	if(!isPresent())
 	{
-		BLOCXX_THROW(limal::RuntimeException, "KeyUsageExt is not present");
+		BLOCXX_THROW(limal::RuntimeException,
+		             __("KeyUsageExt is not present"));
 	}
 	return getValue();
 }
@@ -217,7 +222,8 @@ KeyUsageExt::isEnabledFor(KeyUsage ku) const
 {
 	if(!isPresent())
 	{
-		BLOCXX_THROW(limal::RuntimeException, "KeyUsageExt is not present");
+		BLOCXX_THROW(limal::RuntimeException,
+		             __("KeyUsageExt is not present"));
 	}
     
 	return !!(getValue() & ku);
@@ -229,14 +235,16 @@ KeyUsageExt::commit2Config(CA& ca, Type type) const
 	if(!valid())
 	{
 		LOGIT_ERROR("invalid KeyUsageExt object");
-		BLOCXX_THROW(limal::ValueException, "invalid KeyUsageExt object");
+		BLOCXX_THROW(limal::ValueException,
+		             __("Invalid KeyUsageExt object"));
 	}
 
 	// This extension is not supported by type CRL
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+		BLOCXX_THROW(limal::ValueException,
+		             Format(__("Wrong type: %1"), type).c_str());
 	}
 
 	if(isPresent())
@@ -362,7 +370,8 @@ NsCertTypeExt::NsCertTypeExt(CAConfig* caConfig, Type type)
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+		BLOCXX_THROW(limal::ValueException,
+		             Format(__("Wrong type: %1"), type).c_str());
 	}
 
 	bool p = caConfig->exists(type2Section(type, true), "nsCertType");
@@ -399,7 +408,8 @@ NsCertTypeExt::NsCertTypeExt(blocxx::UInt32 nsCertTypes)
 {
 	if(nsCertTypes > 0xFF || nsCertTypes == 0)
 	{
-		BLOCXX_THROW(limal::ValueException, "invalid value for NsCertTypeExt");
+		BLOCXX_THROW(limal::ValueException,
+		             __("Invalid value for NsCertTypeExt"));
 	}
 	setPresent(true);
 }
@@ -428,7 +438,7 @@ NsCertTypeExt::setNsCertType(blocxx::UInt32 nsCertTypes)
 	if(nsCertTypes > 0xFF || nsCertTypes == 0)
 	{
 		BLOCXX_THROW(limal::ValueException, 
-		             Format("invalid value for NsCertTypeExt: %1", nsCertTypes).c_str());
+		             Format(__("Invalid value for NsCertTypeExt: %1"), nsCertTypes).c_str());
 	}
 	setValue(nsCertTypes);
 	setPresent(true);
@@ -439,7 +449,8 @@ NsCertTypeExt::getNsCertType() const
 {
 	if(!isPresent())
 	{
-		BLOCXX_THROW(limal::RuntimeException, "NsCertTypeExt is not present");
+		BLOCXX_THROW(limal::RuntimeException,
+		             __("NsCertTypeExt is not present"));
 	}
 	return getValue();
 }
@@ -459,14 +470,16 @@ NsCertTypeExt::commit2Config(CA& ca, Type type) const
 	if(!valid())
 	{
 		LOGIT_ERROR("invalid NsCertTypeExt object");
-		BLOCXX_THROW(limal::ValueException, "invalid NsCertTypeExt object");
+		BLOCXX_THROW(limal::ValueException,
+		             __("Invalid NsCertTypeExt object"));
 	}
 
 	// This extension is not supported by type CRL
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+		BLOCXX_THROW(limal::ValueException,
+		             Format(__("Wrong type: %1"), type).c_str());
 	}
 
 	if(isPresent())

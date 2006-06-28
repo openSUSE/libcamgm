@@ -83,7 +83,8 @@ AuthorityKeyIdentifierGenerateExt::AuthorityKeyIdentifierGenerateExt(CAConfig* c
 	if(type == E_Client_Req || type == E_Server_Req || type == E_CA_Req)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+		BLOCXX_THROW(limal::ValueException,
+		             Format(__("Wrong type: %1"), type).c_str());
 	}
 
 	bool p = caConfig->exists(type2Section(type, true), "authorityKeyIdentifier");
@@ -151,7 +152,7 @@ AuthorityKeyIdentifierGenerateExt::getKeyID() const
 	{
 		LOGIT_ERROR("AuthorityKeyIdentifierGenerateExt is not present");
 		BLOCXX_THROW(limal::RuntimeException,
-		             "AuthorityKeyIdentifierGenerateExt is not present");
+		             __("AuthorityKeyIdentifierGenerateExt is not present"));
 	}
 	return m_impl->keyid;
 }
@@ -170,7 +171,7 @@ AuthorityKeyIdentifierGenerateExt::getIssuer() const
 	{
 		LOGIT_ERROR("AuthorityKeyIdentifierGenerateExt is not present");
 		BLOCXX_THROW(limal::RuntimeException,
-		             "AuthorityKeyIdentifierGenerateExt is not present");
+		             __("AuthorityKeyIdentifierGenerateExt is not present"));
 	}
 	return m_impl->issuer;
 }
@@ -182,14 +183,15 @@ AuthorityKeyIdentifierGenerateExt::commit2Config(CA& ca, Type type) const
 	{
 		LOGIT_ERROR("invalid AuthorityKeyIdentifierGenerateExt object");
 		BLOCXX_THROW(limal::ValueException,
-		             "invalid AuthorityKeyIdentifierGenerateExt object");
+		             __("invalid AuthorityKeyIdentifierGenerateExt object"));
 	}
 
 	// These types are not supported by this object
 	if(type == E_Client_Req || type == E_Server_Req || type == E_CA_Req)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException, Format("wrong type: %1", type).c_str());
+		BLOCXX_THROW(limal::ValueException,
+		             Format(__("Wrong type: %1"), type).c_str());
 	}
 
 	if(isPresent())
