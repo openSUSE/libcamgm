@@ -40,6 +40,7 @@ install -m 0644 %{_builddir}/%{name}-%{version}/src/openssl.cnf.tmpl $RPM_BUILD_
 %attr(0755,root,root) %dir /var/lib/CAM/.cas
 %config /var/lib/CAM/openssl.cnf.tmpl
 @limallibdir@/lib*.so.*
+/usr/share/locale/*/LC_MESSAGES/*
 
 %files devel
 %defattr(-,root,root)

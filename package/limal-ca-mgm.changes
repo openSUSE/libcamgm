@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Wed Jul  5 15:01:58 CEST 2006 - mc@suse.de
+
+- using gettext translation mechanism
+- removing old mechanism
+- removing trans-XXxx template 
+
+-------------------------------------------------------------------
 Wed Jun 28 17:59:40 CEST 2006 - mc@suse.de
 
 - Added new i18n utilities
