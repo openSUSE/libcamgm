@@ -209,6 +209,10 @@ namespace CA_MGM_NAMESPACE {
     	/**
     	 * Convert a certificate from PEM/DER to DER/PEM format
     	 *
+    	 * @param certificate the certificate in PEM or DER Format
+    	 * @param inform format of certificate
+    	 * @param outform the output format
+    	 * @return the converted certificate in the new format
     	 */
     	static limal::ByteBuffer
     	x509Convert(const limal::ByteBuffer &certificate,
@@ -228,6 +232,7 @@ namespace CA_MGM_NAMESPACE {
     	 * @param outPassword the new password for the key. "" == no password for the new key.
     	 * @param algorithm the encryption algorithm for the key
     	 *        valid values are: des, des3, aes128, aes192, aes256
+    	 * @return the converted key
     	 */
     	static limal::ByteBuffer
     	rsaConvert(const limal::ByteBuffer &key,
@@ -239,12 +244,25 @@ namespace CA_MGM_NAMESPACE {
 
     	/**
     	 * Convert a CRL from PEM/DER to DER/PEM format
+    	 *
+    	 * @param crl the CRL in PEM or DER format
+    	 * @param inform the format of crl
+    	 * @param outform the output format
+    	 * @return the converted CRL
     	 */
     	static limal::ByteBuffer
     	crlConvert(const limal::ByteBuffer &crl,
     	           FormatType inform,
     	           FormatType outform );
 
+    	/**
+    	 * Convert a Request from PEM/DER to DER/PEM format
+    	 *
+    	 * @param req the Request in PEm or DER format
+    	 * @param inform the format of req
+    	 * @param outform the output format
+    	 * @return the converted Request
+    	 */
     	static limal::ByteBuffer
     	reqConvert(const limal::ByteBuffer &req,
     	           FormatType inform,
@@ -253,7 +271,17 @@ namespace CA_MGM_NAMESPACE {
     	
     	/**
     	 * Create a PKCS12 bundle.
-    	 * Certificate and key has to be in PEM format
+    	 * Certificate and key has to be in PEM format.
+    	 *
+    	 * @param certificate the certificate in PEM format
+    	 * @param key the private key in PEM format
+    	 * @param inPassword the password of key. If key is not encrypted
+    	 *        use "".
+    	 * @param outPassword the password of the pkcs12 file (empty not allowed)
+    	 * @param caCert additional certificates to include in this container
+    	 * @param caPath set the path to the CA store
+    	 * @param withChain include the entire certificate chain of certificate
+    	 * @return the PKCS12 file
     	 */
     	static limal::ByteBuffer
     	createPKCS12(const limal::ByteBuffer &certificate,
@@ -265,7 +293,15 @@ namespace CA_MGM_NAMESPACE {
     	             bool                     withChain = false);
     	
     	/**
-    	 * Convert PKCS12 to PEM format
+    	 * Extract PKCS12 to PEM
+    	 *
+    	 * @param pkcs12 the PKCS12 file
+    	 * @param inPassword the password of pkcs12
+    	 * @param outPassword the new password for the private key.
+    	 *        If outPasswort is "", the private key will not be encrypted.
+    	 * @param algorithm the encryption algorithm for the key
+    	 *        valid values are: des, des3, aes128, aes192, aes256
+    	 * @return the certificates and private key
     	 */
     	static limal::ByteBuffer
     	pkcs12ToPEM(const limal::ByteBuffer &pkcs12,
