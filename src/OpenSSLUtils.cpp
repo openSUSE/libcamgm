@@ -49,7 +49,8 @@ OpenSSLUtils::OpenSSLUtils(const String &configFile,
 {
     path::PathInfo pi(configFile);
 
-    if(!pi.exists() || !pi.isFile()) {
+    if(!pi.exists() || !pi.isFile())
+    {
         LOGIT_ERROR("File does not exist: " << configFile);
         BLOCXX_THROW_ERR(limal::ValueException,
                          Format(__("File does not exist: %1"), configFile).c_str(),
@@ -57,7 +58,8 @@ OpenSSLUtils::OpenSSLUtils(const String &configFile,
     }
 
     pi.stat(tmpDir);
-    if(!pi.exists() || !pi.isDir()) {
+    if(!pi.exists() || !pi.isDir())
+    {
         LOGIT_ERROR("Directory does not exist: " << tmpDir);
         BLOCXX_THROW_ERR(limal::ValueException,
                          Format(__("Directory does not exist: %1"), tmpDir).c_str(),
@@ -65,21 +67,21 @@ OpenSSLUtils::OpenSSLUtils(const String &configFile,
     }
 
     pi.stat(command);
-    if(!pi.exists() || !pi.isFile() || !pi.isX()) {
+    if(!pi.exists() || !pi.isFile() || !pi.isX())
+    {
         LOGIT_ERROR("Invalid command: " << command);
         BLOCXX_THROW(limal::ValueException,
                      Format(__("Invalid command: %1"), command).c_str());
     }
 
     path::PathName r = path::PathName::dirName(configFile);
-    if( r.toString() == "") {
-        
-        m_rand = "./.rand";
-        
-    } else {
-        
-        m_rand = r.toString() + "/.rand";
-        
+    if( r.toString() == "")
+    {        
+    	m_rand = "./.rand";
+    }
+    else
+    {        
+    	m_rand = r.toString() + "/.rand";
     }
 }
 
@@ -96,11 +98,10 @@ OpenSSLUtils::createRSAKey(const String &outFile,
     debugCmd += "-out ";
     debugCmd += outFile + " ";
 
-    if(!cryptAlgorithm.empty()) {
-
+    if(!cryptAlgorithm.empty())
+    {
         debugCmd += "-passout env:pass ";
         debugCmd += "-" + cryptAlgorithm + " ";
-
     }
     
     debugCmd += String(bits);
@@ -119,28 +120,32 @@ OpenSSLUtils::createRSAKey(const String &outFile,
     blocxx::String errOutput;
     int            status    = 0;
      
-     try {
+    try
+    {
+    	blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
+    }
+    catch(blocxx::Exception& e)
+    {
+    	LOGIT_ERROR( "openssl exception:" << e);
+    	status = -1;
+    }
+    if(status != 0)
+    {
+    	LOGIT_ERROR("openssl status:" << blocxx::String(status));
+    	LOGIT_ERROR("openssl stderr:" << errOutput);
+    	LOGIT_DEBUG("openssl stdout:" << stdOutput);
+    	BLOCXX_THROW(limal::RuntimeException,
+    	             Format(__("Command returned '%1' : %2"), status, errOutput).c_str());
+    }
 
-         blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
-
-     } catch(blocxx::Exception& e) {
-         LOGIT_ERROR( "openssl exception:" << e);
-         status = -1;
-     }
-     if(status != 0) {
-         LOGIT_ERROR("openssl status:" << blocxx::String(status));
-         LOGIT_ERROR("openssl stderr:" << errOutput);
-         LOGIT_DEBUG("openssl stdout:" << stdOutput);
-         BLOCXX_THROW(limal::RuntimeException,
-                      Format(__("Command returned '%1' : %2"), status, errOutput).c_str());
-     }
-
-     if(!errOutput.empty()) {
-         LOGIT_DEBUG("openssl stderr:" << errOutput);
-     }
-     if(!stdOutput.empty()) {
-         LOGIT_DEBUG("openssl stdout:" << stdOutput);
-     }
+    if(!errOutput.empty())
+    {
+    	LOGIT_DEBUG("openssl stderr:" << errOutput);
+    }
+    if(!stdOutput.empty())
+    {
+    	LOGIT_DEBUG("openssl stdout:" << stdOutput);
+    }
 }
 
 void OpenSSLUtils::createRequest(const DNObject &dn,
@@ -158,30 +163,30 @@ void OpenSSLUtils::createRequest(const DNObject &dn,
     debugCmd += "req -new ";
 
     path::PathInfo pi(keyFile);
-    if(!pi.exists() || !pi.isFile()) {
-        
-        LOGIT_ERROR("No valid keyfile specified");
-        BLOCXX_THROW(limal::ValueException,
-                     __("No valid keyfile specified"));
+    if(!pi.exists() || !pi.isFile())
+    {
+    	LOGIT_ERROR("No valid keyfile specified");
+    	BLOCXX_THROW(limal::ValueException,
+    	             __("No valid keyfile specified"));
     }
 
     debugCmd += "-config ";
     debugCmd += m_conf + " ";
 
-    if(!extension.empty()) {
-        debugCmd += "-reqexts " + extension + " ";
+    if(!extension.empty())
+    {
+    	debugCmd += "-reqexts " + extension + " ";
     }
-
+    
     debugCmd += "-key " + keyFile + " ";
 
-    if(outForm == E_PEM) {
-
-        debugCmd += "-outform PEM ";
-
-    } else {
-
-        debugCmd += "-outform DER ";
-
+    if(outForm == E_PEM)
+    {
+    	debugCmd += "-outform PEM ";
+    }
+    else
+    {
+    	debugCmd += "-outform DER ";
     }
 
     debugCmd += "-out " + outFile + " ";
@@ -206,10 +211,9 @@ void OpenSSLUtils::createRequest(const DNObject &dn,
     blocxx::List<RDNObject> dnList = dn.getDN();
     blocxx::List<RDNObject>::const_iterator it;
     
-    for(it = dnList.begin(); it != dnList.end(); ++it) {
-        
-        stdInput += (*it).getValue() + "\n";
-        
+    for(it = dnList.begin(); it != dnList.end(); ++it)
+    {
+    	stdInput += (*it).getValue() + "\n";
     }
 
     stdInput += challengePassword + "\n";
@@ -217,28 +221,32 @@ void OpenSSLUtils::createRequest(const DNObject &dn,
 
     // LOGIT_DEBUG("INPUT: " << stdInput);  // disclose secure data
 
-    try {
-        
-        blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env,
-                                                    blocxx::Exec::INFINITE_TIMEOUT, -1,
-                                                    stdInput);
-        
-    } catch(blocxx::Exception& e) {
-        LOGIT_ERROR( "openssl exception:" << e);
-        status = -1;
+    try
+    {
+    	blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env,
+    	                                            blocxx::Exec::INFINITE_TIMEOUT, -1,
+    	                                            stdInput);
     }
-    if(status != 0) {
-        LOGIT_ERROR("openssl status:" << blocxx::String(status));
-        LOGIT_ERROR("openssl stderr:" << errOutput);
-        LOGIT_DEBUG("openssl stdout:" << stdOutput);
-        BLOCXX_THROW(limal::RuntimeException,
-                     Format(__("Command returned '%1' : %2"), status, errOutput).c_str());
+    catch(blocxx::Exception& e)
+    {
+    	LOGIT_ERROR( "openssl exception:" << e);
+    	status = -1;
+    }
+    if(status != 0)
+    {
+    	LOGIT_ERROR("openssl status:" << blocxx::String(status));
+    	LOGIT_ERROR("openssl stderr:" << errOutput);
+    	LOGIT_DEBUG("openssl stdout:" << stdOutput);
+    	BLOCXX_THROW(limal::RuntimeException,
+    	             Format(__("Command returned '%1' : %2"), status, errOutput).c_str());
     }
     
-    if(!errOutput.empty()) {
+    if(!errOutput.empty())
+    {
         LOGIT_DEBUG("openssl stderr:" << errOutput);
     }
-    if(!stdOutput.empty()) {
+    if(!stdOutput.empty())
+    {
         LOGIT_DEBUG("openssl stdout:" << stdOutput);
     }
 }
@@ -253,17 +261,17 @@ OpenSSLUtils::createSelfSignedCertificate(const String &outFile,
                                           bool          noEmailDN)
 {
     path::PathInfo pi(keyFile);
-    if(!pi.exists() || !pi.isFile()) {
-        
-        LOGIT_ERROR("No valid keyfile specified");
-        BLOCXX_THROW(limal::ValueException,
-                     __("No valid keyfile specified"));
+    if(!pi.exists() || !pi.isFile())
+    {        
+    	LOGIT_ERROR("No valid keyfile specified");
+    	BLOCXX_THROW(limal::ValueException,
+    	             __("No valid keyfile specified"));
     }
 
     pi.stat(requestFile);
-    if(!pi.exists() || !pi.isFile()) {
-        
-        LOGIT_ERROR("No valid request file specified");
+    if(!pi.exists() || !pi.isFile())
+    {
+    	LOGIT_ERROR("No valid request file specified");
         BLOCXX_THROW(limal::ValueException,
                      __("No valid request file specified"));
     }
@@ -276,15 +284,15 @@ OpenSSLUtils::createSelfSignedCertificate(const String &outFile,
     debugCmd += "-config ";
     debugCmd += m_conf + " ";
     
-    if(noEmailDN) {
-
-        debugCmd += "-noemailDN ";
-
+    if(noEmailDN)
+    {
+    	debugCmd += "-noemailDN ";
     }
 
     debugCmd += "-passin env:pass ";
 
-    if(!extension.empty()) {
+    if(!extension.empty())
+    {
         debugCmd += "-extensions " + extension + " ";
     }
 
@@ -308,27 +316,31 @@ OpenSSLUtils::createSelfSignedCertificate(const String &outFile,
     blocxx::String errOutput;
     int            status    = 0;
      
-     try {
+    try
+    {
+    	blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
+    }
+    catch(blocxx::Exception& e)
+    {
+    	LOGIT_ERROR( "openssl exception:" << e);
+    	status = -1;
+    }
+    if(status != 0)
+    {
+    	LOGIT_ERROR("openssl status:" << blocxx::String(status));
+    	LOGIT_ERROR("openssl stderr:" << errOutput);
+    	LOGIT_DEBUG("openssl stdout:" << stdOutput);
+    	BLOCXX_THROW(limal::RuntimeException,
+    	             Format(__("Command returned '%1' : %2"), status, errOutput).c_str());
+    }
 
-         blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
-
-     } catch(blocxx::Exception& e) {
-         LOGIT_ERROR( "openssl exception:" << e);
-         status = -1;
+     if(!errOutput.empty())
+     {
+     	 LOGIT_DEBUG("openssl stderr:" << errOutput);
      }
-     if(status != 0) {
-         LOGIT_ERROR("openssl status:" << blocxx::String(status));
-         LOGIT_ERROR("openssl stderr:" << errOutput);
-         LOGIT_DEBUG("openssl stdout:" << stdOutput);
-         BLOCXX_THROW(limal::RuntimeException,
-                      Format(__("Command returned '%1' : %2"), status, errOutput).c_str());
-     }
-
-     if(!errOutput.empty()) {
-         LOGIT_DEBUG("openssl stderr:" << errOutput);
-     }
-     if(!stdOutput.empty()) {
-         LOGIT_DEBUG("openssl stdout:" << stdOutput);
+     if(!stdOutput.empty())
+     {
+     	 LOGIT_DEBUG("openssl stdout:" << stdOutput);
      }
 }
 
@@ -347,19 +359,19 @@ OpenSSLUtils::signRequest(const String &requestFile,
                           bool          noText)
 {
     path::PathInfo pi(caKeyFile);
-    if(!pi.exists() || !pi.isFile()) {
-        
-        LOGIT_ERROR("No valid keyfile specified");
+    if(!pi.exists() || !pi.isFile())
+    {
+    	LOGIT_ERROR("No valid keyfile specified");
         BLOCXX_THROW(limal::ValueException,
                      __("No valid keyfile specified"));
     }
 
     pi.stat(requestFile);
-    if(!pi.exists() || !pi.isFile()) {
-        
-        LOGIT_ERROR("No valid request file specified");
-        BLOCXX_THROW(limal::ValueException,
-                     __("No valid request file specified"));
+    if(!pi.exists() || !pi.isFile())
+    {        
+    	LOGIT_ERROR("No valid request file specified");
+    	BLOCXX_THROW(limal::ValueException,
+    	             __("No valid request file specified"));
     }
 
     blocxx::String debugCmd;
@@ -374,31 +386,37 @@ OpenSSLUtils::signRequest(const String &requestFile,
 
     debugCmd += "-passin env:pass ";
 
-    if(!caSection.empty()) {
+    if(!caSection.empty())
+    {
         debugCmd += "-name "  + caSection   + " ";
     }
 
-    if(!extension.empty()) {
+    if(!extension.empty())
+    {
         debugCmd += "-extensions " + extension + " ";
     }
 
     debugCmd += "-startdate " + startDate + " ";
     debugCmd += "-enddate "   + endDate   + " ";
     
-    if(noEmailDN) {
+    if(noEmailDN)
+    {
         debugCmd += "-noemailDN ";
     }
-    if(noUniqueDN) {
+    if(noUniqueDN)
+    {
         debugCmd += "-nouniqueDN ";
     }
-    if(noText) {
+    if(noText)
+    {
         debugCmd += "-notext ";
     }
 
     debugCmd += "-in "  + requestFile + " ";
     debugCmd += "-out " + outFile + " ";
 
-    if(!outDir.empty()) {
+    if(!outDir.empty())
+    {
         debugCmd += "-outdir " + outDir + " ";
     }
 
@@ -417,28 +435,33 @@ OpenSSLUtils::signRequest(const String &requestFile,
     blocxx::String errOutput;
     int            status    = 0;
      
-     try {
-
-         blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
-
-     } catch(blocxx::Exception& e) {
-         LOGIT_ERROR( "openssl exception:" << e);
-         status = -1;
-     }
-     if(status != 0) {
-         LOGIT_ERROR("openssl status:" << blocxx::String(status));
-         LOGIT_ERROR("openssl stderr:" << errOutput);
-         LOGIT_DEBUG("openssl stdout:" << stdOutput);
-         BLOCXX_THROW(limal::RuntimeException,
-                      Format(__("Command returned '%1' : %2"), status, errOutput).c_str());
-     }
-
-     if(!errOutput.empty()) {
-         LOGIT_DEBUG("openssl stderr:" << errOutput);
-     }
-     if(!stdOutput.empty()) {
-         LOGIT_DEBUG("openssl stdout:" << stdOutput);
-     }
+    try
+    {
+    	blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
+    	
+    }
+    catch(blocxx::Exception& e)
+    {
+    	LOGIT_ERROR( "openssl exception:" << e);
+    	status = -1;
+    }
+    if(status != 0)
+    {
+    	LOGIT_ERROR("openssl status:" << blocxx::String(status));
+    	LOGIT_ERROR("openssl stderr:" << errOutput);
+    	LOGIT_DEBUG("openssl stdout:" << stdOutput);
+    	BLOCXX_THROW(limal::RuntimeException,
+    	             Format(__("Command returned '%1' : %2"), status, errOutput).c_str());
+    }
+    
+    if(!errOutput.empty())
+    {
+    	LOGIT_DEBUG("openssl stderr:" << errOutput);
+    }
+    if(!stdOutput.empty())
+    {
+    	LOGIT_DEBUG("openssl stdout:" << stdOutput);
+    }
 }
 
 void
@@ -450,27 +473,27 @@ OpenSSLUtils::revokeCertificate(const blocxx::String &caCertFile,
                                 bool                  noUniqueDN)
 {
     path::PathInfo pi(caKeyFile);
-    if(!pi.exists() || !pi.isFile()) {
-        
-        LOGIT_ERROR("No valid keyfile specified");
-        BLOCXX_THROW(limal::ValueException,
-                     __("No valid keyfile specified"));
+    if(!pi.exists() || !pi.isFile())
+    {        
+    	LOGIT_ERROR("No valid keyfile specified");
+    	BLOCXX_THROW(limal::ValueException,
+    	             __("No valid keyfile specified"));
     }
 
     pi.stat(caCertFile);
-    if(!pi.exists() || !pi.isFile()) {
-        
-        LOGIT_ERROR("No valid CA certificate file specified");
-        BLOCXX_THROW(limal::ValueException,
-                     __("No valid CA certificate file specified"));
+    if(!pi.exists() || !pi.isFile())
+    {        
+    	LOGIT_ERROR("No valid CA certificate file specified");
+    	BLOCXX_THROW(limal::ValueException,
+    	             __("No valid CA certificate file specified"));
     }
 
     pi.stat(certFile);
-    if(!pi.exists() || !pi.isFile()) {
-        
-        LOGIT_ERROR("No valid certificate file specified");
-        BLOCXX_THROW(limal::ValueException,
-                     __("No valid certificate file specified"));
+    if(!pi.exists() || !pi.isFile())
+    {        
+    	LOGIT_ERROR("No valid certificate file specified");
+    	BLOCXX_THROW(limal::ValueException,
+    	             __("No valid certificate file specified"));
     }
 
     blocxx::String debugCmd;
@@ -489,13 +512,14 @@ OpenSSLUtils::revokeCertificate(const blocxx::String &caCertFile,
 
     debugCmd += "-passin env:pass ";
 
-    if(noUniqueDN) {
+    if(noUniqueDN)
+    {
         debugCmd += "-nouniqueDN ";
     }
     
     if(!reason.getReason().equalsIgnoreCase("none"))
     {        
-        String reasonStr = reason.getReason();
+    	String reasonStr = reason.getReason();
 
         if(reasonStr.equalsIgnoreCase("certificateHold"))
         {
@@ -545,28 +569,32 @@ OpenSSLUtils::revokeCertificate(const blocxx::String &caCertFile,
     blocxx::String errOutput;
     int            status    = 0;
      
-     try {
+    try
+    {
+    	blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
+    }
+    catch(blocxx::Exception& e)
+    {
+    	LOGIT_ERROR( "openssl exception:" << e);
+    	status = -1;
+    }
+    if(status != 0)
+    {
+    	LOGIT_ERROR("openssl status:" << blocxx::String(status));
+    	LOGIT_ERROR("openssl stderr:" << errOutput);
+    	LOGIT_DEBUG("openssl stdout:" << stdOutput);
+    	BLOCXX_THROW(limal::RuntimeException,
+    	             Format(__("Command returned '%1' : %2"), status, errOutput).c_str());
+    }
 
-         blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
-
-     } catch(blocxx::Exception& e) {
-         LOGIT_ERROR( "openssl exception:" << e);
-         status = -1;
-     }
-     if(status != 0) {
-         LOGIT_ERROR("openssl status:" << blocxx::String(status));
-         LOGIT_ERROR("openssl stderr:" << errOutput);
-         LOGIT_DEBUG("openssl stdout:" << stdOutput);
-         BLOCXX_THROW(limal::RuntimeException,
-                      Format(__("Command returned '%1' : %2"), status, errOutput).c_str());
-     }
-
-     if(!errOutput.empty()) {
-         LOGIT_DEBUG("openssl stderr:" << errOutput);
-     }
-     if(!stdOutput.empty()) {
-         LOGIT_DEBUG("openssl stdout:" << stdOutput);
-     }
+    if(!errOutput.empty())
+    {
+    	LOGIT_DEBUG("openssl stderr:" << errOutput);
+    }
+    if(!stdOutput.empty())
+    {
+    	LOGIT_DEBUG("openssl stdout:" << stdOutput);
+    }
 }
 
 void
@@ -578,21 +606,21 @@ OpenSSLUtils::issueCRL(const blocxx::String &caCertFile,
                        const blocxx::String &extension,
                        bool                  noUniqueDN)
 {
-    path::PathInfo pi(caKeyFile);
-    if(!pi.exists() || !pi.isFile()) {
-        
-        LOGIT_ERROR("No valid keyfile specified");
-        BLOCXX_THROW(limal::ValueException,
-                     __("No valid keyfile specified"));
-    }
+	path::PathInfo pi(caKeyFile);
+	if(!pi.exists() || !pi.isFile())
+	{        
+		LOGIT_ERROR("No valid keyfile specified");
+		BLOCXX_THROW(limal::ValueException,
+		             __("No valid keyfile specified"));
+	}
 
-    pi.stat(caCertFile);
-    if(!pi.exists() || !pi.isFile()) {
-        
-        LOGIT_ERROR("No valid CA certificate file specified");
-        BLOCXX_THROW(limal::ValueException,
-                     __("No valid CA certificate file specified"));
-    }
+	pi.stat(caCertFile);
+	if(!pi.exists() || !pi.isFile())
+	{
+		LOGIT_ERROR("No valid CA certificate file specified");
+		BLOCXX_THROW(limal::ValueException,
+		             __("No valid CA certificate file specified"));
+	}
 
     blocxx::String debugCmd;
     
@@ -612,14 +640,16 @@ OpenSSLUtils::issueCRL(const blocxx::String &caCertFile,
 
     debugCmd += "-crlhours " + String(hours) + " ";
 
-    if(!extension.empty()) {
-        debugCmd += "-crlexts " + extension + " ";
+    if(!extension.empty())
+    {
+    	debugCmd += "-crlexts " + extension + " ";
     }
     
-    if(noUniqueDN) {
-        debugCmd += "-nouniqueDN ";
+    if(noUniqueDN)
+    {
+    	debugCmd += "-nouniqueDN ";
     }
-
+    
     StringArray cmd = PerlRegEx("\\s").split(debugCmd);
     
     LOGIT_DEBUG("Command: " << debugCmd);
@@ -634,28 +664,32 @@ OpenSSLUtils::issueCRL(const blocxx::String &caCertFile,
     blocxx::String errOutput;
     int            status    = 0;
      
-     try {
+    try
+    {
+    	blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
+    }
+    catch(blocxx::Exception& e)
+    {
+    	LOGIT_ERROR( "openssl exception:" << e);
+    	status = -1;
+    }
+    if(status != 0)
+    {
+    	LOGIT_ERROR("openssl status:" << blocxx::String(status));
+    	LOGIT_ERROR("openssl stderr:" << errOutput);
+    	LOGIT_DEBUG("openssl stdout:" << stdOutput);
+    	BLOCXX_THROW(limal::RuntimeException,
+    	             Format(__("Command returned '%1' : %2"), status, errOutput).c_str());
+    }
 
-         blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
-
-     } catch(blocxx::Exception& e) {
-         LOGIT_ERROR( "openssl exception:" << e);
-         status = -1;
-     }
-     if(status != 0) {
-         LOGIT_ERROR("openssl status:" << blocxx::String(status));
-         LOGIT_ERROR("openssl stderr:" << errOutput);
-         LOGIT_DEBUG("openssl stdout:" << stdOutput);
-         BLOCXX_THROW(limal::RuntimeException,
-                      Format(__("Command returned '%1' : %2"), status, errOutput).c_str());
-     }
-
-     if(!errOutput.empty()) {
-         LOGIT_DEBUG("openssl stderr:" << errOutput);
-     }
-     if(!stdOutput.empty()) {
-         LOGIT_DEBUG("openssl stdout:" << stdOutput);
-     }
+    if(!errOutput.empty())
+    {
+    	LOGIT_DEBUG("openssl stderr:" << errOutput);
+    }
+    if(!stdOutput.empty())
+    {
+    	LOGIT_DEBUG("openssl stdout:" << stdOutput);
+    }
 }
 
 void 
@@ -664,19 +698,19 @@ OpenSSLUtils::updateDB(const blocxx::String &caCertFile,
                        const blocxx::String &caPassword)
 {
     path::PathInfo pi(caKeyFile);
-    if(!pi.exists() || !pi.isFile()) {
-        
-        LOGIT_ERROR("No valid keyfile specified");
-        BLOCXX_THROW(limal::ValueException,
-                     __("No valid keyfile specified"));
+    if(!pi.exists() || !pi.isFile())
+    {
+    	LOGIT_ERROR("No valid keyfile specified");
+    	BLOCXX_THROW(limal::ValueException,
+    	             __("No valid keyfile specified"));
     }
 
     pi.stat(caCertFile);
-    if(!pi.exists() || !pi.isFile()) {
-        
-        LOGIT_ERROR("No valid CA certificate file specified");
-        BLOCXX_THROW(limal::ValueException,
-                     __("No valid CA certificate file specified"));
+    if(!pi.exists() || !pi.isFile())
+    {        
+    	LOGIT_ERROR("No valid CA certificate file specified");
+    	BLOCXX_THROW(limal::ValueException,
+    	             __("No valid CA certificate file specified"));
     }
 
     blocxx::String debugCmd;
@@ -707,29 +741,33 @@ OpenSSLUtils::updateDB(const blocxx::String &caCertFile,
     blocxx::String errOutput;
     int            status    = 0;
      
-    try {
-        
-        blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
-        
-    } catch(blocxx::Exception& e) {
-        LOGIT_ERROR( "openssl exception:" << e);
-        status = -1;
+    try
+    {        
+    	blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
     }
-
+    catch(blocxx::Exception& e)
+    {
+    	LOGIT_ERROR( "openssl exception:" << e);
+    	status = -1;
+    }
+    
     PerlRegEx r("error");
 
-    if( (status != 0 && status != 256) || r.match(errOutput) ) {
-        LOGIT_ERROR("openssl status:" << blocxx::String(status));
-        LOGIT_ERROR("openssl stderr:" << errOutput);
+    if( (status != 0 && status != 256) || r.match(errOutput) )
+    {
+    	LOGIT_ERROR("openssl status:" << blocxx::String(status));
+    	LOGIT_ERROR("openssl stderr:" << errOutput);
         LOGIT_DEBUG("openssl stdout:" << stdOutput);
         BLOCXX_THROW(limal::RuntimeException,
                      Format(__("Command returned '%1' : %2"), status, errOutput).c_str());
     }
     
-    if(!errOutput.empty()) {
+    if(!errOutput.empty())
+    {
         LOGIT_DEBUG("openssl stderr:" << errOutput);
     }
-    if(!stdOutput.empty()) {
+    if(!stdOutput.empty())
+    {
         LOGIT_DEBUG("openssl stdout:" << stdOutput);
     }
 }
@@ -741,19 +779,19 @@ OpenSSLUtils::verify(const blocxx::String &certFile,
                      const blocxx::String &purpose)
 {
     path::PathInfo pi(certFile);
-    if(!pi.exists() || !pi.isFile()) {
-        
-        LOGIT_ERROR("No valid certificate file specified");
-        BLOCXX_THROW(limal::ValueException,
-                     __("No valid certificate file specified"));
+    if(!pi.exists() || !pi.isFile())
+    {        
+    	LOGIT_ERROR("No valid certificate file specified");
+    	BLOCXX_THROW(limal::ValueException,
+    	             __("No valid certificate file specified"));
     }
 
     pi.stat(caPath);
-    if(!pi.exists() || !pi.isDir()) {
-        
-        LOGIT_ERROR("No valid CA directory specified");
-        BLOCXX_THROW(limal::ValueException,
-                     __("No valid CA directory specified"));
+    if(!pi.exists() || !pi.isDir())
+    {        
+    	LOGIT_ERROR("No valid CA directory specified");
+    	BLOCXX_THROW(limal::ValueException,
+    	             __("No valid CA directory specified"));
     }
 
     blocxx::String debugCmd;
@@ -763,16 +801,14 @@ OpenSSLUtils::verify(const blocxx::String &certFile,
 
     debugCmd += "-CApath " + caPath + " ";
 
-    if(!purpose.empty()) {
-
+    if(!purpose.empty())
+    {
         debugCmd += "-purpose " + purpose + " ";
-
     }
 
-    if(crlCheck) {
-
+    if(crlCheck)
+    {
         debugCmd += "-crl_check_all ";
-
     }
 
     debugCmd += certFile;
@@ -789,11 +825,12 @@ OpenSSLUtils::verify(const blocxx::String &certFile,
     blocxx::String errOutput;
     int            status    = 0;
      
-    try {
-        
-        blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
-        
-    } catch(blocxx::Exception& e) {
+    try
+    {
+    	blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
+    }
+    catch(blocxx::Exception& e)
+    {
         LOGIT_ERROR( "openssl exception:" << e);
         status = -1;
     }
@@ -807,36 +844,39 @@ OpenSSLUtils::verify(const blocxx::String &certFile,
     PerlRegEx ok("\\.pem:\\s+(.*)\\s*$");
     PerlRegEx error("^error\\s+(\\d+)\\s+at\\s+\\d+\\s+[\\w\\s]+:(.*)$");
 
-    for(line = lines.begin(); line != lines.end(); ++line) {
-
-        StringArray sa = ok.capture(*line);
+    for(line = lines.begin(); line != lines.end(); ++line)
+    {
+    	StringArray sa = ok.capture(*line);
         
-        if(sa.size() == 2 && sa[1] == "OK") {
-            result = "OK";
-            break;
+        if(sa.size() == 2 && sa[1] == "OK")
+        {
+        	result = "OK";
+        	break;
         }
 
         sa = error.capture(*line);
 
-        if(sa.size() == 3) {
+        if(sa.size() == 3)
+        {
             result = sa[2];
             errMsg = *line;
             errNum = sa[1];
         }
     }
     
-    if(result != "OK") {
+    if(result != "OK")
+    {
+    	if(!errOutput.empty())
+    	{
+    		LOGIT_INFO(Format("Certificate invalid! (%1 / %2)", result, errMsg).toString());
+    		LOGIT_ERROR("openssl stderr:" << errOutput);
+    	}
 
-        if(!errOutput.empty()) {
-
-            LOGIT_INFO(Format("Certificate invalid! (%1 / %2)", result, errMsg).toString());
-            LOGIT_ERROR("openssl stderr:" << errOutput);
-
-        }
-
-        return Format("Certificate invalid! (%1 / %2)", result, errMsg).toString();
-    } else {
-        return "";
+    	return Format("Certificate invalid! (%1 / %2)", result, errMsg).toString();
+    }
+    else
+    {
+    	return "";
     }
 }
 
@@ -864,13 +904,14 @@ OpenSSLUtils::status(const blocxx::String &serial)
     blocxx::String errOutput;
     int            status    = 0;
      
-    try {
-        
+    try
+    {        
         blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
-        
-    } catch(blocxx::Exception& e) {
-        LOGIT_ERROR( "openssl exception:" << e);
-        status = -1;
+    }
+    catch(blocxx::Exception& e)
+    {
+    	LOGIT_ERROR( "openssl exception:" << e);
+    	status = -1;
     }
 
     StringArray lines = PerlRegEx("\n").split(errOutput);
@@ -880,21 +921,24 @@ OpenSSLUtils::status(const blocxx::String &serial)
 
     PerlRegEx serialMatch(serial + "=(\\w+)\\s+.*$");
 
-    for(line = lines.begin(); line != lines.end(); ++line) {
-
-        StringArray sa = serialMatch.capture(*line);
-        
-        if(sa.size() == 2) {
+    for(line = lines.begin(); line != lines.end(); ++line)
+    {
+    	StringArray sa = serialMatch.capture(*line);
+    	
+    	if(sa.size() == 2)
+    	{
             return sa[1];
-        } else {
-
-            errMsg += *line + "\n";
         }
+    	else
+    	{
+    		errMsg += *line + "\n";
+    	}
     }
     LOGIT_ERROR(Format("Show certificate status with serial '%1' failed.(%2)", 
                        serial, status).toString());
-    if(!errOutput.empty()) {
-        LOGIT_ERROR("openssl stderr:" << errOutput);
+    if(!errOutput.empty())
+    {
+    	LOGIT_ERROR("openssl stderr:" << errOutput);
     }
     BLOCXX_THROW(limal::RuntimeException,
                  Format(__("Show certificate status with serial '%1' failed.(%2)"), 
@@ -909,31 +953,31 @@ OpenSSLUtils::checkKey(const blocxx::String &caName,
 {
     String keyFile;
 
-    if(certificateName == "cacert") {
-
+    if(certificateName == "cacert")
+    {
         keyFile = repository + "/" + caName + "/cacert.key";
-
-    } else {
-
-        PerlRegEx r("^[[:xdigit:]]+:([[:xdigit:]]+[\\d-]*)$");
-        StringArray sa = r.capture(certificateName);
-
-        if(sa.size() != 2) {
-
-            LOGIT_ERROR("Can not parse certificate name");
-            BLOCXX_THROW(limal::RuntimeException,
-                         __("Can not parse certificate name"));
+    }
+    else
+    {
+    	PerlRegEx r("^[[:xdigit:]]+:([[:xdigit:]]+[\\d-]*)$");
+    	StringArray sa = r.capture(certificateName);
+    	
+        if(sa.size() != 2)
+        {
+        	LOGIT_ERROR("Can not parse certificate name");
+        	BLOCXX_THROW(limal::RuntimeException,
+        	             __("Can not parse certificate name"));
         }
-
+        
         keyFile = repository + "/" + caName + "/keys/" + sa[1] + ".key";
     }
 
     path::PathInfo pi(keyFile);
-    if(!pi.exists() || !pi.isFile()) {
-        
-        LOGIT_ERROR("Keyfile does not exist");
-        BLOCXX_THROW(limal::SystemException,
-                     __("Keyfile does not exist"));
+    if(!pi.exists() || !pi.isFile())
+    {        
+    	LOGIT_ERROR("Keyfile does not exist");
+    	BLOCXX_THROW(limal::SystemException,
+    	             __("Keyfile does not exist"));
     }
 
     blocxx::String debugCmd;
@@ -957,18 +1001,22 @@ OpenSSLUtils::checkKey(const blocxx::String &caName,
     blocxx::String errOutput;
     int            status    = 0;
 
-    try {
-        
-         blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
-         
-    } catch(blocxx::Exception& e) {
+    try
+    {        
+    	blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
+    }
+    catch(blocxx::Exception& e)
+    {
         LOGIT_ERROR( "openssl exception:" << e);
         status = -1;
     }
-    if(status == 0) {
+    if(status == 0)
+    {
         return true;
-    } else {
-        return false;
+    }
+    else
+    {
+    	return false;
     }    
 }
 
@@ -1001,59 +1049,65 @@ OpenSSLUtils::x509Convert(const ByteBuffer &certificate,
     debugCmd += outFileName + " ";
     debugCmd += "-inform ";
     
-    switch(inform) {
-    case E_PEM:
-        debugCmd += "PEM ";
-        break;
-    case E_DER:
-        debugCmd += "DER ";
-        break;
+    switch(inform)
+    {
+    	case E_PEM:
+    		debugCmd += "PEM ";
+    		break;
+    	case E_DER:
+    		debugCmd += "DER ";
+    		break;
     }
     
     debugCmd += "-outform ";
     
-    switch(outform) {
-    case E_PEM:
-        debugCmd += "PEM ";
-        break;
-     case E_DER:
-         debugCmd += "DER ";
-         break;
+    switch(outform)
+    {
+    	case E_PEM:
+    		debugCmd += "PEM ";
+    		break;
+    	case E_DER:
+    		debugCmd += "DER ";
+    		break;
     }
     
-     StringArray cmd = PerlRegEx("\\s").split(debugCmd);
+    StringArray cmd = PerlRegEx("\\s").split(debugCmd);
 
-     LOGIT_DEBUG("Command: " << debugCmd);
-
-     blocxx::EnvVars env;
-     env.addVar("PATH", "/usr/bin/");
-     env.addVar("RANDFILE", "./.rnd");
-     blocxx::String stdOutput;
-     blocxx::String errOutput;
-     int            status    = 0;
-
-     try {
-
-         blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
-
-     } catch(blocxx::Exception& e) {
-         LOGIT_ERROR( "openssl exception:" << e);
-         status = -1;
-     }
-     if(status != 0) {
-         LOGIT_INFO( "openssl status:" << blocxx::String(status));
-     }
-     if(!errOutput.empty()) {
-         LOGIT_ERROR("openssl stderr:" << errOutput);
-     }
-     if(!stdOutput.empty()) {
-         LOGIT_DEBUG("openssl stdout:" << stdOutput);
-     }
-
-     ByteBuffer out = LocalManagement::readFile(outFileName);
-
-     path::removeFile(inFileName);
-     path::removeFile(outFileName);
+    LOGIT_DEBUG("Command: " << debugCmd);
+    
+    blocxx::EnvVars env;
+    env.addVar("PATH", "/usr/bin/");
+    env.addVar("RANDFILE", "./.rnd");
+    blocxx::String stdOutput;
+    blocxx::String errOutput;
+    int            status    = 0;
+    
+    try
+    {
+    	blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
+    }
+    catch(blocxx::Exception& e)
+    {
+    	LOGIT_ERROR( "openssl exception:" << e);
+    	status = -1;
+    }
+    if(status != 0)
+    {
+    	LOGIT_INFO( "openssl status:" << blocxx::String(status));
+    }
+    if(!errOutput.empty())
+    {
+    	LOGIT_ERROR("openssl stderr:" << errOutput);
+    }
+    if(!stdOutput.empty())
+    {
+    	LOGIT_DEBUG("openssl stdout:" << stdOutput);
+    }
+    
+    ByteBuffer out = LocalManagement::readFile(outFileName);
+    
+    path::removeFile(inFileName);
+    path::removeFile(outFileName);
 
     return out;
 }
@@ -1087,40 +1141,42 @@ OpenSSLUtils::rsaConvert(const ByteBuffer &key,
     debugCmd += outFileName + " ";
     debugCmd += "-inform ";
     
-    switch(inform) {
-    case E_PEM:
-        debugCmd += "PEM ";
-        break;
-    case E_DER:
-        debugCmd += "DER ";
-        break;
+    switch(inform)
+    {
+    	case E_PEM:
+    		debugCmd += "PEM ";
+    		break;
+    	case E_DER:
+    		debugCmd += "DER ";
+    		break;
     }
     
     debugCmd += "-outform ";
     
-    switch(outform) {
-    case E_PEM:
-        debugCmd += "PEM ";
-        break;
-     case E_DER:
-         debugCmd += "DER ";
-         break;
+    switch(outform)
+    {
+    	case E_PEM:
+    		debugCmd += "PEM ";
+    		break;
+    	case E_DER:
+    		debugCmd += "DER ";
+    		break;
     }
     
-    if(!inPassword.empty() && inform != E_DER) {
-
-        debugCmd += "-passin env:inpass ";
-        isInPassSet = true;
+    if(!inPassword.empty() && inform != E_DER)
+    {
+    	debugCmd += "-passin env:inpass ";
+    	isInPassSet = true;
     }
-
-    if(!outPassword.empty() && outform != E_DER) {
     
-        debugCmd += "-passout env:outpass ";
-
-        debugCmd += "-"+ algorithm;
-        isOutPassSet = true;
+    if(!outPassword.empty() && outform != E_DER)
+    {    
+    	debugCmd += "-passout env:outpass ";
+    	
+    	debugCmd += "-"+ algorithm;
+    	isOutPassSet = true;
     }
-
+    
     StringArray cmd = PerlRegEx("\\s").split(debugCmd);
 
     LOGIT_DEBUG("Command: " << debugCmd);
@@ -1129,54 +1185,54 @@ OpenSSLUtils::rsaConvert(const ByteBuffer &key,
     env.addVar("PATH", "/usr/bin/");
     env.addVar("RANDFILE", "./.rnd");
 
-    if(isInPassSet) {
-
+    if(isInPassSet)
+    {
         env.addVar("inpass", inPassword);
-    
     }
 
-    if(isOutPassSet) {
-        
-        env.addVar("outpass", outPassword);
-        
+    if(isOutPassSet)
+    {        
+    	env.addVar("outpass", outPassword);
     }
 
     blocxx::String stdOutput;
     blocxx::String errOutput;
     int            status    = 0;
     
-     try {
+    try
+    {
+    	blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
+    }
+    catch(blocxx::Exception& e)
+    {
+    	LOGIT_ERROR( "openssl exception:" << e);
+    	status = -1;
+    }
+    if(status != 0)
+    {
+    	LOGIT_INFO( "openssl status:" << blocxx::String(status));
+    }
+    if(!errOutput.empty())
+    {
+    	// This message is not an error
+    	if(!PerlRegEx("^writing RSA key$").match(errOutput))
+    	{         
+    		LOGIT_ERROR("openssl stderr:" << errOutput);
+    	}
+    	else
+    	{             
+    		LOGIT_DEBUG("openssl stderr:" << errOutput);
+    	}
+    }
+    if(!stdOutput.empty())
+    {
+    	LOGIT_DEBUG("openssl stdout:" << stdOutput);
+    }
 
-         blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
+    ByteBuffer out = LocalManagement::readFile(outFileName);
 
-     } catch(blocxx::Exception& e) {
-         LOGIT_ERROR( "openssl exception:" << e);
-         status = -1;
-     }
-     if(status != 0) {
-         LOGIT_INFO( "openssl status:" << blocxx::String(status));
-     }
-     if(!errOutput.empty()) {
-
-         // This message is not an error
-         if(!PerlRegEx("^writing RSA key$").match(errOutput)) {
-         
-             LOGIT_ERROR("openssl stderr:" << errOutput);
-
-         } else {
-             
-             LOGIT_DEBUG("openssl stderr:" << errOutput);
-
-         }
-     }
-     if(!stdOutput.empty()) {
-         LOGIT_DEBUG("openssl stdout:" << stdOutput);
-     }
-
-     ByteBuffer out = LocalManagement::readFile(outFileName);
-
-     path::removeFile(inFileName);
-     path::removeFile(outFileName);
+    path::removeFile(inFileName);
+    path::removeFile(outFileName);
 
     return out;
 }
@@ -1203,60 +1259,66 @@ OpenSSLUtils::crlConvert(const ByteBuffer &crl,
     debugCmd += outFileName + " ";
     debugCmd += "-inform ";
     
-    switch(inform) {
-    case E_PEM:
-        debugCmd += "PEM ";
-        break;
-    case E_DER:
-        debugCmd += "DER ";
-        break;
+    switch(inform)
+    {
+    	case E_PEM:
+    		debugCmd += "PEM ";
+    		break;
+    	case E_DER:
+    		debugCmd += "DER ";
+    		break;
     }
     
     debugCmd += "-outform ";
     
-    switch(outform) {
-    case E_PEM:
-        debugCmd += "PEM ";
-        break;
-     case E_DER:
-         debugCmd += "DER ";
-         break;
+    switch(outform)
+    {
+    	case E_PEM:
+    		debugCmd += "PEM ";
+    		break;
+    	case E_DER:
+    		debugCmd += "DER ";
+    		break;
     }
     
-     StringArray cmd = PerlRegEx("\\s").split(debugCmd);
-
-     LOGIT_DEBUG("Command: " << debugCmd);
-
-     blocxx::EnvVars env;
-     env.addVar("PATH", "/usr/bin/");
-     env.addVar("RANDFILE", "./.rnd");
-     blocxx::String stdOutput;
-     blocxx::String errOutput;
-     int            status    = 0;
-
-     try {
-
-         blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
-
-     } catch(blocxx::Exception& e) {
-         LOGIT_ERROR( "openssl exception:" << e);
-         status = -1;
-     }
-     if(status != 0) {
-         LOGIT_INFO( "openssl status:" << blocxx::String(status));
-     }
-     if(!errOutput.empty()) {
-         LOGIT_ERROR("openssl stderr:" << errOutput);
-     }
-     if(!stdOutput.empty()) {
-         LOGIT_DEBUG("openssl stdout:" << stdOutput);
-     }
-
-     ByteBuffer out = LocalManagement::readFile(outFileName);
-
-     path::removeFile(inFileName);
-     path::removeFile(outFileName);
-
+    StringArray cmd = PerlRegEx("\\s").split(debugCmd);
+    
+    LOGIT_DEBUG("Command: " << debugCmd);
+    
+    blocxx::EnvVars env;
+    env.addVar("PATH", "/usr/bin/");
+    env.addVar("RANDFILE", "./.rnd");
+    blocxx::String stdOutput;
+    blocxx::String errOutput;
+    int            status    = 0;
+    
+    try
+    {
+    	blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
+    }
+    catch(blocxx::Exception& e)
+    {
+    	LOGIT_ERROR( "openssl exception:" << e);
+    	status = -1;
+    }
+    if(status != 0)
+    {
+    	LOGIT_INFO( "openssl status:" << blocxx::String(status));
+    }
+    if(!errOutput.empty())
+    {
+    	LOGIT_ERROR("openssl stderr:" << errOutput);
+    }
+    if(!stdOutput.empty())
+    {
+    	LOGIT_DEBUG("openssl stdout:" << stdOutput);
+    }
+    
+    ByteBuffer out = LocalManagement::readFile(outFileName);
+    
+    path::removeFile(inFileName);
+    path::removeFile(outFileName);
+    
     return out;
 }
 
@@ -1265,13 +1327,13 @@ OpenSSLUtils::reqConvert(const ByteBuffer &req,
                          FormatType inform,
                          FormatType outform )
 {
-    // FIXME: use tmp file 
-    blocxx::String inFileName(::tempnam("/tmp/", "reqIn"));
-    blocxx::String outFileName(::tempnam("/tmp/", "reqOt"));
-    
-    LocalManagement::writeFile(req, inFileName,
-                               false, 0600);
-    
+	// FIXME: use tmp file 
+	blocxx::String inFileName(::tempnam("/tmp/", "reqIn"));
+	blocxx::String outFileName(::tempnam("/tmp/", "reqOt"));
+	
+	LocalManagement::writeFile(req, inFileName,
+	                           false, 0600);
+	
     blocxx::String debugCmd;
     
     debugCmd += limal::ca_mgm::OPENSSL_COMMAND + " ";
@@ -1282,60 +1344,67 @@ OpenSSLUtils::reqConvert(const ByteBuffer &req,
     debugCmd += outFileName + " ";
     debugCmd += "-inform ";
     
-    switch(inform) {
-    case E_PEM:
-        debugCmd += "PEM ";
-        break;
-    case E_DER:
-        debugCmd += "DER ";
-        break;
+    switch(inform)
+    {
+    	case E_PEM:
+    		debugCmd += "PEM ";
+    		break;
+    	case E_DER:
+    		debugCmd += "DER ";
+    		break;
     }
     
     debugCmd += "-outform ";
     
-    switch(outform) {
-    case E_PEM:
-        debugCmd += "PEM ";
-        break;
-     case E_DER:
-         debugCmd += "DER ";
-         break;
+    switch(outform)
+    {
+    	case E_PEM:
+    		debugCmd += "PEM ";
+    		break;
+    	case E_DER:
+    		debugCmd += "DER ";
+    		break;
     }
     
-     StringArray cmd = PerlRegEx("\\s").split(debugCmd);
-
-     LOGIT_DEBUG("Command: " << debugCmd);
-
-     blocxx::EnvVars env;
-     env.addVar("PATH", "/usr/bin/");
-     env.addVar("RANDFILE", "./.rnd");
-     blocxx::String stdOutput;
-     blocxx::String errOutput;
-     int            status    = 0;
-
-     try {
-
-         blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
-
-     } catch(blocxx::Exception& e) {
-         LOGIT_ERROR( "openssl exception:" << e);
-         status = -1;
-     }
-     if(status != 0) {
-         LOGIT_INFO( "openssl status:" << blocxx::String(status));
-     }
-     if(!errOutput.empty()) {
-         LOGIT_ERROR("openssl stderr:" << errOutput);
-     }
-     if(!stdOutput.empty()) {
+    StringArray cmd = PerlRegEx("\\s").split(debugCmd);
+    
+    LOGIT_DEBUG("Command: " << debugCmd);
+    
+    blocxx::EnvVars env;
+    env.addVar("PATH", "/usr/bin/");
+    env.addVar("RANDFILE", "./.rnd");
+    blocxx::String stdOutput;
+    blocxx::String errOutput;
+    int            status    = 0;
+    
+    try
+    {
+    	blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
+    	
+    }
+    catch(blocxx::Exception& e)
+    {
+    	LOGIT_ERROR( "openssl exception:" << e);
+    	status = -1;
+    }
+    if(status != 0)
+    {
+    	LOGIT_INFO( "openssl status:" << blocxx::String(status));
+    }
+    if(!errOutput.empty())
+    {
+    	LOGIT_ERROR("openssl stderr:" << errOutput);
+    }
+    if(!stdOutput.empty())
+    {
          LOGIT_DEBUG("openssl stdout:" << stdOutput);
-     }
-
-     ByteBuffer out = LocalManagement::readFile(outFileName);
-
-     path::removeFile(inFileName);
-     path::removeFile(outFileName);
-
+    }
+    
+    ByteBuffer out = LocalManagement::readFile(outFileName);
+    
+    path::removeFile(inFileName);
+    path::removeFile(outFileName);
+    
     return out;
 }
 
@@ -1348,8 +1417,8 @@ OpenSSLUtils::createPKCS12(const ByteBuffer &certificate,
                            const String     &caPath,
                            bool              withChain )
 {
-    // FIXME: use tmp file 
-    blocxx::String inFileName1(::tempnam("/tmp/", "crtIn"));
+	// FIXME: use tmp file 
+	blocxx::String inFileName1(::tempnam("/tmp/", "crtIn"));
     blocxx::String inFileName2(::tempnam("/tmp/", "keyIn"));
     blocxx::String inFileName3(::tempnam("/tmp/", "caIn"));
     blocxx::String outFileName(::tempnam("/tmp/", "p12Ot"));
@@ -1361,9 +1430,10 @@ OpenSSLUtils::createPKCS12(const ByteBuffer &certificate,
                                false, 0600);
     LocalManagement::writeFile(key, inFileName2,
                                false, 0600);
-    if(!caCert.empty()) {
-        LocalManagement::writeFile(caCert, inFileName3,
-                                   false, 0600);
+    if(!caCert.empty())
+    {
+    	LocalManagement::writeFile(caCert, inFileName3,
+    	                           false, 0600);
     }
 
     blocxx::String debugCmd;
@@ -1377,29 +1447,30 @@ OpenSSLUtils::createPKCS12(const ByteBuffer &certificate,
 
     debugCmd += "-export ";
 
-    if(!caPath.empty()) {
-
-        debugCmd += "-CApath ";
-        debugCmd += caPath + " ";
-
-        if( withChain ) {
-
-            debugCmd += "-chain ";
-
+    if(!caPath.empty())
+    {
+    	debugCmd += "-CApath ";
+    	debugCmd += caPath + " ";
+    	
+        if( withChain )
+        {
+        	debugCmd += "-chain ";
         }
     }
 
-    if(!inPassword.empty()) {
-
-        debugCmd += "-passin env:inpass ";
-        isInPassSet = true;
+    if(!inPassword.empty())
+    {
+    	debugCmd += "-passin env:inpass ";
+    	isInPassSet = true;
     }
 
-    if(!outPassword.empty()) {
-    
-        debugCmd += "-passout env:outpass ";
+    if(!outPassword.empty())
+    {
+    	debugCmd += "-passout env:outpass ";
         isOutPassSet = true;
-    } else {
+    }
+    else
+    {
         LOGIT_ERROR("Out password is required");
         BLOCXX_THROW(limal::ValueException,
                      __("Out password is required"));
@@ -1408,11 +1479,10 @@ OpenSSLUtils::createPKCS12(const ByteBuffer &certificate,
     debugCmd += "-inkey ";
     debugCmd += inFileName2 + " ";
 
-    if(!caCert.empty()) {
-
-        debugCmd += "-certfile ";
-        debugCmd += inFileName3 + " ";
-
+    if(!caCert.empty())
+    {
+    	debugCmd += "-certfile ";
+    	debugCmd += inFileName3 + " ";
     }
 
     StringArray cmd = PerlRegEx("\\s").split(debugCmd);
@@ -1423,48 +1493,51 @@ OpenSSLUtils::createPKCS12(const ByteBuffer &certificate,
     env.addVar("PATH", "/usr/bin/");
     env.addVar("RANDFILE", "./.rnd");
 
-    if(isInPassSet) {
-
+    if(isInPassSet)
+    {
         env.addVar("inpass", inPassword);
-    
     }
 
-    if(isOutPassSet) {
-        
-        env.addVar("outpass", outPassword);
-        
+    if(isOutPassSet)
+    {        
+    	env.addVar("outpass", outPassword);
     }
 
     blocxx::String stdOutput;
     blocxx::String errOutput;
     int            status    = 0;
     
-     try {
+    try
+    {
+    	blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
+    }
+    catch(blocxx::Exception& e)
+    {
+    	LOGIT_ERROR( "openssl exception:" << e);
+    	status = -1;
+    }
+    if(status != 0)
+    {
+    	LOGIT_INFO( "openssl status:" << blocxx::String(status));
+    }
+    if(!errOutput.empty())
+    {
+    	LOGIT_ERROR("openssl stderr:" << errOutput);
+    }
+    if(!stdOutput.empty())
+    {
+    	LOGIT_DEBUG("openssl stdout:" << stdOutput);
+    }
 
-         blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
-
-     } catch(blocxx::Exception& e) {
-         LOGIT_ERROR( "openssl exception:" << e);
-         status = -1;
-     }
-     if(status != 0) {
-         LOGIT_INFO( "openssl status:" << blocxx::String(status));
-     }
-     if(!errOutput.empty()) {
-         LOGIT_ERROR("openssl stderr:" << errOutput);
-     }
-     if(!stdOutput.empty()) {
-         LOGIT_DEBUG("openssl stdout:" << stdOutput);
-     }
-
-     ByteBuffer out = LocalManagement::readFile(outFileName);
-
-     path::removeFile(inFileName1);
-     path::removeFile(inFileName2);
-     if(!caCert.empty()) {
-         path::removeFile(inFileName3);
-     }
-     path::removeFile(outFileName);
+    ByteBuffer out = LocalManagement::readFile(outFileName);
+    
+    path::removeFile(inFileName1);
+    path::removeFile(inFileName2);
+    if(!caCert.empty())
+    {
+    	path::removeFile(inFileName3);
+    }
+    path::removeFile(outFileName);
 
     return out;
 }
@@ -1475,10 +1548,10 @@ OpenSSLUtils::pkcs12ToPEM(const ByteBuffer &pkcs12,
                           const String     &outPassword,
                           const String     &algorithm)
 {
-    // FIXME: use tmp file 
-    blocxx::String inFileName(::tempnam("/tmp/", "p12In"));
-    blocxx::String outFileName(::tempnam("/tmp/", "x509O"));
-
+	// FIXME: use tmp file 
+	blocxx::String inFileName(::tempnam("/tmp/", "p12In"));
+	blocxx::String outFileName(::tempnam("/tmp/", "x509O"));
+	
     bool isInPassSet = false;
     bool isOutPassSet = false;
     
@@ -1496,29 +1569,27 @@ OpenSSLUtils::pkcs12ToPEM(const ByteBuffer &pkcs12,
 
     // -nokeys?
 
-    if(!inPassword.empty()) {
-        
-        debugCmd += "-passin env:inpass ";
-        isInPassSet = true;
-        
-    } else {
-        
-        LOGIT_ERROR("PKCS12 password is required");
-        BLOCXX_THROW(limal::ValueException,
-                     __("PKCS12 password is required"));
-        
+    if(!inPassword.empty())
+    {        
+    	debugCmd += "-passin env:inpass ";
+    	isInPassSet = true;
+    }
+    else
+    {        
+    	LOGIT_ERROR("PKCS12 password is required");
+    	BLOCXX_THROW(limal::ValueException,
+    	             __("PKCS12 password is required"));
     }
     
-    if(!outPassword.empty()) {
-    
-        debugCmd += "-passout env:outpass ";
-        debugCmd += "-" + algorithm + " ";
-        isOutPassSet = true;
-
-    } else {
-        
-        debugCmd += "-nodes ";
-        
+    if(!outPassword.empty())
+    {
+    	debugCmd += "-passout env:outpass ";
+    	debugCmd += "-" + algorithm + " ";
+    	isOutPassSet = true;
+    }
+    else
+    {        
+    	debugCmd += "-nodes ";
     }
     
     StringArray cmd = PerlRegEx("\\s").split(debugCmd);
@@ -1528,100 +1599,101 @@ OpenSSLUtils::pkcs12ToPEM(const ByteBuffer &pkcs12,
     blocxx::EnvVars env;
     env.addVar("PATH", "/usr/bin/");
 
-    if(isInPassSet) {
-
+    if(isInPassSet)
+    {
         env.addVar("inpass", inPassword);
+    }
     
-    }
-
-    if(isOutPassSet) {
-        
+    if(isOutPassSet)
+    {        
         env.addVar("outpass", outPassword);
-        
     }
-
+    
     blocxx::String stdOutput;
     blocxx::String errOutput;
     int            status    = 0;
+    
+    try
+    {
+    	blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
+    }
+    catch(blocxx::Exception& e)
+    {
+    	LOGIT_ERROR( "openssl exception:" << e);
+    	status = -1;
+    }
+    if(status != 0)
+    {
+    	LOGIT_INFO( "openssl status:" << blocxx::String(status));
+    }
+    if(!errOutput.empty())
+    {
+    	// This message is not an error
+    	if(!PerlRegEx("^MAC verified OK$").match(errOutput))
+    	{    		
+    		LOGIT_ERROR("openssl stderr:" << errOutput);
+    	}
+    	else
+    	{             
+    		LOGIT_DEBUG("openssl stderr:" << errOutput);
+    	}
+    }
+    if(!stdOutput.empty())
+    {
+    	LOGIT_DEBUG("openssl stdout:" << stdOutput);
+    }
 
-     try {
-
-         blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
-
-     } catch(blocxx::Exception& e) {
-         LOGIT_ERROR( "openssl exception:" << e);
-         status = -1;
-     }
-     if(status != 0) {
-         LOGIT_INFO( "openssl status:" << blocxx::String(status));
-     }
-     if(!errOutput.empty()) {
-         // This message is not an error
-         if(!PerlRegEx("^MAC verified OK$").match(errOutput)) {
-         
-             LOGIT_ERROR("openssl stderr:" << errOutput);
-
-         } else {
-             
-             LOGIT_DEBUG("openssl stderr:" << errOutput);
-
-         }
-     }
-     if(!stdOutput.empty()) {
-         LOGIT_DEBUG("openssl stdout:" << stdOutput);
-     }
-
-     ByteBuffer out = LocalManagement::readFile(outFileName);
-
-     path::removeFile(inFileName);
-     path::removeFile(outFileName);
-
+    ByteBuffer out = LocalManagement::readFile(outFileName);
+    
+    path::removeFile(inFileName);
+    path::removeFile(outFileName);
+    
     return out;
 }
 
 blocxx::Array<blocxx::String>
 OpenSSLUtils::listCA(const String &repository)
 {
-    List<String>  tmpList;
-    Array<String> retList;
-
-    int r = path::readDir(tmpList, repository, false);
-
-    if(r != 0) {
-
-        LOGIT_ERROR("Cannot read directory: " << repository << 
-                    "(" << System::errorMsg(r) << ") [" << r << "]");
-        BLOCXX_THROW(limal::SystemException,
-                     Format(__("Cannot read directory: %1 (%2) [%3]"),
-                            repository, System::errorMsg(r), r).c_str());
-    }
-
-    tmpList.sort();
-    
-    List<String>::const_iterator cont;
-
-    path::PathInfo pi(repository);
-    
-    for(cont = tmpList.begin(); cont != tmpList.end(); ++cont) {
-
-        pi.stat(repository + "/" + *cont);
-
-        if(pi.exists() && pi.isDir()) {
-
-            pi.stat(repository + "/" + *cont + "/openssl.cnf.tmpl");
-
-            if(pi.exists() && pi.isFile()) {
-
-                pi.stat(repository + "/" + *cont + "/cacert.pem");
-
-                if(pi.exists() && pi.isFile()) {
-
+	List<String>  tmpList;
+	Array<String> retList;
+	
+	int r = path::readDir(tmpList, repository, false);
+	
+	if(r != 0)
+	{
+		LOGIT_ERROR("Cannot read directory: " << repository << 
+		            "(" << System::errorMsg(r) << ") [" << r << "]");
+		BLOCXX_THROW(limal::SystemException,
+		             Format(__("Cannot read directory: %1 (%2) [%3]"),
+		                    repository, System::errorMsg(r), r).c_str());
+	}
+	
+	tmpList.sort();
+	
+	List<String>::const_iterator cont;
+	
+	path::PathInfo pi(repository);
+	
+	for(cont = tmpList.begin(); cont != tmpList.end(); ++cont)
+	{
+		pi.stat(repository + "/" + *cont);
+		
+		if(pi.exists() && pi.isDir())
+		{
+			pi.stat(repository + "/" + *cont + "/openssl.cnf.tmpl");
+			
+            if(pi.exists() && pi.isFile())
+            {
+            	pi.stat(repository + "/" + *cont + "/cacert.pem");
+            	
+            	if(pi.exists() && pi.isFile())
+            	{
                     retList.push_back(*cont);
-                }
+            	}
             }
-        }
-    }
-    return retList;
+		}
+	}
+	return retList;
 }
 
 blocxx::String
@@ -1634,15 +1706,16 @@ OpenSSLUtils::nextSerial(const String &serialFile)
     
     StringArray sa = r.capture(s);
 
-    if(sa.size() == 2) {
-
+    if(sa.size() == 2)
+    {
         return sa[1];
-
-    } else {
-        LOGIT_ERROR("No serial number found in " << serialFile);
-        BLOCXX_THROW(limal::RuntimeException,
-                     Format(__("No serial number found in %1"),
-                            serialFile).c_str());
+    }
+    else
+    {
+    	LOGIT_ERROR("No serial number found in " << serialFile);
+    	BLOCXX_THROW(limal::RuntimeException,
+    	             Format(__("No serial number found in %1"),
+    	                    serialFile).c_str());
     }
 }
 
@@ -1655,12 +1728,13 @@ OpenSSLUtils::addCAM(const String &caName,
     Array<Array<String> > db = OpenSSLUtils::parseCAMDB(caName, repository);
     Array<Array<String> >::const_iterator it;
 
-    for(it = db.begin(); it != db.end(); ++it) {
-
-        if( (*it)[0] == md5 ) {
-            LOGIT_ERROR("Request already exist.");
-            BLOCXX_THROW(limal::RuntimeException,
-                         __("Request already exist."));
+    for(it = db.begin(); it != db.end(); ++it)
+    {
+    	if( (*it)[0] == md5 )
+    	{
+    		LOGIT_ERROR("Request already exist.");
+    		BLOCXX_THROW(limal::RuntimeException,
+    		             __("Request already exist."));
         }
     }
     
@@ -1688,14 +1762,14 @@ OpenSSLUtils::delCAM(const String &caName,
     StringArray::const_iterator line;
     String camNew;
 
-    for(line = lines.begin(); line != lines.end(); ++line) {
-
-        PerlRegEx r("^" + md5);
-
-        if(!r.match(*line)) {
-
-            camNew += *line + "\n";
-        }
+    for(line = lines.begin(); line != lines.end(); ++line)
+    {
+    	PerlRegEx r("^" + md5);
+    	
+    	if(!r.match(*line))
+    	{
+    		camNew += *line + "\n";
+    	}
     }
     LocalManagement::writeFile(ByteBuffer(camNew.c_str(), camNew.length()),
                                repository + "/" + caName + "/cam.txt");
@@ -1716,18 +1790,18 @@ OpenSSLUtils::parseCAMDB(const String &caName,
     
     StringArray::const_iterator line;
 
-    for(line = lines.begin(); line != lines.end(); ++line) {
-
-        PerlRegEx r("^([[:xdigit:]]+[\\d-]*)\\s(.*)$");
-
+    for(line = lines.begin(); line != lines.end(); ++line)
+    {
+    	PerlRegEx r("^([[:xdigit:]]+[\\d-]*)\\s(.*)$");
+    	
         StringArray col = r.capture(*line);
-
-        if(col.size() != 3) {
-
-            LOGIT_INFO("Can not parse line '" << *line << "'");
-            continue;
+        
+        if(col.size() != 3)
+        {
+        	LOGIT_INFO("Can not parse line '" << *line << "'");
+        	continue;
         }
-
+        
         Array<String> a;
         a.push_back(col[1]);
         a.push_back(col[2]);
@@ -1750,18 +1824,18 @@ OpenSSLUtils::parseIndexTXT(const String &caName,
     
     StringArray::const_iterator line;
 
-    for(line = lines.begin(); line != lines.end(); ++line) {
-
-        PerlRegEx r("^(\\w)\\s([\\d\\w]+)\\s([\\w\\d,.]*)\\s([[:xdigit:]]+)\\s(\\w+)\\s(.*)$");
-
-        StringArray col = r.capture(*line);
-
-        if(col.size() != 7) {
-
-            LOGIT_INFO("Can not parse line '" << *line << "'");
-            continue;
+    for(line = lines.begin(); line != lines.end(); ++line)
+    {
+    	PerlRegEx r("^(\\w)\\s([\\d\\w]+)\\s([\\w\\d,.]*)\\s([[:xdigit:]]+)\\s(\\w+)\\s(.*)$");
+    	
+    	StringArray col = r.capture(*line);
+    	
+        if(col.size() != 7)
+        {
+        	LOGIT_INFO("Can not parse line '" << *line << "'");
+        	continue;
         }
-
+        
         Array<String> a;
         a.push_back(col[1]);
         a.push_back(col[2]);
@@ -1785,13 +1859,13 @@ OpenSSLUtils::listRequests(const String &caName,
 
     int r = path::readDir(tmpList, reqDir , false);
 
-    if(r != 0) {
-
-        LOGIT_ERROR("Cannot read directory: " << reqDir << 
-                    "(" << System::errorMsg(r) << ") [" << r << "]");
-        BLOCXX_THROW(limal::SystemException,
-                     Format(__("Cannot read directory: %1 (%2) [%3]"),
-                            reqDir, System::errorMsg(r), r).c_str());
+    if(r != 0)
+    {
+    	LOGIT_ERROR("Cannot read directory: " << reqDir << 
+    	            "(" << System::errorMsg(r) << ") [" << r << "]");
+    	BLOCXX_THROW(limal::SystemException,
+    	             Format(__("Cannot read directory: %1 (%2) [%3]"),
+    	                    reqDir, System::errorMsg(r), r).c_str());
     }
 
     tmpList.sort();
@@ -1800,36 +1874,37 @@ OpenSSLUtils::listRequests(const String &caName,
     List<String>::const_iterator cont;
     path::PathInfo pi(reqDir);
     
-    for(cont = tmpList.begin(); cont != tmpList.end(); ++cont) {
-
-        pi.stat(reqDir + "/" + *cont);
-    
-        if(!pi.exists() || !pi.isFile()) {
-
-            LOGIT_INFO("skipping file " << pi.toString());
-            continue;
+    for(cont = tmpList.begin(); cont != tmpList.end(); ++cont)
+    {
+    	pi.stat(reqDir + "/" + *cont);
+        
+        if(!pi.exists() || !pi.isFile())
+        {
+        	LOGIT_INFO("skipping file " << pi.toString());
+        	continue;
         }
-
+        
         PerlRegEx requestR("^([[:xdigit:]]+)-?(\\d*)\\.req$");
 
         StringArray sa = requestR.capture(*cont);
 
-        if(sa.size() <= 1) {
-            
-            LOGIT_INFO("unknown filename ... skipping (" << *cont << ")");
-            continue;
+        if(sa.size() <= 1)
+        {            
+        	LOGIT_INFO("unknown filename ... skipping (" << *cont << ")");
+        	continue;
         }
 
         String md5 = sa[1];
         String date;
 
-        if(sa.size() == 3 && !sa[2].empty()) {
-            md5 += "-" + sa[2];
-            
-            DateTime dt( sa[2].toInt64() ); 
-            date = dt.toString("%Y-%m-%d %H:%M:%S", DateTime::E_LOCAL_TIME);
+        if(sa.size() == 3 && !sa[2].empty())
+        {
+        	md5 += "-" + sa[2];
+        	
+        	DateTime dt( sa[2].toInt64() ); 
+        	date = dt.toString("%Y-%m-%d %H:%M:%S", DateTime::E_LOCAL_TIME);
         }
-
+        
         Map<String, String> reqLine;
         String              subject;
 
@@ -1837,34 +1912,37 @@ OpenSSLUtils::listRequests(const String &caName,
         reqLine["date"]    = date;
 
         Array<Array<String> >::const_iterator dbIT;
-        for(dbIT = camdb.begin(); dbIT != camdb.end(); ++dbIT) {
-
-            if( (*dbIT)[0] == md5 ) {
-
-                subject = (*dbIT)[1];
-                break;
-            }
+        for(dbIT = camdb.begin(); dbIT != camdb.end(); ++dbIT)
+        {
+        	if( (*dbIT)[0] == md5 )
+        	{
+        		subject = (*dbIT)[1];
+        		break;
+        	}
         }
 
-        if(subject.empty()) {
+        if(subject.empty())
+        {
             LOGIT_ERROR("Can not find request subject.");
             BLOCXX_THROW(limal::RuntimeException,
                          __("Can not find request subject."));
         }
 
         sa.clear();
-        while(1) {
-            StringArray saTmp = PerlRegEx("(.*?[^\\\\])(\\/|$)").capture(subject);
-            uint pos = 0;
-
-            if(saTmp.size() >=2) {
-                
-                pos = saTmp[1].length();
-                sa.push_back(saTmp[1]);
-
-            } else {
-                break;
-            }
+        while(1)
+        {
+        	StringArray saTmp = PerlRegEx("(.*?[^\\\\])(\\/|$)").capture(subject);
+        	uint pos = 0;
+        	
+        	if(saTmp.size() >=2)
+        	{                
+        		pos = saTmp[1].length();
+        		sa.push_back(saTmp[1]);
+        	}
+        	else
+        	{
+        		break;
+        	}
             subject = subject.substring(pos);
         }
 
@@ -1879,34 +1957,42 @@ OpenSSLUtils::listRequests(const String &caName,
         PerlRegEx quoteR("\\\\/");
 
         StringArray::const_iterator it;
-        for(it = sa.begin(); it != sa.end(); ++it) {
-
-            String toMatch = quoteR.replace(*it, "/", true);
-            toMatch = PerlRegEx("^/").replace(toMatch, "");
-
-            if(cR.match(toMatch)) {
-            
+        for(it = sa.begin(); it != sa.end(); ++it)
+        {
+        	String toMatch = quoteR.replace(*it, "/", true);
+        	toMatch = PerlRegEx("^/").replace(toMatch, "");
+        	
+            if(cR.match(toMatch))
+            {            
                 reqLine["country"]  = toMatch.substring(2);
-            } else if(stR.match(toMatch)) {
-            
+            }
+            else if(stR.match(toMatch))
+            {            
                 reqLine["stateOrProvinceName"]  = toMatch.substring(3);
-            } else if(lR.match(toMatch)) {
-            
-                reqLine["localityName"]  = toMatch.substring(2);
-            } else if(oR.match(toMatch)) {
-            
+            }
+            else if(lR.match(toMatch))
+            {
+            	reqLine["localityName"]  = toMatch.substring(2);
+            }
+            else if(oR.match(toMatch))
+            {            
                 reqLine["organizationName"]  = toMatch.substring(2);
-            } else if(ouR.match(toMatch)) {
-            
+            }
+            else if(ouR.match(toMatch))
+            {            
                 reqLine["organizationalUnitName"]  = toMatch.substring(3);
-            } else if(cnR.match(toMatch)) {
-            
-                reqLine["commonName"]  = toMatch.substring(3);
-            } else if(emailR.match(toMatch)) {
-            
-                reqLine["emailAddress"]  = toMatch.substring(13);
-            } else {
-                LOGIT_INFO("Unknown rdn: " << toMatch);
+            }
+            else if(cnR.match(toMatch))
+            {
+            	reqLine["commonName"]  = toMatch.substring(3);
+            }
+            else if(emailR.match(toMatch))
+            {            
+            	reqLine["emailAddress"]  = toMatch.substring(13);
+            }
+            else
+            {
+            	LOGIT_INFO("Unknown rdn: " << toMatch);
             }
         }
         ret.push_back(reqLine);
@@ -1918,16 +2004,16 @@ blocxx::Array<blocxx::Map<blocxx::String, blocxx::String> >
 OpenSSLUtils::listCertificates(const String &caName,
                                const String &repository)
 {
-    Array<Map<String, String> > ret;
+	Array<Map<String, String> > ret;
     List<String> tmpList;
 
     String certDir = repository + "/" + caName + "/newcerts/";
 
     int r = path::readDir(tmpList, certDir , false);
 
-    if(r != 0) {
-
-        LOGIT_ERROR("Cannot read directory: " << certDir << 
+    if(r != 0)
+    {
+    	LOGIT_ERROR("Cannot read directory: " << certDir << 
                     "(" << System::errorMsg(r) << ") [" << r << "]");
         BLOCXX_THROW(limal::SystemException,
                      Format(__("Cannot read directory: %1 (%2) [%3]"),
@@ -1940,12 +2026,12 @@ OpenSSLUtils::listCertificates(const String &caName,
     List<String>::const_iterator cont;
     path::PathInfo pi(certDir);
     
-    for(cont = tmpList.begin(); cont != tmpList.end(); ++cont) {
-
+    for(cont = tmpList.begin(); cont != tmpList.end(); ++cont)
+    {
         pi.stat(certDir + "/" + *cont);
     
-        if(!pi.exists() || !pi.isFile()) {
-
+        if(!pi.exists() || !pi.isFile())
+        {
             LOGIT_INFO("skipping file " << pi.toString());
             continue;
         }
@@ -1954,9 +2040,9 @@ OpenSSLUtils::listCertificates(const String &caName,
 
         StringArray sa = certR.capture(*cont);
 
-        if(sa.size() != 3) {
-            
-            LOGIT_INFO("unknown filename ... skipping (" << *cont << ")");
+        if(sa.size() != 3)
+        {
+        	LOGIT_INFO("unknown filename ... skipping (" << *cont << ")");
             continue;
         }
 
@@ -1970,51 +2056,53 @@ OpenSSLUtils::listCertificates(const String &caName,
         certLine["certificate"] = serial + ":" + md5;
 
         Array<Array<String> >::const_iterator dbIT;
-        for(dbIT = indexTXT.begin(); dbIT != indexTXT.end(); ++dbIT) {
-
-            if( (*dbIT)[3] == serial ) {
-
-                subject = (*dbIT)[5];
-
-                if((*dbIT)[0] == "V" ) {
-
+        for(dbIT = indexTXT.begin(); dbIT != indexTXT.end(); ++dbIT)
+        {
+        	if( (*dbIT)[3] == serial )
+        	{
+        		subject = (*dbIT)[5];
+        		
+                if((*dbIT)[0] == "V" )
+                {
                     certLine["status"] = "Valid";
-
-                } else if((*dbIT)[0] == "R" ) {
-
-                    certLine["status"] = "Revoked";
-
-                } else if((*dbIT)[0] == "E" ) {
-
+                }
+                else if((*dbIT)[0] == "R" )
+                {
+                	certLine["status"] = "Revoked";
+                }
+                else if((*dbIT)[0] == "E" )
+                {
                     certLine["status"] = "Expired";
-
-                } else {
-                    
-                    certLine["status"] = (*dbIT)[0];
-
+                }
+                else
+                {                    
+                	certLine["status"] = (*dbIT)[0];
                 }
                 break;
-            }
+        	}
         }
 
-        if(subject.empty()) {
+        if(subject.empty())
+        {
             LOGIT_ERROR("Can not find certificate subject.");
             BLOCXX_THROW(limal::RuntimeException,
                          __("Can not find certificate subject."));
         }
 
         sa.clear();
-        while(1) {
+        while(1)
+        {
             StringArray saTmp = PerlRegEx("(.*?[^\\\\])(\\/|$)").capture(subject);
             uint pos = 0;
 
-            if(saTmp.size() >=2) {
-                
+            if(saTmp.size() >=2)
+            {                
                 pos = saTmp[1].length();
                 sa.push_back(saTmp[1]);
-
-            } else {
-                break;
+            }
+            else
+            {
+            	break;
             }
             subject = subject.substring(pos);
         }
@@ -2031,53 +2119,55 @@ OpenSSLUtils::listCertificates(const String &caName,
 
         StringArray::const_iterator it;
         String lastPart;
-        for(it = sa.begin(); it != sa.end(); ++it) {
-
-            String toMatch = quoteR.replace(*it, "/", true);
-            toMatch = PerlRegEx("^/").replace(toMatch, "");
-
-            if(cR.match(toMatch)) {
-            
+        for(it = sa.begin(); it != sa.end(); ++it)
+        {
+        	String toMatch = quoteR.replace(*it, "/", true);
+        	toMatch = PerlRegEx("^/").replace(toMatch, "");
+        	
+            if(cR.match(toMatch))
+            {            
                 certLine["country"]  = toMatch.substring(2);
                 lastPart = "country";
-            } else if(stR.match(toMatch)) {
-            
+            }
+            else if(stR.match(toMatch))
+            {            
                 certLine["stateOrProvinceName"]  = toMatch.substring(3);
                 lastPart = "stateOrProvinceName";
-
-            } else if(lR.match(toMatch)) {
-            
-                certLine["localityName"]  = toMatch.substring(2);
-                lastPart = "localityName";
-
-            } else if(oR.match(toMatch)) {
-            
+            }
+            else if(lR.match(toMatch))
+            {
+            	certLine["localityName"]  = toMatch.substring(2);
+            	lastPart = "localityName";
+            }
+            else if(oR.match(toMatch))
+            {            
                 certLine["organizationName"]  = toMatch.substring(2);
                 lastPart = "organizationName";
-
-            } else if(ouR.match(toMatch)) {
-            
+            }
+            else if(ouR.match(toMatch))
+            {            
                 certLine["organizationalUnitName"]  = toMatch.substring(3);
                 lastPart = "organizationalUnitName";
-
-            } else if(cnR.match(toMatch)) {
-            
-                certLine["commonName"]  = toMatch.substring(3);
-                lastPart = "commonName";
-
-            } else if(emailR.match(toMatch)) {
-            
+            }
+            else if(cnR.match(toMatch))
+            {            
+            	certLine["commonName"]  = toMatch.substring(3);
+            	lastPart = "commonName";
+            }
+            else if(emailR.match(toMatch))
+            {            
                 certLine["emailAddress"]  = toMatch.substring(13);
                 lastPart = "emailAddress";
-
-            } else {
-                if(!lastPart.empty() && (*it).charAt(0) == '/') {
-                    
-                    certLine[lastPart]  = certLine[lastPart] + *it;
-                    LOGIT_DEBUG(Format("Append '%1' to %2", *it, lastPart));
-                               
-                } else {
-                    
+            }
+            else
+            {
+            	if(!lastPart.empty() && (*it).charAt(0) == '/')
+            	{                    
+            		certLine[lastPart]  = certLine[lastPart] + *it;
+            		LOGIT_DEBUG(Format("Append '%1' to %2", *it, lastPart));
+            	}
+            	else
+            	{                    
                     LOGIT_INFO("Unknown rdn: " << toMatch);
                 }
             }
@@ -2091,17 +2181,17 @@ void
 OpenSSLUtils::createCaInfrastructure(const String &caName, 
                                      const String &repository)
 {
-    if(caName.empty() || !PerlRegEx("\\w+").match(caName)) {
-        
-        LOGIT_ERROR("Invalid caName: " << caName);
-        BLOCXX_THROW(limal::ValueException,
-                     Format(__("Invalid caName: %1"), caName).c_str());
+    if(caName.empty() || !PerlRegEx("\\w+").match(caName))
+    {        
+    	LOGIT_ERROR("Invalid caName: " << caName);
+    	BLOCXX_THROW(limal::ValueException,
+    	             Format(__("Invalid caName: %1"), caName).c_str());
     }
 
     path::PathInfo pi(repository);
 
-    if(!pi.exists() || !pi.isDir()) {
-
+    if(!pi.exists() || !pi.isDir())
+    {
         LOGIT_ERROR(repository << " does not exist");
         BLOCXX_THROW_ERR(limal::SystemException,
                          Format(__("'%1' does not exist"), repository).c_str(),
@@ -2110,8 +2200,8 @@ OpenSSLUtils::createCaInfrastructure(const String &caName,
 
     pi.stat(repository + "/" + caName);
 
-    if(pi.exists()) {
-
+    if(pi.exists())
+    {
     	LOGIT_ERROR(pi.toString() << " still exist");
         BLOCXX_THROW_ERR(limal::SystemException,
                          Format(__("%1 still exist"), pi.toString()).c_str(),
@@ -2120,8 +2210,8 @@ OpenSSLUtils::createCaInfrastructure(const String &caName,
     
     int r = path::createDir(pi.toString(), 0700);
 
-    if( r != 0 ) {
-
+    if( r != 0 )
+    {
         LOGIT_ERROR(Format("Can not create directory: %1 (%2 [%3])",
                            pi.toString(), System::errorMsg(r), r));
         BLOCXX_THROW(limal::SystemException,
@@ -2130,32 +2220,33 @@ OpenSSLUtils::createCaInfrastructure(const String &caName,
     }
 
     ByteBuffer tmpl;
-    try {
-
+    try
+    {
         tmpl = LocalManagement::readFile(repository + "/openssl.cnf.tmpl");
-
+        
         StringArray tmplArray = PerlRegEx("\n").split(String(tmpl.data(), tmpl.size()), true);
 
         PerlRegEx                   dirR("^\\s*dir\\s*=");
         String                      newConf;
         StringArray::const_iterator line;
 
-        for(line = tmplArray.begin(); line != tmplArray.end(); ++line) {
-
-            if(dirR.match(*line)) {
-
-                newConf += "dir = " + pi.toString() + "/\n";
-
-            } else {
-                
+        for(line = tmplArray.begin(); line != tmplArray.end(); ++line)
+        {
+            if(dirR.match(*line))
+            {
+            	newConf += "dir = " + pi.toString() + "/\n";
+            }
+            else
+            {                
                 newConf += *line + "\n";
             }
         }
 
         LocalManagement::writeFile(ByteBuffer(newConf.c_str(), newConf.length()), 
                                    pi.toString() + "/openssl.cnf.tmpl");
-
-    } catch(blocxx::Exception &e) {
+    }
+    catch(blocxx::Exception &e)
+    {
         path::removeDirRecursive(repository + "/" + caName);
 
         BLOCXX_THROW_SUBEX(limal::SystemException,
@@ -2165,22 +2256,22 @@ OpenSSLUtils::createCaInfrastructure(const String &caName,
     String dir = pi.toString() + "/certs";
     r   = path::createDir(dir, 0700);
 
-    if( r != 0 ) {
-
-        path::removeDirRecursive(repository + "/" + caName);
-
-        LOGIT_ERROR(Format("Can not create directory: %1 (%2 [%3])",
-                           dir, System::errorMsg(r), r));
-        BLOCXX_THROW(limal::SystemException,
-                     Format(__("Can not create directory: %1 (%2 [%3])"),
-                            dir, System::errorMsg(r), r).c_str());
+    if( r != 0 )
+    {
+    	path::removeDirRecursive(repository + "/" + caName);
+    	
+    	LOGIT_ERROR(Format("Can not create directory: %1 (%2 [%3])",
+    	                   dir, System::errorMsg(r), r));
+    	BLOCXX_THROW(limal::SystemException,
+    	             Format(__("Can not create directory: %1 (%2 [%3])"),
+    	                    dir, System::errorMsg(r), r).c_str());
     }
 
     dir = pi.toString() + "/crl";
     r   = path::createDir(dir, 0700);
 
-    if( r != 0 ) {
-
+    if( r != 0 )
+    {
         path::removeDirRecursive(repository + "/" + caName);
 
         LOGIT_ERROR(Format("Can not create directory: %1 (%2 [%3])",
@@ -2193,8 +2284,8 @@ OpenSSLUtils::createCaInfrastructure(const String &caName,
     dir = pi.toString() + "/newcerts";
     r   = path::createDir(dir, 0700);
 
-    if( r != 0 ) {
-
+    if( r != 0 )
+    {
         path::removeDirRecursive(repository + "/" + caName);
 
         LOGIT_ERROR(Format("Can not create directory: %1 (%2 [%3])",
@@ -2207,8 +2298,8 @@ OpenSSLUtils::createCaInfrastructure(const String &caName,
     dir = pi.toString() + "/req";
     r   = path::createDir(dir, 0700);
 
-    if( r != 0 ) {
-
+    if( r != 0 )
+    {
         path::removeDirRecursive(repository + "/" + caName);
 
         LOGIT_ERROR(Format("Can not create directory: %1 (%2 [%3])",
@@ -2221,8 +2312,8 @@ OpenSSLUtils::createCaInfrastructure(const String &caName,
     dir = pi.toString() + "/keys";
     r   = path::createDir(dir, 0700);
 
-    if( r != 0 ) {
-
+    if( r != 0 )
+    {
         path::removeDirRecursive(repository + "/" + caName);
 
         LOGIT_ERROR(Format("Can not create directory: %1 (%2 [%3])",
@@ -2232,21 +2323,21 @@ OpenSSLUtils::createCaInfrastructure(const String &caName,
                             dir, System::errorMsg(r), r).c_str());
     }
 
-    try {
-
+    try
+    {
         LocalManagement::writeFile(ByteBuffer("01"), 
                                    pi.toString() + "/serial");
         LocalManagement::writeFile(ByteBuffer(), 
                                    pi.toString() + "/index.txt");
         LocalManagement::writeFile(ByteBuffer(), 
                                    pi.toString() + "/cam.txt");
-
-    } catch(blocxx::Exception &e) {
-
-        path::removeDirRecursive(repository + "/" + caName);
-
-        BLOCXX_THROW_SUBEX(limal::SystemException,
-                           __("Cannot create file"), e);
+    }
+    catch(blocxx::Exception &e)
+    {
+    	path::removeDirRecursive(repository + "/" + caName);
+    	
+    	BLOCXX_THROW_SUBEX(limal::SystemException,
+    	                   __("Cannot create file"), e);
     }
 }
 
