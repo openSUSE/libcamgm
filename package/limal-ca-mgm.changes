@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Tue Jul 18 12:41:47 CEST 2006 - mc@suse.de
+
+- improve documentation 
+
+-------------------------------------------------------------------
 Wed Jul  5 15:01:58 CEST 2006 - mc@suse.de
 
 - using gettext translation mechanism
