@@ -157,7 +157,7 @@ EXTRA_DIST = CA2/*.* CA3/*.* CA4/*.* CA5/*.* single.out/*.* \
              TestRepos3/Test3_SuSE_CA/*.*                   \
              TestRepos3/.cas/*.*                            \
              openssl.cnf.tmpl                               \
-             perl-TypeTest.single                           \
+             perl-*.single                                  \
              iniParser/*.out iniParser/*.in                 \
              iniParser/*.ini iniParser/*.err
 
