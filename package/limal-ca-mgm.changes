@@ -27,6 +27,12 @@ Wed Jun 28 17:59:40 CEST 2006 - mc@suse.de
 - Added i18n macro to all exception messages 
 
 -------------------------------------------------------------------
+Thu Apr 27 16:21:48 CEST 2006 - mc@suse.de
+
+- version 1.1.14
+- fix incompatible parameter name [#170174]
+
+-------------------------------------------------------------------
 Mon Mar 20 11:49:01 CET 2006 - mc@suse.de
 
 - version 1.1.13
