@@ -42,7 +42,7 @@ install -m 0644 %{_builddir}/%{name}-%{version}/src/openssl.cnf.tmpl $RPM_BUILD_
 @limallibdir@/lib*.so.*
 
 # we currently do not have translations
-#/usr/share/locale/*/LC_MESSAGES/*
+#@localedir@/*/LC_MESSAGES/*
 
 %files devel
 %defattr(-,root,root)
