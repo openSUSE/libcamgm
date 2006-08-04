@@ -2,23 +2,28 @@
 
 @HEADER@
 BuildRequires: curl gcc-c++ limal-devel limal-perl limal-devtools openssl-devel perl-gettext sgml-skel
-Summary:	-
+Summary:	LiMaL--CA Management Library
 
 %description
--
+The LiMaL CA Management Library provides methods for managing a certificate authority.
 
 @HEADER-DEVEL@
 Requires:       limal-devel openssl-devel
-Summary:	-
+Summary:	LiMaL - CA Management Library Development Files
 
 %description devel
--
+The LiMaL CA Management Library provides methods for managing 
+a Certificate Authority. This package includes the header files and 
+development documentation.
 
 @HEADER-PERL@
-Summary:	-
+Summary:	LiMaL - CA Management Library Perl Bindings 
 
 %description perl
--
+The LiMaL CA Management Library provides methods for managing 
+a Certificate Authority. 
+
+This package provides the perl bindings to the CA Management Library.
 
 
 @PREP@
