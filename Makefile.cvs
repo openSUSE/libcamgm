@@ -10,7 +10,7 @@ configure: all
 all:
 	limaltool limalautoconf
 	limaltool limalautomake
-	autoreconf --force --install
+	autoreconf --force --install --verbose
 
 install: configure
 	make
