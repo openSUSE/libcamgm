@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Thu Aug 17 14:39:47 CEST 2006 - mc@suse.de
+
+- changes for opensuse buildservice 
+
+-------------------------------------------------------------------
 Tue Aug  8 15:38:43 CEST 2006 - mc@suse.de
 
 - Makefile.cvs: add --verbose to autoreconf 
