@@ -2,6 +2,12 @@
 
 @HEADER@
 BuildRequires: curl gcc-c++ limal-devel limal-perl limal-devtools openssl-devel perl-gettext sgml-skel
+
+%if 0%{?fedora_version}
+BuildRequires: openssl-perl
+Requires: openssl-perl
+%endif
+
 Summary:	LiMaL--CA Management Library
 
 %description
