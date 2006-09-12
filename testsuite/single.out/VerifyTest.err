@@ -27,7 +27,9 @@ DEBUG limal - readDir ./TestRepos/Test_CA2/newcerts
 DEBUG ca-mgm - Append '/SUSE Inc.\Gmbh' to commonName
 DEBUG ca-mgm - Append '/SUSE Inc.\Gmbh' to commonName
 DEBUG ca-mgm - Command: /usr/bin/openssl verify -CApath ./TestRepos//.cas/ -purpose any -crl_check_all ./TestRepos/Test_CA2/newcerts/01:b4d4e48e6de644c953290eb2854a6ced-1124374396.pem
+ERROR ca-mgm - Certificate invalid! (certificate has expired / error 10 at 0 depth lookup:certificate has expired)
 DEBUG ca-mgm - Command: /usr/bin/openssl verify -CApath ./TestRepos//.cas/ -purpose any -crl_check_all ./TestRepos/Test_CA2/newcerts/02:bc5324c7f5c2a27492fb6795745b596b-1124374399.pem
+ERROR ca-mgm - Certificate invalid! (certificate has expired / error 10 at 0 depth lookup:certificate has expired)
 DEBUG ca-mgm - Command: /usr/bin/openssl verify -CApath ./TestRepos//.cas/ -purpose any -crl_check_all ./TestRepos/Test_CA2/newcerts/03:3673cf466b7b97997f25f5cee5dafe40-1124374402.pem
 ERROR ca-mgm - Certificate invalid! (certificate revoked / error 23 at 0 depth lookup:certificate revoked)
 DEBUG ca-mgm - Command: /usr/bin/openssl verify -CApath ./TestRepos//.cas/ -purpose any -crl_check_all ./TestRepos/Test_CA2/newcerts/04:d816690a832b0e52becd255d3a62e975-1124374403.pem
@@ -38,6 +40,8 @@ DEBUG ca-mgm - Command: /usr/bin/openssl verify -CApath ./TestRepos//.cas/ -purp
 ERROR ca-mgm - Certificate invalid! (certificate revoked / error 23 at 0 depth lookup:certificate revoked)
 DEBUG ca-mgm - Command: /usr/bin/openssl verify -CApath ./TestRepos//.cas/ -purpose any -crl_check_all ./TestRepos/Test_CA2/newcerts/07:9797ac11af29f94b82c1e5b0499ab5f2-1124374409.pem
 DEBUG ca-mgm - Command: /usr/bin/openssl verify -CApath ./TestRepos//.cas/ -purpose any -crl_check_all ./TestRepos/Test_CA2/newcerts/08:40717a16174dc4d516f6fa7ee8eeb18c-1124792802.pem
+ERROR ca-mgm - Certificate invalid! (certificate has expired / error 10 at 0 depth lookup:certificate has expired)
 DEBUG ca-mgm - Command: /usr/bin/openssl verify -CApath ./TestRepos//.cas/ -purpose any -crl_check_all ./TestRepos/Test_CA2/newcerts/09:bf04fdd95062554800c1556085f47063-1125322097.pem
 ERROR ca-mgm - Certificate invalid! (certificate revoked / error 23 at 0 depth lookup:certificate revoked)
+DEBUG ca-mgm - Command: /usr/bin/openssl verify -CApath ./TestRepos//.cas/ -purpose any -crl_check_all ./TestRepos/Test_CA2/newcerts/0A:0d03287ae454fab8a0e905499d5132fd-1158057443.pem
 DEBUG limal - removeFile ./TestRepos/Test_CA2/openssl.cnf

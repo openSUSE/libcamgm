@@ -8,3 +8,4 @@ d816690a832b0e52becd255d3a62e975-1124374403 /C=DE/CN=Test Certificate for revoca
 40717a16174dc4d516f6fa7ee8eeb18c-1124792802 /C=DE/CN=Full Test Certificate/emailAddress=suse@suse.de
 52324820ee92ebe512780bec85174c14 /C=DE/ST=Bavaria/L=Nuremberg/O=My Linux Tux GmbH/OU=IT Abteilung/CN=Michael Calmer/emailAddress=mc@suse.de
 bf04fdd95062554800c1556085f47063-1125322097 /C=DE/CN=Test Certificate for revocation 5 oid test/emailAddress=suse@suse.de
+0d03287ae454fab8a0e905499d5132fd-1158057443 /C=DE/O=Example Inc./CN=tait.example.com

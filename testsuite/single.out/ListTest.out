@@ -1,6 +1,12 @@
 START
 =================== start getRequestList ======================
 New Entry
+commonName = tait.example.com
+country = DE
+date = 2006-09-12 10:37:23 UTC
+organizationName = Example Inc.
+request = 0d03287ae454fab8a0e905499d5132fd-1158057443
+New Entry
 commonName = Test Certificate for revocation
 country = DE
 date = 2005-08-18 14:13:22 UTC
@@ -72,14 +78,14 @@ commonName = Test CA/SUSE Inc.\Gmbh
 country = DE
 emailAddress = suse@suse.de
 serial = 01
-status = Valid
+status = Expired
 New Entry
 certificate = 02:bc5324c7f5c2a27492fb6795745b596b-1124374399
 commonName = Test Server Certificate/SUSE Inc.\Gmbh
 country = DE
 emailAddress = suse@suse.de
 serial = 02
-status = Valid
+status = Expired
 New Entry
 certificate = 03:3673cf466b7b97997f25f5cee5dafe40-1124374402
 commonName = Test Certificate for revocation
@@ -121,7 +127,7 @@ commonName = Full Test Certificate
 country = DE
 emailAddress = suse@suse.de
 serial = 08
-status = Valid
+status = Expired
 New Entry
 certificate = 09:bf04fdd95062554800c1556085f47063-1125322097
 commonName = Test Certificate for revocation 5 oid test
@@ -129,6 +135,13 @@ country = DE
 emailAddress = suse@suse.de
 serial = 09
 status = Revoked
+New Entry
+certificate = 0A:0d03287ae454fab8a0e905499d5132fd-1158057443
+commonName = tait.example.com
+country = DE
+organizationName = Example Inc.
+serial = 0A
+status = Valid
 getCertificateList successfully executed
 =================== end List tests ========================
 DONE
