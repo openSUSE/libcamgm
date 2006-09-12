@@ -1,17 +1,18 @@
 -------------------------------------------------------------------
-Thu Aug 17 14:39:47 CEST 2006 - mc@suse.de
+Tue Sep 12 14:26:05 CEST 2006 - mc@suse.de
 
-- changes for opensuse buildservice 
+- version 1.2.2
+- fix testcases (expired certificates)
+- enhance verify testcase to detect expired certificates.
+- changes for opensuse buildservice
+- Makefile.cvs: add --verbose to autoreconf
 
 -------------------------------------------------------------------
-Tue Aug  8 15:38:43 CEST 2006 - mc@suse.de
+Wed Sep  6 11:54:10 CEST 2006 - mt@suse.de
 
-- Makefile.cvs: add --verbose to autoreconf 
-
--------------------------------------------------------------------
-Fri Aug  4 14:50:21 CEST 2006 - mc@suse.de
-
-- update spec.in . 
+- temporary disabled testsuite run, because of expired
+  certificates, that aren't easy to recreate (mc will
+  provide real fix later)
 
 -------------------------------------------------------------------
 Fri Jul 21 11:44:36 CEST 2006 - mc@suse.de
