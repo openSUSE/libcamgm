@@ -1,13 +1,13 @@
 START
 =================== start Verify Test ======================
-01: Verify failed: unknown reason
-02: Verify failed: unknown reason
+01: Verify failed: Found expired certificate
+02: Verify failed: Found expired certificate
 03: Verify failed: Found revoked certificate
 04: Verify failed: Found revoked certificate
 05: Verify failed: Found revoked certificate
 06: Verify failed: Found revoked certificate
 07: Verify success
-08: Verify failed: unknown reason
+08: Verify failed: Found expired certificate
 09: Verify failed: Found revoked certificate
 0A: Verify success
 =================== end List tests ========================

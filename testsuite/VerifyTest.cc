@@ -46,6 +46,7 @@ int main()
         cout << "=================== start Verify Test ======================" << endl;
         {
             PerlRegEx r1("revoked");
+            PerlRegEx r2("expired");
 
             CA ca("Test_CA2", "system", "./TestRepos/");
 
@@ -71,9 +72,13 @@ int main()
                 }
                 catch(RuntimeException &e)
                 {
-                    if(r1.match(e.what()))
+                	if(r1.match(e.what()))
                     {
                         cout << serial << ": Verify failed: Found revoked certificate" << endl;
+                    }
+                    else if(r2.match(e.what()))
+                    {
+                        cout << serial << ": Verify failed: Found expired certificate" << endl;
                     }
                     else
                     {
