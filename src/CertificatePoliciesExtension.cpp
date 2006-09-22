@@ -391,6 +391,7 @@ CertificatePolicy::CertificatePolicy(const String& policyIdentifier)
 	{
 		LOGIT_ERROR("invalid value for policyIdentifier" << policyIdentifier);
 		BLOCXX_THROW(limal::ValueException ,
+		             // %1 is the wrong string for policyIdentifier
 		             Format(__("invalid value for policyIdentifier: %1"), policyIdentifier).c_str());
 	}
 }

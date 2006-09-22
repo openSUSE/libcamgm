@@ -107,6 +107,7 @@ RDNObject::getOpenSSLValue() const
 	{
 		LOGIT_ERROR("Invalid type:" << m_impl->type);
 		BLOCXX_THROW(limal::ValueException,
+		             // %1 is the invalid string for a DN type
 		             Format(__("Invalid type: %1"), m_impl->type).c_str());
 	}
 

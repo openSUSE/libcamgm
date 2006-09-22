@@ -90,6 +90,7 @@ CertificateData_Priv::setSerial(const String& serial)
 	{
 		LOGIT_ERROR("invalid serial: " << serial);
 		BLOCXX_THROW(limal::ValueException,
+		             // %1 is an invalid serial number
 		             Format(__("Invalid serial: %1"), serial).c_str());
 	}
 	m_impl->serial = serial;
@@ -279,7 +280,8 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 	if(sa.size() != 7)
 	{
 		LOGIT_ERROR("Can not parse date: " << sbuf);
-		BLOCXX_THROW(limal::RuntimeException, 
+		BLOCXX_THROW(limal::RuntimeException,
+		             // %1 is an invalid date string
 		             Format(__("Can not parse date: %1"), sbuf).c_str());
 	}
 	int year = 1970;
@@ -466,7 +468,8 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 		EVP_PKEY_free(pkey);
     	
 		LOGIT_ERROR("Unsupported signature algorithm: '" << sbuf << "'");
-		BLOCXX_THROW(limal::RuntimeException, 
+		BLOCXX_THROW(limal::RuntimeException,
+		             // %1 is the unsupported signature algorithm string
 		             Format(__("Unsupported signature algorithm: '%1'"), sbuf).c_str());
 	}
 

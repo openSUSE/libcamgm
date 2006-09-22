@@ -240,6 +240,7 @@ CA::createSubCA(const String& newCaName,
 		path::removeDirRecursive(m_impl->repositoryDir + "/" + newCaName);
 
 		LOGIT_ERROR("Can not parse certificate name: " << certificate);
+		// %1 is the name of the CA
 		BLOCXX_THROW(limal::RuntimeException, 
 		             Format(__("Can not parse certificate name: %1"), certificate).c_str());
 	}
@@ -366,6 +367,7 @@ CA::issueCertificate(const String& requestName,
 	if(!p.exists())
 	{
 		LOGIT_ERROR("Request does not exist.(" << requestFile << ")");
+		// %1 is the absolute path to the request
 		BLOCXX_THROW(ValueException, 
 		             Format(__("Request does not exist.(%1)"), requestFile ).c_str());
 	}
@@ -957,6 +959,7 @@ CA::deleteRequest(const String& requestName)
 	if(r != 0)
 	{
 		BLOCXX_THROW(limal::SystemException, 
+		             // %1 is the error code
 		             Format(__("Removing the request(%1) failed."), r).c_str());
 	}
 }
@@ -970,6 +973,7 @@ CA::deleteCertificate(const String& certificateName,
 	{
 		LOGIT_ERROR("Certificate does not exist." << certFile.toString());
 		BLOCXX_THROW(limal::ValueException,
+		             // %1 is the absolute path to the certificate
 		             Format(__("Certificate(%1) does not exist."),
 		                    certFile.toString()).c_str());
 	}
@@ -981,6 +985,7 @@ CA::deleteCertificate(const String& certificateName,
 	{
 		LOGIT_ERROR("Can not parse certificate name: " << certificateName);
 		BLOCXX_THROW(limal::RuntimeException,
+		             // %1 is the certificate name
 		             Format(__("Can not parse certificate name: %1"), certificateName).c_str());
 	}
 
@@ -1017,6 +1022,7 @@ CA::deleteCertificate(const String& certificateName,
 		if(r != 0)
 		{
 			BLOCXX_THROW(limal::SystemException, 
+			             // %1 is the error code of rm
 			             Format(__("Removing the certificate failed: %1."), r).c_str());
 		}
 	}
@@ -1455,7 +1461,8 @@ CA::deleteCA(const String& caName,
 	if(!pi.exists())
 	{
 		LOGIT_ERROR("CA name does not exist.(" << pi.toString() << ")");
-		BLOCXX_THROW_ERR(limal::ValueException, 
+		BLOCXX_THROW_ERR(limal::ValueException,
+		                 // %1 is the absolute path name to the CA
 		                 Format(__("CA name does not exist.(%1)"), pi.toString()).c_str(),
 		                 E_FILE_NOT_FOUND);
 	}
@@ -1511,6 +1518,7 @@ CA::deleteCA(const String& caName,
 	{        
 		LOGIT_ERROR("Deleting the CA failed: " << r);
 		BLOCXX_THROW(limal::SystemException,
+		             // %1 is the error code of rm
 		             Format(__("Deleting the CA failed: %1"), r).c_str());
 	}
 

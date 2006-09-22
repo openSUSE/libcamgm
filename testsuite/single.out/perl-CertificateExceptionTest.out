@@ -10,13 +10,13 @@ DN Key emailAddress
           'subexception' => {
                               'file' => 'CA.cpp',
                               'type' => 'ValueException',
-                              'line' => 1687,
+                              'line' => 1695,
                               'message' => 'The \'emailAddress\' field must be defined.',
                               'code' => -116
                             },
           'file' => 'CA.cpp',
           'type' => 'RuntimeException',
-          'line' => 471,
+          'line' => 473,
           'message' => 'Issue the certificate failed',
           'code' => -1
         };

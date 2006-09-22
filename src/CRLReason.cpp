@@ -132,6 +132,7 @@ CRLReason::setReason(const String& reason)
 	if(!checkReason(reason))
 	{
 		BLOCXX_THROW(limal::ValueException,
+		             // %1 is the wrong reason string
 		             Format(__("Invalid revoke reason: %1"), reason).c_str());
 	}
 	m_impl->reason = reason;
