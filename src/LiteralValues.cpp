@@ -116,7 +116,7 @@ LiteralValue::LiteralValue(const String& value)
 	{
 		LOGIT_DEBUG("unknown type: "<< sp[1] << " = " << sp[2]);
 		BLOCXX_THROW(limal::ValueException,
-		             __("Unknown type"));
+		             __("Unknown type."));
 	}
 }
 

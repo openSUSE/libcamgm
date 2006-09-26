@@ -208,7 +208,7 @@ CertificateIssueData::commit2Config(CA& ca, Type type) const
 	{
 		LOGIT_ERROR("invalid CertificateIssueData object");
 		BLOCXX_THROW(limal::ValueException,
-		             __("Invalid CertificateIssueData object"));
+		             __("Invalid CertificateIssueData object."));
 	}
 	// These types are not supported by this object
 	if(type == E_CRL        || type == E_Client_Req ||
@@ -216,7 +216,7 @@ CertificateIssueData::commit2Config(CA& ca, Type type) const
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(limal::ValueException,
-		             Format(__("Wrong type: %1"), type).c_str());
+		             Format(__("Wrong type: %1."), type).c_str());
 	}
 	UInt32 t = (UInt32)((getEndDate() - getStartDate())/(60*60*24));
     

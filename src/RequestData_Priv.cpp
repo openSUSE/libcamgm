@@ -179,7 +179,7 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
 	{
 		LOGIT_ERROR("Unable to get public key");
 		BLOCXX_THROW(limal::RuntimeException,
-		             __("Unable to get public key"));
+		             __("Unable to get the public key."));
 	}
 
 	if(pkey->type == EVP_PKEY_RSA)
@@ -190,7 +190,7 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
 		{
 			LOGIT_ERROR("could not get RSA key");
 			BLOCXX_THROW(limal::RuntimeException,
-			             __("Could not get RSA key"));
+			             __("Could not get RSA key."));
 		}
 
 		unsigned char *y = NULL;
@@ -210,7 +210,7 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
 
 		LOGIT_ERROR("Unsupported public key type");
 		BLOCXX_THROW(limal::RuntimeException,
-		             __("Unsupported public key type"));
+		             __("Unsupported public key type."));
 	}
 
 	// get keysize
@@ -243,7 +243,7 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
     	
 		LOGIT_ERROR("Unsupported public key algorithm");
 		BLOCXX_THROW(limal::RuntimeException,
-		             __("Unsupported public key algorithm"));
+		             __("Unsupported public key algorithm."));
 	}
 
 	// get signatureAlgorithm
@@ -273,7 +273,7 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
 
 		LOGIT_ERROR("Unsupported signature algorithm: '" << sbuf << "'");
 		BLOCXX_THROW(limal::RuntimeException,
-		             Format(__("Unsupported signature algorithm: '%1'"), sbuf).c_str());
+		             Format(__("Unsupported signature algorithm %1."), sbuf).c_str());
 	}
 
 	// get signature
@@ -366,7 +366,7 @@ RequestData_Priv::init(const ByteBuffer& request,
 		{            
 			LOGIT_ERROR("Can not create a memory BIO");
 			BLOCXX_THROW(limal::MemoryException,
-			             __("Can not create a memory BIO"));
+			             __("Cannot create a memory BIO."));
 		}
 
 		// create the X509 structure

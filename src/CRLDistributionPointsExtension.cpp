@@ -73,7 +73,7 @@ CRLDistributionPointsExt::CRLDistributionPointsExt(CAConfig* caConfig, Type type
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(limal::ValueException,
-		             Format(__("Wrong type: %1"), type).c_str());
+		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
 	bool p = caConfig->exists(type2Section(type, true), "crlDistributionPoints");
@@ -142,7 +142,7 @@ CRLDistributionPointsExt::getCRLDistributionPoints() const
 	{
 		LOGIT_ERROR("CRLDistributionPointsExt is not present");
 		BLOCXX_THROW(limal::RuntimeException,
-		             __("CRLDistributionPointsExt is not present"));
+		             __("CRLDistributionPointsExt is not present."));
 	}
 	return m_impl->altNameList;
 }
@@ -154,7 +154,7 @@ CRLDistributionPointsExt::commit2Config(CA& ca, Type type) const
 	{
 		LOGIT_ERROR("invalid CRLDistributionPointsExt object");
 		BLOCXX_THROW(limal::ValueException,
-		             __("Invalid CRLDistributionPointsExt object"));
+		             __("Invalid CRLDistributionPointsExt object."));
 	}
 
 	// These types are not supported by this object
@@ -163,7 +163,7 @@ CRLDistributionPointsExt::commit2Config(CA& ca, Type type) const
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(limal::ValueException,
-		             Format(__("Wrong type: %1"), type).c_str());
+		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
 	if(isPresent())

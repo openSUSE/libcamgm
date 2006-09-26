@@ -91,7 +91,7 @@ CertificateData_Priv::setSerial(const String& serial)
 		LOGIT_ERROR("invalid serial: " << serial);
 		BLOCXX_THROW(limal::ValueException,
 		             // %1 is an invalid serial number
-		             Format(__("Invalid serial: %1"), serial).c_str());
+		             Format(__("Invalid serial %1."), serial).c_str());
 	}
 	m_impl->serial = serial;
 }
@@ -203,7 +203,7 @@ CertificateData_Priv::init(const ByteBuffer &certificate, FormatType formatType)
 		{            
 			LOGIT_ERROR("Can not create a memory BIO");
 			BLOCXX_THROW(limal::MemoryException,
-			             __("Can not create a memory BIO"));
+			             __("Cannot create a memory BIO."));
 		}
 
 		// create the X509 structure
@@ -232,7 +232,7 @@ CertificateData_Priv::init(const ByteBuffer &certificate, FormatType formatType)
 	{
 		LOGIT_ERROR("Can not parse certificate");
 		BLOCXX_THROW(limal::RuntimeException,
-		             __("Can not parse certificate"));
+		             __("Cannot parse the certificate."));
 	}
 
 	try
@@ -245,7 +245,7 @@ CertificateData_Priv::init(const ByteBuffer &certificate, FormatType formatType)
 		m_impl->x509 = NULL;
 
 		BLOCXX_THROW_SUBEX(limal::SyntaxException,
-		                   __("Error at parsing the certificate"),
+		                   __("Error while parsing the certificate."),
 		                   e);
 	}
 }
@@ -282,7 +282,7 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 		LOGIT_ERROR("Can not parse date: " << sbuf);
 		BLOCXX_THROW(limal::RuntimeException,
 		             // %1 is an invalid date string
-		             Format(__("Can not parse date: %1"), sbuf).c_str());
+		             Format(__("Cannot parse date %1."), sbuf).c_str());
 	}
 	int year = 1970;
 	if(sa[1].toInt() >= 70 && sa[1].toInt() <= 99)
@@ -316,7 +316,7 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 	{
 		LOGIT_ERROR("Can not parse date: " << sbuf);
 		BLOCXX_THROW(limal::RuntimeException, 
-		             Format(__("Can not parse date: %1"), sbuf).c_str());
+		             Format(__("Cannot parse date %1."), sbuf).c_str());
 	}
 	year = 1970;
 	if(sa[1].toInt() >= 70 && sa[1].toInt() <= 99)
@@ -371,7 +371,7 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 	{        
 		LOGIT_ERROR("Unable to get public key");
 		BLOCXX_THROW(limal::RuntimeException,
-		             __("Unable to get public key"));
+		             __("Unable to get the public key."));
 	}
     
 	if(pkey->type == EVP_PKEY_RSA)
@@ -382,7 +382,7 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 		{
 			LOGIT_ERROR("could not get RSA key");
 			BLOCXX_THROW(limal::RuntimeException,
-			             __("Could not get RSA key"));
+			             __("Could not get RSA key."));
 		}
         
 		unsigned char *y = NULL;
@@ -402,7 +402,7 @@ CertificateData_Priv::parseCertificate(X509 *x509)
         
 		LOGIT_ERROR("Unsupported public key type");
 		BLOCXX_THROW(limal::RuntimeException,
-		             __("Unsupported public key type"));
+		             __("Unsupported public key type."));
 	}
 
 	// get keysize
@@ -438,7 +438,7 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 
 		LOGIT_ERROR("Unsupported public key algorithm");
 		BLOCXX_THROW(limal::RuntimeException,
-		             __("Unsupported public key algorithm"));
+		             __("Unsupported public key algorithm."));
 	}
 
 	// get signatureAlgorithm
@@ -470,7 +470,7 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 		LOGIT_ERROR("Unsupported signature algorithm: '" << sbuf << "'");
 		BLOCXX_THROW(limal::RuntimeException,
 		             // %1 is the unsupported signature algorithm string
-		             Format(__("Unsupported signature algorithm: '%1'"), sbuf).c_str());
+		             Format(__("Unsupported signature algorithm %1."), sbuf).c_str());
 	}
 
 	// get signature

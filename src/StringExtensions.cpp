@@ -119,7 +119,7 @@ NsBaseUrlExt::NsBaseUrlExt(CAConfig* caConfig, Type type)
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(limal::ValueException,
-		             Format(__("Wrong type: %1"), type).c_str());
+		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
 	bool p = caConfig->exists(type2Section(type, true), "nsBaseUrl");
@@ -196,7 +196,7 @@ NsBaseUrlExt::commit2Config(CA& ca, Type type) const
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(limal::ValueException,
-		             Format(__("Wrong type: %1"), type).c_str());
+		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
 	if(isPresent())
@@ -284,7 +284,7 @@ NsRevocationUrlExt::NsRevocationUrlExt(CAConfig* caConfig, Type type)
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(limal::ValueException,
-		             Format(__("Wrong type: %1"), type).c_str());
+		             Format(__("Wrong type: %1."), type).c_str());
 	}
     
 	bool p = caConfig->exists(type2Section(type, true), "nsRevocationUrl");
@@ -354,7 +354,7 @@ NsRevocationUrlExt::commit2Config(CA& ca, Type type) const
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(limal::ValueException,
-		             Format(__("Wrong type: %1"), type).c_str());
+		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
 	if(isPresent()) {
@@ -438,7 +438,7 @@ NsCaRevocationUrlExt::NsCaRevocationUrlExt(CAConfig* caConfig, Type type)
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(limal::ValueException,
-		             Format(__("Wrong type: %1"), type).c_str());
+		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
 	bool p = caConfig->exists(type2Section(type, true), "nsCaRevocationUrl");
@@ -508,7 +508,7 @@ NsCaRevocationUrlExt::commit2Config(CA& ca, Type type) const
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(limal::ValueException,
-		             Format(__("Wrong type: %1"), type).c_str());
+		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
 	if(isPresent()) {
@@ -591,7 +591,7 @@ NsRenewalUrlExt::NsRenewalUrlExt(CAConfig* caConfig, Type type)
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(limal::ValueException,
-		             Format(__("Wrong type: %1"), type).c_str());
+		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
 	bool p = caConfig->exists(type2Section(type, true), "nsRenewalUrl");
@@ -661,7 +661,7 @@ NsRenewalUrlExt::commit2Config(CA& ca, Type type) const
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(limal::ValueException,
-		             Format(__("Wrong type: %1"), type).c_str());
+		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
 	if(isPresent()) {
@@ -743,7 +743,7 @@ NsCaPolicyUrlExt::NsCaPolicyUrlExt(CAConfig* caConfig, Type type)
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(limal::ValueException,
-		             Format(__("Wrong type: %1"), type).c_str());
+		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
 	bool p = caConfig->exists(type2Section(type, true), "nsCaPolicyUrl");
@@ -813,7 +813,7 @@ NsCaPolicyUrlExt::commit2Config(CA& ca, Type type) const
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(limal::ValueException,
-		             Format(__("Wrong type: %1"), type).c_str());
+		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
 	if(isPresent()) {
@@ -955,7 +955,7 @@ NsSslServerNameExt::commit2Config(CA& ca, Type type) const
 	if(type == E_CRL) {
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(limal::ValueException,
-		             Format(__("Wrong type: %1"), type).c_str());
+		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
 	if(isPresent()) {
@@ -1017,7 +1017,7 @@ NsCommentExt::NsCommentExt(CAConfig* caConfig, Type type)
 	if(type == E_CRL) {
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(limal::ValueException,
-		             Format(__("Wrong type: %1"), type).c_str());
+		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
 	bool p = caConfig->exists(type2Section(type, true), "nsComment");
@@ -1081,7 +1081,7 @@ NsCommentExt::commit2Config(CA& ca, Type type) const
 	if(type == E_CRL) {
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(limal::ValueException,
-		             Format(__("Wrong type: %1"), type).c_str());
+		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
 	if(isPresent()) {

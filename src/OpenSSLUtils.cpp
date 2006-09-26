@@ -53,7 +53,7 @@ OpenSSLUtils::OpenSSLUtils(const String &configFile,
     {
         LOGIT_ERROR("File does not exist: " << configFile);
         BLOCXX_THROW_ERR(limal::ValueException,
-                         Format(__("File does not exist: %1"), configFile).c_str(),
+                         Format(__("File does not exist: %1."), configFile).c_str(),
                          E_FILE_NOT_FOUND);
     }
 
@@ -62,7 +62,7 @@ OpenSSLUtils::OpenSSLUtils(const String &configFile,
     {
         LOGIT_ERROR("Directory does not exist: " << tmpDir);
         BLOCXX_THROW_ERR(limal::ValueException,
-                         Format(__("Directory does not exist: %1"), tmpDir).c_str(),
+                         Format(__("Directory does not exist: %1."), tmpDir).c_str(),
                          E_FILE_NOT_FOUND);
     }
 
@@ -71,7 +71,7 @@ OpenSSLUtils::OpenSSLUtils(const String &configFile,
     {
         LOGIT_ERROR("Invalid command: " << command);
         BLOCXX_THROW(limal::ValueException,
-                     Format(__("Invalid command: %1"), command).c_str());
+                     Format(__("Invalid command %1."), command).c_str());
     }
 
     path::PathName r = path::PathName::dirName(configFile);
@@ -167,7 +167,7 @@ void OpenSSLUtils::createRequest(const DNObject &dn,
     {
     	LOGIT_ERROR("No valid keyfile specified");
     	BLOCXX_THROW(limal::ValueException,
-    	             __("No valid keyfile specified"));
+    	             __("No valid key file specified."));
     }
 
     debugCmd += "-config ";
@@ -265,7 +265,7 @@ OpenSSLUtils::createSelfSignedCertificate(const String &outFile,
     {        
     	LOGIT_ERROR("No valid keyfile specified");
     	BLOCXX_THROW(limal::ValueException,
-    	             __("No valid keyfile specified"));
+    	             __("No valid key file specified."));
     }
 
     pi.stat(requestFile);
@@ -273,7 +273,7 @@ OpenSSLUtils::createSelfSignedCertificate(const String &outFile,
     {
     	LOGIT_ERROR("No valid request file specified");
         BLOCXX_THROW(limal::ValueException,
-                     __("No valid request file specified"));
+                     __("No valid request file specified."));
     }
 
     blocxx::String debugCmd;
@@ -363,7 +363,7 @@ OpenSSLUtils::signRequest(const String &requestFile,
     {
     	LOGIT_ERROR("No valid keyfile specified");
         BLOCXX_THROW(limal::ValueException,
-                     __("No valid keyfile specified"));
+                     __("No valid key file specified."));
     }
 
     pi.stat(requestFile);
@@ -371,7 +371,7 @@ OpenSSLUtils::signRequest(const String &requestFile,
     {        
     	LOGIT_ERROR("No valid request file specified");
     	BLOCXX_THROW(limal::ValueException,
-    	             __("No valid request file specified"));
+    	             __("No valid request file specified."));
     }
 
     blocxx::String debugCmd;
@@ -477,7 +477,7 @@ OpenSSLUtils::revokeCertificate(const blocxx::String &caCertFile,
     {        
     	LOGIT_ERROR("No valid keyfile specified");
     	BLOCXX_THROW(limal::ValueException,
-    	             __("No valid keyfile specified"));
+    	             __("No valid key file specified."));
     }
 
     pi.stat(caCertFile);
@@ -485,7 +485,7 @@ OpenSSLUtils::revokeCertificate(const blocxx::String &caCertFile,
     {        
     	LOGIT_ERROR("No valid CA certificate file specified");
     	BLOCXX_THROW(limal::ValueException,
-    	             __("No valid CA certificate file specified"));
+    	             __("No valid CA certificate file specified."));
     }
 
     pi.stat(certFile);
@@ -493,7 +493,7 @@ OpenSSLUtils::revokeCertificate(const blocxx::String &caCertFile,
     {        
     	LOGIT_ERROR("No valid certificate file specified");
     	BLOCXX_THROW(limal::ValueException,
-    	             __("No valid certificate file specified"));
+    	             __("No valid certificate file specified."));
     }
 
     blocxx::String debugCmd;
@@ -611,7 +611,7 @@ OpenSSLUtils::issueCRL(const blocxx::String &caCertFile,
 	{        
 		LOGIT_ERROR("No valid keyfile specified");
 		BLOCXX_THROW(limal::ValueException,
-		             __("No valid keyfile specified"));
+		             __("No valid key file specified."));
 	}
 
 	pi.stat(caCertFile);
@@ -619,7 +619,7 @@ OpenSSLUtils::issueCRL(const blocxx::String &caCertFile,
 	{
 		LOGIT_ERROR("No valid CA certificate file specified");
 		BLOCXX_THROW(limal::ValueException,
-		             __("No valid CA certificate file specified"));
+		             __("No valid CA certificate file specified."));
 	}
 
     blocxx::String debugCmd;
@@ -702,7 +702,7 @@ OpenSSLUtils::updateDB(const blocxx::String &caCertFile,
     {
     	LOGIT_ERROR("No valid keyfile specified");
     	BLOCXX_THROW(limal::ValueException,
-    	             __("No valid keyfile specified"));
+    	             __("No valid key file specified."));
     }
 
     pi.stat(caCertFile);
@@ -710,7 +710,7 @@ OpenSSLUtils::updateDB(const blocxx::String &caCertFile,
     {        
     	LOGIT_ERROR("No valid CA certificate file specified");
     	BLOCXX_THROW(limal::ValueException,
-    	             __("No valid CA certificate file specified"));
+    	             __("No valid CA certificate file specified."));
     }
 
     blocxx::String debugCmd;
@@ -783,7 +783,7 @@ OpenSSLUtils::verify(const blocxx::String &certFile,
     {        
     	LOGIT_ERROR("No valid certificate file specified");
     	BLOCXX_THROW(limal::ValueException,
-    	             __("No valid certificate file specified"));
+    	             __("No valid certificate file specified."));
     }
 
     pi.stat(caPath);
@@ -791,7 +791,7 @@ OpenSSLUtils::verify(const blocxx::String &certFile,
     {        
     	LOGIT_ERROR("No valid CA directory specified");
     	BLOCXX_THROW(limal::ValueException,
-    	             __("No valid CA directory specified"));
+    	             __("No valid CA directory specified."));
     }
 
     blocxx::String debugCmd;
@@ -941,7 +941,7 @@ OpenSSLUtils::status(const blocxx::String &serial)
     	LOGIT_ERROR("openssl stderr:" << errOutput);
     }
     BLOCXX_THROW(limal::RuntimeException,
-                 Format(__("Show certificate status with serial '%1' failed.(%2)"), 
+                 Format(__("Showing certificate status with serial %1 failed (%2)."), 
                         serial, status).c_str());
 }
 
@@ -966,7 +966,7 @@ OpenSSLUtils::checkKey(const blocxx::String &caName,
         {
         	LOGIT_ERROR("Can not parse certificate name");
         	BLOCXX_THROW(limal::RuntimeException,
-        	             __("Can not parse certificate name"));
+        	             __("Cannot parse the certificate name."));
         }
         
         keyFile = repository + "/" + caName + "/keys/" + sa[1] + ".key";

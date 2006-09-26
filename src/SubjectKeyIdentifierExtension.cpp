@@ -82,7 +82,7 @@ SubjectKeyIdentifierExt::SubjectKeyIdentifierExt(CAConfig* caConfig, Type type)
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(limal::ValueException,
-		             Format(__("Wrong type: %1"), type).c_str());
+		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
 	bool p = caConfig->exists(type2Section(type, true), "subjectKeyIdentifier");
@@ -205,7 +205,7 @@ SubjectKeyIdentifierExt::commit2Config(CA& ca, Type type) const
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(limal::ValueException,
-		             Format(__("Wrong type: %1"), type).c_str());
+		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
 	if(isPresent())

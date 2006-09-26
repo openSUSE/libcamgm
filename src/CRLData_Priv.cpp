@@ -85,7 +85,7 @@ RevocationEntry_Priv::RevocationEntry_Priv(X509_REVOKED *rev)
 	{        
 		LOGIT_ERROR("Can not parse date: " << sbuf);
 		BLOCXX_THROW(limal::RuntimeException,
-		             Format(__("Can not parse date: %1"), sbuf).c_str());
+		             Format(__("Cannot parse date %1."), sbuf).c_str());
 	}
         
 	int year = 1970;
@@ -118,7 +118,7 @@ RevocationEntry_Priv::RevocationEntry_Priv(const String&    serial,
 	{
 		LOGIT_ERROR("invalid serial: " << serial);
 		BLOCXX_THROW(limal::ValueException,
-		             Format(__("Invalid serial: %1"), serial).c_str());
+		             Format(__("Invalid serial %1."), serial).c_str());
 	}
 	StringArray r = reason.verify();
 	if(!r.empty())
@@ -155,7 +155,7 @@ RevocationEntry_Priv::setSerial(const String& serial)
 	{
 		LOGIT_ERROR("invalid serial: " << serial);
 		BLOCXX_THROW(limal::ValueException,
-		             Format(__("Invalid serial: %1"), serial).c_str());
+		             Format(__("Invalid serial %1."), serial).c_str());
 	}
 	m_impl->serial = serial;
 }
@@ -173,7 +173,7 @@ RevocationEntry_Priv::setReason(const CRLReason& reason)
 	{
 		LOGIT_ERROR("invalid CRL reason");
 		BLOCXX_THROW(limal::ValueException,
-		             __("Invalid CRL reason"));
+		             __("Invalid CRL reason."));
 	}
 	m_impl->revocationReason = reason;
 }
@@ -335,7 +335,7 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
 	{
 		LOGIT_ERROR("Can not parse date: " << sbuf);
 		BLOCXX_THROW(limal::RuntimeException,
-		             Format(__("Can not parse date: %1"), sbuf).c_str());
+		             Format(__("Cannot parse date %1."), sbuf).c_str());
 	}
     
 	int year = 1970;
@@ -369,7 +369,7 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
 	{
 		LOGIT_ERROR("Can not parse date: " << sbuf);
 		BLOCXX_THROW(limal::RuntimeException,
-		             Format(__("Can not parse date: %1"), sbuf).c_str());
+		             Format(__("Cannot parse date %1."), sbuf).c_str());
 	}
     
 	year = 1970;
@@ -418,7 +418,7 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
 	{        
 		LOGIT_ERROR("Unsupported signature algorithm: '" << sbuf << "'");
 		BLOCXX_THROW(limal::RuntimeException,
-		             Format(__("Unsupported signature algorithm: '%1'"), sbuf).c_str());
+		             Format(__("Unsupported signature algorithm %1."), sbuf).c_str());
 	}
 
 	// get signature
@@ -457,7 +457,7 @@ CRLData_Priv::init(const ByteBuffer &crl, FormatType formatType)
 		{            
 			LOGIT_ERROR("Can not create a memory BIO");
 			BLOCXX_THROW(limal::MemoryException,
-			             __("Can not create a memory BIO"));
+			             __("Cannot create a memory BIO."));
 		}
 
 		// create the X509 structure
@@ -485,7 +485,7 @@ CRLData_Priv::init(const ByteBuffer &crl, FormatType formatType)
 	{
 		LOGIT_ERROR("Can not parse CRL");
 		BLOCXX_THROW(limal::RuntimeException,
-		             __("Can not parse CRL"));
+		             __("Cannot parse CRL."));
 	}
 
 	try
@@ -498,7 +498,7 @@ CRLData_Priv::init(const ByteBuffer &crl, FormatType formatType)
 		m_impl->x509 = NULL;
 		
 		BLOCXX_THROW_SUBEX(limal::SyntaxException,
-		                   __("Error at parsing the CRL"),
+		                   __("Error parsing the CRL."),
 		                   e);
 	}
 }

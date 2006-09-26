@@ -245,7 +245,7 @@ RequestGenerationData::commit2Config(CA& ca, Type type) const
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(limal::ValueException,
-		             Format(__("Wrong type: %1"), type).c_str());
+		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
 	ca.getConfig()->setValue(type2Section(type, false), "default_bits", String(m_impl->keysize));
