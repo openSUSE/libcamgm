@@ -123,7 +123,7 @@ OpenSSLUtils::createRSAKey(const String &outFile,
     try
     {
 	status = wrapExecuteProcessAndGatherOutput(
-	    cmd, stdOutput, errOutput, status, env
+	    cmd, stdOutput, errOutput, env
 	);
     }
     catch(blocxx::Exception& e)
@@ -225,7 +225,7 @@ void OpenSSLUtils::createRequest(const DNObject &dn,
     try
     {
 	status = wrapExecuteProcessAndGatherOutput(
-	    cmd, stdOutput, errOutput, status, env,
+	    cmd, stdOutput, errOutput, env,
 	    blocxx::Exec::INFINITE_TIMEOUT, -1, stdInput
 	);
     }
@@ -320,7 +320,7 @@ OpenSSLUtils::createSelfSignedCertificate(const String &outFile,
     try
     {
 	status = wrapExecuteProcessAndGatherOutput(
-	    cmd, stdOutput, errOutput, status, env
+	    cmd, stdOutput, errOutput, env
 	);
     }
     catch(blocxx::Exception& e)
@@ -440,7 +440,7 @@ OpenSSLUtils::signRequest(const String &requestFile,
     try
     {
 	status = wrapExecuteProcessAndGatherOutput(
-	    cmd, stdOutput, errOutput, status, env
+	    cmd, stdOutput, errOutput, env
 	);
     }
     catch(blocxx::Exception& e)
@@ -574,7 +574,7 @@ OpenSSLUtils::revokeCertificate(const blocxx::String &caCertFile,
     try
     {
 	status = wrapExecuteProcessAndGatherOutput(
-	    cmd, stdOutput, errOutput, status, env
+	    cmd, stdOutput, errOutput, env
 	);
     }
     catch(blocxx::Exception& e)
@@ -670,7 +670,7 @@ OpenSSLUtils::issueCRL(const blocxx::String &caCertFile,
     try
     {
 	status = wrapExecuteProcessAndGatherOutput(
-	    cmd, stdOutput, errOutput, status, env
+	    cmd, stdOutput, errOutput, env
 	);
     }
     catch(blocxx::Exception& e)
@@ -748,7 +748,7 @@ OpenSSLUtils::updateDB(const blocxx::String &caCertFile,
     try
     {        
 	status = wrapExecuteProcessAndGatherOutput(
-	    cmd, stdOutput, errOutput, status, env
+	    cmd, stdOutput, errOutput, env
 	);
     }
     catch(blocxx::Exception& e)
@@ -833,7 +833,7 @@ OpenSSLUtils::verify(const blocxx::String &certFile,
     try
     {
 	status = wrapExecuteProcessAndGatherOutput(
-	    cmd, stdOutput, errOutput, status, env
+	    cmd, stdOutput, errOutput, env
 	);
     }
     catch(blocxx::Exception& e)
@@ -913,7 +913,7 @@ OpenSSLUtils::status(const blocxx::String &serial)
     try
     {        
 	status = wrapExecuteProcessAndGatherOutput(
-	    cmd, stdOutput, errOutput, status, env
+	    cmd, stdOutput, errOutput, env
 	);
     }
     catch(blocxx::Exception& e)
@@ -1011,7 +1011,7 @@ OpenSSLUtils::checkKey(const blocxx::String &caName,
     try
     {        
 	status = wrapExecuteProcessAndGatherOutput(
-	    cmd, stdOutput, errOutput, status, env
+	    cmd, stdOutput, errOutput, env
 	);
     }
     catch(blocxx::Exception& e)
@@ -1093,7 +1093,7 @@ OpenSSLUtils::x509Convert(const ByteBuffer &certificate,
     try
     {
 	status = wrapExecuteProcessAndGatherOutput(
-	    cmd, stdOutput, errOutput, status, env
+	    cmd, stdOutput, errOutput, env
 	);
     }
     catch(blocxx::Exception& e)
@@ -1211,7 +1211,7 @@ OpenSSLUtils::rsaConvert(const ByteBuffer &key,
     try
     {
 	status = wrapExecuteProcessAndGatherOutput(
-	    cmd, stdOutput, errOutput, status, env
+	    cmd, stdOutput, errOutput, env
 	);
     }
     catch(blocxx::Exception& e)
@@ -1305,7 +1305,7 @@ OpenSSLUtils::crlConvert(const ByteBuffer &crl,
     try
     {
 	status = wrapExecuteProcessAndGatherOutput(
-	    cmd, stdOutput, errOutput, status, env
+	    cmd, stdOutput, errOutput, env
 	);
     }
     catch(blocxx::Exception& e)
@@ -1391,7 +1391,7 @@ OpenSSLUtils::reqConvert(const ByteBuffer &req,
     try
     {
 	status = wrapExecuteProcessAndGatherOutput(
-	    cmd, stdOutput, errOutput, status, env
+	    cmd, stdOutput, errOutput, env
 	);
     }
     catch(blocxx::Exception& e)
@@ -1521,7 +1521,7 @@ OpenSSLUtils::createPKCS12(const ByteBuffer &certificate,
     try
     {
 	status = wrapExecuteProcessAndGatherOutput(
-	    cmd, stdOutput, errOutput, status, env
+	    cmd, stdOutput, errOutput, env
 	);
     }
     catch(blocxx::Exception& e)
@@ -1628,7 +1628,7 @@ OpenSSLUtils::pkcs12ToPEM(const ByteBuffer &pkcs12,
     try
     {
 	status = wrapExecuteProcessAndGatherOutput(
-	    cmd, stdOutput, errOutput, status, env
+	    cmd, stdOutput, errOutput, env
 	);
     }
     catch(blocxx::Exception& e)
