@@ -226,39 +226,55 @@ inline blocxx::String type2Section(Type type, bool v3section) {
     return result;
 }
 
+// throws or returns the process exit code or -1 (term by signal).
+int wrapExecuteProcessAndGatherOutput(
+	const blocxx::Array<blocxx::String> &cmd,
+	blocxx::String                      &out,
+	blocxx::String                      &err,
+	const blocxx::EnvVars               &env,
+	int                                 tmax=-1,
+	int                                 omax=-1,
+	const blocxx::String                &in=blocxx::String()
+);
+
 inline int rehashCAs(const blocxx::String &repositoryDir) 
 {
-    blocxx::Array<blocxx::String> cmd;
-    cmd.push_back(limal::ca_mgm::C_REHASH_COMMAND);
-    cmd.push_back(repositoryDir);
-    
-    blocxx::EnvVars env;
-    env.addVar("PATH", "/usr/bin/");
-    
-    blocxx::String stdOutput;
-    blocxx::String errOutput;
-    int    status = 0;
-    try {
-        
-        blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
-
-    } catch(blocxx::Exception& e) {
-        LOGIT_INFO( "c_rehash exception:" << e);
-        status = -1;
-    }
-    if(status != 0) {
-        LOGIT_INFO( "c_rehash status:" << blocxx::String(status));
-    }
-    if(!errOutput.empty()) {
-        LOGIT_INFO("c_rehash stderr:" << errOutput);
-    }
-    if(!stdOutput.empty()) {
-    	// this output here is not so important and makes trouble
-    	// in testcases
-    	//
-    	//LOGIT_DEBUG("c_rehash stdout:" << stdOutput);
-    }
-    return status;
+	blocxx::Array<blocxx::String> cmd;
+	cmd.push_back(limal::ca_mgm::C_REHASH_COMMAND);
+	cmd.push_back(repositoryDir);
+	
+	blocxx::EnvVars env;
+	env.addVar("PATH", "/usr/bin/");
+	
+	blocxx::String stdOutput;
+	blocxx::String errOutput;
+	int    status = -1;
+	try
+	{		
+		status = wrapExecuteProcessAndGatherOutput(
+			cmd, stdOutput, errOutput, env
+		);
+    	}
+	catch(blocxx::Exception& e)
+	{
+		LOGIT_INFO( "c_rehash exception:" << e);
+	}
+    	if(status != 0)
+    	{
+    		LOGIT_INFO( "c_rehash status:" << blocxx::String(status));
+    	}
+    	if(!errOutput.empty())
+    	{
+    		LOGIT_INFO("c_rehash stderr:" << errOutput);
+    	}
+    	if(!stdOutput.empty())
+    	{
+    		// this output here is not so important and makes trouble
+    		// in testcases
+    		//
+    		//LOGIT_DEBUG("c_rehash stdout:" << stdOutput);
+    	}
+    	return status;
 }
 
 inline LiteralValue gn2lv(GENERAL_NAME *gen)

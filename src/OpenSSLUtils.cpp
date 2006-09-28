@@ -118,16 +118,17 @@ OpenSSLUtils::createRSAKey(const String &outFile,
 
     blocxx::String stdOutput;
     blocxx::String errOutput;
-    int            status    = 0;
+    int            status    = -1;
      
     try
     {
-    	blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
+	status = wrapExecuteProcessAndGatherOutput(
+	    cmd, stdOutput, errOutput, status, env
+	);
     }
     catch(blocxx::Exception& e)
     {
     	LOGIT_ERROR( "openssl exception:" << e);
-    	status = -1;
     }
     if(status != 0)
     {
@@ -206,7 +207,7 @@ void OpenSSLUtils::createRequest(const DNObject &dn,
     blocxx::String stdInput;
     blocxx::String stdOutput;
     blocxx::String errOutput;
-    int            status    = 0;
+    int            status    = -1;
      
     blocxx::List<RDNObject> dnList = dn.getDN();
     blocxx::List<RDNObject>::const_iterator it;
@@ -223,14 +224,14 @@ void OpenSSLUtils::createRequest(const DNObject &dn,
 
     try
     {
-    	blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env,
-    	                                            blocxx::Exec::INFINITE_TIMEOUT, -1,
-    	                                            stdInput);
+	status = wrapExecuteProcessAndGatherOutput(
+	    cmd, stdOutput, errOutput, status, env,
+	    blocxx::Exec::INFINITE_TIMEOUT, -1, stdInput
+	);
     }
     catch(blocxx::Exception& e)
     {
     	LOGIT_ERROR( "openssl exception:" << e);
-    	status = -1;
     }
     if(status != 0)
     {
@@ -314,16 +315,17 @@ OpenSSLUtils::createSelfSignedCertificate(const String &outFile,
 
     blocxx::String stdOutput;
     blocxx::String errOutput;
-    int            status    = 0;
+    int            status    = -1;
      
     try
     {
-    	blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
+	status = wrapExecuteProcessAndGatherOutput(
+	    cmd, stdOutput, errOutput, status, env
+	);
     }
     catch(blocxx::Exception& e)
     {
     	LOGIT_ERROR( "openssl exception:" << e);
-    	status = -1;
     }
     if(status != 0)
     {
@@ -433,17 +435,17 @@ OpenSSLUtils::signRequest(const String &requestFile,
 
     blocxx::String stdOutput;
     blocxx::String errOutput;
-    int            status    = 0;
+    int            status    = -1;
      
     try
     {
-    	blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
-    	
+	status = wrapExecuteProcessAndGatherOutput(
+	    cmd, stdOutput, errOutput, status, env
+	);
     }
     catch(blocxx::Exception& e)
     {
     	LOGIT_ERROR( "openssl exception:" << e);
-    	status = -1;
     }
     if(status != 0)
     {
@@ -567,16 +569,17 @@ OpenSSLUtils::revokeCertificate(const blocxx::String &caCertFile,
 
     blocxx::String stdOutput;
     blocxx::String errOutput;
-    int            status    = 0;
+    int            status    = -1;
      
     try
     {
-    	blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
+	status = wrapExecuteProcessAndGatherOutput(
+	    cmd, stdOutput, errOutput, status, env
+	);
     }
     catch(blocxx::Exception& e)
     {
     	LOGIT_ERROR( "openssl exception:" << e);
-    	status = -1;
     }
     if(status != 0)
     {
@@ -662,16 +665,17 @@ OpenSSLUtils::issueCRL(const blocxx::String &caCertFile,
 
     blocxx::String stdOutput;
     blocxx::String errOutput;
-    int            status    = 0;
+    int            status    = -1;
      
     try
     {
-    	blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
+	status = wrapExecuteProcessAndGatherOutput(
+	    cmd, stdOutput, errOutput, status, env
+	);
     }
     catch(blocxx::Exception& e)
     {
     	LOGIT_ERROR( "openssl exception:" << e);
-    	status = -1;
     }
     if(status != 0)
     {
@@ -739,16 +743,17 @@ OpenSSLUtils::updateDB(const blocxx::String &caCertFile,
 
     blocxx::String stdOutput;
     blocxx::String errOutput;
-    int            status    = 0;
+    int            status    = -1;
      
     try
     {        
-    	blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
+	status = wrapExecuteProcessAndGatherOutput(
+	    cmd, stdOutput, errOutput, status, env
+	);
     }
     catch(blocxx::Exception& e)
     {
     	LOGIT_ERROR( "openssl exception:" << e);
-    	status = -1;
     }
     
     PerlRegEx r("error");
@@ -823,16 +828,17 @@ OpenSSLUtils::verify(const blocxx::String &certFile,
 
     blocxx::String stdOutput;
     blocxx::String errOutput;
-    int            status    = 0;
+    int            status    = -1;
      
     try
     {
-    	blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
+	status = wrapExecuteProcessAndGatherOutput(
+	    cmd, stdOutput, errOutput, status, env
+	);
     }
     catch(blocxx::Exception& e)
     {
         LOGIT_ERROR( "openssl exception:" << e);
-        status = -1;
     }
 
     StringArray lines = PerlRegEx("\n").split(stdOutput);
@@ -902,16 +908,17 @@ OpenSSLUtils::status(const blocxx::String &serial)
 
     blocxx::String stdOutput;
     blocxx::String errOutput;
-    int            status    = 0;
+    int            status    = -1;
      
     try
     {        
-        blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
+	status = wrapExecuteProcessAndGatherOutput(
+	    cmd, stdOutput, errOutput, status, env
+	);
     }
     catch(blocxx::Exception& e)
     {
     	LOGIT_ERROR( "openssl exception:" << e);
-    	status = -1;
     }
 
     StringArray lines = PerlRegEx("\n").split(errOutput);
@@ -999,16 +1006,17 @@ OpenSSLUtils::checkKey(const blocxx::String &caName,
 
     blocxx::String stdOutput;
     blocxx::String errOutput;
-    int            status    = 0;
+    int            status    = -1;
 
     try
     {        
-    	blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
+	status = wrapExecuteProcessAndGatherOutput(
+	    cmd, stdOutput, errOutput, status, env
+	);
     }
     catch(blocxx::Exception& e)
     {
         LOGIT_ERROR( "openssl exception:" << e);
-        status = -1;
     }
     if(status == 0)
     {
@@ -1080,16 +1088,17 @@ OpenSSLUtils::x509Convert(const ByteBuffer &certificate,
     env.addVar("RANDFILE", "./.rnd");
     blocxx::String stdOutput;
     blocxx::String errOutput;
-    int            status    = 0;
+    int            status    = -1;
     
     try
     {
-    	blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
+	status = wrapExecuteProcessAndGatherOutput(
+	    cmd, stdOutput, errOutput, status, env
+	);
     }
     catch(blocxx::Exception& e)
     {
     	LOGIT_ERROR( "openssl exception:" << e);
-    	status = -1;
     }
     if(status != 0)
     {
@@ -1197,16 +1206,17 @@ OpenSSLUtils::rsaConvert(const ByteBuffer &key,
 
     blocxx::String stdOutput;
     blocxx::String errOutput;
-    int            status    = 0;
+    int            status    = -1;
     
     try
     {
-    	blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
+	status = wrapExecuteProcessAndGatherOutput(
+	    cmd, stdOutput, errOutput, status, env
+	);
     }
     catch(blocxx::Exception& e)
     {
     	LOGIT_ERROR( "openssl exception:" << e);
-    	status = -1;
     }
     if(status != 0)
     {
@@ -1290,16 +1300,17 @@ OpenSSLUtils::crlConvert(const ByteBuffer &crl,
     env.addVar("RANDFILE", "./.rnd");
     blocxx::String stdOutput;
     blocxx::String errOutput;
-    int            status    = 0;
+    int            status    = -1;
     
     try
     {
-    	blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
+	status = wrapExecuteProcessAndGatherOutput(
+	    cmd, stdOutput, errOutput, status, env
+	);
     }
     catch(blocxx::Exception& e)
     {
     	LOGIT_ERROR( "openssl exception:" << e);
-    	status = -1;
     }
     if(status != 0)
     {
@@ -1375,17 +1386,17 @@ OpenSSLUtils::reqConvert(const ByteBuffer &req,
     env.addVar("RANDFILE", "./.rnd");
     blocxx::String stdOutput;
     blocxx::String errOutput;
-    int            status    = 0;
+    int            status    = -1;
     
     try
     {
-    	blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
-    	
+	status = wrapExecuteProcessAndGatherOutput(
+	    cmd, stdOutput, errOutput, status, env
+	);
     }
     catch(blocxx::Exception& e)
     {
     	LOGIT_ERROR( "openssl exception:" << e);
-    	status = -1;
     }
     if(status != 0)
     {
@@ -1505,16 +1516,17 @@ OpenSSLUtils::createPKCS12(const ByteBuffer &certificate,
 
     blocxx::String stdOutput;
     blocxx::String errOutput;
-    int            status    = 0;
+    int            status    = -1;
     
     try
     {
-    	blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
+	status = wrapExecuteProcessAndGatherOutput(
+	    cmd, stdOutput, errOutput, status, env
+	);
     }
     catch(blocxx::Exception& e)
     {
     	LOGIT_ERROR( "openssl exception:" << e);
-    	status = -1;
     }
     if(status != 0)
     {
@@ -1611,16 +1623,17 @@ OpenSSLUtils::pkcs12ToPEM(const ByteBuffer &pkcs12,
     
     blocxx::String stdOutput;
     blocxx::String errOutput;
-    int            status    = 0;
+    int            status    = -1;
     
     try
     {
-    	blocxx::Exec::executeProcessAndGatherOutput(cmd, stdOutput, errOutput, status, env);
+	status = wrapExecuteProcessAndGatherOutput(
+	    cmd, stdOutput, errOutput, status, env
+	);
     }
     catch(blocxx::Exception& e)
     {
     	LOGIT_ERROR( "openssl exception:" << e);
-    	status = -1;
     }
     if(status != 0)
     {

@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Thu Sep 28 14:54:35 CEST 2006 - mt@suse.de
+
+- version 1.2.3
+- Adopted to build with blocxx-1.x as well as upcoming blocxx-2.x
+
+-------------------------------------------------------------------
 Tue Sep 26 11:04:41 CEST 2006 - mc@suse.de
 
 - merge proofreaded texts 

@@ -18,6 +18,7 @@
 #include <blocxx/List.hpp>
 #include <blocxx/String.hpp>
 #include <blocxx/Array.hpp>
+#include <blocxx/Map.hpp>
 #include <blocxx/IntrusiveReference.hpp>
 #include "INIParser/INIParserDescr.hpp"
 
