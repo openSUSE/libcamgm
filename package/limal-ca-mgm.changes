@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Fri Sep 29 11:14:52 CEST 2006 - mc@suse.de
+
+- version 1.2.4
+- fix wrapExecuteProcessAndGatherOutput call 
+
+-------------------------------------------------------------------
 Thu Sep 28 14:54:35 CEST 2006 - mt@suse.de
 
 - version 1.2.3
