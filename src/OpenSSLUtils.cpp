@@ -226,8 +226,7 @@ void OpenSSLUtils::createRequest(const DNObject &dn,
 	{
 		status = wrapExecuteProcessAndGatherOutput(cmd, stdOutput,
 		                                           errOutput, env,
-		                                           blocxx::Exec::INFINITE_TIMEOUT,
-		                                           -1, stdInput);
+		                                           -1, -1, stdInput);
 	}
 	catch(blocxx::Exception& e)
 	{
