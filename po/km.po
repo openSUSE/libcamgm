@@ -1,0 +1,916 @@
+# translation of limal-ca-mgm.km.po to khmer
+# translation of limal-ca-mgm.km.po to
+# @TITLE@
+# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
+#
+# This file is distributed under the same license as @PACKAGE@ package. FIRST
+#
+# sokun <sokunpoch@khmeros.info>, 2006.
+# Eng Vannak <evannak@khmeros.info>, 2006.
+# auk piseth <piseth_dv@khmeros.info>, 2006.
+msgid ""
+msgstr ""
+"Project-Id-Version: limal-ca-mgm.km\n"
+"Report-Msgid-Bugs-To: translation@suse.de\n"
+"POT-Creation-Date: 2006-09-26 11:11+0200\n"
+"PO-Revision-Date: 2006-10-13 14:36+0700\n"
+"Last-Translator: auk piseth <piseth_dv@khmeros.info>\n"
+"Language-Team: khmer <support@khmeros.info>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: KBabel 1.11.2\n"
+
+#: src/AuthorityInfoAccessExtension.cpp:110
+#: src/AuthorityInfoAccessExtension.cpp:139
+msgid "Invalid location."
+msgstr "ទីតាំងមិនត្រឹមត្រូវ ។"
+
+#: src/AuthorityInfoAccessExtension.cpp:115
+#: src/AuthorityInfoAccessExtension.cpp:144
+msgid "Invalid accessOID."
+msgstr "accessOID មិន​ត្រឹមត្រូវ​ ។"
+
+#: src/AuthorityInfoAccessExtension.cpp:259
+#: src/AuthorityInfoAccessExtension.cpp:342
+#: src/AuthorityKeyIdentifierGenerateExtension.cpp:87
+#: src/AuthorityKeyIdentifierGenerateExtension.cpp:194
+#: src/BasicConstraintsExtension.cpp:84 src/BasicConstraintsExtension.cpp:187
+#: src/BitExtensions.cpp:134 src/BitExtensions.cpp:247
+#: src/BitExtensions.cpp:374 src/BitExtensions.cpp:482 src/CA.cpp:1565
+#: src/CertificateIssueData.cpp:219 src/CertificatePoliciesExtension.cpp:169
+#: src/CertificatePoliciesExtension.cpp:264
+#: src/CertificatePoliciesExtension.cpp:425
+#: src/CertificatePoliciesExtension.cpp:523
+#: src/CertificatePoliciesExtension.cpp:713
+#: src/CertificatePoliciesExtension.cpp:830
+#: src/CRLDistributionPointsExtension.cpp:76
+#: src/CRLDistributionPointsExtension.cpp:166 src/CRLGenerationData.cpp:163
+#: src/DNObject.cpp:251 src/ExtendedKeyUsageExt.cpp:77
+#: src/ExtendedKeyUsageExt.cpp:229 src/IssuerAlternativeNameExtension.cpp:98
+#: src/IssuerAlternativeNameExtension.cpp:224
+#: src/RequestGenerationData.cpp:248 src/StringExtensions.cpp:122
+#: src/StringExtensions.cpp:199 src/StringExtensions.cpp:287
+#: src/StringExtensions.cpp:357 src/StringExtensions.cpp:441
+#: src/StringExtensions.cpp:511 src/StringExtensions.cpp:594
+#: src/StringExtensions.cpp:664 src/StringExtensions.cpp:746
+#: src/StringExtensions.cpp:816 src/StringExtensions.cpp:958
+#: src/StringExtensions.cpp:1020 src/StringExtensions.cpp:1084
+#: src/SubjectAlternativeNameExtension.cpp:85
+#: src/SubjectAlternativeNameExtension.cpp:215
+#: src/SubjectKeyIdentifierExtension.cpp:85
+#: src/SubjectKeyIdentifierExtension.cpp:208
+msgid "Wrong type: %1."
+msgstr "ប្រភេទ​ខុស ៖ %1 ។"
+
+#: src/AuthorityInfoAccessExtension.cpp:310
+msgid "Invalid AuthorityInformation in infolist."
+msgstr "ព័ត៌មាន​សេចក្ដី​អនុញ្ញាត​មិន​ត្រឹមត្រូវ​ក្នុង​បញ្ជី​ព័ត៌មាន ។"
+
+#: src/AuthorityInfoAccessExtension.cpp:323
+msgid "AuthorityInfoAccessExt is not present."
+msgstr "មិន​បង្ហាញ AuthorityInfoAccessExt ទេ ។"
+
+#: src/AuthorityInfoAccessExtension.cpp:334
+msgid "Invalid AuthorityInfoAccessExt object."
+msgstr "វត្ថុ AuthorityInfoAccessExt មិន​ត្រឹមត្រូវ ។"
+
+#: src/AuthorityKeyIdentifierExtension.cpp:97
+#: src/AuthorityKeyIdentifierExtension.cpp:108
+#: src/AuthorityKeyIdentifierExtension.cpp:119
+msgid "AuthorityKeyIdentifierExt is not present."
+msgstr "មិន​បង្ហាញ AuthorityKeyIdentifierExt ទេ ។"
+
+#: src/AuthorityKeyIdentifierGenerateExtension.cpp:155
+#: src/AuthorityKeyIdentifierGenerateExtension.cpp:174
+msgid "AuthorityKeyIdentifierGenerateExt is not present."
+msgstr "មិន​បង្ហាញ AuthorityKeyIdentifierGenerateExt ទេ ។"
+
+#: src/AuthorityKeyIdentifierGenerateExtension.cpp:186
+msgid "Invalid AuthorityKeyIdentifierGenerateExt object."
+msgstr "វត្ថុ AuthorityKeyIdentifierGenerateExt មិន​ត្រឹមត្រូវ​ ។"
+
+#: src/BasicConstraintsExtension.cpp:155 src/BasicConstraintsExtension.cpp:167
+msgid "BasicConstraintsExt is not present."
+msgstr "មិន​បង្ហាញ BasicConstraintsExt ទេ ។"
+
+#: src/BasicConstraintsExtension.cpp:179
+msgid "Invalid BasicConstraintsExt object."
+msgstr "វត្ថុ BasicConstraintsExt មិន​ត្រឹមត្រូវ ។"
+
+#: src/BitExtensions.cpp:111
+msgid "This BitExtension is not present."
+msgstr "មិន​បង្ហាញ BitExtension នេះ​ទេ ។"
+
+#: src/BitExtensions.cpp:174 src/BitExtensions.cpp:203
+msgid "Invalid value for keyUsage."
+msgstr "តម្លៃ​មិន​ត្រឹម​ត្រូវ​សម្រាប់​របៀប​ប្រើ​គ្រាប់​ចុច ។"
+
+#: src/BitExtensions.cpp:215 src/BitExtensions.cpp:226
+msgid "KeyUsageExt is not present."
+msgstr "មិន​បង្ហាញ KeyUsageExt ទេ ។"
+
+#: src/BitExtensions.cpp:239
+msgid "Invalid KeyUsageExt object."
+msgstr "វត្ថុ KeyUsageExt មិន​ត្រឹមត្រូវ​ ។"
+
+#: src/BitExtensions.cpp:412
+msgid "Invalid value for NsCertTypeExt."
+msgstr "តម្លៃ​មិន​ត្រឹម​ត្រូវ​សម្រាប់ NsCertTypeExt ។"
+
+#: src/BitExtensions.cpp:441
+msgid "Invalid value for NsCertTypeExt: %1."
+msgstr "តម្លៃ​មិន​ត្រឹម​ត្រូវ​សម្រាប់ NsCertTypeExt ៖ %1 ។"
+
+#: src/BitExtensions.cpp:453
+msgid "NsCertTypeExt is not present."
+msgstr "មិនបង្ហាញ NsCertTypeExt ទេ ។"
+
+#: src/BitExtensions.cpp:474
+msgid "Invalid NsCertTypeExt object."
+msgstr "វត្ថុ NsCertTypeExt មិន​ត្រឹមត្រូវ​ ។"
+
+#: src/CA.cpp:101
+msgid "Template not initialized."
+msgstr "មិន​បាន​ចាប់​ផ្ដើម​ពុម្ព​ទេ ។"
+
+#: src/CA.cpp:159 src/CA.cpp:1456
+msgid "Empty CA name."
+msgstr "ឈ្មោះ CA ទទេ ។"
+
+#: src/CA.cpp:167
+msgid "Template does not exist: %1."
+msgstr "មិន​មាន​ពុម្ព ៖ %1 ។"
+
+#: src/CA.cpp:179 src/CA.cpp:1477
+msgid "Invalid CA password."
+msgstr "ពាក្យ​សម្ងាត់ CA មិន​ត្រឹមត្រូវ​ ។"
+
+#: src/CA.cpp:225 src/CA.cpp:1149 src/CA.cpp:1286
+msgid "Error while creating the CA infrastructure."
+msgstr "កំហុស​នៅ​ខណៈ​កំពុង​បង្កើត​ហេដ្ឋា​រចនា​សម្ព័ន្ធ CA ។"
+
+#: src/CA.cpp:245 src/CA.cpp:989
+msgid "Cannot parse the certificate name %1."
+msgstr "មិន​អាច​ញែក​ឈ្មោះ​វិញ្ញា​បនបត្រ %1 បាន​ឡើយ ។"
+
+#: src/CA.cpp:256
+msgid "Cannot copy the private key."
+msgstr "មិន​អាច​ចម្លង​សោរ​ឯកជន​បាន​ឡើយ ។"
+
+#: src/CA.cpp:267
+msgid "Cannot copy the certificate."
+msgstr "មិន​អាច​ចម្លង​វិញ្ញា​បនបត្រ​បាន​ឡើយ ។"
+
+#: src/CA.cpp:299
+msgid "Invalid request data."
+msgstr "ទិន្នន័យ​សំណើ​មិន​ត្រឹម​ត្រូវ ។"
+
+#: src/CA.cpp:319
+msgid "Duplicate DN. Key %1.key already exists."
+msgstr "ចម្លង DN ។ មាន​សោរ %1.key រួច​ហើយ ។"
+
+#: src/CA.cpp:327
+msgid "Duplicate DN. Request %1.req already exists."
+msgstr "ចម្លង DN ។ មាន​សំណើ %1.req រួច​ហើយ ។"
+
+#: src/CA.cpp:372
+msgid "Request does not exist (%1)."
+msgstr "មិន​មាន​សំណើ (%1) ។"
+
+#: src/CA.cpp:378
+msgid "Invalid issue data."
+msgstr "ទិន្នន័យ​ផ្សាយ​មិន​ត្រឹមត្រូវ ។"
+
+#: src/CA.cpp:395
+msgid "The CA expires before the certificate should expire."
+msgstr "CA ផុត​កំណត់​មុន​ពេល​វិញ្ញា​បនបត្រ​ផុត​កំណត់ ។"
+
+#: src/CA.cpp:473
+msgid "Issuing the certificate failed."
+msgstr "ការ​ផ្សាយ​វិញ្ញា​បនបត្រ​បាន​បរាជ័យ ។"
+
+#: src/CA.cpp:490
+msgid "File %1 not found in the repository."
+msgstr "រក​មិន​ឃើញ​ឯកសារ %1 នៅ​ក្នុង​ឃ្លាំង​ទេ ។"
+
+#: src/CA.cpp:497 src/CRLData_Priv.cpp:176
+msgid "Invalid CRL reason."
+msgstr "ហេតុផល CRL មិន​ត្រឹម​ត្រូវ ។"
+
+#: src/CA.cpp:520
+msgid "Invalid CRL data."
+msgstr "ទិន្នន័យ​ CRL មិនត្រឹមត្រូវ​ ។"
+
+#: src/CA.cpp:568
+msgid "Duplicate DN. Request already exists."
+msgstr "ចម្លង DN ។ មាន​សំណើ​រួច​ហើយ ។"
+
+#: src/CA.cpp:833 src/CA.cpp:860 src/CA.cpp:890 src/OpenSSLUtils.cpp:969
+msgid "Cannot parse the certificate name."
+msgstr "មិន​អាច​ញែក​ឈ្មោះ​វិញ្ញា​បនបត្រ​បាន​ទេ ។"
+
+#: src/CA.cpp:941
+msgid "Request %1 does not exist."
+msgstr "មិន​មាន​សំណើ %1 ទេ ។"
+
+#: src/CA.cpp:963
+msgid "Removing the request failed (%1)."
+msgstr "ការ​យក​សំណើរ​ចេញ​បាន​បរាជ័យ (%1) ។"
+
+#: src/CA.cpp:977
+msgid "Certificate %1 does not exist."
+msgstr "មិន​មាន​វិញ្ញា​បនបត្រ %1 ទេ ។"
+
+#: src/CA.cpp:1026
+msgid "Removing the certificate failed: %1."
+msgstr "ការ​យក​វិញ្ញា​បនបត្រ​ចេញ​បាន​បរាជ័យ ៖ %1 ។"
+
+#: src/CA.cpp:1034
+msgid ""
+"Only revoked or expired certificates can be deleted. The status of the "
+"certificate is %1."
+msgstr ""
+"អាច​លុប​បាន​តែ​វិញ្ញា​បនបត្រ​ដែល​ផុត​កំណត់ ឬ ដែល​បាន​ដកហូត​វិញ​តែ​ប៉ុណ្ណោះ ។ ស្ថានភាព​របស់​វិញ្ញា​បនបត្រ​គឺ %1 ។"
+
+#: src/CA.cpp:1046
+msgid "Database not found."
+msgstr "រក​មិន​ឃើញ​មូលដ្ឋាន​ទិន្នន័យ​ទេ ។"
+
+#: src/CA.cpp:1072
+msgid "Certificate does not exist."
+msgstr "មិន​មាន​វិញ្ញា​បនបត្រ​ទេ ។"
+
+#: src/CA.cpp:1086
+msgid "Invalid purpose %1."
+msgstr "គោលបំណង %1 មិនត្រឹមត្រូវ ។"
+
+#: src/CA.cpp:1129
+msgid "Invalid CA request data."
+msgstr "ទិន្នន័យ​សំណើ CA មិន​ត្រឹម​ត្រូវ ។"
+
+#: src/CA.cpp:1135
+msgid "Invalid CA issue data."
+msgstr "ទិន្នន័យ​ផ្សាយ CA មិន​ត្រឹមត្រូវ ។"
+
+#: src/CA.cpp:1230
+msgid "CA name is empty."
+msgstr "ឈ្មោះ CA ទទេ​ ។"
+
+#: src/CA.cpp:1239
+msgid "CA directory already exists."
+msgstr "មាន​ថត CA រួច​ហើយ ។"
+
+#: src/CA.cpp:1250
+msgid "According to basicConstraints, this is not a CA."
+msgstr "ដោយ​អាស្រ័យ​លើ​ 'basicConstraints នេះ​មិន​មែន​ជា​ CA ទេ ។"
+
+#: src/CA.cpp:1257
+msgid "CA key is empty."
+msgstr "សោរ​ CA ទទេ ។"
+
+#: src/CA.cpp:1266
+msgid "Invalid key data."
+msgstr "ទិន្នន័យ​សោរ​មិន​ត្រឹមត្រូវ ។"
+
+#: src/CA.cpp:1275
+msgid "CA password is empty."
+msgstr "ពាក្យ​សម្ងាត់ CA ទទេ ។"
+
+#: src/CA.cpp:1311
+msgid "Error during key encryption."
+msgstr "កំហុស​នៅ​កំឡុង​ពេល​ធ្វើ​ការ​អ៊ិនគ្រីប​សោរ ។"
+
+#: src/CA.cpp:1466
+msgid "CA name does not exist (%1)."
+msgstr "មិនមានឈ្មោះ CA (%1) ។"
+
+#: src/CA.cpp:1497
+msgid ""
+"Deleting the CA is not allowed. The CA must be expired or never have signed "
+"a certificate."
+msgstr "មិន​បាន​អនុញ្ញាត​ឲ្យ​លុប CA ទេ ។ CA ត្រូវតែ​ផុត​កំណត់ ឬក៏ មិនដែល​ចុះ​ហត្ថលេខា​លើ​វិញ្ញា​បនបត្រ ។"
+
+#: src/CA.cpp:1522
+msgid "Deleting the CA failed: %1."
+msgstr "ការ​លុប CA បាន​បរាជ័យ ៖ %1 ។"
+
+#: src/CA.cpp:1573
+msgid "The configuration file is missing a value for policy."
+msgstr "ឯកសារ​កំណត់​រចនា​សម្ព័ន្ធ​បាត់​តម្លៃ​សម្រាប់​គោលការណ៍ ។"
+
+#: src/CA.cpp:1583 src/CA.cpp:1845 src/DNObject.cpp:270
+#: src/DNObject_Priv.cpp:209
+msgid "Cannot parse section %1."
+msgstr "មិនអាច​ញែក​ផ្នែក %1 បានទេ ។"
+
+#: src/CA.cpp:1655
+msgid "Field %1 must have a value."
+msgstr "វាល​ '%1' ត្រូវ​តែមាន​តម្លៃ​ ។​"
+
+#: src/CA.cpp:1694
+msgid "%1 must be defined."
+msgstr "ត្រូវ​តែ​កំណត់ %1 ។"
+
+#: src/CA.cpp:1779
+msgid "%1 must be the same in the CA certificate (%2) and the request (%3)."
+msgstr "%1 ត្រូវ​តែ​ដូចគ្នា​នៅ​ក្នុង​វិញ្ញា​បនបត្រ CA (%2) និង សំណើ (%3) ។"
+
+#: src/CA.cpp:1791
+msgid "The configuration file seems to have an invalid policy."
+msgstr "ឯកសារ​កំណត់​រចនា​សម្ព័ន្ធ​ហាក់​ដូចជា​មាន​គោលការណ៍​មិន​ត្រឹមត្រូវ ។"
+
+# %s is either BOOTP or DHCP
+#: src/CA.cpp:1817 src/CA.cpp:1827
+msgid "The configuration is not initialized."
+msgstr "ការ​កំណត់​រចនា​សម្ព័ន្ធ​មិន​ត្រូវ​បាន​ចាប់​ផ្ដើម​ឡើយ ។"
+
+#: src/CA.cpp:1835 src/DNObject.cpp:259 src/DNObject_Priv.cpp:199
+msgid "Missing section 'distinguished_name' in the configuration file."
+msgstr "បាត់​ផ្នែក 'ឈ្មោះ​ដែលបាន​សម្គាល់' នៅក្នុង​ឯកសារ​កំណត់​រចនា​សម្ព័ន្ធ ។"
+
+#: src/CertificateData_Priv.cpp:94 src/CRLData_Priv.cpp:121
+#: src/CRLData_Priv.cpp:158
+msgid "Invalid serial %1."
+msgstr "សៀរៀល %1 មិនត្រឹមត្រូវ ។"
+
+#: src/CertificateData_Priv.cpp:206 src/CRLData_Priv.cpp:460
+#: src/DNObject_Priv.cpp:81 src/RequestData_Priv.cpp:369
+msgid "Cannot create a memory BIO."
+msgstr "មិនអាចបង្កើតសតិ BIO បានទេ ។"
+
+#: src/CertificateData_Priv.cpp:235
+msgid "Cannot parse the certificate."
+msgstr "មិន​អាច​ញែក​វិញ្ញា​បនបត្រ​បានទេ ។"
+
+#: src/CertificateData_Priv.cpp:248
+msgid "Error while parsing the certificate."
+msgstr "មាន​កំហុស​នៅ​ខណៈ​ពេល​កំពុង​ញែក​វិញ្ញា​បនបត្រ ។"
+
+#: src/CertificateData_Priv.cpp:285 src/CertificateData_Priv.cpp:319
+#: src/CRLData_Priv.cpp:88 src/CRLData_Priv.cpp:338 src/CRLData_Priv.cpp:372
+msgid "Cannot parse date %1."
+msgstr "មិន​អាច​ញែក​កាល​បរិច្ឆេទ %1 បានទេ ។"
+
+#: src/CertificateData_Priv.cpp:374 src/RequestData_Priv.cpp:182
+msgid "Unable to get the public key."
+msgstr "មិន​អាច​យក​សោរ​សាធារណៈ​បានទេ ។"
+
+#: src/CertificateData_Priv.cpp:385 src/RequestData_Priv.cpp:193
+msgid "Could not get RSA key."
+msgstr "មិន​អាច​យក​សោរ RSA បាន​ឡើយ ។"
+
+#: src/CertificateData_Priv.cpp:405 src/RequestData_Priv.cpp:213
+msgid "Unsupported public key type."
+msgstr "ប្រភេទ​សោរ​សាធារណៈ​ដែល​មិន​បាន​គាំទ្រ ។"
+
+#: src/CertificateData_Priv.cpp:441 src/RequestData_Priv.cpp:246
+msgid "Unsupported public key algorithm."
+msgstr "ក្បួន​ដោះ​ស្រាយ​សោរ​សាធារណៈ​ដែល​មិន​បាន​គាំទ្រ ។"
+
+#: src/CertificateData_Priv.cpp:473 src/CRLData_Priv.cpp:421
+#: src/RequestData_Priv.cpp:276
+msgid "Unsupported signature algorithm %1."
+msgstr "ក្បួន​ដោះ​ស្រាយ​ហត្ថលេខា %1 ដែល​មិន​បាន​គាំទ្រ ។"
+
+#: src/CertificateIssueData.cpp:211
+msgid "Invalid CertificateIssueData object."
+msgstr "វត្ថុ CertificateIssueData មិន​ត្រឹមត្រូវ​ ។"
+
+#: src/CertificatePoliciesExtension.cpp:216
+msgid "The text is too long."
+msgstr "អត្ថបទ​វែង​ពេក ។"
+
+#: src/CertificatePoliciesExtension.cpp:255
+msgid "Invalid UserNotice object."
+msgstr "វត្ថុ UserNotice មិន​ត្រឹមត្រូវ​ ។"
+
+#: src/CertificatePoliciesExtension.cpp:395
+#: src/CertificatePoliciesExtension.cpp:459
+msgid "Invalid value for policyIdentifier: %1."
+msgstr "តម្លៃ​សម្រាប់ policyIdentifier មិន​ត្រឹម​ត្រូវ ៖ %1 ។"
+
+#: src/CertificatePoliciesExtension.cpp:514
+msgid "Invalid CertificatePolicy object."
+msgstr "វត្ថុ CertificatePolicy មិន​ត្រឹម​ត្រូវ​ ។"
+
+#: src/CertificatePoliciesExtension.cpp:783
+#: src/CertificatePoliciesExtension.cpp:808
+msgid "CertificatePoliciesExt is not present."
+msgstr "មិន​បង្ហាញ CertificatePoliciesExt ទេ ។"
+
+#: src/CertificatePoliciesExtension.cpp:821
+msgid "Invalid CertificatePoliciesExt object."
+msgstr "វត្ថុ CertificatePoliciesExt មិន​ត្រឹមត្រូវ​ ។"
+
+#: src/CRLData.cpp:223
+msgid "Entry not found."
+msgstr "រក​មិន​ឃើញ​ធាតុ ។"
+
+#: src/CRLData_Priv.cpp:488
+msgid "Cannot parse CRL."
+msgstr "មិន​អាច​ញែក CRL បាន​ទេ ។"
+
+#: src/CRLData_Priv.cpp:501
+msgid "Error parsing the CRL."
+msgstr "កំហុស​ក្នុង​ការ​ញែក CRL ។"
+
+#: src/CRLDistributionPointsExtension.cpp:145
+msgid "CRLDistributionPointsExt is not present."
+msgstr "មិន​បង្ហាញ CRLDistributionPointsExt ទេ ។"
+
+#: src/CRLDistributionPointsExtension.cpp:157
+msgid "Invalid CRLDistributionPointsExt object."
+msgstr "វត្ថុ CRLDistributionPointsExt មិន​ត្រឹម​ត្រូវ ។"
+
+#: src/CRLGenerationData.cpp:156
+msgid "Invalid CRLGenerationData object."
+msgstr "វត្ថុ CRLGenerationData មិន​ត្រឹម​ត្រូវ ។"
+
+#: src/CRLReason.cpp:100 src/CRLReason.cpp:136
+msgid "Invalid revoke reason %1."
+msgstr "ហេតុផល​ដកហូត​វិញ %1 មិន​ត្រឹម​ត្រូវ ។"
+
+#: src/CRLReason.cpp:174
+msgid "Reason is not certificateHold."
+msgstr "ហេតុផល​គឺ​មិនមែន certificateHold ទេ ។"
+
+#: src/CRLReason.cpp:197 src/CRLReason.cpp:211
+msgid "Reason is not keyCompromise."
+msgstr "ហេតុផល​គឺ​មិន​មែន keyCompromise ទេ ។"
+
+#: src/CRLReason.cpp:242 src/CRLReason.cpp:256
+msgid "Reason is not CACompromise."
+msgstr "ហេតុផល​គឺ​មិនមែន CACompromise ទេ ។"
+
+#: src/DNObject.cpp:111
+msgid "Invalid type %1."
+msgstr "ប្រភេទ​%1 មិន​ត្រឹមត្រូវ​ ។"
+
+#: src/DNObject_Priv.cpp:159
+msgid "Can not parse DN line: %1."
+msgstr "មិន​អាច​ញែក​បន្ទាត់ DN  ៖ %1 ។"
+
+#: src/ExtendedKeyUsageExt.cpp:122 src/ExtendedKeyUsageExt.cpp:171
+msgid "Invalid ExtendedKeyUsage option %1."
+msgstr "ជម្រើស ExtendedKeyUsage %1 មិន​ត្រឹម​ត្រូវ ។"
+
+#: src/ExtendedKeyUsageExt.cpp:130 src/ExtendedKeyUsageExt.cpp:179
+msgid "Invalid ExtendedKeyUsageExt."
+msgstr "ExtendedKeyUsageExt​ មិនត្រឹមត្រូវ ។"
+
+#: src/ExtendedKeyUsageExt.cpp:192
+msgid "ExtendedKeyUsageExt is not present."
+msgstr "មិនបង្ហាញ ExtendedKeyUsageExt ទេ ។"
+
+#: src/ExtendedKeyUsageExt.cpp:221
+msgid "Invalid ExtendedKeyUsageExt object."
+msgstr "វត្ថុ ExtendedKeyUsageExt មិន​ត្រឹមត្រូវ​ ។"
+
+#: src/IssuerAlternativeNameExtension.cpp:166
+#: src/IssuerAlternativeNameExtension.cpp:191
+msgid "IssuerAlternativeNameExt is not present."
+msgstr "មិន​បង្ហាញ IssuerAlternativeNameExt ទេ ។"
+
+#: src/IssuerAlternativeNameExtension.cpp:203
+msgid "Invalid literal value for IssuerAlternativeNameExt."
+msgstr "តម្លៃ​ត្រង់​សម្រាប់ IssuerAlternativeNameExt មិន​ត្រឹម​ត្រូវ ។"
+
+#: src/IssuerAlternativeNameExtension.cpp:216
+msgid "Invalid IssuerAlternativeNameExt object."
+msgstr "វត្ថុ IssuerAlternativeNameExt មិនត្រឹមត្រូវ​ ។"
+
+#: src/LiteralValues.cpp:119
+msgid "Unknown type."
+msgstr "មិន​ស្គាល់​ប្រភេទ ។"
+
+#: src/LocalManagement.cpp:95
+msgid "Cannot split certificate output."
+msgstr "មិនអាច​ពុះ​លទ្ធផល​វិញ្ញា​បនបត្រ​បាន​ទេ ។"
+
+#: src/LocalManagement.cpp:292 src/LocalManagement.cpp:313
+#: src/LocalManagement.cpp:332
+msgid "Cannot create directory %1: %2."
+msgstr "មិន​អាច​បង្កើត​ថត %1 ៖ %2 ។"
+
+#: src/LocalManagement.cpp:346
+msgid "%1 is not a directory."
+msgstr "'%1' មិន​មែន​ជា​ថត​ទេ​ ។"
+
+#: src/LocalManagement.cpp:367
+msgid "Invalid certificate file."
+msgstr "ឯកសារ​វិញ្ញា​បនបត្រ​មិន​ត្រឹមត្រូវ ។"
+
+#: src/LocalManagement.cpp:445
+msgid "File not found: %1."
+msgstr "រកមិន​ឃើញ​ឯកសារ ៖ %1 ។"
+
+#: src/LocalManagement.cpp:454
+msgid "File too big: %1."
+msgstr "ឯកសារ​ធំ​ពេក ៖ %1 ។"
+
+#: src/LocalManagement.cpp:463 src/LocalManagement.cpp:518
+msgid "Cannot open file %1."
+msgstr "មិន​អាច​បើក​ឯកសារ %1 បាន​ឡើយ ។"
+
+#: src/LocalManagement.cpp:483
+msgid "Cannot read from file %1."
+msgstr "មិន​អាច​អាន​ពី​ឯកសារ %1 បាន​ឡើយ ។"
+
+#: src/LocalManagement.cpp:508
+msgid "File already exists: %1."
+msgstr "មាន​ឯកសារ​រួច​ហើយ ៖ %1 ។"
+
+#: src/LocalManagement.cpp:530
+msgid "Cannot get lock on file %1."
+msgstr "មិន​អាច​ចាក់​សោរ​លើ​ឯកសារ %1 បាន​ឡើយ ។"
+
+#: src/LocalManagement.cpp:544
+msgid "Cannot write to file %1."
+msgstr "មិនអាច​សរសេរ​ទៅ​កាន់​ឯកសារ %1 បាន​ឡើយ ។"
+
+#: src/OpenSSLUtils.cpp:56
+msgid "File does not exist: %1."
+msgstr "មិន​មាន​ឯកសារ ៖ %1 ។"
+
+#: src/OpenSSLUtils.cpp:65
+msgid "Directory does not exist: %1."
+msgstr "មិន​មាន​ថត ៖ %1 ។"
+
+#: src/OpenSSLUtils.cpp:74
+msgid "Invalid command %1."
+msgstr "ពាក្យ​បញ្ជា %1 មិន​ត្រឹម​ត្រូវ ។"
+
+#: src/OpenSSLUtils.cpp:138 src/OpenSSLUtils.cpp:241 src/OpenSSLUtils.cpp:334
+#: src/OpenSSLUtils.cpp:454 src/OpenSSLUtils.cpp:587 src/OpenSSLUtils.cpp:682
+#: src/OpenSSLUtils.cpp:762
+msgid "Command returned '%1' : %2"
+msgstr "ពាក្យ​បញ្ជា​បាន​ត្រឡប់ '%1' ៖ %2"
+
+#: src/OpenSSLUtils.cpp:170 src/OpenSSLUtils.cpp:268 src/OpenSSLUtils.cpp:366
+#: src/OpenSSLUtils.cpp:480 src/OpenSSLUtils.cpp:614 src/OpenSSLUtils.cpp:705
+msgid "No valid key file specified."
+msgstr "គ្មាន​ឯកសារ​សោរ​ដែល​បាន​បញ្ជាក់​ត្រឹមត្រូវ​ទេ ។"
+
+#: src/OpenSSLUtils.cpp:276 src/OpenSSLUtils.cpp:374
+msgid "No valid request file specified."
+msgstr "គ្មាន​ឯកសារ​សំណើ​ដែល​បាន​បញ្ជាក់​ត្រឹមត្រូវ​ទេ ។"
+
+#: src/OpenSSLUtils.cpp:488 src/OpenSSLUtils.cpp:622 src/OpenSSLUtils.cpp:713
+msgid "No valid CA certificate file specified."
+msgstr "គ្មាន​ឯកសារ​វិញ្ញា​បនបត្រ CA ដែល​បាន​បញ្ជាក់​ត្រឹមត្រូវ​ទេ ។"
+
+#: src/OpenSSLUtils.cpp:496 src/OpenSSLUtils.cpp:786
+msgid "No valid certificate file specified."
+msgstr "គ្មាន​ឯកសារ​វិញ្ញា​បនបត្រ​ដែល​បាន​បញ្ជាក់​ត្រឹមត្រូវ​ទេ ។"
+
+#: src/OpenSSLUtils.cpp:794
+msgid "No valid CA directory specified."
+msgstr "គ្មាន​ថត CA ដែល​បាន​បញ្ជាក់​ត្រឹមត្រូវ​ទេ ។"
+
+#: src/OpenSSLUtils.cpp:944
+msgid "Showing certificate status with serial %1 failed (%2)."
+msgstr "ការ​បង្ហាញ​ស្ថានភាព​វិញ្ញា​បនបត្រ​ជាមួយ​នឹង​សៀរៀល %1 បាន​បរាជ័យ (%2) ។"
+
+#: src/OpenSSLUtils.cpp:980
+msgid "Keyfile does not exist"
+msgstr "មិនមាន​ឯកសារ​សោរ​ទេ"
+
+#: src/OpenSSLUtils.cpp:1476
+msgid "Out password is required"
+msgstr "បាន​ទាមទារ​ពាក្យ​សម្ងាត់​ខាងក្រៅ"
+
+#: src/OpenSSLUtils.cpp:1581
+msgid "PKCS12 password is required"
+msgstr "បាន​ទាមទារ​ពាក្យ​សម្ងាត់ PKCS12"
+
+#: src/OpenSSLUtils.cpp:1667 src/OpenSSLUtils.cpp:1867
+#: src/OpenSSLUtils.cpp:2019
+msgid "Cannot read directory: %1 (%2) [%3]"
+msgstr "មិន​អាច​អាន​ថត ៖ %1 (%2) [%3]"
+
+#: src/OpenSSLUtils.cpp:1717
+msgid "No serial number found in %1"
+msgstr "គ្មាន​លេខ​សម្គាល់​ដែល​បាន​រកឃើញ​នៅក្នុង %1 នោះ​ទេ"
+
+#: src/OpenSSLUtils.cpp:1737
+msgid "Request already exist."
+msgstr "មាន​សំណើ​រួច​ហើយ ។"
+
+#: src/OpenSSLUtils.cpp:1928
+msgid "Can not find request subject."
+msgstr "មិនអាច​រក​ឃើញ​ប្រធានបទ​សំណើ​បាន​ទេ ។"
+
+#: src/OpenSSLUtils.cpp:2089
+msgid "Can not find certificate subject."
+msgstr "មិន​អាច​រក​ឃើញ​ប្រធានបទ​សំណើ​បាន​ទេ ។"
+
+#: src/OpenSSLUtils.cpp:2188
+msgid "Invalid caName: %1"
+msgstr "caName មិន​ត្រឹមត្រូវ ៖ %1"
+
+#: src/OpenSSLUtils.cpp:2197
+msgid "'%1' does not exist"
+msgstr "មិនមាន​ '%1' ទេ"
+
+#: src/OpenSSLUtils.cpp:2207
+msgid "%1 still exist"
+msgstr "%1 នៅ​តែ​មាន"
+
+#: src/OpenSSLUtils.cpp:2218 src/OpenSSLUtils.cpp:2266
+#: src/OpenSSLUtils.cpp:2280 src/OpenSSLUtils.cpp:2294
+#: src/OpenSSLUtils.cpp:2308 src/OpenSSLUtils.cpp:2322
+msgid "Can not create directory: %1 (%2 [%3])"
+msgstr "មិន​អាច​បង្កើត​ថត ៖ %1 (%2 [%3])"
+
+#: src/OpenSSLUtils.cpp:2253
+msgid "Cannot copy configuration template"
+msgstr "មិន​អាច​ចម្លង​ពុម្ព​កំណត់​រចនា​សម្ព័ន្ធ​បាន​ឡើយ"
+
+#: src/OpenSSLUtils.cpp:2340
+msgid "Cannot create file"
+msgstr "មិន​អាច​បង្កើត​ឯកសារ​បាន​ឡើយ"
+
+#: src/RequestData_Priv.cpp:396
+msgid "Can not parse request"
+msgstr "មិន​អាច​ញែក​សំណើ​បាន​ឡើយ"
+
+#: src/RequestData_Priv.cpp:409
+msgid "Error at parsing the request"
+msgstr "កំហុស​ពេល​កំពុង​ញែក​សំណើ"
+
+#: src/RequestGenerationData.cpp:240
+msgid "Invalid RequestGenerationData object"
+msgstr "វត្ថុ RequestGenerationData មិន​ត្រឹមត្រូវ​"
+
+#: src/StringExtensions.cpp:109 src/StringExtensions.cpp:167
+msgid "Invalid value for NsBaseUrlExt"
+msgstr "តម្លៃ​មិន​ត្រឹមត្រូវ​សម្រាប់ NsBaseUrlExt"
+
+#: src/StringExtensions.cpp:179
+msgid "NsBaseUrlExt is not present"
+msgstr "មិន​បង្ហាញ NsBaseUrlExt"
+
+#: src/StringExtensions.cpp:191
+msgid "Invalid NsBaseUrlExt object"
+msgstr "វត្តុ NsBaseUrlExt មិន​ត្រឹមត្រូវ​"
+
+#: src/StringExtensions.cpp:274 src/StringExtensions.cpp:327
+msgid "Invalid value for NsRevocationUrlExt"
+msgstr "តម្លៃ​មិន​ត្រឹមត្រូវ​សម្រាប់ NsRevocationUrlExt"
+
+#: src/StringExtensions.cpp:338
+msgid "NsRevocationUrlExt is not present"
+msgstr "មិនបង្ហាញ NsRevocationUrlExt ទេ"
+
+#: src/StringExtensions.cpp:349
+msgid "Invalid NsRevocationUrlExt object"
+msgstr "វត្ថុ NsRevocationUrlExt មិន​ត្រឹម​ត្រូវ"
+
+#: src/StringExtensions.cpp:428 src/StringExtensions.cpp:481
+msgid "Invalid value for NsCaRevocationUrlExt"
+msgstr "តម្លៃ​មិន​ត្រឹមត្រូវ​សម្រាប់ NsCaRevocationUrlExt"
+
+#: src/StringExtensions.cpp:492
+msgid "NsCaRevocationUrlExt is not present"
+msgstr "មិន​បង្ហាញ NsCaRevocationUrlExt ទេ"
+
+#: src/StringExtensions.cpp:503
+msgid "Invalid NsCaRevocationUrlExt object"
+msgstr "វត្ថុ NsCaRevocationUrlExt មិន​ត្រឹមត្រូវ"
+
+#: src/StringExtensions.cpp:581 src/StringExtensions.cpp:634
+msgid "Invalid value for NsRenewalUrlExt"
+msgstr "តម្លៃ​មិន​ត្រឹមត្រូវ​សម្រាប់ NsRenewalUrlExt"
+
+#: src/StringExtensions.cpp:645
+msgid "NsRenewalUrlExt is not present"
+msgstr "មិន​បង្ហាញ NsRenewalUrlExt ទេ"
+
+#: src/StringExtensions.cpp:656
+msgid "Invalid NsRenewalUrlExt object"
+msgstr "វត្ថុ NsRenewalUrlExt មិន​ត្រឹមត្រូវ"
+
+#: src/StringExtensions.cpp:733 src/StringExtensions.cpp:786
+msgid "Invalid value for NsCaPolicyUrlExt"
+msgstr "តម្លៃ​មិន​ត្រឹមត្រូវ​សម្រាប់ NsCaPolicyUrlExt"
+
+#: src/StringExtensions.cpp:797
+msgid "NsCaPolicyUrlExt is not present"
+msgstr "មិន​បង្ហាញ NsCaPolicyUrlExt ទេ"
+
+#: src/StringExtensions.cpp:808
+msgid "Invalid NsCaPolicyUrlExt object"
+msgstr "វត្ថុ NsCaPolicyUrlExt មិន​ត្រឹមត្រូវ"
+
+#: src/StringExtensions.cpp:894
+msgid "wrong type: %1"
+msgstr "ប្រភេទ​ខុស ៖ %1"
+
+#: src/StringExtensions.cpp:940
+msgid "NsSslServerNameExt is not present"
+msgstr "មិនបង្ហាញ NsSslServerNameExt ទេ"
+
+#: src/StringExtensions.cpp:951
+msgid "Invalid NsSslServerNameExt object"
+msgstr "វត្ថុ NsSslServerNameExt មិន​ត្រឹម​ត្រូវ"
+
+#: src/StringExtensions.cpp:1066
+msgid "NsCommentExt is not present"
+msgstr "មិន​បង្ហាញ NsCommentExt ទេ"
+
+#: src/StringExtensions.cpp:1077
+msgid "Invalid NsCommentExt object"
+msgstr "វត្ថុ NsCommentExt មិន​ត្រឹមត្រូវ"
+
+#: src/SubjectAlternativeNameExtension.cpp:183
+#: src/SubjectAlternativeNameExtension.cpp:194
+msgid "SubjectAlternativeNameExt is not present"
+msgstr "មិន​បង្ហាញ SubjectAlternativeNameExt ទេ"
+
+#: src/SubjectAlternativeNameExtension.cpp:207
+msgid "Invalid SubjectAlternativeNameExt object"
+msgstr "វត្ថុ SubjectAlternativeNameExt មិន​ត្រឹមត្រូវ"
+
+#: src/SubjectKeyIdentifierExtension.cpp:129
+#: src/SubjectKeyIdentifierExtension.cpp:163
+msgid "Invalid KeyID"
+msgstr "លេខ​សម្គាល់​សោរ​មិន​ត្រឹមត្រូវ"
+
+#: src/SubjectKeyIdentifierExtension.cpp:176
+#: src/SubjectKeyIdentifierExtension.cpp:187
+msgid "SubjectKeyIdentifierExt is not present"
+msgstr "មិន​បង្ហាញ SubjectKeyIdentifierExt ទេ"
+
+#: src/SubjectKeyIdentifierExtension.cpp:200
+msgid "Invalid SubjectKeyIdentifierExt object"
+msgstr "វត្ថុ SubjectKeyIdentifierExt មិន​ត្រឹមត្រូវ"
+
+#: src/X509v3CertificateExtensions_Priv.cpp:393
+#: src/X509v3CertificateExtensions_Priv.cpp:449
+#: src/X509v3RequestExtensions_Priv.cpp:133
+#: src/X509v3RequestExtensions_Priv.cpp:188
+msgid "Extension occurred more than once: %1"
+msgstr "ផ្នែក​បន្ថែម​បាន​កើតឡើង​ច្រើនដង ៖ %1"
+
+#: src/X509v3CertificateExtensions_Priv.cpp:400
+#: src/X509v3CertificateExtensions_Priv.cpp:456
+#: src/X509v3RequestExtensions_Priv.cpp:140
+#: src/X509v3RequestExtensions_Priv.cpp:195
+msgid "Unable to parse the certificate (NID: %1 Crit: %2)"
+msgstr "មិន​អាច​ញែក​វិញ្ញា​បនបត្រ (NID ៖ %1 Crit ៖ %2)"
+
+#: src/X509v3CertificateExtensions_Priv.cpp:508
+#: src/X509v3CertificateExtensions_Priv.cpp:574
+#: src/X509v3CertificateExtensions_Priv.cpp:638
+#: src/X509v3CertificateExtensions_Priv.cpp:700
+#: src/X509v3CertificateExtensions_Priv.cpp:770
+#: src/X509v3CertificateExtensions_Priv.cpp:839
+#: src/X509v3CertificateExtensions_Priv.cpp:915
+#: src/X509v3CertificateExtensions_Priv.cpp:1001
+#: src/X509v3CRLExtensions_Priv.cpp:134
+#: src/X509v3RequestExtensions_Priv.cpp:248
+#: src/X509v3RequestExtensions_Priv.cpp:314
+#: src/X509v3RequestExtensions_Priv.cpp:377
+#: src/X509v3RequestExtensions_Priv.cpp:438
+msgid "Extension occurred more than once"
+msgstr "ផ្នែក​បន្ថែម​បាន​កើត​ឡើង​ច្រើន​ដង"
+
+#: src/X509v3CertificateExtensions_Priv.cpp:513
+#: src/X509v3CertificateExtensions_Priv.cpp:579
+#: src/X509v3CertificateExtensions_Priv.cpp:643
+#: src/X509v3CertificateExtensions_Priv.cpp:706
+#: src/X509v3CertificateExtensions_Priv.cpp:775
+#: src/X509v3CertificateExtensions_Priv.cpp:845
+#: src/X509v3CertificateExtensions_Priv.cpp:920
+#: src/X509v3CertificateExtensions_Priv.cpp:1006
+#: src/X509v3CRLExtensions_Priv.cpp:139
+#: src/X509v3RequestExtensions_Priv.cpp:253
+#: src/X509v3RequestExtensions_Priv.cpp:319
+#: src/X509v3RequestExtensions_Priv.cpp:383
+#: src/X509v3RequestExtensions_Priv.cpp:443
+msgid "Unable to parse the certificate (Crit: %1)"
+msgstr "មិន​អាច​ញែក​វិញ្ញា​បនបត្រ (Crit ៖ %1)"
+
+#: src/X509v3CertificateExtensions_Priv.cpp:940
+msgid "Invalid location in authorityInfoAccess"
+msgstr "ទីតាំង​មិន​ត្រឹមត្រូវ​នៅ​ក្នុង authorityInfoAccess"
+
+#: src/X509v3CertificateIssueExtensions.cpp:174
+msgid "X509v3CertificateIssueExts::setNsBaseUrl invalid value"
+msgstr "X509v3CertificateIssueExts::setNsBaseUrl តម្លៃ​មិន​ត្រឹមត្រូវ​"
+
+#: src/X509v3CertificateIssueExtensions.cpp:197
+msgid "X509v3CertificateIssueExts::setNsRevocationUrl invalid value"
+msgstr "X509v3CertificateIssueExts::setNsRevocationUrl តម្លៃ​មិន​ត្រឹមត្រូវ​"
+
+#: src/X509v3CertificateIssueExtensions.cpp:220
+msgid "X509v3CertificateIssueExts::setNsCaRevocationUrl invalid value"
+msgstr "X509v3CertificateIssueExts::setNsCaRevocationUrl តម្លៃ​មិន​ត្រឹមត្រូវ​"
+
+#: src/X509v3CertificateIssueExtensions.cpp:243
+msgid "X509v3CertificateIssueExts::setNsRenewalUrl invalid value"
+msgstr "X509v3CertificateIssueExts::setNsRenewalUrl តម្លៃ​មិន​ត្រឹមត្រូវ​"
+
+#: src/X509v3CertificateIssueExtensions.cpp:266
+msgid "X509v3CertificateIssueExts::setNsCaPolicyUrl invalid value"
+msgstr "X509v3CertificateIssueExts::setNsCaPolicyUrl តម្លៃ​មិន​ត្រឹមត្រូវ​"
+
+#: src/X509v3CertificateIssueExtensions.cpp:289
+msgid "X509v3CertificateIssueExts::setNsSslServerName invalid value"
+msgstr "X509v3CertificateIssueExts::setNsSslServerName តម្លៃ​មិន​ត្រឹមត្រូវ​"
+
+#: src/X509v3CertificateIssueExtensions.cpp:312
+msgid "X509v3CertificateIssueExts::setNsComment invalid value"
+msgstr "X509v3CertificateIssueExts::setNsComment តម្លៃ​មិន​ត្រឹមត្រូវ​"
+
+#: src/X509v3CertificateIssueExtensions.cpp:335
+msgid "X509v3CertificateIssueExts::setNsCertType invalid value"
+msgstr "X509v3CertificateIssueExts::setNsCertType តម្លៃ​មិន​ត្រឹមត្រូវ​"
+
+#: src/X509v3CertificateIssueExtensions.cpp:358
+msgid "X509v3CertificateIssueExts::setKeyUsage invalid value"
+msgstr "X509v3CertificateIssueExts::setKeyUsage តម្លៃ​មិន​ត្រឹមត្រូវ​"
+
+#: src/X509v3CertificateIssueExtensions.cpp:381
+msgid "X509v3CertificateIssueExts::setBasicConstraints invalid value"
+msgstr "X509v3CertificateIssueExts::setBasicConstraints តម្លៃ​មិន​ត្រឹមត្រូវ​"
+
+#: src/X509v3CertificateIssueExtensions.cpp:404
+msgid "X509v3CertificateIssueExts::setExtendedKeyUsage invalid value"
+msgstr "X509v3CertificateIssueExts::setExtendedKeyUsage តម្លៃ​​មិនត្រឹមត្រូវ​"
+
+#: src/X509v3CertificateIssueExtensions.cpp:427
+msgid "X509v3CertificateIssueExts::setSubjectKeyIdentifier invalid value"
+msgstr "X509v3CertificateIssueExts::setSubjectKeyIdentifier តម្លៃ​មិន​ត្រឹមត្រូវ​"
+
+#: src/X509v3CertificateIssueExtensions.cpp:450
+msgid "X509v3CertificateIssueExts::setAuthorityKeyIdentifier invalid value"
+msgstr "X509v3CertificateIssueExts::setAuthorityKeyIdentifier តម្លៃ​មិន​ត្រឹមត្រូវ​"
+
+#: src/X509v3CertificateIssueExtensions.cpp:473
+msgid "X509v3CertificateIssueExts::setSubjectAlternativeName invalid value"
+msgstr "X509v3CertificateIssueExts::setSubjectAlternativeName តម្លៃ​មិន​ត្រឹមត្រូវ"
+
+#: src/X509v3CertificateIssueExtensions.cpp:496
+msgid "X509v3CertificateIssueExts::setIssuerAlternativeName invalid value"
+msgstr "X509v3CertificateIssueExts::setIssuerAlternativeName តម្លៃ​មិន​ត្រឹមត្រូវ​"
+
+#: src/X509v3CertificateIssueExtensions.cpp:519
+msgid "X509v3CertificateIssueExts::setAuthorityInfoAccess invalid value"
+msgstr "X509v3CertificateIssueExts::setAuthorityInfoAccess តម្លៃ​មិន​ត្រឹមត្រូវ​"
+
+#: src/X509v3CertificateIssueExtensions.cpp:542
+msgid "X509v3CertificateIssueExts::setCRLDistributionPoints invalid value"
+msgstr "X509v3CertificateIssueExts::setCRLDistributionPoints តម្លៃ​មិនត្រឹមត្រូវ​"
+
+#: src/X509v3CertificateIssueExtensions.cpp:565
+msgid "X509v3CertificateIssueExts::setCertificatePolicies invalid value"
+msgstr "X509v3CertificateIssueExts::setCertificatePolicies តម្លៃ​មិន​ត្រឹមត្រូវ​"
+
+#: src/X509v3CertificateIssueExtensions.cpp:589
+#: src/X509v3CRLGenerationExtensions.cpp:149
+#: src/X509v3RequestExtensions.cpp:255
+msgid "Invalid X509v3RequestExts object"
+msgstr "វត្ថុ X509v3RequestExts មិន​គ្រប់​គ្រាន់"
+
+#: src/X509v3CRLGenerationExtensions.cpp:102
+msgid "X509v3CRLGenerationExts::setAuthorityKeyIdentifier invalid value"
+msgstr "X509v3CRLGenerationExts::setAuthorityKeyIdentifier តម្លៃ​មិន​ត្រឹមត្រូវ​"
+
+#: src/X509v3CRLGenerationExtensions.cpp:125
+msgid "X509v3CRLGenerationExts::setIssuerAlternativeName invalid value"
+msgstr "X509v3CRLGenerationExts::setIssuerAlternativeName តម្លៃ​មិនត្រឹមត្រូវ​"
+
+#: src/X509v3RequestExtensions.cpp:70
+msgid "X509v3RequestExts::setNsSslServerName invalid value"
+msgstr "X509v3RequestExts::setNsSslServerName តម្លៃ​មិន​ត្រឹមត្រូវ​"
+
+#: src/X509v3RequestExtensions.cpp:93
+msgid "X509v3RequestExts::setNsComment invalid value"
+msgstr "X509v3RequestExts::setNsComment តម្លៃ​មិន​ត្រឹមត្រូវ​"
+
+#: src/X509v3RequestExtensions.cpp:116
+msgid "X509v3RequestExts::setNsCertType invalid value"
+msgstr "X509v3RequestExts::setNsCertType តម្លៃ​មិន​ត្រឹមត្រូវ​"
+
+#: src/X509v3RequestExtensions.cpp:139
+msgid "X509v3RequestExts::setKeyUsage invalid value"
+msgstr "X509v3RequestExts::setKeyUsage តម្លៃ​មិន​ត្រឹមត្រូវ​"
+
+#: src/X509v3RequestExtensions.cpp:162
+msgid "X509v3RequestExts::setBasicConstraints invalid value"
+msgstr "X509v3RequestExts::setBasicConstraints តម្លៃ​មិន​ត្រឹមត្រូ​វ"
+
+#: src/X509v3RequestExtensions.cpp:185
+msgid "X509v3RequestExts::setExtendedKeyUsage invalid value"
+msgstr "X509v3RequestExts::setExtendedKeyUsage តម្លៃ​មិន​ត្រឹមត្រូវ​"
+
+#: src/X509v3RequestExtensions.cpp:208
+msgid "X509v3RequestExts::setSubjectKeyIdentifier invalid value"
+msgstr "X509v3RequestExts::setSubjectKeyIdentifier តម្លៃ​មិនត្រឹមត្រូវ​"
+
+#: src/X509v3RequestExtensions.cpp:231
+msgid "X509v3RequestExts::setSubjectAlternativeName invalid value"
+msgstr "X509v3RequestExts::setSubjectAlternativeName តម្លៃ​មិនត្រឹមត្រូវ​"

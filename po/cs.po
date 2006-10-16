@@ -1,0 +1,917 @@
+# translation of limal-ca-mgm.po to Czech
+# @TITLE@
+# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
+#
+# This file is distributed under the same license as @PACKAGE@ package. FIRST
+# Jakub Friedl <jfriedl@suse.cz>, 2006.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: limal-ca-mgm\n"
+"Report-Msgid-Bugs-To: translation@suse.de\n"
+"POT-Creation-Date: 2006-09-26 11:11+0200\n"
+"PO-Revision-Date: 2006-09-27 14:41+0200\n"
+"Last-Translator: Jakub Friedl <jfriedl@suse.cz>\n"
+"Language-Team: Czech <cs@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.10.2\n"
+"Plural-Forms:  nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#: src/AuthorityInfoAccessExtension.cpp:110
+#: src/AuthorityInfoAccessExtension.cpp:139
+msgid "Invalid location."
+msgstr "Neplatné místo."
+
+#: src/AuthorityInfoAccessExtension.cpp:115
+#: src/AuthorityInfoAccessExtension.cpp:144
+msgid "Invalid accessOID."
+msgstr "Neplatné accessOID."
+
+#: src/AuthorityInfoAccessExtension.cpp:259
+#: src/AuthorityInfoAccessExtension.cpp:342
+#: src/AuthorityKeyIdentifierGenerateExtension.cpp:87
+#: src/AuthorityKeyIdentifierGenerateExtension.cpp:194
+#: src/BasicConstraintsExtension.cpp:84 src/BasicConstraintsExtension.cpp:187
+#: src/BitExtensions.cpp:134 src/BitExtensions.cpp:247
+#: src/BitExtensions.cpp:374 src/BitExtensions.cpp:482 src/CA.cpp:1565
+#: src/CertificateIssueData.cpp:219 src/CertificatePoliciesExtension.cpp:169
+#: src/CertificatePoliciesExtension.cpp:264
+#: src/CertificatePoliciesExtension.cpp:425
+#: src/CertificatePoliciesExtension.cpp:523
+#: src/CertificatePoliciesExtension.cpp:713
+#: src/CertificatePoliciesExtension.cpp:830
+#: src/CRLDistributionPointsExtension.cpp:76
+#: src/CRLDistributionPointsExtension.cpp:166 src/CRLGenerationData.cpp:163
+#: src/DNObject.cpp:251 src/ExtendedKeyUsageExt.cpp:77
+#: src/ExtendedKeyUsageExt.cpp:229 src/IssuerAlternativeNameExtension.cpp:98
+#: src/IssuerAlternativeNameExtension.cpp:224
+#: src/RequestGenerationData.cpp:248 src/StringExtensions.cpp:122
+#: src/StringExtensions.cpp:199 src/StringExtensions.cpp:287
+#: src/StringExtensions.cpp:357 src/StringExtensions.cpp:441
+#: src/StringExtensions.cpp:511 src/StringExtensions.cpp:594
+#: src/StringExtensions.cpp:664 src/StringExtensions.cpp:746
+#: src/StringExtensions.cpp:816 src/StringExtensions.cpp:958
+#: src/StringExtensions.cpp:1020 src/StringExtensions.cpp:1084
+#: src/SubjectAlternativeNameExtension.cpp:85
+#: src/SubjectAlternativeNameExtension.cpp:215
+#: src/SubjectKeyIdentifierExtension.cpp:85
+#: src/SubjectKeyIdentifierExtension.cpp:208
+msgid "Wrong type: %1."
+msgstr "Nesprávný typ: %1."
+
+#: src/AuthorityInfoAccessExtension.cpp:310
+msgid "Invalid AuthorityInformation in infolist."
+msgstr "Neplatné AuthorityInformation v info seznamu."
+
+#: src/AuthorityInfoAccessExtension.cpp:323
+msgid "AuthorityInfoAccessExt is not present."
+msgstr "AuthorityInfoAccessExt není přítomno."
+
+#: src/AuthorityInfoAccessExtension.cpp:334
+msgid "Invalid AuthorityInfoAccessExt object."
+msgstr "Neplatný objekt AuthorityInfoAccessExt."
+
+#: src/AuthorityKeyIdentifierExtension.cpp:97
+#: src/AuthorityKeyIdentifierExtension.cpp:108
+#: src/AuthorityKeyIdentifierExtension.cpp:119
+msgid "AuthorityKeyIdentifierExt is not present."
+msgstr "AuthorityKeyIdentifierExt není přítomen."
+
+#: src/AuthorityKeyIdentifierGenerateExtension.cpp:155
+#: src/AuthorityKeyIdentifierGenerateExtension.cpp:174
+msgid "AuthorityKeyIdentifierGenerateExt is not present."
+msgstr "AuthorityKeyIdentifierGenerateExt není přítomen."
+
+#: src/AuthorityKeyIdentifierGenerateExtension.cpp:186
+msgid "Invalid AuthorityKeyIdentifierGenerateExt object."
+msgstr "Neplatný objekt AuthorityKeyIdentifierGenerateExt."
+
+#: src/BasicConstraintsExtension.cpp:155 src/BasicConstraintsExtension.cpp:167
+msgid "BasicConstraintsExt is not present."
+msgstr "BasicConstraintsExt není přítomen."
+
+#: src/BasicConstraintsExtension.cpp:179
+msgid "Invalid BasicConstraintsExt object."
+msgstr "Neplatný objekt BasicConstraintsExt."
+
+#: src/BitExtensions.cpp:111
+msgid "This BitExtension is not present."
+msgstr "Tento BitExtension není přítomen."
+
+#: src/BitExtensions.cpp:174 src/BitExtensions.cpp:203
+msgid "Invalid value for keyUsage."
+msgstr "Neplatná hodnota pro keyUsage."
+
+#: src/BitExtensions.cpp:215 src/BitExtensions.cpp:226
+msgid "KeyUsageExt is not present."
+msgstr "KeyUsageExt není přítomen."
+
+#: src/BitExtensions.cpp:239
+msgid "Invalid KeyUsageExt object."
+msgstr "Neplatný objekt KeyUsageExt."
+
+#: src/BitExtensions.cpp:412
+msgid "Invalid value for NsCertTypeExt."
+msgstr "Neplatná hodnota pro NsCertTypeExt."
+
+#: src/BitExtensions.cpp:441
+msgid "Invalid value for NsCertTypeExt: %1."
+msgstr "Neplatná hodnota pro NsCertTypeExt: %1."
+
+#: src/BitExtensions.cpp:453
+msgid "NsCertTypeExt is not present."
+msgstr "NsCertTypeExt není přítomen."
+
+#: src/BitExtensions.cpp:474
+msgid "Invalid NsCertTypeExt object."
+msgstr "Neplatný objekt NsCertTypeExt."
+
+#: src/CA.cpp:101
+msgid "Template not initialized."
+msgstr "Šablona není inicializována."
+
+#: src/CA.cpp:159 src/CA.cpp:1456
+msgid "Empty CA name."
+msgstr "Prázdné jméno CA."
+
+#: src/CA.cpp:167
+msgid "Template does not exist: %1."
+msgstr "Šablona neexistuje: %1."
+
+#: src/CA.cpp:179 src/CA.cpp:1477
+msgid "Invalid CA password."
+msgstr "Neplatné heslo CA."
+
+#: src/CA.cpp:225 src/CA.cpp:1149 src/CA.cpp:1286
+msgid "Error while creating the CA infrastructure."
+msgstr "Chyba během vytváření infrastruktury CA."
+
+#: src/CA.cpp:245 src/CA.cpp:989
+msgid "Cannot parse the certificate name %1."
+msgstr "Nelze analyzovat jméno certifikátu: %1."
+
+#: src/CA.cpp:256
+msgid "Cannot copy the private key."
+msgstr "Nelze zkopírovat soukromý klíč."
+
+#: src/CA.cpp:267
+msgid "Cannot copy the certificate."
+msgstr "Nelze zkopírovat certifikát."
+
+#: src/CA.cpp:299
+msgid "Invalid request data."
+msgstr "Neplatná data požadavku."
+
+#: src/CA.cpp:319
+msgid "Duplicate DN. Key %1.key already exists."
+msgstr "Duplicitní DN. Klíč '%1.key' již existuje."
+
+#: src/CA.cpp:327
+msgid "Duplicate DN. Request %1.req already exists."
+msgstr "Duplicitní DN. Požadavek %1.req již existuje."
+
+#: src/CA.cpp:372
+msgid "Request does not exist (%1)."
+msgstr "Požadavek neexistuje (%1)."
+
+#: src/CA.cpp:378
+msgid "Invalid issue data."
+msgstr "Neplatná data vydání."
+
+#: src/CA.cpp:395
+msgid "The CA expires before the certificate should expire."
+msgstr "CA vyprší před tím, než by měl vypršet certifikát."
+
+#: src/CA.cpp:473
+msgid "Issuing the certificate failed."
+msgstr "Vydání certifikátu selhalo."
+
+#: src/CA.cpp:490
+msgid "File %1 not found in the repository."
+msgstr "Soubor '%1' nebyl nalezen v repozitáři."
+
+#: src/CA.cpp:497 src/CRLData_Priv.cpp:176
+msgid "Invalid CRL reason."
+msgstr "Neplatný CRL reason."
+
+#: src/CA.cpp:520
+msgid "Invalid CRL data."
+msgstr "Neplatná CRL data."
+
+#: src/CA.cpp:568
+msgid "Duplicate DN. Request already exists."
+msgstr "Duplicitní DN. Požadavek již existuje."
+
+#: src/CA.cpp:833 src/CA.cpp:860 src/CA.cpp:890 src/OpenSSLUtils.cpp:969
+msgid "Cannot parse the certificate name."
+msgstr "Nelze analyzovat jméno certifikátu."
+
+#: src/CA.cpp:941
+msgid "Request %1 does not exist."
+msgstr "Požadavek %1 neexistuje."
+
+#: src/CA.cpp:963
+msgid "Removing the request failed (%1)."
+msgstr "Odstraňování požadavku selhalo (%1)."
+
+#: src/CA.cpp:977
+msgid "Certificate %1 does not exist."
+msgstr "Certifikát %1 neexistuje."
+
+#: src/CA.cpp:1026
+msgid "Removing the certificate failed: %1."
+msgstr "Odstraňování certifikátu selhalo: %1."
+
+#: src/CA.cpp:1034
+msgid ""
+"Only revoked or expired certificates can be deleted. The status of the "
+"certificate is %1."
+msgstr ""
+"Pouze revokované nebo expirované certifikáty lze smazat. Status certifikátu "
+"je %1."
+
+#: src/CA.cpp:1046
+msgid "Database not found."
+msgstr "Databáze nenalezena."
+
+#: src/CA.cpp:1072
+msgid "Certificate does not exist."
+msgstr "Certifikát neexistuje."
+
+#: src/CA.cpp:1086
+msgid "Invalid purpose %1."
+msgstr "Neplatný účel %1."
+
+#: src/CA.cpp:1129
+msgid "Invalid CA request data."
+msgstr "Neplatná data požadavku CA."
+
+#: src/CA.cpp:1135
+msgid "Invalid CA issue data."
+msgstr "Neplatná data vydání CA."
+
+#: src/CA.cpp:1230
+msgid "CA name is empty."
+msgstr "Jméno CA je prázdné."
+
+#: src/CA.cpp:1239
+msgid "CA directory already exists."
+msgstr "Adresář CA již existuje."
+
+#: src/CA.cpp:1250
+msgid "According to basicConstraints, this is not a CA."
+msgstr "Podle 'basicConstraints' se nejedná o CA."
+
+#: src/CA.cpp:1257
+msgid "CA key is empty."
+msgstr "Klíč CA je prázdný."
+
+#: src/CA.cpp:1266
+msgid "Invalid key data."
+msgstr "Neplatná data klíče."
+
+#: src/CA.cpp:1275
+msgid "CA password is empty."
+msgstr "Heslo CA je prázdné."
+
+#: src/CA.cpp:1311
+msgid "Error during key encryption."
+msgstr "Chyba při šifrování klíče."
+
+#: src/CA.cpp:1466
+msgid "CA name does not exist (%1)."
+msgstr "Jméno CA neexistuje (%1)."
+
+#: src/CA.cpp:1497
+msgid ""
+"Deleting the CA is not allowed. The CA must be expired or never have signed "
+"a certificate."
+msgstr ""
+"Smazání CA není povoleno. CA musí být expirovaná nebo jí nesmí být podepsán "
+"žádný certifikát."
+
+#: src/CA.cpp:1522
+msgid "Deleting the CA failed: %1."
+msgstr "Mazání CA selhalo: %1."
+
+#: src/CA.cpp:1573
+msgid "The configuration file is missing a value for policy."
+msgstr "Konfigurační soubor postrádá hodnotu pro politiku."
+
+#: src/CA.cpp:1583 src/CA.cpp:1845 src/DNObject.cpp:270
+#: src/DNObject_Priv.cpp:209
+msgid "Cannot parse section %1."
+msgstr "Nelze analyzovat sekci %1."
+
+#: src/CA.cpp:1655
+msgid "Field %1 must have a value."
+msgstr "Pole %1 musí mít hodnotu."
+
+#: src/CA.cpp:1694
+msgid "%1 must be defined."
+msgstr "%1 musí být definováno."
+
+#: src/CA.cpp:1779
+msgid "%1 must be the same in the CA certificate (%2) and the request (%3)."
+msgstr "Pole %1 musí být stejné v CA certifikátu (%2) a požadavku (%3)."
+
+#: src/CA.cpp:1791
+msgid "The configuration file seems to have an invalid policy."
+msgstr "Konfigurační soubor má zřejmě neplatnou politiku."
+
+#: src/CA.cpp:1817 src/CA.cpp:1827
+msgid "The configuration is not initialized."
+msgstr "Konfigurace neinicializována."
+
+#: src/CA.cpp:1835 src/DNObject.cpp:259 src/DNObject_Priv.cpp:199
+msgid "Missing section 'distinguished_name' in the configuration file."
+msgstr "Chybí sekce 'distinguished_name' v konfiguračním souboru."
+
+#: src/CertificateData_Priv.cpp:94 src/CRLData_Priv.cpp:121
+#: src/CRLData_Priv.cpp:158
+msgid "Invalid serial %1."
+msgstr "Neplatné sériové číslo: %1."
+
+#: src/CertificateData_Priv.cpp:206 src/CRLData_Priv.cpp:460
+#: src/DNObject_Priv.cpp:81 src/RequestData_Priv.cpp:369
+msgid "Cannot create a memory BIO."
+msgstr "Nelze vytvořit memory BIO."
+
+#: src/CertificateData_Priv.cpp:235
+msgid "Cannot parse the certificate."
+msgstr "Nelze analyzovat certifikát."
+
+#: src/CertificateData_Priv.cpp:248
+msgid "Error while parsing the certificate."
+msgstr "Chyba při analýze certifikátu."
+
+#: src/CertificateData_Priv.cpp:285 src/CertificateData_Priv.cpp:319
+#: src/CRLData_Priv.cpp:88 src/CRLData_Priv.cpp:338 src/CRLData_Priv.cpp:372
+msgid "Cannot parse date %1."
+msgstr "Nelze analyzovat datum: %1."
+
+#: src/CertificateData_Priv.cpp:374 src/RequestData_Priv.cpp:182
+msgid "Unable to get the public key."
+msgstr "Nelze získat veřejný klíč."
+
+#: src/CertificateData_Priv.cpp:385 src/RequestData_Priv.cpp:193
+msgid "Could not get RSA key."
+msgstr "Nelze získat RSA klíč."
+
+#: src/CertificateData_Priv.cpp:405 src/RequestData_Priv.cpp:213
+msgid "Unsupported public key type."
+msgstr "Nepodporovaný typ veřejného klíče."
+
+#: src/CertificateData_Priv.cpp:441 src/RequestData_Priv.cpp:246
+msgid "Unsupported public key algorithm."
+msgstr "Nepodporovaný algoritmus veřejného klíče."
+
+#: src/CertificateData_Priv.cpp:473 src/CRLData_Priv.cpp:421
+#: src/RequestData_Priv.cpp:276
+msgid "Unsupported signature algorithm %1."
+msgstr "Nepodporovaný algoritmus podpisu %1."
+
+#: src/CertificateIssueData.cpp:211
+msgid "Invalid CertificateIssueData object."
+msgstr "Neplatný objekt CertificateIssueData."
+
+#: src/CertificatePoliciesExtension.cpp:216
+msgid "The text is too long."
+msgstr "Příliš dlouhý text."
+
+#: src/CertificatePoliciesExtension.cpp:255
+msgid "Invalid UserNotice object."
+msgstr "Neplatný objekt UserNotice."
+
+#: src/CertificatePoliciesExtension.cpp:395
+#: src/CertificatePoliciesExtension.cpp:459
+msgid "Invalid value for policyIdentifier: %1."
+msgstr "Neplatná hodnota pro policyIdentifier: %1."
+
+#: src/CertificatePoliciesExtension.cpp:514
+msgid "Invalid CertificatePolicy object."
+msgstr "Neplatný objekt CertificatePolicy."
+
+#: src/CertificatePoliciesExtension.cpp:783
+#: src/CertificatePoliciesExtension.cpp:808
+msgid "CertificatePoliciesExt is not present."
+msgstr "CertificatePoliciesExt není přítomný."
+
+#: src/CertificatePoliciesExtension.cpp:821
+msgid "Invalid CertificatePoliciesExt object."
+msgstr "Neplatný objekt CertificatePoliciesExt."
+
+#: src/CRLData.cpp:223
+msgid "Entry not found."
+msgstr "Záznam nenalezen."
+
+#: src/CRLData_Priv.cpp:488
+msgid "Cannot parse CRL."
+msgstr "Nelze analyzovat CRL."
+
+#: src/CRLData_Priv.cpp:501
+msgid "Error parsing the CRL."
+msgstr "Chyba analýzy CRL."
+
+#: src/CRLDistributionPointsExtension.cpp:145
+msgid "CRLDistributionPointsExt is not present."
+msgstr "CRLDistributionPointsExt není přítomen."
+
+#: src/CRLDistributionPointsExtension.cpp:157
+msgid "Invalid CRLDistributionPointsExt object."
+msgstr "Neplatný objekt CRLDistributionPointsExt."
+
+#: src/CRLGenerationData.cpp:156
+msgid "Invalid CRLGenerationData object."
+msgstr "Neplatný objekt CRLGenerationData."
+
+#: src/CRLReason.cpp:100 src/CRLReason.cpp:136
+msgid "Invalid revoke reason %1."
+msgstr "Neplatný důvod revokace %1."
+
+#: src/CRLReason.cpp:174
+msgid "Reason is not certificateHold."
+msgstr "Důvod není certificateHold."
+
+#: src/CRLReason.cpp:197 src/CRLReason.cpp:211
+msgid "Reason is not keyCompromise."
+msgstr "Důvod není keyCompromise."
+
+#: src/CRLReason.cpp:242 src/CRLReason.cpp:256
+msgid "Reason is not CACompromise."
+msgstr "Důvod není CACompromise."
+
+#: src/DNObject.cpp:111
+msgid "Invalid type %1."
+msgstr "Neplatný typ %1."
+
+#: src/DNObject_Priv.cpp:159
+msgid "Can not parse DN line: %1."
+msgstr "Nezle analyzovat řádek DN: %1."
+
+#: src/ExtendedKeyUsageExt.cpp:122 src/ExtendedKeyUsageExt.cpp:171
+msgid "Invalid ExtendedKeyUsage option %1."
+msgstr "Neplatná volba ExtendedKeyUsage %1."
+
+#: src/ExtendedKeyUsageExt.cpp:130 src/ExtendedKeyUsageExt.cpp:179
+msgid "Invalid ExtendedKeyUsageExt."
+msgstr "Neplatný ExtendedKeyUsageExt."
+
+#: src/ExtendedKeyUsageExt.cpp:192
+msgid "ExtendedKeyUsageExt is not present."
+msgstr "ExtendedKeyUsageExt není přítomen."
+
+#: src/ExtendedKeyUsageExt.cpp:221
+msgid "Invalid ExtendedKeyUsageExt object."
+msgstr "Neplatný objekt ExtendedKeyUsageExt."
+
+#: src/IssuerAlternativeNameExtension.cpp:166
+#: src/IssuerAlternativeNameExtension.cpp:191
+msgid "IssuerAlternativeNameExt is not present."
+msgstr "IssuerAlternativeNameExt není přítomen."
+
+#: src/IssuerAlternativeNameExtension.cpp:203
+msgid "Invalid literal value for IssuerAlternativeNameExt."
+msgstr "Neplatná hodnota pro IssuerAlternativeNameExt."
+
+#: src/IssuerAlternativeNameExtension.cpp:216
+msgid "Invalid IssuerAlternativeNameExt object."
+msgstr "Neplatný objekt IssuerAlternativeNameExt."
+
+#: src/LiteralValues.cpp:119
+msgid "Unknown type."
+msgstr "Neznámý typ."
+
+#: src/LocalManagement.cpp:95
+msgid "Cannot split certificate output."
+msgstr "Nelze rozdělit výstup certifikátu."
+
+#: src/LocalManagement.cpp:292 src/LocalManagement.cpp:313
+#: src/LocalManagement.cpp:332
+msgid "Cannot create directory %1: %2."
+msgstr "Nelze vytvořit adresář '%1' :%2."
+
+#: src/LocalManagement.cpp:346
+msgid "%1 is not a directory."
+msgstr "'%1' není adresář."
+
+#: src/LocalManagement.cpp:367
+msgid "Invalid certificate file."
+msgstr "Neplatný soubor certifikátu."
+
+#: src/LocalManagement.cpp:445
+msgid "File not found: %1."
+msgstr "Soubor nenalezen: %1."
+
+#: src/LocalManagement.cpp:454
+msgid "File too big: %1."
+msgstr "Příliš veliký soubor: %1."
+
+#: src/LocalManagement.cpp:463 src/LocalManagement.cpp:518
+msgid "Cannot open file %1."
+msgstr "Nelze otevřít soubor: %1."
+
+#: src/LocalManagement.cpp:483
+msgid "Cannot read from file %1."
+msgstr "Nelze číst ze souboru: %1."
+
+#: src/LocalManagement.cpp:508
+msgid "File already exists: %1."
+msgstr "Soubor již existuje: %1."
+
+#: src/LocalManagement.cpp:530
+msgid "Cannot get lock on file %1."
+msgstr "Nelze získat zámek na souboru: %1."
+
+#: src/LocalManagement.cpp:544
+msgid "Cannot write to file %1."
+msgstr "Nelze zapisovat do souboru %1."
+
+#: src/OpenSSLUtils.cpp:56
+msgid "File does not exist: %1."
+msgstr "Soubor neexistuje: %1."
+
+#: src/OpenSSLUtils.cpp:65
+msgid "Directory does not exist: %1."
+msgstr "Adresář neexistuje: %1."
+
+#: src/OpenSSLUtils.cpp:74
+msgid "Invalid command %1."
+msgstr "Neplatný příkaz %1."
+
+#: src/OpenSSLUtils.cpp:138 src/OpenSSLUtils.cpp:241 src/OpenSSLUtils.cpp:334
+#: src/OpenSSLUtils.cpp:454 src/OpenSSLUtils.cpp:587 src/OpenSSLUtils.cpp:682
+#: src/OpenSSLUtils.cpp:762
+msgid "Command returned '%1' : %2"
+msgstr "Příkaz vrátil '%1' : %2"
+
+#: src/OpenSSLUtils.cpp:170 src/OpenSSLUtils.cpp:268 src/OpenSSLUtils.cpp:366
+#: src/OpenSSLUtils.cpp:480 src/OpenSSLUtils.cpp:614 src/OpenSSLUtils.cpp:705
+msgid "No valid key file specified."
+msgstr "Nebyl zadán platný soubor klíče."
+
+#: src/OpenSSLUtils.cpp:276 src/OpenSSLUtils.cpp:374
+msgid "No valid request file specified."
+msgstr "Nebyl zadán platný soubor požadavku."
+
+#: src/OpenSSLUtils.cpp:488 src/OpenSSLUtils.cpp:622 src/OpenSSLUtils.cpp:713
+msgid "No valid CA certificate file specified."
+msgstr "Nebyl zadán platný soubor certifikátu CA."
+
+#: src/OpenSSLUtils.cpp:496 src/OpenSSLUtils.cpp:786
+msgid "No valid certificate file specified."
+msgstr "Nebyl zadán platný soubor certifikátu."
+
+#: src/OpenSSLUtils.cpp:794
+msgid "No valid CA directory specified."
+msgstr "Nebyl zadán platný adresář CA."
+
+#: src/OpenSSLUtils.cpp:944
+msgid "Showing certificate status with serial %1 failed (%2)."
+msgstr "Zobrazení statutu certifikátu se sériovým číslem '%1' selhalo.(%2)."
+
+#: src/OpenSSLUtils.cpp:980
+msgid "Keyfile does not exist"
+msgstr "Soubor klíče neexistuje"
+
+# 50168 AttribValues/delnotify
+#: src/OpenSSLUtils.cpp:1476
+msgid "Out password is required"
+msgstr "Out heslo je vyžadováno"
+
+#: src/OpenSSLUtils.cpp:1581
+msgid "PKCS12 password is required"
+msgstr "PKCS12 heslo je vyžadováno"
+
+#: src/OpenSSLUtils.cpp:1667 src/OpenSSLUtils.cpp:1867
+#: src/OpenSSLUtils.cpp:2019
+msgid "Cannot read directory: %1 (%2) [%3]"
+msgstr "Nelze číst adresář: %1 (%2) [%3]"
+
+#: src/OpenSSLUtils.cpp:1717
+msgid "No serial number found in %1"
+msgstr "V %1 nebylo nalezeno žádné sériové číslo"
+
+#: src/OpenSSLUtils.cpp:1737
+msgid "Request already exist."
+msgstr "Požadavek již existuje."
+
+#: src/OpenSSLUtils.cpp:1928
+msgid "Can not find request subject."
+msgstr "Nelze nalézt předmět požadavku."
+
+#: src/OpenSSLUtils.cpp:2089
+msgid "Can not find certificate subject."
+msgstr "Nelze nalézt předmět certifikátu."
+
+#: src/OpenSSLUtils.cpp:2188
+msgid "Invalid caName: %1"
+msgstr "Neplatné caName: %1"
+
+#: src/OpenSSLUtils.cpp:2197
+msgid "'%1' does not exist"
+msgstr "'%1' neexistuje"
+
+#: src/OpenSSLUtils.cpp:2207
+msgid "%1 still exist"
+msgstr "%1 stále existuje"
+
+#: src/OpenSSLUtils.cpp:2218 src/OpenSSLUtils.cpp:2266
+#: src/OpenSSLUtils.cpp:2280 src/OpenSSLUtils.cpp:2294
+#: src/OpenSSLUtils.cpp:2308 src/OpenSSLUtils.cpp:2322
+msgid "Can not create directory: %1 (%2 [%3])"
+msgstr "Nelze vytvořit adresář: %1 (%2 [%3])"
+
+#: src/OpenSSLUtils.cpp:2253
+msgid "Cannot copy configuration template"
+msgstr "Nelze zkopírovat šablonu konfigurace"
+
+#: src/OpenSSLUtils.cpp:2340
+msgid "Cannot create file"
+msgstr "Nelze vytvořit soubor"
+
+#: src/RequestData_Priv.cpp:396
+msgid "Can not parse request"
+msgstr "Nelze analyzovat požadavek"
+
+#: src/RequestData_Priv.cpp:409
+msgid "Error at parsing the request"
+msgstr "Chyba při analýze požadavku"
+
+#: src/RequestGenerationData.cpp:240
+msgid "Invalid RequestGenerationData object"
+msgstr "Neplatný objekt RequestGenerationData"
+
+#: src/StringExtensions.cpp:109 src/StringExtensions.cpp:167
+msgid "Invalid value for NsBaseUrlExt"
+msgstr "Neplatná hodnota pro NsBaseUrlExt"
+
+#: src/StringExtensions.cpp:179
+msgid "NsBaseUrlExt is not present"
+msgstr "NsBaseUrlExt není přítomen"
+
+#: src/StringExtensions.cpp:191
+msgid "Invalid NsBaseUrlExt object"
+msgstr "Neplatný objekt NsBaseUrlExt"
+
+#: src/StringExtensions.cpp:274 src/StringExtensions.cpp:327
+msgid "Invalid value for NsRevocationUrlExt"
+msgstr "Neplatná hodnota pro NsRevocationUrlExt"
+
+#: src/StringExtensions.cpp:338
+msgid "NsRevocationUrlExt is not present"
+msgstr "NsRevocationUrlExt není přítomen"
+
+#: src/StringExtensions.cpp:349
+msgid "Invalid NsRevocationUrlExt object"
+msgstr "Neplatný objekt NsRevocationUrlExt"
+
+#: src/StringExtensions.cpp:428 src/StringExtensions.cpp:481
+msgid "Invalid value for NsCaRevocationUrlExt"
+msgstr "Neplatná hodnota pro NsCaRevocationUrlExt"
+
+#: src/StringExtensions.cpp:492
+msgid "NsCaRevocationUrlExt is not present"
+msgstr "NsCaRevocationUrlExt není přítomen"
+
+#: src/StringExtensions.cpp:503
+msgid "Invalid NsCaRevocationUrlExt object"
+msgstr "Neplatný objekt NsCaRevocationUrlExt"
+
+#: src/StringExtensions.cpp:581 src/StringExtensions.cpp:634
+msgid "Invalid value for NsRenewalUrlExt"
+msgstr "Neplatná hodnota pro NsRenewalUrlExt"
+
+#: src/StringExtensions.cpp:645
+msgid "NsRenewalUrlExt is not present"
+msgstr "NsRenewalUrlExt není přítomen"
+
+#: src/StringExtensions.cpp:656
+msgid "Invalid NsRenewalUrlExt object"
+msgstr "Neplatný objekt NsRenewalUrlExt"
+
+#: src/StringExtensions.cpp:733 src/StringExtensions.cpp:786
+msgid "Invalid value for NsCaPolicyUrlExt"
+msgstr "Neplatná hodnota pro NsCaPolicyUrlExt"
+
+#: src/StringExtensions.cpp:797
+msgid "NsCaPolicyUrlExt is not present"
+msgstr "NsCaPolicyUrlExt není přítomen"
+
+#: src/StringExtensions.cpp:808
+msgid "Invalid NsCaPolicyUrlExt object"
+msgstr "Neplatný objekt NsCaPolicyUrlExt"
+
+#: src/StringExtensions.cpp:894
+msgid "wrong type: %1"
+msgstr "nesprávný typ: %1"
+
+#: src/StringExtensions.cpp:940
+msgid "NsSslServerNameExt is not present"
+msgstr "NsSslServerNameExt není přítomen"
+
+#: src/StringExtensions.cpp:951
+msgid "Invalid NsSslServerNameExt object"
+msgstr "Neplatný objekt NsSslServerNameExt"
+
+#: src/StringExtensions.cpp:1066
+msgid "NsCommentExt is not present"
+msgstr "NsCommentExt není přítomen"
+
+#: src/StringExtensions.cpp:1077
+msgid "Invalid NsCommentExt object"
+msgstr "Neplatný objekt NsCommentExt"
+
+#: src/SubjectAlternativeNameExtension.cpp:183
+#: src/SubjectAlternativeNameExtension.cpp:194
+msgid "SubjectAlternativeNameExt is not present"
+msgstr "SubjectAlternativeNameExt není přítomen"
+
+#: src/SubjectAlternativeNameExtension.cpp:207
+msgid "Invalid SubjectAlternativeNameExt object"
+msgstr "Neplatný objekt SubjectAlternativeNameExt"
+
+#: src/SubjectKeyIdentifierExtension.cpp:129
+#: src/SubjectKeyIdentifierExtension.cpp:163
+msgid "Invalid KeyID"
+msgstr "Neplatný keyID"
+
+#: src/SubjectKeyIdentifierExtension.cpp:176
+#: src/SubjectKeyIdentifierExtension.cpp:187
+msgid "SubjectKeyIdentifierExt is not present"
+msgstr "SubjectKeyIdentifierExt není přítomen"
+
+#: src/SubjectKeyIdentifierExtension.cpp:200
+msgid "Invalid SubjectKeyIdentifierExt object"
+msgstr "Neplatný objekt SubjectKeyIdentifierExt"
+
+#: src/X509v3CertificateExtensions_Priv.cpp:393
+#: src/X509v3CertificateExtensions_Priv.cpp:449
+#: src/X509v3RequestExtensions_Priv.cpp:133
+#: src/X509v3RequestExtensions_Priv.cpp:188
+msgid "Extension occurred more than once: %1"
+msgstr "Rozšíření se vyskytlo více než jednou: %1"
+
+#: src/X509v3CertificateExtensions_Priv.cpp:400
+#: src/X509v3CertificateExtensions_Priv.cpp:456
+#: src/X509v3RequestExtensions_Priv.cpp:140
+#: src/X509v3RequestExtensions_Priv.cpp:195
+msgid "Unable to parse the certificate (NID: %1 Crit: %2)"
+msgstr "Nelze analyzovat certifikát (NID: %1 Krit: %2)"
+
+# 51125 AttribValues/label
+#: src/X509v3CertificateExtensions_Priv.cpp:508
+#: src/X509v3CertificateExtensions_Priv.cpp:574
+#: src/X509v3CertificateExtensions_Priv.cpp:638
+#: src/X509v3CertificateExtensions_Priv.cpp:700
+#: src/X509v3CertificateExtensions_Priv.cpp:770
+#: src/X509v3CertificateExtensions_Priv.cpp:839
+#: src/X509v3CertificateExtensions_Priv.cpp:915
+#: src/X509v3CertificateExtensions_Priv.cpp:1001
+#: src/X509v3CRLExtensions_Priv.cpp:134
+#: src/X509v3RequestExtensions_Priv.cpp:248
+#: src/X509v3RequestExtensions_Priv.cpp:314
+#: src/X509v3RequestExtensions_Priv.cpp:377
+#: src/X509v3RequestExtensions_Priv.cpp:438
+msgid "Extension occurred more than once"
+msgstr "Rozšíření se vyskytlo více než jednou"
+
+#: src/X509v3CertificateExtensions_Priv.cpp:513
+#: src/X509v3CertificateExtensions_Priv.cpp:579
+#: src/X509v3CertificateExtensions_Priv.cpp:643
+#: src/X509v3CertificateExtensions_Priv.cpp:706
+#: src/X509v3CertificateExtensions_Priv.cpp:775
+#: src/X509v3CertificateExtensions_Priv.cpp:845
+#: src/X509v3CertificateExtensions_Priv.cpp:920
+#: src/X509v3CertificateExtensions_Priv.cpp:1006
+#: src/X509v3CRLExtensions_Priv.cpp:139
+#: src/X509v3RequestExtensions_Priv.cpp:253
+#: src/X509v3RequestExtensions_Priv.cpp:319
+#: src/X509v3RequestExtensions_Priv.cpp:383
+#: src/X509v3RequestExtensions_Priv.cpp:443
+msgid "Unable to parse the certificate (Crit: %1)"
+msgstr "Nelze analyzovat certifikát (Krit: %1)"
+
+#: src/X509v3CertificateExtensions_Priv.cpp:940
+msgid "Invalid location in authorityInfoAccess"
+msgstr "Neplatné místo v authorityInfoAccess"
+
+#: src/X509v3CertificateIssueExtensions.cpp:174
+msgid "X509v3CertificateIssueExts::setNsBaseUrl invalid value"
+msgstr "X509v3CertificateIssueExts::setNsBaseUrl neplatná hodnota"
+
+#: src/X509v3CertificateIssueExtensions.cpp:197
+msgid "X509v3CertificateIssueExts::setNsRevocationUrl invalid value"
+msgstr "X509v3CertificateIssueExts::setNsRevocationUrl neplatná hodnota"
+
+#: src/X509v3CertificateIssueExtensions.cpp:220
+msgid "X509v3CertificateIssueExts::setNsCaRevocationUrl invalid value"
+msgstr "X509v3CertificateIssueExts::setNsCaRevocationUrl neplatná hodnota"
+
+#: src/X509v3CertificateIssueExtensions.cpp:243
+msgid "X509v3CertificateIssueExts::setNsRenewalUrl invalid value"
+msgstr "X509v3CertificateIssueExts::setNsRenewalUrl neplatná hodnota"
+
+#: src/X509v3CertificateIssueExtensions.cpp:266
+msgid "X509v3CertificateIssueExts::setNsCaPolicyUrl invalid value"
+msgstr "X509v3CertificateIssueExts::setNsCaPolicyUrl neplatná hodnota"
+
+#: src/X509v3CertificateIssueExtensions.cpp:289
+msgid "X509v3CertificateIssueExts::setNsSslServerName invalid value"
+msgstr "X509v3CertificateIssueExts::setNsSslServerName neplatná hodnota"
+
+#: src/X509v3CertificateIssueExtensions.cpp:312
+msgid "X509v3CertificateIssueExts::setNsComment invalid value"
+msgstr "X509v3CertificateIssueExts::setNsComment neplatná hodnota"
+
+#: src/X509v3CertificateIssueExtensions.cpp:335
+msgid "X509v3CertificateIssueExts::setNsCertType invalid value"
+msgstr "X509v3CertificateIssueExts::setNsCertType neplatná hodnota"
+
+#: src/X509v3CertificateIssueExtensions.cpp:358
+msgid "X509v3CertificateIssueExts::setKeyUsage invalid value"
+msgstr "X509v3CertificateIssueExts::setKeyUsage neplatná hodnota"
+
+#: src/X509v3CertificateIssueExtensions.cpp:381
+msgid "X509v3CertificateIssueExts::setBasicConstraints invalid value"
+msgstr "X509v3CertificateIssueExts::setBasicConstraints neplatná hodnota"
+
+#: src/X509v3CertificateIssueExtensions.cpp:404
+msgid "X509v3CertificateIssueExts::setExtendedKeyUsage invalid value"
+msgstr "X509v3CertificateIssueExts::setExtendedKeyUsage neplatná hodnota"
+
+#: src/X509v3CertificateIssueExtensions.cpp:427
+msgid "X509v3CertificateIssueExts::setSubjectKeyIdentifier invalid value"
+msgstr "X509v3CertificateIssueExts::setSubjectKeyIdentifier neplatná hodnota"
+
+#: src/X509v3CertificateIssueExtensions.cpp:450
+msgid "X509v3CertificateIssueExts::setAuthorityKeyIdentifier invalid value"
+msgstr "X509v3CertificateIssueExts::setAuthorityKeyIdentifier neplatná hodnota"
+
+#: src/X509v3CertificateIssueExtensions.cpp:473
+msgid "X509v3CertificateIssueExts::setSubjectAlternativeName invalid value"
+msgstr "X509v3CertificateIssueExts::setSubjectAlternativeName neplatná hodnota"
+
+#: src/X509v3CertificateIssueExtensions.cpp:496
+msgid "X509v3CertificateIssueExts::setIssuerAlternativeName invalid value"
+msgstr "X509v3CertificateIssueExts::setIssuerAlternativeName neplatná hodnota"
+
+#: src/X509v3CertificateIssueExtensions.cpp:519
+msgid "X509v3CertificateIssueExts::setAuthorityInfoAccess invalid value"
+msgstr "X509v3CertificateIssueExts::setAuthorityInfoAccess neplatná hodnota"
+
+#: src/X509v3CertificateIssueExtensions.cpp:542
+msgid "X509v3CertificateIssueExts::setCRLDistributionPoints invalid value"
+msgstr "X509v3CertificateIssueExts::setCRLDistributionPoints neplatná hodnota"
+
+#: src/X509v3CertificateIssueExtensions.cpp:565
+msgid "X509v3CertificateIssueExts::setCertificatePolicies invalid value"
+msgstr "X509v3CertificateIssueExts::setCertificatePolicies neplatná hodnota"
+
+#: src/X509v3CertificateIssueExtensions.cpp:589
+#: src/X509v3CRLGenerationExtensions.cpp:149
+#: src/X509v3RequestExtensions.cpp:255
+msgid "Invalid X509v3RequestExts object"
+msgstr "Neplatný objekt X509v3RequestExts"
+
+#: src/X509v3CRLGenerationExtensions.cpp:102
+msgid "X509v3CRLGenerationExts::setAuthorityKeyIdentifier invalid value"
+msgstr "X509v3CRLGenerationExts::setAuthorityKeyIdentifier neplatná hodnota"
+
+#: src/X509v3CRLGenerationExtensions.cpp:125
+msgid "X509v3CRLGenerationExts::setIssuerAlternativeName invalid value"
+msgstr "X509v3CRLGenerationExts::setIssuerAlternativeName neplatná hodnota"
+
+#: src/X509v3RequestExtensions.cpp:70
+msgid "X509v3RequestExts::setNsSslServerName invalid value"
+msgstr "X509v3RequestExts::setNsSslServerName neplatná hodnota"
+
+#: src/X509v3RequestExtensions.cpp:93
+msgid "X509v3RequestExts::setNsComment invalid value"
+msgstr "X509v3RequestExts::setNsComment neplatná hodnota"
+
+#: src/X509v3RequestExtensions.cpp:116
+msgid "X509v3RequestExts::setNsCertType invalid value"
+msgstr "X509v3RequestExts::setNsCertType neplatná hodnota"
+
+#: src/X509v3RequestExtensions.cpp:139
+msgid "X509v3RequestExts::setKeyUsage invalid value"
+msgstr "X509v3RequestExts::setKeyUsage neplatná hodnota"
+
+#: src/X509v3RequestExtensions.cpp:162
+msgid "X509v3RequestExts::setBasicConstraints invalid value"
+msgstr "X509v3RequestExts::setBasicConstraints neplatná hodnota"
+
+#: src/X509v3RequestExtensions.cpp:185
+msgid "X509v3RequestExts::setExtendedKeyUsage invalid value"
+msgstr "X509v3RequestExts::setExtendedKeyUsage neplatná hodnota"
+
+#: src/X509v3RequestExtensions.cpp:208
+msgid "X509v3RequestExts::setSubjectKeyIdentifier invalid value"
+msgstr "X509v3RequestExts::setSubjectKeyIdentifier neplatná hodnota"
+
+#: src/X509v3RequestExtensions.cpp:231
+msgid "X509v3RequestExts::setSubjectAlternativeName invalid value"
+msgstr "X509v3RequestExts::setSubjectAlternativeName neplatná hodnota"
