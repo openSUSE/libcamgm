@@ -127,6 +127,7 @@ clean-local:
 	rm -rf CA7/out
 	rm -rf single.out/out
 	rm -rf ParseCertificateTest/out
+	rm -rf testsuite/ParseCertificateTest2/out
 	rm -rf ParseRequestTest/out
 	rm -rf ParseCRLTest/out
 	rm -f CA2/*~
