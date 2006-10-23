@@ -224,8 +224,12 @@ msgid "Removing the certificate failed: %1."
 msgstr "Varmenteen %1 poisto epäonnistui."
 
 #: src/CA.cpp:1034
-msgid "Only revoked or expired certificates can be deleted. The status of the certificate is %1."
-msgstr "Vain peruutettuja tai vanhentuneita varmenteita voi poistaa. Varmenteen tila on %1."
+msgid ""
+"Only revoked or expired certificates can be deleted. The status of the "
+"certificate is %1."
+msgstr ""
+"Vain peruutettuja tai vanhentuneita varmenteita voi poistaa. Varmenteen tila "
+"on %1."
 
 #: src/CA.cpp:1046
 msgid "Database not found."
@@ -280,8 +284,12 @@ msgid "CA name does not exist (%1)."
 msgstr "CA-nimeä %1 ei ole olemassa."
 
 #: src/CA.cpp:1497
-msgid "Deleting the CA is not allowed. The CA must be expired or never have signed a certificate."
-msgstr "CA:n poistaminen ei ole sallittua. CA:n täytyy olla vanhentunut tai varmenteen allekirjoittamaton."
+msgid ""
+"Deleting the CA is not allowed. The CA must be expired or never have signed "
+"a certificate."
+msgstr ""
+"CA:n poistaminen ei ole sallittua. CA:n täytyy olla vanhentunut tai "
+"varmenteen allekirjoittamaton."
 
 #: src/CA.cpp:1522
 msgid "Deleting the CA failed: %1."
@@ -905,4 +913,3 @@ msgstr "X509v3RequestExts::setSubjectKeyIdentifier -epäkelpo arvo"
 #: src/X509v3RequestExtensions.cpp:231
 msgid "X509v3RequestExts::setSubjectAlternativeName invalid value"
 msgstr "X509v3RequestExts::setSubjectAlternativeName -epäkelpo arvo"
-

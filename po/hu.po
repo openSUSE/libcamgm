@@ -225,8 +225,12 @@ msgid "Removing the certificate failed: %1."
 msgstr "A(z) '%1' tanúsítvány eltávolítása sikertelen."
 
 #: src/CA.cpp:1034
-msgid "Only revoked or expired certificates can be deleted. The status of the certificate is %1."
-msgstr "Csak visszavont vagy lejárt tanúsítvány eltávolítása lehetséges. A tanúsítvány jelenlegi állapota: '%1'."
+msgid ""
+"Only revoked or expired certificates can be deleted. The status of the "
+"certificate is %1."
+msgstr ""
+"Csak visszavont vagy lejárt tanúsítvány eltávolítása lehetséges. A "
+"tanúsítvány jelenlegi állapota: '%1'."
 
 #: src/CA.cpp:1046
 msgid "Database not found."
@@ -281,8 +285,12 @@ msgid "CA name does not exist (%1)."
 msgstr "A CA név nem létezik (%1)."
 
 #: src/CA.cpp:1497
-msgid "Deleting the CA is not allowed. The CA must be expired or never have signed a certificate."
-msgstr "A CA törlése nem lehetséges. Csak olyan CA törölhető, amely lejárt vagy nincs olyan tanúsítvány, amit a törölni kívánt CA írt alá."
+msgid ""
+"Deleting the CA is not allowed. The CA must be expired or never have signed "
+"a certificate."
+msgstr ""
+"A CA törlése nem lehetséges. Csak olyan CA törölhető, amely lejárt vagy "
+"nincs olyan tanúsítvány, amit a törölni kívánt CA írt alá."
 
 #: src/CA.cpp:1522
 msgid "Deleting the CA failed: %1."
@@ -310,7 +318,9 @@ msgstr "A következő mezőt definiálni kell: %1."
 
 #: src/CA.cpp:1779
 msgid "%1 must be the same in the CA certificate (%2) and the request (%3)."
-msgstr "A(z) '%1' mezőnek azonosnak kell lennie a CA tanúsítványban (%2) és a kérelemben (%3)."
+msgstr ""
+"A(z) '%1' mezőnek azonosnak kell lennie a CA tanúsítványban (%2) és a "
+"kérelemben (%3)."
 
 #: src/CA.cpp:1791
 msgid "The configuration file seems to have an invalid policy."
@@ -565,7 +575,8 @@ msgstr "Nincs megadva érvényes CA könyvtár."
 
 #: src/OpenSSLUtils.cpp:944
 msgid "Showing certificate status with serial %1 failed (%2)."
-msgstr "A tanúsítvány állapotának lekérdezése a(z) %1 sorozatszámmal sikertelen (%2)."
+msgstr ""
+"A tanúsítvány állapotának lekérdezése a(z) %1 sorozatszámmal sikertelen (%2)."
 
 #: src/OpenSSLUtils.cpp:980
 msgid "Keyfile does not exist"
@@ -843,15 +854,18 @@ msgstr "Érvénytelen érték: X509v3CertificateIssueExts::setSubjectKeyIdentifi
 
 #: src/X509v3CertificateIssueExtensions.cpp:450
 msgid "X509v3CertificateIssueExts::setAuthorityKeyIdentifier invalid value"
-msgstr "Érvénytelen érték: X509v3CertificateIssueExts::setAuthorityKeyIdentifier"
+msgstr ""
+"Érvénytelen érték: X509v3CertificateIssueExts::setAuthorityKeyIdentifier"
 
 #: src/X509v3CertificateIssueExtensions.cpp:473
 msgid "X509v3CertificateIssueExts::setSubjectAlternativeName invalid value"
-msgstr "Érvénytelen érték: X509v3CertificateIssueExts::setSubjectAlternativeName"
+msgstr ""
+"Érvénytelen érték: X509v3CertificateIssueExts::setSubjectAlternativeName"
 
 #: src/X509v3CertificateIssueExtensions.cpp:496
 msgid "X509v3CertificateIssueExts::setIssuerAlternativeName invalid value"
-msgstr "Érvénytelen érték: X509v3CertificateIssueExts::setIssuerAlternativeName"
+msgstr ""
+"Érvénytelen érték: X509v3CertificateIssueExts::setIssuerAlternativeName"
 
 #: src/X509v3CertificateIssueExtensions.cpp:519
 msgid "X509v3CertificateIssueExts::setAuthorityInfoAccess invalid value"
@@ -859,7 +873,8 @@ msgstr "Érvénytelen érték: X509v3CertificateIssueExts::setAuthorityInfoAcces
 
 #: src/X509v3CertificateIssueExtensions.cpp:542
 msgid "X509v3CertificateIssueExts::setCRLDistributionPoints invalid value"
-msgstr "Érvénytelen érték: X509v3CertificateIssueExts::setCRLDistributionPoints"
+msgstr ""
+"Érvénytelen érték: X509v3CertificateIssueExts::setCRLDistributionPoints"
 
 #: src/X509v3CertificateIssueExtensions.cpp:565
 msgid "X509v3CertificateIssueExts::setCertificatePolicies invalid value"
@@ -910,4 +925,3 @@ msgstr "Érvénytelen érték: X509v3RequestExts::setSubjectKeyIdentifier"
 #: src/X509v3RequestExtensions.cpp:231
 msgid "X509v3RequestExts::setSubjectAlternativeName invalid value"
 msgstr "Érvénytelen érték: X509v3RequestExts::setSubjectAlternativeName"
-

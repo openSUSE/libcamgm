@@ -17,7 +17,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: KBabel 1.11.2\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:110
@@ -228,8 +229,12 @@ msgid "Removing the certificate failed: %1."
 msgstr "Не удалось удалить сертификат: %1."
 
 #: src/CA.cpp:1034
-msgid "Only revoked or expired certificates can be deleted. The status of the certificate is %1."
-msgstr "Могут быть удалены только отмененные или просроченные сертификаты. Статус сертификата %1."
+msgid ""
+"Only revoked or expired certificates can be deleted. The status of the "
+"certificate is %1."
+msgstr ""
+"Могут быть удалены только отмененные или просроченные сертификаты. Статус "
+"сертификата %1."
 
 #: src/CA.cpp:1046
 msgid "Database not found."
@@ -286,8 +291,12 @@ msgid "CA name does not exist (%1)."
 msgstr "CA имя не существует (%1)."
 
 #: src/CA.cpp:1497
-msgid "Deleting the CA is not allowed. The CA must be expired or never have signed a certificate."
-msgstr "Удаление CA не разрешается. CA должен закончить срок действия или не иметь подписанный сертификат."
+msgid ""
+"Deleting the CA is not allowed. The CA must be expired or never have signed "
+"a certificate."
+msgstr ""
+"Удаление CA не разрешается. CA должен закончить срок действия или не иметь "
+"подписанный сертификат."
 
 #: src/CA.cpp:1522
 msgid "Deleting the CA failed: %1."
@@ -850,11 +859,13 @@ msgstr "X509v3CertificateIssueExts::setSubjectKeyIdentifier неверное з�
 
 #: src/X509v3CertificateIssueExtensions.cpp:450
 msgid "X509v3CertificateIssueExts::setAuthorityKeyIdentifier invalid value"
-msgstr "X509v3CertificateIssueExts::setAuthorityKeyIdentifier неверное значение"
+msgstr ""
+"X509v3CertificateIssueExts::setAuthorityKeyIdentifier неверное значение"
 
 #: src/X509v3CertificateIssueExtensions.cpp:473
 msgid "X509v3CertificateIssueExts::setSubjectAlternativeName invalid value"
-msgstr "X509v3CertificateIssueExts::setSubjectAlternativeName неверное значение"
+msgstr ""
+"X509v3CertificateIssueExts::setSubjectAlternativeName неверное значение"
 
 #: src/X509v3CertificateIssueExtensions.cpp:496
 msgid "X509v3CertificateIssueExts::setIssuerAlternativeName invalid value"
@@ -917,4 +928,3 @@ msgstr "X509v3RequestExts::setSubjectKeyIdentifier неверное значен
 #: src/X509v3RequestExtensions.cpp:231
 msgid "X509v3RequestExts::setSubjectAlternativeName invalid value"
 msgstr "X509v3RequestExts::setSubjectAlternativeName неверное значение"
-

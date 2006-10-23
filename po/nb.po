@@ -32,9 +32,9 @@ msgstr "Ugyldig accessOID."
 #: src/AuthorityKeyIdentifierGenerateExtension.cpp:87
 #: src/AuthorityKeyIdentifierGenerateExtension.cpp:194
 #: src/BasicConstraintsExtension.cpp:84 src/BasicConstraintsExtension.cpp:187
-#: src/BitExtensions.cpp:134 src/BitExtensions.cpp:247 src/BitExtensions.cpp:374
-#: src/BitExtensions.cpp:482 src/CA.cpp:1565 src/CertificateIssueData.cpp:219
-#: src/CertificatePoliciesExtension.cpp:169
+#: src/BitExtensions.cpp:134 src/BitExtensions.cpp:247
+#: src/BitExtensions.cpp:374 src/BitExtensions.cpp:482 src/CA.cpp:1565
+#: src/CertificateIssueData.cpp:219 src/CertificatePoliciesExtension.cpp:169
 #: src/CertificatePoliciesExtension.cpp:264
 #: src/CertificatePoliciesExtension.cpp:425
 #: src/CertificatePoliciesExtension.cpp:523
@@ -44,14 +44,15 @@ msgstr "Ugyldig accessOID."
 #: src/CRLDistributionPointsExtension.cpp:166 src/CRLGenerationData.cpp:163
 #: src/DNObject.cpp:251 src/ExtendedKeyUsageExt.cpp:77
 #: src/ExtendedKeyUsageExt.cpp:229 src/IssuerAlternativeNameExtension.cpp:98
-#: src/IssuerAlternativeNameExtension.cpp:224 src/RequestGenerationData.cpp:248
-#: src/StringExtensions.cpp:122 src/StringExtensions.cpp:199
-#: src/StringExtensions.cpp:287 src/StringExtensions.cpp:357
-#: src/StringExtensions.cpp:441 src/StringExtensions.cpp:511
-#: src/StringExtensions.cpp:594 src/StringExtensions.cpp:664
-#: src/StringExtensions.cpp:746 src/StringExtensions.cpp:816
-#: src/StringExtensions.cpp:958 src/StringExtensions.cpp:1020
-#: src/StringExtensions.cpp:1084 src/SubjectAlternativeNameExtension.cpp:85
+#: src/IssuerAlternativeNameExtension.cpp:224
+#: src/RequestGenerationData.cpp:248 src/StringExtensions.cpp:122
+#: src/StringExtensions.cpp:199 src/StringExtensions.cpp:287
+#: src/StringExtensions.cpp:357 src/StringExtensions.cpp:441
+#: src/StringExtensions.cpp:511 src/StringExtensions.cpp:594
+#: src/StringExtensions.cpp:664 src/StringExtensions.cpp:746
+#: src/StringExtensions.cpp:816 src/StringExtensions.cpp:958
+#: src/StringExtensions.cpp:1020 src/StringExtensions.cpp:1084
+#: src/SubjectAlternativeNameExtension.cpp:85
 #: src/SubjectAlternativeNameExtension.cpp:215
 #: src/SubjectKeyIdentifierExtension.cpp:85
 #: src/SubjectKeyIdentifierExtension.cpp:208
@@ -222,8 +223,12 @@ msgid "Removing the certificate failed: %1."
 msgstr "Sertifikatet kunne ikke fjernes: %1"
 
 #: src/CA.cpp:1034
-msgid "Only revoked or expired certificates can be deleted. The status of the certificate is %1."
-msgstr "Kun inndratte eller utløpte sertifikater kan slettes. Status for sertifikatet er %1."
+msgid ""
+"Only revoked or expired certificates can be deleted. The status of the "
+"certificate is %1."
+msgstr ""
+"Kun inndratte eller utløpte sertifikater kan slettes. Status for "
+"sertifikatet er %1."
 
 #: src/CA.cpp:1046
 msgid "Database not found."
@@ -278,8 +283,12 @@ msgid "CA name does not exist (%1)."
 msgstr "CA-navnet finnes ikke (%1)."
 
 #: src/CA.cpp:1497
-msgid "Deleting the CA is not allowed. The CA must be expired or never have signed a certificate."
-msgstr "Sletting av CA er ikke tillatt. CA må være utløpt eller aldri ha signert et sertifikat."
+msgid ""
+"Deleting the CA is not allowed. The CA must be expired or never have signed "
+"a certificate."
+msgstr ""
+"Sletting av CA er ikke tillatt. CA må være utløpt eller aldri ha signert et "
+"sertifikat."
 
 #: src/CA.cpp:1522
 msgid "Deleting the CA failed: %1."
@@ -574,7 +583,8 @@ msgstr "Utpassord kreves"
 msgid "PKCS12 password is required"
 msgstr "PKCS12-passord kreves"
 
-#: src/OpenSSLUtils.cpp:1667 src/OpenSSLUtils.cpp:1867 src/OpenSSLUtils.cpp:2019
+#: src/OpenSSLUtils.cpp:1667 src/OpenSSLUtils.cpp:1867
+#: src/OpenSSLUtils.cpp:2019
 msgid "Cannot read directory: %1 (%2) [%3]"
 msgstr "Kan ikke lese katalog: %1 (%2) [%3]"
 
@@ -606,8 +616,9 @@ msgstr "'%1' finnes ikke"
 msgid "%1 still exist"
 msgstr "%1 finnes fremdeles"
 
-#: src/OpenSSLUtils.cpp:2218 src/OpenSSLUtils.cpp:2266 src/OpenSSLUtils.cpp:2280
-#: src/OpenSSLUtils.cpp:2294 src/OpenSSLUtils.cpp:2308 src/OpenSSLUtils.cpp:2322
+#: src/OpenSSLUtils.cpp:2218 src/OpenSSLUtils.cpp:2266
+#: src/OpenSSLUtils.cpp:2280 src/OpenSSLUtils.cpp:2294
+#: src/OpenSSLUtils.cpp:2308 src/OpenSSLUtils.cpp:2322
 msgid "Can not create directory: %1 (%2 [%3])"
 msgstr "Kan ikke opprette katalog: %1 (%2 [%3])"
 
@@ -756,7 +767,8 @@ msgstr "Kan ikke analysere sertifikatet (NID: %1 Crit: %2)"
 #: src/X509v3CertificateExtensions_Priv.cpp:839
 #: src/X509v3CertificateExtensions_Priv.cpp:915
 #: src/X509v3CertificateExtensions_Priv.cpp:1001
-#: src/X509v3CRLExtensions_Priv.cpp:134 src/X509v3RequestExtensions_Priv.cpp:248
+#: src/X509v3CRLExtensions_Priv.cpp:134
+#: src/X509v3RequestExtensions_Priv.cpp:248
 #: src/X509v3RequestExtensions_Priv.cpp:314
 #: src/X509v3RequestExtensions_Priv.cpp:377
 #: src/X509v3RequestExtensions_Priv.cpp:438
@@ -771,7 +783,8 @@ msgstr "Utvidelse har skjedd mer enn én gang"
 #: src/X509v3CertificateExtensions_Priv.cpp:845
 #: src/X509v3CertificateExtensions_Priv.cpp:920
 #: src/X509v3CertificateExtensions_Priv.cpp:1006
-#: src/X509v3CRLExtensions_Priv.cpp:139 src/X509v3RequestExtensions_Priv.cpp:253
+#: src/X509v3CRLExtensions_Priv.cpp:139
+#: src/X509v3RequestExtensions_Priv.cpp:253
 #: src/X509v3RequestExtensions_Priv.cpp:319
 #: src/X509v3RequestExtensions_Priv.cpp:383
 #: src/X509v3RequestExtensions_Priv.cpp:443
@@ -832,11 +845,13 @@ msgstr "X509v3CertificateIssueExts::setSubjectKeyIdentifier har ugyldig verdi"
 
 #: src/X509v3CertificateIssueExtensions.cpp:450
 msgid "X509v3CertificateIssueExts::setAuthorityKeyIdentifier invalid value"
-msgstr "X509v3CertificateIssueExts::setAuthorityKeyIdentifier har ugyldig verdi"
+msgstr ""
+"X509v3CertificateIssueExts::setAuthorityKeyIdentifier har ugyldig verdi"
 
 #: src/X509v3CertificateIssueExtensions.cpp:473
 msgid "X509v3CertificateIssueExts::setSubjectAlternativeName invalid value"
-msgstr "X509v3CertificateIssueExts::setSubjectAlternativeName har ugyldig verdi"
+msgstr ""
+"X509v3CertificateIssueExts::setSubjectAlternativeName har ugyldig verdi"
 
 #: src/X509v3CertificateIssueExtensions.cpp:496
 msgid "X509v3CertificateIssueExts::setIssuerAlternativeName invalid value"
@@ -855,7 +870,8 @@ msgid "X509v3CertificateIssueExts::setCertificatePolicies invalid value"
 msgstr "X509v3CertificateIssueExts::setCertificatePolicies har ugyldig verdi"
 
 #: src/X509v3CertificateIssueExtensions.cpp:589
-#: src/X509v3CRLGenerationExtensions.cpp:149 src/X509v3RequestExtensions.cpp:255
+#: src/X509v3CRLGenerationExtensions.cpp:149
+#: src/X509v3RequestExtensions.cpp:255
 msgid "Invalid X509v3RequestExts object"
 msgstr "Ugyldig X509v3RequestExts-objekt"
 
@@ -898,4 +914,3 @@ msgstr "X509v3RequestExts::setSubjectKeyIdentifier har ugyldig verdi"
 #: src/X509v3RequestExtensions.cpp:231
 msgid "X509v3RequestExts::setSubjectAlternativeName invalid value"
 msgstr "X509v3RequestExts::setSubjectAlternativeName har ugyldig verdi"
-
