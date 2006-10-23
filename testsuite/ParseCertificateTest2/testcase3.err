@@ -1,0 +1,33 @@
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setCritical(): false
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setCritical(): false
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setCritical(): false
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setCritical(): false
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG ca-mgm - return AuthorityInformation::valid() is true
+DEBUG ca-mgm - return AuthorityInformation::valid() is true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setCritical(): false
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setCritical(): false
+DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG ca-mgm - ExtensionBase::setPresent(): false

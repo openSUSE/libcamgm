@@ -1,0 +1,222 @@
+START
+file: ParseCertificateTest2/testcase3.in
+Parse TestRepos3/windows-kdc.crt Format:PEM
+CertificateData::dump()
+Version = 3
+Serial = 613DD6B1000000000002
+notBefore = 1153266505
+notAfter = 1184802505
+Fingerprint = SHA1:20:ED:1C:3F:E0:99:33:A0:BC:BF:E7:3E:69:92:73:FD:E0:B6:47:66
+DNObject::dump()
+RDNObject::dump()
+domainComponent=com
+Prompt:
+Min:0
+Max:0
+RDNObject::dump()
+domainComponent=redhat
+Prompt:
+Min:0
+Max:0
+RDNObject::dump()
+domainComponent=boston
+Prompt:
+Min:0
+Max:0
+RDNObject::dump()
+commonName=Certifying Authority
+Prompt:
+Min:0
+Max:0
+DNObject::dump()
+RDNObject::dump()
+commonName=saber.boston.redhat.com
+Prompt:
+Min:0
+Max:0
+Keysize = 1024
+public key algorithm = 0
+public Key = 30:81:9f:30:0d:06:09:2a:86:48:86:f7:0d:01:01:01:05:00:03:81:8d:00:30:81:89:02:81:81:00:d5:87:96:bf:d3:93:7e:14:87:fd:ea:f5:75:49:05:3c:1f:20:15:be:ee:19:6c:21:e0:61:88:fa:dd:b4:c7:43:d6:14:6e:7e:23:b2:48:f2:49:5a:db:74:fe:0b:51:c8:b2:12:c3:f9:d9:e9:f3:8c:33:37:57:38:cb:90:0a:b8:c4:b4:ee:bc:b1:ad:45:38:b6:e4:e0:f2:96:57:62:28:b4:7e:e5:bf:f2:8f:97:05:8a:54:8d:b2:96:8b:60:70:ad:19:a8:5d:db:bf:60:7b:52:db:44:18:53:20:35:7e:32:dd:3c:05:b4:a6:78:e4:ef:15:ca:71:87:d1:b3:bb:02:03:01:00:01:
+signatureAlgorithm = 0
+Signature = b5:64:b1:97:c5:8c:79:c0:dc:0b:c2:50:ea:6a:0c:0b:1a:e9:f7:20:58:b1:2c:d6:29:d1:c0:7f:6a:66:9d:56:5d:34:ce:49:5c:8f:8b:e2:7a:82:d9:ef:7d:5b:e1:a4:88:c6:f0:97:c7:77:66:a7:70:f2:ca:b0:03:b5:05:6c:a7:9b:3e:82:2c:57:91:ab:53:4d:09:36:36:15:ca:b0:33:b1:42:13:db:0d:d6:82:af:85:d1:cd:e8:b6:bc:e9:75:70:82:e1:7a:07:09:87:ac:cb:1e:ba:b2:7a:58:ff:f8:57:7d:98:d0:86:07:39:45:44:a3:0e:fa:bd:9c:09:aa:11:c6:09:e8:c0:50:55:6f:01:91:cf:bb:b7:19:f6:00:ea:79:20:59:ab:2b:4d:f6:f5:8c:48:49:0b:e5:7b:5b:b2:55:10:14:45:11:df:e3:84:db:6b:2c:de:80:58:8e:50:bf:ad:08:a9:ca:76:13:40:11:78:5d:77:cb:c9:ab:55:77:f9:a1:8a:3c:a5:5c:b6:d2:0c:ea:8e:eb:aa:2d:a1:2d:43:ed:91:ff:74:76:e2:02:c6:d7:16:22:02:c6:13:f8:3c:73:d4:33:7b:0e:fe:65:af:3c:cb:3b:f4:9b:dc:f4:b9:5b:e4:cd:ff:d4:74:6a:10:57:ea:63:e5:
+X509v3CertificateExts::dump()
+NsBaseUrlExt::dump()
+ExtensionBase::dump()
+is Present = false
+NsRevocationUrlExt::dump()
+ExtensionBase::dump()
+is Present = false
+NsCaRevocationUrlExt::dump()
+ExtensionBase::dump()
+is Present = false
+NsRenewalUrlExt::dump()
+ExtensionBase::dump()
+is Present = false
+NsCaPolicyUrlExt::dump()
+ExtensionBase::dump()
+is Present = false
+NsSslServerNameExt::dump()
+ExtensionBase::dump()
+is Present = false
+NsCommentExt::dump()
+ExtensionBase::dump()
+is Present = false
+KeyUsageExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+KeyUsage = 0x00a0
+NsCertTypeExt::dump()
+ExtensionBase::dump()
+is Present = false
+BasicConstraintsExt::dump()
+ExtensionBase::dump()
+is Present = false
+ExtendedKeyUsageExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+Extended KeyUsage = clientAuth
+Extended KeyUsage = serverAuth
+SubjectKeyIdentifierExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+Autodetect = false
+KeyID = 68:48:87:0e:c5:d5:af:3d:83:ab:45:3b:90:e8:d5:d9:c8:fe:8a:e9
+AuthorityKeyIdentifierExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+KeyID = a9:db:56:b0:04:16:34:da:49:d8:f3:b3:fb:cc:42:2e:96:8c:be:b3
+DirName = 
+serial = 
+SubjectAlternativeNameExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+email:copy = false
+LiteralValue::dump()
+othername:unsupported(0)
+LiteralValue::dump()
+DNS:saber.boston.redhat.com
+IssuerAlternativeNameExt::dump()
+ExtensionBase::dump()
+is Present = false
+AuthorityInfoAccessExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+AuthorityInformation::dump()
+accessOID = caIssuers
+LiteralValue::dump()
+URI:ldap:///CN=Certifying%20Authority,CN=AIA,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=boston,DC=redhat,DC=com?cACertificate?base?objectClass=certificationAuthority
+AuthorityInformation::dump()
+accessOID = caIssuers
+LiteralValue::dump()
+URI:http://saber.boston.redhat.com/CertEnroll/saber.boston.redhat.com_Certifying%20Authority.crt
+CRLDistributionPointsExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+LiteralValue::dump()
+URI:ldap:///CN=Certifying%20Authority,CN=saber,CN=CDP,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=boston,DC=redhat,DC=com?certificateRevocationList?base?objectClass=cRLDistributionPoint
+LiteralValue::dump()
+URI:http://saber.boston.redhat.com/CertEnroll/Certifying%20Authority.crl
+CertificatePoliciesExt::dump()
+ExtensionBase::dump()
+is Present = false
+=================== call verify ======================
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            61:3d:d6:b1:00:00:00:00:00:02
+        Signature Algorithm: sha1WithRSAEncryption
+        Issuer: DC=com, DC=redhat, DC=boston, CN=Certifying Authority
+        Validity
+            Not Before: Jul 18 23:48:25 2006 GMT
+            Not After : Jul 18 23:48:25 2007 GMT
+        Subject: CN=saber.boston.redhat.com
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+            RSA Public Key: (1024 bit)
+                Modulus (1024 bit):
+                    00:d5:87:96:bf:d3:93:7e:14:87:fd:ea:f5:75:49:
+                    05:3c:1f:20:15:be:ee:19:6c:21:e0:61:88:fa:dd:
+                    b4:c7:43:d6:14:6e:7e:23:b2:48:f2:49:5a:db:74:
+                    fe:0b:51:c8:b2:12:c3:f9:d9:e9:f3:8c:33:37:57:
+                    38:cb:90:0a:b8:c4:b4:ee:bc:b1:ad:45:38:b6:e4:
+                    e0:f2:96:57:62:28:b4:7e:e5:bf:f2:8f:97:05:8a:
+                    54:8d:b2:96:8b:60:70:ad:19:a8:5d:db:bf:60:7b:
+                    52:db:44:18:53:20:35:7e:32:dd:3c:05:b4:a6:78:
+                    e4:ef:15:ca:71:87:d1:b3:bb
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Key Usage: 
+                Digital Signature, Key Encipherment
+            S/MIME Capabilities: 
+                050...*.H........0...*.H........0...+....0
+..*.H....
+            X509v3 Subject Key Identifier: 
+                68:48:87:0E:C5:D5:AF:3D:83:AB:45:3B:90:E8:D5:D9:C8:FE:8A:E9
+            1.3.6.1.4.1.311.20.2: 
+                . .D.o.m.a.i.n.C.o.n.t.r.o.l.l.e.r
+            X509v3 Authority Key Identifier: 
+                keyid:A9:DB:56:B0:04:16:34:DA:49:D8:F3:B3:FB:CC:42:2E:96:8C:BE:B3
+
+            X509v3 CRL Distribution Points: 
+                URI:ldap:///CN=Certifying%20Authority,CN=saber,CN=CDP,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=boston,DC=redhat,DC=com?certificateRevocationList?base?objectClass=cRLDistributionPoint
+                URI:http://saber.boston.redhat.com/CertEnroll/Certifying%20Authority.crl
+
+            Authority Information Access: 
+                CA Issuers - URI:ldap:///CN=Certifying%20Authority,CN=AIA,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=boston,DC=redhat,DC=com?cACertificate?base?objectClass=certificationAuthority
+                CA Issuers - URI:http://saber.boston.redhat.com/CertEnroll/saber.boston.redhat.com_Certifying%20Authority.crt
+
+            X509v3 Extended Key Usage: 
+                TLS Web Client Authentication, TLS Web Server Authentication
+            X509v3 Subject Alternative Name: 
+                othername:<unsupported>, DNS:saber.boston.redhat.com
+    Signature Algorithm: sha1WithRSAEncryption
+        b5:64:b1:97:c5:8c:79:c0:dc:0b:c2:50:ea:6a:0c:0b:1a:e9:
+        f7:20:58:b1:2c:d6:29:d1:c0:7f:6a:66:9d:56:5d:34:ce:49:
+        5c:8f:8b:e2:7a:82:d9:ef:7d:5b:e1:a4:88:c6:f0:97:c7:77:
+        66:a7:70:f2:ca:b0:03:b5:05:6c:a7:9b:3e:82:2c:57:91:ab:
+        53:4d:09:36:36:15:ca:b0:33:b1:42:13:db:0d:d6:82:af:85:
+        d1:cd:e8:b6:bc:e9:75:70:82:e1:7a:07:09:87:ac:cb:1e:ba:
+        b2:7a:58:ff:f8:57:7d:98:d0:86:07:39:45:44:a3:0e:fa:bd:
+        9c:09:aa:11:c6:09:e8:c0:50:55:6f:01:91:cf:bb:b7:19:f6:
+        00:ea:79:20:59:ab:2b:4d:f6:f5:8c:48:49:0b:e5:7b:5b:b2:
+        55:10:14:45:11:df:e3:84:db:6b:2c:de:80:58:8e:50:bf:ad:
+        08:a9:ca:76:13:40:11:78:5d:77:cb:c9:ab:55:77:f9:a1:8a:
+        3c:a5:5c:b6:d2:0c:ea:8e:eb:aa:2d:a1:2d:43:ed:91:ff:74:
+        76:e2:02:c6:d7:16:22:02:c6:13:f8:3c:73:d4:33:7b:0e:fe:
+        65:af:3c:cb:3b:f4:9b:dc:f4:b9:5b:e4:cd:ff:d4:74:6a:10:
+        57:ea:63:e5
+
+    X509v3 Key Usage: 
+        Digital Signature, Key Encipherment
+    S/MIME Capabilities: 
+        050...*.H........0...*.H........0...+....0
+..*.H....
+    X509v3 Subject Key Identifier: 
+        68:48:87:0E:C5:D5:AF:3D:83:AB:45:3B:90:E8:D5:D9:C8:FE:8A:E9
+    1.3.6.1.4.1.311.20.2: 
+        . .D.o.m.a.i.n.C.o.n.t.r.o.l.l.e.r
+    X509v3 Authority Key Identifier: 
+        keyid:A9:DB:56:B0:04:16:34:DA:49:D8:F3:B3:FB:CC:42:2E:96:8C:BE:B3
+
+    X509v3 CRL Distribution Points: 
+        URI:ldap:///CN=Certifying%20Authority,CN=saber,CN=CDP,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=boston,DC=redhat,DC=com?certificateRevocationList?base?objectClass=cRLDistributionPoint
+        URI:http://saber.boston.redhat.com/CertEnroll/Certifying%20Authority.crl
+
+    Authority Information Access: 
+        CA Issuers - URI:ldap:///CN=Certifying%20Authority,CN=AIA,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=boston,DC=redhat,DC=com?cACertificate?base?objectClass=certificationAuthority
+        CA Issuers - URI:http://saber.boston.redhat.com/CertEnroll/saber.boston.redhat.com_Certifying%20Authority.crt
+
+    X509v3 Extended Key Usage: 
+        TLS Web Client Authentication, TLS Web Server Authentication
+    X509v3 Subject Alternative Name: 
+        othername:<unsupported>, DNS:saber.boston.redhat.com
+
+DONE

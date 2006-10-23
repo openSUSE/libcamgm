@@ -1,0 +1,218 @@
+START
+file: ParseCertificateTest2/testcase1.in
+Parse TestRepos3/windows-client.crt Format:PEM
+CertificateData::dump()
+Version = 3
+Serial = 62
+notBefore = 1157657280
+notAfter = 1304913600
+Fingerprint = SHA1:E4:87:4E:D1:1B:73:9F:C7:BE:79:58:48:B4:BE:56:03:A4:8E:FC:C0
+DNObject::dump()
+RDNObject::dump()
+countryName=US
+Prompt:
+Min:0
+Max:0
+RDNObject::dump()
+stateOrProvinceName=Massachusetts
+Prompt:
+Min:0
+Max:0
+RDNObject::dump()
+localityName=Westford
+Prompt:
+Min:0
+Max:0
+RDNObject::dump()
+organizationName=Red Hat
+Prompt:
+Min:0
+Max:0
+RDNObject::dump()
+organizationalUnitName=Engineering
+Prompt:
+Min:0
+Max:0
+RDNObject::dump()
+commonName=Certificate Manager
+Prompt:
+Min:0
+Max:0
+DNObject::dump()
+RDNObject::dump()
+organizationName=Token Key User
+Prompt:
+Min:0
+Max:0
+RDNObject::dump()
+emailAddress=nalin@redhat.com
+Prompt:
+Min:0
+Max:0
+RDNObject::dump()
+commonName=Nalin Dahyabhai
+Prompt:
+Min:0
+Max:0
+RDNObject::dump()
+userId=nalin
+Prompt:
+Min:0
+Max:0
+Keysize = 1024
+public key algorithm = 0
+public Key = 30:81:9f:30:0d:06:09:2a:86:48:86:f7:0d:01:01:01:05:00:03:81:8d:00:30:81:89:02:81:81:00:d3:46:20:ca:6b:83:f3:da:41:17:db:12:77:d6:0e:7c:ec:51:f3:43:f0:5c:18:0d:3b:2e:c2:21:6d:8b:b3:31:2c:7b:d1:4f:d3:7f:27:2c:5c:3a:08:6b:4b:ae:e9:83:5f:04:a5:1b:14:15:72:b6:c4:45:6a:0d:30:3e:85:ec:d5:c2:34:7f:10:e9:f4:8f:84:c3:0f:c2:ad:c9:d7:c4:9d:b7:95:b6:70:19:41:10:5f:f2:a4:43:4b:6a:d4:ab:dc:8b:b6:44:61:ad:99:36:da:da:cf:71:d4:86:c6:35:05:12:7b:28:7a:da:21:aa:04:d3:80:b5:43:36:11:a9:02:03:01:00:01:
+signatureAlgorithm = 0
+Signature = 50:20:9d:bc:6c:f2:af:41:dd:8a:eb:b6:bd:67:b7:59:42:17:c2:5b:af:8c:9a:c7:8e:dc:b5:49:9d:be:13:7b:2b:8c:74:7f:1d:e2:94:d4:4f:e0:74:e4:0d:b1:59:f1:8e:f3:54:74:be:93:60:f9:e9:e2:87:fa:5e:af:9b:47:3e:52:fa:fe:36:8f:3f:83:bf:08:96:6a:96:8d:3d:94:d9:f9:3a:f9:c9:ee:ed:7a:64:f1:d4:9b:32:eb:f8:dd:dc:e5:7f:c4:99:d5:f9:5b:98:cd:4d:f7:7f:c3:07:fa:9b:aa:35:f2:36:6d:cd:9a:ec:b9:50:43:72:c4:f5:ad:
+X509v3CertificateExts::dump()
+NsBaseUrlExt::dump()
+ExtensionBase::dump()
+is Present = false
+NsRevocationUrlExt::dump()
+ExtensionBase::dump()
+is Present = false
+NsCaRevocationUrlExt::dump()
+ExtensionBase::dump()
+is Present = false
+NsRenewalUrlExt::dump()
+ExtensionBase::dump()
+is Present = false
+NsCaPolicyUrlExt::dump()
+ExtensionBase::dump()
+is Present = false
+NsSslServerNameExt::dump()
+ExtensionBase::dump()
+is Present = false
+NsCommentExt::dump()
+ExtensionBase::dump()
+is Present = false
+KeyUsageExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = true
+KeyUsage = 0x00c0
+NsCertTypeExt::dump()
+ExtensionBase::dump()
+is Present = false
+BasicConstraintsExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+CA = false
+pathlen = -1
+ExtendedKeyUsageExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+Extended KeyUsage = msSmartcardLogin
+Extended KeyUsage = clientAuth
+Extended KeyUsage = emailProtection
+SubjectKeyIdentifierExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+Autodetect = false
+KeyID = b2:3b:75:09:f5:1d:8c:5f:18:4e:44:ca:06:13:46:f0:79:9a:2f:79
+AuthorityKeyIdentifierExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+KeyID = 6e:cd:88:0d:86:16:31:49:8c:ba:0b:da:c1:14:15:4e:97:c7:59:a5
+DirName = 
+serial = 
+SubjectAlternativeNameExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+email:copy = false
+LiteralValue::dump()
+email:nalin@redhat.com
+LiteralValue::dump()
+othername:nalin@BOSTON.REDHAT.COM
+LiteralValue::dump()
+othername:nalin@DAHYABHAI.NET
+IssuerAlternativeNameExt::dump()
+ExtensionBase::dump()
+is Present = false
+AuthorityInfoAccessExt::dump()
+ExtensionBase::dump()
+is Present = false
+CRLDistributionPointsExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+LiteralValue::dump()
+URI:http://frenzy.boston.redhat.com/coolkey/crl/revocations.crl
+CertificatePoliciesExt::dump()
+ExtensionBase::dump()
+is Present = false
+=================== call verify ======================
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 98 (0x62)
+        Signature Algorithm: sha1WithRSAEncryption
+        Issuer: C=US, ST=Massachusetts, L=Westford, O=Red Hat, OU=Engineering, CN=Certificate Manager
+        Validity
+            Not Before: Sep  7 19:28:00 2006 GMT
+            Not After : May  9 04:00:00 2011 GMT
+        Subject: O=Token Key User/emailAddress=nalin@redhat.com, CN=Nalin Dahyabhai/UID=nalin
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+            RSA Public Key: (1024 bit)
+                Modulus (1024 bit):
+                    00:d3:46:20:ca:6b:83:f3:da:41:17:db:12:77:d6:
+                    0e:7c:ec:51:f3:43:f0:5c:18:0d:3b:2e:c2:21:6d:
+                    8b:b3:31:2c:7b:d1:4f:d3:7f:27:2c:5c:3a:08:6b:
+                    4b:ae:e9:83:5f:04:a5:1b:14:15:72:b6:c4:45:6a:
+                    0d:30:3e:85:ec:d5:c2:34:7f:10:e9:f4:8f:84:c3:
+                    0f:c2:ad:c9:d7:c4:9d:b7:95:b6:70:19:41:10:5f:
+                    f2:a4:43:4b:6a:d4:ab:dc:8b:b6:44:61:ad:99:36:
+                    da:da:cf:71:d4:86:c6:35:05:12:7b:28:7a:da:21:
+                    aa:04:d3:80:b5:43:36:11:a9
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Key Usage: critical
+                Digital Signature, Non Repudiation
+            X509v3 Subject Alternative Name: 
+                email:nalin@redhat.com, othername:<unsupported>, othername:<unsupported>
+            X509v3 Subject Key Identifier: 
+                B2:3B:75:09:F5:1D:8C:5F:18:4E:44:CA:06:13:46:F0:79:9A:2F:79
+            X509v3 Authority Key Identifier: 
+                keyid:6E:CD:88:0D:86:16:31:49:8C:BA:0B:DA:C1:14:15:4E:97:C7:59:A5
+
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            X509v3 Extended Key Usage: 
+                Microsoft Smartcardlogin, TLS Web Client Authentication, E-mail Protection
+            X509v3 CRL Distribution Points: 
+                URI:http://frenzy.boston.redhat.com/coolkey/crl/revocations.crl
+
+    Signature Algorithm: sha1WithRSAEncryption
+        50:20:9d:bc:6c:f2:af:41:dd:8a:eb:b6:bd:67:b7:59:42:17:
+        c2:5b:af:8c:9a:c7:8e:dc:b5:49:9d:be:13:7b:2b:8c:74:7f:
+        1d:e2:94:d4:4f:e0:74:e4:0d:b1:59:f1:8e:f3:54:74:be:93:
+        60:f9:e9:e2:87:fa:5e:af:9b:47:3e:52:fa:fe:36:8f:3f:83:
+        bf:08:96:6a:96:8d:3d:94:d9:f9:3a:f9:c9:ee:ed:7a:64:f1:
+        d4:9b:32:eb:f8:dd:dc:e5:7f:c4:99:d5:f9:5b:98:cd:4d:f7:
+        7f:c3:07:fa:9b:aa:35:f2:36:6d:cd:9a:ec:b9:50:43:72:c4:
+        f5:ad
+
+    X509v3 Key Usage: critical
+        Digital Signature, Non Repudiation
+    X509v3 Subject Alternative Name: 
+        email:nalin@redhat.com, othername:<unsupported>, othername:<unsupported>
+    X509v3 Subject Key Identifier: 
+        B2:3B:75:09:F5:1D:8C:5F:18:4E:44:CA:06:13:46:F0:79:9A:2F:79
+    X509v3 Authority Key Identifier: 
+        keyid:6E:CD:88:0D:86:16:31:49:8C:BA:0B:DA:C1:14:15:4E:97:C7:59:A5
+
+    X509v3 Basic Constraints: 
+        CA:FALSE
+    X509v3 Extended Key Usage: 
+        Microsoft Smartcardlogin, TLS Web Client Authentication, E-mail Protection
+    X509v3 CRL Distribution Points: 
+        URI:http://frenzy.boston.redhat.com/coolkey/crl/revocations.crl
+
+
+DONE
