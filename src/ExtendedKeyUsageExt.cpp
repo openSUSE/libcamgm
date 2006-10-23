@@ -317,29 +317,14 @@ ExtendedKeyUsageExt::dump() const
 bool
 ExtendedKeyUsageExt::checkValue(const String& value) const
 {
-	StringList validValues;
-	validValues.push_back("serverAuth");
-	validValues.push_back("clientAuth");
-	validValues.push_back("codeSigning");
-	validValues.push_back("emailProtection");
-	validValues.push_back("timeStamping");
-	validValues.push_back("msCodeInd");
-	validValues.push_back("msCodeCom");
-	validValues.push_back("msCTLSign");
-	validValues.push_back("msSGC");
-	validValues.push_back("msEFS");
-	validValues.push_back("nsSGC");
-    
-	StringList::const_iterator it = validValues.begin();
-	for(; it != validValues.end(); ++it)
+	if(OBJ_sn2nid(value.c_str()) == NID_undef)
 	{
-		if(value.equalsIgnoreCase(*it))
-		{
-			return true;
-		}
+		return initOIDCheck().isValid(value);
 	}
-    
-	return initOIDCheck().isValid(value);
+	else
+	{
+		return true;
+	}
 }
     
 }
