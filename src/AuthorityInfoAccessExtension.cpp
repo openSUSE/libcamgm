@@ -348,10 +348,15 @@ AuthorityInfoAccessExt::commit2Config(CA& ca, Type type) const
 
 		if(isCritical()) extString += "critical,";
 
+		String val;
 		blocxx::List<AuthorityInformation>::const_iterator it = m_impl->info.begin();
 		for(;it != m_impl->info.end(); ++it)
 		{
-			extString += (*it).getAccessOID() + ";" + (*it).getLocation().toString()+",";
+			val = "";
+			if( (val = (*it).getLocation().commit2Config(ca, type, 0)) != "")
+			{
+				extString += (*it).getAccessOID() + ";" + val +",";
+			}
 		}
 
 		ca.getConfig()->setValue(type2Section(type, true), "authorityInfoAccess",

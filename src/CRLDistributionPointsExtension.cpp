@@ -172,12 +172,17 @@ CRLDistributionPointsExt::commit2Config(CA& ca, Type type) const
 
 		if(isCritical()) extString += "critical,";
 
+		String val;
 		blocxx::List<LiteralValue>::const_iterator it = m_impl->altNameList.begin();
-		for(;it != m_impl->altNameList.end(); ++it)
+		for(int j = 0;it != m_impl->altNameList.end(); ++it, ++j)
 		{
-			extString += (*it).toString()+",";
+			val = "";
+			if( (val = (*it).commit2Config(ca, type, j)) != "")
+			{
+				extString += val+",";
+			}
 		}
-
+		
 		ca.getConfig()->setValue(type2Section(type, true), "crlDistributionPoints",
 		                         extString.erase(extString.length()-1));
 	}
