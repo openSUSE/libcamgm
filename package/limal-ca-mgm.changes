@@ -1,4 +1,12 @@
 -------------------------------------------------------------------
+Mon Oct 23 12:16:51 CEST 2006 - mc@suse.de
+
+- version 1.2.5
+- add new translations (ru fi)
+- add some testcases
+- some bugfixes 
+
+-------------------------------------------------------------------
 Mon Oct 16 16:19:07 CEST 2006 - mc@suse.de
 
 - add first set of translated texts
