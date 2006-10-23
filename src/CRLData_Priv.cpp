@@ -58,14 +58,17 @@ RevocationEntry_Priv::RevocationEntry_Priv(X509_REVOKED *rev)
 	: RevocationEntry()
 {
 	// get serial number
+	unsigned char *ustringval = NULL;
+	unsigned int n = 0;
+
+	BIO *bioS           = BIO_new(BIO_s_mem());
+	i2a_ASN1_INTEGER(bioS, rev->serialNumber);
+	n = BIO_get_mem_data(bioS, &ustringval);
+
+	setSerial(String(reinterpret_cast<const char*>(ustringval), n));
+	BIO_free(bioS);
 	
-	UInt64 serial =  ASN1_INTEGER_get(rev->serialNumber);
-    
-	String sbuf;
-	sbuf.format("%02llx", serial);
-    
-	LOGIT_DEBUG("=>=> New Entry with Serial: " << sbuf);
-	setSerial(sbuf); 
+	LOGIT_DEBUG("=>=> New Entry with Serial: " << getSerial());
 	
     // get revocationDate
 
@@ -73,7 +76,7 @@ RevocationEntry_Priv::RevocationEntry_Priv(X509_REVOKED *rev)
 	memcpy(cbuf, rev->revocationDate->data, rev->revocationDate->length);
 	cbuf[rev->revocationDate->length] = '\0';
     
-	sbuf = String(cbuf);
+	String sbuf = String(cbuf);
 	delete [] cbuf;
 
 	LOGIT_DEBUG("Revocation Date: " << sbuf);
