@@ -188,6 +188,52 @@ LiteralValue::getType() const
 	return m_impl->literalType;
 }
 
+blocxx::String
+LiteralValue::commit2Config(CA&, Type, blocxx::UInt32) const
+{
+	
+	if(m_impl->literalType == "email" ||
+	   m_impl->literalType == "URI" ||
+	   m_impl->literalType == "DNS" ||
+	   m_impl->literalType == "RID" ||
+	   m_impl->literalType == "IP")
+	{
+		return toString();
+	}
+
+	// Maybe add support for KRB5PrincipalName here
+	/*
+	  Using OpenSSL to create certificate with krb5PrincipalName
+	  ----------------------------------------------------------
+	  
+	  To make OpenSSL create certificate with krb5PrincipalName use
+	  `openssl.cnf' as described below. To see an complete example of
+	  creating client and KDC certificates, see the test-data generation
+	  script `lib/hx509/data/gen-req.sh' in the source-tree. The certicates
+	  it creates are used to test the PK-INIT functionality in
+	  `tests/kdc/check-kdc.in'.
+	  
+	  To use this example you have to use OpenSSL 0.9.8a or later.
+	  
+	  
+	  [user_certificate]
+	  subjectAltName=otherName:1.3.6.1.5.2.2;SEQUENCE:princ_name
+	  
+	  [princ_name]
+	  realm = EXP:0, GeneralString:MY.REALM
+	  principal_name = EXP:1, SEQUENCE:principal_seq
+	  
+	  [principal_seq]
+	  name_type = EXP:0, INTEGER:1
+	  name_string = EXP:1, SEQUENCE:principals
+	  
+	  [principals]
+	  princ1 = GeneralString:userid
+	*/
+	  
+	return "";
+}
+
 bool
 LiteralValue::valid() const
 {
@@ -235,6 +281,12 @@ LiteralValue::valid() const
 			LOGIT_DEBUG("Wrong LiteralValue for type 'IP': " << m_impl->literalValue);
 			return false;
 		}
+	}
+	else if(m_impl->literalType == "othername" ||
+	        m_impl->literalType == "X400Name" ||
+	        m_impl->literalType == "EdiPartyName")
+	{
+		// not realy supported, but ok
 	}
 	else
 	{
@@ -298,6 +350,12 @@ LiteralValue::verify() const
 			result.append(Format("Wrong LiteralValue for type 'IP': %1",
 			                     m_impl->literalValue).toString());
 		}
+	}
+	else if(m_impl->literalType == "othername" ||
+	        m_impl->literalType == "X400Name" ||
+	        m_impl->literalType == "EdiPartyName")
+	{
+		// not realy supported, but ok
 	}
 	else
 	{

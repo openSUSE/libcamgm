@@ -31,6 +31,7 @@ namespace LIMAL_NAMESPACE {
 namespace CA_MGM_NAMESPACE {
 
 	class LiteralValueImpl;
+	class CA;
 	
 	/**
 	 * A Literal Value is a pair of a type and a value
@@ -111,6 +112,13 @@ namespace CA_MGM_NAMESPACE {
 		String
 		toString() const;
 
+		/**
+		 * Return the string for the configuration. This method silently ignore
+		 * unsupported types like othername.
+		 */
+		blocxx::String
+		commit2Config(CA& ca, Type type, blocxx::UInt32 num) const;
+		
 #ifndef SWIG
 
 		friend bool
