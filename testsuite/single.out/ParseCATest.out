@@ -2,7 +2,7 @@ START
 =================== start ParseCATest ======================
 CertificateData::dump()
 Version = 3
-Serial = 8ef1ce98618f649d
+Serial = 8EF1CE98618F649D
 notBefore = 1124374357
 notAfter = 1439734357
 Fingerprint = SHA1:17:F9:CF:63:86:BB:FA:98:9F:77:78:24:29:D2:6F:CC:B9:76:28:B8
