@@ -253,16 +253,22 @@ CertificateData_Priv::init(const ByteBuffer &certificate, FormatType formatType)
 void
 CertificateData_Priv::parseCertificate(X509 *x509) 
 {
+	unsigned char *ustringval = NULL;
+	unsigned int n = 0;
+	
 	// get version
 	setVersion(X509_get_version(x509) + 1);
 	
 	// get serial
 	//
 	// convert to hexadecimal version of the serial number
-	String serial;
-	serial.format("%02llx",
-	              String(i2s_ASN1_INTEGER(NULL,X509_get_serialNumber(x509))).toUInt64());
-	setSerial(serial);
+
+	BIO *bioS           = BIO_new(BIO_s_mem());
+	i2a_ASN1_INTEGER(bioS, X509_get_serialNumber(x509));
+	n = BIO_get_mem_data(bioS, &ustringval);
+
+	setSerial( String(reinterpret_cast<const char*>(ustringval), n));
+	BIO_free(bioS);
 
 	// get notBefore
 	ASN1_TIME *t   = X509_get_notBefore(x509);
@@ -336,9 +342,9 @@ CertificateData_Priv::parseCertificate(X509 *x509)
     
 	// fingerprint
 	
-	unsigned char *ustringval = NULL;
+	ustringval = NULL;
 	unsigned char md[EVP_MAX_MD_SIZE];
-	unsigned int n = 0;
+	n = 0;
 	
 	BIO *bioFP           = BIO_new(BIO_s_mem());
 	const EVP_MD *digest = EVP_sha1();
