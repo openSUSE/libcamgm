@@ -143,6 +143,7 @@ clean-local:
 
 EXTRA_DIST = CA2/*.* CA3/*.* CA4/*.* CA5/*.* single.out/*.* \
              CA6/*.* CA7/*.* ParseCertificateTest/*.*       \
+             ParseCertificateTest2/*.*                      \
              ParseRequestTest/*.* ParseCRLTest/*.*          \
              TestRepos2/Test_CA3/*.*                        \
              TestRepos2/Test_CA3/crl/*.*                    \
