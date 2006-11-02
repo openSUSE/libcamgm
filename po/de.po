@@ -219,8 +219,12 @@ msgid "Removing the certificate failed: %1."
 msgstr "Fehler beim Entfernen des Zertifikats: %1."
 
 #: src/CA.cpp:1034
-msgid "Only revoked or expired certificates can be deleted. The status of the certificate is %1."
-msgstr "Nur zurückgezogene oder abgelaufene Zertifikate können gelöscht werden. Der Status des Zertifikats lautet %1."
+msgid ""
+"Only revoked or expired certificates can be deleted. The status of the "
+"certificate is %1."
+msgstr ""
+"Nur zurückgezogene oder abgelaufene Zertifikate können gelöscht werden. Der "
+"Status des Zertifikats lautet %1."
 
 #: src/CA.cpp:1046
 msgid "Database not found."
@@ -275,8 +279,12 @@ msgid "CA name does not exist (%1)."
 msgstr "CA-Name ist nicht vorhanden (%1)."
 
 #: src/CA.cpp:1497
-msgid "Deleting the CA is not allowed. The CA must be expired or never have signed a certificate."
-msgstr "Die CA darf nicht gelöscht werden. Eine CA kann nur gelöscht werden, wenn sie abgelaufen ist oder wenn durch sie noch kein Zertifikat signiert wurde."
+msgid ""
+"Deleting the CA is not allowed. The CA must be expired or never have signed "
+"a certificate."
+msgstr ""
+"Die CA darf nicht gelöscht werden. Eine CA kann nur gelöscht werden, wenn "
+"sie abgelaufen ist oder wenn durch sie noch kein Zertifikat signiert wurde."
 
 #: src/CA.cpp:1522
 msgid "Deleting the CA failed: %1."
@@ -556,7 +564,8 @@ msgstr "Kein gültiges CA-Verzeichnis angegeben."
 
 #: src/OpenSSLUtils.cpp:944
 msgid "Showing certificate status with serial %1 failed (%2)."
-msgstr "Zertifikatstatus mit Seriennummer %1 konnte nicht angezeigt werden (%2)."
+msgstr ""
+"Zertifikatstatus mit Seriennummer %1 konnte nicht angezeigt werden (%2)."
 
 #: src/OpenSSLUtils.cpp:980
 msgid "Keyfile does not exist"
@@ -832,11 +841,13 @@ msgstr "X509v3CertificateIssueExts::setSubjectKeyIdentifier - ungültiger Wert"
 
 #: src/X509v3CertificateIssueExtensions.cpp:450
 msgid "X509v3CertificateIssueExts::setAuthorityKeyIdentifier invalid value"
-msgstr "X509v3CertificateIssueExts::setAuthorityKeyIdentifier - ungültiger Wert"
+msgstr ""
+"X509v3CertificateIssueExts::setAuthorityKeyIdentifier - ungültiger Wert"
 
 #: src/X509v3CertificateIssueExtensions.cpp:473
 msgid "X509v3CertificateIssueExts::setSubjectAlternativeName invalid value"
-msgstr "X509v3CertificateIssueExts::setSubjectAlternativeName - ungültiger Wert"
+msgstr ""
+"X509v3CertificateIssueExts::setSubjectAlternativeName - ungültiger Wert"
 
 #: src/X509v3CertificateIssueExtensions.cpp:496
 msgid "X509v3CertificateIssueExts::setIssuerAlternativeName invalid value"
@@ -899,4 +910,3 @@ msgstr "X509v3RequestExts::setSubjectKeyIdentifier - ungültiger Wert"
 #: src/X509v3RequestExtensions.cpp:231
 msgid "X509v3RequestExts::setSubjectAlternativeName invalid value"
 msgstr "X509v3RequestExts::setSubjectAlternativeName - ungültiger Wert"
-
