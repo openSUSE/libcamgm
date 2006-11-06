@@ -1,31 +1,27 @@
-# translation of limal-ca-mgm.po to
-# @TITLE@
-# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# This file is distributed under the same license as @PACKAGE@ package. FIRST
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
 #
-# Olav Pettershagen <olav.pet@online.no>, 2006.
 msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2006-11-06 10:48+0100\n"
-"PO-Revision-Date: 2006-10-13 17:23+0200\n"
-"Last-Translator: Olav Pettershagen <olav.pet@online.no>\n"
-"Language-Team:  <nb@li.org>\n"
+"PO-Revision-Date: 2006-11-02 14:07\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:110
 #: src/AuthorityInfoAccessExtension.cpp:139
 msgid "Invalid location."
-msgstr "Ugyldig plassering."
+msgstr "Ubicación no válida."
 
 #: src/AuthorityInfoAccessExtension.cpp:115
 #: src/AuthorityInfoAccessExtension.cpp:144
 msgid "Invalid accessOID."
-msgstr "Ugyldig accessOID."
+msgstr "accessOID no válido."
 
 #: src/AuthorityInfoAccessExtension.cpp:259
 #: src/AuthorityInfoAccessExtension.cpp:342
@@ -57,707 +53,708 @@ msgstr "Ugyldig accessOID."
 #: src/SubjectKeyIdentifierExtension.cpp:85
 #: src/SubjectKeyIdentifierExtension.cpp:208
 msgid "Wrong type: %1."
-msgstr "Ugyldig type: %1."
+msgstr "Tipo erróneo: %1."
 
 #: src/AuthorityInfoAccessExtension.cpp:310
 msgid "Invalid AuthorityInformation in infolist."
-msgstr "Ugyldig autoritetsinformasjon i infoliste."
+msgstr "AuthorityInformation no válida en la lista de información."
 
 #: src/AuthorityInfoAccessExtension.cpp:323
 msgid "AuthorityInfoAccessExt is not present."
-msgstr "AuthorityInfoAccessExt finnes ikke."
+msgstr "AuthorityInfoAccessExt no está presente."
 
 #: src/AuthorityInfoAccessExtension.cpp:334
 msgid "Invalid AuthorityInfoAccessExt object."
-msgstr "Ugyldig AuthorityInfoAccessExt-objekt."
+msgstr "Objeto AuthorityInfoAccessExt no válido."
 
 #: src/AuthorityKeyIdentifierExtension.cpp:97
 #: src/AuthorityKeyIdentifierExtension.cpp:108
 #: src/AuthorityKeyIdentifierExtension.cpp:119
 msgid "AuthorityKeyIdentifierExt is not present."
-msgstr "AuthorityKeyIdentifierExt finnes ikke."
+msgstr "AuthorityKeyIdentifierExt no está presente."
 
 #: src/AuthorityKeyIdentifierGenerateExtension.cpp:155
 #: src/AuthorityKeyIdentifierGenerateExtension.cpp:174
 msgid "AuthorityKeyIdentifierGenerateExt is not present."
-msgstr "AuthorityKeyIdentifierGenerateExt finnes ikke."
+msgstr "AuthorityKeyIdentifierGenerateExt no está presente."
 
 #: src/AuthorityKeyIdentifierGenerateExtension.cpp:186
 msgid "Invalid AuthorityKeyIdentifierGenerateExt object."
-msgstr "Ugyldig AuthorityKeyIdentifierGenerateExt-objekt."
+msgstr "Objeto AuthorityKeyIdentifierGenerateExt no válido."
 
 #: src/BasicConstraintsExtension.cpp:155 src/BasicConstraintsExtension.cpp:167
 msgid "BasicConstraintsExt is not present."
-msgstr "BasicConstraintsExt finnes ikke."
+msgstr "BasicConstraintsExt no está presente."
 
 #: src/BasicConstraintsExtension.cpp:179
 msgid "Invalid BasicConstraintsExt object."
-msgstr "Ugyldig BasicConstraintsExt-objekt."
+msgstr "Objeto BasicConstraintsExt no válido."
 
 #: src/BitExtensions.cpp:111
 msgid "This BitExtension is not present."
-msgstr "Dette BitExtension-objektet finnes ikke."
+msgstr "Esta BitExtension no está presente."
 
 #: src/BitExtensions.cpp:174 src/BitExtensions.cpp:203
 msgid "Invalid value for keyUsage."
-msgstr "Ugyldig verdi for keyUsage."
+msgstr "Valor no válido para keyUsage."
 
 #: src/BitExtensions.cpp:215 src/BitExtensions.cpp:226
 msgid "KeyUsageExt is not present."
-msgstr "KeyUsageExt finnes ikke."
+msgstr "KeyUsageExt no está presente."
 
 #: src/BitExtensions.cpp:239
 msgid "Invalid KeyUsageExt object."
-msgstr "Ugyldig KeyUsageExt-objekt."
+msgstr "Objeto KeyUsageExt no válido."
 
 #: src/BitExtensions.cpp:412
 msgid "Invalid value for NsCertTypeExt."
-msgstr "Ugyldig verdi for NsCertTypeExt."
+msgstr "Valor no válido para NsCertTypeExt."
 
 #: src/BitExtensions.cpp:441
 msgid "Invalid value for NsCertTypeExt: %1."
-msgstr "Ugyldig verdi for NsCertTypeExt: %1."
+msgstr "Valor no válido para NsCertTypeExt: %1."
 
 #: src/BitExtensions.cpp:453
 msgid "NsCertTypeExt is not present."
-msgstr "NsCertTypeExt finnes ikke."
+msgstr "NsCertTypeExt no está presente."
 
 #: src/BitExtensions.cpp:474
 msgid "Invalid NsCertTypeExt object."
-msgstr "Ugyldig NsCertTypeExt-objekt."
+msgstr "Objeto NsCertTypeExt no válido."
 
 #: src/CA.cpp:101
 msgid "Template not initialized."
-msgstr "Malen er ikke Initialisert."
+msgstr "La plantilla no se ha iniciado."
 
 #: src/CA.cpp:159 src/CA.cpp:1456
 msgid "Empty CA name."
-msgstr "Tomt CA-navn."
+msgstr "Nombre de CA vacío."
 
 #: src/CA.cpp:167
 msgid "Template does not exist: %1."
-msgstr "Malen finnes ikke: %1."
+msgstr "La plantilla no existe: %1."
 
 #: src/CA.cpp:179 src/CA.cpp:1477
 msgid "Invalid CA password."
-msgstr "Ugyldig CA-passord."
+msgstr "Contraseña de CA no válida."
 
 #: src/CA.cpp:225 src/CA.cpp:1149 src/CA.cpp:1286
 msgid "Error while creating the CA infrastructure."
-msgstr "Feil ved opprettelse av CA-infrastruktur."
+msgstr "Error al crear la infraestructura de CA."
 
 #: src/CA.cpp:245 src/CA.cpp:989
 msgid "Cannot parse the certificate name %1."
-msgstr "Kan ikke analysere sertifikatnavn %1."
+msgstr "No es posible analizar el nombre de certificado %1."
 
 #: src/CA.cpp:256
 msgid "Cannot copy the private key."
-msgstr "Kan ikke kopiere privat nøkkel."
+msgstr "No es posible copiar la clave privada."
 
 #: src/CA.cpp:267
 msgid "Cannot copy the certificate."
-msgstr "Kan ikke kopiere sertifikat."
+msgstr "No es posible copiar el certificado."
 
 #: src/CA.cpp:299
 msgid "Invalid request data."
-msgstr "Ugyldige forespørselsdata."
+msgstr "Datos de solicitud no válidos."
 
 #: src/CA.cpp:319
 msgid "Duplicate DN. Key %1.key already exists."
-msgstr "Duplisert DN. Nøkkelen %1.key finnes allerede."
+msgstr "DN duplicado. La clave %1.key ya existe."
 
 #: src/CA.cpp:327
 msgid "Duplicate DN. Request %1.req already exists."
-msgstr "Duplisert DN. Forespørselen %1.req finnes allerede."
+msgstr "DN duplicado. La solicitud %1.req ya existe."
 
 #: src/CA.cpp:372
 msgid "Request does not exist (%1)."
-msgstr "Forespørselen finnes ikke (%1)."
+msgstr "La solicitud no existe (%1)."
 
 #: src/CA.cpp:378
 msgid "Invalid issue data."
-msgstr "Ugyldig tildelingsdato."
+msgstr "Datos de emisión no válidos."
 
 #: src/CA.cpp:395
 msgid "The CA expires before the certificate should expire."
-msgstr "CA utløper før sertifikatet skal utløpe."
+msgstr "La CA caduca antes de la fecha de caducidad del certificado."
 
 #: src/CA.cpp:473
 msgid "Issuing the certificate failed."
-msgstr "Sertifikatet kunne ikke utstedes."
+msgstr "Error al emitir el certificado."
 
 #: src/CA.cpp:490
 msgid "File %1 not found in the repository."
-msgstr "Filen %1 ikke funnet i samlingen."
+msgstr "No se encuentra el archivo %1 en el repositorio."
 
 #: src/CA.cpp:497 src/CRLData_Priv.cpp:179
 msgid "Invalid CRL reason."
-msgstr "Ugyldig CRL-årsak."
+msgstr "Razón CRL no válida."
 
 #: src/CA.cpp:520
 msgid "Invalid CRL data."
-msgstr "Ugyldige CRL-data."
+msgstr "Datos CRL no válidos."
 
 #: src/CA.cpp:568
 msgid "Duplicate DN. Request already exists."
-msgstr "Duplisert DN. Forespørselen finnes allerede."
+msgstr "DN duplicado. La solicitud ya existe."
 
 #: src/CA.cpp:833 src/CA.cpp:860 src/CA.cpp:890 src/OpenSSLUtils.cpp:968
 msgid "Cannot parse the certificate name."
-msgstr "Kan ikke analysere sertifikatnavn."
+msgstr "No es posible analizar el nombre del certificado."
 
 #: src/CA.cpp:941
 msgid "Request %1 does not exist."
-msgstr "Forespørselen %1 finnes ikke."
+msgstr "La solicitud %1 no existe."
 
 #: src/CA.cpp:963
 msgid "Removing the request failed (%1)."
-msgstr "Forespørselen kunne ikke fjernes (%1)."
+msgstr "Error al eliminar la solicitud (%1)."
 
 #: src/CA.cpp:977
 msgid "Certificate %1 does not exist."
-msgstr "Sertifikatet %1 finnes ikke."
+msgstr "El certificado %1 no existe."
 
 #: src/CA.cpp:1026
 msgid "Removing the certificate failed: %1."
-msgstr "Sertifikatet kunne ikke fjernes: %1"
+msgstr "Error al eliminar el certificado: %1."
 
 #: src/CA.cpp:1034
 msgid ""
 "Only revoked or expired certificates can be deleted. The status of the "
 "certificate is %1."
 msgstr ""
-"Kun inndratte eller utløpte sertifikater kan slettes. Status for "
-"sertifikatet er %1."
+"Sólo se pueden suprimir los certificados revocados o caducados. El estado "
+"del certificado es %1."
 
 #: src/CA.cpp:1046
 msgid "Database not found."
-msgstr "Databasen ble ikke funnet."
+msgstr "No se encuentra la base de datos."
 
 #: src/CA.cpp:1072
 msgid "Certificate does not exist."
-msgstr "Sertifikatet finnes ikke."
+msgstr "El certificado no existe."
 
 #: src/CA.cpp:1086
 msgid "Invalid purpose %1."
-msgstr "Ugyldig formål %1."
+msgstr "Propósito %1 no válido."
 
 #: src/CA.cpp:1129
 msgid "Invalid CA request data."
-msgstr "Ugyldige CA-forespørselsdata."
+msgstr "Datos de solicitud de CA no válidos."
 
 #: src/CA.cpp:1135
 msgid "Invalid CA issue data."
-msgstr "Ugyldige CA-tildelingsdata."
+msgstr "Datos de emisión de CA no válidos."
 
 #: src/CA.cpp:1230
 msgid "CA name is empty."
-msgstr "CA-navn mangler."
+msgstr "El nombre de CA está vacío."
 
 #: src/CA.cpp:1239
 msgid "CA directory already exists."
-msgstr "CA-katalogen finnes allerede."
+msgstr "El directorio de CA ya existe."
 
 #: src/CA.cpp:1250
 msgid "According to basicConstraints, this is not a CA."
-msgstr "I henhold til basicConstraints er ikke dette et CA."
+msgstr "Según basicConstraints, esta no es una CA."
 
 #: src/CA.cpp:1257
 msgid "CA key is empty."
-msgstr "CA-nøkkel mangler."
+msgstr "La clave de CA está vacía."
 
 #: src/CA.cpp:1266
 msgid "Invalid key data."
-msgstr "Ugyldige nøkkeldata."
+msgstr "Datos de clave no válidos."
 
 #: src/CA.cpp:1275
 msgid "CA password is empty."
-msgstr "CA-passord mangler."
+msgstr "La contraseña de CA está vacía."
 
 #: src/CA.cpp:1311
 msgid "Error during key encryption."
-msgstr "Feil under nøkkelkryptering."
+msgstr "Error durante el cifrado de la clave."
 
 #: src/CA.cpp:1466
 msgid "CA name does not exist (%1)."
-msgstr "CA-navnet finnes ikke (%1)."
+msgstr "El nombre de CA no existe (%1)."
 
 #: src/CA.cpp:1497
 msgid ""
 "Deleting the CA is not allowed. The CA must be expired or never have signed "
 "a certificate."
 msgstr ""
-"Sletting av CA er ikke tillatt. CA må være utløpt eller aldri ha signert et "
-"sertifikat."
+"No se permite suprimir la CA. La CA debe haber caducado o no debe haber "
+"firmado nunca un certificado."
 
 #: src/CA.cpp:1522
 msgid "Deleting the CA failed: %1."
-msgstr "CA kunne ikke slettes: %1."
+msgstr "Error al suprimir la CA: %1."
 
 #: src/CA.cpp:1573
 msgid "The configuration file is missing a value for policy."
-msgstr "Konfigurasjonsfilen mangler en policy-verdi."
+msgstr "En el archivo de configuración falta un valor para la directiva."
 
 #: src/CA.cpp:1583 src/CA.cpp:1845 src/DNObject.cpp:270
 #: src/DNObject_Priv.cpp:209
 msgid "Cannot parse section %1."
-msgstr "Kan ikke analysere seksjonen %1."
+msgstr "No es posible analizar la sección %1."
 
 #: src/CA.cpp:1655
 msgid "Field %1 must have a value."
-msgstr "Feltet %1 må ha en verdi."
+msgstr "El campo %1 debe tener un valor."
 
 #: src/CA.cpp:1694
 msgid "%1 must be defined."
-msgstr "%s må defineres."
+msgstr "Se debe definir %1."
 
 #: src/CA.cpp:1779
 msgid "%1 must be the same in the CA certificate (%2) and the request (%3)."
-msgstr "%1 må være identisk i CA sertifikatet (%2) og forespørselen (%3)."
+msgstr "%1 debe ser igual en el certificado CA (%2) y la solicitud (%3)."
 
 #: src/CA.cpp:1791
 msgid "The configuration file seems to have an invalid policy."
-msgstr "Konfigurasjonsfilen ser ut til å ha en ugyldig policy."
+msgstr "En el archivo de configuración parece que hay una directiva no válida."
 
-# %s is either BOOTP or DHCP
 #: src/CA.cpp:1817 src/CA.cpp:1827
 msgid "The configuration is not initialized."
-msgstr "Konfigurasjonen er ikke initialisert."
+msgstr "La configuración no se ha iniciado."
 
 #: src/CA.cpp:1835 src/DNObject.cpp:259 src/DNObject_Priv.cpp:199
 msgid "Missing section 'distinguished_name' in the configuration file."
-msgstr "Seksjonen 'distinguished_name' mangler i konfigurasjonsfilen."
+msgstr ""
+"En el archivo de configuración falta la sección \"distinguished_name\"."
 
 #: src/CertificateData_Priv.cpp:94 src/CRLData_Priv.cpp:124
 #: src/CRLData_Priv.cpp:161
 msgid "Invalid serial %1."
-msgstr "Ugyldig seriell %1."
+msgstr "Número de serie %1 no válido."
 
 #: src/CertificateData_Priv.cpp:206 src/CRLData_Priv.cpp:463
 #: src/DNObject_Priv.cpp:81 src/RequestData_Priv.cpp:369
 msgid "Cannot create a memory BIO."
-msgstr "Kan ikke opprette en minne-BIO."
+msgstr "No es posible crear una memoria BIO."
 
 #: src/CertificateData_Priv.cpp:235
 msgid "Cannot parse the certificate."
-msgstr "Kan ikke analysere sertifikatet."
+msgstr "No es posible analizar el certificado."
 
 #: src/CertificateData_Priv.cpp:248
 msgid "Error while parsing the certificate."
-msgstr "Feil ved analyse av sertifikat."
+msgstr "Error al analizar el certificado."
 
 #: src/CertificateData_Priv.cpp:291 src/CertificateData_Priv.cpp:325
 #: src/CRLData_Priv.cpp:91 src/CRLData_Priv.cpp:341 src/CRLData_Priv.cpp:375
 msgid "Cannot parse date %1."
-msgstr "Kan ikke analysere datoen %1."
+msgstr "No es posible analizar la fecha %1."
 
 #: src/CertificateData_Priv.cpp:380 src/RequestData_Priv.cpp:182
 msgid "Unable to get the public key."
-msgstr "Kunne ikke hente offentlig nøkkel."
+msgstr "No es posible obtener la clave pública."
 
 #: src/CertificateData_Priv.cpp:391 src/RequestData_Priv.cpp:193
 msgid "Could not get RSA key."
-msgstr "Kunne ikke hente RSA-nøkkel."
+msgstr "No es posible obtener la clave RSA."
 
 #: src/CertificateData_Priv.cpp:411 src/RequestData_Priv.cpp:213
 msgid "Unsupported public key type."
-msgstr "Den offentlige nøkkeltypen støttes ikke."
+msgstr "Tipo de clave pública no admitido."
 
 #: src/CertificateData_Priv.cpp:447 src/RequestData_Priv.cpp:246
 msgid "Unsupported public key algorithm."
-msgstr "Den offentlige nøkkeltypealgoritmen støttes ikke."
+msgstr "Algoritmo de clave pública no admitido."
 
 #: src/CertificateData_Priv.cpp:479 src/CRLData_Priv.cpp:424
 #: src/RequestData_Priv.cpp:276
 msgid "Unsupported signature algorithm %1."
-msgstr "Signaturalgoritmen %1 støttes ikke."
+msgstr "Algoritmo de firma %1 no admitido."
 
 #: src/CertificateIssueData.cpp:211
 msgid "Invalid CertificateIssueData object."
-msgstr "Ugyldig CertificateIssueData-objekt."
+msgstr "Objeto CertificateIssueData no válido."
 
 #: src/CertificatePoliciesExtension.cpp:216
 msgid "The text is too long."
-msgstr "Teksten er for lang."
+msgstr "El texto es demasiado largo."
 
 #: src/CertificatePoliciesExtension.cpp:255
 msgid "Invalid UserNotice object."
-msgstr "Ugyldig UserNotice-objekt."
+msgstr "Objeto UserNotice no válido."
 
 #: src/CertificatePoliciesExtension.cpp:395
 #: src/CertificatePoliciesExtension.cpp:459
 msgid "Invalid value for policyIdentifier: %1."
-msgstr "Ugyldig verdi for policyIdentifier: %1."
+msgstr "Valor no válido para policyIdentifier: %1."
 
 #: src/CertificatePoliciesExtension.cpp:514
 msgid "Invalid CertificatePolicy object."
-msgstr "Ugyldig CertificatePolicy-objekt."
+msgstr "Objeto CertificatePolicy no válido."
 
 #: src/CertificatePoliciesExtension.cpp:783
 #: src/CertificatePoliciesExtension.cpp:808
 msgid "CertificatePoliciesExt is not present."
-msgstr "CertificatePoliciesExt finnes ikke."
+msgstr "CertificatePoliciesExt no está presente."
 
 #: src/CertificatePoliciesExtension.cpp:821
 msgid "Invalid CertificatePoliciesExt object."
-msgstr "Ugyldig CertificatePoliciesExt-objekt."
+msgstr "Objeto CertificatePoliciesExt no válido."
 
 #: src/CRLData.cpp:223
 msgid "Entry not found."
-msgstr "Oppføring ikke funnet."
+msgstr "No se encuentra la entrada."
 
 #: src/CRLData_Priv.cpp:491
 msgid "Cannot parse CRL."
-msgstr "Kan ikke analysere CRL."
+msgstr "No es posible analizar la CRL."
 
 #: src/CRLData_Priv.cpp:504
 msgid "Error parsing the CRL."
-msgstr "Feil under analyse av CRL."
+msgstr "Error al analizar la CRL."
 
 #: src/CRLDistributionPointsExtension.cpp:145
 msgid "CRLDistributionPointsExt is not present."
-msgstr "CRLDistributionPointsExt finnes ikke."
+msgstr "CRLDistributionPointsExt no está presente."
 
 #: src/CRLDistributionPointsExtension.cpp:157
 msgid "Invalid CRLDistributionPointsExt object."
-msgstr "Ugyldig CRLDistributionPointsExt-objekt."
+msgstr "Objeto CRLDistributionPointsExt no válido."
 
 #: src/CRLGenerationData.cpp:156
 msgid "Invalid CRLGenerationData object."
-msgstr "Ugyldig CRLGenerationData-objekt."
+msgstr "Objeto CRLGenerationData no válido."
 
 #: src/CRLReason.cpp:100 src/CRLReason.cpp:136
 msgid "Invalid revoke reason %1."
-msgstr "Ugyldig tilbaketrekkingsgrunn: %s"
+msgstr "Razón de revocación no válida %1."
 
 #: src/CRLReason.cpp:174
 msgid "Reason is not certificateHold."
-msgstr "Grunnen er ikke certificateHold."
+msgstr "La razón no es certificateHold."
 
 #: src/CRLReason.cpp:197 src/CRLReason.cpp:211
 msgid "Reason is not keyCompromise."
-msgstr "Grunnen er ikke keyCompromise."
+msgstr "La razón no es keyCompromise."
 
 #: src/CRLReason.cpp:242 src/CRLReason.cpp:256
 msgid "Reason is not CACompromise."
-msgstr "Grunnen er ikke CACompromise."
+msgstr "La razón no es CACompromise."
 
 #: src/DNObject.cpp:111
 msgid "Invalid type %1."
-msgstr "Ugyldig type %1."
+msgstr "Tipo %1 no válido."
 
 #: src/DNObject_Priv.cpp:159
 msgid "Can not parse DN line: %1."
-msgstr "Kan ikke analysere DN-linje: %1."
+msgstr "No es posible analizar la línea de DN: %1."
 
 #: src/ExtendedKeyUsageExt.cpp:122 src/ExtendedKeyUsageExt.cpp:171
 msgid "Invalid ExtendedKeyUsage option %1."
-msgstr "Ugyldig ExtendedKeyUsage-valg %1."
+msgstr "Opción %1 de ExtendedKeyUsage no válida."
 
 #: src/ExtendedKeyUsageExt.cpp:130 src/ExtendedKeyUsageExt.cpp:179
 msgid "Invalid ExtendedKeyUsageExt."
-msgstr "Ugyldig ExtendedKeyUsageExt."
+msgstr "ExtendedKeyUsageExt no válido."
 
 #: src/ExtendedKeyUsageExt.cpp:192
 msgid "ExtendedKeyUsageExt is not present."
-msgstr "ExtendedKeyUsageExt finnes ikke."
+msgstr "ExtendedKeyUsageExt no está presente."
 
 #: src/ExtendedKeyUsageExt.cpp:221
 msgid "Invalid ExtendedKeyUsageExt object."
-msgstr "Ugyldig ExtendedKeyUsageExt-objekt."
+msgstr "Objeto ExtendedKeyUsageExt no válido."
 
 #: src/IssuerAlternativeNameExtension.cpp:166
 #: src/IssuerAlternativeNameExtension.cpp:191
 msgid "IssuerAlternativeNameExt is not present."
-msgstr "IssuerAlternativeNameExt finnes ikke."
+msgstr "IssuerAlternativeNameExt no está presente."
 
 #: src/IssuerAlternativeNameExtension.cpp:203
 msgid "Invalid literal value for IssuerAlternativeNameExt."
-msgstr "Ugyldig literal verdi for IssuerAlternativeNameExt."
+msgstr "Valor literal no válido para IssuerAlternativeNameExt."
 
 #: src/IssuerAlternativeNameExtension.cpp:216
 msgid "Invalid IssuerAlternativeNameExt object."
-msgstr "Ugyldig IssuerAlternativeNameExt-objekt."
+msgstr "Objeto IssuerAlternativeNameExt no válido."
 
 #: src/LiteralValues.cpp:119
 msgid "Unknown type."
-msgstr "Ukjent type."
+msgstr "Tipo desconocido."
 
 #: src/LocalManagement.cpp:95
 msgid "Cannot split certificate output."
-msgstr "Kan ikke dele sertifikatresultat."
+msgstr "No es posible dividir la salida del certificado."
 
 #: src/LocalManagement.cpp:292 src/LocalManagement.cpp:313
 #: src/LocalManagement.cpp:332
 msgid "Cannot create directory %1: %2."
-msgstr "Kan ikke opprette katalogen %1: %2."
+msgstr "No es posible crear el directorio %1: %2."
 
 #: src/LocalManagement.cpp:346
 msgid "%1 is not a directory."
-msgstr "%1 er ikke en katalog."
+msgstr "%1 no es un directorio."
 
 #: src/LocalManagement.cpp:367
 msgid "Invalid certificate file."
-msgstr "Ugyldig sertifikatfil."
+msgstr "Archivo de certificado no válido."
 
 #: src/LocalManagement.cpp:445
 msgid "File not found: %1."
-msgstr "Filen ikke funnet: %1."
+msgstr "Archivo no encontrado: %1."
 
 #: src/LocalManagement.cpp:454
 msgid "File too big: %1."
-msgstr "Filen er for stor: %1."
+msgstr "El archivo es demasiado grande: %1."
 
 #: src/LocalManagement.cpp:463 src/LocalManagement.cpp:518
 msgid "Cannot open file %1."
-msgstr "Kan ikke åpne filen %1."
+msgstr "No es posible abrir el archivo %1."
 
 #: src/LocalManagement.cpp:483
 msgid "Cannot read from file %1."
-msgstr "Kan ikke lese fra filen %1."
+msgstr "No es posible leer del archivo %1."
 
 #: src/LocalManagement.cpp:508
 msgid "File already exists: %1."
-msgstr "Filen finnes allerede: %1."
+msgstr "El archivo ya existe: %1."
 
 #: src/LocalManagement.cpp:530
 msgid "Cannot get lock on file %1."
-msgstr "Kan ikke låse filen %1."
+msgstr "No es posible bloquear el archivo %1."
 
 #: src/LocalManagement.cpp:544
 msgid "Cannot write to file %1."
-msgstr "Kan ikke skrive til filen %1."
+msgstr "No es posible escribir en el archivo %1."
 
 #: src/OpenSSLUtils.cpp:56
 msgid "File does not exist: %1."
-msgstr "Filen finnes ikke: %1."
+msgstr "El archivo no existe: %1."
 
 #: src/OpenSSLUtils.cpp:65
 msgid "Directory does not exist: %1."
-msgstr "Katalogen finnes ikke: %1."
+msgstr "El directorio no existe: %1."
 
 #: src/OpenSSLUtils.cpp:74
 msgid "Invalid command %1."
-msgstr "Ugyldig kommando %1."
+msgstr "Comando %1 no válido."
 
 #: src/OpenSSLUtils.cpp:138 src/OpenSSLUtils.cpp:241 src/OpenSSLUtils.cpp:334
 #: src/OpenSSLUtils.cpp:453 src/OpenSSLUtils.cpp:586 src/OpenSSLUtils.cpp:681
 #: src/OpenSSLUtils.cpp:761
 msgid "Command returned '%1' : %2"
-msgstr "Kommandoen returnerte '%1' : %2"
+msgstr "Comando devuelto %1: %2"
 
 #: src/OpenSSLUtils.cpp:171 src/OpenSSLUtils.cpp:268 src/OpenSSLUtils.cpp:366
 #: src/OpenSSLUtils.cpp:479 src/OpenSSLUtils.cpp:613 src/OpenSSLUtils.cpp:704
 msgid "No valid key file specified."
-msgstr "Ingen gyldig nøkkelfil spesifisert."
+msgstr "No se ha especificado ningún archivo de clave válido."
 
 #: src/OpenSSLUtils.cpp:276 src/OpenSSLUtils.cpp:374
 msgid "No valid request file specified."
-msgstr "Ingen gyldig forespørselsfil spesifisert."
+msgstr "No se ha especificado ningún archivo de solicitud válido."
 
 #: src/OpenSSLUtils.cpp:487 src/OpenSSLUtils.cpp:621 src/OpenSSLUtils.cpp:712
 msgid "No valid CA certificate file specified."
-msgstr "Ingen gyldig CA-sertifikatfil spesifisert."
+msgstr "No se ha especificado ningún archivo de certificado de CA válido."
 
 #: src/OpenSSLUtils.cpp:495 src/OpenSSLUtils.cpp:785
 msgid "No valid certificate file specified."
-msgstr "Ingen gyldig sertifikatfil spesifisert."
+msgstr "No se ha especificado ningún archivo de certificado válido."
 
 #: src/OpenSSLUtils.cpp:793
 msgid "No valid CA directory specified."
-msgstr "Ingen gyldig CA-katalog spesifisert."
+msgstr "No se ha especificado ningún directorio de CA válido."
 
 #: src/OpenSSLUtils.cpp:943
 msgid "Showing certificate status with serial %1 failed (%2)."
-msgstr "Visning av sertifikatstatus for %1 mislyktes (%2)."
+msgstr ""
+"Error al mostrar el estado del certificado con número de serie %1 (%2)."
 
 #: src/OpenSSLUtils.cpp:979
 msgid "Keyfile does not exist"
-msgstr "Nøkkelfilen finnes ikke"
+msgstr "El archivo de clave no existe"
 
 #: src/OpenSSLUtils.cpp:1474
 msgid "Out password is required"
-msgstr "Utpassord kreves"
+msgstr "Se necesita la contraseña de salida"
 
 #: src/OpenSSLUtils.cpp:1579
 msgid "PKCS12 password is required"
-msgstr "PKCS12-passord kreves"
+msgstr "Se necesita la contraseña de PKCS12"
 
 #: src/OpenSSLUtils.cpp:1665 src/OpenSSLUtils.cpp:1865
 #: src/OpenSSLUtils.cpp:2017
 msgid "Cannot read directory: %1 (%2) [%3]"
-msgstr "Kan ikke lese katalog: %1 (%2) [%3]"
+msgstr "No es posible leer el directorio: %1 (%2) [%3]"
 
 #: src/OpenSSLUtils.cpp:1715
 msgid "No serial number found in %1"
-msgstr "Ingen serienummer funnet i %1"
+msgstr "No se ha encontrado ningún número de serie en %1"
 
 #: src/OpenSSLUtils.cpp:1735
 msgid "Request already exist."
-msgstr "Forespørselen finnes allerede."
+msgstr "La solicitud ya existe."
 
 #: src/OpenSSLUtils.cpp:1926
 msgid "Can not find request subject."
-msgstr "Kan ikke finne forespørselsobjekt."
+msgstr "No se encuentra el tema de la solicitud."
 
 #: src/OpenSSLUtils.cpp:2087
 msgid "Can not find certificate subject."
-msgstr "Kan ikke finne sertifikatobjekt."
+msgstr "No se encuentra el tema del certificado."
 
 #: src/OpenSSLUtils.cpp:2186
 msgid "Invalid caName: %1"
-msgstr "Ugyldig caName: %1"
+msgstr "caName no válido: %1"
 
 #: src/OpenSSLUtils.cpp:2195
 msgid "'%1' does not exist"
-msgstr "'%1' finnes ikke"
+msgstr "%1 no existe"
 
 #: src/OpenSSLUtils.cpp:2205
 msgid "%1 still exist"
-msgstr "%1 finnes fremdeles"
+msgstr "%1 aún existe"
 
 #: src/OpenSSLUtils.cpp:2216 src/OpenSSLUtils.cpp:2264
 #: src/OpenSSLUtils.cpp:2278 src/OpenSSLUtils.cpp:2292
 #: src/OpenSSLUtils.cpp:2306 src/OpenSSLUtils.cpp:2320
 msgid "Can not create directory: %1 (%2 [%3])"
-msgstr "Kan ikke opprette katalog: %1 (%2 [%3])"
+msgstr "No es posible crear el directorio: %1 (%2 [%3])"
 
 #: src/OpenSSLUtils.cpp:2251
 msgid "Cannot copy configuration template"
-msgstr "Kan ikke kopiere konfigurasjonsmal"
+msgstr "No es posible copiar la plantilla de configuración"
 
 #: src/OpenSSLUtils.cpp:2338
 msgid "Cannot create file"
-msgstr "Kan ikke opprette fil"
+msgstr "No es posible crear el archivo"
 
 #: src/RequestData_Priv.cpp:396
 msgid "Can not parse request"
-msgstr "Kan ikke analysere forespørsel"
+msgstr "No es posible analizar la solicitud"
 
 #: src/RequestData_Priv.cpp:409
 msgid "Error at parsing the request"
-msgstr "Feil ved analyse av forespørsel"
+msgstr "Error al analizar la solicitud"
 
 #: src/RequestGenerationData.cpp:240
 msgid "Invalid RequestGenerationData object"
-msgstr "Ugyldig RequestGenerationData-objekt"
+msgstr "Objeto RequestGenerationData no válido"
 
 #: src/StringExtensions.cpp:109 src/StringExtensions.cpp:167
 msgid "Invalid value for NsBaseUrlExt"
-msgstr "Ugyldig verdi for NsBaseUrlExt"
+msgstr "Valor no válido para NsBaseUrlExt"
 
 #: src/StringExtensions.cpp:179
 msgid "NsBaseUrlExt is not present"
-msgstr "NsBaseUrlExt finnes ikke"
+msgstr "NsBaseUrlExt no está presente"
 
 #: src/StringExtensions.cpp:191
 msgid "Invalid NsBaseUrlExt object"
-msgstr "Ugyldig NsBaseUrlExt-objekt"
+msgstr "Objeto NsBaseUrlExt no válido"
 
 #: src/StringExtensions.cpp:274 src/StringExtensions.cpp:327
 msgid "Invalid value for NsRevocationUrlExt"
-msgstr "Ugyldig verdi for NsRevocationUrlExt"
+msgstr "Valor no válido para NsRevocationUrlExt"
 
 #: src/StringExtensions.cpp:338
 msgid "NsRevocationUrlExt is not present"
-msgstr "NsRevocationUrlExt finnes ikke"
+msgstr "NsRevocationUrlExt no está presente"
 
 #: src/StringExtensions.cpp:349
 msgid "Invalid NsRevocationUrlExt object"
-msgstr "Ugyldig NsRevocationUrlExt-objekt"
+msgstr "Objeto NsRevocationUrlExt no válido"
 
 #: src/StringExtensions.cpp:428 src/StringExtensions.cpp:481
 msgid "Invalid value for NsCaRevocationUrlExt"
-msgstr "Ugyldig verdi for NsCaRevocationUrlExt"
+msgstr "Valor no válido para NsCaRevocationUrlExt"
 
 #: src/StringExtensions.cpp:492
 msgid "NsCaRevocationUrlExt is not present"
-msgstr "NsCaRevocationUrlExt finnes ikke"
+msgstr "NsCaRevocationUrlExt no está presente"
 
 #: src/StringExtensions.cpp:503
 msgid "Invalid NsCaRevocationUrlExt object"
-msgstr "Ugyldig NsCaRevocationUrlExt-objekt"
+msgstr "Objeto NsCaRevocationUrlExt no válido"
 
 #: src/StringExtensions.cpp:581 src/StringExtensions.cpp:634
 msgid "Invalid value for NsRenewalUrlExt"
-msgstr "Ugyldig verdi for NsRenewalUrlExt"
+msgstr "Valor no válido para NsRenewalUrlExt"
 
 #: src/StringExtensions.cpp:645
 msgid "NsRenewalUrlExt is not present"
-msgstr "NsRenewalUrlExt finnes ikke"
+msgstr "NsRenewalUrlExt no está presente"
 
 #: src/StringExtensions.cpp:656
 msgid "Invalid NsRenewalUrlExt object"
-msgstr "Ugyldig NsRenewalUrlExt-objekt"
+msgstr "Objeto NsRenewalUrlExt no válido"
 
 #: src/StringExtensions.cpp:733 src/StringExtensions.cpp:786
 msgid "Invalid value for NsCaPolicyUrlExt"
-msgstr "Ugyldig verdi for NsCaPolicyUrlExt"
+msgstr "Valor no válido para NsCaPolicyUrlExt"
 
 #: src/StringExtensions.cpp:797
 msgid "NsCaPolicyUrlExt is not present"
-msgstr "NsCaPolicyUrlExt finnes ikke"
+msgstr "NsCaPolicyUrlExt no está presente"
 
 #: src/StringExtensions.cpp:808
 msgid "Invalid NsCaPolicyUrlExt object"
-msgstr "Ugyldig NsCaPolicyUrlExt objekt"
+msgstr "Objeto NsCaPolicyUrlExt no válido"
 
 #: src/StringExtensions.cpp:894
 msgid "wrong type: %1"
-msgstr "Ugyldig type: %1"
+msgstr "tipo erróneo: %1"
 
 #: src/StringExtensions.cpp:940
 msgid "NsSslServerNameExt is not present"
-msgstr "NsSslServerNameExt finnes ikke"
+msgstr "NsSslServerNameExt no está presente"
 
 #: src/StringExtensions.cpp:951
 msgid "Invalid NsSslServerNameExt object"
-msgstr "Ugyldig NsSslServerNameExt-objekt"
+msgstr "Objeto NsSslServerNameExt no válido"
 
 #: src/StringExtensions.cpp:1066
 msgid "NsCommentExt is not present"
-msgstr "NsCommentExt finnes ikke"
+msgstr "NsCommentExt no está presente"
 
 #: src/StringExtensions.cpp:1077
 msgid "Invalid NsCommentExt object"
-msgstr "Ugyldig NsCommentExt-objekt"
+msgstr "Objeto NsCommentExt no válido"
 
 #: src/SubjectAlternativeNameExtension.cpp:183
 #: src/SubjectAlternativeNameExtension.cpp:194
 msgid "SubjectAlternativeNameExt is not present"
-msgstr "SubjectAlternativeNameExt finnes ikke"
+msgstr "SubjectAlternativeNameExt no está presente"
 
 #: src/SubjectAlternativeNameExtension.cpp:207
 msgid "Invalid SubjectAlternativeNameExt object"
-msgstr "Ugyldig SubjectAlternativeNameExt-objekt"
+msgstr "Objeto SubjectAlternativeNameExt no válido"
 
 #: src/SubjectKeyIdentifierExtension.cpp:129
 #: src/SubjectKeyIdentifierExtension.cpp:163
 msgid "Invalid KeyID"
-msgstr "Ugyldig nøkkel-ID"
+msgstr "KeyID no válido"
 
 #: src/SubjectKeyIdentifierExtension.cpp:176
 #: src/SubjectKeyIdentifierExtension.cpp:187
 msgid "SubjectKeyIdentifierExt is not present"
-msgstr "SubjectKeyIdentifierExt finnes ikke"
+msgstr "SubjectKeyIdentifierExt no está presente"
 
 #: src/SubjectKeyIdentifierExtension.cpp:200
 msgid "Invalid SubjectKeyIdentifierExt object"
-msgstr "Ugyldig SubjectKeyIdentifierExt-objekt"
+msgstr "Objeto SubjectKeyIdentifierExt no válido"
 
 #: src/X509v3CertificateExtensions_Priv.cpp:393
 #: src/X509v3CertificateExtensions_Priv.cpp:449
 #: src/X509v3RequestExtensions_Priv.cpp:133
 #: src/X509v3RequestExtensions_Priv.cpp:188
 msgid "Extension occurred more than once: %1"
-msgstr "Utvidelse har skjedd mer enn én gang: %1"
+msgstr "Se ha producido la extensión más de una vez: %1"
 
 #: src/X509v3CertificateExtensions_Priv.cpp:400
 #: src/X509v3CertificateExtensions_Priv.cpp:456
 #: src/X509v3RequestExtensions_Priv.cpp:140
 #: src/X509v3RequestExtensions_Priv.cpp:195
 msgid "Unable to parse the certificate (NID: %1 Crit: %2)"
-msgstr "Kan ikke analysere sertifikatet (NID: %1 Crit: %2)"
+msgstr "No es posible analizar el certificado (NID: %1 Crit: %2)"
 
 #: src/X509v3CertificateExtensions_Priv.cpp:508
 #: src/X509v3CertificateExtensions_Priv.cpp:574
@@ -773,7 +770,7 @@ msgstr "Kan ikke analysere sertifikatet (NID: %1 Crit: %2)"
 #: src/X509v3RequestExtensions_Priv.cpp:377
 #: src/X509v3RequestExtensions_Priv.cpp:438
 msgid "Extension occurred more than once"
-msgstr "Utvidelse har skjedd mer enn én gang"
+msgstr "Se ha producido la extensión más de una vez"
 
 #: src/X509v3CertificateExtensions_Priv.cpp:513
 #: src/X509v3CertificateExtensions_Priv.cpp:579
@@ -789,128 +786,130 @@ msgstr "Utvidelse har skjedd mer enn én gang"
 #: src/X509v3RequestExtensions_Priv.cpp:383
 #: src/X509v3RequestExtensions_Priv.cpp:443
 msgid "Unable to parse the certificate (Crit: %1)"
-msgstr "Kan ikke analysere sertifikatet (Crit: %1)"
+msgstr "No es posible analizar el certificado (Crit: %1)"
 
 #: src/X509v3CertificateExtensions_Priv.cpp:940
 msgid "Invalid location in authorityInfoAccess"
-msgstr "Ugyldig plassering i authorityInfoAccess"
+msgstr "Ubicación no válida en authorityInfoAccess"
 
 #: src/X509v3CertificateIssueExtensions.cpp:174
 msgid "X509v3CertificateIssueExts::setNsBaseUrl invalid value"
-msgstr "X509v3CertificateIssueExts::setNsBaseUrl har ugyldig verdi"
+msgstr "X509v3CertificateIssueExts::Valor no válido de setNsBaseUrl"
 
 #: src/X509v3CertificateIssueExtensions.cpp:197
 msgid "X509v3CertificateIssueExts::setNsRevocationUrl invalid value"
-msgstr "X509v3CertificateIssueExts::setNsRevocationUrl har ugyldig verdi"
+msgstr "X509v3CertificateIssueExts::Valor no válido de setNsRevocationUrl"
 
 #: src/X509v3CertificateIssueExtensions.cpp:220
 msgid "X509v3CertificateIssueExts::setNsCaRevocationUrl invalid value"
-msgstr "X509v3CertificateIssueExts::setNsCaRevocationUrl har ugyldig verdi"
+msgstr "X509v3CertificateIssueExts::Valor no válido de setNsCaRevocationUrl"
 
 #: src/X509v3CertificateIssueExtensions.cpp:243
 msgid "X509v3CertificateIssueExts::setNsRenewalUrl invalid value"
-msgstr "X509v3CertificateIssueExts::setNsRenewalUrl har ugyldig verdi"
+msgstr "X509v3CertificateIssueExts::Valor no válido de setNsRenewalUrl"
 
 #: src/X509v3CertificateIssueExtensions.cpp:266
 msgid "X509v3CertificateIssueExts::setNsCaPolicyUrl invalid value"
-msgstr "X509v3CertificateIssueExts::setNsCaPolicyUrl har ugyldig verdi"
+msgstr "X509v3CertificateIssueExts::Valor no válido de setNsCaPolicyUrl"
 
 #: src/X509v3CertificateIssueExtensions.cpp:289
 msgid "X509v3CertificateIssueExts::setNsSslServerName invalid value"
-msgstr "X509v3CertificateIssueExts::setNsSslServerName har ugyldig verdi"
+msgstr "X509v3CertificateIssueExts::Valor no válido de setNsSslServerName"
 
 #: src/X509v3CertificateIssueExtensions.cpp:312
 msgid "X509v3CertificateIssueExts::setNsComment invalid value"
-msgstr "X509v3CertificateIssueExts::setNsComment har ugyldig verdi"
+msgstr "X509v3CertificateIssueExts::Valor no válido de setNsComment"
 
 #: src/X509v3CertificateIssueExtensions.cpp:335
 msgid "X509v3CertificateIssueExts::setNsCertType invalid value"
-msgstr "X509v3CertificateIssueExts::setNsCertType har ugyldig verdi"
+msgstr "X509v3CertificateIssueExts::Valor no válido de setNsCertType"
 
 #: src/X509v3CertificateIssueExtensions.cpp:358
 msgid "X509v3CertificateIssueExts::setKeyUsage invalid value"
-msgstr "X509v3CertificateIssueExts::setKeyUsage har ugyldig verdi"
+msgstr "X509v3CertificateIssueExts::Valor no válido de setKeyUsage"
 
 #: src/X509v3CertificateIssueExtensions.cpp:381
 msgid "X509v3CertificateIssueExts::setBasicConstraints invalid value"
-msgstr "X509v3CertificateIssueExts::setBasicConstraints har ugyldig verdi"
+msgstr "X509v3CertificateIssueExts::Valor no válido de setBasicConstraints"
 
 #: src/X509v3CertificateIssueExtensions.cpp:404
 msgid "X509v3CertificateIssueExts::setExtendedKeyUsage invalid value"
-msgstr "X509v3CertificateIssueExts::setExtendedKeyUsage har ugyldig verdi"
+msgstr "X509v3CertificateIssueExts::Valor no válido de setExtendedKeyUsage"
 
 #: src/X509v3CertificateIssueExtensions.cpp:427
 msgid "X509v3CertificateIssueExts::setSubjectKeyIdentifier invalid value"
-msgstr "X509v3CertificateIssueExts::setSubjectKeyIdentifier har ugyldig verdi"
+msgstr "X509v3CertificateIssueExts::Valor no válido de setSubjectKeyIdentifier"
 
 #: src/X509v3CertificateIssueExtensions.cpp:450
 msgid "X509v3CertificateIssueExts::setAuthorityKeyIdentifier invalid value"
 msgstr ""
-"X509v3CertificateIssueExts::setAuthorityKeyIdentifier har ugyldig verdi"
+"X509v3CertificateIssueExts::Valor no válido de setAuthorityKeyIdentifier"
 
 #: src/X509v3CertificateIssueExtensions.cpp:473
 msgid "X509v3CertificateIssueExts::setSubjectAlternativeName invalid value"
 msgstr ""
-"X509v3CertificateIssueExts::setSubjectAlternativeName har ugyldig verdi"
+"X509v3CertificateIssueExts::Valor no válido de setSubjectAlternativeName"
 
 #: src/X509v3CertificateIssueExtensions.cpp:496
 msgid "X509v3CertificateIssueExts::setIssuerAlternativeName invalid value"
-msgstr "X509v3CertificateIssueExts::setIssuerAlternativeName har ugyldig verdi"
+msgstr ""
+"X509v3CertificateIssueExts::Valor no válido de setIssuerAlternativeName"
 
 #: src/X509v3CertificateIssueExtensions.cpp:519
 msgid "X509v3CertificateIssueExts::setAuthorityInfoAccess invalid value"
-msgstr "X509v3CertificateIssueExts::setAuthorityInfoAccess har ugyldig verdi"
+msgstr "X509v3CertificateIssueExts::Valor no válido de setAuthorityInfoAccess"
 
 #: src/X509v3CertificateIssueExtensions.cpp:542
 msgid "X509v3CertificateIssueExts::setCRLDistributionPoints invalid value"
-msgstr "X509v3CertificateIssueExts::setCRLDistributionPoints har ugyldig verdi"
+msgstr ""
+"X509v3CertificateIssueExts::Valor no válido de setCRLDistributionPoints"
 
 #: src/X509v3CertificateIssueExtensions.cpp:565
 msgid "X509v3CertificateIssueExts::setCertificatePolicies invalid value"
-msgstr "X509v3CertificateIssueExts::setCertificatePolicies har ugyldig verdi"
+msgstr "X509v3CertificateIssueExts::Valor no válido de setCertificatePolicies"
 
 #: src/X509v3CertificateIssueExtensions.cpp:589
 #: src/X509v3CRLGenerationExtensions.cpp:149
 #: src/X509v3RequestExtensions.cpp:255
 msgid "Invalid X509v3RequestExts object"
-msgstr "Ugyldig X509v3RequestExts-objekt"
+msgstr "Objeto X509v3RequestExts no válido"
 
 #: src/X509v3CRLGenerationExtensions.cpp:102
 msgid "X509v3CRLGenerationExts::setAuthorityKeyIdentifier invalid value"
-msgstr "X509v3CRLGenerationExts::setAuthorityKeyIdentifier har ugyldig verdi"
+msgstr "X509v3CRLGenerationExts::Valor no válido de setAuthorityKeyIdentifier"
 
 #: src/X509v3CRLGenerationExtensions.cpp:125
 msgid "X509v3CRLGenerationExts::setIssuerAlternativeName invalid value"
-msgstr "X509v3CRLGenerationExts::setIssuerAlternativeName har ugyldig verdi"
+msgstr "X509v3CRLGenerationExts::Valor no válido de setIssuerAlternativeName"
 
 #: src/X509v3RequestExtensions.cpp:70
 msgid "X509v3RequestExts::setNsSslServerName invalid value"
-msgstr "X509v3RequestExts::setNsSslServerName har ugyldig verdi"
+msgstr "X509v3RequestExts::Valor no válido de setNsSslServerName"
 
 #: src/X509v3RequestExtensions.cpp:93
 msgid "X509v3RequestExts::setNsComment invalid value"
-msgstr "X509v3RequestExts::setNsComment har ugyldig verdi"
+msgstr "X509v3RequestExts::Valor no válido de setNsComment"
 
 #: src/X509v3RequestExtensions.cpp:116
 msgid "X509v3RequestExts::setNsCertType invalid value"
-msgstr "X509v3RequestExts::setNsCertType har ugyldig verdi"
+msgstr "X509v3RequestExts::Valor no válido de setNsCertType"
 
 #: src/X509v3RequestExtensions.cpp:139
 msgid "X509v3RequestExts::setKeyUsage invalid value"
-msgstr "X509v3RequestExts::setKeyUsage har ugyldig verdi"
+msgstr "X509v3RequestExts::Valor no válido de setKeyUsage"
 
 #: src/X509v3RequestExtensions.cpp:162
 msgid "X509v3RequestExts::setBasicConstraints invalid value"
-msgstr "X509v3RequestExts::setBasicConstraints har ugyldig verdi"
+msgstr "X509v3RequestExts::Valor no válido de setBasicConstraints"
 
 #: src/X509v3RequestExtensions.cpp:185
 msgid "X509v3RequestExts::setExtendedKeyUsage invalid value"
-msgstr "X509v3RequestExts::setExtendedKeyUsage har ugyldig verdi"
+msgstr "X509v3RequestExts::Valor no válido de setExtendedKeyUsage"
 
 #: src/X509v3RequestExtensions.cpp:208
 msgid "X509v3RequestExts::setSubjectKeyIdentifier invalid value"
-msgstr "X509v3RequestExts::setSubjectKeyIdentifier har ugyldig verdi"
+msgstr "X509v3RequestExts::Valor no válido de setSubjectKeyIdentifier"
 
 #: src/X509v3RequestExtensions.cpp:231
 msgid "X509v3RequestExts::setSubjectAlternativeName invalid value"
-msgstr "X509v3RequestExts::setSubjectAlternativeName har ugyldig verdi"
+msgstr "X509v3RequestExts::Valor no válido de setSubjectAlternativeName"

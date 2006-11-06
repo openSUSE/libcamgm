@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm.fi\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2006-09-26 11:11+0200\n"
+"POT-Creation-Date: 2006-11-06 10:48+0100\n"
 "PO-Revision-Date: 2006-10-24 23:36+0300\n"
 "Last-Translator: Jyri Palokangas <jmp@netti.fi>\n"
 "Language-Team: Suomi <yast-trans-fi@kotoistaminen.novell.fi>\n"
@@ -192,7 +192,7 @@ msgstr "Varmenteen myöntäminen epäonnistui."
 msgid "File %1 not found in the repository."
 msgstr "Tiedostoa %1 ei löydetty varastosta (repository)."
 
-#: src/CA.cpp:497 src/CRLData_Priv.cpp:176
+#: src/CA.cpp:497 src/CRLData_Priv.cpp:179
 msgid "Invalid CRL reason."
 msgstr "Epäkelpo CLR-syy."
 
@@ -204,7 +204,7 @@ msgstr "Epäkelpo CLR-tieto."
 msgid "Duplicate DN. Request already exists."
 msgstr "Duplikaatti DN. Pyyntö on jo olemassa."
 
-#: src/CA.cpp:833 src/CA.cpp:860 src/CA.cpp:890 src/OpenSSLUtils.cpp:969
+#: src/CA.cpp:833 src/CA.cpp:860 src/CA.cpp:890 src/OpenSSLUtils.cpp:968
 msgid "Cannot parse the certificate name."
 msgstr "Ei voitu koostaa varmenteen nimeä."
 
@@ -330,12 +330,12 @@ msgstr "Määritystä ei ole alustettu."
 msgid "Missing section 'distinguished_name' in the configuration file."
 msgstr "Määritystiedostosta puuttuu osio: 'distinguished_name' ."
 
-#: src/CertificateData_Priv.cpp:94 src/CRLData_Priv.cpp:121
-#: src/CRLData_Priv.cpp:158
+#: src/CertificateData_Priv.cpp:94 src/CRLData_Priv.cpp:124
+#: src/CRLData_Priv.cpp:161
 msgid "Invalid serial %1."
 msgstr "Epäkelpo sarja (serial) %1."
 
-#: src/CertificateData_Priv.cpp:206 src/CRLData_Priv.cpp:460
+#: src/CertificateData_Priv.cpp:206 src/CRLData_Priv.cpp:463
 #: src/DNObject_Priv.cpp:81 src/RequestData_Priv.cpp:369
 msgid "Cannot create a memory BIO."
 msgstr "Ei voitu luoda muisti-BIO:a"
@@ -348,28 +348,28 @@ msgstr "Ei voitu koostaa varmennetta."
 msgid "Error while parsing the certificate."
 msgstr "Virhe varmenteen koostamisessa."
 
-#: src/CertificateData_Priv.cpp:285 src/CertificateData_Priv.cpp:319
-#: src/CRLData_Priv.cpp:88 src/CRLData_Priv.cpp:338 src/CRLData_Priv.cpp:372
+#: src/CertificateData_Priv.cpp:291 src/CertificateData_Priv.cpp:325
+#: src/CRLData_Priv.cpp:91 src/CRLData_Priv.cpp:341 src/CRLData_Priv.cpp:375
 msgid "Cannot parse date %1."
 msgstr "Ei voitu koostaa päiväystä %1."
 
-#: src/CertificateData_Priv.cpp:374 src/RequestData_Priv.cpp:182
+#: src/CertificateData_Priv.cpp:380 src/RequestData_Priv.cpp:182
 msgid "Unable to get the public key."
 msgstr "Ei voitu hakea julkista avainta."
 
-#: src/CertificateData_Priv.cpp:385 src/RequestData_Priv.cpp:193
+#: src/CertificateData_Priv.cpp:391 src/RequestData_Priv.cpp:193
 msgid "Could not get RSA key."
 msgstr "Ei voitu hakea RSA-avainta."
 
-#: src/CertificateData_Priv.cpp:405 src/RequestData_Priv.cpp:213
+#: src/CertificateData_Priv.cpp:411 src/RequestData_Priv.cpp:213
 msgid "Unsupported public key type."
 msgstr "Julkisen avaimen tyyppi ei tuettu."
 
-#: src/CertificateData_Priv.cpp:441 src/RequestData_Priv.cpp:246
+#: src/CertificateData_Priv.cpp:447 src/RequestData_Priv.cpp:246
 msgid "Unsupported public key algorithm."
 msgstr "Julkisen avaimen algoritmi ei tuettu."
 
-#: src/CertificateData_Priv.cpp:473 src/CRLData_Priv.cpp:421
+#: src/CertificateData_Priv.cpp:479 src/CRLData_Priv.cpp:424
 #: src/RequestData_Priv.cpp:276
 msgid "Unsupported signature algorithm %1."
 msgstr "Allekirjoituksen algoritmi %1 ei tuettu."
@@ -408,11 +408,11 @@ msgstr "Epäkelpo CertificatePoliciesExt objekti."
 msgid "Entry not found."
 msgstr "Merkintää ei löytynyt."
 
-#: src/CRLData_Priv.cpp:488
+#: src/CRLData_Priv.cpp:491
 msgid "Cannot parse CRL."
 msgstr "CRL:ää ei voitu koostaa."
 
-#: src/CRLData_Priv.cpp:501
+#: src/CRLData_Priv.cpp:504
 msgid "Error parsing the CRL."
 msgstr "Virhe CRL:n koostamisessa."
 
@@ -543,13 +543,13 @@ msgid "Invalid command %1."
 msgstr "Epäkelpo komento %1."
 
 #: src/OpenSSLUtils.cpp:138 src/OpenSSLUtils.cpp:241 src/OpenSSLUtils.cpp:334
-#: src/OpenSSLUtils.cpp:454 src/OpenSSLUtils.cpp:587 src/OpenSSLUtils.cpp:682
-#: src/OpenSSLUtils.cpp:762
+#: src/OpenSSLUtils.cpp:453 src/OpenSSLUtils.cpp:586 src/OpenSSLUtils.cpp:681
+#: src/OpenSSLUtils.cpp:761
 msgid "Command returned '%1' : %2"
 msgstr "Komento palautti '%1' : %2"
 
-#: src/OpenSSLUtils.cpp:170 src/OpenSSLUtils.cpp:268 src/OpenSSLUtils.cpp:366
-#: src/OpenSSLUtils.cpp:480 src/OpenSSLUtils.cpp:614 src/OpenSSLUtils.cpp:705
+#: src/OpenSSLUtils.cpp:171 src/OpenSSLUtils.cpp:268 src/OpenSSLUtils.cpp:366
+#: src/OpenSSLUtils.cpp:479 src/OpenSSLUtils.cpp:613 src/OpenSSLUtils.cpp:704
 msgid "No valid key file specified."
 msgstr "Kelvollista avain -tiedostoa ei ole määritetty."
 
@@ -557,78 +557,78 @@ msgstr "Kelvollista avain -tiedostoa ei ole määritetty."
 msgid "No valid request file specified."
 msgstr "Kelvollista pyyntö -tiedostoa ei ole määritetty."
 
-#: src/OpenSSLUtils.cpp:488 src/OpenSSLUtils.cpp:622 src/OpenSSLUtils.cpp:713
+#: src/OpenSSLUtils.cpp:487 src/OpenSSLUtils.cpp:621 src/OpenSSLUtils.cpp:712
 msgid "No valid CA certificate file specified."
 msgstr "Kelvollista CA-varmennetiedostoa ei ole määritetty."
 
-#: src/OpenSSLUtils.cpp:496 src/OpenSSLUtils.cpp:786
+#: src/OpenSSLUtils.cpp:495 src/OpenSSLUtils.cpp:785
 msgid "No valid certificate file specified."
 msgstr "Kelvollista varmennetiedostoa ei ole määritetty."
 
-#: src/OpenSSLUtils.cpp:794
+#: src/OpenSSLUtils.cpp:793
 msgid "No valid CA directory specified."
 msgstr "Kelvollista CA-hakemistoa ei ole määritetty."
 
-#: src/OpenSSLUtils.cpp:944
+#: src/OpenSSLUtils.cpp:943
 msgid "Showing certificate status with serial %1 failed (%2)."
 msgstr "Varmenteen tilan näyttäminen sarjalla (serial) %1 epäonnistui (%2)."
 
-#: src/OpenSSLUtils.cpp:980
+#: src/OpenSSLUtils.cpp:979
 msgid "Keyfile does not exist"
 msgstr "Avain -tiedostoa ei ole."
 
-#: src/OpenSSLUtils.cpp:1476
+#: src/OpenSSLUtils.cpp:1474
 msgid "Out password is required"
 msgstr "Out -salasana tarvitaan."
 
-#: src/OpenSSLUtils.cpp:1581
+#: src/OpenSSLUtils.cpp:1579
 msgid "PKCS12 password is required"
 msgstr "PKCS12 salasana tarvitaan"
 
-#: src/OpenSSLUtils.cpp:1667 src/OpenSSLUtils.cpp:1867
-#: src/OpenSSLUtils.cpp:2019
+#: src/OpenSSLUtils.cpp:1665 src/OpenSSLUtils.cpp:1865
+#: src/OpenSSLUtils.cpp:2017
 msgid "Cannot read directory: %1 (%2) [%3]"
 msgstr "Ei voitu lukea hakemistoa: %1 (%2) [%3]"
 
-#: src/OpenSSLUtils.cpp:1717
+#: src/OpenSSLUtils.cpp:1715
 msgid "No serial number found in %1"
 msgstr "Sarjanumeroa ei löytynyt %1:stä"
 
-#: src/OpenSSLUtils.cpp:1737
+#: src/OpenSSLUtils.cpp:1735
 msgid "Request already exist."
 msgstr "Pyyntö on jo olemassa."
 
-#: src/OpenSSLUtils.cpp:1928
+#: src/OpenSSLUtils.cpp:1926
 msgid "Can not find request subject."
 msgstr "Pyynnön aihetta ei löytynyt."
 
-#: src/OpenSSLUtils.cpp:2089
+#: src/OpenSSLUtils.cpp:2087
 msgid "Can not find certificate subject."
 msgstr "Varmenteen aihetta ei löytynyt"
 
-#: src/OpenSSLUtils.cpp:2188
+#: src/OpenSSLUtils.cpp:2186
 msgid "Invalid caName: %1"
 msgstr "Epäkelpo caName: %1"
 
-#: src/OpenSSLUtils.cpp:2197
+#: src/OpenSSLUtils.cpp:2195
 msgid "'%1' does not exist"
 msgstr "'%1' ei ole."
 
-#: src/OpenSSLUtils.cpp:2207
+#: src/OpenSSLUtils.cpp:2205
 msgid "%1 still exist"
 msgstr "%1 on vielä olemassa"
 
-#: src/OpenSSLUtils.cpp:2218 src/OpenSSLUtils.cpp:2266
-#: src/OpenSSLUtils.cpp:2280 src/OpenSSLUtils.cpp:2294
-#: src/OpenSSLUtils.cpp:2308 src/OpenSSLUtils.cpp:2322
+#: src/OpenSSLUtils.cpp:2216 src/OpenSSLUtils.cpp:2264
+#: src/OpenSSLUtils.cpp:2278 src/OpenSSLUtils.cpp:2292
+#: src/OpenSSLUtils.cpp:2306 src/OpenSSLUtils.cpp:2320
 msgid "Can not create directory: %1 (%2 [%3])"
 msgstr "Ei voitu luoda hakemistoa: %1 (%2 [%3])"
 
-#: src/OpenSSLUtils.cpp:2253
+#: src/OpenSSLUtils.cpp:2251
 msgid "Cannot copy configuration template"
 msgstr "Määritysmallia ei voitu kopioida"
 
-#: src/OpenSSLUtils.cpp:2340
+#: src/OpenSSLUtils.cpp:2338
 msgid "Cannot create file"
 msgstr "Tiedostoa ei voitu luoda"
 

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm.km\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2006-09-26 11:11+0200\n"
+"POT-Creation-Date: 2006-11-06 10:48+0100\n"
 "PO-Revision-Date: 2006-10-13 14:36+0700\n"
 "Last-Translator: auk piseth <piseth_dv@khmeros.info>\n"
 "Language-Team: khmer <support@khmeros.info>\n"
@@ -195,7 +195,7 @@ msgstr "ការ​ផ្សាយ​វិញ្ញា​បនបត្រ​
 msgid "File %1 not found in the repository."
 msgstr "រក​មិន​ឃើញ​ឯកសារ %1 នៅ​ក្នុង​ឃ្លាំង​ទេ ។"
 
-#: src/CA.cpp:497 src/CRLData_Priv.cpp:176
+#: src/CA.cpp:497 src/CRLData_Priv.cpp:179
 msgid "Invalid CRL reason."
 msgstr "ហេតុផល CRL មិន​ត្រឹម​ត្រូវ ។"
 
@@ -207,7 +207,7 @@ msgstr "ទិន្នន័យ​ CRL មិនត្រឹមត្រូវ�
 msgid "Duplicate DN. Request already exists."
 msgstr "ចម្លង DN ។ មាន​សំណើ​រួច​ហើយ ។"
 
-#: src/CA.cpp:833 src/CA.cpp:860 src/CA.cpp:890 src/OpenSSLUtils.cpp:969
+#: src/CA.cpp:833 src/CA.cpp:860 src/CA.cpp:890 src/OpenSSLUtils.cpp:968
 msgid "Cannot parse the certificate name."
 msgstr "មិន​អាច​ញែក​ឈ្មោះ​វិញ្ញា​បនបត្រ​បាន​ទេ ។"
 
@@ -330,12 +330,12 @@ msgstr "ការ​កំណត់​រចនា​សម្ព័ន្ធ​
 msgid "Missing section 'distinguished_name' in the configuration file."
 msgstr "បាត់​ផ្នែក 'ឈ្មោះ​ដែលបាន​សម្គាល់' នៅក្នុង​ឯកសារ​កំណត់​រចនា​សម្ព័ន្ធ ។"
 
-#: src/CertificateData_Priv.cpp:94 src/CRLData_Priv.cpp:121
-#: src/CRLData_Priv.cpp:158
+#: src/CertificateData_Priv.cpp:94 src/CRLData_Priv.cpp:124
+#: src/CRLData_Priv.cpp:161
 msgid "Invalid serial %1."
 msgstr "សៀរៀល %1 មិនត្រឹមត្រូវ ។"
 
-#: src/CertificateData_Priv.cpp:206 src/CRLData_Priv.cpp:460
+#: src/CertificateData_Priv.cpp:206 src/CRLData_Priv.cpp:463
 #: src/DNObject_Priv.cpp:81 src/RequestData_Priv.cpp:369
 msgid "Cannot create a memory BIO."
 msgstr "មិនអាចបង្កើតសតិ BIO បានទេ ។"
@@ -348,28 +348,28 @@ msgstr "មិន​អាច​ញែក​វិញ្ញា​បនបត្
 msgid "Error while parsing the certificate."
 msgstr "មាន​កំហុស​នៅ​ខណៈ​ពេល​កំពុង​ញែក​វិញ្ញា​បនបត្រ ។"
 
-#: src/CertificateData_Priv.cpp:285 src/CertificateData_Priv.cpp:319
-#: src/CRLData_Priv.cpp:88 src/CRLData_Priv.cpp:338 src/CRLData_Priv.cpp:372
+#: src/CertificateData_Priv.cpp:291 src/CertificateData_Priv.cpp:325
+#: src/CRLData_Priv.cpp:91 src/CRLData_Priv.cpp:341 src/CRLData_Priv.cpp:375
 msgid "Cannot parse date %1."
 msgstr "មិន​អាច​ញែក​កាល​បរិច្ឆេទ %1 បានទេ ។"
 
-#: src/CertificateData_Priv.cpp:374 src/RequestData_Priv.cpp:182
+#: src/CertificateData_Priv.cpp:380 src/RequestData_Priv.cpp:182
 msgid "Unable to get the public key."
 msgstr "មិន​អាច​យក​សោរ​សាធារណៈ​បានទេ ។"
 
-#: src/CertificateData_Priv.cpp:385 src/RequestData_Priv.cpp:193
+#: src/CertificateData_Priv.cpp:391 src/RequestData_Priv.cpp:193
 msgid "Could not get RSA key."
 msgstr "មិន​អាច​យក​សោរ RSA បាន​ឡើយ ។"
 
-#: src/CertificateData_Priv.cpp:405 src/RequestData_Priv.cpp:213
+#: src/CertificateData_Priv.cpp:411 src/RequestData_Priv.cpp:213
 msgid "Unsupported public key type."
 msgstr "ប្រភេទ​សោរ​សាធារណៈ​ដែល​មិន​បាន​គាំទ្រ ។"
 
-#: src/CertificateData_Priv.cpp:441 src/RequestData_Priv.cpp:246
+#: src/CertificateData_Priv.cpp:447 src/RequestData_Priv.cpp:246
 msgid "Unsupported public key algorithm."
 msgstr "ក្បួន​ដោះ​ស្រាយ​សោរ​សាធារណៈ​ដែល​មិន​បាន​គាំទ្រ ។"
 
-#: src/CertificateData_Priv.cpp:473 src/CRLData_Priv.cpp:421
+#: src/CertificateData_Priv.cpp:479 src/CRLData_Priv.cpp:424
 #: src/RequestData_Priv.cpp:276
 msgid "Unsupported signature algorithm %1."
 msgstr "ក្បួន​ដោះ​ស្រាយ​ហត្ថលេខា %1 ដែល​មិន​បាន​គាំទ្រ ។"
@@ -408,11 +408,11 @@ msgstr "វត្ថុ CertificatePoliciesExt មិន​ត្រឹមត្
 msgid "Entry not found."
 msgstr "រក​មិន​ឃើញ​ធាតុ ។"
 
-#: src/CRLData_Priv.cpp:488
+#: src/CRLData_Priv.cpp:491
 msgid "Cannot parse CRL."
 msgstr "មិន​អាច​ញែក CRL បាន​ទេ ។"
 
-#: src/CRLData_Priv.cpp:501
+#: src/CRLData_Priv.cpp:504
 msgid "Error parsing the CRL."
 msgstr "កំហុស​ក្នុង​ការ​ញែក CRL ។"
 
@@ -543,13 +543,13 @@ msgid "Invalid command %1."
 msgstr "ពាក្យ​បញ្ជា %1 មិន​ត្រឹម​ត្រូវ ។"
 
 #: src/OpenSSLUtils.cpp:138 src/OpenSSLUtils.cpp:241 src/OpenSSLUtils.cpp:334
-#: src/OpenSSLUtils.cpp:454 src/OpenSSLUtils.cpp:587 src/OpenSSLUtils.cpp:682
-#: src/OpenSSLUtils.cpp:762
+#: src/OpenSSLUtils.cpp:453 src/OpenSSLUtils.cpp:586 src/OpenSSLUtils.cpp:681
+#: src/OpenSSLUtils.cpp:761
 msgid "Command returned '%1' : %2"
 msgstr "ពាក្យ​បញ្ជា​បាន​ត្រឡប់ '%1' ៖ %2"
 
-#: src/OpenSSLUtils.cpp:170 src/OpenSSLUtils.cpp:268 src/OpenSSLUtils.cpp:366
-#: src/OpenSSLUtils.cpp:480 src/OpenSSLUtils.cpp:614 src/OpenSSLUtils.cpp:705
+#: src/OpenSSLUtils.cpp:171 src/OpenSSLUtils.cpp:268 src/OpenSSLUtils.cpp:366
+#: src/OpenSSLUtils.cpp:479 src/OpenSSLUtils.cpp:613 src/OpenSSLUtils.cpp:704
 msgid "No valid key file specified."
 msgstr "គ្មាន​ឯកសារ​សោរ​ដែល​បាន​បញ្ជាក់​ត្រឹមត្រូវ​ទេ ។"
 
@@ -557,78 +557,78 @@ msgstr "គ្មាន​ឯកសារ​សោរ​ដែល​បាន​
 msgid "No valid request file specified."
 msgstr "គ្មាន​ឯកសារ​សំណើ​ដែល​បាន​បញ្ជាក់​ត្រឹមត្រូវ​ទេ ។"
 
-#: src/OpenSSLUtils.cpp:488 src/OpenSSLUtils.cpp:622 src/OpenSSLUtils.cpp:713
+#: src/OpenSSLUtils.cpp:487 src/OpenSSLUtils.cpp:621 src/OpenSSLUtils.cpp:712
 msgid "No valid CA certificate file specified."
 msgstr "គ្មាន​ឯកសារ​វិញ្ញា​បនបត្រ CA ដែល​បាន​បញ្ជាក់​ត្រឹមត្រូវ​ទេ ។"
 
-#: src/OpenSSLUtils.cpp:496 src/OpenSSLUtils.cpp:786
+#: src/OpenSSLUtils.cpp:495 src/OpenSSLUtils.cpp:785
 msgid "No valid certificate file specified."
 msgstr "គ្មាន​ឯកសារ​វិញ្ញា​បនបត្រ​ដែល​បាន​បញ្ជាក់​ត្រឹមត្រូវ​ទេ ។"
 
-#: src/OpenSSLUtils.cpp:794
+#: src/OpenSSLUtils.cpp:793
 msgid "No valid CA directory specified."
 msgstr "គ្មាន​ថត CA ដែល​បាន​បញ្ជាក់​ត្រឹមត្រូវ​ទេ ។"
 
-#: src/OpenSSLUtils.cpp:944
+#: src/OpenSSLUtils.cpp:943
 msgid "Showing certificate status with serial %1 failed (%2)."
 msgstr "ការ​បង្ហាញ​ស្ថានភាព​វិញ្ញា​បនបត្រ​ជាមួយ​នឹង​សៀរៀល %1 បាន​បរាជ័យ (%2) ។"
 
-#: src/OpenSSLUtils.cpp:980
+#: src/OpenSSLUtils.cpp:979
 msgid "Keyfile does not exist"
 msgstr "មិនមាន​ឯកសារ​សោរ​ទេ"
 
-#: src/OpenSSLUtils.cpp:1476
+#: src/OpenSSLUtils.cpp:1474
 msgid "Out password is required"
 msgstr "បាន​ទាមទារ​ពាក្យ​សម្ងាត់​ខាងក្រៅ"
 
-#: src/OpenSSLUtils.cpp:1581
+#: src/OpenSSLUtils.cpp:1579
 msgid "PKCS12 password is required"
 msgstr "បាន​ទាមទារ​ពាក្យ​សម្ងាត់ PKCS12"
 
-#: src/OpenSSLUtils.cpp:1667 src/OpenSSLUtils.cpp:1867
-#: src/OpenSSLUtils.cpp:2019
+#: src/OpenSSLUtils.cpp:1665 src/OpenSSLUtils.cpp:1865
+#: src/OpenSSLUtils.cpp:2017
 msgid "Cannot read directory: %1 (%2) [%3]"
 msgstr "មិន​អាច​អាន​ថត ៖ %1 (%2) [%3]"
 
-#: src/OpenSSLUtils.cpp:1717
+#: src/OpenSSLUtils.cpp:1715
 msgid "No serial number found in %1"
 msgstr "គ្មាន​លេខ​សម្គាល់​ដែល​បាន​រកឃើញ​នៅក្នុង %1 នោះ​ទេ"
 
-#: src/OpenSSLUtils.cpp:1737
+#: src/OpenSSLUtils.cpp:1735
 msgid "Request already exist."
 msgstr "មាន​សំណើ​រួច​ហើយ ។"
 
-#: src/OpenSSLUtils.cpp:1928
+#: src/OpenSSLUtils.cpp:1926
 msgid "Can not find request subject."
 msgstr "មិនអាច​រក​ឃើញ​ប្រធានបទ​សំណើ​បាន​ទេ ។"
 
-#: src/OpenSSLUtils.cpp:2089
+#: src/OpenSSLUtils.cpp:2087
 msgid "Can not find certificate subject."
 msgstr "មិន​អាច​រក​ឃើញ​ប្រធានបទ​សំណើ​បាន​ទេ ។"
 
-#: src/OpenSSLUtils.cpp:2188
+#: src/OpenSSLUtils.cpp:2186
 msgid "Invalid caName: %1"
 msgstr "caName មិន​ត្រឹមត្រូវ ៖ %1"
 
-#: src/OpenSSLUtils.cpp:2197
+#: src/OpenSSLUtils.cpp:2195
 msgid "'%1' does not exist"
 msgstr "មិនមាន​ '%1' ទេ"
 
-#: src/OpenSSLUtils.cpp:2207
+#: src/OpenSSLUtils.cpp:2205
 msgid "%1 still exist"
 msgstr "%1 នៅ​តែ​មាន"
 
-#: src/OpenSSLUtils.cpp:2218 src/OpenSSLUtils.cpp:2266
-#: src/OpenSSLUtils.cpp:2280 src/OpenSSLUtils.cpp:2294
-#: src/OpenSSLUtils.cpp:2308 src/OpenSSLUtils.cpp:2322
+#: src/OpenSSLUtils.cpp:2216 src/OpenSSLUtils.cpp:2264
+#: src/OpenSSLUtils.cpp:2278 src/OpenSSLUtils.cpp:2292
+#: src/OpenSSLUtils.cpp:2306 src/OpenSSLUtils.cpp:2320
 msgid "Can not create directory: %1 (%2 [%3])"
 msgstr "មិន​អាច​បង្កើត​ថត ៖ %1 (%2 [%3])"
 
-#: src/OpenSSLUtils.cpp:2253
+#: src/OpenSSLUtils.cpp:2251
 msgid "Cannot copy configuration template"
 msgstr "មិន​អាច​ចម្លង​ពុម្ព​កំណត់​រចនា​សម្ព័ន្ធ​បាន​ឡើយ"
 
-#: src/OpenSSLUtils.cpp:2340
+#: src/OpenSSLUtils.cpp:2338
 msgid "Cannot create file"
 msgstr "មិន​អាច​បង្កើត​ឯកសារ​បាន​ឡើយ"
 

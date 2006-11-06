@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm.hu\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2006-09-26 11:11+0200\n"
+"POT-Creation-Date: 2006-11-06 10:48+0100\n"
 "PO-Revision-Date: 2006-09-28 10:13+0200\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian <hu@li.org>\n"
@@ -192,7 +192,7 @@ msgstr "A tanúsítvány kiadása sikertelen."
 msgid "File %1 not found in the repository."
 msgstr "A(z) %1 fájl nem található tanusítványtárban."
 
-#: src/CA.cpp:497 src/CRLData_Priv.cpp:176
+#: src/CA.cpp:497 src/CRLData_Priv.cpp:179
 msgid "Invalid CRL reason."
 msgstr "Érvénytelen CRL indoklás."
 
@@ -204,7 +204,7 @@ msgstr "Érvénytelen CRL-adat."
 msgid "Duplicate DN. Request already exists."
 msgstr "A DN Request már létezik"
 
-#: src/CA.cpp:833 src/CA.cpp:860 src/CA.cpp:890 src/OpenSSLUtils.cpp:969
+#: src/CA.cpp:833 src/CA.cpp:860 src/CA.cpp:890 src/OpenSSLUtils.cpp:968
 msgid "Cannot parse the certificate name."
 msgstr "A tanúsítvány nevének feldolgozása sikertelen."
 
@@ -334,12 +334,12 @@ msgstr "A konfiguráció inicializációja sikertelen."
 msgid "Missing section 'distinguished_name' in the configuration file."
 msgstr "A konfigurációs fájlban hiányzik a 'distinguished_name' rész."
 
-#: src/CertificateData_Priv.cpp:94 src/CRLData_Priv.cpp:121
-#: src/CRLData_Priv.cpp:158
+#: src/CertificateData_Priv.cpp:94 src/CRLData_Priv.cpp:124
+#: src/CRLData_Priv.cpp:161
 msgid "Invalid serial %1."
 msgstr "Érvénytelen sorozat: %1."
 
-#: src/CertificateData_Priv.cpp:206 src/CRLData_Priv.cpp:460
+#: src/CertificateData_Priv.cpp:206 src/CRLData_Priv.cpp:463
 #: src/DNObject_Priv.cpp:81 src/RequestData_Priv.cpp:369
 msgid "Cannot create a memory BIO."
 msgstr "A memory BIO létrehozása sikertelen."
@@ -352,28 +352,28 @@ msgstr "A tanúsítvány feldolgozása sikertelen."
 msgid "Error while parsing the certificate."
 msgstr "A tanúsítvány feldolgozása sikertelen."
 
-#: src/CertificateData_Priv.cpp:285 src/CertificateData_Priv.cpp:319
-#: src/CRLData_Priv.cpp:88 src/CRLData_Priv.cpp:338 src/CRLData_Priv.cpp:372
+#: src/CertificateData_Priv.cpp:291 src/CertificateData_Priv.cpp:325
+#: src/CRLData_Priv.cpp:91 src/CRLData_Priv.cpp:341 src/CRLData_Priv.cpp:375
 msgid "Cannot parse date %1."
 msgstr "A dátum feldolgozása sikertelen: %1."
 
-#: src/CertificateData_Priv.cpp:374 src/RequestData_Priv.cpp:182
+#: src/CertificateData_Priv.cpp:380 src/RequestData_Priv.cpp:182
 msgid "Unable to get the public key."
 msgstr "A publikus kulcs bekérése sikertelen."
 
-#: src/CertificateData_Priv.cpp:385 src/RequestData_Priv.cpp:193
+#: src/CertificateData_Priv.cpp:391 src/RequestData_Priv.cpp:193
 msgid "Could not get RSA key."
 msgstr "Az RSA kulcs bekérése sikertelen."
 
-#: src/CertificateData_Priv.cpp:405 src/RequestData_Priv.cpp:213
+#: src/CertificateData_Priv.cpp:411 src/RequestData_Priv.cpp:213
 msgid "Unsupported public key type."
 msgstr "Nem támogatott nyílvános kulcs típus."
 
-#: src/CertificateData_Priv.cpp:441 src/RequestData_Priv.cpp:246
+#: src/CertificateData_Priv.cpp:447 src/RequestData_Priv.cpp:246
 msgid "Unsupported public key algorithm."
 msgstr "Nem támogatott nyílvános kulcs algoritmus."
 
-#: src/CertificateData_Priv.cpp:473 src/CRLData_Priv.cpp:421
+#: src/CertificateData_Priv.cpp:479 src/CRLData_Priv.cpp:424
 #: src/RequestData_Priv.cpp:276
 msgid "Unsupported signature algorithm %1."
 msgstr "Nem támogatott nyílvános aláírás algoritmus: %1."
@@ -412,11 +412,11 @@ msgstr "Érvénytelen CertificatePoliciesExt objektum."
 msgid "Entry not found."
 msgstr "A bejegyzés nem található."
 
-#: src/CRLData_Priv.cpp:488
+#: src/CRLData_Priv.cpp:491
 msgid "Cannot parse CRL."
 msgstr "A CRL feldolgozása sikertelen."
 
-#: src/CRLData_Priv.cpp:501
+#: src/CRLData_Priv.cpp:504
 msgid "Error parsing the CRL."
 msgstr "A CRL feldolgozása hibás."
 
@@ -547,13 +547,13 @@ msgid "Invalid command %1."
 msgstr "Érvénytelen parancs: %s."
 
 #: src/OpenSSLUtils.cpp:138 src/OpenSSLUtils.cpp:241 src/OpenSSLUtils.cpp:334
-#: src/OpenSSLUtils.cpp:454 src/OpenSSLUtils.cpp:587 src/OpenSSLUtils.cpp:682
-#: src/OpenSSLUtils.cpp:762
+#: src/OpenSSLUtils.cpp:453 src/OpenSSLUtils.cpp:586 src/OpenSSLUtils.cpp:681
+#: src/OpenSSLUtils.cpp:761
 msgid "Command returned '%1' : %2"
 msgstr "A parancs visszatérő értéke: '%1': %2"
 
-#: src/OpenSSLUtils.cpp:170 src/OpenSSLUtils.cpp:268 src/OpenSSLUtils.cpp:366
-#: src/OpenSSLUtils.cpp:480 src/OpenSSLUtils.cpp:614 src/OpenSSLUtils.cpp:705
+#: src/OpenSSLUtils.cpp:171 src/OpenSSLUtils.cpp:268 src/OpenSSLUtils.cpp:366
+#: src/OpenSSLUtils.cpp:479 src/OpenSSLUtils.cpp:613 src/OpenSSLUtils.cpp:704
 msgid "No valid key file specified."
 msgstr "Nincs megadva érvényes kulcs."
 
@@ -561,81 +561,81 @@ msgstr "Nincs megadva érvényes kulcs."
 msgid "No valid request file specified."
 msgstr "Nincs megadva érvényes igénylés."
 
-#: src/OpenSSLUtils.cpp:488 src/OpenSSLUtils.cpp:622 src/OpenSSLUtils.cpp:713
+#: src/OpenSSLUtils.cpp:487 src/OpenSSLUtils.cpp:621 src/OpenSSLUtils.cpp:712
 msgid "No valid CA certificate file specified."
 msgstr "Nincs megadva érvényes CA tanúsítvány."
 
-#: src/OpenSSLUtils.cpp:496 src/OpenSSLUtils.cpp:786
+#: src/OpenSSLUtils.cpp:495 src/OpenSSLUtils.cpp:785
 msgid "No valid certificate file specified."
 msgstr "Nincs megadva érvényes tanúsítvány."
 
-#: src/OpenSSLUtils.cpp:794
+#: src/OpenSSLUtils.cpp:793
 msgid "No valid CA directory specified."
 msgstr "Nincs megadva érvényes CA könyvtár."
 
-#: src/OpenSSLUtils.cpp:944
+#: src/OpenSSLUtils.cpp:943
 msgid "Showing certificate status with serial %1 failed (%2)."
 msgstr ""
 "A tanúsítvány állapotának lekérdezése a(z) %1 sorozatszámmal sikertelen (%2)."
 
-#: src/OpenSSLUtils.cpp:980
+#: src/OpenSSLUtils.cpp:979
 msgid "Keyfile does not exist"
 msgstr "A kulcsfájl nem található"
 
 # 50168 AttribValues/delnotify
-#: src/OpenSSLUtils.cpp:1476
+#: src/OpenSSLUtils.cpp:1474
 msgid "Out password is required"
 msgstr "A kimeneti jelszó megadása kötelező"
 
-#: src/OpenSSLUtils.cpp:1581
+#: src/OpenSSLUtils.cpp:1579
 msgid "PKCS12 password is required"
 msgstr "PKCS12 jelszó szükséges"
 
-#: src/OpenSSLUtils.cpp:1667 src/OpenSSLUtils.cpp:1867
-#: src/OpenSSLUtils.cpp:2019
+#: src/OpenSSLUtils.cpp:1665 src/OpenSSLUtils.cpp:1865
+#: src/OpenSSLUtils.cpp:2017
 msgid "Cannot read directory: %1 (%2) [%3]"
 msgstr "A könyvtár nem olvasható: %1 (%2) [%3]"
 
-#: src/OpenSSLUtils.cpp:1717
+#: src/OpenSSLUtils.cpp:1715
 msgid "No serial number found in %1"
 msgstr "Sorozatszám nem található: %1"
 
-#: src/OpenSSLUtils.cpp:1737
+#: src/OpenSSLUtils.cpp:1735
 msgid "Request already exist."
 msgstr "A kérés már létezik."
 
-#: src/OpenSSLUtils.cpp:1928
+#: src/OpenSSLUtils.cpp:1926
 msgid "Can not find request subject."
 msgstr "A kérés tárgya nam található."
 
-#: src/OpenSSLUtils.cpp:2089
+#: src/OpenSSLUtils.cpp:2087
 msgid "Can not find certificate subject."
 msgstr "A tanúsítvány tárgya nem található."
 
-#: src/OpenSSLUtils.cpp:2188
+#: src/OpenSSLUtils.cpp:2186
 msgid "Invalid caName: %1"
 msgstr "Érvénytelen CaName: %s"
 
-#: src/OpenSSLUtils.cpp:2197
+#: src/OpenSSLUtils.cpp:2195
 msgid "'%1' does not exist"
 msgstr "A következő fájl nem létezik: '%1'"
 
-#: src/OpenSSLUtils.cpp:2207
+#: src/OpenSSLUtils.cpp:2205
 msgid "%1 still exist"
 msgstr "A(z) %1 továbbra is létezik"
 
-#: src/OpenSSLUtils.cpp:2218 src/OpenSSLUtils.cpp:2266
-#: src/OpenSSLUtils.cpp:2280 src/OpenSSLUtils.cpp:2294
-#: src/OpenSSLUtils.cpp:2308 src/OpenSSLUtils.cpp:2322
+#: src/OpenSSLUtils.cpp:2216 src/OpenSSLUtils.cpp:2264
+#: src/OpenSSLUtils.cpp:2278 src/OpenSSLUtils.cpp:2292
+#: src/OpenSSLUtils.cpp:2306 src/OpenSSLUtils.cpp:2320
 msgid "Can not create directory: %1 (%2 [%3])"
 msgstr "Nem hozható létre könyvtár: %1 (%2 [%3])"
 
 # /tmp/xapi:49
-#: src/OpenSSLUtils.cpp:2253
+#: src/OpenSSLUtils.cpp:2251
 msgid "Cannot copy configuration template"
 msgstr "A konfigurációs sablon nem másolható"
 
-#: src/OpenSSLUtils.cpp:2340
+#: src/OpenSSLUtils.cpp:2338
 msgid "Cannot create file"
 msgstr "Nem hozható létre fájl"
 

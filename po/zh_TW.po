@@ -1,31 +1,27 @@
-# translation of limal-ca-mgm.po to
-# @TITLE@
-# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# This file is distributed under the same license as @PACKAGE@ package. FIRST
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
 #
-# Olav Pettershagen <olav.pet@online.no>, 2006.
 msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2006-11-06 10:48+0100\n"
-"PO-Revision-Date: 2006-10-13 17:23+0200\n"
-"Last-Translator: Olav Pettershagen <olav.pet@online.no>\n"
-"Language-Team:  <nb@li.org>\n"
+"PO-Revision-Date: 2006-11-02 14:23\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:110
 #: src/AuthorityInfoAccessExtension.cpp:139
 msgid "Invalid location."
-msgstr "Ugyldig plassering."
+msgstr "無效的位置。"
 
 #: src/AuthorityInfoAccessExtension.cpp:115
 #: src/AuthorityInfoAccessExtension.cpp:144
 msgid "Invalid accessOID."
-msgstr "Ugyldig accessOID."
+msgstr "無效的 accessOID。"
 
 #: src/AuthorityInfoAccessExtension.cpp:259
 #: src/AuthorityInfoAccessExtension.cpp:342
@@ -57,707 +53,702 @@ msgstr "Ugyldig accessOID."
 #: src/SubjectKeyIdentifierExtension.cpp:85
 #: src/SubjectKeyIdentifierExtension.cpp:208
 msgid "Wrong type: %1."
-msgstr "Ugyldig type: %1."
+msgstr "錯誤類型：%1。"
 
 #: src/AuthorityInfoAccessExtension.cpp:310
 msgid "Invalid AuthorityInformation in infolist."
-msgstr "Ugyldig autoritetsinformasjon i infoliste."
+msgstr "資訊清單中的無效 AuthorityInformation。"
 
 #: src/AuthorityInfoAccessExtension.cpp:323
 msgid "AuthorityInfoAccessExt is not present."
-msgstr "AuthorityInfoAccessExt finnes ikke."
+msgstr "AuthorityInfoAccessExt 不存在。"
 
 #: src/AuthorityInfoAccessExtension.cpp:334
 msgid "Invalid AuthorityInfoAccessExt object."
-msgstr "Ugyldig AuthorityInfoAccessExt-objekt."
+msgstr "無效的 AuthorityInfoAccessExt 物件。"
 
 #: src/AuthorityKeyIdentifierExtension.cpp:97
 #: src/AuthorityKeyIdentifierExtension.cpp:108
 #: src/AuthorityKeyIdentifierExtension.cpp:119
 msgid "AuthorityKeyIdentifierExt is not present."
-msgstr "AuthorityKeyIdentifierExt finnes ikke."
+msgstr "AuthorityKeyIdentifierExt 不存在。"
 
 #: src/AuthorityKeyIdentifierGenerateExtension.cpp:155
 #: src/AuthorityKeyIdentifierGenerateExtension.cpp:174
 msgid "AuthorityKeyIdentifierGenerateExt is not present."
-msgstr "AuthorityKeyIdentifierGenerateExt finnes ikke."
+msgstr "AuthorityKeyIdentifierGenerateExt 不存在。"
 
 #: src/AuthorityKeyIdentifierGenerateExtension.cpp:186
 msgid "Invalid AuthorityKeyIdentifierGenerateExt object."
-msgstr "Ugyldig AuthorityKeyIdentifierGenerateExt-objekt."
+msgstr "無效的 AuthorityKeyIdentifierGenerateExt 物件。"
 
 #: src/BasicConstraintsExtension.cpp:155 src/BasicConstraintsExtension.cpp:167
 msgid "BasicConstraintsExt is not present."
-msgstr "BasicConstraintsExt finnes ikke."
+msgstr "BasicConstraintsExt 不存在。"
 
 #: src/BasicConstraintsExtension.cpp:179
 msgid "Invalid BasicConstraintsExt object."
-msgstr "Ugyldig BasicConstraintsExt-objekt."
+msgstr "無效的 BasicConstraintsExt 物件。"
 
 #: src/BitExtensions.cpp:111
 msgid "This BitExtension is not present."
-msgstr "Dette BitExtension-objektet finnes ikke."
+msgstr "此 BitExtension 不存在。"
 
 #: src/BitExtensions.cpp:174 src/BitExtensions.cpp:203
 msgid "Invalid value for keyUsage."
-msgstr "Ugyldig verdi for keyUsage."
+msgstr "無效的 keyUsage 值。"
 
 #: src/BitExtensions.cpp:215 src/BitExtensions.cpp:226
 msgid "KeyUsageExt is not present."
-msgstr "KeyUsageExt finnes ikke."
+msgstr "KeyUsageExt 不存在。"
 
 #: src/BitExtensions.cpp:239
 msgid "Invalid KeyUsageExt object."
-msgstr "Ugyldig KeyUsageExt-objekt."
+msgstr "無效的 KeyUsageExt 物件。"
 
 #: src/BitExtensions.cpp:412
 msgid "Invalid value for NsCertTypeExt."
-msgstr "Ugyldig verdi for NsCertTypeExt."
+msgstr "無效的 NsCertTypeExt。"
 
 #: src/BitExtensions.cpp:441
 msgid "Invalid value for NsCertTypeExt: %1."
-msgstr "Ugyldig verdi for NsCertTypeExt: %1."
+msgstr "無效的 NsCertTypeExt 值：%1。"
 
 #: src/BitExtensions.cpp:453
 msgid "NsCertTypeExt is not present."
-msgstr "NsCertTypeExt finnes ikke."
+msgstr "NsCertTypeExt 不存在。"
 
 #: src/BitExtensions.cpp:474
 msgid "Invalid NsCertTypeExt object."
-msgstr "Ugyldig NsCertTypeExt-objekt."
+msgstr "無效的 NsCertTypeExt 物件。"
 
 #: src/CA.cpp:101
 msgid "Template not initialized."
-msgstr "Malen er ikke Initialisert."
+msgstr "範本未初始化。"
 
 #: src/CA.cpp:159 src/CA.cpp:1456
 msgid "Empty CA name."
-msgstr "Tomt CA-navn."
+msgstr "空白的 CA 名稱。"
 
 #: src/CA.cpp:167
 msgid "Template does not exist: %1."
-msgstr "Malen finnes ikke: %1."
+msgstr "範本不存在：%1。"
 
 #: src/CA.cpp:179 src/CA.cpp:1477
 msgid "Invalid CA password."
-msgstr "Ugyldig CA-passord."
+msgstr "無效的 CA 密碼。"
 
 #: src/CA.cpp:225 src/CA.cpp:1149 src/CA.cpp:1286
 msgid "Error while creating the CA infrastructure."
-msgstr "Feil ved opprettelse av CA-infrastruktur."
+msgstr "建立 CA 基礎結構。"
 
 #: src/CA.cpp:245 src/CA.cpp:989
 msgid "Cannot parse the certificate name %1."
-msgstr "Kan ikke analysere sertifikatnavn %1."
+msgstr "無法剖析憑證名稱 %1。"
 
 #: src/CA.cpp:256
 msgid "Cannot copy the private key."
-msgstr "Kan ikke kopiere privat nøkkel."
+msgstr "無法複製金鑰。"
 
 #: src/CA.cpp:267
 msgid "Cannot copy the certificate."
-msgstr "Kan ikke kopiere sertifikat."
+msgstr "無法複製憑證。"
 
 #: src/CA.cpp:299
 msgid "Invalid request data."
-msgstr "Ugyldige forespørselsdata."
+msgstr "無效的要求資料。"
 
 #: src/CA.cpp:319
 msgid "Duplicate DN. Key %1.key already exists."
-msgstr "Duplisert DN. Nøkkelen %1.key finnes allerede."
+msgstr "重複的 DN. 金鑰 %1.key 已存在。"
 
 #: src/CA.cpp:327
 msgid "Duplicate DN. Request %1.req already exists."
-msgstr "Duplisert DN. Forespørselen %1.req finnes allerede."
+msgstr "重複 DN. 要求 %1.req 已存在。"
 
 #: src/CA.cpp:372
 msgid "Request does not exist (%1)."
-msgstr "Forespørselen finnes ikke (%1)."
+msgstr "要求不存在 (%1)。"
 
 #: src/CA.cpp:378
 msgid "Invalid issue data."
-msgstr "Ugyldig tildelingsdato."
+msgstr "無效的問題資料。"
 
 #: src/CA.cpp:395
 msgid "The CA expires before the certificate should expire."
-msgstr "CA utløper før sertifikatet skal utløpe."
+msgstr "CA 在憑證過期前過期。"
 
 #: src/CA.cpp:473
 msgid "Issuing the certificate failed."
-msgstr "Sertifikatet kunne ikke utstedes."
+msgstr "發出憑證失敗。"
 
 #: src/CA.cpp:490
 msgid "File %1 not found in the repository."
-msgstr "Filen %1 ikke funnet i samlingen."
+msgstr "存放庫中找不到檔案 %1。"
 
 #: src/CA.cpp:497 src/CRLData_Priv.cpp:179
 msgid "Invalid CRL reason."
-msgstr "Ugyldig CRL-årsak."
+msgstr "無效的 CRL 理由。"
 
 #: src/CA.cpp:520
 msgid "Invalid CRL data."
-msgstr "Ugyldige CRL-data."
+msgstr "無效的 CRL 資料。"
 
 #: src/CA.cpp:568
 msgid "Duplicate DN. Request already exists."
-msgstr "Duplisert DN. Forespørselen finnes allerede."
+msgstr "重複的 DN. 要求已存在。"
 
 #: src/CA.cpp:833 src/CA.cpp:860 src/CA.cpp:890 src/OpenSSLUtils.cpp:968
 msgid "Cannot parse the certificate name."
-msgstr "Kan ikke analysere sertifikatnavn."
+msgstr "無法剖析憑證名稱。"
 
 #: src/CA.cpp:941
 msgid "Request %1 does not exist."
-msgstr "Forespørselen %1 finnes ikke."
+msgstr "要求 %1 不存在。"
 
 #: src/CA.cpp:963
 msgid "Removing the request failed (%1)."
-msgstr "Forespørselen kunne ikke fjernes (%1)."
+msgstr "移除要求失敗 (%1)。"
 
 #: src/CA.cpp:977
 msgid "Certificate %1 does not exist."
-msgstr "Sertifikatet %1 finnes ikke."
+msgstr "憑證 %1 不存在。"
 
 #: src/CA.cpp:1026
 msgid "Removing the certificate failed: %1."
-msgstr "Sertifikatet kunne ikke fjernes: %1"
+msgstr "移除憑證失敗：%1。"
 
 #: src/CA.cpp:1034
 msgid ""
 "Only revoked or expired certificates can be deleted. The status of the "
 "certificate is %1."
-msgstr ""
-"Kun inndratte eller utløpte sertifikater kan slettes. Status for "
-"sertifikatet er %1."
+msgstr "只有已撤銷或過期的憑證可刪除。憑證的狀態為 %1。"
 
 #: src/CA.cpp:1046
 msgid "Database not found."
-msgstr "Databasen ble ikke funnet."
+msgstr "找不到資料庫。"
 
 #: src/CA.cpp:1072
 msgid "Certificate does not exist."
-msgstr "Sertifikatet finnes ikke."
+msgstr "憑證不存在。"
 
 #: src/CA.cpp:1086
 msgid "Invalid purpose %1."
-msgstr "Ugyldig formål %1."
+msgstr "無效的目的 %1。"
 
 #: src/CA.cpp:1129
 msgid "Invalid CA request data."
-msgstr "Ugyldige CA-forespørselsdata."
+msgstr "無效的 CA 要求資料。"
 
 #: src/CA.cpp:1135
 msgid "Invalid CA issue data."
-msgstr "Ugyldige CA-tildelingsdata."
+msgstr "無效的 CA 問題資料。"
 
 #: src/CA.cpp:1230
 msgid "CA name is empty."
-msgstr "CA-navn mangler."
+msgstr "CA 名稱為空白。"
 
 #: src/CA.cpp:1239
 msgid "CA directory already exists."
-msgstr "CA-katalogen finnes allerede."
+msgstr "CA 目錄已存在。"
 
 #: src/CA.cpp:1250
 msgid "According to basicConstraints, this is not a CA."
-msgstr "I henhold til basicConstraints er ikke dette et CA."
+msgstr "根據 basicConstraints，這不是 CA。"
 
 #: src/CA.cpp:1257
 msgid "CA key is empty."
-msgstr "CA-nøkkel mangler."
+msgstr "CA 金鑰為空白。"
 
 #: src/CA.cpp:1266
 msgid "Invalid key data."
-msgstr "Ugyldige nøkkeldata."
+msgstr "無效的金鑰資料。"
 
 #: src/CA.cpp:1275
 msgid "CA password is empty."
-msgstr "CA-passord mangler."
+msgstr "CA 密碼為空白。"
 
 #: src/CA.cpp:1311
 msgid "Error during key encryption."
-msgstr "Feil under nøkkelkryptering."
+msgstr "金鑰加密期間發生錯誤。"
 
 #: src/CA.cpp:1466
 msgid "CA name does not exist (%1)."
-msgstr "CA-navnet finnes ikke (%1)."
+msgstr "CA 名稱不存在 (%1)。"
 
 #: src/CA.cpp:1497
 msgid ""
 "Deleting the CA is not allowed. The CA must be expired or never have signed "
 "a certificate."
-msgstr ""
-"Sletting av CA er ikke tillatt. CA må være utløpt eller aldri ha signert et "
-"sertifikat."
+msgstr "不允許刪除 CA。CA 必須過期或是從未簽署憑證。"
 
 #: src/CA.cpp:1522
 msgid "Deleting the CA failed: %1."
-msgstr "CA kunne ikke slettes: %1."
+msgstr "刪除 CA 失敗：%1。"
 
 #: src/CA.cpp:1573
 msgid "The configuration file is missing a value for policy."
-msgstr "Konfigurasjonsfilen mangler en policy-verdi."
+msgstr "組態檔案缺少原則值。"
 
 #: src/CA.cpp:1583 src/CA.cpp:1845 src/DNObject.cpp:270
 #: src/DNObject_Priv.cpp:209
 msgid "Cannot parse section %1."
-msgstr "Kan ikke analysere seksjonen %1."
+msgstr "無法剖析區段 %1。"
 
 #: src/CA.cpp:1655
 msgid "Field %1 must have a value."
-msgstr "Feltet %1 må ha en verdi."
+msgstr "欄位 %1 必須有值。"
 
 #: src/CA.cpp:1694
 msgid "%1 must be defined."
-msgstr "%s må defineres."
+msgstr "%1 必須定義。"
 
 #: src/CA.cpp:1779
 msgid "%1 must be the same in the CA certificate (%2) and the request (%3)."
-msgstr "%1 må være identisk i CA sertifikatet (%2) og forespørselen (%3)."
+msgstr "CA 憑證 (%2) 和要求 (%3) 中的 %1 必須相同。"
 
 #: src/CA.cpp:1791
 msgid "The configuration file seems to have an invalid policy."
-msgstr "Konfigurasjonsfilen ser ut til å ha en ugyldig policy."
+msgstr "組態檔案似乎有無效的原則。"
 
-# %s is either BOOTP or DHCP
 #: src/CA.cpp:1817 src/CA.cpp:1827
 msgid "The configuration is not initialized."
-msgstr "Konfigurasjonen er ikke initialisert."
+msgstr "組態未初始化。"
 
 #: src/CA.cpp:1835 src/DNObject.cpp:259 src/DNObject_Priv.cpp:199
 msgid "Missing section 'distinguished_name' in the configuration file."
-msgstr "Seksjonen 'distinguished_name' mangler i konfigurasjonsfilen."
+msgstr "缺少組態檔案中的區段 'distinguished_name'。"
 
 #: src/CertificateData_Priv.cpp:94 src/CRLData_Priv.cpp:124
 #: src/CRLData_Priv.cpp:161
 msgid "Invalid serial %1."
-msgstr "Ugyldig seriell %1."
+msgstr "無效的序號 %1。"
 
 #: src/CertificateData_Priv.cpp:206 src/CRLData_Priv.cpp:463
 #: src/DNObject_Priv.cpp:81 src/RequestData_Priv.cpp:369
 msgid "Cannot create a memory BIO."
-msgstr "Kan ikke opprette en minne-BIO."
+msgstr "無法建立記憶體 BIO。"
 
 #: src/CertificateData_Priv.cpp:235
 msgid "Cannot parse the certificate."
-msgstr "Kan ikke analysere sertifikatet."
+msgstr "無法剖析憑證。"
 
 #: src/CertificateData_Priv.cpp:248
 msgid "Error while parsing the certificate."
-msgstr "Feil ved analyse av sertifikat."
+msgstr "剖析憑證時發生錯誤。"
 
 #: src/CertificateData_Priv.cpp:291 src/CertificateData_Priv.cpp:325
 #: src/CRLData_Priv.cpp:91 src/CRLData_Priv.cpp:341 src/CRLData_Priv.cpp:375
 msgid "Cannot parse date %1."
-msgstr "Kan ikke analysere datoen %1."
+msgstr "無法剖析日期 %1。"
 
 #: src/CertificateData_Priv.cpp:380 src/RequestData_Priv.cpp:182
 msgid "Unable to get the public key."
-msgstr "Kunne ikke hente offentlig nøkkel."
+msgstr "無法取得公開金鑰。"
 
 #: src/CertificateData_Priv.cpp:391 src/RequestData_Priv.cpp:193
 msgid "Could not get RSA key."
-msgstr "Kunne ikke hente RSA-nøkkel."
+msgstr "無法取得 RSA 金鑰。"
 
 #: src/CertificateData_Priv.cpp:411 src/RequestData_Priv.cpp:213
 msgid "Unsupported public key type."
-msgstr "Den offentlige nøkkeltypen støttes ikke."
+msgstr "不支援的公開金鑰類型。"
 
 #: src/CertificateData_Priv.cpp:447 src/RequestData_Priv.cpp:246
 msgid "Unsupported public key algorithm."
-msgstr "Den offentlige nøkkeltypealgoritmen støttes ikke."
+msgstr "不支援的公開金鑰演算法。"
 
 #: src/CertificateData_Priv.cpp:479 src/CRLData_Priv.cpp:424
 #: src/RequestData_Priv.cpp:276
 msgid "Unsupported signature algorithm %1."
-msgstr "Signaturalgoritmen %1 støttes ikke."
+msgstr "不支援的簽章演算法 %1。"
 
 #: src/CertificateIssueData.cpp:211
 msgid "Invalid CertificateIssueData object."
-msgstr "Ugyldig CertificateIssueData-objekt."
+msgstr "無效的 CertificateIssueData 物件。"
 
 #: src/CertificatePoliciesExtension.cpp:216
 msgid "The text is too long."
-msgstr "Teksten er for lang."
+msgstr "文字過長。"
 
 #: src/CertificatePoliciesExtension.cpp:255
 msgid "Invalid UserNotice object."
-msgstr "Ugyldig UserNotice-objekt."
+msgstr "無效的 UserNotice 物件。"
 
 #: src/CertificatePoliciesExtension.cpp:395
 #: src/CertificatePoliciesExtension.cpp:459
 msgid "Invalid value for policyIdentifier: %1."
-msgstr "Ugyldig verdi for policyIdentifier: %1."
+msgstr "無效的 policyIdentifier 值：%1"
 
 #: src/CertificatePoliciesExtension.cpp:514
 msgid "Invalid CertificatePolicy object."
-msgstr "Ugyldig CertificatePolicy-objekt."
+msgstr "無效的 CertificatePolicy 物件。"
 
 #: src/CertificatePoliciesExtension.cpp:783
 #: src/CertificatePoliciesExtension.cpp:808
 msgid "CertificatePoliciesExt is not present."
-msgstr "CertificatePoliciesExt finnes ikke."
+msgstr "CertificatePoliciesExt 不存在。"
 
 #: src/CertificatePoliciesExtension.cpp:821
 msgid "Invalid CertificatePoliciesExt object."
-msgstr "Ugyldig CertificatePoliciesExt-objekt."
+msgstr "無效的 CertificatePoliciesExt 物件。"
 
 #: src/CRLData.cpp:223
 msgid "Entry not found."
-msgstr "Oppføring ikke funnet."
+msgstr "找不到項目。"
 
 #: src/CRLData_Priv.cpp:491
 msgid "Cannot parse CRL."
-msgstr "Kan ikke analysere CRL."
+msgstr "無法剖析 CRL。"
 
 #: src/CRLData_Priv.cpp:504
 msgid "Error parsing the CRL."
-msgstr "Feil under analyse av CRL."
+msgstr "剖析 CRL 時發生錯誤。"
 
 #: src/CRLDistributionPointsExtension.cpp:145
 msgid "CRLDistributionPointsExt is not present."
-msgstr "CRLDistributionPointsExt finnes ikke."
+msgstr "CRLDistributionPointsExt 不存在。"
 
 #: src/CRLDistributionPointsExtension.cpp:157
 msgid "Invalid CRLDistributionPointsExt object."
-msgstr "Ugyldig CRLDistributionPointsExt-objekt."
+msgstr "無效的 CRLDistributionPointsExt 物件。"
 
 #: src/CRLGenerationData.cpp:156
 msgid "Invalid CRLGenerationData object."
-msgstr "Ugyldig CRLGenerationData-objekt."
+msgstr "無效的 CRLGenerationData 物件。"
 
 #: src/CRLReason.cpp:100 src/CRLReason.cpp:136
 msgid "Invalid revoke reason %1."
-msgstr "Ugyldig tilbaketrekkingsgrunn: %s"
+msgstr "無效的撤銷理由 %1。"
 
 #: src/CRLReason.cpp:174
 msgid "Reason is not certificateHold."
-msgstr "Grunnen er ikke certificateHold."
+msgstr "理由不是 certificateHold。"
 
 #: src/CRLReason.cpp:197 src/CRLReason.cpp:211
 msgid "Reason is not keyCompromise."
-msgstr "Grunnen er ikke keyCompromise."
+msgstr "理由不是 keyCompromise。"
 
 #: src/CRLReason.cpp:242 src/CRLReason.cpp:256
 msgid "Reason is not CACompromise."
-msgstr "Grunnen er ikke CACompromise."
+msgstr "理由不是 CACompromise。"
 
 #: src/DNObject.cpp:111
 msgid "Invalid type %1."
-msgstr "Ugyldig type %1."
+msgstr "無效類型 %1。"
 
 #: src/DNObject_Priv.cpp:159
 msgid "Can not parse DN line: %1."
-msgstr "Kan ikke analysere DN-linje: %1."
+msgstr "無法剖析 DN 行：%1。"
 
 #: src/ExtendedKeyUsageExt.cpp:122 src/ExtendedKeyUsageExt.cpp:171
 msgid "Invalid ExtendedKeyUsage option %1."
-msgstr "Ugyldig ExtendedKeyUsage-valg %1."
+msgstr "無效的 ExtendedKeyUsage 選項 %1。"
 
 #: src/ExtendedKeyUsageExt.cpp:130 src/ExtendedKeyUsageExt.cpp:179
 msgid "Invalid ExtendedKeyUsageExt."
-msgstr "Ugyldig ExtendedKeyUsageExt."
+msgstr "無效的 ExtendedKeyUsageExt。"
 
 #: src/ExtendedKeyUsageExt.cpp:192
 msgid "ExtendedKeyUsageExt is not present."
-msgstr "ExtendedKeyUsageExt finnes ikke."
+msgstr "ExtendedKeyUsageExt 不存在。"
 
 #: src/ExtendedKeyUsageExt.cpp:221
 msgid "Invalid ExtendedKeyUsageExt object."
-msgstr "Ugyldig ExtendedKeyUsageExt-objekt."
+msgstr "無效的 ExtendedKeyUsageExt 物件。"
 
 #: src/IssuerAlternativeNameExtension.cpp:166
 #: src/IssuerAlternativeNameExtension.cpp:191
 msgid "IssuerAlternativeNameExt is not present."
-msgstr "IssuerAlternativeNameExt finnes ikke."
+msgstr "IssuerAlternativeNameExt 不存在。"
 
 #: src/IssuerAlternativeNameExtension.cpp:203
 msgid "Invalid literal value for IssuerAlternativeNameExt."
-msgstr "Ugyldig literal verdi for IssuerAlternativeNameExt."
+msgstr "無效的 IssuerAlternativeNameExt 文字值。"
 
 #: src/IssuerAlternativeNameExtension.cpp:216
 msgid "Invalid IssuerAlternativeNameExt object."
-msgstr "Ugyldig IssuerAlternativeNameExt-objekt."
+msgstr "無效的 IssuerAlternativeNameExt 物件。"
 
 #: src/LiteralValues.cpp:119
 msgid "Unknown type."
-msgstr "Ukjent type."
+msgstr "未知的類型。"
 
 #: src/LocalManagement.cpp:95
 msgid "Cannot split certificate output."
-msgstr "Kan ikke dele sertifikatresultat."
+msgstr "無法分割憑證輸出。"
 
 #: src/LocalManagement.cpp:292 src/LocalManagement.cpp:313
 #: src/LocalManagement.cpp:332
 msgid "Cannot create directory %1: %2."
-msgstr "Kan ikke opprette katalogen %1: %2."
+msgstr "無法建立目錄 %1：%2。"
 
 #: src/LocalManagement.cpp:346
 msgid "%1 is not a directory."
-msgstr "%1 er ikke en katalog."
+msgstr "%1 不是目錄。"
 
 #: src/LocalManagement.cpp:367
 msgid "Invalid certificate file."
-msgstr "Ugyldig sertifikatfil."
+msgstr "無效的憑證檔案。"
 
 #: src/LocalManagement.cpp:445
 msgid "File not found: %1."
-msgstr "Filen ikke funnet: %1."
+msgstr "找不到檔案：%1。"
 
 #: src/LocalManagement.cpp:454
 msgid "File too big: %1."
-msgstr "Filen er for stor: %1."
+msgstr "檔案過大：%1。"
 
 #: src/LocalManagement.cpp:463 src/LocalManagement.cpp:518
 msgid "Cannot open file %1."
-msgstr "Kan ikke åpne filen %1."
+msgstr "無法開啟檔案 %1。"
 
 #: src/LocalManagement.cpp:483
 msgid "Cannot read from file %1."
-msgstr "Kan ikke lese fra filen %1."
+msgstr "無法從檔案 %1 讀取。"
 
 #: src/LocalManagement.cpp:508
 msgid "File already exists: %1."
-msgstr "Filen finnes allerede: %1."
+msgstr "檔案已存在：%1。"
 
 #: src/LocalManagement.cpp:530
 msgid "Cannot get lock on file %1."
-msgstr "Kan ikke låse filen %1."
+msgstr "無法鎖住檔案 %1。"
 
 #: src/LocalManagement.cpp:544
 msgid "Cannot write to file %1."
-msgstr "Kan ikke skrive til filen %1."
+msgstr "無法寫入檔案 %1。"
 
 #: src/OpenSSLUtils.cpp:56
 msgid "File does not exist: %1."
-msgstr "Filen finnes ikke: %1."
+msgstr "檔案不存在：%1。"
 
 #: src/OpenSSLUtils.cpp:65
 msgid "Directory does not exist: %1."
-msgstr "Katalogen finnes ikke: %1."
+msgstr "目錄不存在：%1。"
 
 #: src/OpenSSLUtils.cpp:74
 msgid "Invalid command %1."
-msgstr "Ugyldig kommando %1."
+msgstr "無效的命令%1。"
 
 #: src/OpenSSLUtils.cpp:138 src/OpenSSLUtils.cpp:241 src/OpenSSLUtils.cpp:334
 #: src/OpenSSLUtils.cpp:453 src/OpenSSLUtils.cpp:586 src/OpenSSLUtils.cpp:681
 #: src/OpenSSLUtils.cpp:761
 msgid "Command returned '%1' : %2"
-msgstr "Kommandoen returnerte '%1' : %2"
+msgstr "命令傳回 '%1'：%2"
 
 #: src/OpenSSLUtils.cpp:171 src/OpenSSLUtils.cpp:268 src/OpenSSLUtils.cpp:366
 #: src/OpenSSLUtils.cpp:479 src/OpenSSLUtils.cpp:613 src/OpenSSLUtils.cpp:704
 msgid "No valid key file specified."
-msgstr "Ingen gyldig nøkkelfil spesifisert."
+msgstr "沒有指定的有效金鑰檔案。"
 
 #: src/OpenSSLUtils.cpp:276 src/OpenSSLUtils.cpp:374
 msgid "No valid request file specified."
-msgstr "Ingen gyldig forespørselsfil spesifisert."
+msgstr "沒有指定的有效要求檔案。"
 
 #: src/OpenSSLUtils.cpp:487 src/OpenSSLUtils.cpp:621 src/OpenSSLUtils.cpp:712
 msgid "No valid CA certificate file specified."
-msgstr "Ingen gyldig CA-sertifikatfil spesifisert."
+msgstr "沒有指定的有效 CA 憑證。"
 
 #: src/OpenSSLUtils.cpp:495 src/OpenSSLUtils.cpp:785
 msgid "No valid certificate file specified."
-msgstr "Ingen gyldig sertifikatfil spesifisert."
+msgstr "沒有指定的有效憑證檔案。"
 
 #: src/OpenSSLUtils.cpp:793
 msgid "No valid CA directory specified."
-msgstr "Ingen gyldig CA-katalog spesifisert."
+msgstr "沒有指定的有效 CA 目錄。"
 
 #: src/OpenSSLUtils.cpp:943
 msgid "Showing certificate status with serial %1 failed (%2)."
-msgstr "Visning av sertifikatstatus for %1 mislyktes (%2)."
+msgstr "顯示序號 %1 的憑證狀態失敗 (%2)。"
 
 #: src/OpenSSLUtils.cpp:979
 msgid "Keyfile does not exist"
-msgstr "Nøkkelfilen finnes ikke"
+msgstr "Keyfile 不存在"
 
 #: src/OpenSSLUtils.cpp:1474
 msgid "Out password is required"
-msgstr "Utpassord kreves"
+msgstr "需要 Out password"
 
 #: src/OpenSSLUtils.cpp:1579
 msgid "PKCS12 password is required"
-msgstr "PKCS12-passord kreves"
+msgstr "需要 PKCS12 password "
 
 #: src/OpenSSLUtils.cpp:1665 src/OpenSSLUtils.cpp:1865
 #: src/OpenSSLUtils.cpp:2017
 msgid "Cannot read directory: %1 (%2) [%3]"
-msgstr "Kan ikke lese katalog: %1 (%2) [%3]"
+msgstr "無法讀取目錄：%1 (%2) [%3]"
 
 #: src/OpenSSLUtils.cpp:1715
 msgid "No serial number found in %1"
-msgstr "Ingen serienummer funnet i %1"
+msgstr "%1 中找不到序號"
 
 #: src/OpenSSLUtils.cpp:1735
 msgid "Request already exist."
-msgstr "Forespørselen finnes allerede."
+msgstr "要求已存在。"
 
 #: src/OpenSSLUtils.cpp:1926
 msgid "Can not find request subject."
-msgstr "Kan ikke finne forespørselsobjekt."
+msgstr "找不到要求主體。"
 
 #: src/OpenSSLUtils.cpp:2087
 msgid "Can not find certificate subject."
-msgstr "Kan ikke finne sertifikatobjekt."
+msgstr "找不到憑證主體。"
 
 #: src/OpenSSLUtils.cpp:2186
 msgid "Invalid caName: %1"
-msgstr "Ugyldig caName: %1"
+msgstr "無效的 caName：%1"
 
 #: src/OpenSSLUtils.cpp:2195
 msgid "'%1' does not exist"
-msgstr "'%1' finnes ikke"
+msgstr "'%1' 不存在"
 
 #: src/OpenSSLUtils.cpp:2205
 msgid "%1 still exist"
-msgstr "%1 finnes fremdeles"
+msgstr "%1 仍存在"
 
 #: src/OpenSSLUtils.cpp:2216 src/OpenSSLUtils.cpp:2264
 #: src/OpenSSLUtils.cpp:2278 src/OpenSSLUtils.cpp:2292
 #: src/OpenSSLUtils.cpp:2306 src/OpenSSLUtils.cpp:2320
 msgid "Can not create directory: %1 (%2 [%3])"
-msgstr "Kan ikke opprette katalog: %1 (%2 [%3])"
+msgstr "無法建立目錄：%1 (%2 [%3])"
 
 #: src/OpenSSLUtils.cpp:2251
 msgid "Cannot copy configuration template"
-msgstr "Kan ikke kopiere konfigurasjonsmal"
+msgstr "無法複製組態範本"
 
 #: src/OpenSSLUtils.cpp:2338
 msgid "Cannot create file"
-msgstr "Kan ikke opprette fil"
+msgstr "無法建立檔案"
 
 #: src/RequestData_Priv.cpp:396
 msgid "Can not parse request"
-msgstr "Kan ikke analysere forespørsel"
+msgstr "無法剖析要求"
 
 #: src/RequestData_Priv.cpp:409
 msgid "Error at parsing the request"
-msgstr "Feil ved analyse av forespørsel"
+msgstr "剖析要求時發生錯誤"
 
 #: src/RequestGenerationData.cpp:240
 msgid "Invalid RequestGenerationData object"
-msgstr "Ugyldig RequestGenerationData-objekt"
+msgstr "無效的 RequestGenerationData 物件"
 
 #: src/StringExtensions.cpp:109 src/StringExtensions.cpp:167
 msgid "Invalid value for NsBaseUrlExt"
-msgstr "Ugyldig verdi for NsBaseUrlExt"
+msgstr "無效的 NsBaseUrlExt 值"
 
 #: src/StringExtensions.cpp:179
 msgid "NsBaseUrlExt is not present"
-msgstr "NsBaseUrlExt finnes ikke"
+msgstr "NsBaseUrlExt 不存在"
 
 #: src/StringExtensions.cpp:191
 msgid "Invalid NsBaseUrlExt object"
-msgstr "Ugyldig NsBaseUrlExt-objekt"
+msgstr "無效的 NsBaseUrlExt 物件"
 
 #: src/StringExtensions.cpp:274 src/StringExtensions.cpp:327
 msgid "Invalid value for NsRevocationUrlExt"
-msgstr "Ugyldig verdi for NsRevocationUrlExt"
+msgstr "無效的 NsRevocationUrlExt 值"
 
 #: src/StringExtensions.cpp:338
 msgid "NsRevocationUrlExt is not present"
-msgstr "NsRevocationUrlExt finnes ikke"
+msgstr "NsRevocationUrlExt 不存在"
 
 #: src/StringExtensions.cpp:349
 msgid "Invalid NsRevocationUrlExt object"
-msgstr "Ugyldig NsRevocationUrlExt-objekt"
+msgstr "無效的 NsRevocationUrlExt 物件"
 
 #: src/StringExtensions.cpp:428 src/StringExtensions.cpp:481
 msgid "Invalid value for NsCaRevocationUrlExt"
-msgstr "Ugyldig verdi for NsCaRevocationUrlExt"
+msgstr "無效的 NsCaRevocationUrlExt 值"
 
 #: src/StringExtensions.cpp:492
 msgid "NsCaRevocationUrlExt is not present"
-msgstr "NsCaRevocationUrlExt finnes ikke"
+msgstr "NsCaRevocationUrlExt 不存在"
 
 #: src/StringExtensions.cpp:503
 msgid "Invalid NsCaRevocationUrlExt object"
-msgstr "Ugyldig NsCaRevocationUrlExt-objekt"
+msgstr "無效的 NsCaRevocationUrlExt 物件"
 
 #: src/StringExtensions.cpp:581 src/StringExtensions.cpp:634
 msgid "Invalid value for NsRenewalUrlExt"
-msgstr "Ugyldig verdi for NsRenewalUrlExt"
+msgstr "無效的 NsRenewalUrlExt 值"
 
 #: src/StringExtensions.cpp:645
 msgid "NsRenewalUrlExt is not present"
-msgstr "NsRenewalUrlExt finnes ikke"
+msgstr "NsRenewalUrlExt 不存在"
 
 #: src/StringExtensions.cpp:656
 msgid "Invalid NsRenewalUrlExt object"
-msgstr "Ugyldig NsRenewalUrlExt-objekt"
+msgstr "無效的 NsRenewalUrlExt 物件"
 
 #: src/StringExtensions.cpp:733 src/StringExtensions.cpp:786
 msgid "Invalid value for NsCaPolicyUrlExt"
-msgstr "Ugyldig verdi for NsCaPolicyUrlExt"
+msgstr "無效的 NsCaPolicyUrlExt 值"
 
 #: src/StringExtensions.cpp:797
 msgid "NsCaPolicyUrlExt is not present"
-msgstr "NsCaPolicyUrlExt finnes ikke"
+msgstr "NsCaPolicyUrlExt 不存在"
 
 #: src/StringExtensions.cpp:808
 msgid "Invalid NsCaPolicyUrlExt object"
-msgstr "Ugyldig NsCaPolicyUrlExt objekt"
+msgstr "無效的 NsCaPolicyUrlExt 物件"
 
 #: src/StringExtensions.cpp:894
 msgid "wrong type: %1"
-msgstr "Ugyldig type: %1"
+msgstr "錯誤類型：%1"
 
 #: src/StringExtensions.cpp:940
 msgid "NsSslServerNameExt is not present"
-msgstr "NsSslServerNameExt finnes ikke"
+msgstr "NsSslServerNameExt 不存在"
 
 #: src/StringExtensions.cpp:951
 msgid "Invalid NsSslServerNameExt object"
-msgstr "Ugyldig NsSslServerNameExt-objekt"
+msgstr "無效的 NsSslServerNameExt 物件"
 
 #: src/StringExtensions.cpp:1066
 msgid "NsCommentExt is not present"
-msgstr "NsCommentExt finnes ikke"
+msgstr "NsCommentExt 不存在"
 
 #: src/StringExtensions.cpp:1077
 msgid "Invalid NsCommentExt object"
-msgstr "Ugyldig NsCommentExt-objekt"
+msgstr "無效的 NsCommentExt 物件"
 
 #: src/SubjectAlternativeNameExtension.cpp:183
 #: src/SubjectAlternativeNameExtension.cpp:194
 msgid "SubjectAlternativeNameExt is not present"
-msgstr "SubjectAlternativeNameExt finnes ikke"
+msgstr "SubjectAlternativeNameExt 不存在"
 
 #: src/SubjectAlternativeNameExtension.cpp:207
 msgid "Invalid SubjectAlternativeNameExt object"
-msgstr "Ugyldig SubjectAlternativeNameExt-objekt"
+msgstr "無效的 SubjectAlternativeNameExt 物件"
 
 #: src/SubjectKeyIdentifierExtension.cpp:129
 #: src/SubjectKeyIdentifierExtension.cpp:163
 msgid "Invalid KeyID"
-msgstr "Ugyldig nøkkel-ID"
+msgstr "無效的 KeyID"
 
 #: src/SubjectKeyIdentifierExtension.cpp:176
 #: src/SubjectKeyIdentifierExtension.cpp:187
 msgid "SubjectKeyIdentifierExt is not present"
-msgstr "SubjectKeyIdentifierExt finnes ikke"
+msgstr "SubjectKeyIdentifierExt 不存在"
 
 #: src/SubjectKeyIdentifierExtension.cpp:200
 msgid "Invalid SubjectKeyIdentifierExt object"
-msgstr "Ugyldig SubjectKeyIdentifierExt-objekt"
+msgstr "無效的 SubjectKeyIdentifierExt 物件"
 
 #: src/X509v3CertificateExtensions_Priv.cpp:393
 #: src/X509v3CertificateExtensions_Priv.cpp:449
 #: src/X509v3RequestExtensions_Priv.cpp:133
 #: src/X509v3RequestExtensions_Priv.cpp:188
 msgid "Extension occurred more than once: %1"
-msgstr "Utvidelse har skjedd mer enn én gang: %1"
+msgstr "延伸發生多次：%1"
 
 #: src/X509v3CertificateExtensions_Priv.cpp:400
 #: src/X509v3CertificateExtensions_Priv.cpp:456
 #: src/X509v3RequestExtensions_Priv.cpp:140
 #: src/X509v3RequestExtensions_Priv.cpp:195
 msgid "Unable to parse the certificate (NID: %1 Crit: %2)"
-msgstr "Kan ikke analysere sertifikatet (NID: %1 Crit: %2)"
+msgstr "無法剖析憑證 (NID：%1 Crit：%2)"
 
 #: src/X509v3CertificateExtensions_Priv.cpp:508
 #: src/X509v3CertificateExtensions_Priv.cpp:574
@@ -773,7 +764,7 @@ msgstr "Kan ikke analysere sertifikatet (NID: %1 Crit: %2)"
 #: src/X509v3RequestExtensions_Priv.cpp:377
 #: src/X509v3RequestExtensions_Priv.cpp:438
 msgid "Extension occurred more than once"
-msgstr "Utvidelse har skjedd mer enn én gang"
+msgstr "延伸發生多次"
 
 #: src/X509v3CertificateExtensions_Priv.cpp:513
 #: src/X509v3CertificateExtensions_Priv.cpp:579
@@ -789,128 +780,126 @@ msgstr "Utvidelse har skjedd mer enn én gang"
 #: src/X509v3RequestExtensions_Priv.cpp:383
 #: src/X509v3RequestExtensions_Priv.cpp:443
 msgid "Unable to parse the certificate (Crit: %1)"
-msgstr "Kan ikke analysere sertifikatet (Crit: %1)"
+msgstr "無法剖析憑證 (Crit：%1)"
 
 #: src/X509v3CertificateExtensions_Priv.cpp:940
 msgid "Invalid location in authorityInfoAccess"
-msgstr "Ugyldig plassering i authorityInfoAccess"
+msgstr "authorityInfoAccess 中的無效位置"
 
 #: src/X509v3CertificateIssueExtensions.cpp:174
 msgid "X509v3CertificateIssueExts::setNsBaseUrl invalid value"
-msgstr "X509v3CertificateIssueExts::setNsBaseUrl har ugyldig verdi"
+msgstr "X509v3CertificateIssueExts::setNsBaseUrl 無效值"
 
 #: src/X509v3CertificateIssueExtensions.cpp:197
 msgid "X509v3CertificateIssueExts::setNsRevocationUrl invalid value"
-msgstr "X509v3CertificateIssueExts::setNsRevocationUrl har ugyldig verdi"
+msgstr "X509v3CertificateIssueExts::setNsRevocationUrl 無效值"
 
 #: src/X509v3CertificateIssueExtensions.cpp:220
 msgid "X509v3CertificateIssueExts::setNsCaRevocationUrl invalid value"
-msgstr "X509v3CertificateIssueExts::setNsCaRevocationUrl har ugyldig verdi"
+msgstr "X509v3CertificateIssueExts::setNsCaRevocationUrl 無效值"
 
 #: src/X509v3CertificateIssueExtensions.cpp:243
 msgid "X509v3CertificateIssueExts::setNsRenewalUrl invalid value"
-msgstr "X509v3CertificateIssueExts::setNsRenewalUrl har ugyldig verdi"
+msgstr "X509v3CertificateIssueExts::setNsRenewalUrl 無效值"
 
 #: src/X509v3CertificateIssueExtensions.cpp:266
 msgid "X509v3CertificateIssueExts::setNsCaPolicyUrl invalid value"
-msgstr "X509v3CertificateIssueExts::setNsCaPolicyUrl har ugyldig verdi"
+msgstr "X509v3CertificateIssueExts::setNsCaPolicyUrl 無效值"
 
 #: src/X509v3CertificateIssueExtensions.cpp:289
 msgid "X509v3CertificateIssueExts::setNsSslServerName invalid value"
-msgstr "X509v3CertificateIssueExts::setNsSslServerName har ugyldig verdi"
+msgstr "X509v3CertificateIssueExts::setNsSslServerName 無效值"
 
 #: src/X509v3CertificateIssueExtensions.cpp:312
 msgid "X509v3CertificateIssueExts::setNsComment invalid value"
-msgstr "X509v3CertificateIssueExts::setNsComment har ugyldig verdi"
+msgstr "X509v3CertificateIssueExts::setNsComment 無效值"
 
 #: src/X509v3CertificateIssueExtensions.cpp:335
 msgid "X509v3CertificateIssueExts::setNsCertType invalid value"
-msgstr "X509v3CertificateIssueExts::setNsCertType har ugyldig verdi"
+msgstr "X509v3CertificateIssueExts::setNsCertType 無效值"
 
 #: src/X509v3CertificateIssueExtensions.cpp:358
 msgid "X509v3CertificateIssueExts::setKeyUsage invalid value"
-msgstr "X509v3CertificateIssueExts::setKeyUsage har ugyldig verdi"
+msgstr "X509v3CertificateIssueExts::setKeyUsage 無效值"
 
 #: src/X509v3CertificateIssueExtensions.cpp:381
 msgid "X509v3CertificateIssueExts::setBasicConstraints invalid value"
-msgstr "X509v3CertificateIssueExts::setBasicConstraints har ugyldig verdi"
+msgstr "X509v3CertificateIssueExts::setBasicConstraints 無效值"
 
 #: src/X509v3CertificateIssueExtensions.cpp:404
 msgid "X509v3CertificateIssueExts::setExtendedKeyUsage invalid value"
-msgstr "X509v3CertificateIssueExts::setExtendedKeyUsage har ugyldig verdi"
+msgstr "X509v3CertificateIssueExts::setExtendedKeyUsage 無效值"
 
 #: src/X509v3CertificateIssueExtensions.cpp:427
 msgid "X509v3CertificateIssueExts::setSubjectKeyIdentifier invalid value"
-msgstr "X509v3CertificateIssueExts::setSubjectKeyIdentifier har ugyldig verdi"
+msgstr "X509v3CertificateIssueExts::setSubjectKeyIdentifier 無效值"
 
 #: src/X509v3CertificateIssueExtensions.cpp:450
 msgid "X509v3CertificateIssueExts::setAuthorityKeyIdentifier invalid value"
-msgstr ""
-"X509v3CertificateIssueExts::setAuthorityKeyIdentifier har ugyldig verdi"
+msgstr "X509v3CertificateIssueExts::setAuthorityKeyIdentifier 無效值"
 
 #: src/X509v3CertificateIssueExtensions.cpp:473
 msgid "X509v3CertificateIssueExts::setSubjectAlternativeName invalid value"
-msgstr ""
-"X509v3CertificateIssueExts::setSubjectAlternativeName har ugyldig verdi"
+msgstr "X509v3CertificateIssueExts::setSubjectAlternativeName 無效值"
 
 #: src/X509v3CertificateIssueExtensions.cpp:496
 msgid "X509v3CertificateIssueExts::setIssuerAlternativeName invalid value"
-msgstr "X509v3CertificateIssueExts::setIssuerAlternativeName har ugyldig verdi"
+msgstr "X509v3CertificateIssueExts::setIssuerAlternativeName 無效值"
 
 #: src/X509v3CertificateIssueExtensions.cpp:519
 msgid "X509v3CertificateIssueExts::setAuthorityInfoAccess invalid value"
-msgstr "X509v3CertificateIssueExts::setAuthorityInfoAccess har ugyldig verdi"
+msgstr "X509v3CertificateIssueExts::setAuthorityInfoAccess 無效值"
 
 #: src/X509v3CertificateIssueExtensions.cpp:542
 msgid "X509v3CertificateIssueExts::setCRLDistributionPoints invalid value"
-msgstr "X509v3CertificateIssueExts::setCRLDistributionPoints har ugyldig verdi"
+msgstr "X509v3CertificateIssueExts::setCRLDistributionPoints 無效值"
 
 #: src/X509v3CertificateIssueExtensions.cpp:565
 msgid "X509v3CertificateIssueExts::setCertificatePolicies invalid value"
-msgstr "X509v3CertificateIssueExts::setCertificatePolicies har ugyldig verdi"
+msgstr "X509v3CertificateIssueExts::setCertificatePolicies 無效值"
 
 #: src/X509v3CertificateIssueExtensions.cpp:589
 #: src/X509v3CRLGenerationExtensions.cpp:149
 #: src/X509v3RequestExtensions.cpp:255
 msgid "Invalid X509v3RequestExts object"
-msgstr "Ugyldig X509v3RequestExts-objekt"
+msgstr "無效的 X509v3RequestExts 物件"
 
 #: src/X509v3CRLGenerationExtensions.cpp:102
 msgid "X509v3CRLGenerationExts::setAuthorityKeyIdentifier invalid value"
-msgstr "X509v3CRLGenerationExts::setAuthorityKeyIdentifier har ugyldig verdi"
+msgstr "X509v3CRLGenerationExts::setAuthorityKeyIdentifier 無效值"
 
 #: src/X509v3CRLGenerationExtensions.cpp:125
 msgid "X509v3CRLGenerationExts::setIssuerAlternativeName invalid value"
-msgstr "X509v3CRLGenerationExts::setIssuerAlternativeName har ugyldig verdi"
+msgstr "X509v3CRLGenerationExts::setIssuerAlternativeName 無效值"
 
 #: src/X509v3RequestExtensions.cpp:70
 msgid "X509v3RequestExts::setNsSslServerName invalid value"
-msgstr "X509v3RequestExts::setNsSslServerName har ugyldig verdi"
+msgstr "X509v3RequestExts::setNsSslServerName 無效值"
 
 #: src/X509v3RequestExtensions.cpp:93
 msgid "X509v3RequestExts::setNsComment invalid value"
-msgstr "X509v3RequestExts::setNsComment har ugyldig verdi"
+msgstr "X509v3RequestExts::setNsComment 無效值"
 
 #: src/X509v3RequestExtensions.cpp:116
 msgid "X509v3RequestExts::setNsCertType invalid value"
-msgstr "X509v3RequestExts::setNsCertType har ugyldig verdi"
+msgstr "X509v3RequestExts::setNsCertType 無效值"
 
 #: src/X509v3RequestExtensions.cpp:139
 msgid "X509v3RequestExts::setKeyUsage invalid value"
-msgstr "X509v3RequestExts::setKeyUsage har ugyldig verdi"
+msgstr "X509v3RequestExts::setKeyUsage 無效值"
 
 #: src/X509v3RequestExtensions.cpp:162
 msgid "X509v3RequestExts::setBasicConstraints invalid value"
-msgstr "X509v3RequestExts::setBasicConstraints har ugyldig verdi"
+msgstr "X509v3RequestExts::setBasicConstraints 無效值"
 
 #: src/X509v3RequestExtensions.cpp:185
 msgid "X509v3RequestExts::setExtendedKeyUsage invalid value"
-msgstr "X509v3RequestExts::setExtendedKeyUsage har ugyldig verdi"
+msgstr "X509v3RequestExts::setExtendedKeyUsage 無效值"
 
 #: src/X509v3RequestExtensions.cpp:208
 msgid "X509v3RequestExts::setSubjectKeyIdentifier invalid value"
-msgstr "X509v3RequestExts::setSubjectKeyIdentifier har ugyldig verdi"
+msgstr "X509v3RequestExts::setSubjectKeyIdentifier 無效值"
 
 #: src/X509v3RequestExtensions.cpp:231
 msgid "X509v3RequestExts::setSubjectAlternativeName invalid value"
-msgstr "X509v3RequestExts::setSubjectAlternativeName har ugyldig verdi"
+msgstr "X509v3RequestExts::setSubjectAlternativeName 無效值"
