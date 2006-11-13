@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: limal-ca-mgm.ru\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2006-11-06 10:48+0100\n"
-"PO-Revision-Date: 2006-11-03 10:34+0300\n"
+"PO-Revision-Date: 2006-11-08 09:11+0200\n"
 "Last-Translator: Aleksey Osipov <aliks-os@yandex.ru>\n"
 "Language-Team: Russian <i18n@suse.de>\n"
 "MIME-Version: 1.0\n"
@@ -179,13 +179,13 @@ msgid "Request does not exist (%1)."
 msgstr "Запрос не существует (%1)."
 
 #: src/CA.cpp:378
-#, fuzzy
 msgid "Invalid issue data."
-msgstr "Неверный тип файловой системы"
+msgstr "Неверные данные выдачи."
 
 #: src/CA.cpp:395
 msgid "The CA expires before the certificate should expire."
 msgstr ""
+"Срок окончания действия CA должен до окнчания срока действия сертификата."
 
 #: src/CA.cpp:473
 msgid "Issuing the certificate failed."
@@ -196,9 +196,8 @@ msgid "File %1 not found in the repository."
 msgstr "Файл %1 не найден в репозитарии."
 
 #: src/CA.cpp:497 src/CRLData_Priv.cpp:179
-#, fuzzy
 msgid "Invalid CRL reason."
-msgstr "Неправильное отношение"
+msgstr "Неверный CRL аргумент."
 
 #: src/CA.cpp:520
 msgid "Invalid CRL data."
@@ -245,9 +244,8 @@ msgid "Certificate does not exist."
 msgstr "Сертификат не существует."
 
 #: src/CA.cpp:1086
-#, fuzzy
 msgid "Invalid purpose %1."
-msgstr "Неверный маршрут по умолчанию:"
+msgstr "Неверное назначение %1."
 
 #: src/CA.cpp:1129
 msgid "Invalid CA request data."
@@ -338,15 +336,13 @@ msgstr "Отсутствует секция 'distinguished_name' в конфиг
 
 #: src/CertificateData_Priv.cpp:94 src/CRLData_Priv.cpp:124
 #: src/CRLData_Priv.cpp:161
-#, fuzzy
 msgid "Invalid serial %1."
-msgstr "Неверный маршрут по умолчанию:"
+msgstr "Неверный серийный номер %1."
 
 #: src/CertificateData_Priv.cpp:206 src/CRLData_Priv.cpp:463
 #: src/DNObject_Priv.cpp:81 src/RequestData_Priv.cpp:369
-#, fuzzy
 msgid "Cannot create a memory BIO."
-msgstr "Невозможно создать файл"
+msgstr "Невозможно создать память BIO."
 
 #: src/CertificateData_Priv.cpp:235
 msgid "Cannot parse the certificate."
@@ -438,19 +434,19 @@ msgstr "Неверный объект CRLGenerationData."
 
 #: src/CRLReason.cpp:100 src/CRLReason.cpp:136
 msgid "Invalid revoke reason %1."
-msgstr "Неправильная причина отмены %1."
+msgstr "Неверный аргумент отмены %1."
 
 #: src/CRLReason.cpp:174
 msgid "Reason is not certificateHold."
-msgstr ""
+msgstr "Аргумент не certificateHold."
 
 #: src/CRLReason.cpp:197 src/CRLReason.cpp:211
 msgid "Reason is not keyCompromise."
-msgstr ""
+msgstr "Аргумент  не keyCompromise."
 
 #: src/CRLReason.cpp:242 src/CRLReason.cpp:256
 msgid "Reason is not CACompromise."
-msgstr ""
+msgstr "Аргумент не CACompromise."
 
 #: src/DNObject.cpp:111
 msgid "Invalid type %1."
@@ -494,9 +490,8 @@ msgid "Unknown type."
 msgstr "Неизвестный тип."
 
 #: src/LocalManagement.cpp:95
-#, fuzzy
 msgid "Cannot split certificate output."
-msgstr "Не могу найти службу '{0}'"
+msgstr "Невозможно разделить вывод сертификата."
 
 #: src/LocalManagement.cpp:292 src/LocalManagement.cpp:313
 #: src/LocalManagement.cpp:332
@@ -532,9 +527,8 @@ msgid "File already exists: %1."
 msgstr "Файл уже существует: %1."
 
 #: src/LocalManagement.cpp:530
-#, fuzzy
 msgid "Cannot get lock on file %1."
-msgstr "Невозможно открыть файл: %1"
+msgstr "Невозможно захватить файл %1."
 
 #: src/LocalManagement.cpp:544
 msgid "Cannot write to file %1."
@@ -581,7 +575,7 @@ msgstr "Не указан действующий CA каталог."
 
 #: src/OpenSSLUtils.cpp:943
 msgid "Showing certificate status with serial %1 failed (%2)."
-msgstr ""
+msgstr "Невозможно показать статус сертификата с серийным номером %1 (%2)."
 
 #: src/OpenSSLUtils.cpp:979
 msgid "Keyfile does not exist"
