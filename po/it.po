@@ -845,7 +845,7 @@ msgstr "Valore non valido X509v3CertificateIssueExts::setSubjectKeyIdentifier"
 #: src/X509v3CertificateIssueExtensions.cpp:450
 msgid "X509v3CertificateIssueExts::setAuthorityKeyIdentifier invalid value"
 msgstr ""
-"Valore non valido X509v3CertificateIssueExts::setAuthorityKeyIdentifier "
+"Valore non valido X509v3CertificateIssueExts::setAuthorityKeyIdentifier"
 
 #: src/X509v3CertificateIssueExtensions.cpp:473
 msgid "X509v3CertificateIssueExts::setSubjectAlternativeName invalid value"
@@ -880,11 +880,11 @@ msgstr "Valore non valido X509v3CRLGenerationExts::setAuthorityKeyIdentifier"
 
 #: src/X509v3CRLGenerationExtensions.cpp:125
 msgid "X509v3CRLGenerationExts::setIssuerAlternativeName invalid value"
-msgstr "Valore non valido X509v3CRLGenerationExts::setIssuerAlternativeName "
+msgstr "Valore non valido X509v3CRLGenerationExts::setIssuerAlternativeName"
 
 #: src/X509v3RequestExtensions.cpp:70
 msgid "X509v3RequestExts::setNsSslServerName invalid value"
-msgstr "Valore non valido X509v3RequestExts::setNsSslServerName "
+msgstr "Valore non valido X509v3RequestExts::setNsSslServerName"
 
 #: src/X509v3RequestExtensions.cpp:93
 msgid "X509v3RequestExts::setNsComment invalid value"

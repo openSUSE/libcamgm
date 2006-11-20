@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2006-11-06 10:48+0100\n"
-"PO-Revision-Date: 2006-11-03 13:52\n"
+"PO-Revision-Date: 2006-11-20 11:36\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -216,7 +216,7 @@ msgstr "証明書 %1 が存在しません。"
 
 #: src/CA.cpp:1026
 msgid "Removing the certificate failed: %1."
-msgstr "証明書の削除に失敗しました: %1 "
+msgstr "証明書の削除に失敗しました: %1."
 
 #: src/CA.cpp:1034
 msgid ""
@@ -500,7 +500,7 @@ msgstr "ファイルが見つかりません: %1"
 
 #: src/LocalManagement.cpp:454
 msgid "File too big: %1."
-msgstr "ファイルが大きすぎます: %1 "
+msgstr "ファイルが大きすぎます: %1."
 
 #: src/LocalManagement.cpp:463 src/LocalManagement.cpp:518
 msgid "Cannot open file %1."
