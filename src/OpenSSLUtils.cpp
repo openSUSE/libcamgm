@@ -976,7 +976,7 @@ OpenSSLUtils::checkKey(const blocxx::String &caName,
 	{        
 		LOGIT_ERROR("Keyfile does not exist");
 		BLOCXX_THROW(limal::SystemException,
-		             __("Keyfile does not exist"));
+		             __("The key file does not exist."));
 	}
 
 	blocxx::String debugCmd;
@@ -1471,7 +1471,7 @@ OpenSSLUtils::createPKCS12(const ByteBuffer &certificate,
 	{
 		LOGIT_ERROR("Out password is required");
 		BLOCXX_THROW(limal::ValueException,
-		             __("Out password is required"));
+		             __("The password for encrypting the output is required."));
 	}
 
 	debugCmd += "-inkey ";
@@ -1576,7 +1576,7 @@ OpenSSLUtils::pkcs12ToPEM(const ByteBuffer &pkcs12,
 	{        
 		LOGIT_ERROR("PKCS12 password is required");
 		BLOCXX_THROW(limal::ValueException,
-		             __("PKCS12 password is required"));
+		             __("The PKCS12 password is required."));
 	}
     
 	if(!outPassword.empty())
@@ -1662,7 +1662,7 @@ OpenSSLUtils::listCA(const String &repository)
 		LOGIT_ERROR("Cannot read directory: " << repository << 
 		            "(" << System::errorMsg(r) << ") [" << r << "]");
 		BLOCXX_THROW(limal::SystemException,
-		             Format(__("Cannot read directory: %1 (%2) [%3]"),
+		             Format(__("Cannot read directory: %1 (%2) [%3]."),
 		                    repository, System::errorMsg(r), r).c_str());
 	}
 	
@@ -1712,7 +1712,7 @@ OpenSSLUtils::nextSerial(const String &serialFile)
 	{
 		LOGIT_ERROR("No serial number found in " << serialFile);
 		BLOCXX_THROW(limal::RuntimeException,
-		             Format(__("No serial number found in %1"),
+		             Format(__("No serial number found in %1."),
 		                    serialFile).c_str());
 	}
 }
@@ -1732,7 +1732,7 @@ OpenSSLUtils::addCAM(const String &caName,
 		{
 			LOGIT_ERROR("Request already exist.");
 			BLOCXX_THROW(limal::RuntimeException,
-			             __("Request already exist."));
+			             __("The request already exists."));
 		}
 	}
     
@@ -1862,7 +1862,7 @@ OpenSSLUtils::listRequests(const String &caName,
 		LOGIT_ERROR("Cannot read directory: " << reqDir << 
 		            "(" << System::errorMsg(r) << ") [" << r << "]");
 		BLOCXX_THROW(limal::SystemException,
-		             Format(__("Cannot read directory: %1 (%2) [%3]"),
+		             Format(__("Cannot read directory: %1 (%2) [%3]."),
 		                    reqDir, System::errorMsg(r), r).c_str());
 	}
 
@@ -1923,7 +1923,7 @@ OpenSSLUtils::listRequests(const String &caName,
 		{
 			LOGIT_ERROR("Can not find request subject.");
 			BLOCXX_THROW(limal::RuntimeException,
-			             __("Can not find request subject."));
+			             __("Cannot find the request subject."));
 		}
 
 		sa.clear();
@@ -2014,7 +2014,7 @@ OpenSSLUtils::listCertificates(const String &caName,
 		LOGIT_ERROR("Cannot read directory: " << certDir << 
 		            "(" << System::errorMsg(r) << ") [" << r << "]");
 		BLOCXX_THROW(limal::SystemException,
-		             Format(__("Cannot read directory: %1 (%2) [%3]"),
+		             Format(__("Cannot read directory: %1 (%2) [%3]."),
 		                    certDir, System::errorMsg(r), r).c_str());
 	}
 
@@ -2084,7 +2084,7 @@ OpenSSLUtils::listCertificates(const String &caName,
 		{
 			LOGIT_ERROR("Can not find certificate subject.");
 			BLOCXX_THROW(limal::RuntimeException,
-			             __("Can not find certificate subject."));
+			             __("Cannot find the certificate subject."));
 		}
 
 		sa.clear();
@@ -2183,7 +2183,7 @@ OpenSSLUtils::createCaInfrastructure(const String &caName,
 	{        
 		LOGIT_ERROR("Invalid caName: " << caName);
 		BLOCXX_THROW(limal::ValueException,
-		             Format(__("Invalid caName: %1"), caName).c_str());
+		             Format(__("Invalid caName: %1."), caName).c_str());
 	}
 
 	path::PathInfo pi(repository);
@@ -2192,7 +2192,7 @@ OpenSSLUtils::createCaInfrastructure(const String &caName,
 	{
 		LOGIT_ERROR(repository << " does not exist");
 		BLOCXX_THROW_ERR(limal::SystemException,
-		                 Format(__("'%1' does not exist"), repository).c_str(),
+		                 Format(__("'%1' does not exist."), repository).c_str(),
 		                 E_FILE_NOT_FOUND);
 	}
 
@@ -2202,7 +2202,7 @@ OpenSSLUtils::createCaInfrastructure(const String &caName,
 	{
 		LOGIT_ERROR(pi.toString() << " still exist");
 		BLOCXX_THROW_ERR(limal::SystemException,
-		                 Format(__("%1 still exist"), pi.toString()).c_str(),
+		                 Format(__("%1 still exists."), pi.toString()).c_str(),
 		                 E_FILE_EXISTS);
 	}
     
@@ -2213,7 +2213,7 @@ OpenSSLUtils::createCaInfrastructure(const String &caName,
 		LOGIT_ERROR(Format("Can not create directory: %1 (%2 [%3])",
 		                   pi.toString(), System::errorMsg(r), r));
 		BLOCXX_THROW(limal::SystemException,
-		             Format(__("Can not create directory: %1 (%2 [%3])"),
+		             Format(__("Cannot create directory: %1 (%2 [%3])."),
 		                    pi.toString(), System::errorMsg(r), r).c_str());
 	}
 
@@ -2248,7 +2248,7 @@ OpenSSLUtils::createCaInfrastructure(const String &caName,
 		path::removeDirRecursive(repository + "/" + caName);
 
 		BLOCXX_THROW_SUBEX(limal::SystemException,
-		                   __("Cannot copy configuration template"), e);
+		                   __("Cannot copy the configuration template."), e);
 	}
 
 	String dir = pi.toString() + "/certs";
@@ -2261,7 +2261,7 @@ OpenSSLUtils::createCaInfrastructure(const String &caName,
 		LOGIT_ERROR(Format("Can not create directory: %1 (%2 [%3])",
 		                   dir, System::errorMsg(r), r));
 		BLOCXX_THROW(limal::SystemException,
-		             Format(__("Can not create directory: %1 (%2 [%3])"),
+		             Format(__("Cannot create directory: %1 (%2 [%3])."),
 		                    dir, System::errorMsg(r), r).c_str());
 	}
 
@@ -2275,7 +2275,7 @@ OpenSSLUtils::createCaInfrastructure(const String &caName,
 		LOGIT_ERROR(Format("Can not create directory: %1 (%2 [%3])",
 		                   dir, System::errorMsg(r), r));
 		BLOCXX_THROW(limal::SystemException,
-		             Format(__("Can not create directory: %1 (%2 [%3])"),
+		             Format(__("Cannot create directory: %1 (%2 [%3])."),
 		                    dir, System::errorMsg(r), r).c_str());
 	}
 
@@ -2289,7 +2289,7 @@ OpenSSLUtils::createCaInfrastructure(const String &caName,
 		LOGIT_ERROR(Format("Can not create directory: %1 (%2 [%3])",
 		                   dir, System::errorMsg(r), r));
 		BLOCXX_THROW(limal::SystemException,
-		             Format(__("Can not create directory: %1 (%2 [%3])"),
+		             Format(__("Cannot create directory: %1 (%2 [%3])."),
 		                    dir, System::errorMsg(r), r).c_str());
 	}
 
@@ -2303,7 +2303,7 @@ OpenSSLUtils::createCaInfrastructure(const String &caName,
 		LOGIT_ERROR(Format("Can not create directory: %1 (%2 [%3])",
 		                   dir, System::errorMsg(r), r));
 		BLOCXX_THROW(limal::SystemException,
-		             Format(__("Can not create directory: %1 (%2 [%3])"),
+		             Format(__("Cannot create directory: %1 (%2 [%3])."),
 		                    dir, System::errorMsg(r), r).c_str());
 	}
 
@@ -2317,7 +2317,7 @@ OpenSSLUtils::createCaInfrastructure(const String &caName,
 		LOGIT_ERROR(Format("Can not create directory: %1 (%2 [%3])",
 		                   dir, System::errorMsg(r), r));
 		BLOCXX_THROW(limal::SystemException,
-		             Format(__("Can not create directory: %1 (%2 [%3])"),
+		             Format(__("Cannot create directory: %1 (%2 [%3])."),
 		                    dir, System::errorMsg(r), r).c_str());
 	}
 
@@ -2335,7 +2335,7 @@ OpenSSLUtils::createCaInfrastructure(const String &caName,
 		path::removeDirRecursive(repository + "/" + caName);
     	
 		BLOCXX_THROW_SUBEX(limal::SystemException,
-		                   __("Cannot create file"), e);
+		                   __("Cannot create the file."), e);
 	}
 }
 

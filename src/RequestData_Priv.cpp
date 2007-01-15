@@ -393,7 +393,7 @@ RequestData_Priv::init(const ByteBuffer& request,
 	{
 		LOGIT_ERROR("Can not parse request");
 		BLOCXX_THROW(limal::RuntimeException,
-		             __("Can not parse request"));
+		             __("Cannot parse the request."));
 	}
 
 	try
@@ -406,7 +406,7 @@ RequestData_Priv::init(const ByteBuffer& request,
 		m_impl->x509 = NULL;
     	
 		BLOCXX_THROW_SUBEX(limal::SyntaxException,
-		                   __("Error at parsing the request"),
+		                   __("Error while parsing the request."),
 		                   e);
 	}
 }

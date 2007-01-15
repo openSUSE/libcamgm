@@ -180,7 +180,7 @@ SubjectAlternativeNameExt::getCopyEmail() const
 	if(!isPresent())
 	{
 		BLOCXX_THROW(limal::RuntimeException,
-		             __("SubjectAlternativeNameExt is not present"));
+		             __("SubjectAlternativeNameExt is not present."));
 	}
 	return m_impl->emailCopy;
 }
@@ -191,7 +191,7 @@ SubjectAlternativeNameExt::getAlternativeNameList() const
 	if(!isPresent())
 	{
 		BLOCXX_THROW(limal::RuntimeException,
-		             __("SubjectAlternativeNameExt is not present"));
+		             __("SubjectAlternativeNameExt is not present."));
 	}
 	return m_impl->altNameList;
 }
@@ -204,7 +204,7 @@ SubjectAlternativeNameExt::commit2Config(CA& ca, Type type) const
 	{
 		LOGIT_ERROR("invalid SubjectAlternativeNameExt object");
 		BLOCXX_THROW(limal::ValueException,
-		             __("Invalid SubjectAlternativeNameExt object"));
+		             __("Invalid SubjectAlternativeNameExt object."));
 	}
 
 	// This extension is not supported by type CRL

@@ -307,7 +307,7 @@ AuthorityInfoAccessExt::setAuthorityInformation(const blocxx::List<AuthorityInfo
 		if(!(*it).valid()) {
 			LOGIT_ERROR("invalid AuthorityInformation in infolist");
 			BLOCXX_THROW(limal::ValueException,
-			             __("Invalid AuthorityInformation in infolist."));
+			             __("Invalid AuthorityInformation in the information list."));
 		}
 	}
 	setPresent(true);

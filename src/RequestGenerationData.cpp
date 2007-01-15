@@ -237,7 +237,7 @@ RequestGenerationData::commit2Config(CA& ca, Type type) const
 	{
 		LOGIT_ERROR("invalid RequestGenerationData object");
 		BLOCXX_THROW(limal::ValueException,
-		             __("Invalid RequestGenerationData object"));
+		             __("Invalid RequestGenerationData object."));
 	}
 
 	if(type == E_CRL         || type == E_Client_Cert ||

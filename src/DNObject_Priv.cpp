@@ -156,7 +156,7 @@ DNObject_Priv::DNObject_Priv(X509_NAME *x509_name)
 			LOGIT_ERROR("Can not parse DN line: " << lines[j]);
 			BLOCXX_THROW(limal::RuntimeException,
 			             // %1 is the wrong part of a DN which could not be parsed
-			             Format(__("Can not parse DN line: %1."), lines[j]).c_str());
+			             Format(__("Cannot parse DN line: %1."), lines[j]).c_str());
 		}
 
 		tmpDN.push_back(RDNObject_Priv(vals[1], vals[2]));

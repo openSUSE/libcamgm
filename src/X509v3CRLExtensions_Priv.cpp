@@ -131,12 +131,12 @@ X509v3CRLExts_Priv::parseIssuerAlternativeNameExt(STACK_OF(X509_EXTENSION) *cert
 			// extension occurred more than once 
 			LOGIT_ERROR("Extension occurred more than once");
 			BLOCXX_THROW(limal::SyntaxException,
-			             __("Extension occurred more than once"));
+			             __("Extension occurred more than once."));
 		}
 
 		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
 		BLOCXX_THROW(limal::SyntaxException,
-		             Format(__("Unable to parse the certificate (Crit: %1)"),
+		             Format(__("Unable to parse the certificate (Crit: %1)."),
 		                    crit).c_str());
 	}
     

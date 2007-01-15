@@ -171,7 +171,7 @@ X509v3CertificateIssueExts::setNsBaseUrl(const NsBaseUrlExt &ext)
 	if(!ext.valid())
 	{
 		BLOCXX_THROW(limal::ValueException, 
-		             __("X509v3CertificateIssueExts::setNsBaseUrl invalid value"));
+		             __("Invalid value for X509v3CertificateIssueExts::setNsBaseUrl."));
 	}
 	m_impl->nsBaseUrl = ext;
 }
@@ -194,7 +194,7 @@ X509v3CertificateIssueExts::setNsRevocationUrl(const NsRevocationUrlExt &ext)
 	if(!ext.valid())
 	{
 		BLOCXX_THROW(limal::ValueException, 
-		             __("X509v3CertificateIssueExts::setNsRevocationUrl invalid value"));
+		             __("Invalid value for X509v3CertificateIssueExts::setNsRevocationUrl."));
 	}
 	m_impl->nsRevocationUrl = ext;
 }
@@ -217,7 +217,7 @@ X509v3CertificateIssueExts::setNsCaRevocationUrl(const NsCaRevocationUrlExt &ext
 	if(!ext.valid())
 	{
 		BLOCXX_THROW(limal::ValueException, 
-		             __("X509v3CertificateIssueExts::setNsCaRevocationUrl invalid value"));
+		             __("Invalid value for X509v3CertificateIssueExts::setNsCaRevocationUrl."));
 	}
 	m_impl->nsCaRevocationUrl = ext;
 }
@@ -240,7 +240,7 @@ X509v3CertificateIssueExts::setNsRenewalUrl(const NsRenewalUrlExt &ext)
 	if(!ext.valid())
 	{
 		BLOCXX_THROW(limal::ValueException, 
-		             __("X509v3CertificateIssueExts::setNsRenewalUrl invalid value"));
+		             __("Invalid value for X509v3CertificateIssueExts::setNsRenewalUrl."));
 	}
 	m_impl->nsRenewalUrl = ext;
 }
@@ -263,7 +263,7 @@ X509v3CertificateIssueExts::setNsCaPolicyUrl(const NsCaPolicyUrlExt &ext)
 	if(!ext.valid())
 	{
 		BLOCXX_THROW(limal::ValueException, 
-		             __("X509v3CertificateIssueExts::setNsCaPolicyUrl invalid value"));
+		             __("Invalid value for X509v3CertificateIssueExts::setNsCaPolicyUrl."));
 	}
 	m_impl->nsCaPolicyUrl = ext;
 }
@@ -286,7 +286,7 @@ X509v3CertificateIssueExts::setNsSslServerName(const NsSslServerNameExt &ext)
 	if(!ext.valid())
 	{
 		BLOCXX_THROW(limal::ValueException, 
-		             __("X509v3CertificateIssueExts::setNsSslServerName invalid value"));
+		             __("Invalid value for X509v3CertificateIssueExts::setNsSslServerName."));
 	}
 	m_impl->nsSslServerName = ext;
 }
@@ -309,7 +309,7 @@ X509v3CertificateIssueExts::setNsComment(const NsCommentExt &ext)
 	if(!ext.valid())
 	{
 		BLOCXX_THROW(limal::ValueException, 
-		             __("X509v3CertificateIssueExts::setNsComment invalid value"));
+		             __("Invalid value for X509v3CertificateIssueExts::setNsComment."));
 	}
 	m_impl->nsComment = ext;
 }
@@ -332,7 +332,7 @@ X509v3CertificateIssueExts::setNsCertType(const NsCertTypeExt &ext)
 	if(!ext.valid())
 	{
 		BLOCXX_THROW(limal::ValueException, 
-		             __("X509v3CertificateIssueExts::setNsCertType invalid value"));
+		             __("Invalid value for X509v3CertificateIssueExts::setNsCertType."));
 	}
 	m_impl->nsCertType = ext;
 }
@@ -355,7 +355,7 @@ X509v3CertificateIssueExts::setKeyUsage(const KeyUsageExt &ext)
 	if(!ext.valid())
 	{
 		BLOCXX_THROW(limal::ValueException, 
-		             __("X509v3CertificateIssueExts::setKeyUsage invalid value"));
+		             __("Invalid value for X509v3CertificateIssueExts::setKeyUsage."));
 	}
 	m_impl->keyUsage = ext;
 }
@@ -378,7 +378,7 @@ X509v3CertificateIssueExts::setBasicConstraints(const BasicConstraintsExt &ext)
 	if(!ext.valid())
 	{
 		BLOCXX_THROW(limal::ValueException, 
-		             __("X509v3CertificateIssueExts::setBasicConstraints invalid value"));
+		             __("Invalid value for X509v3CertificateIssueExts::setBasicConstraints."));
 	}
 	m_impl->basicConstraints = ext;
 }
@@ -401,7 +401,7 @@ X509v3CertificateIssueExts::setExtendedKeyUsage(const ExtendedKeyUsageExt &ext)
 	if(!ext.valid())
 	{
 		BLOCXX_THROW(limal::ValueException, 
-		             __("X509v3CertificateIssueExts::setExtendedKeyUsage invalid value"));
+		             __("Invalid value for X509v3CertificateIssueExts::setExtendedKeyUsage."));
 	}
 	m_impl->extendedKeyUsage = ext;
 }
@@ -424,7 +424,7 @@ X509v3CertificateIssueExts::setSubjectKeyIdentifier(const SubjectKeyIdentifierEx
 	if(!ext.valid())
 	{
 		BLOCXX_THROW(limal::ValueException, 
-		             __("X509v3CertificateIssueExts::setSubjectKeyIdentifier invalid value"));
+		             __("Invalid value for X509v3CertificateIssueExts::setSubjectKeyIdentifier."));
 	}
 	m_impl->subjectKeyIdentifier = ext;
 }
@@ -447,7 +447,7 @@ X509v3CertificateIssueExts::setAuthorityKeyIdentifier(const AuthorityKeyIdentifi
 	if(!ext.valid())
 	{
 		BLOCXX_THROW(limal::ValueException, 
-		             __("X509v3CertificateIssueExts::setAuthorityKeyIdentifier invalid value"));
+		             __("Invalid value for X509v3CertificateIssueExts::setAuthorityKeyIdentifier."));
 	}
 	m_impl->authorityKeyIdentifier = ext;
 }
@@ -470,7 +470,7 @@ X509v3CertificateIssueExts::setSubjectAlternativeName(const SubjectAlternativeNa
 	if(!ext.valid())
 	{
 		BLOCXX_THROW(limal::ValueException, 
-		             __("X509v3CertificateIssueExts::setSubjectAlternativeName invalid value"));
+		             __("Invalid value for X509v3CertificateIssueExts::setSubjectAlternativeName."));
 	}
 	m_impl->subjectAlternativeName = ext;
 }
@@ -493,7 +493,7 @@ X509v3CertificateIssueExts::setIssuerAlternativeName(const IssuerAlternativeName
 	if(!ext.valid())
 	{
 		BLOCXX_THROW(limal::ValueException, 
-		             __("X509v3CertificateIssueExts::setIssuerAlternativeName invalid value"));
+		             __("Invalid value for X509v3CertificateIssueExts::setIssuerAlternativeName."));
 	}
 	m_impl->issuerAlternativeName = ext;
 }
@@ -516,7 +516,7 @@ X509v3CertificateIssueExts::setAuthorityInfoAccess(const AuthorityInfoAccessExt 
 	if(!ext.valid())
 	{
 		BLOCXX_THROW(limal::ValueException, 
-		             __("X509v3CertificateIssueExts::setAuthorityInfoAccess invalid value"));
+		             __("Invalid value for X509v3CertificateIssueExts::setAuthorityInfoAccess."));
 	}
 	m_impl->authorityInfoAccess = ext;
 }
@@ -539,7 +539,7 @@ X509v3CertificateIssueExts::setCRLDistributionPoints(const CRLDistributionPoints
 	if(!ext.valid())
 	{
 		BLOCXX_THROW(limal::ValueException, 
-		             __("X509v3CertificateIssueExts::setCRLDistributionPoints invalid value"));
+		             __("Invalid value for X509v3CertificateIssueExts::setCRLDistributionPoints."));
 	}
 	m_impl->crlDistributionPoints = ext;
 }
@@ -562,7 +562,7 @@ X509v3CertificateIssueExts::setCertificatePolicies(const CertificatePoliciesExt 
 	if(!ext.valid())
 	{
 		BLOCXX_THROW(limal::ValueException, 
-		             __("X509v3CertificateIssueExts::setCertificatePolicies invalid value"));
+		             __("Invalid value for X509v3CertificateIssueExts::setCertificatePolicies."));
 	}
 	m_impl->certificatePolicies = ext;
 }
@@ -586,7 +586,7 @@ X509v3CertificateIssueExts::commit2Config(CA& ca, Type type) const
 	{
 		LOGIT_ERROR("invalid X509v3RequestExts object");
 		BLOCXX_THROW(limal::ValueException,
-		             __("Invalid X509v3RequestExts object"));
+		             __("Invalid X509v3RequestExts object."));
 	}
 
 	m_impl->nsBaseUrl.commit2Config(ca, type);
