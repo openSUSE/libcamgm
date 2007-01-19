@@ -3,6 +3,8 @@
 BEGIN 
 {
     unshift @INC, '../swig/perl5';
+    $ENV{LANG} = "en_US";
+    $ENV{LANGUAGE} = "en_US";
 }
 
 use strict;
