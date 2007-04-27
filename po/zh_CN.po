@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2007-01-15 17:19+0100\n"
+"POT-Creation-Date: 2007-04-12 17:29+0200\n"
 "PO-Revision-Date: 2006-11-02 14:21\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -56,9 +56,8 @@ msgid "Wrong type: %1."
 msgstr "错误类型：%1。"
 
 #: src/AuthorityInfoAccessExtension.cpp:310
-#, fuzzy
 msgid "Invalid AuthorityInformation in the information list."
-msgstr "infolist 中的 AuthorityInformation 无效。"
+msgstr "信息列表中的授权信息无效。"
 
 #: src/AuthorityInfoAccessExtension.cpp:323
 msgid "AuthorityInfoAccessExt is not present."
@@ -439,9 +438,8 @@ msgid "Invalid type %1."
 msgstr "类型 %1 无效。"
 
 #: src/DNObject_Priv.cpp:159
-#, fuzzy
 msgid "Cannot parse DN line: %1."
-msgstr "无法对 DN 行进行语法分析：%1。"
+msgstr "无法对 DN 行进行语法分析： %1."
 
 #: src/ExtendedKeyUsageExt.cpp:122 src/ExtendedKeyUsageExt.cpp:171
 msgid "Invalid ExtendedKeyUsage option %1."
@@ -565,235 +563,192 @@ msgid "Showing certificate status with serial %1 failed (%2)."
 msgstr "通过连续的 %1 显示证书状态失败（%2）。"
 
 #: src/OpenSSLUtils.cpp:979
-#, fuzzy
 msgid "The key file does not exist."
-msgstr "密钥文件不存在"
+msgstr "键文件不存在。"
 
 #: src/OpenSSLUtils.cpp:1474
 msgid "The password for encrypting the output is required."
-msgstr ""
+msgstr "需要加密输出的口令。"
 
 #: src/OpenSSLUtils.cpp:1579
-#, fuzzy
 msgid "The PKCS12 password is required."
-msgstr "需要 PKCS12 口令"
+msgstr "需要 PKCS12 口令。"
 
 #: src/OpenSSLUtils.cpp:1665 src/OpenSSLUtils.cpp:1865
 #: src/OpenSSLUtils.cpp:2017
-#, fuzzy
 msgid "Cannot read directory: %1 (%2) [%3]."
-msgstr "无法读取目录：%1 (%2) [%3]"
+msgstr "无法读取目录： %1 (%2) [%3]."
 
 #: src/OpenSSLUtils.cpp:1715
-#, fuzzy
 msgid "No serial number found in %1."
-msgstr "未在 %1 中找到序列号"
+msgstr "在 %1 找不到序列号。"
 
 #: src/OpenSSLUtils.cpp:1735
-#, fuzzy
 msgid "The request already exists."
-msgstr "请求已存在。"
+msgstr "此请求已存在。"
 
 #: src/OpenSSLUtils.cpp:1926
-#, fuzzy
 msgid "Cannot find the request subject."
-msgstr "无法找到请求主题。"
+msgstr "找不到请求主题。"
 
 #: src/OpenSSLUtils.cpp:2087
-#, fuzzy
 msgid "Cannot find the certificate subject."
-msgstr "无法找到证书主题。"
+msgstr "找不到证书主题。"
 
 #: src/OpenSSLUtils.cpp:2186
-#, fuzzy
 msgid "Invalid caName: %1."
-msgstr "caName 无效：%1"
+msgstr "caName 无效： %1."
 
 #: src/OpenSSLUtils.cpp:2195
-#, fuzzy
 msgid "'%1' does not exist."
-msgstr "“%1”不存在"
+msgstr "'%1”不存在。"
 
 #: src/OpenSSLUtils.cpp:2205
-#, fuzzy
 msgid "%1 still exists."
-msgstr "%1 仍然存在"
+msgstr "%1 仍然存在。"
 
 #: src/OpenSSLUtils.cpp:2216 src/OpenSSLUtils.cpp:2264
 #: src/OpenSSLUtils.cpp:2278 src/OpenSSLUtils.cpp:2292
 #: src/OpenSSLUtils.cpp:2306 src/OpenSSLUtils.cpp:2320
-#, fuzzy
 msgid "Cannot create directory: %1 (%2 [%3])."
-msgstr "无法创建目录：%1（%2 [%3]）"
+msgstr "无法创建目录： %1 (%2 [%3])."
 
 #: src/OpenSSLUtils.cpp:2251
-#, fuzzy
 msgid "Cannot copy the configuration template."
-msgstr "无法复制配置模板"
+msgstr "无法复制配置模板。"
 
 #: src/OpenSSLUtils.cpp:2338
-#, fuzzy
 msgid "Cannot create the file."
-msgstr "无法创建文件"
+msgstr "无法创建文件。"
 
 #: src/RequestData_Priv.cpp:396
-#, fuzzy
 msgid "Cannot parse the request."
-msgstr "无法对请求进行语法分析"
+msgstr "无法对请求进行语法分析。"
 
 #: src/RequestData_Priv.cpp:409
-#, fuzzy
 msgid "Error while parsing the request."
-msgstr "对请求进行语法分析时出错"
+msgstr "对请求进行语法分析时出错。"
 
 #: src/RequestGenerationData.cpp:240
-#, fuzzy
 msgid "Invalid RequestGenerationData object."
-msgstr "RequestGenerationData 对象无效"
+msgstr "RequestGenerationData 对象无效。"
 
 #: src/StringExtensions.cpp:109 src/StringExtensions.cpp:167
-#, fuzzy
 msgid "Invalid value for NsBaseUrlExt."
-msgstr "NsBaseUrlExt 的值无效"
+msgstr "NsBaseUrlExt 的值无效。"
 
 #: src/StringExtensions.cpp:179
-#, fuzzy
 msgid "NsBaseUrlExt is not present."
-msgstr "NsBaseUrlExt 不存在"
+msgstr "NsBaseUrlExt 不存在。"
 
 #: src/StringExtensions.cpp:191
-#, fuzzy
 msgid "Invalid NsBaseUrlExt object."
-msgstr "NsBaseUrlExt 对象无效"
+msgstr "NsBaseUrlExt 对象无效。"
 
 #: src/StringExtensions.cpp:274 src/StringExtensions.cpp:327
-#, fuzzy
 msgid "Invalid value for NsRevocationUrlExt."
-msgstr "NsRevocationUrlExt 的值无效"
+msgstr "NsRevocationUrlExt 的值无效。"
 
 #: src/StringExtensions.cpp:338
-#, fuzzy
 msgid "NsRevocationUrlExt is not present."
-msgstr "NsRevocationUrlExt 不存在"
+msgstr "NsRevocationUrlExt 不存在。"
 
 #: src/StringExtensions.cpp:349
-#, fuzzy
 msgid "Invalid NsRevocationUrlExt object."
-msgstr "NsRevocationUrlExt 对象无效"
+msgstr "NsRevocationUrlExt 对象无效。"
 
 #: src/StringExtensions.cpp:428 src/StringExtensions.cpp:481
-#, fuzzy
 msgid "Invalid value for NsCaRevocationUrlExt."
-msgstr "NsCaRevocationUrlExt 的值无效"
+msgstr "NsCaRevocationUrlExt 的值无效。"
 
 #: src/StringExtensions.cpp:492
-#, fuzzy
 msgid "NsCaRevocationUrlExt is not present."
-msgstr "NsCaRevocationUrlExt 不存在"
+msgstr "NsCaRevocationUrlExt 不存在。"
 
 #: src/StringExtensions.cpp:503
-#, fuzzy
 msgid "Invalid NsCaRevocationUrlExt object."
-msgstr "NsCaRevocationUrlExt 对象无效"
+msgstr "NsCaRevocationUrlExt 对象无效。"
 
 #: src/StringExtensions.cpp:581 src/StringExtensions.cpp:634
-#, fuzzy
 msgid "Invalid value for NsRenewalUrlExt."
-msgstr "NsRenewalUrlExt 的值无效"
+msgstr "NsRenewalUrlExt 的值无效。"
 
 #: src/StringExtensions.cpp:645
-#, fuzzy
 msgid "NsRenewalUrlExt is not present."
-msgstr "NsRenewalUrlExt 不存在"
+msgstr "NsRenewalUrlExt 不存在。"
 
 #: src/StringExtensions.cpp:656
-#, fuzzy
 msgid "Invalid NsRenewalUrlExt object."
-msgstr "NsRenewalUrlExt 对象无效"
+msgstr "NsRenewalUrlExt 对象无效。"
 
 #: src/StringExtensions.cpp:733 src/StringExtensions.cpp:786
-#, fuzzy
 msgid "Invalid value for NsCaPolicyUrlExt."
-msgstr "NsCaPolicyUrlExt 的值无效"
+msgstr "NsCaPolicyUrlExt 的值无效。"
 
 #: src/StringExtensions.cpp:797
-#, fuzzy
 msgid "NsCaPolicyUrlExt is not present."
-msgstr "NsCaPolicyUrlExt 不存在"
+msgstr "NsCaPolicyUrlExt 不存在。"
 
 #: src/StringExtensions.cpp:808
-#, fuzzy
 msgid "Invalid NsCaPolicyUrlExt object."
-msgstr "NsCaPolicyUrlExt 对象无效"
+msgstr "NsCaPolicyUrlExt 对象无效。"
 
 #: src/StringExtensions.cpp:894
-#, fuzzy
 msgid "Invalid type: %1."
-msgstr "类型 %1 无效。"
+msgstr "无效类型： %1."
 
 #: src/StringExtensions.cpp:940
-#, fuzzy
 msgid "NsSslServerNameExt is not present."
-msgstr "NsSslServerNameExt 不存在"
+msgstr "NsSslServerNameExt 不存在。"
 
 #: src/StringExtensions.cpp:951
-#, fuzzy
 msgid "Invalid NsSslServerNameExt object."
-msgstr "NsSslServerNameExt 对象无效"
+msgstr "NsSslServerNameExt 对象无效。"
 
 #: src/StringExtensions.cpp:1066
-#, fuzzy
 msgid "NsCommentExt is not present."
-msgstr "NsCommentExt 不存在"
+msgstr "NsCommentExt 不存在。"
 
 #: src/StringExtensions.cpp:1077
-#, fuzzy
 msgid "Invalid NsCommentExt object."
-msgstr "NsCommentExt 对象无效"
+msgstr "NsCommentExt 对象无效。"
 
 #: src/SubjectAlternativeNameExtension.cpp:183
 #: src/SubjectAlternativeNameExtension.cpp:194
-#, fuzzy
 msgid "SubjectAlternativeNameExt is not present."
-msgstr "SubjectAlternativeNameExt 不存在"
+msgstr "SubjectAlternativeNameExt 不存在。"
 
 #: src/SubjectAlternativeNameExtension.cpp:207
-#, fuzzy
 msgid "Invalid SubjectAlternativeNameExt object."
-msgstr "SubjectAlternativeNameExt 对象无效"
+msgstr "SubjectAlternativeNameExt 对象无效。"
 
 #: src/SubjectKeyIdentifierExtension.cpp:129
 #: src/SubjectKeyIdentifierExtension.cpp:163
-#, fuzzy
 msgid "Invalid KeyID."
-msgstr "KeyID 无效"
+msgstr "无效键 ID。"
 
 #: src/SubjectKeyIdentifierExtension.cpp:176
 #: src/SubjectKeyIdentifierExtension.cpp:187
-#, fuzzy
 msgid "SubjectKeyIdentifierExt is not present."
-msgstr "SubjectKeyIdentifierExt 不存在"
+msgstr "SubjectKeyIdentifierExt 不存在。"
 
 #: src/SubjectKeyIdentifierExtension.cpp:200
-#, fuzzy
 msgid "Invalid SubjectKeyIdentifierExt object."
-msgstr "SubjectKeyIdentifierExt 对象无效"
+msgstr "SubjectKeyIdentifierExt 对象无效。"
 
 #: src/X509v3CertificateExtensions_Priv.cpp:393
 #: src/X509v3CertificateExtensions_Priv.cpp:449
 #: src/X509v3RequestExtensions_Priv.cpp:133
 #: src/X509v3RequestExtensions_Priv.cpp:188
-#, fuzzy
 msgid "Extension occurred more than once: %1."
-msgstr "扩展名多次出现：%1"
+msgstr "扩展名出现多次： %1."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:400
 #: src/X509v3CertificateExtensions_Priv.cpp:456
 #: src/X509v3RequestExtensions_Priv.cpp:140
 #: src/X509v3RequestExtensions_Priv.cpp:195
-#, fuzzy
 msgid "Unable to parse the certificate (NID: %1 Crit: %2)."
-msgstr "无法对证书进行语法分析（NID：%1 Crit：%2）"
+msgstr "无法对证书进行语法分析（NID：%1 准则： %2)."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:508
 #: src/X509v3CertificateExtensions_Priv.cpp:574
@@ -808,9 +763,8 @@ msgstr "无法对证书进行语法分析（NID：%1 Crit：%2）"
 #: src/X509v3RequestExtensions_Priv.cpp:314
 #: src/X509v3RequestExtensions_Priv.cpp:377
 #: src/X509v3RequestExtensions_Priv.cpp:438
-#, fuzzy
 msgid "Extension occurred more than once."
-msgstr "扩展名多次出现"
+msgstr "扩展名出现多次。"
 
 #: src/X509v3CertificateExtensions_Priv.cpp:513
 #: src/X509v3CertificateExtensions_Priv.cpp:579
@@ -825,175 +779,129 @@ msgstr "扩展名多次出现"
 #: src/X509v3RequestExtensions_Priv.cpp:319
 #: src/X509v3RequestExtensions_Priv.cpp:383
 #: src/X509v3RequestExtensions_Priv.cpp:443
-#, fuzzy
 msgid "Unable to parse the certificate (Crit: %1)."
-msgstr "无法对证书进行语法分析（Crit：%1）"
+msgstr "无法对证书进行语法分析（准则： %1)."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:940
-#, fuzzy
 msgid "Invalid location in authorityInfoAccess."
-msgstr "authorityInfoAccess 中的位置无效"
+msgstr "authorityInfoAccess 中的位置无效。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:174
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setNsBaseUrl."
-msgstr "X509v3CertificateIssueExts::setNsBaseUrl 无效值"
+msgstr "X509v3CertificateIssueExts::setNsBaseUrl 的值无效。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:197
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setNsRevocationUrl."
-msgstr "X509v3CertificateIssueExts::setNsRevocationUrl 无效值"
+msgstr "X509v3CertificateIssueExts::setNsRevocationUrl 的值无效。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:220
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCaRevocationUrl."
-msgstr "X509v3CertificateIssueExts::setNsCaRevocationUrl 无效值"
+msgstr "X509v3CertificateIssueExts::setNsCaRevocationUrl 的值无效。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:243
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setNsRenewalUrl."
-msgstr "X509v3CertificateIssueExts::setNsRenewalUrl 无效值"
+msgstr "X509v3CertificateIssueExts::setNsRenewalUrl 的值无效。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:266
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCaPolicyUrl."
-msgstr "X509v3CertificateIssueExts::setNsCaPolicyUrl 无效值"
+msgstr "X509v3CertificateIssueExts::setNsCaPolicyUrl 的值无效。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:289
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setNsSslServerName."
-msgstr "X509v3CertificateIssueExts::setNsSslServerName 无效值"
+msgstr "X509v3CertificateIssueExts::setNsSslServerName 的值无效。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:312
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setNsComment."
-msgstr "X509v3CertificateIssueExts::setNsComment 无效值"
+msgstr "X509v3CertificateIssueExts::setNsComment 的值无效。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:335
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCertType."
-msgstr "X509v3CertificateIssueExts::setNsCertType 无效值"
+msgstr "X509v3CertificateIssueExts::setNsCertType 的值无效。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:358
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setKeyUsage."
-msgstr "X509v3CertificateIssueExts::setKeyUsage 无效值"
+msgstr "X509v3CertificateIssueExts::setKeyUsage 的值无效。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:381
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setBasicConstraints."
-msgstr "X509v3CertificateIssueExts::setBasicConstraints 无效值"
+msgstr "X509v3CertificateIssueExts::setBasicConstraints 的值无效。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:404
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setExtendedKeyUsage."
-msgstr "X509v3CertificateIssueExts::setExtendedKeyUsage 无效值"
+msgstr "X509v3CertificateIssueExts::setExtendedKeyUsage 的值无效。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:427
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setSubjectKeyIdentifier."
-msgstr "X509v3CertificateIssueExts::setSubjectKeyIdentifier 无效值"
+msgstr "X509v3CertificateIssueExts::setSubjectKeyIdentifier 的值无效。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:450
-#, fuzzy
 msgid ""
 "Invalid value for X509v3CertificateIssueExts::setAuthorityKeyIdentifier."
-msgstr "X509v3CertificateIssueExts::setAuthorityKeyIdentifier 无效值"
+msgstr "X509v3CertificateIssueExts::setAuthorityKeyIdentifier 的值无效。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:473
-#, fuzzy
 msgid ""
 "Invalid value for X509v3CertificateIssueExts::setSubjectAlternativeName."
-msgstr "X509v3CertificateIssueExts::setSubjectAlternativeName 无效值"
+msgstr "X509v3CertificateIssueExts::setSubjectAlternativeName 的值无效。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:496
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setIssuerAlternativeName."
-msgstr "X509v3CertificateIssueExts::setIssuerAlternativeName 无效值"
+msgstr "X509v3CertificateIssueExts::setIssuerAlternativeName 的值无效。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:519
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setAuthorityInfoAccess."
-msgstr "X509v3CertificateIssueExts::setAuthorityInfoAccess 无效值"
+msgstr "X509v3CertificateIssueExts::setAuthorityInfoAccess 的值无效。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:542
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setCRLDistributionPoints."
-msgstr "X509v3CertificateIssueExts::setCRLDistributionPoints 无效值"
+msgstr "X509v3CertificateIssueExts::setCRLDistributionPoints 的值无效。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:565
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setCertificatePolicies."
-msgstr "X509v3CertificateIssueExts::setCertificatePolicies 无效值"
+msgstr "X509v3CertificateIssueExts::setCertificatePolicies 的值无效。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:589
 #: src/X509v3CRLGenerationExtensions.cpp:149
 #: src/X509v3RequestExtensions.cpp:255
-#, fuzzy
 msgid "Invalid X509v3RequestExts object."
-msgstr "X509v3RequestExts 对象无效"
+msgstr "X509v3RequestExts 对象无效。"
 
 #: src/X509v3CRLGenerationExtensions.cpp:102
-#, fuzzy
 msgid "Invalid value for X509v3CRLGenerationExts::setAuthorityKeyIdentifier."
-msgstr "X509v3CRLGenerationExts::setAuthorityKeyIdentifier 无效值"
+msgstr "X509v3CRLGenerationExts::setAuthorityKeyIdentifier 的值无效。"
 
 #: src/X509v3CRLGenerationExtensions.cpp:125
-#, fuzzy
 msgid "Invalid value for X509v3CRLGenerationExts::setIssuerAlternativeName."
-msgstr "X509v3CRLGenerationExts::setIssuerAlternativeName 无效值"
+msgstr "X509v3CRLGenerationExts::setIssuerAlternativeName 的值无效。"
 
 #: src/X509v3RequestExtensions.cpp:70
-#, fuzzy
 msgid "Invalid value for X509v3RequestExts::setNsSslServerName."
-msgstr "X509v3RequestExts::setNsSslServerName 无效值"
+msgstr "X509v3RequestExts::setNsSslServerName 的值无效。"
 
 #: src/X509v3RequestExtensions.cpp:93
-#, fuzzy
 msgid "Invalid value for X509v3RequestExts::setNsComment."
-msgstr "X509v3RequestExts 对象无效"
+msgstr "X509v3RequestExts::setNsComment 的值无效。"
 
 #: src/X509v3RequestExtensions.cpp:116
-#, fuzzy
 msgid "Invalid value for X509v3RequestExts::setNsCertType."
-msgstr "NsCertTypeExt 的值无效。"
+msgstr "X509v3RequestExts::setNsCertType 的值无效。"
 
 #: src/X509v3RequestExtensions.cpp:139
-#, fuzzy
 msgid "Invalid value for X509v3RequestExts::setKeyUsage."
-msgstr "keyUsage 的值无效。"
+msgstr "X509v3RequestExts::setKeyUsage 的值无效。"
 
 #: src/X509v3RequestExtensions.cpp:162
-#, fuzzy
 msgid "Invalid value for X509v3RequestExts::setBasicConstraints."
-msgstr "X509v3RequestExts::setBasicConstraints 无效值"
+msgstr "X509v3RequestExts::setBasicConstraints 的值无效。"
 
 #: src/X509v3RequestExtensions.cpp:185
-#, fuzzy
 msgid "Invalid value for X509v3RequestExts::setExtendedKeyUsage."
-msgstr "X509v3RequestExts::setExtendedKeyUsage 无效值"
+msgstr "X509v3RequestExts::setExtendedKeyUsage 的值无效。"
 
 #: src/X509v3RequestExtensions.cpp:208
-#, fuzzy
 msgid "Invalid value for X509v3RequestExts::setSubjectKeyIdentifier."
-msgstr "X509v3RequestExts::setSubjectKeyIdentifier 无效值"
+msgstr "X509v3RequestExts::setSubjectKeyIdentifier 的值无效。"
 
 #: src/X509v3RequestExtensions.cpp:231
-#, fuzzy
 msgid "Invalid value for X509v3RequestExts::setSubjectAlternativeName."
-msgstr "X509v3RequestExts::setSubjectAlternativeName 无效值"
-
-#~ msgid "Out password is required"
-#~ msgstr "需要 Out 口令"
-
-#~ msgid "wrong type: %1"
-#~ msgstr "错误类型：%1"
-
-#~ msgid "X509v3RequestExts::setNsComment invalid value"
-#~ msgstr "X509v3RequestExts::setNsComment 无效值"
-
-#~ msgid "X509v3RequestExts::setNsCertType invalid value"
-#~ msgstr "X509v3RequestExts::setNsCertType 无效值"
-
-#~ msgid "X509v3RequestExts::setKeyUsage invalid value"
-#~ msgstr "X509v3RequestExts::setKeyUsage 无效值"
+msgstr "X509v3RequestExts::setSubjectAlternativeName 的值无效。"

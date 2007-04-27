@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2007-01-15 17:19+0100\n"
+"POT-Creation-Date: 2007-04-12 17:29+0200\n"
 "PO-Revision-Date: 2006-11-20 11:36\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -56,9 +56,8 @@ msgid "Wrong type: %1."
 msgstr "正しくないタイプ: %1 "
 
 #: src/AuthorityInfoAccessExtension.cpp:310
-#, fuzzy
 msgid "Invalid AuthorityInformation in the information list."
-msgstr "無効な機関情報が情報リストにあります。"
+msgstr "情報リストに無効なAuthorityInformationがあります。"
 
 #: src/AuthorityInfoAccessExtension.cpp:323
 msgid "AuthorityInfoAccessExt is not present."
@@ -442,9 +441,8 @@ msgid "Invalid type %1."
 msgstr "無効なタイプ %1。"
 
 #: src/DNObject_Priv.cpp:159
-#, fuzzy
 msgid "Cannot parse DN line: %1."
-msgstr "DNラインを解析できせん: %1"
+msgstr "DN行を解析できません: %1."
 
 #: src/ExtendedKeyUsageExt.cpp:122 src/ExtendedKeyUsageExt.cpp:171
 msgid "Invalid ExtendedKeyUsage option %1."
@@ -568,235 +566,192 @@ msgid "Showing certificate status with serial %1 failed (%2)."
 msgstr "シリアル %1 による証明書のステータスの表示に失敗しました(%2)。"
 
 #: src/OpenSSLUtils.cpp:979
-#, fuzzy
 msgid "The key file does not exist."
-msgstr "キーファイルは存在しません。"
+msgstr "キーファイルが存在していません。"
 
 #: src/OpenSSLUtils.cpp:1474
 msgid "The password for encrypting the output is required."
-msgstr ""
+msgstr "出力を暗号化するためのパスワードが必要です。"
 
 #: src/OpenSSLUtils.cpp:1579
-#, fuzzy
 msgid "The PKCS12 password is required."
 msgstr "PKCS12パスワードが必要です。"
 
 #: src/OpenSSLUtils.cpp:1665 src/OpenSSLUtils.cpp:1865
 #: src/OpenSSLUtils.cpp:2017
-#, fuzzy
 msgid "Cannot read directory: %1 (%2) [%3]."
-msgstr "ディレクトリを読み込むことができません: %1 (%2) [%3]"
+msgstr "次のディレクトリを読めません: %1 (%2) [%3]."
 
 #: src/OpenSSLUtils.cpp:1715
-#, fuzzy
 msgid "No serial number found in %1."
-msgstr "%1 にシリアル番号が見つかりませんでした。"
+msgstr "%1 にシリアル番号がありません。"
 
 #: src/OpenSSLUtils.cpp:1735
-#, fuzzy
 msgid "The request already exists."
-msgstr "要求はすでに存在します。"
+msgstr "このリクエストはすでに存在しています。"
 
 #: src/OpenSSLUtils.cpp:1926
-#, fuzzy
 msgid "Cannot find the request subject."
-msgstr "要求のサブジェクトが見つかりませんでした。"
+msgstr "リクエストサブジェクトが見つかりません。"
 
 #: src/OpenSSLUtils.cpp:2087
-#, fuzzy
 msgid "Cannot find the certificate subject."
-msgstr "証明書のサブジェクトが見つかりませんでした。"
+msgstr "証明書サブジェクトが見つかりません。"
 
 #: src/OpenSSLUtils.cpp:2186
-#, fuzzy
 msgid "Invalid caName: %1."
-msgstr "無効なcaName: %1"
+msgstr "不正なcaName: %1."
 
 #: src/OpenSSLUtils.cpp:2195
-#, fuzzy
 msgid "'%1' does not exist."
-msgstr "「%1」は存在しません。"
+msgstr "'%1 は存在しません。"
 
 #: src/OpenSSLUtils.cpp:2205
-#, fuzzy
 msgid "%1 still exists."
-msgstr "%1 はまだ存在しています。"
+msgstr "%1 が存在しています。"
 
 #: src/OpenSSLUtils.cpp:2216 src/OpenSSLUtils.cpp:2264
 #: src/OpenSSLUtils.cpp:2278 src/OpenSSLUtils.cpp:2292
 #: src/OpenSSLUtils.cpp:2306 src/OpenSSLUtils.cpp:2320
-#, fuzzy
 msgid "Cannot create directory: %1 (%2 [%3])."
-msgstr "ディレクトリを作成できません: %1 (%2 [%3])"
+msgstr "次のディレクトリを作成できません: %1 (%2 [%3])."
 
 #: src/OpenSSLUtils.cpp:2251
-#, fuzzy
 msgid "Cannot copy the configuration template."
-msgstr "設定テンプレートをコピーできません。"
+msgstr "環境設定テンプレートをコピーできません。"
 
 #: src/OpenSSLUtils.cpp:2338
-#, fuzzy
 msgid "Cannot create the file."
 msgstr "ファイルを作成できません。"
 
 #: src/RequestData_Priv.cpp:396
-#, fuzzy
 msgid "Cannot parse the request."
-msgstr "要求を解析できません"
+msgstr "リクエストを解析できません。"
 
 #: src/RequestData_Priv.cpp:409
-#, fuzzy
 msgid "Error while parsing the request."
-msgstr "要求を解析中にエラーが発生しました"
+msgstr "リクエスト解析中にエラーが発生しました。"
 
 #: src/RequestGenerationData.cpp:240
-#, fuzzy
 msgid "Invalid RequestGenerationData object."
-msgstr "無効な RequestGenerationDataオブジェクト"
+msgstr "無効なRequestGenerationDataオブジェクト。"
 
 #: src/StringExtensions.cpp:109 src/StringExtensions.cpp:167
-#, fuzzy
 msgid "Invalid value for NsBaseUrlExt."
-msgstr "NsBaseUrlExtの無効な値"
+msgstr "NsBaseUrlExtの値が無効です。"
 
 #: src/StringExtensions.cpp:179
-#, fuzzy
 msgid "NsBaseUrlExt is not present."
-msgstr "NsBaseUrlExtは存在しません"
+msgstr "NsBaseUrlExtが存在していません。"
 
 #: src/StringExtensions.cpp:191
-#, fuzzy
 msgid "Invalid NsBaseUrlExt object."
-msgstr "無効なNsBaseUrlExtオブジェクト"
+msgstr "無効なNsBaseUrlExtオブジェクト。"
 
 #: src/StringExtensions.cpp:274 src/StringExtensions.cpp:327
-#, fuzzy
 msgid "Invalid value for NsRevocationUrlExt."
-msgstr "NsRevocationUrlExtの無効な値"
+msgstr "NsRevocationUrlExtの値が無効です。"
 
 #: src/StringExtensions.cpp:338
-#, fuzzy
 msgid "NsRevocationUrlExt is not present."
-msgstr "NsRevocationUrlExtは存在しません。"
+msgstr "NsRevocationUrlExtが存在していません。"
 
 #: src/StringExtensions.cpp:349
-#, fuzzy
 msgid "Invalid NsRevocationUrlExt object."
-msgstr "無効なNsRevocationUrlExtオブジェクト"
+msgstr "無効なNsRevocationUrlExtオブジェクト。"
 
 #: src/StringExtensions.cpp:428 src/StringExtensions.cpp:481
-#, fuzzy
 msgid "Invalid value for NsCaRevocationUrlExt."
-msgstr "NsCaRevocationUrlExtの無効な値"
+msgstr "NsCaRevocationUrlExtの値が無効です。"
 
 #: src/StringExtensions.cpp:492
-#, fuzzy
 msgid "NsCaRevocationUrlExt is not present."
-msgstr "NsCaRevocationUrlExthは存在しません。"
+msgstr "NsCaRevocationUrlExtが存在していません。"
 
 #: src/StringExtensions.cpp:503
-#, fuzzy
 msgid "Invalid NsCaRevocationUrlExt object."
-msgstr "無効なNsCaRevocationUrlExtオブジェクト"
+msgstr "無効なNsCaRevocationUrlExtオブジェクト。"
 
 #: src/StringExtensions.cpp:581 src/StringExtensions.cpp:634
-#, fuzzy
 msgid "Invalid value for NsRenewalUrlExt."
-msgstr "NsRenewalUrlExtの無効な値"
+msgstr "NsRenewalUrlExtの値が無効です。"
 
 #: src/StringExtensions.cpp:645
-#, fuzzy
 msgid "NsRenewalUrlExt is not present."
-msgstr "NsRenewalUrlExtは存在しません"
+msgstr "NsRenewalUrlExtが存在していません。"
 
 #: src/StringExtensions.cpp:656
-#, fuzzy
 msgid "Invalid NsRenewalUrlExt object."
-msgstr "無効なNsRenewalUrlExtオブジェクト"
+msgstr "無効なNsRenewalUrlExtオブジェクト。"
 
 #: src/StringExtensions.cpp:733 src/StringExtensions.cpp:786
-#, fuzzy
 msgid "Invalid value for NsCaPolicyUrlExt."
-msgstr "NsCaPolicyUrlExtの無効な値"
+msgstr "NsCaPolicyUrlExtの値が無効です。"
 
 #: src/StringExtensions.cpp:797
-#, fuzzy
 msgid "NsCaPolicyUrlExt is not present."
-msgstr "NsCaPolicyUrlExtは存在しません。"
+msgstr "NsCaPolicyUrlExtが存在していません。"
 
 #: src/StringExtensions.cpp:808
-#, fuzzy
 msgid "Invalid NsCaPolicyUrlExt object."
-msgstr "無効なNsCaPolicyUrlExtオブジェクト"
+msgstr "無効なNsCaPolicyUrlExtオブジェクト。"
 
 #: src/StringExtensions.cpp:894
-#, fuzzy
 msgid "Invalid type: %1."
-msgstr "無効なタイプ %1。"
+msgstr "無効なタイプ: %1."
 
 #: src/StringExtensions.cpp:940
-#, fuzzy
 msgid "NsSslServerNameExt is not present."
-msgstr "NsSslServerNameExtは存在しません"
+msgstr "NsSslServerNameExtが存在していません。"
 
 #: src/StringExtensions.cpp:951
-#, fuzzy
 msgid "Invalid NsSslServerNameExt object."
-msgstr "無効なNsSslServerNameExtオブジェクト"
+msgstr "無効なNsSslServerNameExtオブジェクト。"
 
 #: src/StringExtensions.cpp:1066
-#, fuzzy
 msgid "NsCommentExt is not present."
-msgstr "NsCommentExtは存在しません"
+msgstr "NsCommentExtが存在していません。"
 
 #: src/StringExtensions.cpp:1077
-#, fuzzy
 msgid "Invalid NsCommentExt object."
-msgstr "無効なNsCommentExtオブジェクト"
+msgstr "無効なNsCommentExtオブジェクト。"
 
 #: src/SubjectAlternativeNameExtension.cpp:183
 #: src/SubjectAlternativeNameExtension.cpp:194
-#, fuzzy
 msgid "SubjectAlternativeNameExt is not present."
-msgstr "SubjectAlternativeNameExtは存在しません"
+msgstr "SubjectAlternativeNameExtが存在していません。"
 
 #: src/SubjectAlternativeNameExtension.cpp:207
-#, fuzzy
 msgid "Invalid SubjectAlternativeNameExt object."
-msgstr "無効なSubjectAlternativeNameExt オブジェクト"
+msgstr "無効なSubjectAlternativeNameExtオブジェクト。"
 
 #: src/SubjectKeyIdentifierExtension.cpp:129
 #: src/SubjectKeyIdentifierExtension.cpp:163
-#, fuzzy
 msgid "Invalid KeyID."
-msgstr "無効なKeyID"
+msgstr "無効なKeyID。"
 
 #: src/SubjectKeyIdentifierExtension.cpp:176
 #: src/SubjectKeyIdentifierExtension.cpp:187
-#, fuzzy
 msgid "SubjectKeyIdentifierExt is not present."
-msgstr "SubjectKeyIdentifierExtは存在しません"
+msgstr "SubjectKeyIdentifierExtが存在していません。"
 
 #: src/SubjectKeyIdentifierExtension.cpp:200
-#, fuzzy
 msgid "Invalid SubjectKeyIdentifierExt object."
-msgstr "無効なSubjectKeyIdentifierExtオブジェクト"
+msgstr "無効なSubjectKeyIdentifierExtオブジェクト。"
 
 #: src/X509v3CertificateExtensions_Priv.cpp:393
 #: src/X509v3CertificateExtensions_Priv.cpp:449
 #: src/X509v3RequestExtensions_Priv.cpp:133
 #: src/X509v3RequestExtensions_Priv.cpp:188
-#, fuzzy
 msgid "Extension occurred more than once: %1."
-msgstr "拡張が1回以上発生しました: %1"
+msgstr "拡張機能が複数回発生しています: %1."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:400
 #: src/X509v3CertificateExtensions_Priv.cpp:456
 #: src/X509v3RequestExtensions_Priv.cpp:140
 #: src/X509v3RequestExtensions_Priv.cpp:195
-#, fuzzy
 msgid "Unable to parse the certificate (NID: %1 Crit: %2)."
-msgstr "証明書を解析することができません(NID: %1 Crit: %2)。"
+msgstr "証明書を解析できません(NID: %1 Crit: %2)。"
 
 #: src/X509v3CertificateExtensions_Priv.cpp:508
 #: src/X509v3CertificateExtensions_Priv.cpp:574
@@ -811,9 +766,8 @@ msgstr "証明書を解析することができません(NID: %1 Crit: %2)。"
 #: src/X509v3RequestExtensions_Priv.cpp:314
 #: src/X509v3RequestExtensions_Priv.cpp:377
 #: src/X509v3RequestExtensions_Priv.cpp:438
-#, fuzzy
 msgid "Extension occurred more than once."
-msgstr "拡張が1回以上実行されました"
+msgstr "拡張機能が複数回発生しています。"
 
 #: src/X509v3CertificateExtensions_Priv.cpp:513
 #: src/X509v3CertificateExtensions_Priv.cpp:579
@@ -828,175 +782,129 @@ msgstr "拡張が1回以上実行されました"
 #: src/X509v3RequestExtensions_Priv.cpp:319
 #: src/X509v3RequestExtensions_Priv.cpp:383
 #: src/X509v3RequestExtensions_Priv.cpp:443
-#, fuzzy
 msgid "Unable to parse the certificate (Crit: %1)."
-msgstr "証明書を解析することができません(Crit: %1)"
+msgstr "証明書を解析できません(Crit: %1)。"
 
 #: src/X509v3CertificateExtensions_Priv.cpp:940
-#, fuzzy
 msgid "Invalid location in authorityInfoAccess."
-msgstr "authorityInfoAccessの無効な場所"
+msgstr "authorityInfoAccess内に無効な場所があります。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:174
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setNsBaseUrl."
-msgstr "X509v3CertificateIssueExts::setNsBaseUrl無効な値"
+msgstr "X509v3CertificateIssueExts::setNsBaseUrlの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:197
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setNsRevocationUrl."
-msgstr "X509v3CertificateIssueExts::setNsRevocationUrl無効な値"
+msgstr "X509v3CertificateIssueExts::setNsRevocationUrlの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:220
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCaRevocationUrl."
-msgstr "X509v3CertificateIssueExts::setNsCaRevocationUrl無効な値"
+msgstr "X509v3CertificateIssueExts::setNsCaRevocationUrlの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:243
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setNsRenewalUrl."
-msgstr "X509v3CertificateIssueExts::setNsRenewalUr無効な値"
+msgstr "X509v3CertificateIssueExts::setNsRenewalUrlの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:266
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCaPolicyUrl."
-msgstr "X509v3CertificateIssueExts::setNsCaPolicyUrl無効な値"
+msgstr "X509v3CertificateIssueExts::setNsCaPolicyUrlの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:289
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setNsSslServerName."
-msgstr "X509v3CertificateIssueExts::setNsSslServerName無効な値"
+msgstr "X509v3CertificateIssueExts::setNsSslServerNameの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:312
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setNsComment."
-msgstr "X509v3CertificateIssueExts::setNsComment無効な値"
+msgstr "X509v3CertificateIssueExts::setNsCommentの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:335
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCertType."
-msgstr "X509v3CertificateIssueExts::setNsCertType無効な値"
+msgstr "X509v3CertificateIssueExts::setNsCertTypeの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:358
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setKeyUsage."
-msgstr "X509v3CertificateIssueExts::setKeyUsage無効な値"
+msgstr "X509v3CertificateIssueExts::setKeyUsageの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:381
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setBasicConstraints."
-msgstr "X509v3CertificateIssueExts::setBasicConstraints無効な値"
+msgstr "X509v3CertificateIssueExts::setBasicConstraintsの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:404
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setExtendedKeyUsage."
-msgstr "X509v3CertificateIssueExts::setExtendedKeyUsage無効な値"
+msgstr "X509v3CertificateIssueExts::setExtendedKeyUsageの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:427
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setSubjectKeyIdentifier."
-msgstr "X509v3CertificateIssueExts::setSubjectKeyIdentifier無効な値"
+msgstr "X509v3CertificateIssueExts::setSubjectKeyIdentifierの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:450
-#, fuzzy
 msgid ""
 "Invalid value for X509v3CertificateIssueExts::setAuthorityKeyIdentifier."
-msgstr "X509v3CertificateIssueExts::setAuthorityKeyIdentifier無効な値"
+msgstr "X509v3CertificateIssueExts::setAuthorityKeyIdentifierの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:473
-#, fuzzy
 msgid ""
 "Invalid value for X509v3CertificateIssueExts::setSubjectAlternativeName."
-msgstr "X509v3CertificateIssueExts::setSubjectAlternativeName無効な値"
+msgstr "X509v3CertificateIssueExts::setSubjectAlternativeNameの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:496
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setIssuerAlternativeName."
-msgstr "X509v3CertificateIssueExts::setIssuerAlternativeName無効な値"
+msgstr "X509v3CertificateIssueExts::setIssuerAlternativeNameの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:519
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setAuthorityInfoAccess."
-msgstr "X509v3CertificateIssueExts::setAuthorityInfoAccess無効な値"
+msgstr "X509v3CertificateIssueExts::setAuthorityInfoAccessの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:542
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setCRLDistributionPoints."
-msgstr "X509v3CertificateIssueExts::setCRLDistributionPoints無効な値"
+msgstr "X509v3CertificateIssueExts::setCRLDistributionPointsの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:565
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setCertificatePolicies."
-msgstr "X509v3CertificateIssueExts::setCertificatePolicies無効な値"
+msgstr "X509v3CertificateIssueExts::setCertificatePoliciesの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:589
 #: src/X509v3CRLGenerationExtensions.cpp:149
 #: src/X509v3RequestExtensions.cpp:255
-#, fuzzy
 msgid "Invalid X509v3RequestExts object."
-msgstr "無効なX509v3RequestExtsオブジェクト"
+msgstr "X509v3RequestExtsオブジェクトが無効です。"
 
 #: src/X509v3CRLGenerationExtensions.cpp:102
-#, fuzzy
 msgid "Invalid value for X509v3CRLGenerationExts::setAuthorityKeyIdentifier."
-msgstr "X509v3CRLGenerationExts::setAuthorityKeyIdentifier無効値"
+msgstr "X509v3CRLGenerationExts::setAuthorityKeyIdentifierの値が無効です。"
 
 #: src/X509v3CRLGenerationExtensions.cpp:125
-#, fuzzy
 msgid "Invalid value for X509v3CRLGenerationExts::setIssuerAlternativeName."
-msgstr "X509v3CRLGenerationExts::setIssuerAlternativeName無効な値"
+msgstr "X509v3CRLGenerationExts::setIssuerAlternativeNameの値が無効です。"
 
 #: src/X509v3RequestExtensions.cpp:70
-#, fuzzy
 msgid "Invalid value for X509v3RequestExts::setNsSslServerName."
-msgstr "X509v3RequestExts::setNsSslServerName無効な値"
+msgstr "X509v3RequestExts::setNsSslServerNameの値が無効です。"
 
 #: src/X509v3RequestExtensions.cpp:93
-#, fuzzy
 msgid "Invalid value for X509v3RequestExts::setNsComment."
-msgstr "無効なX509v3RequestExtsオブジェクト"
+msgstr "X509v3RequestExts::setNsCommentの値が無効です。"
 
 #: src/X509v3RequestExtensions.cpp:116
-#, fuzzy
 msgid "Invalid value for X509v3RequestExts::setNsCertType."
-msgstr "NsCertTypeExtの値が無効です。"
+msgstr "X509v3RequestExts::setNsCertTypeの値が無効です。"
 
 #: src/X509v3RequestExtensions.cpp:139
-#, fuzzy
 msgid "Invalid value for X509v3RequestExts::setKeyUsage."
-msgstr "keyUsageの無効な値。"
+msgstr "X509v3RequestExts::setKeyUsageの値が無効です。"
 
 #: src/X509v3RequestExtensions.cpp:162
-#, fuzzy
 msgid "Invalid value for X509v3RequestExts::setBasicConstraints."
-msgstr "X509v3RequestExts::setBasicConstraints無効な値"
+msgstr "X509v3RequestExts::setBasicConstraintsの値が無効です。"
 
 #: src/X509v3RequestExtensions.cpp:185
-#, fuzzy
 msgid "Invalid value for X509v3RequestExts::setExtendedKeyUsage."
-msgstr "X509v3RequestExts::setExtendedKeyUsage無効な値"
+msgstr "X509v3RequestExts::setExtendedKeyUsageの値が無効です。"
 
 #: src/X509v3RequestExtensions.cpp:208
-#, fuzzy
 msgid "Invalid value for X509v3RequestExts::setSubjectKeyIdentifier."
-msgstr "X509v3RequestExts::setSubjectKeyIdentifier無効な値"
+msgstr "X509v3RequestExts::setSubjectKeyIdentifierの値が無効です。"
 
 #: src/X509v3RequestExtensions.cpp:231
-#, fuzzy
 msgid "Invalid value for X509v3RequestExts::setSubjectAlternativeName."
-msgstr "X509v3RequestExts::setSubjectAlternativeName無効な値"
-
-#~ msgid "Out password is required"
-#~ msgstr "アウトパスワードが必要です。"
-
-#~ msgid "wrong type: %1"
-#~ msgstr "正しくないタイプ: %1"
-
-#~ msgid "X509v3RequestExts::setNsComment invalid value"
-#~ msgstr "X509v3RequestExts::setNsComment無効な値"
-
-#~ msgid "X509v3RequestExts::setNsCertType invalid value"
-#~ msgstr "X509v3RequestExts::setNsCertType無効な値"
-
-#~ msgid "X509v3RequestExts::setKeyUsage invalid value"
-#~ msgstr "X509v3RequestExts::setKeyUsage無効な値"
+msgstr "X509v3RequestExts::setSubjectAlternativeNameの値が無効です。"

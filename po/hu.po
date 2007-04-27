@@ -1,23 +1,26 @@
 # translation of limal-ca-mgm.hu.po to Hungarian
+# translation of limal-ca-mgm.po to
 # translation of limal-ca-mgm.hu.po to
 # @TITLE@
 # Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
 #
 # This file is distributed under the same license as @PACKAGE@ package. FIRST
 #
-# Kalman Kemenczy <kkemenczy@novell.com>, 2006.
+# Kalman Kemenczy <kkemenczy@novell.com>, 2006, 2007.
+# Gabor Kelemen <kelemeng@gnome.hu>, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm.hu\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2007-01-15 17:19+0100\n"
-"PO-Revision-Date: 2006-09-28 10:13+0200\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2007-04-12 17:29+0200\n"
+"PO-Revision-Date: 2007-01-30 12:55+0100\n"
+"Last-Translator: Kalman Kemenczy <kkemenczy@novell.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:110
 #: src/AuthorityInfoAccessExtension.cpp:139
@@ -59,12 +62,11 @@ msgstr "Érvénytelen accessOID"
 #: src/SubjectKeyIdentifierExtension.cpp:85
 #: src/SubjectKeyIdentifierExtension.cpp:208
 msgid "Wrong type: %1."
-msgstr "Érvénytelen tipus: %1"
+msgstr "Érvénytelen típus: %1"
 
 #: src/AuthorityInfoAccessExtension.cpp:310
-#, fuzzy
 msgid "Invalid AuthorityInformation in the information list."
-msgstr "Érvénytelen AuthorityInformation az infolistában."
+msgstr "Érvénytelen AuthorityInformation az információlistában."
 
 #: src/AuthorityInfoAccessExtension.cpp:323
 msgid "AuthorityInfoAccessExt is not present."
@@ -183,7 +185,7 @@ msgstr "Érvénytelen kiadási adat."
 
 #: src/CA.cpp:395
 msgid "The CA expires before the certificate should expire."
-msgstr "A CA érvényessége a lejárati idő elött lejárt."
+msgstr "A CA érvényessége a lejárati idő előtt lejárt."
 
 #: src/CA.cpp:473
 msgid "Issuing the certificate failed."
@@ -191,7 +193,7 @@ msgstr "A tanúsítvány kiadása sikertelen."
 
 #: src/CA.cpp:490
 msgid "File %1 not found in the repository."
-msgstr "A(z) %1 fájl nem található tanusítványtárban."
+msgstr "A(z) %1 fájl nem található tanúsítványtárban."
 
 #: src/CA.cpp:497 src/CRLData_Priv.cpp:179
 msgid "Invalid CRL reason."
@@ -329,7 +331,7 @@ msgstr "A konfigurációs fájl érvénytelen szabályra hivatkozik."
 
 #: src/CA.cpp:1817 src/CA.cpp:1827
 msgid "The configuration is not initialized."
-msgstr "A konfiguráció inicializációja sikertelen."
+msgstr "A konfiguráció nincs inicializálva."
 
 #: src/CA.cpp:1835 src/DNObject.cpp:259 src/DNObject_Priv.cpp:199
 msgid "Missing section 'distinguished_name' in the configuration file."
@@ -368,16 +370,16 @@ msgstr "Az RSA kulcs bekérése sikertelen."
 
 #: src/CertificateData_Priv.cpp:411 src/RequestData_Priv.cpp:213
 msgid "Unsupported public key type."
-msgstr "Nem támogatott nyílvános kulcs típus."
+msgstr "Nem támogatott nyilvános kulcs típus."
 
 #: src/CertificateData_Priv.cpp:447 src/RequestData_Priv.cpp:246
 msgid "Unsupported public key algorithm."
-msgstr "Nem támogatott nyílvános kulcs algoritmus."
+msgstr "Nem támogatott nyilvános kulcs algoritmus."
 
 #: src/CertificateData_Priv.cpp:479 src/CRLData_Priv.cpp:424
 #: src/RequestData_Priv.cpp:276
 msgid "Unsupported signature algorithm %1."
-msgstr "Nem támogatott nyílvános aláírás algoritmus: %1."
+msgstr "Nem támogatott nyilvános aláírás algoritmus: %1."
 
 #: src/CertificateIssueData.cpp:211
 msgid "Invalid CertificateIssueData object."
@@ -454,7 +456,6 @@ msgid "Invalid type %1."
 msgstr "Érvénytelen típus: %1."
 
 #: src/DNObject_Priv.cpp:159
-#, fuzzy
 msgid "Cannot parse DN line: %1."
 msgstr "A DN sor feldolgozása sikertelen: %1."
 
@@ -518,7 +519,7 @@ msgstr "A fájl mérete túl nagy: %1."
 
 #: src/LocalManagement.cpp:463 src/LocalManagement.cpp:518
 msgid "Cannot open file %1."
-msgstr "A fájl nem nyítható meg: %1."
+msgstr "A fájl nem nyitható meg: %1."
 
 #: src/LocalManagement.cpp:483
 msgid "Cannot read from file %1."
@@ -581,236 +582,193 @@ msgstr ""
 "A tanúsítvány állapotának lekérdezése a(z) %1 sorozatszámmal sikertelen (%2)."
 
 #: src/OpenSSLUtils.cpp:979
-#, fuzzy
 msgid "The key file does not exist."
-msgstr "A kulcsfájl nem található"
+msgstr "A kulcsfájl nem létezik."
 
 #: src/OpenSSLUtils.cpp:1474
 msgid "The password for encrypting the output is required."
-msgstr ""
+msgstr "A kimenet visszafejtéséhez szükséges jelszó szükséges."
 
 #: src/OpenSSLUtils.cpp:1579
-#, fuzzy
 msgid "The PKCS12 password is required."
-msgstr "PKCS12 jelszó szükséges"
+msgstr "A PKCS12 jelszó szükséges."
 
 #: src/OpenSSLUtils.cpp:1665 src/OpenSSLUtils.cpp:1865
 #: src/OpenSSLUtils.cpp:2017
-#, fuzzy
 msgid "Cannot read directory: %1 (%2) [%3]."
-msgstr "A könyvtár nem olvasható: %1 (%2) [%3]"
+msgstr "A könyvtár nem olvasható: %1 (%2) [%3]."
 
 #: src/OpenSSLUtils.cpp:1715
-#, fuzzy
 msgid "No serial number found in %1."
-msgstr "Sorozatszám nem található: %1"
+msgstr "Nem található sorozatszám itt: %1."
 
 #: src/OpenSSLUtils.cpp:1735
-#, fuzzy
 msgid "The request already exists."
 msgstr "A kérés már létezik."
 
 #: src/OpenSSLUtils.cpp:1926
-#, fuzzy
 msgid "Cannot find the request subject."
-msgstr "A kérés tárgya nam található."
+msgstr "A kérés tárgya nem található."
 
 #: src/OpenSSLUtils.cpp:2087
-#, fuzzy
 msgid "Cannot find the certificate subject."
 msgstr "A tanúsítvány tárgya nem található."
 
 #: src/OpenSSLUtils.cpp:2186
-#, fuzzy
 msgid "Invalid caName: %1."
-msgstr "Érvénytelen CaName: %s"
+msgstr "Érvénytelen caName: %1."
 
 #: src/OpenSSLUtils.cpp:2195
-#, fuzzy
 msgid "'%1' does not exist."
-msgstr "A következő fájl nem létezik: '%1'"
+msgstr "A következő fájl nem létezik: '%1'."
 
 #: src/OpenSSLUtils.cpp:2205
-#, fuzzy
 msgid "%1 still exists."
-msgstr "A(z) %1 továbbra is létezik"
+msgstr "A(z) %1 továbbra is létezik."
 
 #: src/OpenSSLUtils.cpp:2216 src/OpenSSLUtils.cpp:2264
 #: src/OpenSSLUtils.cpp:2278 src/OpenSSLUtils.cpp:2292
 #: src/OpenSSLUtils.cpp:2306 src/OpenSSLUtils.cpp:2320
-#, fuzzy
 msgid "Cannot create directory: %1 (%2 [%3])."
-msgstr "Nem hozható létre könyvtár: %1 (%2 [%3])"
+msgstr "Nem hozható létre könyvtár: %1 (%2 [%3])."
 
 # /tmp/xapi:49
 #: src/OpenSSLUtils.cpp:2251
-#, fuzzy
 msgid "Cannot copy the configuration template."
-msgstr "A konfigurációs sablon nem másolható"
+msgstr "A konfigurációs sablon nem másolható."
 
 #: src/OpenSSLUtils.cpp:2338
-#, fuzzy
 msgid "Cannot create the file."
-msgstr "Nem hozható létre fájl"
+msgstr "Nem hozható létre a fájl."
 
 #: src/RequestData_Priv.cpp:396
-#, fuzzy
 msgid "Cannot parse the request."
-msgstr "A kérés feldolgozása sikertelen"
+msgstr "A kérés feldolgozása sikertelen."
 
 #: src/RequestData_Priv.cpp:409
-#, fuzzy
 msgid "Error while parsing the request."
-msgstr "A kérés feldolgozása sikertelen"
+msgstr "Hiba a kérés feldolgozása során."
 
 #: src/RequestGenerationData.cpp:240
-#, fuzzy
 msgid "Invalid RequestGenerationData object."
-msgstr "Érvénytelen RequestGenerationData objektum"
+msgstr "Érvénytelen RequestGenerationData objektum."
 
 #: src/StringExtensions.cpp:109 src/StringExtensions.cpp:167
-#, fuzzy
 msgid "Invalid value for NsBaseUrlExt."
-msgstr "Érvénytelen NsBaseUrlExt érték"
+msgstr "Érvénytelen NsBaseUrlExt érték."
 
 #: src/StringExtensions.cpp:179
-#, fuzzy
 msgid "NsBaseUrlExt is not present."
-msgstr "Nincs NsBaseUrlExt"
+msgstr "Nincs NsBaseUrlExt."
 
 #: src/StringExtensions.cpp:191
-#, fuzzy
 msgid "Invalid NsBaseUrlExt object."
-msgstr "Érvénytelen NsBaseUrlExt objektum"
+msgstr "Érvénytelen NsBaseUrlExt objektum."
 
 #: src/StringExtensions.cpp:274 src/StringExtensions.cpp:327
-#, fuzzy
 msgid "Invalid value for NsRevocationUrlExt."
-msgstr "Érvénytelen NsRevocationUrlExt érték"
+msgstr "Érvénytelen NsRevocationUrlExt érték."
 
 #: src/StringExtensions.cpp:338
-#, fuzzy
 msgid "NsRevocationUrlExt is not present."
-msgstr "Nincs NsRevocationUrlExt"
+msgstr "Nincs NsRevocationUrlExt."
 
 #: src/StringExtensions.cpp:349
-#, fuzzy
 msgid "Invalid NsRevocationUrlExt object."
-msgstr "Érvénytelen NsRevocationUrlExt objektum"
+msgstr "Érvénytelen NsRevocationUrlExt objektum."
 
 #: src/StringExtensions.cpp:428 src/StringExtensions.cpp:481
-#, fuzzy
 msgid "Invalid value for NsCaRevocationUrlExt."
-msgstr "Érvénytelen NsCaRevocationUrlExt érték"
+msgstr "Érvénytelen NsCaRevocationUrlExt érték."
 
 #: src/StringExtensions.cpp:492
-#, fuzzy
 msgid "NsCaRevocationUrlExt is not present."
-msgstr "Nincs NsCaRevocationUrlExt"
+msgstr "Nincs NsCaRevocationUrlExt."
 
 #: src/StringExtensions.cpp:503
-#, fuzzy
 msgid "Invalid NsCaRevocationUrlExt object."
-msgstr "Érvénytelen NsCaRevocationUrlExt objektum"
+msgstr "Érvénytelen NsCaRevocationUrlExt objektum."
 
 #: src/StringExtensions.cpp:581 src/StringExtensions.cpp:634
-#, fuzzy
 msgid "Invalid value for NsRenewalUrlExt."
-msgstr "Érvénytelen NsRenewalUrlExt érték"
+msgstr "Érvénytelen NsRenewalUrlExt érték."
 
 #: src/StringExtensions.cpp:645
-#, fuzzy
 msgid "NsRenewalUrlExt is not present."
-msgstr "Nincs NsRenewalUrlExt"
+msgstr "Nincs NsRenewalUrlExt."
 
 #: src/StringExtensions.cpp:656
-#, fuzzy
 msgid "Invalid NsRenewalUrlExt object."
-msgstr "Érvénytelen NsRenewalUrlExt objektum"
+msgstr "Érvénytelen NsRenewalUrlExt objektum."
 
 #: src/StringExtensions.cpp:733 src/StringExtensions.cpp:786
-#, fuzzy
 msgid "Invalid value for NsCaPolicyUrlExt."
-msgstr "Érvénytelen NsCaPolicyUrlExt érték"
+msgstr "Érvénytelen NsCaPolicyUrlExt érték."
 
 #: src/StringExtensions.cpp:797
-#, fuzzy
 msgid "NsCaPolicyUrlExt is not present."
-msgstr "Nincs NsCaPolicyUrlExt"
+msgstr "Nincs NsCaPolicyUrlExt."
 
 #: src/StringExtensions.cpp:808
-#, fuzzy
 msgid "Invalid NsCaPolicyUrlExt object."
-msgstr "Érvénytelen NsCaPolicyUrlExt objektum"
+msgstr "Érvénytelen NsCaPolicyUrlExt objektum."
 
 #: src/StringExtensions.cpp:894
-#, fuzzy
 msgid "Invalid type: %1."
 msgstr "Érvénytelen típus: %1."
 
 #: src/StringExtensions.cpp:940
-#, fuzzy
 msgid "NsSslServerNameExt is not present."
-msgstr "Nincs NsSslServerNameExt"
+msgstr "Nincs NsSslServerNameExt."
 
 #: src/StringExtensions.cpp:951
-#, fuzzy
 msgid "Invalid NsSslServerNameExt object."
-msgstr "Érvénytelen NsSslServerNameExt objektum"
+msgstr "Érvénytelen NsSslServerNameExt objektum."
 
 #: src/StringExtensions.cpp:1066
-#, fuzzy
 msgid "NsCommentExt is not present."
-msgstr "Nincs NsCommentExt"
+msgstr "Nincs NsCommentExt."
 
 #: src/StringExtensions.cpp:1077
-#, fuzzy
 msgid "Invalid NsCommentExt object."
-msgstr "Érvénytelen NsCommentExt objektum"
+msgstr "Érvénytelen NsCommentExt objektum."
 
 #: src/SubjectAlternativeNameExtension.cpp:183
 #: src/SubjectAlternativeNameExtension.cpp:194
-#, fuzzy
 msgid "SubjectAlternativeNameExt is not present."
-msgstr "Nincs SubjectAlternativeNameExt"
+msgstr "Nincs SubjectAlternativeNameExt."
 
 #: src/SubjectAlternativeNameExtension.cpp:207
-#, fuzzy
 msgid "Invalid SubjectAlternativeNameExt object."
-msgstr "Érvénytelen SubjectAlternativeNameExt objektum"
+msgstr "Érvénytelen SubjectAlternativeNameExt objektum."
 
 #: src/SubjectKeyIdentifierExtension.cpp:129
 #: src/SubjectKeyIdentifierExtension.cpp:163
-#, fuzzy
 msgid "Invalid KeyID."
-msgstr "Érvénytelen KeyID"
+msgstr "Érvénytelen KeyID."
 
 #: src/SubjectKeyIdentifierExtension.cpp:176
 #: src/SubjectKeyIdentifierExtension.cpp:187
-#, fuzzy
 msgid "SubjectKeyIdentifierExt is not present."
-msgstr "Nincs SubjectKeyIdentifierExt"
+msgstr "Nincs SubjectKeyIdentifierExt."
 
 #: src/SubjectKeyIdentifierExtension.cpp:200
-#, fuzzy
 msgid "Invalid SubjectKeyIdentifierExt object."
-msgstr "Érvénytelen SubjectKeyIdentifierExt objektum"
+msgstr "Érvénytelen SubjectKeyIdentifierExt objektum."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:393
 #: src/X509v3CertificateExtensions_Priv.cpp:449
 #: src/X509v3RequestExtensions_Priv.cpp:133
 #: src/X509v3RequestExtensions_Priv.cpp:188
-#, fuzzy
 msgid "Extension occurred more than once: %1."
-msgstr "A kiterjesztés egyszer már szerepel: %1"
+msgstr "A kiterjesztés többször szerepel: %1."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:400
 #: src/X509v3CertificateExtensions_Priv.cpp:456
 #: src/X509v3RequestExtensions_Priv.cpp:140
 #: src/X509v3RequestExtensions_Priv.cpp:195
-#, fuzzy
 msgid "Unable to parse the certificate (NID: %1 Crit: %2)."
-msgstr "A tanúsítvány feldolgozása sikertelen (NID: %1 Crit: %2)"
+msgstr "A tanúsítvány feldolgozása sikertelen (NID: %1 Crit: %2)."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:508
 #: src/X509v3CertificateExtensions_Priv.cpp:574
@@ -825,9 +783,8 @@ msgstr "A tanúsítvány feldolgozása sikertelen (NID: %1 Crit: %2)"
 #: src/X509v3RequestExtensions_Priv.cpp:314
 #: src/X509v3RequestExtensions_Priv.cpp:377
 #: src/X509v3RequestExtensions_Priv.cpp:438
-#, fuzzy
 msgid "Extension occurred more than once."
-msgstr "A kiterjesztés egyszer már szerepel"
+msgstr "A kiterjesztés többször szerepel."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:513
 #: src/X509v3CertificateExtensions_Priv.cpp:579
@@ -842,180 +799,134 @@ msgstr "A kiterjesztés egyszer már szerepel"
 #: src/X509v3RequestExtensions_Priv.cpp:319
 #: src/X509v3RequestExtensions_Priv.cpp:383
 #: src/X509v3RequestExtensions_Priv.cpp:443
-#, fuzzy
 msgid "Unable to parse the certificate (Crit: %1)."
-msgstr "A tanúsítvány feldolgozása sikertelen (Crit: %1)"
+msgstr "A tanúsítvány feldolgozása sikertelen (Crit: %1)."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:940
-#, fuzzy
 msgid "Invalid location in authorityInfoAccess."
-msgstr "Az authorityInfoAccess helye érvénytelen"
+msgstr "Az authorityInfoAccess helye érvénytelen."
 
 #: src/X509v3CertificateIssueExtensions.cpp:174
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setNsBaseUrl."
-msgstr "Érvénytelen érték: X509v3CertificateIssueExts::setNsBaseUrl"
+msgstr "Érvénytelen érték: X509v3CertificateIssueExts::setNsBaseUrl."
 
 #: src/X509v3CertificateIssueExtensions.cpp:197
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setNsRevocationUrl."
-msgstr "Érvénytelen érték: X509v3CertificateIssueExts::setNsRevocationUrl"
+msgstr "Érvénytelen érték: X509v3CertificateIssueExts::setNsRevocationUrl."
 
 #: src/X509v3CertificateIssueExtensions.cpp:220
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCaRevocationUrl."
-msgstr "Érvénytelen érték: X509v3CertificateIssueExts::setNsCaRevocationUrl"
+msgstr "Érvénytelen érték: X509v3CertificateIssueExts::setNsCaRevocationUrl."
 
 #: src/X509v3CertificateIssueExtensions.cpp:243
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setNsRenewalUrl."
-msgstr "Érvénytelen érték: X509v3CertificateIssueExts::setNsRenewalUrl"
+msgstr "Érvénytelen érték: X509v3CertificateIssueExts::setNsRenewalUrl."
 
 #: src/X509v3CertificateIssueExtensions.cpp:266
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCaPolicyUrl."
-msgstr "Érvénytelen érték: X509v3CertificateIssueExts::setNsCaPolicyUrl"
+msgstr "Érvénytelen érték: X509v3CertificateIssueExts::setNsCaPolicyUrl."
 
 #: src/X509v3CertificateIssueExtensions.cpp:289
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setNsSslServerName."
-msgstr "Érvénytelen érték: X509v3CertificateIssueExts::setNsSslServerName"
+msgstr "Érvénytelen érték: X509v3CertificateIssueExts::setNsSslServerName."
 
 #: src/X509v3CertificateIssueExtensions.cpp:312
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setNsComment."
-msgstr "Érvénytelen érték: X509v3CertificateIssueExts::setNsComment"
+msgstr "Érvénytelen érték: X509v3CertificateIssueExts::setNsComment."
 
 #: src/X509v3CertificateIssueExtensions.cpp:335
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCertType."
-msgstr "Érvénytelen érték: X509v3CertificateIssueExts::setNsCertType"
+msgstr "Érvénytelen érték: X509v3CertificateIssueExts::setNsCertType."
 
 #: src/X509v3CertificateIssueExtensions.cpp:358
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setKeyUsage."
-msgstr "Érvénytelen érték: X509v3CertificateIssueExts::setKeyUsage"
+msgstr "Érvénytelen érték: X509v3CertificateIssueExts::setKeyUsage."
 
 #: src/X509v3CertificateIssueExtensions.cpp:381
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setBasicConstraints."
-msgstr "Érvénytelen érték: X509v3CertificateIssueExts::setBasicConstraints"
+msgstr "Érvénytelen érték: X509v3CertificateIssueExts::setBasicConstraints."
 
 #: src/X509v3CertificateIssueExtensions.cpp:404
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setExtendedKeyUsage."
-msgstr "Érvénytelen érték: X509v3CertificateIssueExts::setExtendedKeyUsage"
+msgstr "Érvénytelen érték: X509v3CertificateIssueExts::setExtendedKeyUsage."
 
 #: src/X509v3CertificateIssueExtensions.cpp:427
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setSubjectKeyIdentifier."
-msgstr "Érvénytelen érték: X509v3CertificateIssueExts::setSubjectKeyIdentifier"
+msgstr ""
+"Érvénytelen érték: X509v3CertificateIssueExts::setSubjectKeyIdentifier."
 
 #: src/X509v3CertificateIssueExtensions.cpp:450
-#, fuzzy
 msgid ""
 "Invalid value for X509v3CertificateIssueExts::setAuthorityKeyIdentifier."
 msgstr ""
-"Érvénytelen érték: X509v3CertificateIssueExts::setAuthorityKeyIdentifier"
+"Érvénytelen érték: X509v3CertificateIssueExts::setAuthorityKeyIdentifier."
 
 #: src/X509v3CertificateIssueExtensions.cpp:473
-#, fuzzy
 msgid ""
 "Invalid value for X509v3CertificateIssueExts::setSubjectAlternativeName."
 msgstr ""
-"Érvénytelen érték: X509v3CertificateIssueExts::setSubjectAlternativeName"
+"Érvénytelen érték: X509v3CertificateIssueExts::setSubjectAlternativeName."
 
 #: src/X509v3CertificateIssueExtensions.cpp:496
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setIssuerAlternativeName."
 msgstr ""
-"Érvénytelen érték: X509v3CertificateIssueExts::setIssuerAlternativeName"
+"Érvénytelen érték: X509v3CertificateIssueExts::setIssuerAlternativeName."
 
 #: src/X509v3CertificateIssueExtensions.cpp:519
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setAuthorityInfoAccess."
-msgstr "Érvénytelen érték: X509v3CertificateIssueExts::setAuthorityInfoAccess"
+msgstr "Érvénytelen érték: X509v3CertificateIssueExts::setAuthorityInfoAccess."
 
 #: src/X509v3CertificateIssueExtensions.cpp:542
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setCRLDistributionPoints."
 msgstr ""
-"Érvénytelen érték: X509v3CertificateIssueExts::setCRLDistributionPoints"
+"Érvénytelen érték: X509v3CertificateIssueExts::setCRLDistributionPoints."
 
 #: src/X509v3CertificateIssueExtensions.cpp:565
-#, fuzzy
 msgid "Invalid value for X509v3CertificateIssueExts::setCertificatePolicies."
-msgstr "Érvénytelen érték: X509v3CertificateIssueExts::setCertificatePolicies"
+msgstr "Érvénytelen érték: X509v3CertificateIssueExts::setCertificatePolicies."
 
 #: src/X509v3CertificateIssueExtensions.cpp:589
 #: src/X509v3CRLGenerationExtensions.cpp:149
 #: src/X509v3RequestExtensions.cpp:255
-#, fuzzy
 msgid "Invalid X509v3RequestExts object."
-msgstr "Érvénytelen X509v3RequestExts objektum"
+msgstr "Érvénytelen X509v3RequestExts objektum."
 
 #: src/X509v3CRLGenerationExtensions.cpp:102
-#, fuzzy
 msgid "Invalid value for X509v3CRLGenerationExts::setAuthorityKeyIdentifier."
-msgstr "Érvénytelen érték: X509v3CRLGenerationExts::setAuthorityKeyIdentifier"
+msgstr "Érvénytelen érték: X509v3CRLGenerationExts::setAuthorityKeyIdentifier."
 
 #: src/X509v3CRLGenerationExtensions.cpp:125
-#, fuzzy
 msgid "Invalid value for X509v3CRLGenerationExts::setIssuerAlternativeName."
-msgstr "Érvénytelen érték: X509v3CRLGenerationExts::setIssuerAlternativeName"
+msgstr "Érvénytelen érték: X509v3CRLGenerationExts::setIssuerAlternativeName."
 
 #: src/X509v3RequestExtensions.cpp:70
-#, fuzzy
 msgid "Invalid value for X509v3RequestExts::setNsSslServerName."
-msgstr "Érvénytelen érték: X509v3RequestExts::setNsSslServerName"
+msgstr "Érvénytelen érték: X509v3RequestExts::setNsSslServerName."
 
 #: src/X509v3RequestExtensions.cpp:93
-#, fuzzy
 msgid "Invalid value for X509v3RequestExts::setNsComment."
-msgstr "Érvénytelen X509v3RequestExts objektum"
+msgstr "Érvénytelen érték: X509v3RequestExts::setNsComment."
 
 #: src/X509v3RequestExtensions.cpp:116
-#, fuzzy
 msgid "Invalid value for X509v3RequestExts::setNsCertType."
-msgstr "Érvénytelen NsCertTypeExt érték."
+msgstr "Érvénytelen érték: X509v3RequestExts::setNsCertType."
 
 #: src/X509v3RequestExtensions.cpp:139
-#, fuzzy
 msgid "Invalid value for X509v3RequestExts::setKeyUsage."
-msgstr "Érvénytelen keyUsage érték."
+msgstr "Érvénytelen érték: X509v3RequestExts::setKeyUsage."
 
 #: src/X509v3RequestExtensions.cpp:162
-#, fuzzy
 msgid "Invalid value for X509v3RequestExts::setBasicConstraints."
-msgstr "Érvénytelen érték: X509v3RequestExts::setBasicConstraints"
+msgstr "Érvénytelen érték: X509v3RequestExts::setBasicConstraints."
 
 #: src/X509v3RequestExtensions.cpp:185
-#, fuzzy
 msgid "Invalid value for X509v3RequestExts::setExtendedKeyUsage."
-msgstr "Érvénytelen érték: X509v3RequestExts::setExtendedKeyUsage"
+msgstr "Érvénytelen érték: X509v3RequestExts::setExtendedKeyUsage."
 
 #: src/X509v3RequestExtensions.cpp:208
-#, fuzzy
 msgid "Invalid value for X509v3RequestExts::setSubjectKeyIdentifier."
-msgstr "Érvénytelen érték: X509v3RequestExts::setSubjectKeyIdentifier"
+msgstr "Érvénytelen érték: X509v3RequestExts::setSubjectKeyIdentifier."
 
 #: src/X509v3RequestExtensions.cpp:231
-#, fuzzy
 msgid "Invalid value for X509v3RequestExts::setSubjectAlternativeName."
-msgstr "Érvénytelen érték: X509v3RequestExts::setSubjectAlternativeName"
-
-# 50168 AttribValues/delnotify
-#~ msgid "Out password is required"
-#~ msgstr "A kimeneti jelszó megadása kötelező"
-
-#~ msgid "wrong type: %1"
-#~ msgstr "híbás típus: %1"
-
-#~ msgid "X509v3RequestExts::setNsComment invalid value"
-#~ msgstr "Érvénytelen érték: X509v3RequestExts::setNsComment"
-
-#~ msgid "X509v3RequestExts::setNsCertType invalid value"
-#~ msgstr "Érvénytelen érték: X509v3RequestExts::setNsCertType"
-
-#~ msgid "X509v3RequestExts::setKeyUsage invalid value"
-#~ msgstr "Érvénytelen érték: X509v3RequestExts::setKeyUsage"
+msgstr "Érvénytelen érték: X509v3RequestExts::setSubjectAlternativeName."
