@@ -1,7 +1,14 @@
 @HEADER-COMMENT@
 
 @HEADER@
-BuildRequires: curl gcc-c++ limal-devel limal-perl limal-devtools openssl-devel perl-gettext sgml-skel
+BuildRequires: curl gcc-c++ limal-devel limal-perl limal-devtools perl-gettext sgml-skel
+
+%if 0%{suse_version} > 1003
+BuildRequires: libopenssl-devel openssl
+Requires: openssl
+%else
+BuildRequires: openssl-devel
+%endif
 
 %if 0%{?fedora_version}
 BuildRequires: openssl-perl
@@ -16,6 +23,9 @@ The LiMaL CA Management Library provides methods for managing a certificate auth
 @HEADER-DEVEL@
 Requires:       limal-devel openssl-devel
 Summary:	LiMaL - CA Management Library Development Files
+%if 0%{suse_version} > 1003
+Requires: libopenssl-devel
+%endif
 
 %description devel
 The LiMaL CA Management Library provides methods for managing 
