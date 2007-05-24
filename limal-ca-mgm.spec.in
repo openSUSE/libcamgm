@@ -3,7 +3,7 @@
 @HEADER@
 BuildRequires: curl gcc-c++ limal-devel limal-perl limal-devtools perl-gettext sgml-skel
 
-%if 0%{suse_version} > 1003
+%if 0%{?suse_version} >= 1030
 BuildRequires: libopenssl-devel openssl
 Requires: openssl
 %else
@@ -23,7 +23,7 @@ The LiMaL CA Management Library provides methods for managing a certificate auth
 @HEADER-DEVEL@
 Requires:       limal-devel openssl-devel
 Summary:	LiMaL - CA Management Library Development Files
-%if 0%{suse_version} > 1003
+%if 0%{?suse_version} >= 1030
 Requires: libopenssl-devel
 %endif
 
