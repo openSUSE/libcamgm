@@ -1,17 +1,19 @@
+# translation of limal-ca-mgm.nb.po to Norwegian
 # translation of limal-ca-mgm.po to
 # @TITLE@
 # Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
 # This file is distributed under the same license as @PACKAGE@ package. FIRST
 #
 # Olav Pettershagen <olav.pet@online.no>, 2006.
+# Rune Nordbøe Skillingstad <rune@skillingstad.no>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: limal-ca-mgm\n"
+"Project-Id-Version: limal-ca-mgm.nb\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2007-07-18 09:19+0200\n"
-"PO-Revision-Date: 2006-10-13 17:23+0200\n"
-"Last-Translator: Novell Language <language@novell.com>\n"
-"Language-Team: Novell Language <language@novell.com>\n"
+"POT-Creation-Date: 2007-08-08 12:11+0200\n"
+"PO-Revision-Date: 2007-08-08 09:04+0200\n"
+"Last-Translator: Rune Nordbøe Skillingstad <rune@skillingstad.no>\n"
+"Language-Team: Norwegian\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -220,7 +222,7 @@ msgstr "Sertifikatet %1 finnes ikke."
 
 #: src/CA.cpp:1026
 msgid "Removing the certificate failed: %1."
-msgstr "Sertifikatet kunne ikke fjernes: %1"
+msgstr "Sertifikatet kunne ikke fjernes: %1."
 
 #: src/CA.cpp:1034
 msgid ""
@@ -428,7 +430,7 @@ msgstr "Ugyldig CRLGenerationData-objekt."
 
 #: src/CRLReason.cpp:100 src/CRLReason.cpp:136
 msgid "Invalid revoke reason %1."
-msgstr "Ugyldig tilbaketrekkingsgrunn: %s"
+msgstr "Ugyldig tilbaketrekkingsgrunn: %1."
 
 #: src/CRLReason.cpp:174
 msgid "Reason is not certificateHold."

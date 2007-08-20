@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2007-07-18 09:19+0200\n"
-"PO-Revision-Date: 2007-02-06 22:44+0100\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2007-08-08 12:11+0200\n"
+"PO-Revision-Date: 2007-07-26 23:23+0100\n"
+"Last-Translator: wadim dziedzic <wdziedzi@aviary.pl>\n"
 "Language-Team:  <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -161,15 +161,15 @@ msgstr "Kopiowanie certyfikatu nie powiodło się."
 
 #: src/CA.cpp:299
 msgid "Invalid request data."
-msgstr "Zażądano nieprawidłowych danych."
+msgstr "Niepoprawne dane żądania."
 
 #: src/CA.cpp:319
 msgid "Duplicate DN. Key %1.key already exists."
-msgstr "Zduplikowany DN. Klucz %1.key już istnieje."
+msgstr "Duplikat DN. Klucz %1.key już istnieje."
 
 #: src/CA.cpp:327
 msgid "Duplicate DN. Request %1.req already exists."
-msgstr "Zduplikowany DN. Żądanie %1.req już istnieje."
+msgstr "Duplikat DN. Żądanie %1.req już istnieje."
 
 #: src/CA.cpp:372
 msgid "Request does not exist (%1)."
@@ -177,7 +177,7 @@ msgstr "Żądanie nie istnieje (%1)."
 
 #: src/CA.cpp:378
 msgid "Invalid issue data."
-msgstr "Niezgodne dane."
+msgstr "Niepoprawne dane wystawienia."
 
 #: src/CA.cpp:395
 msgid "The CA expires before the certificate should expire."
@@ -201,11 +201,11 @@ msgstr "Nieprawidłowe dane CRL."
 
 #: src/CA.cpp:568
 msgid "Duplicate DN. Request already exists."
-msgstr "Zduplikowany DN. Żądanie już istnieje."
+msgstr "Duplikat DN. Żądanie już istnieje."
 
 #: src/CA.cpp:833 src/CA.cpp:860 src/CA.cpp:890 src/OpenSSLUtils.cpp:968
 msgid "Cannot parse the certificate name."
-msgstr "Zanalizowanie nazwy certyfikatu nie powiodło się."
+msgstr "Analiza nazwy certyfikatu nie powiodła się."
 
 #: src/CA.cpp:941
 msgid "Request %1 does not exist."
@@ -228,8 +228,8 @@ msgid ""
 "Only revoked or expired certificates can be deleted. The status of the "
 "certificate is %1."
 msgstr ""
-"Tylko unieważnione lub przestarzałe certyfikaty mogą zostać usunięte. Status "
-"tego certyfikatu: %1."
+"Tylko unieważnione lub wygasłe certyfikaty mogą zostać usunięte. Status tego "
+"certyfikatu: %1."
 
 #: src/CA.cpp:1046
 msgid "Database not found."
@@ -249,7 +249,7 @@ msgstr "Nieprawidłowe dane żądania CA."
 
 #: src/CA.cpp:1135
 msgid "Invalid CA issue data."
-msgstr "Niezgodne dane CA."
+msgstr "Niezgodne dane wystawienia CA."
 
 #: src/CA.cpp:1230
 msgid "CA name is empty."
@@ -288,8 +288,8 @@ msgid ""
 "Deleting the CA is not allowed. The CA must be expired or never have signed "
 "a certificate."
 msgstr ""
-"Usunięcie CA nie jest dozwolone. Ważność CA musi wygasnąć jeśli podpisał "
-"jakikolwiek certyfikat."
+"Usuwanie CA nie jest dozwolone. Można usunąć tylko gdy CA jest wygasły lub "
+"nigdy nie podpisał certyfikatu."
 
 #: src/CA.cpp:1522
 msgid "Deleting the CA failed: %1."
@@ -302,7 +302,7 @@ msgstr "Plik konfiguracyjny nie zawiera wartości dla reguły."
 #: src/CA.cpp:1583 src/CA.cpp:1845 src/DNObject.cpp:270
 #: src/DNObject_Priv.cpp:209
 msgid "Cannot parse section %1."
-msgstr "Zanalizowanie sekcji %1 nie powiodło się."
+msgstr "Analiza sekcji %1 nie powiodła się."
 
 #: src/CA.cpp:1655
 msgid "Field %1 must have a value."
@@ -342,16 +342,16 @@ msgstr "Nie można utworzyć pamięci BIO"
 
 #: src/CertificateData_Priv.cpp:235
 msgid "Cannot parse the certificate."
-msgstr "Zanalizowanie certyfikatu nie powiodło się.."
+msgstr "Analiza certyfikatu nie powiodła się."
 
 #: src/CertificateData_Priv.cpp:248
 msgid "Error while parsing the certificate."
-msgstr "Wystąpił błąd podczas analizowania certyfikatu."
+msgstr "Wystąpił błąd podczas analizy certyfikatu."
 
 #: src/CertificateData_Priv.cpp:291 src/CertificateData_Priv.cpp:325
 #: src/CRLData_Priv.cpp:91 src/CRLData_Priv.cpp:341 src/CRLData_Priv.cpp:375
 msgid "Cannot parse date %1."
-msgstr "Zanalizowanie daty %1 nie powiodło się."
+msgstr "Analiza daty %1 nie powiodła się."
 
 #: src/CertificateData_Priv.cpp:380 src/RequestData_Priv.cpp:182
 msgid "Unable to get the public key."
@@ -759,7 +759,7 @@ msgstr "Rozszerzenie występuje więcej niż raz: %1."
 #: src/X509v3RequestExtensions_Priv.cpp:140
 #: src/X509v3RequestExtensions_Priv.cpp:195
 msgid "Unable to parse the certificate (NID: %1 Crit: %2)."
-msgstr "Przetworzenie certyfikatu nie było możliwe (NID: %1 Crit: %2)."
+msgstr "Analiza certyfikatu nie była możliwa (NID: %1 Crit: %2)."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:508
 #: src/X509v3CertificateExtensions_Priv.cpp:574
@@ -791,7 +791,7 @@ msgstr "Rozszerzenie występuje wiecej niż raz."
 #: src/X509v3RequestExtensions_Priv.cpp:383
 #: src/X509v3RequestExtensions_Priv.cpp:443
 msgid "Unable to parse the certificate (Crit: %1)."
-msgstr "Przetworzenie certyfikatu nie było możliwe (Crit: %1)."
+msgstr "Analiza certyfikatu nie była możliwa (Crit: %1)."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:940
 msgid "Invalid location in authorityInfoAccess."

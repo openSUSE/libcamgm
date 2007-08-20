@@ -1,4 +1,3 @@
-# translation of limal-ca-mgm.hu.po to Hungarian
 # translation of limal-ca-mgm.po to
 # translation of limal-ca-mgm.hu.po to
 # @TITLE@
@@ -10,12 +9,12 @@
 # Gabor Kelemen <kelemeng@gnome.hu>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: limal-ca-mgm.hu\n"
+"Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2007-07-18 09:19+0200\n"
-"PO-Revision-Date: 2007-01-30 12:55+0100\n"
+"POT-Creation-Date: 2007-08-08 12:11+0200\n"
+"PO-Revision-Date: 2007-08-15 17:15+0200\n"
 "Last-Translator: Kalman Kemenczy <kkemenczy@novell.com>\n"
-"Language-Team: Hungarian <hu@li.org>\n"
+"Language-Team:  <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -30,7 +29,7 @@ msgstr "Érvénytelen hely."
 #: src/AuthorityInfoAccessExtension.cpp:115
 #: src/AuthorityInfoAccessExtension.cpp:144
 msgid "Invalid accessOID."
-msgstr "Érvénytelen accessOID"
+msgstr "Érvénytelen accessOID."
 
 #: src/AuthorityInfoAccessExtension.cpp:259
 #: src/AuthorityInfoAccessExtension.cpp:342
@@ -62,7 +61,7 @@ msgstr "Érvénytelen accessOID"
 #: src/SubjectKeyIdentifierExtension.cpp:85
 #: src/SubjectKeyIdentifierExtension.cpp:208
 msgid "Wrong type: %1."
-msgstr "Érvénytelen típus: %1"
+msgstr "Érvénytelen típus: %1."
 
 #: src/AuthorityInfoAccessExtension.cpp:310
 msgid "Invalid AuthorityInformation in the information list."
@@ -133,7 +132,7 @@ msgstr "Érvénytelen NsCertTypeExt objektum."
 
 #: src/CA.cpp:101
 msgid "Template not initialized."
-msgstr "a sablon nem inicializálódott."
+msgstr "A sablon nincs előkészítve."
 
 #: src/CA.cpp:159 src/CA.cpp:1456
 msgid "Empty CA name."
@@ -205,7 +204,7 @@ msgstr "Érvénytelen CRL-adat."
 
 #: src/CA.cpp:568
 msgid "Duplicate DN. Request already exists."
-msgstr "A DN Request már létezik"
+msgstr "A DN Request már létezik."
 
 #: src/CA.cpp:833 src/CA.cpp:860 src/CA.cpp:890 src/OpenSSLUtils.cpp:968
 msgid "Cannot parse the certificate name."
@@ -331,7 +330,7 @@ msgstr "A konfigurációs fájl érvénytelen szabályra hivatkozik."
 
 #: src/CA.cpp:1817 src/CA.cpp:1827
 msgid "The configuration is not initialized."
-msgstr "A konfiguráció nincs inicializálva."
+msgstr "A konfiguráció nincs előkészítve."
 
 #: src/CA.cpp:1835 src/DNObject.cpp:259 src/DNObject_Priv.cpp:199
 msgid "Missing section 'distinguished_name' in the configuration file."
@@ -507,7 +506,7 @@ msgstr "A(z) %1 nem könyvtár."
 
 #: src/LocalManagement.cpp:367
 msgid "Invalid certificate file."
-msgstr "Érvénytelen tanúsítvány"
+msgstr "Érvénytelen tanúsítvány."
 
 #: src/LocalManagement.cpp:445
 msgid "File not found: %1."

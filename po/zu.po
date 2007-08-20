@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2007-07-18 09:19+0200\n"
+"POT-Creation-Date: 2007-08-08 12:11+0200\n"
 "PO-Revision-Date: 2006-11-03 12:03\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -321,7 +321,7 @@ msgstr "Ukuhlela akuzange kulungiselelwe ukuba kuqalise."
 
 #: src/CA.cpp:1835 src/DNObject.cpp:259 src/DNObject_Priv.cpp:199
 msgid "Missing section 'distinguished_name' in the configuration file."
-msgstr "Ingxenye elahlekile 'yegama_eliyingqayizivele' kwifayela yokuhlela."
+msgstr "Ingxenye elahlekile ‘yegama_eliyingqayizivele’ kwifayela yokuhlela."
 
 #: src/CertificateData_Priv.cpp:94 src/CRLData_Priv.cpp:124
 #: src/CRLData_Priv.cpp:161
@@ -348,7 +348,7 @@ msgstr "Ayikwazi ukunqunta usuku %1."
 
 #: src/CertificateData_Priv.cpp:380 src/RequestData_Priv.cpp:182
 msgid "Unable to get the public key."
-msgstr "Ayikwazi ukuthola isikhiye sikawonk' uwonke."
+msgstr "Ayikwazi ukuthola isikhiye sikawonk’ uwonke."
 
 #: src/CertificateData_Priv.cpp:391 src/RequestData_Priv.cpp:193
 msgid "Could not get RSA key."
@@ -356,11 +356,11 @@ msgstr "Ayikwazanga ukuthola izikhiye ze-RSA."
 
 #: src/CertificateData_Priv.cpp:411 src/RequestData_Priv.cpp:213
 msgid "Unsupported public key type."
-msgstr "Uhlobo lwesikhiye sikawonk' uwonke esingasekelwe."
+msgstr "Uhlobo lwesikhiye sikawonk’ uwonke esingasekelwe."
 
 #: src/CertificateData_Priv.cpp:447 src/RequestData_Priv.cpp:246
 msgid "Unsupported public key algorithm."
-msgstr "Uhlobo lwe-algorithm kawonk' uwonke engasekelwe."
+msgstr "Uhlobo lwe-algorithm kawonk’ uwonke engasekelwe."
 
 #: src/CertificateData_Priv.cpp:479 src/CRLData_Priv.cpp:424
 #: src/RequestData_Priv.cpp:276
