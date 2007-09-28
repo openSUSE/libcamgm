@@ -163,6 +163,7 @@ EXTRA_DIST = CA2/*.* CA3/*.* CA4/*.* CA5/*.* single.out/*.* \
              TestRepos3/Test2_SuSE_CA/*.*                   \
              TestRepos3/Test3_SuSE_CA/*.*                   \
              TestRepos3/.cas/*.*                            \
+             TestRepos3/testuser.pem                        \
              TestRepos3/windows-ca.crt                      \
              TestRepos3/windows-client.crt                  \
              TestRepos3/windows-kdc.crt                     \
