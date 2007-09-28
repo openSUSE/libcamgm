@@ -24,7 +24,8 @@ noinst_PROGRAMS = CAConfig.single CA1.single CA2.multi \
                   ListTest.single SubCATest.single \
                   RemoveRequestTest.single RevxRemoveCertificateTest.single \
                   VerifyTest.single ParseCATest.single \
-                  CertificateTest3.single CertificateTest4.single ParseCertificateTest.multi \
+                  CertificateTest3.single CertificateTest4.single \
+		  CertificateTest5.single ParseCertificateTest.multi \
                   ParseCertificateTest2.multi ParseRequestTest.multi ParseCRLTest.multi \
                   RevokeTest5.single ImportRequestTest.single \
                   DeleteCATest.single ImportCATest.single \
@@ -61,6 +62,8 @@ CertificateTest2_single_SOURCES = CertificateTest2.cc
 CertificateTest3_single_SOURCES = CertificateTest3.cc
 
 CertificateTest4_single_SOURCES = CertificateTest4.cc
+
+CertificateTest5_single_SOURCES = CertificateTest5.cc
 
 RevokeTest_single_SOURCES = RevokeTest.cc 
 

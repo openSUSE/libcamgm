@@ -21,6 +21,7 @@
 /-*/
 
 #include  <limal/ca-mgm/LiteralValues.hpp>
+#include  <limal/ca-mgm/CA.hpp>
 #include  <limal/ValueRegExCheck.hpp>
 #include  <limal/Exception.hpp>
 #include  <blocxx/Format.hpp>
@@ -112,6 +113,16 @@ LiteralValue::LiteralValue(const String& value)
 		m_impl->literalType  = sp[1];
 		m_impl->literalValue = sp[2];
 	}
+	else if(sp[1].equals("1.3.6.1.4.1.311.20.2.3")) // ms_upn
+	{
+		m_impl->literalType  = sp[1];
+		m_impl->literalValue = sp[2];
+	}
+	else if(sp[1].equals("1.3.6.1.5.2.2")) // KRB5PrincipalName
+	{
+		m_impl->literalType  = sp[1];
+		m_impl->literalValue = sp[2];
+	}
 	else
 	{
 		LOGIT_DEBUG("unknown type: "<< sp[1] << " = " << sp[2]);
@@ -189,7 +200,7 @@ LiteralValue::getType() const
 }
 
 blocxx::String
-LiteralValue::commit2Config(CA&, Type, blocxx::UInt32) const
+LiteralValue::commit2Config(CA &ca, Type t, blocxx::UInt32 num) const
 {
 	
 	if(m_impl->literalType == "email" ||
@@ -230,7 +241,54 @@ LiteralValue::commit2Config(CA&, Type, blocxx::UInt32) const
 	  [principals]
 	  princ1 = GeneralString:userid
 	*/
-	  
+
+	if(m_impl->literalType == "1.3.6.1.4.1.311.20.2.3")  // ms_upn
+	{
+		return "otherName:1.3.6.1.4.1.311.20.2.3;UTF8:" + m_impl->literalValue;
+	}
+	else if(m_impl->literalType == "1.3.6.1.5.2.2")  // KRB5PrincipalName
+	{
+		String primary = "";
+		String instance;
+		String realm = "";
+
+		StringArray sa = getValue().tokenize("@/");
+		String sectname1 = getValue()+String(num);
+		
+		if(sa.size() == 2) // primary@REALM
+		{
+			primary = sa[0];
+			realm   = sa[1];
+		}
+		else if(sa.size() == 3)  // primary/instance@REALM
+		{
+			primary  = sa[0];
+			instance = sa[1];
+			realm    = sa[2];
+		}
+		else
+		{
+			// FIXME: or better throw an error?
+			return "";
+		}
+		String sectname2 = primary+instance+String(num);
+		String sectname3 = "basic"+primary+instance+String(num);
+		
+		String ret = "otherName:1.3.6.1.5.2.2;SEQUENCE:"+sectname1;
+
+		ca.getConfig()->setValue(sectname1, "realm", "EXPLICIT:0, GeneralString:"+realm);
+		ca.getConfig()->setValue(sectname1, "kerberosname", "EXPLICIT:1, SEQUENCE:"+sectname2);
+		ca.getConfig()->setValue(sectname2, "nametype", "EXPLICIT:0, INTEGER:1");
+		ca.getConfig()->setValue(sectname2, "namelist", "EXPLICIT:1, SEQUENCE:"+sectname3);
+
+		ca.getConfig()->setValue(sectname3, "0.part", "GeneralString:"+primary);
+		if(!instance.empty()) //we have an instance
+		{
+			ca.getConfig()->setValue(sectname3, "1.part", "GeneralString:"+instance);
+		}
+		return ret;
+	}
+	
 	return "";
 }
 
@@ -279,6 +337,24 @@ LiteralValue::valid() const
 		if(!check.isValid(m_impl->literalValue))
 		{
 			LOGIT_DEBUG("Wrong LiteralValue for type 'IP': " << m_impl->literalValue);
+			return false;
+		}
+	}
+	else if(m_impl->literalType == "1.3.6.1.4.1.311.20.2.3")  // ms_upn
+	{
+		ValueCheck check = initEmailCheck();      // email check is sufficent for a principal
+		if(!check.isValid(m_impl->literalValue))
+		{
+			LOGIT_DEBUG("Wrong LiteralValue for type '1.3.6.1.4.1.311.20.2.3': " << m_impl->literalValue);
+			return false;
+		}
+	}
+	else if(m_impl->literalType == "1.3.6.1.5.2.2")  // KRB5PrincipalName
+	{
+		ValueCheck check = initEmailCheck();      // email check is sufficent for a principal
+		if(!check.isValid(m_impl->literalValue))
+		{
+			LOGIT_DEBUG("Wrong LiteralValue for type '1.3.6.1.5.2.2': " << m_impl->literalValue);
 			return false;
 		}
 	}
@@ -348,6 +424,26 @@ LiteralValue::verify() const
 		{
 			LOGIT_DEBUG("Wrong LiteralValue for type 'IP': " << m_impl->literalValue);
 			result.append(Format("Wrong LiteralValue for type 'IP': %1",
+			                     m_impl->literalValue).toString());
+		}
+	}
+	else if(m_impl->literalType == "1.3.6.1.4.1.311.20.2.3")  // ms_upn
+	{
+		ValueCheck check = initEmailCheck();      // email check is sufficent for a principal
+		if(!check.isValid(m_impl->literalValue))
+		{
+			LOGIT_DEBUG("Wrong LiteralValue for type '1.3.6.1.4.1.311.20.2.3': " << m_impl->literalValue);
+			result.append(Format("Wrong LiteralValue for type '1.3.6.1.4.1.311.20.2.3': %1",
+			                     m_impl->literalValue).toString());
+		}
+	}
+	else if(m_impl->literalType == "1.3.6.1.5.2.2")  // KRB5PrincipalName
+	{
+		ValueCheck check = initEmailCheck();      // email check is sufficent for a principal
+		if(!check.isValid(m_impl->literalValue))
+		{
+			LOGIT_DEBUG("Wrong LiteralValue for type '1.3.6.1.5.2.2': " << m_impl->literalValue);
+			result.append(Format("Wrong LiteralValue for type '1.3.6.1.5.2.2': %1",
 			                     m_impl->literalValue).toString());
 		}
 	}

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nis\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2007-08-08 12:11+0200\n"
+"POT-Creation-Date: 2007-09-28 16:31+0200\n"
 "PO-Revision-Date: 2006-11-11 18:41+0530\n"
 "Last-Translator: Priyavert Sharma<priyavert.sharma@agreeya.com>\n"
 "Language-Team: AgreeYa Solutions<linux_team@agreeya.com>\n"
@@ -472,7 +472,7 @@ msgstr "IssuerAlternativeNameExt માટે મૂલ અમાન્ય."
 msgid "Invalid IssuerAlternativeNameExt object."
 msgstr "IssuerAlternativeNameExt ઓબજેક્ટ અમાન્ય."
 
-#: src/LiteralValues.cpp:119
+#: src/LiteralValues.cpp:130
 msgid "Unknown type."
 msgstr "અપરિચિત પ્રકાર."
 
@@ -738,53 +738,53 @@ msgstr "SubjectKeyIdentifierExt મોજૂદ નથી."
 msgid "Invalid SubjectKeyIdentifierExt object."
 msgstr "SubjectKeyIdentifierExt ઓબજેક્ટ અમાન્ય."
 
-#: src/X509v3CertificateExtensions_Priv.cpp:393
-#: src/X509v3CertificateExtensions_Priv.cpp:449
-#: src/X509v3RequestExtensions_Priv.cpp:133
-#: src/X509v3RequestExtensions_Priv.cpp:188
+#: src/X509v3CertificateExtensions_Priv.cpp:394
+#: src/X509v3CertificateExtensions_Priv.cpp:450
+#: src/X509v3RequestExtensions_Priv.cpp:134
+#: src/X509v3RequestExtensions_Priv.cpp:189
 msgid "Extension occurred more than once: %1."
 msgstr "એક્સટેન્શન એક કરતાં વધારે વાર થયું: %1."
 
-#: src/X509v3CertificateExtensions_Priv.cpp:400
-#: src/X509v3CertificateExtensions_Priv.cpp:456
-#: src/X509v3RequestExtensions_Priv.cpp:140
-#: src/X509v3RequestExtensions_Priv.cpp:195
+#: src/X509v3CertificateExtensions_Priv.cpp:401
+#: src/X509v3CertificateExtensions_Priv.cpp:457
+#: src/X509v3RequestExtensions_Priv.cpp:141
+#: src/X509v3RequestExtensions_Priv.cpp:196
 msgid "Unable to parse the certificate (NID: %1 Crit: %2)."
 msgstr "સર્ટિફીકેટ પાર્સ કરી શકાતું નથી (NID: %1 Crit: %2)."
 
-#: src/X509v3CertificateExtensions_Priv.cpp:508
-#: src/X509v3CertificateExtensions_Priv.cpp:574
-#: src/X509v3CertificateExtensions_Priv.cpp:638
-#: src/X509v3CertificateExtensions_Priv.cpp:700
-#: src/X509v3CertificateExtensions_Priv.cpp:770
-#: src/X509v3CertificateExtensions_Priv.cpp:839
-#: src/X509v3CertificateExtensions_Priv.cpp:915
-#: src/X509v3CertificateExtensions_Priv.cpp:1001
-#: src/X509v3CRLExtensions_Priv.cpp:134
-#: src/X509v3RequestExtensions_Priv.cpp:248
-#: src/X509v3RequestExtensions_Priv.cpp:314
-#: src/X509v3RequestExtensions_Priv.cpp:377
-#: src/X509v3RequestExtensions_Priv.cpp:438
+#: src/X509v3CertificateExtensions_Priv.cpp:509
+#: src/X509v3CertificateExtensions_Priv.cpp:575
+#: src/X509v3CertificateExtensions_Priv.cpp:639
+#: src/X509v3CertificateExtensions_Priv.cpp:701
+#: src/X509v3CertificateExtensions_Priv.cpp:771
+#: src/X509v3CertificateExtensions_Priv.cpp:840
+#: src/X509v3CertificateExtensions_Priv.cpp:916
+#: src/X509v3CertificateExtensions_Priv.cpp:1002
+#: src/X509v3CRLExtensions_Priv.cpp:135
+#: src/X509v3RequestExtensions_Priv.cpp:249
+#: src/X509v3RequestExtensions_Priv.cpp:315
+#: src/X509v3RequestExtensions_Priv.cpp:378
+#: src/X509v3RequestExtensions_Priv.cpp:439
 msgid "Extension occurred more than once."
 msgstr "એક્સટેન્શન એક કરતાં વધારે વાર થયું."
 
-#: src/X509v3CertificateExtensions_Priv.cpp:513
-#: src/X509v3CertificateExtensions_Priv.cpp:579
-#: src/X509v3CertificateExtensions_Priv.cpp:643
-#: src/X509v3CertificateExtensions_Priv.cpp:706
-#: src/X509v3CertificateExtensions_Priv.cpp:775
-#: src/X509v3CertificateExtensions_Priv.cpp:845
-#: src/X509v3CertificateExtensions_Priv.cpp:920
-#: src/X509v3CertificateExtensions_Priv.cpp:1006
-#: src/X509v3CRLExtensions_Priv.cpp:139
-#: src/X509v3RequestExtensions_Priv.cpp:253
-#: src/X509v3RequestExtensions_Priv.cpp:319
-#: src/X509v3RequestExtensions_Priv.cpp:383
-#: src/X509v3RequestExtensions_Priv.cpp:443
+#: src/X509v3CertificateExtensions_Priv.cpp:514
+#: src/X509v3CertificateExtensions_Priv.cpp:580
+#: src/X509v3CertificateExtensions_Priv.cpp:644
+#: src/X509v3CertificateExtensions_Priv.cpp:707
+#: src/X509v3CertificateExtensions_Priv.cpp:776
+#: src/X509v3CertificateExtensions_Priv.cpp:846
+#: src/X509v3CertificateExtensions_Priv.cpp:921
+#: src/X509v3CertificateExtensions_Priv.cpp:1007
+#: src/X509v3CRLExtensions_Priv.cpp:140
+#: src/X509v3RequestExtensions_Priv.cpp:254
+#: src/X509v3RequestExtensions_Priv.cpp:320
+#: src/X509v3RequestExtensions_Priv.cpp:384
+#: src/X509v3RequestExtensions_Priv.cpp:444
 msgid "Unable to parse the certificate (Crit: %1)."
 msgstr "સર્ટિફીકેટ પાર્સ કરી શકાતું નથી(Crit: %1)."
 
-#: src/X509v3CertificateExtensions_Priv.cpp:940
+#: src/X509v3CertificateExtensions_Priv.cpp:941
 msgid "Invalid location in authorityInfoAccess."
 msgstr "અમાન્ય લોકેશન authorityInfoAccess."
 

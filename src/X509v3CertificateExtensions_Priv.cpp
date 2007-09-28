@@ -21,6 +21,7 @@
 /-*/
 #include "X509v3CertificateExtensions_Priv.hpp"
 #include "AuthorityKeyIdentifierExtension_Priv.hpp"
+#include "LiteralValues_Priv.hpp"
 #include <limal/Exception.hpp>
 
 #include <openssl/x509v3.h>
@@ -715,7 +716,7 @@ X509v3CertificateExts_Priv::parseSubjectAlternativeNameExt(STACK_OF(X509_EXTENSI
 	{
 		gen = sk_GENERAL_NAME_value(gns, j);
 
-		LiteralValue lv = gn2lv(gen);
+		LiteralValue_Priv lv(gen);
 
 		lvList.push_back(lv);
 	}
@@ -784,7 +785,7 @@ X509v3CertificateExts_Priv::parseIssuerAlternativeNameExt(STACK_OF(X509_EXTENSIO
 	{
 		gen = sk_GENERAL_NAME_value(gns, j);
 
-		LiteralValue lv = gn2lv(gen);
+		LiteralValue_Priv lv(gen);
 
 		lvList.push_back(lv);
 	}
@@ -865,7 +866,7 @@ X509v3CertificateExts_Priv::parseCRLDistributionPointsExt(STACK_OF(X509_EXTENSIO
 					gen = sk_GENERAL_NAME_value(point->distpoint->name.fullname,
 					                            j);
                     
-					LiteralValue lv = gn2lv(gen);
+					LiteralValue_Priv lv(gen);
                     
 					lvList.push_back(lv);
 				}
@@ -931,7 +932,7 @@ X509v3CertificateExts_Priv::parseAuthorityInfoAccessExt(STACK_OF(X509_EXTENSION)
 	{
 		desc = sk_ACCESS_DESCRIPTION_value(ainf, i);
 
-		LiteralValue lv = gn2lv(desc->location);
+		LiteralValue_Priv lv(desc->location);
        
 		if(!lv.valid())
 		{

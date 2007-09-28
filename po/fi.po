@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm.fi\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2007-08-08 12:11+0200\n"
-"PO-Revision-Date: 2007-05-30 07:10+0300\n"
+"POT-Creation-Date: 2007-09-28 16:31+0200\n"
+"PO-Revision-Date: 2007-09-12 21:14+0300\n"
 "Last-Translator: Jyri Palokangas <jmp@opensuse.fi>\n"
 "Language-Team: Suomi <fi@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -23,12 +23,12 @@ msgstr ""
 #: src/AuthorityInfoAccessExtension.cpp:110
 #: src/AuthorityInfoAccessExtension.cpp:139
 msgid "Invalid location."
-msgstr "Epäkelpo paikka."
+msgstr "Virheellinen paikka."
 
 #: src/AuthorityInfoAccessExtension.cpp:115
 #: src/AuthorityInfoAccessExtension.cpp:144
 msgid "Invalid accessOID."
-msgstr "Epäkelpo accessOID"
+msgstr "Virheellinen accessOID"
 
 #: src/AuthorityInfoAccessExtension.cpp:259
 #: src/AuthorityInfoAccessExtension.cpp:342
@@ -72,7 +72,7 @@ msgstr "AuthorityInfoAccessExt:ia ei löydetty."
 
 #: src/AuthorityInfoAccessExtension.cpp:334
 msgid "Invalid AuthorityInfoAccessExt object."
-msgstr "Epäkelpo AuthorityInfoAccessExt objekti."
+msgstr "Virheellinen AuthorityInfoAccessExt objekti."
 
 #: src/AuthorityKeyIdentifierExtension.cpp:97
 #: src/AuthorityKeyIdentifierExtension.cpp:108
@@ -87,7 +87,7 @@ msgstr "AuthorityKeyIdentifierGenerateExt:ia ei löydetty."
 
 #: src/AuthorityKeyIdentifierGenerateExtension.cpp:186
 msgid "Invalid AuthorityKeyIdentifierGenerateExt object."
-msgstr "Epäkelpo AuthorityKeyIdentifierGenerateExt objekti."
+msgstr "Virheellinen AuthorityKeyIdentifierGenerateExt objekti."
 
 #: src/BasicConstraintsExtension.cpp:155 src/BasicConstraintsExtension.cpp:167
 msgid "BasicConstraintsExt is not present."
@@ -95,7 +95,7 @@ msgstr "BasicConstraintsExt:ia ei löydetty."
 
 #: src/BasicConstraintsExtension.cpp:179
 msgid "Invalid BasicConstraintsExt object."
-msgstr "Epäkelpo Invalid BasicConstraintsExt objekti."
+msgstr "Virheellinen BasicConstraintsExt objekti."
 
 #: src/BitExtensions.cpp:111
 msgid "This BitExtension is not present."
@@ -103,7 +103,7 @@ msgstr "Tätä BitExtension:ia ei löydetty."
 
 #: src/BitExtensions.cpp:174 src/BitExtensions.cpp:203
 msgid "Invalid value for keyUsage."
-msgstr "Epäkelpo \"keyUsage \"-arvo."
+msgstr "Virheellinen \"keyUsage \"-arvo."
 
 #: src/BitExtensions.cpp:215 src/BitExtensions.cpp:226
 msgid "KeyUsageExt is not present."
@@ -111,15 +111,15 @@ msgstr "KeyUsageExt:ia ei löydetty"
 
 #: src/BitExtensions.cpp:239
 msgid "Invalid KeyUsageExt object."
-msgstr "Epäkelpo Invalid KeyUsageExt objekti."
+msgstr "Virheellinen KeyUsageExt objekti."
 
 #: src/BitExtensions.cpp:412
 msgid "Invalid value for NsCertTypeExt."
-msgstr "Epäkelpo arvo NsCertTypeExt:lle."
+msgstr "Virheellinen arvo NsCertTypeExt:lle."
 
 #: src/BitExtensions.cpp:441
 msgid "Invalid value for NsCertTypeExt: %1."
-msgstr "Epäkelpo arvo NsCertTypeExt: %1."
+msgstr "Virheellinen arvo NsCertTypeExt: %1."
 
 #: src/BitExtensions.cpp:453
 msgid "NsCertTypeExt is not present."
@@ -127,7 +127,7 @@ msgstr "NsCertTypeExt:ia ei löydetty. "
 
 #: src/BitExtensions.cpp:474
 msgid "Invalid NsCertTypeExt object."
-msgstr "Epäkelpo NsCertTypeExt objekti."
+msgstr "Virheellinen NsCertTypeExt objekti."
 
 #: src/CA.cpp:101
 msgid "Template not initialized."
@@ -163,7 +163,7 @@ msgstr "Varmennetta ei voitu kopioida."
 
 #: src/CA.cpp:299
 msgid "Invalid request data."
-msgstr "Pyynnön tieto epäkelpo."
+msgstr "Pyynnön tieto virheellinen."
 
 #: src/CA.cpp:319
 msgid "Duplicate DN. Key %1.key already exists."
@@ -179,7 +179,7 @@ msgstr "Pyyntöä (%1) ei ole olemassa."
 
 #: src/CA.cpp:378
 msgid "Invalid issue data."
-msgstr "Epäkelpo \"myönnetty\" (issue) -tieto."
+msgstr "Virheellinen \"myönnetty\" (issue) -tieto."
 
 #: src/CA.cpp:395
 msgid "The CA expires before the certificate should expire."
@@ -195,11 +195,11 @@ msgstr "Tiedostoa %1 ei löydetty varastosta (repository)."
 
 #: src/CA.cpp:497 src/CRLData_Priv.cpp:179
 msgid "Invalid CRL reason."
-msgstr "Epäkelpo CLR-syy."
+msgstr "Virheellinen CLR-syy."
 
 #: src/CA.cpp:520
 msgid "Invalid CRL data."
-msgstr "Epäkelpo CLR-tieto."
+msgstr "Virheellinen CLR-tieto."
 
 #: src/CA.cpp:568
 msgid "Duplicate DN. Request already exists."
@@ -243,15 +243,15 @@ msgstr "Varmennetta ei ole olemassa."
 
 #: src/CA.cpp:1086
 msgid "Invalid purpose %1."
-msgstr "Epäkelpo tarkoitus (purpose) %1."
+msgstr "Virheellinen tarkoitus (purpose) %1."
 
 #: src/CA.cpp:1129
 msgid "Invalid CA request data."
-msgstr "Epäkelpo CA-pyyntö -tieto."
+msgstr "Virheellinen CA-pyyntö -tieto."
 
 #: src/CA.cpp:1135
 msgid "Invalid CA issue data."
-msgstr "Epäkelpo CA-myönnetty (issue) -tieto."
+msgstr "Virheellinen CA-myönnetty (issue) -tieto."
 
 #: src/CA.cpp:1230
 msgid "CA name is empty."
@@ -271,7 +271,7 @@ msgstr "CA-avain on tyhjä."
 
 #: src/CA.cpp:1266
 msgid "Invalid key data."
-msgstr "Epäkelpo \"avain\" -tieto"
+msgstr "Virheellinen \"avain\" -tieto"
 
 #: src/CA.cpp:1275
 msgid "CA password is empty."
@@ -320,7 +320,8 @@ msgstr "%1:sen pitää olla sama kuin CA-varmenteessa %2 (pyyntö oli %3)."
 
 #: src/CA.cpp:1791
 msgid "The configuration file seems to have an invalid policy."
-msgstr "Määritystiedostossa näyttäisi olevan epäkelpo \"politiikka\" (policy)."
+msgstr ""
+"Määritystiedostossa näyttäisi olevan virheellinen \"politiikka\" (policy)."
 
 # %s is either BOOTP or DHCP
 #: src/CA.cpp:1817 src/CA.cpp:1827
@@ -334,7 +335,7 @@ msgstr "Määritystiedostosta puuttuu osio: 'distinguished_name' ."
 #: src/CertificateData_Priv.cpp:94 src/CRLData_Priv.cpp:124
 #: src/CRLData_Priv.cpp:161
 msgid "Invalid serial %1."
-msgstr "Epäkelpo sarja (serial) %1."
+msgstr "Virheellinen sarja (serial) %1."
 
 #: src/CertificateData_Priv.cpp:206 src/CRLData_Priv.cpp:463
 #: src/DNObject_Priv.cpp:81 src/RequestData_Priv.cpp:369
@@ -377,7 +378,7 @@ msgstr "Allekirjoituksen algoritmi %1 ei tuettu."
 
 #: src/CertificateIssueData.cpp:211
 msgid "Invalid CertificateIssueData object."
-msgstr "Epäkelpo CertificateIssueData objekti."
+msgstr "Virheellinen CertificateIssueData objekti."
 
 #: src/CertificatePoliciesExtension.cpp:216
 msgid "The text is too long."
@@ -385,16 +386,16 @@ msgstr "Teksti on liian pitkä."
 
 #: src/CertificatePoliciesExtension.cpp:255
 msgid "Invalid UserNotice object."
-msgstr "Epäkelpo UserNotice objekti."
+msgstr "Virheellinen UserNotice objekti."
 
 #: src/CertificatePoliciesExtension.cpp:395
 #: src/CertificatePoliciesExtension.cpp:459
 msgid "Invalid value for policyIdentifier: %1."
-msgstr "Epäkelpo policyIdentifier arvo: %1."
+msgstr "Virheellinen policyIdentifier arvo: %1."
 
 #: src/CertificatePoliciesExtension.cpp:514
 msgid "Invalid CertificatePolicy object."
-msgstr "Epäkelpo CertificatePolicy objekti."
+msgstr "Virheellinen CertificatePolicy objekti."
 
 #: src/CertificatePoliciesExtension.cpp:783
 #: src/CertificatePoliciesExtension.cpp:808
@@ -403,7 +404,7 @@ msgstr "CertificatePoliciesExt :ia ei löydy."
 
 #: src/CertificatePoliciesExtension.cpp:821
 msgid "Invalid CertificatePoliciesExt object."
-msgstr "Epäkelpo CertificatePoliciesExt objekti."
+msgstr "Virheellinen CertificatePoliciesExt objekti."
 
 #: src/CRLData.cpp:223
 msgid "Entry not found."
@@ -423,15 +424,15 @@ msgstr "CRLDistributionPointsExt:ia ei löytynyt."
 
 #: src/CRLDistributionPointsExtension.cpp:157
 msgid "Invalid CRLDistributionPointsExt object."
-msgstr "Epäkelpo CRLDistributionPointsExt objekti."
+msgstr "Virheellinen CRLDistributionPointsExt objekti."
 
 #: src/CRLGenerationData.cpp:156
 msgid "Invalid CRLGenerationData object."
-msgstr "Epäkelpo CRLGenerationData objekti."
+msgstr "Virheellinen CRLGenerationData objekti."
 
 #: src/CRLReason.cpp:100 src/CRLReason.cpp:136
 msgid "Invalid revoke reason %1."
-msgstr "Epäkelpo peruutuksen (revoke) syy: %1."
+msgstr "Virheellinen peruutuksen (revoke) syy: %1."
 
 #: src/CRLReason.cpp:174
 msgid "Reason is not certificateHold."
@@ -447,7 +448,7 @@ msgstr "Syynä ei ole CACompromise."
 
 #: src/DNObject.cpp:111
 msgid "Invalid type %1."
-msgstr "Epäkelpo tyyppi %1."
+msgstr "Virheellinen tyyppi %1."
 
 #: src/DNObject_Priv.cpp:159
 msgid "Cannot parse DN line: %1."
@@ -455,11 +456,11 @@ msgstr "DN-riviä ei voi jäsentää: %1."
 
 #: src/ExtendedKeyUsageExt.cpp:122 src/ExtendedKeyUsageExt.cpp:171
 msgid "Invalid ExtendedKeyUsage option %1."
-msgstr "Epäkelpo ExtendedKeyUsage optio %1."
+msgstr "Virheellinen ExtendedKeyUsage optio %1."
 
 #: src/ExtendedKeyUsageExt.cpp:130 src/ExtendedKeyUsageExt.cpp:179
 msgid "Invalid ExtendedKeyUsageExt."
-msgstr "Epäkelpo ExtendedKeyUsageExt."
+msgstr "Virheellinen ExtendedKeyUsageExt."
 
 #: src/ExtendedKeyUsageExt.cpp:192
 msgid "ExtendedKeyUsageExt is not present."
@@ -467,7 +468,7 @@ msgstr "ExtendedKeyUsageExt:ia ei löytynyt."
 
 #: src/ExtendedKeyUsageExt.cpp:221
 msgid "Invalid ExtendedKeyUsageExt object."
-msgstr "Epäkelpo ExtendedKeyUsageExt objekti."
+msgstr "Virheellinen ExtendedKeyUsageExt objekti."
 
 #: src/IssuerAlternativeNameExtension.cpp:166
 #: src/IssuerAlternativeNameExtension.cpp:191
@@ -476,13 +477,13 @@ msgstr "IssuerAlternativeNameExt ei ole saatavilla."
 
 #: src/IssuerAlternativeNameExtension.cpp:203
 msgid "Invalid literal value for IssuerAlternativeNameExt."
-msgstr "Epäkelpo literal -arvo IssuerAlternativeNameExt."
+msgstr "Virheellinen literal -arvo IssuerAlternativeNameExt."
 
 #: src/IssuerAlternativeNameExtension.cpp:216
 msgid "Invalid IssuerAlternativeNameExt object."
-msgstr "Epäkelpo IssuerAlternativeNameExt objekti."
+msgstr "Virheellinen IssuerAlternativeNameExt objekti."
 
-#: src/LiteralValues.cpp:119
+#: src/LiteralValues.cpp:130
 msgid "Unknown type."
 msgstr "Tuntematon tyyppi."
 
@@ -501,7 +502,7 @@ msgstr "%1 ei ole hakemisto."
 
 #: src/LocalManagement.cpp:367
 msgid "Invalid certificate file."
-msgstr "Epäkelpo varmenne-tiedosto."
+msgstr "Virheellinen varmenne-tiedosto."
 
 #: src/LocalManagement.cpp:445
 msgid "File not found: %1."
@@ -541,7 +542,7 @@ msgstr "Hakemistoa %1 ei ole olemassa."
 
 #: src/OpenSSLUtils.cpp:74
 msgid "Invalid command %1."
-msgstr "Epäkelpo komento %1."
+msgstr "Virheellinen komento %1."
 
 #: src/OpenSSLUtils.cpp:138 src/OpenSSLUtils.cpp:241 src/OpenSSLUtils.cpp:334
 #: src/OpenSSLUtils.cpp:453 src/OpenSSLUtils.cpp:586 src/OpenSSLUtils.cpp:681
@@ -748,53 +749,53 @@ msgstr "SubjectKeyIdentifierExt:ia ei löydetty."
 msgid "Invalid SubjectKeyIdentifierExt object."
 msgstr "Virheellinen SubjectKeyIdentifierExt-objekti."
 
-#: src/X509v3CertificateExtensions_Priv.cpp:393
-#: src/X509v3CertificateExtensions_Priv.cpp:449
-#: src/X509v3RequestExtensions_Priv.cpp:133
-#: src/X509v3RequestExtensions_Priv.cpp:188
+#: src/X509v3CertificateExtensions_Priv.cpp:394
+#: src/X509v3CertificateExtensions_Priv.cpp:450
+#: src/X509v3RequestExtensions_Priv.cpp:134
+#: src/X509v3RequestExtensions_Priv.cpp:189
 msgid "Extension occurred more than once: %1."
 msgstr "Laajennus ilmeni useita kertoja: %1."
 
-#: src/X509v3CertificateExtensions_Priv.cpp:400
-#: src/X509v3CertificateExtensions_Priv.cpp:456
-#: src/X509v3RequestExtensions_Priv.cpp:140
-#: src/X509v3RequestExtensions_Priv.cpp:195
+#: src/X509v3CertificateExtensions_Priv.cpp:401
+#: src/X509v3CertificateExtensions_Priv.cpp:457
+#: src/X509v3RequestExtensions_Priv.cpp:141
+#: src/X509v3RequestExtensions_Priv.cpp:196
 msgid "Unable to parse the certificate (NID: %1 Crit: %2)."
 msgstr "Varmennetta ei voi jäsentää (NID: %1 Krit: %2)."
 
-#: src/X509v3CertificateExtensions_Priv.cpp:508
-#: src/X509v3CertificateExtensions_Priv.cpp:574
-#: src/X509v3CertificateExtensions_Priv.cpp:638
-#: src/X509v3CertificateExtensions_Priv.cpp:700
-#: src/X509v3CertificateExtensions_Priv.cpp:770
-#: src/X509v3CertificateExtensions_Priv.cpp:839
-#: src/X509v3CertificateExtensions_Priv.cpp:915
-#: src/X509v3CertificateExtensions_Priv.cpp:1001
-#: src/X509v3CRLExtensions_Priv.cpp:134
-#: src/X509v3RequestExtensions_Priv.cpp:248
-#: src/X509v3RequestExtensions_Priv.cpp:314
-#: src/X509v3RequestExtensions_Priv.cpp:377
-#: src/X509v3RequestExtensions_Priv.cpp:438
+#: src/X509v3CertificateExtensions_Priv.cpp:509
+#: src/X509v3CertificateExtensions_Priv.cpp:575
+#: src/X509v3CertificateExtensions_Priv.cpp:639
+#: src/X509v3CertificateExtensions_Priv.cpp:701
+#: src/X509v3CertificateExtensions_Priv.cpp:771
+#: src/X509v3CertificateExtensions_Priv.cpp:840
+#: src/X509v3CertificateExtensions_Priv.cpp:916
+#: src/X509v3CertificateExtensions_Priv.cpp:1002
+#: src/X509v3CRLExtensions_Priv.cpp:135
+#: src/X509v3RequestExtensions_Priv.cpp:249
+#: src/X509v3RequestExtensions_Priv.cpp:315
+#: src/X509v3RequestExtensions_Priv.cpp:378
+#: src/X509v3RequestExtensions_Priv.cpp:439
 msgid "Extension occurred more than once."
 msgstr "Laajennus ilmeni useita kertoja."
 
-#: src/X509v3CertificateExtensions_Priv.cpp:513
-#: src/X509v3CertificateExtensions_Priv.cpp:579
-#: src/X509v3CertificateExtensions_Priv.cpp:643
-#: src/X509v3CertificateExtensions_Priv.cpp:706
-#: src/X509v3CertificateExtensions_Priv.cpp:775
-#: src/X509v3CertificateExtensions_Priv.cpp:845
-#: src/X509v3CertificateExtensions_Priv.cpp:920
-#: src/X509v3CertificateExtensions_Priv.cpp:1006
-#: src/X509v3CRLExtensions_Priv.cpp:139
-#: src/X509v3RequestExtensions_Priv.cpp:253
-#: src/X509v3RequestExtensions_Priv.cpp:319
-#: src/X509v3RequestExtensions_Priv.cpp:383
-#: src/X509v3RequestExtensions_Priv.cpp:443
+#: src/X509v3CertificateExtensions_Priv.cpp:514
+#: src/X509v3CertificateExtensions_Priv.cpp:580
+#: src/X509v3CertificateExtensions_Priv.cpp:644
+#: src/X509v3CertificateExtensions_Priv.cpp:707
+#: src/X509v3CertificateExtensions_Priv.cpp:776
+#: src/X509v3CertificateExtensions_Priv.cpp:846
+#: src/X509v3CertificateExtensions_Priv.cpp:921
+#: src/X509v3CertificateExtensions_Priv.cpp:1007
+#: src/X509v3CRLExtensions_Priv.cpp:140
+#: src/X509v3RequestExtensions_Priv.cpp:254
+#: src/X509v3RequestExtensions_Priv.cpp:320
+#: src/X509v3RequestExtensions_Priv.cpp:384
+#: src/X509v3RequestExtensions_Priv.cpp:444
 msgid "Unable to parse the certificate (Crit: %1)."
 msgstr "Varmennetta ei voi jäsentää (Krit: %1)."
 
-#: src/X509v3CertificateExtensions_Priv.cpp:940
+#: src/X509v3CertificateExtensions_Priv.cpp:941
 msgid "Invalid location in authorityInfoAccess."
 msgstr "Virheellinen sijainti kohteessa authorityInfoAccess."
 

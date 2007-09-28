@@ -1,0 +1,115 @@
+START
+DN Key countryName
+DN Key stateOrProvinceName
+DN Key localityName
+DN Key organizationName
+DN Key organizationalUnitName
+DN Key commonName
+DN Key emailAddress
+RETURN Request 
+RETURN Certificate 
+Certificate exists: true
+X509v3CertificateExts::dump()
+NsBaseUrlExt::dump()
+ExtensionBase::dump()
+is Present = false
+NsRevocationUrlExt::dump()
+ExtensionBase::dump()
+is Present = false
+NsCaRevocationUrlExt::dump()
+ExtensionBase::dump()
+is Present = false
+NsRenewalUrlExt::dump()
+ExtensionBase::dump()
+is Present = false
+NsCaPolicyUrlExt::dump()
+ExtensionBase::dump()
+is Present = false
+NsSslServerNameExt::dump()
+ExtensionBase::dump()
+is Present = false
+NsCommentExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+NS Comment = YaST Generated Client Certificate
+KeyUsageExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+KeyUsage = 0x8000
+NsCertTypeExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+NsCertType = 0x07
+BasicConstraintsExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+CA = true
+pathlen = 3
+ExtendedKeyUsageExt::dump()
+ExtensionBase::dump()
+is Present = false
+SubjectKeyIdentifierExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+Autodetect = false
+found KeyID
+AuthorityKeyIdentifierExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+found KeyID
+DirName = /C=DE/CN=Test CA/emailAddress=suse@suse.de
+serial = c9:d1:26:e7:ac:d4:49:e6
+SubjectAlternativeNameExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+email:copy = false
+LiteralValue::dump()
+email:suse@suse.de
+LiteralValue::dump()
+DNS:ca.my-company.com
+LiteralValue::dump()
+email:me@my-company.com
+LiteralValue::dump()
+1.3.6.1.4.1.311.20.2.3:me@MY-COMPANY.COM
+LiteralValue::dump()
+1.3.6.1.5.2.2:me@MY-COMPANY.COM
+LiteralValue::dump()
+1.3.6.1.4.1.311.20.2.3:me/admin@MY-COMPANY.COM
+LiteralValue::dump()
+1.3.6.1.5.2.2:me/admin@MY-COMPANY.COM
+IssuerAlternativeNameExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+Issuer:copy = false
+LiteralValue::dump()
+email:suse@suse.de
+LiteralValue::dump()
+DNS:ca.my-company.com
+LiteralValue::dump()
+email:me@my-company.com
+LiteralValue::dump()
+1.3.6.1.4.1.311.20.2.3:me@MY-COMPANY.COM
+LiteralValue::dump()
+1.3.6.1.5.2.2:me@MY-COMPANY.COM
+LiteralValue::dump()
+1.3.6.1.4.1.311.20.2.3:me/admin@MY-COMPANY.COM
+LiteralValue::dump()
+1.3.6.1.5.2.2:me/admin@MY-COMPANY.COM
+AuthorityInfoAccessExt::dump()
+ExtensionBase::dump()
+is Present = false
+CRLDistributionPointsExt::dump()
+ExtensionBase::dump()
+is Present = false
+CertificatePoliciesExt::dump()
+ExtensionBase::dump()
+is Present = false
+DONE

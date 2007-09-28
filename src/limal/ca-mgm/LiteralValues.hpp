@@ -35,7 +35,9 @@ namespace CA_MGM_NAMESPACE {
 	
 	/**
 	 * A Literal Value is a pair of a type and a value
-	 * Valid types are: URI, DNS, RID, IP and email
+	 * Valid types are: URI, DNS, RID, IP, email,
+	 * 1.3.6.1.4.1.311.20.2.3 (ms-upn)
+	 * and 1.3.6.1.5.2.2 (KRB5PrincipalName)
 	 */
 	class LiteralValue {
 	public:
@@ -44,7 +46,7 @@ namespace CA_MGM_NAMESPACE {
 		/**
 		 * Constructor
 		 *
-		 * @param type Valid types are: URI, DNS, RID, IP and email
+		 * @param type Valid types are: URI, DNS, RID, IP, email, 1.3.6.1.4.1.311.20.2.3 and 1.3.6.1.5.2.2
 		 * @param value a value for the type
 		 */
 		LiteralValue(const String &type, const String &value);
@@ -53,7 +55,7 @@ namespace CA_MGM_NAMESPACE {
 		 * Constructor
 		 *
 		 * @param value in the form &lt;type&gt;:&lt;value&gt;
-		 *              Valid types are: URI, DNS, RID, IP and email
+		 *              Valid types are: URI, DNS, RID, IP, email, 1.3.6.1.4.1.311.20.2.3 and 1.3.6.1.5.2.2
 		 */
 		LiteralValue(const String& value);
 		LiteralValue(const LiteralValue& value);
@@ -70,7 +72,7 @@ namespace CA_MGM_NAMESPACE {
 		/**
 		 * Set new values
 		 *
-		 * @param type Valid types are: URI, DNS, RID, IP and email
+		 * @param type Valid types are: URI, DNS, RID, IP, email, 1.3.6.1.4.1.311.20.2.3 and 1.3.6.1.5.2.2
 		 * @param value a value for the type
 		 */
 		void
@@ -80,7 +82,7 @@ namespace CA_MGM_NAMESPACE {
 		 * Set new values
 		 *
 		 * @param value in the form &lt;type&gt;:&lt;value&gt;
-		 *              Valid types are: URI, DNS, RID, IP and email
+		 *              Valid types are: URI, DNS, RID, IP, email, 1.3.6.1.4.1.311.20.2.3 and 1.3.6.1.5.2.2
 		 */
 		void
 		setValue(const String &value);

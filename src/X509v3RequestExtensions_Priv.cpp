@@ -20,6 +20,7 @@
 
 /-*/
 #include  "X509v3RequestExtensions_Priv.hpp"
+#include  "LiteralValues_Priv.hpp"
 #include  <limal/Exception.hpp>
 
 #include <openssl/x509v3.h>
@@ -452,7 +453,7 @@ X509v3RequestExts_Priv::parseSubjectAlternativeNameExt(STACK_OF(X509_EXTENSION) 
 	{
 		gen = sk_GENERAL_NAME_value(gns, j);
 
-		LiteralValue lv = gn2lv(gen);
+		LiteralValue_Priv lv(gen);
 
 		lvList.push_back(lv);
 	}

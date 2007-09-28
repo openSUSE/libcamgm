@@ -54,6 +54,7 @@ liblimal_ca_mgm_la_SOURCES  =	\
 	X509v3CRLExtensions_Priv.cpp \
 	X509v3RequestExtensions_Priv.cpp \
 	CRLReason_Priv.cpp \
+	LiteralValues_Priv.cpp \
 	OpenSSLUtils.cpp \
 	INIParser/IniFile.cpp   \
 	INIParser/IniParser.cpp \
