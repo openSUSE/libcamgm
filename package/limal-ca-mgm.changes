@@ -1,6 +1,7 @@
 -------------------------------------------------------------------
 Fri Sep 28 16:18:14 CEST 2007 - mc@suse.de
 
+- version 1.4.0
 - implement support for Subject Alternative Name, othername types
   1.3.6.1.4.1.311.20.2.3(ms-upn) and 1.3.6.1.5.2.2(KRB5PrincipalName)
 
