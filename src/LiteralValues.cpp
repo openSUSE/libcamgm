@@ -86,7 +86,7 @@ LiteralValue::LiteralValue(const String &type, const String &value)
 LiteralValue::LiteralValue(const String& value)
 	: m_impl(new LiteralValueImpl())
 {
-	StringArray   sp   = PerlRegEx("^(\\w+):(.*)$").capture(value);
+	StringArray   sp   = PerlRegEx("^([\\w\\d.]+):(.*)$").capture(value);
     
 	if(sp[1].equalsIgnoreCase("email"))
 	{
