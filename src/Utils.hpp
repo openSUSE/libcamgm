@@ -277,8 +277,6 @@ inline int rehashCAs(const blocxx::String &repositoryDir)
 	return status;
 }
 
-LiteralValue gn2lv(GENERAL_NAME *gen);
-
 
 }
 }

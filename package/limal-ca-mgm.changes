@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Fri Oct 12 17:52:14 CEST 2007 - mc@suse.de
+
+- improve error reporting from openssl commands
+- add Exception tests  
+
+-------------------------------------------------------------------
 Fri Sep 28 16:18:14 CEST 2007 - mc@suse.de
 
 - version 1.4.0

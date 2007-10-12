@@ -19,4 +19,9 @@ correct encryption
 Got PKCS12 data
 Got PEM 
 correct encryption
+===================== Test rsaConvert Exception =====================
+Got expected Exception.
+===================== Test pkcs12Convert Exception =====================
+Got expected Exception.
+Got expected Exception.
 DONE

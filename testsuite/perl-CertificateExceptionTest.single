@@ -85,33 +85,12 @@ if($@)
     print "2:".Data::Dumper->Dump([$@]);
     print $@->{type}.":".$@->{code}.":".$@->{message}."\n";
     
-    exit 0;
+    #exit 0;
 }
 
-print "RETURN Certificate \n";
+#---------------------------------------------------------------------------------
 
-if( -e "./TestRepos/Test_CA1/newcerts/$c.pem") 
-{                             
-    print "Certificate exists: true\n";
-}
 
-my $cd = $ca->getCertificate($c);
-        
-my $ret = $cd->getExtensions()->dump();
-        
-for(my $it = $ret->begin();
-    !$ret->iterator_equal($it, $ret->end());
-    $ret->iterator_incr($it))
-{
-    if($ret->iterator_value($it) =~ /^KeyID/)
-    {
-        print "found KeyID\n";
-    }
-    else
-    {
-        print $ret->iterator_value($it)."\n";
-    }
-}
 
 print "DONE\n";
 

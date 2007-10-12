@@ -31,7 +31,8 @@ int main()
 
         blocxx::StringArray cat;
         cat.push_back("FATAL");
-        cat.push_back("ERROR");
+		// do not log errors because the openssl errors include a pid which changes everytime
+        //cat.push_back("ERROR");
         cat.push_back("INFO");
         //cat.push_back("DEBUG");
 
@@ -185,14 +186,92 @@ int main()
         		//cout << pem.data() << endl;
         	}
         }
-
-        cout << "DONE" << endl;
     }
     catch(Exception& e)
     {
         cerr << e << endl;
     }
-    
+
+
+	cout << "===================== Test rsaConvert Exception =====================" << endl;
+	
+	try
+	{
+		ByteBuffer pem = LocalManagement::readFile("./TestRepos3/SUSERootCA/cacert.key");
+		
+		ByteBuffer der = LocalManagement::rsaConvert(pem, E_PEM, E_DER, "wrong password", "");
+        
+		if(der.size() > 0)
+		{
+			cout << "Got DER Key" << endl;
+		}
+	}
+	catch(Exception& e)
+	{
+		cout << "Got expected Exception." << endl;
+		cerr << "Exception:" << endl << e.getFile() << ": " << e.type() << ": ";
+		blocxx::String msg = blocxx::String(e.getMessage());
+		
+		cerr <<	msg.tokenize("\n\r")[0] << endl << "END" << endl;
+	}
+
+
+	cout << "===================== Test pkcs12Convert Exception =====================" << endl;
+
+	ByteBuffer crt = LocalManagement::readFile("./TestRepos3/SUSERootCA/certs/01.pem");
+	ByteBuffer key = LocalManagement::readFile("./TestRepos3/SUSERootCA/keys/a64a6c95f2a3dc22975e13691ad8e2bb-1111160526.key");
+	ByteBuffer ca  = LocalManagement::readFile("./TestRepos3/SUSERootCA/cacert.pem");
+
+	ByteBuffer p12;
+	
+	try
+	{
+		p12 = LocalManagement::createPKCS12(crt, key, "wrong password", "tralla",
+											ca, "./TestRepos3/.cas/", false);
+        	
+		if(p12.size() > 0)
+		{
+			cout << "Got PKCS12 data" << endl;
+		}
+	}
+	catch(Exception &e)
+	{
+		cout << "Got expected Exception." << endl;
+		cerr << "Exception:" << endl << e << endl << "END" << endl;
+	}
+	
+	p12 = LocalManagement::createPKCS12(crt, key, "system", "tralla",
+										ca, "./TestRepos3/.cas/", false);
+	
+	try
+	{
+		ByteBuffer pem = LocalManagement::pkcs12ToPEM(p12, "wrong password", "system", "aes256");
+		
+		if(pem.size() > 0)
+		{
+			cout << "Got PEM " << endl;
+			
+			PerlRegEx p("DEK-Info: AES-256-CBC");
+			if(p.match(pem.data()))
+			{
+				cout << "correct encryption" << endl;
+			}
+			else
+			{
+				cout << "!!!WRONG encryption" << endl;
+			}
+        	
+			//cout << pem.data() << endl;
+		}
+	}
+	catch(Exception &e)
+	{
+		cout << "Got expected Exception." << endl;
+		cerr << "Exception:" << endl << e << endl << "END" << endl;
+	}
+		
+	cout << "DONE" << endl;
+
     return 0;
 }
 
