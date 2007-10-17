@@ -35,14 +35,14 @@ using namespace blocxx;
 
 class AuthorityKeyIdentifierExtImpl : public blocxx::COWIntrusiveCountableBase
 {
-	public:
+public:
 
 	AuthorityKeyIdentifierExtImpl()
 		: keyid(String())
 		, DirName(String())
 		, serial(String())
 	{}
-	
+
 	AuthorityKeyIdentifierExtImpl(const AuthorityKeyIdentifierExtImpl &impl)
 		: COWIntrusiveCountableBase(impl)
 		, keyid(impl.keyid)
@@ -56,14 +56,14 @@ class AuthorityKeyIdentifierExtImpl : public blocxx::COWIntrusiveCountableBase
 	{
 		return new AuthorityKeyIdentifierExtImpl(*this);
 	}
-	
+
 	String keyid;
 	String DirName;
-	String serial;  
+	String serial;
 };
 
 // ======================================================================
-	
+
 AuthorityKeyIdentifierExt::AuthorityKeyIdentifierExt()
 	: ExtensionBase()
 	, m_impl(new AuthorityKeyIdentifierExtImpl())
@@ -77,18 +77,18 @@ AuthorityKeyIdentifierExt::AuthorityKeyIdentifierExt(const AuthorityKeyIdentifie
 AuthorityKeyIdentifierExt::~AuthorityKeyIdentifierExt()
 {}
 
-AuthorityKeyIdentifierExt& 
+AuthorityKeyIdentifierExt&
 AuthorityKeyIdentifierExt::operator=(const AuthorityKeyIdentifierExt& extension)
 {
 	if(this == &extension) return *this;
 
 	ExtensionBase::operator=(extension);
 	m_impl = extension.m_impl;
-   
+
 	return *this;
 }
 
-blocxx::String         
+blocxx::String
 AuthorityKeyIdentifierExt::getKeyID() const
 {
 	if(!isPresent()) {
@@ -99,7 +99,7 @@ AuthorityKeyIdentifierExt::getKeyID() const
 	return m_impl->keyid;
 }
 
-blocxx::String         
+blocxx::String
 AuthorityKeyIdentifierExt::getDirName() const
 {
 	if(!isPresent()) {
@@ -110,7 +110,7 @@ AuthorityKeyIdentifierExt::getDirName() const
 	return m_impl->DirName;
 }
 
-blocxx::String         
+blocxx::String
 AuthorityKeyIdentifierExt::getSerial() const
 {
 	if(!isPresent()) {
@@ -148,7 +148,7 @@ AuthorityKeyIdentifierExt::dump() const
 
 	return result;
 }
-        
+
 // protected
 
 void
@@ -170,7 +170,7 @@ AuthorityKeyIdentifierExt::setSerial(const String& serial)
 }
 
 // private
-void 
+void
 AuthorityKeyIdentifierExt::commit2Config(CA&, Type) const
 {}
 

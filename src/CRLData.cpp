@@ -39,7 +39,7 @@ namespace CA_MGM_NAMESPACE
 using namespace limal;
 using namespace blocxx;
 
-	
+
 RevocationEntry::RevocationEntry()
 	: m_impl(new RevocationEntryImpl())
 {}
@@ -51,13 +51,13 @@ RevocationEntry::RevocationEntry(const RevocationEntry& entry)
 RevocationEntry::~RevocationEntry()
 {}
 
-RevocationEntry& 
+RevocationEntry&
 RevocationEntry::operator=(const RevocationEntry& entry)
 {
 	if(this == &entry) return *this;
-    
+
 	m_impl = entry.m_impl;
-    
+
 	return *this;
 }
 
@@ -94,7 +94,7 @@ blocxx::StringArray
 RevocationEntry::verify() const
 {
 	StringArray result;
-    
+
 	if(!initHexCheck().isValid(m_impl->serial))
 	{
 		result.append(Format("invalid serial: %1", m_impl->serial).toString());
@@ -102,7 +102,7 @@ RevocationEntry::verify() const
 	result.appendArray(m_impl->revocationReason.verify());
 
 	LOGIT_DEBUG_STRINGARRAY("RevocationEntry::verify()", result);
-    
+
 	return result;
 }
 
@@ -123,13 +123,13 @@ RevocationEntry::dump() const
 // ##################################################################
 
 CRLData::CRLData(const CRLData& data)
-	: m_impl(data.m_impl)
+: m_impl(data.m_impl)
 {}
 
 CRLData::~CRLData()
 {}
 
-CRLData& 
+CRLData&
 CRLData::operator=(const CRLData& data)
 {
 	if(this == &data) return *this;
@@ -180,15 +180,15 @@ CRLData::getSignatureAlgorithmAsString() const
 {
 	switch(m_impl->signatureAlgorithm)
 	{
-		case E_SHA1RSA:
-			return "SHA1RSA";
-			break;
-		case E_MD5RSA:
-			return "MD5RSA";
-			break;
-		case E_SHA1DSA:
-			return "SHA1DSA";
-			break;
+	case E_SHA1RSA:
+		return "SHA1RSA";
+		break;
+	case E_MD5RSA:
+		return "MD5RSA";
+		break;
+	case E_SHA1DSA:
+		return "SHA1DSA";
+		break;
 	}
 	return String();
 }
@@ -235,7 +235,7 @@ CRLData::getCRLAsText() const
 
 	String text = String((const char*)ustringval, n);
 	BIO_free(bio);
-	
+
 	return text;
 }
 
@@ -245,13 +245,13 @@ CRLData::getExtensionsAsText() const
 	unsigned char *ustringval = NULL;
 	unsigned int n = 0;
 	BIO *bio = BIO_new(BIO_s_mem());
-	
+
 	X509V3_extensions_print(bio, NULL, m_impl->x509->crl->extensions, 0, 4);
 	n = BIO_get_mem_data(bio, &ustringval);
 
 	String extText = String((const char*)ustringval, n);
 	BIO_free(bio);
-	
+
 	return extText;
 }
 
@@ -290,7 +290,7 @@ blocxx::StringArray
 CRLData::verify() const
 {
 	StringArray result;
-    
+
 	if(m_impl->version < 1 || m_impl->version > 2)
 	{
 		result.append(Format("invalid version: %1", m_impl->version).toString());
@@ -309,7 +309,7 @@ CRLData::verify() const
 	result.appendArray(checkRevocationData(m_impl->revocationData));
 
 	LOGIT_DEBUG_STRINGARRAY("CRLData::verify()", result);
-    
+
 	return result;
 }
 

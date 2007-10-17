@@ -39,12 +39,12 @@ namespace CA_MGM_NAMESPACE
 
 using namespace limal;
 using namespace blocxx;
-	
-	
+
+
 RDNObject::RDNObject()
 	: m_impl(new RDNObjectImpl())
 {}
-	
+
 RDNObject::RDNObject(const RDNObject& rdn)
 	: m_impl(rdn.m_impl)
 {}
@@ -56,7 +56,7 @@ RDNObject&
 RDNObject::operator=(const RDNObject& rdn)
 {
 	if(this == &rdn) return *this;
-    
+
 	m_impl = rdn.m_impl;
 
 	return *this;
@@ -100,7 +100,7 @@ RDNObject::getOpenSSLValue() const
 	Map<String, String>::const_iterator it = opensslKeys.find(m_impl->type);
 
 	if( it != opensslKeys.end())
-	{        
+	{
 		ret += (*it).second + "=";
 	}
 	else
@@ -159,14 +159,14 @@ RDNObject::verify() const
 
 	if(m_impl->min != 0 && m_impl->value.UTF8Length() < m_impl->min)
 	{
-		result.append("Value(" + m_impl->value + 
+		result.append("Value(" + m_impl->value +
 		              ") is too small. Value has to be a minimal length of " +
 		              String(m_impl->min));
 	}
 
 	if(m_impl->max != 0 && m_impl->value.UTF8Length() > m_impl->max)
 	{
-		result.append("Value(" + m_impl->value + 
+		result.append("Value(" + m_impl->value +
 		              ") is too long. Value has to be a maximal length of " +
 		              String(m_impl->max));
 	}
@@ -255,10 +255,10 @@ DNObject::DNObject(CAConfig* caConfig, Type type)
 	if(!p)
 	{
 		LOGIT_ERROR("missing section 'distinguished_name' in config file");
-		BLOCXX_THROW(limal::SyntaxException, 
+		BLOCXX_THROW(limal::SyntaxException,
 		             __("Missing section 'distinguished_name' in the configuration file."));
 	}
-	String dnSect = caConfig->getValue(type2Section(type, false), 
+	String dnSect = caConfig->getValue(type2Section(type, false),
 	                                   "distinguished_name");
 
 	StringList dnKeys = caConfig->getKeylist(dnSect);
@@ -266,7 +266,7 @@ DNObject::DNObject(CAConfig* caConfig, Type type)
 	if(dnKeys.empty())
 	{
 		LOGIT_ERROR("Can not parse Section " << dnSect);
-		BLOCXX_THROW(limal::SyntaxException, 
+		BLOCXX_THROW(limal::SyntaxException,
 		             Format(__("Cannot parse section %1."), dnSect).c_str());
 	}
 	StringList::const_iterator it = dnKeys.begin();
@@ -282,14 +282,14 @@ DNObject::DNObject(CAConfig* caConfig, Type type)
 		if((*it).endsWith("_default", String::E_CASE_INSENSITIVE))
 		{
 			if((*it).startsWith(fieldName, String::E_CASE_INSENSITIVE))
-			{                
+			{
 				defaultValue = caConfig->getValue(dnSect, *it);
 			}
 			else
 			{
 				LOGIT_INFO("Wrong order of section '" << dnSect <<
 				           "'. FieldName is '" << fieldName <<
-				           "' but parsed Key is '" << *it << 
+				           "' but parsed Key is '" << *it <<
 				           "'. Ignoring value.");
 				continue;
 			}
@@ -304,7 +304,7 @@ DNObject::DNObject(CAConfig* caConfig, Type type)
 			{
 				LOGIT_INFO("Wrong order of section '" << dnSect <<
 				           "'. FieldName is '" << fieldName <<
-				           "' but parsed Key is '" << *it << 
+				           "' but parsed Key is '" << *it <<
 				           "'. Ignoring value.");
 				continue;
 			}
@@ -319,7 +319,7 @@ DNObject::DNObject(CAConfig* caConfig, Type type)
 			{
 				LOGIT_INFO("Wrong order of section '" << dnSect <<
 				           "'. FieldName is '" << fieldName <<
-				           "' but parsed Key is '" << *it << 
+				           "' but parsed Key is '" << *it <<
 				           "'. Ignoring value.");
 				continue;
 			}
@@ -350,7 +350,7 @@ DNObject::DNObject(CAConfig* caConfig, Type type)
 	}
 	// commit the last values
 	if(!fieldName.empty())
-	{        
+	{
 		m_impl->dn.push_back(RDNObject_Priv(fieldName,
 		                                    defaultValue,
 		                                    prompt,
@@ -381,9 +381,9 @@ DNObject&
 DNObject::operator=(const DNObject& dn)
 {
 	if(this == &dn) return *this;
-    
+
 	m_impl = dn.m_impl;
-    
+
 	return *this;
 }
 
@@ -414,11 +414,11 @@ DNObject::getOpenSSLString() const
 	for(; it != m_impl->dn.end(); ++it)
 	{
 		if(! (*it).getOpenSSLValue().empty())
-		{            
+		{
 			ret += "/" + (*it).getOpenSSLValue();
 		}
 	}
-    
+
 	return ret;
 }
 
@@ -449,9 +449,9 @@ DNObject::verify() const
 		result.append("empty DN");
 	}
 	result.appendArray(checkRDNList(m_impl->dn));
-    
+
 	LOGIT_DEBUG_STRINGARRAY("DNObject::verify()", result);
-    
+
 	return result;
 }
 
@@ -459,7 +459,7 @@ blocxx::StringArray
 DNObject::checkRDNList(const blocxx::List<RDNObject>& list) const
 {
 	StringArray result;
-    
+
 	blocxx::List<RDNObject>::const_iterator it = list.begin();
 	for(; it != list.end(); ++it)
 	{
@@ -479,7 +479,7 @@ DNObject::dump() const
 	{
 		result.appendArray((*it).dump());
 	}
-    
+
 	return result;
 }
 

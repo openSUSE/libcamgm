@@ -33,72 +33,72 @@ namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
-	class CertificateData_Priv : public CertificateData {
-	public:
-		CertificateData_Priv();
+class CertificateData_Priv : public CertificateData {
+public:
+	CertificateData_Priv();
 
-		CertificateData_Priv(const ByteBuffer &certificate,
-		                     FormatType formatType = E_PEM);
+	CertificateData_Priv(const ByteBuffer &certificate,
+	                     FormatType formatType = E_PEM);
 
-		/**
-		 * Construct a CertificateData object by parsing a certificate 
-		 * file.
-		 *
-		 *
-		 */
-		CertificateData_Priv(const String &certificatePath,
-		                     FormatType formatType = E_PEM);
+	/**
+	 * Construct a CertificateData object by parsing a certificate
+	 * file.
+	 *
+	 *
+	 */
+	CertificateData_Priv(const String &certificatePath,
+	                     FormatType formatType = E_PEM);
 
-		CertificateData_Priv(const CertificateData_Priv& data);
-		
-		virtual ~CertificateData_Priv();
+	CertificateData_Priv(const CertificateData_Priv& data);
 
-		void
-		setVersion(blocxx::UInt32 v);
+	virtual ~CertificateData_Priv();
 
-		void
-		setSerial(const String& serial);
-        
-		void
-		setCertifyPeriode(time_t start, time_t end);
-        
-		void
-		setIssuerDN(const DNObject& issuer);
-        
-		void
-		setSubjectDN(const DNObject& subject);
+	void
+	setVersion(blocxx::UInt32 v);
 
-		void
-		setKeysize(blocxx::UInt32 size);
+	void
+	setSerial(const String& serial);
 
-		void
-		setPublicKeyAlgorithm(KeyAlg pubKeyAlg);
+	void
+	setCertifyPeriode(time_t start, time_t end);
 
-		void
-		setPublicKey(const ByteBuffer derPublicKey);
+	void
+	setIssuerDN(const DNObject& issuer);
 
-		void
-		setSignatureAlgorithm(SigAlg sigAlg);
-        
-		void
-		setSignature(const ByteBuffer& sig);
+	void
+	setSubjectDN(const DNObject& subject);
 
-		void
-		setExtensions(const X509v3CertificateExts& ext);
+	void
+	setKeysize(blocxx::UInt32 size);
 
-		void
-		setFingerprint(const String& fp);
+	void
+	setPublicKeyAlgorithm(KeyAlg pubKeyAlg);
 
-	private:
-		CertificateData_Priv& operator=(const CertificateData_Priv& data);
-		
-		void
-		init(const ByteBuffer &certificate, FormatType formatType);
+	void
+	setPublicKey(const ByteBuffer derPublicKey);
 
-		void
-		parseCertificate(X509 *x509);
-	};
-    
+	void
+	setSignatureAlgorithm(SigAlg sigAlg);
+
+	void
+	setSignature(const ByteBuffer& sig);
+
+	void
+	setExtensions(const X509v3CertificateExts& ext);
+
+	void
+	setFingerprint(const String& fp);
+
+private:
+	CertificateData_Priv& operator=(const CertificateData_Priv& data);
+
+	void
+	init(const ByteBuffer &certificate, FormatType formatType);
+
+	void
+	parseCertificate(X509 *x509);
+};
+
 }
 }
 

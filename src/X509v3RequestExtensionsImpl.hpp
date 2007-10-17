@@ -32,39 +32,39 @@ namespace CA_MGM_NAMESPACE {
 
 class X509v3RequestExtsImpl : public blocxx::COWIntrusiveCountableBase
 {
-	public:
+public:
 	X509v3RequestExtsImpl()
 		: nsSslServerName(NsSslServerNameExt()),
-		  nsComment(NsCommentExt()),
-		  keyUsage(KeyUsageExt()),
-		  nsCertType(NsCertTypeExt()),
-		  basicConstraints(BasicConstraintsExt()),
-		  extendedKeyUsage(ExtendedKeyUsageExt()),
-		  subjectKeyIdentifier(SubjectKeyIdentifierExt()),
-		  subjectAlternativeName(SubjectAlternativeNameExt())
+		nsComment(NsCommentExt()),
+		keyUsage(KeyUsageExt()),
+		nsCertType(NsCertTypeExt()),
+		basicConstraints(BasicConstraintsExt()),
+		extendedKeyUsage(ExtendedKeyUsageExt()),
+		subjectKeyIdentifier(SubjectKeyIdentifierExt()),
+		subjectAlternativeName(SubjectAlternativeNameExt())
 	{}
 
 	X509v3RequestExtsImpl(CAConfig* caConfig, Type type)
 		: nsSslServerName(caConfig, type),
-		  nsComment(caConfig, type),
-		  keyUsage(caConfig, type),
-		  nsCertType(caConfig, type),
-		  basicConstraints(caConfig, type),
-		  extendedKeyUsage(caConfig, type),
-		  subjectKeyIdentifier(caConfig, type),
-		  subjectAlternativeName(caConfig, type)
+		nsComment(caConfig, type),
+		keyUsage(caConfig, type),
+		nsCertType(caConfig, type),
+		basicConstraints(caConfig, type),
+		extendedKeyUsage(caConfig, type),
+		subjectKeyIdentifier(caConfig, type),
+		subjectAlternativeName(caConfig, type)
 	{}
 
 	X509v3RequestExtsImpl(const X509v3RequestExtsImpl& impl)
 		: COWIntrusiveCountableBase(impl),
-		  nsSslServerName(impl.nsSslServerName),
-		  nsComment(impl.nsComment),
-		  keyUsage(impl.keyUsage),
-		  nsCertType(impl.nsCertType),
-		  basicConstraints(impl.basicConstraints),
-		  extendedKeyUsage(impl.extendedKeyUsage),
-		  subjectKeyIdentifier(impl.subjectKeyIdentifier),
-		  subjectAlternativeName(impl.subjectAlternativeName)
+		nsSslServerName(impl.nsSslServerName),
+		nsComment(impl.nsComment),
+		keyUsage(impl.keyUsage),
+		nsCertType(impl.nsCertType),
+		basicConstraints(impl.basicConstraints),
+		extendedKeyUsage(impl.extendedKeyUsage),
+		subjectKeyIdentifier(impl.subjectKeyIdentifier),
+		subjectAlternativeName(impl.subjectAlternativeName)
 	{}
 
 	~X509v3RequestExtsImpl() {}
@@ -75,19 +75,19 @@ class X509v3RequestExtsImpl : public blocxx::COWIntrusiveCountableBase
 	}
 
 	/* String extensions */
-	
+
 	NsSslServerNameExt        nsSslServerName;
 	NsCommentExt              nsComment;
-	
+
 	/* Bit Strings */
-	KeyUsageExt               keyUsage; 
+	KeyUsageExt               keyUsage;
 	NsCertTypeExt             nsCertType;
-	
+
 	BasicConstraintsExt       basicConstraints;
 	ExtendedKeyUsageExt       extendedKeyUsage;
 	SubjectKeyIdentifierExt   subjectKeyIdentifier;
 	SubjectAlternativeNameExt subjectAlternativeName;
-	
+
 	// AuthorityInfoAccessExt    authorityInfoAccess;  // ???
 };
 

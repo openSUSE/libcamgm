@@ -38,22 +38,22 @@ using namespace blocxx;
 
 class X509v3CRLGenerationExtsImpl : public blocxx::COWIntrusiveCountableBase
 {
-	public:
+public:
 	X509v3CRLGenerationExtsImpl()
 		: authorityKeyIdentifier(AuthorityKeyIdentifierGenerateExt()),
-		  issuerAlternativeName(IssuerAlternativeNameExt())
- 
+		issuerAlternativeName(IssuerAlternativeNameExt())
+
 	{}
 
 	X509v3CRLGenerationExtsImpl(CAConfig* caConfig, Type type)
 		: authorityKeyIdentifier(caConfig, type),
-		  issuerAlternativeName(caConfig, type)
+		issuerAlternativeName(caConfig, type)
 	{}
 
 	X509v3CRLGenerationExtsImpl(const X509v3CRLGenerationExtsImpl& impl)
 		: COWIntrusiveCountableBase(impl),
-		  authorityKeyIdentifier(impl.authorityKeyIdentifier),
-		  issuerAlternativeName(impl.issuerAlternativeName)
+		authorityKeyIdentifier(impl.authorityKeyIdentifier),
+		issuerAlternativeName(impl.issuerAlternativeName)
 	{}
 
 	~X509v3CRLGenerationExtsImpl() {}
@@ -67,7 +67,7 @@ class X509v3CRLGenerationExtsImpl : public blocxx::COWIntrusiveCountableBase
 	IssuerAlternativeNameExt          issuerAlternativeName;
 };
 
-	
+
 X509v3CRLGenerationExts::X509v3CRLGenerationExts()
 	: m_impl(new X509v3CRLGenerationExtsImpl())
 {}
@@ -87,9 +87,9 @@ X509v3CRLGenerationExts&
 X509v3CRLGenerationExts::operator=(const X509v3CRLGenerationExts& extension)
 {
 	if(this == &extension) return *this;
-    
+
 	m_impl = extension.m_impl;
-    
+
 	return *this;
 }
 
@@ -98,7 +98,7 @@ X509v3CRLGenerationExts::setAuthorityKeyIdentifier(const AuthorityKeyIdentifierG
 {
 	if(!ext.valid())
 	{
-		BLOCXX_THROW(limal::ValueException, 
+		BLOCXX_THROW(limal::ValueException,
 		             __("Invalid value for X509v3CRLGenerationExts::setAuthorityKeyIdentifier."));
 	}
 	m_impl->authorityKeyIdentifier = ext;
@@ -121,7 +121,7 @@ X509v3CRLGenerationExts::setIssuerAlternativeName(const IssuerAlternativeNameExt
 {
 	if(!ext.valid())
 	{
-		BLOCXX_THROW(limal::ValueException, 
+		BLOCXX_THROW(limal::ValueException,
 		             __("Invalid value for X509v3CRLGenerationExts::setIssuerAlternativeName."));
 	}
 	m_impl->issuerAlternativeName = ext;
@@ -148,7 +148,7 @@ X509v3CRLGenerationExts::commit2Config(CA& ca, Type type) const
 		BLOCXX_THROW(limal::ValueException,
 		             __("Invalid X509v3RequestExts object."));
 	}
-    
+
 	m_impl->authorityKeyIdentifier.commit2Config(ca, type);
 	m_impl->issuerAlternativeName.commit2Config(ca, type);
 }
@@ -168,7 +168,7 @@ X509v3CRLGenerationExts::verify() const
 
 	result.appendArray(m_impl->authorityKeyIdentifier.verify());
 	result.appendArray(m_impl->issuerAlternativeName.verify());
-    
+
 	LOGIT_DEBUG_STRINGARRAY("X509v3CRLGenerationExts::verify()", result);
 	return result;;
 }

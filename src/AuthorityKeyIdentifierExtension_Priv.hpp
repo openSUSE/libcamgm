@@ -31,18 +31,18 @@ namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
-	class AuthorityKeyIdentifierExt_Priv : public AuthorityKeyIdentifierExt {
-	public:
+class AuthorityKeyIdentifierExt_Priv : public AuthorityKeyIdentifierExt {
+public:
 
-		AuthorityKeyIdentifierExt_Priv();
-		AuthorityKeyIdentifierExt_Priv(STACK_OF(X509_EXTENSION)* extensions);
-		AuthorityKeyIdentifierExt_Priv(const AuthorityKeyIdentifierExt_Priv& extension);
-		virtual ~AuthorityKeyIdentifierExt_Priv();
-        
-		AuthorityKeyIdentifierExt_Priv&
-		operator=(const AuthorityKeyIdentifierExt_Priv& extension);
+	AuthorityKeyIdentifierExt_Priv();
+	AuthorityKeyIdentifierExt_Priv(STACK_OF(X509_EXTENSION)* extensions);
+	AuthorityKeyIdentifierExt_Priv(const AuthorityKeyIdentifierExt_Priv& extension);
+	virtual ~AuthorityKeyIdentifierExt_Priv();
 
-	};
+	AuthorityKeyIdentifierExt_Priv&
+	operator=(const AuthorityKeyIdentifierExt_Priv& extension);
+
+};
 
 }
 }

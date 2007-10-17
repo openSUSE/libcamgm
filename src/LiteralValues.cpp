@@ -40,10 +40,10 @@ using namespace blocxx;
 
 class LiteralValueImpl : public blocxx::COWIntrusiveCountableBase
 {
-	public:
+public:
 	String literalType;
 	String literalValue;
-	
+
 	LiteralValueImpl()
 		: literalType(String()), literalValue(String())
 	{}
@@ -55,8 +55,8 @@ class LiteralValueImpl : public blocxx::COWIntrusiveCountableBase
 
 	LiteralValueImpl(const LiteralValueImpl &lv)
 		: blocxx::COWIntrusiveCountableBase(lv),
-		  literalType(lv.literalType),
-		  literalValue(lv.literalValue)
+		literalType(lv.literalType),
+		literalValue(lv.literalValue)
 	{}
 
 	virtual ~LiteralValueImpl() {}
@@ -67,13 +67,13 @@ class LiteralValueImpl : public blocxx::COWIntrusiveCountableBase
 	}
 };
 
-	
-LiteralValue::LiteralValue() 
+
+LiteralValue::LiteralValue()
 	: m_impl(new LiteralValueImpl())
 {}
 
-LiteralValue::LiteralValue(const String &type, const String &value) 
-    : m_impl(new LiteralValueImpl(type, value))
+LiteralValue::LiteralValue(const String &type, const String &value)
+	: m_impl(new LiteralValueImpl(type, value))
 {
 	StringArray r = this->verify();
 	if(!r.empty())
@@ -87,7 +87,7 @@ LiteralValue::LiteralValue(const String& value)
 	: m_impl(new LiteralValueImpl())
 {
 	StringArray   sp   = PerlRegEx("^([\\w\\d.]+):(.*)$").capture(value);
-    
+
 	if(sp[1].equalsIgnoreCase("email"))
 	{
 		m_impl->literalType  = sp[1];
@@ -139,58 +139,58 @@ LiteralValue::LiteralValue(const LiteralValue& value)
 LiteralValue&
 LiteralValue::operator=(const LiteralValue& value)
 {
-    if(this == &value) return *this;
+	if(this == &value) return *this;
 
-    m_impl = value.m_impl;
-    
-    return *this;
+	m_impl = value.m_impl;
+
+	return *this;
 }
 
 LiteralValue::~LiteralValue()
 {}
-        
+
 
 void
 LiteralValue::setLiteral(const String &type, const String &value)
 {
 	String dType = m_impl->literalType;
 	String dValue = m_impl->literalValue;
-	
+
 	m_impl->literalType = type;
 	m_impl->literalValue = value;
-	
+
 	StringArray r = this->verify();
 	if(!r.empty())
 	{
 		m_impl->literalType = dType;
 		m_impl->literalValue = dValue;
-		
+
 		LOGIT_ERROR(r[0]);
 		BLOCXX_THROW(limal::ValueException, r[0].c_str());
 	}
 }
 
 void
-LiteralValue::setValue(const String &value) 
+LiteralValue::setValue(const String &value)
 {
 	String dValue = m_impl->literalValue;
-    
-	m_impl->literalValue = value; 
+
+	m_impl->literalValue = value;
 
 	StringArray r = this->verify();
 	if(!r.empty())
 	{
 		m_impl->literalValue = dValue;
-		
+
 		LOGIT_ERROR(r[0]);
 		BLOCXX_THROW(limal::ValueException, r[0].c_str());
 	}
 }
 
 blocxx::String
-LiteralValue::getValue() const 
+LiteralValue::getValue() const
 {
-	return m_impl->literalValue; 
+	return m_impl->literalValue;
 }
 
 blocxx::String
@@ -202,7 +202,7 @@ LiteralValue::getType() const
 blocxx::String
 LiteralValue::commit2Config(CA &ca, Type t, blocxx::UInt32 num) const
 {
-	
+
 	if(m_impl->literalType == "email" ||
 	   m_impl->literalType == "URI" ||
 	   m_impl->literalType == "DNS" ||
@@ -216,28 +216,28 @@ LiteralValue::commit2Config(CA &ca, Type t, blocxx::UInt32 num) const
 	/*
 	  Using OpenSSL to create certificate with krb5PrincipalName
 	  ----------------------------------------------------------
-	  
+
 	  To make OpenSSL create certificate with krb5PrincipalName use
 	  `openssl.cnf' as described below. To see an complete example of
 	  creating client and KDC certificates, see the test-data generation
 	  script `lib/hx509/data/gen-req.sh' in the source-tree. The certicates
 	  it creates are used to test the PK-INIT functionality in
 	  `tests/kdc/check-kdc.in'.
-	  
+
 	  To use this example you have to use OpenSSL 0.9.8a or later.
-	  
-	  
+
+
 	  [user_certificate]
 	  subjectAltName=otherName:1.3.6.1.5.2.2;SEQUENCE:princ_name
-	  
+
 	  [princ_name]
 	  realm = EXP:0, GeneralString:MY.REALM
 	  principal_name = EXP:1, SEQUENCE:principal_seq
-	  
+
 	  [principal_seq]
 	  name_type = EXP:0, INTEGER:1
 	  name_string = EXP:1, SEQUENCE:principals
-	  
+
 	  [principals]
 	  princ1 = GeneralString:userid
 	*/
@@ -254,7 +254,7 @@ LiteralValue::commit2Config(CA &ca, Type t, blocxx::UInt32 num) const
 
 		StringArray sa = getValue().tokenize("@/");
 		String sectname1 = getValue()+String(num);
-		
+
 		if(sa.size() == 2) // primary@REALM
 		{
 			primary = sa[0];
@@ -273,7 +273,7 @@ LiteralValue::commit2Config(CA &ca, Type t, blocxx::UInt32 num) const
 		}
 		String sectname2 = primary+instance+String(num);
 		String sectname3 = "basic"+primary+instance+String(num);
-		
+
 		String ret = "otherName:1.3.6.1.5.2.2;SEQUENCE:"+sectname1;
 
 		ca.getConfig()->setValue(sectname1, "realm", "EXPLICIT:0, GeneralString:"+realm);
@@ -288,7 +288,7 @@ LiteralValue::commit2Config(CA &ca, Type t, blocxx::UInt32 num) const
 		}
 		return ret;
 	}
-	
+
 	return "";
 }
 
@@ -473,9 +473,9 @@ LiteralValue::dump() const
 {
 	StringArray result;
 	result.append("LiteralValue::dump()");
-	
+
 	result.append(m_impl->literalType + ":" + m_impl->literalValue);
-	
+
 	return result;
 }
 

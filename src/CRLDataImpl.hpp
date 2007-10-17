@@ -32,95 +32,95 @@ namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
-	class RevocationEntryImpl : public blocxx::COWIntrusiveCountableBase
+class RevocationEntryImpl : public blocxx::COWIntrusiveCountableBase
+{
+public:
+	RevocationEntryImpl()
+		: serial(0)
+		, revocationDate(0)
+		, revocationReason(CRLReason())
+	{}
+
+	RevocationEntryImpl(const RevocationEntryImpl& impl)
+		: COWIntrusiveCountableBase(impl)
+		, serial(impl.serial)
+		, revocationDate(impl.revocationDate)
+		, revocationReason(impl.revocationReason)
+	{}
+
+	~RevocationEntryImpl() {}
+
+	RevocationEntryImpl* clone() const
 	{
-	public:
-		RevocationEntryImpl()
-			: serial(0)
-			, revocationDate(0)
-			, revocationReason(CRLReason())
-		{}
+		return new RevocationEntryImpl(*this);
+	}
 
-		RevocationEntryImpl(const RevocationEntryImpl& impl)
-			: COWIntrusiveCountableBase(impl)
-			, serial(impl.serial)
-			, revocationDate(impl.revocationDate)
-			, revocationReason(impl.revocationReason)
-		{}
+	String      serial;
+	time_t      revocationDate;
+	CRLReason   revocationReason;
 
-		~RevocationEntryImpl() {}
+};
 
-		RevocationEntryImpl* clone() const
-		{
-			return new RevocationEntryImpl(*this);
-		}
+class CRLDataImpl : public blocxx::COWIntrusiveCountableBase
+{
+public:
+	CRLDataImpl()
+		: version(0)
+		, fingerprint("")
+		, lastUpdate(0)
+		, nextUpdate(0)
+		, issuer(DNObject())
+		, signatureAlgorithm(E_SHA1RSA)
+		, signature(ByteBuffer())
+		, extensions(X509v3CRLExts_Priv())
+		, revocationData(blocxx::Map<String, RevocationEntry>())
+		, x509(NULL)
+	{}
 
-		String      serial;
-		time_t      revocationDate;
-		CRLReason   revocationReason;
+	CRLDataImpl(const CRLDataImpl& impl)
+		: COWIntrusiveCountableBase(impl)
+		, version(impl.version)
+		, fingerprint(impl.fingerprint)
+		, lastUpdate(impl.lastUpdate)
+		, nextUpdate(impl.nextUpdate)
+		, issuer(impl.issuer)
+		, signatureAlgorithm(impl.signatureAlgorithm)
+		, signature(impl.signature)
+		, extensions(impl.extensions)
+		, revocationData(impl.revocationData)
+		, x509(X509_CRL_dup(impl.x509))
+	{}
 
-	};
-
-	class CRLDataImpl : public blocxx::COWIntrusiveCountableBase
+	~CRLDataImpl()
 	{
-	public:
-		CRLDataImpl()
-			: version(0)
-			, fingerprint("")
-			, lastUpdate(0)
-			, nextUpdate(0)
-			, issuer(DNObject())
-			, signatureAlgorithm(E_SHA1RSA)
-			, signature(ByteBuffer())
-			, extensions(X509v3CRLExts_Priv())
-			, revocationData(blocxx::Map<String, RevocationEntry>())
-			, x509(NULL)
-		{}
-
-		CRLDataImpl(const CRLDataImpl& impl)
-			: COWIntrusiveCountableBase(impl)
-			, version(impl.version)
-			, fingerprint(impl.fingerprint)
-			, lastUpdate(impl.lastUpdate)
-			, nextUpdate(impl.nextUpdate)
-			, issuer(impl.issuer)
-			, signatureAlgorithm(impl.signatureAlgorithm)
-			, signature(impl.signature)
-			, extensions(impl.extensions)
-			, revocationData(impl.revocationData)
-			, x509(X509_CRL_dup(impl.x509))
-		{}
-
-		~CRLDataImpl()
+		if(x509 != NULL)
 		{
-			if(x509 != NULL)
-			{
-				X509_CRL_free(x509);
-				x509 = NULL;
-			}
+			X509_CRL_free(x509);
+			x509 = NULL;
 		}
+	}
 
-		CRLDataImpl* clone() const
-		{
-			return new CRLDataImpl(*this);
-		}
+	CRLDataImpl* clone() const
+	{
+		return new CRLDataImpl(*this);
+	}
 
-		blocxx::Int32                        version;
-		String                               fingerprint;
-		time_t                               lastUpdate;
-		time_t                               nextUpdate;
-	
-		DNObject                             issuer;
-	
-		SigAlg                               signatureAlgorithm;
-		ByteBuffer                           signature;    
-	
-		X509v3CRLExts                        extensions;
-	
-		blocxx::Map<String, RevocationEntry> revocationData;
+	blocxx::Int32                        version;
+	String                               fingerprint;
+	time_t                               lastUpdate;
+	time_t                               nextUpdate;
 
-		X509_CRL                             *x509;
-	};
+	DNObject                             issuer;
+
+	SigAlg                               signatureAlgorithm;
+	ByteBuffer                           signature;
+
+	X509v3CRLExts                        extensions;
+
+	blocxx::Map<String, RevocationEntry> revocationData;
+
+	X509_CRL                             *x509;
+};
 }
 }
 

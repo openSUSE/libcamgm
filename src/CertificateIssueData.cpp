@@ -39,14 +39,14 @@ using namespace blocxx;
 
 class CertificateIssueDataImpl : public blocxx::COWIntrusiveCountableBase
 {
-	public:
+public:
 	CertificateIssueDataImpl()
 		: notBefore(0)
 		, notAfter(0)
 		, messageDigest(E_SHA1)
 		, extensions(X509v3CertificateIssueExts())
 	{}
-		
+
 	CertificateIssueDataImpl(const CertificateIssueDataImpl& impl)
 		: COWIntrusiveCountableBase(impl)
 		, notBefore(impl.notBefore)
@@ -64,16 +64,16 @@ class CertificateIssueDataImpl : public blocxx::COWIntrusiveCountableBase
 
 	time_t                     notBefore;
 	time_t                     notAfter;
-	
+
 	// KeyAlg        pubkeyAlgorithm; // at the beginning we only support rsa
-	
+
 	MD                         messageDigest; // parameter default_md
-	
+
 	X509v3CertificateIssueExts extensions;
 
 };
 
-	
+
 CertificateIssueData::CertificateIssueData()
 	: m_impl(new CertificateIssueDataImpl())
 {}
@@ -105,9 +105,9 @@ CertificateIssueData::CertificateIssueData(CAConfig* caConfig, Type type)
 	{
 		LOGIT_INFO("unsupported message digest: " << md);
 		LOGIT_INFO("select default sha1.");
-		setMessageDigest( E_SHA1 ); 
+		setMessageDigest( E_SHA1 );
 	}
-    
+
 	setExtensions( X509v3CertificateIssueExts(caConfig, type));
 }
 
@@ -122,9 +122,9 @@ CertificateIssueData&
 CertificateIssueData::operator=(const CertificateIssueData& data)
 {
 	if(this == &data) return *this;
-    
+
 	m_impl = data.m_impl;
-    
+
 	return *this;
 }
 
@@ -142,7 +142,7 @@ CertificateIssueData::getStartDate() const
 }
 
 time_t
-CertificateIssueData::getEndDate() const
+	CertificateIssueData::getEndDate() const
 {
 	return m_impl->notAfter;
 }
@@ -152,7 +152,7 @@ CertificateIssueData::getStartDateAsString() const
 {
 	DateTime dt(getStartDate());
 	String time = dt.toString("%y%m%d%H%M%S", DateTime::E_UTC_TIME) + "Z";
-    
+
 	return time;
 }
 
@@ -161,7 +161,7 @@ CertificateIssueData::getEndDateAsString() const
 {
 	DateTime dt(getEndDate());
 	String time = dt.toString("%y%m%d%H%M%S", DateTime::E_UTC_TIME) + "Z";
-    
+
 	return time;
 }
 
@@ -171,7 +171,7 @@ CertificateIssueData::setMessageDigest(MD md)
 	m_impl->messageDigest = md;
 }
 
-MD 
+MD
 CertificateIssueData::getMessageDigest() const
 {
 	return m_impl->messageDigest;
@@ -190,7 +190,7 @@ CertificateIssueData::setExtensions(const X509v3CertificateIssueExts& ext)
 }
 
 X509v3CertificateIssueExts
-CertificateIssueData::getExtensions() const
+	CertificateIssueData::getExtensions() const
 {
 	return m_impl->extensions;
 }
@@ -219,21 +219,21 @@ CertificateIssueData::commit2Config(CA& ca, Type type) const
 		             Format(__("Wrong type: %1."), type).c_str());
 	}
 	UInt32 t = (UInt32)((getEndDate() - getStartDate())/(60*60*24));
-    
+
 	ca.getConfig()->setValue(type2Section(type, false), "default_days", String(t));
-                        
+
 	String md("sha1");
 	switch(getMessageDigest())
 	{
-		case E_SHA1:
-			md = "sha1";
-			break;
-		case E_MD5:
-			md = "md5";
-			break;
-		case E_MDC2:
-			md = "mdc2";
-			break;
+	case E_SHA1:
+		md = "sha1";
+		break;
+	case E_MD5:
+		md = "md5";
+		break;
+	case E_MDC2:
+		md = "mdc2";
+		break;
 	}
 	ca.getConfig()->setValue(type2Section(type, false), "default_md", md);
 
@@ -256,7 +256,7 @@ CertificateIssueData::valid() const
 	}
 
 	if(!m_impl->extensions.valid()) return false;
-    
+
 	return true;
 }
 
@@ -277,7 +277,7 @@ CertificateIssueData::verify() const
 	}
 
 	result.appendArray(m_impl->extensions.verify());
-    
+
 	LOGIT_DEBUG_STRINGARRAY("CertificateIssueData::verify()", result);
 
 	return result;

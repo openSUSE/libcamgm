@@ -37,7 +37,7 @@ using namespace blocxx;
 
 class AuthorityKeyIdentifierGenerateExtImpl : public blocxx::COWIntrusiveCountableBase
 {
-	public:
+public:
 
 	AuthorityKeyIdentifierGenerateExtImpl()
 		: keyid(AuthorityKeyIdentifierGenerateExt::KeyID_none)
@@ -55,16 +55,16 @@ class AuthorityKeyIdentifierGenerateExtImpl : public blocxx::COWIntrusiveCountab
 		, keyid(impl.keyid)
 		, issuer(impl.issuer)
 	{}
-	
+
 	~AuthorityKeyIdentifierGenerateExtImpl() {}
 
 	AuthorityKeyIdentifierGenerateExtImpl* clone() const
 	{
 		return new AuthorityKeyIdentifierGenerateExtImpl(*this);
 	}
-	
+
 	AuthorityKeyIdentifierGenerateExt::KeyID  keyid;
-	AuthorityKeyIdentifierGenerateExt::Issuer issuer; 
+	AuthorityKeyIdentifierGenerateExt::Issuer issuer;
 
 };
 
@@ -74,8 +74,7 @@ AuthorityKeyIdentifierGenerateExt::AuthorityKeyIdentifierGenerateExt()
 	, m_impl(new AuthorityKeyIdentifierGenerateExtImpl())
 {}
 
-AuthorityKeyIdentifierGenerateExt::AuthorityKeyIdentifierGenerateExt(CAConfig* caConfig,
-                                                                     Type type)
+AuthorityKeyIdentifierGenerateExt::AuthorityKeyIdentifierGenerateExt(CAConfig* caConfig, Type type)
 	: ExtensionBase()
 	, m_impl(new AuthorityKeyIdentifierGenerateExtImpl())
 {
@@ -111,7 +110,7 @@ AuthorityKeyIdentifierGenerateExt::AuthorityKeyIdentifierGenerateExt(CAConfig* c
 }
 
 AuthorityKeyIdentifierGenerateExt::AuthorityKeyIdentifierGenerateExt(KeyID kid,
-                                                                     Issuer iss)
+	Issuer iss)
 	: ExtensionBase()
 	, m_impl(new AuthorityKeyIdentifierGenerateExtImpl(kid, iss))
 {
@@ -127,14 +126,14 @@ AuthorityKeyIdentifierGenerateExt::~AuthorityKeyIdentifierGenerateExt()
 {}
 
 
-AuthorityKeyIdentifierGenerateExt& 
+AuthorityKeyIdentifierGenerateExt&
 AuthorityKeyIdentifierGenerateExt::operator=(const AuthorityKeyIdentifierGenerateExt& extension)
 {
 	if(this == &extension) return *this;
 
 	ExtensionBase::operator=(extension);
 	m_impl = extension.m_impl;
-    
+
 	return *this;
 }
 
@@ -202,26 +201,26 @@ AuthorityKeyIdentifierGenerateExt::commit2Config(CA& ca, Type type) const
 
 		switch(getKeyID())
 		{
-			case AuthorityKeyIdentifierGenerateExt::KeyID_normal:
-				extString += "keyid,";
-				break;
-			case AuthorityKeyIdentifierGenerateExt::KeyID_always:
-				extString += "keyid:always,";
-				break;
-			default:
-				break;
+		case AuthorityKeyIdentifierGenerateExt::KeyID_normal:
+			extString += "keyid,";
+			break;
+		case AuthorityKeyIdentifierGenerateExt::KeyID_always:
+			extString += "keyid:always,";
+			break;
+		default:
+			break;
 		}
 
 		switch(getIssuer())
 		{
-			case AuthorityKeyIdentifierGenerateExt::Issuer_normal:
-				extString += "issuer,";
-				break;
-			case AuthorityKeyIdentifierGenerateExt::Issuer_always:
-				extString += "issuer:always,";
-				break;
-			default:
-				break;
+		case AuthorityKeyIdentifierGenerateExt::Issuer_normal:
+			extString += "issuer,";
+			break;
+		case AuthorityKeyIdentifierGenerateExt::Issuer_always:
+			extString += "issuer:always,";
+			break;
+		default:
+			break;
 		}
 
 		ca.getConfig()->setValue(type2Section(type, true), "authorityKeyIdentifier",

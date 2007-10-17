@@ -37,7 +37,7 @@ using namespace blocxx;
 X509v3CertificateExts::X509v3CertificateExts(const X509v3CertificateExts& extensions)
 	: m_impl(extensions.m_impl)
 {}
-	
+
 X509v3CertificateExts::~X509v3CertificateExts()
 {}
 
@@ -195,9 +195,9 @@ X509v3CertificateExts::verify() const
 	result.appendArray(m_impl->nsCaPolicyUrl.verify());
 	result.appendArray(m_impl->nsSslServerName.verify());
 	result.appendArray(m_impl->nsComment.verify());
-	result.appendArray(m_impl->keyUsage.verify());  
-	result.appendArray(m_impl->nsCertType.verify());   
-	result.appendArray(m_impl->basicConstraints.verify()); 
+	result.appendArray(m_impl->keyUsage.verify());
+	result.appendArray(m_impl->nsCertType.verify());
+	result.appendArray(m_impl->basicConstraints.verify());
 	result.appendArray(m_impl->extendedKeyUsage.verify());
 	result.appendArray(m_impl->subjectKeyIdentifier.verify());
 	result.appendArray(m_impl->authorityKeyIdentifier.verify());
@@ -224,9 +224,9 @@ X509v3CertificateExts::dump() const
 	result.appendArray(m_impl->nsCaPolicyUrl.dump());
 	result.appendArray(m_impl->nsSslServerName.dump());
 	result.appendArray(m_impl->nsComment.dump());
-	result.appendArray(m_impl->keyUsage.dump());  
-	result.appendArray(m_impl->nsCertType.dump());   
-	result.appendArray(m_impl->basicConstraints.dump()); 
+	result.appendArray(m_impl->keyUsage.dump());
+	result.appendArray(m_impl->nsCertType.dump());
+	result.appendArray(m_impl->basicConstraints.dump());
 	result.appendArray(m_impl->extendedKeyUsage.dump());
 	result.appendArray(m_impl->subjectKeyIdentifier.dump());
 	result.appendArray(m_impl->authorityKeyIdentifier.dump());
@@ -238,7 +238,7 @@ X509v3CertificateExts::dump() const
 
 	return result;
 }
-        
+
 //    protected:
 X509v3CertificateExts::X509v3CertificateExts()
 	: m_impl(new X509v3CertificateExtsImpl())

@@ -32,80 +32,80 @@ namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
-	class CertificateDataImpl : public blocxx::COWIntrusiveCountableBase
+class CertificateDataImpl : public blocxx::COWIntrusiveCountableBase
+{
+public:
+	CertificateDataImpl()
+		: version(0)
+		, serial("")
+		, fingerprint("")
+		, notBefore(0)
+		, notAfter(0)
+		, issuer(DNObject())
+		, subject(DNObject())
+		, keysize(2048)
+		, pubkeyAlgorithm(E_RSA)
+		, publicKey(ByteBuffer())
+		, signatureAlgorithm(E_SHA1RSA)
+		, signature(ByteBuffer())
+		, extensions(X509v3CertificateExts_Priv())
+		, x509(NULL)
+	{}
+
+	CertificateDataImpl(const CertificateDataImpl& impl)
+		: COWIntrusiveCountableBase(impl)
+		, version(impl.version)
+		, serial(impl.serial)
+		, fingerprint(impl.fingerprint)
+		, notBefore(impl.notBefore)
+		, notAfter(impl.notAfter)
+		, issuer(impl.issuer)
+		, subject(impl.subject)
+		, keysize(impl.keysize)
+		, pubkeyAlgorithm(impl.pubkeyAlgorithm)
+		, publicKey(impl.publicKey)
+		, signatureAlgorithm(impl.signatureAlgorithm)
+		, signature(impl.signature)
+		, extensions(impl.extensions)
+		, x509(X509_dup(impl.x509))
+	{}
+
+	~CertificateDataImpl()
 	{
-	public:
-		CertificateDataImpl()
-			: version(0)
-			, serial("")
-			, fingerprint("")
-			, notBefore(0)
-			, notAfter(0)
-			, issuer(DNObject())
-			, subject(DNObject())
-			, keysize(2048)
-			, pubkeyAlgorithm(E_RSA)
-			, publicKey(ByteBuffer())
-			, signatureAlgorithm(E_SHA1RSA)
-			, signature(ByteBuffer())
-			, extensions(X509v3CertificateExts_Priv())
-			, x509(NULL)
-		{}
-		
-		CertificateDataImpl(const CertificateDataImpl& impl)
-			: COWIntrusiveCountableBase(impl)
-			, version(impl.version)
-			, serial(impl.serial)
-			, fingerprint(impl.fingerprint)
-			, notBefore(impl.notBefore)
-			, notAfter(impl.notAfter)
-			, issuer(impl.issuer)
-			, subject(impl.subject)
-			, keysize(impl.keysize)
-			, pubkeyAlgorithm(impl.pubkeyAlgorithm)
-			, publicKey(impl.publicKey)
-			, signatureAlgorithm(impl.signatureAlgorithm)
-			, signature(impl.signature)
-			, extensions(impl.extensions)
-			, x509(X509_dup(impl.x509))
-		{}
-		
-		~CertificateDataImpl()
+		if(x509 != NULL)
 		{
-			if(x509 != NULL)
-			{
-				X509_free(x509);
-				x509 = NULL;
-			}
+			X509_free(x509);
+			x509 = NULL;
 		}
-		
-		CertificateDataImpl* clone() const
-		{
-			return new CertificateDataImpl(*this);
-		}
-		
-		blocxx::UInt32        version;   // allowed 1, 2, 3
-		String                serial;
-		String                fingerprint;
-		time_t                notBefore; 
-		time_t                notAfter;  
-		
-		DNObject              issuer;
-		DNObject              subject;
-		blocxx::UInt32        keysize;
-		
-		KeyAlg                pubkeyAlgorithm; 
-		
-		ByteBuffer            publicKey;  
-		
-		SigAlg                signatureAlgorithm;
-		ByteBuffer            signature;
-		
-		X509v3CertificateExts extensions;
-		
-		X509                  *x509;
-		
-	};
+	}
+
+	CertificateDataImpl* clone() const
+	{
+		return new CertificateDataImpl(*this);
+	}
+
+	blocxx::UInt32        version;   // allowed 1, 2, 3
+	String                serial;
+	String                fingerprint;
+	time_t                notBefore;
+	time_t                notAfter;
+
+	DNObject              issuer;
+	DNObject              subject;
+	blocxx::UInt32        keysize;
+
+	KeyAlg                pubkeyAlgorithm;
+
+	ByteBuffer            publicKey;
+
+	SigAlg                signatureAlgorithm;
+	ByteBuffer            signature;
+
+	X509v3CertificateExts extensions;
+
+	X509                  *x509;
+
+};
 
 }
 }

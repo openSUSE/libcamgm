@@ -31,63 +31,63 @@ namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
-	class RDNObjectImpl : public blocxx::COWIntrusiveCountableBase
+class RDNObjectImpl : public blocxx::COWIntrusiveCountableBase
+{
+public:
+	RDNObjectImpl()
+		: type(String())
+		, value(String())
+		, prompt(String())
+		, min(0)
+		, max(0)
+	{}
+
+	RDNObjectImpl(const RDNObjectImpl& impl)
+		: COWIntrusiveCountableBase(impl)
+		, type(impl.type)
+		, value(impl.value)
+		, prompt(impl.prompt)
+		, min(impl.min)
+		, max(impl.max)
+	{}
+
+	~RDNObjectImpl() {}
+
+	RDNObjectImpl* clone() const
 	{
-	public:
-		RDNObjectImpl()
-			: type(String())
-			, value(String())
-			, prompt(String())
-			, min(0)
-			, max(0)
-		{}
+		return new RDNObjectImpl(*this);
+	}
 
-		RDNObjectImpl(const RDNObjectImpl& impl)
-			: COWIntrusiveCountableBase(impl)
-			, type(impl.type)
-			, value(impl.value)
-			, prompt(impl.prompt)
-			, min(impl.min)
-			, max(impl.max)
-		{}
+	blocxx::String type;
+	blocxx::String value;
 
-		~RDNObjectImpl() {}
+	blocxx::String prompt;
+	blocxx::UInt32 min;
+	blocxx::UInt32 max;
+};
 
-		RDNObjectImpl* clone() const
-		{
-			return new RDNObjectImpl(*this);
-		}
+class DNObjectImpl : public blocxx::COWIntrusiveCountableBase
+{
+public:
+	DNObjectImpl()
+		: dn(blocxx::List<RDNObject>())
+	{}
 
-		blocxx::String type;
-		blocxx::String value;
-	
-		blocxx::String prompt;
-		blocxx::UInt32 min;
-		blocxx::UInt32 max;
-	};
+	DNObjectImpl(const DNObjectImpl& impl)
+		: COWIntrusiveCountableBase(impl)
+		, dn(impl.dn)
+	{}
 
-	class DNObjectImpl : public blocxx::COWIntrusiveCountableBase
+	~DNObjectImpl() {}
+
+	DNObjectImpl* clone() const
 	{
-	public:
-		DNObjectImpl()
-			: dn(blocxx::List<RDNObject>())
-		{}
+		return new DNObjectImpl(*this);
+	}
 
-		DNObjectImpl(const DNObjectImpl& impl)
-			: COWIntrusiveCountableBase(impl)
-			, dn(impl.dn)
-		{}
+	blocxx::List<RDNObject> dn;
 
-		~DNObjectImpl() {}
-
-		DNObjectImpl* clone() const
-		{
-			return new DNObjectImpl(*this);
-		}
-
-		blocxx::List<RDNObject> dn;
-
-	};
+};
 
 }
 }

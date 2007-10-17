@@ -31,43 +31,43 @@ namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
-    class X509v3RequestExts_Priv : public X509v3RequestExts {
-    public:
-        X509v3RequestExts_Priv();
-        X509v3RequestExts_Priv(STACK_OF(X509_EXTENSION)* extensions);
-        X509v3RequestExts_Priv(const X509v3RequestExts_Priv& extensions);
-        virtual ~X509v3RequestExts_Priv();
+class X509v3RequestExts_Priv : public X509v3RequestExts {
+public:
+	X509v3RequestExts_Priv();
+	X509v3RequestExts_Priv(STACK_OF(X509_EXTENSION)* extensions);
+	X509v3RequestExts_Priv(const X509v3RequestExts_Priv& extensions);
+	virtual ~X509v3RequestExts_Priv();
 
-    private:
+private:
 
-        X509v3RequestExts_Priv&
-        operator=(const X509v3RequestExts_Priv& extensions);
+	X509v3RequestExts_Priv&
+	operator=(const X509v3RequestExts_Priv& extensions);
 
-        void
-        parseStringExt(STACK_OF(X509_EXTENSION)* cert,
-                       int nid, StringExtension &ext);
+	void
+	parseStringExt(STACK_OF(X509_EXTENSION)* cert,
+	               int nid, StringExtension &ext);
 
-        void
-        parseBitExt(STACK_OF(X509_EXTENSION)* cert,
-                    int nid, BitExtension &ext);
-        
-        void
-        parseExtendedKeyUsageExt(STACK_OF(X509_EXTENSION)* cert,
-                                 ExtendedKeyUsageExt &ext);
-        
-        void
-        parseBasicConstraintsExt(STACK_OF(X509_EXTENSION)* cert,
-                                 BasicConstraintsExt &ext);
-        
-        void
-        parseSubjectKeyIdentifierExt(STACK_OF(X509_EXTENSION) *cert,
-                                     SubjectKeyIdentifierExt &ext);
+	void
+	parseBitExt(STACK_OF(X509_EXTENSION)* cert,
+	            int nid, BitExtension &ext);
 
-        void
-        parseSubjectAlternativeNameExt(STACK_OF(X509_EXTENSION) *cert,
-                                       SubjectAlternativeNameExt &ext);
+	void
+	parseExtendedKeyUsageExt(STACK_OF(X509_EXTENSION)* cert,
+	                         ExtendedKeyUsageExt &ext);
 
-    };
+	void
+	parseBasicConstraintsExt(STACK_OF(X509_EXTENSION)* cert,
+	                         BasicConstraintsExt &ext);
+
+	void
+	parseSubjectKeyIdentifierExt(STACK_OF(X509_EXTENSION) *cert,
+	                             SubjectKeyIdentifierExt &ext);
+
+	void
+	parseSubjectAlternativeNameExt(STACK_OF(X509_EXTENSION) *cert,
+	                               SubjectAlternativeNameExt &ext);
+
+};
 }
 }
 

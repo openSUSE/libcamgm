@@ -37,7 +37,7 @@ using namespace blocxx;
 
 class SubjectAlternativeNameExtImpl : public blocxx::COWIntrusiveCountableBase
 {
-	public:
+public:
 	SubjectAlternativeNameExtImpl()
 		: emailCopy(false)
 		, altNameList(blocxx::List<LiteralValue>())
@@ -66,11 +66,11 @@ class SubjectAlternativeNameExtImpl : public blocxx::COWIntrusiveCountableBase
 	blocxx::List<LiteralValue>     altNameList;
 
 };
-	
+
 SubjectAlternativeNameExt::SubjectAlternativeNameExt()
 	: ExtensionBase()
 	, m_impl(new SubjectAlternativeNameExtImpl())
-	
+
 {}
 
 SubjectAlternativeNameExt::SubjectAlternativeNameExt(CAConfig* caConfig, Type type)
@@ -98,7 +98,7 @@ SubjectAlternativeNameExt::SubjectAlternativeNameExt(CAConfig* caConfig, Type ty
 		{
 			if((*it).indexOf(":") != String::npos)
 			{
-				if((*it).equalsIgnoreCase("email:copy"))  
+				if((*it).equalsIgnoreCase("email:copy"))
 					m_impl->emailCopy = true;
 				else
 				{
@@ -119,7 +119,7 @@ SubjectAlternativeNameExt::SubjectAlternativeNameExt(CAConfig* caConfig, Type ty
 }
 
 SubjectAlternativeNameExt::SubjectAlternativeNameExt(bool copyEmail,
-                                                     const blocxx::List<LiteralValue> &alternativeNameList)
+	const blocxx::List<LiteralValue> &alternativeNameList)
 	: ExtensionBase()
 	, m_impl(new SubjectAlternativeNameExtImpl(copyEmail, alternativeNameList))
 {
@@ -134,7 +134,7 @@ SubjectAlternativeNameExt::SubjectAlternativeNameExt(bool copyEmail,
 
 SubjectAlternativeNameExt::SubjectAlternativeNameExt(const SubjectAlternativeNameExt& extension)
 	: ExtensionBase(extension),
-	  m_impl(extension.m_impl)
+	m_impl(extension.m_impl)
 {}
 
 
@@ -146,9 +146,9 @@ SubjectAlternativeNameExt&
 SubjectAlternativeNameExt::operator=(const SubjectAlternativeNameExt& extension)
 {
 	if(this == &extension) return *this;
-    
+
 	ExtensionBase::operator=(extension);
-    
+
 	m_impl = extension.m_impl;
 
 	return *this;
@@ -233,7 +233,7 @@ SubjectAlternativeNameExt::commit2Config(CA& ca, Type type) const
 			}
 		}
 
-		ca.getConfig()->setValue(type2Section(type, true), "subjectAltName", 
+		ca.getConfig()->setValue(type2Section(type, true), "subjectAltName",
 		                         extString.erase(extString.length()-1));
 	}
 	else
@@ -275,7 +275,7 @@ SubjectAlternativeNameExt::verify() const
 	result.appendArray(checkLiteralValueList(m_impl->altNameList));
 
 	LOGIT_DEBUG_STRINGARRAY("SubjectAlternativeNameExt::verify()", result);
-    
+
 	return result;
 }
 

@@ -38,15 +38,15 @@ namespace CA_MGM_NAMESPACE
 namespace
 {
 	// -----------------------------------------------------------
-	blocxx::OnceFlag   g_i18n_init_guard = BLOCXX_ONCE_INIT;
+blocxx::OnceFlag   g_i18n_init_guard = BLOCXX_ONCE_INIT;
 
 
 	// -----------------------------------------------------------
-	void               init_i18n_domain()
-	{
-		bindtextdomain( i18n_domain, LOCALEDIR);
-		bind_textdomain_codeset( i18n_domain, "utf8");
-	}
+void               init_i18n_domain()
+{
+	bindtextdomain( i18n_domain, LOCALEDIR);
+	bind_textdomain_codeset( i18n_domain, "utf8");
+}
 }
 
 
@@ -70,14 +70,14 @@ const char *       gettext (const char *msgid,
 
 // -------------------------------------------------------------------
 int wrapExecuteProcessAndGatherOutput(
-	const blocxx::Array<blocxx::String> &cmd,
-	blocxx::String                      &out,
-	blocxx::String                      &err,
-	const blocxx::EnvVars               &env,
-	int                                 tmax,
-	int                                 omax,
-	const blocxx::String                &in
-)
+                                       const blocxx::Array<blocxx::String> &cmd,
+                                       blocxx::String                      &out,
+                                       blocxx::String                      &err,
+                                       const blocxx::EnvVars               &env,
+                                       int                                 tmax,
+                                       int                                 omax,
+                                       const blocxx::String                &in
+                                     )
 {
 	int exitStatus = -1;
 
@@ -90,19 +90,19 @@ int wrapExecuteProcessAndGatherOutput(
 		  blocxx::Timeout::relative(float(tmax))
 		),
 		omax, in
-	);
+		);
 
 	if( status.exitTerminated())
 	{
 		exitStatus = status.exitStatus();
 	}
 	else
-	if( status.signalTerminated())
-	{
-		LOGIT_ERROR("Command '" << cmd[0]
-		            << "' terminated by signal: "
-		            << status.termSignal());
-	}
+		if( status.signalTerminated())
+		{
+			LOGIT_ERROR("Command '" << cmd[0]
+			            << "' terminated by signal: "
+			            << status.termSignal());
+		}
 	else
 	{
 		LOGIT_ERROR("Command '" << cmd[0]
@@ -112,11 +112,11 @@ int wrapExecuteProcessAndGatherOutput(
 	int status = -1;
 
 	blocxx::Exec::executeProcessAndGatherOutput(
-		cmd, out, err, status, env,
-		( tmax < 0 ?  blocxx::Exec::INFINITE_TIMEOUT : tmax
-		),
-		omax, in
-	);
+	                                             cmd, out, err, status, env,
+	                                             ( tmax < 0 ?  blocxx::Exec::INFINITE_TIMEOUT : tmax
+	                                             ),
+	                                             omax, in
+	                                           );
 
 	if( status != -1)
 	{
@@ -125,24 +125,24 @@ int wrapExecuteProcessAndGatherOutput(
 			exitStatus = WEXITSTATUS(status);
 		}
 		else
-		if(WIFSIGNALED(status))
-		{
-			LOGIT_ERROR("Command '" << cmd[0]
-		        	    << "' terminated by signal: "
-			            << WTERMSIG(status));
-		}
+			if(WIFSIGNALED(status))
+			{
+				LOGIT_ERROR("Command '" << cmd[0]
+				            << "' terminated by signal: "
+				            << WTERMSIG(status));
+			}
 		else
 		{
 			LOGIT_ERROR("Command '" << cmd[0]
-		        	    << "' execution status: "
-				    << status);
+			            << "' execution status: "
+			            << status);
 		}
 	}
 	else
 	{
 		LOGIT_ERROR("Command '" << cmd[0]
 		            << "' execution failure: "
-			    << status);
+		            << status);
 	}
 #endif
 

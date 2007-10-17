@@ -32,14 +32,14 @@ namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
-    class CRLReason_Priv : public CRLReason {
+class CRLReason_Priv : public CRLReason {
 
-    public:
-        CRLReason_Priv();
-        CRLReason_Priv(STACK_OF(X509_EXTENSION) *stack);
-        virtual ~CRLReason_Priv();
+public:
+	CRLReason_Priv();
+	CRLReason_Priv(STACK_OF(X509_EXTENSION) *stack);
+	virtual ~CRLReason_Priv();
 
-    };
+};
 
 }
 }

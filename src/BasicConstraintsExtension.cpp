@@ -38,7 +38,7 @@ using namespace blocxx;
 
 class BasicConstraintsExtImpl : public blocxx::COWIntrusiveCountableBase
 {
-	public:
+public:
 
 	BasicConstraintsExtImpl()
 		: ca(false)
@@ -63,10 +63,10 @@ class BasicConstraintsExtImpl : public blocxx::COWIntrusiveCountableBase
 
 	bool           ca;
 	blocxx::Int32  pathlen;
-		
+
 };
 
-	
+
 BasicConstraintsExt::BasicConstraintsExt()
 	: ExtensionBase()
 	, m_impl(new BasicConstraintsExtImpl())
@@ -92,12 +92,12 @@ BasicConstraintsExt::BasicConstraintsExt(CAConfig* caConfig, Type type)
 
 		StringArray   sp   = PerlRegEx("\\s*,\\s*")
 			.split(caConfig->getValue(type2Section(type, true), "basicConstraints"));
-		if(sp[0].equalsIgnoreCase("critical"))  setCritical(true); 
+		if(sp[0].equalsIgnoreCase("critical"))  setCritical(true);
 
 		StringArray::const_iterator it = sp.begin();
 		for(; it != sp.end(); ++it)
 		{
-			if((*it).equalsIgnoreCase("ca:true"))  isCA = true; 
+			if((*it).equalsIgnoreCase("ca:true"))  isCA = true;
 			else if((*it).equalsIgnoreCase("ca:false"))  isCA = false;
 			else if((*it).startsWith("pathlen:", String::E_CASE_INSENSITIVE))
 			{
@@ -242,7 +242,7 @@ BasicConstraintsExt::verify() const
 	blocxx::StringArray result;
 
 	if(!isPresent()) return result;
-    
+
 	if(isCA() && getPathLength() < -1)
 	{
 		result.append(Format("invalid value for pathLength(%1). Has to be >= -1",

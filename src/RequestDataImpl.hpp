@@ -32,78 +32,78 @@ namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
-	class RequestDataImpl : public blocxx::COWIntrusiveCountableBase
+class RequestDataImpl : public blocxx::COWIntrusiveCountableBase
+{
+public:
+
+	RequestDataImpl()
+		: version(0)
+		, subject(DNObject())
+		, keysize(0)
+		, pubkeyAlgorithm(E_RSA)
+		, publicKey(ByteBuffer())
+		, signatureAlgorithm(E_SHA1RSA)
+		, signature(ByteBuffer())
+		, extensions(X509v3RequestExts_Priv())
+		, challengePassword("")
+		, unstructuredName("")
+		, x509(NULL)
+	{}
+
+	RequestDataImpl(const RequestDataImpl& impl)
+		: COWIntrusiveCountableBase(impl)
+		, version(impl.version)
+		, subject(impl.subject)
+		, keysize(impl.keysize)
+		, pubkeyAlgorithm(impl.pubkeyAlgorithm)
+		, publicKey(impl.publicKey)
+		, signatureAlgorithm(impl.signatureAlgorithm)
+		, signature(impl.signature)
+		, extensions(impl.extensions)
+		, challengePassword(impl.challengePassword)
+		, unstructuredName(impl.unstructuredName)
+		, x509(X509_REQ_dup(impl.x509))
+	{}
+
+	~RequestDataImpl()
 	{
-	public:
-
-		RequestDataImpl()
-			: version(0)
-			, subject(DNObject())
-			, keysize(0)
-			, pubkeyAlgorithm(E_RSA)
-			, publicKey(ByteBuffer())
-			, signatureAlgorithm(E_SHA1RSA)
-			, signature(ByteBuffer())
-			, extensions(X509v3RequestExts_Priv())
-			, challengePassword("")
-			, unstructuredName("")
-			, x509(NULL)
-		{}
-
-		RequestDataImpl(const RequestDataImpl& impl)
-			: COWIntrusiveCountableBase(impl)
-			, version(impl.version)
-			, subject(impl.subject)
-			, keysize(impl.keysize)
-			, pubkeyAlgorithm(impl.pubkeyAlgorithm)
-			, publicKey(impl.publicKey)
-			, signatureAlgorithm(impl.signatureAlgorithm)
-			, signature(impl.signature)
-			, extensions(impl.extensions)
-			, challengePassword(impl.challengePassword)
-			, unstructuredName(impl.unstructuredName)
-			, x509(X509_REQ_dup(impl.x509))
-		{}
-
-		~RequestDataImpl()
+		if(x509 != NULL)
 		{
-			if(x509 != NULL)
-			{
-				X509_REQ_free(x509);
-				x509 = NULL;
-			}
+			X509_REQ_free(x509);
+			x509 = NULL;
 		}
+	}
 
-		RequestDataImpl* clone() const
-		{
-			return new RequestDataImpl(*this);
-		}
+	RequestDataImpl* clone() const
+	{
+		return new RequestDataImpl(*this);
+	}
 
-		blocxx::UInt32    version;
+	blocxx::UInt32    version;
 
-		DNObject          subject;
-		blocxx::UInt32    keysize;
+	DNObject          subject;
+	blocxx::UInt32    keysize;
 
-		KeyAlg            pubkeyAlgorithm; 
+	KeyAlg            pubkeyAlgorithm;
 
 		// DER des public key
 		//   man EVP_PKEY_set1_RSA
 		//   man EVP_PKEY_get1_RSA
 		//   man i2d_RSAPublicKey     => i2d == internal to DER
 		//   man d2i_RSAPublicKey     => d2i == DER to internal
-		ByteBuffer        publicKey;  
+	ByteBuffer        publicKey;
 
-		SigAlg            signatureAlgorithm;
-		ByteBuffer        signature;    
+	SigAlg            signatureAlgorithm;
+	ByteBuffer        signature;
 
-		X509v3RequestExts extensions;
+	X509v3RequestExts extensions;
 
-        // attributes 
-		String            challengePassword;
-		String            unstructuredName;
+        // attributes
+	String            challengePassword;
+	String            unstructuredName;
 
-		X509_REQ          *x509;
-	};
+	X509_REQ          *x509;
+};
 }
 }
 

@@ -38,7 +38,7 @@ using namespace blocxx;
 
 class ExtendedKeyUsageExtImpl : public blocxx::COWIntrusiveCountableBase
 {
-	public:
+public:
 	ExtendedKeyUsageExtImpl()
 		: usage(StringList())
 	{}
@@ -57,7 +57,7 @@ class ExtendedKeyUsageExtImpl : public blocxx::COWIntrusiveCountableBase
 
 	StringList usage;
 };
-	
+
 ExtendedKeyUsageExt::ExtendedKeyUsageExt()
 	: ExtensionBase()
 	, m_impl(new ExtendedKeyUsageExtImpl())
@@ -83,7 +83,7 @@ ExtendedKeyUsageExt::ExtendedKeyUsageExt(CAConfig* caConfig, Type type)
 		String      ct    = caConfig->getValue(type2Section(type, true),
 		                                       "extendedKeyUsage");
 		StringArray sp    = PerlRegEx("\\s*,\\s*").split(ct);
-    	
+
 		StringArray::const_iterator it = sp.begin();
 		if(sp[0].equalsIgnoreCase("critical"))
 		{
@@ -123,13 +123,13 @@ ExtendedKeyUsageExt::ExtendedKeyUsageExt(const StringList& extKeyUsages)
 			                    *it).c_str());
 		}
 	}
-    
+
 	if(m_impl->usage.empty())
 	{
 		BLOCXX_THROW(limal::ValueException,
 		             __("Invalid ExtendedKeyUsageExt."));
 	}
-    
+
 	setPresent(true);
 }
 
@@ -193,7 +193,7 @@ ExtendedKeyUsageExt::getExtendedKeyUsage() const
 	}
 	return m_impl->usage;
 }
-        
+
 bool
 ExtendedKeyUsageExt::isEnabledFor(const String& extKeyUsage) const
 {
@@ -207,10 +207,10 @@ ExtendedKeyUsageExt::isEnabledFor(const String& extKeyUsage) const
 		{
 			return true;
 		}
-	}    
+	}
 	return false;
 }
-  
+
 void
 ExtendedKeyUsageExt::commit2Config(CA& ca, Type type) const
 {
@@ -242,7 +242,7 @@ ExtendedKeyUsageExt::commit2Config(CA& ca, Type type) const
 		}
 
 		ca.getConfig()->setValue(type2Section(type, true),
-		                         "extendedKeyUsage", 
+		                         "extendedKeyUsage",
 		                         extendedKeyUsageString.erase(extendedKeyUsageString.length()-1));
 	}
 	else
@@ -326,6 +326,6 @@ ExtendedKeyUsageExt::checkValue(const String& value) const
 		return true;
 	}
 }
-    
+
 }
 }

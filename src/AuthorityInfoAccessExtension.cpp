@@ -40,30 +40,30 @@ using namespace blocxx;
 
 class AuthorityInformationImpl : public blocxx::COWIntrusiveCountableBase
 {
-	public:
+public:
 
 	AuthorityInformationImpl()
 		: accessOID(String()), location(LiteralValue())
 	{}
 
-	AuthorityInformationImpl(const String &accessOID_, 
+	AuthorityInformationImpl(const String &accessOID_,
 	                         const LiteralValue& location_ )
 		: accessOID(accessOID_), location(location_)
 	{}
-	
+
 	AuthorityInformationImpl(const AuthorityInformationImpl &ai)
 		: blocxx::COWIntrusiveCountableBase(ai),
-		  accessOID(ai.accessOID),
-		  location(ai.location)
+		accessOID(ai.accessOID),
+		location(ai.location)
 	{}
-	
+
 	virtual ~AuthorityInformationImpl() {}
-	
+
 	AuthorityInformationImpl* clone() const
 	{
 		return new AuthorityInformationImpl(*this);
 	}
-	
+
 	String                  accessOID;
 	LiteralValue            location;
 
@@ -71,14 +71,14 @@ class AuthorityInformationImpl : public blocxx::COWIntrusiveCountableBase
 
 class AuthorityInfoAccessExtImpl : public blocxx::COWIntrusiveCountableBase
 {
-	public:
+public:
 	AuthorityInfoAccessExtImpl()
 		: info(blocxx::List<AuthorityInformation>())
 	{}
 
 	AuthorityInfoAccessExtImpl(const AuthorityInfoAccessExtImpl &aie)
 		: blocxx::COWIntrusiveCountableBase(aie),
-		  info(aie.info)
+		info(aie.info)
 	{}
 
 	virtual ~AuthorityInfoAccessExtImpl() {}
@@ -87,11 +87,11 @@ class AuthorityInfoAccessExtImpl : public blocxx::COWIntrusiveCountableBase
 	{
 		return new AuthorityInfoAccessExtImpl(*this);
 	}
-	
+
 	blocxx::List<AuthorityInformation> info;
 };
 
-	
+
 AuthorityInformation::AuthorityInformation()
 	: m_impl(new AuthorityInformationImpl())
 {}
@@ -100,18 +100,18 @@ AuthorityInformation::AuthorityInformation(const AuthorityInformation& ai)
 	: m_impl(ai.m_impl)
 {}
 
-AuthorityInformation::AuthorityInformation(const String &accessOID, 
+AuthorityInformation::AuthorityInformation(const String &accessOID,
                                            const LiteralValue& location)
 	: m_impl(new AuthorityInformationImpl(accessOID, location))
 {
 	if(!location.valid())
 	{
-		LOGIT_ERROR("invalid location"); 
+		LOGIT_ERROR("invalid location");
 		BLOCXX_THROW(limal::ValueException, __("Invalid location."));
 	}
 	if(!initAccessOIDCheck().isValid(accessOID))
 	{
-		LOGIT_ERROR("invalid accessOID"); 
+		LOGIT_ERROR("invalid accessOID");
 		BLOCXX_THROW(limal::ValueException, __("Invalid accessOID."));
 	}
 }
@@ -123,24 +123,24 @@ AuthorityInformation&
 AuthorityInformation::operator=(const AuthorityInformation& ai)
 {
 	if(this == &ai) return *this;
-	
+
 	m_impl = ai.m_impl;
-	
+
 	return *this;
 }
 
 void
-AuthorityInformation::setAuthorityInformation(const String &accessOID, 
+AuthorityInformation::setAuthorityInformation(const String &accessOID,
                                               const LiteralValue& location)
 {
 	if(!location.valid())
 	{
-		LOGIT_ERROR("invalid location"); 
+		LOGIT_ERROR("invalid location");
 		BLOCXX_THROW(limal::ValueException, __("Invalid location."));
 	}
 	if(!initAccessOIDCheck().isValid(accessOID))
 	{
-		LOGIT_ERROR("invalid accessOID"); 
+		LOGIT_ERROR("invalid accessOID");
 		BLOCXX_THROW(limal::ValueException, __("Invalid accessOID."));
 	}
 
@@ -165,17 +165,17 @@ AuthorityInformation::valid() const
 {
 	if(!initAccessOIDCheck().isValid(m_impl->accessOID))
 	{
-		LOGIT_DEBUG("return AuthorityInformation::valid() is false"); 
+		LOGIT_DEBUG("return AuthorityInformation::valid() is false");
 		return false;
 	}
-	
+
 	if(!m_impl->location.valid())
 	{
-		LOGIT_DEBUG("return AuthorityInformation::valid() is false"); 
+		LOGIT_DEBUG("return AuthorityInformation::valid() is false");
 		return false;
 	}
-	
-	LOGIT_DEBUG("return AuthorityInformation::valid() is true"); 
+
+	LOGIT_DEBUG("return AuthorityInformation::valid() is true");
 	return true;
 }
 
@@ -183,13 +183,13 @@ blocxx::StringArray
 AuthorityInformation::verify() const
 {
 	StringArray result;
-    
+
 	if(!initAccessOIDCheck().isValid(m_impl->accessOID))
 	{
 		result.append(Format("invalid value(%1) for accessOID", m_impl->accessOID).toString());
 	}
 	result.appendArray(m_impl->location.verify());
-    
+
 	LOGIT_DEBUG_STRINGARRAY("AuthorityInformation::verify()", result);
 	return result;
 }
@@ -245,7 +245,7 @@ AuthorityInfoAccessExt::AuthorityInfoAccessExt()
 {}
 
 AuthorityInfoAccessExt::AuthorityInfoAccessExt(const AuthorityInfoAccessExt& extension)
-    : ExtensionBase(extension), m_impl(extension.m_impl)
+	: ExtensionBase(extension), m_impl(extension.m_impl)
 {}
 
 AuthorityInfoAccessExt::AuthorityInfoAccessExt(CAConfig* caConfig, Type type)
@@ -264,7 +264,7 @@ AuthorityInfoAccessExt::AuthorityInfoAccessExt(CAConfig* caConfig, Type type)
 	{
 		StringArray   sp   = PerlRegEx("\\s*,\\s*")
 			.split(caConfig->getValue(type2Section(type, true), "authorityInfoAccess"));
-		
+
 		if(sp[0].equalsIgnoreCase("critical"))  setCritical(true);
 
 		StringArray::const_iterator it = sp.begin();
@@ -288,11 +288,11 @@ AuthorityInfoAccessExt::AuthorityInfoAccessExt(CAConfig* caConfig, Type type)
 
 AuthorityInfoAccessExt::~AuthorityInfoAccessExt() {}
 
-AuthorityInfoAccessExt& 
+AuthorityInfoAccessExt&
 AuthorityInfoAccessExt::operator=(const AuthorityInfoAccessExt& extension)
 {
 	if(this == &extension) return *this;
-    
+
 	ExtensionBase::operator=(extension);
 	m_impl = extension.m_impl;
 
@@ -325,7 +325,7 @@ AuthorityInfoAccessExt::getAuthorityInformation() const
 	return m_impl->info;
 }
 
-void 
+void
 AuthorityInfoAccessExt::commit2Config(CA& ca, Type type) const
 {
 	if(!valid())
@@ -399,7 +399,7 @@ AuthorityInfoAccessExt::verify() const
 	blocxx::StringArray result;
 
 	if(!isPresent()) return result;
-    
+
 	if(m_impl->info.empty())
 	{
 		result.append(String("No access informations available"));

@@ -38,7 +38,7 @@ using namespace blocxx;
 
 class BitExtensionImpl : public blocxx::COWIntrusiveCountableBase
 {
-	public:
+public:
 	BitExtensionImpl()
 		: value(0)
 	{}
@@ -65,7 +65,7 @@ class BitExtensionImpl : public blocxx::COWIntrusiveCountableBase
 
 
 // ===============================================================
-	
+
 BitExtension::BitExtension()
 	: ExtensionBase()
 	, m_impl(new BitExtensionImpl())
@@ -116,7 +116,7 @@ BitExtension::getValue() const
 
 // ###################################################################
 
-       
+
 KeyUsageExt::KeyUsageExt()
 	: BitExtension()
 {}
@@ -138,7 +138,7 @@ KeyUsageExt::KeyUsageExt(CAConfig* caConfig, Type type)
 	if(p)
 	{
 		blocxx::UInt32 keyUsage = 0;
-        
+
 		String ku = caConfig->getValue(type2Section(type, true), "keyUsage");
 		StringArray sp = PerlRegEx("\\s*,\\s*").split(ku);
 
@@ -147,15 +147,15 @@ KeyUsageExt::KeyUsageExt(CAConfig* caConfig, Type type)
 		StringArray::const_iterator it = sp.begin();
 		for(; it != sp.end(); ++it)
 		{
-			if((*it).equalsIgnoreCase("digitalSignature"))      keyUsage |= digitalSignature; 
-			else if((*it).equalsIgnoreCase("nonRepudiation"))   keyUsage |= nonRepudiation; 
-			else if((*it).equalsIgnoreCase("keyEncipherment"))  keyUsage |= keyEncipherment; 
-			else if((*it).equalsIgnoreCase("dataEncipherment")) keyUsage |= dataEncipherment; 
-			else if((*it).equalsIgnoreCase("keyAgreement"))     keyUsage |= keyAgreement; 
-			else if((*it).equalsIgnoreCase("keyCertSign"))      keyUsage |= keyCertSign; 
-			else if((*it).equalsIgnoreCase("cRLSign"))          keyUsage |= cRLSign; 
-			else if((*it).equalsIgnoreCase("encipherOnly"))     keyUsage |= encipherOnly; 
-			else if((*it).equalsIgnoreCase("decipherOnly"))     keyUsage |= decipherOnly; 
+			if((*it).equalsIgnoreCase("digitalSignature"))      keyUsage |= digitalSignature;
+			else if((*it).equalsIgnoreCase("nonRepudiation"))   keyUsage |= nonRepudiation;
+			else if((*it).equalsIgnoreCase("keyEncipherment"))  keyUsage |= keyEncipherment;
+			else if((*it).equalsIgnoreCase("dataEncipherment")) keyUsage |= dataEncipherment;
+			else if((*it).equalsIgnoreCase("keyAgreement"))     keyUsage |= keyAgreement;
+			else if((*it).equalsIgnoreCase("keyCertSign"))      keyUsage |= keyCertSign;
+			else if((*it).equalsIgnoreCase("cRLSign"))          keyUsage |= cRLSign;
+			else if((*it).equalsIgnoreCase("encipherOnly"))     keyUsage |= encipherOnly;
+			else if((*it).equalsIgnoreCase("decipherOnly"))     keyUsage |= decipherOnly;
 			else
 				LOGIT_INFO("Unknown KeyUsage option: " << (*it));
 
@@ -225,7 +225,7 @@ KeyUsageExt::isEnabledFor(KeyUsage ku) const
 		BLOCXX_THROW(limal::RuntimeException,
 		             __("KeyUsageExt is not present."));
 	}
-    
+
 	return !!(getValue() & ku);
 }
 
@@ -289,8 +289,8 @@ KeyUsageExt::commit2Config(CA& ca, Type type) const
 		{
 			keyUsageString += "decipherOnly,";
 		}
-        
-		ca.getConfig()->setValue(type2Section(type, true), "keyUsage", 
+
+		ca.getConfig()->setValue(type2Section(type, true), "keyUsage",
 		                         keyUsageString.erase(keyUsageString.length()-1));
 	}
 	else
@@ -305,7 +305,7 @@ KeyUsageExt::valid() const
 	if(!isPresent()) return true;
 
 	if(!validKeyUsage(getValue())) return false;
-    
+
 	return true;
 }
 
@@ -356,7 +356,7 @@ KeyUsageExt::validKeyUsage(blocxx::UInt32 keyUsage) const
 
 // ###################################################################
 
-        
+
 NsCertTypeExt::NsCertTypeExt()
 	: BitExtension()
 {}
@@ -378,7 +378,7 @@ NsCertTypeExt::NsCertTypeExt(CAConfig* caConfig, Type type)
 	if(p)
 	{
 		blocxx::UInt32 bits = 0;
-        
+
 		String ct = caConfig->getValue(type2Section(type, true), "nsCertType");
 		StringArray sp = PerlRegEx("\\s*,\\s*").split(ct);
 
@@ -387,13 +387,13 @@ NsCertTypeExt::NsCertTypeExt(CAConfig* caConfig, Type type)
 		StringArray::const_iterator it = sp.begin();
 		for(; it != sp.end(); ++it)
 		{
-			if((*it).equalsIgnoreCase("client"))        bits |= client; 
-			else if((*it).equalsIgnoreCase("server"))   bits |= server; 
-			else if((*it).equalsIgnoreCase("email"))    bits |= email; 
-			else if((*it).equalsIgnoreCase("objsign"))  bits |= objsign; 
-			else if((*it).equalsIgnoreCase("reserved")) bits |= reserved; 
-			else if((*it).equalsIgnoreCase("sslCA"))    bits |= sslCA; 
-			else if((*it).equalsIgnoreCase("emailCA"))  bits |= emailCA; 
+			if((*it).equalsIgnoreCase("client"))        bits |= client;
+			else if((*it).equalsIgnoreCase("server"))   bits |= server;
+			else if((*it).equalsIgnoreCase("email"))    bits |= email;
+			else if((*it).equalsIgnoreCase("objsign"))  bits |= objsign;
+			else if((*it).equalsIgnoreCase("reserved")) bits |= reserved;
+			else if((*it).equalsIgnoreCase("sslCA"))    bits |= sslCA;
+			else if((*it).equalsIgnoreCase("emailCA"))  bits |= emailCA;
 			else if((*it).equalsIgnoreCase("objCA"))    bits |= objCA;
 			else
 				LOGIT_INFO("Unknown NsCertType option: " << (*it));
@@ -437,7 +437,7 @@ NsCertTypeExt::setNsCertType(blocxx::UInt32 nsCertTypes)
 {
 	if(nsCertTypes > 0xFF || nsCertTypes == 0)
 	{
-		BLOCXX_THROW(limal::ValueException, 
+		BLOCXX_THROW(limal::ValueException,
 		             Format(__("Invalid value for NsCertTypeExt: %1."), nsCertTypes).c_str());
 	}
 	setValue(nsCertTypes);
@@ -520,8 +520,8 @@ NsCertTypeExt::commit2Config(CA& ca, Type type) const
 		{
 			nsCertTypeString += "objCA,";
 		}
-        
-		ca.getConfig()->setValue(type2Section(type, true), "nsCertType", 
+
+		ca.getConfig()->setValue(type2Section(type, true), "nsCertType",
 		                         nsCertTypeString.erase(nsCertTypeString.length()-1));
 	}
 	else
@@ -536,7 +536,7 @@ NsCertTypeExt::valid() const
 	if(!isPresent()) return true;
 
 	if(getValue() > 0xFF || getValue() == 0) return false;
-    
+
 	return true;
 }
 

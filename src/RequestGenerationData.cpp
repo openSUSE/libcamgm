@@ -39,7 +39,7 @@ using namespace blocxx;
 
 class RequestGenerationDataImpl : public blocxx::COWIntrusiveCountableBase
 {
-	public:
+public:
 	RequestGenerationDataImpl()
 		: subject(DNObject())
 		, keysize(0)
@@ -68,21 +68,21 @@ class RequestGenerationDataImpl : public blocxx::COWIntrusiveCountableBase
 
 	DNObject          subject;
 	blocxx::UInt32    keysize;
-	
+
 	// KeyAlg         pubkeyAlgorithm;  // at the beginning we only support rsa
-	
-	
+
+
 	MD                messageDigest;       // parameter default_md
-	
+
 	// attributes
 	String            challengePassword;
 	String            unstructuredName;
-	
+
 	X509v3RequestExts extensions;
 
 };
 
-	
+
 RequestGenerationData::RequestGenerationData()
 	: m_impl(new RequestGenerationDataImpl())
 {}
@@ -174,7 +174,7 @@ RequestGenerationData::setMessageDigest(MD md)
 	m_impl->messageDigest = md;
 }
 
-MD 
+MD
 RequestGenerationData::getMessageDigest() const
 {
 	return m_impl->messageDigest;
@@ -233,7 +233,7 @@ RequestGenerationData::commit2Config(CA& ca, Type type) const
 {
 	// do not use this->valid(); it checks for subject too
 	// subject.valid() is not needed here
-	if(!m_impl->extensions.valid()) 
+	if(!m_impl->extensions.valid())
 	{
 		LOGIT_ERROR("invalid RequestGenerationData object");
 		BLOCXX_THROW(limal::ValueException,
@@ -253,15 +253,15 @@ RequestGenerationData::commit2Config(CA& ca, Type type) const
 	String md("sha1");
 	switch(m_impl->messageDigest)
 	{
-		case E_SHA1:
-			md = "sha1";
-			break;
-		case E_MD5:
-			md = "md5";
-			break;
-		case E_MDC2:
-			md = "mdc2";
-			break;
+	case E_SHA1:
+		md = "sha1";
+		break;
+	case E_MD5:
+		md = "md5";
+		break;
+	case E_MDC2:
+		md = "mdc2";
+		break;
 	}
 	ca.getConfig()->setValue(type2Section(type, false), "default_md", md);
 

@@ -39,7 +39,7 @@ using namespace blocxx;
 
 class SubjectKeyIdentifierExtImpl : public blocxx::COWIntrusiveCountableBase
 {
-	public:
+public:
 	SubjectKeyIdentifierExtImpl()
 		: autodetect(false)
 		, keyid(String())
@@ -67,7 +67,7 @@ class SubjectKeyIdentifierExtImpl : public blocxx::COWIntrusiveCountableBase
 	String keyid;
 };
 
-	
+
 SubjectKeyIdentifierExt::SubjectKeyIdentifierExt()
 	: ExtensionBase()
 	, m_impl(new SubjectKeyIdentifierExtImpl())
@@ -144,17 +144,17 @@ SubjectKeyIdentifierExt&
 SubjectKeyIdentifierExt::operator=(const SubjectKeyIdentifierExt& extension)
 {
 	if(this == &extension) return *this;
-    
+
 	ExtensionBase::operator=(extension);
-    
+
 	m_impl = extension.m_impl;
-    
+
 	return *this;
 }
 
 void
 SubjectKeyIdentifierExt::setSubjectKeyIdentifier(bool autoDetect,
-                                                 const String& keyId)
+	const String& keyId)
 {
 	if(!keyId.empty() && !initHexCheck().isValid(keyId))
 	{
@@ -215,7 +215,7 @@ SubjectKeyIdentifierExt::commit2Config(CA& ca, Type type) const
 		if(isCritical())         extString += "critical,";
 		if(m_impl->autodetect)   extString += "hash";
 		else                     extString += m_impl->keyid;
-        
+
 		ca.getConfig()->setValue(type2Section(type, true),
 		                         "subjectKeyIdentifier", extString);
 	}
@@ -268,7 +268,7 @@ SubjectKeyIdentifierExt::verify() const
 	if(!m_impl->autodetect && m_impl->keyid.empty())
 	{
 		result.append(String("Wrong value for SubjectKeyIdentifierExt: ") +
-		              Format("autodetect(%1), keyId(%2)", 
+		              Format("autodetect(%1), keyId(%2)",
 		                     m_impl->autodetect?"true":"false",
 		                     m_impl->keyid.c_str()).toString());
 	}
@@ -276,7 +276,7 @@ SubjectKeyIdentifierExt::verify() const
 	if(m_impl->autodetect && !m_impl->keyid.empty())
 	{
 		result.append(String("Wrong value for SubjectKeyIdentifierExt: ") +
-		              Format("autodetect(%1), keyId(%2)", 
+		              Format("autodetect(%1), keyId(%2)",
 		                     m_impl->autodetect?"true":"false",
 		                     m_impl->keyid.c_str()).toString());
 	}

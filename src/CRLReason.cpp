@@ -39,7 +39,7 @@ using namespace blocxx;
 
 class CRLReasonImpl : public blocxx::COWIntrusiveCountableBase
 {
-	public:
+public:
 	CRLReasonImpl()
 		: reason("none")
 		, compromiseDate(0)
@@ -67,24 +67,24 @@ class CRLReasonImpl : public blocxx::COWIntrusiveCountableBase
 	}
 
 	String         reason;
-	
+
 	// used if reason is keyCompromise or CACompromise.
 	// 0 == no compromise Date set
 	time_t         compromiseDate;
 
 	// used if reason is certificateHold
-	// possible values: 
+	// possible values:
 	//    holdInstructionNone,
-	//    holdInstructionCallIssuer, 
+	//    holdInstructionCallIssuer,
 	//    holdInstructionReject
 	// or an OID
 	String         holdInstruction;
 
 };
 
-	
+
 // ----------------------------------------------------------------------------
-    
+
 CRLReason::CRLReason()
 	: m_impl(new CRLReasonImpl())
 {}
@@ -118,9 +118,9 @@ CRLReason&
 CRLReason::operator=(const CRLReason& reason)
 {
 	if(this == &reason) return *this;
-    
+
 	m_impl = reason.m_impl;
-    
+
 	return *this;
 }
 
@@ -256,13 +256,13 @@ CRLReason::getCACompromiseDateAsString() const
 		             __("Reason is not CACompromise."));
 	}
 	String time;
-	
+
 	if(m_impl->compromiseDate != 0)
 	{
 		DateTime dt(m_impl->compromiseDate);
 		time = dt.toString("%Y%m%d%H%M%S") + "Z";
 	}
-	
+
 	return time;
 }
 
@@ -307,7 +307,7 @@ CRLReason::verify() const
 	}
 
 	//    compromiseDate == 0 is now a valid date
-    
+
 	LOGIT_DEBUG_STRINGARRAY("CRLReason::verify()", result);
 	return result;
 }
@@ -321,7 +321,7 @@ CRLReason::dump() const
 	result.append("CRLReason::dump()");
 
 	result.append(Format("Revoke Reason = %1", m_impl->reason));
-	
+
 	if(m_impl->reason.equalsIgnoreCase("certificateHold"))
 	{
 		result.append("hold Instruction =" + m_impl->holdInstruction);
@@ -331,7 +331,7 @@ CRLReason::dump() const
 	{
 		result.append("compromise Date = " + String(m_impl->compromiseDate));
 	}
-    
+
 	return result;
 }
 
@@ -346,9 +346,9 @@ CRLReason::checkHoldInstruction(const String& hi) const
 	   !hi.equalsIgnoreCase("holdInstructionCallIssuer") &&
 	   !hi.equalsIgnoreCase("holdInstructionReject")     &&
 	   !initOIDCheck().isValid(hi)) {
-        
-		return (Format("Invalid holdInstruction: %1", hi).toString());
-	}
+
+		   return (Format("Invalid holdInstruction: %1", hi).toString());
+	   }
 	return String();
 }
 
@@ -373,6 +373,6 @@ CRLReason::checkReason(const String& reason) const
 }
 
 // ----------------------------------------------------------------------------
-    
+
 }
 }

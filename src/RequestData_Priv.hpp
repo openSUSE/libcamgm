@@ -33,35 +33,35 @@ namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
-    class RequestData_Priv : public RequestData {
-    public:
-        RequestData_Priv();
-        RequestData_Priv(const String& requestPath, 
-                         FormatType formatType = E_PEM);
-        RequestData_Priv(const ByteBuffer& request, 
-                         FormatType formatType = E_PEM);
-        RequestData_Priv(const RequestData_Priv& data);
-        virtual ~RequestData_Priv();
+class RequestData_Priv : public RequestData {
+public:
+	RequestData_Priv();
+	RequestData_Priv(const String& requestPath,
+	                 FormatType formatType = E_PEM);
+	RequestData_Priv(const ByteBuffer& request,
+	                 FormatType formatType = E_PEM);
+	RequestData_Priv(const RequestData_Priv& data);
+	virtual ~RequestData_Priv();
 
-        void                setVersion(blocxx::UInt32 v);
-        void                setKeysize(blocxx::UInt32 size);
-        void                setSubjectDN(const DNObject dn);
-        void                setKeyAlgorithm(KeyAlg alg);
-        void                setPublicKey(const ByteBuffer key);
-        void                setSignatureAlgorithm(SigAlg alg);
-        void                setSignature(const ByteBuffer &sig);
-        void                setExtensions(const X509v3RequestExts &ext);
-        void                setChallengePassword(const String &passwd);
-        void                setUnstructuredName(const String &name);
+	void                setVersion(blocxx::UInt32 v);
+	void                setKeysize(blocxx::UInt32 size);
+	void                setSubjectDN(const DNObject dn);
+	void                setKeyAlgorithm(KeyAlg alg);
+	void                setPublicKey(const ByteBuffer key);
+	void                setSignatureAlgorithm(SigAlg alg);
+	void                setSignature(const ByteBuffer &sig);
+	void                setExtensions(const X509v3RequestExts &ext);
+	void                setChallengePassword(const String &passwd);
+	void                setUnstructuredName(const String &name);
 
-    private:
+private:
 
-        RequestData_Priv&   operator=(const RequestData_Priv& data);
+	RequestData_Priv&   operator=(const RequestData_Priv& data);
 
-        void                parseRequest(X509_REQ *x509);
-    	void                init(const ByteBuffer& request, 
-    	                         FormatType formatType);
-    };
+	void                parseRequest(X509_REQ *x509);
+	void                init(const ByteBuffer& request,
+	                         FormatType formatType);
+};
 
 }
 }

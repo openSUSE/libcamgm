@@ -53,7 +53,7 @@ using namespace blocxx;
 RevocationEntry_Priv::RevocationEntry_Priv()
 	: RevocationEntry()
 {}
-	
+
 RevocationEntry_Priv::RevocationEntry_Priv(X509_REVOKED *rev)
 	: RevocationEntry()
 {
@@ -67,15 +67,15 @@ RevocationEntry_Priv::RevocationEntry_Priv(X509_REVOKED *rev)
 
 	setSerial(String(reinterpret_cast<const char*>(ustringval), n));
 	BIO_free(bioS);
-	
+
 	LOGIT_DEBUG("=>=> New Entry with Serial: " << getSerial());
-	
+
     // get revocationDate
 
 	char *cbuf = new char[rev->revocationDate->length + 1];
 	memcpy(cbuf, rev->revocationDate->data, rev->revocationDate->length);
 	cbuf[rev->revocationDate->length] = '\0';
-    
+
 	String sbuf = String(cbuf);
 	delete [] cbuf;
 
@@ -85,12 +85,12 @@ RevocationEntry_Priv::RevocationEntry_Priv(X509_REVOKED *rev)
 	StringArray sa = r.capture(sbuf);
 
 	if(sa.size() != 7)
-	{        
+	{
 		LOGIT_ERROR("Can not parse date: " << sbuf);
 		BLOCXX_THROW(limal::RuntimeException,
 		             Format(__("Cannot parse date %1."), sbuf).c_str());
 	}
-        
+
 	int year = 1970;
 	if(sa[1].toInt() >= 70 && sa[1].toInt() <= 99)
 	{
@@ -100,11 +100,11 @@ RevocationEntry_Priv::RevocationEntry_Priv(X509_REVOKED *rev)
 	{
 		year = sa[1].toInt() + 2000;
 	}
-    
+
 	DateTime dt = DateTime(year, sa[2].toInt(), sa[3].toInt(),
 	                       sa[4].toInt(), sa[5].toInt(), sa[6].toInt(),
 	                       0, DateTime::E_UTC_TIME);
-    
+
 	setRevocationDate(dt.get());
 
     // get CRL Reason
@@ -112,7 +112,7 @@ RevocationEntry_Priv::RevocationEntry_Priv(X509_REVOKED *rev)
 	setReason( CRLReason_Priv(rev->extensions) );
 }
 
-RevocationEntry_Priv::RevocationEntry_Priv(const String&    serial, 
+RevocationEntry_Priv::RevocationEntry_Priv(const String&    serial,
                                            time_t           revokeDate,
                                            const CRLReason& reason)
 	: RevocationEntry()
@@ -145,9 +145,9 @@ RevocationEntry_Priv&
 RevocationEntry_Priv::operator=(const RevocationEntry_Priv& entry)
 {
 	if(this == &entry) return *this;
-    
+
 	RevocationEntry::operator=(entry);
-    
+
 	return *this;
 }
 
@@ -304,10 +304,10 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
 	unsigned char *ustringval = NULL;
 	unsigned char md[EVP_MAX_MD_SIZE];
 	unsigned int n = 0;
-	
+
 	BIO *bioFP           = BIO_new(BIO_s_mem());
 	const EVP_MD *digest = EVP_sha1();
-	
+
 	if(X509_CRL_digest(x509, digest, md, &n))
 	{
 		BIO_printf(bioFP, "%s:", OBJ_nid2sn(EVP_MD_type(digest)));
@@ -340,7 +340,7 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
 		BLOCXX_THROW(limal::RuntimeException,
 		             Format(__("Cannot parse date %1."), sbuf).c_str());
 	}
-    
+
 	int year = 1970;
 	if(sa[1].toInt() >= 70 && sa[1].toInt() <= 99)
 	{
@@ -350,7 +350,7 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
 	{
 		year = sa[1].toInt() + 2000;
 	}
-    
+
 	DateTime dt(year, sa[2].toInt(), sa[3].toInt(),
 	            sa[4].toInt(), sa[5].toInt(), sa[6].toInt(),
 	            0, DateTime::E_UTC_TIME);
@@ -374,7 +374,7 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
 		BLOCXX_THROW(limal::RuntimeException,
 		             Format(__("Cannot parse date %1."), sbuf).c_str());
 	}
-    
+
 	year = 1970;
 	if(sa[1].toInt() >= 70 && sa[1].toInt() <= 99)
 	{
@@ -384,14 +384,14 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
 	{
 		year = sa[1].toInt() + 2000;
 	}
-    
+
 	dt = DateTime(year, sa[2].toInt(), sa[3].toInt(),
 	              sa[4].toInt(), sa[5].toInt(), sa[6].toInt(),
 	              0, DateTime::E_UTC_TIME);
 	time_t nextUpdate = dt.get();
 
 	setValidityPeriod(lastUpdate, nextUpdate);
-    
+
 	// get issuer
 
 	setIssuerDN( DNObject_Priv(x509->crl->issuer) );
@@ -404,21 +404,21 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
 
 	sbuf = String(cbuf, n);
 	BIO_free(bio);
-    
+
 	if(sbuf.equalsIgnoreCase("sha1WithRSAEncryption") )
-	{        
+	{
 		setSignatureAlgorithm(E_SHA1RSA);
 	}
 	else if(sbuf.equalsIgnoreCase("md5WithRSAEncryption") )
-	{        
+	{
 		setSignatureAlgorithm(E_MD5RSA);
 	}
 	else if(sbuf.equalsIgnoreCase("dsaWithSHA1") )
-	{        
+	{
 		setSignatureAlgorithm(E_SHA1DSA);
 	}
 	else
-	{        
+	{
 		LOGIT_ERROR("Unsupported signature algorithm: '" << sbuf << "'");
 		BLOCXX_THROW(limal::RuntimeException,
 		             Format(__("Unsupported signature algorithm %1."), sbuf).c_str());
@@ -430,11 +430,11 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
 
 	// get extensions
 	setExtensions( X509v3CRLExts_Priv(x509->crl->extensions));
-      
+
 	// get revocationData
 
 	blocxx::Map<String, RevocationEntry> revData;
-    
+
 	for (int i=0; i<sk_X509_REVOKED_num(x509->crl->revoked); i++)
 	{
 		RevocationEntry_Priv revEntry(sk_X509_REVOKED_value(x509->crl->revoked,i));
@@ -450,14 +450,14 @@ CRLData_Priv::init(const ByteBuffer &crl, FormatType formatType)
 {
 	BIO *bio;
 	unsigned char *d = (unsigned char*)crl.data();
-	
+
 	if( formatType == E_PEM )
 	{
 		// load the crl into a memory bio
 		bio = BIO_new_mem_buf(d, crl.size());
 
 		if(!bio)
-		{            
+		{
 			LOGIT_ERROR("Can not create a memory BIO");
 			BLOCXX_THROW(limal::MemoryException,
 			             __("Cannot create a memory BIO."));
@@ -471,14 +471,14 @@ CRLData_Priv::init(const ByteBuffer &crl, FormatType formatType)
 	{
 		// => DER
 
-#if OPENSSL_VERSION_NUMBER >= 0x0090801fL        
+#if OPENSSL_VERSION_NUMBER >= 0x0090801fL
 		const unsigned char *d2 = NULL;
 		d2 = (const unsigned char*)d;
 #else
 		unsigned char *d2 = NULL;
 		d2 = d;
 #endif
-        
+
 		m_impl->x509 = d2i_X509_CRL(NULL, &d2, crl.size());
 
 		d2 = NULL;
@@ -499,14 +499,12 @@ CRLData_Priv::init(const ByteBuffer &crl, FormatType formatType)
 	{
 		X509_CRL_free(m_impl->x509);
 		m_impl->x509 = NULL;
-		
+
 		BLOCXX_THROW_SUBEX(limal::SyntaxException,
 		                   __("Error parsing the CRL."),
 		                   e);
 	}
 }
-
-
 
 }
 }

@@ -39,7 +39,7 @@ using namespace blocxx;
 
 class StringExtensionImpl : public blocxx::COWIntrusiveCountableBase
 {
-	public:
+public:
 	StringExtensionImpl()
 		: value(String())
 	{}
@@ -61,9 +61,9 @@ class StringExtensionImpl : public blocxx::COWIntrusiveCountableBase
 	}
 
 	String value;
-	
+
 };
-	
+
 StringExtension::StringExtension()
 	: ExtensionBase()
 	, m_impl(new StringExtensionImpl())
@@ -72,19 +72,19 @@ StringExtension::StringExtension()
 StringExtension::~StringExtension()
 {}
 
-        
+
 //    protected:
 
-StringExtension::StringExtension(const String &v ) 
+StringExtension::StringExtension(const String &v )
 	: ExtensionBase()
 	, m_impl(new StringExtensionImpl(v))
 {}
 
 StringExtension::StringExtension(const StringExtension& extension)
 	: ExtensionBase(extension)
-	, m_impl(extension.m_impl) 
+	, m_impl(extension.m_impl)
 {}
-        
+
 StringExtension&
 StringExtension::operator=(const StringExtension& extension)
 {
@@ -95,7 +95,7 @@ StringExtension::operator=(const StringExtension& extension)
 
 	return *this;
 }
-        
+
 
 // #################################################################
 
@@ -129,7 +129,7 @@ NsBaseUrlExt::NsBaseUrlExt(CAConfig* caConfig, Type type)
 			.split(caConfig->getValue(type2Section(type, true), "nsBaseUrl"));
 		if(sp[0].equalsIgnoreCase("critical"))
 		{
-			setCritical(true); 
+			setCritical(true);
 			m_impl->value = sp[1];
 		}
 		else
@@ -223,7 +223,7 @@ NsBaseUrlExt::valid() const
 	{
 		LOGIT_DEBUG("Wrong value for NsBaseUrlExt:" << m_impl->value);
 		return false;
-	}    
+	}
 	return true;
 }
 
@@ -286,13 +286,13 @@ NsRevocationUrlExt::NsRevocationUrlExt(CAConfig* caConfig, Type type)
 		BLOCXX_THROW(limal::ValueException,
 		             Format(__("Wrong type: %1."), type).c_str());
 	}
-    
+
 	bool p = caConfig->exists(type2Section(type, true), "nsRevocationUrl");
 	if(p) {
 		StringArray   sp   = PerlRegEx("\\s*,\\s*")
 			.split(caConfig->getValue(type2Section(type, true), "nsRevocationUrl"));
 		if(sp[0].equalsIgnoreCase("critical")) {
-			setCritical(true); 
+			setCritical(true);
 			m_impl->value = sp[1];
 		} else {
 			m_impl->value = sp[0];
@@ -392,7 +392,7 @@ NsRevocationUrlExt::valid() const
 	if(!initURICheck().isValid(m_impl->value)) {
 		LOGIT_DEBUG("Wrong value for NsRevocationUrlExt:" << m_impl->value);
 		return false;
-	}    
+	}
 	return true;
 }
 
@@ -446,7 +446,7 @@ NsCaRevocationUrlExt::NsCaRevocationUrlExt(CAConfig* caConfig, Type type)
 		StringArray   sp   = PerlRegEx("\\s*,\\s*")
 			.split(caConfig->getValue(type2Section(type, true), "nsCaRevocationUrl"));
 		if(sp[0].equalsIgnoreCase("critical")) {
-			setCritical(true); 
+			setCritical(true);
 			m_impl->value = sp[1];
 		} else {
 			m_impl->value = sp[0];
@@ -546,7 +546,7 @@ NsCaRevocationUrlExt::valid() const
 	if(!initURICheck().isValid(m_impl->value)) {
 		LOGIT_DEBUG("Wrong value for NsCaRevocationUrlExt:" << m_impl->value);
 		return false;
-	}    
+	}
 	return true;
 }
 
@@ -599,7 +599,7 @@ NsRenewalUrlExt::NsRenewalUrlExt(CAConfig* caConfig, Type type)
 		StringArray   sp   = PerlRegEx("\\s*,\\s*")
 			.split(caConfig->getValue(type2Section(type, true), "nsRenewalUrl"));
 		if(sp[0].equalsIgnoreCase("critical")) {
-			setCritical(true); 
+			setCritical(true);
 			m_impl->value = sp[1];
 		} else {
 			m_impl->value = sp[0];
@@ -699,7 +699,7 @@ NsRenewalUrlExt::valid() const
 	if(!initURICheck().isValid(m_impl->value)) {
 		LOGIT_DEBUG("Wrong value for NsRenewalUrlExt:" << m_impl->value);
 		return false;
-	}    
+	}
 	return true;
 }
 
@@ -751,7 +751,7 @@ NsCaPolicyUrlExt::NsCaPolicyUrlExt(CAConfig* caConfig, Type type)
 		StringArray   sp   = PerlRegEx("\\s*,\\s*")
 			.split(caConfig->getValue(type2Section(type, true), "nsCaPolicyUrl"));
 		if(sp[0].equalsIgnoreCase("critical")) {
-			setCritical(true); 
+			setCritical(true);
 			m_impl->value = sp[1];
 		} else {
 			m_impl->value = sp[0];
@@ -851,7 +851,7 @@ NsCaPolicyUrlExt::valid() const
 	if(!initURICheck().isValid(m_impl->value)) {
 		LOGIT_DEBUG("Wrong value for NsCaPolicyUrlExt:" << m_impl->value);
 		return false;
-	}    
+	}
 	return true;
 }
 
@@ -899,7 +899,7 @@ NsSslServerNameExt::NsSslServerNameExt(CAConfig* caConfig, Type type)
 		StringArray   sp   = PerlRegEx("\\s*,\\s*")
 			.split(caConfig->getValue(type2Section(type, true), "nsSslServerName"));
 		if(sp[0].equalsIgnoreCase("critical")) {
-			setCritical(true); 
+			setCritical(true);
 			m_impl->value = sp[1];
 		} else {
 			m_impl->value = sp[0];
@@ -1025,7 +1025,7 @@ NsCommentExt::NsCommentExt(CAConfig* caConfig, Type type)
 		StringArray   sp   = PerlRegEx("\\s*,\\s*")
 			.split(caConfig->getValue(type2Section(type, true), "nsComment"));
 		if(sp[0].equalsIgnoreCase("critical")) {
-			setCritical(true); 
+			setCritical(true);
 			m_impl->value = sp[1];
 		} else {
 			m_impl->value = sp[0];
@@ -1103,7 +1103,7 @@ NsCommentExt::verify() const
 }
 
 bool
-NsCommentExt::valid() const
+	NsCommentExt::valid() const
 {
 	return true;
 }

@@ -37,7 +37,7 @@ using namespace blocxx;
 X509v3CRLExts::X509v3CRLExts(const X509v3CRLExts& extensions)
 	: m_impl(extensions.m_impl)
 {}
-	
+
 X509v3CRLExts::~X509v3CRLExts()
 {}
 
@@ -45,10 +45,10 @@ X509v3CRLExts&
 X509v3CRLExts::operator=(const X509v3CRLExts& extensions)
 {
 	if(this == &extensions) return *this;
-    
-    m_impl = extensions.m_impl;
-    
-    return *this;
+
+	m_impl = extensions.m_impl;
+
+	return *this;
 }
 
 AuthorityKeyIdentifierExt
@@ -78,7 +78,7 @@ X509v3CRLExts::verify() const
 
 	result.appendArray(m_impl->authorityKeyIdentifier.verify());
 	result.appendArray(m_impl->issuerAlternativeName.verify());
-    
+
 	LOGIT_DEBUG_STRINGARRAY("X509v3CRLExts::verify()", result);
 	return result;;
 }

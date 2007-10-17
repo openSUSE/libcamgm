@@ -11,17 +11,17 @@
 |                                         (C) SUSE Linux Products GmbH |
 \----------------------------------------------------------------------/
 
-  File:       Commands.hpp
+File:       Commands.hpp
 
-  Author:     Michael Calmer
-  Maintainer: Michael Calmer
+Author:     Michael Calmer
+Maintainer: Michael Calmer
 /-*/
 
 /**
- * @file   Commands.hpp
- * @brief  This file is private for the ca-mgm library.
- *         It defines some commands with full path
- */
+* @file   Commands.hpp
+* @brief  This file is private for the ca-mgm library.
+*         It defines some commands with full path
+*/
 #ifndef   LIMAL_CA_MGM_COMMANDS_HPP
 #define   LIMAL_CA_MGM_COMMANDS_HPP
 

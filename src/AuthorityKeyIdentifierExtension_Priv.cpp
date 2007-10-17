@@ -42,17 +42,17 @@ AuthorityKeyIdentifierExt_Priv::AuthorityKeyIdentifierExt_Priv()
 	: AuthorityKeyIdentifierExt()
 {
 }
-	
+
 AuthorityKeyIdentifierExt_Priv::AuthorityKeyIdentifierExt_Priv(STACK_OF(X509_EXTENSION)* extensions)
 	: AuthorityKeyIdentifierExt()
 {
 	int crit = 0;
-    
+
 	AUTHORITY_KEYID *aki = NULL;
 	aki = static_cast<AUTHORITY_KEYID *>(X509V3_get_d2i(extensions,
-	                                                    NID_authority_key_identifier,
-	                                                    &crit, NULL));
-    
+		NID_authority_key_identifier,
+		&crit, NULL));
+
 	if(aki == NULL)
 	{
 		if(crit == -1)
@@ -64,7 +64,7 @@ AuthorityKeyIdentifierExt_Priv::AuthorityKeyIdentifierExt_Priv(STACK_OF(X509_EXT
 		}
 		else if(crit == -2)
 		{
-			// extension occurred more than once 
+			// extension occurred more than once
 			LOGIT_ERROR("Extension occurred more than once");
 			BLOCXX_THROW(limal::SyntaxException,
 			             "Extension occurred more than once");
@@ -79,7 +79,7 @@ AuthorityKeyIdentifierExt_Priv::AuthorityKeyIdentifierExt_Priv(STACK_OF(X509_EXT
 	if(aki->keyid)
 	{
 		String tmpKeyID;
-    	
+
 		for(int i = 0; i < aki->keyid->length; ++i)
 		{
 			String d;
@@ -93,24 +93,24 @@ AuthorityKeyIdentifierExt_Priv::AuthorityKeyIdentifierExt_Priv(STACK_OF(X509_EXT
 		}
 		setKeyID(tmpKeyID);
 	}
-    
+
 	if(aki->issuer)
 	{
 		int j;
 		GENERAL_NAME *gen;
 		String tmpDirName;
-        
+
 		for(j = 0; j < sk_GENERAL_NAME_num(aki->issuer); j++)
 		{
 			gen = sk_GENERAL_NAME_value(aki->issuer, j);
-            
+
 			if(gen->type == GEN_DIRNAME)
-			{                
+			{
 				char oline[256];
 				X509_NAME_oneline(gen->d.dirn, oline, 256);
-                
+
 				tmpDirName += oline;
-                
+
 				if( (j+1) < sk_GENERAL_NAME_num(aki->issuer) )
 				{
 					tmpDirName += '\n';
@@ -123,7 +123,7 @@ AuthorityKeyIdentifierExt_Priv::AuthorityKeyIdentifierExt_Priv(STACK_OF(X509_EXT
 	if(aki->serial)
 	{
 		String tmpSerial;
-    	
+
 		for(int i = 0; i < aki->serial->length; ++i)
 		{
 			String d;
@@ -154,12 +154,12 @@ AuthorityKeyIdentifierExt_Priv&
 AuthorityKeyIdentifierExt_Priv::operator=(const AuthorityKeyIdentifierExt_Priv& extension)
 {
 	if(this == &extension) return *this;
-    
+
 	AuthorityKeyIdentifierExt::operator=(extension);
-    
+
 	return *this;
 }
-        
+
 
 }
 }

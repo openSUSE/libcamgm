@@ -38,14 +38,14 @@ using namespace blocxx;
 
 class CRLGenerationDataImpl : public blocxx::COWIntrusiveCountableBase
 {
-	public:
+public:
 
 	CRLGenerationDataImpl()
 		: crlHours(0)
 		, extensions(X509v3CRLGenerationExts())
 	{}
 
-	CRLGenerationDataImpl(blocxx::UInt32 hours, 
+	CRLGenerationDataImpl(blocxx::UInt32 hours,
 	                      const X509v3CRLGenerationExts& ext)
 		: crlHours(hours)
 		, extensions(ext)
@@ -63,13 +63,13 @@ class CRLGenerationDataImpl : public blocxx::COWIntrusiveCountableBase
 	{
 		return new CRLGenerationDataImpl(*this);
 	}
-	    	
+
 	blocxx::UInt32                crlHours;
 	X509v3CRLGenerationExts       extensions;
 
 };
 
-	
+
 CRLGenerationData::CRLGenerationData()
 	: m_impl(new CRLGenerationDataImpl())
 {}
@@ -81,7 +81,7 @@ CRLGenerationData::CRLGenerationData(CAConfig* caConfig, Type type)
 	m_impl->crlHours = caConfig->getValue(type2Section(type, false), "default_crl_hours").toUInt32();
 }
 
-CRLGenerationData::CRLGenerationData(blocxx::UInt32 hours, 
+CRLGenerationData::CRLGenerationData(blocxx::UInt32 hours,
                                      const X509v3CRLGenerationExts& ext)
 	: m_impl(new CRLGenerationDataImpl(hours, ext))
 {
@@ -99,14 +99,14 @@ CRLGenerationData::CRLGenerationData(const CRLGenerationData& data)
 
 CRLGenerationData::~CRLGenerationData()
 {}
-       
+
 CRLGenerationData&
 CRLGenerationData::operator=(const CRLGenerationData& data)
 {
 	if(this == &data) return *this;
-    
+
 	m_impl = data.m_impl;
-    
+
 	return *this;
 }
 
@@ -157,7 +157,7 @@ CRLGenerationData::commit2Config(CA& ca, Type type) const
 	}
 	// These types are not supported by this object
 	if(type != E_CRL)
-	{        
+	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(limal::ValueException,
 		             Format(__("Wrong type: %1."), type).c_str());

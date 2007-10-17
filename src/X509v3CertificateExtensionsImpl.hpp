@@ -42,84 +42,84 @@ namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
-	class X509v3CertificateExtsImpl : public blocxx::COWIntrusiveCountableBase
+class X509v3CertificateExtsImpl : public blocxx::COWIntrusiveCountableBase
+{
+public:
+	X509v3CertificateExtsImpl()
+		: nsBaseUrl(NsBaseUrlExt()),
+		nsRevocationUrl(NsRevocationUrlExt()),
+		nsCaRevocationUrl(NsCaRevocationUrlExt()),
+		nsRenewalUrl(NsRenewalUrlExt()),
+		nsCaPolicyUrl(NsCaPolicyUrlExt()),
+		nsSslServerName(NsSslServerNameExt()),
+		nsComment(NsCommentExt()),
+		keyUsage(KeyUsageExt()),
+		nsCertType(NsCertTypeExt()),
+		basicConstraints(BasicConstraintsExt()),
+		extendedKeyUsage(ExtendedKeyUsageExt()),
+		subjectKeyIdentifier(SubjectKeyIdentifierExt()),
+		authorityKeyIdentifier(AuthorityKeyIdentifierExt()),
+		subjectAlternativeName(SubjectAlternativeNameExt()),
+		issuerAlternativeName(IssuerAlternativeNameExt()),
+		authorityInfoAccess(AuthorityInfoAccessExt()),
+		crlDistributionPoints(CRLDistributionPointsExt()),
+		certificatePolicies(CertificatePoliciesExt())
+	{}
+
+	X509v3CertificateExtsImpl(const X509v3CertificateExtsImpl& impl)
+		: COWIntrusiveCountableBase(impl),
+		nsBaseUrl(impl.nsBaseUrl),
+		nsRevocationUrl(impl.nsRevocationUrl),
+		nsCaRevocationUrl(impl.nsCaRevocationUrl),
+		nsRenewalUrl(impl.nsRenewalUrl),
+		nsCaPolicyUrl(impl.nsCaPolicyUrl),
+		nsSslServerName(impl.nsSslServerName),
+		nsComment(impl.nsComment),
+		keyUsage(impl.keyUsage),
+		nsCertType(impl.nsCertType),
+		basicConstraints(impl.basicConstraints),
+		extendedKeyUsage(impl.extendedKeyUsage),
+		subjectKeyIdentifier(impl.subjectKeyIdentifier),
+		authorityKeyIdentifier(impl.authorityKeyIdentifier),
+		subjectAlternativeName(impl.subjectAlternativeName),
+		issuerAlternativeName(impl.issuerAlternativeName),
+		authorityInfoAccess(impl.authorityInfoAccess),
+		crlDistributionPoints(impl.crlDistributionPoints),
+		certificatePolicies(impl.certificatePolicies)
+	{}
+
+	~X509v3CertificateExtsImpl() {}
+
+	X509v3CertificateExtsImpl* clone() const
 	{
-		public:
-		X509v3CertificateExtsImpl()
-			: nsBaseUrl(NsBaseUrlExt()),
-			  nsRevocationUrl(NsRevocationUrlExt()),
-			  nsCaRevocationUrl(NsCaRevocationUrlExt()),
-			  nsRenewalUrl(NsRenewalUrlExt()),
-			  nsCaPolicyUrl(NsCaPolicyUrlExt()),
-			  nsSslServerName(NsSslServerNameExt()),
-			  nsComment(NsCommentExt()),
-			  keyUsage(KeyUsageExt()),
-			  nsCertType(NsCertTypeExt()),
-			  basicConstraints(BasicConstraintsExt()),
-			  extendedKeyUsage(ExtendedKeyUsageExt()),
-			  subjectKeyIdentifier(SubjectKeyIdentifierExt()),
-			  authorityKeyIdentifier(AuthorityKeyIdentifierExt()),
-			  subjectAlternativeName(SubjectAlternativeNameExt()),
-			  issuerAlternativeName(IssuerAlternativeNameExt()),
-			  authorityInfoAccess(AuthorityInfoAccessExt()),
-			  crlDistributionPoints(CRLDistributionPointsExt()),
-			  certificatePolicies(CertificatePoliciesExt())
-		{}
+		return new X509v3CertificateExtsImpl(*this);
+	}
 
-		X509v3CertificateExtsImpl(const X509v3CertificateExtsImpl& impl)
-			: COWIntrusiveCountableBase(impl),
-			  nsBaseUrl(impl.nsBaseUrl),
-			  nsRevocationUrl(impl.nsRevocationUrl),
-			  nsCaRevocationUrl(impl.nsCaRevocationUrl),
-			  nsRenewalUrl(impl.nsRenewalUrl),
-			  nsCaPolicyUrl(impl.nsCaPolicyUrl),
-			  nsSslServerName(impl.nsSslServerName),
-			  nsComment(impl.nsComment),
-			  keyUsage(impl.keyUsage),
-			  nsCertType(impl.nsCertType),
-			  basicConstraints(impl.basicConstraints),
-			  extendedKeyUsage(impl.extendedKeyUsage),
-			  subjectKeyIdentifier(impl.subjectKeyIdentifier),
-			  authorityKeyIdentifier(impl.authorityKeyIdentifier),
-			  subjectAlternativeName(impl.subjectAlternativeName),
-			  issuerAlternativeName(impl.issuerAlternativeName),
-			  authorityInfoAccess(impl.authorityInfoAccess),
-			  crlDistributionPoints(impl.crlDistributionPoints),
-			  certificatePolicies(impl.certificatePolicies)
-		{}
-
-		~X509v3CertificateExtsImpl() {}
-
-		X509v3CertificateExtsImpl* clone() const
-		{
-			return new X509v3CertificateExtsImpl(*this);
-		}
-		
 		/* String extensions */
 
-		NsBaseUrlExt              nsBaseUrl;
-		NsRevocationUrlExt        nsRevocationUrl;
-		NsCaRevocationUrlExt      nsCaRevocationUrl;
-		NsRenewalUrlExt           nsRenewalUrl;
-		NsCaPolicyUrlExt          nsCaPolicyUrl;
-		NsSslServerNameExt        nsSslServerName;
-		NsCommentExt              nsComment;
-		
+	NsBaseUrlExt              nsBaseUrl;
+	NsRevocationUrlExt        nsRevocationUrl;
+	NsCaRevocationUrlExt      nsCaRevocationUrl;
+	NsRenewalUrlExt           nsRenewalUrl;
+	NsCaPolicyUrlExt          nsCaPolicyUrl;
+	NsSslServerNameExt        nsSslServerName;
+	NsCommentExt              nsComment;
+
 		/* Bit Strings */
-		KeyUsageExt               keyUsage; 
-		NsCertTypeExt             nsCertType;
-		
-		BasicConstraintsExt       basicConstraints;
-		ExtendedKeyUsageExt       extendedKeyUsage;
-		SubjectKeyIdentifierExt   subjectKeyIdentifier;
-		AuthorityKeyIdentifierExt authorityKeyIdentifier;
-		SubjectAlternativeNameExt subjectAlternativeName;
-		IssuerAlternativeNameExt  issuerAlternativeName;
-		
-		AuthorityInfoAccessExt    authorityInfoAccess;
-		CRLDistributionPointsExt  crlDistributionPoints;
-		CertificatePoliciesExt    certificatePolicies;
-	};
+	KeyUsageExt               keyUsage;
+	NsCertTypeExt             nsCertType;
+
+	BasicConstraintsExt       basicConstraints;
+	ExtendedKeyUsageExt       extendedKeyUsage;
+	SubjectKeyIdentifierExt   subjectKeyIdentifier;
+	AuthorityKeyIdentifierExt authorityKeyIdentifier;
+	SubjectAlternativeNameExt subjectAlternativeName;
+	IssuerAlternativeNameExt  issuerAlternativeName;
+
+	AuthorityInfoAccessExt    authorityInfoAccess;
+	CRLDistributionPointsExt  crlDistributionPoints;
+	CertificatePoliciesExt    certificatePolicies;
+};
 
 }
 }

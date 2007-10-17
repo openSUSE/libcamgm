@@ -44,7 +44,7 @@ struct CAConfig::CASection
 
 class CAConfigImpl : public blocxx::COWIntrusiveCountableBase
 {
-	public:
+public:
 	CAConfigImpl()
 		: parser(INIParser ())
 		, srcFilename(String())
@@ -63,7 +63,7 @@ class CAConfigImpl : public blocxx::COWIntrusiveCountableBase
 
 	virtual ~CAConfigImpl()
 	{}
-	
+
 	CAConfigImpl* clone() const
 	{
 		return new CAConfigImpl(*this);
@@ -74,7 +74,7 @@ class CAConfigImpl : public blocxx::COWIntrusiveCountableBase
 
 };
 
-	
+
 CAConfig::CAConfig(const String &file)
 	: m_impl(new CAConfigImpl(file))
 {
@@ -90,10 +90,10 @@ CAConfig::CAConfig(const String &file)
 	commentsDescr.append ("^[ \t]*#.*$");
 	commentsDescr.append ("#.*");
 	commentsDescr.append ("^[ \t]*$");
-	commentsDescr.append ("^[ \t]*;[^;]+.*$");    
+	commentsDescr.append ("^[ \t]*;[^;]+.*$");
 
 	IoPatternDescr pattern1 = { "^[ \t]*([^=;]*[^ \t;=])[ \t]*=[ \t]*(.*[^ \t]|)[ \t]*$" , "   %s = %s"};
-	EntryDescr eDescr1 =  {pattern1, "", "" , false};    
+	EntryDescr eDescr1 =  {pattern1, "", "" , false};
 	entryDescr.append (eDescr1);
 
 	IoPatternDescr pattern2 = {"^[ \t]*;;[ \t]*([^=]*[^ \t=])[ \t]*=[ \t]*(.*[^ \t]|)[ \t]*$" , ";;   %s = %s"};
@@ -101,12 +101,12 @@ CAConfig::CAConfig(const String &file)
 	entryDescr.append (eDescr2);
 
 	IoPatternDescr patternBegin1 = {"^[ \t]*\\[[ \t]*(.*[^ \t])[ \t]*\\][ \t]*", "[%s]"};
-	IoPatternDescr patternBegin2 = {"^[ \t]*;;[ \t]*\\[[ \t]*(.*[^ \t])[ \t]*\\][ \t]*", ";; [%s]"};    
+	IoPatternDescr patternBegin2 = {"^[ \t]*;;[ \t]*\\[[ \t]*(.*[^ \t])[ \t]*\\][ \t]*", ";; [%s]"};
 	IoPatternDescr patternEnd;
 	SectionDescr sDescr1 =  {patternBegin1, patternEnd , false };
 	sectionDescr.append (sDescr1);
 	SectionDescr sDescr2 =  {patternBegin2, patternEnd , false };
-	sectionDescr.append (sDescr2);   
+	sectionDescr.append (sDescr2);
 
 	m_impl->parser.initMachine (options, commentsDescr, sectionDescr, entryDescr, rewrites);
 	m_impl->parser.initFiles (file);
@@ -183,7 +183,7 @@ CAConfig::deleteValue(const String &section, const String &key)
 		// delete entry
 		(m_impl->parser.iniFile.getSection (section)).delEntry (key);
 		// and save
-		m_impl->parser.write();	
+		m_impl->parser.write();
 	}
 }
 
@@ -253,15 +253,15 @@ CAConfig::clone(const String &file)
 	{
 		LOGIT_ERROR ("Cannot open filename " << file );
 		return NULL;
-	}	
+	}
 
 	// coppying
 	out << in.rdbuf();
-    
+
 	in.close();
 	out.close();
-	
-	return new CAConfig (file);	
+
+	return new CAConfig (file);
 }
 
 String
@@ -276,7 +276,7 @@ CAConfig::dump()
 	CASection cas;
 	cas.section = &(m_impl->parser.iniFile);
 	dumpTree(&cas);
-}    
+}
 
 // private
 
@@ -289,7 +289,7 @@ CAConfig::CAConfig(const CAConfig&)
 }
 
 CAConfig&
-CAConfig::operator=(const CAConfig&)
+	CAConfig::operator=(const CAConfig&)
 {
 	return *this;
 }
@@ -298,7 +298,7 @@ void
 CAConfig::validateAndFix()
 {
 	bool didChanges = false;
-	
+
 	limal::INI::SectionMap sections = m_impl->parser.iniFile.getSections();
 
 	if(sections.find("req") != sections.end())
@@ -325,12 +325,12 @@ CAConfig::validateAndFix()
 		}
 		m_impl->parser.iniFile.delSection("req");
 		didChanges = true;
-		
+
 	}
 	if(sections.find("v3_req") != sections.end())
 	{
 		LOGIT_INFO("Found v3_req section: converting v3_req to v3_req_ca, v3_req_client, v3_req_server");
-		
+
 		if(sections.find("v3_req_ca") == sections.end())
 		{
 			// convert v3_req to v3_req_ca
@@ -355,7 +355,6 @@ CAConfig::validateAndFix()
 		m_impl->parser.write();
 	}
 }
-
 
 }
 }

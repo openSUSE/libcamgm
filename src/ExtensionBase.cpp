@@ -35,16 +35,16 @@ using namespace blocxx;
 
 class ExtensionBaseImpl : public COWIntrusiveCountableBase {
 
-	public:
+public:
 
 	ExtensionBaseImpl(bool extPresent = false, bool extCritical = false)
 		: present(extPresent), critical(extCritical)
 	{}
 
 	ExtensionBaseImpl(const ExtensionBaseImpl &ebi)
-		: COWIntrusiveCountableBase(ebi),
-		  present(ebi.present),
-		  critical(ebi.critical)
+		: COWIntrusiveCountableBase(ebi)
+		, present(ebi.present)
+		, critical(ebi.critical)
 	{}
 
 	virtual ~ExtensionBaseImpl() {}
@@ -56,24 +56,24 @@ class ExtensionBaseImpl : public COWIntrusiveCountableBase {
 
 	void   setPresent(bool extPresent)   { present  = extPresent;  }
 	void   setCritical(bool extCritical) { critical = extCritical; }
-	
+
 	bool   isCritical() const { return (present)?critical:false; }
 	bool   isPresent() const  { return present; }
 
-	private:
+private:
 	bool present;
 	bool critical;
 
 };
 
 // ================================================================
-		
-	
+
+
 ExtensionBase::ExtensionBase(bool extPresent, bool extCritical)
 	: m_impl(new ExtensionBaseImpl(extPresent, extCritical))
 {
 }
-	         
+
 ExtensionBase::ExtensionBase(const ExtensionBase& extension)
 	: m_impl(extension.m_impl)
 {}
@@ -91,14 +91,14 @@ ExtensionBase::operator=(const ExtensionBase& extension)
 	return *this;
 }
 
-void   
+void
 ExtensionBase::setPresent(bool extPresent)
 {
 	LOGIT_DEBUG("ExtensionBase::setPresent(): " << (extPresent ? "true":"false") );
 	m_impl->setPresent(extPresent);
 }
 
-void   
+void
 ExtensionBase::setCritical(bool extCritical)
 {
 	LOGIT_DEBUG("ExtensionBase::setCritical(): " << (extCritical ? "true":"false") );
@@ -123,12 +123,12 @@ ExtensionBase::dump() const
 {
 	StringArray result;
 	result.append("ExtensionBase::dump()");
-	
+
 	result.append("is Present = " + Bool(isPresent()).toString());
 	if(!isPresent()) return result;
-	
+
 	result.append("is Critical = " + Bool(isCritical()).toString());
-	
+
 	return result;
 }
 

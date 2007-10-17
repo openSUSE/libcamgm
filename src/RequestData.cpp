@@ -41,7 +41,7 @@ using namespace blocxx;
 RequestData::RequestData(const RequestData& data)
 	: m_impl(data.m_impl)
 {}
-	
+
 RequestData::~RequestData()
 {}
 
@@ -143,7 +143,7 @@ RequestData::getExtensionsAsText() const
 
 	String extText = String((const char*)ustringval, n);
 	BIO_free(bio);
-	
+
 	return extText;
 }
 
@@ -202,12 +202,12 @@ RequestData::dump() const
 {
 	StringArray result;
 	result.append("RequestData::dump()");
-    
+
 	result.append("Version = " + String(m_impl->version));
 	result.appendArray(m_impl->subject.dump());
 	result.append("Keysize = " + String(m_impl->keysize));
 	result.append("pubkeyAlgorithm = " + String(m_impl->pubkeyAlgorithm));
-    
+
 	String pk;
 	for(size_t i = 0; i < m_impl->publicKey.size(); ++i)
 	{
@@ -216,7 +216,7 @@ RequestData::dump() const
 		pk += s + ":";
 	}
 	result.append("public Key = " + pk);
-    
+
 	result.append("signatureAlgorithm = "+ String(m_impl->signatureAlgorithm));
 
 	String s;
@@ -232,7 +232,7 @@ RequestData::dump() const
 	result.appendArray(m_impl->extensions.dump());
 	result.append("Challenge Password = " + m_impl->challengePassword);
 	result.append("Unstructured Name = " + m_impl->unstructuredName);
-    
+
 	return result;
 }
 

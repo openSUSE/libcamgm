@@ -52,21 +52,21 @@ using namespace blocxx;
 RequestData_Priv::RequestData_Priv()
 	: RequestData()
 {}
-	
-RequestData_Priv::RequestData_Priv(const ByteBuffer& request, 
+
+RequestData_Priv::RequestData_Priv(const ByteBuffer& request,
                                    FormatType formatType)
 	: RequestData()
 {
 	init(request, formatType);
 }
 
-RequestData_Priv::RequestData_Priv(const String& requestPath, 
+RequestData_Priv::RequestData_Priv(const String& requestPath,
                                    FormatType formatType)
 	: RequestData()
 {
-	
+
 	ByteBuffer ba = LocalManagement::readFile(requestPath);
-	
+
 	init(ba, formatType);
 }
 
@@ -105,7 +105,7 @@ RequestData_Priv::setSubjectDN(const DNObject dn)
 void
 RequestData_Priv::setKeyAlgorithm(KeyAlg alg)
 {
-	m_impl->pubkeyAlgorithm = alg; 
+	m_impl->pubkeyAlgorithm = alg;
 }
 
 void
@@ -158,7 +158,7 @@ RequestData_Priv&
 RequestData_Priv::operator=(const RequestData_Priv& data)
 {
 	if(this == &data) return *this;
-    
+
 	RequestData::operator=(data);
 
 	return *this;
@@ -168,7 +168,7 @@ void
 RequestData_Priv::parseRequest(X509_REQ *x509)
 {
 	// get version
-	m_impl->version = X509_REQ_get_version(x509) + 1; 
+	m_impl->version = X509_REQ_get_version(x509) + 1;
 
     // get subject
 	m_impl->subject = DNObject_Priv(x509->req_info->subject);
@@ -222,7 +222,7 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
 	// get pubkeyAlgorithm
 	if(pkey->type == EVP_PKEY_RSA ||
 	   pkey->type == EVP_PKEY_RSA2 )
-	{        
+	{
 		m_impl->pubkeyAlgorithm = E_RSA;
 	}
 	else if(pkey->type == EVP_PKEY_DSA  ||
@@ -234,13 +234,13 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
 		m_impl->pubkeyAlgorithm = E_DSA;
 	}
 	else if(pkey->type == EVP_PKEY_DH )
-	{        
+	{
 		m_impl->pubkeyAlgorithm = E_DH;
 	}
 	else
-	{        
+	{
 		EVP_PKEY_free(pkey);
-    	
+
 		LOGIT_ERROR("Unsupported public key algorithm");
 		BLOCXX_THROW(limal::RuntimeException,
 		             __("Unsupported public key algorithm."));
@@ -297,7 +297,7 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
 		char obj_tmp[80];
 		i2t_ASN1_OBJECT(obj_tmp, sizeof(obj_tmp), a->object);
 		int nid = OBJ_txt2nid(obj_tmp);
-		if(nid != NID_pkcs9_challengePassword && 
+		if(nid != NID_pkcs9_challengePassword &&
 		   nid != NID_pkcs9_unstructuredName     )
 		{
 			LOGIT_INFO("Unsupported attribute found: " << obj_tmp);
@@ -305,41 +305,41 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
 		}
 
 		if (a->single)
-		{            
+		{
 			t=a->value.single;
 			type=t->type;
 			bs=t->value.bit_string;
 		}
 		else
-		{            
+		{
 			ii=0;
 			count=sk_ASN1_TYPE_num(a->value.set);
-            
+
 		get_next:
-            
+
 			at=sk_ASN1_TYPE_value(a->value.set,ii);
 			type=at->type;
 			bs=at->value.asn1_string;
 		}
 
 		if ( (type == V_ASN1_PRINTABLESTRING) ||
-		    (type == V_ASN1_T61STRING) ||
-		    (type == V_ASN1_IA5STRING))
-		{            
+		     (type == V_ASN1_T61STRING) ||
+		     (type == V_ASN1_IA5STRING))
+		{
 			char *d = new char[bs->length+1];
 			memcpy(d, bs->data, bs->length);
 			d[bs->length] = '\0';
 
 			String s(d, bs->length);
 			delete [] d;
-            
+
 			if(nid == NID_pkcs9_challengePassword)
-			{                
+			{
 				m_impl->challengePassword += s;
 			}
 			else if (nid == NID_pkcs9_unstructuredName)
-			{                
-				m_impl->unstructuredName += s;                
+			{
+				m_impl->unstructuredName += s;
 			}
 		}
 
@@ -352,7 +352,7 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
 }
 
 void
-RequestData_Priv::init(const ByteBuffer& request, 
+RequestData_Priv::init(const ByteBuffer& request,
                        FormatType formatType)
 {
 	BIO *bio;
@@ -361,9 +361,9 @@ RequestData_Priv::init(const ByteBuffer& request,
 	if( formatType == E_PEM )
 	{
 		bio = BIO_new_mem_buf(d, request.size());
-    	
+
 		if(!bio)
-		{            
+		{
 			LOGIT_ERROR("Can not create a memory BIO");
 			BLOCXX_THROW(limal::MemoryException,
 			             __("Cannot create a memory BIO."));
@@ -376,14 +376,14 @@ RequestData_Priv::init(const ByteBuffer& request,
 	else
 	{
 		// => DER
-#if OPENSSL_VERSION_NUMBER >= 0x0090801fL        
+#if OPENSSL_VERSION_NUMBER >= 0x0090801fL
 		const unsigned char *d2 = NULL;
 		d2 = (const unsigned char*)d;
 #else
 		unsigned char *d2 = NULL;
 		d2 = d;
 #endif
-        
+
 		m_impl->x509 = d2i_X509_REQ(NULL, &d2, request.size());
 
 		d2 = NULL;
@@ -401,10 +401,10 @@ RequestData_Priv::init(const ByteBuffer& request,
 		parseRequest(m_impl->x509);
 	}
 	catch(Exception &e)
-	{        
+	{
 		X509_REQ_free(m_impl->x509);
 		m_impl->x509 = NULL;
-    	
+
 		BLOCXX_THROW_SUBEX(limal::SyntaxException,
 		                   __("Error while parsing the request."),
 		                   e);

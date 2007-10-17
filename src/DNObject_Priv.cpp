@@ -37,7 +37,7 @@ using namespace blocxx;
 RDNObject_Priv::RDNObject_Priv()
 	: RDNObject()
 {}
-	
+
 RDNObject_Priv::RDNObject_Priv(const String& type, const String& value,
                                const String&  prompt,
                                blocxx::UInt32 min,
@@ -55,10 +55,10 @@ RDNObject_Priv::~RDNObject_Priv()
 {}
 
 void
-RDNObject_Priv::setRDN(const String& type, const String& value,
-                       const String&  prompt,
-                       blocxx::UInt32 min,
-                       blocxx::UInt32 max)
+	RDNObject_Priv::setRDN(const String& type, const String& value,
+	                       const String&  prompt,
+	                       blocxx::UInt32 min,
+	                       blocxx::UInt32 max)
 {
 	m_impl->type   = type;
 	m_impl->value  = value;
@@ -80,15 +80,15 @@ DNObject_Priv::DNObject_Priv(X509_NAME *x509_name)
 		BLOCXX_THROW(limal::MemoryException,
 		             __("Cannot create a memory BIO."));
 	}
-    
-	X509_NAME_print_ex(bio, x509_name, 0, 
+
+	X509_NAME_print_ex(bio, x509_name, 0,
 	                   ASN1_STRFLGS_ESC_CTRL |
 	                   ASN1_STRFLGS_ESC_MSB  |
 	                   XN_FLAG_SEP_MULTILINE |
 	                   XN_FLAG_FN_LN         |
 	                   XN_FLAG_SPC_EQ
-	                   );
-    
+	                  );
+
 	// XN_FLAG_SPC_EQ        |     // space after '='
 	// XN_FLAG_FN_LN         |     // long names (commonName)
 	// XN_FLAG_FN_ALIGN            // add spaces for a nice output
@@ -101,7 +101,7 @@ DNObject_Priv::DNObject_Priv(X509_NAME *x509_name)
 	PerlRegEx   re("(^[\\w]+)\\s=\\s(.+)$");
 	StringArray lines = name.tokenize("\n");
 
-	/* 
+	/*
 	 * This is one option.
 	 *
 	 for(uint j = 0 ; j < lines.size(); ++j) {
@@ -109,11 +109,11 @@ DNObject_Priv::DNObject_Priv(X509_NAME *x509_name)
 	 StringArray vals = re.capture(lines[j]);
 
 	 if(vals.size() != 3) {
-            
+
 	 BIO_free(bio);
 
 	 LOGIT_ERROR("Can not parse DN line: " << lines[j]);
-	 BLOCXX_THROW(limal::RuntimeException, 
+	 BLOCXX_THROW(limal::RuntimeException,
 	 Format("Can not parse DN line: %1", lines[j]).c_str());
 
 	 }
@@ -150,7 +150,7 @@ DNObject_Priv::DNObject_Priv(X509_NAME *x509_name)
 		StringArray vals = re.capture(lines[j]);
 
 		if(vals.size() != 3)
-		{            
+		{
 			BIO_free(bio);
 
 			LOGIT_ERROR("Can not parse DN line: " << lines[j]);
@@ -161,9 +161,9 @@ DNObject_Priv::DNObject_Priv(X509_NAME *x509_name)
 
 		tmpDN.push_back(RDNObject_Priv(vals[1], vals[2]));
 	}
-    
+
 	setDN(tmpDN);
-    
+
 	BIO_free(bio);
 }
 
@@ -182,7 +182,7 @@ DNObject_Priv&
 DNObject_Priv::operator=(const DNObject_Priv& obj)
 {
 	if(this == &obj) return *this;
-    
+
 	DNObject::operator=(obj);
 
 	return *this;
@@ -195,25 +195,25 @@ DNObject_Priv::setDefaults2Config(CA& ca)
 	if(!p)
 	{
 		LOGIT_ERROR("missing section 'distinguished_name' in config file");
-		BLOCXX_THROW(limal::SyntaxException, 
+		BLOCXX_THROW(limal::SyntaxException,
 		             __("Missing section 'distinguished_name' in the configuration file."));
 	}
 	String dnSect = ca.getConfig()->getValue("req_ca", "distinguished_name");
-	
+
 	StringList dnKeys = ca.getConfig()->getKeylist(dnSect);
-	
+
 	if(dnKeys.empty())
 	{
 		LOGIT_ERROR("Can not parse Section " << dnSect);
-		BLOCXX_THROW(limal::SyntaxException, 
+		BLOCXX_THROW(limal::SyntaxException,
 		             Format(__("Cannot parse section %1."), dnSect).c_str());
 	}
 	StringList::const_iterator it = dnKeys.begin();
 	Array<Array<blocxx::String> > newDNSect;
-	
+
 	String lastFieldName;
 	String defaultValue;
-	
+
 	for(; it != dnKeys.end(); ++it)
 	{
 		if((*it).endsWith("_default", String::E_CASE_INSENSITIVE))
@@ -233,7 +233,7 @@ DNObject_Priv::setDefaults2Config(CA& ca)
 			{
 				// do we have a default for lastFiledName?
 				blocxx::List<RDNObject>::const_iterator rdnIT;
-				
+
 				for(rdnIT = m_impl->dn.begin(); rdnIT != m_impl->dn.end(); ++rdnIT)
 				{
 					if((*rdnIT).getType() == lastFieldName)
@@ -250,7 +250,7 @@ DNObject_Priv::setDefaults2Config(CA& ca)
 					newDNSect.push_back(line);
 				}
 			}
-			
+
 			lastFieldName = *it;
 			defaultValue = "";
 		}

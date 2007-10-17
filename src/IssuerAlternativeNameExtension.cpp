@@ -37,13 +37,13 @@ using namespace blocxx;
 
 class IssuerAlternativeNameExtImpl : public blocxx::COWIntrusiveCountableBase
 {
-	public:
+public:
 	IssuerAlternativeNameExtImpl()
 		: issuerCopy(false)
 		, altNameList(blocxx::List<LiteralValue>())
 	{}
 
-	IssuerAlternativeNameExtImpl(bool copyIssuer, 
+	IssuerAlternativeNameExtImpl(bool copyIssuer,
 	                             const blocxx::List<LiteralValue> &alternativeNameList)
 		: issuerCopy(copyIssuer)
 		, altNameList(alternativeNameList)
@@ -66,14 +66,14 @@ class IssuerAlternativeNameExtImpl : public blocxx::COWIntrusiveCountableBase
 	blocxx::List<LiteralValue> altNameList;
 };
 
-	
+
 IssuerAlternativeNameExt::IssuerAlternativeNameExt()
 	: ExtensionBase()
 	, m_impl(new IssuerAlternativeNameExtImpl())
 {}
 
-IssuerAlternativeNameExt::IssuerAlternativeNameExt(bool copyIssuer, 
-                                                   const blocxx::List<LiteralValue> &alternativeNameList)
+IssuerAlternativeNameExt::IssuerAlternativeNameExt(bool copyIssuer,
+	const blocxx::List<LiteralValue> &alternativeNameList)
 	: ExtensionBase()
 	, m_impl(new IssuerAlternativeNameExtImpl(copyIssuer, alternativeNameList))
 {
@@ -110,12 +110,12 @@ IssuerAlternativeNameExt::IssuerAlternativeNameExt(CAConfig* caConfig, Type type
 		{
 			if((*it).indexOf(":") != String::npos)
 			{
-				if((*it).equalsIgnoreCase("issuer:copy"))  
+				if((*it).equalsIgnoreCase("issuer:copy"))
 					m_impl->issuerCopy = true;
 				else
 				{
 					try
-					{                        
+					{
 						LiteralValue lv = LiteralValue(*it);
 						m_impl->altNameList.push_back(lv);
 					}
@@ -142,7 +142,7 @@ IssuerAlternativeNameExt&
 IssuerAlternativeNameExt::operator=(const IssuerAlternativeNameExt& extension)
 {
 	if(this == &extension) return *this;
-    
+
 	ExtensionBase::operator=(extension);
 	m_impl = extension.m_impl;
 
@@ -199,7 +199,7 @@ IssuerAlternativeNameExt::addIssuerAltName(const LiteralValue& altName)
 	if(!altName.valid())
 	{
 		LOGIT_ERROR("invalid literal value for IssuerAlternativeNameExt");
-		BLOCXX_THROW(limal::ValueException, 
+		BLOCXX_THROW(limal::ValueException,
 		             __("Invalid literal value for IssuerAlternativeNameExt."));
 	}
 	m_impl->altNameList.push_back(altName);
@@ -310,7 +310,7 @@ IssuerAlternativeNameExt::dump() const
 	{
 		result.appendArray((*it).dump());
 	}
-    
+
 	return result;
 }
 

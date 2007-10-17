@@ -37,7 +37,7 @@ using namespace blocxx;
 
 class CRLDistributionPointsExtImpl : public blocxx::COWIntrusiveCountableBase
 {
-	public:
+public:
 	CRLDistributionPointsExtImpl()
 		: altNameList(List<LiteralValue>())
 	{}
@@ -57,7 +57,7 @@ class CRLDistributionPointsExtImpl : public blocxx::COWIntrusiveCountableBase
 	blocxx::List<LiteralValue> altNameList;
 };
 
-	
+
 CRLDistributionPointsExt::CRLDistributionPointsExt()
 	: ExtensionBase()
 	, m_impl(new CRLDistributionPointsExtImpl())
@@ -89,7 +89,7 @@ CRLDistributionPointsExt::CRLDistributionPointsExt(CAConfig* caConfig, Type type
 			if((*it).indexOf(":") != String::npos)
 			{
 				try
-				{                    
+				{
 					LiteralValue lv = LiteralValue(*it);
 					m_impl->altNameList.push_back(lv);
 				}
@@ -115,7 +115,7 @@ CRLDistributionPointsExt&
 CRLDistributionPointsExt::operator=(const CRLDistributionPointsExt& extension)
 {
 	if(this == &extension) return *this;
-    
+
 	ExtensionBase::operator=(extension);
 	m_impl = extension.m_impl;
 
@@ -182,7 +182,7 @@ CRLDistributionPointsExt::commit2Config(CA& ca, Type type) const
 				extString += val+",";
 			}
 		}
-		
+
 		ca.getConfig()->setValue(type2Section(type, true), "crlDistributionPoints",
 		                         extString.erase(extString.length()-1));
 	}
@@ -216,15 +216,15 @@ blocxx::StringArray
 CRLDistributionPointsExt::verify() const
 {
 	blocxx::StringArray result;
-    
+
 	if(!isPresent()) return result;
-    
+
 	if(m_impl->altNameList.empty())
 	{
 		result.append(String("No value for CRLDistributionPointsExt."));
 	}
 	result.appendArray(checkLiteralValueList(m_impl->altNameList));
-    
+
 	LOGIT_DEBUG_STRINGARRAY("CRLDistributionPointsExt::verify()", result);
 	return result;
 }
@@ -243,7 +243,7 @@ CRLDistributionPointsExt::dump() const
 	{
 		result.appendArray((*it).dump());
 	}
-    
+
 	return result;
 }
 

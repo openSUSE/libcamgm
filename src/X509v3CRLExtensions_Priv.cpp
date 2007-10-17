@@ -43,16 +43,16 @@ namespace CA_MGM_NAMESPACE
 using namespace limal;
 using namespace blocxx;
 
-    
+
 X509v3CRLExts_Priv::X509v3CRLExts_Priv()
 	: X509v3CRLExts()
 {}
-	
+
 X509v3CRLExts_Priv::X509v3CRLExts_Priv(STACK_OF(X509_EXTENSION) *extensions)
 	: X509v3CRLExts()
 {
 	// AuthorityKeyIdentifierExt authorityKeyIdentifier;
-	
+
 	m_impl->authorityKeyIdentifier = AuthorityKeyIdentifierExt_Priv(extensions);
 
 	// IssuerAlternativeNameExt  issuerAlternativeName;
@@ -100,26 +100,26 @@ X509v3CRLExts_Priv&
 X509v3CRLExts_Priv::operator=(const X509v3CRLExts_Priv& extensions)
 {
 	if(this == &extensions) return *this;
-    
+
 	X509v3CRLExts::operator=(extensions);
 
 	return *this;
 }
 
-void 
+void
 X509v3CRLExts_Priv::parseIssuerAlternativeNameExt(STACK_OF(X509_EXTENSION) *cert,
                                                   IssuerAlternativeNameExt &ext)
 {
 	int crit = 0;
-    
+
 	GENERAL_NAMES *gns = NULL;
 	gns = static_cast<GENERAL_NAMES *>(X509V3_get_d2i(cert,
-	                                                  NID_issuer_alt_name,
-	                                                  &crit,
-	                                                  NULL));
-    
+		NID_issuer_alt_name,
+		&crit,
+		NULL));
+
 	if(gns == NULL)
-	{        
+	{
 		if(crit == -1)
 		{
 			// extension not found
@@ -129,7 +129,7 @@ X509v3CRLExts_Priv::parseIssuerAlternativeNameExt(STACK_OF(X509_EXTENSION) *cert
 		}
 		else if(crit == -2)
 		{
-			// extension occurred more than once 
+			// extension occurred more than once
 			LOGIT_ERROR("Extension occurred more than once");
 			BLOCXX_THROW(limal::SyntaxException,
 			             __("Extension occurred more than once."));
@@ -140,7 +140,7 @@ X509v3CRLExts_Priv::parseIssuerAlternativeNameExt(STACK_OF(X509_EXTENSION) *cert
 		             Format(__("Unable to parse the certificate (Crit: %1)."),
 		                    crit).c_str());
 	}
-    
+
 	int j;
 	GENERAL_NAME *gen;
 	blocxx::List<LiteralValue> lvList;

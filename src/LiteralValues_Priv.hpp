@@ -33,16 +33,16 @@ namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
-	class LiteralValue_Priv : public LiteralValue {
+class LiteralValue_Priv : public LiteralValue {
 
-	public:
-		LiteralValue_Priv();
-		LiteralValue_Priv(GENERAL_NAME *gen);
-		virtual ~LiteralValue_Priv();
+public:
+	LiteralValue_Priv();
+	LiteralValue_Priv(GENERAL_NAME *gen);
+	virtual ~LiteralValue_Priv();
 
-	private:
-		void decode_krb5_principal_name(unsigned char* data, int len);
-	};
+private:
+	void decode_krb5_principal_name(unsigned char* data, int len);
+};
 
 }
 }
