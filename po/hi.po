@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2007-09-28 16:31+0200\n"
+"POT-Creation-Date: 2007-10-29 11:25+0100\n"
 "PO-Revision-Date: 2005-07-29 15:37+0530\n"
 "Last-Translator: Priyavert Sharma<priyavert.sharma@agreeya.com>\n"
 "Language-Team: AgreeYa Solutions <linux_team@agreeya.com>\n"
@@ -24,8 +24,8 @@ msgstr "अमान्य accessOID।"
 
 #: src/AuthorityInfoAccessExtension.cpp:259
 #: src/AuthorityInfoAccessExtension.cpp:342
-#: src/AuthorityKeyIdentifierGenerateExtension.cpp:87
-#: src/AuthorityKeyIdentifierGenerateExtension.cpp:194
+#: src/AuthorityKeyIdentifierGenerateExtension.cpp:86
+#: src/AuthorityKeyIdentifierGenerateExtension.cpp:193
 #: src/BasicConstraintsExtension.cpp:84 src/BasicConstraintsExtension.cpp:187
 #: src/BitExtensions.cpp:134 src/BitExtensions.cpp:247
 #: src/BitExtensions.cpp:374 src/BitExtensions.cpp:482 src/CA.cpp:1565
@@ -72,12 +72,12 @@ msgstr "अमान्य AuthorityInfoAccessExt वस्तु।"
 msgid "AuthorityKeyIdentifierExt is not present."
 msgstr "AuthorityKeyIdentifierExt उपस्थित नहीं है।"
 
-#: src/AuthorityKeyIdentifierGenerateExtension.cpp:155
-#: src/AuthorityKeyIdentifierGenerateExtension.cpp:174
+#: src/AuthorityKeyIdentifierGenerateExtension.cpp:154
+#: src/AuthorityKeyIdentifierGenerateExtension.cpp:173
 msgid "AuthorityKeyIdentifierGenerateExt is not present."
 msgstr "AuthorityKeyIdentifierGenerateExt उपस्थित नहीं है।"
 
-#: src/AuthorityKeyIdentifierGenerateExtension.cpp:186
+#: src/AuthorityKeyIdentifierGenerateExtension.cpp:185
 msgid "Invalid AuthorityKeyIdentifierGenerateExt object."
 msgstr "अमान्य AuthorityKeyIdentifierGenerateExt वस्तु।"
 
@@ -197,7 +197,7 @@ msgstr "अमान्य CRL डेटा।"
 msgid "Duplicate DN. Request already exists."
 msgstr "डुप्लीकेट DN। अनुरोध पहले से ही मौजूद है।"
 
-#: src/CA.cpp:833 src/CA.cpp:860 src/CA.cpp:890 src/OpenSSLUtils.cpp:968
+#: src/CA.cpp:833 src/CA.cpp:860 src/CA.cpp:890 src/OpenSSLUtils.cpp:1007
 msgid "Cannot parse the certificate name."
 msgstr "प्रमाण पत्र नाम को पार्स नहीं कर सकता है।"
 
@@ -532,93 +532,112 @@ msgstr "डायरेक्टरी मौजूद नहीं है : %1�
 msgid "Invalid command %1."
 msgstr "अमान्य कमांड %1।"
 
-#: src/OpenSSLUtils.cpp:138 src/OpenSSLUtils.cpp:241 src/OpenSSLUtils.cpp:334
-#: src/OpenSSLUtils.cpp:453 src/OpenSSLUtils.cpp:586 src/OpenSSLUtils.cpp:681
-#: src/OpenSSLUtils.cpp:761
-msgid "Command returned '%1' : %2"
-msgstr "कमांड वापस '%1' : %2"
+#: src/OpenSSLUtils.cpp:132 src/OpenSSLUtils.cpp:240 src/OpenSSLUtils.cpp:338
+#: src/OpenSSLUtils.cpp:462 src/OpenSSLUtils.cpp:600 src/OpenSSLUtils.cpp:700
+#: src/OpenSSLUtils.cpp:782 src/OpenSSLUtils.cpp:871 src/OpenSSLUtils.cpp:952
+#: src/OpenSSLUtils.cpp:1051 src/OpenSSLUtils.cpp:1137
+#: src/OpenSSLUtils.cpp:1271 src/OpenSSLUtils.cpp:1390
+#: src/OpenSSLUtils.cpp:1493 src/OpenSSLUtils.cpp:1645
+#: src/OpenSSLUtils.cpp:1782
+msgid "Executing openssl command failed."
+msgstr ""
 
-#: src/OpenSSLUtils.cpp:171 src/OpenSSLUtils.cpp:268 src/OpenSSLUtils.cpp:366
-#: src/OpenSSLUtils.cpp:479 src/OpenSSLUtils.cpp:613 src/OpenSSLUtils.cpp:704
+#: src/OpenSSLUtils.cpp:143 src/OpenSSLUtils.cpp:251 src/OpenSSLUtils.cpp:349
+#: src/OpenSSLUtils.cpp:473 src/OpenSSLUtils.cpp:611 src/OpenSSLUtils.cpp:711
+#: src/OpenSSLUtils.cpp:796 src/OpenSSLUtils.cpp:1162
+#: src/OpenSSLUtils.cpp:1311 src/OpenSSLUtils.cpp:1415
+#: src/OpenSSLUtils.cpp:1518 src/OpenSSLUtils.cpp:1682
+#: src/OpenSSLUtils.cpp:1822
+msgid "openssl command failed: %1"
+msgstr ""
+
+#: src/OpenSSLUtils.cpp:176 src/OpenSSLUtils.cpp:278 src/OpenSSLUtils.cpp:381
+#: src/OpenSSLUtils.cpp:499 src/OpenSSLUtils.cpp:638 src/OpenSSLUtils.cpp:734
 msgid "No valid key file specified."
 msgstr "कोई मान्य कुंजी फाइल निर्दिष्ट नहीं है।"
 
-#: src/OpenSSLUtils.cpp:276 src/OpenSSLUtils.cpp:374
+#: src/OpenSSLUtils.cpp:286 src/OpenSSLUtils.cpp:389
 msgid "No valid request file specified."
 msgstr "कोई मान्य अनुरोध फाइल निर्दिष्ट नहीं है।"
 
-#: src/OpenSSLUtils.cpp:487 src/OpenSSLUtils.cpp:621 src/OpenSSLUtils.cpp:712
+#: src/OpenSSLUtils.cpp:507 src/OpenSSLUtils.cpp:646 src/OpenSSLUtils.cpp:742
 msgid "No valid CA certificate file specified."
 msgstr "कोई मान्य CA प्रमाण पत्र फाइल निर्दिष्ट नहीं है।"
 
-#: src/OpenSSLUtils.cpp:495 src/OpenSSLUtils.cpp:785
+#: src/OpenSSLUtils.cpp:515 src/OpenSSLUtils.cpp:820
 msgid "No valid certificate file specified."
 msgstr "कोई मान्य प्रमाण पत्र फाइल निर्दिष्ट नहीं है।"
 
-#: src/OpenSSLUtils.cpp:793
+#: src/OpenSSLUtils.cpp:828
 msgid "No valid CA directory specified."
 msgstr "कोई मान्य CA डायरेक्टरी निर्दिष्ट नहीं है।"
 
-#: src/OpenSSLUtils.cpp:943
+#: src/OpenSSLUtils.cpp:982
 msgid "Showing certificate status with serial %1 failed (%2)."
 msgstr "प्रमाण पत्र स्थिति को सीरियल %1 के साथ प्रदर्शित करना असफल रहा (%2)।"
 
-#: src/OpenSSLUtils.cpp:979
+#: src/OpenSSLUtils.cpp:1018
 msgid "The key file does not exist."
 msgstr "कुंजी फाइल मौजूद नहीं है।"
 
-#: src/OpenSSLUtils.cpp:1474
+#: src/OpenSSLUtils.cpp:1306 src/OpenSSLUtils.cpp:1677
+#: src/OpenSSLUtils.cpp:1817
+#, fuzzy
+msgid "Invalid password."
+msgstr "अमान्य CA पासवर्ड।"
+
+#: src/OpenSSLUtils.cpp:1595
 msgid "The password for encrypting the output is required."
 msgstr "आउटपुट को एंक्रिप्ट करने के लिए पासवर्ड की आवश्यकता है।"
 
-#: src/OpenSSLUtils.cpp:1579
+#: src/OpenSSLUtils.cpp:1736
 msgid "The PKCS12 password is required."
 msgstr "PKCS12 पासवर्ड की आवश्यकता है।"
 
-#: src/OpenSSLUtils.cpp:1665 src/OpenSSLUtils.cpp:1865
-#: src/OpenSSLUtils.cpp:2017
+#: src/OpenSSLUtils.cpp:1847 src/OpenSSLUtils.cpp:2047
+#: src/OpenSSLUtils.cpp:2199
 msgid "Cannot read directory: %1 (%2) [%3]."
 msgstr "डायरेक्टरी को नहीं पढ़ सकता : %1 (%2) [%3]।"
 
-#: src/OpenSSLUtils.cpp:1715
+#: src/OpenSSLUtils.cpp:1897
 msgid "No serial number found in %1."
 msgstr "%1 में कोई क्रम संख्या नहीं प्राप्त हुई।"
 
-#: src/OpenSSLUtils.cpp:1735
+#: src/OpenSSLUtils.cpp:1917
 msgid "The request already exists."
 msgstr "अनुरोध पहले से ही मौजूद है।"
 
-#: src/OpenSSLUtils.cpp:1926
+#: src/OpenSSLUtils.cpp:2108
 msgid "Cannot find the request subject."
 msgstr "अनुरोध विषय नहीं प्राप्त कर सकता है।"
 
-#: src/OpenSSLUtils.cpp:2087
+#: src/OpenSSLUtils.cpp:2269
 msgid "Cannot find the certificate subject."
 msgstr "प्रमाण पत्र विषय नहीं प्राप्त कर सकता है।"
 
-#: src/OpenSSLUtils.cpp:2186
+#: src/OpenSSLUtils.cpp:2368
 msgid "Invalid caName: %1."
 msgstr "अमान्य caName : %1"
 
-#: src/OpenSSLUtils.cpp:2195
+#: src/OpenSSLUtils.cpp:2377
 msgid "'%1' does not exist."
 msgstr "'%1' मौजूद नहीं है।"
 
-#: src/OpenSSLUtils.cpp:2205
+#: src/OpenSSLUtils.cpp:2387
 msgid "%1 still exists."
 msgstr "'%1' अब भी मौजूद है।"
 
-#: src/OpenSSLUtils.cpp:2216 src/OpenSSLUtils.cpp:2264
-#: src/OpenSSLUtils.cpp:2278 src/OpenSSLUtils.cpp:2292
-#: src/OpenSSLUtils.cpp:2306 src/OpenSSLUtils.cpp:2320
+#: src/OpenSSLUtils.cpp:2398 src/OpenSSLUtils.cpp:2446
+#: src/OpenSSLUtils.cpp:2460 src/OpenSSLUtils.cpp:2474
+#: src/OpenSSLUtils.cpp:2488 src/OpenSSLUtils.cpp:2502
 msgid "Cannot create directory: %1 (%2 [%3])."
 msgstr "डायरेक्टरी को सृजित नहीं कर सकता : %1 (%2 [%3])।"
 
-#: src/OpenSSLUtils.cpp:2251
+#: src/OpenSSLUtils.cpp:2433
 msgid "Cannot copy the configuration template."
 msgstr "कॉन्फिगरेशन टेम्पलेट को कॉपी नहीं कर सकता है।"
 
-#: src/OpenSSLUtils.cpp:2338
+#: src/OpenSSLUtils.cpp:2520
 msgid "Cannot create the file."
 msgstr "फाइल को सृजित नहीं कर सकता है।"
 
@@ -737,28 +756,28 @@ msgstr "SubjectKeyIdentifierExt उपस्थित नहीं है।"
 msgid "Invalid SubjectKeyIdentifierExt object."
 msgstr "अमान्य SubjectAlternativeNameExt वस्तु।"
 
-#: src/X509v3CertificateExtensions_Priv.cpp:394
-#: src/X509v3CertificateExtensions_Priv.cpp:450
+#: src/X509v3CertificateExtensions_Priv.cpp:395
+#: src/X509v3CertificateExtensions_Priv.cpp:452
 #: src/X509v3RequestExtensions_Priv.cpp:134
 #: src/X509v3RequestExtensions_Priv.cpp:189
 msgid "Extension occurred more than once: %1."
 msgstr "एक से अधिक बार विस्तार हुआ है : %1।"
 
-#: src/X509v3CertificateExtensions_Priv.cpp:401
-#: src/X509v3CertificateExtensions_Priv.cpp:457
+#: src/X509v3CertificateExtensions_Priv.cpp:402
+#: src/X509v3CertificateExtensions_Priv.cpp:459
 #: src/X509v3RequestExtensions_Priv.cpp:141
 #: src/X509v3RequestExtensions_Priv.cpp:196
 msgid "Unable to parse the certificate (NID: %1 Crit: %2)."
 msgstr "प्रमाण पत्र (NID: %1 Crit: %2) को पार्स करने में अक्षम।"
 
-#: src/X509v3CertificateExtensions_Priv.cpp:509
-#: src/X509v3CertificateExtensions_Priv.cpp:575
-#: src/X509v3CertificateExtensions_Priv.cpp:639
-#: src/X509v3CertificateExtensions_Priv.cpp:701
-#: src/X509v3CertificateExtensions_Priv.cpp:771
-#: src/X509v3CertificateExtensions_Priv.cpp:840
-#: src/X509v3CertificateExtensions_Priv.cpp:916
-#: src/X509v3CertificateExtensions_Priv.cpp:1002
+#: src/X509v3CertificateExtensions_Priv.cpp:511
+#: src/X509v3CertificateExtensions_Priv.cpp:577
+#: src/X509v3CertificateExtensions_Priv.cpp:641
+#: src/X509v3CertificateExtensions_Priv.cpp:703
+#: src/X509v3CertificateExtensions_Priv.cpp:773
+#: src/X509v3CertificateExtensions_Priv.cpp:842
+#: src/X509v3CertificateExtensions_Priv.cpp:918
+#: src/X509v3CertificateExtensions_Priv.cpp:1004
 #: src/X509v3CRLExtensions_Priv.cpp:135
 #: src/X509v3RequestExtensions_Priv.cpp:249
 #: src/X509v3RequestExtensions_Priv.cpp:315
@@ -767,14 +786,14 @@ msgstr "प्रमाण पत्र (NID: %1 Crit: %2) को पार्�
 msgid "Extension occurred more than once."
 msgstr "एक से अधिक बार विस्तार हुआ है।"
 
-#: src/X509v3CertificateExtensions_Priv.cpp:514
-#: src/X509v3CertificateExtensions_Priv.cpp:580
-#: src/X509v3CertificateExtensions_Priv.cpp:644
-#: src/X509v3CertificateExtensions_Priv.cpp:707
-#: src/X509v3CertificateExtensions_Priv.cpp:776
-#: src/X509v3CertificateExtensions_Priv.cpp:846
-#: src/X509v3CertificateExtensions_Priv.cpp:921
-#: src/X509v3CertificateExtensions_Priv.cpp:1007
+#: src/X509v3CertificateExtensions_Priv.cpp:516
+#: src/X509v3CertificateExtensions_Priv.cpp:582
+#: src/X509v3CertificateExtensions_Priv.cpp:646
+#: src/X509v3CertificateExtensions_Priv.cpp:709
+#: src/X509v3CertificateExtensions_Priv.cpp:778
+#: src/X509v3CertificateExtensions_Priv.cpp:848
+#: src/X509v3CertificateExtensions_Priv.cpp:923
+#: src/X509v3CertificateExtensions_Priv.cpp:1009
 #: src/X509v3CRLExtensions_Priv.cpp:140
 #: src/X509v3RequestExtensions_Priv.cpp:254
 #: src/X509v3RequestExtensions_Priv.cpp:320
@@ -783,7 +802,7 @@ msgstr "एक से अधिक बार विस्तार हुआ ह
 msgid "Unable to parse the certificate (Crit: %1)."
 msgstr "प्रमाण पत्र (Crit: %1) को पार्स करने में अक्षम।"
 
-#: src/X509v3CertificateExtensions_Priv.cpp:941
+#: src/X509v3CertificateExtensions_Priv.cpp:943
 msgid "Invalid location in authorityInfoAccess."
 msgstr "authorityInfoAccess में अमान्य स्थान।"
 
@@ -906,3 +925,6 @@ msgstr "X509v3RequestExts::setSubjectKeyIdentifier के लिए अमान
 #: src/X509v3RequestExtensions.cpp:231
 msgid "Invalid value for X509v3RequestExts::setSubjectAlternativeName."
 msgstr "X509v3RequestExts::setSubjectAlternativeName के लिए अमान्य मान।"
+
+#~ msgid "Command returned '%1' : %2"
+#~ msgstr "कमांड वापस '%1' : %2"

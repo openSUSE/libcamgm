@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2007-09-28 16:31+0200\n"
+"POT-Creation-Date: 2007-10-29 11:25+0100\n"
 "PO-Revision-Date: 2004-08-09 10:24+0200\n"
 "Last-Translator: Priyavert Sharma<priyavert.sharma@agreeya.com>\n"
 "Language-Team: AgreeYa Solutions<linux_team@agreeya.com>\n"
@@ -23,8 +23,8 @@ msgstr "অবৈধ প্রবেশOপরিচয়পত্র"
 
 #: src/AuthorityInfoAccessExtension.cpp:259
 #: src/AuthorityInfoAccessExtension.cpp:342
-#: src/AuthorityKeyIdentifierGenerateExtension.cpp:87
-#: src/AuthorityKeyIdentifierGenerateExtension.cpp:194
+#: src/AuthorityKeyIdentifierGenerateExtension.cpp:86
+#: src/AuthorityKeyIdentifierGenerateExtension.cpp:193
 #: src/BasicConstraintsExtension.cpp:84 src/BasicConstraintsExtension.cpp:187
 #: src/BitExtensions.cpp:134 src/BitExtensions.cpp:247
 #: src/BitExtensions.cpp:374 src/BitExtensions.cpp:482 src/CA.cpp:1565
@@ -71,12 +71,12 @@ msgstr "AuthorityInfoAccessExt বিষয়টি অবৈধ"
 msgid "AuthorityKeyIdentifierExt is not present."
 msgstr "AuthorityKeyIdentifierExt অনুপস্থিত"
 
-#: src/AuthorityKeyIdentifierGenerateExtension.cpp:155
-#: src/AuthorityKeyIdentifierGenerateExtension.cpp:174
+#: src/AuthorityKeyIdentifierGenerateExtension.cpp:154
+#: src/AuthorityKeyIdentifierGenerateExtension.cpp:173
 msgid "AuthorityKeyIdentifierGenerateExt is not present."
 msgstr "AuthorityKeyIdentifierGenerateExt অনুপস্থিত"
 
-#: src/AuthorityKeyIdentifierGenerateExtension.cpp:186
+#: src/AuthorityKeyIdentifierGenerateExtension.cpp:185
 msgid "Invalid AuthorityKeyIdentifierGenerateExt object."
 msgstr " AuthorityKeyIdentifierGenerateExt বিষয়টি অবৈধ"
 
@@ -196,7 +196,7 @@ msgstr "CRL তথ্য অবৈধ"
 msgid "Duplicate DN. Request already exists."
 msgstr "প্রতিরুপ DN ইতিমধ্যে অনুরোধ রয়েছে"
 
-#: src/CA.cpp:833 src/CA.cpp:860 src/CA.cpp:890 src/OpenSSLUtils.cpp:968
+#: src/CA.cpp:833 src/CA.cpp:860 src/CA.cpp:890 src/OpenSSLUtils.cpp:1007
 msgid "Cannot parse the certificate name."
 msgstr " সার্টিফিকেট নাম বিশ্লেষণ ব্যর্থ"
 
@@ -533,93 +533,112 @@ msgstr "ডায়রেক্টরি নেই: %1."
 msgid "Invalid command %1."
 msgstr "অবৈধ আদেশ %1."
 
-#: src/OpenSSLUtils.cpp:138 src/OpenSSLUtils.cpp:241 src/OpenSSLUtils.cpp:334
-#: src/OpenSSLUtils.cpp:453 src/OpenSSLUtils.cpp:586 src/OpenSSLUtils.cpp:681
-#: src/OpenSSLUtils.cpp:761
-msgid "Command returned '%1' : %2"
-msgstr "আদেশ ফেরত '%1' : %2"
+#: src/OpenSSLUtils.cpp:132 src/OpenSSLUtils.cpp:240 src/OpenSSLUtils.cpp:338
+#: src/OpenSSLUtils.cpp:462 src/OpenSSLUtils.cpp:600 src/OpenSSLUtils.cpp:700
+#: src/OpenSSLUtils.cpp:782 src/OpenSSLUtils.cpp:871 src/OpenSSLUtils.cpp:952
+#: src/OpenSSLUtils.cpp:1051 src/OpenSSLUtils.cpp:1137
+#: src/OpenSSLUtils.cpp:1271 src/OpenSSLUtils.cpp:1390
+#: src/OpenSSLUtils.cpp:1493 src/OpenSSLUtils.cpp:1645
+#: src/OpenSSLUtils.cpp:1782
+msgid "Executing openssl command failed."
+msgstr ""
 
-#: src/OpenSSLUtils.cpp:171 src/OpenSSLUtils.cpp:268 src/OpenSSLUtils.cpp:366
-#: src/OpenSSLUtils.cpp:479 src/OpenSSLUtils.cpp:613 src/OpenSSLUtils.cpp:704
+#: src/OpenSSLUtils.cpp:143 src/OpenSSLUtils.cpp:251 src/OpenSSLUtils.cpp:349
+#: src/OpenSSLUtils.cpp:473 src/OpenSSLUtils.cpp:611 src/OpenSSLUtils.cpp:711
+#: src/OpenSSLUtils.cpp:796 src/OpenSSLUtils.cpp:1162
+#: src/OpenSSLUtils.cpp:1311 src/OpenSSLUtils.cpp:1415
+#: src/OpenSSLUtils.cpp:1518 src/OpenSSLUtils.cpp:1682
+#: src/OpenSSLUtils.cpp:1822
+msgid "openssl command failed: %1"
+msgstr ""
+
+#: src/OpenSSLUtils.cpp:176 src/OpenSSLUtils.cpp:278 src/OpenSSLUtils.cpp:381
+#: src/OpenSSLUtils.cpp:499 src/OpenSSLUtils.cpp:638 src/OpenSSLUtils.cpp:734
 msgid "No valid key file specified."
 msgstr "বৈধ কী ফাইলের উল্লেখ করা হয়নি"
 
-#: src/OpenSSLUtils.cpp:276 src/OpenSSLUtils.cpp:374
+#: src/OpenSSLUtils.cpp:286 src/OpenSSLUtils.cpp:389
 msgid "No valid request file specified."
 msgstr "বৈধ অনুরোধ ফাইলের উল্লেখ করা হয়নি"
 
-#: src/OpenSSLUtils.cpp:487 src/OpenSSLUtils.cpp:621 src/OpenSSLUtils.cpp:712
+#: src/OpenSSLUtils.cpp:507 src/OpenSSLUtils.cpp:646 src/OpenSSLUtils.cpp:742
 msgid "No valid CA certificate file specified."
 msgstr "বৈধ CA সার্টিফিকেট ফাইলের উল্লেখ করা হয়নি"
 
-#: src/OpenSSLUtils.cpp:495 src/OpenSSLUtils.cpp:785
+#: src/OpenSSLUtils.cpp:515 src/OpenSSLUtils.cpp:820
 msgid "No valid certificate file specified."
 msgstr "বৈধ সার্টিফিকেট ফাইলের উল্লেখ করা হয়নি"
 
-#: src/OpenSSLUtils.cpp:793
+#: src/OpenSSLUtils.cpp:828
 msgid "No valid CA directory specified."
 msgstr "বৈধ CA ডায়রেক্টরির উল্লেখ করা হয়নি"
 
-#: src/OpenSSLUtils.cpp:943
+#: src/OpenSSLUtils.cpp:982
 msgid "Showing certificate status with serial %1 failed (%2)."
 msgstr "ক্রমিক %1 সহ সার্টিফিকেট পরিস্থিতি দেখানো ব্যর্থ (%2)."
 
-#: src/OpenSSLUtils.cpp:979
+#: src/OpenSSLUtils.cpp:1018
 msgid "The key file does not exist."
 msgstr "এই কী ফাইল নেই"
 
-#: src/OpenSSLUtils.cpp:1474
+#: src/OpenSSLUtils.cpp:1306 src/OpenSSLUtils.cpp:1677
+#: src/OpenSSLUtils.cpp:1817
+#, fuzzy
+msgid "Invalid password."
+msgstr " CA পাসওয়ার্ড অবৈধ"
+
+#: src/OpenSSLUtils.cpp:1595
 msgid "The password for encrypting the output is required."
 msgstr "আউটপুট এনক্রিপ্ট করার জন্য পাসওয়ার্ড চাই"
 
-#: src/OpenSSLUtils.cpp:1579
+#: src/OpenSSLUtils.cpp:1736
 msgid "The PKCS12 password is required."
 msgstr " PKCS12 পাসওয়ার্ড চাই"
 
-#: src/OpenSSLUtils.cpp:1665 src/OpenSSLUtils.cpp:1865
-#: src/OpenSSLUtils.cpp:2017
+#: src/OpenSSLUtils.cpp:1847 src/OpenSSLUtils.cpp:2047
+#: src/OpenSSLUtils.cpp:2199
 msgid "Cannot read directory: %1 (%2) [%3]."
 msgstr "ডায়রেক্টরি পড়া যাচ্ছে না: %1 (%2) [%3]."
 
-#: src/OpenSSLUtils.cpp:1715
+#: src/OpenSSLUtils.cpp:1897
 msgid "No serial number found in %1."
 msgstr " %1এ কোনো ক্রমিক সংখ্যা পাওয়া যায়নি"
 
-#: src/OpenSSLUtils.cpp:1735
+#: src/OpenSSLUtils.cpp:1917
 msgid "The request already exists."
 msgstr "ইতিমধ্যে এই অনুরোধ করা হয়ে গিয়েছে"
 
-#: src/OpenSSLUtils.cpp:1926
+#: src/OpenSSLUtils.cpp:2108
 msgid "Cannot find the request subject."
 msgstr "অনুরোধের বিষয় পাওয়া যাচ্ছে না"
 
-#: src/OpenSSLUtils.cpp:2087
+#: src/OpenSSLUtils.cpp:2269
 msgid "Cannot find the certificate subject."
 msgstr "সার্টিফিকেটের বিষয় পাওয়া যাচ্ছে না"
 
-#: src/OpenSSLUtils.cpp:2186
+#: src/OpenSSLUtils.cpp:2368
 msgid "Invalid caName: %1."
 msgstr "অবৈধ caName: %1."
 
-#: src/OpenSSLUtils.cpp:2195
+#: src/OpenSSLUtils.cpp:2377
 msgid "'%1' does not exist."
 msgstr "'%1' নেই"
 
-#: src/OpenSSLUtils.cpp:2205
+#: src/OpenSSLUtils.cpp:2387
 msgid "%1 still exists."
 msgstr "তা সত্ত্বেও %1 আছে"
 
-#: src/OpenSSLUtils.cpp:2216 src/OpenSSLUtils.cpp:2264
-#: src/OpenSSLUtils.cpp:2278 src/OpenSSLUtils.cpp:2292
-#: src/OpenSSLUtils.cpp:2306 src/OpenSSLUtils.cpp:2320
+#: src/OpenSSLUtils.cpp:2398 src/OpenSSLUtils.cpp:2446
+#: src/OpenSSLUtils.cpp:2460 src/OpenSSLUtils.cpp:2474
+#: src/OpenSSLUtils.cpp:2488 src/OpenSSLUtils.cpp:2502
 msgid "Cannot create directory: %1 (%2 [%3])."
 msgstr "ডায়রেক্টরি তৈরী করা যাচ্ছে না: %1 (%2 [%3])."
 
-#: src/OpenSSLUtils.cpp:2251
+#: src/OpenSSLUtils.cpp:2433
 msgid "Cannot copy the configuration template."
 msgstr "কনফিগারেশন টেম্পলেট কপি করা যাচ্ছে না"
 
-#: src/OpenSSLUtils.cpp:2338
+#: src/OpenSSLUtils.cpp:2520
 msgid "Cannot create the file."
 msgstr "ফাইল তৈরী করা যাচ্ছে না"
 
@@ -738,28 +757,28 @@ msgstr "SubjectKeyIdentifierExt অনুপস্থিত"
 msgid "Invalid SubjectKeyIdentifierExt object."
 msgstr " SubjectKeyIdentifierExt বিষয় অবৈধ"
 
-#: src/X509v3CertificateExtensions_Priv.cpp:394
-#: src/X509v3CertificateExtensions_Priv.cpp:450
+#: src/X509v3CertificateExtensions_Priv.cpp:395
+#: src/X509v3CertificateExtensions_Priv.cpp:452
 #: src/X509v3RequestExtensions_Priv.cpp:134
 #: src/X509v3RequestExtensions_Priv.cpp:189
 msgid "Extension occurred more than once: %1."
 msgstr "একাধিকবার এক্সটেনশন এসেছে: %1."
 
-#: src/X509v3CertificateExtensions_Priv.cpp:401
-#: src/X509v3CertificateExtensions_Priv.cpp:457
+#: src/X509v3CertificateExtensions_Priv.cpp:402
+#: src/X509v3CertificateExtensions_Priv.cpp:459
 #: src/X509v3RequestExtensions_Priv.cpp:141
 #: src/X509v3RequestExtensions_Priv.cpp:196
 msgid "Unable to parse the certificate (NID: %1 Crit: %2)."
 msgstr "সার্টিফিকেট বিশ্লেষণে ব্যর্থ (NID: %1 Crit: %2)."
 
-#: src/X509v3CertificateExtensions_Priv.cpp:509
-#: src/X509v3CertificateExtensions_Priv.cpp:575
-#: src/X509v3CertificateExtensions_Priv.cpp:639
-#: src/X509v3CertificateExtensions_Priv.cpp:701
-#: src/X509v3CertificateExtensions_Priv.cpp:771
-#: src/X509v3CertificateExtensions_Priv.cpp:840
-#: src/X509v3CertificateExtensions_Priv.cpp:916
-#: src/X509v3CertificateExtensions_Priv.cpp:1002
+#: src/X509v3CertificateExtensions_Priv.cpp:511
+#: src/X509v3CertificateExtensions_Priv.cpp:577
+#: src/X509v3CertificateExtensions_Priv.cpp:641
+#: src/X509v3CertificateExtensions_Priv.cpp:703
+#: src/X509v3CertificateExtensions_Priv.cpp:773
+#: src/X509v3CertificateExtensions_Priv.cpp:842
+#: src/X509v3CertificateExtensions_Priv.cpp:918
+#: src/X509v3CertificateExtensions_Priv.cpp:1004
 #: src/X509v3CRLExtensions_Priv.cpp:135
 #: src/X509v3RequestExtensions_Priv.cpp:249
 #: src/X509v3RequestExtensions_Priv.cpp:315
@@ -768,14 +787,14 @@ msgstr "সার্টিফিকেট বিশ্লেষণে ব্য�
 msgid "Extension occurred more than once."
 msgstr "একাধিকবার এক্সটেশন এসেছে"
 
-#: src/X509v3CertificateExtensions_Priv.cpp:514
-#: src/X509v3CertificateExtensions_Priv.cpp:580
-#: src/X509v3CertificateExtensions_Priv.cpp:644
-#: src/X509v3CertificateExtensions_Priv.cpp:707
-#: src/X509v3CertificateExtensions_Priv.cpp:776
-#: src/X509v3CertificateExtensions_Priv.cpp:846
-#: src/X509v3CertificateExtensions_Priv.cpp:921
-#: src/X509v3CertificateExtensions_Priv.cpp:1007
+#: src/X509v3CertificateExtensions_Priv.cpp:516
+#: src/X509v3CertificateExtensions_Priv.cpp:582
+#: src/X509v3CertificateExtensions_Priv.cpp:646
+#: src/X509v3CertificateExtensions_Priv.cpp:709
+#: src/X509v3CertificateExtensions_Priv.cpp:778
+#: src/X509v3CertificateExtensions_Priv.cpp:848
+#: src/X509v3CertificateExtensions_Priv.cpp:923
+#: src/X509v3CertificateExtensions_Priv.cpp:1009
 #: src/X509v3CRLExtensions_Priv.cpp:140
 #: src/X509v3RequestExtensions_Priv.cpp:254
 #: src/X509v3RequestExtensions_Priv.cpp:320
@@ -784,7 +803,7 @@ msgstr "একাধিকবার এক্সটেশন এসেছে"
 msgid "Unable to parse the certificate (Crit: %1)."
 msgstr "সার্টিফিকেট বিশ্লেষণে ব্যর্থ (Crit: %1)."
 
-#: src/X509v3CertificateExtensions_Priv.cpp:941
+#: src/X509v3CertificateExtensions_Priv.cpp:943
 msgid "Invalid location in authorityInfoAccess."
 msgstr "authorityInfoAccess অবৈধ স্থান"
 
@@ -907,3 +926,6 @@ msgstr " X509v3RequestExts::setSubjectKeyIdentifier এর মূল্য অ�
 #: src/X509v3RequestExtensions.cpp:231
 msgid "Invalid value for X509v3RequestExts::setSubjectAlternativeName."
 msgstr " X509v3RequestExts::setSubjectAlternativeName এর মূল্য অবৈধ"
+
+#~ msgid "Command returned '%1' : %2"
+#~ msgstr "আদেশ ফেরত '%1' : %2"
