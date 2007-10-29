@@ -1,12 +1,12 @@
 INFO  ca-mgm - openssl status:1
 Exception:
-OpenSSLUtils.cpp: RuntimeException: openssl command failed: unable to load Private Key
+OpenSSLUtils.cpp: ValueException: Invalid password.
 END
 INFO  ca-mgm - openssl status:1
 Exception:
-OpenSSLUtils.cpp: 1667 RuntimeException: openssl command failed: unable to load private key
+OpenSSLUtils.cpp: 1677 ValueException: Invalid password.
 END
 INFO  ca-mgm - openssl status:1
 Exception:
-OpenSSLUtils.cpp: 1799 RuntimeException: openssl command failed: Mac verify error: invalid password?
+OpenSSLUtils.cpp: 1817 ValueException: Invalid password.
 END

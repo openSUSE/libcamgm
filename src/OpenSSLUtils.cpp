@@ -1278,7 +1278,7 @@ OpenSSLUtils::rsaConvert(const ByteBuffer &key,
 	if(!errOutput.empty())
 	{
 		// This message is not an error
-		if(!PerlRegEx("^writing RSA key$").match(errOutput))
+		if(!PerlRegEx("^writing RSA key$", PCRE_CASELESS).match(errOutput))
 		{
 			LOGIT_ERROR("openssl stderr:" << errOutput);
 			foundError = true;
@@ -1300,8 +1300,16 @@ OpenSSLUtils::rsaConvert(const ByteBuffer &key,
 
 		StringArray sa = errOutput.tokenize("\n\r");
 		String msg = (sa.empty()? "" : sa[0]);
-		BLOCXX_THROW(limal::RuntimeException,
-		             Format(__("openssl command failed: %1"),msg).c_str());
+		if(PerlRegEx("unable to load Private Key", PCRE_CASELESS).match(msg))
+		{
+			BLOCXX_THROW_ERR(limal::ValueException,
+			                 __("Invalid password."), E_INVALID_PASSWD);
+		}
+		else
+		{
+			BLOCXX_THROW(limal::RuntimeException,
+			             Format(__("openssl command failed: %1"),msg).c_str());
+		}
 	}
 
 	ByteBuffer out = LocalManagement::readFile(outFileName);
@@ -1663,8 +1671,16 @@ OpenSSLUtils::createPKCS12(const ByteBuffer &certificate,
 
 		StringArray sa = errOutput.tokenize("\n\r");
 		String msg = (sa.empty()? "" : sa[0]);
-		BLOCXX_THROW(limal::RuntimeException,
+		if(PerlRegEx("unable to load Private Key", PCRE_CASELESS).match(msg))
+		{
+			BLOCXX_THROW_ERR(limal::ValueException,
+			                 __("Invalid password."), E_INVALID_PASSWD);
+		}
+		else
+		{
+			BLOCXX_THROW(limal::RuntimeException,
 		             Format(__("openssl command failed: %1"), msg).c_str());
+		}
 	}
 
 	ByteBuffer out = LocalManagement::readFile(outFileName);
@@ -1773,7 +1789,7 @@ OpenSSLUtils::pkcs12ToPEM(const ByteBuffer &pkcs12,
 	if(!errOutput.empty())
 	{
 		// This message is not an error
-		if(!PerlRegEx("^MAC verified OK$").match(errOutput))
+		if(!PerlRegEx("^MAC verified OK$", PCRE_CASELESS).match(errOutput))
 		{
 			LOGIT_ERROR("openssl stderr:" << errOutput);
 			foundError = true;
@@ -1795,8 +1811,16 @@ OpenSSLUtils::pkcs12ToPEM(const ByteBuffer &pkcs12,
 
 		StringArray sa = errOutput.tokenize("\n\r");
 		String msg = (sa.empty()? "" : sa[0]);
-		BLOCXX_THROW(limal::RuntimeException,
+		if(PerlRegEx("invalid password", PCRE_CASELESS).match(msg))
+		{
+			BLOCXX_THROW_ERR(limal::ValueException,
+			                 __("Invalid password."), E_INVALID_PASSWD);
+		}
+		else
+		{
+			BLOCXX_THROW(limal::RuntimeException,
 		             Format(__("openssl command failed: %1"), msg).c_str());
+		}
 	}
 
 	ByteBuffer out = LocalManagement::readFile(outFileName);
