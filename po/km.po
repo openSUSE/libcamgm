@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2007-10-29 11:25+0100\n"
+"POT-Creation-Date: 2007-11-06 14:54+0100\n"
 "PO-Revision-Date: 2007-05-25 10:07+0700\n"
 "Last-Translator: Auk Piseth <piseth_dv@khmeros.info>\n"
 "Language-Team: Khmer <en@li.org>\n"
@@ -38,7 +38,7 @@ msgstr "accessOID មិន​ត្រឹមត្រូវ​ ។"
 #: src/AuthorityKeyIdentifierGenerateExtension.cpp:193
 #: src/BasicConstraintsExtension.cpp:84 src/BasicConstraintsExtension.cpp:187
 #: src/BitExtensions.cpp:134 src/BitExtensions.cpp:247
-#: src/BitExtensions.cpp:374 src/BitExtensions.cpp:482 src/CA.cpp:1565
+#: src/BitExtensions.cpp:374 src/BitExtensions.cpp:482 src/CA.cpp:1582
 #: src/CertificateIssueData.cpp:219 src/CertificatePoliciesExtension.cpp:169
 #: src/CertificatePoliciesExtension.cpp:264
 #: src/CertificatePoliciesExtension.cpp:425
@@ -135,7 +135,7 @@ msgstr "វត្ថុ NsCertTypeExt មិន​ត្រឹមត្រូវ
 msgid "Template not initialized."
 msgstr "មិន​បាន​ចាប់​ផ្ដើម​ពុម្ព​ទេ ។"
 
-#: src/CA.cpp:159 src/CA.cpp:1456
+#: src/CA.cpp:159 src/CA.cpp:1473
 msgid "Empty CA name."
 msgstr "ឈ្មោះ CA ទទេ ។"
 
@@ -143,11 +143,11 @@ msgstr "ឈ្មោះ CA ទទេ ។"
 msgid "Template does not exist: %1."
 msgstr "មិនមាន​ពុម្ព ៖ %1 ។"
 
-#: src/CA.cpp:179 src/CA.cpp:1477
+#: src/CA.cpp:179 src/CA.cpp:1494
 msgid "Invalid CA password."
 msgstr "ពាក្យ​សម្ងាត់ CA មិន​ត្រឹមត្រូវ​ ។"
 
-#: src/CA.cpp:225 src/CA.cpp:1149 src/CA.cpp:1286
+#: src/CA.cpp:225 src/CA.cpp:1149 src/CA.cpp:1292
 msgid "Error while creating the CA infrastructure."
 msgstr "កំហុស​នៅ​ខណៈ​កំពុង​បង្កើត​ហេដ្ឋា​រចនា​សម្ព័ន្ធ CA ។"
 
@@ -274,59 +274,64 @@ msgstr "សោរ​ CA ទទេ ។"
 msgid "Invalid key data."
 msgstr "ទិន្នន័យ​សោរ​មិន​ត្រឹមត្រូវ ។"
 
-#: src/CA.cpp:1275
+#: src/CA.cpp:1273
 msgid "CA password is empty."
 msgstr "ពាក្យ​សម្ងាត់ CA ទទេ ។"
 
-#: src/CA.cpp:1311
+#: src/CA.cpp:1317
 msgid "Error during key encryption."
 msgstr "កំហុស​នៅ​កំឡុង​ពេល​ធ្វើ​ការ​អ៊ិនគ្រីប​សោរ ។"
 
-#: src/CA.cpp:1466
+#: src/CA.cpp:1339
+#, fuzzy
+msgid "Error during write defaults."
+msgstr "កំហុស​នៅ​កំឡុង​ពេល​ធ្វើ​ការ​អ៊ិនគ្រីប​សោរ ។"
+
+#: src/CA.cpp:1483
 msgid "CA name does not exist (%1)."
 msgstr "មិនមានឈ្មោះ CA (%1) ។"
 
-#: src/CA.cpp:1497
+#: src/CA.cpp:1514
 msgid ""
 "Deleting the CA is not allowed. The CA must be expired or never have signed "
 "a certificate."
 msgstr "មិន​បាន​អនុញ្ញាត​ឲ្យ​លុប CA ទេ ។ CA ត្រូវតែ​ផុត​កំណត់ ឬក៏ មិនដែល​ចុះ​ហត្ថលេខា​លើ​វិញ្ញា​បនបត្រ ។"
 
-#: src/CA.cpp:1522
+#: src/CA.cpp:1539
 msgid "Deleting the CA failed: %1."
 msgstr "ការ​លុប CA បាន​បរាជ័យ ៖ %1 ។"
 
-#: src/CA.cpp:1573
+#: src/CA.cpp:1590
 msgid "The configuration file is missing a value for policy."
 msgstr "ឯកសារ​កំណត់​រចនា​សម្ព័ន្ធ​បាត់​តម្លៃ​សម្រាប់​គោលការណ៍ ។"
 
-#: src/CA.cpp:1583 src/CA.cpp:1845 src/DNObject.cpp:270
+#: src/CA.cpp:1600 src/CA.cpp:1862 src/DNObject.cpp:270
 #: src/DNObject_Priv.cpp:209
 msgid "Cannot parse section %1."
 msgstr "មិនអាច​ញែក​ផ្នែក %1 បានទេ ។"
 
-#: src/CA.cpp:1655
+#: src/CA.cpp:1672
 msgid "Field %1 must have a value."
 msgstr "វាល​ '%1' ត្រូវ​តែមាន​តម្លៃ​ ។​"
 
-#: src/CA.cpp:1694
+#: src/CA.cpp:1711
 msgid "%1 must be defined."
 msgstr "ត្រូវ​តែ​កំណត់ %1 ។"
 
-#: src/CA.cpp:1779
+#: src/CA.cpp:1796
 msgid "%1 must be the same in the CA certificate (%2) and the request (%3)."
 msgstr "%1 ត្រូវ​តែ​ដូចគ្នា​នៅ​ក្នុង​វិញ្ញា​បនបត្រ CA (%2) និង​សំណើ (%3) ។"
 
-#: src/CA.cpp:1791
+#: src/CA.cpp:1808
 msgid "The configuration file seems to have an invalid policy."
 msgstr "ឯកសារ​កំណត់​រចនា​សម្ព័ន្ធ​ហាក់​ដូចជា​មាន​គោលការណ៍​មិន​ត្រឹមត្រូវ ។"
 
 # %s is either BOOTP or DHCP
-#: src/CA.cpp:1817 src/CA.cpp:1827
+#: src/CA.cpp:1834 src/CA.cpp:1844
 msgid "The configuration is not initialized."
 msgstr "ការ​កំណត់​រចនា​សម្ព័ន្ធ​មិន​ត្រូវ​បាន​ចាប់​ផ្ដើម​ឡើយ ។"
 
-#: src/CA.cpp:1835 src/DNObject.cpp:259 src/DNObject_Priv.cpp:199
+#: src/CA.cpp:1852 src/DNObject.cpp:259 src/DNObject_Priv.cpp:199
 msgid "Missing section 'distinguished_name' in the configuration file."
 msgstr "បាត់​ផ្នែក 'ឈ្មោះ​ដែលបាន​សម្គាល់' នៅក្នុង​ឯកសារ​កំណត់​រចនា​សម្ព័ន្ធ ។"
 

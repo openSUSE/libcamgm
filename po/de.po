@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2007-10-29 11:25+0100\n"
+"POT-Creation-Date: 2007-11-06 14:54+0100\n"
 "PO-Revision-Date: 2005-03-09 13:54+0100\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -33,7 +33,7 @@ msgstr "Ungültige accessOID."
 #: src/AuthorityKeyIdentifierGenerateExtension.cpp:193
 #: src/BasicConstraintsExtension.cpp:84 src/BasicConstraintsExtension.cpp:187
 #: src/BitExtensions.cpp:134 src/BitExtensions.cpp:247
-#: src/BitExtensions.cpp:374 src/BitExtensions.cpp:482 src/CA.cpp:1565
+#: src/BitExtensions.cpp:374 src/BitExtensions.cpp:482 src/CA.cpp:1582
 #: src/CertificateIssueData.cpp:219 src/CertificatePoliciesExtension.cpp:169
 #: src/CertificatePoliciesExtension.cpp:264
 #: src/CertificatePoliciesExtension.cpp:425
@@ -131,7 +131,7 @@ msgstr "Ungültiges NsCertTypeExt-Objekt."
 msgid "Template not initialized."
 msgstr "Vorlage nicht initialisiert."
 
-#: src/CA.cpp:159 src/CA.cpp:1456
+#: src/CA.cpp:159 src/CA.cpp:1473
 msgid "Empty CA name."
 msgstr "Leerer CA-Name."
 
@@ -139,11 +139,11 @@ msgstr "Leerer CA-Name."
 msgid "Template does not exist: %1."
 msgstr "Vorlage ist nicht vorhanden: %1."
 
-#: src/CA.cpp:179 src/CA.cpp:1477
+#: src/CA.cpp:179 src/CA.cpp:1494
 msgid "Invalid CA password."
 msgstr "Ungültiges CA-Passwort."
 
-#: src/CA.cpp:225 src/CA.cpp:1149 src/CA.cpp:1286
+#: src/CA.cpp:225 src/CA.cpp:1149 src/CA.cpp:1292
 msgid "Error while creating the CA infrastructure."
 msgstr "Fehler bei der Erstellung der CA-Infrastruktur."
 
@@ -271,19 +271,24 @@ msgstr "CA-Schlüssel ist leer."
 msgid "Invalid key data."
 msgstr "Ungültige Schlüsseldaten."
 
-#: src/CA.cpp:1275
+#: src/CA.cpp:1273
 msgid "CA password is empty."
 msgstr "CA-Passwort ist leer."
 
-#: src/CA.cpp:1311
+#: src/CA.cpp:1317
 msgid "Error during key encryption."
 msgstr "Fehler bei der Verschlüsselung des Schlüssels."
 
-#: src/CA.cpp:1466
+#: src/CA.cpp:1339
+#, fuzzy
+msgid "Error during write defaults."
+msgstr "Fehler bei der Verschlüsselung des Schlüssels."
+
+#: src/CA.cpp:1483
 msgid "CA name does not exist (%1)."
 msgstr "CA-Name ist nicht vorhanden (%1)."
 
-#: src/CA.cpp:1497
+#: src/CA.cpp:1514
 msgid ""
 "Deleting the CA is not allowed. The CA must be expired or never have signed "
 "a certificate."
@@ -291,40 +296,40 @@ msgstr ""
 "Die CA darf nicht gelöscht werden. Eine CA kann nur gelöscht werden, wenn "
 "sie abgelaufen ist oder wenn durch sie noch kein Zertifikat signiert wurde."
 
-#: src/CA.cpp:1522
+#: src/CA.cpp:1539
 msgid "Deleting the CA failed: %1."
 msgstr "Fehler beim Löschen der CA %1."
 
-#: src/CA.cpp:1573
+#: src/CA.cpp:1590
 msgid "The configuration file is missing a value for policy."
 msgstr "In der Konfigurationsdatei fehlt ein Richtlinienwert."
 
-#: src/CA.cpp:1583 src/CA.cpp:1845 src/DNObject.cpp:270
+#: src/CA.cpp:1600 src/CA.cpp:1862 src/DNObject.cpp:270
 #: src/DNObject_Priv.cpp:209
 msgid "Cannot parse section %1."
 msgstr "Abschnitt %1 kann nicht analysiert werden."
 
-#: src/CA.cpp:1655
+#: src/CA.cpp:1672
 msgid "Field %1 must have a value."
 msgstr "Feld %1 muss einen Wert enthalten."
 
-#: src/CA.cpp:1694
+#: src/CA.cpp:1711
 msgid "%1 must be defined."
 msgstr "%1 muss definiert sein."
 
-#: src/CA.cpp:1779
+#: src/CA.cpp:1796
 msgid "%1 must be the same in the CA certificate (%2) and the request (%3)."
 msgstr "%1 muss im CA-Zertifikat (%2) und in der Anfrage (%3) identisch sein."
 
-#: src/CA.cpp:1791
+#: src/CA.cpp:1808
 msgid "The configuration file seems to have an invalid policy."
 msgstr "Die Konfigurationsdatei enthält vermutlich eine ungültige Richtlinie."
 
-#: src/CA.cpp:1817 src/CA.cpp:1827
+#: src/CA.cpp:1834 src/CA.cpp:1844
 msgid "The configuration is not initialized."
 msgstr "Die Konfiguration ist noch nicht initialisiert."
 
-#: src/CA.cpp:1835 src/DNObject.cpp:259 src/DNObject_Priv.cpp:199
+#: src/CA.cpp:1852 src/DNObject.cpp:259 src/DNObject_Priv.cpp:199
 msgid "Missing section 'distinguished_name' in the configuration file."
 msgstr "In der Konfigurationsdatei fehlt der Abschnitt 'distinguished_name'."
 

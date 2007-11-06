@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2007-10-29 11:25+0100\n"
+"POT-Creation-Date: 2007-11-06 14:54+0100\n"
 "PO-Revision-Date: 2007-08-06 21:05+0200\n"
 "Last-Translator: Ib Larsen <i.la@tele2adsl.dk>\n"
 "Language-Team:  <opensuse-translation@opensuse.org>\n"
@@ -35,7 +35,7 @@ msgstr "Ugyldigt accessOID."
 #: src/AuthorityKeyIdentifierGenerateExtension.cpp:193
 #: src/BasicConstraintsExtension.cpp:84 src/BasicConstraintsExtension.cpp:187
 #: src/BitExtensions.cpp:134 src/BitExtensions.cpp:247
-#: src/BitExtensions.cpp:374 src/BitExtensions.cpp:482 src/CA.cpp:1565
+#: src/BitExtensions.cpp:374 src/BitExtensions.cpp:482 src/CA.cpp:1582
 #: src/CertificateIssueData.cpp:219 src/CertificatePoliciesExtension.cpp:169
 #: src/CertificatePoliciesExtension.cpp:264
 #: src/CertificatePoliciesExtension.cpp:425
@@ -132,7 +132,7 @@ msgstr "Ugyldig NsCertTypeExt-emne."
 msgid "Template not initialized."
 msgstr "Skabelon er ikke initialiseret."
 
-#: src/CA.cpp:159 src/CA.cpp:1456
+#: src/CA.cpp:159 src/CA.cpp:1473
 msgid "Empty CA name."
 msgstr "Tomt CA-navn."
 
@@ -140,11 +140,11 @@ msgstr "Tomt CA-navn."
 msgid "Template does not exist: %1."
 msgstr "Skabelon findes ikke: %1."
 
-#: src/CA.cpp:179 src/CA.cpp:1477
+#: src/CA.cpp:179 src/CA.cpp:1494
 msgid "Invalid CA password."
 msgstr "Ugyldig CA-adgangskode."
 
-#: src/CA.cpp:225 src/CA.cpp:1149 src/CA.cpp:1286
+#: src/CA.cpp:225 src/CA.cpp:1149 src/CA.cpp:1292
 msgid "Error while creating the CA infrastructure."
 msgstr "Fejl under oprettelse af CA-infrastrukturen."
 
@@ -272,19 +272,24 @@ msgstr "CA-nøglen er tom."
 msgid "Invalid key data."
 msgstr "Ugyldig nøgledata."
 
-#: src/CA.cpp:1275
+#: src/CA.cpp:1273
 msgid "CA password is empty."
 msgstr "CA-adgangskode er tom."
 
-#: src/CA.cpp:1311
+#: src/CA.cpp:1317
 msgid "Error during key encryption."
 msgstr "Fejl under nøglekryptering."
 
-#: src/CA.cpp:1466
+#: src/CA.cpp:1339
+#, fuzzy
+msgid "Error during write defaults."
+msgstr "Fejl under nøglekryptering."
+
+#: src/CA.cpp:1483
 msgid "CA name does not exist (%1)."
 msgstr "CA-navn eksisterer ikke (%1)."
 
-#: src/CA.cpp:1497
+#: src/CA.cpp:1514
 msgid ""
 "Deleting the CA is not allowed. The CA must be expired or never have signed "
 "a certificate."
@@ -292,41 +297,41 @@ msgstr ""
 "Sletning af CA er ikke tilladt. CA skal være udløbet eller aldrig have "
 "signeret et certifikat."
 
-#: src/CA.cpp:1522
+#: src/CA.cpp:1539
 msgid "Deleting the CA failed: %1."
 msgstr "Sletning af CA fejlede: %1."
 
-#: src/CA.cpp:1573
+#: src/CA.cpp:1590
 msgid "The configuration file is missing a value for policy."
 msgstr "Konfigurationsfilen mangler en værdi for retningslinjer."
 
-#: src/CA.cpp:1583 src/CA.cpp:1845 src/DNObject.cpp:270
+#: src/CA.cpp:1600 src/CA.cpp:1862 src/DNObject.cpp:270
 #: src/DNObject_Priv.cpp:209
 msgid "Cannot parse section %1."
 msgstr "Kunne ikke fortolke afsnit %1."
 
-#: src/CA.cpp:1655
+#: src/CA.cpp:1672
 msgid "Field %1 must have a value."
 msgstr "Feltet %1 skal have en værdi."
 
-#: src/CA.cpp:1694
+#: src/CA.cpp:1711
 msgid "%1 must be defined."
 msgstr "%1 skal angives."
 
-#: src/CA.cpp:1779
+#: src/CA.cpp:1796
 msgid "%1 must be the same in the CA certificate (%2) and the request (%3)."
 msgstr "%1 skal være det samme i CA-certifikat (%2) og efterspørgsel (%3)."
 
-#: src/CA.cpp:1791
+#: src/CA.cpp:1808
 msgid "The configuration file seems to have an invalid policy."
 msgstr "Konfigurationsfilen ser ud til at have en ugyldig retningslinjer."
 
 # %s is either BOOTP or DHCP
-#: src/CA.cpp:1817 src/CA.cpp:1827
+#: src/CA.cpp:1834 src/CA.cpp:1844
 msgid "The configuration is not initialized."
 msgstr "Konfigurationen er ikke initialiseret."
 
-#: src/CA.cpp:1835 src/DNObject.cpp:259 src/DNObject_Priv.cpp:199
+#: src/CA.cpp:1852 src/DNObject.cpp:259 src/DNObject_Priv.cpp:199
 msgid "Missing section 'distinguished_name' in the configuration file."
 msgstr "Mangler afsnit 'distinguished_name' i konfigurationsfilen."
 

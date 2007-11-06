@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2007-10-29 11:25+0100\n"
+"POT-Creation-Date: 2007-11-06 14:54+0100\n"
 "PO-Revision-Date: 2003-08-14 10:47+0200\n"
 "Last-Translator: Priyavert Sharma<priyavert.sharma@agreeya.com>\n"
 "Language-Team: AgreeYa Solutions<linux_team@agreeya.com>\n"
@@ -27,7 +27,7 @@ msgstr "செல்லாத அணுக்கOID"
 #: src/AuthorityKeyIdentifierGenerateExtension.cpp:193
 #: src/BasicConstraintsExtension.cpp:84 src/BasicConstraintsExtension.cpp:187
 #: src/BitExtensions.cpp:134 src/BitExtensions.cpp:247
-#: src/BitExtensions.cpp:374 src/BitExtensions.cpp:482 src/CA.cpp:1565
+#: src/BitExtensions.cpp:374 src/BitExtensions.cpp:482 src/CA.cpp:1582
 #: src/CertificateIssueData.cpp:219 src/CertificatePoliciesExtension.cpp:169
 #: src/CertificatePoliciesExtension.cpp:264
 #: src/CertificatePoliciesExtension.cpp:425
@@ -124,7 +124,7 @@ msgstr "செல்லாத என்எஸ்சான்றிதழ்வ�
 msgid "Template not initialized."
 msgstr "வார்ப்புரு துவக்கப்படவில்லை."
 
-#: src/CA.cpp:159 src/CA.cpp:1456
+#: src/CA.cpp:159 src/CA.cpp:1473
 msgid "Empty CA name."
 msgstr "சிஏ பெயா காலி செய்."
 
@@ -132,11 +132,11 @@ msgstr "சிஏ பெயா காலி செய்."
 msgid "Template does not exist: %1."
 msgstr "வார்ப்புரு கிடையாது: %1."
 
-#: src/CA.cpp:179 src/CA.cpp:1477
+#: src/CA.cpp:179 src/CA.cpp:1494
 msgid "Invalid CA password."
 msgstr "செல்லாத சிஏ கடவுச்சொல்."
 
-#: src/CA.cpp:225 src/CA.cpp:1149 src/CA.cpp:1286
+#: src/CA.cpp:225 src/CA.cpp:1149 src/CA.cpp:1292
 msgid "Error while creating the CA infrastructure."
 msgstr "சிஏ கட்டமைப்பை உருவாக்கும்போது பிழை."
 
@@ -264,19 +264,24 @@ msgstr "சிஏ விசை காலியாக உள்ளது."
 msgid "Invalid key data."
 msgstr "செல்லாத விசை தரவு."
 
-#: src/CA.cpp:1275
+#: src/CA.cpp:1273
 msgid "CA password is empty."
 msgstr "சிஏ கடவுச்சொல் காலியாக உள்ளது."
 
-#: src/CA.cpp:1311
+#: src/CA.cpp:1317
 msgid "Error during key encryption."
 msgstr "விசை என்கிரிப்ட் செய்யும்போது பிழை."
 
-#: src/CA.cpp:1466
+#: src/CA.cpp:1339
+#, fuzzy
+msgid "Error during write defaults."
+msgstr "விசை என்கிரிப்ட் செய்யும்போது பிழை."
+
+#: src/CA.cpp:1483
 msgid "CA name does not exist (%1)."
 msgstr "சிஏ பெயர் இல்லை (%1)."
 
-#: src/CA.cpp:1497
+#: src/CA.cpp:1514
 msgid ""
 "Deleting the CA is not allowed. The CA must be expired or never have signed "
 "a certificate."
@@ -284,41 +289,41 @@ msgstr ""
 "சிஏ நீக்கப்படுவதற்கு அனுமதி இல்லை. சிஎ காலாவதியாகியிருக்கும் அல்லது சான்றிதழில் "
 "கையொப்பமிட்டிருக்காது"
 
-#: src/CA.cpp:1522
+#: src/CA.cpp:1539
 msgid "Deleting the CA failed: %1."
 msgstr "சிடீ நீக்கப்படுதல் தோல்வியுற்றது: %1."
 
-#: src/CA.cpp:1573
+#: src/CA.cpp:1590
 msgid "The configuration file is missing a value for policy."
 msgstr "உள்ளமைவு கோப்பில் கொள்கைக்கான மதிப்பை ஒன்று தவறியுள்ளது."
 
-#: src/CA.cpp:1583 src/CA.cpp:1845 src/DNObject.cpp:270
+#: src/CA.cpp:1600 src/CA.cpp:1862 src/DNObject.cpp:270
 #: src/DNObject_Priv.cpp:209
 msgid "Cannot parse section %1."
 msgstr "பிரிவு %1 விளக்க முடியவில்லை."
 
-#: src/CA.cpp:1655
+#: src/CA.cpp:1672
 msgid "Field %1 must have a value."
 msgstr "புலம் %1 ஒரு மதிப்பை கொண்டிருக்க வேண்டும்."
 
-#: src/CA.cpp:1694
+#: src/CA.cpp:1711
 msgid "%1 must be defined."
 msgstr "%1 விளக்கப்பட வேண்டும்."
 
-#: src/CA.cpp:1779
+#: src/CA.cpp:1796
 msgid "%1 must be the same in the CA certificate (%2) and the request (%3)."
 msgstr ""
 "சிடீ சான்றிதழிலும் (%2) மற்றும் கோரிக்கையிலும் (%3) %1 ஒரே மாதிரி இருக்க வேண்டும்."
 
-#: src/CA.cpp:1791
+#: src/CA.cpp:1808
 msgid "The configuration file seems to have an invalid policy."
 msgstr "உள்ளமைவு கோப்பில் ஒரு செல்லாத கொள்கை இருப்பது போலுள்ளது."
 
-#: src/CA.cpp:1817 src/CA.cpp:1827
+#: src/CA.cpp:1834 src/CA.cpp:1844
 msgid "The configuration is not initialized."
 msgstr "உள்ளமைவு துவக்கப்படவில்லை."
 
-#: src/CA.cpp:1835 src/DNObject.cpp:259 src/DNObject_Priv.cpp:199
+#: src/CA.cpp:1852 src/DNObject.cpp:259 src/DNObject_Priv.cpp:199
 msgid "Missing section 'distinguished_name' in the configuration file."
 msgstr "உள்ளமைவு கோப்பில் காணப்படாத பிரிவு ‘அடையாளம் காணப்பட்ட பெயர்’"
 

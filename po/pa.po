@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm.pa\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2007-10-29 11:25+0100\n"
+"POT-Creation-Date: 2007-11-06 14:54+0100\n"
 "PO-Revision-Date: 2007-08-15 08:43+0530\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Panjabi <punjabi-l10n@lists.sf.net>\n"
@@ -35,7 +35,7 @@ msgstr "ਗਲਤ accessOID ਹੈ।"
 #: src/AuthorityKeyIdentifierGenerateExtension.cpp:193
 #: src/BasicConstraintsExtension.cpp:84 src/BasicConstraintsExtension.cpp:187
 #: src/BitExtensions.cpp:134 src/BitExtensions.cpp:247
-#: src/BitExtensions.cpp:374 src/BitExtensions.cpp:482 src/CA.cpp:1565
+#: src/BitExtensions.cpp:374 src/BitExtensions.cpp:482 src/CA.cpp:1582
 #: src/CertificateIssueData.cpp:219 src/CertificatePoliciesExtension.cpp:169
 #: src/CertificatePoliciesExtension.cpp:264
 #: src/CertificatePoliciesExtension.cpp:425
@@ -132,7 +132,7 @@ msgstr "ਗਲਤ NsCertTypeExt ਆਬਜੈਕਟ ਹੈ।"
 msgid "Template not initialized."
 msgstr "ਟੈਪਲੇਟ ਸ਼ੁਰੂ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ।"
 
-#: src/CA.cpp:159 src/CA.cpp:1456
+#: src/CA.cpp:159 src/CA.cpp:1473
 msgid "Empty CA name."
 msgstr "ਖਾਲੀ CA ਨਾਂ ਹੈ।"
 
@@ -140,11 +140,11 @@ msgstr "ਖਾਲੀ CA ਨਾਂ ਹੈ।"
 msgid "Template does not exist: %1."
 msgstr "ਟੈਪਲੇਟ ਮੌਜੂਦ ਨਹੀਂ ਹੈ: %1"
 
-#: src/CA.cpp:179 src/CA.cpp:1477
+#: src/CA.cpp:179 src/CA.cpp:1494
 msgid "Invalid CA password."
 msgstr "ਗਲਤ CA ਪਾਸਵਰਡ ਹੈ।"
 
-#: src/CA.cpp:225 src/CA.cpp:1149 src/CA.cpp:1286
+#: src/CA.cpp:225 src/CA.cpp:1149 src/CA.cpp:1292
 msgid "Error while creating the CA infrastructure."
 msgstr "CA ਢਾਂਚਾ ਬਣਾਉਣ ਦੌਰਾਨ ਗਲਤੀ ਆਈ ਹੈ।"
 
@@ -272,19 +272,24 @@ msgstr "CA ਕੁੰਜੀ ਖਾਲੀ ਹੈ।"
 msgid "Invalid key data."
 msgstr "ਗਲਤ ਕੁੰਜੀ ਡਾਟਾ ਹੈ।"
 
-#: src/CA.cpp:1275
+#: src/CA.cpp:1273
 msgid "CA password is empty."
 msgstr "CA ਪਾਸਵਰਡ ਖਾਲੀ ਹੈ।"
 
-#: src/CA.cpp:1311
+#: src/CA.cpp:1317
 msgid "Error during key encryption."
 msgstr "ਕੁੰਜੀ ਇੰਕ੍ਰਿਪਸ਼ਨ ਦੌਰਾਨ ਗਲਤੀ ਹੈ।"
 
-#: src/CA.cpp:1466
+#: src/CA.cpp:1339
+#, fuzzy
+msgid "Error during write defaults."
+msgstr "ਕੁੰਜੀ ਇੰਕ੍ਰਿਪਸ਼ਨ ਦੌਰਾਨ ਗਲਤੀ ਹੈ।"
+
+#: src/CA.cpp:1483
 msgid "CA name does not exist (%1)."
 msgstr "CA ਨਾਂ ਮੌਜੂਦ ਨਹੀਂ ਹੈ (%1)।"
 
-#: src/CA.cpp:1497
+#: src/CA.cpp:1514
 msgid ""
 "Deleting the CA is not allowed. The CA must be expired or never have signed "
 "a certificate."
@@ -292,41 +297,41 @@ msgstr ""
 "CA ਹਟਾਉਣਾ ਮਨਜ਼ੂਰ ਨਹੀਂ ਹੈ। CA ਦੀ ਮਿਆਦ ਪੁੱਗਣੀ ਚਾਹੀਦੀ ਹੈ ਜਾਂ ਕਿਸੇ ਵੀ ਸਰਟੀਫਿਕੇਟ ਉੱਤੇ ਦਸਤਖਤ "
 "ਨਹੀਂ ਕੀਤੇ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ।"
 
-#: src/CA.cpp:1522
+#: src/CA.cpp:1539
 msgid "Deleting the CA failed: %1."
 msgstr "CA ਹਟਾਉਣਾ ਫੇਲ੍ਹ ਹੋਇਆ: %1"
 
-#: src/CA.cpp:1573
+#: src/CA.cpp:1590
 msgid "The configuration file is missing a value for policy."
 msgstr "ਸੰਰਚਨਾ ਫਾਇਲ ਵਿੱਚ ਪਾਲਸੀ ਲਈ ਇੱਕ ਮੁੱਲ ਗੁੰਮ ਹੈ।"
 
-#: src/CA.cpp:1583 src/CA.cpp:1845 src/DNObject.cpp:270
+#: src/CA.cpp:1600 src/CA.cpp:1862 src/DNObject.cpp:270
 #: src/DNObject_Priv.cpp:209
 msgid "Cannot parse section %1."
 msgstr "ਸ਼ੈਕਸ਼ਨ %1 ਪਾਰਸ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ।"
 
-#: src/CA.cpp:1655
+#: src/CA.cpp:1672
 msgid "Field %1 must have a value."
 msgstr "ਖੇਤਰ %1 ਵਿੱਚ ਮੁੱਲ ਹੋਣਾ ਲਾਜ਼ਮੀ ਹੈ।"
 
-#: src/CA.cpp:1694
+#: src/CA.cpp:1711
 msgid "%1 must be defined."
 msgstr "%1 ਦੇਣਾ ਲਾਜ਼ਮੀ ਹੈ।"
 
-#: src/CA.cpp:1779
+#: src/CA.cpp:1796
 msgid "%1 must be the same in the CA certificate (%2) and the request (%3)."
 msgstr "%1 CA ਸਰਟੀਫਿਕੇਟ (%2) ਵਿੱਚ ਦਿੱਤੇ ਵਾਂਗ ਹੀ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ ਅਤੇ ਮੰਗ (%3)।"
 
-#: src/CA.cpp:1791
+#: src/CA.cpp:1808
 msgid "The configuration file seems to have an invalid policy."
 msgstr "ਸੰਰਚਨਾ ਫਾਇਲ ਵਿੱਚ ਗਲਤ ਪਾਲਸੀ ਜਾਪਦੀ ਹੈ।"
 
 # %s is either BOOTP or DHCP
-#: src/CA.cpp:1817 src/CA.cpp:1827
+#: src/CA.cpp:1834 src/CA.cpp:1844
 msgid "The configuration is not initialized."
 msgstr "ਸੰਰਚਨਾ ਸ਼ੁਰੂ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕਦੀ ਹੈ।"
 
-#: src/CA.cpp:1835 src/DNObject.cpp:259 src/DNObject_Priv.cpp:199
+#: src/CA.cpp:1852 src/DNObject.cpp:259 src/DNObject_Priv.cpp:199
 msgid "Missing section 'distinguished_name' in the configuration file."
 msgstr "ਸੰਰਚਨਾ ਫਾਇਲ ਵਿੱਚ 'distinguished_name' ਸ਼ੈਕਸ਼ਨ ਗੁੰਮ ਹੈ।"
 
