@@ -35,7 +35,7 @@ DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 ERROR ca-mgm - Deleting the CA is not allowed. The CA must be expired or no certificate was signed with this CA
-CA.cpp: 1497 RuntimeException: Deleting the CA is not allowed. The CA must be expired or never have signed a certificate.
+CA.cpp: RuntimeException: Deleting the CA is not allowed. The CA must be expired or never have signed a certificate.
 DEBUG ca-mgm - Command: /usr/bin/openssl rsa -noout -in ./TestRepos//Test_CA/cacert.key -passin env:PASSWORD 
 DEBUG ca-mgm - Force delete
 DEBUG limal - removeDirRecursive ./TestRepos/Test_CA

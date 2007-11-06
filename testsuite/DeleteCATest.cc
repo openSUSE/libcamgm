@@ -47,7 +47,7 @@ int main()
         {
             // this is a wanted exception
             cout << "Got expected exception" << endl;
-            cerr << e << endl;
+            cerr << e.getFile() << ": " << e.type() << ": " << e.getMessage() << endl;
         }
 
         CA::deleteCA("Test_CA", "system", true, "./TestRepos/");

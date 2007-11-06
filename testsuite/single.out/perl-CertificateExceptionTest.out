@@ -10,7 +10,7 @@ DN Key emailAddress
           'subexception' => {
                               'file' => 'CA.cpp',
                               'type' => 'ValueException',
-                              'line' => 1695,
+                              'line' => 1712,
                               'message' => 'emailAddress must be defined.',
                               'code' => -116
                             },

@@ -1,2 +1,3 @@
-ERROR ca-mgm - CA password is empty.
-CA.cpp: 1275 ValueException: CA password is empty.
+CA.cpp: ValueException: CA password is empty.
+INFO  ca-mgm - openssl status:1
+OpenSSLUtils.cpp: ValueException: Invalid password.

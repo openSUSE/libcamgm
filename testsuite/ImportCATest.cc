@@ -28,7 +28,7 @@ int main()
 
         blocxx::StringArray cat;
         cat.push_back("FATAL");
-        cat.push_back("ERROR");
+        //cat.push_back("ERROR");
         cat.push_back("INFO");
         //cat.push_back("DEBUG");
 
@@ -43,7 +43,7 @@ int main()
 
         try
         {
-            CA::importCA("Test_CA3", 
+            CA::importCA("Test_CA3",
                          LocalManagement::readFile("./TestRepos/importCATest.pem"),
                          LocalManagement::readFile("./TestRepos/importCATest.key"),
                          "", "./TestRepos/");
@@ -52,14 +52,28 @@ int main()
         {
             // this is a wanted exception
             cout << "Got expected exception" << endl;
-            cerr << e << endl;
+            cerr << e.getFile() << ": " << e.type() << ": " << e.getMessage() << endl;
         }
+
+	    try
+	    {
+		    CA::importCA("Test_CA3",
+		                 LocalManagement::readFile("./TestRepos/importCATest.pem"),
+		                 LocalManagement::readFile("./TestRepos/importCATestEnc.key"),
+		                 "wrong passwd", "./TestRepos/");
+	    }
+	    catch(ValueException& e)
+	    {
+            // this is a wanted exception
+		    cout << "Got expected exception" << endl;
+		    cerr << e.getFile() << ": " << e.type() << ": " << e.getMessage() << endl;
+	    }
 
         CA::importCA("Test_CA3",
                      LocalManagement::readFile("./TestRepos/importCATest.pem"),
                      LocalManagement::readFile("./TestRepos/importCATest.key"),
                      "tralla", "./TestRepos/");
-        
+
         path::PathInfo t("./TestRepos/Test_CA3/");
         if(t.exists() && t.isDir())
         {

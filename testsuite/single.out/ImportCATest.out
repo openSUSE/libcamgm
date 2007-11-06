@@ -1,5 +1,6 @@
 START
 Got expected exception
+Got expected exception
 ./TestRepos/Test_CA3/ exists
 ./TestRepos/Test_CA3/cacert.pem exists
 ./TestRepos/Test_CA3/cacert.key exists
