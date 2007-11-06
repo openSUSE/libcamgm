@@ -44,7 +44,7 @@ namespace LIMAL_NAMESPACE
 namespace CA_MGM_NAMESPACE
 {
 	class CAImpl;
-	
+
 	/**
 	 * @brief Managing a CA repository
 	 *
@@ -58,19 +58,19 @@ namespace CA_MGM_NAMESPACE
 	public:
 
 		/**
-		 * Construct a CA object. 
+		 * Construct a CA object.
 		 *
 		 * @param caName the name of this CA.
 		 * @param caPasswd the password of this CA.
 		 * @param repos directory path to the repository root
 		 */
 		CA(const String& caName, const String& caPasswd, const String& repos=REPOSITORY);
-        
+
 		/**
 		 * Destructor of CA.
 		 */
 		~CA();
-        
+
 
 		/**
 		 * Create a new Sub CA and with the whole needed infrastructure.
@@ -88,7 +88,7 @@ namespace CA_MGM_NAMESPACE
 		            const String& keyPasswd,
 		            const RequestGenerationData& caRequestData,
 		            const CertificateIssueData& caIssueData);
-    	
+
 		/**
 		 * Create a certificate request in the specified CA
 		 * On error this method throws exceptions.
@@ -130,7 +130,7 @@ namespace CA_MGM_NAMESPACE
 		 * @param type the type of the certificate
 		 *
 		 * @return the name of the certificate
-		 */    
+		 */
 		String
 		createCertificate(const String& keyPasswd,
 		                  const RequestGenerationData& requestData,
@@ -139,7 +139,7 @@ namespace CA_MGM_NAMESPACE
 
 
 		/**
-		 * Revoke a certificate. 
+		 * Revoke a certificate.
 		 * On error this method throws exceptions.
 		 *
 		 * @note This function does not create a new CRL.
@@ -152,7 +152,7 @@ namespace CA_MGM_NAMESPACE
 		void
 		revokeCertificate(const String& certificateName,
 		                  const CRLReason& crlReason = CRLReason());
-		
+
 		/**
 		 * Create a new CRL with the specified data.
 		 * On error this method throws exceptions.
@@ -195,7 +195,7 @@ namespace CA_MGM_NAMESPACE
 		 * settings for this CA and the specific type.
 		 * On error this method throws exceptions.
 		 *
-		 * @param type the requested certificate type 
+		 * @param type the requested certificate type
 		 *
 		 * @return a CertificateIssueData object with the current defaults
 		 */
@@ -207,7 +207,7 @@ namespace CA_MGM_NAMESPACE
 		 * settings for this CA and the specific type.
 		 * On error this method throws exceptions.
 		 *
-		 * @param type the requested certificate type 
+		 * @param type the requested certificate type
 		 *
 		 * @return a RequestGenerationData object with the current defaults
 		 */
@@ -228,7 +228,7 @@ namespace CA_MGM_NAMESPACE
 		 * Set the signing defaults for this CA and the specific certType
 		 * On error this method throws exceptions.
 		 *
-		 * @param type the requested certificate type 
+		 * @param type the requested certificate type
 		 * @param defaults the new certificate defaults
 		 *
 		 */
@@ -240,7 +240,7 @@ namespace CA_MGM_NAMESPACE
 		 * Set the request defaults for this CA and the specific certType
 		 * On error this method throws exceptions.
 		 *
-		 * @param type the requested certificate type 
+		 * @param type the requested certificate type
 		 * @param defaults the new certificate defaults
 		 *
 		 */
@@ -257,13 +257,13 @@ namespace CA_MGM_NAMESPACE
 		 */
 		void
 		setCRLDefaults(const CRLGenerationData& defaults);
-           
+
 
 		/**
 		 * Get an Array of maps with all certificates of the defined CA.
 		 * On error this method throws exceptions.
 		 *
-		 * @return a list of maps with all certificates in this CA. 
+		 * @return a list of maps with all certificates in this CA.
 		 * the map keys are:
 		 * <ul>
 		 *   <li>certificate (the name of the certificate)</li>
@@ -285,7 +285,7 @@ namespace CA_MGM_NAMESPACE
 		 * Get an Array of maps with all requests of the defined CA.
 		 * On error this method throws exceptions.
 		 *
-		 * @return a list of maps with all requests in this CA. 
+		 * @return a list of maps with all requests in this CA.
 		 * the map keys are:
 		 * <ul>
 		 *   <li>request (the name of the request)</li>
@@ -345,8 +345,8 @@ namespace CA_MGM_NAMESPACE
 		CRLData
 		getCRL();
 
-       
-		/** 
+
+		/**
 		 * Return the CA certificate in PEM or DER format.
 		 * On error this method throws exceptions.
 		 *
@@ -356,11 +356,11 @@ namespace CA_MGM_NAMESPACE
 		 */
 		limal::ByteBuffer
 		exportCACert(FormatType exportType);
-        
+
 		/**
 		 * Return the CA private key in PEM format.
 		 * If a new Password is given, the key will be encrypted
-		 * using the newPassword. 
+		 * using the newPassword.
 		 * If newPassword is empty the returned key is decrypted.
 		 * On error this method throws exceptions.
 		 *
@@ -381,7 +381,7 @@ namespace CA_MGM_NAMESPACE
 		 */
 		limal::ByteBuffer
 		exportCAKeyAsDER();
-        
+
 		/**
 		 * Return the CA certificate in PKCS12 format.
 		 * If withChain is true, all issuer certificates
@@ -397,9 +397,9 @@ namespace CA_MGM_NAMESPACE
 		limal::ByteBuffer
 		exportCAasPKCS12(const String& p12Password,
 		                 bool withChain = false);
-        
-        
-		/** 
+
+
+		/**
 		 * Return the specified certificate in PEM or DER format
 		 * On error this method throws exceptions.
 		 *
@@ -413,11 +413,11 @@ namespace CA_MGM_NAMESPACE
 		limal::ByteBuffer
 		exportCertificate(const String& certificateName,
 		                  FormatType exportType);
-        
+
 		/**
 		 * Return the certificate private key in PEM format.
 		 * If a new Password is given, the key will be encrypted
-		 * using the newPassword. 
+		 * using the newPassword.
 		 * If newPassword is empty the returned key is decrypted.
 		 * On error this method throws exceptions.
 		 *
@@ -446,7 +446,7 @@ namespace CA_MGM_NAMESPACE
 		limal::ByteBuffer
 		exportCertificateKeyAsDER(const String& certificateName,
 		                          const String& keyPassword);
-        
+
 		/**
 		 * Return the certificate in PKCS12 format.
 		 * If withChain is true, all issuer certificates
@@ -466,7 +466,7 @@ namespace CA_MGM_NAMESPACE
 		                          const String& keyPassword,
 		                          const String& p12Password,
 		                          bool withChain = false);
-		
+
 		/**
 		 * Export the CRL of this CA in the requested format type.
 		 * On error this method throws exceptions.
@@ -491,34 +491,34 @@ namespace CA_MGM_NAMESPACE
 		deleteRequest(const String& requestName);
 
 		/**
-		 * Delete the specified certificate together with the corresponding 
-		 * request and private key if <b>requestToo</b> is set to true. 
+		 * Delete the specified certificate together with the corresponding
+		 * request and private key if <b>requestToo</b> is set to true.
 		 * This function works only for revoked or expired certificates.
 		 * On error this method throws exceptions.
 		 *
 		 * @param certificateName the certificate to delete
-		 * @param requestToo if set to true also request and key file 
+		 * @param requestToo if set to true also request and key file
 		 * will be deleted if they exists
 		 *
 		 */
 		void
-		deleteCertificate(const String& certificateName, 
+		deleteCertificate(const String& certificateName,
 		                  bool requestToo = true);
 
 
 		/**
-		 * Update the internal openssl database. 
+		 * Update the internal openssl database.
 		 * On error this method throws exceptions.
 		 *
 		 */
 		void
 		updateDB();
-        
+
 		/**
 		 * Verify a certificate.
 		 * On error this method throws exceptions.
 		 *
-		 * @param certificateName the name of the certificate 
+		 * @param certificateName the name of the certificate
 		 * @param crlCheck verify against the CRLs
 		 * @param purpose check for a specific certificate purpose
 		 * valid purpose string are:
@@ -572,17 +572,17 @@ namespace CA_MGM_NAMESPACE
 		             const RequestGenerationData& caRequestData,
 		             const CertificateIssueData& caIssueData,
 		             const String& repos=REPOSITORY);
-        
+
 
 		/**
-		 * Import a CA certificate and private key and creates a 
+		 * Import a CA certificate and private key and creates a
 		 * infrastructure.
 		 * On error this function throws exceptions.
 		 *
 		 * @param caName the name of the CA
 		 * @param caCertificate the CA certificate data in PEM format
 		 * @param caKey the private key in PEM format
-		 * @param caPasswd a password for the private key, if caKey is unencrypted
+		 * @param caPasswd password of the private key or a new password if the key is unencrypted
 		 * @param repos the path to the repository root directory
 		 *
 		 */
@@ -603,7 +603,7 @@ namespace CA_MGM_NAMESPACE
 		 */
 		static blocxx::Array<blocxx::String>
 		getCAList(const String& repos=REPOSITORY);
-        
+
 		/**
 		 * Return a table of the available CAs and its issuer.
 		 * If the CA is self-signed the issuer field is empty.
@@ -619,7 +619,7 @@ namespace CA_MGM_NAMESPACE
 		 *
 		 * @param repos the path to the repository root directory
 		 *
-		 * @return a list of lists of the available CAs 
+		 * @return a list of lists of the available CAs
 		 */
 		static blocxx::List<blocxx::Array<blocxx::String> >
 		getCATree(const String& repos=REPOSITORY);
@@ -653,8 +653,8 @@ namespace CA_MGM_NAMESPACE
 		 * Delete a Certificate Authority infrastructure
 		 *
 		 * Normaly you can only delete a CA if the CA certificate is expired or
-		 * you have never signed a certificate with this CA. In all other cases 
-		 * you have to set the force parameter to "true" if you realy want to delete 
+		 * you have never signed a certificate with this CA. In all other cases
+		 * you have to set the force parameter to "true" if you realy want to delete
 		 * the CA and you know what you do.
 		 * On error this function throws exceptions.
 		 *
@@ -669,7 +669,7 @@ namespace CA_MGM_NAMESPACE
 		         const String& caPasswd,
 		         bool  force = false,
 		         const String& repos = REPOSITORY);
-		
+
 	private:
 		blocxx::COWIntrusiveReference<CAImpl> m_impl;
 
@@ -681,7 +681,7 @@ namespace CA_MGM_NAMESPACE
 		operator=(const CA&);
 
 		/**
-		 * Check if the given dn matches the policy defined in the 
+		 * Check if the given dn matches the policy defined in the
 		 * configuration file
 		 * On error this method throws exceptions.
 		 *
@@ -716,7 +716,7 @@ namespace CA_MGM_NAMESPACE
 		void
 		removeDefaultsFromConfig();
 	};
-    
+
 }       // End of CA_MGM_NAMESPACE
 }       // End of LIMAL_NAMESPACE
 

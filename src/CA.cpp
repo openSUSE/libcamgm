@@ -1266,13 +1266,19 @@ CA::importCA(const String& caName,
 		             __("Invalid key data."));
 	}
 
-	PerlRegEx keycrypt("ENCRYPTED");
-	if(!keycrypt.match( String(caKey.data(), caKey.size()) ) &&
-	   caPasswd.empty())
+	if(caPasswd.empty())
 	{
 		LOGIT_ERROR("CA password is empty.");
 		BLOCXX_THROW(limal::ValueException,
 		             __("CA password is empty."));
+	}
+
+	PerlRegEx keycrypt("ENCRYPTED");
+	if(keycrypt.match( String(caKey.data(), caKey.size()) ))
+	{
+		// Try to decrypt the key.
+		// In case of invalid password rsaConvert throws an exception.
+		ByteBuffer buf = OpenSSLUtils::rsaConvert(caKey, E_PEM, E_PEM, caPasswd, "");
 	}
 
 	try
@@ -1315,6 +1321,24 @@ CA::importCA(const String& caName,
 		                           caDir.toString() + "/cacert.key");
 	}
 
+	try
+	{
+	// write DN defaults
+		CA tmpCA = CA(caName, caPasswd, repos);
+		tmpCA.initConfigFile();
+		DNObject_Priv dnp( cad.getSubjectDN() );
+		dnp.setDefaults2Config(tmpCA);
+		tmpCA.commitConfig2Template();
+	}
+	catch(Exception &e)
+	{
+		path::removeDirRecursive(repos + "/" + caName);
+
+		LOGIT_ERROR ("Error during write defaults." );
+		BLOCXX_THROW_SUBEX(limal::RuntimeException,
+		                   __("Error during write defaults."), e);
+	}
+
 	int r = path::copyFile(repos + "/" + caName + "/" + "cacert.pem",
 	                       repos + "/" + ".cas/" + caName + ".pem");
 
@@ -1324,13 +1348,6 @@ CA::importCA(const String& caName,
 	}
 
 	rehashCAs(repos + "/.cas/");
-
-	// write DN defaults
-	CA tmpCA = CA(caName, caPasswd, repos);
-	tmpCA.initConfigFile();
-	DNObject_Priv dnp( cad.getSubjectDN() );
-	dnp.setDefaults2Config(tmpCA);
-	tmpCA.commitConfig2Template();
 }
 
 
