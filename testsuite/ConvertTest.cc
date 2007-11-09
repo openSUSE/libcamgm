@@ -209,7 +209,7 @@ int main()
 	catch(Exception& e)
 	{
 		cout << "Got expected Exception." << endl;
-		cerr << "Exception:" << endl << e.getFile() << ": " << e.type() << ": ";
+		cerr << "Exception:" << endl << e.getFile() << ": " << e.type() << ": " << e.getErrorCode() << ": ";
 		blocxx::String msg = blocxx::String(e.getMessage());
 		
 		cerr <<	msg.tokenize("\n\r")[0] << endl << "END" << endl;
@@ -227,7 +227,7 @@ int main()
 	try
 	{
 		p12 = LocalManagement::createPKCS12(crt, key, "wrong password", "tralla",
-											ca, "./TestRepos3/.cas/", false);
+		                                    ca, "./TestRepos3/.cas/", false);
         	
 		if(p12.size() > 0)
 		{
@@ -237,11 +237,14 @@ int main()
 	catch(Exception &e)
 	{
 		cout << "Got expected Exception." << endl;
-		cerr << "Exception:" << endl << e << endl << "END" << endl;
+		cerr << "Exception:" << endl << e.getFile() << ": " << e.type() << ": " << e.getErrorCode() << ": ";
+		blocxx::String msg = blocxx::String(e.getMessage());
+
+		cerr << msg.tokenize("\n\r")[0] << endl << "END" << endl;
 	}
 	
 	p12 = LocalManagement::createPKCS12(crt, key, "system", "tralla",
-										ca, "./TestRepos3/.cas/", false);
+	                                    ca, "./TestRepos3/.cas/", false);
 	
 	try
 	{
@@ -267,7 +270,10 @@ int main()
 	catch(Exception &e)
 	{
 		cout << "Got expected Exception." << endl;
-		cerr << "Exception:" << endl << e << endl << "END" << endl;
+		cerr << "Exception:" << endl << e.getFile() << ": " << e.type() << ": " << e.getErrorCode() << ": ";
+		blocxx::String msg = blocxx::String(e.getMessage());
+
+		cerr << msg.tokenize("\n\r")[0] << endl << "END" << endl;
 	}
 		
 	cout << "DONE" << endl;

@@ -1,4 +1,12 @@
 -------------------------------------------------------------------
+Fri Nov  9 14:37:59 CET 2007 - mc@suse.de
+
+- version 1.4.3
+- build with new libblocxx-devel
+- change SONAME because of new blocxx6
+- improve Convert Test
+
+-------------------------------------------------------------------
 Tue Nov  6 14:47:03 CET 2007 - mc@suse.de
 
 - version 1.4.2

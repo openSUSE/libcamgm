@@ -14,14 +14,17 @@ BuildRequires: openssl-devel
 BuildRequires: openssl-perl
 Requires: openssl-perl
 %endif
+%if 0%{?fedora_version} >= 7
+BuildRequires: perl-ExtUtils-Embed
+%endif
 
 Summary:	LiMaL--CA Management Library
 
 %description
 The LiMaL CA Management Library provides methods for managing a certificate authority.
 
-@HEADER-DEVEL@
-Requires:       limal-devel openssl-devel
+@HEADER-DEVEL-1@
+Requires:       openssl-devel
 Summary:	LiMaL - CA Management Library Development Files
 %if 0%{?suse_version} >= 1030
 Requires: libopenssl-devel

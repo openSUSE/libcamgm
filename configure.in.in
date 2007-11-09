@@ -17,7 +17,7 @@ minor=${minor%.*}
 patch=${VERSION##*.}
 
 # first binary compatible minor number
-old=0
+old=4
 # current interface number (incl. minor)
 cur=$((${major} * 100 + ${minor}))
 # binary compatible interface range dif

@@ -1,12 +1,12 @@
 INFO  ca-mgm - openssl status:1
 Exception:
-OpenSSLUtils.cpp: ValueException: Invalid password.
+OpenSSLUtils.cpp: ValueException: -200: Invalid password.
 END
 INFO  ca-mgm - openssl status:1
 Exception:
-OpenSSLUtils.cpp: 1677 ValueException: Invalid password.
+OpenSSLUtils.cpp: ValueException: -200: Invalid password.
 END
 INFO  ca-mgm - openssl status:1
 Exception:
-OpenSSLUtils.cpp: 1817 ValueException: Invalid password.
+OpenSSLUtils.cpp: ValueException: -200: Invalid password.
 END
