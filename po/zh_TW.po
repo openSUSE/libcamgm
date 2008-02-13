@@ -552,8 +552,9 @@ msgstr ""
 #: src/OpenSSLUtils.cpp:1311 src/OpenSSLUtils.cpp:1415
 #: src/OpenSSLUtils.cpp:1518 src/OpenSSLUtils.cpp:1682
 #: src/OpenSSLUtils.cpp:1822
+#, fuzzy
 msgid "openssl command failed: %1"
-msgstr ""
+msgstr "下載失敗："
 
 #: src/OpenSSLUtils.cpp:176 src/OpenSSLUtils.cpp:278 src/OpenSSLUtils.cpp:381
 #: src/OpenSSLUtils.cpp:499 src/OpenSSLUtils.cpp:638 src/OpenSSLUtils.cpp:734
@@ -588,7 +589,7 @@ msgstr "金鑰檔案不存在。"
 #: src/OpenSSLUtils.cpp:1817
 #, fuzzy
 msgid "Invalid password."
-msgstr "無效的 CA 密碼。"
+msgstr "無效的密碼"
 
 #: src/OpenSSLUtils.cpp:1595
 msgid "The password for encrypting the output is required."

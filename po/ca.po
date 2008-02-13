@@ -560,8 +560,9 @@ msgstr ""
 #: src/OpenSSLUtils.cpp:1311 src/OpenSSLUtils.cpp:1415
 #: src/OpenSSLUtils.cpp:1518 src/OpenSSLUtils.cpp:1682
 #: src/OpenSSLUtils.cpp:1822
+#, fuzzy
 msgid "openssl command failed: %1"
-msgstr ""
+msgstr "La baixada ha fallat:"
 
 #: src/OpenSSLUtils.cpp:176 src/OpenSSLUtils.cpp:278 src/OpenSSLUtils.cpp:381
 #: src/OpenSSLUtils.cpp:499 src/OpenSSLUtils.cpp:638 src/OpenSSLUtils.cpp:734
@@ -597,7 +598,7 @@ msgstr "El fitxer de claus no existeix."
 #: src/OpenSSLUtils.cpp:1817
 #, fuzzy
 msgid "Invalid password."
-msgstr "La contrasenya de la CA no és vàlida."
+msgstr "Contrasenya no vàlida"
 
 #: src/OpenSSLUtils.cpp:1595
 msgid "The password for encrypting the output is required."

@@ -1,4 +1,18 @@
 -------------------------------------------------------------------
+Wed Feb 13 14:33:02 CET 2008 - mc@suse.de
+
+- version 1.4.5
+- fix for testsuite 
+- gcc fixes
+- use %lang
+- update translations 
+
+-------------------------------------------------------------------
+Mon Jan 14 16:41:07 CET 2008 - coolo@suse.de
+
+- apply limal work around for perl warnings causing testsuite to fail
+
+-------------------------------------------------------------------
 Wed Dec 19 14:11:50 CET 2007 - mc@suse.de
 
 - version 1.4.4

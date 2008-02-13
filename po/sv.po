@@ -562,8 +562,9 @@ msgstr ""
 #: src/OpenSSLUtils.cpp:1311 src/OpenSSLUtils.cpp:1415
 #: src/OpenSSLUtils.cpp:1518 src/OpenSSLUtils.cpp:1682
 #: src/OpenSSLUtils.cpp:1822
+#, fuzzy
 msgid "openssl command failed: %1"
-msgstr ""
+msgstr "Hämtningen misslyckades:"
 
 #: src/OpenSSLUtils.cpp:176 src/OpenSSLUtils.cpp:278 src/OpenSSLUtils.cpp:381
 #: src/OpenSSLUtils.cpp:499 src/OpenSSLUtils.cpp:638 src/OpenSSLUtils.cpp:734
@@ -598,7 +599,7 @@ msgstr "Nyckelfilen finns inte."
 #: src/OpenSSLUtils.cpp:1817
 #, fuzzy
 msgid "Invalid password."
-msgstr "Ogiltigt CA-lösenord."
+msgstr "Ogiltigt lösenord"
 
 #: src/OpenSSLUtils.cpp:1595
 msgid "The password for encrypting the output is required."

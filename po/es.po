@@ -1,17 +1,24 @@
+# translation of limal-ca-mgm.es.po to Spanish
+# translation of limal-ca-mgm.es.po to
 # Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
 # This file is distributed under the same license as the package.
 #
+# César Sánchez Alonso <csalinux@gmail.com>, 2007.
+# Miguel Angel Alvarez <maacruz@gmail.com>, 2007.
+# Carlos E. Robinson <robin.listas@telefonica.net>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: limal-ca-mgm\n"
+"Project-Id-Version: limal-ca-mgm.es\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2007-11-06 14:54+0100\n"
-"PO-Revision-Date: 2006-11-20 10:07\n"
-"Last-Translator: Novell Language <language@novell.com>\n"
-"Language-Team: Novell Language <language@novell.com>\n"
+"PO-Revision-Date: 2008-01-24 14:21+0100\n"
+"Last-Translator: Carlos E. Robinson <robin.listas@telefonica.net>\n"
+"Language-Team: Spanish <opensuse-translation-es@opensuse.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:110
 #: src/AuthorityInfoAccessExtension.cpp:139
@@ -57,7 +64,7 @@ msgstr "Tipo erróneo: %1."
 
 #: src/AuthorityInfoAccessExtension.cpp:310
 msgid "Invalid AuthorityInformation in the information list."
-msgstr "AuthorityInformation incorrecto en la lista de información."
+msgstr "AuthorityInformation no válido en la lista de información."
 
 #: src/AuthorityInfoAccessExtension.cpp:323
 msgid "AuthorityInfoAccessExt is not present."
@@ -124,7 +131,7 @@ msgstr "Objeto NsCertTypeExt no válido."
 
 #: src/CA.cpp:101
 msgid "Template not initialized."
-msgstr "La plantilla no se ha iniciado."
+msgstr "La plantilla no se ha inicializado."
 
 #: src/CA.cpp:159 src/CA.cpp:1473
 msgid "Empty CA name."
@@ -322,12 +329,11 @@ msgstr "En el archivo de configuración parece que hay una directiva no válida.
 
 #: src/CA.cpp:1834 src/CA.cpp:1844
 msgid "The configuration is not initialized."
-msgstr "La configuración no se ha iniciado."
+msgstr "La configuración no se ha inicializado."
 
 #: src/CA.cpp:1852 src/DNObject.cpp:259 src/DNObject_Priv.cpp:199
 msgid "Missing section 'distinguished_name' in the configuration file."
-msgstr ""
-"En el archivo de configuración falta la sección \"distinguished_name\"."
+msgstr "En el archivo de configuración falta la sección 'distinguished_name'."
 
 #: src/CertificateData_Priv.cpp:94 src/CRLData_Priv.cpp:124
 #: src/CRLData_Priv.cpp:161
@@ -541,6 +547,7 @@ msgstr "El directorio no existe: %1."
 msgid "Invalid command %1."
 msgstr "Comando %1 no válido."
 
+# 27559 AttribValues/label
 #: src/OpenSSLUtils.cpp:132 src/OpenSSLUtils.cpp:240 src/OpenSSLUtils.cpp:338
 #: src/OpenSSLUtils.cpp:462 src/OpenSSLUtils.cpp:600 src/OpenSSLUtils.cpp:700
 #: src/OpenSSLUtils.cpp:782 src/OpenSSLUtils.cpp:871 src/OpenSSLUtils.cpp:952
@@ -548,8 +555,9 @@ msgstr "Comando %1 no válido."
 #: src/OpenSSLUtils.cpp:1271 src/OpenSSLUtils.cpp:1390
 #: src/OpenSSLUtils.cpp:1493 src/OpenSSLUtils.cpp:1645
 #: src/OpenSSLUtils.cpp:1782
+#, fuzzy
 msgid "Executing openssl command failed."
-msgstr ""
+msgstr "Ejecución de algunos comandos como root"
 
 #: src/OpenSSLUtils.cpp:143 src/OpenSSLUtils.cpp:251 src/OpenSSLUtils.cpp:349
 #: src/OpenSSLUtils.cpp:473 src/OpenSSLUtils.cpp:611 src/OpenSSLUtils.cpp:711
@@ -557,8 +565,9 @@ msgstr ""
 #: src/OpenSSLUtils.cpp:1311 src/OpenSSLUtils.cpp:1415
 #: src/OpenSSLUtils.cpp:1518 src/OpenSSLUtils.cpp:1682
 #: src/OpenSSLUtils.cpp:1822
+#, fuzzy
 msgid "openssl command failed: %1"
-msgstr ""
+msgstr "Error en la descarga: "
 
 #: src/OpenSSLUtils.cpp:176 src/OpenSSLUtils.cpp:278 src/OpenSSLUtils.cpp:381
 #: src/OpenSSLUtils.cpp:499 src/OpenSSLUtils.cpp:638 src/OpenSSLUtils.cpp:734
@@ -594,7 +603,7 @@ msgstr "El archivo de clave no existe."
 #: src/OpenSSLUtils.cpp:1817
 #, fuzzy
 msgid "Invalid password."
-msgstr "Contraseña de CA no válida."
+msgstr "Contraseña no válida."
 
 #: src/OpenSSLUtils.cpp:1595
 msgid "The password for encrypting the output is required."
@@ -631,7 +640,7 @@ msgstr "caName incorrecto: %1."
 
 #: src/OpenSSLUtils.cpp:2377
 msgid "'%1' does not exist."
-msgstr "%1 no existe."
+msgstr "'%1' no existe."
 
 #: src/OpenSSLUtils.cpp:2387
 msgid "%1 still exists."
@@ -661,11 +670,11 @@ msgstr "Error al analizar la petición."
 
 #: src/RequestGenerationData.cpp:240
 msgid "Invalid RequestGenerationData object."
-msgstr "Objeto RequestGenerationData incorrecto."
+msgstr "Objeto RequestGenerationData no válido."
 
 #: src/StringExtensions.cpp:109 src/StringExtensions.cpp:167
 msgid "Invalid value for NsBaseUrlExt."
-msgstr "Valor de NsBaseUrlExt incorrecto."
+msgstr "Valor de NsBaseUrlExt no válido."
 
 #: src/StringExtensions.cpp:179
 msgid "NsBaseUrlExt is not present."
@@ -673,11 +682,11 @@ msgstr "NsBaseUrlExt no está presente."
 
 #: src/StringExtensions.cpp:191
 msgid "Invalid NsBaseUrlExt object."
-msgstr "Objeto NsBaseUrlExt incorrecto."
+msgstr "Objeto NsBaseUrlExt no válido."
 
 #: src/StringExtensions.cpp:274 src/StringExtensions.cpp:327
 msgid "Invalid value for NsRevocationUrlExt."
-msgstr "Valor de NsRevocationUrlExt incorrecto."
+msgstr "Valor de NsRevocationUrlExt no válido."
 
 #: src/StringExtensions.cpp:338
 msgid "NsRevocationUrlExt is not present."
@@ -685,11 +694,11 @@ msgstr "NsRevocationUrlExt no está presente."
 
 #: src/StringExtensions.cpp:349
 msgid "Invalid NsRevocationUrlExt object."
-msgstr "Objeto NsRevocationUrlExt incorrecto."
+msgstr "Objeto NsRevocationUrlExt no válido."
 
 #: src/StringExtensions.cpp:428 src/StringExtensions.cpp:481
 msgid "Invalid value for NsCaRevocationUrlExt."
-msgstr "Valor de NsCaRevocationUrlExt incorrecto."
+msgstr "Valor de NsCaRevocationUrlExt no válido."
 
 #: src/StringExtensions.cpp:492
 msgid "NsCaRevocationUrlExt is not present."
@@ -697,11 +706,11 @@ msgstr "NsCaRevocationUrlExt no está presente."
 
 #: src/StringExtensions.cpp:503
 msgid "Invalid NsCaRevocationUrlExt object."
-msgstr "Objeto NsCaRevocationUrlExt incorrecto."
+msgstr "Objeto NsCaRevocationUrlExt no válido."
 
 #: src/StringExtensions.cpp:581 src/StringExtensions.cpp:634
 msgid "Invalid value for NsRenewalUrlExt."
-msgstr "Valor de NsRenewalUrlExt incorrecto."
+msgstr "Valor de NsRenewalUrlExt no válido."
 
 #: src/StringExtensions.cpp:645
 msgid "NsRenewalUrlExt is not present."
@@ -709,11 +718,11 @@ msgstr "NsRenewalUrlExt no está presente."
 
 #: src/StringExtensions.cpp:656
 msgid "Invalid NsRenewalUrlExt object."
-msgstr "Objeto NsRenewalUrlExt incorrecto."
+msgstr "Objeto NsRenewalUrlExt no válido."
 
 #: src/StringExtensions.cpp:733 src/StringExtensions.cpp:786
 msgid "Invalid value for NsCaPolicyUrlExt."
-msgstr "Valor de NsCaPolicyUrlExt incorrecto."
+msgstr "Valor de NsCaPolicyUrlExt no válido."
 
 #: src/StringExtensions.cpp:797
 msgid "NsCaPolicyUrlExt is not present."
@@ -721,11 +730,11 @@ msgstr "NsCaPolicyUrlExt no está presente."
 
 #: src/StringExtensions.cpp:808
 msgid "Invalid NsCaPolicyUrlExt object."
-msgstr "Objeto NsCaPolicyUrlExt incorrecto."
+msgstr "Objeto NsCaPolicyUrlExt no válido."
 
 #: src/StringExtensions.cpp:894
 msgid "Invalid type: %1."
-msgstr "Tipo incorrecto: %1."
+msgstr "Tipo no válido: %1."
 
 #: src/StringExtensions.cpp:940
 msgid "NsSslServerNameExt is not present."
@@ -733,7 +742,7 @@ msgstr "NsSslServerNameExt no está presente."
 
 #: src/StringExtensions.cpp:951
 msgid "Invalid NsSslServerNameExt object."
-msgstr "Objeto NsSslServerNameExt incorrecto."
+msgstr "Objeto NsSslServerNameExt no válido."
 
 #: src/StringExtensions.cpp:1066
 msgid "NsCommentExt is not present."
@@ -741,7 +750,7 @@ msgstr "NsCommentExt no está presente."
 
 #: src/StringExtensions.cpp:1077
 msgid "Invalid NsCommentExt object."
-msgstr "Objeto NsCommentExt incorrecto."
+msgstr "Objeto NsCommentExt no válido."
 
 #: src/SubjectAlternativeNameExtension.cpp:183
 #: src/SubjectAlternativeNameExtension.cpp:194
@@ -750,12 +759,12 @@ msgstr "SubjectAlternativeNameExt no está presente."
 
 #: src/SubjectAlternativeNameExtension.cpp:207
 msgid "Invalid SubjectAlternativeNameExt object."
-msgstr "Objeto SubjectAlternativeNameExt incorrecto."
+msgstr "Objeto SubjectAlternativeNameExt no válido."
 
 #: src/SubjectKeyIdentifierExtension.cpp:129
 #: src/SubjectKeyIdentifierExtension.cpp:163
 msgid "Invalid KeyID."
-msgstr "KeyID incorrecto."
+msgstr "KeyID no válido."
 
 #: src/SubjectKeyIdentifierExtension.cpp:176
 #: src/SubjectKeyIdentifierExtension.cpp:187
@@ -764,7 +773,7 @@ msgstr "SubjectKeyIdentifierExt no está presente."
 
 #: src/SubjectKeyIdentifierExtension.cpp:200
 msgid "Invalid SubjectKeyIdentifierExt object."
-msgstr "Objeto SubjectKeyIdentifierExt incorrecto."
+msgstr "Objeto SubjectKeyIdentifierExt no válido."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:395
 #: src/X509v3CertificateExtensions_Priv.cpp:452
@@ -814,135 +823,129 @@ msgstr "No es posible analizar el certificado (Crít.: %1)."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:943
 msgid "Invalid location in authorityInfoAccess."
-msgstr "Ubicación incorrecta en authorityInfoAccess."
+msgstr "Ubicación no válida en authorityInfoAccess."
 
 #: src/X509v3CertificateIssueExtensions.cpp:174
 msgid "Invalid value for X509v3CertificateIssueExts::setNsBaseUrl."
-msgstr "Valor de X509v3CertificateIssueExts::setNsBaseUrl incorrecto."
+msgstr "Valor de X509v3CertificateIssueExts::setNsBaseUrl no válido."
 
 #: src/X509v3CertificateIssueExtensions.cpp:197
 msgid "Invalid value for X509v3CertificateIssueExts::setNsRevocationUrl."
-msgstr "Valor de X509v3CertificateIssueExts::setNsRevocationUrl incorrecto."
+msgstr "Valor de X509v3CertificateIssueExts::setNsRevocationUrl no válido."
 
 #: src/X509v3CertificateIssueExtensions.cpp:220
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCaRevocationUrl."
-msgstr "Valor de X509v3CertificateIssueExts::setNsCaRevocationUrl incorrecto."
+msgstr "Valor de X509v3CertificateIssueExts::setNsCaRevocationUrl no válido."
 
 #: src/X509v3CertificateIssueExtensions.cpp:243
 msgid "Invalid value for X509v3CertificateIssueExts::setNsRenewalUrl."
-msgstr "Valor de X509v3CertificateIssueExts::setNsRenewalUrl incorrecto."
+msgstr "Valor de X509v3CertificateIssueExts::setNsRenewalUrl no válido."
 
 #: src/X509v3CertificateIssueExtensions.cpp:266
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCaPolicyUrl."
-msgstr "Valor de X509v3CertificateIssueExts::setNsCaPolicyUrl incorrecto."
+msgstr "Valor de X509v3CertificateIssueExts::setNsCaPolicyUrl no válido."
 
 #: src/X509v3CertificateIssueExtensions.cpp:289
 msgid "Invalid value for X509v3CertificateIssueExts::setNsSslServerName."
-msgstr "Valor de X509v3CertificateIssueExts::setNsSslServerName incorrecto."
+msgstr "Valor de X509v3CertificateIssueExts::setNsSslServerName no válido."
 
 #: src/X509v3CertificateIssueExtensions.cpp:312
 msgid "Invalid value for X509v3CertificateIssueExts::setNsComment."
-msgstr "Valor de X509v3CertificateIssueExts::setNsComment incorrecto."
+msgstr "Valor de X509v3CertificateIssueExts::setNsComment no válido."
 
 #: src/X509v3CertificateIssueExtensions.cpp:335
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCertType."
-msgstr "Valor de X509v3CertificateIssueExts::setNsCertType incorrecto."
+msgstr "Valor de X509v3CertificateIssueExts::setNsCertType no válido."
 
 #: src/X509v3CertificateIssueExtensions.cpp:358
 msgid "Invalid value for X509v3CertificateIssueExts::setKeyUsage."
-msgstr "Valor de X509v3CertificateIssueExts::setKeyUsage incorrecto."
+msgstr "Valor de X509v3CertificateIssueExts::setKeyUsage no válido."
 
 #: src/X509v3CertificateIssueExtensions.cpp:381
 msgid "Invalid value for X509v3CertificateIssueExts::setBasicConstraints."
-msgstr "Valor de X509v3CertificateIssueExts::setBasicConstraints incorrecto."
+msgstr "Valor de X509v3CertificateIssueExts::setBasicConstraints no válido."
 
 #: src/X509v3CertificateIssueExtensions.cpp:404
 msgid "Invalid value for X509v3CertificateIssueExts::setExtendedKeyUsage."
-msgstr "Valor de X509v3CertificateIssueExts::setExtendedKeyUsage incorrecto."
+msgstr "Valor de X509v3CertificateIssueExts::setExtendedKeyUsage no válido."
 
 #: src/X509v3CertificateIssueExtensions.cpp:427
 msgid "Invalid value for X509v3CertificateIssueExts::setSubjectKeyIdentifier."
 msgstr ""
-"Valor de X509v3CertificateIssueExts::setSubjectKeyIdentifier incorrecto."
+"Valor de X509v3CertificateIssueExts::setSubjectKeyIdentifier no válido."
 
 #: src/X509v3CertificateIssueExtensions.cpp:450
 msgid ""
 "Invalid value for X509v3CertificateIssueExts::setAuthorityKeyIdentifier."
 msgstr ""
-"Valor de X509v3CertificateIssueExts::setAuthorityKeyIdentifier incorrecto."
+"Valor de X509v3CertificateIssueExts::setAuthorityKeyIdentifier no válido."
 
 #: src/X509v3CertificateIssueExtensions.cpp:473
 msgid ""
 "Invalid value for X509v3CertificateIssueExts::setSubjectAlternativeName."
 msgstr ""
-"Valor de X509v3CertificateIssueExts::setSubjectAlternativeName incorrecto."
+"Valor de X509v3CertificateIssueExts::setSubjectAlternativeName no válido."
 
 #: src/X509v3CertificateIssueExtensions.cpp:496
 msgid "Invalid value for X509v3CertificateIssueExts::setIssuerAlternativeName."
 msgstr ""
-"Valor de X509v3CertificateIssueExts::setIssuerAlternativeName incorrecto."
+"Valor de X509v3CertificateIssueExts::setIssuerAlternativeName no válido."
 
 #: src/X509v3CertificateIssueExtensions.cpp:519
 msgid "Invalid value for X509v3CertificateIssueExts::setAuthorityInfoAccess."
-msgstr ""
-"Valor de X509v3CertificateIssueExts::setAuthorityInfoAccess incorrecto."
+msgstr "Valor de X509v3CertificateIssueExts::setAuthorityInfoAccess no válido."
 
 #: src/X509v3CertificateIssueExtensions.cpp:542
 msgid "Invalid value for X509v3CertificateIssueExts::setCRLDistributionPoints."
 msgstr ""
-"Valor de X509v3CertificateIssueExts::setCRLDistributionPoints incorrecto."
+"Valor de X509v3CertificateIssueExts::setCRLDistributionPoints no válido."
 
 #: src/X509v3CertificateIssueExtensions.cpp:565
 msgid "Invalid value for X509v3CertificateIssueExts::setCertificatePolicies."
-msgstr ""
-"Valor de X509v3CertificateIssueExts::setCertificatePolicies incorrecto."
+msgstr "Valor de X509v3CertificateIssueExts::setCertificatePolicies no válido."
 
 #: src/X509v3CertificateIssueExtensions.cpp:589
 #: src/X509v3CRLGenerationExtensions.cpp:149
 #: src/X509v3RequestExtensions.cpp:255
 msgid "Invalid X509v3RequestExts object."
-msgstr "Objeto X509v3RequestExts incorrecto."
+msgstr "Objeto X509v3RequestExts no válido."
 
 #: src/X509v3CRLGenerationExtensions.cpp:102
 msgid "Invalid value for X509v3CRLGenerationExts::setAuthorityKeyIdentifier."
-msgstr ""
-"Valor de X509v3CRLGenerationExts::setAuthorityKeyIdentifier incorrecto."
+msgstr "Valor de X509v3CRLGenerationExts::setAuthorityKeyIdentifier no válido."
 
 #: src/X509v3CRLGenerationExtensions.cpp:125
 msgid "Invalid value for X509v3CRLGenerationExts::setIssuerAlternativeName."
-msgstr "Valor de X509v3CRLGenerationExts::setIssuerAlternativeName incorrecto."
+msgstr "Valor de X509v3CRLGenerationExts::setIssuerAlternativeName no válido."
 
 #: src/X509v3RequestExtensions.cpp:70
 msgid "Invalid value for X509v3RequestExts::setNsSslServerName."
-msgstr "Valor de X509v3RequestExts::setNsSslServerName incorrecto."
+msgstr "Valor de X509v3RequestExts::setNsSslServerName no válido."
 
 #: src/X509v3RequestExtensions.cpp:93
 msgid "Invalid value for X509v3RequestExts::setNsComment."
-msgstr "Valor de X509v3RequestExts::setNsComment incorrecto."
+msgstr "Valor de X509v3RequestExts::setNsComment no válido."
 
 #: src/X509v3RequestExtensions.cpp:116
 msgid "Invalid value for X509v3RequestExts::setNsCertType."
-msgstr "Valor de X509v3RequestExts::setNsCertType incorrecto."
+msgstr "Valor de X509v3RequestExts::setNsCertType no válido."
 
 #: src/X509v3RequestExtensions.cpp:139
 msgid "Invalid value for X509v3RequestExts::setKeyUsage."
-msgstr "Valor de X509v3RequestExts::setKeyUsage incorrecto."
+msgstr "Valor de X509v3RequestExts::setKeyUsage no válido."
 
 #: src/X509v3RequestExtensions.cpp:162
 msgid "Invalid value for X509v3RequestExts::setBasicConstraints."
-msgstr "Valor de X509v3RequestExts::setBasicConstraints incorrecto."
+msgstr "Valor de X509v3RequestExts::setBasicConstraints no válido."
 
 #: src/X509v3RequestExtensions.cpp:185
 msgid "Invalid value for X509v3RequestExts::setExtendedKeyUsage."
-msgstr "Valor de X509v3RequestExts::setExtendedKeyUsage incorrecto."
+msgstr "Valor de X509v3RequestExts::setExtendedKeyUsage no válido."
 
 #: src/X509v3RequestExtensions.cpp:208
 msgid "Invalid value for X509v3RequestExts::setSubjectKeyIdentifier."
-msgstr "Valor de X509v3RequestExts::setSubjectKeyIdentifier incorrecto."
+msgstr "Valor de X509v3RequestExts::setSubjectKeyIdentifier no válido."
 
 #: src/X509v3RequestExtensions.cpp:231
 msgid "Invalid value for X509v3RequestExts::setSubjectAlternativeName."
-msgstr "Valor de X509v3RequestExts::setSubjectAlternativeName incorrecto."
-
-#~ msgid "Command returned '%1' : %2"
-#~ msgstr "Comando devuelto %1: %2"
+msgstr "Valor de X509v3RequestExts::setSubjectAlternativeName no válido."

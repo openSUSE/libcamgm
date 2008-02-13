@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2007-11-06 14:54+0100\n"
-"PO-Revision-Date: 2007-03-25 16:32+0300\n"
+"PO-Revision-Date: 2007-11-17 15:53+0300\n"
 "Last-Translator: Andrius Štikonas <stikonas@gmail.com>\n"
 "Language-Team: Lithuanian <i18n@suse.de>\n"
 "MIME-Version: 1.0\n"
@@ -169,9 +169,8 @@ msgid "Duplicate DN. Request %1.req already exists."
 msgstr ""
 
 #: src/CA.cpp:372
-#, fuzzy
 msgid "Request does not exist (%1)."
-msgstr "Byla '{0}' neegzistuoja."
+msgstr ""
 
 #: src/CA.cpp:378
 msgid "Invalid issue data."
@@ -454,9 +453,8 @@ msgid "Invalid type %1."
 msgstr "Klaidingas tipas %1."
 
 #: src/DNObject_Priv.cpp:159
-#, fuzzy
 msgid "Cannot parse DN line: %1."
-msgstr "Nepavyksta atidaryti bylos %1."
+msgstr ""
 
 #: src/ExtendedKeyUsageExt.cpp:122 src/ExtendedKeyUsageExt.cpp:171
 msgid "Invalid ExtendedKeyUsage option %1."
@@ -506,40 +504,39 @@ msgstr "%1 nėra aplankas."
 
 #: src/LocalManagement.cpp:367
 msgid "Invalid certificate file."
-msgstr "Klaidinga sertifikato byla."
+msgstr "Klaidingas sertifikato failas."
 
 #: src/LocalManagement.cpp:445
 msgid "File not found: %1."
-msgstr "Byla nerasta: %1."
+msgstr "Failas nerastas: %1."
 
 #: src/LocalManagement.cpp:454
 msgid "File too big: %1."
-msgstr "Byla per didelė: %1."
+msgstr "Failas per didelis: %1."
 
 #: src/LocalManagement.cpp:463 src/LocalManagement.cpp:518
 msgid "Cannot open file %1."
-msgstr "Nepavyksta atidaryti bylos %1."
+msgstr "Nepavyksta atidaryti failo %1."
 
 #: src/LocalManagement.cpp:483
 msgid "Cannot read from file %1."
-msgstr "Nepavyksta nuskaityti bylos %1."
+msgstr "Nepavyksta nuskaityti iš failo %1."
 
 #: src/LocalManagement.cpp:508
 msgid "File already exists: %1."
-msgstr "Byla jau egzistuoja: %1."
+msgstr "Failas jau egzistuoja: %1."
 
 #: src/LocalManagement.cpp:530
-#, fuzzy
 msgid "Cannot get lock on file %1."
-msgstr "negaliu užrakinti bylos „%1“"
+msgstr "Negaliu užrakinti failo %1."
 
 #: src/LocalManagement.cpp:544
 msgid "Cannot write to file %1."
-msgstr "Nepavyksta įrašyti į bylą %1."
+msgstr "Nepavyksta įrašyti į failą %1."
 
 #: src/OpenSSLUtils.cpp:56
 msgid "File does not exist: %1."
-msgstr "Byla neegzistuoja: %1."
+msgstr "Failas neegzistuoja: %1."
 
 #: src/OpenSSLUtils.cpp:65
 msgid "Directory does not exist: %1."
@@ -565,8 +562,9 @@ msgstr ""
 #: src/OpenSSLUtils.cpp:1311 src/OpenSSLUtils.cpp:1415
 #: src/OpenSSLUtils.cpp:1518 src/OpenSSLUtils.cpp:1682
 #: src/OpenSSLUtils.cpp:1822
+#, fuzzy
 msgid "openssl command failed: %1"
-msgstr ""
+msgstr "Atsiuntimas nutrūko: "
 
 #: src/OpenSSLUtils.cpp:176 src/OpenSSLUtils.cpp:278 src/OpenSSLUtils.cpp:381
 #: src/OpenSSLUtils.cpp:499 src/OpenSSLUtils.cpp:638 src/OpenSSLUtils.cpp:734
@@ -595,13 +593,12 @@ msgstr ""
 
 #: src/OpenSSLUtils.cpp:1018
 msgid "The key file does not exist."
-msgstr "Rakto byla neegzistuoja."
+msgstr "Rakto failas neegzistuoja."
 
 #: src/OpenSSLUtils.cpp:1306 src/OpenSSLUtils.cpp:1677
 #: src/OpenSSLUtils.cpp:1817
-#, fuzzy
 msgid "Invalid password."
-msgstr "Klaidingas CA spaltažodis."
+msgstr "Netinkamas slaptažodis."
 
 #: src/OpenSSLUtils.cpp:1595
 msgid "The password for encrypting the output is required."
@@ -660,7 +657,7 @@ msgstr "Nėra konfigūracijos"
 
 #: src/OpenSSLUtils.cpp:2520
 msgid "Cannot create the file."
-msgstr "Nepavyksta sukurti bylos."
+msgstr "Nepavyksta sukurti failo."
 
 #: src/RequestData_Priv.cpp:396
 msgid "Cannot parse the request."

@@ -128,14 +128,14 @@ extern "C" {
  * LiMaL ca-mgm lib version number function.
  * @returns library version string
  */
-const char * const limal_ca_mgm_lib_version();
+const char * limal_ca_mgm_lib_version();
 
 
 /**
  * LiMaL ca-mgm API version number function.
  * @returns library API version number
  */
-const unsigned int limal_ca_mgm_api_version();
+unsigned int limal_ca_mgm_api_version();
 
 #ifdef    __cplusplus
 }

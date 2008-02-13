@@ -545,6 +545,7 @@ msgstr "Verzeichnis ist nicht vorhanden: %1."
 msgid "Invalid command %1."
 msgstr "Ungültiger Befehl %1."
 
+# 27559 AttribValues/label
 #: src/OpenSSLUtils.cpp:132 src/OpenSSLUtils.cpp:240 src/OpenSSLUtils.cpp:338
 #: src/OpenSSLUtils.cpp:462 src/OpenSSLUtils.cpp:600 src/OpenSSLUtils.cpp:700
 #: src/OpenSSLUtils.cpp:782 src/OpenSSLUtils.cpp:871 src/OpenSSLUtils.cpp:952
@@ -552,8 +553,9 @@ msgstr "Ungültiger Befehl %1."
 #: src/OpenSSLUtils.cpp:1271 src/OpenSSLUtils.cpp:1390
 #: src/OpenSSLUtils.cpp:1493 src/OpenSSLUtils.cpp:1645
 #: src/OpenSSLUtils.cpp:1782
+#, fuzzy
 msgid "Executing openssl command failed."
-msgstr ""
+msgstr "Einige Kommandos als Benutzer root ausführen"
 
 #: src/OpenSSLUtils.cpp:143 src/OpenSSLUtils.cpp:251 src/OpenSSLUtils.cpp:349
 #: src/OpenSSLUtils.cpp:473 src/OpenSSLUtils.cpp:611 src/OpenSSLUtils.cpp:711
@@ -561,8 +563,9 @@ msgstr ""
 #: src/OpenSSLUtils.cpp:1311 src/OpenSSLUtils.cpp:1415
 #: src/OpenSSLUtils.cpp:1518 src/OpenSSLUtils.cpp:1682
 #: src/OpenSSLUtils.cpp:1822
+#, fuzzy
 msgid "openssl command failed: %1"
-msgstr ""
+msgstr "Fehler beim Herunterladen: "
 
 #: src/OpenSSLUtils.cpp:176 src/OpenSSLUtils.cpp:278 src/OpenSSLUtils.cpp:381
 #: src/OpenSSLUtils.cpp:499 src/OpenSSLUtils.cpp:638 src/OpenSSLUtils.cpp:734
@@ -598,7 +601,7 @@ msgstr "Die Schlüsseldatei ist nicht vorhanden."
 #: src/OpenSSLUtils.cpp:1817
 #, fuzzy
 msgid "Invalid password."
-msgstr "Ungültiges CA-Passwort."
+msgstr "Ungültiges Passwort"
 
 #: src/OpenSSLUtils.cpp:1595
 msgid "The password for encrypting the output is required."

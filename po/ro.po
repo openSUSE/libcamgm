@@ -1,3 +1,4 @@
+# translation of limal-ca-mgm.ro.po to
 # @TITLE@
 # Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
@@ -6,25 +7,27 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
+"Project-Id-Version: limal-ca-mgm.ro\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2007-11-06 14:54+0100\n"
-"PO-Revision-Date: 2001-07-13 15:36+0200\n"
-"Last-Translator: Novell Language <language@novell.com>\n"
-"Language-Team: Novell Language <language@novell.com>\n"
+"PO-Revision-Date: 2007-12-22 18:10+0100\n"
+"Last-Translator: \n"
+"Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.11.2\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:110
 #: src/AuthorityInfoAccessExtension.cpp:139
 msgid "Invalid location."
-msgstr "موقع غير صالح."
+msgstr "Locaţie invalidă."
 
 #: src/AuthorityInfoAccessExtension.cpp:115
 #: src/AuthorityInfoAccessExtension.cpp:144
 msgid "Invalid accessOID."
-msgstr "accessOID غير صالح."
+msgstr "accessOID invalid."
 
 #: src/AuthorityInfoAccessExtension.cpp:259
 #: src/AuthorityInfoAccessExtension.cpp:342
@@ -56,492 +59,492 @@ msgstr "accessOID غير صالح."
 #: src/SubjectKeyIdentifierExtension.cpp:85
 #: src/SubjectKeyIdentifierExtension.cpp:208
 msgid "Wrong type: %1."
-msgstr "نوع غير صحيح: %1."
+msgstr "Tip eronat: %1."
 
 #: src/AuthorityInfoAccessExtension.cpp:310
 msgid "Invalid AuthorityInformation in the information list."
-msgstr "AuthorityInformation غير صالح في قائمة المعلومات."
+msgstr "AuthorityInformation invalid în lista de informaţii."
 
 #: src/AuthorityInfoAccessExtension.cpp:323
 msgid "AuthorityInfoAccessExt is not present."
-msgstr "AuthorityInfoAccessExt غير موجود."
+msgstr "AuthorityInfoAccessExt nu există."
 
 #: src/AuthorityInfoAccessExtension.cpp:334
 msgid "Invalid AuthorityInfoAccessExt object."
-msgstr "كائن AuthorityInfoAccessExt غير صالح."
+msgstr "Obiect AuthorityInfoAccessExt invalid."
 
 #: src/AuthorityKeyIdentifierExtension.cpp:97
 #: src/AuthorityKeyIdentifierExtension.cpp:108
 #: src/AuthorityKeyIdentifierExtension.cpp:119
 msgid "AuthorityKeyIdentifierExt is not present."
-msgstr "AuthorityKeyIdentifierExt غير موجود."
+msgstr "AuthorityKeyIdentifierExt nu există."
 
 #: src/AuthorityKeyIdentifierGenerateExtension.cpp:154
 #: src/AuthorityKeyIdentifierGenerateExtension.cpp:173
 msgid "AuthorityKeyIdentifierGenerateExt is not present."
-msgstr "AuthorityKeyIdentifierGenerateExt غير موجود."
+msgstr "AuthorityKeyIdentifierGenerateExt nu există."
 
 #: src/AuthorityKeyIdentifierGenerateExtension.cpp:185
 msgid "Invalid AuthorityKeyIdentifierGenerateExt object."
-msgstr "كائن AuthorityKeyIdentifierGenerateExt غير صالح."
+msgstr "Obiect AuthorityKeyIdentifierGenerateExt invalid."
 
 #: src/BasicConstraintsExtension.cpp:155 src/BasicConstraintsExtension.cpp:167
 msgid "BasicConstraintsExt is not present."
-msgstr "BasicConstraintsExt غير موجود."
+msgstr "BasicConstraintsExt nu există."
 
 #: src/BasicConstraintsExtension.cpp:179
 msgid "Invalid BasicConstraintsExt object."
-msgstr "كائن BasicConstraintsExt غير صالح."
+msgstr "Obiect BasicConstraintsExt invalid."
 
 #: src/BitExtensions.cpp:111
 msgid "This BitExtension is not present."
-msgstr "BitExtension 衵ﾇ غير موجود."
+msgstr "Acest BitExtension nu există."
 
 #: src/BitExtensions.cpp:174 src/BitExtensions.cpp:203
 msgid "Invalid value for keyUsage."
-msgstr "قيمة غير صالحة لـkeyUsage."
+msgstr "Valoare invalidă pentru keyUsage."
 
 #: src/BitExtensions.cpp:215 src/BitExtensions.cpp:226
 msgid "KeyUsageExt is not present."
-msgstr "KeyUsageExt غير موجود."
+msgstr "KeyUsageExt nu există."
 
 #: src/BitExtensions.cpp:239
 msgid "Invalid KeyUsageExt object."
-msgstr "كائن KeyUsageExt غير صالح."
+msgstr "Obiect KeyUsageExt invalid."
 
 #: src/BitExtensions.cpp:412
 msgid "Invalid value for NsCertTypeExt."
-msgstr "قيمة غير صالحة لـNsCertTypeExt."
+msgstr "Valoare invalidă pentru NsCertTypeExt."
 
 #: src/BitExtensions.cpp:441
 msgid "Invalid value for NsCertTypeExt: %1."
-msgstr "قيمة غير صالحة لـNsCertTypeExt: %1."
+msgstr "Valoare invalidă pentru NsCertTypeExt: %1."
 
 #: src/BitExtensions.cpp:453
 msgid "NsCertTypeExt is not present."
-msgstr "NsCertTypeExt غير موجود."
+msgstr "NsCertTypeExt nu există."
 
 #: src/BitExtensions.cpp:474
 msgid "Invalid NsCertTypeExt object."
-msgstr "كائن NsCertTypeExt غير صالح."
+msgstr "Obiect NsCertTypeExt invalid."
 
 #: src/CA.cpp:101
 msgid "Template not initialized."
-msgstr "لم تتم تهيئة القالب."
+msgstr "Schema nu a fost iniţializată."
 
 #: src/CA.cpp:159 src/CA.cpp:1473
 msgid "Empty CA name."
-msgstr "اسم CA فارغ."
+msgstr "Nume CA vid."
 
 #: src/CA.cpp:167
 msgid "Template does not exist: %1."
-msgstr "القالب غير موجود: %1."
+msgstr "Schema nu există: %1."
 
 #: src/CA.cpp:179 src/CA.cpp:1494
 msgid "Invalid CA password."
-msgstr "كلمة سر CA غير صالحة."
+msgstr "Parolă CA invalidă."
 
 #: src/CA.cpp:225 src/CA.cpp:1149 src/CA.cpp:1292
 msgid "Error while creating the CA infrastructure."
-msgstr "حدث خطأ أثناء إنشاء البنية الأساسية CA."
+msgstr "Eroare la crearea infrastructurii CA."
 
 #: src/CA.cpp:245 src/CA.cpp:989
 msgid "Cannot parse the certificate name %1."
-msgstr "تعذر تحليل اسم الشهادة %1."
+msgstr "Nu pot parcurge numele de certificat %1."
 
 #: src/CA.cpp:256
 msgid "Cannot copy the private key."
-msgstr "تعذر نسخ المفتاح الخاص."
+msgstr "Nu pot copia cheia privată."
 
 #: src/CA.cpp:267
 msgid "Cannot copy the certificate."
-msgstr "تعذر نسخ الشهادة."
+msgstr "Nu pot copia certificatul."
 
 #: src/CA.cpp:299
 msgid "Invalid request data."
-msgstr "بيانات طلب غير صالحة."
+msgstr "Date cerere invalide."
 
 #: src/CA.cpp:319
 msgid "Duplicate DN. Key %1.key already exists."
-msgstr "اسم مميز مكرر. مفتاح %1.المفتاح موجود بالفعل."
+msgstr "DN duplicat. Cheia %1.key există deja."
 
 #: src/CA.cpp:327
 msgid "Duplicate DN. Request %1.req already exists."
-msgstr "اسم مميز مكرر. طلب %1.طلب موجود بالفعل."
+msgstr "DN duplicat. Cererea %1.req există deja."
 
 #: src/CA.cpp:372
 msgid "Request does not exist (%1)."
-msgstr "الطلب غير موجود (%1)."
+msgstr "Cererea nu există (%1)."
 
 #: src/CA.cpp:378
 msgid "Invalid issue data."
-msgstr "بيانات الإصدار غير صالحة."
+msgstr "Date de emitere invalide."
 
 #: src/CA.cpp:395
 msgid "The CA expires before the certificate should expire."
-msgstr "تنتهي صلاحية CA قبل أن تنتهي صلاحية الشهادة."
+msgstr "CA expiră înainte de expirarea certificatului."
 
 #: src/CA.cpp:473
 msgid "Issuing the certificate failed."
-msgstr "فشل إصدار الشهادة."
+msgstr "Emiterea certificatului a eşuat."
 
 #: src/CA.cpp:490
 msgid "File %1 not found in the repository."
-msgstr "لم يتم العثور على الملف %1 في المخزن."
+msgstr "Fişierul %1 nu a fost găsit în sursa de instalare."
 
 #: src/CA.cpp:497 src/CRLData_Priv.cpp:179
 msgid "Invalid CRL reason."
-msgstr "سبب CRL غير صالح."
+msgstr "Motiv CRL invalid."
 
 #: src/CA.cpp:520
 msgid "Invalid CRL data."
-msgstr "بيانات CRL غير صالحة."
+msgstr "Date CRL invalide."
 
 #: src/CA.cpp:568
 msgid "Duplicate DN. Request already exists."
-msgstr "اسم مميز مكرر. الطلب موجود بالفعل."
+msgstr "DN duplicat. Cererea există deja."
 
 #: src/CA.cpp:833 src/CA.cpp:860 src/CA.cpp:890 src/OpenSSLUtils.cpp:1007
 msgid "Cannot parse the certificate name."
-msgstr "تعذر تحليل اسم الشهادة."
+msgstr "Nu pot parcurge numele de certificat."
 
 #: src/CA.cpp:941
 msgid "Request %1 does not exist."
-msgstr "الطلب %1 غير موجود."
+msgstr "Cererea %1 nu există."
 
 #: src/CA.cpp:963
 msgid "Removing the request failed (%1)."
-msgstr "فشل إزالة الطلب (%1)."
+msgstr "Îndepărtarea cererii a eşuat (%1)."
 
 #: src/CA.cpp:977
 msgid "Certificate %1 does not exist."
-msgstr "الشهادة %1 غير موجودة."
+msgstr "Certificatul %1 nu există."
 
 #: src/CA.cpp:1026
 msgid "Removing the certificate failed: %1."
-msgstr "فشل إزالة الشهادة: %1."
+msgstr "Îndepărtarea certificatului a eşuat: %1."
 
 #: src/CA.cpp:1034
 msgid ""
 "Only revoked or expired certificates can be deleted. The status of the "
 "certificate is %1."
 msgstr ""
-"يمكن حذف الشهادات المبطلة أو ذات الصلاحية المنتهية فقط. تم تعيين حالة "
-"الشهادة على %1."
+"Pot fi şterse doar certificatele revocate sau expirate. Starea "
+"certificatului este %1."
 
 #: src/CA.cpp:1046
 msgid "Database not found."
-msgstr "لم يتم العثور على قاعدة البيانات."
+msgstr "Nu am găsit baza de date."
 
 #: src/CA.cpp:1072
 msgid "Certificate does not exist."
-msgstr "الشهادة غير موجودة."
+msgstr "Certificatul nu există."
 
 #: src/CA.cpp:1086
 msgid "Invalid purpose %1."
-msgstr "غرض غير صالح %1."
+msgstr "Scop invalid %1."
 
 #: src/CA.cpp:1129
 msgid "Invalid CA request data."
-msgstr "بيانات طلب CA غير صالحة."
+msgstr "Date cerere CA invalide."
 
 #: src/CA.cpp:1135
 msgid "Invalid CA issue data."
-msgstr "بيانات إصدار CA غير صالحة."
+msgstr "Date de emitere CA invalide."
 
 #: src/CA.cpp:1230
 msgid "CA name is empty."
-msgstr "اسم CA فارغ."
+msgstr "Numele CA este vid."
 
 #: src/CA.cpp:1239
 msgid "CA directory already exists."
-msgstr "دليل CA موجود بالفعل."
+msgstr "Directorul CA există deja."
 
 #: src/CA.cpp:1250
 msgid "According to basicConstraints, this is not a CA."
-msgstr "لا يعتبر هذا CA، وفقًا لـ basicConstraints."
+msgstr "Conform basicConstraints, acesta nu este un CA."
 
 #: src/CA.cpp:1257
 msgid "CA key is empty."
-msgstr "مفتاح CA فارغ."
+msgstr "Cheia CA este vidă."
 
 #: src/CA.cpp:1266
 msgid "Invalid key data."
-msgstr "بيانات مفتاح غير صالحة."
+msgstr "Date cheie invalide."
 
 #: src/CA.cpp:1273
 msgid "CA password is empty."
-msgstr "كلمة سر CA فارغة."
+msgstr "Parola CA este vidă."
 
 #: src/CA.cpp:1317
 msgid "Error during key encryption."
-msgstr "حدث خطأ أثناء تشفير المفتاح."
+msgstr "Eroare la criptarea cheii."
 
 #: src/CA.cpp:1339
 #, fuzzy
 msgid "Error during write defaults."
-msgstr "حدث خطأ أثناء تشفير المفتاح."
+msgstr "Eroare la criptarea cheii."
 
 #: src/CA.cpp:1483
 msgid "CA name does not exist (%1)."
-msgstr "اسم CA غير موجود (%1)."
+msgstr "Numele CA nu există (%1)."
 
 #: src/CA.cpp:1514
 msgid ""
 "Deleting the CA is not allowed. The CA must be expired or never have signed "
 "a certificate."
 msgstr ""
-"غير مسموح بحذف CA. يجب أن تكون CA قد انتهت صلاحيتها أو أنه لم يتم توقيع "
-"الشهادة مطلقًا."
+"Ştergerea CA nu este permisă. CA trebuie să expire sau să nu fi semnat nici "
+"un certificat."
 
 #: src/CA.cpp:1539
 msgid "Deleting the CA failed: %1."
-msgstr "فشل حذف CA: %1."
+msgstr "Ştergerea CA a eşuat: %1."
 
 #: src/CA.cpp:1590
 msgid "The configuration file is missing a value for policy."
-msgstr "ملف التكوين ينقصه قيمة السياسة."
+msgstr "Din fişierul de configurare lipseşte valoarea pentru regulă."
 
 #: src/CA.cpp:1600 src/CA.cpp:1862 src/DNObject.cpp:270
 #: src/DNObject_Priv.cpp:209
 msgid "Cannot parse section %1."
-msgstr "تعذر تحليل القسم %1."
+msgstr "Nu am putut parcurge secţiunea %1."
 
 #: src/CA.cpp:1672
 msgid "Field %1 must have a value."
-msgstr "يجب أن يحتوي الحقل %1 على قيمة."
+msgstr "Câmpul %1 trebuie să aibă o valoare."
 
 #: src/CA.cpp:1711
 msgid "%1 must be defined."
-msgstr "يجب تعريف %1."
+msgstr "%1 trebuie definit."
 
 #: src/CA.cpp:1796
 msgid "%1 must be the same in the CA certificate (%2) and the request (%3)."
-msgstr "يجب أن تتطابق %1 في شهادة CA (%2) والطلب (%3)."
+msgstr "%1 trebuie să fie identic în certificatul CA (%2) şi în cerere (%3)."
 
 #: src/CA.cpp:1808
 msgid "The configuration file seems to have an invalid policy."
-msgstr "يبدو أن ملف التكوين يحتوي على سياسة غير صالحة."
+msgstr "Fişierul de configurare conţine probabil o regulă invalidă."
 
 #: src/CA.cpp:1834 src/CA.cpp:1844
 msgid "The configuration is not initialized."
-msgstr "لم تتم تهيئة التكوين."
+msgstr "Configuraţia nu este iniţializată."
 
 #: src/CA.cpp:1852 src/DNObject.cpp:259 src/DNObject_Priv.cpp:199
 msgid "Missing section 'distinguished_name' in the configuration file."
-msgstr "القسم 'distinguished_name' في ملف التكوين مفقود."
+msgstr "Secţiunea 'distinguished_name' lipseşte din fişierul de configurare."
 
 #: src/CertificateData_Priv.cpp:94 src/CRLData_Priv.cpp:124
 #: src/CRLData_Priv.cpp:161
 msgid "Invalid serial %1."
-msgstr "تسلسل غير صالح %1."
+msgstr "Număr de serie invalid %1."
 
 #: src/CertificateData_Priv.cpp:206 src/CRLData_Priv.cpp:463
 #: src/DNObject_Priv.cpp:81 src/RequestData_Priv.cpp:369
 msgid "Cannot create a memory BIO."
-msgstr "تعذر إنشاء ذاكرة BIO."
+msgstr "Nu pot crea un BIO de memorie."
 
 #: src/CertificateData_Priv.cpp:235
 msgid "Cannot parse the certificate."
-msgstr "تعذر تحليل الشهادة."
+msgstr "Nu pot parcurge certificatul."
 
 #: src/CertificateData_Priv.cpp:248
 msgid "Error while parsing the certificate."
-msgstr "حدث خطأ أثناء تحليل الشهادة."
+msgstr "Eroare la parcurgerea certificatului."
 
 #: src/CertificateData_Priv.cpp:291 src/CertificateData_Priv.cpp:325
 #: src/CRLData_Priv.cpp:91 src/CRLData_Priv.cpp:341 src/CRLData_Priv.cpp:375
 msgid "Cannot parse date %1."
-msgstr "تعذر تحليل التاريخ %1."
+msgstr "Nu pot parcurge data %1."
 
 #: src/CertificateData_Priv.cpp:380 src/RequestData_Priv.cpp:182
 msgid "Unable to get the public key."
-msgstr "تعذر الحصول على المفتاح العام."
+msgstr "Nu pot obţine cheia publică."
 
 #: src/CertificateData_Priv.cpp:391 src/RequestData_Priv.cpp:193
 msgid "Could not get RSA key."
-msgstr "تعذر الحصول على مفتاح RSA."
+msgstr "Nu pot obţine cheia RSA."
 
 #: src/CertificateData_Priv.cpp:411 src/RequestData_Priv.cpp:213
 msgid "Unsupported public key type."
-msgstr "نوع مفتاح عام غير مدعوم."
+msgstr "Tip de cheie publică nesuportat."
 
 #: src/CertificateData_Priv.cpp:447 src/RequestData_Priv.cpp:246
 msgid "Unsupported public key algorithm."
-msgstr "خوارزمية مفتاح عام غير مدعومة."
+msgstr "Algoritm de cheie publică nesuportat."
 
 #: src/CertificateData_Priv.cpp:479 src/CRLData_Priv.cpp:424
 #: src/RequestData_Priv.cpp:276
 msgid "Unsupported signature algorithm %1."
-msgstr "خوارزمية توقيع غير مدعومة %1."
+msgstr "Algoritm de semnătură invalid %1."
 
 #: src/CertificateIssueData.cpp:211
 msgid "Invalid CertificateIssueData object."
-msgstr "كائن CertificateIssueData غير صالح."
+msgstr "Obiect CertificateIssueData invalid."
 
 #: src/CertificatePoliciesExtension.cpp:216
 msgid "The text is too long."
-msgstr "النص طويل للغاية."
+msgstr "Acest text este prea lung."
 
 #: src/CertificatePoliciesExtension.cpp:255
 msgid "Invalid UserNotice object."
-msgstr "كائن UserNotice غير صالح."
+msgstr "Obiect UserNotice invalid."
 
 #: src/CertificatePoliciesExtension.cpp:395
 #: src/CertificatePoliciesExtension.cpp:459
 msgid "Invalid value for policyIdentifier: %1."
-msgstr "قيمة غير صالحة لـpolicyIdentifier: %1."
+msgstr "Valoare invalidă pentru policyIdentifier: %1."
 
 #: src/CertificatePoliciesExtension.cpp:514
 msgid "Invalid CertificatePolicy object."
-msgstr "كائن CertificatePolicy غير صالح."
+msgstr "Obiect CertificatePolicy invalid."
 
 #: src/CertificatePoliciesExtension.cpp:783
 #: src/CertificatePoliciesExtension.cpp:808
 msgid "CertificatePoliciesExt is not present."
-msgstr "CertificatePoliciesExt غير موجود."
+msgstr "CertificatePoliciesExt nu există."
 
 #: src/CertificatePoliciesExtension.cpp:821
 msgid "Invalid CertificatePoliciesExt object."
-msgstr "كائن CertificatePoliciesExt غير صالح."
+msgstr "Obiect CertificatePoliciesExt invalid."
 
 #: src/CRLData.cpp:223
 msgid "Entry not found."
-msgstr "لم يتم العثور على الإدخال."
+msgstr "Nu am găsit intrarea."
 
 #: src/CRLData_Priv.cpp:491
 msgid "Cannot parse CRL."
-msgstr "تعذر تحليل CRL."
+msgstr "Nupot parcurge CRL."
 
 #: src/CRLData_Priv.cpp:504
 msgid "Error parsing the CRL."
-msgstr "تعذر تحليل CRL."
+msgstr "Eroare la parcurgerea CRL."
 
 #: src/CRLDistributionPointsExtension.cpp:145
 msgid "CRLDistributionPointsExt is not present."
-msgstr "CRLDistributionPointsExt غير موجود."
+msgstr "CRLDistributionPointsExt nu există."
 
 #: src/CRLDistributionPointsExtension.cpp:157
 msgid "Invalid CRLDistributionPointsExt object."
-msgstr "كائن CRLDistributionPointsExt غير صالح."
+msgstr "Obiect CRLDistributionPointsExt invalid."
 
 #: src/CRLGenerationData.cpp:156
 msgid "Invalid CRLGenerationData object."
-msgstr "كائن CRLGenerationData غير صالح."
+msgstr "Obiect CRLGenerationData invalid."
 
 #: src/CRLReason.cpp:100 src/CRLReason.cpp:136
 msgid "Invalid revoke reason %1."
-msgstr "سبب إبطال غير صالح %1."
+msgstr "Motiv de revocare invalid %1."
 
 #: src/CRLReason.cpp:174
 msgid "Reason is not certificateHold."
-msgstr "السبب ليس certificateHold."
+msgstr "Motivul nu este certificateHold."
 
 #: src/CRLReason.cpp:197 src/CRLReason.cpp:211
 msgid "Reason is not keyCompromise."
-msgstr "السبب ليس keyCompromise."
+msgstr "Motivul nu este keyCompromise."
 
 #: src/CRLReason.cpp:242 src/CRLReason.cpp:256
 msgid "Reason is not CACompromise."
-msgstr "السبب ليس CACompromise."
+msgstr "Motivul nu este CACompromise."
 
 #: src/DNObject.cpp:111
 msgid "Invalid type %1."
-msgstr "نوع غير صالح %1."
+msgstr "Tip invalid %1."
 
 #: src/DNObject_Priv.cpp:159
 msgid "Cannot parse DN line: %1."
-msgstr "تعذر تحليل خط DN: %1."
+msgstr "Nu pot parcurge linia DN: %1."
 
 #: src/ExtendedKeyUsageExt.cpp:122 src/ExtendedKeyUsageExt.cpp:171
 msgid "Invalid ExtendedKeyUsage option %1."
-msgstr "خيار ExtendedKeyUsage غير صالح %1."
+msgstr "Opţiune ExtendedKeyUsage invalidă %1."
 
 #: src/ExtendedKeyUsageExt.cpp:130 src/ExtendedKeyUsageExt.cpp:179
 msgid "Invalid ExtendedKeyUsageExt."
-msgstr "ExtendedKeyUsageExt غير صالح."
+msgstr "ExtendedKeyUsageExt invalid."
 
 #: src/ExtendedKeyUsageExt.cpp:192
 msgid "ExtendedKeyUsageExt is not present."
-msgstr "ExtendedKeyUsageExt غير موجود."
+msgstr "ExtendedKeyUsageExt nu există."
 
 #: src/ExtendedKeyUsageExt.cpp:221
 msgid "Invalid ExtendedKeyUsageExt object."
-msgstr "كائن ExtendedKeyUsageExt غير صالح."
+msgstr "Obiect ExtendedKeyUsageExt invalid."
 
 #: src/IssuerAlternativeNameExtension.cpp:166
 #: src/IssuerAlternativeNameExtension.cpp:191
 msgid "IssuerAlternativeNameExt is not present."
-msgstr "IssuerAlternativeNameExt غير موجود."
+msgstr "IssuerAlternativeNameExt nu există."
 
 #: src/IssuerAlternativeNameExtension.cpp:203
 msgid "Invalid literal value for IssuerAlternativeNameExt."
-msgstr "قيمة حرفية غير صالحة من أجل IssuerAlternativeNameExt."
+msgstr "Valoare literală invalidă pentru IssuerAlternativeNameExt."
 
 #: src/IssuerAlternativeNameExtension.cpp:216
 msgid "Invalid IssuerAlternativeNameExt object."
-msgstr "كائن IssuerAlternativeNameExt غير صالح."
+msgstr "Obiect IssuerAlternativeNameExt invalid."
 
 #: src/LiteralValues.cpp:130
 msgid "Unknown type."
-msgstr "نوع غير معروف."
+msgstr "Tip necunoscut."
 
 #: src/LocalManagement.cpp:95
 msgid "Cannot split certificate output."
-msgstr "تعذر تقسيم مخرجات الشهادة."
+msgstr "Nu pot împărţi datele de ieşire ale certificatului."
 
 #: src/LocalManagement.cpp:292 src/LocalManagement.cpp:313
 #: src/LocalManagement.cpp:332
 msgid "Cannot create directory %1: %2."
-msgstr "تعذر إنشاء الدليل %1: %2."
+msgstr "Nu pot crea directorul %1: %2."
 
 #: src/LocalManagement.cpp:346
 msgid "%1 is not a directory."
-msgstr "لا يعتبر %1 دليلاً."
+msgstr "%1 nu este un director."
 
 #: src/LocalManagement.cpp:367
 msgid "Invalid certificate file."
-msgstr "ملف شهادة غير صالح."
+msgstr "Fişier certificat invalid."
 
 #: src/LocalManagement.cpp:445
 msgid "File not found: %1."
-msgstr "لم يتم العثور على الملف: %1."
+msgstr "Nu am găsit fişierul: %1."
 
 #: src/LocalManagement.cpp:454
 msgid "File too big: %1."
-msgstr "الملف كبير للغاية: %1."
+msgstr "Fişier prea mare: %1."
 
 #: src/LocalManagement.cpp:463 src/LocalManagement.cpp:518
 msgid "Cannot open file %1."
-msgstr "تعذر فتح الملف %1."
+msgstr "Nu pot deschide fişierul %1."
 
 #: src/LocalManagement.cpp:483
 msgid "Cannot read from file %1."
-msgstr "تعذرت القراءة من الملف %1."
+msgstr "Nu pot citi din fişierul %1."
 
 #: src/LocalManagement.cpp:508
 msgid "File already exists: %1."
-msgstr "الملف موجود بالفعل: %1."
+msgstr "Fişierul există deja: %1."
 
 #: src/LocalManagement.cpp:530
 msgid "Cannot get lock on file %1."
-msgstr "تعذر الحصول على قفل على الملف %1."
+msgstr "Nu pot bloca fişierul %1."
 
 #: src/LocalManagement.cpp:544
 msgid "Cannot write to file %1."
-msgstr "تعذرت الكتابة إلى الملف %1."
+msgstr "Nu pot scrie în fişierul %1."
 
 #: src/OpenSSLUtils.cpp:56
 msgid "File does not exist: %1."
-msgstr "الملف غير موجود: %1."
+msgstr "Fişierul nu există: %1."
 
 #: src/OpenSSLUtils.cpp:65
 msgid "Directory does not exist: %1."
-msgstr "الدليل غير موجود: %1."
+msgstr "Directorul nu există: %1."
 
 #: src/OpenSSLUtils.cpp:74
 msgid "Invalid command %1."
-msgstr "أمر غير صالح %1."
+msgstr "Comandă invalidă %1."
 
 #: src/OpenSSLUtils.cpp:132 src/OpenSSLUtils.cpp:240 src/OpenSSLUtils.cpp:338
 #: src/OpenSSLUtils.cpp:462 src/OpenSSLUtils.cpp:600 src/OpenSSLUtils.cpp:700
@@ -551,7 +554,7 @@ msgstr "أمر غير صالح %1."
 #: src/OpenSSLUtils.cpp:1493 src/OpenSSLUtils.cpp:1645
 #: src/OpenSSLUtils.cpp:1782
 msgid "Executing openssl command failed."
-msgstr ""
+msgstr "Executarea comenzii command a eşuat."
 
 #: src/OpenSSLUtils.cpp:143 src/OpenSSLUtils.cpp:251 src/OpenSSLUtils.cpp:349
 #: src/OpenSSLUtils.cpp:473 src/OpenSSLUtils.cpp:611 src/OpenSSLUtils.cpp:711
@@ -559,228 +562,226 @@ msgstr ""
 #: src/OpenSSLUtils.cpp:1311 src/OpenSSLUtils.cpp:1415
 #: src/OpenSSLUtils.cpp:1518 src/OpenSSLUtils.cpp:1682
 #: src/OpenSSLUtils.cpp:1822
-#, fuzzy
 msgid "openssl command failed: %1"
-msgstr "فشل الإنزال:"
+msgstr "Comanda openssl a eşuat: %1"
 
 #: src/OpenSSLUtils.cpp:176 src/OpenSSLUtils.cpp:278 src/OpenSSLUtils.cpp:381
 #: src/OpenSSLUtils.cpp:499 src/OpenSSLUtils.cpp:638 src/OpenSSLUtils.cpp:734
 msgid "No valid key file specified."
-msgstr "لم يتم تحديد ملف مفتاح صالح."
+msgstr "Nu a fost specificat nici un fişier cheie valid."
 
 #: src/OpenSSLUtils.cpp:286 src/OpenSSLUtils.cpp:389
 msgid "No valid request file specified."
-msgstr "لم يتم تحديد ملف طلب صالح."
+msgstr "Nu a fost specificat nici un fişier cerere valid."
 
 #: src/OpenSSLUtils.cpp:507 src/OpenSSLUtils.cpp:646 src/OpenSSLUtils.cpp:742
 msgid "No valid CA certificate file specified."
-msgstr "لم يتم تحديد ملف شهادة CA صالح."
+msgstr "Nu a fost specificat nici un fişier certificat CA valid."
 
 #: src/OpenSSLUtils.cpp:515 src/OpenSSLUtils.cpp:820
 msgid "No valid certificate file specified."
-msgstr "لم يتم تحديد ملف شهادة صالح."
+msgstr "Nu a fost specificat nici un fişier certificat valid."
 
 #: src/OpenSSLUtils.cpp:828
 msgid "No valid CA directory specified."
-msgstr "لم يتم تحديد دليل CA صالح."
+msgstr "Nu a fost specificat nici un director CA valid."
 
 #: src/OpenSSLUtils.cpp:982
 msgid "Showing certificate status with serial %1 failed (%2)."
-msgstr "فشل إظهار حالة الشهادة مع التسلسل %1 (%2)."
+msgstr "Afişarea stării certificatului cu numărul de serie %1 a eşuat (%2)."
 
 #: src/OpenSSLUtils.cpp:1018
 msgid "The key file does not exist."
-msgstr "ملف المفتاح غير موجود."
+msgstr "Fişierul cheie nu există."
 
 #: src/OpenSSLUtils.cpp:1306 src/OpenSSLUtils.cpp:1677
 #: src/OpenSSLUtils.cpp:1817
-#, fuzzy
 msgid "Invalid password."
-msgstr "كلمة السر غير صالحة"
+msgstr "Parolă invalidă."
 
 #: src/OpenSSLUtils.cpp:1595
 msgid "The password for encrypting the output is required."
-msgstr "مطلوب كلمة السر الخاصة بتشفير المخرجات."
+msgstr "Este necesară parola pentru criptarea datelor de ieşire."
 
 #: src/OpenSSLUtils.cpp:1736
 msgid "The PKCS12 password is required."
-msgstr "مطلوب كلمة السر PKCS12."
+msgstr "Parola PKCS12 este necesară."
 
 #: src/OpenSSLUtils.cpp:1847 src/OpenSSLUtils.cpp:2047
 #: src/OpenSSLUtils.cpp:2199
 msgid "Cannot read directory: %1 (%2) [%3]."
-msgstr "تعذرت قراءة الدليل: %1 (%2) [%3]."
+msgstr "Nu pot citi directorul: %1 (%2) [%3]."
 
 #: src/OpenSSLUtils.cpp:1897
 msgid "No serial number found in %1."
-msgstr "لم يتم العثور على أي رقم تسلسلي في %1."
+msgstr "Nu am găsit nici un număr de serie în %1."
 
 #: src/OpenSSLUtils.cpp:1917
 msgid "The request already exists."
-msgstr "الطلب موجود بالفعل."
+msgstr "Cererea există deja."
 
 #: src/OpenSSLUtils.cpp:2108
 msgid "Cannot find the request subject."
-msgstr "تعذر العثور على موضوع الطلب."
+msgstr "Nu am putut găsi subiectul cerut."
 
 #: src/OpenSSLUtils.cpp:2269
 msgid "Cannot find the certificate subject."
-msgstr "تعذر العثور على موضوع الشهادة."
+msgstr "Nu am putut găsi subiectul certificatului."
 
 #: src/OpenSSLUtils.cpp:2368
 msgid "Invalid caName: %1."
-msgstr "caName غير صالح: %1."
+msgstr "caName invalid: %1."
 
 #: src/OpenSSLUtils.cpp:2377
 msgid "'%1' does not exist."
-msgstr "'%1' غير موجود."
+msgstr "'%1' nu există."
 
 #: src/OpenSSLUtils.cpp:2387
 msgid "%1 still exists."
-msgstr "لا يزال %1 موجودًا."
+msgstr "%1 încă mai există."
 
 #: src/OpenSSLUtils.cpp:2398 src/OpenSSLUtils.cpp:2446
 #: src/OpenSSLUtils.cpp:2460 src/OpenSSLUtils.cpp:2474
 #: src/OpenSSLUtils.cpp:2488 src/OpenSSLUtils.cpp:2502
 msgid "Cannot create directory: %1 (%2 [%3])."
-msgstr "تعذر إنشاء الدليل: %1 (%2 [%3])."
+msgstr "Nu pot crea directorul: %1 (%2 [%3])."
 
 #: src/OpenSSLUtils.cpp:2433
 msgid "Cannot copy the configuration template."
-msgstr "تعذر نسخ قالب التكوين."
+msgstr "Nu pot copia schema de configurare."
 
 #: src/OpenSSLUtils.cpp:2520
 msgid "Cannot create the file."
-msgstr "تعذر إنشاء الملف."
+msgstr "Nu pot crea fişierul."
 
 #: src/RequestData_Priv.cpp:396
 msgid "Cannot parse the request."
-msgstr "تعذر تحليل الطلب."
+msgstr "Nu pot parcurge cererea."
 
 #: src/RequestData_Priv.cpp:409
 msgid "Error while parsing the request."
-msgstr "حدث خطأ أثناء تحليل الشهادة."
+msgstr "Eroare la parcurgerea cererii."
 
 #: src/RequestGenerationData.cpp:240
 msgid "Invalid RequestGenerationData object."
-msgstr "كائن RequestGenerationData غير صالح."
+msgstr "Obiect RequestGenerationData invalid."
 
 #: src/StringExtensions.cpp:109 src/StringExtensions.cpp:167
 msgid "Invalid value for NsBaseUrlExt."
-msgstr "قيمة غير صالحة لـ NsBaseUrlExt."
+msgstr "Valoare invalidă pentru NsBaseUrlExt."
 
 #: src/StringExtensions.cpp:179
 msgid "NsBaseUrlExt is not present."
-msgstr "NsBaseUrlExt غير موجود."
+msgstr "NsBaseUrlExt nu există."
 
 #: src/StringExtensions.cpp:191
 msgid "Invalid NsBaseUrlExt object."
-msgstr "كائن NsBaseUrlExt غير صالح."
+msgstr "Obiect NsBaseUrlExt invalid."
 
 #: src/StringExtensions.cpp:274 src/StringExtensions.cpp:327
 msgid "Invalid value for NsRevocationUrlExt."
-msgstr "قيمة غير صالحة لـ NsRevocationUrlExt."
+msgstr "Valoare invalidă pentru NsRevocationUrlExt."
 
 #: src/StringExtensions.cpp:338
 msgid "NsRevocationUrlExt is not present."
-msgstr "NsRevocationUrlExt غير موجود."
+msgstr "NsRevocationUrlExt nu există."
 
 #: src/StringExtensions.cpp:349
 msgid "Invalid NsRevocationUrlExt object."
-msgstr "كائن NsRevocationUrlExt غير صالح."
+msgstr "Obiect NsRevocationUrlExt invalid."
 
 #: src/StringExtensions.cpp:428 src/StringExtensions.cpp:481
 msgid "Invalid value for NsCaRevocationUrlExt."
-msgstr "قيمة غير صالحة لـ NsCaRevocationUrlExt."
+msgstr "Valoare invalidă pentru NsCaRevocationUrlExt."
 
 #: src/StringExtensions.cpp:492
 msgid "NsCaRevocationUrlExt is not present."
-msgstr "NsCaRevocationUrlExt غير موجود."
+msgstr "NsCaRevocationUrlExt nu există."
 
 #: src/StringExtensions.cpp:503
 msgid "Invalid NsCaRevocationUrlExt object."
-msgstr "كائن NsCaRevocationUrlExt غير صالح."
+msgstr "Obiect NsCaRevocationUrlExt invalid."
 
 #: src/StringExtensions.cpp:581 src/StringExtensions.cpp:634
 msgid "Invalid value for NsRenewalUrlExt."
-msgstr "قيمة غير صالحة لـ NsRenewalUrlExt."
+msgstr "Valoare invalidă pentru NsRenewalUrlExt."
 
 #: src/StringExtensions.cpp:645
 msgid "NsRenewalUrlExt is not present."
-msgstr "NsRenewalUrlExt غير موجود."
+msgstr "NsRenewalUrlExt nu există."
 
 #: src/StringExtensions.cpp:656
 msgid "Invalid NsRenewalUrlExt object."
-msgstr "كائن NsRenewalUrlExt غير صالح."
+msgstr "Obiect NsRenewalUrlExt invalid."
 
 #: src/StringExtensions.cpp:733 src/StringExtensions.cpp:786
 msgid "Invalid value for NsCaPolicyUrlExt."
-msgstr "قيمة غير صالحة لـ NsCaPolicyUrlExt."
+msgstr "Valoare invalidă pentru NsCaPolicyUrlExt."
 
 #: src/StringExtensions.cpp:797
 msgid "NsCaPolicyUrlExt is not present."
-msgstr "NsCaPolicyUrlExt غير موجود."
+msgstr "NsCaPolicyUrlExt nu există."
 
 #: src/StringExtensions.cpp:808
 msgid "Invalid NsCaPolicyUrlExt object."
-msgstr "كائن NsCaPolicyUrlExt غير صالح."
+msgstr "Obiect NsCaPolicyUrlExt invalid."
 
 #: src/StringExtensions.cpp:894
 msgid "Invalid type: %1."
-msgstr "نوع غير صالح: %1."
+msgstr "Tip invalid: %1."
 
 #: src/StringExtensions.cpp:940
 msgid "NsSslServerNameExt is not present."
-msgstr "NsSslServerNameExt غير موجود."
+msgstr "NsSslServerNameExt nu există."
 
 #: src/StringExtensions.cpp:951
 msgid "Invalid NsSslServerNameExt object."
-msgstr "كائن NsSslServerNameExt غير صالح."
+msgstr "Obiect NsSslServerNameExt invalid."
 
 #: src/StringExtensions.cpp:1066
 msgid "NsCommentExt is not present."
-msgstr "NsCommentExt غير موجود."
+msgstr "NsCommentExt nu există."
 
 #: src/StringExtensions.cpp:1077
 msgid "Invalid NsCommentExt object."
-msgstr "كائن NsCommentExt غير صالح."
+msgstr "Obiect NsCommentExt invalid."
 
 #: src/SubjectAlternativeNameExtension.cpp:183
 #: src/SubjectAlternativeNameExtension.cpp:194
 msgid "SubjectAlternativeNameExt is not present."
-msgstr "SubjectAlternativeNameExt غير موجود."
+msgstr "SubjectAlternativeNameExt nu există."
 
 #: src/SubjectAlternativeNameExtension.cpp:207
 msgid "Invalid SubjectAlternativeNameExt object."
-msgstr "كائن SubjectAlternativeNameExt غير صالح."
+msgstr "Obiect SubjectAlternativeNameExt invalid."
 
 #: src/SubjectKeyIdentifierExtension.cpp:129
 #: src/SubjectKeyIdentifierExtension.cpp:163
 msgid "Invalid KeyID."
-msgstr "KeyID غير صالح."
+msgstr "KeyID invalid."
 
 #: src/SubjectKeyIdentifierExtension.cpp:176
 #: src/SubjectKeyIdentifierExtension.cpp:187
 msgid "SubjectKeyIdentifierExt is not present."
-msgstr "SubjectKeyIdentifierExt غير موجود."
+msgstr "SubjectKeyIdentifierExt nu există."
 
 #: src/SubjectKeyIdentifierExtension.cpp:200
 msgid "Invalid SubjectKeyIdentifierExt object."
-msgstr "كائن SubjectKeyIdentifierExt غير صالح."
+msgstr "Obiect SubjectKeyIdentifierExt invalid."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:395
 #: src/X509v3CertificateExtensions_Priv.cpp:452
 #: src/X509v3RequestExtensions_Priv.cpp:134
 #: src/X509v3RequestExtensions_Priv.cpp:189
 msgid "Extension occurred more than once: %1."
-msgstr "ظهر الامتداد أكثر من مرة: %1."
+msgstr "Extensia apare de mai multe ori: %1."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:402
 #: src/X509v3CertificateExtensions_Priv.cpp:459
 #: src/X509v3RequestExtensions_Priv.cpp:141
 #: src/X509v3RequestExtensions_Priv.cpp:196
 msgid "Unable to parse the certificate (NID: %1 Crit: %2)."
-msgstr "تعذر تحليل الشهادة (NID: %1 Crit: %2)."
+msgstr "Nu pot parcurge certificatul (NID: %1 Crit: %2)."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:511
 #: src/X509v3CertificateExtensions_Priv.cpp:577
@@ -796,7 +797,7 @@ msgstr "تعذر تحليل الشهادة (NID: %1 Crit: %2)."
 #: src/X509v3RequestExtensions_Priv.cpp:378
 #: src/X509v3RequestExtensions_Priv.cpp:439
 msgid "Extension occurred more than once."
-msgstr "ظهر الامتداد أكثر من مرة."
+msgstr "Extensia apare de mai multe ori."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:516
 #: src/X509v3CertificateExtensions_Priv.cpp:582
@@ -812,135 +813,144 @@ msgstr "ظهر الامتداد أكثر من مرة."
 #: src/X509v3RequestExtensions_Priv.cpp:384
 #: src/X509v3RequestExtensions_Priv.cpp:444
 msgid "Unable to parse the certificate (Crit: %1)."
-msgstr "تعذر تحليل الشهادة (Crit: %1)."
+msgstr "Nu pot parcurge certificatul (Crit: %1)."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:943
 msgid "Invalid location in authorityInfoAccess."
-msgstr "موقع غير صالح في authorityInfoAccess."
+msgstr "Locaţie invalidă în authorityInfoAccess."
 
 #: src/X509v3CertificateIssueExtensions.cpp:174
 msgid "Invalid value for X509v3CertificateIssueExts::setNsBaseUrl."
-msgstr "قيمة غير صالحة في X509v3CertificateIssueExts::setNsBaseUrl."
+msgstr "Valoare invalidă pentru X509v3CertificateIssueExts::setNsBaseUrl."
 
 #: src/X509v3CertificateIssueExtensions.cpp:197
 msgid "Invalid value for X509v3CertificateIssueExts::setNsRevocationUrl."
-msgstr "قيمة غير صالحة في X509v3CertificateIssueExts::setNsRevocationUrl."
+msgstr ""
+"Valoare invalidă pentru X509v3CertificateIssueExts::setNsRevocationUrl."
 
 #: src/X509v3CertificateIssueExtensions.cpp:220
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCaRevocationUrl."
-msgstr "قيمة غير صالحة في X509v3CertificateIssueExts::setNsCaRevocationUrl."
+msgstr ""
+"Valoare invalidă pentru X509v3CertificateIssueExts::setNsCaRevocationUrl."
 
 #: src/X509v3CertificateIssueExtensions.cpp:243
 msgid "Invalid value for X509v3CertificateIssueExts::setNsRenewalUrl."
-msgstr "قيمة غير صالحة في X509v3CertificateIssueExts::setNsRenewalUrl."
+msgstr "Valoare invalidă pentru X509v3CertificateIssueExts::setNsRenewalUrl."
 
 #: src/X509v3CertificateIssueExtensions.cpp:266
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCaPolicyUrl."
-msgstr "قيمة غير صالحة في X509v3CertificateIssueExts::setNsCaPolicyUrl."
+msgstr "Valoare invalidă pentru X509v3CertificateIssueExts::setNsCaPolicyUrl."
 
 #: src/X509v3CertificateIssueExtensions.cpp:289
 msgid "Invalid value for X509v3CertificateIssueExts::setNsSslServerName."
-msgstr "قيمة غير صالحة في X509v3CertificateIssueExts::setNsSslServerName."
+msgstr ""
+"Valoare invalidă pentru X509v3CertificateIssueExts::setNsSslServerName."
 
 #: src/X509v3CertificateIssueExtensions.cpp:312
 msgid "Invalid value for X509v3CertificateIssueExts::setNsComment."
-msgstr "قيمة غير صالحة في X509v3CertificateIssueExts::setNsComment."
+msgstr "Valoare invalidă pentru X509v3CertificateIssueExts::setNsComment."
 
 #: src/X509v3CertificateIssueExtensions.cpp:335
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCertType."
-msgstr "قيمة غير صالحة في X509v3CertificateIssueExts::setNsCertType."
+msgstr "Valoare invalidă pentru X509v3CertificateIssueExts::setNsCertType."
 
 #: src/X509v3CertificateIssueExtensions.cpp:358
 msgid "Invalid value for X509v3CertificateIssueExts::setKeyUsage."
-msgstr "قيمة غير صالحة في X509v3CertificateIssueExts::setKeyUsage."
+msgstr "Valoare invalidă pentru X509v3CertificateIssueExts::setKeyUsage."
 
 #: src/X509v3CertificateIssueExtensions.cpp:381
 msgid "Invalid value for X509v3CertificateIssueExts::setBasicConstraints."
-msgstr "قيمة غير صالحة في X509v3CertificateIssueExts::setBasicConstraints."
+msgstr ""
+"Valoare invalidă pentru X509v3CertificateIssueExts::setBasicConstraints."
 
 #: src/X509v3CertificateIssueExtensions.cpp:404
 msgid "Invalid value for X509v3CertificateIssueExts::setExtendedKeyUsage."
-msgstr "قيمة غير صالحة في X509v3CertificateIssueExts::setExtendedKeyUsage."
+msgstr ""
+"Valoare invalidă pentru X509v3CertificateIssueExts::setExtendedKeyUsage."
 
 #: src/X509v3CertificateIssueExtensions.cpp:427
 msgid "Invalid value for X509v3CertificateIssueExts::setSubjectKeyIdentifier."
-msgstr "قيمة غير صالحة في X509v3CertificateIssueExts::setSubjectKeyIdentifier."
+msgstr ""
+"Valoare invalidă pentru X509v3CertificateIssueExts::setSubjectKeyIdentifier."
 
 #: src/X509v3CertificateIssueExtensions.cpp:450
 msgid ""
 "Invalid value for X509v3CertificateIssueExts::setAuthorityKeyIdentifier."
 msgstr ""
-"قيمة غير صالحة في X509v3CertificateIssueExts::setAuthorityKeyIdentifier."
+"Valoare invalidă pentru X509v3CertificateIssueExts::"
+"setAuthorityKeyIdentifier."
 
 #: src/X509v3CertificateIssueExtensions.cpp:473
 msgid ""
 "Invalid value for X509v3CertificateIssueExts::setSubjectAlternativeName."
 msgstr ""
-"قيمة غير صالحة في X509v3CertificateIssueExts::setSubjectAlternativeName."
+"Valoare invalidă pentru X509v3CertificateIssueExts::"
+"setSubjectAlternativeName."
 
 #: src/X509v3CertificateIssueExtensions.cpp:496
 msgid "Invalid value for X509v3CertificateIssueExts::setIssuerAlternativeName."
 msgstr ""
-"قيمة غير صالحة في X509v3CertificateIssueExts::setIssuerAlternativeName."
+"Valoare invalidă pentru X509v3CertificateIssueExts::setIssuerAlternativeName."
 
 #: src/X509v3CertificateIssueExtensions.cpp:519
 msgid "Invalid value for X509v3CertificateIssueExts::setAuthorityInfoAccess."
-msgstr "قيمة غير صالحة في X509v3CertificateIssueExts::setAuthorityInfoAccess."
+msgstr ""
+"Valoare invalidă pentru X509v3CertificateIssueExts::setAuthorityInfoAccess."
 
 #: src/X509v3CertificateIssueExtensions.cpp:542
 msgid "Invalid value for X509v3CertificateIssueExts::setCRLDistributionPoints."
 msgstr ""
-"قيمة غير صالحة في X509v3CertificateIssueExts::setCRLDistributionPoints."
+"Valoare invalidă pentru X509v3CertificateIssueExts::setCRLDistributionPoints."
 
 #: src/X509v3CertificateIssueExtensions.cpp:565
 msgid "Invalid value for X509v3CertificateIssueExts::setCertificatePolicies."
-msgstr "قيمة غير صالحة في X509v3CertificateIssueExts::setCertificatePolicies."
+msgstr ""
+"Valoare invalidă pentru X509v3CertificateIssueExts::setCertificatePolicies."
 
 #: src/X509v3CertificateIssueExtensions.cpp:589
 #: src/X509v3CRLGenerationExtensions.cpp:149
 #: src/X509v3RequestExtensions.cpp:255
 msgid "Invalid X509v3RequestExts object."
-msgstr "كائن X509v3RequestExts غير صالح."
+msgstr "Obiect X509v3RequestExts invalid."
 
 #: src/X509v3CRLGenerationExtensions.cpp:102
 msgid "Invalid value for X509v3CRLGenerationExts::setAuthorityKeyIdentifier."
-msgstr "قيمة غير صالحة في X509v3CRLGenerationExts::setAuthorityKeyIdentifier."
+msgstr ""
+"Valoare invalidă pentru X509v3CRLGenerationExts::setAuthorityKeyIdentifier."
 
 #: src/X509v3CRLGenerationExtensions.cpp:125
 msgid "Invalid value for X509v3CRLGenerationExts::setIssuerAlternativeName."
-msgstr "قيمة غير صالحة في X509v3CRLGenerationExts::setIssuerAlternativeName."
+msgstr ""
+"Valoare invalidă pentru X509v3CRLGenerationExts::setIssuerAlternativeName."
 
 #: src/X509v3RequestExtensions.cpp:70
 msgid "Invalid value for X509v3RequestExts::setNsSslServerName."
-msgstr "قيمة غير صالحة في X509v3RequestExts::setNsSslServerName."
+msgstr "Valoare invalidă pentru X509v3RequestExts::setNsSslServerName."
 
 #: src/X509v3RequestExtensions.cpp:93
 msgid "Invalid value for X509v3RequestExts::setNsComment."
-msgstr "قيمة غير صالحة في X509v3RequestExts::setNsComment."
+msgstr "Valoare invalidă pentru X509v3RequestExts::setNsComment."
 
 #: src/X509v3RequestExtensions.cpp:116
 msgid "Invalid value for X509v3RequestExts::setNsCertType."
-msgstr "قيمة غير صالحة في X509v3RequestExts::setNsCertType."
+msgstr "Valoare invalidă pentru X509v3RequestExts::setNsCertType."
 
 #: src/X509v3RequestExtensions.cpp:139
 msgid "Invalid value for X509v3RequestExts::setKeyUsage."
-msgstr "قيمة غير صالحة في X509v3RequestExts::setKeyUsage."
+msgstr "Valoare invalidă pentru X509v3RequestExts::setKeyUsage."
 
 #: src/X509v3RequestExtensions.cpp:162
 msgid "Invalid value for X509v3RequestExts::setBasicConstraints."
-msgstr "قيمة غير صالحة في X509v3RequestExts::setBasicConstraints."
+msgstr "Valoare invalidă pentru X509v3RequestExts::setBasicConstraints."
 
 #: src/X509v3RequestExtensions.cpp:185
 msgid "Invalid value for X509v3RequestExts::setExtendedKeyUsage."
-msgstr "قيمة غير صالحة في X509v3RequestExts::setExtendedKeyUsage."
+msgstr "Valoare invalidă pentru X509v3RequestExts::setExtendedKeyUsage."
 
 #: src/X509v3RequestExtensions.cpp:208
 msgid "Invalid value for X509v3RequestExts::setSubjectKeyIdentifier."
-msgstr "قيمة غير صالحة في X509v3RequestExts::setSubjectKeyIdentifier."
+msgstr "Valoare invalidă pentru X509v3RequestExts::setSubjectKeyIdentifier."
 
 #: src/X509v3RequestExtensions.cpp:231
 msgid "Invalid value for X509v3RequestExts::setSubjectAlternativeName."
-msgstr "قيمة غير صالحة في X509v3RequestExts::setSubjectAlternativeName."
-
-#~ msgid "Command returned '%1' : %2"
-#~ msgstr "نتج عن هذا الأمر '%1' : %2"
+msgstr "Valoare invalidă pentru X509v3RequestExts::setSubjectAlternativeName."
