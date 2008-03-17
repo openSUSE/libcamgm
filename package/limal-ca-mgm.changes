@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Mon Mar 17 15:14:23 CET 2008 - mt@suse.de
+
+- version 1.4.6
+- testsuite fix by mmarek to avoid failure with actual swing 1.3.34
+
+-------------------------------------------------------------------
 Wed Feb 13 14:33:02 CET 2008 - mc@suse.de
 
 - version 1.4.5

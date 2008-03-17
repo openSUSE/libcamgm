@@ -1,12 +1,12 @@
 $VAR1 = bless( {}, 'LIMAL::StringArray' );
 $VAR1 = bless( {}, 'LIMAL::Int32List' );
-1		_p_blocxx__ListTblocxx__Int32_t__iterator
-5		_p_blocxx__ListTblocxx__Int32_t__iterator
-56836564		_p_blocxx__ListTblocxx__Int32_t__iterator
+1		_p_blocxx__ListT_blocxx__Int32_t__iterator
+5		_p_blocxx__ListT_blocxx__Int32_t__iterator
+56836564		_p_blocxx__ListT_blocxx__Int32_t__iterator
 $VAR1 = bless( {}, 'LIMAL::StringList' );
-serverAuth		_p_blocxx__ListTblocxx__String_t__iterator
-nsSGC		_p_blocxx__ListTblocxx__String_t__iterator
-1.5.2.6		_p_blocxx__ListTblocxx__String_t__iterator
+serverAuth		_p_blocxx__ListT_blocxx__String_t__iterator
+nsSGC		_p_blocxx__ListT_blocxx__String_t__iterator
+1.5.2.6		_p_blocxx__ListT_blocxx__String_t__iterator
 $VAR1 = bless( {}, 'LIMAL::CaMgm::StringMapArray' );
 $VAR1 = bless( {}, 'LIMAL::StringMap' );
 certificate = 01:b4d4e48e6de644c953290eb2854a6ced
