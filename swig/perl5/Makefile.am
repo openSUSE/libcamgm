@@ -15,7 +15,7 @@ LIBS         = -L$(top_builddir)/src/.libs -Wl,-rpath,$(limallibdir) -llimal-ca-
 # FIXME:
 CXXFLAGS    += -Wno-unused -fPIC -DPIC
 #AM_CPPFLAGS = $(DEBUG_FLAGS) -D_GNU_SOURCE -DLOCALEDIR=\"${localedir}\"
-SWIGFLAGS    = -I$(top_srcdir)/src -DLIMAL_NAMESPACE=limal -DCA_MGM_NAMESPACE=ca_mgm
+SWIGFLAGS    = -I${limaldatadir}/typemaps -I${limaldatadir}/typemaps/perl5 -I$(top_srcdir)/src -DLIMAL_NAMESPACE=limal -DCA_MGM_NAMESPACE=ca_mgm 
 
 
 # ========================================================

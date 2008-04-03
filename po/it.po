@@ -5,13 +5,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2008-03-17 15:25+0100\n"
-"PO-Revision-Date: 2006-11-03 15:41\n"
-"Last-Translator: Novell Language <language@novell.com>\n"
+"POT-Creation-Date: 2008-03-31 16:08+0200\n"
+"PO-Revision-Date: 2008-04-01 09:31+0100\n"
+"Last-Translator: Giuseppe Bevacqua <gepeppe@gmail.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Bookmarks: 113,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:110
 #: src/AuthorityInfoAccessExtension.cpp:139
@@ -156,7 +157,7 @@ msgstr "Impossibile copiare il certificato."
 
 #: src/CA.cpp:299
 msgid "Invalid request data."
-msgstr "Dati della richiesta non validi."
+msgstr "Richiesta di dati non validi."
 
 #: src/CA.cpp:319
 msgid "Duplicate DN. Key %1.key already exists."
@@ -184,7 +185,7 @@ msgstr "Impossibile emettere il certificato."
 
 #: src/CA.cpp:490
 msgid "File %1 not found in the repository."
-msgstr "Impossibile trovare il file %1 nell'archivio."
+msgstr "Impossibile trovare il file %1 nella sorgente di installazione."
 
 #: src/CA.cpp:497 src/CRLData_Priv.cpp:179
 msgid "Invalid CRL reason."
@@ -549,7 +550,7 @@ msgstr "Comando non valido %1."
 #: src/OpenSSLUtils.cpp:1493 src/OpenSSLUtils.cpp:1645
 #: src/OpenSSLUtils.cpp:1782
 msgid "Executing openssl command failed."
-msgstr ""
+msgstr "Esecuzione del comando openssl non riuscita"
 
 #: src/OpenSSLUtils.cpp:143 src/OpenSSLUtils.cpp:251 src/OpenSSLUtils.cpp:349
 #: src/OpenSSLUtils.cpp:473 src/OpenSSLUtils.cpp:611 src/OpenSSLUtils.cpp:711
@@ -557,9 +558,8 @@ msgstr ""
 #: src/OpenSSLUtils.cpp:1311 src/OpenSSLUtils.cpp:1415
 #: src/OpenSSLUtils.cpp:1518 src/OpenSSLUtils.cpp:1682
 #: src/OpenSSLUtils.cpp:1822
-#, fuzzy
 msgid "openssl command failed: %1"
-msgstr "Scaricamento non riuscito:"
+msgstr "Comando openssl non riuscito:"
 
 #: src/OpenSSLUtils.cpp:176 src/OpenSSLUtils.cpp:278 src/OpenSSLUtils.cpp:381
 #: src/OpenSSLUtils.cpp:499 src/OpenSSLUtils.cpp:638 src/OpenSSLUtils.cpp:734
@@ -594,9 +594,8 @@ msgstr "Il file delle chiavi non esiste."
 
 #: src/OpenSSLUtils.cpp:1306 src/OpenSSLUtils.cpp:1677
 #: src/OpenSSLUtils.cpp:1817
-#, fuzzy
 msgid "Invalid password."
-msgstr "Parola d'ordine non valida"
+msgstr "Password non valida"
 
 #: src/OpenSSLUtils.cpp:1595
 msgid "The password for encrypting the output is required."

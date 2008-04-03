@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2008-03-17 15:25+0100\n"
-"PO-Revision-Date: 2008-02-12 20:35+0200\n"
+"POT-Creation-Date: 2008-03-31 16:08+0200\n"
+"PO-Revision-Date: 2008-04-02 18:59+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
@@ -181,11 +181,11 @@ msgstr "Запит не існує (%1)."
 
 #: src/CA.cpp:378
 msgid "Invalid issue data."
-msgstr "Не чинні дати видання."
+msgstr "Некоректна дата видання."
 
 #: src/CA.cpp:395
 msgid "The CA expires before the certificate should expire."
-msgstr "CA застаріє перед застарінням сертифіката."
+msgstr "Строк дії CA завершиться до завершення строку дії сертифіката."
 
 #: src/CA.cpp:473
 msgid "Issuing the certificate failed."
@@ -197,11 +197,11 @@ msgstr "Файл %1 не знайдено в сховищі."
 
 #: src/CA.cpp:497 src/CRLData_Priv.cpp:179
 msgid "Invalid CRL reason."
-msgstr "Не чинна причина CRL."
+msgstr "Нечинна причина CRL."
 
 #: src/CA.cpp:520
 msgid "Invalid CRL data."
-msgstr "Не чинні дані CRL."
+msgstr "Нечинні дані CRL."
 
 #: src/CA.cpp:568
 msgid "Duplicate DN. Request already exists."
@@ -273,7 +273,7 @@ msgstr "Порожній ключ CA."
 
 #: src/CA.cpp:1266
 msgid "Invalid key data."
-msgstr "Не чинні дані ключа."
+msgstr "Нечинні дані ключа."
 
 #: src/CA.cpp:1273
 msgid "CA password is empty."
@@ -284,9 +284,8 @@ msgid "Error during key encryption."
 msgstr "Помилка під час шифрування ключа."
 
 #: src/CA.cpp:1339
-#, fuzzy
 msgid "Error during write defaults."
-msgstr "Помилка під час шифрування ключа."
+msgstr "Помилка під час запису типових налаштувань."
 
 #: src/CA.cpp:1483
 msgid "CA name does not exist (%1)."

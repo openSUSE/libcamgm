@@ -6,13 +6,13 @@
 #
 # Erkka Hakkarainen <erkka.hakkarainen@pp.inet.fi>, 2006.
 # Jyri Palokangas <jmp@netti.fi>, 2006.
-# Jyri Palokangas <jmp@opensuse.fi>, 2007.
+# Jyri Palokangas <jmp@opensuse.fi>, 2007, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm.fi\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2008-03-17 15:25+0100\n"
-"PO-Revision-Date: 2007-09-12 21:14+0300\n"
+"POT-Creation-Date: 2008-03-31 16:08+0200\n"
+"PO-Revision-Date: 2008-01-11 10:03+0200\n"
 "Last-Translator: Jyri Palokangas <jmp@opensuse.fi>\n"
 "Language-Team: Suomi <fi@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -557,7 +557,7 @@ msgstr "Virheellinen komento %1."
 #: src/OpenSSLUtils.cpp:1493 src/OpenSSLUtils.cpp:1645
 #: src/OpenSSLUtils.cpp:1782
 msgid "Executing openssl command failed."
-msgstr ""
+msgstr "openssl komennon suorittaminen epäonnistui."
 
 #: src/OpenSSLUtils.cpp:143 src/OpenSSLUtils.cpp:251 src/OpenSSLUtils.cpp:349
 #: src/OpenSSLUtils.cpp:473 src/OpenSSLUtils.cpp:611 src/OpenSSLUtils.cpp:711
@@ -565,9 +565,8 @@ msgstr ""
 #: src/OpenSSLUtils.cpp:1311 src/OpenSSLUtils.cpp:1415
 #: src/OpenSSLUtils.cpp:1518 src/OpenSSLUtils.cpp:1682
 #: src/OpenSSLUtils.cpp:1822
-#, fuzzy
 msgid "openssl command failed: %1"
-msgstr "Lataus epäonnistui."
+msgstr "openssl komento epäonnistui: %1"
 
 #: src/OpenSSLUtils.cpp:176 src/OpenSSLUtils.cpp:278 src/OpenSSLUtils.cpp:381
 #: src/OpenSSLUtils.cpp:499 src/OpenSSLUtils.cpp:638 src/OpenSSLUtils.cpp:734
@@ -600,9 +599,8 @@ msgstr "Avaintiedostoa ei ole olemassa."
 
 #: src/OpenSSLUtils.cpp:1306 src/OpenSSLUtils.cpp:1677
 #: src/OpenSSLUtils.cpp:1817
-#, fuzzy
 msgid "Invalid password."
-msgstr "Virheellinen salasana"
+msgstr "Virheellinen salasana."
 
 #: src/OpenSSLUtils.cpp:1595
 msgid "The password for encrypting the output is required."
@@ -947,6 +945,3 @@ msgstr "Virheellinen X509v3RequestExts::setSubjectKeyIdentifier-arvo."
 #: src/X509v3RequestExtensions.cpp:231
 msgid "Invalid value for X509v3RequestExts::setSubjectAlternativeName."
 msgstr "Virheellinen X509v3RequestExts::setSubjectAlternativeName-arvo."
-
-#~ msgid "Command returned '%1' : %2"
-#~ msgstr "Komento palautti '%1' : %2"
