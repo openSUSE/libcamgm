@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2008-03-31 16:08+0200\n"
-"PO-Revision-Date: 2008-03-06 18:13+0800\n"
+"PO-Revision-Date: 2008-04-13 20:58+0800\n"
 "Last-Translator: Eric Shan <ericalways@gmail.com>\n"
 "Language-Team: Simplified Chinese\n"
 "MIME-Version: 1.0\n"
@@ -273,9 +273,8 @@ msgid "Error during key encryption."
 msgstr "密钥解密期间出错。"
 
 #: src/CA.cpp:1339
-#, fuzzy
 msgid "Error during write defaults."
-msgstr "密钥解密期间出错。"
+msgstr "写入默认值时出错。"
 
 #: src/CA.cpp:1483
 msgid "CA name does not exist (%1)."

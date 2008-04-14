@@ -1,4 +1,5 @@
-# translation of limal-ca-mgm.es.po to Spanish
+# translation of limal-ca-mgm.po to Spanish
+# translation of limal-ca-mgm.po to
 # translation of limal-ca-mgm.es.po to
 # Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
 # This file is distributed under the same license as the package.
@@ -6,13 +7,14 @@
 # César Sánchez Alonso <csalinux@gmail.com>, 2007.
 # Miguel Angel Alvarez <maacruz@gmail.com>, 2007.
 # Carlos E. Robinson <robin.listas@telefonica.net>, 2008.
+# Camaleón <noelamac@gmail.com>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: limal-ca-mgm.es\n"
+"Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2008-03-31 16:08+0200\n"
-"PO-Revision-Date: 2008-01-24 14:21+0100\n"
-"Last-Translator: Carlos E. Robinson <robin.listas@telefonica.net>\n"
+"PO-Revision-Date: 2008-04-06 23:16+0200\n"
+"Last-Translator: Camaleón <noelamac@gmail.com>\n"
 "Language-Team: Spanish <opensuse-translation-es@opensuse.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -151,7 +153,7 @@ msgstr "Error al crear la infraestructura de CA."
 
 #: src/CA.cpp:245 src/CA.cpp:989
 msgid "Cannot parse the certificate name %1."
-msgstr "No es posible analizar el nombre de certificado %1."
+msgstr "No es posible analizar el nombre del certificado %1."
 
 #: src/CA.cpp:256
 msgid "Cannot copy the private key."
@@ -282,9 +284,8 @@ msgid "Error during key encryption."
 msgstr "Error durante el cifrado de la clave."
 
 #: src/CA.cpp:1339
-#, fuzzy
 msgid "Error during write defaults."
-msgstr "Error durante el cifrado de la clave."
+msgstr "Error durante la escritura de los valores predeterminados."
 
 #: src/CA.cpp:1483
 msgid "CA name does not exist (%1)."
@@ -555,9 +556,8 @@ msgstr "Comando %1 no válido."
 #: src/OpenSSLUtils.cpp:1271 src/OpenSSLUtils.cpp:1390
 #: src/OpenSSLUtils.cpp:1493 src/OpenSSLUtils.cpp:1645
 #: src/OpenSSLUtils.cpp:1782
-#, fuzzy
 msgid "Executing openssl command failed."
-msgstr "Ejecución de algunos comandos como root"
+msgstr "Ha fallado la ejecución del comando openssl."
 
 #: src/OpenSSLUtils.cpp:143 src/OpenSSLUtils.cpp:251 src/OpenSSLUtils.cpp:349
 #: src/OpenSSLUtils.cpp:473 src/OpenSSLUtils.cpp:611 src/OpenSSLUtils.cpp:711
@@ -565,9 +565,8 @@ msgstr "Ejecución de algunos comandos como root"
 #: src/OpenSSLUtils.cpp:1311 src/OpenSSLUtils.cpp:1415
 #: src/OpenSSLUtils.cpp:1518 src/OpenSSLUtils.cpp:1682
 #: src/OpenSSLUtils.cpp:1822
-#, fuzzy
 msgid "openssl command failed: %1"
-msgstr "Error en la descarga: "
+msgstr "Ha fallado el comando openssl: %1"
 
 #: src/OpenSSLUtils.cpp:176 src/OpenSSLUtils.cpp:278 src/OpenSSLUtils.cpp:381
 #: src/OpenSSLUtils.cpp:499 src/OpenSSLUtils.cpp:638 src/OpenSSLUtils.cpp:734
@@ -601,7 +600,6 @@ msgstr "El archivo de clave no existe."
 
 #: src/OpenSSLUtils.cpp:1306 src/OpenSSLUtils.cpp:1677
 #: src/OpenSSLUtils.cpp:1817
-#, fuzzy
 msgid "Invalid password."
 msgstr "Contraseña no válida."
 
@@ -636,7 +634,7 @@ msgstr "No es posible encontrar el tema de certificado."
 
 #: src/OpenSSLUtils.cpp:2368
 msgid "Invalid caName: %1."
-msgstr "caName incorrecto: %1."
+msgstr "caName no válido: %1."
 
 #: src/OpenSSLUtils.cpp:2377
 msgid "'%1' does not exist."

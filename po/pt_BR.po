@@ -6,9 +6,9 @@ msgstr ""
 "Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2008-03-31 16:08+0200\n"
-"PO-Revision-Date: 2008-03-26 17:20-0300\n"
+"PO-Revision-Date: 2008-04-03 19:15-0300\n"
 "Last-Translator: Luiz Fernando Ranghetti <elchevive68@gmail.com>\n"
-"Language-Team: Novell Language <language@novell.com>\n"
+"Language-Team: Português Brasileiro <opensuse-translation-pt@opensuse.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -275,9 +275,8 @@ msgid "Error during key encryption."
 msgstr "Erro durante criptografia de chave."
 
 #: src/CA.cpp:1339
-#, fuzzy
 msgid "Error during write defaults."
-msgstr "Erro durante criptografia de chave."
+msgstr "Erro ao escrever os padrões."
 
 #: src/CA.cpp:1483
 msgid "CA name does not exist (%1)."

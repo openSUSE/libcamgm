@@ -1,21 +1,23 @@
+# translation of limal-ca-mgm.de.po to German
 # @TITLE@
 # Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 # This file is distributed under the same license as @PACKAGE@ package. FIRST
 #
+# Michael Skiba <trans@michael-skiba.de>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
+"Project-Id-Version: limal-ca-mgm.de\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2008-03-31 16:08+0200\n"
-"PO-Revision-Date: 2005-03-09 13:54+0100\n"
-"Last-Translator: Novell Language <language@novell.com>\n"
-"Language-Team: Novell Language <language@novell.com>\n"
+"PO-Revision-Date: 2008-04-13 23:39+0200\n"
+"Last-Translator: Michael Skiba <trans@michael-skiba.de>\n"
+"Language-Team: German <opensuse-translation-de@opensuse.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:110
 #: src/AuthorityInfoAccessExtension.cpp:139
@@ -280,9 +282,8 @@ msgid "Error during key encryption."
 msgstr "Fehler bei der Verschlüsselung des Schlüssels."
 
 #: src/CA.cpp:1339
-#, fuzzy
 msgid "Error during write defaults."
-msgstr "Fehler bei der Verschlüsselung des Schlüssels."
+msgstr "Fehler beim schreiben der Vorgaben."
 
 #: src/CA.cpp:1483
 msgid "CA name does not exist (%1)."
@@ -553,9 +554,8 @@ msgstr "Ungültiger Befehl %1."
 #: src/OpenSSLUtils.cpp:1271 src/OpenSSLUtils.cpp:1390
 #: src/OpenSSLUtils.cpp:1493 src/OpenSSLUtils.cpp:1645
 #: src/OpenSSLUtils.cpp:1782
-#, fuzzy
 msgid "Executing openssl command failed."
-msgstr "Einige Kommandos als Benutzer root ausführen"
+msgstr "Ausführen des openssl Befehls fehlgeschlagen."
 
 #: src/OpenSSLUtils.cpp:143 src/OpenSSLUtils.cpp:251 src/OpenSSLUtils.cpp:349
 #: src/OpenSSLUtils.cpp:473 src/OpenSSLUtils.cpp:611 src/OpenSSLUtils.cpp:711
@@ -563,9 +563,8 @@ msgstr "Einige Kommandos als Benutzer root ausführen"
 #: src/OpenSSLUtils.cpp:1311 src/OpenSSLUtils.cpp:1415
 #: src/OpenSSLUtils.cpp:1518 src/OpenSSLUtils.cpp:1682
 #: src/OpenSSLUtils.cpp:1822
-#, fuzzy
 msgid "openssl command failed: %1"
-msgstr "Fehler beim Herunterladen: "
+msgstr "openssl Befehl fehlgeschlagen: %1"
 
 #: src/OpenSSLUtils.cpp:176 src/OpenSSLUtils.cpp:278 src/OpenSSLUtils.cpp:381
 #: src/OpenSSLUtils.cpp:499 src/OpenSSLUtils.cpp:638 src/OpenSSLUtils.cpp:734
@@ -599,9 +598,8 @@ msgstr "Die Schlüsseldatei ist nicht vorhanden."
 
 #: src/OpenSSLUtils.cpp:1306 src/OpenSSLUtils.cpp:1677
 #: src/OpenSSLUtils.cpp:1817
-#, fuzzy
 msgid "Invalid password."
-msgstr "Ungültiges Passwort"
+msgstr "Ungültiges Passwort."
 
 #: src/OpenSSLUtils.cpp:1595
 msgid "The password for encrypting the output is required."
@@ -952,6 +950,3 @@ msgstr "Unzulässiger Wert für X509v3RequestExts::setSubjectKeyIdentifier."
 #: src/X509v3RequestExtensions.cpp:231
 msgid "Invalid value for X509v3RequestExts::setSubjectAlternativeName."
 msgstr "Unzulässiger Wert für X509v3RequestExts::setSubjectAlternativeName."
-
-#~ msgid "Command returned '%1' : %2"
-#~ msgstr "Befehlsrückgabe '%1' : %2"
