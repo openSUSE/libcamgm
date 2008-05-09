@@ -1,4 +1,4 @@
-# translation of limal-ca-mgm.po to Khmer
+# translation of limal-ca-mgm.km.po to Khmer
 # translation of limal-ca-mgm.km.po to
 # @TITLE@
 # Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
@@ -8,14 +8,15 @@
 # sokun <sokunpoch@khmeros.info>, 2006.
 # Eng Vannak <evannak@khmeros.info>, 2006.
 # Auk Piseth <piseth_dv@khmeros.info>, 2006, 2007.
+# Khoem Sokhem <khoemsokhem@khmeros.info>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: limal-ca-mgm\n"
+"Project-Id-Version: limal-ca-mgm.km\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2008-03-31 16:08+0200\n"
-"PO-Revision-Date: 2007-05-25 10:07+0700\n"
-"Last-Translator: Auk Piseth <piseth_dv@khmeros.info>\n"
-"Language-Team: Khmer <en@li.org>\n"
+"PO-Revision-Date: 2008-04-21 15:20+0700\n"
+"Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
+"Language-Team: Khmer <support@khmeros.info>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -283,9 +284,8 @@ msgid "Error during key encryption."
 msgstr "កំហុស​នៅ​កំឡុង​ពេល​ធ្វើ​ការ​អ៊ិនគ្រីប​សោរ ។"
 
 #: src/CA.cpp:1339
-#, fuzzy
 msgid "Error during write defaults."
-msgstr "កំហុស​នៅ​កំឡុង​ពេល​ធ្វើ​ការ​អ៊ិនគ្រីប​សោរ ។"
+msgstr "កំហុស​កំឡុង​ពេល​សរសេរ​លំនាំដើម ។"
 
 #: src/CA.cpp:1483
 msgid "CA name does not exist (%1)."
@@ -555,7 +555,7 @@ msgstr "ពាក្យ​បញ្ជា %1 មិន​ត្រឹម​ត�
 #: src/OpenSSLUtils.cpp:1493 src/OpenSSLUtils.cpp:1645
 #: src/OpenSSLUtils.cpp:1782
 msgid "Executing openssl command failed."
-msgstr ""
+msgstr "បាន​បរាជ័យ​ក្នុង​កា​រប្រតិបត្តិ​ពាក្យ​បញ្ជា openssl ។"
 
 #: src/OpenSSLUtils.cpp:143 src/OpenSSLUtils.cpp:251 src/OpenSSLUtils.cpp:349
 #: src/OpenSSLUtils.cpp:473 src/OpenSSLUtils.cpp:611 src/OpenSSLUtils.cpp:711
@@ -564,7 +564,7 @@ msgstr ""
 #: src/OpenSSLUtils.cpp:1518 src/OpenSSLUtils.cpp:1682
 #: src/OpenSSLUtils.cpp:1822
 msgid "openssl command failed: %1"
-msgstr ""
+msgstr "បាន​បរាជ័យ​ក្នុង​ការ​ប្រើ​ពាក្យ​បញ្ជា openssl ៖ %1"
 
 #: src/OpenSSLUtils.cpp:176 src/OpenSSLUtils.cpp:278 src/OpenSSLUtils.cpp:381
 #: src/OpenSSLUtils.cpp:499 src/OpenSSLUtils.cpp:638 src/OpenSSLUtils.cpp:734
@@ -597,9 +597,8 @@ msgstr "មិនមាន​ឯកសារ​សោរ​ទេ ។"
 
 #: src/OpenSSLUtils.cpp:1306 src/OpenSSLUtils.cpp:1677
 #: src/OpenSSLUtils.cpp:1817
-#, fuzzy
 msgid "Invalid password."
-msgstr "ពាក្យ​សម្ងាត់ CA មិន​ត្រឹមត្រូវ​ ។"
+msgstr "ពាក្យ​សម្ងាត់​មិន​ត្រឹមត្រូវ ។"
 
 #: src/OpenSSLUtils.cpp:1595
 msgid "The password for encrypting the output is required."
@@ -945,6 +944,3 @@ msgstr "តម្លៃ​មិនត្រឹមត្រូវ​សម្រ
 #: src/X509v3RequestExtensions.cpp:231
 msgid "Invalid value for X509v3RequestExts::setSubjectAlternativeName."
 msgstr "តម្លៃ​មិនត្រឹមត្រូវ​សម្រាប់ X509v3RequestExts::setSubjectAlternativeName ។"
-
-#~ msgid "Command returned '%1' : %2"
-#~ msgstr "ពាក្យ​បញ្ជា​បាន​ត្រឡប់ '%1' ៖ %2"
