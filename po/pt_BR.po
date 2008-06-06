@@ -8,13 +8,17 @@ msgstr ""
 "Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2008-03-31 16:08+0200\n"
-"PO-Revision-Date: 2008-04-30 00:18-0300\n"
+"PO-Revision-Date: 2008-05-18 13:47-0300\n"
 "Last-Translator: Luiz Fernando Ranghetti <elchevive68@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <opensuse-pt@opensuse.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=n>1\n"
+"X-Poedit-Language: Portuguese\n"
+"X-Poedit-Country: BRAZIL\n"
+"X-Poedit-SourceCharset: utf-8\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:110
 #: src/AuthorityInfoAccessExtension.cpp:139
@@ -512,7 +516,7 @@ msgstr "Arquivo muito grande: %1."
 
 #: src/LocalManagement.cpp:463 src/LocalManagement.cpp:518
 msgid "Cannot open file %1."
-msgstr "Nao é possível abrir o arquivo %1."
+msgstr "Não é possível abrir o arquivo %1."
 
 #: src/LocalManagement.cpp:483
 msgid "Cannot read from file %1."
@@ -550,7 +554,7 @@ msgstr "Comando inválido %1."
 #: src/OpenSSLUtils.cpp:1493 src/OpenSSLUtils.cpp:1645
 #: src/OpenSSLUtils.cpp:1782
 msgid "Executing openssl command failed."
-msgstr "A execução do comando openssl falhou."
+msgstr "Falha na execução do comando openssl. "
 
 #: src/OpenSSLUtils.cpp:143 src/OpenSSLUtils.cpp:251 src/OpenSSLUtils.cpp:349
 #: src/OpenSSLUtils.cpp:473 src/OpenSSLUtils.cpp:611 src/OpenSSLUtils.cpp:711
@@ -559,7 +563,7 @@ msgstr "A execução do comando openssl falhou."
 #: src/OpenSSLUtils.cpp:1518 src/OpenSSLUtils.cpp:1682
 #: src/OpenSSLUtils.cpp:1822
 msgid "openssl command failed: %1"
-msgstr "comando openssl falhou: %1 "
+msgstr "falha no comando openssl: %1 "
 
 #: src/OpenSSLUtils.cpp:176 src/OpenSSLUtils.cpp:278 src/OpenSSLUtils.cpp:381
 #: src/OpenSSLUtils.cpp:499 src/OpenSSLUtils.cpp:638 src/OpenSSLUtils.cpp:734
@@ -754,7 +758,7 @@ msgstr "Objeto SubjectAlternativeNameExt inválido."
 #: src/SubjectKeyIdentifierExtension.cpp:129
 #: src/SubjectKeyIdentifierExtension.cpp:163
 msgid "Invalid KeyID."
-msgstr "KeyID inválido."
+msgstr "ChaveID inválido."
 
 #: src/SubjectKeyIdentifierExtension.cpp:176
 #: src/SubjectKeyIdentifierExtension.cpp:187

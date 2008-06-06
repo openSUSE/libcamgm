@@ -1,23 +1,24 @@
-# translation of limal-ca-mgm.nl.po to Dutch
+# translation of limal-ca-mgm.po to Dutch
 # @TITLE@
 # Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
 #
 # This file is distributed under the same license as @PACKAGE@ package. FIRST
 #
-# Rinse de Vries <rinsedevries@kde.nl>, 2006.
+# Rinse de Vries <rinsedevries@kde.nl>, 2006, 2008.
+# Freek de Kruijf <f.de.kruijf@hetnet.nl>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: limal-ca-mgm.nl\n"
+"Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2008-03-31 16:08+0200\n"
-"PO-Revision-Date: 2006-11-24 22:57+0100\n"
-"Last-Translator: Novell Language <language@novell.com>\n"
-"Language-Team: Novell Language <language@novell.com>\n"
+"PO-Revision-Date: 2008-05-28 00:08+0200\n"
+"Last-Translator: Rinse de Vries <rinsedevries@kde.nl>\n"
+"Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+"Plural-Forms:  nplurals=2; plural=n != 1;\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:110
 #: src/AuthorityInfoAccessExtension.cpp:139
@@ -258,7 +259,7 @@ msgstr "CA-naam is leeg."
 
 #: src/CA.cpp:1239
 msgid "CA directory already exists."
-msgstr "CA-directory bestaat reeds."
+msgstr "CA-map bestaat reeds."
 
 #: src/CA.cpp:1250
 msgid "According to basicConstraints, this is not a CA."
@@ -281,9 +282,8 @@ msgid "Error during key encryption."
 msgstr "Fout bij versleutelen van de sleutel."
 
 #: src/CA.cpp:1339
-#, fuzzy
 msgid "Error during write defaults."
-msgstr "Fout bij versleutelen van de sleutel."
+msgstr "Fout bij schrijven van standaards."
 
 #: src/CA.cpp:1483
 msgid "CA name does not exist (%1)."
@@ -497,11 +497,11 @@ msgstr "Kan certificaatuitvoer niet splitsen."
 #: src/LocalManagement.cpp:292 src/LocalManagement.cpp:313
 #: src/LocalManagement.cpp:332
 msgid "Cannot create directory %1: %2."
-msgstr "Kan directory %1 niet aanmaken: %2."
+msgstr "Kan map %1 niet aanmaken: %2."
 
 #: src/LocalManagement.cpp:346
 msgid "%1 is not a directory."
-msgstr "%1 is geen directory."
+msgstr "%1 is geen map."
 
 #: src/LocalManagement.cpp:367
 msgid "Invalid certificate file."
@@ -555,7 +555,7 @@ msgstr "Ongeldig commando: %1."
 #: src/OpenSSLUtils.cpp:1493 src/OpenSSLUtils.cpp:1645
 #: src/OpenSSLUtils.cpp:1782
 msgid "Executing openssl command failed."
-msgstr ""
+msgstr "Uitvoeren van het openssl-commando mislukt."
 
 #: src/OpenSSLUtils.cpp:143 src/OpenSSLUtils.cpp:251 src/OpenSSLUtils.cpp:349
 #: src/OpenSSLUtils.cpp:473 src/OpenSSLUtils.cpp:611 src/OpenSSLUtils.cpp:711
@@ -563,9 +563,8 @@ msgstr ""
 #: src/OpenSSLUtils.cpp:1311 src/OpenSSLUtils.cpp:1415
 #: src/OpenSSLUtils.cpp:1518 src/OpenSSLUtils.cpp:1682
 #: src/OpenSSLUtils.cpp:1822
-#, fuzzy
 msgid "openssl command failed: %1"
-msgstr "Download mislukt: "
+msgstr "openssl-commando mislukt: %1"
 
 #: src/OpenSSLUtils.cpp:176 src/OpenSSLUtils.cpp:278 src/OpenSSLUtils.cpp:381
 #: src/OpenSSLUtils.cpp:499 src/OpenSSLUtils.cpp:638 src/OpenSSLUtils.cpp:734
@@ -586,7 +585,7 @@ msgstr "Geen geldig certificaatbestand opgegeven."
 
 #: src/OpenSSLUtils.cpp:828
 msgid "No valid CA directory specified."
-msgstr "Geen geldige CA-directory gespecificeerd."
+msgstr "Geen geldige CA-map gespecificeerd."
 
 #: src/OpenSSLUtils.cpp:982
 msgid "Showing certificate status with serial %1 failed (%2)."
@@ -598,9 +597,8 @@ msgstr "Het sleutelbestand bestaat niet."
 
 #: src/OpenSSLUtils.cpp:1306 src/OpenSSLUtils.cpp:1677
 #: src/OpenSSLUtils.cpp:1817
-#, fuzzy
 msgid "Invalid password."
-msgstr "Ongeldig wachtwoord"
+msgstr "Ongeldig wachtwoord."
 
 #: src/OpenSSLUtils.cpp:1595
 msgid "The password for encrypting the output is required."
@@ -613,7 +611,7 @@ msgstr "Het PKCS12-wachtwoord is vereist."
 #: src/OpenSSLUtils.cpp:1847 src/OpenSSLUtils.cpp:2047
 #: src/OpenSSLUtils.cpp:2199
 msgid "Cannot read directory: %1 (%2) [%3]."
-msgstr "Kan directory niet lezen: %1 (%2) [%3]."
+msgstr "Kan map niet lezen: %1 (%2) [%3]."
 
 #: src/OpenSSLUtils.cpp:1897
 msgid "No serial number found in %1."
@@ -647,7 +645,7 @@ msgstr "%1 bestaat nog."
 #: src/OpenSSLUtils.cpp:2460 src/OpenSSLUtils.cpp:2474
 #: src/OpenSSLUtils.cpp:2488 src/OpenSSLUtils.cpp:2502
 msgid "Cannot create directory: %1 (%2 [%3])."
-msgstr "Kan directory niet maken: %1 (%2 [%3])."
+msgstr "Kan map niet maken: %1 (%2 [%3])."
 
 #: src/OpenSSLUtils.cpp:2433
 msgid "Cannot copy the configuration template."
@@ -951,6 +949,3 @@ msgstr "Ongeldige waarde voor X509v3RequestExts::setSubjectKeyIdentifier."
 #: src/X509v3RequestExtensions.cpp:231
 msgid "Invalid value for X509v3RequestExts::setSubjectAlternativeName."
 msgstr "Ongeldige waarde voor X509v3RequestExts::setSubjectAlternativeName."
-
-#~ msgid "Command returned '%1' : %2"
-#~ msgstr "Commando antwoordde '%1': %2"

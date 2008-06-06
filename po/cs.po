@@ -1,22 +1,23 @@
-# translation of limal-ca-mgm.po to Czech
+# translation of limal-ca-mgm.po to czech
 # @TITLE@
 # Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
 #
 # This file is distributed under the same license as @PACKAGE@ package. FIRST
-# Jakub Friedl <jfriedl@suse.cz>, 2006.
 #
+# Jakub Friedl <jfriedl@suse.cz>, 2006.
+# Vojtěch Zeisek <vojta.sc@seznam.cz>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2008-03-31 16:08+0200\n"
-"PO-Revision-Date: 2006-09-27 14:41+0200\n"
-"Last-Translator: Novell Language <language@novell.com>\n"
-"Language-Team: Novell Language <language@novell.com>\n"
+"PO-Revision-Date: 2008-05-25 20:57+0200\n"
+"Last-Translator: Vojtěch Zeisek <vojta.sc@seznam.cz>\n"
+"Language-Team: czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.10.2\n"
+"X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:110
@@ -281,9 +282,8 @@ msgid "Error during key encryption."
 msgstr "Chyba při šifrování klíče."
 
 #: src/CA.cpp:1339
-#, fuzzy
 msgid "Error during write defaults."
-msgstr "Chyba při šifrování klíče."
+msgstr "Chyba při zápisu výchozích hodnot."
 
 #: src/CA.cpp:1483
 msgid "CA name does not exist (%1)."
@@ -554,9 +554,8 @@ msgstr "Neplatný příkaz %1."
 #: src/OpenSSLUtils.cpp:1271 src/OpenSSLUtils.cpp:1390
 #: src/OpenSSLUtils.cpp:1493 src/OpenSSLUtils.cpp:1645
 #: src/OpenSSLUtils.cpp:1782
-#, fuzzy
 msgid "Executing openssl command failed."
-msgstr "Spouští programy jako root"
+msgstr "Spuštění příkazu openssl selhalo."
 
 #: src/OpenSSLUtils.cpp:143 src/OpenSSLUtils.cpp:251 src/OpenSSLUtils.cpp:349
 #: src/OpenSSLUtils.cpp:473 src/OpenSSLUtils.cpp:611 src/OpenSSLUtils.cpp:711
@@ -564,9 +563,8 @@ msgstr "Spouští programy jako root"
 #: src/OpenSSLUtils.cpp:1311 src/OpenSSLUtils.cpp:1415
 #: src/OpenSSLUtils.cpp:1518 src/OpenSSLUtils.cpp:1682
 #: src/OpenSSLUtils.cpp:1822
-#, fuzzy
 msgid "openssl command failed: %1"
-msgstr "Stažení selhalo: "
+msgstr "příkaz openssl selhal: %1"
 
 #: src/OpenSSLUtils.cpp:176 src/OpenSSLUtils.cpp:278 src/OpenSSLUtils.cpp:381
 #: src/OpenSSLUtils.cpp:499 src/OpenSSLUtils.cpp:638 src/OpenSSLUtils.cpp:734
@@ -599,9 +597,8 @@ msgstr "Klíčový soubor neexistuje."
 
 #: src/OpenSSLUtils.cpp:1306 src/OpenSSLUtils.cpp:1677
 #: src/OpenSSLUtils.cpp:1817
-#, fuzzy
 msgid "Invalid password."
-msgstr "Neplatné heslo"
+msgstr "Neplatné heslo."
 
 #: src/OpenSSLUtils.cpp:1595
 msgid "The password for encrypting the output is required."
@@ -952,6 +949,3 @@ msgstr "Neplatná hodnota pro X509v3RequestExts::setSubjectKeyIdentifier."
 #: src/X509v3RequestExtensions.cpp:231
 msgid "Invalid value for X509v3RequestExts::setSubjectAlternativeName."
 msgstr "Neplatná hodnota pro X509v3RequestExts::setSubjectAlternativeName."
-
-#~ msgid "Command returned '%1' : %2"
-#~ msgstr "Příkaz vrátil '%1' : %2"

@@ -2,17 +2,18 @@
 # @TITLE@
 # Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 # This file is distributed under the same license as @PACKAGE@ package. FIRST
-#
+# 
+# Andrei Cipu <strainu10@gmail.com>, 2008
 msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm.ro\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2008-03-31 16:08+0200\n"
 "PO-Revision-Date: 2007-12-22 18:10+0100\n"
-"Last-Translator: \n"
-"Language-Team:  <en@li.org>\n"
+"Last-Translator: Andrei Cipu <strainu10@gmail.com>\n"
+"Language-Team:  <ro@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -281,9 +282,8 @@ msgid "Error during key encryption."
 msgstr "Eroare la criptarea cheii."
 
 #: src/CA.cpp:1339
-#, fuzzy
 msgid "Error during write defaults."
-msgstr "Eroare la criptarea cheii."
+msgstr ""
 
 #: src/CA.cpp:1483
 msgid "CA name does not exist (%1)."
