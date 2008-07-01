@@ -1,0 +1,10 @@
+START
+=================== start Test ======================
+2001:780:101:a00:211:11ff:fee6:a5af => is valid
+fe80::211:11ff:fee6:a5af => is valid
+2001::a5af => is valid
+fe80:1:211:11ff:fee6:: => is valid
+fe80::211::fee6:a5af => is not valid
+2001:780:101:a00:211:11ff:fee6:a5af:afff => is not valid
+g001:780:101:a00:211:11ff:fee6:a5af => is not valid
+DONE

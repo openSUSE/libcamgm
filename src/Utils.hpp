@@ -154,7 +154,18 @@ inline limal::ValueCheck initIP4Check() {
 
 inline limal::ValueCheck initIP6Check() {
 	limal::ValueCheck checkIP =
-		limal::ValueCheck(new limal::ValuePosixRECheck("^([0-9a-fA-F]{0,4}:){7}[0-9a-fA-F]{0,4}$"));
+		limal::ValueCheck(new limal::ValuePosixRECheck("^([0-9a-fA-F]{1,4}:){7}([0-9a-fA-F]){1,4}$"))
+		.Or(new limal::ValuePosixRECheck("^:(:[0-9a-fA-F]{1,4}){1,6}$"))
+		.Or(new limal::ValuePosixRECheck("^([0-9a-fA-F]{1,4}:){1,6}:$"))
+		.Or(
+			limal::ValueCheck(
+							  limal::ValueCheck( new limal::ValuePosixRECheck( "^(([0-9a-fA-F]{1,4}):){1,6}(:([0-9a-fA-F]{1,4})){1,6}$")) 
+					    ).And(
+							  limal::ValueCheck( new limal::ValuePosixRECheck("^([^:]*:){8,}")).Not()
+						).And(
+							  limal::ValueCheck( new limal::ValuePosixRECheck("::.*::") ).Not()
+							 )
+		   );
 	
 	return checkIP;
 }

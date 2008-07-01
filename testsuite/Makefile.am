@@ -33,7 +33,7 @@ noinst_PROGRAMS = CAConfig.single CA1.single CA2.multi \
                   ImportCommonCertificateTest.single \
                   ConvertTest.single iniParser.multi \
                   sysConfig.single RequestTest.single \
-                  CRLTest.single
+                  CRLTest.single IPv6CheckTest.single
 
 CAConfig_single_SOURCES = CAConfig.cc
 
@@ -118,6 +118,8 @@ sysConfig_single_SOURCES = sysConfig.cc
 RequestTest_single_SOURCES = RequestTest.cc
 
 CRLTest_single_SOURCES = CRLTest.cc
+
+IPv6CheckTest_single_SOURCES = IPv6CheckTest.cc
 
 clean-local:
 	rm -f tmp.err.* tmp.out.* site.exp site.bak openssl.cnf.tmpl.test
