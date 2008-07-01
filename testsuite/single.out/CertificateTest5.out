@@ -84,6 +84,8 @@ LiteralValue::dump()
 1.3.6.1.4.1.311.20.2.3:me/admin@MY-COMPANY.COM
 LiteralValue::dump()
 1.3.6.1.5.2.2:me/admin@MY-COMPANY.COM
+LiteralValue::dump()
+IP:2001:780:101:A00:211:11FF:FEE6:A5AF
 IssuerAlternativeNameExt::dump()
 ExtensionBase::dump()
 is Present = true
@@ -103,6 +105,8 @@ LiteralValue::dump()
 1.3.6.1.4.1.311.20.2.3:me/admin@MY-COMPANY.COM
 LiteralValue::dump()
 1.3.6.1.5.2.2:me/admin@MY-COMPANY.COM
+LiteralValue::dump()
+IP:2001:780:101:A00:211:11FF:FEE6:A5AF
 AuthorityInfoAccessExt::dump()
 ExtensionBase::dump()
 is Present = false

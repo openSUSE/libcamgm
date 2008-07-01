@@ -121,6 +121,7 @@ int main()
         
         List<LiteralValue> list;
         list.push_back(LiteralValue("IP", "164.34.35.184"));
+        list.push_back(LiteralValue("IP", "2001:780:101:a00:211:11ff:fee6:a5af"));
         list.push_back(LiteralValue("DNS", "ca.my-company.com"));
         list.push_back(LiteralValue("RID", "1.2.3.4"));
         list.push_back(LiteralValue("email", "me@my-company.com"));

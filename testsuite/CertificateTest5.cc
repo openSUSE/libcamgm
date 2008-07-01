@@ -98,6 +98,7 @@ int main()
 		list.push_back(LiteralValue("1.3.6.1.5.2.2", "me@MY-COMPANY.COM"));            // krb5PrincipalName
 		list.push_back(LiteralValue("1.3.6.1.4.1.311.20.2.3", "me/admin@MY-COMPANY.COM"));   // ms_upn
 		list.push_back(LiteralValue("1.3.6.1.5.2.2", "me/admin@MY-COMPANY.COM"));            // krb5PrincipalName
+		list.push_back(LiteralValue("IP", "2001:780:101:a00:211:11ff:fee6:a5af"));            // IPv6 address
 		
 		cid.extensions().subjectAlternativeName().setCopyEmail(true);
 		cid.extensions().subjectAlternativeName().setAlternativeNameList(list);

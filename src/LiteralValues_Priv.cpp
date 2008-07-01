@@ -85,9 +85,10 @@ LiteralValue_Priv::LiteralValue_Priv()
 LiteralValue_Priv::LiteralValue_Priv(GENERAL_NAME *gen)
 	: LiteralValue()
 {
-	char oline[256];
+	char oline[256], htmp[5];
 	unsigned char *p = NULL;
 	int nid = 0;
+	int i;
 
 	ASN1_OBJECT *id_ms_san_upn;
 	ASN1_OBJECT *id_pkinit_san;
@@ -131,13 +132,29 @@ LiteralValue_Priv::LiteralValue_Priv(GENERAL_NAME *gen)
 	case GEN_IPADD:
 		p = gen->d.ip->data;
 			/* BUG: doesn't support IPV6 */
-		if(gen->d.ip->length != 4) {
-			LOGIT_ERROR("Invalid IP Address: maybe IPv6");
-			BLOCXX_THROW(limal::SyntaxException, "Invalid IP Address: maybe IPv6");
+		if(gen->d.ip->length == 4) {
+			BIO_snprintf(oline, sizeof oline,
+						 "%d.%d.%d.%d", p[0], p[1], p[2], p[3]);
+		}
+		else if(gen->d.ip->length == 16)
+		{
+			oline[0] = 0;
+			for (i = 0; i < 8; i++)
+			{
+				BIO_snprintf(htmp, sizeof htmp,
+							 "%X", p[0] << 8 | p[1]);
+				p += 2;
+				strcat(oline, htmp);
+				if (i != 7)
+					strcat(oline, ":");
+			}
+		}
+		else
+		{
+			LOGIT_ERROR("Invalid IP Address");
+			BLOCXX_THROW(limal::SyntaxException, "Invalid IP Address");
 			break;
 		}
-		BIO_snprintf(oline, sizeof oline,
-		             "%d.%d.%d.%d", p[0], p[1], p[2], p[3]);
 		setLiteral("IP", oline);
 		break;
 	case GEN_RID:

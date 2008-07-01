@@ -333,11 +333,16 @@ LiteralValue::valid() const
 	}
 	else if(m_impl->literalType == "IP")
 	{
-		ValueCheck check = initIPCheck();
+		ValueCheck check = initIP4Check();
 		if(!check.isValid(m_impl->literalValue))
 		{
-			LOGIT_DEBUG("Wrong LiteralValue for type 'IP': " << m_impl->literalValue);
-			return false;
+			// IPv6 address is allowed too
+			check = initIP6Check();
+			if(!check.isValid(m_impl->literalValue))
+			{
+				LOGIT_DEBUG("Wrong LiteralValue for type 'IP': " << m_impl->literalValue);
+				return false;
+			}
 		}
 	}
 	else if(m_impl->literalType == "1.3.6.1.4.1.311.20.2.3")  // ms_upn
@@ -419,12 +424,17 @@ LiteralValue::verify() const
 	}
 	else if(m_impl->literalType == "IP")
 	{
-		ValueCheck check = initIPCheck();
+		ValueCheck check = initIP4Check();
 		if(!check.isValid(m_impl->literalValue))
 		{
-			LOGIT_DEBUG("Wrong LiteralValue for type 'IP': " << m_impl->literalValue);
-			result.append(Format("Wrong LiteralValue for type 'IP': %1",
-			                     m_impl->literalValue).toString());
+			// IPv6 address is allowed too
+			check = initIP6Check();
+			if(!check.isValid(m_impl->literalValue))
+			{
+				LOGIT_DEBUG("Wrong LiteralValue for type 'IP': " << m_impl->literalValue);
+				result.append(Format("Wrong LiteralValue for type 'IP': %1",
+									 m_impl->literalValue).toString());
+			}
 		}
 	}
 	else if(m_impl->literalType == "1.3.6.1.4.1.311.20.2.3")  // ms_upn

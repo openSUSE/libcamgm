@@ -145,10 +145,17 @@ inline limal::ValueCheck initDNSCheck() {
 	return checkDNS;
 }
 
-inline limal::ValueCheck initIPCheck() {
+inline limal::ValueCheck initIP4Check() {
 	limal::ValueCheck checkIP =
 		limal::ValueCheck(new limal::ValuePosixRECheck("^([0-9]{1,3}\\.){3}[0-9]{1,3}$"));
 
+	return checkIP;
+}
+
+inline limal::ValueCheck initIP6Check() {
+	limal::ValueCheck checkIP =
+		limal::ValueCheck(new limal::ValuePosixRECheck("^([0-9a-fA-F]{0,4}:){7}[0-9a-fA-F]{0,4}$"));
+	
 	return checkIP;
 }
 
