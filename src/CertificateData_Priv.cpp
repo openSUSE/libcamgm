@@ -264,12 +264,21 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 	// convert to hexadecimal version of the serial number
 
 	BIO *bioS           = BIO_new(BIO_s_mem());
-	i2a_ASN1_INTEGER(bioS, X509_get_serialNumber(x509));
+	ASN1_INTEGER *bs=X509_get_serialNumber(x509);
+	String serialStr;
+	for (int i=0; i<bs->length; i++)
+	{
+		if (BIO_printf(bioS,"%02x",bs->data[i]) <= 0)
+		{
+			LOGIT_ERROR("Can not parse serial.");
+			BLOCXX_THROW(limal::RuntimeException,
+						 __("Cannot parse serial."));
+		}
+	}
 	n = BIO_get_mem_data(bioS, &ustringval);
-
-	setSerial( String(reinterpret_cast<const char*>(ustringval), n));
+	setSerial( String(reinterpret_cast<const char*>(ustringval), n).toUpperCase());
 	BIO_free(bioS);
-
+	
 	// get notBefore
 	ASN1_TIME *t   = X509_get_notBefore(x509);
 	char      *cbuf = new char[t->length + 1];

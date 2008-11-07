@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2008-09-03 13:49+0200\n"
-"PO-Revision-Date: 2008-04-02 22:58+0900\n"
+"POT-Creation-Date: 2008-11-06 15:43+0100\n"
+"PO-Revision-Date: 2008-09-25 22:36+0900\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
 "Language-Team: Japanese <opensuse-ja@opensuse.org>\n"
 "MIME-Version: 1.0\n"
@@ -346,28 +346,33 @@ msgstr "証明書を処理できません。"
 msgid "Error while parsing the certificate."
 msgstr "証明書の処理中にエラーが発生しました。"
 
-#: src/CertificateData_Priv.cpp:291 src/CertificateData_Priv.cpp:325
+#: src/CertificateData_Priv.cpp:275
+#, fuzzy
+msgid "Cannot parse serial."
+msgstr "セクション %1 を処理できません。"
+
+#: src/CertificateData_Priv.cpp:300 src/CertificateData_Priv.cpp:334
 #: src/CRLData_Priv.cpp:91 src/CRLData_Priv.cpp:341 src/CRLData_Priv.cpp:375
 msgid "Cannot parse date %1."
 msgstr "日付 %1 を解析できません。"
 
-#: src/CertificateData_Priv.cpp:380 src/RequestData_Priv.cpp:182
+#: src/CertificateData_Priv.cpp:389 src/RequestData_Priv.cpp:182
 msgid "Unable to get the public key."
-msgstr "公開鍵を取得できまんでした。"
+msgstr "公開鍵を取得できませんでした。"
 
-#: src/CertificateData_Priv.cpp:391 src/RequestData_Priv.cpp:193
+#: src/CertificateData_Priv.cpp:400 src/RequestData_Priv.cpp:193
 msgid "Could not get RSA key."
 msgstr "RSA 鍵を取得できませんでした。"
 
-#: src/CertificateData_Priv.cpp:411 src/RequestData_Priv.cpp:213
+#: src/CertificateData_Priv.cpp:420 src/RequestData_Priv.cpp:213
 msgid "Unsupported public key type."
 msgstr "サポートされていない種類の公開鍵です。"
 
-#: src/CertificateData_Priv.cpp:447 src/RequestData_Priv.cpp:246
+#: src/CertificateData_Priv.cpp:456 src/RequestData_Priv.cpp:246
 msgid "Unsupported public key algorithm."
 msgstr "サポートされていない公開鍵のアルゴリズムです。"
 
-#: src/CertificateData_Priv.cpp:479 src/CRLData_Priv.cpp:424
+#: src/CertificateData_Priv.cpp:488 src/CRLData_Priv.cpp:424
 #: src/RequestData_Priv.cpp:276
 msgid "Unsupported signature algorithm %1."
 msgstr "サポートされていない署名アルゴリズム %1 です。"

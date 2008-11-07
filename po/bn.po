@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2008-09-03 13:49+0200\n"
+"POT-Creation-Date: 2008-11-06 15:43+0100\n"
 "PO-Revision-Date: 2004-08-09 10:24+0200\n"
 "Last-Translator: Priyavert Sharma<priyavert.sharma@agreeya.com>\n"
 "Language-Team: AgreeYa Solutions<linux_team@agreeya.com>\n"
@@ -344,28 +344,33 @@ msgstr "সার্টিফিকেট বিশ্লেষণ করা য
 msgid "Error while parsing the certificate."
 msgstr "সার্টিফিকেট বিশ্লেষম করতে গিয়ে ত্রুটি"
 
-#: src/CertificateData_Priv.cpp:291 src/CertificateData_Priv.cpp:325
+#: src/CertificateData_Priv.cpp:275
+#, fuzzy
+msgid "Cannot parse serial."
+msgstr "বিভাগ %1 বিশ্লেষণ করা যাচ্ছে না"
+
+#: src/CertificateData_Priv.cpp:300 src/CertificateData_Priv.cpp:334
 #: src/CRLData_Priv.cpp:91 src/CRLData_Priv.cpp:341 src/CRLData_Priv.cpp:375
 msgid "Cannot parse date %1."
 msgstr "তারিখ %1 বিশ্লেষণ করা যাচ্ছে না"
 
-#: src/CertificateData_Priv.cpp:380 src/RequestData_Priv.cpp:182
+#: src/CertificateData_Priv.cpp:389 src/RequestData_Priv.cpp:182
 msgid "Unable to get the public key."
 msgstr "পাব্লিক কী পাওয়া যাচ্ছে না"
 
-#: src/CertificateData_Priv.cpp:391 src/RequestData_Priv.cpp:193
+#: src/CertificateData_Priv.cpp:400 src/RequestData_Priv.cpp:193
 msgid "Could not get RSA key."
 msgstr " RSA কী পাওয়া যায়নি"
 
-#: src/CertificateData_Priv.cpp:411 src/RequestData_Priv.cpp:213
+#: src/CertificateData_Priv.cpp:420 src/RequestData_Priv.cpp:213
 msgid "Unsupported public key type."
 msgstr "পাব্লিক কী-র প্রকারে সমর্থন নেই"
 
-#: src/CertificateData_Priv.cpp:447 src/RequestData_Priv.cpp:246
+#: src/CertificateData_Priv.cpp:456 src/RequestData_Priv.cpp:246
 msgid "Unsupported public key algorithm."
 msgstr "পাব্লিক কী-র এলগরিথমে সমর্থন নেই"
 
-#: src/CertificateData_Priv.cpp:479 src/CRLData_Priv.cpp:424
+#: src/CertificateData_Priv.cpp:488 src/CRLData_Priv.cpp:424
 #: src/RequestData_Priv.cpp:276
 msgid "Unsupported signature algorithm %1."
 msgstr " সমর্থনহীন সিগনেটার এলগরিথম %1."

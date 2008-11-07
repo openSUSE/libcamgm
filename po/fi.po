@@ -7,13 +7,14 @@
 # Erkka Hakkarainen <erkka.hakkarainen@pp.inet.fi>, 2006.
 # Jyri Palokangas <jmp@netti.fi>, 2006.
 # Jyri Palokangas <jmp@opensuse.fi>, 2007, 2008.
+# Sami Ojanen <sami.ojanen@kapsi.fi>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm.fi\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2008-09-03 13:49+0200\n"
-"PO-Revision-Date: 2008-04-03 16:53+0300\n"
-"Last-Translator: Jyri Palokangas <jmp@opensuse.fi>\n"
+"POT-Creation-Date: 2008-11-06 15:43+0100\n"
+"PO-Revision-Date: 2008-10-22 19:59+0300\n"
+"Last-Translator: Sami Ojanen <sami.ojanen@kapsi.fi>\n"
 "Language-Team:  <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -195,11 +196,11 @@ msgstr "Tiedostoa %1 ei löydetty varastosta (repository)."
 
 #: src/CA.cpp:497 src/CRLData_Priv.cpp:179
 msgid "Invalid CRL reason."
-msgstr "Virheellinen CLR-syy."
+msgstr "Virheellinen CRL-syy."
 
 #: src/CA.cpp:520
 msgid "Invalid CRL data."
-msgstr "Virheellinen CLR-tieto."
+msgstr "Virheellinen CRL-tieto."
 
 #: src/CA.cpp:568
 msgid "Duplicate DN. Request already exists."
@@ -303,7 +304,7 @@ msgstr "CA:n %1 poisto epäonnistui."
 
 #: src/CA.cpp:1590
 msgid "The configuration file is missing a value for policy."
-msgstr "Määritystiedostosta puuttuu \"politiikka\" (policy) -arvo"
+msgstr "Määritystiedostosta puuttuu \"menettely\" (value for policy)"
 
 #: src/CA.cpp:1600 src/CA.cpp:1862 src/DNObject.cpp:270
 #: src/DNObject_Priv.cpp:209
@@ -325,7 +326,7 @@ msgstr "%1:sen pitää olla sama kuin CA-varmenteessa %2 (pyyntö oli %3)."
 #: src/CA.cpp:1808
 msgid "The configuration file seems to have an invalid policy."
 msgstr ""
-"Määritystiedostossa näyttäisi olevan virheellinen \"politiikka\" (policy)."
+"Määritystiedostossa näyttäisi olevan virheellinen \"menettely\" (policy)."
 
 # %s is either BOOTP or DHCP
 #: src/CA.cpp:1834 src/CA.cpp:1844
@@ -354,28 +355,33 @@ msgstr "Ei voitu koostaa varmennetta."
 msgid "Error while parsing the certificate."
 msgstr "Virhe varmenteen koostamisessa."
 
-#: src/CertificateData_Priv.cpp:291 src/CertificateData_Priv.cpp:325
+#: src/CertificateData_Priv.cpp:275
+#, fuzzy
+msgid "Cannot parse serial."
+msgstr "Ei voitu koostaa osiota %1."
+
+#: src/CertificateData_Priv.cpp:300 src/CertificateData_Priv.cpp:334
 #: src/CRLData_Priv.cpp:91 src/CRLData_Priv.cpp:341 src/CRLData_Priv.cpp:375
 msgid "Cannot parse date %1."
 msgstr "Ei voitu koostaa päiväystä %1."
 
-#: src/CertificateData_Priv.cpp:380 src/RequestData_Priv.cpp:182
+#: src/CertificateData_Priv.cpp:389 src/RequestData_Priv.cpp:182
 msgid "Unable to get the public key."
 msgstr "Ei voitu hakea julkista avainta."
 
-#: src/CertificateData_Priv.cpp:391 src/RequestData_Priv.cpp:193
+#: src/CertificateData_Priv.cpp:400 src/RequestData_Priv.cpp:193
 msgid "Could not get RSA key."
 msgstr "Ei voitu hakea RSA-avainta."
 
-#: src/CertificateData_Priv.cpp:411 src/RequestData_Priv.cpp:213
+#: src/CertificateData_Priv.cpp:420 src/RequestData_Priv.cpp:213
 msgid "Unsupported public key type."
 msgstr "Julkisen avaimen tyyppi ei tuettu."
 
-#: src/CertificateData_Priv.cpp:447 src/RequestData_Priv.cpp:246
+#: src/CertificateData_Priv.cpp:456 src/RequestData_Priv.cpp:246
 msgid "Unsupported public key algorithm."
 msgstr "Julkisen avaimen algoritmi ei tuettu."
 
-#: src/CertificateData_Priv.cpp:479 src/CRLData_Priv.cpp:424
+#: src/CertificateData_Priv.cpp:488 src/CRLData_Priv.cpp:424
 #: src/RequestData_Priv.cpp:276
 msgid "Unsupported signature algorithm %1."
 msgstr "Allekirjoituksen algoritmi %1 ei tuettu."
@@ -404,7 +410,7 @@ msgstr "Virheellinen CertificatePolicy objekti."
 #: src/CertificatePoliciesExtension.cpp:783
 #: src/CertificatePoliciesExtension.cpp:808
 msgid "CertificatePoliciesExt is not present."
-msgstr "CertificatePoliciesExt :ia ei löydy."
+msgstr "CertificatePoliciesExt:ia ei löydy."
 
 #: src/CertificatePoliciesExtension.cpp:821
 msgid "Invalid CertificatePoliciesExt object."

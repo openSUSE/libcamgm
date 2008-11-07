@@ -1,0 +1,183 @@
+START
+file: ParseCertificateTest2/testcase6.in
+Parse TestRepos3/edir-cert.pem Format:PEM
+CertificateData::dump()
+Version = 3
+Serial = 021C14E16E791A489BB8CBA151B95F6EC138C24FF7FB5293C1499B1F0EF102020815796B
+notBefore = 1225175611
+notAfter = 1288247611
+Fingerprint = SHA1:58:47:29:00:E8:36:2B:F2:FE:5B:DC:8B:94:01:11:39:E7:E1:A6:1F
+DNObject::dump()
+RDNObject::dump()
+organizationalUnitName=Organizational CA
+Prompt:
+Min:0
+Max:0
+RDNObject::dump()
+organizationName=BMEMMOTT5-TREE
+Prompt:
+Min:0
+Max:0
+DNObject::dump()
+RDNObject::dump()
+organizationName=BMEMMOTT5-TREE
+Prompt:
+Min:0
+Max:0
+RDNObject::dump()
+commonName=bmemmott5.lab.novell.com
+Prompt:
+Min:0
+Max:0
+Keysize = 2048
+public key algorithm = 0
+public Key = 30:82:01:22:30:0d:06:09:2a:86:48:86:f7:0d:01:01:01:05:00:03:82:01:0f:00:30:82:01:0a:02:82:01:01:00:c4:76:89:2d:fb:3a:48:8d:a6:04:e4:74:68:78:c3:76:3d:15:a0:0c:6a:b5:fc:c3:cd:d2:55:5f:32:4f:e1:86:8e:2c:67:9f:28:95:07:fa:c0:ca:a0:67:26:10:33:4d:7f:6d:50:70:45:03:7f:ae:b0:a8:dc:df:ce:ba:de:37:c4:e3:b2:32:43:91:16:34:9b:1f:20:0f:e2:d3:6d:61:43:47:39:48:60:0e:4c:53:71:b7:6f:38:4d:3b:e3:6b:63:54:dd:4d:bd:47:6a:e3:c0:27:99:f1:d2:26:f5:03:a6:32:a1:77:6a:20:47:21:94:aa:ae:17:2d:c0:af:c2:0b:ef:a5:cf:64:5f:8e:b5:47:14:b0:60:eb:76:52:05:e3:14:3c:7c:db:e2:11:8c:f7:48:cd:74:00:5e:8f:4f:fe:2b:f7:92:36:a7:b7:24:3d:e3:fb:99:f5:eb:7a:fb:4c:4e:1a:cf:bf:44:b7:8e:df:c5:0b:6a:55:d7:2b:b2:cd:6c:75:1c:81:78:aa:99:7d:39:72:6f:46:c2:8c:c7:0e:2b:01:d8:57:93:11:50:21:89:90:e8:9c:14:75:f1:95:dd:30:e5:c2:f1:b2:d2:e6:c6:2f:54:75:f2:ad:cf:33:d5:bd:b9:80:75:26:dd:62:56:a2:18:35:d9:9f:87:02:03:01:00:01:
+signatureAlgorithm = 0
+Signature = 21:63:79:6f:72:51:2f:bb:6a:47:3e:92:53:0a:38:0d:e2:e7:3c:21:cc:85:56:ba:19:2b:af:86:66:73:4e:7a:42:af:19:01:fe:49:a3:c4:66:7e:5d:35:5a:29:48:92:84:0a:5e:4d:d8:d5:37:b2:fe:98:73:7c:da:46:a8:b6:1c:f1:19:4d:fc:a0:e3:04:49:9d:3e:be:b2:69:7c:77:b1:8f:03:3e:d3:69:15:92:3d:74:6c:18:fa:93:d8:18:47:a9:69:0e:ec:19:5d:88:72:8b:fd:53:79:3a:36:50:c3:62:4e:ae:44:96:0b:97:76:d8:b6:b4:b3:24:0b:6d:2f:50:32:69:0b:15:31:26:61:e2:3b:1d:73:16:73:2c:e9:4d:a8:fd:aa:8c:af:52:b7:8a:b8:c9:68:f0:87:26:9d:91:55:63:9f:17:54:bf:02:8b:47:dd:f9:71:d8:df:75:39:04:10:45:1b:70:62:72:2f:22:35:d2:85:d4:c4:e8:7e:55:45:a7:69:86:ea:51:55:d7:90:d6:7a:f7:6c:50:29:1a:60:83:66:b9:2c:94:05:62:f3:b0:13:0f:ac:f7:2e:48:df:30:c3:a2:f6:82:6e:ba:84:a3:cc:b8:2d:c5:cb:48:42:19:6d:7d:a5:4a:c1:61:cf:17:49:38:94:
+X509v3CertificateExts::dump()
+NsBaseUrlExt::dump()
+ExtensionBase::dump()
+is Present = false
+NsRevocationUrlExt::dump()
+ExtensionBase::dump()
+is Present = false
+NsCaRevocationUrlExt::dump()
+ExtensionBase::dump()
+is Present = false
+NsRenewalUrlExt::dump()
+ExtensionBase::dump()
+is Present = false
+NsCaPolicyUrlExt::dump()
+ExtensionBase::dump()
+is Present = false
+NsSslServerNameExt::dump()
+ExtensionBase::dump()
+is Present = false
+NsCommentExt::dump()
+ExtensionBase::dump()
+is Present = false
+KeyUsageExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+KeyUsage = 0x00a0
+NsCertTypeExt::dump()
+ExtensionBase::dump()
+is Present = false
+BasicConstraintsExt::dump()
+ExtensionBase::dump()
+is Present = false
+ExtendedKeyUsageExt::dump()
+ExtensionBase::dump()
+is Present = false
+SubjectKeyIdentifierExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+Autodetect = false
+KeyID = 63:cf:95:58:40:1b:fc:a7:18:32:03:f6:44:f3:ac:51:b9:ed:ba:a7
+AuthorityKeyIdentifierExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+KeyID = 97:4b:e5:d2:ad:c9:88:48:80:02:9f:0b:65:c5:a2:b5:f4:1e:91:da
+DirName = 
+serial = 
+SubjectAlternativeNameExt::dump()
+ExtensionBase::dump()
+is Present = true
+is Critical = false
+email:copy = false
+LiteralValue::dump()
+IP:151.155.241.210
+IssuerAlternativeNameExt::dump()
+ExtensionBase::dump()
+is Present = false
+AuthorityInfoAccessExt::dump()
+ExtensionBase::dump()
+is Present = false
+CRLDistributionPointsExt::dump()
+ExtensionBase::dump()
+is Present = false
+CertificatePoliciesExt::dump()
+ExtensionBase::dump()
+is Present = false
+=================== call verify ======================
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            02:1c:14:e1:6e:79:1a:48:9b:b8:cb:a1:51:b9:5f:6e:c1:38:c2:4f:f7:fb:52:93:c1:49:9b:1f:0e:f1:02:02:08:15:79:6b
+        Signature Algorithm: sha1WithRSAEncryption
+        Issuer: OU=Organizational CA, O=BMEMMOTT5-TREE
+        Validity
+            Not Before: Oct 28 06:33:31 2008 GMT
+            Not After : Oct 28 06:33:31 2010 GMT
+        Subject: O=BMEMMOTT5-TREE, CN=bmemmott5.lab.novell.com
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+            RSA Public Key: (2048 bit)
+                Modulus (2048 bit):
+                    00:c4:76:89:2d:fb:3a:48:8d:a6:04:e4:74:68:78:
+                    c3:76:3d:15:a0:0c:6a:b5:fc:c3:cd:d2:55:5f:32:
+                    4f:e1:86:8e:2c:67:9f:28:95:07:fa:c0:ca:a0:67:
+                    26:10:33:4d:7f:6d:50:70:45:03:7f:ae:b0:a8:dc:
+                    df:ce:ba:de:37:c4:e3:b2:32:43:91:16:34:9b:1f:
+                    20:0f:e2:d3:6d:61:43:47:39:48:60:0e:4c:53:71:
+                    b7:6f:38:4d:3b:e3:6b:63:54:dd:4d:bd:47:6a:e3:
+                    c0:27:99:f1:d2:26:f5:03:a6:32:a1:77:6a:20:47:
+                    21:94:aa:ae:17:2d:c0:af:c2:0b:ef:a5:cf:64:5f:
+                    8e:b5:47:14:b0:60:eb:76:52:05:e3:14:3c:7c:db:
+                    e2:11:8c:f7:48:cd:74:00:5e:8f:4f:fe:2b:f7:92:
+                    36:a7:b7:24:3d:e3:fb:99:f5:eb:7a:fb:4c:4e:1a:
+                    cf:bf:44:b7:8e:df:c5:0b:6a:55:d7:2b:b2:cd:6c:
+                    75:1c:81:78:aa:99:7d:39:72:6f:46:c2:8c:c7:0e:
+                    2b:01:d8:57:93:11:50:21:89:90:e8:9c:14:75:f1:
+                    95:dd:30:e5:c2:f1:b2:d2:e6:c6:2f:54:75:f2:ad:
+                    cf:33:d5:bd:b9:80:75:26:dd:62:56:a2:18:35:d9:
+                    9f:87
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Subject Key Identifier: 
+                63:CF:95:58:40:1B:FC:A7:18:32:03:F6:44:F3:AC:51:B9:ED:BA:A7
+            X509v3 Authority Key Identifier: 
+                keyid:97:4B:E5:D2:AD:C9:88:48:80:02:9F:0B:65:C5:A2:B5:F4:1E:91:DA
+
+            X509v3 Subject Alternative Name: 
+                IP Address:151.155.241.210
+            X509v3 Key Usage: 
+                Digital Signature, Key Encipherment
+            2.16.840.1.113719.1.9.4.1: 
+                0............Novell Security Attribute(tm).Chttp://developer.novell.com/repository/attributes/certattrs_v10.htm0..H.....0.0......F0.0......
+..i.....0.0.......0.0.......................X...................................0.0......................H0.0......................H.X............@..............@.......0.0.....................ny0.0.....................ny.N0L...................................0.0.................0.0.................
+    Signature Algorithm: sha1WithRSAEncryption
+        21:63:79:6f:72:51:2f:bb:6a:47:3e:92:53:0a:38:0d:e2:e7:
+        3c:21:cc:85:56:ba:19:2b:af:86:66:73:4e:7a:42:af:19:01:
+        fe:49:a3:c4:66:7e:5d:35:5a:29:48:92:84:0a:5e:4d:d8:d5:
+        37:b2:fe:98:73:7c:da:46:a8:b6:1c:f1:19:4d:fc:a0:e3:04:
+        49:9d:3e:be:b2:69:7c:77:b1:8f:03:3e:d3:69:15:92:3d:74:
+        6c:18:fa:93:d8:18:47:a9:69:0e:ec:19:5d:88:72:8b:fd:53:
+        79:3a:36:50:c3:62:4e:ae:44:96:0b:97:76:d8:b6:b4:b3:24:
+        0b:6d:2f:50:32:69:0b:15:31:26:61:e2:3b:1d:73:16:73:2c:
+        e9:4d:a8:fd:aa:8c:af:52:b7:8a:b8:c9:68:f0:87:26:9d:91:
+        55:63:9f:17:54:bf:02:8b:47:dd:f9:71:d8:df:75:39:04:10:
+        45:1b:70:62:72:2f:22:35:d2:85:d4:c4:e8:7e:55:45:a7:69:
+        86:ea:51:55:d7:90:d6:7a:f7:6c:50:29:1a:60:83:66:b9:2c:
+        94:05:62:f3:b0:13:0f:ac:f7:2e:48:df:30:c3:a2:f6:82:6e:
+        ba:84:a3:cc:b8:2d:c5:cb:48:42:19:6d:7d:a5:4a:c1:61:cf:
+        17:49:38:94
+
+    X509v3 Subject Key Identifier: 
+        63:CF:95:58:40:1B:FC:A7:18:32:03:F6:44:F3:AC:51:B9:ED:BA:A7
+    X509v3 Authority Key Identifier: 
+        keyid:97:4B:E5:D2:AD:C9:88:48:80:02:9F:0B:65:C5:A2:B5:F4:1E:91:DA
+
+    X509v3 Subject Alternative Name: 
+        IP Address:151.155.241.210
+    X509v3 Key Usage: 
+        Digital Signature, Key Encipherment
+    2.16.840.1.113719.1.9.4.1: 
+        0............Novell Security Attribute(tm).Chttp://developer.novell.com/repository/attributes/certattrs_v10.htm0..H.....0.0......F0.0......
+..i.....0.0.......0.0.......................X...................................0.0......................H0.0......................H.X............@..............@.......0.0.....................ny0.0.....................ny.N0L...................................0.0.................0.0.................
+
+DONE

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2008-09-03 13:49+0200\n"
+"POT-Creation-Date: 2008-11-06 15:43+0100\n"
 "PO-Revision-Date: 2003-08-14 10:47+0200\n"
 "Last-Translator: Priyavert Sharma<priyavert.sharma@agreeya.com>\n"
 "Language-Team: AgreeYa Solutions<linux_team@agreeya.com>\n"
@@ -345,28 +345,33 @@ msgstr "சான்றிதழை விளக்க முடியவில�
 msgid "Error while parsing the certificate."
 msgstr "சான்றிதழை விளக்கும்போது பிழை."
 
-#: src/CertificateData_Priv.cpp:291 src/CertificateData_Priv.cpp:325
+#: src/CertificateData_Priv.cpp:275
+#, fuzzy
+msgid "Cannot parse serial."
+msgstr "பிரிவு %1 விளக்க முடியவில்லை."
+
+#: src/CertificateData_Priv.cpp:300 src/CertificateData_Priv.cpp:334
 #: src/CRLData_Priv.cpp:91 src/CRLData_Priv.cpp:341 src/CRLData_Priv.cpp:375
 msgid "Cannot parse date %1."
 msgstr "தேதி %1 விளக்க முடியவில்லை."
 
-#: src/CertificateData_Priv.cpp:380 src/RequestData_Priv.cpp:182
+#: src/CertificateData_Priv.cpp:389 src/RequestData_Priv.cpp:182
 msgid "Unable to get the public key."
 msgstr "பொது விசையை பெற முடியவில்லை."
 
-#: src/CertificateData_Priv.cpp:391 src/RequestData_Priv.cpp:193
+#: src/CertificateData_Priv.cpp:400 src/RequestData_Priv.cpp:193
 msgid "Could not get RSA key."
 msgstr "RSA விசையை பெற முடியவில்லை."
 
-#: src/CertificateData_Priv.cpp:411 src/RequestData_Priv.cpp:213
+#: src/CertificateData_Priv.cpp:420 src/RequestData_Priv.cpp:213
 msgid "Unsupported public key type."
 msgstr "ஆதரவற்ற பொது விசை வகை."
 
-#: src/CertificateData_Priv.cpp:447 src/RequestData_Priv.cpp:246
+#: src/CertificateData_Priv.cpp:456 src/RequestData_Priv.cpp:246
 msgid "Unsupported public key algorithm."
 msgstr "ஆதரவற்ற பொது விசை சிக்கல் தீர்வு."
 
-#: src/CertificateData_Priv.cpp:479 src/CRLData_Priv.cpp:424
+#: src/CertificateData_Priv.cpp:488 src/CRLData_Priv.cpp:424
 #: src/RequestData_Priv.cpp:276
 msgid "Unsupported signature algorithm %1."
 msgstr "ஆதரவற்ற கையொப்ப சிக்கல் தீர்வு %1."

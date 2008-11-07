@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm.pa\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2008-09-03 13:49+0200\n"
+"POT-Creation-Date: 2008-11-06 15:43+0100\n"
 "PO-Revision-Date: 2007-08-15 08:43+0530\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Panjabi <punjabi-l10n@lists.sf.net>\n"
@@ -353,28 +353,33 @@ msgstr "ਸਰਟੀਫਿਕੇਟ ਪਾਰਸ ਨਹੀਂ ਕੀਤਾ ਜ�
 msgid "Error while parsing the certificate."
 msgstr "ਸਰਟੀਫਿਕੇਟ ਪਾਰਸ ਕਰਨ ਦੌਰਾਨ ਗਲਤੀ ਹੈ।"
 
-#: src/CertificateData_Priv.cpp:291 src/CertificateData_Priv.cpp:325
+#: src/CertificateData_Priv.cpp:275
+#, fuzzy
+msgid "Cannot parse serial."
+msgstr "ਸ਼ੈਕਸ਼ਨ %1 ਪਾਰਸ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ।"
+
+#: src/CertificateData_Priv.cpp:300 src/CertificateData_Priv.cpp:334
 #: src/CRLData_Priv.cpp:91 src/CRLData_Priv.cpp:341 src/CRLData_Priv.cpp:375
 msgid "Cannot parse date %1."
 msgstr "ਮਿਤੀ %1 ਪਾਰਸ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕਦੀ।"
 
-#: src/CertificateData_Priv.cpp:380 src/RequestData_Priv.cpp:182
+#: src/CertificateData_Priv.cpp:389 src/RequestData_Priv.cpp:182
 msgid "Unable to get the public key."
 msgstr "ਪਬਲਿਕ ਕੁੰਜੀ ਲੈਣ ਲਈ ਅਸਮਰੱਥ ਹੈ।"
 
-#: src/CertificateData_Priv.cpp:391 src/RequestData_Priv.cpp:193
+#: src/CertificateData_Priv.cpp:400 src/RequestData_Priv.cpp:193
 msgid "Could not get RSA key."
 msgstr "RSA ਕੁੰਜੀ ਨਹੀਂ ਮਿਲੀ ਹੈ।"
 
-#: src/CertificateData_Priv.cpp:411 src/RequestData_Priv.cpp:213
+#: src/CertificateData_Priv.cpp:420 src/RequestData_Priv.cpp:213
 msgid "Unsupported public key type."
 msgstr "ਨਾ-ਸਹਾਇਕ ਪਬਲਿਕ ਕੁੰਜੀ ਕਿਸਮ ਹੈ।"
 
-#: src/CertificateData_Priv.cpp:447 src/RequestData_Priv.cpp:246
+#: src/CertificateData_Priv.cpp:456 src/RequestData_Priv.cpp:246
 msgid "Unsupported public key algorithm."
 msgstr "ਨਾ-ਸਹਾਇਕ ਪਬਲਿਕ ਕੁੰਜੀ ਐਲੋਗਰਥਿਮ ਹੈ।"
 
-#: src/CertificateData_Priv.cpp:479 src/CRLData_Priv.cpp:424
+#: src/CertificateData_Priv.cpp:488 src/CRLData_Priv.cpp:424
 #: src/RequestData_Priv.cpp:276
 msgid "Unsupported signature algorithm %1."
 msgstr "ਨਾ-ਸਹਾਇਕ ਦਸਤਖਤੀ ਐਲੋਗਰਿਥਮ %1।"

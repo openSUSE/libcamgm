@@ -169,6 +169,7 @@ EXTRA_DIST = CA2/*.* CA3/*.* CA4/*.* CA5/*.* single.out/*.* \
              TestRepos3/windows-ca.crt                      \
              TestRepos3/windows-client.crt                  \
              TestRepos3/windows-kdc.crt                     \
+             TestRepos3/edir-cert.pem                       \
              openssl.cnf.tmpl                               \
              perl-*.single                                  \
              iniParser/*.out iniParser/*.in                 \
