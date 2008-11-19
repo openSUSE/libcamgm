@@ -1,18 +1,18 @@
-# translation of limal-ca-mgm.sv.po to Swedish
+# translation of limal-ca-mgm.sv.po to svenska
 # @TITLE@
 # Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 # This file is distributed under the same license as @PACKAGE@ package. FIRST
 #
+# Jonas Björk <jonas@jonasbjork.net>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm.sv\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2008-11-06 15:43+0100\n"
-"PO-Revision-Date: 2008-11-06 21:27+0100\n"
-"Last-Translator: \n"
-"Language-Team: Swedish <sv@li.org>\n"
+"POT-Creation-Date: 2008-11-19 12:00+0100\n"
+"PO-Revision-Date: 2008-11-07 12:22+0100\n"
+"Last-Translator: Jonas Björk <jonas@jonasbjork.net>\n"
+"Language-Team: svenska <sv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -353,9 +353,8 @@ msgid "Error while parsing the certificate."
 msgstr "Ett fel uppstod när certifikatet skulle tolkas."
 
 #: src/CertificateData_Priv.cpp:275
-#, fuzzy
 msgid "Cannot parse serial."
-msgstr "Det gick inte att tolka avsnittet %1."
+msgstr "Kunde inte tolka serienumret"
 
 #: src/CertificateData_Priv.cpp:300 src/CertificateData_Priv.cpp:334
 #: src/CRLData_Priv.cpp:91 src/CRLData_Priv.cpp:341 src/CRLData_Priv.cpp:375
@@ -554,19 +553,19 @@ msgstr "Ogiltigt kommando %1."
 #: src/OpenSSLUtils.cpp:132 src/OpenSSLUtils.cpp:240 src/OpenSSLUtils.cpp:338
 #: src/OpenSSLUtils.cpp:462 src/OpenSSLUtils.cpp:600 src/OpenSSLUtils.cpp:700
 #: src/OpenSSLUtils.cpp:782 src/OpenSSLUtils.cpp:871 src/OpenSSLUtils.cpp:952
-#: src/OpenSSLUtils.cpp:1051 src/OpenSSLUtils.cpp:1137
-#: src/OpenSSLUtils.cpp:1271 src/OpenSSLUtils.cpp:1390
-#: src/OpenSSLUtils.cpp:1493 src/OpenSSLUtils.cpp:1645
-#: src/OpenSSLUtils.cpp:1782
+#: src/OpenSSLUtils.cpp:1051 src/OpenSSLUtils.cpp:1139
+#: src/OpenSSLUtils.cpp:1277 src/OpenSSLUtils.cpp:1400
+#: src/OpenSSLUtils.cpp:1507 src/OpenSSLUtils.cpp:1663
+#: src/OpenSSLUtils.cpp:1805
 msgid "Executing openssl command failed."
 msgstr "Det körande openssl-kommandot misslyckades."
 
 #: src/OpenSSLUtils.cpp:143 src/OpenSSLUtils.cpp:251 src/OpenSSLUtils.cpp:349
 #: src/OpenSSLUtils.cpp:473 src/OpenSSLUtils.cpp:611 src/OpenSSLUtils.cpp:711
-#: src/OpenSSLUtils.cpp:796 src/OpenSSLUtils.cpp:1162
-#: src/OpenSSLUtils.cpp:1311 src/OpenSSLUtils.cpp:1415
-#: src/OpenSSLUtils.cpp:1518 src/OpenSSLUtils.cpp:1682
-#: src/OpenSSLUtils.cpp:1822
+#: src/OpenSSLUtils.cpp:796 src/OpenSSLUtils.cpp:1165
+#: src/OpenSSLUtils.cpp:1318 src/OpenSSLUtils.cpp:1426
+#: src/OpenSSLUtils.cpp:1533 src/OpenSSLUtils.cpp:1701
+#: src/OpenSSLUtils.cpp:1846
 msgid "openssl command failed: %1"
 msgstr "openssl-kommandot misslyckades: %1"
 
@@ -599,63 +598,63 @@ msgstr "Det gick inte att visa certifikatstatus med serienumret %1 (%2)."
 msgid "The key file does not exist."
 msgstr "Nyckelfilen finns inte."
 
-#: src/OpenSSLUtils.cpp:1306 src/OpenSSLUtils.cpp:1677
-#: src/OpenSSLUtils.cpp:1817
+#: src/OpenSSLUtils.cpp:1313 src/OpenSSLUtils.cpp:1696
+#: src/OpenSSLUtils.cpp:1841
 msgid "Invalid password."
 msgstr "Ogiltigt lösenord"
 
-#: src/OpenSSLUtils.cpp:1595
+#: src/OpenSSLUtils.cpp:1611
 msgid "The password for encrypting the output is required."
 msgstr "Lösenordet för kryptering av utdata krävs."
 
-#: src/OpenSSLUtils.cpp:1736
+#: src/OpenSSLUtils.cpp:1756
 msgid "The PKCS12 password is required."
 msgstr "PKCS12-lösenordet krävs."
 
-#: src/OpenSSLUtils.cpp:1847 src/OpenSSLUtils.cpp:2047
-#: src/OpenSSLUtils.cpp:2199
+#: src/OpenSSLUtils.cpp:1872 src/OpenSSLUtils.cpp:2072
+#: src/OpenSSLUtils.cpp:2224
 msgid "Cannot read directory: %1 (%2) [%3]."
 msgstr "Det gick inte att läsa katalogen: %1 (%2) [%3]."
 
-#: src/OpenSSLUtils.cpp:1897
+#: src/OpenSSLUtils.cpp:1922
 msgid "No serial number found in %1."
 msgstr "Det gick inte att hitta något serienummer i %1."
 
-#: src/OpenSSLUtils.cpp:1917
+#: src/OpenSSLUtils.cpp:1942
 msgid "The request already exists."
 msgstr "Begäran finns redan."
 
-#: src/OpenSSLUtils.cpp:2108
+#: src/OpenSSLUtils.cpp:2133
 msgid "Cannot find the request subject."
 msgstr "Det gick inte att hitta ärendet för begäran."
 
-#: src/OpenSSLUtils.cpp:2269
+#: src/OpenSSLUtils.cpp:2294
 msgid "Cannot find the certificate subject."
 msgstr "Det gick inte att hitta ärendet för certifikatet."
 
-#: src/OpenSSLUtils.cpp:2368
+#: src/OpenSSLUtils.cpp:2393
 msgid "Invalid caName: %1."
 msgstr "Ogiltigt caName: %1."
 
-#: src/OpenSSLUtils.cpp:2377
+#: src/OpenSSLUtils.cpp:2402
 msgid "'%1' does not exist."
 msgstr "%1 finns inte."
 
-#: src/OpenSSLUtils.cpp:2387
+#: src/OpenSSLUtils.cpp:2412
 msgid "%1 still exists."
 msgstr "%1 finns fortfarande."
 
-#: src/OpenSSLUtils.cpp:2398 src/OpenSSLUtils.cpp:2446
-#: src/OpenSSLUtils.cpp:2460 src/OpenSSLUtils.cpp:2474
-#: src/OpenSSLUtils.cpp:2488 src/OpenSSLUtils.cpp:2502
+#: src/OpenSSLUtils.cpp:2423 src/OpenSSLUtils.cpp:2471
+#: src/OpenSSLUtils.cpp:2485 src/OpenSSLUtils.cpp:2499
+#: src/OpenSSLUtils.cpp:2513 src/OpenSSLUtils.cpp:2527
 msgid "Cannot create directory: %1 (%2 [%3])."
 msgstr "Det gick inte att skapa katalogen: %1 (%2 [%3])."
 
-#: src/OpenSSLUtils.cpp:2433
+#: src/OpenSSLUtils.cpp:2458
 msgid "Cannot copy the configuration template."
 msgstr "Det gick inte att kopiera konfigurationsmallen."
 
-#: src/OpenSSLUtils.cpp:2520
+#: src/OpenSSLUtils.cpp:2545
 msgid "Cannot create the file."
 msgstr "Det gick inte att skapa filen."
 

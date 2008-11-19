@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2008-11-06 15:43+0100\n"
+"POT-Creation-Date: 2008-11-19 12:00+0100\n"
 "PO-Revision-Date: 2008-04-03 22:15+0800\n"
 "Last-Translator: swyear <swyear@gmail.com>\n"
 "Language-Team:  <zh@li.org>\n"
@@ -546,19 +546,19 @@ msgstr "無效的命令%1。"
 #: src/OpenSSLUtils.cpp:132 src/OpenSSLUtils.cpp:240 src/OpenSSLUtils.cpp:338
 #: src/OpenSSLUtils.cpp:462 src/OpenSSLUtils.cpp:600 src/OpenSSLUtils.cpp:700
 #: src/OpenSSLUtils.cpp:782 src/OpenSSLUtils.cpp:871 src/OpenSSLUtils.cpp:952
-#: src/OpenSSLUtils.cpp:1051 src/OpenSSLUtils.cpp:1137
-#: src/OpenSSLUtils.cpp:1271 src/OpenSSLUtils.cpp:1390
-#: src/OpenSSLUtils.cpp:1493 src/OpenSSLUtils.cpp:1645
-#: src/OpenSSLUtils.cpp:1782
+#: src/OpenSSLUtils.cpp:1051 src/OpenSSLUtils.cpp:1139
+#: src/OpenSSLUtils.cpp:1277 src/OpenSSLUtils.cpp:1400
+#: src/OpenSSLUtils.cpp:1507 src/OpenSSLUtils.cpp:1663
+#: src/OpenSSLUtils.cpp:1805
 msgid "Executing openssl command failed."
 msgstr "執行 openssl 命令失敗。"
 
 #: src/OpenSSLUtils.cpp:143 src/OpenSSLUtils.cpp:251 src/OpenSSLUtils.cpp:349
 #: src/OpenSSLUtils.cpp:473 src/OpenSSLUtils.cpp:611 src/OpenSSLUtils.cpp:711
-#: src/OpenSSLUtils.cpp:796 src/OpenSSLUtils.cpp:1162
-#: src/OpenSSLUtils.cpp:1311 src/OpenSSLUtils.cpp:1415
-#: src/OpenSSLUtils.cpp:1518 src/OpenSSLUtils.cpp:1682
-#: src/OpenSSLUtils.cpp:1822
+#: src/OpenSSLUtils.cpp:796 src/OpenSSLUtils.cpp:1165
+#: src/OpenSSLUtils.cpp:1318 src/OpenSSLUtils.cpp:1426
+#: src/OpenSSLUtils.cpp:1533 src/OpenSSLUtils.cpp:1701
+#: src/OpenSSLUtils.cpp:1846
 msgid "openssl command failed: %1"
 msgstr "openssl 命令失敗： %1"
 
@@ -591,63 +591,63 @@ msgstr "顯示序號 %1 的憑證狀態失敗 (%2)。"
 msgid "The key file does not exist."
 msgstr "金鑰檔案不存在。"
 
-#: src/OpenSSLUtils.cpp:1306 src/OpenSSLUtils.cpp:1677
-#: src/OpenSSLUtils.cpp:1817
+#: src/OpenSSLUtils.cpp:1313 src/OpenSSLUtils.cpp:1696
+#: src/OpenSSLUtils.cpp:1841
 msgid "Invalid password."
 msgstr "無效的密碼。"
 
-#: src/OpenSSLUtils.cpp:1595
+#: src/OpenSSLUtils.cpp:1611
 msgid "The password for encrypting the output is required."
 msgstr "您必須要有輸出加密的密碼。"
 
-#: src/OpenSSLUtils.cpp:1736
+#: src/OpenSSLUtils.cpp:1756
 msgid "The PKCS12 password is required."
 msgstr "您必須要有 PKCS12 密碼。"
 
-#: src/OpenSSLUtils.cpp:1847 src/OpenSSLUtils.cpp:2047
-#: src/OpenSSLUtils.cpp:2199
+#: src/OpenSSLUtils.cpp:1872 src/OpenSSLUtils.cpp:2072
+#: src/OpenSSLUtils.cpp:2224
 msgid "Cannot read directory: %1 (%2) [%3]."
 msgstr "無法讀取目錄：%1 (%2) [%3]。"
 
-#: src/OpenSSLUtils.cpp:1897
+#: src/OpenSSLUtils.cpp:1922
 msgid "No serial number found in %1."
 msgstr "%1 中沒有序號。"
 
-#: src/OpenSSLUtils.cpp:1917
+#: src/OpenSSLUtils.cpp:1942
 msgid "The request already exists."
 msgstr "該申請已經存在。"
 
-#: src/OpenSSLUtils.cpp:2108
+#: src/OpenSSLUtils.cpp:2133
 msgid "Cannot find the request subject."
 msgstr "找不到申請標題。"
 
-#: src/OpenSSLUtils.cpp:2269
+#: src/OpenSSLUtils.cpp:2294
 msgid "Cannot find the certificate subject."
 msgstr "找不到證書標題。"
 
-#: src/OpenSSLUtils.cpp:2368
+#: src/OpenSSLUtils.cpp:2393
 msgid "Invalid caName: %1."
 msgstr "無效的 caName：%1。"
 
-#: src/OpenSSLUtils.cpp:2377
+#: src/OpenSSLUtils.cpp:2402
 msgid "'%1' does not exist."
 msgstr "「%1」不存在。"
 
-#: src/OpenSSLUtils.cpp:2387
+#: src/OpenSSLUtils.cpp:2412
 msgid "%1 still exists."
 msgstr "%1 仍然存在。"
 
-#: src/OpenSSLUtils.cpp:2398 src/OpenSSLUtils.cpp:2446
-#: src/OpenSSLUtils.cpp:2460 src/OpenSSLUtils.cpp:2474
-#: src/OpenSSLUtils.cpp:2488 src/OpenSSLUtils.cpp:2502
+#: src/OpenSSLUtils.cpp:2423 src/OpenSSLUtils.cpp:2471
+#: src/OpenSSLUtils.cpp:2485 src/OpenSSLUtils.cpp:2499
+#: src/OpenSSLUtils.cpp:2513 src/OpenSSLUtils.cpp:2527
 msgid "Cannot create directory: %1 (%2 [%3])."
 msgstr "無法建立目錄：%1 (%2 [%3])。"
 
-#: src/OpenSSLUtils.cpp:2433
+#: src/OpenSSLUtils.cpp:2458
 msgid "Cannot copy the configuration template."
 msgstr "無法複製組態範本。"
 
-#: src/OpenSSLUtils.cpp:2520
+#: src/OpenSSLUtils.cpp:2545
 msgid "Cannot create the file."
 msgstr "無法建立檔案。"
 

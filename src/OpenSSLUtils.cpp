@@ -1115,10 +1115,11 @@ OpenSSLUtils::x509Convert(const ByteBuffer &certificate,
 	StringArray cmd = PerlRegEx("\\s").split(debugCmd);
 
 	LOGIT_DEBUG("Command: " << debugCmd);
-
+	
+	blocxx::String randfile(::tempnam("/tmp/", ".rand-"));
 	blocxx::EnvVars env;
 	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", "./.rnd");
+	env.addVar("RANDFILE", randfile);
 	blocxx::String stdOutput;
 	blocxx::String errOutput;
 	int            status    = -1;
@@ -1133,6 +1134,7 @@ OpenSSLUtils::x509Convert(const ByteBuffer &certificate,
 		LOGIT_ERROR( "openssl exception:" << e);
 		path::removeFile(inFileName);
 		path::removeFile(outFileName);
+		path::removeFile(randfile);
 		BLOCXX_THROW_SUBEX(limal::RuntimeException,
 		                   __("Executing openssl command failed."), e);
 	}
@@ -1155,6 +1157,7 @@ OpenSSLUtils::x509Convert(const ByteBuffer &certificate,
 	{
 		path::removeFile(inFileName);
 		path::removeFile(outFileName);
+		path::removeFile(randfile);
 
 		StringArray sa = errOutput.tokenize("\n\r");
 		String msg = (sa.empty()? "" : sa[0]);
@@ -1166,6 +1169,7 @@ OpenSSLUtils::x509Convert(const ByteBuffer &certificate,
 
 	path::removeFile(inFileName);
 	path::removeFile(outFileName);
+	path::removeFile(randfile);
 
 	return out;
 }
@@ -1239,9 +1243,10 @@ OpenSSLUtils::rsaConvert(const ByteBuffer &key,
 
 	LOGIT_DEBUG("Command: " << debugCmd);
 
+	blocxx::String randfile(::tempnam("/tmp/", ".rand-"));
 	blocxx::EnvVars env;
 	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", "./.rnd");
+	env.addVar("RANDFILE", randfile);
 
 	if(isInPassSet)
 	{
@@ -1267,6 +1272,7 @@ OpenSSLUtils::rsaConvert(const ByteBuffer &key,
 		LOGIT_ERROR( "openssl exception:" << e);
 		path::removeFile(inFileName);
 		path::removeFile(outFileName);
+		path::removeFile(randfile);
 		BLOCXX_THROW_SUBEX(limal::RuntimeException,
 		                   __("Executing openssl command failed."), e);
 	}
@@ -1297,6 +1303,7 @@ OpenSSLUtils::rsaConvert(const ByteBuffer &key,
 	{
 		path::removeFile(inFileName);
 		path::removeFile(outFileName);
+		path::removeFile(randfile);
 
 		StringArray sa = errOutput.tokenize("\n\r");
 		String msg = (sa.empty()? "" : sa[0]);
@@ -1316,6 +1323,7 @@ OpenSSLUtils::rsaConvert(const ByteBuffer &key,
 
 	path::removeFile(inFileName);
 	path::removeFile(outFileName);
+	path::removeFile(randfile);
 
 	return out;
 }
@@ -1369,9 +1377,10 @@ OpenSSLUtils::crlConvert(const ByteBuffer &crl,
 
 	LOGIT_DEBUG("Command: " << debugCmd);
 
+	blocxx::String randfile(::tempnam("/tmp/", ".rand-"));
 	blocxx::EnvVars env;
 	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", "./.rnd");
+	env.addVar("RANDFILE", randfile);
 	blocxx::String stdOutput;
 	blocxx::String errOutput;
 	int            status    = -1;
@@ -1386,6 +1395,7 @@ OpenSSLUtils::crlConvert(const ByteBuffer &crl,
 		LOGIT_ERROR( "openssl exception:" << e);
 		path::removeFile(inFileName);
 		path::removeFile(outFileName);
+		path::removeFile(randfile);
 		BLOCXX_THROW_SUBEX(limal::RuntimeException,
 		                   __("Executing openssl command failed."), e);
 	}
@@ -1408,6 +1418,7 @@ OpenSSLUtils::crlConvert(const ByteBuffer &crl,
 	{
 		path::removeFile(inFileName);
 		path::removeFile(outFileName);
+		path::removeFile(randfile);
 
 		StringArray sa = errOutput.tokenize("\n\r");
 		String msg = (sa.empty()? "" : sa[0]);
@@ -1419,6 +1430,7 @@ OpenSSLUtils::crlConvert(const ByteBuffer &crl,
 
 	path::removeFile(inFileName);
 	path::removeFile(outFileName);
+	path::removeFile(randfile);
 
 	return out;
 }
@@ -1472,9 +1484,10 @@ OpenSSLUtils::reqConvert(const ByteBuffer &req,
 
 	LOGIT_DEBUG("Command: " << debugCmd);
 
+	blocxx::String randfile(::tempnam("/tmp/", ".rand-"));
 	blocxx::EnvVars env;
 	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", "./.rnd");
+	env.addVar("RANDFILE", randfile);
 	blocxx::String stdOutput;
 	blocxx::String errOutput;
 	int            status    = -1;
@@ -1489,6 +1502,7 @@ OpenSSLUtils::reqConvert(const ByteBuffer &req,
 		LOGIT_ERROR( "openssl exception:" << e);
 		path::removeFile(inFileName);
 		path::removeFile(outFileName);
+		path::removeFile(randfile);
 		BLOCXX_THROW_SUBEX(limal::RuntimeException,
 		                   __("Executing openssl command failed."), e);
 	}
@@ -1511,6 +1525,7 @@ OpenSSLUtils::reqConvert(const ByteBuffer &req,
 	{
 		path::removeFile(inFileName);
 		path::removeFile(outFileName);
+		path::removeFile(randfile);
 
 		StringArray sa = errOutput.tokenize("\n\r");
 		String msg = (sa.empty()? "" : sa[0]);
@@ -1522,6 +1537,7 @@ OpenSSLUtils::reqConvert(const ByteBuffer &req,
 
 	path::removeFile(inFileName);
 	path::removeFile(outFileName);
+	path::removeFile(randfile);
 
 	return out;
 }
@@ -1608,9 +1624,10 @@ OpenSSLUtils::createPKCS12(const ByteBuffer &certificate,
 
 	LOGIT_DEBUG("Command: " << debugCmd);
 
+	blocxx::String randfile(::tempnam("/tmp/", ".rand-"));
 	blocxx::EnvVars env;
 	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", "./.rnd");
+	env.addVar("RANDFILE", randfile);
 
 	if(isInPassSet)
 	{
@@ -1641,6 +1658,7 @@ OpenSSLUtils::createPKCS12(const ByteBuffer &certificate,
 			path::removeFile(inFileName3);
 		}
 		path::removeFile(outFileName);
+		path::removeFile(randfile);
 		BLOCXX_THROW_SUBEX(limal::RuntimeException,
 		                   __("Executing openssl command failed."), e);
 	}
@@ -1668,6 +1686,7 @@ OpenSSLUtils::createPKCS12(const ByteBuffer &certificate,
 			path::removeFile(inFileName3);
 		}
 		path::removeFile(outFileName);
+		path::removeFile(randfile);
 
 		StringArray sa = errOutput.tokenize("\n\r");
 		String msg = (sa.empty()? "" : sa[0]);
@@ -1692,6 +1711,7 @@ OpenSSLUtils::createPKCS12(const ByteBuffer &certificate,
 		path::removeFile(inFileName3);
 	}
 	path::removeFile(outFileName);
+	path::removeFile(randfile);
 
 	return out;
 }
@@ -1751,8 +1771,10 @@ OpenSSLUtils::pkcs12ToPEM(const ByteBuffer &pkcs12,
 
 	LOGIT_DEBUG("Command: " << debugCmd);
 
+	blocxx::String randfile(::tempnam("/tmp/", ".rand-"));
 	blocxx::EnvVars env;
 	env.addVar("PATH", "/usr/bin/");
+	env.addVar("RANDFILE", randfile);
 
 	if(isInPassSet)
 	{
@@ -1778,6 +1800,7 @@ OpenSSLUtils::pkcs12ToPEM(const ByteBuffer &pkcs12,
 		LOGIT_ERROR( "openssl exception:" << e);
 		path::removeFile(inFileName);
 		path::removeFile(outFileName);
+		path::removeFile(randfile);
 		BLOCXX_THROW_SUBEX(limal::RuntimeException,
 		                   __("Executing openssl command failed."), e);
 	}
@@ -1808,6 +1831,7 @@ OpenSSLUtils::pkcs12ToPEM(const ByteBuffer &pkcs12,
 	{
 		path::removeFile(inFileName);
 		path::removeFile(outFileName);
+		path::removeFile(randfile);
 
 		StringArray sa = errOutput.tokenize("\n\r");
 		String msg = (sa.empty()? "" : sa[0]);
@@ -1827,6 +1851,7 @@ OpenSSLUtils::pkcs12ToPEM(const ByteBuffer &pkcs12,
 
 	path::removeFile(inFileName);
 	path::removeFile(outFileName);
+	path::removeFile(randfile);
 
 	return out;
 }
