@@ -1,22 +1,17 @@
-# translation of limal-ca-mgm.po to italian
 # Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
 # This file is distributed under the same license as the package.
 #
-# Andrea Florio <andrea@opensuse.it>, 2008.
-# Andrea Florio <andrea@opensuse.org>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2008-11-19 12:00+0100\n"
-"PO-Revision-Date: 2008-11-08 19:26+0100\n"
-"Last-Translator: Andrea Florio <andrea@opensuse.org>\n"
-"Language-Team: italian <opensuse-translation@opensuse.org>\n"
+"PO-Revision-Date: 2008-12-04 17:48\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Bookmarks: 113,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
-"X-Generator: KBabel 1.11.4\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:110
 #: src/AuthorityInfoAccessExtension.cpp:139
@@ -161,7 +156,7 @@ msgstr "Impossibile copiare il certificato."
 
 #: src/CA.cpp:299
 msgid "Invalid request data."
-msgstr "Richiesta di dati non validi."
+msgstr "Dati della richiesta non validi."
 
 #: src/CA.cpp:319
 msgid "Duplicate DN. Key %1.key already exists."
@@ -189,7 +184,7 @@ msgstr "Impossibile emettere il certificato."
 
 #: src/CA.cpp:490
 msgid "File %1 not found in the repository."
-msgstr "Impossibile trovare il file %1 nella sorgente di installazione."
+msgstr "Impossibile trovare il file %1 nel repository."
 
 #: src/CA.cpp:497 src/CRLData_Priv.cpp:179
 msgid "Invalid CRL reason."
@@ -352,8 +347,9 @@ msgid "Error while parsing the certificate."
 msgstr "Errore durante l'analisi sintattica del certificato."
 
 #: src/CertificateData_Priv.cpp:275
+#, fuzzy
 msgid "Cannot parse serial."
-msgstr "Impossibile verificare il seriale."
+msgstr "Impossibile analizzare sintatticamente la sezione %1."
 
 #: src/CertificateData_Priv.cpp:300 src/CertificateData_Priv.cpp:334
 #: src/CRLData_Priv.cpp:91 src/CRLData_Priv.cpp:341 src/CRLData_Priv.cpp:375
@@ -557,7 +553,7 @@ msgstr "Comando non valido %1."
 #: src/OpenSSLUtils.cpp:1507 src/OpenSSLUtils.cpp:1663
 #: src/OpenSSLUtils.cpp:1805
 msgid "Executing openssl command failed."
-msgstr "Esecuzione del comando openssl non riuscita"
+msgstr "Esecuzione comando openssl non riuscita."
 
 #: src/OpenSSLUtils.cpp:143 src/OpenSSLUtils.cpp:251 src/OpenSSLUtils.cpp:349
 #: src/OpenSSLUtils.cpp:473 src/OpenSSLUtils.cpp:611 src/OpenSSLUtils.cpp:711
@@ -566,7 +562,7 @@ msgstr "Esecuzione del comando openssl non riuscita"
 #: src/OpenSSLUtils.cpp:1533 src/OpenSSLUtils.cpp:1701
 #: src/OpenSSLUtils.cpp:1846
 msgid "openssl command failed: %1"
-msgstr "Comando openssl non riuscito:"
+msgstr "comando openssl non riuscito: %1"
 
 #: src/OpenSSLUtils.cpp:176 src/OpenSSLUtils.cpp:278 src/OpenSSLUtils.cpp:381
 #: src/OpenSSLUtils.cpp:499 src/OpenSSLUtils.cpp:638 src/OpenSSLUtils.cpp:734
@@ -602,7 +598,7 @@ msgstr "Il file delle chiavi non esiste."
 #: src/OpenSSLUtils.cpp:1313 src/OpenSSLUtils.cpp:1696
 #: src/OpenSSLUtils.cpp:1841
 msgid "Invalid password."
-msgstr "Password non valida"
+msgstr "Password non valida."
 
 #: src/OpenSSLUtils.cpp:1611
 msgid "The password for encrypting the output is required."

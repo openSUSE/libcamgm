@@ -1,22 +1,17 @@
-# translation of limal-ca-mgm.po to
-# @TITLE@
-# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-# This file is distributed under the same license as @PACKAGE@ package. FIRST
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2008-11-19 12:00+0100\n"
-"PO-Revision-Date: 2008-04-14 16:47+0100\n"
-"Last-Translator: Jakub Derda <kontakt@thenewone.pl>\n"
-"Language-Team:  <pl@li.org>\n"
+"PO-Revision-Date: 2008-12-05 01:26\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:110
 #: src/AuthorityInfoAccessExtension.cpp:139
@@ -161,15 +156,15 @@ msgstr "Kopiowanie certyfikatu nie powiodło się."
 
 #: src/CA.cpp:299
 msgid "Invalid request data."
-msgstr "Niepoprawne dane żądania."
+msgstr "Zażądano nieprawidłowych danych."
 
 #: src/CA.cpp:319
 msgid "Duplicate DN. Key %1.key already exists."
-msgstr "Duplikat DN. Klucz %1.key już istnieje."
+msgstr "Zduplikowany DN. Klucz %1.key już istnieje."
 
 #: src/CA.cpp:327
 msgid "Duplicate DN. Request %1.req already exists."
-msgstr "Duplikat DN. Żądanie %1.req już istnieje."
+msgstr "Zduplikowany DN. Żądanie %1.req już istnieje."
 
 #: src/CA.cpp:372
 msgid "Request does not exist (%1)."
@@ -177,7 +172,7 @@ msgstr "Żądanie nie istnieje (%1)."
 
 #: src/CA.cpp:378
 msgid "Invalid issue data."
-msgstr "Niepoprawne dane wystawienia."
+msgstr "Niezgodne dane."
 
 #: src/CA.cpp:395
 msgid "The CA expires before the certificate should expire."
@@ -201,11 +196,11 @@ msgstr "Nieprawidłowe dane CRL."
 
 #: src/CA.cpp:568
 msgid "Duplicate DN. Request already exists."
-msgstr "Duplikat DN. Żądanie już istnieje."
+msgstr "Zduplikowany DN. Żądanie już istnieje."
 
 #: src/CA.cpp:833 src/CA.cpp:860 src/CA.cpp:890 src/OpenSSLUtils.cpp:1007
 msgid "Cannot parse the certificate name."
-msgstr "Analiza nazwy certyfikatu nie powiodła się."
+msgstr "Zanalizowanie nazwy certyfikatu nie powiodło się."
 
 #: src/CA.cpp:941
 msgid "Request %1 does not exist."
@@ -228,8 +223,8 @@ msgid ""
 "Only revoked or expired certificates can be deleted. The status of the "
 "certificate is %1."
 msgstr ""
-"Tylko unieważnione lub wygasłe certyfikaty mogą zostać usunięte. Status tego "
-"certyfikatu: %1."
+"Tylko unieważnione lub przestarzałe certyfikaty mogą zostać usunięte. Status "
+"tego certyfikatu: %1."
 
 #: src/CA.cpp:1046
 msgid "Database not found."
@@ -249,7 +244,7 @@ msgstr "Nieprawidłowe dane żądania CA."
 
 #: src/CA.cpp:1135
 msgid "Invalid CA issue data."
-msgstr "Niezgodne dane wystawienia CA."
+msgstr "Niezgodne dane CA."
 
 #: src/CA.cpp:1230
 msgid "CA name is empty."
@@ -281,7 +276,7 @@ msgstr "Wystąpił błąd podczas szyfrowania klucza.."
 
 #: src/CA.cpp:1339
 msgid "Error during write defaults."
-msgstr "Wystąpił błąd podczas zapisywania wartości domyślnych."
+msgstr "Wystąpił błąd podczas zapisu wartości domyślnych."
 
 #: src/CA.cpp:1483
 msgid "CA name does not exist (%1)."
@@ -292,8 +287,8 @@ msgid ""
 "Deleting the CA is not allowed. The CA must be expired or never have signed "
 "a certificate."
 msgstr ""
-"Usuwanie CA nie jest dozwolone. Można usunąć tylko gdy CA jest wygasły lub "
-"nigdy nie podpisał certyfikatu."
+"Usunięcie CA nie jest dozwolone. Ważność CA musi wygasnąć jeśli podpisał "
+"jakikolwiek certyfikat."
 
 #: src/CA.cpp:1539
 msgid "Deleting the CA failed: %1."
@@ -306,7 +301,7 @@ msgstr "Plik konfiguracyjny nie zawiera wartości dla reguły."
 #: src/CA.cpp:1600 src/CA.cpp:1862 src/DNObject.cpp:270
 #: src/DNObject_Priv.cpp:209
 msgid "Cannot parse section %1."
-msgstr "Analiza sekcji %1 nie powiodła się."
+msgstr "Zanalizowanie sekcji %1 nie powiodło się."
 
 #: src/CA.cpp:1672
 msgid "Field %1 must have a value."
@@ -325,7 +320,6 @@ msgstr ""
 msgid "The configuration file seems to have an invalid policy."
 msgstr "Nieprawidłowa reguła w pliku konfiguracyjnym."
 
-# %s is either BOOTP or DHCP
 #: src/CA.cpp:1834 src/CA.cpp:1844
 msgid "The configuration is not initialized."
 msgstr "Konfiguracja nie została zainicjowana."
@@ -346,21 +340,21 @@ msgstr "Nie można utworzyć pamięci BIO"
 
 #: src/CertificateData_Priv.cpp:235
 msgid "Cannot parse the certificate."
-msgstr "Analiza certyfikatu nie powiodła się."
+msgstr "Zanalizowanie certyfikatu nie powiodło się.."
 
 #: src/CertificateData_Priv.cpp:248
 msgid "Error while parsing the certificate."
-msgstr "Wystąpił błąd podczas analizy certyfikatu."
+msgstr "Wystąpił błąd podczas analizowania certyfikatu."
 
 #: src/CertificateData_Priv.cpp:275
 #, fuzzy
 msgid "Cannot parse serial."
-msgstr "Analiza sekcji %1 nie powiodła się."
+msgstr "Zanalizowanie sekcji %1 nie powiodło się."
 
 #: src/CertificateData_Priv.cpp:300 src/CertificateData_Priv.cpp:334
 #: src/CRLData_Priv.cpp:91 src/CRLData_Priv.cpp:341 src/CRLData_Priv.cpp:375
 msgid "Cannot parse date %1."
-msgstr "Analiza daty %1 nie powiodła się."
+msgstr "Zanalizowanie daty %1 nie powiodło się."
 
 #: src/CertificateData_Priv.cpp:389 src/RequestData_Priv.cpp:182
 msgid "Unable to get the public key."
@@ -559,7 +553,7 @@ msgstr "Nieprawidłowe polecenie %1."
 #: src/OpenSSLUtils.cpp:1507 src/OpenSSLUtils.cpp:1663
 #: src/OpenSSLUtils.cpp:1805
 msgid "Executing openssl command failed."
-msgstr "Wykonywanie polecenia openssl nie powiodło się."
+msgstr "Wykonanie polecenia openssl zakończone niepowodzeniem."
 
 #: src/OpenSSLUtils.cpp:143 src/OpenSSLUtils.cpp:251 src/OpenSSLUtils.cpp:349
 #: src/OpenSSLUtils.cpp:473 src/OpenSSLUtils.cpp:611 src/OpenSSLUtils.cpp:711
@@ -568,7 +562,7 @@ msgstr "Wykonywanie polecenia openssl nie powiodło się."
 #: src/OpenSSLUtils.cpp:1533 src/OpenSSLUtils.cpp:1701
 #: src/OpenSSLUtils.cpp:1846
 msgid "openssl command failed: %1"
-msgstr "komenda openssl nie powiodła się: %1"
+msgstr "polecenie openssl zakończone niepowodzeniem: %1"
 
 #: src/OpenSSLUtils.cpp:176 src/OpenSSLUtils.cpp:278 src/OpenSSLUtils.cpp:381
 #: src/OpenSSLUtils.cpp:499 src/OpenSSLUtils.cpp:638 src/OpenSSLUtils.cpp:734
@@ -786,7 +780,7 @@ msgstr "Rozszerzenie występuje więcej niż raz: %1."
 #: src/X509v3RequestExtensions_Priv.cpp:141
 #: src/X509v3RequestExtensions_Priv.cpp:196
 msgid "Unable to parse the certificate (NID: %1 Crit: %2)."
-msgstr "Analiza certyfikatu nie była możliwa (NID: %1 Crit: %2)."
+msgstr "Przetworzenie certyfikatu nie było możliwe (NID: %1 Crit: %2)."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:511
 #: src/X509v3CertificateExtensions_Priv.cpp:577
@@ -818,7 +812,7 @@ msgstr "Rozszerzenie występuje wiecej niż raz."
 #: src/X509v3RequestExtensions_Priv.cpp:384
 #: src/X509v3RequestExtensions_Priv.cpp:444
 msgid "Unable to parse the certificate (Crit: %1)."
-msgstr "Analiza certyfikatu nie była możliwa (Crit: %1)."
+msgstr "Przetworzenie certyfikatu nie było możliwe (Crit: %1)."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:943
 msgid "Invalid location in authorityInfoAccess."
@@ -964,6 +958,3 @@ msgstr "Nieprawidłowa wartość dla X509v3RequestExts::setSubjectKeyIdentifier.
 msgid "Invalid value for X509v3RequestExts::setSubjectAlternativeName."
 msgstr ""
 "Nieprawidłowa wartość dla X509v3RequestExts::setSubjectAlternativeName."
-
-#~ msgid "Command returned '%1' : %2"
-#~ msgstr "Polecenie %2 zwróciło wartość '%1'."
