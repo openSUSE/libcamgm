@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2008-11-19 12:00+0100\n"
-"PO-Revision-Date: 2008-12-05 01:26\n"
+"PO-Revision-Date: 2009-01-20 22:36\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -347,9 +347,8 @@ msgid "Error while parsing the certificate."
 msgstr "Wystąpił błąd podczas analizowania certyfikatu."
 
 #: src/CertificateData_Priv.cpp:275
-#, fuzzy
 msgid "Cannot parse serial."
-msgstr "Zanalizowanie sekcji %1 nie powiodło się."
+msgstr "Nie można przetworzyć numeru seryjnego."
 
 #: src/CertificateData_Priv.cpp:300 src/CertificateData_Priv.cpp:334
 #: src/CRLData_Priv.cpp:91 src/CRLData_Priv.cpp:341 src/CRLData_Priv.cpp:375

@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2008-11-19 12:00+0100\n"
-"PO-Revision-Date: 2008-12-03 10:48\n"
+"PO-Revision-Date: 2009-01-21 10:05\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -345,9 +345,8 @@ msgid "Error while parsing the certificate."
 msgstr "証明書の解析中にエラーが発生しました。"
 
 #: src/CertificateData_Priv.cpp:275
-#, fuzzy
 msgid "Cannot parse serial."
-msgstr "セクション %1 を解析できません。"
+msgstr "シリアルを解析できません。"
 
 #: src/CertificateData_Priv.cpp:300 src/CertificateData_Priv.cpp:334
 #: src/CRLData_Priv.cpp:91 src/CRLData_Priv.cpp:341 src/CRLData_Priv.cpp:375

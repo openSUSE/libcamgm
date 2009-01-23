@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: limal-ca-mgm.hu\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2008-11-19 12:00+0100\n"
-"PO-Revision-Date: 2008-04-04 22:08+0200\n"
+"PO-Revision-Date: 2008-12-07 13:45+0100\n"
 "Last-Translator: Kalman Kemenczy <kkemenczy@novell.com>\n"
 "Language-Team:  <hu@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -359,9 +359,8 @@ msgid "Error while parsing the certificate."
 msgstr "A tanúsítvány feldolgozása sikertelen."
 
 #: src/CertificateData_Priv.cpp:275
-#, fuzzy
 msgid "Cannot parse serial."
-msgstr "A(z) %1 rész feldolgozása sikertelen."
+msgstr "A sorozat feldolgozása sikertelen."
 
 #: src/CertificateData_Priv.cpp:300 src/CertificateData_Priv.cpp:334
 #: src/CRLData_Priv.cpp:91 src/CRLData_Priv.cpp:341 src/CRLData_Priv.cpp:375
