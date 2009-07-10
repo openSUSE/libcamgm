@@ -1,4 +1,12 @@
 -------------------------------------------------------------------
+Fri Jul 10 11:09:49 CEST 2009 - mc@suse.de
+
+- version 1.6.0
+- do not install index.html twice
+- set keyUsage extension for server certificates to critical 
+  and add keyAgreement (bnc#508844)
+
+-------------------------------------------------------------------
 Fri Jan 23 09:55:26 CET 2009 - mc@suse.de
 
 - version 1.5.6

@@ -8,7 +8,6 @@ htmldir = $(docdir)
 xml_files =  $(wildcard $(srcdir)/*.xml) 
 
 html_DATA = $(wildcard html/*.html) \
-	    html/index.html \
 	    html/limaldocs.css
 
 pdf: limal-ca-mgm.pdf

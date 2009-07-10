@@ -167,7 +167,7 @@ issuerAltName=issuer:copy
 basicConstraints=CA:FALSE
 nsComment="YaST Generated Server Certificate"
 nsCertType=server
-keyUsage=digitalSignature, keyEncipherment
+keyUsage=critical, digitalSignature, keyEncipherment, keyAgreement
 subjectKeyIdentifier=hash
 authorityKeyIdentifier=keyid,issuer:always
 subjectAltName=email:copy
@@ -196,7 +196,7 @@ keyUsage=nonRepudiation, digitalSignature, keyEncipherment
 [v3_req_server]
 basicConstraints=CA:FALSE
 nsCertType=server
-keyUsage=digitalSignature, keyEncipherment
+keyUsage=critical, digitalSignature, keyEncipherment, keyAgreement
 
 [v3_crl]
 authorityKeyIdentifier=keyid:always,issuer:always
