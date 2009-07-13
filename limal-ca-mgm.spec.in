@@ -25,6 +25,7 @@ The LiMaL CA Management Library provides methods for managing a certificate auth
 
 @HEADER-DEVEL-1@
 Requires:       openssl-devel
+License:        GPL v2 or later
 Summary:	LiMaL - CA Management Library Development Files
 %if 0%{?suse_version} >= 1030
 Requires: libopenssl-devel
@@ -36,6 +37,7 @@ a Certificate Authority. This package includes the header files and
 development documentation.
 
 @HEADER-PERL@
+License:        GPL v2 or later
 Summary:	LiMaL - CA Management Library Perl Bindings 
 
 %description perl
