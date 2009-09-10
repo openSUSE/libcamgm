@@ -140,7 +140,7 @@ inline limal::ValueCheck initEmailCheck() {
 
 inline limal::ValueCheck initDNSCheck() {
 	limal::ValueCheck checkDNS =
-		limal::ValueCheck(new limal::ValuePosixRECheck("^[a-z]+[a-z0-9.-]*$"));
+		limal::ValueCheck(new limal::ValuePosixRECheck("^[^ ]+$"));
 
 	return checkDNS;
 }

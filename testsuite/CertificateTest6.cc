@@ -32,7 +32,7 @@ int main()
 
 		// Logging
 		LoggerRef l = limal::Logger::createCerrLogger(
-		                                              "CertificateTest5",
+		                                              "CertificateTest6",
 		                                              LogAppender::ALL_COMPONENTS,
 		                                              cat,
 		                                              "%-5p %c - %m"
@@ -93,7 +93,7 @@ int main()
         
 		List<LiteralValue> list;
 		list.push_back(LiteralValue("DNS", "ca.my-company.com"));
-		list.push_back(LiteralValue("DNS", "127-55-2-80ca.my-company.com"));
+		list.push_back(LiteralValue("DNS", "127-55-2-80 ca.my-company.com"));
 		list.push_back(LiteralValue("email", "me@my-company.com"));
 		list.push_back(LiteralValue("1.3.6.1.4.1.311.20.2.3", "me@MY-COMPANY.COM"));   // ms_upn
 		list.push_back(LiteralValue("1.3.6.1.5.2.2", "me@MY-COMPANY.COM"));            // krb5PrincipalName

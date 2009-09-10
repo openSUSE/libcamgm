@@ -75,6 +75,8 @@ email:suse@suse.de
 LiteralValue::dump()
 DNS:ca.my-company.com
 LiteralValue::dump()
+DNS:127-55-2-80ca.my-company.com
+LiteralValue::dump()
 email:me@my-company.com
 LiteralValue::dump()
 1.3.6.1.4.1.311.20.2.3:me@MY-COMPANY.COM
@@ -95,6 +97,8 @@ LiteralValue::dump()
 email:suse@suse.de
 LiteralValue::dump()
 DNS:ca.my-company.com
+LiteralValue::dump()
+DNS:127-55-2-80ca.my-company.com
 LiteralValue::dump()
 email:me@my-company.com
 LiteralValue::dump()

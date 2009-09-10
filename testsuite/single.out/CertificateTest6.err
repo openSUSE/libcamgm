@@ -1,0 +1,2 @@
+ERROR ca-mgm - Wrong LiteralValue for type 'DNS': 127-55-2-80 ca.my-company.com
+LiteralValues.cpp: 82 ValueException: Wrong LiteralValue for type 'DNS': 127-55-2-80 ca.my-company.com
