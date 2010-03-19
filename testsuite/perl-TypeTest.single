@@ -38,7 +38,7 @@ for(my $it = $copy->begin();
 {
     print $copy->iterator_value($it)."\t\t";
     # swig before 1.3.34 didn't have the '_'
-    if(Data::Dumper->Dump([$it]) =~ /_p_blocxx__ListT_?blocxx__Int32_t__iterator/)
+    if(ref($it) =~ /_p_blocxx__ListT_?blocxx__Int32_t__iterator/)
     {
         print "_p_blocxx__ListT_blocxx__Int32_t__iterator\n";
     }
@@ -60,7 +60,7 @@ for(my $it = $outList->begin();
 {
     print $outList->iterator_value($it)."\t\t";
     # swig before 1.3.34 didn't have the '_'
-    if(Data::Dumper->Dump([$it]) =~ /_p_blocxx__ListT_?blocxx__String_t__iterator/)
+    if(ref($it) =~ /_p_blocxx__ListT_?blocxx__String_t__iterator/)
     {
         print "_p_blocxx__ListT_blocxx__String_t__iterator\n";
     }
