@@ -1,22 +1,27 @@
-# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
-# This file is distributed under the same license as the package.
+# Translation of limal-ca-mgm.po to russian
+# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
 #
+# Aleksey Osipov <aliks-os@yandex.ru>, 2006, 2007, 2008.
+# Alexander Melentiev <alex239@gmail.com>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: limal-ca-mgm\n"
+"Project-Id-Version: limal-ca-mgm.ru\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2009-07-10 14:14+0200\n"
-"PO-Revision-Date: 2009-01-22 18:03\n"
-"Last-Translator: Novell Language <language@novell.com>\n"
-"Language-Team: Novell Language <language@novell.com>\n"
+"PO-Revision-Date: 2010-04-10 20:32+0300\n"
+"Last-Translator: Alexander Melentiev <alex239@gmail.com>\n"
+"Language-Team: Russian <opensuse-translation-ru@opensuse.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Lokalize 0.3\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:110
 #: src/AuthorityInfoAccessExtension.cpp:139
 msgid "Invalid location."
-msgstr "Неверное местонахождение."
+msgstr "Неверное расположение."
 
 #: src/AuthorityInfoAccessExtension.cpp:115
 #: src/AuthorityInfoAccessExtension.cpp:144
@@ -128,7 +133,7 @@ msgstr "Шаблон не инициализирован."
 
 #: src/CA.cpp:159 src/CA.cpp:1473
 msgid "Empty CA name."
-msgstr "Пустое CA имя."
+msgstr "Пустое имя CA."
 
 #: src/CA.cpp:167
 msgid "Template does not exist: %1."
@@ -136,11 +141,11 @@ msgstr "Шаблон не существует: %1."
 
 #: src/CA.cpp:179 src/CA.cpp:1494
 msgid "Invalid CA password."
-msgstr "Неверный CA пароль."
+msgstr "Неверный пароль CA."
 
 #: src/CA.cpp:225 src/CA.cpp:1149 src/CA.cpp:1292
 msgid "Error while creating the CA infrastructure."
-msgstr "Ошибка при создании CA инфраструктуры."
+msgstr "Ошибка при создании инфраструктуры CA."
 
 #: src/CA.cpp:245 src/CA.cpp:989
 msgid "Cannot parse the certificate name %1."
@@ -176,8 +181,7 @@ msgstr "Неверные данные выдачи."
 
 #: src/CA.cpp:395
 msgid "The CA expires before the certificate should expire."
-msgstr ""
-"Срок окончания действия CA должен до окнчания срока действия сертификата."
+msgstr "Срок действия CA истекает до окончания срока действия сертификата."
 
 #: src/CA.cpp:473
 msgid "Issuing the certificate failed."
@@ -185,15 +189,15 @@ msgstr "Не удалось выдать сертификат."
 
 #: src/CA.cpp:490
 msgid "File %1 not found in the repository."
-msgstr "Файл %1 не найден в репозитарии."
+msgstr "Файл %1 не найден в репозитории."
 
 #: src/CA.cpp:497 src/CRLData_Priv.cpp:179
 msgid "Invalid CRL reason."
-msgstr "Неверный CRL аргумент."
+msgstr "Неверный аргумент CRL."
 
 #: src/CA.cpp:520
 msgid "Invalid CRL data."
-msgstr "Неверные CRL данные."
+msgstr "Неверные данные CRL."
 
 #: src/CA.cpp:568
 msgid "Duplicate DN. Request already exists."
@@ -224,7 +228,7 @@ msgid ""
 "Only revoked or expired certificates can be deleted. The status of the "
 "certificate is %1."
 msgstr ""
-"Могут быть удалены только отмененные или просроченные сертификаты. Статус "
+"Могут быть удалены только отменённые или просроченные сертификаты. Статус "
 "сертификата %1."
 
 #: src/CA.cpp:1046
@@ -249,11 +253,11 @@ msgstr "Неверные данные выдачи CA."
 
 #: src/CA.cpp:1230
 msgid "CA name is empty."
-msgstr "Осутствует CA имя."
+msgstr "Отсутствует имя CA."
 
 #: src/CA.cpp:1239
 msgid "CA directory already exists."
-msgstr "CA каталог уже существует."
+msgstr "Каталог CA уже существует."
 
 #: src/CA.cpp:1250
 msgid "According to basicConstraints, this is not a CA."
@@ -261,7 +265,7 @@ msgstr "Согласно basicConstraints, это не CA."
 
 #: src/CA.cpp:1257
 msgid "CA key is empty."
-msgstr "Осутствует CA ключ."
+msgstr "Осутствует ключ CA."
 
 #: src/CA.cpp:1266
 msgid "Invalid key data."
@@ -269,7 +273,7 @@ msgstr "Неверные данные ключа."
 
 #: src/CA.cpp:1273
 msgid "CA password is empty."
-msgstr "Отсутствует CA пароль."
+msgstr "Отсутствует пароль CA."
 
 #: src/CA.cpp:1317
 msgid "Error during key encryption."
@@ -277,19 +281,19 @@ msgstr "Ошибка во время шифрования ключа."
 
 #: src/CA.cpp:1339
 msgid "Error during write defaults."
-msgstr "Ошибка при записи значений по умолчанию."
+msgstr "Ошибка во время записи значений по умолчанию."
 
 #: src/CA.cpp:1483
 msgid "CA name does not exist (%1)."
-msgstr "CA имя не существует (%1)."
+msgstr "Имя CA не существует (%1)."
 
 #: src/CA.cpp:1514
 msgid ""
 "Deleting the CA is not allowed. The CA must be expired or never have signed "
 "a certificate."
 msgstr ""
-"Удаление CA не разрешается. CA должен закончить срок действия или не иметь "
-"подписанный сертификат."
+"Удаление CA не разрешается. У CA должен закончиться срок действия или CA "
+"никогда не подписывал сертификатов."
 
 #: src/CA.cpp:1539
 msgid "Deleting the CA failed: %1."
@@ -310,7 +314,7 @@ msgstr "Поле %1 должно иметь значение."
 
 #: src/CA.cpp:1711
 msgid "%1 must be defined."
-msgstr "%1 должен быть определен."
+msgstr "%1 должно быть определено."
 
 #: src/CA.cpp:1796
 msgid "%1 must be the same in the CA certificate (%2) and the request (%3)."
@@ -361,7 +365,7 @@ msgstr "Невозможно получить открытый ключ."
 
 #: src/CertificateData_Priv.cpp:400 src/RequestData_Priv.cpp:193
 msgid "Could not get RSA key."
-msgstr "Невозможно получить RSA ключ."
+msgstr "Невозможно получить ключ RSA."
 
 #: src/CertificateData_Priv.cpp:420 src/RequestData_Priv.cpp:213
 msgid "Unsupported public key type."
@@ -526,7 +530,7 @@ msgstr "Файл уже существует: %1."
 
 #: src/LocalManagement.cpp:530
 msgid "Cannot get lock on file %1."
-msgstr "Невозможно захватить файл %1."
+msgstr "Невозможно заблокировать файл %1."
 
 #: src/LocalManagement.cpp:544
 msgid "Cannot write to file %1."
@@ -552,7 +556,7 @@ msgstr "Неверная команда %1."
 #: src/OpenSSLUtils.cpp:1507 src/OpenSSLUtils.cpp:1663
 #: src/OpenSSLUtils.cpp:1805
 msgid "Executing openssl command failed."
-msgstr "Сбой при выполнении команды openssl"
+msgstr "Не удалось выполнить команду openssl."
 
 #: src/OpenSSLUtils.cpp:143 src/OpenSSLUtils.cpp:251 src/OpenSSLUtils.cpp:349
 #: src/OpenSSLUtils.cpp:473 src/OpenSSLUtils.cpp:611 src/OpenSSLUtils.cpp:711
@@ -561,7 +565,7 @@ msgstr "Сбой при выполнении команды openssl"
 #: src/OpenSSLUtils.cpp:1533 src/OpenSSLUtils.cpp:1701
 #: src/OpenSSLUtils.cpp:1846
 msgid "openssl command failed: %1"
-msgstr "Команда openssl не выполнена: %1"
+msgstr "не удалось выполнить команду openssl: %1"
 
 #: src/OpenSSLUtils.cpp:176 src/OpenSSLUtils.cpp:278 src/OpenSSLUtils.cpp:381
 #: src/OpenSSLUtils.cpp:499 src/OpenSSLUtils.cpp:638 src/OpenSSLUtils.cpp:734
@@ -574,7 +578,7 @@ msgstr "Не указан действующий файл запроса."
 
 #: src/OpenSSLUtils.cpp:507 src/OpenSSLUtils.cpp:646 src/OpenSSLUtils.cpp:742
 msgid "No valid CA certificate file specified."
-msgstr "Не указан действующий файл CA сертификата."
+msgstr "Не указан действующий файл сертификата CA."
 
 #: src/OpenSSLUtils.cpp:515 src/OpenSSLUtils.cpp:820
 msgid "No valid certificate file specified."
@@ -582,7 +586,7 @@ msgstr "Не указан действующий файл сертификата
 
 #: src/OpenSSLUtils.cpp:828
 msgid "No valid CA directory specified."
-msgstr "Не указан действующий CA каталог."
+msgstr "Не указан действующий каталог CA."
 
 #: src/OpenSSLUtils.cpp:982
 msgid "Showing certificate status with serial %1 failed (%2)."
@@ -620,11 +624,11 @@ msgstr "Запрос уже существует."
 
 #: src/OpenSSLUtils.cpp:2133
 msgid "Cannot find the request subject."
-msgstr "Не удается найти тему запроса."
+msgstr "Невозможно найти тему запроса."
 
 #: src/OpenSSLUtils.cpp:2294
 msgid "Cannot find the certificate subject."
-msgstr "Не удается найти тему сертификата."
+msgstr "Невозможно найти тему сертификата."
 
 #: src/OpenSSLUtils.cpp:2393
 msgid "Invalid caName: %1."
@@ -636,25 +640,25 @@ msgstr "'%1' не существует."
 
 #: src/OpenSSLUtils.cpp:2412
 msgid "%1 still exists."
-msgstr "%1 все еще существует."
+msgstr "%1 все ещё существует."
 
 #: src/OpenSSLUtils.cpp:2423 src/OpenSSLUtils.cpp:2471
 #: src/OpenSSLUtils.cpp:2485 src/OpenSSLUtils.cpp:2499
 #: src/OpenSSLUtils.cpp:2513 src/OpenSSLUtils.cpp:2527
 msgid "Cannot create directory: %1 (%2 [%3])."
-msgstr "Не удается создать каталог: %1 (%2 [%3])."
+msgstr "Невозможно создать каталог: %1 (%2 [%3])."
 
 #: src/OpenSSLUtils.cpp:2458
 msgid "Cannot copy the configuration template."
-msgstr "Не удается скопировать шаблон настроек."
+msgstr "Невозможно скопировать шаблон настроек."
 
 #: src/OpenSSLUtils.cpp:2545
 msgid "Cannot create the file."
-msgstr "Не удается создать файл."
+msgstr "Невозможно создать файл."
 
 #: src/RequestData_Priv.cpp:396
 msgid "Cannot parse the request."
-msgstr "Не удается выполнить анализ запроса."
+msgstr "Невозможно выполнить анализ запроса."
 
 #: src/RequestData_Priv.cpp:409
 msgid "Error while parsing the request."
@@ -779,7 +783,7 @@ msgstr "Расширение дублировано: %1."
 #: src/X509v3RequestExtensions_Priv.cpp:141
 #: src/X509v3RequestExtensions_Priv.cpp:196
 msgid "Unable to parse the certificate (NID: %1 Crit: %2)."
-msgstr "Не удается выполнить анализ сертификата (NID: %1 Crit: %2)."
+msgstr "Невозможно выполнить анализ сертификата (NID: %1 Crit: %2)."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:511
 #: src/X509v3CertificateExtensions_Priv.cpp:577
@@ -811,11 +815,11 @@ msgstr "Расширение дублировано."
 #: src/X509v3RequestExtensions_Priv.cpp:384
 #: src/X509v3RequestExtensions_Priv.cpp:444
 msgid "Unable to parse the certificate (Crit: %1)."
-msgstr "Не удается выполнить анализ сертификата (Crit: %1)."
+msgstr "Невозможно выполнить анализ сертификата (Crit: %1)."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:943
 msgid "Invalid location in authorityInfoAccess."
-msgstr "Неверное местонахождение в authorityInfoAccess."
+msgstr "Неверное расположение в authorityInfoAccess."
 
 #: src/X509v3CertificateIssueExtensions.cpp:174
 msgid "Invalid value for X509v3CertificateIssueExts::setNsBaseUrl."

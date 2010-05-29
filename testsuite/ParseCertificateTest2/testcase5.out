@@ -140,8 +140,8 @@ Certificate:
         Subject: CN=testuser/mail=testuser@example.com, DC=example, DC=com
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
-            RSA Public Key: (1024 bit)
-                Modulus (1024 bit):
+                Public-Key: (1024 bit)
+                Modulus:
                     00:d2:11:34:d9:51:af:b5:9d:c2:c9:ed:0e:17:a0:
                     75:b2:e5:28:62:91:fc:35:bb:4c:1b:0a:d4:1d:53:
                     99:d0:a2:4f:c7:d7:12:f8:5e:19:38:ab:74:ad:4d:

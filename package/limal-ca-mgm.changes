@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Sat May 29 16:39:24 CEST 2010 - mc@suse.de
+
+- version 1.6.4
+- adapt testcases for openssl 1.0.0 
+- update translations
+
+-------------------------------------------------------------------
 Fri Mar 19 16:39:57 CET 2010 - mc@suse.de
 
 - version 1.6.3

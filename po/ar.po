@@ -1,12 +1,15 @@
-# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
-# This file is distributed under the same license as the package.
+# @TITLE@
+# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# This file is distributed under the same license as @PACKAGE@ package. FIRST
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: limal-ca-mgm\n"
+"Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2009-07-10 14:14+0200\n"
-"PO-Revision-Date: 2009-01-22 19:06\n"
+"PO-Revision-Date: 2001-07-13 15:36+0200\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -275,8 +278,9 @@ msgid "Error during key encryption."
 msgstr "حدث خطأ أثناء تشفير المفتاح."
 
 #: src/CA.cpp:1339
+#, fuzzy
 msgid "Error during write defaults."
-msgstr "حدث خطأ أثناء كتابة الإعدادات الافتراضية."
+msgstr "حدث خطأ أثناء تشفير المفتاح."
 
 #: src/CA.cpp:1483
 msgid "CA name does not exist (%1)."
@@ -346,8 +350,9 @@ msgid "Error while parsing the certificate."
 msgstr "حدث خطأ أثناء تحليل الشهادة."
 
 #: src/CertificateData_Priv.cpp:275
+#, fuzzy
 msgid "Cannot parse serial."
-msgstr "تعذر تحليل الرقم المسلسل."
+msgstr "تعذر تحليل القسم %1."
 
 #: src/CertificateData_Priv.cpp:300 src/CertificateData_Priv.cpp:334
 #: src/CRLData_Priv.cpp:91 src/CRLData_Priv.cpp:341 src/CRLData_Priv.cpp:375
@@ -551,7 +556,7 @@ msgstr "أمر غير صالح %1."
 #: src/OpenSSLUtils.cpp:1507 src/OpenSSLUtils.cpp:1663
 #: src/OpenSSLUtils.cpp:1805
 msgid "Executing openssl command failed."
-msgstr "فشل تنفيذ الأمر openssl."
+msgstr ""
 
 #: src/OpenSSLUtils.cpp:143 src/OpenSSLUtils.cpp:251 src/OpenSSLUtils.cpp:349
 #: src/OpenSSLUtils.cpp:473 src/OpenSSLUtils.cpp:611 src/OpenSSLUtils.cpp:711
@@ -559,8 +564,9 @@ msgstr "فشل تنفيذ الأمر openssl."
 #: src/OpenSSLUtils.cpp:1318 src/OpenSSLUtils.cpp:1426
 #: src/OpenSSLUtils.cpp:1533 src/OpenSSLUtils.cpp:1701
 #: src/OpenSSLUtils.cpp:1846
+#, fuzzy
 msgid "openssl command failed: %1"
-msgstr "فشل الأمر openssl: %1"
+msgstr "فشل الإنزال:"
 
 #: src/OpenSSLUtils.cpp:176 src/OpenSSLUtils.cpp:278 src/OpenSSLUtils.cpp:381
 #: src/OpenSSLUtils.cpp:499 src/OpenSSLUtils.cpp:638 src/OpenSSLUtils.cpp:734
@@ -593,8 +599,9 @@ msgstr "ملف المفتاح غير موجود."
 
 #: src/OpenSSLUtils.cpp:1313 src/OpenSSLUtils.cpp:1696
 #: src/OpenSSLUtils.cpp:1841
+#, fuzzy
 msgid "Invalid password."
-msgstr "كلمة السر غير صالحة."
+msgstr "كلمة السر غير صالحة"
 
 #: src/OpenSSLUtils.cpp:1611
 msgid "The password for encrypting the output is required."
@@ -939,3 +946,6 @@ msgstr "قيمة غير صالحة في X509v3RequestExts::setSubjectKeyIdentifi
 #: src/X509v3RequestExtensions.cpp:231
 msgid "Invalid value for X509v3RequestExts::setSubjectAlternativeName."
 msgstr "قيمة غير صالحة في X509v3RequestExts::setSubjectAlternativeName."
+
+#~ msgid "Command returned '%1' : %2"
+#~ msgstr "نتج عن هذا الأمر '%1' : %2"

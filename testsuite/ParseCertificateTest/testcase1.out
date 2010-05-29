@@ -198,8 +198,8 @@ Certificate:
         Subject: C=DE, CN=Full Test Certificate/emailAddress=suse@suse.de
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
-            RSA Public Key: (2048 bit)
-                Modulus (2048 bit):
+                Public-Key: (2048 bit)
+                Modulus:
                     00:99:66:1a:d6:4d:66:c0:2e:0a:5b:32:d2:6d:67:
                     32:d6:c5:9d:9d:47:6c:72:d8:74:42:c9:88:57:95:
                     de:d1:1d:04:03:5e:a1:40:b5:da:eb:3d:22:db:cf:
@@ -258,7 +258,9 @@ Certificate:
                 CA Issuers - URI:http://www.my-company.com/caIssuer.html
 
             X509v3 CRL Distribution Points: 
-                URI:ldap://ldap.my-company.com/?ou=PKI%2ddc=my-company%2ddc=com
+
+                Full Name:
+                  URI:ldap://ldap.my-company.com/?ou=PKI%2ddc=my-company%2ddc=com
 
             X509v3 Certificate Policies: 
                 Policy: 1.12.35.1
@@ -325,7 +327,9 @@ Certificate:
         CA Issuers - URI:http://www.my-company.com/caIssuer.html
 
     X509v3 CRL Distribution Points: 
-        URI:ldap://ldap.my-company.com/?ou=PKI%2ddc=my-company%2ddc=com
+
+        Full Name:
+          URI:ldap://ldap.my-company.com/?ou=PKI%2ddc=my-company%2ddc=com
 
     X509v3 Certificate Policies: 
         Policy: 1.12.35.1

@@ -1,19 +1,22 @@
+# translation of limal-ca-mgm.po to Lietuvių
 # Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# Andrius Štikonas <stikonas@gmail.com>, 2006.
 #
+# Andrius Štikonas <stikonas@gmail.com>, 2006.
+# Mindaugas Baranauskas <embar@super.lt>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
+"Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2009-07-10 14:14+0200\n"
-"PO-Revision-Date: 2007-11-17 15:53+0300\n"
-"Last-Translator: Andrius Štikonas <stikonas@gmail.com>\n"
-"Language-Team: Lithuanian <i18n@suse.de>\n"
+"PO-Revision-Date: 2009-10-04 14:28+0300\n"
+"Last-Translator: Mindaugas Baranauskas <embar@super.lt>\n"
+"Language-Team: Lietuvių\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%"
 "100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:110
 #: src/AuthorityInfoAccessExtension.cpp:139
@@ -509,39 +512,39 @@ msgstr "%1 nėra aplankas."
 
 #: src/LocalManagement.cpp:367
 msgid "Invalid certificate file."
-msgstr "Klaidingas sertifikato failas."
+msgstr "Sertifikato rinkmena klaidinga."
 
 #: src/LocalManagement.cpp:445
 msgid "File not found: %1."
-msgstr "Failas nerastas: %1."
+msgstr "Rinkmena nerasta: %1."
 
 #: src/LocalManagement.cpp:454
 msgid "File too big: %1."
-msgstr "Failas per didelis: %1."
+msgstr "Rinkmena per didelė: %1."
 
 #: src/LocalManagement.cpp:463 src/LocalManagement.cpp:518
 msgid "Cannot open file %1."
-msgstr "Nepavyksta atidaryti failo %1."
+msgstr "Nepavyksta atverti rinkmenos %1."
 
 #: src/LocalManagement.cpp:483
 msgid "Cannot read from file %1."
-msgstr "Nepavyksta nuskaityti iš failo %1."
+msgstr "Nepavyksta nuskaityti iš rinkmenos %1."
 
 #: src/LocalManagement.cpp:508
 msgid "File already exists: %1."
-msgstr "Failas jau egzistuoja: %1."
+msgstr "Rinkmena jau yra: %1."
 
 #: src/LocalManagement.cpp:530
 msgid "Cannot get lock on file %1."
-msgstr "Negaliu užrakinti failo %1."
+msgstr "Negaliu užrakinti rinkmenos %1."
 
 #: src/LocalManagement.cpp:544
 msgid "Cannot write to file %1."
-msgstr "Nepavyksta įrašyti į failą %1."
+msgstr "Nepavyksta įrašyti į rinkmeną %1."
 
 #: src/OpenSSLUtils.cpp:56
 msgid "File does not exist: %1."
-msgstr "Failas neegzistuoja: %1."
+msgstr "Rinkmenos nėra: %1."
 
 #: src/OpenSSLUtils.cpp:65
 msgid "Directory does not exist: %1."
@@ -598,7 +601,7 @@ msgstr ""
 
 #: src/OpenSSLUtils.cpp:1018
 msgid "The key file does not exist."
-msgstr "Rakto failas neegzistuoja."
+msgstr "Rakto rinkmenos nėra."
 
 #: src/OpenSSLUtils.cpp:1313 src/OpenSSLUtils.cpp:1696
 #: src/OpenSSLUtils.cpp:1841
@@ -662,7 +665,7 @@ msgstr "Nėra konfigūracijos"
 
 #: src/OpenSSLUtils.cpp:2545
 msgid "Cannot create the file."
-msgstr "Nepavyksta sukurti failo."
+msgstr "Nepavyksta sukurti rinkmenos."
 
 #: src/RequestData_Priv.cpp:396
 msgid "Cannot parse the request."
@@ -949,6 +952,3 @@ msgstr "Klaidinga X509v3RequestExts::setSubjectKeyIdentifier vertė."
 #: src/X509v3RequestExtensions.cpp:231
 msgid "Invalid value for X509v3RequestExts::setSubjectAlternativeName."
 msgstr "Klaidinga X509v3RequestExts::setSubjectAlternativeName vertė."
-
-#~ msgid "wrong type: %1"
-#~ msgstr "blogas tipas: %1"

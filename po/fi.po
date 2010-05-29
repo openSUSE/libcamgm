@@ -9,13 +9,13 @@
 # Jyri Palokangas <jmp@netti.fi>, 2006.
 # Jyri Palokangas <jmp@opensuse.fi>, 2007, 2008.
 # Sami Ojanen <sami.ojanen@kapsi.fi>, 2008.
-# Jyri Palokangas <jyri.palokangas@opensuse.org>, 2008.
+# Jyri Palokangas <jyri.palokangas@opensuse.org>, 2008, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm.fi\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2009-07-10 14:14+0200\n"
-"PO-Revision-Date: 2008-11-07 20:01+0200\n"
+"PO-Revision-Date: 2010-04-27 21:37+0300\n"
 "Last-Translator: Jyri Palokangas <jyri.palokangas@opensuse.org>\n"
 "Language-Team: suomi <fi@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -194,7 +194,7 @@ msgstr "Varmenteen myöntäminen epäonnistui."
 
 #: src/CA.cpp:490
 msgid "File %1 not found in the repository."
-msgstr "Tiedostoa %1 ei löydetty varastosta (repository)."
+msgstr "Tiedostoa %1 ei löydetty tietovarastosta (repository)."
 
 #: src/CA.cpp:497 src/CRLData_Priv.cpp:179
 msgid "Invalid CRL reason."
