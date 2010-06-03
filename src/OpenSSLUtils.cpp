@@ -2051,11 +2051,11 @@ OpenSSLUtils::parseIndexTXT(const String &caName,
 	return ret;
 }
 
-blocxx::Array<blocxx::Map<blocxx::String, blocxx::String> >
+blocxx::Array<std::map<blocxx::String, blocxx::String> >
 OpenSSLUtils::listRequests(const String &caName,
                            const String &repository)
 {
-	Array<Map<String, String> > ret;
+	Array<std::map<String, String> > ret;
 	std::list<String> tmpList;
 
 	String reqDir = repository + "/" + caName + "/req/";
@@ -2108,7 +2108,7 @@ OpenSSLUtils::listRequests(const String &caName,
 			date = dt.toString("%Y-%m-%d %H:%M:%S", DateTime::E_LOCAL_TIME);
 		}
 
-		Map<String, String> reqLine;
+		std::map<String, String> reqLine;
 		String              subject;
 
 		reqLine["request"] = md5;
@@ -2203,11 +2203,11 @@ OpenSSLUtils::listRequests(const String &caName,
 	return ret;
 }
 
-blocxx::Array<blocxx::Map<blocxx::String, blocxx::String> >
+blocxx::Array<std::map<blocxx::String, blocxx::String> >
 OpenSSLUtils::listCertificates(const String &caName,
                                const String &repository)
 {
-	Array<Map<String, String> > ret;
+	Array<std::map<String, String> > ret;
 	std::list<String> tmpList;
 
 	String certDir = repository + "/" + caName + "/newcerts/";
@@ -2252,7 +2252,7 @@ OpenSSLUtils::listCertificates(const String &caName,
 		String serial = sa[1];
 		String md5    = sa[2];
 
-		Map<String, String> certLine;
+		std::map<String, String> certLine;
 		String              subject;
 
 		certLine["serial"]      = serial;

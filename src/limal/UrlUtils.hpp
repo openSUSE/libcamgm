@@ -92,7 +92,7 @@ BLOCXX_DECLARE_EXCEPTION2(UrlNotSupported, UrlException);
  * A string map, containing key and value pairs parsed from a
  * PathParam- or Query-String.
  */
-typedef blocxx::Map<blocxx::String,blocxx::String>	ParamMap;
+typedef std::map<blocxx::String,blocxx::String>	ParamMap;
 
 
 // -------------------------------------------------------------------

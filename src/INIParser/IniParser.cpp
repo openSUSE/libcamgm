@@ -379,7 +379,7 @@ int IniParser::parse()
 		}
 
 	    // do we know about the file?
-	    Map<String,FileDescr>::iterator ff = multi_files.find (*f);
+	    std::map<String,FileDescr>::iterator ff = multi_files.find (*f);
 	    if (ff == multi_files.end())
 	    {
 		// new file

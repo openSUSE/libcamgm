@@ -183,11 +183,11 @@ public:
 	parseIndexTXT(const String &caName,
 	              const String &repository = REPOSITORY);
 
-	static blocxx::Array<blocxx::Map<blocxx::String, blocxx::String> >
+	static blocxx::Array<std::map<blocxx::String, blocxx::String> >
 	listRequests(const String &caName,
 	             const String &repository = REPOSITORY);
 
-	static blocxx::Array<blocxx::Map<blocxx::String, blocxx::String> >
+	static blocxx::Array<std::map<blocxx::String, blocxx::String> >
 	listCertificates(const String &caName,
 	                 const String &repository = REPOSITORY);
 

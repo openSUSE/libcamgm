@@ -267,7 +267,7 @@ CRLData_Priv::setExtensions(const X509v3CRLExts& ext)
 }
 
 void
-CRLData_Priv::setRevocationData(const blocxx::Map<String, RevocationEntry>& data)
+CRLData_Priv::setRevocationData(const std::map<String, RevocationEntry>& data)
 {
 	StringArray r = checkRevocationData(data);
 	if(!r.empty())
@@ -431,7 +431,7 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
 
 	// get revocationData
 
-	blocxx::Map<String, RevocationEntry> revData;
+	std::map<String, RevocationEntry> revData;
 
 	for (int i=0; i<sk_X509_REVOKED_num(x509->crl->revoked); i++)
 	{

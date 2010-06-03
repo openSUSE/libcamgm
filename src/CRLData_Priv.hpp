@@ -84,7 +84,7 @@ public:
 	setExtensions(const X509v3CRLExts& ext);
 
 	void
-	setRevocationData(const blocxx::Map<String, RevocationEntry>& data);
+	setRevocationData(const std::map<String, RevocationEntry>& data);
 
 private:
 	CRLData_Priv& operator=(const CRLData_Priv& data);

@@ -115,7 +115,7 @@ namespace CA_MGM_NAMESPACE {
 		X509v3CRLExts
 		getExtensions() const;
         
-		blocxx::Map<String, RevocationEntry>
+		std::map<String, RevocationEntry>
 		getRevocationData() const;
         
 		RevocationEntry
@@ -150,7 +150,7 @@ namespace CA_MGM_NAMESPACE {
 		CRLData();
     	    	
 		blocxx::StringArray
-		checkRevocationData(const blocxx::Map<String, RevocationEntry>& rd) const;
+		checkRevocationData(const std::map<String, RevocationEntry>& rd) const;
 
 	};
 

@@ -54,10 +54,10 @@ int main()
 
             ca.createCRL(cgd);
 
-            Array<Map<blocxx::String, blocxx::String> > ret;
+            Array<map<blocxx::String, blocxx::String> > ret;
             ret = ca.getCertificateList();
             
-            Array<Map<blocxx::String, blocxx::String> >::const_iterator it;
+            Array<map<blocxx::String, blocxx::String> >::const_iterator it;
 
             for(it = ret.begin(); it != ret.end(); ++it)
             {               

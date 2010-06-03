@@ -44,14 +44,14 @@ int main()
         {
             CA ca("Test_CA2", "system", "./TestRepos/");
 
-            Array<Map<blocxx::String, blocxx::String> > ret;
+            Array<map<blocxx::String, blocxx::String> > ret;
             ret = ca.getRequestList();
             
-            Array<Map<blocxx::String, blocxx::String> >::const_iterator it;
+            Array<map<blocxx::String, blocxx::String> >::const_iterator it;
 
             for(it = ret.begin(); it != ret.end(); ++it)
             {
-                Map<blocxx::String, blocxx::String>::const_iterator it2;
+                map<blocxx::String, blocxx::String>::const_iterator it2;
 
                 cout << "New Entry" << endl;
 
@@ -86,14 +86,14 @@ int main()
         {
             CA ca2("Test_CA2", "system", "./TestRepos/");
             
-            Array<Map<blocxx::String, blocxx::String> > ret;
+            Array<map<blocxx::String, blocxx::String> > ret;
             ret = ca2.getCertificateList();
             
-            Array<Map<blocxx::String, blocxx::String> >::const_iterator it = ret.begin();
+            Array<map<blocxx::String, blocxx::String> >::const_iterator it = ret.begin();
 
             for(it = ret.begin(); it != ret.end(); ++it)
             {
-                Map<blocxx::String, blocxx::String>::const_iterator it2;
+                map<blocxx::String, blocxx::String>::const_iterator it2;
 
                 cout << "New Entry" << endl;
 

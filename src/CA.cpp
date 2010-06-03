@@ -661,22 +661,22 @@ CA::setCRLDefaults(const CRLGenerationData& defaults)
 	commitConfig2Template();
 }
 
-blocxx::Array<blocxx::Map<blocxx::String, blocxx::String> >
+blocxx::Array<std::map<blocxx::String, blocxx::String> >
 CA::getCertificateList()
 {
 	updateDB();
 
-	Array<Map<String, String> > ret;
+	Array< std::map<String, String> > ret;
 
 	ret = OpenSSLUtils::listCertificates(m_impl->caName, m_impl->repositoryDir);
 
 	return ret;
 }
 
-blocxx::Array<blocxx::Map<blocxx::String, blocxx::String> >
+blocxx::Array<std::map<blocxx::String, blocxx::String> >
 CA::getRequestList()
 {
-	Array<Map<String, String> > ret;
+	Array< std::map<String, String> > ret;
 
 	ret = OpenSSLUtils::listRequests(m_impl->caName, m_impl->repositoryDir);
 
@@ -1372,7 +1372,7 @@ CA::getCATree(const String& repos)
 		return ret;
 	}
 
-	Map<String, Array<String> > caHash;
+	std::map<String, Array<String> > caHash;
 
 	Array<String>::const_iterator it = caList.begin();
 	for(; it != caList.end(); ++it)
@@ -1388,7 +1388,7 @@ CA::getCATree(const String& repos)
 	}
 
 
-	Map<String, Array<String> >::const_iterator chit = caHash.begin();
+	std::map<String, Array<String> >::const_iterator chit = caHash.begin();
 	for(; chit != caHash.end(); ++chit)
 	{
 		//       subject        ==       issuer
@@ -1406,7 +1406,7 @@ CA::getCATree(const String& repos)
 			bool issuerFound = false;
 
 			// sub CA; find caName of the issuer
-			Map<String, Array<String> >::const_iterator chitnew = caHash.begin();
+			std::map<String, Array<String> >::const_iterator chitnew = caHash.begin();
 			for(; chitnew != caHash.end(); ++chitnew)
 			{
 				//       issuer          ==       subject

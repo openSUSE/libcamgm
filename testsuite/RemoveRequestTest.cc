@@ -43,7 +43,7 @@ int main()
         {
             CA ca("Test_CA1", "system", "./TestRepos/");
 
-            Array<Map<blocxx::String, blocxx::String> > ret;
+            Array<map<blocxx::String, blocxx::String> > ret;
             ret = ca.getRequestList();
 
             blocxx::String requestName = (*(ret[0].find("request"))).second;

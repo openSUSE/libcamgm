@@ -764,7 +764,7 @@ class PathInfo::DevInoCache {
 
   private:
 
-    blocxx::Map<dev_t,std::set<ino_t> > _devino;
+    std::map<dev_t,std::set<ino_t> > _devino;
 
   public:
     /**

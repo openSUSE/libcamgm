@@ -275,7 +275,7 @@ namespace CA_MGM_NAMESPACE
 		 *   <li>status (The status of the certificate: "valid", "revoked", "expired")</li>
 		 * </ul>
 		 */
-		blocxx::Array<blocxx::Map<blocxx::String, blocxx::String> >
+		blocxx::Array<std::map<blocxx::String, blocxx::String> >
 		getCertificateList();
 
 
@@ -297,7 +297,7 @@ namespace CA_MGM_NAMESPACE
 		 *   <li>date</li>
 		 * </ul>
 		 */
-		blocxx::Array<blocxx::Map<blocxx::String, blocxx::String> >
+		blocxx::Array<std::map<blocxx::String, blocxx::String> >
 		getRequestList();
 
 

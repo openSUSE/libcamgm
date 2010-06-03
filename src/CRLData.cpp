@@ -203,7 +203,7 @@ CRLData::getExtensions() const
 	return m_impl->extensions;
 }
 
-blocxx::Map<blocxx::String, RevocationEntry>
+std::map<blocxx::String, RevocationEntry>
 CRLData::getRevocationData() const
 {
 	return m_impl->revocationData;
@@ -335,7 +335,7 @@ CRLData::dump() const
 
 	result.appendArray(m_impl->extensions.dump());
 
-	blocxx::Map< String, RevocationEntry >::const_iterator it = m_impl->revocationData.begin();
+	std::map< String, RevocationEntry >::const_iterator it = m_impl->revocationData.begin();
 	for(; it != m_impl->revocationData.end(); ++it)
 	{
 		result.append((*it).first);
@@ -351,10 +351,10 @@ CRLData::CRLData()
 {}
 
 StringArray
-CRLData::checkRevocationData(const blocxx::Map<String, RevocationEntry>& rd) const
+CRLData::checkRevocationData(const std::map<String, RevocationEntry>& rd) const
 {
 	StringArray result;
-	blocxx::Map<String, RevocationEntry>::const_iterator it = rd.begin();
+	std::map<String, RevocationEntry>::const_iterator it = rd.begin();
 	for(; it != rd.end(); ++it)
 	{
 		result.appendArray(((*it).second).verify());

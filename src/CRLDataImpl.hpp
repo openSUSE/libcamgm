@@ -72,7 +72,7 @@ public:
 		, signatureAlgorithm(E_SHA1RSA)
 		, signature(ByteBuffer())
 		, extensions(X509v3CRLExts_Priv())
-		, revocationData(blocxx::Map<String, RevocationEntry>())
+		, revocationData(std::map<String, RevocationEntry>())
 		, x509(NULL)
 	{}
 
@@ -116,7 +116,7 @@ public:
 
 	X509v3CRLExts                        extensions;
 
-	blocxx::Map<String, RevocationEntry> revocationData;
+	std::map<String, RevocationEntry> revocationData;
 
 	X509_CRL                             *x509;
 };

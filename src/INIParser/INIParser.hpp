@@ -32,7 +32,7 @@
 #define LIMAL_INI_PARSER_HPP
 
 #include  <limal/ca-mgm/config.h>
-#include  <blocxx/Map.hpp>
+#include  <map>
 #include  <list>
 #include  <blocxx/Array.hpp>
 #include  <blocxx/String.hpp>
@@ -94,8 +94,8 @@ private:
 
 class Section;
 
-typedef blocxx::Map<Key, Entry>		EntryMap;
-typedef blocxx::Map<Key, Section>	SectionMap;    
+typedef std::map<Key, Entry>		EntryMap;
+typedef std::map<Key, Section>	SectionMap;    
 typedef EntryMap::size_type		EntrySize;
 typedef SectionMap::size_type		SectionSize;
 

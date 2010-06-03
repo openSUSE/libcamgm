@@ -101,7 +101,7 @@ ViewOptions::ViewOptions(int o)
 /*
 ** Behaviour configuration variables.
 */
-typedef blocxx::Map< blocxx::String, blocxx::String > UrlConfig;
+typedef std::map< blocxx::String, blocxx::String > UrlConfig;
 
 
 // -------------------------------------------------------------------

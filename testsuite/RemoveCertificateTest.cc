@@ -43,10 +43,10 @@ int main()
         {
             CA ca("Test_CA1", "system", "./TestRepos/");
 
-            Array<Map<blocxx::String, blocxx::String> > ret;
+            Array<map<blocxx::String, blocxx::String> > ret;
             ret = ca.getCertificateList();
 
-            Array<Map<blocxx::String, blocxx::String> >::const_iterator it;
+            Array<map<blocxx::String, blocxx::String> >::const_iterator it;
             int i = 0;
             for(it = ret.begin(); it != ret.end(); ++it)
             {            

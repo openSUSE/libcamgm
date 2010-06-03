@@ -26,7 +26,7 @@
 #include  <blocxx/String.hpp>
 #include  <list>
 #include  <blocxx/Array.hpp>
-#include  <blocxx/Map.hpp>
+#include  <map>
 #include  <errno.h>
 
 #define   REPOSITORY   "/var/lib/CAM/"

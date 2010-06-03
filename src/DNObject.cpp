@@ -25,7 +25,7 @@
 #include  <limal/ValueRegExCheck.hpp>
 #include  <limal/Exception.hpp>
 #include  <blocxx/Format.hpp>
-#include  <blocxx/Map.hpp>
+#include  <map>
 #include  <blocxx/COWIntrusiveCountableBase.hpp>
 
 #include  "DNObjectImpl.hpp"
@@ -84,7 +84,7 @@ RDNObject::getOpenSSLValue() const
 {
 	if(m_impl->value.empty()) return String();
 
-	Map<String, String> opensslKeys;
+	std::map<String, String> opensslKeys;
 	opensslKeys["countryName"] = "C";
 	opensslKeys["stateOrProvinceName"] = "ST";
 	opensslKeys["localityName"] = "L";
@@ -95,7 +95,7 @@ RDNObject::getOpenSSLValue() const
 	//opensslKeys[""] = "";
 
 	String ret;
-	Map<String, String>::const_iterator it = opensslKeys.find(m_impl->type);
+	std::map<String, String>::const_iterator it = opensslKeys.find(m_impl->type);
 
 	if( it != opensslKeys.end())
 	{

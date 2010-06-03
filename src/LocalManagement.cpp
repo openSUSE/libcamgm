@@ -76,7 +76,7 @@ LocalManagement::importAsLocalCertificate(const ByteBuffer &pkcs12Data,
 
 	String data(out.data(), out.size());
 
-	Array< Map<String, String> > list;
+	Array< std::map<String, String> > list;
 
 	String info;
 	String cert;
@@ -113,7 +113,7 @@ LocalManagement::importAsLocalCertificate(const ByteBuffer &pkcs12Data,
 				StringArray ia = endRegex.capture(*lineIT);
 				if(ia.size() == 2 && ia[1] == info) {
 
-					Map<String, String> v;
+					std::map<String, String> v;
 					v["info"]    = info;
 					v["data"]    = cert;
 					v["keyID"]   = keyID;
@@ -203,12 +203,12 @@ LocalManagement::importAsLocalCertificate(const ByteBuffer &pkcs12Data,
 
     // search for the server certificate
 
-	Array< Map<String, String> >::iterator certMap = list.begin();
+	Array< std::map<String, String> >::iterator certMap = list.begin();
 
 	for(; certMap != list.end(); ++certMap) {
 
-		Map<String, String>::iterator keyIT = (*certMap).find("keyID");
-		Map<String, String>::iterator subjectIT = (*certMap).find("subject");
+		std::map<String, String>::iterator keyIT = (*certMap).find("keyID");
+		std::map<String, String>::iterator subjectIT = (*certMap).find("subject");
 
 		if( keyIT != (*certMap).end() &&
 		    !((*keyIT).second.empty()) &&
@@ -230,7 +230,7 @@ LocalManagement::importAsLocalCertificate(const ByteBuffer &pkcs12Data,
 
 	for(; certMap != list.end(); ++certMap) {
 
-		Map<String, String>::iterator keyIT = (*certMap).find("keyID");
+		std::map<String, String>::iterator keyIT = (*certMap).find("keyID");
 
 		if( keyIT != (*certMap).end() &&
 		    (*keyIT).second == keyID ) {
@@ -247,7 +247,7 @@ LocalManagement::importAsLocalCertificate(const ByteBuffer &pkcs12Data,
 
 	for(; certMap != list.end(); ++certMap) {
 
-		Map<String, String>::iterator subjectIT = (*certMap).find("subject");
+		std::map<String, String>::iterator subjectIT = (*certMap).find("subject");
 
 		if( subjectIT != (*certMap).end() &&
 		    (*subjectIT).second == serverCertIssuer ) {
@@ -264,7 +264,7 @@ LocalManagement::importAsLocalCertificate(const ByteBuffer &pkcs12Data,
 
 	for(; certMap != list.end(); ++certMap) {
 
-		Map<String, String>::iterator dataIT = (*certMap).find("data");
+		std::map<String, String>::iterator dataIT = (*certMap).find("data");
 
 		if( dataIT != (*certMap).end() &&
 		    !(*dataIT).second.empty() ) {
