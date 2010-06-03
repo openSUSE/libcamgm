@@ -44,8 +44,8 @@ int main()
         
 		// ------------------------ Set DN --------------------------------
         
-		List<RDNObject> dnl = rgd.getSubjectDN().getDN();
-		List<RDNObject>::iterator dnit;
+		std::list<RDNObject> dnl = rgd.getSubjectDN().getDN();
+		std::list<RDNObject>::iterator dnit;
         
 		for(dnit = dnl.begin(); dnit != dnl.end(); ++dnit)
 		{
@@ -91,7 +91,7 @@ int main()
 
 		// ------------------------ create alternative extension -----------------------------
         
-		List<LiteralValue> list;
+		std::list<LiteralValue> list;
 		list.push_back(LiteralValue("DNS", "ca.my-company.com"));
 		list.push_back(LiteralValue("DNS", "127-55-2-80 ca.my-company.com"));
 		list.push_back(LiteralValue("email", "me@my-company.com"));

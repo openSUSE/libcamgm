@@ -42,8 +42,8 @@ int main()
         RequestGenerationData rgd = CA::getRootCARequestDefaults("./TestRepos/");
         CertificateIssueData  cid = CA::getRootCAIssueDefaults("./TestRepos/");
         
-        List<RDNObject> dnl = rgd.getSubjectDN().getDN();
-        List<RDNObject>::iterator dnit;
+        std::list<RDNObject> dnl = rgd.getSubjectDN().getDN();
+        std::list<RDNObject>::iterator dnit;
 
         for(dnit = dnl.begin(); dnit != dnl.end(); ++dnit)
         {

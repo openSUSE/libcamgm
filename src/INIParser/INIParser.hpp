@@ -183,9 +183,9 @@ public:
     /**
      * Get all entry keys of a section in the order like they
      * have been written to file.
-     * @return blocxx::List<blocxx::String>
+     * @return std::list<blocxx::String>
      */                        
-    blocxx::List<blocxx::String> getEntryKeys() const;
+    std::list<blocxx::String> getEntryKeys() const;
 
     
     /**
@@ -277,9 +277,9 @@ public:
     /**
      * Get all section keys of a section in the order like they
      * have been written to file.
-     * @return blocxx::List<blocxx::String>
+     * @return std::list<blocxx::String>
      */                        
-     blocxx::List<blocxx::String> getSectionKeys() const;
+     std::list<blocxx::String> getSectionKeys() const;
 
     
     /**

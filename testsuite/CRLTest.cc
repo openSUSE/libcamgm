@@ -44,7 +44,7 @@ int main()
 		cgd.extensions().authorityKeyIdentifier().setKeyID(AuthorityKeyIdentifierGenerateExt::KeyID_always);
 		cgd.extensions().authorityKeyIdentifier().setIssuer(AuthorityKeyIdentifierGenerateExt::Issuer_always);
 
-		List<LiteralValue> list;
+		std::list<LiteralValue> list;
 		list.push_back(LiteralValue("email", "me@my-company.com"));
 		list.push_back(LiteralValue("URI", "http://www.my-company.com/"));
 

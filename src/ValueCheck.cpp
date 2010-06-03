@@ -133,7 +133,7 @@ ValueCheck::isValid(const blocxx::String &value) const
 
 	if( !m_list.empty())
 	{
-		blocxx::List<ValueCheck>::const_iterator i;
+		std::list<ValueCheck>::const_iterator i;
 		for( i = m_list.begin(); i != m_list.end(); ++i)
 		{
 			if( i->m_cop == E_AND)
@@ -163,7 +163,7 @@ ValueCheck::explain(const blocxx::String &value) const
 	String	res(m_self->explain(value));
 	if( !m_list.empty())
 	{
-		blocxx::List<ValueCheck>::const_iterator i;
+		std::list<ValueCheck>::const_iterator i;
 		for( i = m_list.begin(); i != m_list.end(); ++i)
 		{
 			if( i->m_cop == E_AND)

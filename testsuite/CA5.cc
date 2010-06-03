@@ -94,8 +94,8 @@ int main(int argc, char **argv)
 
             cout << "============= write back unchanged" << endl; 
 
-            List<RDNObject> dnl = rgd.getSubjectDN().getDN();
-            List<RDNObject>::iterator dnit;
+            std::list<RDNObject> dnl = rgd.getSubjectDN().getDN();
+            std::list<RDNObject>::iterator dnit;
             for(dnit = dnl.begin(); dnit != dnl.end(); ++dnit)
             {
                 if((*dnit).getType() == "countryName")

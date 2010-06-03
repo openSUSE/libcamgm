@@ -223,33 +223,38 @@ IniType Section::contains(const Key &key) const
     if (m_parser)
     {
 	m_parser->inifile.Dir (path, stringList);
-	if (stringList.find(key) != stringList.end())
-	{
-	    ret = VALUE;
-	}
+        StringList::const_iterator it;
+        for(it = stringList.begin(); it != stringList.end(); ++it)
+        {
+          if( key == *it)
+            ret = VALUE;
+        }
 	path.clear();
 	stringList.clear();
 	path.append("section");
 	path.appendArray (m_path);
 	m_parser->inifile.Dir (path, stringList);
-	if (stringList.find(key) != stringList.end())
-	{
-	    if (ret == VALUE)
-	    {
-		ret = VALUEandSECTION;
-	    }
-	    else
-	    {
-		ret = SECTION;
-	    }
-	}	
+        for(it = stringList.begin(); it != stringList.end(); ++it)
+        {
+          if( key == *it)
+          {
+            if (ret == VALUE)
+            {
+                ret = VALUEandSECTION;
+            }
+            else
+            {
+                ret = SECTION;
+            }
+         }
+       }	
     }
     
     return ret;
 }
 
 // -------------------------------------------------------------------
-blocxx::List<blocxx::String> Section::getEntryKeys() const
+std::list<blocxx::String> Section::getEntryKeys() const
 {
     StringList entryKeys;
     StringList stringList;
@@ -483,7 +488,7 @@ bool Section::setEntry(const Key &key,
 }
 
 // -------------------------------------------------------------------
-blocxx::List<blocxx::String> Section::getSectionKeys() const
+std::list<blocxx::String> Section::getSectionKeys() const
 {
     StringList sectionList;
     StringList stringList;

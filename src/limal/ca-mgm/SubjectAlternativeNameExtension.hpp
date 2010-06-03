@@ -41,7 +41,7 @@ namespace CA_MGM_NAMESPACE {
 		SubjectAlternativeNameExt(CAConfig* caConfig, Type type);
         
 		SubjectAlternativeNameExt(bool copyEmail,
-		                          const blocxx::List<LiteralValue> &alternativeNameList = blocxx::List<LiteralValue>());
+		                          const std::list<LiteralValue> &alternativeNameList = std::list<LiteralValue>());
         
 		SubjectAlternativeNameExt(const SubjectAlternativeNameExt& extension);
 		
@@ -58,12 +58,12 @@ namespace CA_MGM_NAMESPACE {
 		setCopyEmail(bool copyEmail);		                          
 		
 		void
-		setAlternativeNameList(const blocxx::List<LiteralValue> &alternativeNameList = blocxx::List<LiteralValue>());
+		setAlternativeNameList(const std::list<LiteralValue> &alternativeNameList = std::list<LiteralValue>());
 		
 		bool
 		getCopyEmail() const;
 		
-		blocxx::List<LiteralValue>
+		std::list<LiteralValue>
 		getAlternativeNameList() const;
 		
 		virtual void

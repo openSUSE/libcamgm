@@ -619,7 +619,7 @@ namespace CA_MGM_NAMESPACE
 		 *
 		 * @return a list of lists of the available CAs
 		 */
-		static blocxx::List<blocxx::Array<blocxx::String> >
+		static std::list<blocxx::Array<blocxx::String> >
 		getCATree(const String& repos=REPOSITORY);
 
 		/**

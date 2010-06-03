@@ -34,8 +34,8 @@ int main()
         
         cout << "=================== start CA Tree List ======================" << endl;
 
-        List<Array<blocxx::String> > tree = CA::getCATree("./TestRepos3/");
-        List<Array<blocxx::String> >::const_iterator it_ext;
+        std::list<Array<blocxx::String> > tree = CA::getCATree("./TestRepos3/");
+        std::list<Array<blocxx::String> >::const_iterator it_ext;
 
         for(it_ext = tree.begin(); it_ext != tree.end(); ++it_ext)
         {

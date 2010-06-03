@@ -71,7 +71,7 @@ namespace CA_MGM_NAMESPACE {
 	public:
 		DNObject();
 		DNObject(CAConfig* caConfig, Type type);
-		DNObject(const blocxx::List<RDNObject> &dn);
+		DNObject(const std::list<RDNObject> &dn);
 		DNObject(const DNObject& dn);
 		virtual ~DNObject();
 
@@ -81,8 +81,8 @@ namespace CA_MGM_NAMESPACE {
 
 #endif
 		
-		void                         setDN(const blocxx::List<RDNObject> &dn);
-		blocxx::List<RDNObject>      getDN() const;
+		void                         setDN(const std::list<RDNObject> &dn);
+		std::list<RDNObject>         getDN() const;
 
 		String                       getOpenSSLString() const;
 
@@ -96,7 +96,7 @@ namespace CA_MGM_NAMESPACE {
     	
 	private:
 		blocxx::StringArray
-		checkRDNList(const blocxx::List<RDNObject>& list) const;
+		checkRDNList(const std::list<RDNObject>& list) const;
 	};
 
 }

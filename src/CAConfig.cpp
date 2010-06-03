@@ -209,10 +209,10 @@ CAConfig::exists(const String &section, const String &key) const
 	return false;
 }
 
-blocxx::List<blocxx::String>
+std::list<blocxx::String>
 CAConfig::getKeylist(const String &section) const
 {
-	blocxx::List<String> keylist;
+	std::list<String> keylist;
 
 	if (m_impl->parser.iniFile.contains(section) == SECTION)
 	{
@@ -224,11 +224,11 @@ CAConfig::getKeylist(const String &section) const
 void
 CAConfig::copySection(const String &srcSection, const String &destSection)
 {
-	blocxx::List<String> keylist;
+	std::list<String> keylist;
 
 	keylist = getKeylist(srcSection);
 
-	blocxx::List<String>::const_iterator it = keylist.begin();
+	std::list<String>::const_iterator it = keylist.begin();
 
 	for(; it != keylist.end(); ++it)
 	{

@@ -63,7 +63,7 @@ namespace path
 class PathName
 {
 public:
-    typedef blocxx::List<blocxx::String> List;
+    typedef std::list<blocxx::String> List;
 
     /**
     * @brief Create an empty PathName object.	 

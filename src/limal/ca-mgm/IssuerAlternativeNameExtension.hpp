@@ -40,7 +40,7 @@ namespace CA_MGM_NAMESPACE {
 		IssuerAlternativeNameExt();
 
 		IssuerAlternativeNameExt(bool copyIssuer,
-		                         const blocxx::List<LiteralValue> &alternativeNameList);
+		                         const std::list<LiteralValue> &alternativeNameList);
         
 		IssuerAlternativeNameExt(CAConfig* caConfig, Type type);
         
@@ -62,9 +62,9 @@ namespace CA_MGM_NAMESPACE {
 		getCopyIssuer() const;
 
 		void
-		setAlternativeNameList(const blocxx::List<LiteralValue> &alternativeNameList);
+		setAlternativeNameList(const std::list<LiteralValue> &alternativeNameList);
         
-		blocxx::List<LiteralValue>
+		std::list<LiteralValue>
 		getAlternativeNameList() const;
 
 		void

@@ -38,11 +38,11 @@ class SubjectAlternativeNameExtImpl : public blocxx::COWIntrusiveCountableBase
 public:
 	SubjectAlternativeNameExtImpl()
 		: emailCopy(false)
-		, altNameList(blocxx::List<LiteralValue>())
+		, altNameList(std::list<LiteralValue>())
 	{}
 
 	SubjectAlternativeNameExtImpl(bool copyEmail,
-	                              const blocxx::List<LiteralValue> &alternativeNameList)
+	                              const std::list<LiteralValue> &alternativeNameList)
 		: emailCopy(copyEmail)
 		, altNameList(alternativeNameList)
 	{}
@@ -61,7 +61,7 @@ public:
 	}
 
 	bool                           emailCopy;
-	blocxx::List<LiteralValue>     altNameList;
+	std::list<LiteralValue>     altNameList;
 
 };
 
@@ -117,7 +117,7 @@ SubjectAlternativeNameExt::SubjectAlternativeNameExt(CAConfig* caConfig, Type ty
 }
 
 SubjectAlternativeNameExt::SubjectAlternativeNameExt(bool copyEmail,
-	const blocxx::List<LiteralValue> &alternativeNameList)
+	const std::list<LiteralValue> &alternativeNameList)
 	: ExtensionBase()
 	, m_impl(new SubjectAlternativeNameExtImpl(copyEmail, alternativeNameList))
 {
@@ -160,7 +160,7 @@ SubjectAlternativeNameExt::setCopyEmail(bool copyEmail)
 }
 
 void
-SubjectAlternativeNameExt::setAlternativeNameList(const blocxx::List<LiteralValue> &alternativeNameList)
+SubjectAlternativeNameExt::setAlternativeNameList(const std::list<LiteralValue> &alternativeNameList)
 {
 	StringArray r = checkLiteralValueList(alternativeNameList);
 	if(!r.empty())
@@ -183,7 +183,7 @@ SubjectAlternativeNameExt::getCopyEmail() const
 	return m_impl->emailCopy;
 }
 
-blocxx::List<LiteralValue>
+std::list<LiteralValue>
 SubjectAlternativeNameExt::getAlternativeNameList() const
 {
 	if(!isPresent())
@@ -221,7 +221,7 @@ SubjectAlternativeNameExt::commit2Config(CA& ca, Type type) const
 		if(m_impl->emailCopy) extString += "email:copy,";
 
 		String val;
-		blocxx::List<LiteralValue>::const_iterator it = m_impl->altNameList.begin();
+		std::list<LiteralValue>::const_iterator it = m_impl->altNameList.begin();
 		for(int j = 0;it != m_impl->altNameList.end(); ++it, ++j)
 		{
 			val = "";
@@ -288,7 +288,7 @@ SubjectAlternativeNameExt::dump() const
 
 	result.append("email:copy = " + Bool(m_impl->emailCopy).toString());
 
-	blocxx::List< LiteralValue >::const_iterator it = m_impl->altNameList.begin();
+	std::list< LiteralValue >::const_iterator it = m_impl->altNameList.begin();
 	for(; it != m_impl->altNameList.end(); ++it)
 	{
 		result.appendArray((*it).dump());

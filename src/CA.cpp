@@ -1360,10 +1360,10 @@ CA::getCAList(const String& repos)
 }
 
 
-blocxx::List<blocxx::Array<blocxx::String> >
+std::list<blocxx::Array<blocxx::String> >
 CA::getCATree(const String& repos)
 {
-	List<Array<String> > ret;
+	std::list<Array<String> > ret;
 
 	Array<String> caList = CA::getCAList(repos);
 
@@ -1599,10 +1599,10 @@ CA::checkDNPolicy(const DNObject& dn, Type type)
 	}
 	StringList::const_iterator it = policyKeys.begin();
 
-	blocxx::List<RDNObject> l = dn.getDN();
+	std::list<RDNObject> l = dn.getDN();
 
 	bool policyFound = false;
-	blocxx::List<RDNObject> caDNList = getCA().getSubjectDN().getDN();
+	std::list<RDNObject> caDNList = getCA().getSubjectDN().getDN();
 
 	for(; it != policyKeys.end(); ++it)
 	{
@@ -1625,7 +1625,7 @@ CA::checkDNPolicy(const DNObject& dn, Type type)
 			// we need a value
 			bool foundInDN = false;
 
-			blocxx::List<RDNObject>::const_iterator rdnit = l.begin();
+			std::list<RDNObject>::const_iterator rdnit = l.begin();
 
 			for(; rdnit != l.end(); ++rdnit)
 			{
@@ -1718,7 +1718,7 @@ CA::checkDNPolicy(const DNObject& dn, Type type)
 			// read the CA and check the value
 			// *it == key (e.g. commonName, emailAddress, ...
 
-			blocxx::List<RDNObject>::const_iterator rdnit = l.begin();
+			std::list<RDNObject>::const_iterator rdnit = l.begin();
 			RDNObject rdn2check = RDNObject_Priv(*it, "");
 
 			for(; rdnit != l.end(); ++rdnit)
@@ -1732,7 +1732,7 @@ CA::checkDNPolicy(const DNObject& dn, Type type)
 
 			bool validMatch = false;
 
-			blocxx::List<RDNObject>::const_iterator caRdnIT = caDNList.begin();
+			std::list<RDNObject>::const_iterator caRdnIT = caDNList.begin();
 			for(; caRdnIT != caDNList.end(); ++caRdnIT)
 			{
 

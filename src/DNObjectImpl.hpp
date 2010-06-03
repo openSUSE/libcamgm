@@ -69,7 +69,7 @@ class DNObjectImpl : public blocxx::COWIntrusiveCountableBase
 {
 public:
 	DNObjectImpl()
-		: dn(blocxx::List<RDNObject>())
+		: dn(std::list<RDNObject>())
 	{}
 
 	DNObjectImpl(const DNObjectImpl& impl)
@@ -84,7 +84,7 @@ public:
 		return new DNObjectImpl(*this);
 	}
 
-	blocxx::List<RDNObject> dn;
+	std::list<RDNObject> dn;
 
 };
 

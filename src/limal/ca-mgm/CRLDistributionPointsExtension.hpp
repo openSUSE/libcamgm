@@ -50,9 +50,9 @@ namespace CA_MGM_NAMESPACE {
 #endif
 		
 		void
-		setCRLDistributionPoints(blocxx::List<LiteralValue>);
+		setCRLDistributionPoints(std::list<LiteralValue>);
         
-		blocxx::List<LiteralValue>
+		std::list<LiteralValue>
 		getCRLDistributionPoints() const;
 
 		virtual void

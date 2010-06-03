@@ -126,7 +126,7 @@ namespace path
      *
      * @return 0 on success, errno on failure.
      **/
-    int readDir(blocxx::List<blocxx::String> & retlist,
+    int readDir(std::list<blocxx::String> & retlist,
                 const PathName& path, bool dots);
 
     /**

@@ -71,7 +71,7 @@ class AuthorityInfoAccessExtImpl : public blocxx::COWIntrusiveCountableBase
 {
 public:
 	AuthorityInfoAccessExtImpl()
-		: info(blocxx::List<AuthorityInformation>())
+		: info(std::list<AuthorityInformation>())
 	{}
 
 	AuthorityInfoAccessExtImpl(const AuthorityInfoAccessExtImpl &aie)
@@ -86,7 +86,7 @@ public:
 		return new AuthorityInfoAccessExtImpl(*this);
 	}
 
-	blocxx::List<AuthorityInformation> info;
+	std::list<AuthorityInformation> info;
 };
 
 
@@ -298,9 +298,9 @@ AuthorityInfoAccessExt::operator=(const AuthorityInfoAccessExt& extension)
 }
 
 void
-AuthorityInfoAccessExt::setAuthorityInformation(const blocxx::List<AuthorityInformation>& infolist)
+AuthorityInfoAccessExt::setAuthorityInformation(const std::list<AuthorityInformation>& infolist)
 {
-	blocxx::List<AuthorityInformation>::const_iterator it = infolist.begin();
+	std::list<AuthorityInformation>::const_iterator it = infolist.begin();
 	for(;it != infolist.end(); it++) {
 		if(!(*it).valid()) {
 			LOGIT_ERROR("invalid AuthorityInformation in infolist");
@@ -312,7 +312,7 @@ AuthorityInfoAccessExt::setAuthorityInformation(const blocxx::List<AuthorityInfo
 	m_impl->info = infolist;
 }
 
-blocxx::List<AuthorityInformation>
+std::list<AuthorityInformation>
 AuthorityInfoAccessExt::getAuthorityInformation() const
 {
 	if(!isPresent()) {
@@ -347,7 +347,7 @@ AuthorityInfoAccessExt::commit2Config(CA& ca, Type type) const
 		if(isCritical()) extString += "critical,";
 
 		String val;
-		blocxx::List<AuthorityInformation>::const_iterator it = m_impl->info.begin();
+		std::list<AuthorityInformation>::const_iterator it = m_impl->info.begin();
 		for(;it != m_impl->info.end(); ++it)
 		{
 			val = "";
@@ -378,7 +378,7 @@ AuthorityInfoAccessExt::valid() const
 		LOGIT_DEBUG("return AuthorityInfoAccessExt::valid() is false");
 		return false;
 	}
-	blocxx::List<AuthorityInformation>::const_iterator it = m_impl->info.begin();
+	std::list<AuthorityInformation>::const_iterator it = m_impl->info.begin();
 	for(;it != m_impl->info.end(); it++)
 	{
 		if(!(*it).valid())
@@ -402,7 +402,7 @@ AuthorityInfoAccessExt::verify() const
 	{
 		result.append(String("No access informations available"));
 	}
-	blocxx::List<AuthorityInformation>::const_iterator it = m_impl->info.begin();
+	std::list<AuthorityInformation>::const_iterator it = m_impl->info.begin();
 	for(;it != m_impl->info.end(); it++)
 	{
 		result.appendArray((*it).verify());
@@ -421,7 +421,7 @@ AuthorityInfoAccessExt::dump() const
 	result.appendArray(ExtensionBase::dump());
 	if(!isPresent()) return result;
 
-	blocxx::List< AuthorityInformation >::const_iterator it = m_impl->info.begin();
+	std::list< AuthorityInformation >::const_iterator it = m_impl->info.begin();
 	for(; it != m_impl->info.end(); ++it)
 	{
 		result.appendArray((*it).dump());

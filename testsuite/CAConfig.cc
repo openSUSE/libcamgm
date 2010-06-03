@@ -41,7 +41,7 @@ int main()
     CAConfig *configDump = new CAConfig("openssl.cnf.tmpl.test");
     configDump->dump();
     
-    typedef blocxx::List<blocxx::String> StringList;
+    typedef std::list<blocxx::String> StringList;
     StringList listKey = config->getKeylist("ca");
     
     cout << "Key for section : ca" << endl;

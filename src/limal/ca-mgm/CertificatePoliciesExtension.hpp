@@ -59,12 +59,12 @@ namespace CA_MGM_NAMESPACE {
 
 		void
 		setOrganizationNotice(const String& org, 
-		                      const blocxx::List<blocxx::Int32>& numbers);
+		                      const std::list<blocxx::Int32>& numbers);
 
 		String
 		getOrganization() const;
 		
-		blocxx::List<blocxx::Int32>
+		std::list<blocxx::Int32>
 		getNoticeNumbers() const;
 
 		virtual blocxx::String
@@ -124,9 +124,9 @@ namespace CA_MGM_NAMESPACE {
 		getCpsURI() const;
 		
 		void
-		setUserNoticeList(const blocxx::List<UserNotice>& list);
+		setUserNoticeList(const std::list<UserNotice>& list);
 		
-		blocxx::List<UserNotice>
+		std::list<UserNotice>
 		getUserNoticeList() const;
         
 		virtual blocxx::String
@@ -158,13 +158,13 @@ namespace CA_MGM_NAMESPACE {
 		checkCpsURIs(const StringList& cpsURIs) const;
 		
 		blocxx::StringArray
-		checkNoticeList(const blocxx::List<UserNotice>& list) const;
+		checkNoticeList(const std::list<UserNotice>& list) const;
     };
 
 	class CertificatePoliciesExt : public ExtensionBase {
 	public:
 		CertificatePoliciesExt();
-		CertificatePoliciesExt(const blocxx::List<CertificatePolicy>& policies);
+		CertificatePoliciesExt(const std::list<CertificatePolicy>& policies);
 		CertificatePoliciesExt(CAConfig* caConfig, Type type);
 		CertificatePoliciesExt(const CertificatePoliciesExt& extension);
 		virtual ~CertificatePoliciesExt();
@@ -183,9 +183,9 @@ namespace CA_MGM_NAMESPACE {
 		isIA5orgEnabled() const;
 		
 		void
-		setPolicies(const blocxx::List<CertificatePolicy>& policies);
+		setPolicies(const std::list<CertificatePolicy>& policies);
 		
-		blocxx::List<CertificatePolicy>
+		std::list<CertificatePolicy>
 		getPolicies() const;
 
         virtual void
@@ -204,7 +204,7 @@ namespace CA_MGM_NAMESPACE {
 		blocxx::COWIntrusiveReference<CertificatePoliciesExtImpl> m_impl;
 		
 		blocxx::StringArray
-		checkPolicies(const blocxx::List<CertificatePolicy>& pl) const;
+		checkPolicies(const std::list<CertificatePolicy>& pl) const;
 
     };
 

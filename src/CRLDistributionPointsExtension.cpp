@@ -37,7 +37,7 @@ class CRLDistributionPointsExtImpl : public blocxx::COWIntrusiveCountableBase
 {
 public:
 	CRLDistributionPointsExtImpl()
-		: altNameList(List<LiteralValue>())
+		: altNameList(std::list<LiteralValue>())
 	{}
 
 	CRLDistributionPointsExtImpl(const CRLDistributionPointsExtImpl& impl)
@@ -52,7 +52,7 @@ public:
 		return new CRLDistributionPointsExtImpl(*this);
 	}
 
-	blocxx::List<LiteralValue> altNameList;
+	std::list<LiteralValue> altNameList;
 };
 
 
@@ -121,7 +121,7 @@ CRLDistributionPointsExt::operator=(const CRLDistributionPointsExt& extension)
 }
 
 void
-CRLDistributionPointsExt::setCRLDistributionPoints(blocxx::List<LiteralValue> dp)
+CRLDistributionPointsExt::setCRLDistributionPoints(std::list<LiteralValue> dp)
 {
 	StringArray r = checkLiteralValueList(dp);
 	if(!r.empty())
@@ -133,7 +133,7 @@ CRLDistributionPointsExt::setCRLDistributionPoints(blocxx::List<LiteralValue> dp
 	setPresent(true);
 }
 
-blocxx::List<LiteralValue>
+std::list<LiteralValue>
 CRLDistributionPointsExt::getCRLDistributionPoints() const
 {
 	if(!isPresent())
@@ -171,7 +171,7 @@ CRLDistributionPointsExt::commit2Config(CA& ca, Type type) const
 		if(isCritical()) extString += "critical,";
 
 		String val;
-		blocxx::List<LiteralValue>::const_iterator it = m_impl->altNameList.begin();
+		std::list<LiteralValue>::const_iterator it = m_impl->altNameList.begin();
 		for(int j = 0;it != m_impl->altNameList.end(); ++it, ++j)
 		{
 			val = "";
@@ -236,7 +236,7 @@ CRLDistributionPointsExt::dump() const
 	result.appendArray(ExtensionBase::dump());
 	if(!isPresent()) return result;
 
-	blocxx::List< LiteralValue >::const_iterator it = m_impl->altNameList.begin();
+	std::list< LiteralValue >::const_iterator it = m_impl->altNameList.begin();
 	for(; it != m_impl->altNameList.end(); ++it)
 	{
 		result.appendArray((*it).dump());

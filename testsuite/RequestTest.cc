@@ -41,8 +41,8 @@ int main()
 		CA ca("Test_CA1", "system", "./TestRepos/");
 		RequestGenerationData rgd = ca.getRequestDefaults(E_Server_Req);
 
-		List<RDNObject> dnl = rgd.getSubjectDN().getDN();
-		List<RDNObject>::iterator dnit;
+		std::list<RDNObject> dnl = rgd.getSubjectDN().getDN();
+		std::list<RDNObject>::iterator dnit;
 
 		for(dnit = dnl.begin(); dnit != dnl.end(); ++dnit)
 		{
@@ -84,7 +84,7 @@ int main()
 
 		rgd.extensions().extendedKeyUsage().setExtendedKeyUsage( sl );
 		
-		List<LiteralValue> list;
+		std::list<LiteralValue> list;
 		list.push_back(LiteralValue("email", "me@my-company.com"));
 		list.push_back(LiteralValue("URI", "http://www.my-company.com/"));
 		

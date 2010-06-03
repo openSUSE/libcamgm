@@ -357,7 +357,7 @@ DNObject::DNObject(CAConfig* caConfig, Type type)
 	}
 }
 
-DNObject::DNObject(const blocxx::List<RDNObject> &dn)
+DNObject::DNObject(const std::list<RDNObject> &dn)
 	: m_impl(new DNObjectImpl())
 {
 	m_impl->dn = dn;
@@ -386,7 +386,7 @@ DNObject::operator=(const DNObject& dn)
 }
 
 void
-DNObject::setDN(const blocxx::List<RDNObject> &dn)
+DNObject::setDN(const std::list<RDNObject> &dn)
 {
 	StringArray r = checkRDNList(dn);
 	if(!r.empty())
@@ -397,7 +397,7 @@ DNObject::setDN(const blocxx::List<RDNObject> &dn)
 	m_impl->dn = dn;
 }
 
-blocxx::List<RDNObject>
+std::list<RDNObject>
 DNObject::getDN() const
 {
 	return m_impl->dn;
@@ -408,7 +408,7 @@ DNObject::getOpenSSLString() const
 {
 	String ret;
 
-	blocxx::List<RDNObject>::const_iterator it = m_impl->dn.begin();
+	std::list<RDNObject>::const_iterator it = m_impl->dn.begin();
 	for(; it != m_impl->dn.end(); ++it)
 	{
 		if(! (*it).getOpenSSLValue().empty())
@@ -454,11 +454,11 @@ DNObject::verify() const
 }
 
 blocxx::StringArray
-DNObject::checkRDNList(const blocxx::List<RDNObject>& list) const
+DNObject::checkRDNList(const std::list<RDNObject>& list) const
 {
 	StringArray result;
 
-	blocxx::List<RDNObject>::const_iterator it = list.begin();
+	std::list<RDNObject>::const_iterator it = list.begin();
 	for(; it != list.end(); ++it)
 	{
 		result.appendArray((*it).verify());
@@ -472,7 +472,7 @@ DNObject::dump() const
 	StringArray result;
 	result.append("DNObject::dump()");
 
-	blocxx::List< RDNObject >::const_iterator it = m_impl->dn.begin();
+	std::list< RDNObject >::const_iterator it = m_impl->dn.begin();
 	for(; it != m_impl->dn.end(); ++it)
 	{
 		result.appendArray((*it).dump());

@@ -278,7 +278,7 @@ int copyDir( const PathName & srcpath, const PathName & destpath )
 //
 //	DESCRIPTION :
 //
-int readDir( List<String> & retlist,
+int readDir( std::list<String> & retlist,
              const PathName & path, bool dots )
 {
     retlist.clear();

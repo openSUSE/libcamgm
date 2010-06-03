@@ -359,7 +359,7 @@ private:
 	/**
 	 * List of further checks in the chain.
 	 */
-	blocxx::List<ValueCheck>	m_list;
+	std::list<ValueCheck>	m_list;
 };
 
 

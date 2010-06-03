@@ -212,8 +212,8 @@ OpenSSLUtils::createRequest(const DNObject &dn,
 	blocxx::String errOutput;
 	int            status    = -1;
 
-	blocxx::List<RDNObject> dnList = dn.getDN();
-	blocxx::List<RDNObject>::const_iterator it;
+	std::list<RDNObject> dnList = dn.getDN();
+	std::list<RDNObject>::const_iterator it;
 
 	for(it = dnList.begin(); it != dnList.end(); ++it)
 	{
@@ -1857,7 +1857,7 @@ OpenSSLUtils::pkcs12ToPEM(const ByteBuffer &pkcs12,
 blocxx::Array<blocxx::String>
 OpenSSLUtils::listCA(const String &repository)
 {
-	List<String>  tmpList;
+	std::list<String>  tmpList;
 	Array<String> retList;
 
 	int r = path::readDir(tmpList, repository, false);
@@ -1873,7 +1873,7 @@ OpenSSLUtils::listCA(const String &repository)
 
 	tmpList.sort();
 
-	List<String>::const_iterator cont;
+	std::list<String>::const_iterator cont;
 
 	path::PathInfo pi(repository);
 
@@ -2056,7 +2056,7 @@ OpenSSLUtils::listRequests(const String &caName,
                            const String &repository)
 {
 	Array<Map<String, String> > ret;
-	List<String> tmpList;
+	std::list<String> tmpList;
 
 	String reqDir = repository + "/" + caName + "/req/";
 
@@ -2074,7 +2074,7 @@ OpenSSLUtils::listRequests(const String &caName,
 	tmpList.sort();
 
 	Array<Array<String> >        camdb = OpenSSLUtils::parseCAMDB(caName, repository);
-	List<String>::const_iterator cont;
+	std::list<String>::const_iterator cont;
 	path::PathInfo pi(reqDir);
 
 	for(cont = tmpList.begin(); cont != tmpList.end(); ++cont)
@@ -2208,7 +2208,7 @@ OpenSSLUtils::listCertificates(const String &caName,
                                const String &repository)
 {
 	Array<Map<String, String> > ret;
-	List<String> tmpList;
+	std::list<String> tmpList;
 
 	String certDir = repository + "/" + caName + "/newcerts/";
 
@@ -2226,7 +2226,7 @@ OpenSSLUtils::listCertificates(const String &caName,
 	tmpList.sort();
 
 	Array<Array<String> >        indexTXT = OpenSSLUtils::parseIndexTXT(caName, repository);
-	List<String>::const_iterator cont;
+	std::list<String>::const_iterator cont;
 	path::PathInfo pi(certDir);
 
 	for(cont = tmpList.begin(); cont != tmpList.end(); ++cont)

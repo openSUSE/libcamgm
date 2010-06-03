@@ -15,13 +15,12 @@
 #define IniFile_h
 
 #include <limal/Logger.hpp>
-#include <blocxx/List.hpp>
 #include <blocxx/String.hpp>
 #include <blocxx/Array.hpp>
 #include <blocxx/Map.hpp>
 #include <blocxx/IntrusiveReference.hpp>
 #include "INIParser/INIParserDescr.hpp"
-
+#include <list>
 #include <map>
 
 #define INIPARSER "IniParser"
@@ -36,7 +35,7 @@ namespace INI
  */
 struct SectionAll;
 
-typedef blocxx::List<SectionAll> SectionList;
+typedef std::list<SectionAll> SectionList;
 
 struct SectionAll
 {
@@ -49,7 +48,7 @@ struct SectionAll
     SectionList sectionList;
 };
 
-typedef blocxx::List<blocxx::String> StringList;
+typedef std::list<blocxx::String> StringList;
 typedef blocxx::Map<blocxx::String, blocxx::String> StringMap;
 
 /**
@@ -202,7 +201,7 @@ class IniSection;
 //enum IniType { VALUE, SECTION,};
 struct IniContainerElement;
 
-typedef blocxx::List<IniContainerElement> IniContainer;
+typedef std::list<IniContainerElement> IniContainer;
 typedef IniContainer::iterator IniIterator;
 
 /** indices */

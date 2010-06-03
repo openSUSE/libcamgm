@@ -34,7 +34,7 @@
 namespace CA_MGM_NAMESPACE {
 
     typedef blocxx::String       String;
-    typedef blocxx::List<String> StringList;
+    typedef std::list<String> StringList;
     
     enum Type {
         E_Client_Req,  //! Client Request

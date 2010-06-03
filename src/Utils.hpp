@@ -177,10 +177,10 @@ inline ValueCheck initAccessOIDCheck() {
 }
 
 inline blocxx::StringArray
-	checkLiteralValueList(const blocxx::List<LiteralValue>& list)
+	checkLiteralValueList(const std::list<LiteralValue>& list)
 {
 	blocxx::StringArray result;
-	blocxx::List<LiteralValue>::const_iterator it = list.begin();
+	std::list<LiteralValue>::const_iterator it = list.begin();
 	for(;it != list.end(); it++) {
 		result.appendArray((*it).verify());
 	}

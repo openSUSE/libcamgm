@@ -42,7 +42,7 @@ MAINTAINERCLEANFILES = configure configure.in $(RPMNAME).pc Makefile Makefile.in
 maintainer-clean-local:
 	-rm -rf m4 
 
-configure.in: configure.in.in $(srcdir)/VERSION
+configure.in: $(srcdir)/VERSION
 	$(MAKE) -f Makefile.cvs all
 
 EXTRA_DIST = \

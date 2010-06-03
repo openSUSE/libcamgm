@@ -116,7 +116,7 @@ DNObject_Priv::DNObject_Priv(X509_NAME *x509_name)
 
 	 }
 
-	 List<RDNObject>::iterator it = dn.begin();
+	 std::list<RDNObject>::iterator it = dn.begin();
 	 bool found                   = false;
 
 	 for(; it != dn.end(); ++it) {
@@ -141,7 +141,7 @@ DNObject_Priv::DNObject_Priv(X509_NAME *x509_name)
 
 	/* and this is the other option */
 
-	List<RDNObject> tmpDN;
+	std::list<RDNObject> tmpDN;
 
 	for(uint j = 0 ; j < lines.size(); ++j)
 	{
@@ -230,7 +230,7 @@ DNObject_Priv::setDefaults2Config(CA& ca)
 			     lastFieldName.startsWith("emailAddress", String::E_CASE_INSENSITIVE)))
 			{
 				// do we have a default for lastFiledName?
-				blocxx::List<RDNObject>::const_iterator rdnIT;
+				std::list<RDNObject>::const_iterator rdnIT;
 
 				for(rdnIT = m_impl->dn.begin(); rdnIT != m_impl->dn.end(); ++rdnIT)
 				{

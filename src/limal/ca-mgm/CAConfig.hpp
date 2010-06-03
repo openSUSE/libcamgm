@@ -77,7 +77,7 @@ namespace CA_MGM_NAMESPACE
 		/**
 		 * Return a List of all Keys in Section <b>section</b>.
 		 */
-		blocxx::List<blocxx::String>
+		std::list<blocxx::String>
 		getKeylist(const String &section) const;
 
 		/**

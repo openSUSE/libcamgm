@@ -40,7 +40,7 @@ public:
 	UserNoticeImpl()
 		: explicitText("")
 		, organization("")
-		, noticeNumbers(blocxx::List<blocxx::Int32>())
+		, noticeNumbers(std::list<blocxx::Int32>())
 	{}
 
 	UserNoticeImpl(const UserNoticeImpl& impl)
@@ -63,7 +63,7 @@ public:
 	// (if included) must BOTH be present.
 
 	String                      organization;      // max 200 characters
-	blocxx::List<blocxx::Int32> noticeNumbers;
+	std::list<blocxx::Int32> noticeNumbers;
 
 };
 
@@ -74,13 +74,13 @@ public:
 	CertificatePolicyImpl()
 		: policyIdentifier(String())
 		, cpsURI(StringList())
-		, noticeList(blocxx::List<UserNotice>())
+		, noticeList(std::list<UserNotice>())
 	{}
 
 	CertificatePolicyImpl(const String &policyIdentifier)
 		: policyIdentifier(policyIdentifier)
 		, cpsURI(StringList())
-		, noticeList(blocxx::List<UserNotice>())
+		, noticeList(std::list<UserNotice>())
 	{}
 
 	CertificatePolicyImpl(const CertificatePolicyImpl& impl)
@@ -100,7 +100,7 @@ public:
 	String                   policyIdentifier;  // required
 	StringList               cpsURI;            // Certification Practice Statement
 
-	blocxx::List<UserNotice> noticeList;
+	std::list<UserNotice> noticeList;
 };
 
 class CertificatePoliciesExtImpl : public blocxx::COWIntrusiveCountableBase
@@ -108,10 +108,10 @@ class CertificatePoliciesExtImpl : public blocxx::COWIntrusiveCountableBase
 public:
 	CertificatePoliciesExtImpl()
 		: ia5org(false),
-		policies(blocxx::List<CertificatePolicy>())
+		policies(std::list<CertificatePolicy>())
 	{}
 
-	CertificatePoliciesExtImpl(const blocxx::List<CertificatePolicy>& policies)
+	CertificatePoliciesExtImpl(const std::list<CertificatePolicy>& policies)
 		: ia5org(false),
 		policies(policies)
 	{}
@@ -130,7 +130,7 @@ public:
 	}
 
 	bool ia5org;
-	blocxx::List<CertificatePolicy> policies;
+	std::list<CertificatePolicy> policies;
 
 };
 
@@ -225,7 +225,7 @@ UserNotice::getExplicitText() const
 
 void
 UserNotice::setOrganizationNotice(const String& org,
-                                  const blocxx::List<blocxx::Int32>& numbers)
+                                  const std::list<blocxx::Int32>& numbers)
 {
 	m_impl->organization  = org;
 	m_impl->noticeNumbers = numbers;
@@ -237,7 +237,7 @@ UserNotice::getOrganization() const
 	return m_impl->organization;
 }
 
-blocxx::List<blocxx::Int32>
+std::list<blocxx::Int32>
 UserNotice::getNoticeNumbers() const
 {
 	return m_impl->noticeNumbers;
@@ -275,7 +275,7 @@ UserNotice::commit2Config(CA& ca, Type type, blocxx::UInt32 num) const
 		ca.getConfig()->setValue(sectionName, "organization", m_impl->organization);
 
 		String numbers;
-		blocxx::List<blocxx::Int32>::const_iterator it = m_impl->noticeNumbers.begin();
+		std::list<blocxx::Int32>::const_iterator it = m_impl->noticeNumbers.begin();
 		for(;it != m_impl->noticeNumbers.end(); ++it)
 		{
 			numbers += String(*it)+",";
@@ -333,7 +333,7 @@ UserNotice::dump() const
 	result.append("organization = " + m_impl->organization);
 
 	String n;
-	blocxx::List< blocxx::Int32 >::const_iterator it = m_impl->noticeNumbers.begin();
+	std::list< blocxx::Int32 >::const_iterator it = m_impl->noticeNumbers.begin();
 	for(; it != m_impl->noticeNumbers.end(); ++it)
 	{
 		n += String(*it) + " ";
@@ -485,7 +485,7 @@ CertificatePolicy::getCpsURI() const
 }
 
 void
-CertificatePolicy::setUserNoticeList(const blocxx::List<UserNotice>& list)
+CertificatePolicy::setUserNoticeList(const std::list<UserNotice>& list)
 {
 	StringArray r = checkNoticeList(list);
 	if(!r.empty())
@@ -496,7 +496,7 @@ CertificatePolicy::setUserNoticeList(const blocxx::List<UserNotice>& list)
 	m_impl->noticeList = list;
 }
 
-blocxx::List<UserNotice>
+std::list<UserNotice>
 CertificatePolicy::getUserNoticeList() const
 {
 	return m_impl->noticeList;
@@ -536,7 +536,7 @@ CertificatePolicy::commit2Config(CA& ca, Type type, blocxx::UInt32 num) const
 		ca.getConfig()->setValue(sectionName, "CPS."+String(i),(*it));
 	}
 
-	blocxx::List<UserNotice>::const_iterator nit = m_impl->noticeList.begin();
+	std::list<UserNotice>::const_iterator nit = m_impl->noticeList.begin();
 	for(blocxx::UInt32 j = 1;nit != m_impl->noticeList.end(); ++nit, ++j)
 	{
 		String n = (*nit).commit2Config(ca, type, j);
@@ -608,7 +608,7 @@ CertificatePolicy::dump() const
 		result.append("CPS = " + (*it1));
 	}
 
-	blocxx::List< UserNotice >::const_iterator it2 = m_impl->noticeList.begin();
+	std::list< UserNotice >::const_iterator it2 = m_impl->noticeList.begin();
 	for(; it2 != m_impl->noticeList.end(); ++it2)
 	{
 		result.appendArray((*it2).dump());
@@ -666,10 +666,10 @@ CertificatePolicy::checkCpsURIs(const StringList& cpsURIs) const
 }
 
 blocxx::StringArray
-CertificatePolicy::checkNoticeList(const blocxx::List<UserNotice>& list) const
+CertificatePolicy::checkNoticeList(const std::list<UserNotice>& list) const
 {
 	StringArray result;
-	blocxx::List<UserNotice>::const_iterator it = list.begin();
+	std::list<UserNotice>::const_iterator it = list.begin();
 	for(;it != list.end(); it++)
 	{
 		result.appendArray((*it).verify());
@@ -685,7 +685,7 @@ CertificatePoliciesExt::CertificatePoliciesExt()
 	, m_impl(new CertificatePoliciesExtImpl())
 {}
 
-CertificatePoliciesExt::CertificatePoliciesExt(const blocxx::List<CertificatePolicy>& policies)
+CertificatePoliciesExt::CertificatePoliciesExt(const std::list<CertificatePolicy>& policies)
 	: ExtensionBase()
 	, m_impl(new CertificatePoliciesExtImpl(policies))
 {
@@ -784,7 +784,7 @@ CertificatePoliciesExt::isIA5orgEnabled() const
 }
 
 void
-CertificatePoliciesExt::setPolicies(const blocxx::List<CertificatePolicy>& policies)
+CertificatePoliciesExt::setPolicies(const std::list<CertificatePolicy>& policies)
 {
 	StringArray r = checkPolicies(policies);
 	if(!r.empty())
@@ -797,7 +797,7 @@ CertificatePoliciesExt::setPolicies(const blocxx::List<CertificatePolicy>& polic
 	setPresent(true);
 }
 
-blocxx::List<CertificatePolicy>
+std::list<CertificatePolicy>
 CertificatePoliciesExt::getPolicies() const
 {
 	if(!isPresent())
@@ -836,7 +836,7 @@ CertificatePoliciesExt::commit2Config(CA& ca, Type type) const
 
 		if(m_impl->ia5org) extString += "ia5org,";
 
-		blocxx::List<CertificatePolicy>::const_iterator it = m_impl->policies.begin();
+		std::list<CertificatePolicy>::const_iterator it = m_impl->policies.begin();
 		for(blocxx::UInt32 i = 0;it != m_impl->policies.end(); ++it, ++i)
 		{
 			extString += (*it).commit2Config(ca, type, i) + ",";
@@ -898,7 +898,7 @@ CertificatePoliciesExt::dump() const
 	if(!isPresent()) return result;
 
 	result.append("ia5org = " + blocxx::Bool(m_impl->ia5org).toString());
-	blocxx::List< CertificatePolicy >::const_iterator it = m_impl->policies.begin();
+	std::list< CertificatePolicy >::const_iterator it = m_impl->policies.begin();
 	for(; it != m_impl->policies.end(); ++it)
 	{
 		result.appendArray((*it).dump());
@@ -909,10 +909,10 @@ CertificatePoliciesExt::dump() const
 
 
 blocxx::StringArray
-CertificatePoliciesExt::checkPolicies(const blocxx::List<CertificatePolicy>& pl) const
+CertificatePoliciesExt::checkPolicies(const std::list<CertificatePolicy>& pl) const
 {
 	StringArray result;
-	blocxx::List<CertificatePolicy>::const_iterator it = pl.begin();
+	std::list<CertificatePolicy>::const_iterator it = pl.begin();
 	for(;it != pl.end(); it++)
 	{
 		result.appendArray((*it).verify());

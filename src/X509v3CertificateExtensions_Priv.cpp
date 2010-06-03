@@ -710,7 +710,7 @@ X509v3CertificateExts_Priv::parseSubjectAlternativeNameExt(STACK_OF(X509_EXTENSI
 
 	int j;
 	GENERAL_NAME *gen;
-	blocxx::List<LiteralValue> lvList;
+	std::list<LiteralValue> lvList;
 
 	for(j = 0; j < sk_GENERAL_NAME_num(gns); j++)
 	{
@@ -779,7 +779,7 @@ X509v3CertificateExts_Priv::parseIssuerAlternativeNameExt(STACK_OF(X509_EXTENSIO
 
 	int j;
 	GENERAL_NAME *gen;
-	blocxx::List<LiteralValue> lvList;
+	std::list<LiteralValue> lvList;
 
 	for(j = 0; j < sk_GENERAL_NAME_num(gns); j++)
 	{
@@ -850,7 +850,7 @@ X509v3CertificateExts_Priv::parseCRLDistributionPointsExt(STACK_OF(X509_EXTENSIO
 	DIST_POINT *point;
 	int i, j;
 	GENERAL_NAME *gen;
-	blocxx::List<LiteralValue> lvList;
+	std::list<LiteralValue> lvList;
 
 	for(i = 0; i < sk_DIST_POINT_num(cdps); i++)
 	{
@@ -925,7 +925,7 @@ X509v3CertificateExts_Priv::parseAuthorityInfoAccessExt(STACK_OF(X509_EXTENSION)
 	ACCESS_DESCRIPTION *desc;
 	int i;
 	char objtmp[80];
-	blocxx::List<AuthorityInformation> infolist;
+	std::list<AuthorityInformation> infolist;
 
 
 	for(i = 0; i < sk_ACCESS_DESCRIPTION_num(ainf); i++)
@@ -1011,7 +1011,7 @@ X509v3CertificateExts_Priv::parseCertificatePoliciesExt(STACK_OF(X509_EXTENSION)
 	int i;
 	POLICYINFO *pinfo;
 	char obj_tmp[256];
-	blocxx::List<CertificatePolicy> policies;
+	std::list<CertificatePolicy> policies;
 
 	/* First print out the policy OIDs */
 	for(i = 0; i < sk_POLICYINFO_num(cps); i++)
@@ -1027,7 +1027,7 @@ X509v3CertificateExts_Priv::parseCertificatePoliciesExt(STACK_OF(X509_EXTENSION)
 			POLICYQUALINFO *qualinfo;
 			int j;
 			StringList cpsURI;
-			blocxx::List<UserNotice> noticeList;
+			std::list<UserNotice> noticeList;
 			UserNotice un;
 			char *s;
 
@@ -1052,7 +1052,7 @@ X509v3CertificateExts_Priv::parseCertificatePoliciesExt(STACK_OF(X509_EXTENSION)
 					if(qualinfo->d.usernotice->noticeref)
 					{
 						NOTICEREF *ref;
-						blocxx::List<blocxx::Int32> numberList;
+						std::list<blocxx::Int32> numberList;
 
 						ref = qualinfo->d.usernotice->noticeref;
 

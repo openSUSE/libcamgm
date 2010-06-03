@@ -44,8 +44,8 @@ int main()
         
 		// ------------------------ Set DN --------------------------------
         
-		List<RDNObject> dnl = rgd.getSubjectDN().getDN();
-		List<RDNObject>::iterator dnit;
+		std::list<RDNObject> dnl = rgd.getSubjectDN().getDN();
+		std::list<RDNObject>::iterator dnit;
         
 		for(dnit = dnl.begin(); dnit != dnl.end(); ++dnit)
 		{
@@ -119,7 +119,7 @@ int main()
 
 		// ------------------------ create alternative extension -----------------------------
         
-		List<LiteralValue> list;
+		std::list<LiteralValue> list;
 		list.push_back(LiteralValue("IP", "164.34.35.184"));
 		list.push_back(LiteralValue("DNS", "ca.my-company.com"));
 		list.push_back(LiteralValue("RID", "1.2.3.4"));
@@ -133,7 +133,7 @@ int main()
         
 		// ---------------- create authority information extension ------------------------
        
-		List<AuthorityInformation> info;
+		std::list<AuthorityInformation> info;
 		info.push_back(AuthorityInformation("OCSP", 
 		                                    LiteralValue("URI", "http://www.my-company.com/ocsp.pl")));
 		info.push_back(AuthorityInformation("caIssuers", 
@@ -143,14 +143,14 @@ int main()
 
 		// ------------------------ create CRL dist point extension -----------------------
 
-		List<LiteralValue> crldist;
+		std::list<LiteralValue> crldist;
 		crldist.push_back(LiteralValue("URI", "ldap://ldap.my-company.com/?ou=PKI%2ddc=my-company%2ddc=com"));
 
 		cid.extensions().crlDistributionPoints().setCRLDistributionPoints(crldist);
 
 		// -------------------- create certificate policy extension -----------------------
 
-		blocxx::List<CertificatePolicy> p;
+		std::list<CertificatePolicy> p;
 		p.push_back(CertificatePolicy("1.12.35.1"));
 
 		CertificatePolicy p2;
@@ -161,7 +161,7 @@ int main()
 		slp.push_back("http://www2.my-company.com/");
 		p2.setCpsURI(slp);
 
-		List<Int32> num;
+		std::list<Int32> num;
 		num.push_back(1);
 		num.push_back(5);
 		num.push_back(8);
@@ -170,7 +170,7 @@ int main()
 		un.setExplicitText("This is the explicite Text");
 		un.setOrganizationNotice("My Company", num);
 
-		List<UserNotice> unl;
+		std::list<UserNotice> unl;
 		unl.push_back(un);
 		p2.setUserNoticeList(unl);
 		p.push_back(p2);

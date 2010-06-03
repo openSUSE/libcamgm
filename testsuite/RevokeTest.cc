@@ -41,8 +41,8 @@ int main()
         CA ca("Test_CA1", "system", "./TestRepos/");
         RequestGenerationData rgd = ca.getRequestDefaults(E_Server_Req);
 
-        List<RDNObject> dnl = rgd.getSubjectDN().getDN();
-        List<RDNObject>::iterator dnit;
+        list<RDNObject> dnl = rgd.getSubjectDN().getDN();
+        list<RDNObject>::iterator dnit;
         
         for(dnit = dnl.begin(); dnit != dnl.end(); ++dnit)
         {            

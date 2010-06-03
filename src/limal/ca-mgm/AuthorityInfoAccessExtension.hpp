@@ -188,12 +188,12 @@ namespace CA_MGM_NAMESPACE {
          * Set a new list of Authority Informations
          */
         void
-        setAuthorityInformation(const blocxx::List<AuthorityInformation>& infolist);
+        setAuthorityInformation(const std::list<AuthorityInformation>& infolist);
 
         /**
          * Return the list with Authority Informations
          */
-        blocxx::List<AuthorityInformation>
+        std::list<AuthorityInformation>
         getAuthorityInformation() const;
 
         /**

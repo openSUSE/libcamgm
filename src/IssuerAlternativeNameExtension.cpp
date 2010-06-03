@@ -38,11 +38,11 @@ class IssuerAlternativeNameExtImpl : public blocxx::COWIntrusiveCountableBase
 public:
 	IssuerAlternativeNameExtImpl()
 		: issuerCopy(false)
-		, altNameList(blocxx::List<LiteralValue>())
+		, altNameList(std::list<LiteralValue>())
 	{}
 
 	IssuerAlternativeNameExtImpl(bool copyIssuer,
-	                             const blocxx::List<LiteralValue> &alternativeNameList)
+	                             const std::list<LiteralValue> &alternativeNameList)
 		: issuerCopy(copyIssuer)
 		, altNameList(alternativeNameList)
 	{}
@@ -61,7 +61,7 @@ public:
 	}
 
 	bool issuerCopy;
-	blocxx::List<LiteralValue> altNameList;
+	std::list<LiteralValue> altNameList;
 };
 
 
@@ -71,7 +71,7 @@ IssuerAlternativeNameExt::IssuerAlternativeNameExt()
 {}
 
 IssuerAlternativeNameExt::IssuerAlternativeNameExt(bool copyIssuer,
-	const blocxx::List<LiteralValue> &alternativeNameList)
+	const std::list<LiteralValue> &alternativeNameList)
 	: ExtensionBase()
 	, m_impl(new IssuerAlternativeNameExtImpl(copyIssuer, alternativeNameList))
 {
@@ -167,7 +167,7 @@ IssuerAlternativeNameExt::getCopyIssuer() const
 }
 
 void
-IssuerAlternativeNameExt::setAlternativeNameList(const blocxx::List<LiteralValue> &alternativeNameList)
+IssuerAlternativeNameExt::setAlternativeNameList(const std::list<LiteralValue> &alternativeNameList)
 {
 	StringArray r = checkLiteralValueList(alternativeNameList);
 	if(!r.empty())
@@ -179,7 +179,7 @@ IssuerAlternativeNameExt::setAlternativeNameList(const blocxx::List<LiteralValue
 	setPresent(true);
 }
 
-blocxx::List<LiteralValue>
+std::list<LiteralValue>
 IssuerAlternativeNameExt::getAlternativeNameList() const
 {
 	if(!isPresent())
@@ -231,7 +231,7 @@ IssuerAlternativeNameExt::commit2Config(CA& ca, Type type) const
 		if(m_impl->issuerCopy) extString += "issuer:copy,";
 
 		String val;
-		blocxx::List<LiteralValue>::const_iterator it = m_impl->altNameList.begin();
+		std::list<LiteralValue>::const_iterator it = m_impl->altNameList.begin();
 		for(int j = 0;it != m_impl->altNameList.end(); ++it, ++j)
 		{
 			val = "";
@@ -303,7 +303,7 @@ IssuerAlternativeNameExt::dump() const
 
 	result.append("Issuer:copy = " + Bool(m_impl->issuerCopy).toString());
 
-	blocxx::List< LiteralValue >::const_iterator it = m_impl->altNameList.begin();
+	std::list< LiteralValue >::const_iterator it = m_impl->altNameList.begin();
 	for(; it != m_impl->altNameList.end(); ++it)
 	{
 		result.appendArray((*it).dump());

@@ -141,7 +141,7 @@ X509v3CRLExts_Priv::parseIssuerAlternativeNameExt(STACK_OF(X509_EXTENSION) *cert
 
 	int j;
 	GENERAL_NAME *gen;
-	blocxx::List<LiteralValue> lvList;
+	std::list<LiteralValue> lvList;
 
 	for(j = 0; j < sk_GENERAL_NAME_num(gns); j++)
 	{
