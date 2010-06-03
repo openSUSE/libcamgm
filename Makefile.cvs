@@ -8,8 +8,8 @@ configure: all
 	./configure --libdir=/usr/$(LIB)
 
 all:
-	limaltool limalautoconf
-	limaltool limalautomake
+	#limaltool limalautoconf
+	#limaltool limalautomake
 	autoreconf --force --install --verbose
 
 install: configure
