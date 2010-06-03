@@ -25,12 +25,10 @@
 
 #include  "Utils.hpp"
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 
-using namespace limal;
+using namespace ca_mgm;
 using namespace blocxx;
 
 class ExtensionBaseImpl : public COWIntrusiveCountableBase {
@@ -132,5 +130,4 @@ ExtensionBase::dump() const
 	return result;
 }
 
-}
 }

@@ -27,12 +27,10 @@
 
 #include  "Utils.hpp"
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 
-using namespace limal;
+using namespace ca_mgm;
 using namespace blocxx;
 
 class IssuerAlternativeNameExtImpl : public blocxx::COWIntrusiveCountableBase
@@ -81,7 +79,7 @@ IssuerAlternativeNameExt::IssuerAlternativeNameExt(bool copyIssuer,
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 	setPresent(true);
 }
@@ -94,7 +92,7 @@ IssuerAlternativeNameExt::IssuerAlternativeNameExt(CAConfig* caConfig, Type type
 	if(type == E_Client_Req || type == E_Server_Req || type == E_CA_Req)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -162,7 +160,7 @@ IssuerAlternativeNameExt::getCopyIssuer() const
 	if(!isPresent())
 	{
 		LOGIT_ERROR("IssuerAlternativeNameExt is not present");
-		BLOCXX_THROW(limal::RuntimeException,
+		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             __("IssuerAlternativeNameExt is not present."));
 	}
 	return m_impl->issuerCopy;
@@ -175,7 +173,7 @@ IssuerAlternativeNameExt::setAlternativeNameList(const blocxx::List<LiteralValue
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 	m_impl->altNameList = alternativeNameList;
 	setPresent(true);
@@ -187,7 +185,7 @@ IssuerAlternativeNameExt::getAlternativeNameList() const
 	if(!isPresent())
 	{
 		LOGIT_ERROR("IssuerAlternativeNameExt is not present");
-		BLOCXX_THROW(limal::RuntimeException,
+		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             __("IssuerAlternativeNameExt is not present."));
 	}
 	return m_impl->altNameList;
@@ -199,7 +197,7 @@ IssuerAlternativeNameExt::addIssuerAltName(const LiteralValue& altName)
 	if(!altName.valid())
 	{
 		LOGIT_ERROR("invalid literal value for IssuerAlternativeNameExt");
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             __("Invalid literal value for IssuerAlternativeNameExt."));
 	}
 	m_impl->altNameList.push_back(altName);
@@ -212,7 +210,7 @@ IssuerAlternativeNameExt::commit2Config(CA& ca, Type type) const
 	if(!valid())
 	{
 		LOGIT_ERROR("invalid IssuerAlternativeNameExt object");
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             __("Invalid IssuerAlternativeNameExt object."));
 	}
 
@@ -220,7 +218,7 @@ IssuerAlternativeNameExt::commit2Config(CA& ca, Type type) const
 	if(type == E_Client_Req || type == E_Server_Req || type == E_CA_Req)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -314,5 +312,4 @@ IssuerAlternativeNameExt::dump() const
 	return result;
 }
 
-}
 }

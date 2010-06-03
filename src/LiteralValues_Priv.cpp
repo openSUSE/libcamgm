@@ -26,12 +26,10 @@
 
 #include  "Utils.hpp"
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 
-using namespace limal;
+using namespace ca_mgm;
 using namespace blocxx;
 
 
@@ -152,7 +150,7 @@ LiteralValue_Priv::LiteralValue_Priv(GENERAL_NAME *gen)
 		else
 		{
 			LOGIT_ERROR("Invalid IP Address");
-			BLOCXX_THROW(limal::SyntaxException, "Invalid IP Address");
+			BLOCXX_THROW(ca_mgm::SyntaxException, "Invalid IP Address");
 			break;
 		}
 		setLiteral("IP", oline);
@@ -234,5 +232,4 @@ LiteralValue_Priv::decode_krb5_principal_name(unsigned char* data, int len)
 	p = NULL;
 }
 
-}
 }

@@ -17,8 +17,8 @@
 #include <unistd.h>
 
 using namespace blocxx;
-using namespace limal;
-using namespace limal::ca_mgm;
+
+using namespace ca_mgm;
 using namespace std;
 
 int main()
@@ -36,13 +36,13 @@ int main()
         //cat.push_back("DEBUG");
 
         // Logging
-        LoggerRef l = limal::Logger::createCerrLogger(
+        LoggerRef l = ca_mgm::Logger::createCerrLogger(
                                                       "ExportTest",
                                                       LogAppender::ALL_COMPONENTS,
                                                       cat,
                                                       "%-5p %c - %m"
                                                   );
-        limal::Logger::setDefaultLogger(l);
+        ca_mgm::Logger::setDefaultLogger(l);
 
         
         CA ca("SUSEIPsecCA", "system", "./TestRepos3/");

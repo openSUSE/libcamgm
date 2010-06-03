@@ -28,8 +28,6 @@
 #include  <limal/ca-mgm/X509v3CRLGenerationExtensions.hpp>
 #include  <blocxx/COWIntrusiveReference.hpp>
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 
@@ -88,7 +86,6 @@ namespace CA_MGM_NAMESPACE
 
 	};
 
-}
 }
 
 #endif // LIMAL_CA_MGM_CRL_GENERATION_DATA_HPP

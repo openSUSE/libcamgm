@@ -26,12 +26,10 @@
 #include  "X509v3CertificateExtensionsImpl.hpp"
 #include  "Utils.hpp"
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 
-using namespace limal;
+using namespace ca_mgm;
 using namespace blocxx;
 
 X509v3CertificateExts::X509v3CertificateExts(const X509v3CertificateExts& extensions)
@@ -244,5 +242,4 @@ X509v3CertificateExts::X509v3CertificateExts()
 	: m_impl(new X509v3CertificateExtsImpl())
 {}
 
-}
 }

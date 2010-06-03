@@ -28,12 +28,10 @@
 
 #include  "Utils.hpp"
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 
-using namespace limal;
+using namespace ca_mgm;
 using namespace blocxx;
 
 class UserNoticeImpl : public blocxx::COWIntrusiveCountableBase
@@ -165,7 +163,7 @@ UserNotice::initWithSection(CAConfig* caConfig, Type type, const String& section
 	   type == E_Server_Req || type == E_CA_Req      )
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -212,7 +210,7 @@ UserNotice::setExplicitText(const String& text)
 	if(text.length() > 200)
 	{
 		LOGIT_ERROR("The text is too long.");
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             __("The text is too long."));
 	}
 
@@ -251,7 +249,7 @@ UserNotice::commit2Config(CA& ca, Type type, blocxx::UInt32 num) const
 	if(!valid())
 	{
 		LOGIT_ERROR("invalid UserNotice object");
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             __("Invalid UserNotice object."));
 	}
 
@@ -260,7 +258,7 @@ UserNotice::commit2Config(CA& ca, Type type, blocxx::UInt32 num) const
 	   type == E_Server_Req || type == E_CA_Req      )
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -390,7 +388,7 @@ CertificatePolicy::CertificatePolicy(const String& policyIdentifier)
 	if(!initOIDCheck().isValid(policyIdentifier))
 	{
 		LOGIT_ERROR("invalid value for policyIdentifier" << policyIdentifier);
-		BLOCXX_THROW(limal::ValueException ,
+		BLOCXX_THROW(ca_mgm::ValueException ,
 		             // %1 is the wrong string for policyIdentifier
 		             Format(__("Invalid value for policyIdentifier: %1."), policyIdentifier).c_str());
 	}
@@ -421,7 +419,7 @@ CertificatePolicy::initWithSection(CAConfig* caConfig, Type type, const String& 
 	   type == E_Server_Req || type == E_CA_Req      )
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -455,7 +453,7 @@ CertificatePolicy::setPolicyIdentifier(const String& policyIdentifier)
 	if(!initOIDCheck().isValid(policyIdentifier))
 	{
 		LOGIT_ERROR("invalid value for policyIdentifier" << policyIdentifier);
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             Format(__("Invalid value for policyIdentifier: %1."), policyIdentifier).c_str());
 	}
 
@@ -475,7 +473,7 @@ CertificatePolicy::setCpsURI(const StringList& cpsURI)
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 	m_impl->cpsURI = cpsURI;
 }
@@ -493,7 +491,7 @@ CertificatePolicy::setUserNoticeList(const blocxx::List<UserNotice>& list)
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 	m_impl->noticeList = list;
 }
@@ -510,7 +508,7 @@ CertificatePolicy::commit2Config(CA& ca, Type type, blocxx::UInt32 num) const
 	if(!valid())
 	{
 		LOGIT_ERROR("invalid CertificatePolicy object");
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             __("Invalid CertificatePolicy object."));
 	}
 
@@ -519,7 +517,7 @@ CertificatePolicy::commit2Config(CA& ca, Type type, blocxx::UInt32 num) const
 	   type == E_Server_Req || type == E_CA_Req      )
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -695,7 +693,7 @@ CertificatePoliciesExt::CertificatePoliciesExt(const blocxx::List<CertificatePol
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 	setPresent(true);
 }
@@ -709,7 +707,7 @@ CertificatePoliciesExt::CertificatePoliciesExt(CAConfig* caConfig, Type type)
 	   type == E_Server_Req || type == E_CA_Req      )
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -779,7 +777,7 @@ CertificatePoliciesExt::isIA5orgEnabled() const
 {
 	if(!isPresent())
 	{
-		BLOCXX_THROW(limal::RuntimeException,
+		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             __("CertificatePoliciesExt is not present."));
 	}
 	return m_impl->ia5org;
@@ -792,7 +790,7 @@ CertificatePoliciesExt::setPolicies(const blocxx::List<CertificatePolicy>& polic
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 	m_impl->policies = policies;
 
@@ -804,7 +802,7 @@ CertificatePoliciesExt::getPolicies() const
 {
 	if(!isPresent())
 	{
-		BLOCXX_THROW(limal::RuntimeException,
+		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             __("CertificatePoliciesExt is not present."));
 	}
 	return m_impl->policies;
@@ -817,7 +815,7 @@ CertificatePoliciesExt::commit2Config(CA& ca, Type type) const
 	if(!valid())
 	{
 		LOGIT_ERROR("invalid CertificatePoliciesExt object");
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             __("Invalid CertificatePoliciesExt object."));
 	}
 
@@ -826,7 +824,7 @@ CertificatePoliciesExt::commit2Config(CA& ca, Type type) const
 	   type == E_Server_Req || type == E_CA_Req      )
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -922,5 +920,4 @@ CertificatePoliciesExt::checkPolicies(const blocxx::List<CertificatePolicy>& pl)
 	return result;
 }
 
-}
 }

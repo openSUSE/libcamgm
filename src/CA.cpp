@@ -41,12 +41,10 @@
 #include  "Utils.hpp"
 #include  "Commands.hpp"
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 
-using namespace limal;
+using namespace ca_mgm;
 using namespace blocxx;
 
 class CAImpl : public blocxx::COWIntrusiveCountableBase
@@ -98,7 +96,7 @@ public:
 		{
 			LOGIT_ERROR("template not initialized");
 			// exception
-			BLOCXX_THROW(limal::RuntimeException, __("Template not initialized."));
+			BLOCXX_THROW(ca_mgm::RuntimeException, __("Template not initialized."));
 		}
 		return "";
 	}
@@ -156,14 +154,14 @@ CA::CA(const String& caName, const String& caPasswd, const String& repos)
 	if(caName.empty())
 	{
 		LOGIT_ERROR("Empty CA name.");
-		BLOCXX_THROW(limal::ValueException, __("Empty CA name."));
+		BLOCXX_THROW(ca_mgm::ValueException, __("Empty CA name."));
 	}
 
 	path::PathInfo pi(repos+"/"+caName+"/openssl.cnf.tmpl");
 	if(!pi.exists())
 	{
 		LOGIT_ERROR("Template does not exists: " << pi.toString());
-		BLOCXX_THROW_ERR(limal::SystemException,
+		BLOCXX_THROW_ERR(ca_mgm::SystemException,
 		                 Format(__("Template does not exist: %1."), pi.toString()).c_str(),
 		                 E_FILE_NOT_FOUND);
 	}
@@ -175,7 +173,7 @@ CA::CA(const String& caName, const String& caPasswd, const String& repos)
 	if(!passOK)
 	{
 		LOGIT_ERROR("Invalid CA password");
-		BLOCXX_THROW_ERR(limal::ValueException,
+		BLOCXX_THROW_ERR(ca_mgm::ValueException,
 		                 __("Invalid CA password."), E_INVALID_PASSWD);
 	}
 
@@ -221,7 +219,7 @@ CA::createSubCA(const String& newCaName,
 	catch(blocxx::Exception &e)
 	{
 		LOGIT_ERROR(e);
-		BLOCXX_THROW_SUBEX(limal::SystemException,
+		BLOCXX_THROW_SUBEX(ca_mgm::SystemException,
 		                   __("Error while creating the CA infrastructure."),
 		                   e);
 	}
@@ -241,7 +239,7 @@ CA::createSubCA(const String& newCaName,
 
 		LOGIT_ERROR("Can not parse certificate name: " << certificate);
 		// %1 is the name of the CA
-		BLOCXX_THROW(limal::RuntimeException,
+		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             Format(__("Cannot parse the certificate name %1."), certificate).c_str());
 	}
 
@@ -253,7 +251,7 @@ CA::createSubCA(const String& newCaName,
 		path::removeDirRecursive(m_impl->repositoryDir + "/" + newCaName);
 
 		LOGIT_ERROR("Can not copy the private key." << r);
-		BLOCXX_THROW(limal::SystemException, __("Cannot copy the private key."));
+		BLOCXX_THROW(ca_mgm::SystemException, __("Cannot copy the private key."));
 	}
 
 	r = path::copyFile(m_impl->repositoryDir +"/"+ m_impl->caName +"/newcerts/"+ certificate +".pem",
@@ -264,7 +262,7 @@ CA::createSubCA(const String& newCaName,
 		path::removeDirRecursive(m_impl->repositoryDir + "/" + newCaName);
 
 		LOGIT_ERROR("Can not copy the certificate." << r);
-		BLOCXX_THROW(limal::SystemException, __("Cannot copy the certificate."));
+		BLOCXX_THROW(ca_mgm::SystemException, __("Cannot copy the certificate."));
 	}
 
 	r = path::copyFile(m_impl->repositoryDir + "/" + newCaName + "/" + "cacert.pem",
@@ -296,7 +294,7 @@ CA::createRequest(const String& keyPasswd,
 	if(!requestData.valid())
 	{
 		LOGIT_ERROR("Invalid request data");
-		BLOCXX_THROW(limal::ValueException, __("Invalid request data."));
+		BLOCXX_THROW(ca_mgm::ValueException, __("Invalid request data."));
 	}
 
 	// copy template to config
@@ -375,7 +373,7 @@ CA::issueCertificate(const String& requestName,
 	if(!issueData.valid())
 	{
 		LOGIT_ERROR("Invalid issue data");
-		BLOCXX_THROW(limal::ValueException, __("Invalid issue data."));
+		BLOCXX_THROW(ca_mgm::ValueException, __("Invalid issue data."));
 	}
 
 	String serial = OpenSSLUtils::nextSerial(m_impl->repositoryDir + "/" + m_impl->caName + "/serial");
@@ -391,7 +389,7 @@ CA::issueCertificate(const String& requestName,
 		LOGIT_ERROR("CA expires before the certificate should expire.");
 		LOGIT_ERROR("CA expires: '" << cdata.getEndDate() <<
 		            "' Cert should expire: '" << issueData.getEndDate()<< "'");
-		BLOCXX_THROW(limal::RuntimeException,
+		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             __("The CA expires before the certificate should expire."));
 	}
 
@@ -469,7 +467,7 @@ CA::createCertificate(const String& keyPasswd,
 
 		path::removeFile(m_impl->repositoryDir + "/" + m_impl->caName + "/keys/" + requestName + ".key");
 		path::removeFile(m_impl->repositoryDir + "/" + m_impl->caName + "/req/" + requestName + ".req");
-		BLOCXX_THROW_SUBEX(limal::RuntimeException,
+		BLOCXX_THROW_SUBEX(ca_mgm::RuntimeException,
 		                   __("Issuing the certificate failed."), e);
 	}
 
@@ -486,7 +484,7 @@ CA::revokeCertificate(const String& certificateName,
 	if(!pi.exists())
 	{
 		LOGIT_ERROR("File '" << certificateName << ".pem' not found in repository");
-		BLOCXX_THROW_ERR(limal::SystemException,
+		BLOCXX_THROW_ERR(ca_mgm::SystemException,
 		                 Format(__("File %1 not found in the repository."), certificateName).c_str(),
 		                 E_FILE_NOT_FOUND);
 	}
@@ -494,7 +492,7 @@ CA::revokeCertificate(const String& certificateName,
 	if(!crlReason.valid())
 	{
 		LOGIT_ERROR("Invalid CRL reason");
-		BLOCXX_THROW(limal::ValueException, __("Invalid CRL reason."));
+		BLOCXX_THROW(ca_mgm::ValueException, __("Invalid CRL reason."));
 	}
 
 	// copy template to config
@@ -517,7 +515,7 @@ CA::createCRL(const CRLGenerationData& crlData)
 	if(!crlData.valid())
 	{
 		LOGIT_ERROR("Invalid CRL data");
-		BLOCXX_THROW(limal::ValueException, __("Invalid CRL data."));
+		BLOCXX_THROW(ca_mgm::ValueException, __("Invalid CRL data."));
 	}
 
 	// copy template to config
@@ -564,7 +562,7 @@ CA::importRequestData(const ByteBuffer& request,
 	if(outPi.exists())
 	{
 		LOGIT_ERROR("Duplicate DN. Request already exists.");
-		BLOCXX_THROW(limal::RuntimeException,
+		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             __("Duplicate DN. Request already exists."));
 	}
 
@@ -830,7 +828,7 @@ CA::exportCertificateKeyAsPEM(const String& certificateName,
 	if(sa.size() != 2)
 	{
 		LOGIT_ERROR("Cannot parse certificate Name");
-		BLOCXX_THROW(limal::ValueException, __("Cannot parse the certificate name."));
+		BLOCXX_THROW(ca_mgm::ValueException, __("Cannot parse the certificate name."));
 	}
 
 	ret = LocalManagement::readFile(m_impl->repositoryDir + "/" + m_impl->caName + "/keys/" +
@@ -857,7 +855,7 @@ CA::exportCertificateKeyAsDER(const String& certificateName,
 	if(sa.size() != 2)
 	{
 		LOGIT_ERROR("Cannot parse certificate Name");
-		BLOCXX_THROW(limal::ValueException, __("Cannot parse the certificate name."));
+		BLOCXX_THROW(ca_mgm::ValueException, __("Cannot parse the certificate name."));
 	}
 
 	ret = LocalManagement::readFile(m_impl->repositoryDir + "/" + m_impl->caName + "/keys/" +
@@ -887,7 +885,7 @@ CA::exportCertificateAsPKCS12(const String& certificateName,
 	if(sa.size() != 2)
 	{
 		LOGIT_ERROR("Cannot parse certificate Name");
-		BLOCXX_THROW(limal::ValueException, __("Cannot parse the certificate name."));
+		BLOCXX_THROW(ca_mgm::ValueException, __("Cannot parse the certificate name."));
 	}
 
 	ByteBuffer caCert;
@@ -938,7 +936,7 @@ CA::deleteRequest(const String& requestName)
 	if(!reqFile.exists())
 	{
 		LOGIT_ERROR("Request '" << reqFile.toString() <<"' does not exist." );
-		BLOCXX_THROW(limal::SystemException, Format(__("Request %1 does not exist."),
+		BLOCXX_THROW(ca_mgm::SystemException, Format(__("Request %1 does not exist."),
 		                                            reqFile.toString()).c_str());
 	}
 
@@ -958,7 +956,7 @@ CA::deleteRequest(const String& requestName)
 	r = path::removeFile(reqFile.toString());
 	if(r != 0)
 	{
-		BLOCXX_THROW(limal::SystemException,
+		BLOCXX_THROW(ca_mgm::SystemException,
 		             // %1 is the error code
 		             Format(__("Removing the request failed (%1)."), r).c_str());
 	}
@@ -972,7 +970,7 @@ CA::deleteCertificate(const String& certificateName,
 	if(!certFile.exists())
 	{
 		LOGIT_ERROR("Certificate does not exist." << certFile.toString());
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             // %1 is the absolute path to the certificate
 		             Format(__("Certificate %1 does not exist."),
 		                    certFile.toString()).c_str());
@@ -984,7 +982,7 @@ CA::deleteCertificate(const String& certificateName,
 	if(sa.size() != 3)
 	{
 		LOGIT_ERROR("Can not parse certificate name: " << certificateName);
-		BLOCXX_THROW(limal::RuntimeException,
+		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             // %1 is the certificate name
 		             Format(__("Cannot parse the certificate name %1."), certificateName).c_str());
 	}
@@ -1007,7 +1005,7 @@ CA::deleteCertificate(const String& certificateName,
 			{
 				deleteRequest(request);
 			}
-			catch(limal::SystemException &e)
+			catch(ca_mgm::SystemException &e)
 			{
 				String msg = e.what();
 				if(!PerlRegEx("does\\s+not\\s+exist").match(msg))
@@ -1021,7 +1019,7 @@ CA::deleteCertificate(const String& certificateName,
 		int r = path::removeFile(certFile.toString());
 		if(r != 0)
 		{
-			BLOCXX_THROW(limal::SystemException,
+			BLOCXX_THROW(ca_mgm::SystemException,
 			             // %1 is the error code of rm
 			             Format(__("Removing the certificate failed: %1."), r).c_str());
 		}
@@ -1030,7 +1028,7 @@ CA::deleteCertificate(const String& certificateName,
 	{
 		LOGIT_ERROR("Only revoked or expired certificates can be deleted. " <<
 		            Format("The status of the certificate is '%1'.", state).c_str());
-		BLOCXX_THROW(limal::RuntimeException,
+		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             Format(__("Only revoked or expired certificates can be deleted. The status of the certificate is %1."), state).c_str());
 	}
 }
@@ -1043,7 +1041,7 @@ CA::updateDB()
 	if(!db.exists())
 	{
 		LOGIT_ERROR("Database not found.");
-		BLOCXX_THROW(limal::RuntimeException, __("Database not found."));
+		BLOCXX_THROW(ca_mgm::RuntimeException, __("Database not found."));
 	}
 
 	if(db.size() != 0)
@@ -1069,7 +1067,7 @@ CA::verifyCertificate(const String& certificateName,
 	if(!certFile.exists())
 	{
 		LOGIT_ERROR("Certificate does not exist");
-		BLOCXX_THROW(limal::SystemException, __("Certificate does not exist."));
+		BLOCXX_THROW(ca_mgm::SystemException, __("Certificate does not exist."));
 	}
 
 	if(purpose != "sslclient"    &&
@@ -1082,7 +1080,7 @@ CA::verifyCertificate(const String& certificateName,
 	   purpose != "ocsphelper")
 	{
 		LOGIT_ERROR("Invalid purpose: " << purpose);
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             Format(__("Invalid purpose %1."), purpose).c_str());
 	}
 
@@ -1098,7 +1096,7 @@ CA::verifyCertificate(const String& certificateName,
 	if(!ret.empty())
 	{
 		LOGIT_ERROR(ret);
-		BLOCXX_THROW(limal::RuntimeException, ret.c_str());
+		BLOCXX_THROW(ca_mgm::RuntimeException, ret.c_str());
 	}
 
 	return true;
@@ -1126,13 +1124,13 @@ CA::createRootCA(const String& caName,
 	if(!caRequestData.valid())
 	{
 		LOGIT_ERROR("Invalid CA request data");
-		BLOCXX_THROW(limal::ValueException, __("Invalid CA request data."));
+		BLOCXX_THROW(ca_mgm::ValueException, __("Invalid CA request data."));
 	}
 
 	if(!caIssueData.valid())
 	{
 		LOGIT_ERROR("Invalid CA issue data");
-		BLOCXX_THROW(limal::ValueException, __("Invalid CA issue data."));
+		BLOCXX_THROW(ca_mgm::ValueException, __("Invalid CA issue data."));
 	}
 
 
@@ -1145,7 +1143,7 @@ CA::createRootCA(const String& caName,
 	catch(blocxx::Exception &e)
 	{
 		LOGIT_ERROR(e);
-		BLOCXX_THROW_SUBEX(limal::SystemException,
+		BLOCXX_THROW_SUBEX(ca_mgm::SystemException,
 		                   __("Error while creating the CA infrastructure."),
 		                   e);
 	}
@@ -1226,7 +1224,7 @@ CA::importCA(const String& caName,
 	if(caName.empty())
 	{
 		LOGIT_ERROR("CA name is empty");
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             __("CA name is empty."));
 	}
 
@@ -1235,7 +1233,7 @@ CA::importCA(const String& caName,
 	if(caDir.exists())
 	{
 		LOGIT_ERROR("CA directory already exists");
-		BLOCXX_THROW(limal::RuntimeException,
+		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             __("CA directory already exists."));
 	}
 
@@ -1246,14 +1244,14 @@ CA::importCA(const String& caName,
 	if(!bs.isPresent() || !bs.isCA())
 	{
 		LOGIT_ERROR("According to 'basicConstraints', this is not a CA.");
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             __("According to basicConstraints, this is not a CA."));
 	}
 
 	if(caKey.empty())
 	{
 		LOGIT_ERROR("CA key is empty");
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             __("CA key is empty."));
 	}
 
@@ -1262,14 +1260,14 @@ CA::importCA(const String& caName,
 	if(!keyregex.match(String(caKey.data(), caKey.size())))
 	{
 		LOGIT_ERROR("Invalid Key data.");
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             __("Invalid key data."));
 	}
 
 	if(caPasswd.empty())
 	{
 		LOGIT_ERROR("CA password is empty.");
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             __("CA password is empty."));
 	}
 
@@ -1288,7 +1286,7 @@ CA::importCA(const String& caName,
 	catch(blocxx::Exception &e)
 	{
 		LOGIT_ERROR(e);
-		BLOCXX_THROW_SUBEX(limal::SystemException,
+		BLOCXX_THROW_SUBEX(ca_mgm::SystemException,
 		                   __("Error while creating the CA infrastructure."),
 		                   e);
 	}
@@ -1313,7 +1311,7 @@ CA::importCA(const String& caName,
 			path::removeDirRecursive(repos + "/" + caName);
 
 			LOGIT_ERROR ("Error during key encryption." );
-			BLOCXX_THROW_SUBEX(limal::RuntimeException,
+			BLOCXX_THROW_SUBEX(ca_mgm::RuntimeException,
 			                   __("Error during key encryption."), e);
 		}
 
@@ -1335,7 +1333,7 @@ CA::importCA(const String& caName,
 		path::removeDirRecursive(repos + "/" + caName);
 
 		LOGIT_ERROR ("Error during write defaults." );
-		BLOCXX_THROW_SUBEX(limal::RuntimeException,
+		BLOCXX_THROW_SUBEX(ca_mgm::RuntimeException,
 		                   __("Error during write defaults."), e);
 	}
 
@@ -1470,7 +1468,7 @@ CA::deleteCA(const String& caName,
 	if(caName.empty())
 	{
 		LOGIT_ERROR("Empty CA name.");
-		BLOCXX_THROW(limal::ValueException, __("Empty CA name."));
+		BLOCXX_THROW(ca_mgm::ValueException, __("Empty CA name."));
 	}
 
 	path::PathInfo pi(repos + "/" + caName);
@@ -1478,7 +1476,7 @@ CA::deleteCA(const String& caName,
 	if(!pi.exists())
 	{
 		LOGIT_ERROR("CA name does not exist.(" << pi.toString() << ")");
-		BLOCXX_THROW_ERR(limal::ValueException,
+		BLOCXX_THROW_ERR(ca_mgm::ValueException,
 		                 // %1 is the absolute path name to the CA
 		                 Format(__("CA name does not exist (%1)."), pi.toString()).c_str(),
 		                 E_FILE_NOT_FOUND);
@@ -1491,7 +1489,7 @@ CA::deleteCA(const String& caName,
 	if(!ret)
 	{
 		LOGIT_ERROR("Invalid CA password");
-		BLOCXX_THROW_ERR(limal::ValueException, __("Invalid CA password."), E_INVALID_PASSWD);
+		BLOCXX_THROW_ERR(ca_mgm::ValueException, __("Invalid CA password."), E_INVALID_PASSWD);
 	}
 
 	if(!force)
@@ -1510,7 +1508,7 @@ CA::deleteCA(const String& caName,
 			{
 				LOGIT_ERROR("Deleting the CA is not allowed. " <<
 				            "The CA must be expired or no certificate was signed with this CA");
-				BLOCXX_THROW(limal::RuntimeException,
+				BLOCXX_THROW(ca_mgm::RuntimeException,
 				             __("Deleting the CA is not allowed. The CA must be expired or never have signed a certificate."));
 			}
 			else
@@ -1534,7 +1532,7 @@ CA::deleteCA(const String& caName,
 	if( r != 0 )
 	{
 		LOGIT_ERROR("Deleting the CA failed: " << r);
-		BLOCXX_THROW(limal::SystemException,
+		BLOCXX_THROW(ca_mgm::SystemException,
 		             // %1 is the error code of rm
 		             Format(__("Deleting the CA failed: %1."), r).c_str());
 	}
@@ -1579,14 +1577,14 @@ CA::checkDNPolicy(const DNObject& dn, Type type)
 	   type == E_CA_Req     || type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException, Format(__("Wrong type: %1."), type).c_str());
+		BLOCXX_THROW(ca_mgm::ValueException, Format(__("Wrong type: %1."), type).c_str());
 	}
 
 	bool p = m_impl->config->exists(type2Section(type, false), "policy");
 	if(!p)
 	{
 		LOGIT_ERROR("missing value 'policy' in config file");
-		BLOCXX_THROW(limal::SyntaxException,
+		BLOCXX_THROW(ca_mgm::SyntaxException,
 		             __("The configuration file is missing a value for policy."));
 	}
 	String policySect = m_impl->config->getValue(type2Section(type, false), "policy");
@@ -1596,7 +1594,7 @@ CA::checkDNPolicy(const DNObject& dn, Type type)
 	if(policyKeys.empty())
 	{
 		LOGIT_ERROR("Can not parse Section " << policySect);
-		BLOCXX_THROW(limal::SyntaxException,
+		BLOCXX_THROW(ca_mgm::SyntaxException,
 		             Format(__("Cannot parse section %1."), policySect).c_str());
 	}
 	StringList::const_iterator it = policyKeys.begin();
@@ -1668,7 +1666,7 @@ CA::checkDNPolicy(const DNObject& dn, Type type)
 						}
 
 						LOGIT_ERROR("Field '" << *it << "' must have a value");
-						BLOCXX_THROW_ERR(limal::ValueException,
+						BLOCXX_THROW_ERR(ca_mgm::ValueException,
 						                 Format(__("Field %1 must have a value."),
 						                        *it).c_str(),
 						                 errorCode);
@@ -1707,7 +1705,7 @@ CA::checkDNPolicy(const DNObject& dn, Type type)
 					errorCode = E_EM_NF;
 				}
 				LOGIT_ERROR("The '" << *it << "' field must be defined.");
-				BLOCXX_THROW_ERR(limal::ValueException,
+				BLOCXX_THROW_ERR(ca_mgm::ValueException,
 				                 Format(__("%1 must be defined."), *it).c_str(),
 				                 errorCode);
 			}
@@ -1792,7 +1790,7 @@ CA::checkDNPolicy(const DNObject& dn, Type type)
 				LOGIT_ERROR("The '"<<*it<<"' field needed to be the same in the CA certificate ("<<
 				            caMatchValue<<") and the request ("<< reqMatchValue <<")");
 
-				BLOCXX_THROW_ERR(limal::ValueException,
+				BLOCXX_THROW_ERR(ca_mgm::ValueException,
 				                 Format(__("%1 must be the same in the CA certificate (%2) and the request (%3)."),
 				                        *it, caMatchValue, reqMatchValue).c_str(),
 				                 errorCode);
@@ -1804,7 +1802,7 @@ CA::checkDNPolicy(const DNObject& dn, Type type)
 		if(!policyFound)
 		{
 			LOGIT_ERROR("Invalid policy in config file ? (" << *it << "/" << policyString << ")");
-			BLOCXX_THROW(limal::SyntaxException,
+			BLOCXX_THROW(ca_mgm::SyntaxException,
 			             __("The configuration file seems to have an invalid policy."));
 		}
 	}
@@ -1831,7 +1829,7 @@ CA::commitConfig2Template()
 	else
 	{
 		LOGIT_ERROR("config not initialized");
-		BLOCXX_THROW(limal::RuntimeException, __("The configuration is not initialized."));
+		BLOCXX_THROW(ca_mgm::RuntimeException, __("The configuration is not initialized."));
 	}
 }
 
@@ -1841,14 +1839,14 @@ CA::removeDefaultsFromConfig()
 	if(!m_impl->config)
 	{
 		LOGIT_ERROR("config not initialized");
-		BLOCXX_THROW(limal::RuntimeException, __("The configuration is not initialized."));
+		BLOCXX_THROW(ca_mgm::RuntimeException, __("The configuration is not initialized."));
 	}
 
 	bool p = m_impl->config->exists("req_ca", "distinguished_name");
 	if(!p)
 	{
 		LOGIT_ERROR("missing section 'distinguished_name' in config file");
-		BLOCXX_THROW(limal::SyntaxException,
+		BLOCXX_THROW(ca_mgm::SyntaxException,
 		             __("Missing section 'distinguished_name' in the configuration file."));
 	}
 	String dnSect = m_impl->config->getValue("req_ca", "distinguished_name");
@@ -1858,7 +1856,7 @@ CA::removeDefaultsFromConfig()
 	if(dnKeys.empty())
 	{
 		LOGIT_ERROR("Can not parse Section " << dnSect);
-		BLOCXX_THROW(limal::SyntaxException,
+		BLOCXX_THROW(ca_mgm::SyntaxException,
 		             Format(__("Cannot parse section %1."), dnSect).c_str());
 	}
 	StringList::const_iterator it = dnKeys.begin();
@@ -1873,5 +1871,4 @@ CA::removeDefaultsFromConfig()
 	}
 }
 
-}
 }

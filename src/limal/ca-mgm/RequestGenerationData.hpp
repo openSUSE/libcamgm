@@ -29,8 +29,6 @@
 #include  <limal/ca-mgm/X509v3RequestExtensions.hpp>
 #include  <blocxx/COWIntrusiveReference.hpp>
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 
@@ -122,7 +120,5 @@ namespace CA_MGM_NAMESPACE
 		blocxx::COWIntrusiveReference<RequestGenerationDataImpl> m_impl;
     	
 	};
-
-}
 }
 #endif //LIMAL_CA_MGM_REQUEST_GENERATION_DATA_HPP

@@ -27,7 +27,6 @@
 #include  <limal/ca-mgm/X509v3CertificateExtensions.hpp>
 #include  <openssl/x509.h>
 
-namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
@@ -138,7 +137,6 @@ private:
 	                            CertificatePoliciesExt &ext);
 };
 
-}
 }
 
 #endif // LIMAL_CA_MGM_X509V3_CERTIFICATE_EXTENSION_PRIV_HPP

@@ -28,12 +28,10 @@
 
 #include  "Utils.hpp"
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 
-using namespace limal;
+using namespace ca_mgm;
 using namespace blocxx;
 
 class CRLGenerationDataImpl : public blocxx::COWIntrusiveCountableBase
@@ -89,7 +87,7 @@ CRLGenerationData::CRLGenerationData(blocxx::UInt32 hours,
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 }
 
@@ -129,7 +127,7 @@ CRLGenerationData::setExtensions(const X509v3CRLGenerationExts& ext)
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 	m_impl->extensions = ext;
 }
@@ -152,14 +150,14 @@ CRLGenerationData::commit2Config(CA& ca, Type type) const
 	if(!valid())
 	{
 		LOGIT_ERROR("invalid CRLGenerationData object");
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             __("Invalid CRLGenerationData object."));
 	}
 	// These types are not supported by this object
 	if(type != E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -209,6 +207,5 @@ CRLGenerationData::dump() const
 	return result;
 }
 
-}
 }
 

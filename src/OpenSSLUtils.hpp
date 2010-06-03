@@ -32,7 +32,6 @@
 
 #include "Commands.hpp"
 
-namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
@@ -209,7 +208,6 @@ private:
 	OpenSSLUtils& operator=(const OpenSSLUtils&);
 
 };
-}
 }
 
 #endif // LIMAL_CA_MGM_OPENSSL_UTILS_HPP

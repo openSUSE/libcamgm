@@ -27,8 +27,6 @@
 #include  <limal/ca-mgm/ExtensionBase.hpp>
 #include  <blocxx/COWIntrusiveReference.hpp>
 
-namespace LIMAL_NAMESPACE {
-
 namespace CA_MGM_NAMESPACE {
 
 	class CA;
@@ -140,7 +138,6 @@ namespace CA_MGM_NAMESPACE {
 
 	};
 
-}
 }
 
 #endif //LIMAL_CA_MGM_EXTENDED_KEY_USAGE_EXT_HPP

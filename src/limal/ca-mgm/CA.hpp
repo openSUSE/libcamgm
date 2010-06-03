@@ -39,8 +39,6 @@
 #include  <limal/ByteBuffer.hpp>
 #include  <blocxx/COWIntrusiveReference.hpp>
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 	class CAImpl;
@@ -173,7 +171,7 @@ namespace CA_MGM_NAMESPACE
 		 * @return the name of the request
 		 */
 		String
-		importRequestData(const limal::ByteBuffer& request,
+		importRequestData(const ca_mgm::ByteBuffer& request,
 		                  FormatType formatType = E_PEM);
 
 		/**
@@ -354,7 +352,7 @@ namespace CA_MGM_NAMESPACE
 		 *
 		 * @return this CA certificate
 		 */
-		limal::ByteBuffer
+		ca_mgm::ByteBuffer
 		exportCACert(FormatType exportType);
 
 		/**
@@ -369,7 +367,7 @@ namespace CA_MGM_NAMESPACE
 		 *
 		 * @return the private key of the CA in PEM format
 		 */
-		limal::ByteBuffer
+		ca_mgm::ByteBuffer
 		exportCAKeyAsPEM(const String& newPassword);
 
 		/**
@@ -379,7 +377,7 @@ namespace CA_MGM_NAMESPACE
 		 *
 		 * @return the private key of the CA in DER format
 		 */
-		limal::ByteBuffer
+		ca_mgm::ByteBuffer
 		exportCAKeyAsDER();
 
 		/**
@@ -394,7 +392,7 @@ namespace CA_MGM_NAMESPACE
 		 *
 		 * @return the data in PKCS12 format
 		 */
-		limal::ByteBuffer
+		ca_mgm::ByteBuffer
 		exportCAasPKCS12(const String& p12Password,
 		                 bool withChain = false);
 
@@ -410,7 +408,7 @@ namespace CA_MGM_NAMESPACE
 		 * @return the certificate data
 		 *
 		 */
-		limal::ByteBuffer
+		ca_mgm::ByteBuffer
 		exportCertificate(const String& certificateName,
 		                  FormatType exportType);
 
@@ -428,7 +426,7 @@ namespace CA_MGM_NAMESPACE
 		 *
 		 * @return the private key of the certificate in PEM format
 		 */
-		limal::ByteBuffer
+		ca_mgm::ByteBuffer
 		exportCertificateKeyAsPEM(const String& certificateName,
 		                          const String& keyPassword,
 		                          const String& newPassword);
@@ -443,7 +441,7 @@ namespace CA_MGM_NAMESPACE
 		 *
 		 * @return the private key in DER format
 		 */
-		limal::ByteBuffer
+		ca_mgm::ByteBuffer
 		exportCertificateKeyAsDER(const String& certificateName,
 		                          const String& keyPassword);
 
@@ -461,7 +459,7 @@ namespace CA_MGM_NAMESPACE
 		 *
 		 * @return the data in PKCS12 format
 		 */
-		limal::ByteBuffer
+		ca_mgm::ByteBuffer
 		exportCertificateAsPKCS12(const String& certificateName,
 		                          const String& keyPassword,
 		                          const String& p12Password,
@@ -475,7 +473,7 @@ namespace CA_MGM_NAMESPACE
 		 *
 		 * @return the CRL in the requested format
 		 */
-		limal::ByteBuffer
+		ca_mgm::ByteBuffer
 		exportCRL(FormatType exportType);
 
 
@@ -588,8 +586,8 @@ namespace CA_MGM_NAMESPACE
 		 */
 		static void
 		importCA(const String& caName,
-		         const limal::ByteBuffer& caCertificate,
-		         const limal::ByteBuffer& caKey,
+		         const ca_mgm::ByteBuffer& caCertificate,
+		         const ca_mgm::ByteBuffer& caKey,
 		         const String& caPasswd = String(),
 		         const String& repos=REPOSITORY);
 
@@ -718,7 +716,6 @@ namespace CA_MGM_NAMESPACE
 	};
 
 }       // End of CA_MGM_NAMESPACE
-}       // End of LIMAL_NAMESPACE
 
 
 /** @example CreateRootCA.cpp

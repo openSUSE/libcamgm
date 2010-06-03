@@ -12,8 +12,8 @@
 #include <unistd.h>
 
 using namespace blocxx;
-using namespace limal;
-using namespace limal::ca_mgm;
+
+using namespace ca_mgm;
 using namespace std;
 
 int main()
@@ -21,18 +21,18 @@ int main()
     cout << "START" << endl;
 
     // Logging
-    LoggerRef l = limal::Logger::createCerrLogger(
+    LoggerRef l = ca_mgm::Logger::createCerrLogger(
                                                   "CAConfig",
                                                   LogAppender::ALL_COMPONENTS,
                                                   LogAppender::ALL_CATEGORIES,
                                                   "%-5p %c - %m"
                                                   );
-    limal::Logger::setDefaultLogger(l);
+    ca_mgm::Logger::setDefaultLogger(l);
 
     CAConfig *config    = new CAConfig("openssl.cnf.tmpl");
     CAConfig *configNew = config->clone("openssl.cnf.tmpl.test");
     
-    LIMAL_SLOG(limal::Logger("ca-mgm"),
+    LIMAL_SLOG(ca_mgm::Logger("ca-mgm"),
                "DEBUG", "file openssl.cnf.tmpl.test parsed.");
     
     configNew->setValue ("v3_req_server", "basicConstraints", "CA:TRUE");

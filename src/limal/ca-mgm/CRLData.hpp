@@ -30,8 +30,6 @@
 #include  <limal/ByteBuffer.hpp>
 #include  <blocxx/COWIntrusiveReference.hpp>
 
-namespace LIMAL_NAMESPACE {
-
 namespace CA_MGM_NAMESPACE {
 
 	class RevocationEntryImpl;
@@ -111,7 +109,7 @@ namespace CA_MGM_NAMESPACE {
 		String
 		getSignatureAlgorithmAsString() const;
         
-		limal::ByteBuffer
+		ca_mgm::ByteBuffer
 		getSignature() const;
         
 		X509v3CRLExts
@@ -156,7 +154,6 @@ namespace CA_MGM_NAMESPACE {
 
 	};
 
-}
 }
 
 #endif // LIMAL_CA_MGM_CRL_DATA_HPP

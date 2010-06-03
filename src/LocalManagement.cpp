@@ -36,12 +36,10 @@
 #include  <blocxx/File.hpp>
 #include  <blocxx/System.hpp>
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 
-using namespace limal;
+using namespace ca_mgm;
 using namespace blocxx;
 
 namespace {
@@ -91,7 +89,7 @@ LocalManagement::importAsLocalCertificate(const ByteBuffer &pkcs12Data,
 	if(dataList.size() <= 1) {
 
 		LOGIT_ERROR("Cannot split certificate output");
-		BLOCXX_THROW(limal::RuntimeException,
+		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             __("Cannot split certificate output."));
 
 	}
@@ -288,7 +286,7 @@ LocalManagement::importAsLocalCertificate(const ByteBuffer &pkcs12Data,
 			if(r != 0) {
 
 				LOGIT_ERROR("Cannot create directory '" << pi.toString() << "' :" << errno2String(r));
-				BLOCXX_THROW(limal::SystemException,
+				BLOCXX_THROW(ca_mgm::SystemException,
 				             Format(__("Cannot create directory %1: %2."),
 				                    pi.toString(), errno2String(r)).c_str());
 
@@ -309,7 +307,7 @@ LocalManagement::importAsLocalCertificate(const ByteBuffer &pkcs12Data,
 			if(r != 0) {
 
 				LOGIT_ERROR("Cannot create directory '" << pi.toString() << "' :" << errno2String(r));
-				BLOCXX_THROW(limal::SystemException,
+				BLOCXX_THROW(ca_mgm::SystemException,
 				             Format(__("Cannot create directory %1: %2."),
 				                    pi.toString(), errno2String(r)).c_str());
 
@@ -328,7 +326,7 @@ LocalManagement::importAsLocalCertificate(const ByteBuffer &pkcs12Data,
 			if(r != 0) {
 
 				LOGIT_ERROR("Cannot create directory '" << pi.toString() << "' :" << errno2String(r));
-				BLOCXX_THROW(limal::SystemException,
+				BLOCXX_THROW(ca_mgm::SystemException,
 				             Format(__("Cannot create directory %1: %2."),
 				                    pi.toString(), errno2String(r)).c_str());
 
@@ -342,7 +340,7 @@ LocalManagement::importAsLocalCertificate(const ByteBuffer &pkcs12Data,
 			if(!pi.isDir()) {
 
 				LOGIT_ERROR( "'" << pi.toString() <<"' is not a directory");
-				BLOCXX_THROW(limal::ValueException,
+				BLOCXX_THROW(ca_mgm::ValueException,
 				             Format(__("%1 is not a directory."), pi.toString()).c_str());
 
 			}
@@ -363,7 +361,7 @@ LocalManagement::importAsLocalCertificate(const ByteBuffer &pkcs12Data,
 	} else {
 
 		LOGIT_ERROR("Invalid certificate file.");
-		BLOCXX_THROW(limal::SyntaxException,
+		BLOCXX_THROW(ca_mgm::SyntaxException,
 		             __("Invalid certificate file."));
 	}
 }
@@ -441,7 +439,7 @@ LocalManagement::readFile(const String& file)
 	if(!filePi.exists()) {
 
 		LOGIT_ERROR("File not found: " << filePi.toString());
-		BLOCXX_THROW_ERR(limal::RuntimeException,
+		BLOCXX_THROW_ERR(ca_mgm::RuntimeException,
 		                 Format(__("File not found: %1."), filePi.toString()).c_str(),
 		                 E_FILE_NOT_FOUND);
 
@@ -450,7 +448,7 @@ LocalManagement::readFile(const String& file)
 	if(filePi.size() > (1024*1024)) {
 
 		LOGIT_ERROR("File too big: " << filePi.toString());
-		BLOCXX_THROW(limal::RuntimeException,
+		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             Format(__("File too big: %1."), filePi.toString()).c_str());
 
 	}
@@ -459,7 +457,7 @@ LocalManagement::readFile(const String& file)
 	if(fd == -1) {
 
 		LOGIT_ERROR("Cannot open file: " << file << "(" << errno << ")");
-		BLOCXX_THROW_ERRNO_MSG1(limal::SystemException,
+		BLOCXX_THROW_ERRNO_MSG1(ca_mgm::SystemException,
 		                        Format(__("Cannot open file %1."), file).c_str(),
 		                        errno);
 
@@ -479,7 +477,7 @@ LocalManagement::readFile(const String& file)
 			fileObject.close();
 
 			LOGIT_ERROR("Cannot read from file: " << file << "(" << errno << ")");
-			BLOCXX_THROW_ERRNO_MSG1(limal::SystemException,
+			BLOCXX_THROW_ERRNO_MSG1(ca_mgm::SystemException,
 			                        Format(__("Cannot read from file %1."), file).c_str(),
 			                        errno);
 		}
@@ -504,7 +502,7 @@ LocalManagement::writeFile(const ByteBuffer& data,
 	if(pi.exists() && !overwrite) {
 
 		LOGIT_ERROR ("File already exists: " << file );
-		BLOCXX_THROW_ERR(limal::SystemException,
+		BLOCXX_THROW_ERR(ca_mgm::SystemException,
 		                 Format(__("File already exists: %1."), file).c_str(),
 		                 E_FILE_EXISTS);
 
@@ -514,7 +512,7 @@ LocalManagement::writeFile(const ByteBuffer& data,
 	if(fd == -1) {
 
 		LOGIT_ERROR("Cannot open file: " << file << "(" << errno << ")");
-		BLOCXX_THROW_ERRNO_MSG1(limal::SystemException,
+		BLOCXX_THROW_ERRNO_MSG1(ca_mgm::SystemException,
 		                        Format(__("Cannot open file %1."), file).c_str(),
 		                        errno);
 
@@ -526,7 +524,7 @@ LocalManagement::writeFile(const ByteBuffer& data,
 	if(r != 0) {
 
 		LOGIT_ERROR("Cannot get lock on file: " << file << "(" << errno << ")");
-		BLOCXX_THROW_ERRNO_MSG1(limal::SystemException,
+		BLOCXX_THROW_ERRNO_MSG1(ca_mgm::SystemException,
 		                        Format(__("Cannot get lock on file %1."), file).c_str(),
 		                        errno);
 
@@ -540,7 +538,7 @@ LocalManagement::writeFile(const ByteBuffer& data,
 		fileObject.close();
 
 		LOGIT_ERROR("Cannot write to file: " << file << "(" << errno << ")");
-		BLOCXX_THROW_ERRNO_MSG1(limal::SystemException,
+		BLOCXX_THROW_ERRNO_MSG1(ca_mgm::SystemException,
 		                        Format(__("Cannot write to file %1."), file).c_str(),
 		                        errno);
 	}
@@ -608,5 +606,4 @@ LocalManagement::pkcs12ToPEM(const ByteBuffer &pkcs12,
 	                                 outPassword, algorithm);
 }
 
-}
 }

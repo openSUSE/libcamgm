@@ -35,12 +35,10 @@
 #include  "Utils.hpp"
 #include  "AuthorityKeyIdentifierExtension_Priv.hpp"
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 
-using namespace limal;
+using namespace ca_mgm;
 using namespace blocxx;
 
 
@@ -77,7 +75,7 @@ X509v3CRLExts_Priv::setAuthorityKeyIdentifier(const AuthorityKeyIdentifierExt &e
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 	m_impl->authorityKeyIdentifier = ext;
 }
@@ -89,7 +87,7 @@ X509v3CRLExts_Priv::setIssuerAlternativeName(const IssuerAlternativeNameExt &ext
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 	m_impl->issuerAlternativeName = ext;
 }
@@ -131,12 +129,12 @@ X509v3CRLExts_Priv::parseIssuerAlternativeNameExt(STACK_OF(X509_EXTENSION) *cert
 		{
 			// extension occurred more than once
 			LOGIT_ERROR("Extension occurred more than once");
-			BLOCXX_THROW(limal::SyntaxException,
+			BLOCXX_THROW(ca_mgm::SyntaxException,
 			             __("Extension occurred more than once."));
 		}
 
 		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
-		BLOCXX_THROW(limal::SyntaxException,
+		BLOCXX_THROW(ca_mgm::SyntaxException,
 		             Format(__("Unable to parse the certificate (Crit: %1)."),
 		                    crit).c_str());
 	}
@@ -176,5 +174,4 @@ X509v3CRLExts_Priv::parseIssuerAlternativeNameExt(STACK_OF(X509_EXTENSION) *cert
 	GENERAL_NAMES_free(gns);
 }
 
-}
 }

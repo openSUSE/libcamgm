@@ -1,4 +1,4 @@
-DEBUG limal - readDir ./TestRepos3 
+DEBUG ca-mgm - readDir ./TestRepos3 
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - ExtensionBase::setPresent(): false

@@ -31,7 +31,7 @@
 #ifndef LIMAL_INI_PARSER_HPP
 #define LIMAL_INI_PARSER_HPP
 
-#include  <limal/config.h>
+#include  <limal/ca-mgm/config.h>
 #include  <blocxx/Map.hpp>
 #include  <blocxx/List.hpp>
 #include  <blocxx/Array.hpp>
@@ -400,8 +400,8 @@ enum    Options { IGNOMR_CASE_REGEXPS,
  *   #include "INIParser/INIParser.hpp"
  *
  *   using namespace blocxx;
- *   using namespace limal;
- *   using namespace limal::INI;
+ *   using namespace ca_mgm;
+ *   using namespace ca_mgm::INI;
  *
  *   blocxx::Array<Options>  		options; // Options like NO_NESTED_SECTIONS, LINE_CAN_CONTINUE, ...
  *   blocxx::StringArray 		commentsDescr; // Regular expression of the comments description

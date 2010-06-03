@@ -31,12 +31,10 @@
 #include  "Utils.hpp"
 #include  "X509v3CRLExtensions_Priv.hpp"
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 
-using namespace limal;
+using namespace ca_mgm;
 using namespace blocxx;
 
 
@@ -219,7 +217,7 @@ CRLData::getRevocationEntry(const String& oid)
 		return (*(m_impl->revocationData.find(oid))).second;
 	}
 	LOGIT_ERROR("Entry not found: " << oid);
-	BLOCXX_THROW(limal::ValueException,
+	BLOCXX_THROW(ca_mgm::ValueException,
 	             __("Entry not found."));
 }
 
@@ -364,5 +362,4 @@ CRLData::checkRevocationData(const blocxx::Map<String, RevocationEntry>& rd) con
 	return result;
 }
 
-}
 }

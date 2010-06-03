@@ -26,8 +26,6 @@
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <blocxx/COWIntrusiveReference.hpp>
 
-namespace LIMAL_NAMESPACE {
-
 namespace CA_MGM_NAMESPACE {
 
 	class CA;
@@ -65,7 +63,6 @@ namespace CA_MGM_NAMESPACE {
 		blocxx::COWIntrusiveReference<ExtensionBaseImpl> m_impl;
 	};
 
-}
 }
 
 #endif // LIMAL_CA_MGM_EXTENSION_BASE_HPP

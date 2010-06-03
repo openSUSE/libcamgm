@@ -42,12 +42,10 @@
 #include  "X509v3CRLExtensions_Priv.hpp"
 #include  "CRLReason_Priv.hpp"
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 
-using namespace limal;
+using namespace ca_mgm;
 using namespace blocxx;
 
 RevocationEntry_Priv::RevocationEntry_Priv()
@@ -87,7 +85,7 @@ RevocationEntry_Priv::RevocationEntry_Priv(X509_REVOKED *rev)
 	if(sa.size() != 7)
 	{
 		LOGIT_ERROR("Can not parse date: " << sbuf);
-		BLOCXX_THROW(limal::RuntimeException,
+		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             Format(__("Cannot parse date %1."), sbuf).c_str());
 	}
 
@@ -120,14 +118,14 @@ RevocationEntry_Priv::RevocationEntry_Priv(const String&    serial,
 	if(!initHexCheck().isValid(serial))
 	{
 		LOGIT_ERROR("invalid serial: " << serial);
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             Format(__("Invalid serial %1."), serial).c_str());
 	}
 	StringArray r = reason.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 	setSerial( serial );
 	setRevocationDate( revokeDate );
@@ -157,7 +155,7 @@ RevocationEntry_Priv::setSerial(const String& serial)
 	if(!initHexCheck().isValid(serial))
 	{
 		LOGIT_ERROR("invalid serial: " << serial);
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             Format(__("Invalid serial %1."), serial).c_str());
 	}
 	m_impl->serial = serial;
@@ -175,7 +173,7 @@ RevocationEntry_Priv::setReason(const CRLReason& reason)
 	if(!reason.valid())
 	{
 		LOGIT_ERROR("invalid CRL reason");
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             __("Invalid CRL reason."));
 	}
 	m_impl->revocationReason = reason;
@@ -239,7 +237,7 @@ CRLData_Priv::setIssuerDN(const DNObject& issuer)
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 	m_impl->issuer = issuer;
 }
@@ -263,7 +261,7 @@ CRLData_Priv::setExtensions(const X509v3CRLExts& ext)
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 	m_impl->extensions = ext;
 }
@@ -275,7 +273,7 @@ CRLData_Priv::setRevocationData(const blocxx::Map<String, RevocationEntry>& data
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 	m_impl->revocationData = data;
 }
@@ -337,7 +335,7 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
 	if(sa.size() != 7)
 	{
 		LOGIT_ERROR("Can not parse date: " << sbuf);
-		BLOCXX_THROW(limal::RuntimeException,
+		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             Format(__("Cannot parse date %1."), sbuf).c_str());
 	}
 
@@ -371,7 +369,7 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
 	if(sa.size() != 7)
 	{
 		LOGIT_ERROR("Can not parse date: " << sbuf);
-		BLOCXX_THROW(limal::RuntimeException,
+		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             Format(__("Cannot parse date %1."), sbuf).c_str());
 	}
 
@@ -420,7 +418,7 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
 	else
 	{
 		LOGIT_ERROR("Unsupported signature algorithm: '" << sbuf << "'");
-		BLOCXX_THROW(limal::RuntimeException,
+		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             Format(__("Unsupported signature algorithm %1."), sbuf).c_str());
 	}
 
@@ -459,7 +457,7 @@ CRLData_Priv::init(const ByteBuffer &crl, FormatType formatType)
 		if(!bio)
 		{
 			LOGIT_ERROR("Can not create a memory BIO");
-			BLOCXX_THROW(limal::MemoryException,
+			BLOCXX_THROW(ca_mgm::MemoryException,
 			             __("Cannot create a memory BIO."));
 		}
 
@@ -487,7 +485,7 @@ CRLData_Priv::init(const ByteBuffer &crl, FormatType formatType)
 	if(m_impl->x509 == NULL)
 	{
 		LOGIT_ERROR("Can not parse CRL");
-		BLOCXX_THROW(limal::RuntimeException,
+		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             __("Cannot parse CRL."));
 	}
 
@@ -500,11 +498,10 @@ CRLData_Priv::init(const ByteBuffer &crl, FormatType formatType)
 		X509_CRL_free(m_impl->x509);
 		m_impl->x509 = NULL;
 
-		BLOCXX_THROW_SUBEX(limal::SyntaxException,
+		BLOCXX_THROW_SUBEX(ca_mgm::SyntaxException,
 		                   __("Error parsing the CRL."),
 		                   e);
 	}
 }
 
-}
 }

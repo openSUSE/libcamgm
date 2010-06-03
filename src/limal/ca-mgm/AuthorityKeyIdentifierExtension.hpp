@@ -27,8 +27,6 @@
 #include  <limal/ca-mgm/ExtensionBase.hpp>
 #include  <blocxx/COWIntrusiveReference.hpp>
 
-namespace LIMAL_NAMESPACE {
-
 namespace CA_MGM_NAMESPACE {
 
 	class AuthorityKeyIdentifierExtImpl;
@@ -105,7 +103,6 @@ namespace CA_MGM_NAMESPACE {
 		virtual void commit2Config(CA& ca, Type type) const;
 	};
 
-}
 }
 
 #endif // LIMAL_CA_MGM_AUTHORITY_KEY_IDENTIFIER_EXTENSION_HPP

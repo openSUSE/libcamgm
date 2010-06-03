@@ -256,7 +256,7 @@ private:
     int write_helper(IniSection&ini, std::ofstream&of,int depth);
 
     // create Logger instance
-    limal::Logger logger;
+    Logger logger;
 
     IniParser(const IniParser &);
     IniParser& operator=(const IniParser &);

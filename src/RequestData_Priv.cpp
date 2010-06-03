@@ -41,12 +41,10 @@
 #include  "X509v3RequestExtensions_Priv.hpp"
 #include  "Utils.hpp"
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 
-using namespace limal;
+using namespace ca_mgm;
 using namespace blocxx;
 
 RequestData_Priv::RequestData_Priv()
@@ -97,7 +95,7 @@ RequestData_Priv::setSubjectDN(const DNObject dn)
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 	m_impl->subject = dn;
 }
@@ -133,7 +131,7 @@ RequestData_Priv::setExtensions(const X509v3RequestExts &ext)
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 	m_impl->extensions = ext;
 }
@@ -178,7 +176,7 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
 	if(pkey == NULL)
 	{
 		LOGIT_ERROR("Unable to get public key");
-		BLOCXX_THROW(limal::RuntimeException,
+		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             __("Unable to get the public key."));
 	}
 
@@ -189,7 +187,7 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
 		if(!rsa)
 		{
 			LOGIT_ERROR("could not get RSA key");
-			BLOCXX_THROW(limal::RuntimeException,
+			BLOCXX_THROW(ca_mgm::RuntimeException,
 			             __("Could not get RSA key."));
 		}
 
@@ -209,7 +207,7 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
 		EVP_PKEY_free(pkey);
 
 		LOGIT_ERROR("Unsupported public key type");
-		BLOCXX_THROW(limal::RuntimeException,
+		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             __("Unsupported public key type."));
 	}
 
@@ -242,7 +240,7 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
 		EVP_PKEY_free(pkey);
 
 		LOGIT_ERROR("Unsupported public key algorithm");
-		BLOCXX_THROW(limal::RuntimeException,
+		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             __("Unsupported public key algorithm."));
 	}
 
@@ -272,7 +270,7 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
 		EVP_PKEY_free(pkey);
 
 		LOGIT_ERROR("Unsupported signature algorithm: '" << sbuf << "'");
-		BLOCXX_THROW(limal::RuntimeException,
+		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             Format(__("Unsupported signature algorithm %1."), sbuf).c_str());
 	}
 
@@ -365,7 +363,7 @@ RequestData_Priv::init(const ByteBuffer& request,
 		if(!bio)
 		{
 			LOGIT_ERROR("Can not create a memory BIO");
-			BLOCXX_THROW(limal::MemoryException,
+			BLOCXX_THROW(ca_mgm::MemoryException,
 			             __("Cannot create a memory BIO."));
 		}
 
@@ -392,7 +390,7 @@ RequestData_Priv::init(const ByteBuffer& request,
 	if(m_impl->x509 == NULL)
 	{
 		LOGIT_ERROR("Can not parse request");
-		BLOCXX_THROW(limal::RuntimeException,
+		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             __("Cannot parse the request."));
 	}
 
@@ -405,11 +403,10 @@ RequestData_Priv::init(const ByteBuffer& request,
 		X509_REQ_free(m_impl->x509);
 		m_impl->x509 = NULL;
 
-		BLOCXX_THROW_SUBEX(limal::SyntaxException,
+		BLOCXX_THROW_SUBEX(ca_mgm::SyntaxException,
 		                   __("Error while parsing the request."),
 		                   e);
 	}
 }
 
-}
 }

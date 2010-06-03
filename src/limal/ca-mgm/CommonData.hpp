@@ -31,8 +31,6 @@
 
 #define   REPOSITORY   "/var/lib/CAM/"
 
-namespace LIMAL_NAMESPACE {
-
 namespace CA_MGM_NAMESPACE {
 
     typedef blocxx::String       String;
@@ -99,7 +97,6 @@ namespace CA_MGM_NAMESPACE {
 		E_FILE_NOT_FOUND = ENOENT, //errno
 		E_FILE_EXISTS    = EEXIST  //errno
 	};
-}
 }
 
 #endif   // LIMAL_CA_MGM_COMMON_DATA_HPP

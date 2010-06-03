@@ -28,12 +28,10 @@
 
 #include  "Utils.hpp"
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 
-using namespace limal;
+using namespace ca_mgm;
 using namespace blocxx;
 
 class X509v3CRLGenerationExtsImpl : public blocxx::COWIntrusiveCountableBase
@@ -98,7 +96,7 @@ X509v3CRLGenerationExts::setAuthorityKeyIdentifier(const AuthorityKeyIdentifierG
 {
 	if(!ext.valid())
 	{
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             __("Invalid value for X509v3CRLGenerationExts::setAuthorityKeyIdentifier."));
 	}
 	m_impl->authorityKeyIdentifier = ext;
@@ -121,7 +119,7 @@ X509v3CRLGenerationExts::setIssuerAlternativeName(const IssuerAlternativeNameExt
 {
 	if(!ext.valid())
 	{
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             __("Invalid value for X509v3CRLGenerationExts::setIssuerAlternativeName."));
 	}
 	m_impl->issuerAlternativeName = ext;
@@ -145,7 +143,7 @@ X509v3CRLGenerationExts::commit2Config(CA& ca, Type type) const
 	if(!valid())
 	{
 		LOGIT_ERROR("invalid X509v3RequestExts object");
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             __("Invalid X509v3RequestExts object."));
 	}
 
@@ -185,5 +183,4 @@ X509v3CRLGenerationExts::dump() const
 	return result;
 }
 
-}
 }

@@ -29,8 +29,6 @@
 #include  <limal/ca-mgm/CRLData.hpp>
 #include  <limal/ByteBuffer.hpp>
 
-namespace LIMAL_NAMESPACE {
-
 namespace CA_MGM_NAMESPACE {
 
     /**
@@ -71,7 +69,7 @@ namespace CA_MGM_NAMESPACE {
          *
          */
         static void
-        importAsLocalCertificate(const limal::ByteBuffer &pkcs12Data,
+        importAsLocalCertificate(const ca_mgm::ByteBuffer &pkcs12Data,
                                  const String            &password,
                                  const String            &destinationCAsDir,
                                  const String            &destinationCertFile,
@@ -102,7 +100,7 @@ namespace CA_MGM_NAMESPACE {
          *
          */
         static void
-        importCommonServerCertificate(const limal::ByteBuffer &pkcs12Data,
+        importCommonServerCertificate(const ca_mgm::ByteBuffer &pkcs12Data,
                                       const String            &password);
         
         /**
@@ -126,7 +124,7 @@ namespace CA_MGM_NAMESPACE {
          * @return the parsed certificate data
          */
         static CertificateData
-        getCertificate(const limal::ByteBuffer &data,
+        getCertificate(const ca_mgm::ByteBuffer &data,
                        FormatType               type);
 
         /**
@@ -150,7 +148,7 @@ namespace CA_MGM_NAMESPACE {
          * @return the parsed request data
          */
         static RequestData
-        getRequest(const limal::ByteBuffer &data,
+        getRequest(const ca_mgm::ByteBuffer &data,
                    FormatType               type);
 
         
@@ -176,7 +174,7 @@ namespace CA_MGM_NAMESPACE {
          * @return the parsed CRL data
          */
         static CRLData
-        getCRL(const limal::ByteBuffer &data,
+        getCRL(const ca_mgm::ByteBuffer &data,
                FormatType               type);
         
         /**
@@ -187,7 +185,7 @@ namespace CA_MGM_NAMESPACE {
          *
          * @return the file content
          */
-        static limal::ByteBuffer
+        static ca_mgm::ByteBuffer
         readFile(const String& file);
 
         /**
@@ -201,7 +199,7 @@ namespace CA_MGM_NAMESPACE {
          *
          */
         static void
-        writeFile(const limal::ByteBuffer& data,
+        writeFile(const ca_mgm::ByteBuffer& data,
                   const String &file,
                   bool overwrite = true,
                   mode_t mode = 0644);
@@ -214,8 +212,8 @@ namespace CA_MGM_NAMESPACE {
     	 * @param outform the output format
     	 * @return the converted certificate in the new format
     	 */
-    	static limal::ByteBuffer
-    	x509Convert(const limal::ByteBuffer &certificate,
+    	static ca_mgm::ByteBuffer
+    	x509Convert(const ca_mgm::ByteBuffer &certificate,
     	            FormatType inform,
     	            FormatType outform );
 
@@ -234,8 +232,8 @@ namespace CA_MGM_NAMESPACE {
     	 *        valid values are: des, des3, aes128, aes192, aes256
     	 * @return the converted key
     	 */
-    	static limal::ByteBuffer
-    	rsaConvert(const limal::ByteBuffer &key,
+    	static ca_mgm::ByteBuffer
+    	rsaConvert(const ca_mgm::ByteBuffer &key,
     	           FormatType inform,
     	           FormatType outform,
     	           const String &inPassword,
@@ -250,8 +248,8 @@ namespace CA_MGM_NAMESPACE {
     	 * @param outform the output format
     	 * @return the converted CRL
     	 */
-    	static limal::ByteBuffer
-    	crlConvert(const limal::ByteBuffer &crl,
+    	static ca_mgm::ByteBuffer
+    	crlConvert(const ca_mgm::ByteBuffer &crl,
     	           FormatType inform,
     	           FormatType outform );
 
@@ -263,8 +261,8 @@ namespace CA_MGM_NAMESPACE {
     	 * @param outform the output format
     	 * @return the converted Request
     	 */
-    	static limal::ByteBuffer
-    	reqConvert(const limal::ByteBuffer &req,
+    	static ca_mgm::ByteBuffer
+    	reqConvert(const ca_mgm::ByteBuffer &req,
     	           FormatType inform,
     	           FormatType outform );
 
@@ -283,12 +281,12 @@ namespace CA_MGM_NAMESPACE {
     	 * @param withChain include the entire certificate chain of certificate
     	 * @return the PKCS12 file
     	 */
-    	static limal::ByteBuffer
-    	createPKCS12(const limal::ByteBuffer &certificate,
-    	             const limal::ByteBuffer &key,
+    	static ca_mgm::ByteBuffer
+    	createPKCS12(const ca_mgm::ByteBuffer &certificate,
+    	             const ca_mgm::ByteBuffer &key,
     	             const String            &inPassword,
     	             const String            &outPassword,
-    	             const limal::ByteBuffer &caCert,
+    	             const ca_mgm::ByteBuffer &caCert,
     	             const String            &caPath,
     	             bool                     withChain = false);
     	
@@ -303,12 +301,11 @@ namespace CA_MGM_NAMESPACE {
     	 *        valid values are: des, des3, aes128, aes192, aes256
     	 * @return the certificates and private key
     	 */
-    	static limal::ByteBuffer
-    	pkcs12ToPEM(const limal::ByteBuffer &pkcs12,
+    	static ca_mgm::ByteBuffer
+    	pkcs12ToPEM(const ca_mgm::ByteBuffer &pkcs12,
     	            const String            &inPassword,
     	            const String            &outPassword,
     	            const String            &algorithm = "des3");
     };
-}
 }
 #endif //LIMAL_CA_MGM_LOCAL_MANAGEMENT_HPP

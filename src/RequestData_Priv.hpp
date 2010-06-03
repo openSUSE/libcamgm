@@ -29,7 +29,6 @@
 
 #include <openssl/x509.h>
 
-namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
@@ -63,7 +62,6 @@ private:
 	                         FormatType formatType);
 };
 
-}
 }
 
 #endif // LIMAL_CA_MGM_REQUEST_DATA_PRIV_HPP

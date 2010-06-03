@@ -29,12 +29,10 @@
 
 #include  "Utils.hpp"
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 
-using namespace limal;
+using namespace ca_mgm;
 using namespace blocxx;
 
 class SubjectKeyIdentifierExtImpl : public blocxx::COWIntrusiveCountableBase
@@ -81,7 +79,7 @@ SubjectKeyIdentifierExt::SubjectKeyIdentifierExt(CAConfig* caConfig, Type type)
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -125,7 +123,7 @@ SubjectKeyIdentifierExt::SubjectKeyIdentifierExt(bool autoDetect, const String& 
 	   !initHexCheck().isValid(keyid))
 	{
 		LOGIT_ERROR("invalid KeyID");
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             __("Invalid KeyID."));
 	}
 	setPresent(true);
@@ -159,7 +157,7 @@ SubjectKeyIdentifierExt::setSubjectKeyIdentifier(bool autoDetect,
 	if(!keyId.empty() && !initHexCheck().isValid(keyId))
 	{
 		LOGIT_ERROR("invalid KeyID");
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             __("Invalid KeyID."));
 	}
 	m_impl->autodetect = autoDetect;
@@ -172,7 +170,7 @@ SubjectKeyIdentifierExt::isAutoDetectionEnabled() const
 {
 	if(!isPresent())
 	{
-		BLOCXX_THROW(limal::RuntimeException,
+		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             __("SubjectKeyIdentifierExt is not present."));
 	}
 	return m_impl->autodetect;
@@ -183,7 +181,7 @@ SubjectKeyIdentifierExt::getKeyID() const
 {
 	if(!isPresent())
 	{
-		BLOCXX_THROW(limal::RuntimeException,
+		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             __("SubjectKeyIdentifierExt is not present."));
 	}
 	return m_impl->keyid;
@@ -196,7 +194,7 @@ SubjectKeyIdentifierExt::commit2Config(CA& ca, Type type) const
 	if(!valid())
 	{
 		LOGIT_ERROR("invalid SubjectKeyIdentifierExt object");
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             __("Invalid SubjectKeyIdentifierExt object."));
 	}
 
@@ -204,7 +202,7 @@ SubjectKeyIdentifierExt::commit2Config(CA& ca, Type type) const
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -308,5 +306,4 @@ SubjectKeyIdentifierExt::dump() const
 	return result;
 }
 
-}
 }

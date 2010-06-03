@@ -25,17 +25,15 @@ Maintainer: Michael Calmer
 #ifndef   LIMAL_CA_MGM_COMMANDS_HPP
 #define   LIMAL_CA_MGM_COMMANDS_HPP
 
-#include <limal/config.h>
+#include <limal/ca_mgm/config.h>
 #include <blocxx/String.hpp>
-
-namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
 const blocxx::String OPENSSL_COMMAND  = "@OPENSSL_COMMAND@";
 const blocxx::String C_REHASH_COMMAND = "@C_REHASH_COMMAND@";
-
-}
+const blocxx::String CP_COMMAND = "@CP_COMMAND@";
+const blocxx::String RM_COMMAND = "@RM_COMMAND@";
 }
 
 #endif /* LIMAL_CA_MGM_COMMANDS_HPP */

@@ -32,12 +32,10 @@
 #include  "DNObject_Priv.hpp"
 #include  "Utils.hpp"
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 
-using namespace limal;
+using namespace ca_mgm;
 using namespace blocxx;
 
 
@@ -106,7 +104,7 @@ RDNObject::getOpenSSLValue() const
 	else
 	{
 		LOGIT_ERROR("Invalid type:" << m_impl->type);
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             // %1 is the invalid string for a DN type
 		             Format(__("Invalid type %1."), m_impl->type).c_str());
 	}
@@ -247,7 +245,7 @@ DNObject::DNObject(CAConfig* caConfig, Type type)
 	   type == E_CA_Cert     || type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -255,7 +253,7 @@ DNObject::DNObject(CAConfig* caConfig, Type type)
 	if(!p)
 	{
 		LOGIT_ERROR("missing section 'distinguished_name' in config file");
-		BLOCXX_THROW(limal::SyntaxException,
+		BLOCXX_THROW(ca_mgm::SyntaxException,
 		             __("Missing section 'distinguished_name' in the configuration file."));
 	}
 	String dnSect = caConfig->getValue(type2Section(type, false),
@@ -266,7 +264,7 @@ DNObject::DNObject(CAConfig* caConfig, Type type)
 	if(dnKeys.empty())
 	{
 		LOGIT_ERROR("Can not parse Section " << dnSect);
-		BLOCXX_THROW(limal::SyntaxException,
+		BLOCXX_THROW(ca_mgm::SyntaxException,
 		             Format(__("Cannot parse section %1."), dnSect).c_str());
 	}
 	StringList::const_iterator it = dnKeys.begin();
@@ -366,7 +364,7 @@ DNObject::DNObject(const blocxx::List<RDNObject> &dn)
 	StringArray r = this->verify();
 	if(!r.empty())
 	{
-		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 }
 
@@ -394,7 +392,7 @@ DNObject::setDN(const blocxx::List<RDNObject> &dn)
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 	m_impl->dn = dn;
 }
@@ -483,5 +481,4 @@ DNObject::dump() const
 	return result;
 }
 
-}
 }

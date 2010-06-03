@@ -29,12 +29,10 @@
 
 #include  "Utils.hpp"
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 
-using namespace limal;
+using namespace ca_mgm;
 using namespace blocxx;
 
 class RequestGenerationDataImpl : public blocxx::COWIntrusiveCountableBase
@@ -139,7 +137,7 @@ RequestGenerationData::setSubjectDN(const DNObject dn)
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 	m_impl->subject = dn;
 }
@@ -211,7 +209,7 @@ RequestGenerationData::setExtensions(const X509v3RequestExts &ext)
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 	m_impl->extensions = ext;
 }
@@ -236,7 +234,7 @@ RequestGenerationData::commit2Config(CA& ca, Type type) const
 	if(!m_impl->extensions.valid())
 	{
 		LOGIT_ERROR("invalid RequestGenerationData object");
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             __("Invalid RequestGenerationData object."));
 	}
 
@@ -244,7 +242,7 @@ RequestGenerationData::commit2Config(CA& ca, Type type) const
 	   type == E_Server_Cert || type == E_CA_Cert )
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -310,5 +308,4 @@ RequestGenerationData::dump() const
 	return result;
 }
 
-}
 }

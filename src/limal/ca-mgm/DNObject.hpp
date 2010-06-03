@@ -26,8 +26,6 @@
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <blocxx/COWIntrusiveReference.hpp>
 
-namespace LIMAL_NAMESPACE {
-
 namespace CA_MGM_NAMESPACE {
 
 	class CAConfig;
@@ -101,7 +99,6 @@ namespace CA_MGM_NAMESPACE {
 		checkRDNList(const blocxx::List<RDNObject>& list) const;
 	};
 
-}
 }
 
 #endif // LIMAL_CA_MGM_DN_OBJECT_HPP

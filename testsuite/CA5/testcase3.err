@@ -77,7 +77,7 @@ DEBUG ca-mgm - type2Section: type=1 result=req_server
 DEBUG ca-mgm - RDNObject::verify()(1/1):Value() is too small. Value has to be a minimal length of 2
 DEBUG ca-mgm - DNObject::verify()(1/1):Value() is too small. Value has to be a minimal length of 2
 DEBUG ca-mgm - RequestGenerationData::verify()(1/1):Value() is too small. Value has to be a minimal length of 2
-DEBUG limal - removeFile ./TestRepos/ca1_test/openssl.cnf
+DEBUG ca-mgm - removeFile ./TestRepos/ca1_test/openssl.cnf
 DEBUG ca-mgm - Command: /usr/bin/openssl rsa -noout -in ./TestRepos//ca2_test/cacert.key -passin env:PASSWORD 
 DEBUG ca-mgm - type2Section: type=1 result=req_server
 DEBUG ca-mgm - type2Section: type=1 result=req_server
@@ -161,4 +161,4 @@ DEBUG ca-mgm - type2Section: type=1 result=req_server
 DEBUG ca-mgm - RDNObject::verify()(1/1):Value() is too small. Value has to be a minimal length of 2
 DEBUG ca-mgm - DNObject::verify()(1/1):Value() is too small. Value has to be a minimal length of 2
 DEBUG ca-mgm - RequestGenerationData::verify()(1/1):Value() is too small. Value has to be a minimal length of 2
-DEBUG limal - removeFile ./TestRepos/ca2_test/openssl.cnf
+DEBUG ca-mgm - removeFile ./TestRepos/ca2_test/openssl.cnf

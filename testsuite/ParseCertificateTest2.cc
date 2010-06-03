@@ -14,8 +14,8 @@
 #include <unistd.h>
 
 using namespace blocxx;
-using namespace limal;
-using namespace limal::ca_mgm;
+
+using namespace ca_mgm;
 using namespace std;
 
 int main(int argc, char **argv)
@@ -28,13 +28,13 @@ int main(int argc, char **argv)
     }
     
     // Logging
-    LoggerRef l = limal::Logger::createCerrLogger(
+    LoggerRef l = ca_mgm::Logger::createCerrLogger(
                                                   "ParseCertificateTest2",
                                                   LogAppender::ALL_COMPONENTS,
                                                   LogAppender::ALL_CATEGORIES,
                                                   "%-5p %c - %m"
                                                   );
-    limal::Logger::setDefaultLogger(l);
+    ca_mgm::Logger::setDefaultLogger(l);
     
     blocxx::String file = argv[ 1 ];
     

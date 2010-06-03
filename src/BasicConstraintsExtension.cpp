@@ -28,12 +28,10 @@
 
 #include  "Utils.hpp"
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 
-using namespace limal;
+using namespace ca_mgm;
 using namespace blocxx;
 
 class BasicConstraintsExtImpl : public blocxx::COWIntrusiveCountableBase
@@ -80,7 +78,7 @@ BasicConstraintsExt::BasicConstraintsExt(CAConfig* caConfig, Type type)
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -151,7 +149,7 @@ BasicConstraintsExt::isCA() const
 	if(!isPresent())
 	{
 		LOGIT_ERROR("BasicConstraintsExt is not present");
-		BLOCXX_THROW(limal::RuntimeException,
+		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             __("BasicConstraintsExt is not present."));
 	}
 	return m_impl->ca;
@@ -163,7 +161,7 @@ BasicConstraintsExt::getPathLength() const
 	if(!isPresent())
 	{
 		LOGIT_ERROR("BasicConstraintsExt is not present");
-		BLOCXX_THROW(limal::RuntimeException,
+		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             __("BasicConstraintsExt is not present."));
 	}
 	return m_impl->pathlen;
@@ -175,7 +173,7 @@ BasicConstraintsExt::commit2Config(CA& ca, Type type) const
 	if(!valid())
 	{
 		LOGIT_ERROR("invalid BasicConstraintsExt object");
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             __("Invalid BasicConstraintsExt object."));
 	}
 
@@ -183,7 +181,7 @@ BasicConstraintsExt::commit2Config(CA& ca, Type type) const
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -272,5 +270,4 @@ BasicConstraintsExt::dump() const
 	return result;
 }
 
-}
 }

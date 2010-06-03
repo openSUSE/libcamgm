@@ -27,7 +27,6 @@
 #include  <limal/ca-mgm/X509v3RequestExtensions.hpp>
 #include  <openssl/x509.h>
 
-namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
@@ -68,7 +67,6 @@ private:
 	                               SubjectAlternativeNameExt &ext);
 
 };
-}
 }
 
 #endif // LIMAL_CA_MGM_X509V3_REQUEST_EXTENSIONS_PRIV_HPP

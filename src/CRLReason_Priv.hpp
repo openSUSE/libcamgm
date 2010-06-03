@@ -28,7 +28,6 @@
 
 #include  <openssl/x509.h>
 
-namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
@@ -41,7 +40,6 @@ public:
 
 };
 
-}
 }
 
 

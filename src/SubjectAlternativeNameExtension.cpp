@@ -27,12 +27,10 @@
 
 #include  "Utils.hpp"
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 
-using namespace limal;
+using namespace ca_mgm;
 using namespace blocxx;
 
 class SubjectAlternativeNameExtImpl : public blocxx::COWIntrusiveCountableBase
@@ -81,7 +79,7 @@ SubjectAlternativeNameExt::SubjectAlternativeNameExt(CAConfig* caConfig, Type ty
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -127,7 +125,7 @@ SubjectAlternativeNameExt::SubjectAlternativeNameExt(bool copyEmail,
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 	setPresent(true);
 }
@@ -168,7 +166,7 @@ SubjectAlternativeNameExt::setAlternativeNameList(const blocxx::List<LiteralValu
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 	m_impl->altNameList = alternativeNameList;
 	setPresent(true);
@@ -179,7 +177,7 @@ SubjectAlternativeNameExt::getCopyEmail() const
 {
 	if(!isPresent())
 	{
-		BLOCXX_THROW(limal::RuntimeException,
+		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             __("SubjectAlternativeNameExt is not present."));
 	}
 	return m_impl->emailCopy;
@@ -190,7 +188,7 @@ SubjectAlternativeNameExt::getAlternativeNameList() const
 {
 	if(!isPresent())
 	{
-		BLOCXX_THROW(limal::RuntimeException,
+		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             __("SubjectAlternativeNameExt is not present."));
 	}
 	return m_impl->altNameList;
@@ -203,7 +201,7 @@ SubjectAlternativeNameExt::commit2Config(CA& ca, Type type) const
 	if(!valid())
 	{
 		LOGIT_ERROR("invalid SubjectAlternativeNameExt object");
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             __("Invalid SubjectAlternativeNameExt object."));
 	}
 
@@ -211,7 +209,7 @@ SubjectAlternativeNameExt::commit2Config(CA& ca, Type type) const
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -299,5 +297,4 @@ SubjectAlternativeNameExt::dump() const
 	return result;
 }
 
-}
 }

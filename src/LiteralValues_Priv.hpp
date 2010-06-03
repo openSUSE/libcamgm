@@ -29,7 +29,6 @@
 
 #include  <openssl/x509v3.h>
 
-namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
@@ -44,7 +43,6 @@ private:
 	void decode_krb5_principal_name(unsigned char* data, int len);
 };
 
-}
 }
 
 

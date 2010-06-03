@@ -25,12 +25,10 @@
 
 #include  "Utils.hpp"
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 
-using namespace limal;
+using namespace ca_mgm;
 using namespace blocxx;
 
 class AuthorityKeyIdentifierExtImpl : public blocxx::COWIntrusiveCountableBase
@@ -93,7 +91,7 @@ AuthorityKeyIdentifierExt::getKeyID() const
 {
 	if(!isPresent()) {
 		LOGIT_ERROR("AuthorityKeyIdentifierExt is not present");
-		BLOCXX_THROW(limal::RuntimeException,
+		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             __("AuthorityKeyIdentifierExt is not present."));
 	}
 	return m_impl->keyid;
@@ -104,7 +102,7 @@ AuthorityKeyIdentifierExt::getDirName() const
 {
 	if(!isPresent()) {
 		LOGIT_ERROR("AuthorityKeyIdentifierExt is not present");
-		BLOCXX_THROW(limal::RuntimeException,
+		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             __("AuthorityKeyIdentifierExt is not present."));
 	}
 	return m_impl->DirName;
@@ -115,7 +113,7 @@ AuthorityKeyIdentifierExt::getSerial() const
 {
 	if(!isPresent()) {
 		LOGIT_ERROR("AuthorityKeyIdentifierExt is not present");
-		BLOCXX_THROW(limal::RuntimeException,
+		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             __("AuthorityKeyIdentifierExt is not present."));
 	}
 	return m_impl->serial;
@@ -174,5 +172,4 @@ void
 AuthorityKeyIdentifierExt::commit2Config(CA&, Type) const
 {}
 
-}
 }

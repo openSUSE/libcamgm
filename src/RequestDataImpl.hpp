@@ -28,7 +28,6 @@
 
 #include  "X509v3RequestExtensions_Priv.hpp"
 
-namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
@@ -104,7 +103,6 @@ public:
 
 	X509_REQ          *x509;
 };
-}
 }
 
 #endif // LIMAL_CA_MGM_REQUEST_DATA_IMPL_HPP

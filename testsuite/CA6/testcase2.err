@@ -142,7 +142,7 @@ DEBUG ca-mgm - type2Section: type=3 result=v3_client
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=3 result=v3_client
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
-DEBUG limal - removeFile ./TestRepos/ca1_test/openssl.cnf
+DEBUG ca-mgm - removeFile ./TestRepos/ca1_test/openssl.cnf
 DEBUG ca-mgm - Command: /usr/bin/openssl rsa -noout -in ./TestRepos//ca2_test/cacert.key -passin env:PASSWORD 
 DEBUG ca-mgm - type2Section: type=3 result=client_cert
 DEBUG ca-mgm - type2Section: type=3 result=client_cert
@@ -288,4 +288,4 @@ DEBUG ca-mgm - type2Section: type=3 result=v3_client
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=3 result=v3_client
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
-DEBUG limal - removeFile ./TestRepos/ca2_test/openssl.cnf
+DEBUG ca-mgm - removeFile ./TestRepos/ca2_test/openssl.cnf

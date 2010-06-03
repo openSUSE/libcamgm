@@ -38,8 +38,6 @@
 #include  <limal/ca-mgm/CertificatePoliciesExtension.hpp>
 #include  <blocxx/COWIntrusiveReference.hpp>
 
-namespace LIMAL_NAMESPACE {
-
 namespace CA_MGM_NAMESPACE {
 
 	class X509v3CertificateExtsImpl;
@@ -129,7 +127,6 @@ namespace CA_MGM_NAMESPACE {
 
 	};
 
-}
 }
 
 #endif // LIMAL_CA_MGM_X509V3_CERTIFICATE_EXTENSION_HPP

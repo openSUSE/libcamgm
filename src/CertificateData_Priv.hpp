@@ -29,7 +29,6 @@
 
 #include <openssl/x509.h>
 
-namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
@@ -99,7 +98,6 @@ private:
 	parseCertificate(X509 *x509);
 };
 
-}
 }
 
 #endif // LIMAL_CA_MGM_CERTIFICATE_DATA_PRIV_HPP

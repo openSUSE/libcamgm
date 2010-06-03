@@ -26,7 +26,6 @@
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <blocxx/COWIntrusiveReference.hpp>
 
-namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
@@ -135,8 +134,6 @@ namespace CA_MGM_NAMESPACE {
 		blocxx::COWIntrusiveReference<LiteralValueImpl> m_impl;
     	
 	};
-
-}
 }
 
 #endif // LIMAL_CA_MGM_LITERAL_VALUES_HPP

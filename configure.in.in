@@ -29,6 +29,7 @@ AC_SUBST(LIB_VERSION_INFO)
 ## some common checks
 @LIMAL-CHECKS-COMMON@
 @LIMAL-CHECKS-PROGRAM@
+@LIMAL-CHECKS-BLOCXX@
 @LIMAL-CHECKS-LIMAL@
 @LIMAL-CHECKS-SWIG@
 @LIMAL-CHECKS-PO@
@@ -71,6 +72,20 @@ AC_CHECK_LIB(ssl, main, [LIB_SSL="-lssl"], [LIB_SSL=""])
 if test -z "$LIB_SSL"; then
     AC_MSG_ERROR([cannot find LIBSSL])
 fi
+
+# FIXME: remove me after PathUtils review
+AC_PATH_PROG(CP_COMMAND, "cp")
+if test -z "$CP_COMMAND" ; then
+    AC_MSG_ERROR([cp command is missing; please install coreutils package])
+fi
+AC_SUBST(CP_COMMAND)
+
+# FIXME: remove me after PathUtils review
+AC_PATH_PROG(RM_COMMAND, "rm")
+if test -z "$RM_COMMAND" ; then
+    AC_MSG_ERROR([rm command is missing; please install coreutils package])
+fi
+AC_SUBST(RM_COMMAND)
 
 AC_SUBST(LIB_SSL)
 ####################################################################

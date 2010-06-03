@@ -27,12 +27,10 @@
 
 #include  "Utils.hpp"
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 
-using namespace limal;
+using namespace ca_mgm;
 using namespace blocxx;
 
 class CRLDistributionPointsExtImpl : public blocxx::COWIntrusiveCountableBase
@@ -72,7 +70,7 @@ CRLDistributionPointsExt::CRLDistributionPointsExt(CAConfig* caConfig, Type type
 	   type == E_Server_Req || type == E_CA_Req      )
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -129,7 +127,7 @@ CRLDistributionPointsExt::setCRLDistributionPoints(blocxx::List<LiteralValue> dp
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 	m_impl->altNameList = dp;
 	setPresent(true);
@@ -141,7 +139,7 @@ CRLDistributionPointsExt::getCRLDistributionPoints() const
 	if(!isPresent())
 	{
 		LOGIT_ERROR("CRLDistributionPointsExt is not present");
-		BLOCXX_THROW(limal::RuntimeException,
+		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             __("CRLDistributionPointsExt is not present."));
 	}
 	return m_impl->altNameList;
@@ -153,7 +151,7 @@ CRLDistributionPointsExt::commit2Config(CA& ca, Type type) const
 	if(!valid())
 	{
 		LOGIT_ERROR("invalid CRLDistributionPointsExt object");
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             __("Invalid CRLDistributionPointsExt object."));
 	}
 
@@ -162,7 +160,7 @@ CRLDistributionPointsExt::commit2Config(CA& ca, Type type) const
 	   type == E_Server_Req || type == E_CA_Req      )
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -247,5 +245,4 @@ CRLDistributionPointsExt::dump() const
 	return result;
 }
 
-}
 }

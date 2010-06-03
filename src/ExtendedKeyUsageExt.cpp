@@ -28,12 +28,10 @@
 
 #include "Utils.hpp"
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 
-using namespace limal;
+using namespace ca_mgm;
 using namespace blocxx;
 
 class ExtendedKeyUsageExtImpl : public blocxx::COWIntrusiveCountableBase
@@ -73,7 +71,7 @@ ExtendedKeyUsageExt::ExtendedKeyUsageExt(CAConfig* caConfig, Type type)
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -118,7 +116,7 @@ ExtendedKeyUsageExt::ExtendedKeyUsageExt(const StringList& extKeyUsages)
 		else
 		{
 			LOGIT_INFO("Unknown ExtendedKeyUsage option: " << (*it));
-			BLOCXX_THROW(limal::ValueException,
+			BLOCXX_THROW(ca_mgm::ValueException,
 			             Format(__("Invalid ExtendedKeyUsage option %1."),
 			                    *it).c_str());
 		}
@@ -126,7 +124,7 @@ ExtendedKeyUsageExt::ExtendedKeyUsageExt(const StringList& extKeyUsages)
 
 	if(m_impl->usage.empty())
 	{
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             __("Invalid ExtendedKeyUsageExt."));
 	}
 
@@ -167,7 +165,7 @@ ExtendedKeyUsageExt::setExtendedKeyUsage(const StringList& usageList)
 		else
 		{
 			LOGIT_INFO("Unknown ExtendedKeyUsage option: " << (*it));
-			BLOCXX_THROW(limal::ValueException,
+			BLOCXX_THROW(ca_mgm::ValueException,
 			             Format(__("Invalid ExtendedKeyUsage option %1."),
 			                    *it).c_str());
 		}
@@ -175,7 +173,7 @@ ExtendedKeyUsageExt::setExtendedKeyUsage(const StringList& usageList)
 
 	if(m_impl->usage.empty())
 	{
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             __("Invalid ExtendedKeyUsageExt."));
 	}
 
@@ -188,7 +186,7 @@ ExtendedKeyUsageExt::getExtendedKeyUsage() const
 {
 	if(!isPresent())
 	{
-		BLOCXX_THROW(limal::RuntimeException,
+		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             __("ExtendedKeyUsageExt is not present."));
 	}
 	return m_impl->usage;
@@ -217,7 +215,7 @@ ExtendedKeyUsageExt::commit2Config(CA& ca, Type type) const
 	if(!valid())
 	{
 		LOGIT_ERROR("invalid ExtendedKeyUsageExt object");
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             __("Invalid ExtendedKeyUsageExt object."));
 	}
 
@@ -225,7 +223,7 @@ ExtendedKeyUsageExt::commit2Config(CA& ca, Type type) const
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -327,5 +325,4 @@ ExtendedKeyUsageExt::checkValue(const String& value) const
 	}
 }
 
-}
 }

@@ -28,8 +28,6 @@
 #include  <limal/ca-mgm/LiteralValues.hpp>
 #include  <blocxx/COWIntrusiveReference.hpp>
 
-namespace LIMAL_NAMESPACE {
-
 namespace CA_MGM_NAMESPACE {
 
 	class CA;
@@ -74,7 +72,6 @@ namespace CA_MGM_NAMESPACE {
 		
 	};
 
-}
 }
 
 #endif // LIMAL_CA_MGM_CRL_DISTRIBUTION_POINTS_EXTENSION_HPP

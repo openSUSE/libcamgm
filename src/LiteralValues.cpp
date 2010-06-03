@@ -29,12 +29,10 @@
 
 #include  "Utils.hpp"
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 
-using namespace limal;
+using namespace ca_mgm;
 using namespace blocxx;
 
 
@@ -79,7 +77,7 @@ LiteralValue::LiteralValue(const String &type, const String &value)
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 }
 
@@ -126,7 +124,7 @@ LiteralValue::LiteralValue(const String& value)
 	else
 	{
 		LOGIT_DEBUG("unknown type: "<< sp[1] << " = " << sp[2]);
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             __("Unknown type."));
 	}
 }
@@ -166,7 +164,7 @@ LiteralValue::setLiteral(const String &type, const String &value)
 		m_impl->literalValue = dValue;
 
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 }
 
@@ -183,7 +181,7 @@ LiteralValue::setValue(const String &value)
 		m_impl->literalValue = dValue;
 
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 }
 
@@ -521,5 +519,4 @@ operator<(const LiteralValue &l, const LiteralValue &r)
 	}
 }
 
-}
 }

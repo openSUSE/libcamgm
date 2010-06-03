@@ -19,11 +19,11 @@ DEBUG ca-mgm - type2Section: type=6 result=v3_crl
 DEBUG ca-mgm - Command: /usr/bin/openssl ca -gencrl -config ./TestRepos//Test_CA2/openssl.cnf -out ./TestRepos//Test_CA2/crl/crl.pem -keyfile ./TestRepos//Test_CA2/cacert.key -cert ./TestRepos//Test_CA2/cacert.pem -passin env:pass -crlhours 24 -crlexts v3_crl 
 DEBUG ca-mgm - openssl stderr:Using configuration from ./TestRepos//Test_CA2/openssl.cnf
 
-DEBUG limal - copyFile ./TestRepos/Test_CA2/crl/crl.pem -> ./TestRepos/.cas/crl_Test_CA2.pem 
+DEBUG ca-mgm - copyFile ./TestRepos/Test_CA2/crl/crl.pem -> ./TestRepos/.cas/crl_Test_CA2.pem 
 DEBUG ca-mgm - Command: /usr/bin/openssl ca -updatedb -config ./TestRepos//Test_CA2/openssl.cnf -keyfile ./TestRepos//Test_CA2/cacert.key -cert ./TestRepos//Test_CA2/cacert.pem -passin env:pass 
 DEBUG ca-mgm - openssl stderr:Using configuration from ./TestRepos//Test_CA2/openssl.cnf
 
-DEBUG limal - readDir ./TestRepos/Test_CA2/newcerts 
+DEBUG ca-mgm - readDir ./TestRepos/Test_CA2/newcerts 
 DEBUG ca-mgm - Append '/SUSE Inc.\Gmbh' to commonName
 DEBUG ca-mgm - Append '/SUSE Inc.\Gmbh' to commonName
 DEBUG ca-mgm - Command: /usr/bin/openssl verify -CApath ./TestRepos//.cas/ -purpose any -crl_check_all ./TestRepos/Test_CA2/newcerts/01:b4d4e48e6de644c953290eb2854a6ced-1124374396.pem
@@ -44,4 +44,4 @@ ERROR ca-mgm - Certificate invalid! (certificate has expired / error 10 at 0 dep
 DEBUG ca-mgm - Command: /usr/bin/openssl verify -CApath ./TestRepos//.cas/ -purpose any -crl_check_all ./TestRepos/Test_CA2/newcerts/09:bf04fdd95062554800c1556085f47063-1125322097.pem
 ERROR ca-mgm - Certificate invalid! (certificate revoked / error 23 at 0 depth lookup:certificate revoked)
 DEBUG ca-mgm - Command: /usr/bin/openssl verify -CApath ./TestRepos//.cas/ -purpose any -crl_check_all ./TestRepos/Test_CA2/newcerts/0A:0d03287ae454fab8a0e905499d5132fd-1158057443.pem
-DEBUG limal - removeFile ./TestRepos/Test_CA2/openssl.cnf
+DEBUG ca-mgm - removeFile ./TestRepos/Test_CA2/openssl.cnf

@@ -11,6 +11,6 @@ limalincluledir=@limalincludedir@
 Name: @RPMNAME@
 Version: @VERSION@
 Description: LiMaL package "@RPMNAME@"
-Requires: limal openssl
+Requires: blocxx openssl
 Cflags: -I${includedir}
 Libs: -L${limallibdir} -l@RPMNAME@

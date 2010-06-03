@@ -20,7 +20,7 @@ DEBUG ca-mgm - ExtensionBase::setPresent(): true
 DEBUG ca-mgm - type2Section: type=6 result=v3_crl
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=6 result=ca
-DEBUG limal - removeFile ./TestRepos/ca1_test/openssl.cnf
+DEBUG ca-mgm - removeFile ./TestRepos/ca1_test/openssl.cnf
 DEBUG ca-mgm - Command: /usr/bin/openssl rsa -noout -in ./TestRepos//ca2_test/cacert.key -passin env:PASSWORD 
 DEBUG ca-mgm - type2Section: type=6 result=v3_crl
 DEBUG ca-mgm - type2Section: type=6 result=v3_crl
@@ -45,4 +45,4 @@ DEBUG ca-mgm - type2Section: type=6 result=v3_crl
 DEBUG ca-mgm - type2Section: type=6 result=v3_crl
 DEBUG ca-mgm - ExtensionBase::setPresent(): true
 DEBUG ca-mgm - type2Section: type=6 result=ca
-DEBUG limal - removeFile ./TestRepos/ca2_test/openssl.cnf
+DEBUG ca-mgm - removeFile ./TestRepos/ca2_test/openssl.cnf

@@ -29,8 +29,6 @@
 #include  <limal/ca-mgm/IssuerAlternativeNameExtension.hpp>
 #include  <blocxx/COWIntrusiveReference.hpp>
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 
@@ -91,7 +89,5 @@ namespace CA_MGM_NAMESPACE
 		blocxx::COWIntrusiveReference<X509v3CRLGenerationExtsImpl> m_impl;
     	
 	};
-
-}
 }
 #endif //LIMAL_CA_MGM_X509V3_CRL_GENERATION_EXTENSIONS_HPP

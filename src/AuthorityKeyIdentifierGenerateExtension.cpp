@@ -27,12 +27,10 @@
 
 #include  "Utils.hpp"
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 
-using namespace limal;
+using namespace ca_mgm;
 using namespace blocxx;
 
 class AuthorityKeyIdentifierGenerateExtImpl : public blocxx::COWIntrusiveCountableBase
@@ -82,7 +80,7 @@ AuthorityKeyIdentifierGenerateExt::AuthorityKeyIdentifierGenerateExt(CAConfig* c
 	if(type == E_Client_Req || type == E_Server_Req || type == E_CA_Req)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -150,7 +148,7 @@ AuthorityKeyIdentifierGenerateExt::getKeyID() const
 	if(!isPresent())
 	{
 		LOGIT_ERROR("AuthorityKeyIdentifierGenerateExt is not present");
-		BLOCXX_THROW(limal::RuntimeException,
+		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             __("AuthorityKeyIdentifierGenerateExt is not present."));
 	}
 	return m_impl->keyid;
@@ -169,7 +167,7 @@ AuthorityKeyIdentifierGenerateExt::getIssuer() const
 	if(!isPresent())
 	{
 		LOGIT_ERROR("AuthorityKeyIdentifierGenerateExt is not present");
-		BLOCXX_THROW(limal::RuntimeException,
+		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             __("AuthorityKeyIdentifierGenerateExt is not present."));
 	}
 	return m_impl->issuer;
@@ -181,7 +179,7 @@ AuthorityKeyIdentifierGenerateExt::commit2Config(CA& ca, Type type) const
 	if(!valid())
 	{
 		LOGIT_ERROR("invalid AuthorityKeyIdentifierGenerateExt object");
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             __("Invalid AuthorityKeyIdentifierGenerateExt object."));
 	}
 
@@ -189,7 +187,7 @@ AuthorityKeyIdentifierGenerateExt::commit2Config(CA& ca, Type type) const
 	if(type == E_Client_Req || type == E_Server_Req || type == E_CA_Req)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             Format(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -279,5 +277,4 @@ AuthorityKeyIdentifierGenerateExt::dump() const
 	return result;
 }
 
-}
 }

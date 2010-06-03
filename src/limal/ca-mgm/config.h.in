@@ -69,8 +69,6 @@
 #ifndef    ca_mgm_config_h
 #define    ca_mgm_config_h
 
-#include  <limal/config.h>
-
 
 /**
  * LiMaL ca-mgm library version.
@@ -93,31 +91,12 @@
  * with appended API version number.
  */
 #ifndef CA_MGM_NAMESPACE
-#define CA_MGM_NAMESPACE \
-	LIMAL_DEFINE_NAMESPACE(ca_mgm, LIMAL_CA_MGM_API_VERSION)
+#define CA_MGM_NAMESPACE ca_mgm
 #endif /* CA_MGM_NAMESPACE */
 
-/**
- * @namespace limal
- * @brief The main LiMaL namespace.
- */
-/**
- * @namespace limal::ca_mgm
- * @brief The LiMaL ca-mgm library namespace.
- *
- * The LiMaL ca_mgm namespace is only a alias.
- * The real namespace is defined in the @file config.h
- * file to a namespace with appended API version number.
- */
-#ifdef    __cplusplus
-namespace LIMAL_NAMESPACE
-{
-    namespace CA_MGM_NAMESPACE
-    {
-    }
-    namespace ca_mgm = CA_MGM_NAMESPACE;
-}
-#endif /* __cplusplus */
+#ifndef LIMAL_NAMESPACE
+#define LIMAL_NAMESPACE ca_mgm
+#endif
 
 
 #ifdef    __cplusplus

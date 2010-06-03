@@ -27,8 +27,6 @@
 #include  <limal/ca-mgm/ExtensionBase.hpp>
 #include  <blocxx/COWIntrusiveReference.hpp>
 
-namespace LIMAL_NAMESPACE {
-
 namespace CA_MGM_NAMESPACE {
 
 	class CA;
@@ -227,7 +225,6 @@ namespace CA_MGM_NAMESPACE {
 		virtual blocxx::StringArray  dump() const;
 	};
 
-}
 }
 
 #endif // LIMAL_CA_MGM_BIT_EXTENSIONS_HPP

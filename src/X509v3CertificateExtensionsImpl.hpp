@@ -38,7 +38,6 @@
 #include  <limal/ca-mgm/CertificatePoliciesExtension.hpp>
 #include  <blocxx/COWIntrusiveCountableBase.hpp>
 
-namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
@@ -121,6 +120,5 @@ public:
 	CertificatePoliciesExt    certificatePolicies;
 };
 
-}
 }
 #endif   /* LIMAL_CA_MGM_X509V3_CERTIFICATE_EXTS_IMPL_HPP */

@@ -27,7 +27,6 @@
 #include  <limal/ca-mgm/DNObject.hpp>
 #include  <openssl/x509.h>
 
-namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
@@ -72,7 +71,6 @@ public:
 	setDefaults2Config(CA& ca);
 };
 
-}
 }
 
 #endif // LIMAL_CA_MGM_DN_OBJECT_PRIV_HPP

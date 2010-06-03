@@ -27,14 +27,12 @@
 #include  "Utils.hpp"
 #include  "INIParser/INIParser.hpp"
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 
-using namespace limal;
+using namespace ca_mgm;
 using namespace blocxx;
-using namespace limal::INI;
+using namespace ca_mgm::INI;
 using namespace std;
 
 struct CAConfig::CASection
@@ -299,7 +297,7 @@ CAConfig::validateAndFix()
 {
 	bool didChanges = false;
 
-	limal::INI::SectionMap sections = m_impl->parser.iniFile.getSections();
+	ca_mgm::INI::SectionMap sections = m_impl->parser.iniFile.getSections();
 
 	if(sections.find("req") != sections.end())
 	{
@@ -356,6 +354,5 @@ CAConfig::validateAndFix()
 	}
 }
 
-}
 }
 

@@ -26,8 +26,6 @@
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <blocxx/COWIntrusiveReference.hpp>
 
-namespace LIMAL_NAMESPACE {
-
 namespace CA_MGM_NAMESPACE {
 
 	class CRLReasonImpl;
@@ -131,7 +129,6 @@ namespace CA_MGM_NAMESPACE {
                 
 	};
 
-}
 }
 
 #endif // LIMAL_CA_MGM_CRL_REASON_HPP

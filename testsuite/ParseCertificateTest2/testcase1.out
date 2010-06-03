@@ -159,8 +159,8 @@ Certificate:
         Subject: O=Token Key User/emailAddress=nalin@redhat.com, CN=Nalin Dahyabhai/UID=nalin
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
-                Public-Key: (1024 bit)
-                Modulus:
+            RSA Public Key: (1024 bit)
+                Modulus (1024 bit):
                     00:d3:46:20:ca:6b:83:f3:da:41:17:db:12:77:d6:
                     0e:7c:ec:51:f3:43:f0:5c:18:0d:3b:2e:c2:21:6d:
                     8b:b3:31:2c:7b:d1:4f:d3:7f:27:2c:5c:3a:08:6b:
@@ -186,9 +186,7 @@ Certificate:
             X509v3 Extended Key Usage: 
                 Microsoft Smartcardlogin, TLS Web Client Authentication, E-mail Protection
             X509v3 CRL Distribution Points: 
-
-                Full Name:
-                  URI:http://frenzy.boston.redhat.com/coolkey/crl/revocations.crl
+                URI:http://frenzy.boston.redhat.com/coolkey/crl/revocations.crl
 
     Signature Algorithm: sha1WithRSAEncryption
         50:20:9d:bc:6c:f2:af:41:dd:8a:eb:b6:bd:67:b7:59:42:17:
@@ -214,9 +212,7 @@ Certificate:
     X509v3 Extended Key Usage: 
         Microsoft Smartcardlogin, TLS Web Client Authentication, E-mail Protection
     X509v3 CRL Distribution Points: 
-
-        Full Name:
-          URI:http://frenzy.boston.redhat.com/coolkey/crl/revocations.crl
+        URI:http://frenzy.boston.redhat.com/coolkey/crl/revocations.crl
 
 
 DONE

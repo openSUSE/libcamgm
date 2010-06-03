@@ -28,7 +28,6 @@
 
 #include  "X509v3CRLExtensions_Priv.hpp"
 
-namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
@@ -121,7 +120,6 @@ public:
 
 	X509_CRL                             *x509;
 };
-}
 }
 
 #endif // LIMAL_CA_MGM_CRL_DATA_IMPL_HPP

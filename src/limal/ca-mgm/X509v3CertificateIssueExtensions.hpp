@@ -39,8 +39,6 @@
 #include  <limal/ca-mgm/CertificatePoliciesExtension.hpp>
 #include  <blocxx/COWIntrusiveReference.hpp>
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 
@@ -246,7 +244,6 @@ namespace CA_MGM_NAMESPACE
 
 	};
 
-}
 }
 
 #endif // LIMAL_CA_MGM_X509V_CERTIFICATE_ISSUE_EXTENSIONS_HPP

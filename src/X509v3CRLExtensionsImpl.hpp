@@ -26,7 +26,6 @@
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <blocxx/COWIntrusiveCountableBase.hpp>
 
-namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
@@ -54,6 +53,5 @@ public:
 	AuthorityKeyIdentifierExt authorityKeyIdentifier;
 	IssuerAlternativeNameExt  issuerAlternativeName;
 };
-}
 }
 #endif     /* LIMAL_CA_MGM_X509V3_CRL_EXTS_IMPL_HPP */

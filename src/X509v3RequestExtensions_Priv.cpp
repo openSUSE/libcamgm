@@ -33,12 +33,10 @@
 #include  "X509v3RequestExtensionsImpl.hpp"
 #include  "Utils.hpp"
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 
-using namespace limal;
+using namespace ca_mgm;
 using namespace blocxx;
 
 
@@ -130,14 +128,14 @@ X509v3RequestExts_Priv::parseStringExt(STACK_OF(X509_EXTENSION) * cert,
 		{
 			// extension occurred more than once
 			LOGIT_ERROR("Extension occurred more than once: " << nid);
-			BLOCXX_THROW(limal::SyntaxException,
+			BLOCXX_THROW(ca_mgm::SyntaxException,
 			             Format(__("Extension occurred more than once: %1."),
 			                    nid).c_str());
 		}
 
 		LOGIT_ERROR("Unable to parse the certificate (NID:" << nid <<
 		            " Crit:" << crit << ")");
-		BLOCXX_THROW(limal::SyntaxException,
+		BLOCXX_THROW(ca_mgm::SyntaxException,
 		             Format(__("Unable to parse the certificate (NID: %1 Crit: %2)."),
 		                    nid, crit).c_str());
 	}
@@ -185,14 +183,14 @@ X509v3RequestExts_Priv::parseBitExt(STACK_OF(X509_EXTENSION)* cert,
 		{
 			// extension occurred more than once
 			LOGIT_ERROR("Extension occurred more than once: " << nid);
-			BLOCXX_THROW(limal::SyntaxException,
+			BLOCXX_THROW(ca_mgm::SyntaxException,
 			             Format(__("Extension occurred more than once: %1."),
 			                    nid).c_str());
 		}
 
 		LOGIT_ERROR("Unable to parse the certificate (NID:" << nid <<
 		            " Crit:" << crit << ")");
-		BLOCXX_THROW(limal::SyntaxException,
+		BLOCXX_THROW(ca_mgm::SyntaxException,
 		             Format(__("Unable to parse the certificate (NID: %1 Crit: %2)."),
 		                    nid, crit).c_str());
 	}
@@ -245,12 +243,12 @@ X509v3RequestExts_Priv::parseExtendedKeyUsageExt(STACK_OF(X509_EXTENSION)* cert,
 		{
 			// extension occurred more than once
 			LOGIT_ERROR("Extension occurred more than once");
-			BLOCXX_THROW(limal::SyntaxException,
+			BLOCXX_THROW(ca_mgm::SyntaxException,
 			             __("Extension occurred more than once."));
 		}
 
 		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
-		BLOCXX_THROW(limal::SyntaxException,
+		BLOCXX_THROW(ca_mgm::SyntaxException,
 		             Format(__("Unable to parse the certificate (Crit: %1)."),
 		                    crit).c_str());
 	}
@@ -311,12 +309,12 @@ X509v3RequestExts_Priv::parseBasicConstraintsExt(STACK_OF(X509_EXTENSION)* cert,
 		{
 			// extension occurred more than once
 			LOGIT_ERROR("Extension occurred more than once");
-			BLOCXX_THROW(limal::SyntaxException,
+			BLOCXX_THROW(ca_mgm::SyntaxException,
 			             __("Extension occurred more than once."));
 		}
 
 		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
-		BLOCXX_THROW(limal::SyntaxException,
+		BLOCXX_THROW(ca_mgm::SyntaxException,
 		             Format(__("Unable to parse the certificate (Crit: %1)."),
 		                    crit).c_str());
 	}
@@ -374,13 +372,13 @@ X509v3RequestExts_Priv::parseSubjectKeyIdentifierExt(STACK_OF(X509_EXTENSION) *c
 		{
 			// extension occurred more than once
 			LOGIT_ERROR("Extension occurred more than once");
-			BLOCXX_THROW(limal::SyntaxException,
+			BLOCXX_THROW(ca_mgm::SyntaxException,
 			             __("Extension occurred more than once."));
 
 		}
 
 		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
-		BLOCXX_THROW(limal::SyntaxException,
+		BLOCXX_THROW(ca_mgm::SyntaxException,
 		             Format(__("Unable to parse the certificate (Crit: %1)."),
 		                    crit).c_str());
 	}
@@ -435,12 +433,12 @@ X509v3RequestExts_Priv::parseSubjectAlternativeNameExt(STACK_OF(X509_EXTENSION) 
 		{
 			// extension occurred more than once
 			LOGIT_ERROR("Extension occurred more than once");
-			BLOCXX_THROW(limal::SyntaxException,
+			BLOCXX_THROW(ca_mgm::SyntaxException,
 			             __("Extension occurred more than once."));
 		}
 
 		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
-		BLOCXX_THROW(limal::SyntaxException,
+		BLOCXX_THROW(ca_mgm::SyntaxException,
 		             Format(__("Unable to parse the certificate (Crit: %1)."),
 		                    crit).c_str());
 	}
@@ -480,5 +478,4 @@ X509v3RequestExts_Priv::parseSubjectAlternativeNameExt(STACK_OF(X509_EXTENSION) 
 	GENERAL_NAMES_free(gns);
 }
 
-}
 }

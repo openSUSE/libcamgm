@@ -12,10 +12,10 @@
 #include <unistd.h>
 
 using namespace blocxx;
-using namespace limal;
-using namespace limal::INI;
 
-limal::Logger logger("parser");
+using namespace ca_mgm::INI;
+
+ca_mgm::Logger logger("parser");
 
 void addEntries(Section descSection, Section section)
 {
@@ -200,7 +200,7 @@ int main(int argc, char **argv)
 					E_ALL_LEVEL,
 					logAppender
 				));
-	limal::Logger::setDefaultLogger(appLogger);
+	ca_mgm::Logger::setDefaultLogger(appLogger);
 
 	// Loading description file
 	INIParser descParser;

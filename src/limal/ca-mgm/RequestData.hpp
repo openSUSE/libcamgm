@@ -29,7 +29,6 @@
 #include  <limal/ByteBuffer.hpp>
 #include  <blocxx/COWIntrusiveReference.hpp>
 
-namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
@@ -64,13 +63,13 @@ namespace CA_MGM_NAMESPACE {
 		KeyAlg
 		getKeyAlgorithm() const;
         
-		limal::ByteBuffer
+		ca_mgm::ByteBuffer
 		getPublicKey() const;
         
 		SigAlg
 		getSignatureAlgorithm() const;
         
-		limal::ByteBuffer
+		ca_mgm::ByteBuffer
 		getSignature() const;
         
 		X509v3RequestExts
@@ -112,7 +111,6 @@ namespace CA_MGM_NAMESPACE {
 
 	};
 
-}
 }
 
 #endif // LIMAL_CA_MGM_REQUEST_DATA_HPP

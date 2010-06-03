@@ -12,10 +12,10 @@
 #include <unistd.h>
 
 using namespace blocxx;
-using namespace limal;
-using namespace limal::INI;
 
-limal::Logger logger("parser");
+using namespace ca_mgm::INI;
+
+ca_mgm::Logger logger("parser");
 
 
 void dumpTree(Section *section, int level = 0)
@@ -65,7 +65,7 @@ int main(int argc, char **argv)
 					E_ALL_LEVEL,
 					logAppender
 				));
-	limal::Logger::setDefaultLogger(appLogger);
+	ca_mgm::Logger::setDefaultLogger(appLogger);
 
 
 	// Initialize parser for testfile

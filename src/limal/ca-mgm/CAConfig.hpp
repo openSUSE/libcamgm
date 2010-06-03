@@ -32,8 +32,6 @@
 #include  <blocxx/COWIntrusiveReference.hpp>
 
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 
@@ -123,7 +121,6 @@ namespace CA_MGM_NAMESPACE
 		void validateAndFix();
 	};
     
-}
 }
 
 #endif  //LIMAL_CA_CONFIG_HPP

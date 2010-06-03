@@ -29,12 +29,10 @@
 #include  "RequestDataImpl.hpp"
 #include  "X509v3RequestExtensions_Priv.hpp"
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 
-using namespace limal;
+using namespace ca_mgm;
 using namespace blocxx;
 
 
@@ -242,5 +240,4 @@ RequestData::RequestData()
 	: m_impl(new RequestDataImpl())
 {}
 
-}
 }

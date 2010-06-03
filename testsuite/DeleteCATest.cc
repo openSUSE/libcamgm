@@ -15,8 +15,8 @@
 #include <unistd.h>
 
 using namespace blocxx;
-using namespace limal;
-using namespace limal::ca_mgm;
+
+using namespace ca_mgm;
 using namespace std;
 
 int main()
@@ -26,13 +26,13 @@ int main()
         cout << "START" << endl;
         
         // Logging
-        LoggerRef l = limal::Logger::createCerrLogger(
+        LoggerRef l = ca_mgm::Logger::createCerrLogger(
                                                       "DeleteCATest",
                                                       LogAppender::ALL_COMPONENTS,
                                                       LogAppender::ALL_CATEGORIES,
                                                       "%-5p %c - %m"
                                                   );
-        limal::Logger::setDefaultLogger(l);
+        ca_mgm::Logger::setDefaultLogger(l);
 
         // fake the index.txt
         path::copyFile("./TestRepos/Test_CA1/index.txt", 

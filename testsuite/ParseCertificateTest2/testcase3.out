@@ -140,8 +140,8 @@ Certificate:
         Subject: CN=saber.boston.redhat.com
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
-                Public-Key: (1024 bit)
-                Modulus:
+            RSA Public Key: (1024 bit)
+                Modulus (1024 bit):
                     00:d5:87:96:bf:d3:93:7e:14:87:fd:ea:f5:75:49:
                     05:3c:1f:20:15:be:ee:19:6c:21:e0:61:88:fa:dd:
                     b4:c7:43:d6:14:6e:7e:23:b2:48:f2:49:5a:db:74:
@@ -166,10 +166,8 @@ Certificate:
                 keyid:A9:DB:56:B0:04:16:34:DA:49:D8:F3:B3:FB:CC:42:2E:96:8C:BE:B3
 
             X509v3 CRL Distribution Points: 
-
-                Full Name:
-                  URI:ldap:///CN=Certifying%20Authority,CN=saber,CN=CDP,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=boston,DC=redhat,DC=com?certificateRevocationList?base?objectClass=cRLDistributionPoint
-                  URI:http://saber.boston.redhat.com/CertEnroll/Certifying%20Authority.crl
+                URI:ldap:///CN=Certifying%20Authority,CN=saber,CN=CDP,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=boston,DC=redhat,DC=com?certificateRevocationList?base?objectClass=cRLDistributionPoint
+                URI:http://saber.boston.redhat.com/CertEnroll/Certifying%20Authority.crl
 
             Authority Information Access: 
                 CA Issuers - URI:ldap:///CN=Certifying%20Authority,CN=AIA,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=boston,DC=redhat,DC=com?cACertificate?base?objectClass=certificationAuthority
@@ -209,10 +207,8 @@ Certificate:
         keyid:A9:DB:56:B0:04:16:34:DA:49:D8:F3:B3:FB:CC:42:2E:96:8C:BE:B3
 
     X509v3 CRL Distribution Points: 
-
-        Full Name:
-          URI:ldap:///CN=Certifying%20Authority,CN=saber,CN=CDP,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=boston,DC=redhat,DC=com?certificateRevocationList?base?objectClass=cRLDistributionPoint
-          URI:http://saber.boston.redhat.com/CertEnroll/Certifying%20Authority.crl
+        URI:ldap:///CN=Certifying%20Authority,CN=saber,CN=CDP,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=boston,DC=redhat,DC=com?certificateRevocationList?base?objectClass=cRLDistributionPoint
+        URI:http://saber.boston.redhat.com/CertEnroll/Certifying%20Authority.crl
 
     Authority Information Access: 
         CA Issuers - URI:ldap:///CN=Certifying%20Authority,CN=AIA,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=boston,DC=redhat,DC=com?cACertificate?base?objectClass=certificationAuthority

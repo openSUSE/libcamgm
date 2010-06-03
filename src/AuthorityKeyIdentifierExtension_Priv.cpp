@@ -30,12 +30,10 @@
 
 #include "Utils.hpp"
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 
-using namespace limal;
+using namespace ca_mgm;
 using namespace blocxx;
 
 AuthorityKeyIdentifierExt_Priv::AuthorityKeyIdentifierExt_Priv()
@@ -66,12 +64,12 @@ AuthorityKeyIdentifierExt_Priv::AuthorityKeyIdentifierExt_Priv(STACK_OF(X509_EXT
 		{
 			// extension occurred more than once
 			LOGIT_ERROR("Extension occurred more than once");
-			BLOCXX_THROW(limal::SyntaxException,
+			BLOCXX_THROW(ca_mgm::SyntaxException,
 			             "Extension occurred more than once");
 		}
 
 		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
-		BLOCXX_THROW(limal::SyntaxException,
+		BLOCXX_THROW(ca_mgm::SyntaxException,
 		             Format("Unable to parse the certificate (Crit: %2)",
 		                    crit).c_str());
 	}
@@ -161,5 +159,4 @@ AuthorityKeyIdentifierExt_Priv::operator=(const AuthorityKeyIdentifierExt_Priv& 
 }
 
 
-}
 }

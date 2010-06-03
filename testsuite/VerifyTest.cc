@@ -14,8 +14,8 @@
 #include <unistd.h>
 
 using namespace blocxx;
-using namespace limal;
-using namespace limal::ca_mgm;
+
+using namespace ca_mgm;
 using namespace std;
 
 int main()
@@ -35,13 +35,13 @@ int main()
         comp.push_back("limal");
 
         // Logging
-        LoggerRef l = limal::Logger::createCerrLogger(
+        LoggerRef l = ca_mgm::Logger::createCerrLogger(
                                                       "VerifyTest",
                                                       comp,
                                                       cat,
                                                       "%-5p %c - %m"
                                                       );
-        limal::Logger::setDefaultLogger(l);
+        ca_mgm::Logger::setDefaultLogger(l);
         
         cout << "=================== start Verify Test ======================" << endl;
         {

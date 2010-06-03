@@ -28,7 +28,6 @@
 
 #include  "X509v3CertificateExtensions_Priv.hpp"
 
-namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
@@ -107,7 +106,6 @@ public:
 
 };
 
-}
 }
 
 #endif // LIMAL_CA_MGM_CERTIFICATE_DATA_IMPL_HPP

@@ -116,8 +116,8 @@ Certificate:
         Subject: O=BMEMMOTT5-TREE, CN=bmemmott5.lab.novell.com
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
-                Public-Key: (2048 bit)
-                Modulus:
+            RSA Public Key: (2048 bit)
+                Modulus (2048 bit):
                     00:c4:76:89:2d:fb:3a:48:8d:a6:04:e4:74:68:78:
                     c3:76:3d:15:a0:0c:6a:b5:fc:c3:cd:d2:55:5f:32:
                     4f:e1:86:8e:2c:67:9f:28:95:07:fa:c0:ca:a0:67:

@@ -29,12 +29,10 @@
 
 #include  "Utils.hpp"
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 
-using namespace limal;
+using namespace ca_mgm;
 using namespace blocxx;
 
 class CertificateIssueDataImpl : public blocxx::COWIntrusiveCountableBase
@@ -184,7 +182,7 @@ CertificateIssueData::setExtensions(const X509v3CertificateIssueExts& ext)
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(limal::ValueException, r[0].c_str());
+		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 	m_impl->extensions = ext;
 }
@@ -207,7 +205,7 @@ CertificateIssueData::commit2Config(CA& ca, Type type) const
 	if(!valid())
 	{
 		LOGIT_ERROR("invalid CertificateIssueData object");
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             __("Invalid CertificateIssueData object."));
 	}
 	// These types are not supported by this object
@@ -215,7 +213,7 @@ CertificateIssueData::commit2Config(CA& ca, Type type) const
 	   type == E_Server_Req || type == E_CA_Req)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		             Format(__("Wrong type: %1."), type).c_str());
 	}
 	UInt32 t = (UInt32)((getEndDate() - getStartDate())/(60*60*24));
@@ -299,5 +297,4 @@ CertificateIssueData::dump() const
 	return result;
 }
 
-}
 }

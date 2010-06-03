@@ -27,7 +27,6 @@
 #include  <limal/ca-mgm/X509v3CRLExtensions.hpp>
 #include  <openssl/x509.h>
 
-namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
@@ -51,7 +50,6 @@ private:
 
 };
 
-}
 }
 
 #endif // LIMAL_CA_MGM_X509V3_CRL_EXTENSIONS_PRIV_HPP

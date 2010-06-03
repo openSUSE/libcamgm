@@ -13,8 +13,23 @@ AM_LDFLAGS  = -pthread
 limallib_LTLIBRARIES = liblimal-ca-mgm.la
 
 liblimal_ca_mgm_la_SOURCES  =	\
+        ValuePosixRECheck.cpp   \
+        ValuePerlRECheck.cpp    \
+        ValueIntCheck.cpp       \
+        ValueCheck.cpp          \
+        Exception.cpp           \
+        Logger.cpp              \
+        PathName.cpp            \
+        PathInfo.cpp            \
+        PathUtils.cpp           \
+        ByteBuffer.cpp          \
+        LDAPUrlImpl.cpp         \
+        UrlByScheme.cpp         \
+        UrlUtils.cpp            \
+        UrlBase.cpp             \
+        Url.cpp                 \
+        Utils.cpp \
 	config.cpp \
-	Utils.cpp  \
 	ExtensionBase.cpp \
 	LiteralValues.cpp \
 	AuthorityInfoAccessExtension.cpp \
@@ -60,6 +75,7 @@ liblimal_ca_mgm_la_SOURCES  =	\
 	INIParser/IniParser.cpp \
 	INIParser/INIParser.cpp
 
+#        config.cpp              \
 liblimal_ca_mgm_la_CXXFLAGS = $(LIMAL_CFLAGS)
 
 liblimal_ca_mgm_la_LDFLAGS  = \
@@ -69,7 +85,7 @@ liblimal_ca_mgm_la_LDFLAGS  = \
 liblimal_ca_mgm_la_LIBADD = $(LIB_SSL)
 
 CLEANFILES     = *~
-DISTCLEANFILES = Commands.hpp
+DISTCLEANFILES = Commands.hpp Utils.hpp config.log
 EXTRA_DIST     = *.hpp Commands.hpp.in openssl.cnf.tmpl \
-                 INIParser/*.h INIParser/*.hpp
+                 INIParser/*.h INIParser/*.hpp 
 

@@ -27,8 +27,6 @@
 #include  <limal/ca-mgm/AuthorityKeyIdentifierExtension.hpp>
 #include  <openssl/x509.h>
 
-namespace LIMAL_NAMESPACE {
-
 namespace CA_MGM_NAMESPACE {
 
 class AuthorityKeyIdentifierExt_Priv : public AuthorityKeyIdentifierExt {
@@ -44,7 +42,6 @@ public:
 
 };
 
-}
 }
 
 #endif // LIMAL_CA_MGM_AUTHORITY_KEY_IDENTIFIER_EXTENSION_PRIV_HPP

@@ -263,7 +263,7 @@ private:
     IniSectionIndex isections;
 
     // create Logger instance
-    limal::Logger logger;
+    Logger logger;
 
     /** build ivalues and isections */
     void reindex ();

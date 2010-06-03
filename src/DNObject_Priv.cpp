@@ -26,12 +26,10 @@
 
 #include  "Utils.hpp"
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 
-using namespace limal;
+using namespace ca_mgm;
 using namespace blocxx;
 
 RDNObject_Priv::RDNObject_Priv()
@@ -77,7 +75,7 @@ DNObject_Priv::DNObject_Priv(X509_NAME *x509_name)
 	if(!bio)
 	{
 		LOGIT_ERROR("Can not create a memory BIO");
-		BLOCXX_THROW(limal::MemoryException,
+		BLOCXX_THROW(ca_mgm::MemoryException,
 		             __("Cannot create a memory BIO."));
 	}
 
@@ -113,7 +111,7 @@ DNObject_Priv::DNObject_Priv(X509_NAME *x509_name)
 	 BIO_free(bio);
 
 	 LOGIT_ERROR("Can not parse DN line: " << lines[j]);
-	 BLOCXX_THROW(limal::RuntimeException,
+	 BLOCXX_THROW(ca_mgm::RuntimeException,
 	 Format("Can not parse DN line: %1", lines[j]).c_str());
 
 	 }
@@ -154,7 +152,7 @@ DNObject_Priv::DNObject_Priv(X509_NAME *x509_name)
 			BIO_free(bio);
 
 			LOGIT_ERROR("Can not parse DN line: " << lines[j]);
-			BLOCXX_THROW(limal::RuntimeException,
+			BLOCXX_THROW(ca_mgm::RuntimeException,
 			             // %1 is the wrong part of a DN which could not be parsed
 			             Format(__("Cannot parse DN line: %1."), lines[j]).c_str());
 		}
@@ -195,7 +193,7 @@ DNObject_Priv::setDefaults2Config(CA& ca)
 	if(!p)
 	{
 		LOGIT_ERROR("missing section 'distinguished_name' in config file");
-		BLOCXX_THROW(limal::SyntaxException,
+		BLOCXX_THROW(ca_mgm::SyntaxException,
 		             __("Missing section 'distinguished_name' in the configuration file."));
 	}
 	String dnSect = ca.getConfig()->getValue("req_ca", "distinguished_name");
@@ -205,7 +203,7 @@ DNObject_Priv::setDefaults2Config(CA& ca)
 	if(dnKeys.empty())
 	{
 		LOGIT_ERROR("Can not parse Section " << dnSect);
-		BLOCXX_THROW(limal::SyntaxException,
+		BLOCXX_THROW(ca_mgm::SyntaxException,
 		             Format(__("Cannot parse section %1."), dnSect).c_str());
 	}
 	StringList::const_iterator it = dnKeys.begin();
@@ -270,6 +268,5 @@ DNObject_Priv::setDefaults2Config(CA& ca)
 	}
 }
 
-}
 }
 

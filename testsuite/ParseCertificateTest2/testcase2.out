@@ -136,8 +136,8 @@ Certificate:
         Subject: DC=com, DC=redhat, DC=boston, CN=Certifying Authority
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
-                Public-Key: (2048 bit)
-                Modulus:
+            RSA Public Key: (2048 bit)
+                Modulus (2048 bit):
                     00:b9:38:fa:f3:01:b3:34:53:5e:4b:e5:c0:ad:34:
                     c0:ef:3f:a8:c8:b0:08:fa:04:00:9d:56:f0:16:d2:
                     81:8b:56:fc:71:bd:d1:7c:ce:52:e9:df:e5:22:5f:
@@ -165,10 +165,8 @@ Certificate:
             X509v3 Subject Key Identifier: 
                 A9:DB:56:B0:04:16:34:DA:49:D8:F3:B3:FB:CC:42:2E:96:8C:BE:B3
             X509v3 CRL Distribution Points: 
-
-                Full Name:
-                  URI:ldap:///CN=Certifying%20Authority,CN=saber,CN=CDP,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=boston,DC=redhat,DC=com?certificateRevocationList?base?objectClass=cRLDistributionPoint
-                  URI:http://saber.boston.redhat.com/CertEnroll/Certifying%20Authority.crl
+                URI:ldap:///CN=Certifying%20Authority,CN=saber,CN=CDP,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=boston,DC=redhat,DC=com?certificateRevocationList?base?objectClass=cRLDistributionPoint
+                URI:http://saber.boston.redhat.com/CertEnroll/Certifying%20Authority.crl
 
             1.3.6.1.4.1.311.21.1: 
                 ...
@@ -196,10 +194,8 @@ Certificate:
     X509v3 Subject Key Identifier: 
         A9:DB:56:B0:04:16:34:DA:49:D8:F3:B3:FB:CC:42:2E:96:8C:BE:B3
     X509v3 CRL Distribution Points: 
-
-        Full Name:
-          URI:ldap:///CN=Certifying%20Authority,CN=saber,CN=CDP,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=boston,DC=redhat,DC=com?certificateRevocationList?base?objectClass=cRLDistributionPoint
-          URI:http://saber.boston.redhat.com/CertEnroll/Certifying%20Authority.crl
+        URI:ldap:///CN=Certifying%20Authority,CN=saber,CN=CDP,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=boston,DC=redhat,DC=com?certificateRevocationList?base?objectClass=cRLDistributionPoint
+        URI:http://saber.boston.redhat.com/CertEnroll/Certifying%20Authority.crl
 
     1.3.6.1.4.1.311.21.1: 
         ...

@@ -27,7 +27,6 @@
 #include  <blocxx/List.hpp>
 #include  <blocxx/COWIntrusiveCountableBase.hpp>
 
-namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
@@ -89,7 +88,6 @@ public:
 
 };
 
-}
 }
 
 #endif // LIMAL_CA_MGM_DN_OBJECT_IMPL_HPP

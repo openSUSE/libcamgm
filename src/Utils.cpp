@@ -23,7 +23,7 @@
  *         It implements common utilities, like the gettext
  *         text domain initializaton.
  */
-#include <limal/config.h>
+#include <limal/ca-mgm/config.h>
 #include <blocxx/ThreadOnce.hpp>
 
 #include "Utils.hpp"
@@ -31,8 +31,6 @@
 #include <openssl/objects.h>
 
 // -------------------------------------------------------------------
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 namespace
@@ -151,5 +149,4 @@ int wrapExecuteProcessAndGatherOutput(
 
 // -------------------------------------------------------------------
 }       // End of CA_MGM_NAMESPACE
-}       // End of LIMAL_NAMESPACE
 // vim: set ts=8 sts=8 sw=8 ai noet:

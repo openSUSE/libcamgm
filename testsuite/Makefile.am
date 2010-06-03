@@ -5,11 +5,11 @@ SUBDIRS = TestRepos lib config limal.test single.out
 PACKAGE = limal
 AUTOMAKE_OPTIONS = dejagnu
 
-INCLUDES= -I. -I$(top_srcdir)/src
+INCLUDES= -I. -I$(top_srcdir)/src $(BLOCXX_INCLUDES)
 
 AM_CPPFLAGS = $(DEBUG_FLAGS) -pthread -DLOCALEDIR=\"${localedir}\" 
 
-AM_LDFLAGS = \
+AM_LDFLAGS = $(BLOCXX_LIBS) \
 	-pthread -Xlinker --whole-archive \
 	$(top_builddir)/src/liblimal-ca-mgm.la \
 	-Xlinker --no-whole-archive 

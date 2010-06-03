@@ -41,26 +41,24 @@
 
 #include "Commands.hpp"
 
-namespace LIMAL_NAMESPACE
-{
 namespace CA_MGM_NAMESPACE
 {
 
 // -------------------------------------------------------------------
 #define LOGIT(level,message)	\
-LIMAL_SLOG(limal::Logger("ca-mgm"), level, message)
+LIMAL_SLOG(Logger("ca-mgm"), level, message)
 
 #define LOGIT_DEBUG(message)	\
-	LIMAL_SLOG(limal::Logger("ca-mgm"), blocxx::E_DEBUG_LEVEL, message)
+	LIMAL_SLOG(Logger("ca-mgm"), blocxx::E_DEBUG_LEVEL, message)
 
 #define LOGIT_INFO(message)	\
-	LIMAL_SLOG(limal::Logger("ca-mgm"), blocxx::E_INFO_LEVEL, message)
+	LIMAL_SLOG(Logger("ca-mgm"), blocxx::E_INFO_LEVEL, message)
 
 #define LOGIT_ERROR(message)	\
-	LIMAL_SLOG(limal::Logger("ca-mgm"), blocxx::E_ERROR_LEVEL, message)
+	LIMAL_SLOG(Logger("ca-mgm"), blocxx::E_ERROR_LEVEL, message)
 
 #define LOGIT_DEBUG_STRINGARRAY(text, stringarray)                      \
-	limal::Logger d("ca-mgm");                                          \
+	Logger d("ca-mgm");                                          \
 	if(d.isEnabledFor("DEBUG")) {                                       \
 		uint s = stringarray.size();                                    \
 		for(uint i = 0; i < s; i++) {                                   \
@@ -102,7 +100,7 @@ const char *       gettext (const char *msgid,
 /**
  * Internationalization helper macro.
  */
-#define __(MSG)  limal::ca_mgm::gettext( MSG )
+#define __(MSG)  gettext( MSG )
 
 
 // -------------------------------------------------------------------
@@ -110,70 +108,70 @@ const char *       gettext (const char *msgid,
 
 // FIXME: what is the format of a hex number?? 0a:0f or 0a0f
 //        currently allowed is both
-inline limal::ValueCheck initHexCheck() {
-	limal::ValueCheck checkHex =
-		limal::ValueCheck(new limal::ValuePosixRECheck("^[0-9a-fA-F:]*[0-9a-fA-F]{2}$" ));
+inline ValueCheck initHexCheck() {
+	ValueCheck checkHex =
+		ValueCheck(new ValuePosixRECheck("^[0-9a-fA-F:]*[0-9a-fA-F]{2}$" ));
 
 	return checkHex;
 }
 
-inline limal::ValueCheck initOIDCheck() {
-	limal::ValueCheck checkOID =
-		limal::ValueCheck(new limal::ValuePosixRECheck("^([0-9]+\\.)+[0-9]+$"));
+inline ValueCheck initOIDCheck() {
+	ValueCheck checkOID =
+		ValueCheck(new ValuePosixRECheck("^([0-9]+\\.)+[0-9]+$"));
 
 	return checkOID;
 }
 
-inline limal::ValueCheck initURICheck() {
-	limal::ValueCheck checkURI =
-		limal::ValueCheck(new limal::ValuePosixRECheck("^(([^:/?#]+)://)?([^/?#]*)?([^?#]*)?(\\\\?([^#]*))?(#(.*))?"  ));
+inline ValueCheck initURICheck() {
+	ValueCheck checkURI =
+		ValueCheck(new ValuePosixRECheck("^(([^:/?#]+)://)?([^/?#]*)?([^?#]*)?(\\\\?([^#]*))?(#(.*))?"  ));
 
 	return checkURI;
 }
 
-inline limal::ValueCheck initEmailCheck() {
-	limal::ValueCheck checkEmail =
-		limal::ValueCheck(new limal::ValuePosixRECheck("^[^@]+@[^@]+$"));
+inline ValueCheck initEmailCheck() {
+	ValueCheck checkEmail =
+		ValueCheck(new ValuePosixRECheck("^[^@]+@[^@]+$"));
 
 	return checkEmail;
 }
 
-inline limal::ValueCheck initDNSCheck() {
-	limal::ValueCheck checkDNS =
-		limal::ValueCheck(new limal::ValuePosixRECheck("^[^ ]+$"));
+inline ValueCheck initDNSCheck() {
+	ValueCheck checkDNS =
+		ValueCheck(new ValuePosixRECheck("^[^ ]+$"));
 
 	return checkDNS;
 }
 
-inline limal::ValueCheck initIP4Check() {
-	limal::ValueCheck checkIP =
-		limal::ValueCheck(new limal::ValuePosixRECheck("^([0-9]{1,3}\\.){3}[0-9]{1,3}$"));
+inline ValueCheck initIP4Check() {
+	ValueCheck checkIP =
+		ValueCheck(new ValuePosixRECheck("^([0-9]{1,3}\\.){3}[0-9]{1,3}$"));
 
 	return checkIP;
 }
 
-inline limal::ValueCheck initIP6Check() {
-	limal::ValueCheck checkIP =
-		limal::ValueCheck(new limal::ValuePosixRECheck("^([0-9a-fA-F]{1,4}:){7}([0-9a-fA-F]){1,4}$"))
-		.Or(new limal::ValuePosixRECheck("^:(:[0-9a-fA-F]{1,4}){1,6}$"))
-		.Or(new limal::ValuePosixRECheck("^([0-9a-fA-F]{1,4}:){1,6}:$"))
+inline ValueCheck initIP6Check() {
+	ValueCheck checkIP =
+		ValueCheck(new ValuePosixRECheck("^([0-9a-fA-F]{1,4}:){7}([0-9a-fA-F]){1,4}$"))
+		.Or(new ValuePosixRECheck("^:(:[0-9a-fA-F]{1,4}){1,6}$"))
+		.Or(new ValuePosixRECheck("^([0-9a-fA-F]{1,4}:){1,6}:$"))
 		.Or(
-			limal::ValueCheck(
-							  limal::ValueCheck( new limal::ValuePosixRECheck( "^(([0-9a-fA-F]{1,4}):){1,6}(:([0-9a-fA-F]{1,4})){1,6}$")) 
+			ValueCheck(
+							  ValueCheck( new ValuePosixRECheck( "^(([0-9a-fA-F]{1,4}):){1,6}(:([0-9a-fA-F]{1,4})){1,6}$")) 
 					    ).And(
-							  limal::ValueCheck( new limal::ValuePosixRECheck("^([^:]*:){8,}")).Not()
+							  ValueCheck( new ValuePosixRECheck("^([^:]*:){8,}")).Not()
 						).And(
-							  limal::ValueCheck( new limal::ValuePosixRECheck("::.*::") ).Not()
+							  ValueCheck( new ValuePosixRECheck("::.*::") ).Not()
 							 )
 		   );
 	
 	return checkIP;
 }
 
-inline limal::ValueCheck initAccessOIDCheck() {
-	limal::ValueCheck checkAccessOID =
-		limal::ValueCheck(new limal::ValuePosixRECheck("^(OCSP|caIssuers)$"))
-		.Or(new limal::ValuePosixRECheck("^([0-9]+\\.)+[0-9]+$"));
+inline ValueCheck initAccessOIDCheck() {
+	ValueCheck checkAccessOID =
+		ValueCheck(new ValuePosixRECheck("^(OCSP|caIssuers)$"))
+		.Or(new ValuePosixRECheck("^([0-9]+\\.)+[0-9]+$"));
 
 	return checkAccessOID;
 }
@@ -182,7 +180,7 @@ inline blocxx::StringArray
 	checkLiteralValueList(const blocxx::List<LiteralValue>& list)
 {
 	blocxx::StringArray result;
-	blocxx::List<limal::ca_mgm::LiteralValue>::const_iterator it = list.begin();
+	blocxx::List<LiteralValue>::const_iterator it = list.begin();
 	for(;it != list.end(); it++) {
 		result.appendArray((*it).verify());
 	}
@@ -239,7 +237,7 @@ inline blocxx::String type2Section(Type type, bool v3section)
 		break;
 	default:
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(limal::ValueException, blocxx::Format("wrong type: %1", type).c_str());
+		BLOCXX_THROW(ValueException, blocxx::Format("wrong type: %1", type).c_str());
 	}
 	LOGIT_DEBUG("type2Section: type=" << type << " result=" << result);
 	return result;
@@ -259,7 +257,7 @@ int wrapExecuteProcessAndGatherOutput(
 inline int rehashCAs(const blocxx::String &repositoryDir)
 {
 	blocxx::Array<blocxx::String> cmd;
-	cmd.push_back(limal::ca_mgm::C_REHASH_COMMAND);
+	cmd.push_back(C_REHASH_COMMAND);
 	cmd.push_back(repositoryDir);
 
 	blocxx::EnvVars env;
@@ -295,8 +293,6 @@ inline int rehashCAs(const blocxx::String &repositoryDir)
 	return status;
 }
 
-
-}
 }
 // -------------------------------------------------------------------
 

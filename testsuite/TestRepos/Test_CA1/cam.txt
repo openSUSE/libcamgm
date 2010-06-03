@@ -1,0 +1,14 @@
+b4d4e48e6de644c953290eb2854a6ced-1275578579 /C=DE/CN=Test CA\/SUSE Inc.\\Gmbh/emailAddress=suse@suse.de
+bc5324c7f5c2a27492fb6795745b596b-1275578580 /C=DE/CN=Test Server Certificate\/SUSE Inc.\\Gmbh/emailAddress=suse@suse.de
+40717a16174dc4d516f6fa7ee8eeb18c-1275578585 /C=DE/CN=Full Test Certificate/emailAddress=suse@suse.de
+40717a16174dc4d516f6fa7ee8eeb18c-1275578588 /C=DE/CN=Full Test Certificate/emailAddress=suse@suse.de
+40717a16174dc4d516f6fa7ee8eeb18c-1275578592 /C=DE/CN=Full Test Certificate/emailAddress=suse@suse.de
+b4d4e48e6de644c953290eb2854a6ced-1275578600 /C=DE/CN=Test CA\/SUSE Inc.\\Gmbh/emailAddress=suse@suse.de
+c293624b6a877f401407ce8f8f1f327e-1275578601 /C=DE/L=Nuremberg/O=SUSE Linux GmbH/OU=IT/CN=SUSE User CA/emailAddress=security-team@suse.de
+b4d4e48e6de644c953290eb2854a6ced-1275578603 /C=DE/CN=Test CA\/SUSE Inc.\\Gmbh/emailAddress=suse@suse.de
+c1943ae4b9bd7320fae3e29f217483e3-1275578604 /C=DE/CN=Test Request/emailAddress=suse@suse.de
+d816690a832b0e52becd255d3a62e975-1275578608 /C=DE/CN=Test Certificate for revocation 2/emailAddress=suse@suse.de
+9198f6798d9da70d7cbfb67b610633f5-1275578610 /C=DE/CN=Test Certificate for revocation 3/emailAddress=suse@suse.de
+3e248858337c2b46dc67a0f9389376dd-1275578612 /C=DE/CN=Test Certificate for revocation 4/emailAddress=suse@suse.de
+bf04fdd95062554800c1556085f47063-1275578614 /C=DE/CN=Test Certificate for revocation 5 oid test/emailAddress=suse@suse.de
+9797ac11af29f94b82c1e5b0499ab5f2-1275578617 /C=DE/CN=Test Sub CA/emailAddress=suse@suse.de

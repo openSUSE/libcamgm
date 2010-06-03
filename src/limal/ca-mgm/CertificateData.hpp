@@ -29,8 +29,6 @@
 #include  <limal/ByteBuffer.hpp>
 #include  <blocxx/COWIntrusiveReference.hpp>
 
-namespace LIMAL_NAMESPACE {
-
 namespace CA_MGM_NAMESPACE {
 
 	class CertificateDataImpl;
@@ -80,7 +78,7 @@ namespace CA_MGM_NAMESPACE {
 		String
 		getPublicKeyAlgorithmAsString() const;
         
-		limal::ByteBuffer
+		ca_mgm::ByteBuffer
 		getPublicKey() const;
         
 		SigAlg
@@ -89,7 +87,7 @@ namespace CA_MGM_NAMESPACE {
 		String
 		getSignatureAlgorithmAsString() const;
         
-		limal::ByteBuffer
+		ca_mgm::ByteBuffer
 		getSignature() const;
         
 		String
@@ -128,7 +126,6 @@ namespace CA_MGM_NAMESPACE {
 		blocxx::COWIntrusiveReference<CertificateDataImpl> m_impl;
 	};
 
-}
 }
 
 #endif // LIMAL_CA_MGM_CERTIFICATE_DATA_HPP

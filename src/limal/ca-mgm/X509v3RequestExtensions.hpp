@@ -32,7 +32,6 @@
 #include  <limal/ca-mgm/SubjectAlternativeNameExtension.hpp>
 #include  <blocxx/COWIntrusiveReference.hpp>
 
-namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
@@ -150,7 +149,6 @@ namespace CA_MGM_NAMESPACE {
 
 	};
 
-}
 }
 
 #endif // LIMAL_CA_MGM_X509V3_REQUEST_EXTENSIONS_HPP

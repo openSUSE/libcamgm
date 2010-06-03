@@ -28,7 +28,6 @@
 #include  <limal/ca-mgm/LiteralValues.hpp>
 #include  <blocxx/COWIntrusiveReference.hpp>
 
-namespace LIMAL_NAMESPACE {
 
 namespace CA_MGM_NAMESPACE {
 
@@ -88,7 +87,6 @@ namespace CA_MGM_NAMESPACE {
     	
 	};
 
-}
 }
 
 #endif // LIMAL_CA_MGM_ISSUER_ALTERNATIVE_NAME_EXTENSION_HPP
