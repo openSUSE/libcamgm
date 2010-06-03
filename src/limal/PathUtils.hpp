@@ -31,7 +31,7 @@
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/PathName.hpp>
-#include  <blocxx/List.hpp>
+#include  <list>
 
 
 namespace LIMAL_NAMESPACE

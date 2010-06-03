@@ -33,7 +33,7 @@
 
 #include  <limal/ca-mgm/config.h>
 #include  <blocxx/Map.hpp>
-#include  <blocxx/List.hpp>
+#include  <list>
 #include  <blocxx/Array.hpp>
 #include  <blocxx/String.hpp>
 #include  <blocxx/StringStream.hpp>

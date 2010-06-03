@@ -29,7 +29,7 @@
 #include  <limal/ca-mgm/config.h>
 #include  <blocxx/String.hpp>
 #include  <blocxx/RefCount.hpp>
-#include  <blocxx/List.hpp>
+#include  <list>
 
 namespace LIMAL_NAMESPACE
 {

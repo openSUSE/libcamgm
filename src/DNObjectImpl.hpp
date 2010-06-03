@@ -24,7 +24,7 @@
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
-#include  <blocxx/List.hpp>
+#include  <list>
 #include  <blocxx/COWIntrusiveCountableBase.hpp>
 
 
