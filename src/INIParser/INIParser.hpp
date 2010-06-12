@@ -18,7 +18,7 @@
             Michael Andres <ma@suse.de>
             Marius Tomaschewski <mt@suse.de>
             Stefan Schubert <schubi@suse.de>
-              
+
   Maintainer: Stefan Schubert
 
 /-*/
@@ -34,7 +34,7 @@
 #include  <limal/ca-mgm/config.h>
 #include  <map>
 #include  <list>
-#include  <blocxx/Array.hpp>
+#include  <vector>
 #include  <blocxx/String.hpp>
 #include  <blocxx/StringStream.hpp>
 #include  <blocxx/IntrusiveReference.hpp>
@@ -49,7 +49,7 @@ namespace LIMAL_NAMESPACE
 namespace INI  // INI_NAMESPACE (incl. version?)
 {
 
-    
+
 
 /**
  * @brief INI keyword string
@@ -65,9 +65,9 @@ typedef blocxx::String		Value;
 
 /**
  * @brief INI comment string array
- */    
+ */
 typedef blocxx::String		Comment;
-    
+
 
 /**
  * @brief INI value entry class
@@ -88,14 +88,14 @@ public:
 	void		setComment(const Comment &comment);
 private:
 	Value		m_value;
-	Comment		m_comment;    
+	Comment		m_comment;
 
 };
 
 class Section;
 
 typedef std::map<Key, Entry>		EntryMap;
-typedef std::map<Key, Section>	SectionMap;    
+typedef std::map<Key, Section>	SectionMap;
 typedef EntryMap::size_type		EntrySize;
 typedef SectionMap::size_type		SectionSize;
 
@@ -111,8 +111,8 @@ private:
     friend class INIParser;
     /**
      * This constructor will only be used for creating the toplevel
-     * section 
-     */            
+     * section
+     */
     Section(const blocxx::IntrusiveReference<IniParser> &parser);
 
 public:
@@ -126,7 +126,7 @@ public:
      * Use this constructor in order to add a NEW section.
      * @key of the section
      * @param description of the parent section
-     */        
+     */
     Section(const Key &key, const Section &parentSection);
 
     ~Section();
@@ -135,42 +135,42 @@ public:
     //
     // general functions
     //
-    //----------------------------------------------------------------------------------------    
+    //----------------------------------------------------------------------------------------
 
     /**
      * Get number of entries
-     */    
+     */
     EntrySize	entrySize() const;
 
     /**
      * Get number of sub sections
-     */        
+     */
     SectionSize	sectionSize() const;
 
     /**
      * Check, if the section is empty (no entry/section)
      * @return true or false
-     */            
+     */
     bool	empty() const;
 
     /**
      * Check, if key is available in the section
      * @param   key of section/entry
      * @return  NO (not found), VALUE, SECTION
-     */                
+     */
     IniType 	contains(const Key &key) const;
 
     /**
      * Changing a section comment
      * @param  comment
-     * @return true if succeeded          
-     */                                    
+     * @return true if succeeded
+     */
     bool	setComment(const Comment &comment);
 
     /**
      * Getting a section comment
      * @return comment
-     */                                    
+     */
     Comment	getComment();
 
 
@@ -184,89 +184,89 @@ public:
      * Get all entry keys of a section in the order like they
      * have been written to file.
      * @return std::list<blocxx::String>
-     */                        
+     */
     std::list<blocxx::String> getEntryKeys() const;
 
-    
+
     /**
      * Get all entries of a section
      * @return EntryMap ( key, entry )
-     */                        
+     */
     EntryMap	getEntries() const;
 
     /**
      * Get all entries of a section which keys fit the given pattern
      * @param pattern string, ignore cases
      * @return EntryMap ( key, entry )
-     */                        
+     */
     EntryMap	selectEntries(const blocxx::String &pattern,
-			      bool icase = false) const;    
+			      bool icase = false) const;
 
     /**
      * Get a value of an entry
      * @param  entry key, default value if the key has not been found
      * @return value
-     */                            
+     */
     Value	getValue(const Key &key, const Value &defaultValue="") const;
 
     /**
      * Get the complete entry (value, comments,...)
      * @param  entry key, default entry if the key has not been found
-     * @return entry object 
-     */                                
+     * @return entry object
+     */
     Entry	getEntry(const Key &key, const Entry &defaultEntry = Entry()) const;
 
     /**
      * Delete an entry
      * @param  entry key
      * @return true if succeeded
-     */                                
+     */
     bool	delEntry(const Key &key);
 
     /**
      * Adding an value
      * @param  entry key, value
-     * @return true if succeeded     
-     */                                
+     * @return true if succeeded
+     */
     bool	addValue(const Key &key, const Value &value);
-    
+
     /**
      * Adding an entry
      * @param  entry key, entry(value and comment)
-     * @return true if succeeded     
-     */                                    
+     * @return true if succeeded
+     */
     bool	addEntry(const Key &key, const Entry &entry);
 
     /**
      * Adding an entry
      * @param  entry key, value, comment
-     * @return true if succeeded     
-     */                                        
+     * @return true if succeeded
+     */
     bool	addEntry(const Key &key, const Value &value,
 			 const Comment &comment);
 
     /**
      * Changing an value
      * @param  entry key, value
-     * @return true if succeeded     
-     */                                    
+     * @return true if succeeded
+     */
     bool	setValue(const Key &key, const Value &value);
-    
+
     /**
      * Changing an entry
      * @param  entry key, value
-     * @return true if succeeded     
-     */                                        
+     * @return true if succeeded
+     */
     bool	setEntry(const Key &key, const Entry &entry);
 
     /**
      * Changing an entry
      * @param  entry key, value, comment
-     * @return true if succeeded     
-     */                                            
+     * @return true if succeeded
+     */
     bool	setEntry(const Key &key, const Value &value,
 			 const Comment &comment);
-    
+
 
     //----------------------------------------------------------------------------------------
     //
@@ -278,24 +278,24 @@ public:
      * Get all section keys of a section in the order like they
      * have been written to file.
      * @return std::list<blocxx::String>
-     */                        
+     */
      std::list<blocxx::String> getSectionKeys() const;
 
-    
+
     /**
      * Get all sub-sections of a section
      * @return SectionMap (key, section)
-     */                        
+     */
     SectionMap getSections() const;
 
     /**
      * Get all sub-sections of a section which keys fit the given pattern
      * @param pattern string, ignore cases
      * @return SectionMap (key, section)
-     */                        
+     */
     SectionMap selectSections(const blocxx::String &pattern,
 			      bool icase = false ) const;
-    
+
 
     /**
      * Get the sub-section
@@ -308,7 +308,7 @@ public:
      *               // error
      *          }
      * @endcode
-     */                                
+     */
     Section	getSection(const Key &key,
 			   const Section *defaultSection = NULL) const;
 
@@ -316,7 +316,7 @@ public:
      * Delete a sub-section with all his entries
      * @param  key
      * @return true if succeeded
-     */                                
+     */
     bool	delSection(const Key &key);
 
 
@@ -344,7 +344,7 @@ private:
  *                ignore case in keys and section names
  *          -  FIRST_UPPER
  *                if ignore case, outputs first upper and other lower
- *                If not first_upper, nor prefer_uppercase is set, keys 
+ *                If not first_upper, nor prefer_uppercase is set, keys
  *                and values are saved in lower case.
  *          -  PREFER_UPPERCASE
  *                if ignore case, prefer upper case when saving
@@ -364,7 +364,7 @@ private:
  *                do not kill empty lines at final comment at the end of top-level section
  *          -  READ_ONLY
  *                read-only mode
-*/     
+*/
 
 enum    Options { IGNOMR_CASE_REGEXPS,
 		  IGNORE_CASE,
@@ -382,7 +382,7 @@ enum    Options { IGNOMR_CASE_REGEXPS,
 
 /**
  * @brief LiMaL Common parser of INI files
- * 
+ *
  * This class provides a set of functionality for reading and writing INI files. The parser can be configured
  * for almost each entry/value/comment format by using regular expressions.
  * The main tasks of this class are:
@@ -411,18 +411,18 @@ enum    Options { IGNOMR_CASE_REGEXPS,
  *
  *   options.append (GLOBAL_VALUES); // Values at the top level(not in section) are allowed
  *   options.append (LINE_CAN_CONTINUE); // if there is \ at the end of line,
- *   options.append (COMMENTS_LAST); // Lines are parsed for comments after they are parsed for values 
+ *   options.append (COMMENTS_LAST); // Lines are parsed for comments after they are parsed for values
  *
  *   // comment description
  *
- *   commentsDescr.append("^[ \t]*#.*$"); 
+ *   commentsDescr.append("^[ \t]*#.*$");
  *   commentsDescr.append("#.*");
  *   commentsDescr.append("^[ \t]*$");
  *
  *   // Entry (key/value) description
  *
  *   IoPatternDescr pattern = { "([a-zA-Z0-9_]+)[ \t]*=[ \t]*\"([^\"]*)\"", "%s=\"%s\""};
- *   EntryDescr eDescr =  {pattern, "([a-zA-Z0-9_]+)[ \t]*=[ \t]*\"([^\"]*)", "([^\"]*)\"" , true};    
+ *   EntryDescr eDescr =  {pattern, "([a-zA-Z0-9_]+)[ \t]*=[ \t]*\"([^\"]*)", "([^\"]*)\"" , true};
  *   entryDescr.append (eDescr);
  *
  *   IoPatternDescr pattern2 = {"([a-zA-Z0-9_]+)[ \t]*=[ \t]*([^\"]*[^ \t\"]|)[ \t]*$", "%s=\"%s\""};
@@ -433,7 +433,7 @@ enum    Options { IGNOMR_CASE_REGEXPS,
  *   EntryDescr eDescr3 =  {pattern3, "([a-zA-Z_][a-zA-Z0-9_]*)[ \t]*=[ \t]*'([^']*)", "([^']*)'" , true};
  *   entryDescr.append (eDescr3);
  *
- *   INIParser descParser;        
+ *   INIParser descParser;
  *
  *   // which file has to be parsed ?
  *
@@ -475,19 +475,19 @@ public:
     INIParser & operator=(const INIParser &iniParser);
 
     virtual ~INIParser ();
-    
+
     /**
      * Sets parser to single file mode and sets the file name to read.
      * @param fn file name of ini file
      */
     void initFiles (const blocxx::String &filename);
-    
+
     /**
      * Sets parser to multiple file mode and sets the glob-expressions.
      * @param fileList list of glob-expressions
      */
     void initFiles (const std::vector<blocxx::String> &fileList );
-    
+
     /**
      * Sets flags and regular expressions.
      * @param options List of Options
@@ -497,7 +497,7 @@ public:
      *                ignore case in keys and section names
      *             FIRST_UPPER
      *                if ignore case, outputs first upper and other lower
-     *                If not first_upper, nor prefer_uppercase is set, keys 
+     *                If not first_upper, nor prefer_uppercase is set, keys
      *                and values are saved in lower case.
      *             PREFER_UPPERCASE
      *                if ignore case, prefer upper case when saving
@@ -551,10 +551,10 @@ ne
     /**
      * Parse the ini files. Parser must be initialized before this function
      * is called.
-     * @return true if successful     
+     * @return true if successful
      */
     bool parse();
-    
+
     /**
      * Check the ini files and in case some of them changed externally,
      * reload it.
@@ -580,9 +580,9 @@ class SysConfig : public INIParser
 {
 public:
     SysConfig() : INIParser() {};
-    
+
     bool initMachine ();
-    
+
 };
 
 

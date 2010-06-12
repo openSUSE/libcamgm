@@ -25,7 +25,7 @@
 #include  <blocxx/Types.hpp>
 #include  <blocxx/String.hpp>
 #include  <list>
-#include  <blocxx/Array.hpp>
+#include  <vector>
 #include  <map>
 #include  <errno.h>
 
@@ -35,7 +35,7 @@ namespace CA_MGM_NAMESPACE {
 
     typedef blocxx::String       String;
     typedef std::list<String> StringList;
-    
+
     enum Type {
         E_Client_Req,  //! Client Request
         E_Server_Req,  //! Server Request
@@ -68,7 +68,7 @@ namespace CA_MGM_NAMESPACE {
         E_MD5,
         E_MDC2,
     };
-	
+
 	enum EErrorCodes
 	{
 		E_GENERIC  = blocxx::Exception::UNKNOWN_ERROR_CODE,  // == -1

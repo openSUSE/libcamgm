@@ -18,12 +18,12 @@
 #include <stdio.h>
 #include <regex.h>
 #include <blocxx/String.hpp>
-#include <blocxx/Array.hpp>
 #include <blocxx/PosixRegEx.hpp>
 #include <blocxx/IntrusiveCountableBase.hpp>
 
 #include <iosfwd>
 #include <fstream>
+#include <vector>
 
 #include "INIParser/INIParserDescr.hpp"
 #include "INIParser/IniFile.h"

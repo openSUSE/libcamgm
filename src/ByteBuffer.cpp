@@ -21,7 +21,6 @@
 
 #include <blocxx/String.hpp>
 #include <blocxx/Format.hpp>
-#include <blocxx/Array.hpp>
 #include <blocxx/COWIntrusiveCountableBase.hpp>
 
 #include <cstring>
