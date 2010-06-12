@@ -42,7 +42,7 @@ getUrlByScheme(const blocxx::String &scheme);
 
 // -------------------------------------------------------------------
 #if 0
-blocxx::StringArray
+std::vector<blocxx::String>
 getUrlBySchemeNames();
 #endif
 

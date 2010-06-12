@@ -73,10 +73,10 @@ namespace CA_MGM_NAMESPACE {
 		virtual bool
 		valid() const;
 		
-		virtual blocxx::StringArray
+		virtual std::vector<blocxx::String>
 		verify() const;
 
-		virtual blocxx::StringArray
+		virtual std::vector<blocxx::String>
 		dump() const;
 
 #ifndef SWIG
@@ -135,10 +135,10 @@ namespace CA_MGM_NAMESPACE {
 		virtual bool
 		valid() const;
 		
-		virtual blocxx::StringArray
+		virtual std::vector<blocxx::String>
 		verify() const;
 
-		virtual blocxx::StringArray
+		virtual std::vector<blocxx::String>
 		dump() const;
 
 #ifndef SWIG
@@ -154,10 +154,10 @@ namespace CA_MGM_NAMESPACE {
 	private:
 		blocxx::COWIntrusiveReference<CertificatePolicyImpl> m_impl;
 		
-		blocxx::StringArray
+		std::vector<blocxx::String>
 		checkCpsURIs(const StringList& cpsURIs) const;
 		
-		blocxx::StringArray
+		std::vector<blocxx::String>
 		checkNoticeList(const std::list<UserNotice>& list) const;
     };
 
@@ -194,16 +194,16 @@ namespace CA_MGM_NAMESPACE {
 		virtual bool
 		valid() const;
 		
-		virtual blocxx::StringArray
+		virtual std::vector<blocxx::String>
 		verify() const;
 
-		virtual blocxx::StringArray
+		virtual std::vector<blocxx::String>
 		dump() const;
 
 	private:
 		blocxx::COWIntrusiveReference<CertificatePoliciesExtImpl> m_impl;
 		
-		blocxx::StringArray
+		std::vector<blocxx::String>
 		checkPolicies(const std::list<CertificatePolicy>& pl) const;
 
     };

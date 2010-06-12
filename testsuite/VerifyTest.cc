@@ -23,14 +23,14 @@ int main()
     try
     {
         cout << "START" << endl;
-        
+
         blocxx::StringArray cat;
         cat.push_back("FATAL");
         cat.push_back("ERROR");
         cat.push_back("INFO");
         cat.push_back("DEBUG");
 
-        StringArray comp;
+        blocxx::StringArray comp;
         comp.push_back("ca-mgm");
         comp.push_back("limal");
 
@@ -42,7 +42,7 @@ int main()
                                                       "%-5p %c - %m"
                                                       );
         ca_mgm::Logger::setDefaultLogger(l);
-        
+
         cout << "=================== start Verify Test ======================" << endl;
         {
             PerlRegEx r1("revoked");
@@ -54,20 +54,20 @@ int main()
 
             ca.createCRL(cgd);
 
-            Array<map<blocxx::String, blocxx::String> > ret;
+            std::vector<map<blocxx::String, blocxx::String> > ret;
             ret = ca.getCertificateList();
-            
-            Array<map<blocxx::String, blocxx::String> >::const_iterator it;
+
+            std::vector<map<blocxx::String, blocxx::String> >::const_iterator it;
 
             for(it = ret.begin(); it != ret.end(); ++it)
-            {               
+            {
                 blocxx::String name = (*(*it).find("certificate")).second;
                 blocxx::String serial = (*(*it).find("serial")).second;
-                
+
                 try
                 {
                     ca.verifyCertificate( name );
-                    
+
                     cout << serial << ": Verify success" << endl;
                 }
                 catch(RuntimeException &e)
@@ -88,7 +88,7 @@ int main()
             }
         }
         cout << "=================== end List tests ========================" << endl;
-        
+
         cout << "DONE" << endl;
     }
     catch(Exception& e)

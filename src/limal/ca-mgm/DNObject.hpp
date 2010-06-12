@@ -51,9 +51,9 @@ namespace CA_MGM_NAMESPACE {
 		String getOpenSSLValue() const;
 
 		virtual bool                 valid() const;
-		virtual blocxx::StringArray  verify() const;
+		virtual std::vector<blocxx::String>  verify() const;
 
-		virtual blocxx::StringArray  dump() const;
+		virtual std::vector<blocxx::String>  dump() const;
 
 #ifndef SWIG
 
@@ -87,15 +87,15 @@ namespace CA_MGM_NAMESPACE {
 		String                       getOpenSSLString() const;
 
 		virtual bool                 valid() const;
-		virtual blocxx::StringArray  verify() const;
+		virtual std::vector<blocxx::String>  verify() const;
         
-		virtual blocxx::StringArray  dump() const;
+		virtual std::vector<blocxx::String>  dump() const;
 
 	protected:
 		blocxx::COWIntrusiveReference<DNObjectImpl> m_impl;
     	
 	private:
-		blocxx::StringArray
+		std::vector<blocxx::String>
 		checkRDNList(const std::list<RDNObject>& list) const;
 	};
 

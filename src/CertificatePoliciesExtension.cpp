@@ -190,9 +190,9 @@ UserNotice::initWithSection(CAConfig* caConfig, Type type, const String& section
 	p = caConfig->exists(sectionName, "noticeNumbers");
 	if(p)
 	{
-		StringArray a = PerlRegEx(",").
-			split(caConfig->getValue(sectionName, "noticeNumbers"));
-		StringArray::const_iterator it = a.begin();
+		std::vector<blocxx::String> a = convStringArray(PerlRegEx(",").
+			split(caConfig->getValue(sectionName, "noticeNumbers")));
+		std::vector<blocxx::String>::const_iterator it = a.begin();
 		for(; it != a.end(); ++it)
 		{
 			m_impl->noticeNumbers.push_back((*it).toInt32());
@@ -304,33 +304,33 @@ UserNotice::valid() const
 	return true;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 UserNotice::verify() const
 {
-	StringArray result;
+	std::vector<blocxx::String> result;
 
 	if(m_impl->explicitText.length() > 200)
 	{
-		result.append("explicitText to long");
+		result.push_back("explicitText to long");
 	}
 
 	if((m_impl->organization.empty() && !m_impl->noticeNumbers.empty()) ||
 	   (!m_impl->organization.empty() && m_impl->noticeNumbers.empty()))
 	{
-		result.append("organization and noticeNumbers must both present or absent");
+		result.push_back("organization and noticeNumbers must both present or absent");
 	}
 	LOGIT_DEBUG_STRINGARRAY("UserNotice::verify()", result);
 	return result;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 UserNotice::dump() const
 {
-	StringArray result;
-	result.append("UserNotice::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("UserNotice::dump()");
 
-	result.append("explicitText = "+ m_impl->explicitText);
-	result.append("organization = " + m_impl->organization);
+	result.push_back("explicitText = "+ m_impl->explicitText);
+	result.push_back("organization = " + m_impl->organization);
 
 	String n;
 	std::list< blocxx::Int32 >::const_iterator it = m_impl->noticeNumbers.begin();
@@ -338,7 +338,7 @@ UserNotice::dump() const
 	{
 		n += String(*it) + " ";
 	}
-	result.append("noticeNumbers = " + n);
+	result.push_back("noticeNumbers = " + n);
 
 	return result;
 }
@@ -469,7 +469,7 @@ CertificatePolicy::getPolicyIdentifier() const
 void
 CertificatePolicy::setCpsURI(const StringList& cpsURI)
 {
-	StringArray r = checkCpsURIs(cpsURI);
+	std::vector<blocxx::String> r = checkCpsURIs(cpsURI);
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -487,7 +487,7 @@ CertificatePolicy::getCpsURI() const
 void
 CertificatePolicy::setUserNoticeList(const std::list<UserNotice>& list)
 {
-	StringArray r = checkNoticeList(list);
+	std::vector<blocxx::String> r = checkNoticeList(list);
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -556,7 +556,7 @@ CertificatePolicy::valid() const
 		return false;
 	}
 
-	StringArray r = checkCpsURIs(m_impl->cpsURI);
+	std::vector<blocxx::String> r = checkCpsURIs(m_impl->cpsURI);
 	if(!r.empty())
 	{
 		LOGIT_DEBUG(r[0]);
@@ -572,46 +572,46 @@ CertificatePolicy::valid() const
 	return true;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 CertificatePolicy::verify() const
 {
-	StringArray result;
+	std::vector<blocxx::String> result;
 
 	ValueCheck oidCheck = initOIDCheck();
 
 	if(m_impl->policyIdentifier.empty() ||
 	   !oidCheck.isValid(m_impl->policyIdentifier))
 	{
-		result.append(Format("invalid value for policyIdentifier: %1",
+		result.push_back(Format("invalid value for policyIdentifier: %1",
 		                     m_impl->policyIdentifier).toString());
 	}
 
-	result.appendArray(checkCpsURIs(m_impl->cpsURI));
+	appendArray(result, checkCpsURIs(m_impl->cpsURI));
 
-	result.appendArray(checkNoticeList(m_impl->noticeList));
+	appendArray(result, checkNoticeList(m_impl->noticeList));
 
 	LOGIT_DEBUG_STRINGARRAY("CertificatePolicy::verify()", result);
 	return result;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 CertificatePolicy::dump() const
 {
-	StringArray result;
-	result.append("CertificatePolicy::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("CertificatePolicy::dump()");
 
-	result.append("policy Identifier = " + m_impl->policyIdentifier);
+	result.push_back("policy Identifier = " + m_impl->policyIdentifier);
 
 	StringList::const_iterator it1 = m_impl->cpsURI.begin();
 	for(; it1 != m_impl->cpsURI.end(); ++it1)
 	{
-		result.append("CPS = " + (*it1));
+		result.push_back("CPS = " + (*it1));
 	}
 
 	std::list< UserNotice >::const_iterator it2 = m_impl->noticeList.begin();
 	for(; it2 != m_impl->noticeList.end(); ++it2)
 	{
-		result.appendArray((*it2).dump());
+		appendArray(result, (*it2).dump());
 	}
 	return result;
 }
@@ -648,10 +648,10 @@ operator<(const CertificatePolicy &l, const CertificatePolicy &r)
 	}
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 CertificatePolicy::checkCpsURIs(const StringList& cpsURIs) const
 {
-	StringArray result;
+	std::vector<blocxx::String> result;
 	ValueCheck  uriCheck = initURICheck();
 
 	StringList::const_iterator it = cpsURIs.begin();
@@ -659,20 +659,20 @@ CertificatePolicy::checkCpsURIs(const StringList& cpsURIs) const
 	{
 		if(!uriCheck.isValid(*it))
 		{
-			result.append(Format("invalid URI: %1", *it).toString());
+			result.push_back(Format("invalid URI: %1", *it).toString());
 		}
 	}
 	return result;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 CertificatePolicy::checkNoticeList(const std::list<UserNotice>& list) const
 {
-	StringArray result;
+	std::vector<blocxx::String> result;
 	std::list<UserNotice>::const_iterator it = list.begin();
 	for(;it != list.end(); it++)
 	{
-		result.appendArray((*it).verify());
+		appendArray(result, (*it).verify());
 	}
 	return result;
 }
@@ -689,7 +689,7 @@ CertificatePoliciesExt::CertificatePoliciesExt(const std::list<CertificatePolicy
 	: ExtensionBase()
 	, m_impl(new CertificatePoliciesExtImpl(policies))
 {
-	StringArray r = checkPolicies(policies);
+	std::vector<blocxx::String> r = checkPolicies(policies);
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -715,16 +715,16 @@ CertificatePoliciesExt::CertificatePoliciesExt(CAConfig* caConfig, Type type)
 	if(p)
 	{
 		ValueCheck    check = initOIDCheck();
-		StringArray   sp    = PerlRegEx("\\s*,\\s*")
-			.split(caConfig->getValue(type2Section(type, true), "certificatePolicies"));
+		std::vector<blocxx::String>   sp    = convStringArray(PerlRegEx("\\s*,\\s*")
+			.split(caConfig->getValue(type2Section(type, true), "certificatePolicies")));
 
 		if(sp[0].equalsIgnoreCase("critical"))
 		{
 			setCritical(true);
-			sp.remove(0);
+			sp.erase(sp.begin());
 		}
 
-		StringArray::const_iterator it = sp.begin();
+		std::vector<blocxx::String>::const_iterator it = sp.begin();
 		for(; it != sp.end(); ++it)
 		{
 			if((*it).equalsIgnoreCase("ia5org"))
@@ -786,7 +786,7 @@ CertificatePoliciesExt::isIA5orgEnabled() const
 void
 CertificatePoliciesExt::setPolicies(const std::list<CertificatePolicy>& policies)
 {
-	StringArray r = checkPolicies(policies);
+	std::vector<blocxx::String> r = checkPolicies(policies);
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -861,7 +861,7 @@ CertificatePoliciesExt::valid() const
 		LOGIT_DEBUG("No policy set");
 		return false;
 	}
-	StringArray r = checkPolicies(m_impl->policies);
+	std::vector<blocxx::String> r = checkPolicies(m_impl->policies);
 	if(!r.empty())
 	{
 		LOGIT_DEBUG(r[0]);
@@ -870,52 +870,52 @@ CertificatePoliciesExt::valid() const
 	return true;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 CertificatePoliciesExt::verify() const
 {
-	StringArray result;
+	std::vector<blocxx::String> result;
 
 	if(!isPresent()) return result;
 
 	if(m_impl->policies.empty())
 	{
-		result.append("No policy set");
+		result.push_back("No policy set");
 	}
-	result.appendArray(checkPolicies(m_impl->policies));
+	appendArray(result, checkPolicies(m_impl->policies));
 
 	LOGIT_DEBUG_STRINGARRAY("CertificatePoliciesExt::verify()", result);
 
 	return result;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 CertificatePoliciesExt::dump() const
 {
-	StringArray result;
-	result.append("CertificatePoliciesExt::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("CertificatePoliciesExt::dump()");
 
-	result.appendArray(ExtensionBase::dump());
+	appendArray(result, ExtensionBase::dump());
 	if(!isPresent()) return result;
 
-	result.append("ia5org = " + blocxx::Bool(m_impl->ia5org).toString());
+	result.push_back("ia5org = " + blocxx::Bool(m_impl->ia5org).toString());
 	std::list< CertificatePolicy >::const_iterator it = m_impl->policies.begin();
 	for(; it != m_impl->policies.end(); ++it)
 	{
-		result.appendArray((*it).dump());
+		appendArray(result, (*it).dump());
 	}
 
 	return result;
 }
 
 
-blocxx::StringArray
+std::vector<blocxx::String>
 CertificatePoliciesExt::checkPolicies(const std::list<CertificatePolicy>& pl) const
 {
-	StringArray result;
+	std::vector<blocxx::String> result;
 	std::list<CertificatePolicy>::const_iterator it = pl.begin();
 	for(;it != pl.end(); it++)
 	{
-		result.appendArray((*it).verify());
+		appendArray(result, (*it).verify());
 	}
 	return result;
 }

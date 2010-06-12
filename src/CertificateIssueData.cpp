@@ -178,7 +178,7 @@ CertificateIssueData::getMessageDigest() const
 void
 CertificateIssueData::setExtensions(const X509v3CertificateIssueExts& ext)
 {
-	StringArray r = ext.verify();
+	std::vector<blocxx::String> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -258,41 +258,41 @@ CertificateIssueData::valid() const
 	return true;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 CertificateIssueData::verify() const
 {
-	StringArray result;
+	std::vector<blocxx::String> result;
 
 	if(getStartDate() == 0)
 	{
-		result.append(Format("invalid notBefore: %1", getStartDate()).toString());
+		result.push_back(Format("invalid notBefore: %1", getStartDate()).toString());
 	}
 	if(getEndDate() <= getStartDate())
 	{
-		result.append(Format("invalid notAfter %1 <= notBefore %2",
+		result.push_back(Format("invalid notAfter %1 <= notBefore %2",
 		                     getEndDate(), getStartDate())
 		              .toString());
 	}
 
-	result.appendArray(m_impl->extensions.verify());
+	appendArray(result, m_impl->extensions.verify());
 
 	LOGIT_DEBUG_STRINGARRAY("CertificateIssueData::verify()", result);
 
 	return result;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 CertificateIssueData::dump() const
 {
-	StringArray result;
-	result.append("CertificateIssueData::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("CertificateIssueData::dump()");
 
-	result.append("!CHANGING DATA! notBefore = " + String(getStartDate()));
-	result.append("!CHANGING DATA! notAfter = " + String(getEndDate()));
-	result.append("notAfter - notBefore (in days)= " +
+	result.push_back("!CHANGING DATA! notBefore = " + String(getStartDate()));
+	result.push_back("!CHANGING DATA! notAfter = " + String(getEndDate()));
+	result.push_back("notAfter - notBefore (in days)= " +
 	              String((getEndDate() - getStartDate())/86400));
-	result.append("MessageDigest = " + String(getMessageDigest()));
-	result.appendArray(getExtensions().dump());
+	result.push_back("MessageDigest = " + String(getMessageDigest()));
+	appendArray(result, getExtensions().dump());
 
 	return result;
 }

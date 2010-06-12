@@ -12,6 +12,9 @@
 #include <fstream>
 #include <unistd.h>
 
+// FIXME: need to be removed
+#include <Utils.hpp>
+
 using namespace blocxx;
 
 using namespace ca_mgm;
@@ -25,10 +28,10 @@ int main(int argc, char **argv)
         exit( 1 );
     }
 
-    StringArray comp;
+    blocxx::StringArray comp;
     comp.push_back("ca-mgm");
     comp.push_back("limal");
-    
+
     // Logging
     LoggerRef l = ca_mgm::Logger::createCerrLogger(
                                                   "CA6",
@@ -37,9 +40,9 @@ int main(int argc, char **argv)
                                                   "%-5p %c - %m"
                                                   );
     ca_mgm::Logger::setDefaultLogger(l);
-    
+
     blocxx::String file = argv[ 1 ];
-    
+
     cout << "START" << endl;
     cout << "file: " << file << endl;
 
@@ -49,26 +52,26 @@ int main(int argc, char **argv)
         cerr << "Unable to load '" << file << "'" << endl;
         exit( 2 );
     }
-    
+
     while( in )
-    {        
+    {
         try
-        {            
+        {
             blocxx::String    line = blocxx::String::getLine( in );
             if(line == "EOF") break;
 
-            StringArray params = PerlRegEx("\\s").split(line);
+            std::vector<blocxx::String> params = convStringArray(PerlRegEx("\\s").split(line));
 
             cout << "creating CA object" << endl;
-            
+
             CA ca(params[0], "system", "./TestRepos/");
-            
+
             CertificateIssueData cid;
-    
+
             cout << "============= Test:" << params[0] << "=>" << params[1] << endl;
-            
+
             Type t = E_CA_Req;
-      
+
             if(params[1] == "CA_Cert")
             {
                 t = E_CA_Cert;
@@ -87,33 +90,33 @@ int main(int argc, char **argv)
                 exit(1);
             }
 
-            cout << "============= read" << endl; 
-            
+            cout << "============= read" << endl;
+
             cid = ca.getIssueDefaults(t);
 
-            cout << "============= write back unchanged" << endl; 
+            cout << "============= write back unchanged" << endl;
 
             ca.setIssueDefaults(t, cid);
-            
-            cout << "============= re-read" << endl; 
+
+            cout << "============= re-read" << endl;
 
             CertificateIssueData Ncid;
             Ncid = ca.getIssueDefaults(t);
 
-            cout << "============= Call Verify" << endl; 
+            cout << "============= Call Verify" << endl;
 
-            StringArray a = Ncid.verify();
-            
+            std::vector<blocxx::String> a = Ncid.verify();
+
             StringArray::const_iterator it;
             for(it = a.begin(); it != a.end(); ++it)
             {
                 cout << (*it) << endl;
             }
-            
-            cout << "============= Call Dump" << endl; 
+
+            cout << "============= Call Dump" << endl;
             PerlRegEx r("^!CHANGING DATA!.*$");
 
-            StringArray dump = Ncid.dump();
+            std::vector<blocxx::String> dump = Ncid.dump();
             StringArray::const_iterator it2;
             for(it2 = dump.begin(); it2 != dump.end(); ++it2)
             {
@@ -128,7 +131,7 @@ int main(int argc, char **argv)
             cerr << e << endl;
         }
     }
-    
+
     cout << "DONE" << endl;
     return 0;
 }

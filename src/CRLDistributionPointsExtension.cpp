@@ -77,11 +77,11 @@ CRLDistributionPointsExt::CRLDistributionPointsExt(CAConfig* caConfig, Type type
 	bool p = caConfig->exists(type2Section(type, true), "crlDistributionPoints");
 	if(p)
 	{
-		StringArray   sp   = PerlRegEx("\\s*,\\s*")
-			.split(caConfig->getValue(type2Section(type, true), "crlDistributionPoints"));
+		std::vector<blocxx::String>   sp   = convStringArray(PerlRegEx("\\s*,\\s*")
+			.split(caConfig->getValue(type2Section(type, true), "crlDistributionPoints")));
 		if(sp[0].equalsIgnoreCase("critical"))  setCritical(true);
 
-		StringArray::const_iterator it = sp.begin();
+		std::vector<blocxx::String>::const_iterator it = sp.begin();
 		for(; it != sp.end(); ++it)
 		{
 			if((*it).indexOf(":") != String::npos)
@@ -123,7 +123,7 @@ CRLDistributionPointsExt::operator=(const CRLDistributionPointsExt& extension)
 void
 CRLDistributionPointsExt::setCRLDistributionPoints(std::list<LiteralValue> dp)
 {
-	StringArray r = checkLiteralValueList(dp);
+	std::vector<blocxx::String> r = checkLiteralValueList(dp);
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -201,7 +201,7 @@ CRLDistributionPointsExt::valid() const
 
 	if(m_impl->altNameList.empty()) return false;
 
-	StringArray r = checkLiteralValueList(m_impl->altNameList);
+	std::vector<blocxx::String> r = checkLiteralValueList(m_impl->altNameList);
 	if(!r.empty())
 	{
 		LOGIT_DEBUG(r[0]);
@@ -210,36 +210,36 @@ CRLDistributionPointsExt::valid() const
 	return true;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 CRLDistributionPointsExt::verify() const
 {
-	blocxx::StringArray result;
+	std::vector<blocxx::String> result;
 
 	if(!isPresent()) return result;
 
 	if(m_impl->altNameList.empty())
 	{
-		result.append(String("No value for CRLDistributionPointsExt."));
+		result.push_back(String("No value for CRLDistributionPointsExt."));
 	}
-	result.appendArray(checkLiteralValueList(m_impl->altNameList));
+	appendArray(result, checkLiteralValueList(m_impl->altNameList));
 
 	LOGIT_DEBUG_STRINGARRAY("CRLDistributionPointsExt::verify()", result);
 	return result;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 CRLDistributionPointsExt::dump() const
 {
-	StringArray result;
-	result.append("CRLDistributionPointsExt::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("CRLDistributionPointsExt::dump()");
 
-	result.appendArray(ExtensionBase::dump());
+	appendArray(result, ExtensionBase::dump());
 	if(!isPresent()) return result;
 
 	std::list< LiteralValue >::const_iterator it = m_impl->altNameList.begin();
 	for(; it != m_impl->altNameList.end(); ++it)
 	{
-		result.appendArray((*it).dump());
+		appendArray(result, (*it).dump());
 	}
 
 	return result;

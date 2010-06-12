@@ -145,26 +145,26 @@ RDNObject::valid() const
 	return true;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 RDNObject::verify() const
 {
-	StringArray result;
+	std::vector<blocxx::String> result;
 
 	if(m_impl->type.empty())
 	{
-		result.append("type is empty");
+		result.push_back("type is empty");
 	}
 
 	if(m_impl->min != 0 && m_impl->value.UTF8Length() < m_impl->min)
 	{
-		result.append("Value(" + m_impl->value +
+		result.push_back("Value(" + m_impl->value +
 		              ") is too small. Value has to be a minimal length of " +
 		              String(m_impl->min));
 	}
 
 	if(m_impl->max != 0 && m_impl->value.UTF8Length() > m_impl->max)
 	{
-		result.append("Value(" + m_impl->value +
+		result.push_back("Value(" + m_impl->value +
 		              ") is too long. Value has to be a maximal length of " +
 		              String(m_impl->max));
 	}
@@ -174,16 +174,16 @@ RDNObject::verify() const
 	return result;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 RDNObject::dump() const
 {
-	StringArray result;
-	result.append("RDNObject::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("RDNObject::dump()");
 
-	result.append(m_impl->type + "=" + m_impl->value);
-	result.append("Prompt:" + m_impl->prompt);
-	result.append("Min:" + String(m_impl->min));
-	result.append("Max:" + String(m_impl->max));
+	result.push_back(m_impl->type + "=" + m_impl->value);
+	result.push_back("Prompt:" + m_impl->prompt);
+	result.push_back("Min:" + String(m_impl->min));
+	result.push_back("Max:" + String(m_impl->max));
 	return result;
 }
 
@@ -361,7 +361,7 @@ DNObject::DNObject(const std::list<RDNObject> &dn)
 	: m_impl(new DNObjectImpl())
 {
 	m_impl->dn = dn;
-	StringArray r = this->verify();
+	std::vector<blocxx::String> r = this->verify();
 	if(!r.empty())
 	{
 		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
@@ -388,7 +388,7 @@ DNObject::operator=(const DNObject& dn)
 void
 DNObject::setDN(const std::list<RDNObject> &dn)
 {
-	StringArray r = checkRDNList(dn);
+	std::vector<blocxx::String> r = checkRDNList(dn);
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -428,7 +428,7 @@ DNObject::valid() const
 		LOGIT_DEBUG("empty DN");
 		return false;
 	}
-	StringArray r = checkRDNList(m_impl->dn);
+	std::vector<blocxx::String> r = checkRDNList(m_impl->dn);
 	if(!r.empty())
 	{
 		LOGIT_DEBUG(r[0]);
@@ -437,45 +437,45 @@ DNObject::valid() const
 	return true;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 DNObject::verify() const
 {
-	StringArray result;
+	std::vector<blocxx::String> result;
 
 	if(m_impl->dn.empty())
 	{
-		result.append("empty DN");
+		result.push_back("empty DN");
 	}
-	result.appendArray(checkRDNList(m_impl->dn));
+	appendArray(result, checkRDNList(m_impl->dn));
 
 	LOGIT_DEBUG_STRINGARRAY("DNObject::verify()", result);
 
 	return result;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 DNObject::checkRDNList(const std::list<RDNObject>& list) const
 {
-	StringArray result;
+	std::vector<blocxx::String> result;
 
 	std::list<RDNObject>::const_iterator it = list.begin();
 	for(; it != list.end(); ++it)
 	{
-		result.appendArray((*it).verify());
+		appendArray(result, (*it).verify());
 	}
 	return result;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 DNObject::dump() const
 {
-	StringArray result;
-	result.append("DNObject::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("DNObject::dump()");
 
 	std::list< RDNObject >::const_iterator it = m_impl->dn.begin();
 	for(; it != m_impl->dn.end(); ++it)
 	{
-		result.appendArray((*it).dump());
+		appendArray(result, (*it).dump());
 	}
 
 	return result;

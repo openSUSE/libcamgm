@@ -13,6 +13,9 @@
 #include <fstream>
 #include <unistd.h>
 
+// FIXME: need to be removed
+#include <Utils.hpp>
+
 using namespace blocxx;
 
 using namespace ca_mgm;
@@ -23,7 +26,7 @@ int main()
     try
     {
         cout << "START" << endl;
-        
+
         blocxx::StringArray cat;
         cat.push_back("FATAL");
         cat.push_back("ERROR");
@@ -38,23 +41,23 @@ int main()
                                                       "%-5p %c - %m"
                                                       );
         ca_mgm::Logger::setDefaultLogger(l);
-        
+
         cout << "=================== start ======================" << endl;
         {
             CA ca("Test_CA1", "system", "./TestRepos/");
 
-            Array<map<blocxx::String, blocxx::String> > ret;
+            std::vector<map<blocxx::String, blocxx::String> > ret;
             ret = ca.getCertificateList();
 
-            Array<map<blocxx::String, blocxx::String> >::const_iterator it;
+            std::vector<map<blocxx::String, blocxx::String> >::const_iterator it;
             int i = 0;
             for(it = ret.begin(); it != ret.end(); ++it)
-            {            
+            {
                 blocxx::String certificateName = (*((*it).find("certificate"))).second;
                 blocxx::String state           = (*((*it).find("status"))).second;
 
                 PerlRegEx p("^([[:xdigit:]]+):([[:xdigit:]]+[\\d-]*)$");
-                StringArray sa = p.capture(certificateName);
+                std::vector<blocxx::String> sa = convStringArray(p.capture(certificateName));
 
                 if(sa.size() != 3)
                 {
@@ -67,13 +70,13 @@ int main()
 
                 //cerr << "i == " << i << " State == " << state << endl;
 
-                
+
                 if(i == 1 && state != "Valid")
                 {
                     path::PathInfo certFile("./TestRepos/Test_CA1/newcerts/" +
                                             certificateName + ".pem");
                     if(certFile.exists())
-                    {                        
+                    {
                         ca.deleteCertificate(certificateName);
 
                         certFile.stat();
@@ -119,9 +122,9 @@ int main()
                     path::PathInfo certFile("./TestRepos/Test_CA1/newcerts/" +
                                             certificateName + ".pem");
                     if(certFile.exists())
-                    {                        
+                    {
                         ca.deleteCertificate(certificateName, false);
-                        
+
                         certFile.stat();
                         if(!certFile.exists())
                         {
@@ -169,7 +172,7 @@ int main()
                         try
                         {
                             ca.deleteCertificate(certificateName, false);
-                            
+
                             certFile.stat();
                             if(!certFile.exists())
                             {
@@ -196,14 +199,14 @@ int main()
                     continue;
                 }
             }
-        }        
+        }
         cout << "DONE" << endl;
     }
     catch(Exception& e)
     {
         cerr << e << endl;
     }
-    
+
     return 0;
 }
 

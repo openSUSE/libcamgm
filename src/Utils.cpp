@@ -68,7 +68,7 @@ const char *       gettext (const char *msgid,
 
 // -------------------------------------------------------------------
 int wrapExecuteProcessAndGatherOutput(
-                                       const blocxx::Array<blocxx::String> &cmd,
+                                       const std::vector<blocxx::String> &cmd,
                                        blocxx::String                      &out,
                                        blocxx::String                      &err,
                                        const blocxx::EnvVars               &env,
@@ -83,7 +83,8 @@ int wrapExecuteProcessAndGatherOutput(
 	blocxx::Process::Status status;
 
 	status = blocxx::Exec::executeProcessAndGatherOutput(
-		cmd, out, err, env,
+		blocxx::StringArray(cmd.begin(), cmd.end()),
+        out, err, env,
 		( tmax < 0 ? blocxx::Timeout::infinite :
 		  blocxx::Timeout::relative(float(tmax))
 		),
@@ -145,6 +146,19 @@ int wrapExecuteProcessAndGatherOutput(
 #endif
 
 	return exitStatus;
+}
+
+std::vector<blocxx::String>
+convStringArray(const blocxx::StringArray &in)
+{
+  std::vector<blocxx::String> out(in.begin(), in.end());
+  return out;
+}
+
+void
+appendArray(std::vector<blocxx::String> &in, const std::vector<blocxx::String> &arr)
+{
+  in.insert(in.end(), arr.begin(), arr.end());
 }
 
 // -------------------------------------------------------------------

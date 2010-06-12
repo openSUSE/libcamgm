@@ -243,61 +243,61 @@ CertificateData::valid() const
 	return true;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 CertificateData::verify() const
 {
-	StringArray result;
+	std::vector<blocxx::String> result;
 
 	if(m_impl->version < 1 || m_impl->version > 3)
 	{
-		result.append(Format("invalid version: %1", m_impl->version).toString());
+		result.push_back(Format("invalid version: %1", m_impl->version).toString());
 	}
 
 	if(!initHexCheck().isValid(m_impl->serial))
 	{
-		result.append(Format("invalid serial: %1", m_impl->serial).toString());
+		result.push_back(Format("invalid serial: %1", m_impl->serial).toString());
 	}
 
 	if(m_impl->notBefore == 0)
 	{
-		result.append(Format("invalid notBefore: %1", m_impl->notBefore).toString());
+		result.push_back(Format("invalid notBefore: %1", m_impl->notBefore).toString());
 	}
 	if(m_impl->notAfter <= m_impl->notBefore)
 	{
-		result.append(Format("invalid notAfter: %1", m_impl->notAfter).toString());
+		result.push_back(Format("invalid notAfter: %1", m_impl->notAfter).toString());
 	}
-	result.appendArray(m_impl->issuer.verify());
-	result.appendArray(m_impl->subject.verify());
+	appendArray(result, m_impl->issuer.verify());
+	appendArray(result, m_impl->subject.verify());
 
 	// keysize ?
 
 	if(m_impl->publicKey.empty())
 	{
-		result.append("invalid publicKey");
+		result.push_back("invalid publicKey");
 	}
 
-	result.appendArray(m_impl->extensions.verify());
+	appendArray(result, m_impl->extensions.verify());
 
 	LOGIT_DEBUG_STRINGARRAY("CertificateData::verify()", result);
 
 	return result;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 CertificateData::dump() const
 {
-	StringArray result;
-	result.append("CertificateData::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("CertificateData::dump()");
 
-	result.append("Version = " + String(m_impl->version));
-	result.append("Serial = " + m_impl->serial);
-	result.append("notBefore = " + String(m_impl->notBefore));
-	result.append("notAfter = " + String(m_impl->notAfter));
-	result.append("Fingerprint = " + m_impl->fingerprint);
-	result.appendArray(m_impl->issuer.dump());
-	result.appendArray(m_impl->subject.dump());
-	result.append("Keysize = " + String(m_impl->keysize));
-	result.append("public key algorithm = " + String(m_impl->pubkeyAlgorithm));
+	result.push_back("Version = " + String(m_impl->version));
+	result.push_back("Serial = " + m_impl->serial);
+	result.push_back("notBefore = " + String(m_impl->notBefore));
+	result.push_back("notAfter = " + String(m_impl->notAfter));
+	result.push_back("Fingerprint = " + m_impl->fingerprint);
+	appendArray(result, m_impl->issuer.dump());
+	appendArray(result, m_impl->subject.dump());
+	result.push_back("Keysize = " + String(m_impl->keysize));
+	result.push_back("public key algorithm = " + String(m_impl->pubkeyAlgorithm));
 
 	String pk;
 	for(size_t i = 0; i < m_impl->publicKey.size(); ++i)
@@ -306,8 +306,8 @@ CertificateData::dump() const
 		s.format("%02x", (UInt8)m_impl->publicKey[i]);
 		pk += s + ":";
 	}
-	result.append("public Key = " + pk);
-	result.append("signatureAlgorithm = "+ String(m_impl->signatureAlgorithm));
+	result.push_back("public Key = " + pk);
+	result.push_back("signatureAlgorithm = "+ String(m_impl->signatureAlgorithm));
 
 	String s;
 	for(uint i = 0; i < m_impl->signature.size(); ++i)
@@ -317,8 +317,8 @@ CertificateData::dump() const
 		s += d;
 	}
 
-	result.append("Signature = " + s);
-	result.appendArray(m_impl->extensions.dump());
+	result.push_back("Signature = " + s);
+	appendArray(result, m_impl->extensions.dump());
 
 	return result;
 }

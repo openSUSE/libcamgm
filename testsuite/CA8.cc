@@ -23,13 +23,13 @@ int main()
     {
         cout << "START" << endl;
 
-        StringArray cat;
+        blocxx::StringArray cat;
         cat.push_back("FATAL");
         cat.push_back("ERROR");
         cat.push_back("INFO");
         //cat.push_back("DEBUG");
 
-        
+
         // Logging
         LoggerRef l = ca_mgm::Logger::createCerrLogger(
                                                       "CA8",
@@ -38,17 +38,17 @@ int main()
                                                       "%-5p %c - %m"
                                                   );
         ca_mgm::Logger::setDefaultLogger(l);
-        
+
         RequestGenerationData rgd = CA::getRootCARequestDefaults("./TestRepos/");
         CertificateIssueData  cid = CA::getRootCAIssueDefaults("./TestRepos/");
-        
+
         std::list<RDNObject> dnl = rgd.getSubjectDN().getDN();
         std::list<RDNObject>::iterator dnit;
 
         for(dnit = dnl.begin(); dnit != dnl.end(); ++dnit)
         {
             cout << "DN Key " << (*dnit).getType() << endl;
-            
+
             if((*dnit).getType() == "countryName")
             {
                 (*dnit).setRDNValue("DE");
@@ -62,10 +62,10 @@ int main()
                 (*dnit).setRDNValue("suse@suse.de");
             }
         }
-        
+
         DNObject dn(dnl);
         rgd.setSubjectDN(dn);
-        
+
         CA::createRootCA("Test_CA", "system", rgd, cid, "./TestRepos/");
 
         path::PathInfo iKey("./TestRepos/Test_CA/cacert.key");
@@ -93,7 +93,7 @@ int main()
         if(iReq.isFile())
         {
             cout << iReq.toString() << " IS FILE" <<endl;
-            
+
             if(iKey.size() > 0)
             {
                 cout << "Size is greater then 0" << endl;
@@ -111,7 +111,7 @@ int main()
         if(iCrt.isFile())
         {
             cout << iCrt.toString() << " IS FILE" <<endl;
-            
+
             if(iKey.size() > 0)
             {
                 cout << "Size is greater then 0" << endl;

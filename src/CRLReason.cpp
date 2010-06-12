@@ -286,22 +286,22 @@ CRLReason::valid() const
 
 // ----------------------------------------------------------------------------
 
-blocxx::StringArray
+std::vector<blocxx::String>
 CRLReason::verify() const
 {
-	StringArray result;
+	std::vector<blocxx::String> result;
 
 	if(m_impl->reason.equalsIgnoreCase("certificateHold"))
 	{
 		String err = checkHoldInstruction(m_impl->holdInstruction);
 		if(!err.empty())
 		{
-			result.append(err);
+			result.push_back(err);
 		}
 	}
 	else if(!checkReason(m_impl->reason))
 	{
-		result.append(Format("Invalid revoke reason", m_impl->reason));
+		result.push_back(Format("Invalid revoke reason", m_impl->reason));
 	}
 
 	//    compromiseDate == 0 is now a valid date
@@ -312,22 +312,22 @@ CRLReason::verify() const
 
 // ----------------------------------------------------------------------------
 
-blocxx::StringArray
+std::vector<blocxx::String>
 CRLReason::dump() const
 {
-	StringArray result;
-	result.append("CRLReason::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("CRLReason::dump()");
 
-	result.append(Format("Revoke Reason = %1", m_impl->reason));
+	result.push_back(Format("Revoke Reason = %1", m_impl->reason));
 
 	if(m_impl->reason.equalsIgnoreCase("certificateHold"))
 	{
-		result.append("hold Instruction =" + m_impl->holdInstruction);
+		result.push_back("hold Instruction =" + m_impl->holdInstruction);
 	}
 	else if(m_impl->reason.equalsIgnoreCase("keyCompromise") ||
 	        m_impl->reason.equalsIgnoreCase("CACompromise"))
 	{
-		result.append("compromise Date = " + String(m_impl->compromiseDate));
+		result.push_back("compromise Date = " + String(m_impl->compromiseDate));
 	}
 
 	return result;

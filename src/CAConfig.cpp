@@ -76,35 +76,35 @@ public:
 CAConfig::CAConfig(const String &file)
 	: m_impl(new CAConfigImpl(file))
 {
-	blocxx::Array<Options>          options;
-	blocxx::StringArray             commentsDescr;
-	blocxx::Array<SectionDescr>     sectionDescr;
-	blocxx::Array<EntryDescr>       entryDescr;
-	blocxx::Array<IoPatternDescr>   rewrites;
+	std::vector<Options>          options;
+	std::vector<blocxx::String>             commentsDescr;
+	std::vector<SectionDescr>     sectionDescr;
+	std::vector<EntryDescr>       entryDescr;
+	std::vector<IoPatternDescr>   rewrites;
 
-	options.append (NO_NESTED_SECTIONS);
-	options.append (LINE_CAN_CONTINUE);
+	options.push_back (NO_NESTED_SECTIONS);
+	options.push_back (LINE_CAN_CONTINUE);
 
-	commentsDescr.append ("^[ \t]*#.*$");
-	commentsDescr.append ("#.*");
-	commentsDescr.append ("^[ \t]*$");
-	commentsDescr.append ("^[ \t]*;[^;]+.*$");
+	commentsDescr.push_back ("^[ \t]*#.*$");
+	commentsDescr.push_back ("#.*");
+	commentsDescr.push_back ("^[ \t]*$");
+	commentsDescr.push_back ("^[ \t]*;[^;]+.*$");
 
 	IoPatternDescr pattern1 = { "^[ \t]*([^=;]*[^ \t;=])[ \t]*=[ \t]*(.*[^ \t]|)[ \t]*$" , "   %s = %s"};
 	EntryDescr eDescr1 =  {pattern1, "", "" , false};
-	entryDescr.append (eDescr1);
+	entryDescr.push_back (eDescr1);
 
 	IoPatternDescr pattern2 = {"^[ \t]*;;[ \t]*([^=]*[^ \t=])[ \t]*=[ \t]*(.*[^ \t]|)[ \t]*$" , ";;   %s = %s"};
 	EntryDescr eDescr2 =  {pattern2, "", "" , false};
-	entryDescr.append (eDescr2);
+	entryDescr.push_back (eDescr2);
 
 	IoPatternDescr patternBegin1 = {"^[ \t]*\\[[ \t]*(.*[^ \t])[ \t]*\\][ \t]*", "[%s]"};
 	IoPatternDescr patternBegin2 = {"^[ \t]*;;[ \t]*\\[[ \t]*(.*[^ \t])[ \t]*\\][ \t]*", ";; [%s]"};
 	IoPatternDescr patternEnd;
 	SectionDescr sDescr1 =  {patternBegin1, patternEnd , false };
-	sectionDescr.append (sDescr1);
+	sectionDescr.push_back (sDescr1);
 	SectionDescr sDescr2 =  {patternBegin2, patternEnd , false };
-	sectionDescr.append (sDescr2);
+	sectionDescr.push_back (sDescr2);
 
 	m_impl->parser.initMachine (options, commentsDescr, sectionDescr, entryDescr, rewrites);
 	m_impl->parser.initFiles (file);

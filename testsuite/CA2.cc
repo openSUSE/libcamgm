@@ -12,6 +12,9 @@
 #include <fstream>
 #include <unistd.h>
 
+// FIXME: need to be removed
+#include <Utils.hpp>
+
 using namespace blocxx;
 
 using namespace ca_mgm;
@@ -19,13 +22,13 @@ using namespace std;
 
 int main(int argc, char **argv)
 {
-    
+
     if ( argc != 2 )
     {
         cerr << "Usage: CA2 <filepath>" << endl;
         exit( 1 );
     }
-    
+
     // Logging
     LoggerRef l = ca_mgm::Logger::createCerrLogger(
                                                   "CA2",
@@ -34,9 +37,9 @@ int main(int argc, char **argv)
                                                   "%-5p %c - %m"
                                                   );
     ca_mgm::Logger::setDefaultLogger(l);
-    
+
     blocxx::String file = argv[ 1 ];
-        
+
     cout << "START"  << endl;
     cout << "file: " << file << endl;
 
@@ -46,7 +49,7 @@ int main(int argc, char **argv)
         cerr << "Unable to load '" << file << "'" << endl;
         exit( 2 );
     }
-    
+
     while( in )
     {
         try
@@ -54,16 +57,16 @@ int main(int argc, char **argv)
             blocxx::String    line = blocxx::String::getLine( in );
             if(line == "EOF") break;
 
-            StringArray params = PerlRegEx("\\s").split(line);
+            std::vector<blocxx::String> params = convStringArray(PerlRegEx("\\s").split(line));
 
             cout << "creating CA object" << endl;
 
             CA ca(params[0], "system", "./TestRepos/");
-            
+
             RequestGenerationData rgd;
-    
+
             cout << "============= Test:" << params[0] << "=>" << params[1] << endl;
-        
+
             if(params[1] == "CA_Req")
             {
                 rgd = ca.getRequestDefaults(E_CA_Req);
@@ -81,20 +84,20 @@ int main(int argc, char **argv)
                 cout << "unknown parameter" << endl;
             }
 
-            cout << "============= Call Verify" << endl; 
+            cout << "============= Call Verify" << endl;
 
-            StringArray a = rgd.verify();
-            
+            std::vector<blocxx::String> a = rgd.verify();
+
             StringArray::const_iterator it;
             for(it = a.begin(); it != a.end(); ++it)
             {
                 cout << (*it) << endl;
             }
-            
-            cout << "============= Call Dump" << endl; 
+
+            cout << "============= Call Dump" << endl;
             PerlRegEx r("^!CHANGING DATA!.*$");
 
-            StringArray dump = rgd.dump();
+            std::vector<blocxx::String> dump = rgd.dump();
             StringArray::const_iterator it2;
             for(it2 = dump.begin(); it2 != dump.end(); ++it2)
             {
@@ -109,7 +112,7 @@ int main(int argc, char **argv)
             cerr << e << endl;
         }
     }
-    
+
     cout << "DONE" << endl;
     return 0;
 }

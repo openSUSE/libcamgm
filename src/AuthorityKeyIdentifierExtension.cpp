@@ -125,24 +125,24 @@ AuthorityKeyIdentifierExt::valid() const
 	return true;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 AuthorityKeyIdentifierExt::verify() const
 {
-	return blocxx::StringArray();
+	return std::vector<blocxx::String>();
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 AuthorityKeyIdentifierExt::dump() const
 {
-	StringArray result;
-	result.append("AuthorityKeyIdentifierExt::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("AuthorityKeyIdentifierExt::dump()");
 
-	result.appendArray(ExtensionBase::dump());
+	appendArray(result, ExtensionBase::dump());
 	if(!isPresent()) return result;
 
-	result.append("KeyID = " + getKeyID());
-	result.append("DirName = " + getDirName());
-	result.append("serial = " + getSerial());
+	result.push_back("KeyID = " + getKeyID());
+	result.push_back("DirName = " + getDirName());
+	result.push_back("serial = " + getSerial());
 
 	return result;
 }

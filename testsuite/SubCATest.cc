@@ -22,7 +22,7 @@ int main()
     try
     {
         cout << "START" << endl;
-        
+
         blocxx::StringArray cat;
         cat.push_back("FATAL");
         cat.push_back("ERROR");
@@ -37,17 +37,17 @@ int main()
                                                       "%-5p %c - %m"
                                                       );
         ca_mgm::Logger::setDefaultLogger(l);
-        
+
         CA ca("Test_CA1", "system", "./TestRepos/");
         RequestGenerationData rgd = ca.getRequestDefaults(E_CA_Req);
 
         list<RDNObject> dnl = rgd.getSubjectDN().getDN();
         list<RDNObject>::iterator dnit;
-        
+
         for(dnit = dnl.begin(); dnit != dnl.end(); ++dnit)
         {
             cout << "DN Key " << (*dnit).getType() << endl;
-            
+
             if((*dnit).getType() == "countryName")
             {
                 (*dnit).setRDNValue("DE");
@@ -61,12 +61,12 @@ int main()
                 (*dnit).setRDNValue("suse@suse.de");
             }
         }
-        
+
         DNObject dn(dnl);
         rgd.setSubjectDN(dn);
 
         CertificateIssueData cid = ca.getIssueDefaults(E_CA_Cert);
-        cid.setCertifyPeriode(cid.getStartDate(), 
+        cid.setCertifyPeriode(cid.getStartDate(),
 							  cid.getStartDate() + 63072000); // startDate + 2 Years
 
         ca.createSubCA("SubCA_Test", "system", rgd, cid);
@@ -76,7 +76,7 @@ int main()
         path::PathInfo pi2("./TestRepos/SubCA_Test/cacert.pem");
 
         cout << "Sub CA exists: " << Bool(pi2.exists()) << endl;
-        
+
         cout << "DONE" << endl;
     }
     catch(Exception& e)

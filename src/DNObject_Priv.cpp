@@ -104,7 +104,7 @@ DNObject_Priv::DNObject_Priv(X509_NAME *x509_name)
 	 *
 	 for(uint j = 0 ; j < lines.size(); ++j) {
 
-	 StringArray vals = re.capture(lines[j]);
+	 std::vector<blocxx::String> vals = re.capture(lines[j]);
 
 	 if(vals.size() != 3) {
 
@@ -207,7 +207,7 @@ DNObject_Priv::setDefaults2Config(CA& ca)
 		             Format(__("Cannot parse section %1."), dnSect).c_str());
 	}
 	StringList::const_iterator it = dnKeys.begin();
-	Array<Array<blocxx::String> > newDNSect;
+	std::vector<std::vector<blocxx::String> > newDNSect;
 
 	String lastFieldName;
 	String defaultValue;
@@ -242,7 +242,7 @@ DNObject_Priv::setDefaults2Config(CA& ca)
 				}
 				if(defaultValue != "")
 				{
-					Array<blocxx::String> line(2, "");
+					std::vector<blocxx::String> line(2, "");
 					line[0] = lastFieldName + "_default";
 					line[1] = defaultValue;
 					newDNSect.push_back(line);
@@ -253,14 +253,14 @@ DNObject_Priv::setDefaults2Config(CA& ca)
 			defaultValue = "";
 		}
 
-		Array<blocxx::String> line(2, "");
+		std::vector<blocxx::String> line(2, "");
 		line[0] = *it;
 		line[1] = ca.getConfig()->getValue(dnSect, *it);
 		newDNSect.push_back(line);
 		ca.getConfig()->deleteValue(dnSect, *it);
 	}
 
-	Array<Array<blocxx::String> >::const_iterator newIT;
+	std::vector<std::vector<blocxx::String> >::const_iterator newIT;
 
 	for(newIT = newDNSect.begin(); newIT != newDNSect.end(); ++newIT)
 	{

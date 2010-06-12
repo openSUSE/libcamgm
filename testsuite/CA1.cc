@@ -24,13 +24,13 @@ int main()
     try
     {
         cout << "START" << endl;
-        
-        StringArray comp;
+
+        blocxx::StringArray comp;
         comp.push_back("ca-mgm");
         comp.push_back("limal");
-        
+
         // Logging
-        
+
         LoggerRef l = ca_mgm::Logger::createCerrLogger(
                                                       "CA1",
                                                       comp,
@@ -39,29 +39,29 @@ int main()
                                                       );
 
         ca_mgm::Logger::setDefaultLogger(l);
-        
+
         CA ca("ca1_test", "system", "./TestRepos/");
-        
+
         cout << "======================== getRequestDefaults =================" << endl;
 
         RequestGenerationData rgd = ca.getRequestDefaults(E_CA_Req);
 
         cout << "======================== call verify() =================" << endl;
- 
-        StringArray a = rgd.verify();
-        
+
+        std::vector<blocxx::String> a = rgd.verify();
+
         StringArray::const_iterator it;
-        
+
         for(it = a.begin(); it != a.end(); ++it)
         {
             cout << (*it) << endl;
         }
-       
+
         cout << "======================== call dump() =================" << endl;
 
-        StringArray dump = rgd.dump();
+        std::vector<blocxx::String> dump = rgd.dump();
         StringArray::const_iterator it2;
-        
+
         for(it2 = dump.begin(); it2 != dump.end(); ++it2)
         {
             if(!r.match(*it2))
@@ -73,20 +73,20 @@ int main()
         cout << "======================== getIssueDefaults =================" << endl;
 
         CertificateIssueData cid = ca.getIssueDefaults(E_CA_Cert);
- 
+
         cout << "======================== call verify() =================" << endl;
 
         a = cid.verify();
-        
+
         for(it = a.begin(); it != a.end(); ++it)
         {
             cout << (*it) << endl;
         }
-       
+
         cout << "======================== call dump() =================" << endl;
 
         dump = cid.dump();
-        
+
         for(it2 = dump.begin(); it2 != dump.end(); ++it2)
         {
             if(!r.match(*it2))
@@ -98,16 +98,16 @@ int main()
         cout << "======================== getCRLDefaults =================" << endl;
 
         CRLGenerationData cgd = ca.getCRLDefaults();
- 
+
         cout << "======================== call verify() =================" << endl;
-  
+
         a = cgd.verify();
-        
+
         for(it = a.begin(); it != a.end(); ++it)
         {
             cout << (*it) << endl;
         }
-       
+
         cout << "======================== call dump() =================" << endl;
 
         dump = cgd.dump();
@@ -121,13 +121,13 @@ int main()
         }
 
         cout << "DONE" << endl;
-        
+
     }
     catch(Exception& e)
     {
         cerr << e << endl;
     }
-    
+
     return 0;
 }
 

@@ -250,7 +250,7 @@ decode_octet(const char *hex)
 
 
 // -------------------------------------------------------------------
-blocxx::StringArray
+std::vector<blocxx::String>
 split(const blocxx::String &pstr,
       const blocxx::String &psep)
 {
@@ -261,7 +261,7 @@ split(const blocxx::String &pstr,
 		);
 	}
 
-	StringArray params;
+	std::vector<blocxx::String> params;
 	size_t beg, pos, len;
 
 	len = pstr.length();
@@ -299,8 +299,8 @@ split(const blocxx::String &str,
 		);
 	}
 
-	StringArray                 params( split(str, psep));
-	StringArray::const_iterator piter;
+	std::vector<blocxx::String>                 params( split(str, psep));
+	std::vector<blocxx::String>::const_iterator piter;
 	blocxx::String              key, val;
 	size_t                      pos;
 	ParamMap                    pmap;
@@ -341,11 +341,11 @@ split(const blocxx::String &str,
 
 // -------------------------------------------------------------------
 blocxx::String
-join(const blocxx::StringArray &params,
+join(const std::vector<blocxx::String> &params,
      const blocxx::String      &psep)
 {
 	blocxx::String                      str;
-	blocxx::StringArray::const_iterator p( params.begin());
+	std::vector<blocxx::String>::const_iterator p( params.begin());
 
 	if( p != params.end())
 	{
@@ -407,11 +407,11 @@ join(const ca_mgm::url::ParamMap &pmap,
 UrlComponents
 parse_url_string(const blocxx::String &url)
 {
-	StringArray cap;
+	std::vector<blocxx::String> cap;
 	try
 	{
 		blocxx::PosixRegEx reg(RX_SPLIT_URL);
-		cap = reg.capture(url);
+		cap = convStringArray(reg.capture(url));
 	}
 	catch(...)
 	{}
@@ -455,11 +455,11 @@ parse_url_string(const blocxx::String &url)
 UrlAuthority
 parse_url_authority(const blocxx::String &authority)
 {
-	StringArray cap;
+	std::vector<blocxx::String> cap;
 	try
 	{
 		blocxx::PosixRegEx reg(RX_SPLIT_URL_AUTHORITY);
-		cap = reg.capture(authority);
+		cap = convStringArray(reg.capture(authority));
 	}
 	catch(...)
 	{}

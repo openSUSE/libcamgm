@@ -22,7 +22,7 @@ int main()
     try
     {
         cout << "START" << endl;
-        
+
         // Logging
         LoggerRef l = ca_mgm::Logger::createCerrLogger(
                                                       "ListCATreeTest",
@@ -31,15 +31,15 @@ int main()
                                                       "%-5p %c - %m"
                                                   );
         ca_mgm::Logger::setDefaultLogger(l);
-        
+
         cout << "=================== start CA Tree List ======================" << endl;
 
-        std::list<Array<blocxx::String> > tree = CA::getCATree("./TestRepos3/");
-        std::list<Array<blocxx::String> >::const_iterator it_ext;
+        std::list<std::vector<blocxx::String> > tree = CA::getCATree("./TestRepos3/");
+        std::list<std::vector<blocxx::String> >::const_iterator it_ext;
 
         for(it_ext = tree.begin(); it_ext != tree.end(); ++it_ext)
         {
-            Array<blocxx::String>::const_iterator it_int;
+            std::vector<blocxx::String>::const_iterator it_int;
 
             for(it_int = (*it_ext).begin(); it_int != (*it_ext).end(); ++it_int)
             {

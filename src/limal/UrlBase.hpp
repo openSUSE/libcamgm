@@ -443,7 +443,7 @@ public:
 	 *
 	 * \return An array with scheme names known by this object.
 	 */
-	virtual blocxx::StringArray
+	virtual std::vector<blocxx::String>
 	getKnownSchemes() const;
 
 	/**
@@ -617,7 +617,7 @@ public:
 	 *
 	 * \return The encoded path parameters array.
 	 */
-	virtual blocxx::StringArray
+	virtual std::vector<blocxx::String>
 	getPathParamsArray() const;
 
 	/**
@@ -688,7 +688,7 @@ public:
 	 *
 	 * \return The query string splited into an array of substrings.
 	 */
-	virtual blocxx::StringArray
+	virtual std::vector<blocxx::String>
 	getQueryStringArray() const;
 
 	/**
@@ -874,7 +874,7 @@ public:
 	 *         contains an invalid character.
 	 */
 	virtual void
-	setPathParamsArray(const blocxx::StringArray &parray);
+	setPathParamsArray(const std::vector<blocxx::String> &parray);
 
 	/**
 	 * \brief Set the path parameters.
@@ -921,7 +921,7 @@ public:
 	 *         contains an invalid character.
 	 */
 	virtual void
-	setQueryStringArray(const blocxx::StringArray &qarray);
+	setQueryStringArray(const std::vector<blocxx::String> &qarray);
 
 	/**
 	 * \brief Set the query parameters.

@@ -191,7 +191,7 @@ namespace LIMAL_NAMESPACE
  * create standard logger types (file, cerr, syslog), to set them as the
  * global/default or per thread logger in the blocxx library as well as
  * to retrieve them.
- * 
+ *
  * Each instance of the LiMaL logger contains a optional local component
  * name, that is passed with every log message to the current logger and
  * used instead of the default component name, that is set in the logger.
@@ -213,7 +213,7 @@ namespace LIMAL_NAMESPACE
  * @li @c %%d	The date. May be followed by a date format specifier enclosed
  *              between braces. Examples:
  *              @code
- *              "%d{%H:%M:%S}" 
+ *              "%d{%H:%M:%S}"
  *              "%d{%d %b %Y %H:%M:%S}"
  *              @endcode
  *              If no date format specifier is given then ISO8601 format is
@@ -295,10 +295,10 @@ public:
 	 * passed to the setDefaultLogger() or setThreadLogger() methods.
 	 *
 	 * @code
-	 * blocxx::Array<blocxx::String> components;
+	 * std::vector<blocxx::String> components;
 	 * components.push_back("*");
 	 *
-	 * blocxx::Array<blocxx::String> categories;
+	 * std::vector<blocxx::String> categories;
 	 * categories.push_back("*");
 	 *
 	 * blocxx::LoggerRef l = ca_mgm::Logger::createCerrLogger(
@@ -321,8 +321,8 @@ public:
 	 */
 	static blocxx::LoggerRef createCerrLogger(
 	        const blocxx::String                &component,
-		const blocxx::Array<blocxx::String> &components,
-		const blocxx::Array<blocxx::String> &categories,
+		const blocxx::StringArray &components,
+		const blocxx::StringArray &categories,
 		const blocxx::String                &messageFormat
 	);
 
@@ -334,8 +334,8 @@ public:
 	 * passed to the setDefaultLogger() or setThreadLogger() methods.
 	 *
 	 * @code
-	 * blocxx::Array<blocxx::String> components(1, "*");
-	 * blocxx::Array<blocxx::String> categories(1, "*");
+	 * std::vector<blocxx::String> components(1, "*");
+	 * std::vector<blocxx::String> categories(1, "*");
 	 *
 	 * blocxx::LoggerRef l = ca_mgm::Logger::createSyslogLogger(
 	 *                           "main", components, categories,
@@ -359,8 +359,8 @@ public:
 	 */
 	static blocxx::LoggerRef createSyslogLogger(
 	        const blocxx::String                &component,
-		const blocxx::Array<blocxx::String> &components,
-		const blocxx::Array<blocxx::String> &categories,
+		const blocxx::StringArray &components,
+		const blocxx::StringArray &categories,
 		const blocxx::String                &messageFormat,
 		const blocxx::String                &identity,
 		const blocxx::String                &facility
@@ -375,8 +375,8 @@ public:
 	 * passed to the setDefaultLogger() or setThreadLogger() methods.
 	 *
 	 * @code
-	 * blocxx::Array<blocxx::String> components(1, "*");
-	 * blocxx::Array<blocxx::String> categories(1, "*");
+	 * std::vector<blocxx::String> components(1, "*");
+	 * std::vector<blocxx::String> categories(1, "*");
 	 *
 	 * blocxx::LoggerRef l = ca_mgm::Logger::createFileLogger(
 	 *                           "main", components, categories,
@@ -403,8 +403,8 @@ public:
 	 */
 	static blocxx::LoggerRef createFileLogger(
 	        const blocxx::String                &component,
-		const blocxx::Array<blocxx::String> &components,
-		const blocxx::Array<blocxx::String> &categories,
+		const blocxx::StringArray &components,
+		const blocxx::StringArray &categories,
 		const blocxx::String                &messageFormat,
 		const blocxx::String                &filename,
 		blocxx::UInt64                      maxLogFileSize = 0,
@@ -419,8 +419,8 @@ public:
 	 * passed to the setDefaultLogger() or setThreadLogger() methods.
 	 *
 	 * @code
-	 * blocxx::Array<blocxx::String> components(1, "*");
-	 * blocxx::Array<blocxx::String> categories(1, "*");
+	 * std::vector<blocxx::String> components(1, "*");
+	 * std::vector<blocxx::String> categories(1, "*");
 	 *
 	 * blocxx::LoggerRef l = ca_mgm::Logger::createNullLogger(
 	 *                           "main", components, categories,
@@ -442,8 +442,8 @@ public:
 	 */
 	static blocxx::LoggerRef createNullLogger(
 	        const blocxx::String                &component,
-		const blocxx::Array<blocxx::String> &components,
-		const blocxx::Array<blocxx::String> &categories,
+		const blocxx::StringArray &components,
+		const blocxx::StringArray &categories,
 		const blocxx::String                &messageFormat
 	);
 

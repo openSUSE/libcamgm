@@ -169,42 +169,42 @@ RequestData::valid() const
 	return true;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 RequestData::verify() const
 {
-	StringArray result;
+	std::vector<blocxx::String> result;
 
 	if(m_impl->version < 1 || m_impl->version > 1)
 	{
-		result.append(Format("invalid version: %1", m_impl->version).toString());
+		result.push_back(Format("invalid version: %1", m_impl->version).toString());
 	}
 
-	result.appendArray(m_impl->subject.verify());
+	appendArray(result, m_impl->subject.verify());
 
 	// keysize ?
 
 	if(m_impl->publicKey.empty())
 	{
-		result.append("invalid publicKey");
+		result.push_back("invalid publicKey");
 	}
 
-	result.appendArray(m_impl->extensions.verify());
+	appendArray(result, m_impl->extensions.verify());
 
 	LOGIT_DEBUG_STRINGARRAY("CertificateData::verify()", result);
 
 	return result;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 RequestData::dump() const
 {
-	StringArray result;
-	result.append("RequestData::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("RequestData::dump()");
 
-	result.append("Version = " + String(m_impl->version));
-	result.appendArray(m_impl->subject.dump());
-	result.append("Keysize = " + String(m_impl->keysize));
-	result.append("pubkeyAlgorithm = " + String(m_impl->pubkeyAlgorithm));
+	result.push_back("Version = " + String(m_impl->version));
+	appendArray(result, m_impl->subject.dump());
+	result.push_back("Keysize = " + String(m_impl->keysize));
+	result.push_back("pubkeyAlgorithm = " + String(m_impl->pubkeyAlgorithm));
 
 	String pk;
 	for(size_t i = 0; i < m_impl->publicKey.size(); ++i)
@@ -213,9 +213,9 @@ RequestData::dump() const
 		s.format("%02x", static_cast<UInt8>(m_impl->publicKey[i]));
 		pk += s + ":";
 	}
-	result.append("public Key = " + pk);
+	result.push_back("public Key = " + pk);
 
-	result.append("signatureAlgorithm = "+ String(m_impl->signatureAlgorithm));
+	result.push_back("signatureAlgorithm = "+ String(m_impl->signatureAlgorithm));
 
 	String s;
 	for(uint i = 0; i < m_impl->signature.size(); ++i)
@@ -225,11 +225,11 @@ RequestData::dump() const
 		s += d;
 	}
 
-	result.append("Signature = " + s);
+	result.push_back("Signature = " + s);
 
-	result.appendArray(m_impl->extensions.dump());
-	result.append("Challenge Password = " + m_impl->challengePassword);
-	result.append("Unstructured Name = " + m_impl->unstructuredName);
+	appendArray(result, m_impl->extensions.dump());
+	result.push_back("Challenge Password = " + m_impl->challengePassword);
+	result.push_back("Unstructured Name = " + m_impl->unstructuredName);
 
 	return result;
 }

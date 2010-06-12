@@ -80,7 +80,7 @@ RevocationEntry_Priv::RevocationEntry_Priv(X509_REVOKED *rev)
 	LOGIT_DEBUG("Revocation Date: " << sbuf);
 
 	PerlRegEx r("^(\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)Z$");
-	StringArray sa = r.capture(sbuf);
+	std::vector<blocxx::String> sa = convStringArray(r.capture(sbuf));
 
 	if(sa.size() != 7)
 	{
@@ -121,7 +121,7 @@ RevocationEntry_Priv::RevocationEntry_Priv(const String&    serial,
 		BLOCXX_THROW(ca_mgm::ValueException,
 		             Format(__("Invalid serial %1."), serial).c_str());
 	}
-	StringArray r = reason.verify();
+	std::vector<blocxx::String> r = reason.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -233,7 +233,7 @@ CRLData_Priv::setValidityPeriod(time_t last,
 void
 CRLData_Priv::setIssuerDN(const DNObject& issuer)
 {
-	StringArray r = issuer.verify();
+	std::vector<blocxx::String> r = issuer.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -257,7 +257,7 @@ CRLData_Priv::setSignature(const ByteBuffer& sig)
 void
 CRLData_Priv::setExtensions(const X509v3CRLExts& ext)
 {
-	StringArray r = ext.verify();
+	std::vector<blocxx::String> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -269,7 +269,7 @@ CRLData_Priv::setExtensions(const X509v3CRLExts& ext)
 void
 CRLData_Priv::setRevocationData(const std::map<String, RevocationEntry>& data)
 {
-	StringArray r = checkRevocationData(data);
+	std::vector<blocxx::String> r = checkRevocationData(data);
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -330,7 +330,7 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
 	delete [] cbuf;
 
 	PerlRegEx r("^(\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)Z$");
-	StringArray sa = r.capture(sbuf);
+	std::vector<blocxx::String> sa = convStringArray(r.capture(sbuf));
 
 	if(sa.size() != 7)
 	{
@@ -364,7 +364,7 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
 	sbuf = String(cbuf);
 	delete [] cbuf;
 
-	sa = r.capture(sbuf);
+	sa = convStringArray(r.capture(sbuf));
 
 	if(sa.size() != 7)
 	{

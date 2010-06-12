@@ -24,7 +24,7 @@
 #include <map>
 
 #define INIPARSER "IniParser"
-    
+
 namespace LIMAL_NAMESPACE
 {
 namespace INI
@@ -41,8 +41,8 @@ struct SectionAll
 {
     blocxx::String kind;    //section,value
     blocxx::String name;
-    blocxx::String type;    // section_type 
-    blocxx::String file;    // "rewrite", section_file 
+    blocxx::String type;    // section_type
+    blocxx::String file;    // "rewrite", section_file
     blocxx::String comment;
     blocxx::String value;   // if kind == value
     SectionList sectionList;
@@ -226,7 +226,7 @@ class IniParser;
 class IniSection : public IniBase
 {
 private:
-    
+
     // huh??? allow_values, allow_sections and allow_subsub
     // were never actuially used
 
@@ -277,7 +277,7 @@ private:
      * @param depth path index
      * @return 0 in case of success
      */
-    int getMyValue (const blocxx::StringArray &p,
+    int getMyValue (const std::vector<blocxx::String> &p,
 		    StringList &out, int what, int depth);
     /**
      * Get a value on a path
@@ -289,7 +289,7 @@ private:
      * path[depth] in current "scope"
      * @return 0 in case of success
      */
-    int getValue (const blocxx::StringArray&p,
+    int getValue (const std::vector<blocxx::String>&p,
 		  StringList&out,int what, int depth = 0);
     /**
      * Get section property -- comment or read-by
@@ -301,7 +301,7 @@ private:
      * path[depth] in current "scope"
      * @return 0 in case of success
      */
-    int getSectionProp (const blocxx::StringArray&p,
+    int getSectionProp (const std::vector<blocxx::String>&p,
 			StringList&out,int what, int depth = 0);
     /**
      * Get a complete subtree
@@ -312,7 +312,7 @@ private:
      * path[depth] in current "scope"
      * @return 0 in case of success
      */
-    int getAll (const blocxx::StringArray&p,
+    int getAll (const std::vector<blocxx::String>&p,
 		SectionAll&out, int depth);
     /**
      * Gets data for this section and all its values and subsections
@@ -336,19 +336,19 @@ private:
      * @param depth see getSectionProp
      * @return 0 in case of success
      */
-    int dirHelper (const blocxx::StringArray&p,
+    int dirHelper (const std::vector<blocxx::String>&p,
 		   StringList&out,int sections,int depth = 0);
     /**
      * Set a value (or list of them if repeat_names) in this section
      * It would be enough to pass only k instead of p and depth,
      * but then the error messages would not know the whole path
      * @param p path
-     * @param in value to set 
+     * @param in value to set
      * @param what 0 -- value, 1 -- comment, other -- read-by.
      * @param depth path index
      * @return 0
      */
-    int setMyValue (const blocxx::StringArray &p,
+    int setMyValue (const std::vector<blocxx::String> &p,
 		    const StringList&in, int what, int depth);
     /**
      * Set value on path. Creates recursively all non-existing subsections.
@@ -358,7 +358,7 @@ private:
      * @param depth see getSectionProp
      * @return 0
      */
-    int setValue (const blocxx::StringArray&p,
+    int setValue (const std::vector<blocxx::String>&p,
 		  const StringList&in,int what, int depth = 0);
     /**
      * Set section comment or read-by. Creates recursively all non-existing subsections.
@@ -368,7 +368,7 @@ private:
      * @param depth see getSectionProp
      * @return 0
      */
-    int setSectionProp (const blocxx::StringArray&p,
+    int setSectionProp (const std::vector<blocxx::String>&p,
 			const StringList&in, int what, int depth);
 
     /**
@@ -383,7 +383,7 @@ private:
      * @param depth see getSectionProp
      * @return 0 in case of success
      */
-    int delValue (const blocxx::StringArray&p,
+    int delValue (const std::vector<blocxx::String>&p,
 		  int depth);
     /**
      * Delete section on path. Deletes also all its subsections.
@@ -391,7 +391,7 @@ private:
      * @param depth see getSectionProp
      * @return 0 in case of success
      */
-    int delSection (const blocxx::StringArray&p,
+    int delSection (const std::vector<blocxx::String>&p,
 		    int depth);
 
     /**
@@ -414,7 +414,7 @@ private:
      * @param out output
      * @return 0 in case of success
      */
-    int getValueFlat (const blocxx::StringArray&p,
+    int getValueFlat (const std::vector<blocxx::String>&p,
 		      StringList&out);
     /**
      * Set value in flat mode.
@@ -422,16 +422,16 @@ private:
      * @param out input
      * @return 0 in case of success
      */
-    int setValueFlat (const blocxx::StringArray&p,
+    int setValueFlat (const std::vector<blocxx::String>&p,
 		      const StringList& in);
     /**
      * Delete value in flat mode
      */
-    int delValueFlat (const blocxx::StringArray&p);
+    int delValueFlat (const std::vector<blocxx::String>&p);
     /**
      * Get list of values in flat mode.
      */
-    int dirValueFlat (const blocxx::StringArray&p, StringList&l);
+    int dirValueFlat (const std::vector<blocxx::String>&p, StringList&l);
 //    IniSection ();
 public:
     /** explicit uninitialized constructor */
@@ -463,7 +463,7 @@ public:
 	    if (&s == this)
 	    {
 		return;
-	    } 
+	    }
 	    IniBase::operator = (s);
 	    ip = s.ip;
 	    end_comment = s.end_comment; rewrite_by = s.rewrite_by;
@@ -474,8 +474,8 @@ public:
 
     virtual ~IniSection () {}
 
-    /** 
-     * this is a constructor for newly added sections --> sets dirty 
+    /**
+     * this is a constructor for newly added sections --> sets dirty
      * @param ip parser to take options from
      * @param n name of section
      */
@@ -521,7 +521,7 @@ public:
      */
     int getSubSectionRewriteBy (const char*name);
 
-    /** 
+    /**
      * If there is no comment at the beginning and no values and no
      * sections, it is better to set is as comment at the beginning.
      * Sets also dirty flag.
@@ -542,7 +542,7 @@ public:
      * @param from recursion depth
      * @return Found ini section iterator
      */
-    IniSection& findSection(const blocxx::StringArray&path, int from = 0);
+    IniSection& findSection(const std::vector<blocxx::String>&path, int from = 0);
     /**
      * If currently parsed end-section-tag hasn't matched currently
      * processed section by name, we need to find the best possible match
@@ -556,7 +556,7 @@ public:
      * @param from let unset, current path index
      * @return index to path
      */
-    int findEndFromUp(const blocxx::StringArray&path,
+    int findEndFromUp(const std::vector<blocxx::String>&path,
 		      int wanted, int found = -1, int from = 0);
 
     /**
@@ -568,20 +568,20 @@ public:
      * Generic interface to SCR::Read
      * @param rewrite a #19066 hack - if rewriting is active, .st accesses rewrite_by
      */
-    int Read (const blocxx::StringArray&p, StringList&out, bool rewrite);
+    int Read (const std::vector<blocxx::String>&p, StringList&out, bool rewrite);
     /**
      * Get all properties and values of a section.
      */
-    int ReadAll (const blocxx::StringArray&p, SectionAll&out);    
+    int ReadAll (const std::vector<blocxx::String>&p, SectionAll&out);
     /**
      * Generic interface to SCR::Dir
      */
-    int Dir (const blocxx::StringArray&p, StringList&out);
+    int Dir (const std::vector<blocxx::String>&p, StringList&out);
     /**
      * Generic interface to SCR::Write
      * @param rewrite a #19066 hack - if rewriting is active, .st accesses rewrite_by
      */
-    int Write (const blocxx::StringArray&p, const StringList&v, bool rewrite);
+    int Write (const std::vector<blocxx::String>&p, const StringList&v, bool rewrite);
     /**
      * Set all properties and values for a section.
      * No recursive creation of the specified path.
@@ -590,14 +590,14 @@ public:
      * @param depth see getSectionProp
      * @return 0 in case of success
      */
-    int WriteAll (const blocxx::StringArray&p,
-		  const SectionAll& in, int depth);    
+    int WriteAll (const std::vector<blocxx::String>&p,
+		  const SectionAll& in, int depth);
     /**
      * Generic delete for values, sections.
      * @param p path to delete
      * 	@return 0: success
      */
-    int Delete (const blocxx::StringArray&p);
+    int Delete (const std::vector<blocxx::String>&p);
 
     // used by IniParser::write
     IniIterator getContainerBegin ();
@@ -620,7 +620,7 @@ public:
 };
 
 /**
- * A single container 
+ * A single container
  */
 class IniContainerElement
 {

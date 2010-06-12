@@ -12,6 +12,9 @@
 #include <fstream>
 #include <unistd.h>
 
+// FIXME: need to be removed
+#include <Utils.hpp>
+
 using namespace blocxx;
 
 using namespace ca_mgm;
@@ -23,7 +26,7 @@ int main()
 	try
 	{
 		cout << "START" << endl;
-        
+
 		blocxx::StringArray cat;
 		cat.push_back("FATAL");
 		cat.push_back("ERROR");
@@ -38,19 +41,19 @@ int main()
 		                                              "%-5p %c - %m"
 		                                              );
 		ca_mgm::Logger::setDefaultLogger(l);
-        
+
 		CA ca("Test_CA1", "system", "./TestRepos/");
 		RequestGenerationData rgd = ca.getRequestDefaults(E_Client_Req);
-        
+
 		// ------------------------ Set DN --------------------------------
-        
+
 		std::list<RDNObject> dnl = rgd.getSubjectDN().getDN();
 		std::list<RDNObject>::iterator dnit;
-        
+
 		for(dnit = dnl.begin(); dnit != dnl.end(); ++dnit)
 		{
 			cout << "DN Key " << (*dnit).getType() << endl;
-            
+
 			if((*dnit).getType() == "countryName")
 			{
 				(*dnit).setRDNValue("DE");
@@ -64,14 +67,14 @@ int main()
 				(*dnit).setRDNValue("suse@suse.de");
 			}
 		}
-        
+
 		DNObject dn(dnl);
 		rgd.setSubjectDN(dn);
 
 		// ------------------------ create request --------------------------------
 
 		blocxx::String r = ca.createRequest("system", rgd, E_Client_Req);
-        
+
 		cout << "RETURN Request " << endl;
 
 		// ------------------------ get issue defaults --------------------------------
@@ -92,7 +95,7 @@ int main()
 		// ------------------------ create bit extension -----------------------------
 
 		cid.extensions().keyUsage().setKeyUsage(KeyUsageExt::decipherOnly);
-		cid.extensions().nsCertType().setNsCertType(NsCertTypeExt::objCA | 
+		cid.extensions().nsCertType().setNsCertType(NsCertTypeExt::objCA |
 		                                            NsCertTypeExt::emailCA |
 		                                            NsCertTypeExt::sslCA);
 
@@ -110,35 +113,35 @@ int main()
 		sl.push_back("nsSGC");
 
 		cid.extensions().extendedKeyUsage().setExtendedKeyUsage( sl );
-        
+
 		// ------------------------ create key identifier extension -----------------------------
-        
+
 		cid.extensions().subjectKeyIdentifier().setSubjectKeyIdentifier(true);
 		cid.extensions().authorityKeyIdentifier().setKeyID(AuthorityKeyIdentifierGenerateExt::KeyID_always);
 		cid.extensions().authorityKeyIdentifier().setIssuer(AuthorityKeyIdentifierGenerateExt::Issuer_always);
 
 		// ------------------------ create alternative extension -----------------------------
-        
+
 		std::list<LiteralValue> list;
 		list.push_back(LiteralValue("IP", "164.34.35.184"));
 		list.push_back(LiteralValue("DNS", "ca.my-company.com"));
 		list.push_back(LiteralValue("RID", "1.2.3.4"));
 		list.push_back(LiteralValue("email", "me@my-company.com"));
 		list.push_back(LiteralValue("URI", "http://www.my-company.com/"));
-        
+
 		cid.extensions().subjectAlternativeName().setCopyEmail(true);
 		cid.extensions().subjectAlternativeName().setAlternativeNameList(list);
 		cid.extensions().issuerAlternativeName().setCopyIssuer(true);
 		cid.extensions().issuerAlternativeName().setAlternativeNameList(list);
-        
+
 		// ---------------- create authority information extension ------------------------
-       
+
 		std::list<AuthorityInformation> info;
-		info.push_back(AuthorityInformation("OCSP", 
+		info.push_back(AuthorityInformation("OCSP",
 		                                    LiteralValue("URI", "http://www.my-company.com/ocsp.pl")));
-		info.push_back(AuthorityInformation("caIssuers", 
+		info.push_back(AuthorityInformation("caIssuers",
 		                                    LiteralValue("URI", "http://www.my-company.com/caIssuer.html")));
-        
+
 		cid.extensions().authorityInfoAccess().setAuthorityInformation(info);
 
 		// ------------------------ create CRL dist point extension -----------------------
@@ -155,7 +158,7 @@ int main()
 
 		CertificatePolicy p2;
 		p2.setPolicyIdentifier("1.3.6.8");
-        
+
 		StringList slp;
 		slp.push_back("http://www.my-company.com/");
 		slp.push_back("http://www2.my-company.com/");
@@ -176,22 +179,22 @@ int main()
 		p.push_back(p2);
 
 		cid.extensions().certificatePolicies().setPolicies(p);
-        
+
 		//---------------------------------------------------------------------------------
-        
+
 		blocxx::String c = ca.issueCertificate(r, cid, E_CA_Cert);
 
 		cout << "RETURN Certificate " << endl;
 
 		path::PathInfo pi("./TestRepos/Test_CA1/newcerts/" + c + ".pem");
-        
+
 		cout << "Certificate exists: " << Bool(pi.exists()) << endl;
 
 		CertificateData cd = ca.getCertificate(c);
-        
-		StringArray ret = cd.getExtensions().dump();
-		StringArray::const_iterator it;
-        
+
+		std::vector<blocxx::String> ret = cd.getExtensions().dump();
+		std::vector<blocxx::String>::const_iterator it;
+
 		for(it = ret.begin(); it != ret.end(); ++it)
 		{
 			if((*it).startsWith("KeyID"))
@@ -203,7 +206,7 @@ int main()
 				cout << (*it) << endl;
 			}
 		}
-                    
+
 		cout << "DONE" << endl;
 	}
 	catch(Exception& e)

@@ -213,7 +213,7 @@ Logger::createCerrLogger(const String      &component,
 	                 CerrAppender::STR_DEFAULT_MESSAGE_PATTERN);
 
 	LogAppenderRef appRef(new CerrAppender(
-		components, categories, mformat
+		components,categories, mformat
 	));
 
 #if BLOCXX_LIBRARY_VERSION >= 5
@@ -246,7 +246,9 @@ Logger::createSyslogLogger(const String      &component,
                         identity);
 
 	LogAppenderRef appRef(new SyslogAppender(
-		components, categories, mformat, log_tag, facility
+                components,
+                categories,
+		mformat, log_tag, facility
 	));
 
 #if BLOCXX_LIBRARY_VERSION >= 5
@@ -275,7 +277,9 @@ Logger::createNullLogger(const String      &component,
 	                 NullAppender::STR_DEFAULT_MESSAGE_PATTERN);
 
 	LogAppenderRef appRef(new NullAppender(
-		components, categories, mformat
+                components,
+                categories,
+		mformat
 	));
 
 #if BLOCXX_LIBRARY_VERSION >= 5
@@ -328,7 +332,9 @@ Logger::createFileLogger(const String      &component,
 	}
 
 	LogAppenderRef appRef(new FileAppender(
-		components, categories, filename.c_str(),
+                components,
+                categories,
+		filename.c_str(),
 		mformat, maxLogFileSize, maxBackupIndex
 	));
 

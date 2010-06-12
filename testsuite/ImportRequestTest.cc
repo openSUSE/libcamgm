@@ -23,7 +23,7 @@ int main()
     try
     {
         cout << "START" << endl;
-        
+
         blocxx::StringArray cat;
         cat.push_back("FATAL");
         cat.push_back("ERROR");
@@ -38,14 +38,14 @@ int main()
                                                       "%-5p %c - %m"
                                                   );
         ca_mgm::Logger::setDefaultLogger(l);
-        
+
         cout << "=================== start ImportRequestTest ======================" << endl;
         {
             CA ca("Test_CA1", "system", "./TestRepos/");
 
             blocxx::String name = ca.importRequest(blocxx::String("./TestRepos/importRequestTest.req"),
                                                    E_PEM);
-            
+
             path::PathInfo pi("./TestRepos/Test_CA1/req/" + name + ".req");
             if(pi.exists())
             {
@@ -56,7 +56,7 @@ int main()
 
             name = ca.importRequest(blocxx::String("./TestRepos/c293624b6a877f401407ce8f8f1f327e.req"),
                                     E_PEM);
-            
+
             path::PathInfo pi2("./TestRepos/Test_CA1/req/" + name + ".req");
             if(pi2.exists())
             {
@@ -66,7 +66,7 @@ int main()
 
             name = ca.importRequest(blocxx::String("./TestRepos/importRequestTest-DER.req"),
                                     E_DER);
-            
+
             path::PathInfo pi3("./TestRepos/Test_CA1/req/" + name + ".req");
             if(pi3.exists())
             {
@@ -75,7 +75,7 @@ int main()
         }
 
         cout << "=================== end ImportRequestTest ========================" << endl;
-        
+
         cout << "DONE" << endl;
     }
     catch(blocxx::Exception& e)

@@ -120,8 +120,8 @@ private:
 class CATreeCompare
 {
 public:
-	int operator()(const blocxx::Array<blocxx::String> &l,
-	               const blocxx::Array<blocxx::String> r) const
+	int operator()(const std::vector<blocxx::String> &l,
+	               const std::vector<blocxx::String> r) const
 	{
 		if(l.back() == "" && r.back() != "")
 		{
@@ -661,22 +661,22 @@ CA::setCRLDefaults(const CRLGenerationData& defaults)
 	commitConfig2Template();
 }
 
-blocxx::Array<std::map<blocxx::String, blocxx::String> >
+std::vector<std::map<blocxx::String, blocxx::String> >
 CA::getCertificateList()
 {
 	updateDB();
 
-	Array< std::map<String, String> > ret;
+	std::vector< std::map<blocxx::String, blocxx::String> > ret;
 
 	ret = OpenSSLUtils::listCertificates(m_impl->caName, m_impl->repositoryDir);
 
 	return ret;
 }
 
-blocxx::Array<std::map<blocxx::String, blocxx::String> >
+std::vector<std::map<blocxx::String, blocxx::String> >
 CA::getRequestList()
 {
-	Array< std::map<String, String> > ret;
+	std::vector< std::map<String, String> > ret;
 
 	ret = OpenSSLUtils::listRequests(m_impl->caName, m_impl->repositoryDir);
 
@@ -1349,10 +1349,10 @@ CA::importCA(const String& caName,
 }
 
 
-blocxx::Array<blocxx::String>
+std::vector<blocxx::String>
 CA::getCAList(const String& repos)
 {
-	Array<String> caList;
+	std::vector<String> caList;
 
 	caList = OpenSSLUtils::listCA(repos);
 
@@ -1360,42 +1360,42 @@ CA::getCAList(const String& repos)
 }
 
 
-std::list<blocxx::Array<blocxx::String> >
+std::list<std::vector<blocxx::String> >
 CA::getCATree(const String& repos)
 {
-	std::list<Array<String> > ret;
+	std::list<std::vector<String> > ret;
 
-	Array<String> caList = CA::getCAList(repos);
+	std::vector<String> caList = CA::getCAList(repos);
 
 	if(caList.empty())
 	{
 		return ret;
 	}
 
-	std::map<String, Array<String> > caHash;
+	std::map<String, std::vector<String> > caHash;
 
-	Array<String>::const_iterator it = caList.begin();
+	std::vector<String>::const_iterator it = caList.begin();
 	for(; it != caList.end(); ++it)
 	{
 		CertificateData caData =
 			LocalManagement::getCertificate(repos + "/" + (*it) + "/cacert.pem",
 			                                E_PEM);
 
-		Array<String> d;
+		std::vector<String> d;
 		d.push_back(caData.getSubjectDN().getOpenSSLString());
 		d.push_back(caData.getIssuerDN().getOpenSSLString());
 		caHash[*it] = d;
 	}
 
 
-	std::map<String, Array<String> >::const_iterator chit = caHash.begin();
+	std::map<String, std::vector<String> >::const_iterator chit = caHash.begin();
 	for(; chit != caHash.end(); ++chit)
 	{
 		//       subject        ==       issuer
 		if( ((*chit).second)[0] == ((*chit).second)[1] )
 		{
 			// root CA
-			Array<String> d;
+			std::vector<String> d;
 			d.push_back((*chit).first);
 			d.push_back("");
 
@@ -1406,13 +1406,13 @@ CA::getCATree(const String& repos)
 			bool issuerFound = false;
 
 			// sub CA; find caName of the issuer
-			std::map<String, Array<String> >::const_iterator chitnew = caHash.begin();
+			std::map<String, std::vector<String> >::const_iterator chitnew = caHash.begin();
 			for(; chitnew != caHash.end(); ++chitnew)
 			{
 				//       issuer          ==       subject
 				if(  ((*chit).second)[1] == ((*chitnew).second)[0]  )
 				{
-					Array<String> d;
+					std::vector<String> d;
 					d.push_back((*chit).first);
 					d.push_back((*chitnew).first);
 
@@ -1425,7 +1425,7 @@ CA::getCATree(const String& repos)
 			if(!issuerFound)
 			{
 				// the issuer is not in our repository
-				Array<String> d;
+				std::vector<String> d;
 				d.push_back((*chit).first);
 				d.push_back("");
 

@@ -73,7 +73,7 @@ LiteralValue::LiteralValue()
 LiteralValue::LiteralValue(const String &type, const String &value)
 	: m_impl(new LiteralValueImpl(type, value))
 {
-	StringArray r = this->verify();
+	std::vector<blocxx::String> r = this->verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -84,7 +84,7 @@ LiteralValue::LiteralValue(const String &type, const String &value)
 LiteralValue::LiteralValue(const String& value)
 	: m_impl(new LiteralValueImpl())
 {
-	StringArray   sp   = PerlRegEx("^([\\w\\d.]+):(.*)$").capture(value);
+	std::vector<blocxx::String>   sp   = convStringArray(PerlRegEx("^([\\w\\d.]+):(.*)$").capture(value));
 
 	if(sp[1].equalsIgnoreCase("email"))
 	{
@@ -157,7 +157,7 @@ LiteralValue::setLiteral(const String &type, const String &value)
 	m_impl->literalType = type;
 	m_impl->literalValue = value;
 
-	StringArray r = this->verify();
+	std::vector<blocxx::String> r = this->verify();
 	if(!r.empty())
 	{
 		m_impl->literalType = dType;
@@ -175,7 +175,7 @@ LiteralValue::setValue(const String &value)
 
 	m_impl->literalValue = value;
 
-	StringArray r = this->verify();
+	std::vector<blocxx::String> r = this->verify();
 	if(!r.empty())
 	{
 		m_impl->literalValue = dValue;
@@ -250,7 +250,7 @@ LiteralValue::commit2Config(CA &ca, Type t, blocxx::UInt32 num) const
 		String instance;
 		String realm = "";
 
-		StringArray sa = getValue().tokenize("@/");
+		std::vector<blocxx::String> sa = convStringArray(getValue().tokenize("@/"));
 		String sectname1 = getValue()+String(num);
 
 		if(sa.size() == 2) // primary@REALM
@@ -375,10 +375,10 @@ LiteralValue::valid() const
 	return true;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 LiteralValue::verify() const
 {
-	StringArray result;
+	std::vector<blocxx::String> result;
 
 	if(m_impl->literalType == "email")
 	{
@@ -386,7 +386,7 @@ LiteralValue::verify() const
 		if(!check.isValid(m_impl->literalValue))
 		{
 			LOGIT_DEBUG("Wrong LiteralValue for type 'email': " << m_impl->literalValue);
-			result.append(Format("Wrong LiteralValue for type 'email': %1",
+			result.push_back(Format("Wrong LiteralValue for type 'email': %1",
 			                     m_impl->literalValue).toString());
 		}
 	}
@@ -396,7 +396,7 @@ LiteralValue::verify() const
 		if(!check.isValid(m_impl->literalValue))
 		{
 			LOGIT_DEBUG("Wrong LiteralValue for type 'URI': " << m_impl->literalValue);
-			result.append(Format("Wrong LiteralValue for type 'URI': %1",
+			result.push_back(Format("Wrong LiteralValue for type 'URI': %1",
 			                     m_impl->literalValue).toString());
 		}
 	}
@@ -406,7 +406,7 @@ LiteralValue::verify() const
 		if(!check.isValid(m_impl->literalValue))
 		{
 			LOGIT_DEBUG("Wrong LiteralValue for type 'DNS': " << m_impl->literalValue);
-			result.append(Format("Wrong LiteralValue for type 'DNS': %1",
+			result.push_back(Format("Wrong LiteralValue for type 'DNS': %1",
 			                     m_impl->literalValue).toString());
 		}
 	}
@@ -416,7 +416,7 @@ LiteralValue::verify() const
 		if(!check.isValid(m_impl->literalValue))
 		{
 			LOGIT_DEBUG("Wrong LiteralValue for type 'RID': " << m_impl->literalValue);
-			result.append(Format("Wrong LiteralValue for type 'RID': %1",
+			result.push_back(Format("Wrong LiteralValue for type 'RID': %1",
 			                     m_impl->literalValue).toString());
 		}
 	}
@@ -430,7 +430,7 @@ LiteralValue::verify() const
 			if(!check.isValid(m_impl->literalValue))
 			{
 				LOGIT_DEBUG("Wrong LiteralValue for type 'IP': " << m_impl->literalValue);
-				result.append(Format("Wrong LiteralValue for type 'IP': %1",
+				result.push_back(Format("Wrong LiteralValue for type 'IP': %1",
 									 m_impl->literalValue).toString());
 			}
 		}
@@ -441,7 +441,7 @@ LiteralValue::verify() const
 		if(!check.isValid(m_impl->literalValue))
 		{
 			LOGIT_DEBUG("Wrong LiteralValue for type '1.3.6.1.4.1.311.20.2.3': " << m_impl->literalValue);
-			result.append(Format("Wrong LiteralValue for type '1.3.6.1.4.1.311.20.2.3': %1",
+			result.push_back(Format("Wrong LiteralValue for type '1.3.6.1.4.1.311.20.2.3': %1",
 			                     m_impl->literalValue).toString());
 		}
 	}
@@ -451,7 +451,7 @@ LiteralValue::verify() const
 		if(!check.isValid(m_impl->literalValue))
 		{
 			LOGIT_DEBUG("Wrong LiteralValue for type '1.3.6.1.5.2.2': " << m_impl->literalValue);
-			result.append(Format("Wrong LiteralValue for type '1.3.6.1.5.2.2': %1",
+			result.push_back(Format("Wrong LiteralValue for type '1.3.6.1.5.2.2': %1",
 			                     m_impl->literalValue).toString());
 		}
 	}
@@ -464,7 +464,7 @@ LiteralValue::verify() const
 	else
 	{
 		LOGIT_DEBUG("Unknown Type in LiteralValue: " << m_impl->literalType);
-		result.append(Format("Unknown Type in LiteralValue: %1",
+		result.push_back(Format("Unknown Type in LiteralValue: %1",
 		                     m_impl->literalType).toString());
 	}
 	return result;
@@ -476,13 +476,13 @@ LiteralValue::toString() const
 	return (m_impl->literalType + ":" + m_impl->literalValue);
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 LiteralValue::dump() const
 {
-	StringArray result;
-	result.append("LiteralValue::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("LiteralValue::dump()");
 
-	result.append(m_impl->literalType + ":" + m_impl->literalValue);
+	result.push_back(m_impl->literalType + ":" + m_impl->literalValue);
 
 	return result;
 }

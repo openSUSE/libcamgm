@@ -158,7 +158,7 @@ public:
 	            const String     &outPassword,
 	            const String     &algorithm = "des3");
 
-	static blocxx::Array<blocxx::String>
+	static std::vector<blocxx::String>
 	listCA(const String &repository = REPOSITORY);
 
 	static blocxx::String
@@ -175,19 +175,19 @@ public:
 	       const String &md5,
 	       const String &repository = REPOSITORY);
 
-	static blocxx::Array<blocxx::Array<blocxx::String> >
+	static std::vector<std::vector<blocxx::String> >
 	parseCAMDB(const String &caName,
 	           const String &repository = REPOSITORY);
 
-	static blocxx::Array<blocxx::Array<blocxx::String> >
+	static std::vector<std::vector<blocxx::String> >
 	parseIndexTXT(const String &caName,
 	              const String &repository = REPOSITORY);
 
-	static blocxx::Array<std::map<blocxx::String, blocxx::String> >
+	static std::vector<std::map<blocxx::String, blocxx::String> >
 	listRequests(const String &caName,
 	             const String &repository = REPOSITORY);
 
-	static blocxx::Array<std::map<blocxx::String, blocxx::String> >
+	static std::vector<std::map<blocxx::String, blocxx::String> >
 	listCertificates(const String &caName,
 	                 const String &repository = REPOSITORY);
 

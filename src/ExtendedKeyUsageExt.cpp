@@ -80,9 +80,9 @@ ExtendedKeyUsageExt::ExtendedKeyUsageExt(CAConfig* caConfig, Type type)
 	{
 		String      ct    = caConfig->getValue(type2Section(type, true),
 		                                       "extendedKeyUsage");
-		StringArray sp    = PerlRegEx("\\s*,\\s*").split(ct);
+		std::vector<blocxx::String> sp    = convStringArray(PerlRegEx("\\s*,\\s*").split(ct));
 
-		StringArray::const_iterator it = sp.begin();
+		std::vector<blocxx::String>::const_iterator it = sp.begin();
 		if(sp[0].equalsIgnoreCase("critical"))
 		{
 			setCritical(true);
@@ -270,16 +270,16 @@ ExtendedKeyUsageExt::valid() const
 	return true;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 ExtendedKeyUsageExt::verify() const
 {
-	blocxx::StringArray result;
+	std::vector<blocxx::String> result;
 
 	if(!isPresent()) return result;
 
 	if(m_impl->usage.empty())
 	{
-		result.append(String("invalid ExtendedKeyUsageExt."));
+		result.push_back(String("invalid ExtendedKeyUsageExt."));
 	}
 
 	StringList::const_iterator it = m_impl->usage.begin();
@@ -287,26 +287,26 @@ ExtendedKeyUsageExt::verify() const
 	{
 		if(!checkValue(*it))
 		{
-			result.append(Format("invalid additionalOID(%1)", *it).toString());
+			result.push_back(Format("invalid additionalOID(%1)", *it).toString());
 		}
 	}
 	LOGIT_DEBUG_STRINGARRAY("ExtendedKeyUsageExt::verify()", result);
 	return result;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 ExtendedKeyUsageExt::dump() const
 {
-	StringArray result;
-	result.append("ExtendedKeyUsageExt::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("ExtendedKeyUsageExt::dump()");
 
-	result.appendArray(ExtensionBase::dump());
+	appendArray(result, ExtensionBase::dump());
 	if(!isPresent()) return result;
 
 	StringList::const_iterator it = m_impl->usage.begin();
 	for(; it != m_impl->usage.end(); ++it)
 	{
-		result.append("Extended KeyUsage = " + (*it));
+		result.push_back("Extended KeyUsage = " + (*it));
 	}
 
 	return result;

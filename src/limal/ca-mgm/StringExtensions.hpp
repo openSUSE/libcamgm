@@ -45,9 +45,9 @@ namespace CA_MGM_NAMESPACE {
 		virtual void commit2Config(CA& ca, Type type) const = 0;
         
 		virtual bool                 valid() const = 0;
-		virtual blocxx::StringArray  verify() const = 0;
+		virtual std::vector<blocxx::String>  verify() const = 0;
 
-		virtual blocxx::StringArray  dump() const = 0;
+		virtual std::vector<blocxx::String>  dump() const = 0;
 
 	protected:
 		StringExtension(const String &v );
@@ -79,9 +79,9 @@ namespace CA_MGM_NAMESPACE {
 		virtual void commit2Config(CA& ca, Type type) const ;
 
 		virtual bool                 valid() const;
-		virtual blocxx::StringArray  verify() const;
+		virtual std::vector<blocxx::String>  verify() const;
 
-		virtual blocxx::StringArray  dump() const;
+		virtual std::vector<blocxx::String>  dump() const;
 	};
 
 	class NsRevocationUrlExt : public StringExtension { 
@@ -104,9 +104,9 @@ namespace CA_MGM_NAMESPACE {
 		virtual void commit2Config(CA& ca, Type type) const;
 
 		virtual bool                 valid() const;
-		virtual blocxx::StringArray  verify() const;
+		virtual std::vector<blocxx::String>  verify() const;
 
-		virtual blocxx::StringArray  dump() const;
+		virtual std::vector<blocxx::String>  dump() const;
 	};
 
 	class NsCaRevocationUrlExt : public StringExtension { 
@@ -129,9 +129,9 @@ namespace CA_MGM_NAMESPACE {
 		virtual void commit2Config(CA& ca, Type type) const; 
 
 		virtual bool                 valid() const;
-		virtual blocxx::StringArray  verify() const;
+		virtual std::vector<blocxx::String>  verify() const;
 
-		virtual blocxx::StringArray  dump() const;
+		virtual std::vector<blocxx::String>  dump() const;
 	};
 
 	class NsRenewalUrlExt : public StringExtension { 
@@ -154,9 +154,9 @@ namespace CA_MGM_NAMESPACE {
 		virtual void commit2Config(CA& ca, Type type) const;
 
 		virtual bool                 valid() const;
-		virtual blocxx::StringArray  verify() const;
+		virtual std::vector<blocxx::String>  verify() const;
 
-		virtual blocxx::StringArray  dump() const;
+		virtual std::vector<blocxx::String>  dump() const;
 	};
 	class NsCaPolicyUrlExt : public StringExtension { 
 	public:
@@ -178,9 +178,9 @@ namespace CA_MGM_NAMESPACE {
 		virtual void commit2Config(CA& ca, Type type) const; 
 
 		virtual bool                 valid() const;
-		virtual blocxx::StringArray  verify() const;
+		virtual std::vector<blocxx::String>  verify() const;
 
-		virtual blocxx::StringArray  dump() const;
+		virtual std::vector<blocxx::String>  dump() const;
 	};
 	class NsSslServerNameExt : public StringExtension { 
 	public:
@@ -202,9 +202,9 @@ namespace CA_MGM_NAMESPACE {
 		virtual void commit2Config(CA& ca, Type type) const;
 
 		virtual bool                 valid() const;
-		virtual blocxx::StringArray  verify() const;
+		virtual std::vector<blocxx::String>  verify() const;
 
-		virtual blocxx::StringArray  dump() const;
+		virtual std::vector<blocxx::String>  dump() const;
 	};
 	class NsCommentExt : public StringExtension { 
 	public:
@@ -226,9 +226,9 @@ namespace CA_MGM_NAMESPACE {
 		virtual void commit2Config(CA& ca, Type type) const;
 
 		virtual bool                 valid() const;
-		virtual blocxx::StringArray  verify() const;
+		virtual std::vector<blocxx::String>  verify() const;
 
-		virtual blocxx::StringArray  dump() const;
+		virtual std::vector<blocxx::String>  dump() const;
 	};
 
 }

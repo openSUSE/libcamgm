@@ -12,6 +12,9 @@
 #include <fstream>
 #include <unistd.h>
 
+// FIXME: need to be removed
+#include <Utils.hpp>
+
 using namespace blocxx;
 
 using namespace ca_mgm;
@@ -19,13 +22,13 @@ using namespace std;
 
 int main(int argc, char **argv)
 {
-    
+
     if ( argc != 2 )
     {
         cerr << "Usage: ParseCRLTest <filepath>" << endl;
         exit( 1 );
     }
-    
+
     // Logging
     LoggerRef l = ca_mgm::Logger::createCerrLogger(
                                                   "ParseCRLTest",
@@ -34,7 +37,7 @@ int main(int argc, char **argv)
                                                   "%-5p %c - %m"
                                                   );
     ca_mgm::Logger::setDefaultLogger(l);
-    
+
     blocxx::String file = argv[ 1 ];
 
     cout << "START" << endl;
@@ -46,42 +49,42 @@ int main(int argc, char **argv)
         cerr << "Unable to load '" << file << "'" << endl;
         exit( 2 );
     }
-    
+
     while( in )
-    {        
+    {
         try
-        {            
+        {
             blocxx::String     line = blocxx::String::getLine( in );
             if(line == "EOF" || line.empty()) break;
 
-            StringArray params = blocxx::PerlRegEx("\\s").split(line);
+            std::vector<blocxx::String> params = convStringArray(blocxx::PerlRegEx("\\s").split(line));
             if(params.size() != 2) break;
 
             CA ca(params[1], "system", params[0]);
-            
+
             cout << "Parse CRL in " << params[0] << "/" << params[1] << endl;
 
             CRLData crl = ca.getCRL();
 
             cout << "got the data" << endl;
 
-            StringArray ret = crl.dump();
+            std::vector<blocxx::String> ret = crl.dump();
 
             cout << "dump the data" << endl;
 
             StringArray::const_iterator it;
 
             for(it = ret.begin(); it != ret.end(); ++it)
-            {               
+            {
                 cout << (*it) << endl;
             }
 
             cout << "=================== call verify ======================" << endl;
 
             ret = crl.verify();
-            
+
             for(it  = ret.begin(); it != ret.end(); ++it)
-            {                
+            {
                 cout << "> " << (*it) << endl;
             }
 
@@ -93,7 +96,7 @@ int main(int argc, char **argv)
             cerr << e << endl;
         }
     }
-    
+
     cout << "DONE" << endl;
     return 0;
 }

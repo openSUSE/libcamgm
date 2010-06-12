@@ -157,14 +157,14 @@ inline ValueCheck initIP6Check() {
 		.Or(new ValuePosixRECheck("^([0-9a-fA-F]{1,4}:){1,6}:$"))
 		.Or(
 			ValueCheck(
-							  ValueCheck( new ValuePosixRECheck( "^(([0-9a-fA-F]{1,4}):){1,6}(:([0-9a-fA-F]{1,4})){1,6}$")) 
+							  ValueCheck( new ValuePosixRECheck( "^(([0-9a-fA-F]{1,4}):){1,6}(:([0-9a-fA-F]{1,4})){1,6}$"))
 					    ).And(
 							  ValueCheck( new ValuePosixRECheck("^([^:]*:){8,}")).Not()
 						).And(
 							  ValueCheck( new ValuePosixRECheck("::.*::") ).Not()
 							 )
 		   );
-	
+
 	return checkIP;
 }
 
@@ -176,13 +176,15 @@ inline ValueCheck initAccessOIDCheck() {
 	return checkAccessOID;
 }
 
-inline blocxx::StringArray
+inline std::vector<blocxx::String>
 	checkLiteralValueList(const std::list<LiteralValue>& list)
 {
-	blocxx::StringArray result;
+	std::vector<blocxx::String> result;
 	std::list<LiteralValue>::const_iterator it = list.begin();
 	for(;it != list.end(); it++) {
-		result.appendArray((*it).verify());
+		//result.appendArray((*it).verify());
+                std::vector<blocxx::String> v = (*it).verify();
+                result.insert(result.end(), v.begin(), v.end());
 	}
 	return result;
 }
@@ -245,7 +247,7 @@ inline blocxx::String type2Section(Type type, bool v3section)
 
 // throws or returns the process exit code or -1 (term by signal).
 int wrapExecuteProcessAndGatherOutput(
-                                       const blocxx::Array<blocxx::String> &cmd,
+                                       const std::vector<blocxx::String> &cmd,
                                        blocxx::String                      &out,
                                        blocxx::String                      &err,
                                        const blocxx::EnvVars               &env,
@@ -256,7 +258,7 @@ int wrapExecuteProcessAndGatherOutput(
 
 inline int rehashCAs(const blocxx::String &repositoryDir)
 {
-	blocxx::Array<blocxx::String> cmd;
+	std::vector<blocxx::String> cmd;
 	cmd.push_back(C_REHASH_COMMAND);
 	cmd.push_back(repositoryDir);
 
@@ -292,6 +294,10 @@ inline int rehashCAs(const blocxx::String &repositoryDir)
 	}
 	return status;
 }
+
+std::vector<blocxx::String> convStringArray(const blocxx::StringArray &in);
+void appendArray(std::vector<blocxx::String> &in, const std::vector<blocxx::String> &arr);
+
 
 }
 // -------------------------------------------------------------------

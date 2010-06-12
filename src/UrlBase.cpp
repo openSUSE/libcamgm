@@ -396,10 +396,10 @@ UrlBase::clone() const
 
 
 // -------------------------------------------------------------------
-blocxx::StringArray
+std::vector<blocxx::String>
 UrlBase::getKnownSchemes() const
 {
-	return blocxx::StringArray();
+	return std::vector<blocxx::String>();
 }
 
 
@@ -408,8 +408,8 @@ bool
 UrlBase::isKnownScheme(const blocxx::String &scheme) const
 {
 	String                      lscheme( String(scheme).toLowerCase());
-	StringArray                 schemes( getKnownSchemes());
-	StringArray::const_iterator s;
+	std::vector<blocxx::String>                 schemes( getKnownSchemes());
+	std::vector<blocxx::String>::const_iterator s;
 
 	for(s=schemes.begin(); s!=schemes.end(); ++s)
 	{
@@ -436,12 +436,12 @@ UrlBase::isValidScheme(const blocxx::String &scheme) const
 	if(valid)
 	{
 		String      lscheme( String(scheme).toLowerCase());
-		StringArray schemes( getKnownSchemes());
+		std::vector<blocxx::String> schemes( getKnownSchemes());
 
 		if( schemes.empty())
 			return true;
 
-		StringArray::const_iterator s;
+		std::vector<blocxx::String>::const_iterator s;
 		for(s=schemes.begin(); s!=schemes.end(); ++s)
 		{
 			if( lscheme == String(*s).toLowerCase())
@@ -752,12 +752,12 @@ UrlBase::getPathParams() const
 
 
 // -------------------------------------------------------------------
-blocxx::StringArray
+std::vector<blocxx::String>
 UrlBase::getPathParamsArray() const
 {
 	if( config("psep_pathparam").empty())
 	{
-		return blocxx::StringArray(1, getPathParams());
+		return std::vector<blocxx::String>(1, getPathParams());
 	}
 	else
 	{
@@ -801,12 +801,12 @@ UrlBase::getPathParam(const blocxx::String &param, EEncoding eflag) const
 
 
 // -------------------------------------------------------------------
-blocxx::StringArray
+std::vector<blocxx::String>
 UrlBase::getQueryStringArray() const
 {
 	if( config("psep_querystr").empty())
 	{
-		return blocxx::StringArray(1, getQueryString());
+		return std::vector<blocxx::String>(1, getQueryString());
 	}
 	else
 	{
@@ -1171,7 +1171,7 @@ UrlBase::setPathParams(const blocxx::String &params)
 
 // -------------------------------------------------------------------
 void
-UrlBase::setPathParamsArray(const blocxx::StringArray &parray)
+UrlBase::setPathParamsArray(const std::vector<blocxx::String> &parray)
 {
 	setPathParams(
 		ca_mgm::url::join(
@@ -1216,7 +1216,7 @@ UrlBase::setPathParam(const blocxx::String &param, const blocxx::String &value)
 
 // -------------------------------------------------------------------
 void
-UrlBase::setQueryStringArray(const blocxx::StringArray &qarray)
+UrlBase::setQueryStringArray(const std::vector<blocxx::String> &qarray)
 {
 	setQueryString(
 		ca_mgm::url::join(

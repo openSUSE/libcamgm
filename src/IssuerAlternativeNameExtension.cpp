@@ -75,7 +75,7 @@ IssuerAlternativeNameExt::IssuerAlternativeNameExt(bool copyIssuer,
 	: ExtensionBase()
 	, m_impl(new IssuerAlternativeNameExtImpl(copyIssuer, alternativeNameList))
 {
-	StringArray r = checkLiteralValueList(alternativeNameList);
+	std::vector<blocxx::String> r = checkLiteralValueList(alternativeNameList);
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -99,11 +99,11 @@ IssuerAlternativeNameExt::IssuerAlternativeNameExt(CAConfig* caConfig, Type type
 	bool p = caConfig->exists(type2Section(type, true), "issuerAltName");
 	if(p)
 	{
-		StringArray   sp   = PerlRegEx("\\s*,\\s*")
-			.split(caConfig->getValue(type2Section(type, true), "issuerAltName"));
+		std::vector<blocxx::String>   sp   = convStringArray(PerlRegEx("\\s*,\\s*")
+			.split(caConfig->getValue(type2Section(type, true), "issuerAltName")));
 		if(sp[0].equalsIgnoreCase("critical"))  setCritical(true);
 
-		StringArray::const_iterator it = sp.begin();
+		std::vector<blocxx::String>::const_iterator it = sp.begin();
 		for(; it != sp.end(); ++it)
 		{
 			if((*it).indexOf(":") != String::npos)
@@ -169,7 +169,7 @@ IssuerAlternativeNameExt::getCopyIssuer() const
 void
 IssuerAlternativeNameExt::setAlternativeNameList(const std::list<LiteralValue> &alternativeNameList)
 {
-	StringArray r = checkLiteralValueList(alternativeNameList);
+	std::vector<blocxx::String> r = checkLiteralValueList(alternativeNameList);
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -264,7 +264,7 @@ IssuerAlternativeNameExt::valid() const
 		LOGIT_DEBUG("return IssuerAlternativeNameExt::valid() is false");
 		return false;
 	}
-	StringArray r = checkLiteralValueList(m_impl->altNameList);
+	std::vector<blocxx::String> r = checkLiteralValueList(m_impl->altNameList);
 	if(!r.empty())
 	{
 		LOGIT_DEBUG(r[0]);
@@ -274,39 +274,39 @@ IssuerAlternativeNameExt::valid() const
 	return true;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 IssuerAlternativeNameExt::verify() const
 {
-	blocxx::StringArray result;
+	std::vector<blocxx::String> result;
 
 	if(!isPresent()) return result;
 
 	if(!m_impl->issuerCopy && m_impl->altNameList.empty())
 	{
-		result.append(String("invalid value for IssuerAlternativeNameExt"));
+		result.push_back(String("invalid value for IssuerAlternativeNameExt"));
 	}
-	result.appendArray(checkLiteralValueList(m_impl->altNameList));
+	appendArray(result, checkLiteralValueList(m_impl->altNameList));
 
 	LOGIT_DEBUG_STRINGARRAY("IssuerAlternativeNameExt::verify()", result);
 
 	return result;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 IssuerAlternativeNameExt::dump() const
 {
-	StringArray result;
-	result.append("IssuerAlternativeNameExt::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("IssuerAlternativeNameExt::dump()");
 
-	result.appendArray(ExtensionBase::dump());
+	appendArray(result, ExtensionBase::dump());
 	if(!isPresent()) return result;
 
-	result.append("Issuer:copy = " + Bool(m_impl->issuerCopy).toString());
+	result.push_back("Issuer:copy = " + Bool(m_impl->issuerCopy).toString());
 
 	std::list< LiteralValue >::const_iterator it = m_impl->altNameList.begin();
 	for(; it != m_impl->altNameList.end(); ++it)
 	{
-		result.appendArray((*it).dump());
+		appendArray(result, (*it).dump());
 	}
 
 	return result;

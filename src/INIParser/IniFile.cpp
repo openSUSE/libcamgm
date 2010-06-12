@@ -28,7 +28,7 @@ using std::multimap;
 using std::pair;
 using namespace blocxx;
 
-String pathToString(const StringArray&p)
+String pathToString(const std::vector<blocxx::String>&p)
 {
     if (p.empty()) return String(".");
     String v;
@@ -74,7 +74,7 @@ void IniSection::initValue (const String&key,const String&val,const String&comme
 void IniSection::initSection (const String&name,const String&comment,int rb, int wb)
 {
     String k = ip->changeCase (name);
-    
+
     IniSection s (ip);
     IniSectionIdxIterator sxi;
     if (!ip->repeatNames () && (sxi = isections.find (k)) != isections.end ())
@@ -109,7 +109,7 @@ void IniSection::initSection (const String&name,const String&comment,int rb, int
     isections.insert (IniSectionIndex::value_type (k, --container.end ()));
 }
 
-IniSection& IniSection::findSection(const StringArray&path, int from)
+IniSection& IniSection::findSection(const std::vector<blocxx::String>&path, int from)
 {
     String k = ip->changeCase (path[from]);
     IniSectionIdxIterator v = isections.find(k);
@@ -122,7 +122,7 @@ IniSection& IniSection::findSection(const StringArray&path, int from)
     return from+1 >= (int)path.size() ? s : s.findSection (path, from+1);
 }
 
-int IniSection::findEndFromUp (const StringArray&path, int wanted, int found, int from)
+int IniSection::findEndFromUp (const std::vector<blocxx::String>&path, int wanted, int found, int from)
 {
 
 
@@ -183,7 +183,7 @@ void IniSection::Dump ()
 
     for (; sxi != sxe; ++sxi)
     {
-	printf ("{%s @%p}\n", sxi->first.c_str (), &*sxi->second);	
+	printf ("{%s @%p}\n", sxi->first.c_str (), &*sxi->second);
     }
 
     printf ("{Values}\n");
@@ -193,7 +193,7 @@ void IniSection::Dump ()
 
     for (; exi != exe; ++exi)
     {
-	printf ("{%s @%p}\n", exi->first.c_str (), &*exi->second);	
+	printf ("{%s @%p}\n", exi->first.c_str (), &*exi->second);
     }
 
     printf("</%s>\n", name.c_str());
@@ -221,10 +221,10 @@ void IniSection::reindex ()
 	    String k = ip->changeCase (ci->s ().getName ());
 	    isections.insert (IniSectionIndex::value_type (k, ci));
 	}
-    }    
+    }
 }
 
-int IniSection::getMyValue (const StringArray &p, StringList &out, int what, int depth)
+int IniSection::getMyValue (const std::vector<blocxx::String> &p, StringList &out, int what, int depth)
 {
     String k = ip->changeCase (p[depth]);
     // Find all values and return them according to repeat_names
@@ -244,10 +244,10 @@ int IniSection::getMyValue (const StringArray &p, StringList &out, int what, int
 		results.push_back (String (e.getValue ()));
 		break;
 	    case 1:  out.push_back (String (e.getComment()));
-		results.push_back (String (e.getComment()));		
+		results.push_back (String (e.getComment()));
 		break;
 	    default: out.push_back (String (e.getReadBy ()));
-		results.push_back (String (e.getReadBy ()));		
+		results.push_back (String (e.getReadBy ()));
 		break;
 	}
     }
@@ -268,7 +268,7 @@ int IniSection::getMyValue (const StringArray &p, StringList &out, int what, int
     return -1;
 }
 
-int IniSection::getValue (const StringArray&p, StringList&out,int what, int depth)
+int IniSection::getValue (const std::vector<blocxx::String>&p, StringList&out,int what, int depth)
 {
     String k = ip->changeCase (p[depth]);
     if ( depth + 1 < int(p.size()))
@@ -292,7 +292,7 @@ int IniSection::getValue (const StringArray&p, StringList&out,int what, int dept
 }
 
 // Read calls us with the path length >= 2
-int IniSection::getSectionProp (const StringArray&p, StringList&out, int what, int depth)
+int IniSection::getSectionProp (const std::vector<blocxx::String>&p, StringList&out, int what, int depth)
 {
     String k = ip->changeCase (p[depth]);
     // Find the matching sections.
@@ -332,7 +332,7 @@ int IniSection::getSectionProp (const StringArray&p, StringList&out, int what, i
 	    else if (what == 1)
 	    {
 		out.push_back (String (s.rewrite_by));
-		results.push_back (String (s.rewrite_by));		
+		results.push_back (String (s.rewrite_by));
 	    }
 	    else
 	    {
@@ -359,7 +359,7 @@ int IniSection::getSectionProp (const StringArray&p, StringList&out, int what, i
     return -1;
 }
 
-int IniSection::getAll (const StringArray&p, SectionAll&out, int depth)
+int IniSection::getAll (const std::vector<blocxx::String>&p, SectionAll&out, int depth)
 {
     if (depth < int(p.size ()))
     {
@@ -415,7 +415,7 @@ SectionAll IniSection::getAllDoIt ()
     return m;
 }
 
-int IniSection::Delete (const StringArray&p)
+int IniSection::Delete (const std::vector<blocxx::String>&p)
 {
     if (ip->isFlat ())
 	return delValueFlat (p);
@@ -432,7 +432,7 @@ int IniSection::Delete (const StringArray&p)
     return -1;
 }
 
-int IniSection::Write (const StringArray&p, const StringList&v, bool rewrite)
+int IniSection::Write (const std::vector<blocxx::String>&p, const StringList&v, bool rewrite)
 {
     if (ip->isFlat ())
 	return setValueFlat (p, v);
@@ -456,7 +456,7 @@ int IniSection::Write (const StringArray&p, const StringList&v, bool rewrite)
     return -1;
 }
 
-int IniSection::setSectionProp (const StringArray&p,const StringList&in, int what, int depth)
+int IniSection::setSectionProp (const std::vector<blocxx::String>&p,const StringList&in, int what, int depth)
 {
     String k = ip->changeCase (p[depth]);
     // Find the matching sections.
@@ -563,7 +563,7 @@ void IniSection::delSection1 (IniSectionIdxIterator sxi)
     isections.erase (sxi);
 }
 
-int IniSection::delSection(const StringArray&p, int depth)
+int IniSection::delSection(const std::vector<blocxx::String>&p, int depth)
 {
     String k = ip->changeCase (p[depth]);
 
@@ -603,9 +603,9 @@ int IniSection::delSection(const StringArray&p, int depth)
     return 0;
 }
 
-int IniSection::WriteAll (const StringArray&p, const SectionAll& in, int depth)
+int IniSection::WriteAll (const std::vector<blocxx::String>&p, const SectionAll& in, int depth)
 {
-    LIMAL_SLOG_INFO (logger, "This function has not been tested cause it is not needed at the moment.");    
+    LIMAL_SLOG_INFO (logger, "This function has not been tested cause it is not needed at the moment.");
     if (depth < int(p.size ()))
     {
 	// recurse to find the starting section
@@ -649,7 +649,7 @@ int IniSection::setAllDoIt (const SectionAll &in)
     container.clear ();		// bye, old data
     for (SectionList::iterator i = l.begin(); i != l.end(); ++i)
     {
-	
+
 	SectionAll mitem = *i;
 
 	kind = mitem.kind;
@@ -686,7 +686,7 @@ int IniSection::setAllDoIt (const SectionAll &in)
     return ret;
 }
 
-int IniSection::setMyValue (const StringArray &p, const StringList&in, int what, int depth)
+int IniSection::setMyValue (const std::vector<blocxx::String> &p, const StringList&in, int what, int depth)
 {
     // assert (depth == p.size ()); //not, it can have a .comment suffix
     String k = ip->changeCase (p[depth]);
@@ -764,7 +764,7 @@ int IniSection::setMyValue (const StringArray &p, const StringList&in, int what,
     return 0;
 }
 
-int IniSection::setValue (const StringArray&p,const StringList&in,int what, int depth)
+int IniSection::setValue (const std::vector<blocxx::String>&p,const StringList&in,int what, int depth)
 {
     String k = ip->changeCase (p[depth]);
     // Find the matching sections.
@@ -829,7 +829,7 @@ void IniSection::delMyValue (const String &k)
     }
 }
 
-int IniSection::delValue (const StringArray&p, int depth)
+int IniSection::delValue (const std::vector<blocxx::String>&p, int depth)
 {
     String k = ip->changeCase (p[depth]);
     // Find the matching sections.
@@ -877,7 +877,7 @@ int IniSection::myDir (StringList& l, IniType what)
     return 0;
 }
 
-int IniSection::dirValueFlat (const StringArray&p, StringList&l)
+int IniSection::dirValueFlat (const std::vector<blocxx::String>&p, StringList&l)
 {
     // This function used to discard p and always return Dir (.)
     // #21574
@@ -892,7 +892,7 @@ int IniSection::dirValueFlat (const StringArray&p, StringList&l)
     return myDir (l, VALUE);
 }
 
-int IniSection::getValueFlat (const StringArray&p, StringList&out)
+int IniSection::getValueFlat (const std::vector<blocxx::String>&p, StringList&out)
 {
     if (!p.size ())
 	return -1;
@@ -902,7 +902,7 @@ int IniSection::getValueFlat (const StringArray&p, StringList&out)
     return getMyValue (p, out, want_comment, 0);
 }
 
-int IniSection::delValueFlat (const StringArray&p)
+int IniSection::delValueFlat (const std::vector<blocxx::String>&p)
 {
     if (!p.size ())
 	return -1;
@@ -912,7 +912,7 @@ int IniSection::delValueFlat (const StringArray&p)
     return 0;
 }
 
-int IniSection::setValueFlat (const StringArray&p, const StringList &in)
+int IniSection::setValueFlat (const std::vector<blocxx::String>&p, const StringList &in)
 {
     if (!p.size ())
 	return -1;
@@ -922,7 +922,7 @@ int IniSection::setValueFlat (const StringArray&p, const StringList &in)
     return setMyValue (p, in, want_comment, 0);
 }
 
-int IniSection::Read (const StringArray&p, StringList&out, bool rewrite)
+int IniSection::Read (const std::vector<blocxx::String>&p, StringList&out, bool rewrite)
 {
     if (ip->isFlat ())
 	return getValueFlat (p, out);
@@ -948,9 +948,9 @@ int IniSection::Read (const StringArray&p, StringList&out, bool rewrite)
     return -1;
 }
 
-int IniSection::ReadAll (const StringArray&p, SectionAll&out)
+int IniSection::ReadAll (const std::vector<blocxx::String>&p, SectionAll&out)
 {
-    LIMAL_SLOG_INFO (logger, "This function has not been tested cause it is not needed at the moment.");        
+    LIMAL_SLOG_INFO (logger, "This function has not been tested cause it is not needed at the moment.");
     if (p.size() >= 1 && p[0] == "all")
     {
 	return getAll (p, out, 1);
@@ -961,7 +961,7 @@ int IniSection::ReadAll (const StringArray&p, SectionAll&out)
     }
 }
 
-int IniSection::Dir (const StringArray&p, StringList&l)
+int IniSection::Dir (const std::vector<blocxx::String>&p, StringList&l)
 {
     if (ip->isFlat ())
 	return dirValueFlat (p, l);
@@ -980,7 +980,7 @@ int IniSection::Dir (const StringArray&p, StringList&l)
     LIMAL_SLOG_ERROR (logger, "I do not know what to dir from "<< pathToString(p).c_str());
     return -1;
 }
-int IniSection::dirHelper (const StringArray&p, StringList&out,int get_sect,int depth)
+int IniSection::dirHelper (const std::vector<blocxx::String>&p, StringList&out,int get_sect,int depth)
 {
     if (depth >= int(p.size()))
     {

@@ -104,7 +104,7 @@ CertificateData_Priv::setCertifyPeriode(time_t start, time_t end)
 void
 CertificateData_Priv::setIssuerDN(const DNObject& issuer)
 {
-	StringArray r = issuer.verify();
+	std::vector<blocxx::String> r = issuer.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -116,7 +116,7 @@ CertificateData_Priv::setIssuerDN(const DNObject& issuer)
 void
 CertificateData_Priv::setSubjectDN(const DNObject& subject)
 {
-	StringArray r = subject.verify();
+	std::vector<blocxx::String> r = subject.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -158,7 +158,7 @@ CertificateData_Priv::setSignature(const ByteBuffer& sig)
 void
 	CertificateData_Priv::setExtensions(const X509v3CertificateExts& ext)
 {
-	StringArray r = ext.verify();
+	std::vector<blocxx::String> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -276,7 +276,7 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 	n = BIO_get_mem_data(bioS, &ustringval);
 	setSerial( String(reinterpret_cast<const char*>(ustringval), n).toUpperCase());
 	BIO_free(bioS);
-	
+
 	// get notBefore
 	ASN1_TIME *t   = X509_get_notBefore(x509);
 	char      *cbuf = new char[t->length + 1];
@@ -288,7 +288,7 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 	delete [] cbuf;
 
 	PerlRegEx r("^(\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)Z$");
-	StringArray sa = r.capture(sbuf);
+	std::vector<blocxx::String> sa = convStringArray(r.capture(sbuf));
 
 	if(sa.size() != 7)
 	{
@@ -323,7 +323,7 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 	sbuf = String(cbuf);
 	delete [] cbuf;
 
-	sa = r.capture(sbuf);
+	sa = convStringArray(r.capture(sbuf));
 
 	if(sa.size() != 7)
 	{

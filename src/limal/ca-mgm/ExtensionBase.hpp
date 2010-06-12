@@ -55,9 +55,9 @@ namespace CA_MGM_NAMESPACE {
 		virtual void commit2Config(CA& ca, Type type) const = 0;
 
 		virtual bool                 valid() const =0;
-		virtual blocxx::StringArray  verify() const =0;
+		virtual std::vector<blocxx::String>  verify() const =0;
 
-		virtual blocxx::StringArray  dump() const;
+		virtual std::vector<blocxx::String>  dump() const;
 
 	private:
 		blocxx::COWIntrusiveReference<ExtensionBaseImpl> m_impl;

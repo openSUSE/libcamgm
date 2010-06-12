@@ -91,7 +91,7 @@ RequestData_Priv::setKeysize(blocxx::UInt32 size)
 void
 RequestData_Priv::setSubjectDN(const DNObject dn)
 {
-	StringArray r = dn.verify();
+	std::vector<blocxx::String> r = dn.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -127,7 +127,7 @@ RequestData_Priv::setSignature(const ByteBuffer &sig)
 void
 RequestData_Priv::setExtensions(const X509v3RequestExts &ext)
 {
-	StringArray r = ext.verify();
+	std::vector<blocxx::String> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);

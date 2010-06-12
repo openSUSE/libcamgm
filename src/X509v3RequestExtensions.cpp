@@ -276,38 +276,38 @@ X509v3RequestExts::valid() const
 	return true;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 X509v3RequestExts::verify() const
 {
-	StringArray result;
+	std::vector<blocxx::String> result;
 
-	result.appendArray(m_impl->nsSslServerName.verify());
-	result.appendArray(m_impl->nsComment.verify());
-	result.appendArray(m_impl->keyUsage.verify());
-	result.appendArray(m_impl->nsCertType.verify());
-	result.appendArray(m_impl->basicConstraints.verify());
-	result.appendArray(m_impl->extendedKeyUsage.verify());
-	result.appendArray(m_impl->subjectKeyIdentifier.verify());
-	result.appendArray(m_impl->subjectAlternativeName.verify());
+	appendArray(result, m_impl->nsSslServerName.verify());
+	appendArray(result, m_impl->nsComment.verify());
+	appendArray(result, m_impl->keyUsage.verify());
+	appendArray(result, m_impl->nsCertType.verify());
+	appendArray(result, m_impl->basicConstraints.verify());
+	appendArray(result, m_impl->extendedKeyUsage.verify());
+	appendArray(result, m_impl->subjectKeyIdentifier.verify());
+	appendArray(result, m_impl->subjectAlternativeName.verify());
 
 	LOGIT_DEBUG_STRINGARRAY("X509v3RequestExts::verify()", result);
 	return result;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 X509v3RequestExts::dump() const
 {
-	StringArray result;
-	result.append("X509v3RequestExts::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("X509v3RequestExts::dump()");
 
-	result.appendArray(m_impl->nsSslServerName.dump());
-	result.appendArray(m_impl->nsComment.dump());
-	result.appendArray(m_impl->keyUsage.dump());
-	result.appendArray(m_impl->nsCertType.dump());
-	result.appendArray(m_impl->basicConstraints.dump());
-	result.appendArray(m_impl->extendedKeyUsage.dump());
-	result.appendArray(m_impl->subjectKeyIdentifier.dump());
-	result.appendArray(m_impl->subjectAlternativeName.dump());
+	appendArray(result, m_impl->nsSslServerName.dump());
+	appendArray(result, m_impl->nsComment.dump());
+	appendArray(result, m_impl->keyUsage.dump());
+	appendArray(result, m_impl->nsCertType.dump());
+	appendArray(result, m_impl->basicConstraints.dump());
+	appendArray(result, m_impl->extendedKeyUsage.dump());
+	appendArray(result, m_impl->subjectKeyIdentifier.dump());
+	appendArray(result, m_impl->subjectAlternativeName.dump());
 
 	return result;
 }

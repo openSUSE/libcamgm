@@ -50,7 +50,7 @@ int main()
 
 		cgd.extensions().issuerAlternativeName().setCopyIssuer(true);
 		cgd.extensions().issuerAlternativeName().setAlternativeNameList(list);
-		
+
 		ca.createCRL(cgd);
 
 		path::PathInfo pi2("./TestRepos/Test_CA1/crl/crl.pem");
@@ -61,9 +61,9 @@ int main()
 
 		CRLData cd = ca.getCRL();
 
-		StringArray ret = cd.getExtensions().dump();
-		StringArray::const_iterator it;
-		
+		std::vector<blocxx::String> ret = cd.getExtensions().dump();
+		std::vector<blocxx::String>::const_iterator it;
+
 		for(it = ret.begin(); it != ret.end(); ++it)
 		{
 			cout << (*it) << endl;

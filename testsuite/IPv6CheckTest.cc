@@ -25,7 +25,7 @@ int main()
     try
     {
         cout << "START" << endl;
-        
+
         blocxx::StringArray cat;
         cat.push_back("FATAL");
         cat.push_back("ERROR");
@@ -40,12 +40,12 @@ int main()
                                                       "%-5p %c - %m"
                                                       );
         ca_mgm::Logger::setDefaultLogger(l);
-        
+
         cout << "=================== start Test ======================" << endl;
 
 		ValueCheck check = initIP6Check();
 
-		blocxx::StringArray iparr ;
+		std::vector<blocxx::String> iparr ;
 		iparr.push_back("2001:780:101:a00:211:11ff:fee6:a5af");
 		iparr.push_back("fe80::211:11ff:fee6:a5af");
 		iparr.push_back("2001::a5af");
@@ -68,7 +68,7 @@ int main()
 				cout << *ip_it << " => is not valid" << endl;
 			}
 		}
-		
+
         cout << "DONE" << endl;
     }
     catch(Exception& e)

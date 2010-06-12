@@ -44,29 +44,29 @@ int main()
                                                   );
         ca_mgm::Logger::setDefaultLogger(l);
 
-        
+
         CA ca("SUSEIPsecCA", "system", "./TestRepos3/");
-        
-        cout << "==================== ca.exportCACert(PEM); ======================" << endl; 
+
+        cout << "==================== ca.exportCACert(PEM); ======================" << endl;
 
         ByteBuffer ba = ca.exportCACert(E_PEM);
-        
+
         CertificateData cd = LocalManagement::getCertificate(ba, E_PEM);
 
         cout << "Subject: " << cd.getSubjectDN().getOpenSSLString() << endl;
 
-        cout << "==================== ca.exportCACert(DER); ======================" << endl; 
+        cout << "==================== ca.exportCACert(DER); ======================" << endl;
 
         ba = ca.exportCACert(E_DER);
-        
+
         cd = LocalManagement::getCertificate(ba, E_DER);
 
         cout << "Subject: " << cd.getSubjectDN().getOpenSSLString() << endl;
 
-        cout << "==================== ca.exportCAKeyAsPEM(''); ======================" << endl; 
+        cout << "==================== ca.exportCAKeyAsPEM(''); ======================" << endl;
 
         ba = ca.exportCAKeyAsPEM("");
-        
+
         LocalManagement::writeFile(ba, "./TestRepos3/testCAKey.key");
 
         path::PathInfo pi("./TestRepos3/testCAKey.key");
@@ -78,7 +78,7 @@ int main()
             if(!r.match(blocxx::String(ba.data(), ba.size())))
             {
                 cout << "Key is decrypted" << endl;
-                
+
                 path::removeFile("./TestRepos3/testCAKey.key");
             }
             else
@@ -87,10 +87,10 @@ int main()
             }
         }
 
-        cout << "==================== ca.exportCAKeyAsPEM('tralla'); ======================" << endl; 
+        cout << "==================== ca.exportCAKeyAsPEM('tralla'); ======================" << endl;
 
         ba = ca.exportCAKeyAsPEM("tralla");
-        
+
         LocalManagement::writeFile(ba, "./TestRepos3/testCAKey2.key");
 
         pi.stat("./TestRepos3/testCAKey2.key");
@@ -98,7 +98,7 @@ int main()
         if(pi.exists())
         {
             cout << "Key exists" << endl;
-            
+
             if(!r.match(blocxx::String(ba.data(), ba.size())))
             {
                 cout << "Key is decrypted" << endl;
@@ -111,10 +111,10 @@ int main()
             }
         }
 
-        cout << "==================== ca.exportCAKeyAsDER(); ======================" << endl; 
+        cout << "==================== ca.exportCAKeyAsDER(); ======================" << endl;
 
         ba = ca.exportCAKeyAsDER();
-        
+
         LocalManagement::writeFile(ba, "./TestRepos3/testCAKeyDER.key");
 
         pi.stat("./TestRepos3/testCAKeyDER.key");
@@ -122,14 +122,14 @@ int main()
         if(pi.exists() && pi.size() > 1000)
         {
             cout << "Key exists" << endl;
-        
+
             path::removeFile("./TestRepos3/testCAKeyDER.key");
         }
 
-        cout << "=============== ca.exportCAasPKCS12('tralla', false); ===============" << endl; 
+        cout << "=============== ca.exportCAasPKCS12('tralla', false); ===============" << endl;
 
         ba = ca.exportCAasPKCS12("tralla", false);
-        
+
         LocalManagement::writeFile(ba, "./TestRepos3/testCA.p12");
 
         pi.stat("./TestRepos3/testCA.p12");
@@ -137,14 +137,14 @@ int main()
         if(pi.exists() && pi.size() > 2500)
         {
             cout << "Certificate exists" << endl;
-            
+
             path::removeFile("./TestRepos3/testCA.p12");
         }
 
-        cout << "================= ca.exportCAasPKCS12('tralla', true); =================" << endl; 
+        cout << "================= ca.exportCAasPKCS12('tralla', true); =================" << endl;
 
         ba = ca.exportCAasPKCS12("tralla", true);
-        
+
         LocalManagement::writeFile(ba, "./TestRepos3/testCAChain.p12");
 
         pi.stat("./TestRepos3/testCAChain.p12");
@@ -152,33 +152,33 @@ int main()
         if(pi.exists() && pi.size() > 5400)
         {
             cout << "Certificate exists" << endl;
-        
+
             path::removeFile("./TestRepos3/testCAChain.p12");
         }
 
         CA ca2("SUSEUserCA", "system", "./TestRepos3/");
 
-        cout << "==================== ca.exportCertificate(PEM); ======================" << endl; 
+        cout << "==================== ca.exportCertificate(PEM); ======================" << endl;
 
         ba = ca2.exportCertificate("04:9528e1d8783f83b662fca6085a8c1467-1111161258", E_PEM);
-        
+
         cd = LocalManagement::getCertificate(ba, E_PEM);
 
         cout << "Subject: " << cd.getSubjectDN().getOpenSSLString() << endl;
 
-        cout << "==================== ca.exportCertificate(DER); ======================" << endl; 
+        cout << "==================== ca.exportCertificate(DER); ======================" << endl;
 
         ba = ca2.exportCertificate("04:9528e1d8783f83b662fca6085a8c1467-1111161258", E_DER);
-        
+
         cd = LocalManagement::getCertificate(ba, E_DER);
 
         cout << "Subject: " << cd.getSubjectDN().getOpenSSLString() << endl;
 
-        cout << "================== ca.exportCertificateKeyAsPEM(decr); ===================" << endl; 
+        cout << "================== ca.exportCertificateKeyAsPEM(decr); ===================" << endl;
 
         ba = ca2.exportCertificateKeyAsPEM("04:9528e1d8783f83b662fca6085a8c1467-1111161258",
                                            "system", "");
-        
+
         LocalManagement::writeFile(ba, "./TestRepos3/testKey.key");
 
         pi.stat("./TestRepos3/testKey.key");
@@ -186,11 +186,11 @@ int main()
         if(pi.exists())
         {
             cout << "Key exists" << endl;
-            
+
             if(!r.match(blocxx::String(ba.data(), ba.size())))
             {
                 cout << "Key is decrypted" << endl;
-                
+
                 path::removeFile("./TestRepos3/testKey.key");
 
             }
@@ -200,11 +200,11 @@ int main()
             }
         }
 
-        cout << "============ ca.exportexportCertificateKeyAsPEM('tralla'); =============" << endl; 
+        cout << "============ ca.exportexportCertificateKeyAsPEM('tralla'); =============" << endl;
 
         ba = ca2.exportCertificateKeyAsPEM("04:9528e1d8783f83b662fca6085a8c1467-1111161258",
                                            "system", "tralla");
-        
+
         LocalManagement::writeFile(ba, "./TestRepos3/testKey2.key");
 
         pi.stat("./TestRepos3/testKey2.key");
@@ -212,11 +212,11 @@ int main()
         if(pi.exists())
         {
             cout << "Key exists" << endl;
-            
+
             if(!r.match(blocxx::String(ba.data(), ba.size())))
             {
                 cout << "Key is decrypted" << endl;
-                
+
             }
             else
             {
@@ -226,11 +226,11 @@ int main()
             }
         }
 
-        cout << "==================== ca.exportCertificateKeyAsDER(); ======================" << endl; 
+        cout << "==================== ca.exportCertificateKeyAsDER(); ======================" << endl;
 
         ba = ca2.exportCertificateKeyAsDER("04:9528e1d8783f83b662fca6085a8c1467-1111161258",
                                            "system");
-        
+
         LocalManagement::writeFile(ba, "./TestRepos3/testKeyDER.key");
 
         pi.stat("./TestRepos3/testKeyDER.key");
@@ -238,15 +238,15 @@ int main()
         if(pi.exists() && pi.size() > 1000)
         {
             cout << "Key exists" << endl;
-            
+
             path::removeFile("./TestRepos3/testKeyDER.key");
         }
 
-        cout << "============= ca.exportCertificateAsPKCS12(..., false); ==================" << endl; 
+        cout << "============= ca.exportCertificateAsPKCS12(..., false); ==================" << endl;
 
         ba = ca2.exportCertificateAsPKCS12("04:9528e1d8783f83b662fca6085a8c1467-1111161258",
                                            "system", "tralla", false);
-        
+
         LocalManagement::writeFile(ba, "./TestRepos3/testCert.p12");
 
         pi.stat("./TestRepos3/testCert.p12");
@@ -254,15 +254,15 @@ int main()
         if(pi.exists() && pi.size() > 2500)
         {
             cout << "Certificate exists" << endl;
-            
+
             path::removeFile("./TestRepos3/testCert.p12");
         }
-        
-        cout << "=============== ca.exportCertificateAsPKCS12(..., true); ================" << endl; 
+
+        cout << "=============== ca.exportCertificateAsPKCS12(..., true); ================" << endl;
 
         ba = ca2.exportCertificateAsPKCS12("04:9528e1d8783f83b662fca6085a8c1467-1111161258",
                                            "system", "tralla", true);
-        
+
         LocalManagement::writeFile(ba, "./TestRepos3/testCertChain.p12");
 
         pi.stat("./TestRepos3/testCertChain.p12");
@@ -270,22 +270,22 @@ int main()
         if(pi.exists() && pi.size() > 5400)
         {
             cout << "Certificate exists" << endl;
-            
+
             path::removeFile("./TestRepos3/testCertChain.p12");
         }
-        
-        cout << "==================== ca.exportCRL(PEM); ======================" << endl; 
-        
+
+        cout << "==================== ca.exportCRL(PEM); ======================" << endl;
+
         ba = ca2.exportCRL(E_PEM);
-        
+
         CRLData crl = LocalManagement::getCRL(ba, E_PEM);
 
         cout << "Issuer: " << crl.getIssuerDN().getOpenSSLString() << endl;
 
-        cout << "==================== ca.exportCRL(DER); ======================" << endl; 
-        
+        cout << "==================== ca.exportCRL(DER); ======================" << endl;
+
         ba = ca2.exportCRL(E_DER);
-        
+
         crl = LocalManagement::getCRL(ba, E_DER);
 
         cout << "Issuer: " << crl.getIssuerDN().getOpenSSLString() << endl;
@@ -296,7 +296,7 @@ int main()
     {
         cerr << e << endl;
     }
-    
+
     return 0;
 }
 

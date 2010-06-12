@@ -138,11 +138,11 @@ KeyUsageExt::KeyUsageExt(CAConfig* caConfig, Type type)
 		blocxx::UInt32 keyUsage = 0;
 
 		String ku = caConfig->getValue(type2Section(type, true), "keyUsage");
-		StringArray sp = PerlRegEx("\\s*,\\s*").split(ku);
+		std::vector<blocxx::String> sp = convStringArray(PerlRegEx("\\s*,\\s*").split(ku));
 
 		if(sp[0].equalsIgnoreCase("critical")) setCritical(true);
 
-		StringArray::const_iterator it = sp.begin();
+		std::vector<blocxx::String>::const_iterator it = sp.begin();
 		for(; it != sp.end(); ++it)
 		{
 			if((*it).equalsIgnoreCase("digitalSignature"))      keyUsage |= digitalSignature;
@@ -307,34 +307,34 @@ KeyUsageExt::valid() const
 	return true;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 KeyUsageExt::verify() const
 {
-	blocxx::StringArray result;
+	std::vector<blocxx::String> result;
 
 	if(!isPresent()) return result;
 
 	if(!validKeyUsage(getValue()))
 	{
-		result.append(Format("invalid value '%1' for keyUsage", getValue()).toString());
+		result.push_back(Format("invalid value '%1' for keyUsage", getValue()).toString());
 	}
 
 	LOGIT_DEBUG_STRINGARRAY("KeyUsageExt::verify()", result);
 	return result;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 KeyUsageExt::dump() const
 {
-	StringArray result;
-	result.append("KeyUsageExt::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("KeyUsageExt::dump()");
 
-	result.appendArray(ExtensionBase::dump());
+	appendArray(result, ExtensionBase::dump());
 	if(!isPresent()) return result;
 
 	String ku;
 	ku.format("%04x", getValue());
-	result.append("KeyUsage = 0x" + ku);
+	result.push_back("KeyUsage = 0x" + ku);
 
 	return result;
 }
@@ -378,11 +378,11 @@ NsCertTypeExt::NsCertTypeExt(CAConfig* caConfig, Type type)
 		blocxx::UInt32 bits = 0;
 
 		String ct = caConfig->getValue(type2Section(type, true), "nsCertType");
-		StringArray sp = PerlRegEx("\\s*,\\s*").split(ct);
+		std::vector<blocxx::String> sp = convStringArray(PerlRegEx("\\s*,\\s*").split(ct));
 
 		if(sp[0].equalsIgnoreCase("critical")) setCritical(true);
 
-		StringArray::const_iterator it = sp.begin();
+		std::vector<blocxx::String>::const_iterator it = sp.begin();
 		for(; it != sp.end(); ++it)
 		{
 			if((*it).equalsIgnoreCase("client"))        bits |= client;
@@ -538,33 +538,33 @@ NsCertTypeExt::valid() const
 	return true;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 NsCertTypeExt::verify() const
 {
-	blocxx::StringArray result;
+	std::vector<blocxx::String> result;
 
 	if(!isPresent()) return result;
 
 	if(getValue() > 0xFF || getValue() == 0)
 	{
-		result.append(Format("invalid value '%1' for nsCertType", getValue()).toString());
+		result.push_back(Format("invalid value '%1' for nsCertType", getValue()).toString());
 	}
 	LOGIT_DEBUG_STRINGARRAY("NsCertTypeExt::verify()", result);
 	return result;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 NsCertTypeExt::dump() const
 {
-	StringArray result;
-	result.append("NsCertTypeExt::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("NsCertTypeExt::dump()");
 
-	result.appendArray(ExtensionBase::dump());
+	appendArray(result, ExtensionBase::dump());
 	if(!isPresent()) return result;
 
 	String nsct;
 	nsct.format("%02x", getValue());
-	result.append("NsCertType = 0x" + nsct);
+	result.push_back("NsCertType = 0x" + nsct);
 
 	return result;
 }

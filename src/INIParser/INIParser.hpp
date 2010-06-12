@@ -321,7 +321,7 @@ public:
 
 
 private:
-    blocxx::StringArray m_path;
+    std::vector<blocxx::String> m_path;
     blocxx::IntrusiveReference<IniParser> m_parser;
 };
 
@@ -403,11 +403,11 @@ enum    Options { IGNOMR_CASE_REGEXPS,
  *   using namespace ca_mgm;
  *   using namespace ca_mgm::INI;
  *
- *   blocxx::Array<Options>  		options; // Options like NO_NESTED_SECTIONS, LINE_CAN_CONTINUE, ...
- *   blocxx::StringArray 		commentsDescr; // Regular expression of the comments description
- *   blocxx::Array<SectionDescr> 	sectionDescr; // Regular expression of a section description
- *   blocxx::Array<EntryDescr> 		entryDescr; // Regular expressions for entries (keys/values).
- *   blocxx::Array<IoPatternDescr> 	rewrites; // rules for writing key/value
+ *   std::vector<Options>  		options; // Options like NO_NESTED_SECTIONS, LINE_CAN_CONTINUE, ...
+ *   std::vector<blocxx::String> 		commentsDescr; // Regular expression of the comments description
+ *   std::vector<SectionDescr> 	sectionDescr; // Regular expression of a section description
+ *   std::vector<EntryDescr> 		entryDescr; // Regular expressions for entries (keys/values).
+ *   std::vector<IoPatternDescr> 	rewrites; // rules for writing key/value
  *
  *   options.append (GLOBAL_VALUES); // Values at the top level(not in section) are allowed
  *   options.append (LINE_CAN_CONTINUE); // if there is \ at the end of line,
@@ -486,7 +486,7 @@ public:
      * Sets parser to multiple file mode and sets the glob-expressions.
      * @param fileList list of glob-expressions
      */
-    void initFiles (const blocxx::StringArray &fileList );
+    void initFiles (const std::vector<blocxx::String> &fileList );
     
     /**
      * Sets flags and regular expressions.
@@ -535,11 +535,11 @@ ne
      *                 have indented subsections, use this. Example: " " "\t"
      * @return true if successful
      */
-    virtual bool initMachine (const blocxx::Array<Options> &options,
-		      const blocxx::StringArray &commentsDescr,
-		      const blocxx::Array<SectionDescr> &sectionDescr,
-		      const blocxx::Array<EntryDescr> &entryDescr,
-		      const blocxx::Array<IoPatternDescr> &rewrites,
+    virtual bool initMachine (const std::vector<Options> &options,
+		      const std::vector<blocxx::String> &commentsDescr,
+		      const std::vector<SectionDescr> &sectionDescr,
+		      const std::vector<EntryDescr> &entryDescr,
+		      const std::vector<IoPatternDescr> &rewrites,
 		      const blocxx::String &subident = "");
 
     /**

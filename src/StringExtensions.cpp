@@ -123,8 +123,8 @@ NsBaseUrlExt::NsBaseUrlExt(CAConfig* caConfig, Type type)
 	bool p = caConfig->exists(type2Section(type, true), "nsBaseUrl");
 	if(p)
 	{
-		StringArray   sp   = PerlRegEx("\\s*,\\s*")
-			.split(caConfig->getValue(type2Section(type, true), "nsBaseUrl"));
+		std::vector<blocxx::String>   sp   = convStringArray(PerlRegEx("\\s*,\\s*")
+			.split(caConfig->getValue(type2Section(type, true), "nsBaseUrl")));
 		if(sp[0].equalsIgnoreCase("critical"))
 		{
 			setCritical(true);
@@ -225,31 +225,31 @@ NsBaseUrlExt::valid() const
 	return true;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 NsBaseUrlExt::verify() const
 {
-	StringArray result;
+	std::vector<blocxx::String> result;
 
 	if(!isPresent()) return result;
 
 	if(!initURICheck().isValid(m_impl->value)) {
 		LOGIT_DEBUG("Wrong value for NsBaseUrlExt:" << m_impl->value);
-		result.append(Format("Wrong value for NsBaseUrlExt: %1", m_impl->value).toString());
+		result.push_back(Format("Wrong value for NsBaseUrlExt: %1", m_impl->value).toString());
 	}
 	LOGIT_DEBUG_STRINGARRAY("NsBaseUrlExt::verify()", result);
 	return result;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 NsBaseUrlExt::dump() const
 {
-	StringArray result;
-	result.append("NsBaseUrlExt::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("NsBaseUrlExt::dump()");
 
-	result.appendArray(ExtensionBase::dump());
+	appendArray(result, ExtensionBase::dump());
 	if(!isPresent()) return result;
 
-	result.append("URL = " + m_impl->value);
+	result.push_back("URL = " + m_impl->value);
 
 	return result;
 }
@@ -287,8 +287,8 @@ NsRevocationUrlExt::NsRevocationUrlExt(CAConfig* caConfig, Type type)
 
 	bool p = caConfig->exists(type2Section(type, true), "nsRevocationUrl");
 	if(p) {
-		StringArray   sp   = PerlRegEx("\\s*,\\s*")
-			.split(caConfig->getValue(type2Section(type, true), "nsRevocationUrl"));
+		std::vector<blocxx::String>   sp   = convStringArray(PerlRegEx("\\s*,\\s*")
+			.split(caConfig->getValue(type2Section(type, true), "nsRevocationUrl")));
 		if(sp[0].equalsIgnoreCase("critical")) {
 			setCritical(true);
 			m_impl->value = sp[1];
@@ -367,16 +367,16 @@ NsRevocationUrlExt::commit2Config(CA& ca, Type type) const
 	}
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 NsRevocationUrlExt::verify() const
 {
-	StringArray result;
+	std::vector<blocxx::String> result;
 
 	if(!isPresent()) return result;
 
 	if(!initURICheck().isValid(m_impl->value)) {
 		LOGIT_DEBUG("Wrong value for NsRevocationUrlExt:" << m_impl->value);
-		result.append(Format("Wrong value for NsRevocationUrlExt: %1", m_impl->value).toString());
+		result.push_back(Format("Wrong value for NsRevocationUrlExt: %1", m_impl->value).toString());
 	}
 	LOGIT_DEBUG_STRINGARRAY("NsRevocationUrlExt::verify()", result);
 	return result;
@@ -394,16 +394,16 @@ NsRevocationUrlExt::valid() const
 	return true;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 NsRevocationUrlExt::dump() const
 {
-	StringArray result;
-	result.append("NsRevocationUrlExt::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("NsRevocationUrlExt::dump()");
 
-	result.appendArray(ExtensionBase::dump());
+	appendArray(result, ExtensionBase::dump());
 	if(!isPresent()) return result;
 
-	result.append("URL = " + m_impl->value);
+	result.push_back("URL = " + m_impl->value);
 
 	return result;
 }
@@ -441,8 +441,8 @@ NsCaRevocationUrlExt::NsCaRevocationUrlExt(CAConfig* caConfig, Type type)
 
 	bool p = caConfig->exists(type2Section(type, true), "nsCaRevocationUrl");
 	if(p) {
-		StringArray   sp   = PerlRegEx("\\s*,\\s*")
-			.split(caConfig->getValue(type2Section(type, true), "nsCaRevocationUrl"));
+		std::vector<blocxx::String>   sp   = convStringArray(PerlRegEx("\\s*,\\s*")
+			.split(caConfig->getValue(type2Section(type, true), "nsCaRevocationUrl")));
 		if(sp[0].equalsIgnoreCase("critical")) {
 			setCritical(true);
 			m_impl->value = sp[1];
@@ -521,16 +521,16 @@ NsCaRevocationUrlExt::commit2Config(CA& ca, Type type) const
 	}
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 NsCaRevocationUrlExt::verify() const
 {
-	StringArray result;
+	std::vector<blocxx::String> result;
 
 	if(!isPresent()) return result;
 
 	if(!initURICheck().isValid(m_impl->value)) {
 		LOGIT_DEBUG("Wrong value for NsCaRevocationUrlExt:" << m_impl->value);
-		result.append(Format("Wrong value for NsCaRevocationUrlExt: %1", m_impl->value).toString());
+		result.push_back(Format("Wrong value for NsCaRevocationUrlExt: %1", m_impl->value).toString());
 	}
 	LOGIT_DEBUG_STRINGARRAY("NsCaRevocationUrlExt::verify()", result);
 	return result;
@@ -548,16 +548,16 @@ NsCaRevocationUrlExt::valid() const
 	return true;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 NsCaRevocationUrlExt::dump() const
 {
-	StringArray result;
-	result.append("NsCaRevocationUrlExt::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("NsCaRevocationUrlExt::dump()");
 
-	result.appendArray(ExtensionBase::dump());
+	appendArray(result, ExtensionBase::dump());
 	if(!isPresent()) return result;
 
-	result.append("URL = " + m_impl->value);
+	result.push_back("URL = " + m_impl->value);
 
 	return result;
 }
@@ -594,8 +594,8 @@ NsRenewalUrlExt::NsRenewalUrlExt(CAConfig* caConfig, Type type)
 
 	bool p = caConfig->exists(type2Section(type, true), "nsRenewalUrl");
 	if(p) {
-		StringArray   sp   = PerlRegEx("\\s*,\\s*")
-			.split(caConfig->getValue(type2Section(type, true), "nsRenewalUrl"));
+		std::vector<blocxx::String>   sp   = convStringArray(PerlRegEx("\\s*,\\s*")
+			.split(caConfig->getValue(type2Section(type, true), "nsRenewalUrl")));
 		if(sp[0].equalsIgnoreCase("critical")) {
 			setCritical(true);
 			m_impl->value = sp[1];
@@ -674,16 +674,16 @@ NsRenewalUrlExt::commit2Config(CA& ca, Type type) const
 	}
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 NsRenewalUrlExt::verify() const
 {
-	StringArray result;
+	std::vector<blocxx::String> result;
 
 	if(!isPresent()) return result;
 
 	if(!initURICheck().isValid(m_impl->value)) {
 		LOGIT_DEBUG("Wrong value for NsRenewalUrlExt:" << m_impl->value);
-		result.append(Format("Wrong value for NsRenewalUrlExt: %1", m_impl->value).toString());
+		result.push_back(Format("Wrong value for NsRenewalUrlExt: %1", m_impl->value).toString());
 	}
 	LOGIT_DEBUG_STRINGARRAY("NsRenewalUrlExt::verify()", result);
 	return result;
@@ -701,16 +701,16 @@ NsRenewalUrlExt::valid() const
 	return true;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 NsRenewalUrlExt::dump() const
 {
-	StringArray result;
-	result.append("NsRenewalUrlExt::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("NsRenewalUrlExt::dump()");
 
-	result.appendArray(ExtensionBase::dump());
+	appendArray(result, ExtensionBase::dump());
 	if(!isPresent()) return result;
 
-	result.append("URL = " + m_impl->value);
+	result.push_back("URL = " + m_impl->value);
 
 	return result;
 }
@@ -746,8 +746,8 @@ NsCaPolicyUrlExt::NsCaPolicyUrlExt(CAConfig* caConfig, Type type)
 
 	bool p = caConfig->exists(type2Section(type, true), "nsCaPolicyUrl");
 	if(p) {
-		StringArray   sp   = PerlRegEx("\\s*,\\s*")
-			.split(caConfig->getValue(type2Section(type, true), "nsCaPolicyUrl"));
+		std::vector<blocxx::String>   sp   = convStringArray(PerlRegEx("\\s*,\\s*")
+			.split(caConfig->getValue(type2Section(type, true), "nsCaPolicyUrl")));
 		if(sp[0].equalsIgnoreCase("critical")) {
 			setCritical(true);
 			m_impl->value = sp[1];
@@ -826,16 +826,16 @@ NsCaPolicyUrlExt::commit2Config(CA& ca, Type type) const
 	}
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 NsCaPolicyUrlExt::verify() const
 {
-	StringArray result;
+	std::vector<blocxx::String> result;
 
 	if(!isPresent()) return result;
 
 	if(!initURICheck().isValid(m_impl->value)) {
 		LOGIT_DEBUG("Wrong value for NsCaPolicyUrlExt:" << m_impl->value);
-		result.append(Format("Wrong value for NsCaPolicyUrlExt: %1", m_impl->value).toString());
+		result.push_back(Format("Wrong value for NsCaPolicyUrlExt: %1", m_impl->value).toString());
 	}
 	LOGIT_DEBUG_STRINGARRAY("NsCaPolicyUrlExt::verify()", result);
 	return result;
@@ -853,16 +853,16 @@ NsCaPolicyUrlExt::valid() const
 	return true;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 NsCaPolicyUrlExt::dump() const
 {
-	StringArray result;
-	result.append("NsCaPolicyUrlExt::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("NsCaPolicyUrlExt::dump()");
 
-	result.appendArray(ExtensionBase::dump());
+	appendArray(result, ExtensionBase::dump());
 	if(!isPresent()) return result;
 
-	result.append("URL = " + m_impl->value);
+	result.push_back("URL = " + m_impl->value);
 
 	return result;
 }
@@ -894,8 +894,8 @@ NsSslServerNameExt::NsSslServerNameExt(CAConfig* caConfig, Type type)
 
 	bool p = caConfig->exists(type2Section(type, true), "nsSslServerName");
 	if(p) {
-		StringArray   sp   = PerlRegEx("\\s*,\\s*")
-			.split(caConfig->getValue(type2Section(type, true), "nsSslServerName"));
+		std::vector<blocxx::String>   sp   = convStringArray(PerlRegEx("\\s*,\\s*")
+			.split(caConfig->getValue(type2Section(type, true), "nsSslServerName")));
 		if(sp[0].equalsIgnoreCase("critical")) {
 			setCritical(true);
 			m_impl->value = sp[1];
@@ -968,10 +968,10 @@ NsSslServerNameExt::commit2Config(CA& ca, Type type) const
 	}
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 NsSslServerNameExt::verify() const
 {
-	return blocxx::StringArray();
+	return std::vector<blocxx::String>();
 }
 
 bool
@@ -980,16 +980,16 @@ NsSslServerNameExt::valid() const
 	return true;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 NsSslServerNameExt::dump() const
 {
-	StringArray result;
-	result.append("NsSslServerNameExt::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("NsSslServerNameExt::dump()");
 
-	result.appendArray(ExtensionBase::dump());
+	appendArray(result, ExtensionBase::dump());
 	if(!isPresent()) return result;
 
-	result.append("SSL server name = " + m_impl->value);
+	result.push_back("SSL server name = " + m_impl->value);
 
 	return result;
 }
@@ -1020,8 +1020,8 @@ NsCommentExt::NsCommentExt(CAConfig* caConfig, Type type)
 
 	bool p = caConfig->exists(type2Section(type, true), "nsComment");
 	if(p) {
-		StringArray   sp   = PerlRegEx("\\s*,\\s*")
-			.split(caConfig->getValue(type2Section(type, true), "nsComment"));
+		std::vector<blocxx::String>   sp   = convStringArray(PerlRegEx("\\s*,\\s*")
+			.split(caConfig->getValue(type2Section(type, true), "nsComment")));
 		if(sp[0].equalsIgnoreCase("critical")) {
 			setCritical(true);
 			m_impl->value = sp[1];
@@ -1094,10 +1094,10 @@ NsCommentExt::commit2Config(CA& ca, Type type) const
 	}
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 NsCommentExt::verify() const
 {
-	return blocxx::StringArray();
+	return std::vector<blocxx::String>();
 }
 
 bool
@@ -1106,16 +1106,16 @@ bool
 	return true;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 NsCommentExt::dump() const
 {
-	StringArray result;
-	result.append("NsCommentExt::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("NsCommentExt::dump()");
 
-	result.appendArray(ExtensionBase::dump());
+	appendArray(result, ExtensionBase::dump());
 	if(!isPresent()) return result;
 
-	result.append("NS Comment = " + m_impl->value);
+	result.push_back("NS Comment = " + m_impl->value);
 
 	return result;
 }

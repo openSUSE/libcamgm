@@ -71,7 +71,7 @@ X509v3CRLExts_Priv::~X509v3CRLExts_Priv()
 void
 X509v3CRLExts_Priv::setAuthorityKeyIdentifier(const AuthorityKeyIdentifierExt &ext)
 {
-	StringArray r = ext.verify();
+	std::vector<blocxx::String> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -83,7 +83,7 @@ X509v3CRLExts_Priv::setAuthorityKeyIdentifier(const AuthorityKeyIdentifierExt &e
 void
 X509v3CRLExts_Priv::setIssuerAlternativeName(const IssuerAlternativeNameExt &ext)
 {
-	StringArray r = ext.verify();
+	std::vector<blocxx::String> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);

@@ -87,15 +87,15 @@ AuthorityKeyIdentifierGenerateExt::AuthorityKeyIdentifierGenerateExt(CAConfig* c
 	bool p = caConfig->exists(type2Section(type, true), "authorityKeyIdentifier");
 	if(p)
 	{
-		StringArray   sp   = PerlRegEx("\\s*,\\s*")
-			.split(caConfig->getValue(type2Section(type, true), "authorityKeyIdentifier"));
+		std::vector<blocxx::String>   sp   = convStringArray(PerlRegEx("\\s*,\\s*")
+			.split(caConfig->getValue(type2Section(type, true), "authorityKeyIdentifier")));
 		if(sp[0].equalsIgnoreCase("critical"))
 		{
 			setCritical(true);
-			sp.remove(0);
+			sp.erase(sp.begin());
 		}
 
-		StringArray::const_iterator it = sp.begin();
+		std::vector<blocxx::String>::const_iterator it = sp.begin();
 		for(; it != sp.end(); ++it)
 		{
 			if((*it).equalsIgnoreCase("keyid")) m_impl->keyid = KeyID_normal;
@@ -247,32 +247,32 @@ AuthorityKeyIdentifierGenerateExt::valid() const
 	return true;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 AuthorityKeyIdentifierGenerateExt::verify() const
 {
-	blocxx::StringArray result;
+	std::vector<blocxx::String> result;
 
 	if(!isPresent()) return result;
 	if(getKeyID() == KeyID_none && getIssuer() == Issuer_none)
 	{
-		result.append(String("Invalid value for keyid and issuer. ") +
+		result.push_back(String("Invalid value for keyid and issuer. ") +
 		              String("At least one of both must be set"));
 	}
 	LOGIT_DEBUG_STRINGARRAY("AuthorityKeyIdentifierGenerateExt::verify()", result);
 	return result;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 AuthorityKeyIdentifierGenerateExt::dump() const
 {
-	StringArray result;
-	result.append("AuthorityKeyIdentifierGenerateExt::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("AuthorityKeyIdentifierGenerateExt::dump()");
 
-	result.appendArray(ExtensionBase::dump());
+	appendArray(result, ExtensionBase::dump());
 	if(!isPresent()) return result;
 
-	result.append("KeyID = " + String(getKeyID()));
-	result.append("Issuer = " + String(getIssuer()));
+	result.push_back("KeyID = " + String(getKeyID()));
+	result.push_back("Issuer = " + String(getIssuer()));
 
 	return result;
 }

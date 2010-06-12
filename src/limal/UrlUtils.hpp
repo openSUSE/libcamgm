@@ -276,7 +276,7 @@ decode_octet(const char *hex);
  * @return The resulting parameter array.
  * @throws UrlNotSupportedException if @p psep separator is empty.
  */
-blocxx::StringArray
+std::vector<blocxx::String>
 split(const blocxx::String &pstr,
       const blocxx::String &psep);
 
@@ -331,7 +331,7 @@ split(const blocxx::String &pstr,
  * @return A parameter string.
  */
 blocxx::String
-join(const blocxx::StringArray &parr,
+join(const std::vector<blocxx::String> &parr,
      const blocxx::String      &psep);
 
 

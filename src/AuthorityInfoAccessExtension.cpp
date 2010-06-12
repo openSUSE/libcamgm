@@ -177,29 +177,29 @@ AuthorityInformation::valid() const
 	return true;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 AuthorityInformation::verify() const
 {
-	StringArray result;
+	std::vector<blocxx::String> result;
 
 	if(!initAccessOIDCheck().isValid(m_impl->accessOID))
 	{
-		result.append(Format("invalid value(%1) for accessOID", m_impl->accessOID).toString());
+		result.push_back(Format("invalid value(%1) for accessOID", m_impl->accessOID).toString());
 	}
-	result.appendArray(m_impl->location.verify());
+	appendArray(result, m_impl->location.verify());
 
 	LOGIT_DEBUG_STRINGARRAY("AuthorityInformation::verify()", result);
 	return result;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 AuthorityInformation::dump() const
 {
-	StringArray result;
-	result.append("AuthorityInformation::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("AuthorityInformation::dump()");
 
-	result.append("accessOID = " + getAccessOID());
-	result.appendArray(getLocation().dump());
+	result.push_back("accessOID = " + getAccessOID());
+	appendArray(result, getLocation().dump());
 
 	return result;
 }
@@ -260,15 +260,17 @@ AuthorityInfoAccessExt::AuthorityInfoAccessExt(CAConfig* caConfig, Type type)
 	bool p = caConfig->exists(type2Section(type, true), "authorityInfoAccess");
 	if(p)
 	{
-		StringArray   sp   = PerlRegEx("\\s*,\\s*")
-			.split(caConfig->getValue(type2Section(type, true), "authorityInfoAccess"));
+		std::vector<blocxx::String>   sp   = convStringArray(
+		  PerlRegEx("\\s*,\\s*")
+			.split(caConfig->getValue(type2Section(type, true), "authorityInfoAccess"))
+			);
 
 		if(sp[0].equalsIgnoreCase("critical"))  setCritical(true);
 
-		StringArray::const_iterator it = sp.begin();
+		std::vector<blocxx::String>::const_iterator it = sp.begin();
 		for(; it != sp.end(); ++it)
 		{
-			StringArray al = PerlRegEx(";").split(*it);
+			std::vector<blocxx::String> al = convStringArray(PerlRegEx(";").split(*it));
 
 			try
 			{
@@ -391,40 +393,40 @@ AuthorityInfoAccessExt::valid() const
 	return true;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 AuthorityInfoAccessExt::verify() const
 {
-	blocxx::StringArray result;
+	std::vector<blocxx::String> result;
 
 	if(!isPresent()) return result;
 
 	if(m_impl->info.empty())
 	{
-		result.append(String("No access informations available"));
+		result.push_back(String("No access informations available"));
 	}
 	std::list<AuthorityInformation>::const_iterator it = m_impl->info.begin();
 	for(;it != m_impl->info.end(); it++)
 	{
-		result.appendArray((*it).verify());
+		appendArray(result, (*it).verify());
 	}
 
 	LOGIT_DEBUG_STRINGARRAY("AuthorityInfoAccessExt::verify()", result);
 	return result;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 AuthorityInfoAccessExt::dump() const
 {
-	StringArray result;
-	result.append("AuthorityInfoAccessExt::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("AuthorityInfoAccessExt::dump()");
 
-	result.appendArray(ExtensionBase::dump());
+	appendArray(result, ExtensionBase::dump());
 	if(!isPresent()) return result;
 
 	std::list< AuthorityInformation >::const_iterator it = m_impl->info.begin();
 	for(; it != m_impl->info.end(); ++it)
 	{
-		result.appendArray((*it).dump());
+		appendArray(result, (*it).dump());
 	}
 	return result;
 }

@@ -141,7 +141,7 @@ X509v3CertificateExts_Priv::~X509v3CertificateExts_Priv()
 void
 X509v3CertificateExts_Priv::setNsBaseUrl(const NsBaseUrlExt &ext)
 {
-	StringArray r = ext.verify();
+	std::vector<blocxx::String> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -153,7 +153,7 @@ X509v3CertificateExts_Priv::setNsBaseUrl(const NsBaseUrlExt &ext)
 void
 X509v3CertificateExts_Priv::setNsRevocationUrl(const NsRevocationUrlExt &ext)
 {
-	StringArray r = ext.verify();
+	std::vector<blocxx::String> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -165,7 +165,7 @@ X509v3CertificateExts_Priv::setNsRevocationUrl(const NsRevocationUrlExt &ext)
 void
 X509v3CertificateExts_Priv::setNsCaRevocationUrl(const NsCaRevocationUrlExt &ext)
 {
-	StringArray r = ext.verify();
+	std::vector<blocxx::String> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -177,7 +177,7 @@ X509v3CertificateExts_Priv::setNsCaRevocationUrl(const NsCaRevocationUrlExt &ext
 void
 X509v3CertificateExts_Priv::setNsRenewalUrl(const NsRenewalUrlExt &ext)
 {
-	StringArray r = ext.verify();
+	std::vector<blocxx::String> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -189,7 +189,7 @@ X509v3CertificateExts_Priv::setNsRenewalUrl(const NsRenewalUrlExt &ext)
 void
 X509v3CertificateExts_Priv::setNsCaPolicyUrl(const NsCaPolicyUrlExt &ext)
 {
-	StringArray r = ext.verify();
+	std::vector<blocxx::String> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -201,7 +201,7 @@ X509v3CertificateExts_Priv::setNsCaPolicyUrl(const NsCaPolicyUrlExt &ext)
 void
 X509v3CertificateExts_Priv::setNsSslServerName(const NsSslServerNameExt &ext)
 {
-	StringArray r = ext.verify();
+	std::vector<blocxx::String> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -213,7 +213,7 @@ X509v3CertificateExts_Priv::setNsSslServerName(const NsSslServerNameExt &ext)
 void
 X509v3CertificateExts_Priv::setNsComment(const NsCommentExt &ext)
 {
-	StringArray r = ext.verify();
+	std::vector<blocxx::String> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -225,7 +225,7 @@ X509v3CertificateExts_Priv::setNsComment(const NsCommentExt &ext)
 void
 X509v3CertificateExts_Priv::setNsCertType(const NsCertTypeExt &ext)
 {
-	StringArray r = ext.verify();
+	std::vector<blocxx::String> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -237,7 +237,7 @@ X509v3CertificateExts_Priv::setNsCertType(const NsCertTypeExt &ext)
 void
 X509v3CertificateExts_Priv::setKeyUsage(const KeyUsageExt &ext)
 {
-	StringArray r = ext.verify();
+	std::vector<blocxx::String> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -249,7 +249,7 @@ X509v3CertificateExts_Priv::setKeyUsage(const KeyUsageExt &ext)
 void
 X509v3CertificateExts_Priv::setBasicConstraints(const BasicConstraintsExt &ext)
 {
-	StringArray r = ext.verify();
+	std::vector<blocxx::String> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -261,7 +261,7 @@ X509v3CertificateExts_Priv::setBasicConstraints(const BasicConstraintsExt &ext)
 void
 X509v3CertificateExts_Priv::setExtendedKeyUsage(const ExtendedKeyUsageExt &ext)
 {
-	StringArray r = ext.verify();
+	std::vector<blocxx::String> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -273,7 +273,7 @@ X509v3CertificateExts_Priv::setExtendedKeyUsage(const ExtendedKeyUsageExt &ext)
 void
 X509v3CertificateExts_Priv::setSubjectKeyIdentifier(const SubjectKeyIdentifierExt &ext)
 {
-	StringArray r = ext.verify();
+	std::vector<blocxx::String> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -285,7 +285,7 @@ X509v3CertificateExts_Priv::setSubjectKeyIdentifier(const SubjectKeyIdentifierEx
 void
 X509v3CertificateExts_Priv::setAuthorityKeyIdentifier(const AuthorityKeyIdentifierExt &ext)
 {
-	StringArray r = ext.verify();
+	std::vector<blocxx::String> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -297,7 +297,7 @@ X509v3CertificateExts_Priv::setAuthorityKeyIdentifier(const AuthorityKeyIdentifi
 void
 X509v3CertificateExts_Priv::setSubjectAlternativeName(const SubjectAlternativeNameExt &ext)
 {
-	StringArray r = ext.verify();
+	std::vector<blocxx::String> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -309,7 +309,7 @@ X509v3CertificateExts_Priv::setSubjectAlternativeName(const SubjectAlternativeNa
 void
 X509v3CertificateExts_Priv::setIssuerAlternativeName(const IssuerAlternativeNameExt &ext)
 {
-	StringArray r = ext.verify();
+	std::vector<blocxx::String> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -321,7 +321,7 @@ X509v3CertificateExts_Priv::setIssuerAlternativeName(const IssuerAlternativeName
 void
 X509v3CertificateExts_Priv::setAuthorityInfoAccess(const AuthorityInfoAccessExt &ext)
 {
-	StringArray r = ext.verify();
+	std::vector<blocxx::String> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -333,7 +333,7 @@ X509v3CertificateExts_Priv::setAuthorityInfoAccess(const AuthorityInfoAccessExt 
 void
 X509v3CertificateExts_Priv::setCRLDistributionPoints(const CRLDistributionPointsExt &ext)
 {
-	StringArray r = ext.verify();
+	std::vector<blocxx::String> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -345,7 +345,7 @@ X509v3CertificateExts_Priv::setCRLDistributionPoints(const CRLDistributionPoints
 void
 X509v3CertificateExts_Priv::setCertificatePolicies(const CertificatePoliciesExt &ext)
 {
-	StringArray r = ext.verify();
+	std::vector<blocxx::String> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);

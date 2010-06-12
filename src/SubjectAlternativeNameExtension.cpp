@@ -86,12 +86,12 @@ SubjectAlternativeNameExt::SubjectAlternativeNameExt(CAConfig* caConfig, Type ty
 	bool p = caConfig->exists(type2Section(type, true), "subjectAltName");
 	if(p)
 	{
-		StringArray   sp   = PerlRegEx("\\s*,\\s*")
-			.split(caConfig->getValue(type2Section(type, true), "subjectAltName"));
+		std::vector<blocxx::String>   sp   = convStringArray(PerlRegEx("\\s*,\\s*")
+			.split(caConfig->getValue(type2Section(type, true), "subjectAltName")));
 
 		if(sp[0].equalsIgnoreCase("critical"))  setCritical(true);
 
-		StringArray::const_iterator it = sp.begin();
+		std::vector<blocxx::String>::const_iterator it = sp.begin();
 		for(; it != sp.end(); ++it)
 		{
 			if((*it).indexOf(":") != String::npos)
@@ -121,7 +121,7 @@ SubjectAlternativeNameExt::SubjectAlternativeNameExt(bool copyEmail,
 	: ExtensionBase()
 	, m_impl(new SubjectAlternativeNameExtImpl(copyEmail, alternativeNameList))
 {
-	StringArray r = checkLiteralValueList(alternativeNameList);
+	std::vector<blocxx::String> r = checkLiteralValueList(alternativeNameList);
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -162,7 +162,7 @@ SubjectAlternativeNameExt::setCopyEmail(bool copyEmail)
 void
 SubjectAlternativeNameExt::setAlternativeNameList(const std::list<LiteralValue> &alternativeNameList)
 {
-	StringArray r = checkLiteralValueList(alternativeNameList);
+	std::vector<blocxx::String> r = checkLiteralValueList(alternativeNameList);
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -250,7 +250,7 @@ SubjectAlternativeNameExt::valid() const
 		LOGIT_DEBUG("return SubjectAlternativeNameExt::::valid() is false");
 		return false;
 	}
-	StringArray r = checkLiteralValueList(m_impl->altNameList);
+	std::vector<blocxx::String> r = checkLiteralValueList(m_impl->altNameList);
 	if(!r.empty())
 	{
 		LOGIT_DEBUG(r[0]);
@@ -259,39 +259,39 @@ SubjectAlternativeNameExt::valid() const
 	return true;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 SubjectAlternativeNameExt::verify() const
 {
-	StringArray result;
+	std::vector<blocxx::String> result;
 
 	if(!isPresent()) return result;
 
 	if(!m_impl->emailCopy && m_impl->altNameList.empty())
 	{
-		result.append(String("invalid value for SubjectAlternativeNameExt"));
+		result.push_back(String("invalid value for SubjectAlternativeNameExt"));
 	}
-	result.appendArray(checkLiteralValueList(m_impl->altNameList));
+	appendArray(result, checkLiteralValueList(m_impl->altNameList));
 
 	LOGIT_DEBUG_STRINGARRAY("SubjectAlternativeNameExt::verify()", result);
 
 	return result;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 SubjectAlternativeNameExt::dump() const
 {
-	StringArray result;
-	result.append("SubjectAlternativeNameExt::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("SubjectAlternativeNameExt::dump()");
 
-	result.appendArray(ExtensionBase::dump());
+	appendArray(result, ExtensionBase::dump());
 	if(!isPresent()) return result;
 
-	result.append("email:copy = " + Bool(m_impl->emailCopy).toString());
+	result.push_back("email:copy = " + Bool(m_impl->emailCopy).toString());
 
 	std::list< LiteralValue >::const_iterator it = m_impl->altNameList.begin();
 	for(; it != m_impl->altNameList.end(); ++it)
 	{
-		result.appendArray((*it).dump());
+		appendArray(result, (*it).dump());
 	}
 
 	return result;

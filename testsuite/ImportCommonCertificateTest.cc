@@ -41,14 +41,14 @@ int main()
                                                       "%-5p %c - %m"
                                                   );
         ca_mgm::Logger::setDefaultLogger(l);
-        
+
         CA ca2("SUSEUserCA", "system", "./TestRepos3/");
-        
-        cout << "============ ca.exportCertificateAsPKCS12(..., false); ===========" << endl; 
-        
+
+        cout << "============ ca.exportCertificateAsPKCS12(..., false); ===========" << endl;
+
         ByteBuffer ba = ca2.exportCertificateAsPKCS12("04:9528e1d8783f83b662fca6085a8c1467-1111161258",
                                                       "system", "tralla", false);
-        
+
         LocalManagement::writeFile(ba, "./TestRepos3/testCert.p12");
 
         path::PathInfo pi("./TestRepos3/testCert.p12");
@@ -56,8 +56,8 @@ int main()
         {
             cout << "Certificate exists" << endl;
         }
-        
-        cout << "================= importAsLocalCertificate() ==================" << endl; 
+
+        cout << "================= importAsLocalCertificate() ==================" << endl;
 
         LocalManagement::importAsLocalCertificate(ba,
                                                   "tralla",
@@ -99,11 +99,11 @@ int main()
 
         path::removeFile("./TestRepos3/testCert.p12");
 
-        cout << "============ ca.exportCertificateAsPKCS12(..., true); ============" << endl; 
+        cout << "============ ca.exportCertificateAsPKCS12(..., true); ============" << endl;
 
         ba = ca2.exportCertificateAsPKCS12("04:9528e1d8783f83b662fca6085a8c1467-1111161258",
                                            "system", "tralla", true);
-        
+
         LocalManagement::writeFile(ba, "./TestRepos3/testCertChain.p12");
 
         pi.stat("./TestRepos3/testCertChain.p12");
@@ -112,32 +112,32 @@ int main()
             cout << "Certificate exists" << endl;
         }
 
-        cout << "================ importAsLocalCertificate(Chain) ==================" << endl; 
+        cout << "================ importAsLocalCertificate(Chain) ==================" << endl;
 
         LocalManagement::importAsLocalCertificate(pi.toString(),
                                                   "tralla",
                                                   "./TestRepos3/localTest/certs2/",
                                                   "./TestRepos3/localTest/servercerts/servercert2.pem",
                                                   "./TestRepos3/localTest/servercerts/serverkey2.pem");
-        
+
         pi.stat("./TestRepos3/localTest/servercerts/servercert2.pem");
         if(pi.exists())
         {
             cout << "servercert.pem exists" << endl;
         }
-        
+
         pi.stat("./TestRepos3/localTest/servercerts/serverkey2.pem");
         if(pi.exists() && pi.hasPerm(0600))
         {
             cout << "serverkey.pem exists and has permissions 0600" << endl;
         }
-        
+
         pi.stat("./TestRepos3/localTest/certs2/YaST-CA.pem");
         if(pi.exists())
         {
             cout << "CA exists" << endl;
         }
-        
+
         pi.stat("./TestRepos3/localTest/certs2/YaST-CA-0.pem");
         if(pi.exists())
         {

@@ -135,7 +135,7 @@ Url::parseUrl(const blocxx::String &urlString)
 
 
 // -----------------------------------------------------------------
-blocxx::StringArray
+std::vector<blocxx::String>
 Url::getKnownSchemes() const
 {
 	return m_impl->getKnownSchemes();
@@ -282,7 +282,7 @@ Url::getPathParams() const
 
 
 // -----------------------------------------------------------------
-blocxx::StringArray
+std::vector<blocxx::String>
 Url::getPathParamsArray() const
 {
 	 return m_impl->getPathParamsArray();
@@ -306,7 +306,7 @@ Url::getPathParam(const blocxx::String &param, EEncoding eflag) const
 
 
 // -----------------------------------------------------------------
-blocxx::StringArray
+std::vector<blocxx::String>
 Url::getQueryStringArray() const
 {
 	return m_impl->getQueryStringArray();
@@ -438,7 +438,7 @@ Url::setPathParams(const blocxx::String &params)
 
 // -----------------------------------------------------------------
 void
-Url::setPathParamsArray(const blocxx::StringArray &parray)
+Url::setPathParamsArray(const std::vector<blocxx::String> &parray)
 {
 	m_impl->setPathParamsArray(parray);
 }
@@ -462,7 +462,7 @@ Url::setPathParam(const blocxx::String &param, const blocxx::String &value)
 
 // -----------------------------------------------------------------
 void
-Url::setQueryStringArray(const blocxx::StringArray &qarray)
+Url::setQueryStringArray(const std::vector<blocxx::String> &qarray)
 {
 	m_impl->setQueryStringArray(qarray);
 }

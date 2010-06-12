@@ -40,7 +40,7 @@ class RegexMatch
 {
 public:
     /** Matched subexpressions (0 - the whole regex) */
-    blocxx::StringArray matches;
+    std::vector<blocxx::String> matches;
     /** The unmatched part of the String */
     blocxx::String rest;
 
@@ -73,7 +73,7 @@ public:
 					    rm_matches[i].rm_eo - rm_matches[i].rm_so));
 	}
     }
-    
+
 };
 
 /**
@@ -187,23 +187,23 @@ private:
     /**
      * Regular expression for comments over whole line.
      */
-    blocxx::Array<blocxx::PosixRegEx> linecomments;
+    std::vector<blocxx::PosixRegEx> linecomments;
     /**
      * Regular expressions for comments over part of the line.
      */
-    blocxx::Array<blocxx::PosixRegEx> comments;
+    std::vector<blocxx::PosixRegEx> comments;
     /**
      * Regular expressions for sections.
      */
-    blocxx::Array<section> sections;
+    std::vector<section> sections;
     /**
      * Regular expressions for parameters (keys/values).
      */
-    blocxx::Array<param> params;
+    std::vector<param> params;
     /**
      * Regular expressions for rewrite rules.
      */
-    blocxx::Array<IoPattern> rewrites;
+    std::vector<IoPattern> rewrites;
 
     /**
      * opened file for scanner
@@ -231,7 +231,7 @@ private:
     /**
      * Array of globe-expressions.
      */
-    blocxx::StringArray files;
+    std::vector<blocxx::String> files;
 
     /**
      * Open ini file.
@@ -287,32 +287,32 @@ public:
      * Sets parser to multiple file mode and sets the glob-expressions.
      * @param f list of glob-expressions
      */
-    void initFiles (const blocxx::StringArray&f);
+    void initFiles (const std::vector<blocxx::String>&f);
     /**
      * Sets flags and regular expressions.
      */
-    void initOptions (const blocxx::StringArray&options);
+    void initOptions (const std::vector<blocxx::String>&options);
     /**
      * Sets flags and regular expressions.
-     */    
-    void initRewrite (const blocxx::Array<IoPatternDescr>&rewriteArray);
+     */
+    void initRewrite (const std::vector<IoPatternDescr>&rewriteArray);
     /**
      * Sets flags and regular expressions.
-     */    
+     */
     void initSubident (const blocxx::String ident);
     /**
      * Sets flags and regular expressions.
-     */    
-    void initComments (const blocxx::StringArray&comm);
+     */
+    void initComments (const std::vector<blocxx::String>&comm);
     /**
      * Sets flags and regular expressions.
-     */    
-    void initSection (const blocxx::Array<SectionDescr>& sect);
+     */
+    void initSection (const std::vector<SectionDescr>& sect);
     /**
      * Sets flags and regular expressions.
-     */    
-    void initParam (const blocxx::Array<EntryDescr>& entries);
-    
+     */
+    void initParam (const std::vector<EntryDescr>& entries);
+
     bool isStarted() { return started; }
     void reset() {
 	ignore_case_regexps = ignore_case = prefer_uppercase = first_upper

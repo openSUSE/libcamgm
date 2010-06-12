@@ -631,58 +631,58 @@ X509v3CertificateIssueExts::valid() const
 	return true;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 X509v3CertificateIssueExts::verify() const
 {
-	StringArray result;
+	std::vector<blocxx::String> result;
 
-	result.appendArray(m_impl->nsBaseUrl.verify());
-	result.appendArray(m_impl->nsRevocationUrl.verify());
-	result.appendArray(m_impl->nsCaRevocationUrl.verify());
-	result.appendArray(m_impl->nsRenewalUrl.verify());
-	result.appendArray(m_impl->nsCaPolicyUrl.verify());
-	result.appendArray(m_impl->nsSslServerName.verify());
-	result.appendArray(m_impl->nsComment.verify());
-	result.appendArray(m_impl->keyUsage.verify());
-	result.appendArray(m_impl->nsCertType.verify());
-	result.appendArray(m_impl->basicConstraints.verify());
-	result.appendArray(m_impl->extendedKeyUsage.verify());
-	result.appendArray(m_impl->subjectKeyIdentifier.verify());
-	result.appendArray(m_impl->authorityKeyIdentifier.verify());
-	result.appendArray(m_impl->subjectAlternativeName.verify());
-	result.appendArray(m_impl->issuerAlternativeName.verify());
-	result.appendArray(m_impl->authorityInfoAccess.verify());
-	result.appendArray(m_impl->crlDistributionPoints.verify());
-	result.appendArray(m_impl->certificatePolicies.verify());
+	appendArray(result, m_impl->nsBaseUrl.verify());
+	appendArray(result, m_impl->nsRevocationUrl.verify());
+	appendArray(result, m_impl->nsCaRevocationUrl.verify());
+	appendArray(result, m_impl->nsRenewalUrl.verify());
+	appendArray(result, m_impl->nsCaPolicyUrl.verify());
+	appendArray(result, m_impl->nsSslServerName.verify());
+	appendArray(result, m_impl->nsComment.verify());
+	appendArray(result, m_impl->keyUsage.verify());
+	appendArray(result, m_impl->nsCertType.verify());
+	appendArray(result, m_impl->basicConstraints.verify());
+	appendArray(result, m_impl->extendedKeyUsage.verify());
+	appendArray(result, m_impl->subjectKeyIdentifier.verify());
+	appendArray(result, m_impl->authorityKeyIdentifier.verify());
+	appendArray(result, m_impl->subjectAlternativeName.verify());
+	appendArray(result, m_impl->issuerAlternativeName.verify());
+	appendArray(result, m_impl->authorityInfoAccess.verify());
+	appendArray(result, m_impl->crlDistributionPoints.verify());
+	appendArray(result, m_impl->certificatePolicies.verify());
 
 	LOGIT_DEBUG_STRINGARRAY("X509v3CertificateIssueExts::verify()", result);
 	return result;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 X509v3CertificateIssueExts::dump() const
 {
-	StringArray result;
-	result.append("X509v3CertificateIssueExts::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("X509v3CertificateIssueExts::dump()");
 
-	result.appendArray(m_impl->nsBaseUrl.dump());
-	result.appendArray(m_impl->nsRevocationUrl.dump());
-	result.appendArray(m_impl->nsCaRevocationUrl.dump());
-	result.appendArray(m_impl->nsRenewalUrl.dump());
-	result.appendArray(m_impl->nsCaPolicyUrl.dump());
-	result.appendArray(m_impl->nsSslServerName.dump());
-	result.appendArray(m_impl->nsComment.dump());
-	result.appendArray(m_impl->keyUsage.dump());
-	result.appendArray(m_impl->nsCertType.dump());
-	result.appendArray(m_impl->basicConstraints.dump());
-	result.appendArray(m_impl->extendedKeyUsage.dump());
-	result.appendArray(m_impl->subjectKeyIdentifier.dump());
-	result.appendArray(m_impl->authorityKeyIdentifier.dump());
-	result.appendArray(m_impl->subjectAlternativeName.dump());
-	result.appendArray(m_impl->issuerAlternativeName.dump());
-	result.appendArray(m_impl->authorityInfoAccess.dump());
-	result.appendArray(m_impl->crlDistributionPoints.dump());
-	result.appendArray(m_impl->certificatePolicies.dump());
+	appendArray(result, m_impl->nsBaseUrl.dump());
+	appendArray(result, m_impl->nsRevocationUrl.dump());
+	appendArray(result, m_impl->nsCaRevocationUrl.dump());
+	appendArray(result, m_impl->nsRenewalUrl.dump());
+	appendArray(result, m_impl->nsCaPolicyUrl.dump());
+	appendArray(result, m_impl->nsSslServerName.dump());
+	appendArray(result, m_impl->nsComment.dump());
+	appendArray(result, m_impl->keyUsage.dump());
+	appendArray(result, m_impl->nsCertType.dump());
+	appendArray(result, m_impl->basicConstraints.dump());
+	appendArray(result, m_impl->extendedKeyUsage.dump());
+	appendArray(result, m_impl->subjectKeyIdentifier.dump());
+	appendArray(result, m_impl->authorityKeyIdentifier.dump());
+	appendArray(result, m_impl->subjectAlternativeName.dump());
+	appendArray(result, m_impl->issuerAlternativeName.dump());
+	appendArray(result, m_impl->authorityInfoAccess.dump());
+	appendArray(result, m_impl->crlDistributionPoints.dump());
+	appendArray(result, m_impl->certificatePolicies.dump());
 
 	return result;
 }

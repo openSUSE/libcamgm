@@ -88,18 +88,18 @@ BasicConstraintsExt::BasicConstraintsExt(CAConfig* caConfig, Type type)
 		bool          isCA = false;
 		blocxx::Int32 pl   = -1;
 
-		StringArray   sp   = PerlRegEx("\\s*,\\s*")
-			.split(caConfig->getValue(type2Section(type, true), "basicConstraints"));
+		std::vector<blocxx::String>   sp   = convStringArray(PerlRegEx("\\s*,\\s*")
+			.split(caConfig->getValue(type2Section(type, true), "basicConstraints")));
 		if(sp[0].equalsIgnoreCase("critical"))  setCritical(true);
 
-		StringArray::const_iterator it = sp.begin();
+		std::vector<blocxx::String>::const_iterator it = sp.begin();
 		for(; it != sp.end(); ++it)
 		{
 			if((*it).equalsIgnoreCase("ca:true"))  isCA = true;
 			else if((*it).equalsIgnoreCase("ca:false"))  isCA = false;
 			else if((*it).startsWith("pathlen:", String::E_CASE_INSENSITIVE))
 			{
-				StringArray plA = PerlRegEx(":").split(*it);
+				std::vector<blocxx::String> plA = convStringArray(PerlRegEx(":").split(*it));
 				pl = plA[1].toInt32();
 			}
 		}
@@ -234,38 +234,38 @@ BasicConstraintsExt::valid() const
 	return true;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 BasicConstraintsExt::verify() const
 {
-	blocxx::StringArray result;
+	std::vector<blocxx::String> result;
 
 	if(!isPresent()) return result;
 
 	if(isCA() && getPathLength() < -1)
 	{
-		result.append(Format("invalid value for pathLength(%1). Has to be >= -1",
+		result.push_back(Format("invalid value for pathLength(%1). Has to be >= -1",
 		                     getPathLength()).toString());
 	}
 	if(!isCA() && getPathLength() != -1)
 	{
-		result.append(Format("invalid value for pathLength(%1). Has to be -1",
+		result.push_back(Format("invalid value for pathLength(%1). Has to be -1",
 		                     getPathLength()).toString());
 	}
 	LOGIT_DEBUG_STRINGARRAY("BasicConstraintsExt::verify()", result);
 	return result;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 BasicConstraintsExt::dump() const
 {
-	StringArray result;
-	result.append("BasicConstraintsExt::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("BasicConstraintsExt::dump()");
 
-	result.appendArray(ExtensionBase::dump());
+	appendArray(result, ExtensionBase::dump());
 	if(!isPresent()) return result;
 
-	result.append("CA = " + Bool(isCA()).toString());
-	result.append("pathlen = " + String(getPathLength()));
+	result.push_back("CA = " + Bool(isCA()).toString());
+	result.push_back("pathlen = " + String(getPathLength()));
 
 	return result;
 }

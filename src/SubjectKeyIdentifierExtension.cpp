@@ -88,8 +88,8 @@ SubjectKeyIdentifierExt::SubjectKeyIdentifierExt(CAConfig* caConfig, Type type)
 	{
 		String        str;
 
-		StringArray   sp   = PerlRegEx("\\s*,\\s*")
-			.split(caConfig->getValue(type2Section(type, true), "subjectKeyIdentifier"));
+		std::vector<blocxx::String>   sp   = convStringArray(PerlRegEx("\\s*,\\s*")
+			.split(caConfig->getValue(type2Section(type, true), "subjectKeyIdentifier")));
 
 		if(sp[0].equalsIgnoreCase("critical"))
 		{
@@ -256,16 +256,16 @@ SubjectKeyIdentifierExt::valid() const
 	return true;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 SubjectKeyIdentifierExt::verify() const
 {
-	StringArray result;
+	std::vector<blocxx::String> result;
 
 	if(!isPresent()) return result;
 
 	if(!m_impl->autodetect && m_impl->keyid.empty())
 	{
-		result.append(String("Wrong value for SubjectKeyIdentifierExt: ") +
+		result.push_back(String("Wrong value for SubjectKeyIdentifierExt: ") +
 		              Format("autodetect(%1), keyId(%2)",
 		                     m_impl->autodetect?"true":"false",
 		                     m_impl->keyid.c_str()).toString());
@@ -273,7 +273,7 @@ SubjectKeyIdentifierExt::verify() const
 
 	if(m_impl->autodetect && !m_impl->keyid.empty())
 	{
-		result.append(String("Wrong value for SubjectKeyIdentifierExt: ") +
+		result.push_back(String("Wrong value for SubjectKeyIdentifierExt: ") +
 		              Format("autodetect(%1), keyId(%2)",
 		                     m_impl->autodetect?"true":"false",
 		                     m_impl->keyid.c_str()).toString());
@@ -283,7 +283,7 @@ SubjectKeyIdentifierExt::verify() const
 		ValueCheck check = initHexCheck();
 		if(!check.isValid(m_impl->keyid))
 		{
-			result.append(Format("Wrong keyID in SubjectKeyIdentifierExt: %1",
+			result.push_back(Format("Wrong keyID in SubjectKeyIdentifierExt: %1",
 			                     m_impl->keyid.c_str()).toString());
 		}
 	}
@@ -291,17 +291,17 @@ SubjectKeyIdentifierExt::verify() const
 	return result;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 SubjectKeyIdentifierExt::dump() const
 {
-	StringArray result;
-	result.append("SubjectKeyIdentifierExt::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("SubjectKeyIdentifierExt::dump()");
 
-	result.appendArray(ExtensionBase::dump());
+	appendArray(result, ExtensionBase::dump());
 	if(!isPresent()) return result;
 
-	result.append("Autodetect = " + Bool(m_impl->autodetect).toString());
-	result.append("KeyID = " + m_impl->keyid);
+	result.push_back("Autodetect = " + Bool(m_impl->autodetect).toString());
+	result.push_back("KeyID = " + m_impl->keyid);
 
 	return result;
 }

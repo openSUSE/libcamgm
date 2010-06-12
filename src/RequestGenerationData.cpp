@@ -133,7 +133,7 @@ RequestGenerationData::operator=(const RequestGenerationData& data)
 void
 RequestGenerationData::setSubjectDN(const DNObject dn)
 {
-	StringArray r = dn.verify();
+	std::vector<blocxx::String> r = dn.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -205,7 +205,7 @@ RequestGenerationData::getUnstructuredName() const
 void
 RequestGenerationData::setExtensions(const X509v3RequestExts &ext)
 {
-	StringArray r = ext.verify();
+	std::vector<blocxx::String> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -276,34 +276,34 @@ RequestGenerationData::valid() const
 	return m_impl->extensions.valid();
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 RequestGenerationData::verify() const
 {
-	StringArray result;
+	std::vector<blocxx::String> result;
 
-	result.appendArray(m_impl->subject.verify());
+	appendArray(result, m_impl->subject.verify());
 
 	// keysize??
 
-	result.appendArray(m_impl->extensions.verify());
+	appendArray(result, m_impl->extensions.verify());
 
 	LOGIT_DEBUG_STRINGARRAY("RequestGenerationData::verify()", result);
 
 	return result;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 RequestGenerationData::dump() const
 {
-	StringArray result;
-	result.append("RequestGenerationData::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("RequestGenerationData::dump()");
 
-	result.appendArray(m_impl->subject.dump());
-	result.append("Keysize = " + String(m_impl->keysize));
-	result.append("MessageDigest = " + String(m_impl->messageDigest));
-	result.append("Challenge Password = " + m_impl->challengePassword);
-	result.append("Unstructured Name = " + m_impl->unstructuredName);
-	result.appendArray(m_impl->extensions.dump());
+	appendArray(result, m_impl->subject.dump());
+	result.push_back("Keysize = " + String(m_impl->keysize));
+	result.push_back("MessageDigest = " + String(m_impl->messageDigest));
+	result.push_back("Challenge Password = " + m_impl->challengePassword);
+	result.push_back("Unstructured Name = " + m_impl->unstructuredName);
+	appendArray(result, m_impl->extensions.dump());
 
 	return result;
 }

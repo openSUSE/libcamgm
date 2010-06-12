@@ -56,9 +56,9 @@ namespace CA_MGM_NAMESPACE {
 		virtual void   commit2Config(CA& ca, Type type) const = 0;
 
 		virtual bool                 valid() const  = 0;
-		virtual blocxx::StringArray  verify() const = 0;
+		virtual std::vector<blocxx::String>  verify() const = 0;
 
-		virtual blocxx::StringArray  dump() const = 0;
+		virtual std::vector<blocxx::String>  dump() const = 0;
 
 	protected:
 		blocxx::COWIntrusiveReference<BitExtensionImpl> m_impl;
@@ -136,12 +136,12 @@ namespace CA_MGM_NAMESPACE {
 		 * @return Array with error messages. If this Array is empty this
 		 * object is valid
 		 */
-		virtual blocxx::StringArray  verify() const;
+		virtual std::vector<blocxx::String>  verify() const;
 
 		/**
 		 * Return the content of this object for debugging
 		 */
-		virtual blocxx::StringArray  dump() const;
+		virtual std::vector<blocxx::String>  dump() const;
 
 				            		        		private:
 		bool  validKeyUsage(blocxx::UInt32 keyUsage) const;
@@ -217,12 +217,12 @@ namespace CA_MGM_NAMESPACE {
 		 * @return Array with error messages. If this Array is empty this
 		 * object is valid
 		 */
-		virtual blocxx::StringArray  verify() const;
+		virtual std::vector<blocxx::String>  verify() const;
 
 		/**
 		 * Return the content of this object for debugging
 		 */
-		virtual blocxx::StringArray  dump() const;
+		virtual std::vector<blocxx::String>  dump() const;
 	};
 
 }

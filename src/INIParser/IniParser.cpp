@@ -70,7 +70,7 @@ IniParser::~IniParser ()
 /**
  * Debugging.
  */
-void printPath(const StringArray&p, const char*c = "")
+void printPath(const std::vector<blocxx::String>&p, const char*c = "")
 {
     int i = 0;
     int len = p.size();
@@ -93,7 +93,7 @@ bool onlySpaces (const char*str)
 
 
 
-void IniParser::initFiles (const StringArray&f)
+void IniParser::initFiles (const std::vector<blocxx::String>&f)
 {
     multiple_files = true;
     files.clear ();
@@ -107,13 +107,13 @@ void IniParser::initFiles (const char*fn)
     file = fn;
     multiple_files = false;
 }
-void IniParser::initOptions (const StringArray&options)
+void IniParser::initOptions (const std::vector<blocxx::String>&options)
 {
     int len = options.size();
     for (int i = 0;i<len;i++)
     {
 	String sv = options[i];
-#define COMPARE_OPTION(X) if (sv == #X) X = true; else 
+#define COMPARE_OPTION(X) if (sv == #X) X = true; else
 		    COMPARE_OPTION (ignore_case_regexps)
 		    COMPARE_OPTION (ignore_case)
 		    COMPARE_OPTION (prefer_uppercase)
@@ -138,12 +138,12 @@ void IniParser::initOptions (const StringArray&options)
     }
 }
 
-void IniParser::initRewrite (const Array<IoPatternDescr>&rewriteArray)
+void IniParser::initRewrite (const std::vector<IoPatternDescr>&rewriteArray)
 {
     int len = rewrites.size();
     rewrites.clear ();
     rewrites.reserve (len);
-    
+
     for (int i = 0; i<len;i++)
     {
 	IoPatternDescr val = rewriteArray[i];
@@ -162,7 +162,7 @@ void IniParser::initSubident (const String ident)
     subindent = String(ident);
 }
 
-void IniParser::initComments (const StringArray&comm)
+void IniParser::initComments (const std::vector<blocxx::String>&comm)
 {
     int len = comm.size();
     linecomments.clear ();
@@ -172,7 +172,7 @@ void IniParser::initComments (const StringArray&comm)
     for (int i = 0;  i < len; i++)
     {
 	String s = comm[i];
-	Array <PosixRegEx> & regexes = ('^' == s[0]) ?
+	std::vector<PosixRegEx> & regexes = ('^' == s[0]) ?
 	    linecomments : comments;
 	PosixRegEx r;
 	if (r.compile (s, REG_EXTENDED | (ignore_case ? REG_ICASE : 0)))
@@ -182,7 +182,7 @@ void IniParser::initComments (const StringArray&comm)
     }
 }
 
-void IniParser::initSection (const Array<SectionDescr>& sect)
+void IniParser::initSection (const std::vector<SectionDescr>& sect)
 {
     int len = sect.size();
     // compile them to regex_t
@@ -214,7 +214,7 @@ void IniParser::initSection (const Array<SectionDescr>& sect)
 }
 
 
-void IniParser::initParam (const Array<EntryDescr>& entries)
+void IniParser::initParam (const std::vector<EntryDescr>& entries)
 {
     int len = entries.size();
     // compile them to regex_t
@@ -235,7 +235,7 @@ void IniParser::initParam (const Array<EntryDescr>& entries)
 		{
 		    LIMAL_SLOG_ERROR (logger,"Bad regexp(multiline): "<<
 				      entry.multiEnd.c_str());
-		    pa.multiline_valid = false;		    
+		    pa.multiline_valid = false;
 		}
 	    }
 	    else
@@ -244,7 +244,7 @@ void IniParser::initParam (const Array<EntryDescr>& entries)
 				  entry.multiBegin.c_str());
 	    }
 	}
-	    
+
 	if (!pa.line.rx.compile ( String (entry.line.regExpr),
 				 REG_EXTENDED | (ignore_case ? REG_ICASE : 0)))
 	{
@@ -439,7 +439,7 @@ int IniParser::parse_helper(IniSection&ini)
     size_t i;
 
     // stack of section names
-    StringArray path;
+    std::vector<blocxx::String> path;
 
     //
     // read line
@@ -486,7 +486,7 @@ int IniParser::parse_helper(IniSection&ini)
 		{
 		    RegexMatch m (params[matched_by].end, line);
 		    if (m)
-		    {    
+		    {
 			// it is the end of broken line
 			state = 0;
 			val = val + (join_multiline ? "" : "\n") + m[1];
@@ -650,7 +650,7 @@ int IniParser::parse_helper(IniSection&ini)
 				val = m[2];
 				line = m.rest;
 				break;
-			    }				
+			    }
 			}
 			if (i != params.size ())
 			    {
@@ -760,7 +760,7 @@ void IniParser::UpdateIfModif ()
     {
 	if (timestamp != getTimeStamp())
 	{
-	    LIMAL_SLOG_ERROR (logger, "Data file '" <<  file.c_str() << "' was changed externaly!");	    
+	    LIMAL_SLOG_ERROR (logger, "Data file '" <<  file.c_str() << "' was changed externaly!");
 	    parse ();
 	}
     }
@@ -815,7 +815,7 @@ int IniParser::write()
 		if (ci->t () == SECTION)
 		    {
 			IniSection&s = ci->s ();
-			int wb = s.getRewriteBy (); // bug #19066 
+			int wb = s.getRewriteBy (); // bug #19066
 			String filename = getFileName (s.getName (), wb);
 
 			if (!s.isDirty ()) {
@@ -882,7 +882,7 @@ int IniParser::write_helper(IniSection&ini, ofstream&of, int depth)
 	    snprintf (out_buffer, 2048, sections[readby].begin.out.c_str (), ini.getName());
 	    of << indent << out_buffer << "\n";
 	}
-    
+
     IniIterator
 	ci = ini.getContainerBegin (),
 	ce = ini.getContainerEnd ();
@@ -947,7 +947,7 @@ String IniParser::changeCase (const String&str) const
     }
     else
     {
-	tmp.toLowerCase();	
+	tmp.toLowerCase();
 	if (first_upper
 	    && tmp.length() > 0)
 	{

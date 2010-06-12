@@ -83,7 +83,7 @@ CRLGenerationData::CRLGenerationData(blocxx::UInt32 hours,
                                      const X509v3CRLGenerationExts& ext)
 	: m_impl(new CRLGenerationDataImpl(hours, ext))
 {
-	StringArray r = ext.verify();
+	std::vector<blocxx::String> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -123,7 +123,7 @@ CRLGenerationData::getCRLLifeTime() const
 void
 CRLGenerationData::setExtensions(const X509v3CRLGenerationExts& ext)
 {
-	StringArray r = ext.verify();
+	std::vector<blocxx::String> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -179,30 +179,30 @@ CRLGenerationData::valid() const
 	return m_impl->extensions.valid();
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 CRLGenerationData::verify() const
 {
-	StringArray result;
+	std::vector<blocxx::String> result;
 
 	if(m_impl->crlHours == 0)
 	{
-		result.append(Format("invalid crlhours: %1", m_impl->crlHours).toString());
+		result.push_back(Format("invalid crlhours: %1", m_impl->crlHours).toString());
 	}
-	result.appendArray(m_impl->extensions.verify());
+	appendArray(result, m_impl->extensions.verify());
 
 	LOGIT_DEBUG_STRINGARRAY("CRLGenerationData::verify()", result);
 
 	return result;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 CRLGenerationData::dump() const
 {
-	StringArray result;
-	result.append("CRLGenerationData::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("CRLGenerationData::dump()");
 
-	result.append("CRL Hours = " + String(m_impl->crlHours));
-	result.appendArray(m_impl->extensions.dump());
+	result.push_back("CRL Hours = " + String(m_impl->crlHours));
+	appendArray(result, m_impl->extensions.dump());
 
 	return result;
 }

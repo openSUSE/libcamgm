@@ -22,7 +22,7 @@ int main()
     try
     {
         cout << "START" << endl;
-        
+
         blocxx::StringArray cat;
         cat.push_back("FATAL");
         cat.push_back("ERROR");
@@ -37,7 +37,7 @@ int main()
                                                       "%-5p %c - %m"
                                                   );
         ca_mgm::Logger::setDefaultLogger(l);
-        
+
         CA ca("Test_CA1", "system", "./TestRepos/");
         RequestGenerationData rgd = ca.getRequestDefaults(E_Client_Req);
 
@@ -47,7 +47,7 @@ int main()
         for(dnit = dnl.begin(); dnit != dnl.end(); ++dnit)
         {
             cout << "DN Key " << (*dnit).getType() << endl;
-            
+
             if((*dnit).getType() == "countryName")
             {
                 (*dnit).setRDNValue("DE");
@@ -61,12 +61,12 @@ int main()
                 (*dnit).setRDNValue("suse@suse.de");
             }
         }
-        
+
         DNObject dn(dnl);
         rgd.setSubjectDN(dn);
 
         blocxx::String r = ca.createRequest("system", rgd, E_Client_Req);
-        
+
         cout << "RETURN Request " << endl;
 
         CertificateIssueData cid = ca.getIssueDefaults(E_Client_Cert);
@@ -76,7 +76,7 @@ int main()
         cout << "RETURN Certificate " << endl;
 
         path::PathInfo pi("./TestRepos/Test_CA1/newcerts/" + c + ".pem");
-        
+
         cout << "Certificate exists: " << Bool(pi.exists()) << endl;
 
         cout << "DONE" << endl;

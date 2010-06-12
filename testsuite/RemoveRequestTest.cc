@@ -23,7 +23,7 @@ int main()
     try
     {
         cout << "START" << endl;
-        
+
         blocxx::StringArray cat;
         cat.push_back("FATAL");
         cat.push_back("ERROR");
@@ -38,16 +38,16 @@ int main()
                                                       "%-5p %c - %m"
                                                       );
         ca_mgm::Logger::setDefaultLogger(l);
-        
+
         cout << "=================== start ======================" << endl;
         {
             CA ca("Test_CA1", "system", "./TestRepos/");
 
-            Array<map<blocxx::String, blocxx::String> > ret;
+            std::vector<map<blocxx::String, blocxx::String> > ret;
             ret = ca.getRequestList();
 
             blocxx::String requestName = (*(ret[0].find("request"))).second;
-            
+
             path::PathInfo reqFile("./TestRepos/Test_CA1/req/" + requestName + ".req");
             if(reqFile.exists())
             {

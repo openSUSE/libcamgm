@@ -53,10 +53,10 @@ LDAPUrlImpl::clone() const
 }
 
 // -------------------------------------------------------------------
-StringArray
+std::vector<blocxx::String>
 LDAPUrlImpl::getKnownSchemes() const
 {
-	StringArray schemes(2);
+	std::vector<blocxx::String> schemes(2);
 	schemes[0] = "ldap";
 	schemes[1] = "ldaps";
 	return schemes;
@@ -90,7 +90,7 @@ LDAPUrlImpl::getQueryStringMap(ca_mgm::url::EEncoding eflag) const
 		"attrs", "scope", "filter", "exts", NULL
 	};
 	ca_mgm::url::ParamMap pmap;
-	StringArray          parr( getQueryStringArray());
+	std::vector<blocxx::String>          parr( getQueryStringArray());
 	if( parr.size() <= 4)
 	{
 		for(size_t i=0; i<parr.size(); i++)
@@ -129,7 +129,7 @@ LDAPUrlImpl::setQueryStringMap(const ca_mgm::url::ParamMap &pmap)
 			join_safe.concat(safe[i]);
 	}
 
-	blocxx::StringArray                  parr(4);
+	std::vector<blocxx::String>                  parr(4);
 	ca_mgm::url::ParamMap::const_iterator p;
 	for(p=pmap.begin(); p!=pmap.end(); ++p)
 	{

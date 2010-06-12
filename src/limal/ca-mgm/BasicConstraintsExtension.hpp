@@ -95,12 +95,12 @@ namespace CA_MGM_NAMESPACE {
 		 * @return Array with error messages. If this Array is empty this
 		 * object is valid
 		 */
-		virtual blocxx::StringArray  verify() const; 
+		virtual std::vector<blocxx::String>  verify() const; 
 
 		/**
 		 * Return the content of this object for debugging
 		 */
-		virtual blocxx::StringArray  dump() const;
+		virtual std::vector<blocxx::String>  dump() const;
 
 	private:
 		blocxx::COWIntrusiveReference<BasicConstraintsExtImpl> m_impl;

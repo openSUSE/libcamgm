@@ -115,13 +115,13 @@ namespace CA_MGM_NAMESPACE {
          * @return Array with error messages. If this Array is empty this
          * object is valid
          */
-		blocxx::Array<String>
+		std::vector<String>
 		verify() const;
 
         /**
          * Return the content of this object for debugging
          */
-		blocxx::Array<String>
+		std::vector<String>
 		dump() const;
 
 #ifndef SWIG
@@ -220,13 +220,13 @@ namespace CA_MGM_NAMESPACE {
          * @return Array with error messages. If this Array is empty this
          * object is valid
          */
-        virtual blocxx::StringArray
+        virtual std::vector<blocxx::String>
         verify() const;
 
         /**
          * Return the content of this object for debugging
          */
-        virtual blocxx::StringArray
+        virtual std::vector<blocxx::String>
         dump() const;
 
     private:

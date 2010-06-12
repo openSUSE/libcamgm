@@ -14,6 +14,9 @@
 #include <fstream>
 #include <unistd.h>
 
+// FIXME: need to be removed
+#include <Utils.hpp>
+
 using namespace blocxx;
 
 using namespace ca_mgm;
@@ -24,7 +27,7 @@ int main()
     try
     {
         cout << "START" << endl;
-        
+
         blocxx::StringArray cat;
         cat.push_back("FATAL");
         cat.push_back("ERROR");
@@ -39,15 +42,15 @@ int main()
                                                       "%-5p %c - %m"
                                                       );
         ca_mgm::Logger::setDefaultLogger(l);
-        
+
         cout << "=================== start getRequestList ======================" << endl;
         {
             CA ca("Test_CA2", "system", "./TestRepos/");
 
-            Array<map<blocxx::String, blocxx::String> > ret;
+            std::vector< std::map<blocxx::String, blocxx::String> > ret;
             ret = ca.getRequestList();
-            
-            Array<map<blocxx::String, blocxx::String> >::const_iterator it;
+
+            std::vector< std::map<blocxx::String, blocxx::String> >::const_iterator it;
 
             for(it = ret.begin(); it != ret.end(); ++it)
             {
@@ -60,7 +63,7 @@ int main()
                     if((*it2).first == "date")
                     {
                         PerlRegEx r("^(\\d\\d\\d\\d)-(\\d\\d)-(\\d\\d)\\s(\\d\\d):(\\d\\d):(\\d\\d)");
-                        StringArray sa = r.capture( (*it2).second );
+                        std::vector<blocxx::String> sa = convStringArray(r.capture( (*it2).second ));
 
                         if(sa.size() == 7)
                         {
@@ -85,11 +88,11 @@ int main()
         cout << "=================== start getCertificateList ==================" << endl;
         {
             CA ca2("Test_CA2", "system", "./TestRepos/");
-            
-            Array<map<blocxx::String, blocxx::String> > ret;
+
+            std::vector<map<blocxx::String, blocxx::String> > ret;
             ret = ca2.getCertificateList();
-            
-            Array<map<blocxx::String, blocxx::String> >::const_iterator it = ret.begin();
+
+            std::vector<map<blocxx::String, blocxx::String> >::const_iterator it = ret.begin();
 
             for(it = ret.begin(); it != ret.end(); ++it)
             {
@@ -105,7 +108,7 @@ int main()
             cout << "getCertificateList successfully executed" << endl;
         }
         cout << "=================== end List tests ========================" << endl;
-        
+
         cout << "DONE" << endl;
     }
     catch(blocxx::Exception& e)

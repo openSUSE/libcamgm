@@ -76,7 +76,7 @@ LocalManagement::importAsLocalCertificate(const ByteBuffer &pkcs12Data,
 
 	String data(out.data(), out.size());
 
-	Array< std::map<String, String> > list;
+	std::vector< std::map<String, String> > list;
 
 	String info;
 	String cert;
@@ -84,7 +84,7 @@ LocalManagement::importAsLocalCertificate(const ByteBuffer &pkcs12Data,
 	String issuer;
 	String keyID;
 
-	StringArray dataList = PerlRegEx("\n").split(data);
+	std::vector<blocxx::String> dataList = convStringArray(PerlRegEx("\n").split(data));
 
 	if(dataList.size() <= 1) {
 
@@ -100,7 +100,7 @@ LocalManagement::importAsLocalCertificate(const ByteBuffer &pkcs12Data,
 	PerlRegEx subjectRegex("^subject=(.*)\\s*$");
 	PerlRegEx issuerRegex("^issuer=(.*)\\s*$");
 
-	StringArray::const_iterator lineIT = dataList.begin() + 1;
+	std::vector<blocxx::String>::const_iterator lineIT = dataList.begin() + 1;
 
 	for(; lineIT != dataList.end(); ++lineIT) {
 
@@ -110,7 +110,7 @@ LocalManagement::importAsLocalCertificate(const ByteBuffer &pkcs12Data,
 
 			if(endRegex.match(*lineIT)) {
 
-				StringArray ia = endRegex.capture(*lineIT);
+				std::vector<blocxx::String> ia = convStringArray(endRegex.capture(*lineIT));
 				if(ia.size() == 2 && ia[1] == info) {
 
 					std::map<String, String> v;
@@ -140,7 +140,7 @@ LocalManagement::importAsLocalCertificate(const ByteBuffer &pkcs12Data,
 
 			if(beginRegex.match(*lineIT)) {
 
-				StringArray ia = beginRegex.capture(*lineIT);
+				std::vector<blocxx::String> ia = convStringArray(beginRegex.capture(*lineIT));
 				if(ia.size() == 2 ) {
 
 					info = ia[1];
@@ -154,7 +154,7 @@ LocalManagement::importAsLocalCertificate(const ByteBuffer &pkcs12Data,
 
 				if(keyIDRegex.match(*lineIT)) {
 
-					StringArray ia = keyIDRegex.capture(*lineIT);
+					std::vector<blocxx::String> ia = convStringArray(keyIDRegex.capture(*lineIT));
 					if(ia.size() == 2 ) {
 
 						keyID = ia[1];
@@ -165,7 +165,7 @@ LocalManagement::importAsLocalCertificate(const ByteBuffer &pkcs12Data,
 					}
 				} else if(subjectRegex.match(*lineIT)) {
 
-					StringArray ia = subjectRegex.capture(*lineIT);
+					std::vector<blocxx::String> ia = convStringArray(subjectRegex.capture(*lineIT));
 					if(ia.size() == 2 ) {
 
 						subject = ia[1];
@@ -176,7 +176,7 @@ LocalManagement::importAsLocalCertificate(const ByteBuffer &pkcs12Data,
 					}
 				} else if(issuerRegex.match(*lineIT)) {
 
-					StringArray ia = issuerRegex.capture(*lineIT);
+					std::vector<blocxx::String> ia = convStringArray(issuerRegex.capture(*lineIT));
 					if(ia.size() == 2 ) {
 
 						issuer = ia[1];
@@ -199,11 +199,11 @@ LocalManagement::importAsLocalCertificate(const ByteBuffer &pkcs12Data,
 	String serverCert;
 	String serverKey;
 	String srvIssuerCert;
-	Array<String> restCA;
+	std::vector<String> restCA;
 
     // search for the server certificate
 
-	Array< std::map<String, String> >::iterator certMap = list.begin();
+	std::vector< std::map<String, String> >::iterator certMap = list.begin();
 
 	for(; certMap != list.end(); ++certMap) {
 

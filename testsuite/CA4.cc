@@ -63,7 +63,7 @@ int main(int argc, char **argv)
             
             cout << "============= Call Verify" << endl; 
 
-            StringArray a = cgd.verify();
+            std::vector<blocxx::String> a = cgd.verify();
             
             StringArray::const_iterator it;
             for(it = a.begin(); it != a.end(); ++it)
@@ -74,7 +74,7 @@ int main(int argc, char **argv)
             cout << "============= Call Dump" << endl; 
             PerlRegEx r("^!CHANGING DATA!.*$");
 
-            StringArray dump = cgd.dump();
+            std::vector<blocxx::String> dump = cgd.dump();
             StringArray::const_iterator it2;
             for(it2 = dump.begin(); it2 != dump.end(); ++it2)
             {

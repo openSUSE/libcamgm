@@ -12,6 +12,9 @@
 #include <fstream>
 #include <unistd.h>
 
+// FIXME: need to be removed
+#include <Utils.hpp>
+
 using namespace blocxx;
 
 using namespace ca_mgm;
@@ -22,7 +25,7 @@ int main()
 	try
 	{
 		cout << "START" << endl;
-		
+
 		blocxx::StringArray cat;
 		cat.push_back("FATAL");
 		cat.push_back("ERROR");
@@ -37,7 +40,7 @@ int main()
 		                                              "%-5p %c - %m"
 		                                              );
 		ca_mgm::Logger::setDefaultLogger(l);
-        
+
 		CA ca("Test_CA1", "system", "./TestRepos/");
 		RequestGenerationData rgd = ca.getRequestDefaults(E_Server_Req);
 
@@ -47,7 +50,7 @@ int main()
 		for(dnit = dnl.begin(); dnit != dnl.end(); ++dnit)
 		{
 			cout << "DN Key " << (*dnit).getType() << endl;
-            
+
 			if((*dnit).getType() == "countryName")
 			{
 				(*dnit).setRDNValue("DE");
@@ -61,21 +64,21 @@ int main()
 				(*dnit).setRDNValue("suse@suse.de");
 			}
 		}
-        
+
 		DNObject dn(dnl);
 		rgd.setSubjectDN(dn);
-		
+
 		// ------------------------ create netscape extension -----------------------------
-		
+
 		rgd.extensions().nsSslServerName().setValue("*.my-company.com");
 		rgd.extensions().nsComment().setValue("My Company Certificate");
 
 		// ------------------------ create bit extension -----------------------------
-		
+
 		rgd.extensions().keyUsage().setKeyUsage(KeyUsageExt::digitalSignature);
 		rgd.extensions().nsCertType().setNsCertType(NsCertTypeExt::client |
 		                                            NsCertTypeExt::email);
-		
+
 		rgd.extensions().basicConstraints().setPresent(false);
 
 		StringList sl;
@@ -83,28 +86,28 @@ int main()
 		sl.push_back("2.12.10.39");
 
 		rgd.extensions().extendedKeyUsage().setExtendedKeyUsage( sl );
-		
+
 		std::list<LiteralValue> list;
 		list.push_back(LiteralValue("email", "me@my-company.com"));
 		list.push_back(LiteralValue("URI", "http://www.my-company.com/"));
-		
+
 		rgd.extensions().subjectAlternativeName().setCopyEmail(true);
 		rgd.extensions().subjectAlternativeName().setAlternativeNameList(list);
-		
-		
+
+
 		blocxx::String r = ca.createRequest("system", rgd, E_Server_Req);
-        
+
 		cout << "RETURN Request " << endl;
 
 		path::PathInfo pi("./TestRepos/Test_CA1/req/" + r + ".req");
-        
+
 		cout << "Request exists: " << Bool(pi.exists()) << endl;
 
 		RequestData rd = ca.getRequest(r);
 
-		StringArray ret = rd.getExtensions().dump();
-		StringArray::const_iterator it;
-		
+		std::vector<blocxx::String> ret = rd.getExtensions().dump();
+		std::vector<blocxx::String>::const_iterator it;
+
 		for(it = ret.begin(); it != ret.end(); ++it)
 		{
 			if((*it).startsWith("KeyID"))
@@ -116,7 +119,7 @@ int main()
 				cout << (*it) << endl;
 			}
 		}
-		
+
 		cout << "DONE" << endl;
 	}
 	catch(Exception& e)

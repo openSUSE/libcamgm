@@ -23,7 +23,7 @@ int main()
     try
     {
         cout << "START" << endl;
-        
+
         blocxx::StringArray cat;
         cat.push_back("FATAL");
         cat.push_back("ERROR");
@@ -38,22 +38,22 @@ int main()
                                                       "%-5p %c - %m"
                                                       );
         ca_mgm::Logger::setDefaultLogger(l);
-        
+
         cout << "=================== start Update DB ======================" << endl;
         {
             CA ca("Test_CA1", "system", "./TestRepos/");
 
             ca.updateDB();
-            
+
             cout << "UpdateDB successfully executed" << endl;
         }
 
         cout << "=================== test wrong password ==================" << endl;
-        
+
         try
         {
             CA ca2("Test_CA1", "tralla", "./TestRepos/");
-            
+
             ca2.updateDB();
         }
         catch(ValueException &re)
@@ -61,7 +61,7 @@ int main()
             cout << "Got ValueException. This is ok!" << endl;
         }
         cout << "=================== end Update DB ========================" << endl;
-        
+
         cout << "DONE" << endl;
     }
     catch(Exception& e)

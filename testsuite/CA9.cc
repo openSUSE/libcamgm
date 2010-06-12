@@ -36,7 +36,7 @@ int main()
         
         cout << "=================== start CA List ======================" << endl;
 
-        StringArray list = CA::getCAList("./TestRepos/");
+        std::vector<blocxx::String> list = CA::getCAList("./TestRepos/");
 
         StringArray::const_iterator it;
 

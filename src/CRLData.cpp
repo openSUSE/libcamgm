@@ -88,31 +88,31 @@ RevocationEntry::valid() const
 	return m_impl->revocationReason.valid();
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 RevocationEntry::verify() const
 {
-	StringArray result;
+	std::vector<blocxx::String> result;
 
 	if(!initHexCheck().isValid(m_impl->serial))
 	{
-		result.append(Format("invalid serial: %1", m_impl->serial).toString());
+		result.push_back(Format("invalid serial: %1", m_impl->serial).toString());
 	}
-	result.appendArray(m_impl->revocationReason.verify());
+	appendArray(result, m_impl->revocationReason.verify());
 
 	LOGIT_DEBUG_STRINGARRAY("RevocationEntry::verify()", result);
 
 	return result;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 RevocationEntry::dump() const
 {
-	StringArray result;
-	result.append("RevocationEntry::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("RevocationEntry::dump()");
 
-	result.append("Serial = " + m_impl->serial);
-	result.append("revocation Date = " + String(m_impl->revocationDate));
-	result.appendArray(m_impl->revocationReason.dump());
+	result.push_back("Serial = " + m_impl->serial);
+	result.push_back("revocation Date = " + String(m_impl->revocationDate));
+	appendArray(result, m_impl->revocationReason.dump());
 
 	return result;
 }
@@ -275,7 +275,7 @@ CRLData::valid() const
 
 	if(!m_impl->extensions.valid()) return false;
 
-	StringArray r = checkRevocationData(m_impl->revocationData);
+	std::vector<blocxx::String> r = checkRevocationData(m_impl->revocationData);
 	if(!r.empty())
 	{
 		LOGIT_DEBUG(r[0]);
@@ -284,45 +284,45 @@ CRLData::valid() const
 	return true;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 CRLData::verify() const
 {
-	StringArray result;
+	std::vector<blocxx::String> result;
 
 	if(m_impl->version < 1 || m_impl->version > 2)
 	{
-		result.append(Format("invalid version: %1", m_impl->version).toString());
+		result.push_back(Format("invalid version: %1", m_impl->version).toString());
 	}
 	if(m_impl->lastUpdate == 0)
 	{
-		result.append(Format("invalid lastUpdate: %1", m_impl->lastUpdate).toString());
+		result.push_back(Format("invalid lastUpdate: %1", m_impl->lastUpdate).toString());
 	}
 	if(m_impl->nextUpdate <= m_impl->lastUpdate)
 	{
-		result.append(Format("invalid nextUpdate: %1", m_impl->nextUpdate).toString());
+		result.push_back(Format("invalid nextUpdate: %1", m_impl->nextUpdate).toString());
 	}
-	result.appendArray(m_impl->issuer.verify());
+	appendArray(result, m_impl->issuer.verify());
 
-	result.appendArray(m_impl->extensions.verify());
-	result.appendArray(checkRevocationData(m_impl->revocationData));
+	appendArray(result, m_impl->extensions.verify());
+	appendArray(result, checkRevocationData(m_impl->revocationData));
 
 	LOGIT_DEBUG_STRINGARRAY("CRLData::verify()", result);
 
 	return result;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 CRLData::dump() const
 {
-	StringArray result;
-	result.append("CRLData::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("CRLData::dump()");
 
-	result.append("Version = " + String(m_impl->version));
-	result.append("Fingerprint = " + m_impl->fingerprint);
-	result.append("last Update = " + String(m_impl->lastUpdate));
-	result.append("next Update = " + String(m_impl->nextUpdate));
-	result.appendArray(m_impl->issuer.dump());
-	result.append("signatureAlgorithm = "+ String(m_impl->signatureAlgorithm));
+	result.push_back("Version = " + String(m_impl->version));
+	result.push_back("Fingerprint = " + m_impl->fingerprint);
+	result.push_back("last Update = " + String(m_impl->lastUpdate));
+	result.push_back("next Update = " + String(m_impl->nextUpdate));
+	appendArray(result, m_impl->issuer.dump());
+	result.push_back("signatureAlgorithm = "+ String(m_impl->signatureAlgorithm));
 
 	String s;
 	for(uint i = 0; i < m_impl->signature.size(); ++i)
@@ -331,15 +331,15 @@ CRLData::dump() const
 		d.format("%02x:", static_cast<UInt8>(m_impl->signature[i]));
 		s += d;
 	}
-	result.append("Signature = " + s);
+	result.push_back("Signature = " + s);
 
-	result.appendArray(m_impl->extensions.dump());
+	appendArray(result, m_impl->extensions.dump());
 
 	std::map< String, RevocationEntry >::const_iterator it = m_impl->revocationData.begin();
 	for(; it != m_impl->revocationData.end(); ++it)
 	{
-		result.append((*it).first);
-		result.appendArray(((*it).second).dump());
+		result.push_back((*it).first);
+		appendArray(result, ((*it).second).dump());
 	}
 
 	return result;
@@ -350,14 +350,14 @@ CRLData::CRLData()
 	: m_impl(new CRLDataImpl())
 {}
 
-StringArray
+std::vector<blocxx::String>
 CRLData::checkRevocationData(const std::map<String, RevocationEntry>& rd) const
 {
-	StringArray result;
+	std::vector<blocxx::String> result;
 	std::map<String, RevocationEntry>::const_iterator it = rd.begin();
 	for(; it != rd.end(); ++it)
 	{
-		result.appendArray(((*it).second).verify());
+		appendArray(result, ((*it).second).verify());
 	}
 	return result;
 }

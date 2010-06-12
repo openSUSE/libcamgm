@@ -80,17 +80,17 @@ int createDirRecursive( const PathName & path, unsigned mode )
     size_t pos, lastpos = 0;
     String spath = path.toString()+"/";
     int ret = 0;
-    
+
     if(path.empty())
         return ENOENT;
-    
+
     // skip ./
     if(path.relative())
         lastpos=2;
     // skip /
     else
         lastpos=1;
-    
+
     while((pos = spath.indexOf('/',lastpos)) != String::npos ) {
         String dir = spath.substring(0,pos);
         ret = ::mkdir(dir.c_str(), mode);
@@ -142,11 +142,12 @@ int removeDirRecursive( const PathName & path )
     if ( !p.exists() ) {
         return 0;
     }
-    
+
     if ( !p.isDir() ) {
         return ENOTDIR ;
     }
-    
+
+    //std::vector<blocxx::String> cmd;
     StringArray cmd;
     cmd.push_back(RM_COMMAND);
     cmd.push_back("-rf");
@@ -207,28 +208,28 @@ int removeDirRecursive( const PathName & path )
 int copyDir( const PathName & srcpath, const PathName & destpath )
 {
     LOGIT_DEBUG("copyDir " << srcpath << " -> " << destpath );
-    
+
     PathInfo sp( srcpath );
     if ( !sp.isDir() ) {
         return ENOTDIR;
     }
-    
+
     PathInfo dp( destpath );
     if ( !dp.isDir() ) {
         return ENOTDIR;
     }
-    
+
     PathInfo tp( destpath + srcpath.baseName() );
     if ( tp.exists() ) {
         return EEXIST ;
     }
-    
+
     StringArray cmd;
     cmd.push_back(CP_COMMAND);
     cmd.push_back("-a");
     cmd.push_back(srcpath.toString());
     cmd.push_back(destpath.toString());
-    
+
     String stdOutput;
     String errOutput;
     int    status = -1;
@@ -282,7 +283,7 @@ int readDir( std::list<String> & retlist,
              const PathName & path, bool dots )
 {
     retlist.clear();
-    
+
     LOGIT_DEBUG("readDir " << path << ' ');
 
     DIR * dir = ::opendir( path.toString().c_str() );
@@ -290,10 +291,10 @@ int readDir( std::list<String> & retlist,
         LOGIT_ERROR("readDir ::opendir returned " << errno2String(errno));
         return errno;
     }
-    
+
     struct dirent *entry;
     while ( (entry = ::readdir( dir )) != 0 ) {
-        
+
         if ( entry->d_name[0] == '.' ) {
             if ( !dots )
                 continue;
@@ -304,9 +305,9 @@ int readDir( std::list<String> & retlist,
         }
         retlist.push_back( entry->d_name );
     }
-    
+
     ::closedir( dir );
-    
+
     return 0;
 }
 
@@ -325,7 +326,7 @@ int removeFile( const PathName & path )
     if ( ::unlink( path.toString().c_str() ) == -1 ) {
 	if(errno == ENOENT)
 	{
-		// remove a file which does not exist: the result is ok 
+		// remove a file which does not exist: the result is ok
 		// The file does not exist after this call. So return 0.
 		return 0;
 	}
@@ -371,10 +372,10 @@ int copyFile( const PathName & file, const PathName & dest )
                     <<  "returned: " << errno2String(EINVAL));
         return EINVAL;
     }
-    
+
     PathInfo dp( dest );
     if ( dp.isDir() ) {
-        LOGIT_ERROR("copyFile " << file << " -> " << dest << ' ' 
+        LOGIT_ERROR("copyFile " << file << " -> " << dest << ' '
                     <<  "returned: " << errno2String(EISDIR));
         return EISDIR;
     }
@@ -383,7 +384,7 @@ int copyFile( const PathName & file, const PathName & dest )
     cmd.push_back(CP_COMMAND);
     cmd.push_back(file.toString());
     cmd.push_back(dest.toString());
-    
+
     String stdOutput;
     String errOutput;
     int    status = -1;

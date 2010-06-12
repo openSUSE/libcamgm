@@ -26,6 +26,8 @@
 #include "INIParser/INIParser.hpp"
 #include  <blocxx/PosixRegEx.hpp>
 
+#include "Utils.hpp"
+
 using namespace blocxx;
 
 // ===================================================================
@@ -36,7 +38,7 @@ namespace INI  // INI_NAMESPACE (incl. version?)
 
 // ===================================================================
 Entry::Entry()
-    : m_value(), m_comment()    
+    : m_value(), m_comment()
 {
 }
 
@@ -136,18 +138,18 @@ Section::Section(const Key &key, const Section &parentSection)
     : m_path(parentSection.m_path),
       m_parser(parentSection.m_parser)
 {
-    m_path.append(key);
+    m_path.push_back(key);
 
-    StringArray path;
+    std::vector<blocxx::String> path;
     StringList  valueList;
-    
+
     valueList.clear();
     valueList.push_back(""); // Currently no comment will be
                              // generated for this section
     path.clear();
-    path.append("section");
-    path.appendArray (parentSection.m_path);
-    path.append(key);    
+    path.push_back("section");
+    appendArray (path, parentSection.m_path);
+    path.push_back(key);
     if (m_parser)
     {
 	m_parser->inifile.Write (path,
@@ -167,11 +169,11 @@ Section::~Section()
 EntrySize Section::entrySize() const
 {
     StringList stringList;
-    StringArray path;
+    std::vector<blocxx::String> path;
     path.clear();
     stringList.clear();
-    path.append("value");
-    path.appendArray (m_path);
+    path.push_back("value");
+    appendArray (path, m_path);
     if (m_parser)
     {
 	m_parser->inifile.Dir (path, stringList);
@@ -183,16 +185,16 @@ EntrySize Section::entrySize() const
 EntrySize Section::sectionSize() const
 {
     StringList stringList;
-    StringArray path;
+    std::vector<blocxx::String> path;
     path.clear();
     stringList.clear();
-    path.append("section");
-    path.appendArray (m_path);
+    path.push_back("section");
+    appendArray (path, m_path);
     if (m_parser)
     {
 	m_parser->inifile.Dir (path, stringList);
     }
-    return stringList.size();    
+    return stringList.size();
 }
 
 
@@ -213,13 +215,13 @@ bool Section::empty() const
 // -------------------------------------------------------------------
 IniType Section::contains(const Key &key) const
 {
-    IniType ret = NO;    
+    IniType ret = NO;
     StringList stringList;
-    StringArray path;
+    std::vector<blocxx::String> path;
     path.clear();
     stringList.clear();
-    path.append("value");
-    path.appendArray (m_path);
+    path.push_back("value");
+    appendArray (path, m_path);
     if (m_parser)
     {
 	m_parser->inifile.Dir (path, stringList);
@@ -231,8 +233,8 @@ IniType Section::contains(const Key &key) const
         }
 	path.clear();
 	stringList.clear();
-	path.append("section");
-	path.appendArray (m_path);
+	path.push_back("section");
+	appendArray (path, m_path);
 	m_parser->inifile.Dir (path, stringList);
         for(it = stringList.begin(); it != stringList.end(); ++it)
         {
@@ -247,9 +249,9 @@ IniType Section::contains(const Key &key) const
                 ret = SECTION;
             }
          }
-       }	
+       }
     }
-    
+
     return ret;
 }
 
@@ -258,12 +260,12 @@ std::list<blocxx::String> Section::getEntryKeys() const
 {
     StringList entryKeys;
     StringList stringList;
-    StringArray path;
-    
+    std::vector<blocxx::String> path;
+
     path.clear();
     stringList.clear();
-    path.append("value");
-    path.appendArray (m_path);
+    path.push_back("value");
+    appendArray (path, m_path);
     if (m_parser)
     {
 	// Evaluate all keys
@@ -284,12 +286,12 @@ EntryMap Section::getEntries() const
 {
     EntryMap entrymap;
     StringList stringList;
-    StringArray path;
-    
+    std::vector<blocxx::String> path;
+
     path.clear();
     stringList.clear();
-    path.append("value");
-    path.appendArray (m_path);
+    path.push_back("value");
+    appendArray (path, m_path);
     if (m_parser)
     {
 	// Evaluate all keys
@@ -297,15 +299,15 @@ EntryMap Section::getEntries() const
 	for (StringList::iterator it = stringList.begin();
 	     it != stringList.end(); it++)
 	{
-	    //evaluate 
-	    StringArray valuePath;
+	    //evaluate
+	    std::vector<blocxx::String> valuePath;
 	    StringList  valueList;
 	    Value	value("");
 	    Comment     comment("");
-	    
+
 	    valuePath = path;
 	    valueList.clear();
-	    valuePath.append(*it);
+	    valuePath.push_back(*it);
 	    if (!m_parser->inifile.Read (valuePath,
 						valueList,
 						m_parser->HaveRewrites ())&&
@@ -316,9 +318,9 @@ EntryMap Section::getEntries() const
 	    }
 	    valuePath.clear();
 	    valueList.clear();
-	    valuePath.append("value_comment");
-	    valuePath.appendArray (m_path);
-	    valuePath.append(*it);
+	    valuePath.push_back("value_comment");
+	    appendArray (valuePath, m_path);
+	    valuePath.push_back(*it);
 	    if (!m_parser->inifile.Read (valuePath,
 						valueList,
 						m_parser->HaveRewrites ()) &&
@@ -342,12 +344,12 @@ EntryMap Section::selectEntries(const blocxx::String &pattern,
     EntryMap entryMap = getEntries();
     blocxx::PosixRegEx reg(pattern, REG_EXTENDED | (icase ? REG_ICASE : 0));
     EntryMap ret;
-    
+
     for (EntryMap::iterator it = entryMap.begin(); it !=entryMap.end(); it++ )
     {
 	if( reg.match(it->first) )
 	{
-	    ret.insert (EntryMap::value_type(it->first,it->second));  
+	    ret.insert (EntryMap::value_type(it->first,it->second));
 	}
     }
 
@@ -397,11 +399,11 @@ bool Section::delEntry(const Key &key)
 	return false;
     }
 
-    StringArray path;
+    std::vector<blocxx::String> path;
     path.clear();
-    path.append("value");
-    path.appendArray (m_path);
-    path.append(key);
+    path.push_back("value");
+    appendArray (path, m_path);
+    path.push_back(key);
     return m_parser->inifile.Delete (path)==0 ? true:false ;
 }
 
@@ -409,15 +411,15 @@ bool Section::delEntry(const Key &key)
 // -------------------------------------------------------------------
 bool Section::addValue(const Key &key, const Value &value)
 {
-    StringArray valuePath;
+    std::vector<blocxx::String> valuePath;
     StringList  valueList;
-    
+
     valueList.clear();
     valueList.push_back(value);
     valuePath.clear();
-    valuePath.append("value");
-    valuePath.appendArray (m_path);
-    valuePath.append(key);    
+    valuePath.push_back("value");
+    appendArray (valuePath, m_path);
+    valuePath.push_back(key);
     if (m_parser)
     {
 	return m_parser->inifile.Write (valuePath,
@@ -436,15 +438,15 @@ bool Section::addEntry(const Key &key, const Entry &entry)
     // adding value
     ok = addValue (key, entry.getValue());
 
-    StringArray valuePath;
+    std::vector<blocxx::String> valuePath;
     StringList  valueList;
-    
+
     valueList.clear();
     valueList.push_back(entry.getComment());
     valuePath.clear();
-    valuePath.append("value_comment");
-    valuePath.appendArray (m_path);
-    valuePath.append(key);    
+    valuePath.push_back("value_comment");
+    appendArray (valuePath, m_path);
+    valuePath.push_back(key);
     if (ok && m_parser)
     {
 	return m_parser->inifile.Write (valuePath,
@@ -492,12 +494,12 @@ std::list<blocxx::String> Section::getSectionKeys() const
 {
     StringList sectionList;
     StringList stringList;
-    StringArray path;
-    
+    std::vector<blocxx::String> path;
+
     path.clear();
     stringList.clear();
-    path.append("section");
-    path.appendArray (m_path);
+    path.push_back("section");
+    appendArray (path, m_path);
     if (m_parser)
     {
 	// Evaluate all keys
@@ -518,12 +520,12 @@ SectionMap Section::getSections() const
 {
     SectionMap sectionMap;
     StringList stringList;
-    StringArray path;
-    
+    std::vector<blocxx::String> path;
+
     path.clear();
     stringList.clear();
-    path.append("section");
-    path.appendArray (m_path);
+    path.push_back("section");
+    appendArray (path, m_path);
     if (m_parser)
     {
 	// Evaluate all keys
@@ -534,7 +536,7 @@ SectionMap Section::getSections() const
 	    //generate all sections
 	    Section section(m_parser);
 	    section.m_path = m_path;
-	    section.m_path.append (*it);
+	    section.m_path.push_back (*it);
 	    sectionMap.insert (SectionMap::value_type(*it,section));
 	}
     }
@@ -550,12 +552,12 @@ SectionMap Section::selectSections(const blocxx::String &pattern,
     SectionMap sectionMap = getSections();
     blocxx::PosixRegEx reg(pattern, REG_EXTENDED | (icase ? REG_ICASE : 0));
     SectionMap ret;
-    
+
     for (SectionMap::iterator it = sectionMap.begin(); it !=sectionMap.end(); it++ )
     {
 	if( reg.match(it->first) )
 	{
-	    ret.insert (SectionMap::value_type(it->first,it->second));  
+	    ret.insert (SectionMap::value_type(it->first,it->second));
 	}
     }
 
@@ -571,7 +573,7 @@ Section Section::getSection(const Key &key,
     {
 	Section section (m_parser);
         section.m_path = m_path;
-	section.m_path.append (key);	
+	section.m_path.push_back (key);
 	return section;
     }
     if (defaultSection != NULL)
@@ -593,11 +595,11 @@ bool Section::delSection(const Key &key)
 	return false;
     }
 
-    StringArray path;
+    std::vector<blocxx::String> path;
     path.clear();
-    path.append("section");
-    path.appendArray (m_path);
-    path.append(key);    
+    path.push_back("section");
+    appendArray (path, m_path);
+    path.push_back(key);
 
     return m_parser->inifile.Delete (path) == 0 ? true:false;
 }
@@ -606,14 +608,14 @@ bool Section::delSection(const Key &key)
 // -------------------------------------------------------------------
 bool Section::setComment( const Comment &comment)
 {
-    StringArray valuePath;
+    std::vector<blocxx::String> valuePath;
     StringList  valueList;
-    
+
     valueList.clear();
     valueList.push_back(comment);
     valuePath.clear();
-    valuePath.append("section_comment");
-    valuePath.appendArray (m_path);
+    valuePath.push_back("section_comment");
+    appendArray (valuePath, m_path);
     if (m_parser)
     {
 	return m_parser->inifile.Write (valuePath,
@@ -628,7 +630,7 @@ bool Section::setComment( const Comment &comment)
 // -------------------------------------------------------------------
 Comment	Section::getComment()
 {
-    StringArray valuePath;
+    std::vector<blocxx::String> valuePath;
     StringList  valueList;
     Comment comment;
 
@@ -637,11 +639,11 @@ Comment	Section::getComment()
 	// there is no comment on top level section available
 	return comment;
     }
- 
+
     valuePath.clear();
     valueList.clear();
-    valuePath.append("section_comment");
-    valuePath.appendArray (m_path);
+    valuePath.push_back("section_comment");
+    appendArray (valuePath, m_path);
     if (m_parser && !m_parser->inifile.Read (valuePath,
 					 valueList,
 					 m_parser->HaveRewrites ()) &&
@@ -684,75 +686,75 @@ INIParser::operator=(const INIParser &iniParser)
 INIParser::~INIParser ()
 {
     if (parser->isStarted())
-	parser->write();    
+	parser->write();
 }
 
 
 // -------------------------------------------------------------------
 void INIParser::initFiles (const String &filename)
 {
-    parser->initFiles (filename.c_str());    
-}
-    
-// -------------------------------------------------------------------
-void INIParser::initFiles (const blocxx::StringArray &fileList )
-{
-    parser->initFiles(fileList);    
+    parser->initFiles (filename.c_str());
 }
 
 // -------------------------------------------------------------------
-bool INIParser::initMachine (const blocxx::Array<Options> &options,
-			     const blocxx::StringArray &commentsDescr,
-			     const blocxx::Array<SectionDescr> &sectionDescr,
-			     const blocxx::Array<EntryDescr> &entryDescr,
-			     const blocxx::Array<IoPatternDescr> &rewrites,
+void INIParser::initFiles (const std::vector<blocxx::String> &fileList )
+{
+    parser->initFiles(fileList);
+}
+
+// -------------------------------------------------------------------
+bool INIParser::initMachine (const std::vector<Options> &options,
+			     const std::vector<blocxx::String> &commentsDescr,
+			     const std::vector<SectionDescr> &sectionDescr,
+			     const std::vector<EntryDescr> &entryDescr,
+			     const std::vector<IoPatternDescr> &rewrites,
 			     const blocxx::String &subident)
 {
 
     // Resetting flags; set to "is init"
     parser->reset();
     // options
-    StringArray opt;
+    std::vector<blocxx::String> opt;
     opt.clear();
     for (unsigned int i = 0;i<options.size();i++)
     {
 	switch (options[i])
 	{
 	    case IGNOMR_CASE_REGEXPS:
-		opt.append ("ignore_case_regexps");
+		opt.push_back ("ignore_case_regexps");
 		break;
 	    case IGNORE_CASE:
-		opt.append ("ignore_case");
+		opt.push_back ("ignore_case");
 		break;
 	    case FIRST_UPPER:
-		opt.append ("first_upper");
+		opt.push_back ("first_upper");
 		break;
 	    case PREFER_UPPERCASE:
-		opt.append ("prefer_uppercase");
+		opt.push_back ("prefer_uppercase");
 		break;
 	    case LINE_CAN_CONTINUE:
-		opt.append ("line_can_continue");
+		opt.push_back ("line_can_continue");
 		break;
 	    case NO_NESTED_SECTIONS:
-		opt.append ("no_nested_sections");
+		opt.push_back ("no_nested_sections");
 		break;
 	    case GLOBAL_VALUES:
-		opt.append ("global_values");
+		opt.push_back ("global_values");
 		break;
 	    case REPEAT_NAMES:
-		opt.append ("repeat_names");		
+		opt.push_back ("repeat_names");
 		break;
 	    case COMMENTS_LAST:
-		opt.append ("comments_last");		
+		opt.push_back ("comments_last");
 		break;
 	    case JOIN_MULTILINE:
-		opt.append ("join_multiline");		
+		opt.push_back ("join_multiline");
 		break;
 	    case NO_FINALCOMMENT_KILL:
-		opt.append ("no_finalcomment_kill");		
+		opt.push_back ("no_finalcomment_kill");
 		break;
 	    case READ_ONLY:
-		opt.append ("read_only");		
+		opt.push_back ("read_only");
 		break;
 	}
     }
@@ -761,15 +763,15 @@ bool INIParser::initMachine (const blocxx::Array<Options> &options,
     // comments
     parser->initComments( commentsDescr );
 
-    // sections 
+    // sections
     parser->initSection (sectionDescr);
-    
-    parser->initSubident (subident);	    
+
+    parser->initSubident (subident);
 
     // entries
     parser->initParam (entryDescr);
-    
-    // rewrite settings				 
+
+    // rewrite settings
     parser->initRewrite (rewrites);
 
     // commit initialization
@@ -789,11 +791,11 @@ bool INIParser::parse()
 {
     return parser->parse () == 0;
 }
-    
+
 // -------------------------------------------------------------------
 void INIParser::UpdateIfModif ()
 {
-    parser->UpdateIfModif ();    
+    parser->UpdateIfModif ();
 }
 
 // -------------------------------------------------------------------
@@ -807,32 +809,32 @@ bool INIParser::write ()
 
 bool SysConfig::initMachine ()
 {
-    blocxx::Array<Options>  		options;
-    blocxx::StringArray 		commentsDescr;
-    blocxx::Array<SectionDescr> 	sectionDescr;
-    blocxx::Array<EntryDescr> 		entryDescr;
-    blocxx::Array<IoPatternDescr> 	rewrites;
+    std::vector<Options>  		options;
+    std::vector<blocxx::String> 		commentsDescr;
+    std::vector<SectionDescr> 	sectionDescr;
+    std::vector<EntryDescr> 		entryDescr;
+    std::vector<IoPatternDescr> 	rewrites;
 
-    options.append (GLOBAL_VALUES);
-    options.append (LINE_CAN_CONTINUE);
-    options.append (COMMENTS_LAST);
-    options.append (JOIN_MULTILINE);
+    options.push_back (GLOBAL_VALUES);
+    options.push_back (LINE_CAN_CONTINUE);
+    options.push_back (COMMENTS_LAST);
+    options.push_back (JOIN_MULTILINE);
 
-    commentsDescr.append("^[ \t]*#.*$");
-    commentsDescr.append("#.*");
-    commentsDescr.append("^[ \t]*$");
+    commentsDescr.push_back("^[ \t]*#.*$");
+    commentsDescr.push_back("#.*");
+    commentsDescr.push_back("^[ \t]*$");
 
     IoPatternDescr pattern = { "([a-zA-Z0-9_]+)[ \t]*=[ \t]*\"([^\"]*)\"", "%s=\"%s\""};
-    EntryDescr eDescr =  {pattern, "([a-zA-Z0-9_]+)[ \t]*=[ \t]*\"([^\"]*)", "([^\"]*)\"" , true};    
-    entryDescr.append (eDescr);
+    EntryDescr eDescr =  {pattern, "([a-zA-Z0-9_]+)[ \t]*=[ \t]*\"([^\"]*)", "([^\"]*)\"" , true};
+    entryDescr.push_back (eDescr);
 
     IoPatternDescr pattern2 = {"([a-zA-Z0-9_]+)[ \t]*=[ \t]*([^\"]*[^ \t\"]|)[ \t]*$", "%s=\"%s\""};
     EntryDescr eDescr2 =  {pattern2, "", "" , false};
-    entryDescr.append (eDescr2);
+    entryDescr.push_back (eDescr2);
 
     IoPatternDescr pattern3 = {"^[ \t]*([a-zA-Z_][a-zA-Z0-9_]*)[ \t]*=[ \t]*'([^']*)'", "%s='%s'" };
     EntryDescr eDescr3 =  {pattern3, "([a-zA-Z_][a-zA-Z0-9_]*)[ \t]*=[ \t]*'([^']*)", "([^']*)'" , true};
-    entryDescr.append (eDescr3);        
+    entryDescr.push_back (eDescr3);
 
     if (!INIParser::initMachine (options, commentsDescr, sectionDescr,
 				 entryDescr, rewrites))

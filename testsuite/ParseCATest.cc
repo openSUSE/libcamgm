@@ -23,7 +23,7 @@ int main()
     try
     {
         cout << "START" << endl;
-        
+
         blocxx::StringArray cat;
         cat.push_back("FATAL");
         cat.push_back("ERROR");
@@ -38,33 +38,33 @@ int main()
                                                       "%-5p %c - %m"
                                                       );
         ca_mgm::Logger::setDefaultLogger(l);
-        
+
         cout << "=================== start ParseCATest ======================" << endl;
         {
             CA ca("Test_CA2", "system", "./TestRepos/");
 
             CertificateData cd = ca.getCA();
 
-            Array<blocxx::String> ret = cd.dump();
+            std::vector<blocxx::String> ret = cd.dump();
 
-            Array<blocxx::String>::const_iterator it;
+            std::vector<blocxx::String>::const_iterator it;
 
             for(it = ret.begin(); it != ret.end(); ++it)
-            {                
+            {
                 cout << (*it) << endl;
             }
 
             cout << "=================== call verify ======================" << endl;
 
             ret = cd.verify();
-            
+
             for(it  = ret.begin(); it != ret.end(); ++it)
-            {                
+            {
                 cout << (*it) << endl;
             }
         }
         cout << "=================== end ParseCATest ========================" << endl;
-        
+
         cout << "DONE" << endl;
     }
     catch(blocxx::Exception& e)

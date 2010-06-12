@@ -29,12 +29,12 @@ void addEntries(Section descSection, Section section)
 	{
 	    LIMAL_SLOG(logger, "ERROR",
 			    "Adding   " << i->first
-			    << " : " << entry.getValue());	    	    
+			    << " : " << entry.getValue());
 	}
     }
 
     // Adding Entries and SubSections
-    
+
     SectionMap sMap = descSection.getSections();
     for (SectionMap::iterator i = sMap.begin(); i != sMap.end(); i++)
     {
@@ -45,17 +45,17 @@ void addEntries(Section descSection, Section section)
 	    section.contains (i->first) !=VALUEandSECTION )
 	{
 	    LIMAL_SLOG_INFO(logger, "Creating Subsection  " << i->first);
-	    
+
 	    Section newSection(i->first,section);
 	    newSection.setComment (sec.getComment ());
-	    
+
 	    addEntries (sec, newSection );
 	}
 	else
 	{
 	    (section.getSection (i->first)).setComment (sec.getComment ());
 	    addEntries (sec, section.getSection (i->first));
-	}	    
+	}
     }
 }
 
@@ -68,7 +68,7 @@ void deleteEntries(Section descSection, Section section)
     {
 	Entry entry = i->second;
 	LIMAL_SLOG_INFO(logger, "Deleting Entry: " << i->first);
-	
+
 	if (!section.delEntry (i->first))
 	{
 	    LIMAL_SLOG(logger, "ERROR",
@@ -77,7 +77,7 @@ void deleteEntries(Section descSection, Section section)
     }
 
     // Deleting sections if it has no entry
-    
+
     SectionMap sMap = descSection.getSections();
     for (SectionMap::iterator i = sMap.begin(); i != sMap.end(); i++)
     {
@@ -86,7 +86,7 @@ void deleteEntries(Section descSection, Section section)
 	     && sec.entrySize() <= 0)
 	{
 	    // This section has no enties, so it will be deleted
-	    LIMAL_SLOG_INFO(logger, "Deleting Section: " << i->first);	    
+	    LIMAL_SLOG_INFO(logger, "Deleting Section: " << i->first);
 	    if (!section.delSection (i->first))
 	    {
 		LIMAL_SLOG(logger, "ERROR",
@@ -97,7 +97,7 @@ void deleteEntries(Section descSection, Section section)
 	{
 	    // It has entries. So we look forward
     	    deleteEntries (sec, section.getSection (i->first));
-	}	    
+	}
     }
 }
 
@@ -156,14 +156,14 @@ void dumpTree(Section *section, int level = 0)
 	LIMAL_SLOG_INFO(logger, tab);
 
     LIMAL_SLOG_INFO(logger, tab <<
-		    "SectionComment " << section->getComment());	
-    
+		    "SectionComment " << section->getComment());
+
     EntryMap eMap= section->getEntries();
     for (EntryMap::iterator i = eMap.begin(); i != eMap.end(); i++)
     {
 	Entry entry = i->second;
 	LIMAL_SLOG_INFO(logger, tab <<
-			"Comment " << i->first << " : " << entry.getComment());	
+			"Comment " << i->first << " : " << entry.getComment());
 	LIMAL_SLOG_INFO(logger, tab <<
 			"Entry   " << i->first << " : " << entry.getValue());
     }
@@ -184,7 +184,7 @@ int main(int argc, char **argv)
         if ( argc != 2 )
         {
              std::cerr << "Usage: iniParser <filepath>" << std::endl;
-	     std::cout << "DONE" << std::endl;	     
+	     std::cout << "DONE" << std::endl;
 	     exit( 1 );
         }
 
@@ -204,25 +204,25 @@ int main(int argc, char **argv)
 
 	// Loading description file
 	INIParser descParser;
-	blocxx::Array<Options>  	options;
-	blocxx::StringArray 		commentsDescr;
-	blocxx::Array<SectionDescr> 	sectionDescr;
-	blocxx::Array<EntryDescr> 	entryDescr;
-	blocxx::Array<IoPatternDescr> 	rewrites;
+	std::vector<Options>  	options;
+	std::vector<blocxx::String> 		commentsDescr;
+	std::vector<SectionDescr> 	sectionDescr;
+	std::vector<EntryDescr> 	entryDescr;
+	std::vector<IoPatternDescr> 	rewrites;
         String file = argv[ 1 ];
-	std::cout << "== loading file : " << file << std::endl;	
+	std::cout << "== loading file : " << file << std::endl;
 
 	descParser.initFiles (file);
-	options.append (GLOBAL_VALUES);
+	options.push_back (GLOBAL_VALUES);
 	IoPatternDescr pattern = {"^[ \t]*([^=]*[^ \t=])[ \t]*=[ \t]*(.*[^ \t]|)[ \t]*$" ,"%s=%s"};
 	EntryDescr eDescr =  {pattern, "", "" ,false};
-	entryDescr.append (eDescr);
-	commentsDescr.append(String("^[ \t]*;.*"));
+	entryDescr.push_back (eDescr);
+	commentsDescr.push_back(String("^[ \t]*;.*"));
 
 	IoPatternDescr patternBegin = {"[ \t]*\\+([A-Za-z0-9_]+)[ \t]*", "+%s"};
-	IoPatternDescr patternEnd = {"[ \t]*\\-([A-Za-z0-9_]+)[ \t]*", "-%s"};	    
+	IoPatternDescr patternEnd = {"[ \t]*\\-([A-Za-z0-9_]+)[ \t]*", "-%s"};
 	SectionDescr sDescr =  {patternBegin, patternEnd , true };
-	sectionDescr.append (sDescr);	
+	sectionDescr.push_back (sDescr);
 
 	if (!descParser.initMachine (options, commentsDescr, sectionDescr,
 				     entryDescr, rewrites, "  "))
@@ -236,14 +236,14 @@ int main(int argc, char **argv)
 	    LIMAL_SLOG(logger, "ERROR", "Cannot parse configuration file " << file);
 	    exit (1);
 	}
-	
-	
+
+
 	LIMAL_SLOG(logger, "DEBUG", "Configuration file " << file << " parsed.");
 	dumpTree(&(descParser.iniFile));
 
 	// Initialize parser for testfile
 	INIParser parser;
-	
+
 	options.clear();
 	commentsDescr.clear();
 	sectionDescr.clear();
@@ -252,13 +252,13 @@ int main(int argc, char **argv)
 
 	int counter = 1;
 	Key key;
-	Value value;	
+	Value value;
 
 	key = "option1";
 	while (descParser.iniFile.contains (key) == VALUE)
 	{
 	    value = descParser.iniFile.getValue (key);
-#define COMPARE_OPTION(X) if (value == #X) options.append(X); else 	    
+#define COMPARE_OPTION(X) if (value == #X) options.push_back(X); else
 	    COMPARE_OPTION(IGNOMR_CASE_REGEXPS);
 	    COMPARE_OPTION(IGNORE_CASE);
 	    COMPARE_OPTION(FIRST_UPPER);
@@ -280,7 +280,7 @@ int main(int argc, char **argv)
 	key = "comment1";
 	while (descParser.iniFile.contains (key) == VALUE)
 	{
-	    commentsDescr.append (descParser.iniFile.getValue (key));
+	    commentsDescr.push_back (descParser.iniFile.getValue (key));
 	    key = "comment";
 	    key += String(++counter);
 	}
@@ -289,40 +289,40 @@ int main(int argc, char **argv)
 	key = "match1";
 	while (descParser.iniFile.contains (key) == VALUE)
 	{
-	    String keyWrite = "write" + String(counter);	    
-	    IoPatternDescr pattern = {descParser.iniFile.getValue (key) , 
+	    String keyWrite = "write" + String(counter);
+	    IoPatternDescr pattern = {descParser.iniFile.getValue (key) ,
 				      descParser.iniFile.getValue (keyWrite)};
-	    EntryDescr eDescr =  {pattern, "", "" ,false};	    
-	    entryDescr.append (eDescr);
+	    EntryDescr eDescr =  {pattern, "", "" ,false};
+	    entryDescr.push_back (eDescr);
 	    key = "match";
 	    key += String(++counter);
 	}
-	
+
 	counter = 1;
 	key = "secBeginReg1";
 	while (descParser.iniFile.contains (key) == VALUE)
 	{
-	    String keyWrite = "secBeginWrite" + String(counter);	    
+	    String keyWrite = "secBeginWrite" + String(counter);
 	    IoPatternDescr patternBegin = {descParser.iniFile.getValue (key) ,
 					   descParser.iniFile.getValue (keyWrite)};
 	    key = "secEndReg" + String(counter);
 	    keyWrite = "secEndWrite" + String(counter);
 	    IoPatternDescr patternEnd = {descParser.iniFile.getValue (key),
-					 descParser.iniFile.getValue (keyWrite)};	    
+					 descParser.iniFile.getValue (keyWrite)};
 	    SectionDescr sDescr =  {patternBegin, patternEnd ,
 				    descParser.iniFile.contains (key) == VALUE };
-	    sectionDescr.append (sDescr);
+	    sectionDescr.push_back (sDescr);
 	    key = "secBeginReg";
 	    key += String(++counter);
 	}
-	
+
         // Parsing input file
-	
+
 	String srcFile = file + String("i.test");
 	String command = "/bin/cp " + file + "i " + srcFile;
 	system(command.c_str());
 	parser.initFiles (srcFile);
-	
+
 	if (!parser.initMachine (options, commentsDescr, sectionDescr,
 				 entryDescr, rewrites, "  "))
 	{
@@ -335,7 +335,7 @@ int main(int argc, char **argv)
 	    LIMAL_SLOG(logger, "ERROR", "Cannot parse file " << srcFile);
 	    exit (1);
 	}
-	
+
 	LIMAL_SLOG(logger, "DEBUG", "file " << srcFile << " parsed.");
 	dumpTree(&(parser.iniFile));
 
@@ -382,14 +382,14 @@ int main(int argc, char **argv)
 	    key = "searchSection";
 	    key += String(++counter);
 	}
-	
-	
+
+
 	parser.write();
 
 	// Re-reading testfile
 	INIParser testparser;
 	testparser.initFiles (srcFile);
-	
+
 	if (!testparser.initMachine (options, commentsDescr, sectionDescr,
 				 entryDescr, rewrites, "  "))
 	{
@@ -402,7 +402,7 @@ int main(int argc, char **argv)
 	    LIMAL_SLOG(logger, "ERROR", "Cannot parse file " << srcFile);
 	    exit (1);
 	}
-	
+
 	LIMAL_SLOG(logger, "DEBUG", "file " << srcFile << " parsed AGAIN.");
 	dumpTree(&(testparser.iniFile));
 

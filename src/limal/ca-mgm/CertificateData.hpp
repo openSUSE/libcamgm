@@ -113,10 +113,10 @@ namespace CA_MGM_NAMESPACE {
 		virtual bool
 		valid() const;
         
-		virtual blocxx::StringArray
+		virtual std::vector<blocxx::String>
 		verify() const;
 
-		virtual blocxx::StringArray
+		virtual std::vector<blocxx::String>
 		dump() const;
         
 	protected:

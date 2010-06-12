@@ -12,6 +12,9 @@
 #include <fstream>
 #include <unistd.h>
 
+// FIXME: need to be removed
+#include <Utils.hpp>
+
 using namespace blocxx;
 
 using namespace ca_mgm;
@@ -24,8 +27,8 @@ int main(int argc, char **argv)
         cerr << "Usage: CA7 <filepath>" << endl;
         exit( 1 );
     }
-    
-    StringArray comp;
+
+    blocxx::StringArray comp;
     comp.push_back("ca-mgm");
     comp.push_back("limal");
 
@@ -37,61 +40,61 @@ int main(int argc, char **argv)
                                                   "%-5p %c - %m"
                                                   );
     ca_mgm::Logger::setDefaultLogger(l);
-    
+
     blocxx::String file = argv[ 1 ];
-    
+
     cout << "START" << endl;
     cout << "file: " << file << endl;
-    
+
     ifstream in( file.c_str() );
     if ( in.fail() )
     {
         cerr << "Unable to load '" << file << "'" << endl;
         exit( 2 );
     }
-    
+
     while( in )
-    {        
+    {
         try
-        {            
+        {
             blocxx::String    line = blocxx::String::getLine( in );
             if(line == "EOF") break;
 
             cout << "creating CA object" << endl;
-            
+
             CA ca(line, "system", "./TestRepos/");
-            
+
             CRLGenerationData cgd;
-            
+
             cout << "============= Test:" << line  << endl;
-            
-            cout << "============= read" << endl; 
+
+            cout << "============= read" << endl;
 
             cgd = ca.getCRLDefaults();
 
-            cout << "============= write back unchanged" << endl; 
+            cout << "============= write back unchanged" << endl;
 
             ca.setCRLDefaults(cgd);
 
-            cout << "============= re-read" << endl; 
+            cout << "============= re-read" << endl;
 
             CRLGenerationData Ncgd;
             Ncgd = ca.getCRLDefaults();
 
-            cout << "============= Call Verify" << endl; 
+            cout << "============= Call Verify" << endl;
 
-            StringArray a = Ncgd.verify();
-            
+            std::vector<blocxx::String> a = Ncgd.verify();
+
             StringArray::const_iterator it;
             for(it = a.begin(); it != a.end(); ++it)
             {
                 cout << (*it) << endl;
             }
-       
-            cout << "============= Call Dump" << endl; 
+
+            cout << "============= Call Dump" << endl;
             PerlRegEx r("^!CHANGING DATA!.*$");
 
-            StringArray dump = Ncgd.dump();
+            std::vector<blocxx::String> dump = Ncgd.dump();
             StringArray::const_iterator it2;
             for(it2 = dump.begin(); it2 != dump.end(); ++it2)
             {
@@ -99,14 +102,14 @@ int main(int argc, char **argv)
                 {
                     cout << (*it2) << endl;
                 }
-            }            
+            }
         }
         catch(Exception& e)
         {
             cerr << e << endl;
         }
     }
-    
+
     cout << "DONE" << endl;
     return 0;
 }

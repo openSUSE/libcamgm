@@ -275,7 +275,7 @@ namespace CA_MGM_NAMESPACE
 		 *   <li>status (The status of the certificate: "valid", "revoked", "expired")</li>
 		 * </ul>
 		 */
-		blocxx::Array<std::map<blocxx::String, blocxx::String> >
+		std::vector<std::map<blocxx::String, blocxx::String> >
 		getCertificateList();
 
 
@@ -297,7 +297,7 @@ namespace CA_MGM_NAMESPACE
 		 *   <li>date</li>
 		 * </ul>
 		 */
-		blocxx::Array<std::map<blocxx::String, blocxx::String> >
+		std::vector<std::map<blocxx::String, blocxx::String> >
 		getRequestList();
 
 
@@ -599,7 +599,7 @@ namespace CA_MGM_NAMESPACE
 		 *
 		 * @return Array of Strings of available CAs
 		 */
-		static blocxx::Array<blocxx::String>
+		static std::vector<blocxx::String>
 		getCAList(const String& repos=REPOSITORY);
 
 		/**
@@ -619,7 +619,7 @@ namespace CA_MGM_NAMESPACE
 		 *
 		 * @return a list of lists of the available CAs
 		 */
-		static std::list<blocxx::Array<blocxx::String> >
+		static std::list<std::vector<blocxx::String> >
 		getCATree(const String& repos=REPOSITORY);
 
 		/**

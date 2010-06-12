@@ -69,26 +69,26 @@ X509v3CRLExts::valid() const
 	return true;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 X509v3CRLExts::verify() const
 {
-	StringArray result;
+	std::vector<blocxx::String> result;
 
-	result.appendArray(m_impl->authorityKeyIdentifier.verify());
-	result.appendArray(m_impl->issuerAlternativeName.verify());
+	appendArray(result, m_impl->authorityKeyIdentifier.verify());
+	appendArray(result, m_impl->issuerAlternativeName.verify());
 
 	LOGIT_DEBUG_STRINGARRAY("X509v3CRLExts::verify()", result);
 	return result;;
 }
 
-blocxx::StringArray
+std::vector<blocxx::String>
 X509v3CRLExts::dump() const
 {
-	StringArray result;
-	result.append("X509v3CRLExts::dump()");
+	std::vector<blocxx::String> result;
+	result.push_back("X509v3CRLExts::dump()");
 
-	result.appendArray(m_impl->authorityKeyIdentifier.dump());
-	result.appendArray(m_impl->issuerAlternativeName.dump());
+	appendArray(result, m_impl->authorityKeyIdentifier.dump());
+	appendArray(result, m_impl->issuerAlternativeName.dump());
 
 	return result;
 }
