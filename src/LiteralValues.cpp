@@ -198,7 +198,7 @@ LiteralValue::getType() const
 }
 
 blocxx::String
-LiteralValue::commit2Config(CA &ca, Type t, blocxx::UInt32 num) const
+LiteralValue::commit2Config(CA &ca, Type t, uint32_t num) const
 {
 
 	if(m_impl->literalType == "email" ||

@@ -51,7 +51,7 @@ namespace CA_MGM_NAMESPACE {
 
 #endif
 		
-		blocxx::UInt32
+		uint32_t
 		getVersion() const;
         
 		String
@@ -69,7 +69,7 @@ namespace CA_MGM_NAMESPACE {
 		DNObject
 		getSubjectDN() const;
         
-		blocxx::UInt32
+		uint32_t
 		getKeysize() const;
         
 		KeyAlg

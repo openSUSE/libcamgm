@@ -459,7 +459,7 @@ X509v3CertificateExts_Priv::parseBitExt(STACK_OF(X509_EXTENSION)* cert,
 	}
 
 	int    len = bit->length -1;
-	UInt32 ret = 0;
+	uint32_t ret = 0;
 
 	for(; len >= 0; --len)
 	{
@@ -1052,7 +1052,7 @@ X509v3CertificateExts_Priv::parseCertificatePoliciesExt(STACK_OF(X509_EXTENSION)
 					if(qualinfo->d.usernotice->noticeref)
 					{
 						NOTICEREF *ref;
-						std::list<blocxx::Int32> numberList;
+						std::list<int32_t> numberList;
 
 						ref = qualinfo->d.usernotice->noticeref;
 

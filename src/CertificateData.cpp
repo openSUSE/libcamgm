@@ -54,7 +54,7 @@ CertificateData&
 	return *this;
 }
 
-blocxx::UInt32
+uint32_t
 CertificateData::getVersion() const
 {
 	return m_impl->version;
@@ -90,7 +90,7 @@ CertificateData::getSubjectDN() const
 	return m_impl->subject;
 }
 
-blocxx::UInt32
+uint32_t
 CertificateData::getKeysize() const
 {
 	return m_impl->keysize;

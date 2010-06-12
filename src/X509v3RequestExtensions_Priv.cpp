@@ -196,7 +196,7 @@ X509v3RequestExts_Priv::parseBitExt(STACK_OF(X509_EXTENSION)* cert,
 	}
 
 	int len = bit->length -1;
-	UInt32 ret = 0;
+	uint32_t ret = 0;
 
 	for(; len >= 0; --len)
 	{

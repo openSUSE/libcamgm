@@ -38,8 +38,8 @@ RDNObject_Priv::RDNObject_Priv()
 
 RDNObject_Priv::RDNObject_Priv(const String& type, const String& value,
                                const String&  prompt,
-                               blocxx::UInt32 min,
-                               blocxx::UInt32 max)
+                               uint32_t min,
+                               uint32_t max)
 	: RDNObject()
 {
 	m_impl->type   = type;
@@ -55,8 +55,8 @@ RDNObject_Priv::~RDNObject_Priv()
 void
 	RDNObject_Priv::setRDN(const String& type, const String& value,
 	                       const String&  prompt,
-	                       blocxx::UInt32 min,
-	                       blocxx::UInt32 max)
+	                       uint32_t min,
+	                       uint32_t max)
 {
 	m_impl->type   = type;
 	m_impl->value  = value;

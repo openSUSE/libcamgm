@@ -26,7 +26,7 @@
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ValuePerlRECheck.hpp>
 
-#include  <blocxx/Types.hpp>
+#include  <limal/ca-mgm/CommonData.hpp>
 #include  <blocxx/String.hpp>
 #include  <blocxx/Format.hpp>
 

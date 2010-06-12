@@ -29,7 +29,7 @@
 #include <limal/ca-mgm/config.h>
 #include <limal/ValueCheck.hpp>
 
-#include <blocxx/Types.hpp>
+#include  <limal/ca-mgm/CommonData.hpp>
 #include <blocxx/String.hpp>
 #include <blocxx/PosixRegEx.hpp>
 
@@ -43,7 +43,7 @@ namespace LIMAL_NAMESPACE
  *
  * The ValuePosixRECheck implements a simple posix regex
  * match check that can be used in ValueCheck.
- */  
+ */
 class ValuePosixRECheck: public ValueCheckBase
 {
 public:
@@ -52,7 +52,7 @@ public:
 	 * used to validate a value.
 	 *
 	 * The match is case sensitive unless the icase flag is set.
-	 * 
+	 *
 	 * @param regex	 Extended regular expression string.
 	 * @param icase  Match case insensitive.
 	 * @throws blocxx::RegExCompileException on invalid pattern

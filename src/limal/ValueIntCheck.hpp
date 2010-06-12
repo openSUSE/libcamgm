@@ -34,10 +34,11 @@
 #define    LIMAL_VALUE_INT_CHECK_HPP
 
 #include  <limal/ca-mgm/config.h>
+#include  <limal/ca-mgm/CommonData.hpp>
 #include  <limal/ValueCheck.hpp>
 
-#include  <blocxx/Types.hpp>
 #include  <blocxx/String.hpp>
+
 
 namespace LIMAL_NAMESPACE
 {
@@ -60,8 +61,8 @@ public:
 	 * @param inclusiveRange Whether to check if the value is
 	 * less (inclusiveRange=false) if less or equal the maxValue.
 	 */
-	ValueIntCheck(blocxx::UInt64 minValue,
-	              blocxx::UInt64 maxValue,
+	ValueIntCheck(uint64_t minValue,
+	              uint64_t maxValue,
 	              bool inclusiveRange = true);
 
 	/**
@@ -72,8 +73,8 @@ public:
 	 * @param inclusiveRange Whether to check if the value is
 	 * less (inclusiveRange=false) if less or equal the maxValue.
 	 */
-	ValueIntCheck(blocxx::Int64 minValue,
-	              blocxx::Int64 maxValue,
+	ValueIntCheck(int64_t minValue,
+	              int64_t maxValue,
 	              bool inclusiveRange = true);
 
 	/**
@@ -126,12 +127,12 @@ private:
 	bool	m_sign;
 	bool	m_incl;
 	union {
-		blocxx::Int64   s;
-		blocxx::UInt64  u;
+		int64_t   s;
+		uint64_t  u;
 	}	m_min;
 	union {
-		blocxx::Int64   s;
-		blocxx::UInt64  u;
+		int64_t   s;
+		uint64_t  u;
 	}	m_max;
 };
 

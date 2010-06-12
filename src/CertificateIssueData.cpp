@@ -81,7 +81,7 @@ CertificateIssueData::CertificateIssueData(CAConfig* caConfig, Type type)
 {
 	m_impl->notBefore = DateTime::getCurrent().get();
 
-	UInt32 days = caConfig->getValue(type2Section(type, false), "default_days").toUInt32();
+	uint32_t days = caConfig->getValue(type2Section(type, false), "default_days").toUInt32();
 	DateTime dt = DateTime(getStartDate());
 	dt.addDays(days);
 	m_impl->notAfter    = dt.get();
@@ -216,7 +216,7 @@ CertificateIssueData::commit2Config(CA& ca, Type type) const
 		BLOCXX_THROW(ca_mgm::ValueException,
 		             Format(__("Wrong type: %1."), type).c_str());
 	}
-	UInt32 t = (UInt32)((getEndDate() - getStartDate())/(60*60*24));
+	uint32_t t = (uint32_t)((getEndDate() - getStartDate())/(60*60*24));
 
 	ca.getConfig()->setValue(type2Section(type, false), "default_days", String(t));
 

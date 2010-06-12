@@ -43,7 +43,7 @@ public:
 		, extensions(X509v3CRLGenerationExts())
 	{}
 
-	CRLGenerationDataImpl(blocxx::UInt32 hours,
+	CRLGenerationDataImpl(uint32_t hours,
 	                      const X509v3CRLGenerationExts& ext)
 		: crlHours(hours)
 		, extensions(ext)
@@ -62,7 +62,7 @@ public:
 		return new CRLGenerationDataImpl(*this);
 	}
 
-	blocxx::UInt32                crlHours;
+	uint32_t                crlHours;
 	X509v3CRLGenerationExts       extensions;
 
 };
@@ -79,7 +79,7 @@ CRLGenerationData::CRLGenerationData(CAConfig* caConfig, Type type)
 	m_impl->crlHours = caConfig->getValue(type2Section(type, false), "default_crl_hours").toUInt32();
 }
 
-CRLGenerationData::CRLGenerationData(blocxx::UInt32 hours,
+CRLGenerationData::CRLGenerationData(uint32_t hours,
                                      const X509v3CRLGenerationExts& ext)
 	: m_impl(new CRLGenerationDataImpl(hours, ext))
 {
@@ -109,12 +109,12 @@ CRLGenerationData::operator=(const CRLGenerationData& data)
 }
 
 void
-CRLGenerationData::setCRLLifeTime(blocxx::UInt32 hours)
+CRLGenerationData::setCRLLifeTime(uint32_t hours)
 {
 	m_impl->crlHours = hours;
 }
 
-blocxx::UInt32
+uint32_t
 CRLGenerationData::getCRLLifeTime() const
 {
 	return m_impl->crlHours;

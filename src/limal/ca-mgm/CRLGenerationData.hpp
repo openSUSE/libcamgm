@@ -42,7 +42,7 @@ namespace CA_MGM_NAMESPACE
 	public:
 		CRLGenerationData();
 		CRLGenerationData(CAConfig* caConfig, Type type);
-		CRLGenerationData(blocxx::UInt32 hours, 
+		CRLGenerationData(uint32_t hours, 
 		                  const X509v3CRLGenerationExts& ext);
 		CRLGenerationData(const CRLGenerationData& data);
 		virtual ~CRLGenerationData();
@@ -55,9 +55,9 @@ namespace CA_MGM_NAMESPACE
 #endif
 		
 		void
-		setCRLLifeTime(blocxx::UInt32 hours);
+		setCRLLifeTime(uint32_t hours);
         
-		blocxx::UInt32
+		uint32_t
 		getCRLLifeTime() const;
 
 		void

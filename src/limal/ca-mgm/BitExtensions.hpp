@@ -40,7 +40,7 @@ namespace CA_MGM_NAMESPACE {
 	{
 	public:
 		BitExtension();
-		BitExtension(blocxx::UInt32 value);
+		BitExtension(uint32_t value);
 		BitExtension(const BitExtension& extension);
 		virtual ~BitExtension();
 
@@ -50,8 +50,8 @@ namespace CA_MGM_NAMESPACE {
 
 #endif
 		
-		void           setValue(blocxx::UInt32 value);
-		blocxx::UInt32 getValue() const;
+		void           setValue(uint32_t value);
+		uint32_t getValue() const;
 
 		virtual void   commit2Config(CA& ca, Type type) const = 0;
 
@@ -89,7 +89,7 @@ namespace CA_MGM_NAMESPACE {
 		/**
 		 * Create an object with a specific key usage set
 		 */
-		KeyUsageExt(blocxx::UInt32 keyUsage);
+		KeyUsageExt(uint32_t keyUsage);
 		KeyUsageExt(const KeyUsageExt& extension);
 		virtual ~KeyUsageExt();
 
@@ -102,12 +102,12 @@ namespace CA_MGM_NAMESPACE {
 		/**
 		 * Set a new key usage
 		 */
-		void           setKeyUsage(blocxx::UInt32 keyUsage);
+		void           setKeyUsage(uint32_t keyUsage);
 
 		/**
 		 * Return the key usage
 		 */
-		blocxx::UInt32 getKeyUsage() const;
+		uint32_t getKeyUsage() const;
 
 		/**
 		 * Return true if the specified bit is set
@@ -144,7 +144,7 @@ namespace CA_MGM_NAMESPACE {
 		virtual std::vector<blocxx::String>  dump() const;
 
 				            		        		private:
-		bool  validKeyUsage(blocxx::UInt32 keyUsage) const;
+		bool  validKeyUsage(uint32_t keyUsage) const;
 	};
 
 	/**
@@ -170,7 +170,7 @@ namespace CA_MGM_NAMESPACE {
 		/**
 		 * Create an object with a specific certificate type set
 		 */
-		NsCertTypeExt(blocxx::UInt32 nsCertTypes);
+		NsCertTypeExt(uint32_t nsCertTypes);
 		NsCertTypeExt(const NsCertTypeExt& extension);
 		virtual ~NsCertTypeExt();
 
@@ -183,12 +183,12 @@ namespace CA_MGM_NAMESPACE {
 		/**
 		 * Set a new certificate type
 		 */
-		void           setNsCertType(blocxx::UInt32 nsCertTypes);
+		void           setNsCertType(uint32_t nsCertTypes);
 
 		/**
 		 * Return the certificate type
 		 */
-		blocxx::UInt32 getNsCertType() const;
+		uint32_t getNsCertType() const;
         
 		/**
 		 * Return true if the specified bit is set

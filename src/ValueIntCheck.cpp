@@ -26,7 +26,7 @@
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ValueIntCheck.hpp>
 
-#include  <blocxx/Types.hpp>
+#include  <limal/ca-mgm/CommonData.hpp>
 #include  <blocxx/String.hpp>
 #include  <blocxx/Format.hpp>
 
@@ -50,8 +50,8 @@ ValueIntCheck::ValueIntCheck(int            minValue,
 
 
 // -------------------------------------------------------------------
-ValueIntCheck::ValueIntCheck(blocxx::UInt64 minValue,
-                             blocxx::UInt64 maxValue,
+ValueIntCheck::ValueIntCheck(uint64_t minValue,
+                             uint64_t maxValue,
                              bool inclusiveRange)
 	: ValueCheckBase()
 	, m_sign(false)
@@ -64,8 +64,8 @@ ValueIntCheck::ValueIntCheck(blocxx::UInt64 minValue,
 
 // -------------------------------------------------------------------
 ValueIntCheck::
-ValueIntCheck::ValueIntCheck(blocxx::Int64 minValue,
-                             blocxx::Int64 maxValue,
+ValueIntCheck::ValueIntCheck(int64_t minValue,
+                             int64_t maxValue,
                              bool inclusiveRange)
 	: ValueCheckBase()
 	, m_sign(true)

@@ -53,13 +53,13 @@ RequestData::operator=(const RequestData& data)
 	return *this;
 }
 
-blocxx::UInt32
+uint32_t
 RequestData::getVersion() const
 {
 	return m_impl->version;
 }
 
-blocxx::UInt32
+uint32_t
 RequestData::getKeysize() const
 {
 	return m_impl->keysize;

@@ -76,7 +76,7 @@ CertificateData_Priv::~CertificateData_Priv()
 }
 
 void
-CertificateData_Priv::setVersion(blocxx::UInt32 v)
+CertificateData_Priv::setVersion(uint32_t v)
 {
 	m_impl->version = v;
 }
@@ -126,7 +126,7 @@ CertificateData_Priv::setSubjectDN(const DNObject& subject)
 }
 
 void
-CertificateData_Priv::setKeysize(blocxx::UInt32 size)
+CertificateData_Priv::setKeysize(uint32_t size)
 {
 	m_impl->keysize = size;
 }

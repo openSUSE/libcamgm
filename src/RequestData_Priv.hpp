@@ -42,8 +42,8 @@ public:
 	RequestData_Priv(const RequestData_Priv& data);
 	virtual ~RequestData_Priv();
 
-	void                setVersion(blocxx::UInt32 v);
-	void                setKeysize(blocxx::UInt32 size);
+	void                setVersion(uint32_t v);
+	void                setKeysize(uint32_t size);
 	void                setSubjectDN(const DNObject dn);
 	void                setKeyAlgorithm(KeyAlg alg);
 	void                setPublicKey(const ByteBuffer key);

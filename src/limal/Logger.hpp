@@ -35,6 +35,7 @@
 #include  <blocxx/LogAppender.hpp>
 #include  <blocxx/AppenderLogger.hpp>
 #include  <limal/ca-mgm/config.h>
+#include  <stdint.h>
 
 
 /**
@@ -407,8 +408,8 @@ public:
 		const blocxx::StringArray &categories,
 		const blocxx::String                &messageFormat,
 		const blocxx::String                &filename,
-		blocxx::UInt64                      maxLogFileSize = 0,
-		blocxx::UInt32                      maxBackupIndex = 0
+		uint64_t                      maxLogFileSize = 0,
+		uint32_t                      maxBackupIndex = 0
 	);
 
 	/**

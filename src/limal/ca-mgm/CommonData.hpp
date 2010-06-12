@@ -22,12 +22,13 @@
 #ifndef    LIMAL_CA_MGM_COMMON_DATA_HPP
 #define    LIMAL_CA_MGM_COMMON_DATA_HPP
 
-#include  <blocxx/Types.hpp>
+
 #include  <blocxx/String.hpp>
 #include  <list>
 #include  <vector>
 #include  <map>
 #include  <errno.h>
+#include  <stdint.h>
 
 #define   REPOSITORY   "/var/lib/CAM/"
 

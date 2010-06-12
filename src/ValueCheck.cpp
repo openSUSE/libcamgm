@@ -27,7 +27,7 @@
 
 #include  <blocxx/Exception.hpp>
 #include  <blocxx/NULLValueException.hpp>
-#include  <blocxx/Types.hpp>
+#include  <limal/ca-mgm/CommonData.hpp>
 #include  <blocxx/String.hpp>
 #include  <blocxx/RefCount.hpp>
 #include  <list>

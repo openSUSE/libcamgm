@@ -69,9 +69,9 @@ namespace CA_MGM_NAMESPACE
 		subjectDN();
 
 		void
-		setKeysize(blocxx::UInt32 size);
+		setKeysize(uint32_t size);
         
-		blocxx::UInt32
+		uint32_t
 		getKeysize() const;
 
 		void

@@ -53,7 +53,7 @@ public:
 	virtual ~CertificateData_Priv();
 
 	void
-	setVersion(blocxx::UInt32 v);
+	setVersion(uint32_t v);
 
 	void
 	setSerial(const String& serial);
@@ -68,7 +68,7 @@ public:
 	setSubjectDN(const DNObject& subject);
 
 	void
-	setKeysize(blocxx::UInt32 size);
+	setKeysize(uint32_t size);
 
 	void
 	setPublicKeyAlgorithm(KeyAlg pubKeyAlg);

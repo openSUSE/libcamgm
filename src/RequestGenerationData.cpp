@@ -65,7 +65,7 @@ public:
 	}
 
 	DNObject          subject;
-	blocxx::UInt32    keysize;
+	uint32_t    keysize;
 
 	// KeyAlg         pubkeyAlgorithm;  // at the beginning we only support rsa
 
@@ -155,12 +155,12 @@ RequestGenerationData::subjectDN()
 }
 
 void
-RequestGenerationData::setKeysize(blocxx::UInt32 size)
+RequestGenerationData::setKeysize(uint32_t size)
 {
 	m_impl->keysize = size;
 }
 
-blocxx::UInt32
+uint32_t
 RequestGenerationData::getKeysize() const
 {
 	return m_impl->keysize;

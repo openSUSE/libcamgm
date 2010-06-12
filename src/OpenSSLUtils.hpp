@@ -45,7 +45,7 @@ public:
 
 	void createRSAKey(const blocxx::String &outFile,
 	                  const blocxx::String &password,
-	                  blocxx::UInt32        bits = 2048,
+	                  uint32_t        bits = 2048,
 	                  const blocxx::String &cryptAlgorithm = "des3");
 
 	void createRequest(const DNObject       &dn,
@@ -62,7 +62,7 @@ public:
 	                                 const blocxx::String &requestFile,
 	                                 const blocxx::String &password,
 	                                 const blocxx::String &extension,
-	                                 const blocxx::UInt32  days,
+	                                 const uint32_t  days,
 	                                 bool                  noEmailDN = false);
 
 	void signRequest(const blocxx::String &requestFile,
@@ -88,7 +88,7 @@ public:
 	void issueCRL(const blocxx::String &caCertFile,
 	              const blocxx::String &caKeyFile,
 	              const blocxx::String &caPassword,
-	              blocxx::UInt32        hours,
+	              uint32_t        hours,
 	              const blocxx::String &outfile,
 	              const blocxx::String &extension,
 	              bool                  noUniqueDN = false);

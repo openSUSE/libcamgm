@@ -77,13 +77,13 @@ RequestData_Priv::~RequestData_Priv()
 
 
 void
-RequestData_Priv::setVersion(blocxx::UInt32 v)
+RequestData_Priv::setVersion(uint32_t v)
 {
 	m_impl->version = v;
 }
 
 void
-RequestData_Priv::setKeysize(blocxx::UInt32 size)
+RequestData_Priv::setKeysize(uint32_t size)
 {
 	m_impl->keysize = size;
 }

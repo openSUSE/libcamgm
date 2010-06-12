@@ -137,7 +137,7 @@ CRLData::operator=(const CRLData& data)
 	return *this;
 }
 
-blocxx::Int32
+int32_t
 CRLData::getVersion() const
 {
 	return m_impl->version;

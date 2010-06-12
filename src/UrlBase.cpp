@@ -1419,7 +1419,7 @@ UrlBase::checkValidPort(const blocxx::String  &port,
 	{
 		checkUrlData(port, "port number", config("rx_portnumber"));
 
-		blocxx::UInt16 pnum = port.toUInt16();
+		uint16_t pnum = port.toUInt16();
 		valid = pnum >= 1;
 	}
 	catch( ... )

@@ -41,7 +41,7 @@ public:
 		: value(0)
 	{}
 
-	BitExtensionImpl(blocxx::UInt32 val)
+	BitExtensionImpl(uint32_t val)
 		: value(val)
 	{}
 
@@ -57,7 +57,7 @@ public:
 		return new BitExtensionImpl(*this);
 	}
 
-	blocxx::UInt32 value;
+	uint32_t value;
 
 };
 
@@ -69,7 +69,7 @@ BitExtension::BitExtension()
 	, m_impl(new BitExtensionImpl())
 {}
 
-BitExtension::BitExtension(blocxx::UInt32 value)
+BitExtension::BitExtension(uint32_t value)
 	: ExtensionBase()
 	, m_impl(new BitExtensionImpl(value))
 {}
@@ -94,13 +94,13 @@ BitExtension::operator=(const BitExtension& extension)
 }
 
 void
-BitExtension::setValue(blocxx::UInt32 value)
+BitExtension::setValue(uint32_t value)
 {
 	m_impl->value = value;
 	setPresent(true);   // ??
 }
 
-blocxx::UInt32
+uint32_t
 BitExtension::getValue() const
 {
 	if(!isPresent())
@@ -135,7 +135,7 @@ KeyUsageExt::KeyUsageExt(CAConfig* caConfig, Type type)
 	bool p = caConfig->exists(type2Section(type, true), "keyUsage");
 	if(p)
 	{
-		blocxx::UInt32 keyUsage = 0;
+		uint32_t keyUsage = 0;
 
 		String ku = caConfig->getValue(type2Section(type, true), "keyUsage");
 		std::vector<blocxx::String> sp = convStringArray(PerlRegEx("\\s*,\\s*").split(ku));
@@ -163,7 +163,7 @@ KeyUsageExt::KeyUsageExt(CAConfig* caConfig, Type type)
 	setPresent(p);
 }
 
-KeyUsageExt::KeyUsageExt(blocxx::UInt32 keyUsage)
+KeyUsageExt::KeyUsageExt(uint32_t keyUsage)
 	: BitExtension(keyUsage)
 {
 	if(!validKeyUsage(keyUsage))
@@ -193,7 +193,7 @@ KeyUsageExt::operator=(const KeyUsageExt& extension)
 }
 
 void
-KeyUsageExt::setKeyUsage(blocxx::UInt32 keyUsage)
+KeyUsageExt::setKeyUsage(uint32_t keyUsage)
 {
 	if(!validKeyUsage(keyUsage))
 	{
@@ -204,7 +204,7 @@ KeyUsageExt::setKeyUsage(blocxx::UInt32 keyUsage)
 	setPresent(true);
 }
 
-blocxx::UInt32
+uint32_t
 KeyUsageExt::getKeyUsage() const
 {
 	if(!isPresent())
@@ -341,9 +341,9 @@ KeyUsageExt::dump() const
 
 
 bool
-KeyUsageExt::validKeyUsage(blocxx::UInt32 keyUsage) const
+KeyUsageExt::validKeyUsage(uint32_t keyUsage) const
 {
-	UInt32 mask = 0x80FF;
+	uint32_t mask = 0x80FF;
 	if( (keyUsage&mask) != keyUsage || keyUsage == 0)
 	{
 		return false;
@@ -375,7 +375,7 @@ NsCertTypeExt::NsCertTypeExt(CAConfig* caConfig, Type type)
 	bool p = caConfig->exists(type2Section(type, true), "nsCertType");
 	if(p)
 	{
-		blocxx::UInt32 bits = 0;
+		uint32_t bits = 0;
 
 		String ct = caConfig->getValue(type2Section(type, true), "nsCertType");
 		std::vector<blocxx::String> sp = convStringArray(PerlRegEx("\\s*,\\s*").split(ct));
@@ -401,7 +401,7 @@ NsCertTypeExt::NsCertTypeExt(CAConfig* caConfig, Type type)
 	setPresent(p);
 }
 
-NsCertTypeExt::NsCertTypeExt(blocxx::UInt32 nsCertTypes)
+NsCertTypeExt::NsCertTypeExt(uint32_t nsCertTypes)
 	: BitExtension(nsCertTypes)
 {
 	if(nsCertTypes > 0xFF || nsCertTypes == 0)
@@ -431,7 +431,7 @@ NsCertTypeExt::operator=(const NsCertTypeExt& extension)
 }
 
 void
-NsCertTypeExt::setNsCertType(blocxx::UInt32 nsCertTypes)
+NsCertTypeExt::setNsCertType(uint32_t nsCertTypes)
 {
 	if(nsCertTypes > 0xFF || nsCertTypes == 0)
 	{
@@ -442,7 +442,7 @@ NsCertTypeExt::setNsCertType(blocxx::UInt32 nsCertTypes)
 	setPresent(true);
 }
 
-blocxx::UInt32
+uint32_t
 NsCertTypeExt::getNsCertType() const
 {
 	if(!isPresent())

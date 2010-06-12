@@ -104,7 +104,7 @@ public:
 		return new CRLDataImpl(*this);
 	}
 
-	blocxx::Int32                        version;
+	int32_t                        version;
 	String                               fingerprint;
 	time_t                               lastUpdate;
 	time_t                               nextUpdate;

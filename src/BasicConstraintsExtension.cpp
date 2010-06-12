@@ -43,7 +43,7 @@ public:
 		, pathlen(-1)
 	{}
 
-	BasicConstraintsExtImpl(bool isCA, blocxx::Int32 pathLength)
+	BasicConstraintsExtImpl(bool isCA, int32_t pathLength)
 		: ca(isCA)
 		, pathlen(pathLength)
 	{}
@@ -60,7 +60,7 @@ public:
 	}
 
 	bool           ca;
-	blocxx::Int32  pathlen;
+	int32_t  pathlen;
 
 };
 
@@ -86,7 +86,7 @@ BasicConstraintsExt::BasicConstraintsExt(CAConfig* caConfig, Type type)
 	if(p)
 	{
 		bool          isCA = false;
-		blocxx::Int32 pl   = -1;
+		int32_t pl   = -1;
 
 		std::vector<blocxx::String>   sp   = convStringArray(PerlRegEx("\\s*,\\s*")
 			.split(caConfig->getValue(type2Section(type, true), "basicConstraints")));
@@ -108,7 +108,7 @@ BasicConstraintsExt::BasicConstraintsExt(CAConfig* caConfig, Type type)
 	setPresent(p);
 }
 
-BasicConstraintsExt::BasicConstraintsExt(bool isCa, blocxx::Int32 pathLength)
+BasicConstraintsExt::BasicConstraintsExt(bool isCa, int32_t pathLength)
 	: ExtensionBase()
 	, m_impl(new BasicConstraintsExtImpl(isCa, pathLength))
 {
@@ -136,7 +136,7 @@ BasicConstraintsExt::operator=(const BasicConstraintsExt& extension)
 }
 
 void
-BasicConstraintsExt::setBasicConstraints(bool isCa, blocxx::Int32 pathLength)
+BasicConstraintsExt::setBasicConstraints(bool isCa, int32_t pathLength)
 {
 	m_impl->ca      = isCa;
 	m_impl->pathlen = pathLength;
@@ -155,7 +155,7 @@ BasicConstraintsExt::isCA() const
 	return m_impl->ca;
 }
 
-blocxx::Int32
+int32_t
 BasicConstraintsExt::getPathLength() const
 {
 	if(!isPresent())

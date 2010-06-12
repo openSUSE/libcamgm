@@ -62,7 +62,7 @@ public:
 	virtual ~CRLData_Priv();
 
 	void
-	setVersion(blocxx::Int32 version);
+	setVersion(int32_t version);
 
 	void
 	setFingerprint(const String& fp);

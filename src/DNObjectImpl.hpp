@@ -61,8 +61,8 @@ public:
 	blocxx::String value;
 
 	blocxx::String prompt;
-	blocxx::UInt32 min;
-	blocxx::UInt32 max;
+	uint32_t min;
+	uint32_t max;
 };
 
 class DNObjectImpl : public blocxx::COWIntrusiveCountableBase

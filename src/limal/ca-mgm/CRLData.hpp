@@ -88,7 +88,7 @@ namespace CA_MGM_NAMESPACE {
 
 #endif
 		
-		blocxx::Int32
+		int32_t
 		getVersion() const;
         
 		String

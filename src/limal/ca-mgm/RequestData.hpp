@@ -51,10 +51,10 @@ namespace CA_MGM_NAMESPACE {
 
 #endif
 		
-		blocxx::UInt32
+		uint32_t
 		getVersion() const;
         
-		blocxx::UInt32
+		uint32_t
 		getKeysize() const;
         
 		DNObject

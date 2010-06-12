@@ -37,7 +37,6 @@
 
 #include <limal/PathName.hpp>
 #include <limal/Exception.hpp>
-#include <blocxx/Types.hpp>
 #include <blocxx/EnvVars.hpp>
 #include <blocxx/Format.hpp>
 
@@ -432,18 +431,18 @@ PathName::toString() const
 PathName::List
 PathName::toList() const
 {
-    PathName::List list;    
+    PathName::List list;
     if( m_name.empty())
         return list;
 
     list.push_back( prefix() );
-    
+
     DirStack stack;
-    
+
     stack.split(m_name.c_str() + m_prefix);
     PathName::List temp( stack.getPathList() );
     list.insert( list.end(), temp.begin(), temp.end() );
-    return list;    
+    return list;
 }
 
 

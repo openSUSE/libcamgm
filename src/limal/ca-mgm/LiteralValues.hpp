@@ -118,7 +118,7 @@ namespace CA_MGM_NAMESPACE {
 		 * unsupported types like othername.
 		 */
 		blocxx::String
-		commit2Config(CA& ca, Type type, blocxx::UInt32 num) const;
+		commit2Config(CA& ca, Type type, uint32_t num) const;
 		
 #ifndef SWIG
 

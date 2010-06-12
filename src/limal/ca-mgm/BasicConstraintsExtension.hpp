@@ -44,7 +44,7 @@ namespace CA_MGM_NAMESPACE {
 	public:
 		BasicConstraintsExt();
 		BasicConstraintsExt(CAConfig* caConfig, Type type);
-		BasicConstraintsExt(bool isCa, blocxx::Int32 pathLength=-1);
+		BasicConstraintsExt(bool isCa, int32_t pathLength=-1);
 		BasicConstraintsExt(const BasicConstraintsExt& extension);
 		virtual ~BasicConstraintsExt();
 
@@ -61,7 +61,7 @@ namespace CA_MGM_NAMESPACE {
 		 * @param pathLength maximum number of CAs that can appear below this one in a chain;
 		 * -1 means no path Length is set.
 		 */
-		void           setBasicConstraints(bool isCa, blocxx::Int32 pathLength=-1);
+		void           setBasicConstraints(bool isCa, int32_t pathLength=-1);
 
 		/**
 		 * Return the ca parameter
@@ -71,7 +71,7 @@ namespace CA_MGM_NAMESPACE {
 		/**
 		 * Return the path length (-1 means no path length set)
 		 */
-		blocxx::Int32  getPathLength() const;
+		int32_t  getPathLength() const;
 
 		/**
 		 * Write the informations of this object back to the configuration file

@@ -37,8 +37,8 @@ public:
 	RDNObject_Priv();
 	RDNObject_Priv(const String& type, const String& value,
 	               const String& prompt = String(),
-	               blocxx::UInt32 min = 0,
-	               blocxx::UInt32 max = 0);
+	               uint32_t min = 0,
+	               uint32_t max = 0);
 
 	virtual ~RDNObject_Priv();
 
@@ -53,8 +53,8 @@ public:
 	 */
 	void   setRDN(const String& type, const String& value,
 	              const String& prompt = String(),
-	              blocxx::UInt32 min = 0,
-	              blocxx::UInt32 max = 0);
+	              uint32_t min = 0,
+	              uint32_t max = 0);
 
 };
 

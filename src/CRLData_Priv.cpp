@@ -211,7 +211,7 @@ CRLData_Priv::~CRLData_Priv()
 {}
 
 void
-CRLData_Priv::setVersion(blocxx::Int32 version)
+CRLData_Priv::setVersion(int32_t version)
 {
 	m_impl->version = version;
 }

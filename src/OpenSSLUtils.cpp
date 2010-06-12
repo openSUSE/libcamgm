@@ -86,7 +86,7 @@ OpenSSLUtils::OpenSSLUtils(const String &configFile,
 void
 OpenSSLUtils::createRSAKey(const String &outFile,
                            const String &password,
-                           UInt32        bits,
+                           uint32_t     bits,
                            const String &cryptAlgorithm)
 {
 	blocxx::String debugCmd;
@@ -265,7 +265,7 @@ OpenSSLUtils::createSelfSignedCertificate(const String &outFile,
                                           const String &requestFile,
                                           const String &password,
                                           const String &extension,
-                                          UInt32        days,
+                                          uint32_t     days,
                                           bool          noEmailDN)
 {
 	path::PathInfo pi(keyFile);
@@ -623,7 +623,7 @@ void
 OpenSSLUtils::issueCRL(const blocxx::String &caCertFile,
                        const blocxx::String &caKeyFile,
                        const blocxx::String &caPassword,
-                       blocxx::UInt32        hours,
+                       uint32_t        hours,
                        const blocxx::String &outfile,
                        const blocxx::String &extension,
                        bool                  noUniqueDN)

@@ -83,7 +83,7 @@ public:
 		return new CertificateDataImpl(*this);
 	}
 
-	blocxx::UInt32        version;   // allowed 1, 2, 3
+	uint32_t        version;   // allowed 1, 2, 3
 	String                serial;
 	String                fingerprint;
 	time_t                notBefore;
@@ -91,7 +91,7 @@ public:
 
 	DNObject              issuer;
 	DNObject              subject;
-	blocxx::UInt32        keysize;
+	uint32_t        keysize;
 
 	KeyAlg                pubkeyAlgorithm;
 

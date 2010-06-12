@@ -59,16 +59,16 @@ namespace CA_MGM_NAMESPACE {
 
 		void
 		setOrganizationNotice(const String& org, 
-		                      const std::list<blocxx::Int32>& numbers);
+		                      const std::list<int32_t>& numbers);
 
 		String
 		getOrganization() const;
 		
-		std::list<blocxx::Int32>
+		std::list<int32_t>
 		getNoticeNumbers() const;
 
 		virtual blocxx::String
-		commit2Config(CA& ca, Type type, blocxx::UInt32 num) const;
+		commit2Config(CA& ca, Type type, uint32_t num) const;
 
 		virtual bool
 		valid() const;
@@ -130,7 +130,7 @@ namespace CA_MGM_NAMESPACE {
 		getUserNoticeList() const;
         
 		virtual blocxx::String
-		commit2Config(CA& ca, Type type, blocxx::UInt32 num) const;
+		commit2Config(CA& ca, Type type, uint32_t num) const;
 
 		virtual bool
 		valid() const;

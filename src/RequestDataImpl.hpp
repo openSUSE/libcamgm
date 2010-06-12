@@ -78,10 +78,10 @@ public:
 		return new RequestDataImpl(*this);
 	}
 
-	blocxx::UInt32    version;
+	uint32_t    version;
 
 	DNObject          subject;
-	blocxx::UInt32    keysize;
+	uint32_t    keysize;
 
 	KeyAlg            pubkeyAlgorithm;
 
