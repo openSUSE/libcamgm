@@ -34,7 +34,8 @@
 #include  <limal/ValueRegExCheck.hpp>
 #include  <limal/Exception.hpp>
 #include  <blocxx/Format.hpp>
-#include  <blocxx/DateTime.hpp>
+#include  <limal/Date.hpp>
+#include  <limal/String.hpp>
 
 #include  "CRLDataImpl.hpp"
 #include  "Utils.hpp"
@@ -74,36 +75,12 @@ RevocationEntry_Priv::RevocationEntry_Priv(X509_REVOKED *rev)
 	memcpy(cbuf, rev->revocationDate->data, rev->revocationDate->length);
 	cbuf[rev->revocationDate->length] = '\0';
 
-	String sbuf = String(cbuf);
+	std::string sbuf(cbuf);
 	delete [] cbuf;
-
 	LOGIT_DEBUG("Revocation Date: " << sbuf);
+    Date dt(sbuf, "%y%m%d%H%M%S", true);
 
-	PerlRegEx r("^(\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)Z$");
-	std::vector<blocxx::String> sa = convStringArray(r.capture(sbuf));
-
-	if(sa.size() != 7)
-	{
-		LOGIT_ERROR("Can not parse date: " << sbuf);
-		BLOCXX_THROW(ca_mgm::RuntimeException,
-		             Format(__("Cannot parse date %1."), sbuf).c_str());
-	}
-
-	int year = 1970;
-	if(sa[1].toInt() >= 70 && sa[1].toInt() <= 99)
-	{
-		year = sa[1].toInt() + 1900;
-	}
-	else
-	{
-		year = sa[1].toInt() + 2000;
-	}
-
-	DateTime dt = DateTime(year, sa[2].toInt(), sa[3].toInt(),
-	                       sa[4].toInt(), sa[5].toInt(), sa[6].toInt(),
-	                       0, DateTime::E_UTC_TIME);
-
-	setRevocationDate(dt.get());
+	setRevocationDate(dt);
 
     // get CRL Reason
 
@@ -326,33 +303,10 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
 	memcpy(cbuf, t->data, t->length);
 	cbuf[t->length] = '\0';
 
-	String sbuf = String(cbuf);
+	std::string sbuf(cbuf);
 	delete [] cbuf;
-
-	PerlRegEx r("^(\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)Z$");
-	std::vector<blocxx::String> sa = convStringArray(r.capture(sbuf));
-
-	if(sa.size() != 7)
-	{
-		LOGIT_ERROR("Can not parse date: " << sbuf);
-		BLOCXX_THROW(ca_mgm::RuntimeException,
-		             Format(__("Cannot parse date %1."), sbuf).c_str());
-	}
-
-	int year = 1970;
-	if(sa[1].toInt() >= 70 && sa[1].toInt() <= 99)
-	{
-		year = sa[1].toInt() + 1900;
-	}
-	else
-	{
-		year = sa[1].toInt() + 2000;
-	}
-
-	DateTime dt(year, sa[2].toInt(), sa[3].toInt(),
-	            sa[4].toInt(), sa[5].toInt(), sa[6].toInt(),
-	            0, DateTime::E_UTC_TIME);
-	time_t lastUpdate = dt.get();
+    Date dt(sbuf, "%y%m%d%H%M%S", true);
+	time_t lastUpdate = dt;
 
     // get nextUpdate
 	t    = X509_CRL_get_nextUpdate(x509);
@@ -361,32 +315,11 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
 	memcpy(cbuf, t->data, t->length);
 	cbuf[t->length] = '\0';
 
-	sbuf = String(cbuf);
+	sbuf = std::string(cbuf);
 	delete [] cbuf;
+    dt = Date(sbuf, "%y%m%d%H%M%S", true);
 
-	sa = convStringArray(r.capture(sbuf));
-
-	if(sa.size() != 7)
-	{
-		LOGIT_ERROR("Can not parse date: " << sbuf);
-		BLOCXX_THROW(ca_mgm::RuntimeException,
-		             Format(__("Cannot parse date %1."), sbuf).c_str());
-	}
-
-	year = 1970;
-	if(sa[1].toInt() >= 70 && sa[1].toInt() <= 99)
-	{
-		year = sa[1].toInt() + 1900;
-	}
-	else
-	{
-		year = sa[1].toInt() + 2000;
-	}
-
-	dt = DateTime(year, sa[2].toInt(), sa[3].toInt(),
-	              sa[4].toInt(), sa[5].toInt(), sa[6].toInt(),
-	              0, DateTime::E_UTC_TIME);
-	time_t nextUpdate = dt.get();
+	time_t nextUpdate = dt;
 
 	setValidityPeriod(lastUpdate, nextUpdate);
 
@@ -400,18 +333,18 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
 	i2a_ASN1_OBJECT(bio, x509->sig_alg->algorithm);
 	n = BIO_get_mem_data(bio, &cbuf);
 
-	sbuf = String(cbuf, n);
+	sbuf = std::string(cbuf, n);
 	BIO_free(bio);
 
-	if(sbuf.equalsIgnoreCase("sha1WithRSAEncryption") )
+	if(str::compareCI(sbuf, "sha1WithRSAEncryption") == 0 )
 	{
 		setSignatureAlgorithm(E_SHA1RSA);
 	}
-	else if(sbuf.equalsIgnoreCase("md5WithRSAEncryption") )
+	else if(str::compareCI(sbuf, "md5WithRSAEncryption") == 0)
 	{
 		setSignatureAlgorithm(E_MD5RSA);
 	}
-	else if(sbuf.equalsIgnoreCase("dsaWithSHA1") )
+	else if(str::compareCI(sbuf, "dsaWithSHA1") == 0 )
 	{
 		setSignatureAlgorithm(E_SHA1DSA);
 	}

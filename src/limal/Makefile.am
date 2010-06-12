@@ -20,7 +20,9 @@ limalinclude_HEADERS =          \
         ByteBuffer.hpp          \
         UrlUtils.hpp            \
         UrlBase.hpp             \
-        Url.hpp                 
+        Url.hpp                 \
+        Date.hpp                \
+        String.hpp
 
 
 CLEANFILES = *~

@@ -13,6 +13,8 @@ AM_LDFLAGS  = -pthread
 limallib_LTLIBRARIES = liblimal-ca-mgm.la
 
 liblimal_ca_mgm_la_SOURCES  =	\
+        Date.cpp                \
+        String.cpp              \
         ValuePosixRECheck.cpp   \
         ValuePerlRECheck.cpp    \
         ValueIntCheck.cpp       \
@@ -87,5 +89,5 @@ liblimal_ca_mgm_la_LIBADD = $(LIB_SSL)
 CLEANFILES     = *~
 DISTCLEANFILES = Commands.hpp Utils.hpp config.log
 EXTRA_DIST     = *.hpp Commands.hpp.in openssl.cnf.tmpl \
-                 INIParser/*.h INIParser/*.hpp 
+                 INIParser/*.h INIParser/*.hpp
 

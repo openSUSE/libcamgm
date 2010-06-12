@@ -30,7 +30,8 @@
 #include <openssl/rsa.h>
 #include <openssl/evp.h>
 
-#include  <blocxx/DateTime.hpp>
+#include  <limal/Date.hpp>
+#include  <limal/String.hpp>
 
 #include  <limal/Exception.hpp>
 #include  <limal/PathInfo.hpp>
@@ -284,34 +285,9 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 	memcpy(cbuf, t->data, t->length);
 	cbuf[t->length] = '\0';
 
-	String sbuf = String(cbuf);
+	std::string sbuf = std::string(cbuf);
 	delete [] cbuf;
-
-	PerlRegEx r("^(\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)Z$");
-	std::vector<blocxx::String> sa = convStringArray(r.capture(sbuf));
-
-	if(sa.size() != 7)
-	{
-		LOGIT_ERROR("Can not parse date: " << sbuf);
-		BLOCXX_THROW(ca_mgm::RuntimeException,
-		             // %1 is an invalid date string
-		             Format(__("Cannot parse date %1."), sbuf).c_str());
-	}
-	int year = 1970;
-	if(sa[1].toInt() >= 70 && sa[1].toInt() <= 99)
-	{
-		year = sa[1].toInt() + 1900;
-	}
-	else
-	{
-		year = sa[1].toInt() + 2000;
-	}
-
-	DateTime dt(year, sa[2].toInt(), sa[3].toInt(),
-	            sa[4].toInt(), sa[5].toInt(), sa[6].toInt(),
-	            0, DateTime::E_UTC_TIME);
-
-	time_t notBefore = dt.get();
+    Date notBefore(sbuf, "%y%m%d%H%M%S", true);
 
     // get notAfter
 	t    = X509_get_notAfter(x509);
@@ -320,32 +296,11 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 	memcpy(cbuf, t->data, t->length);
 	cbuf[t->length] = '\0';
 
-	sbuf = String(cbuf);
+	sbuf = std::string(cbuf);
 	delete [] cbuf;
+    Date notAfter(sbuf, "%y%m%d%H%M%S", true);
 
-	sa = convStringArray(r.capture(sbuf));
-
-	if(sa.size() != 7)
-	{
-		LOGIT_ERROR("Can not parse date: " << sbuf);
-		BLOCXX_THROW(ca_mgm::RuntimeException,
-		             Format(__("Cannot parse date %1."), sbuf).c_str());
-	}
-	year = 1970;
-	if(sa[1].toInt() >= 70 && sa[1].toInt() <= 99)
-	{
-		year = sa[1].toInt() + 1900;
-	}
-	else
-	{
-		year = sa[1].toInt() + 2000;
-	}
-
-	dt = DateTime(year, sa[2].toInt(), sa[3].toInt(),
-	              sa[4].toInt(), sa[5].toInt(), sa[6].toInt(),
-	              0, DateTime::E_UTC_TIME);
-
-	setCertifyPeriode(notBefore, dt.get());
+    setCertifyPeriode(notBefore, notAfter);
 
 	// fingerprint
 
@@ -461,18 +416,18 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 	i2a_ASN1_OBJECT(bio, x509->cert_info->signature->algorithm);
 	n = BIO_get_mem_data(bio, &cbuf);
 
-	sbuf = String(cbuf, n);
+	sbuf = std::string(cbuf, n);
 	BIO_free(bio);
 
-	if(sbuf.equalsIgnoreCase("sha1WithRSAEncryption") )
+    if(str::compareCI(sbuf, "sha1WithRSAEncryption") == 0)
 	{
 		setSignatureAlgorithm( E_SHA1RSA );
 	}
-	else if(sbuf.equalsIgnoreCase("md5WithRSAEncryption") )
+	else if(str::compareCI(sbuf, "md5WithRSAEncryption") == 0)
 	{
 		setSignatureAlgorithm( E_MD5RSA );
 	}
-	else if(sbuf.equalsIgnoreCase("dsaWithSHA1") )
+	else if(str::compareCI(sbuf, "dsaWithSHA1") == 0)
 	{
 		setSignatureAlgorithm( E_SHA1DSA );
 	}

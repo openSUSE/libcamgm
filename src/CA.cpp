@@ -26,7 +26,8 @@
 #include  <limal/PathUtils.hpp>
 #include  <limal/PathInfo.hpp>
 #include  <blocxx/MD5.hpp>
-#include  <blocxx/DateTime.hpp>
+#include  <limal/Date.hpp>
+#include  <limal/String.hpp>
 #include  <blocxx/StringBuffer.hpp>
 #include  <blocxx/COWIntrusiveCountableBase.hpp>
 
@@ -307,7 +308,7 @@ CA::createRequest(const String& keyPasswd,
 	String opensslDN = requestData.getSubjectDN().getOpenSSLString();
 	blocxx::MD5 md5(opensslDN);
 	String request = md5.toString() + "-" +
-		String(blocxx::DateTime::getCurrent().get());
+		String(Date::now());
 
 	path::PathInfo dKey(m_impl->repositoryDir + "/" + m_impl->caName + "/keys/"+ request + ".key");
 	if(dKey.exists())
@@ -555,7 +556,7 @@ CA::importRequestData(const ByteBuffer& request,
 	blocxx::MD5 md5(name);
 
 	String requestName = md5.toString() + "-" +
-		String(blocxx::DateTime::getCurrent().get());
+		String(Date::now());
 
 	path::PathInfo outPi(m_impl->repositoryDir + "/" + m_impl->caName + "/req/" + requestName + ".req");
 
@@ -1504,7 +1505,7 @@ CA::deleteCA(const String& caName,
 				LocalManagement::getCertificate(repos + "/" + caName + "/cacert.pem",
 				                                E_PEM);
 
-			if( ca.getEndDate() > DateTime::getCurrent().get() )
+			if( ca.getEndDate() > Date::now() )
 			{
 				LOGIT_ERROR("Deleting the CA is not allowed. " <<
 				            "The CA must be expired or no certificate was signed with this CA");

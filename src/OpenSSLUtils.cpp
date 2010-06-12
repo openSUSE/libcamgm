@@ -29,7 +29,7 @@
 #include <blocxx/Exec.hpp>
 #include <blocxx/EnvVars.hpp>
 #include <blocxx/System.hpp>
-#include <blocxx/DateTime.hpp>
+#include <limal/Date.hpp>
 
 #include "Utils.hpp"
 
@@ -2104,8 +2104,8 @@ OpenSSLUtils::listRequests(const String &caName,
 		{
 			md5 += "-" + sa[2];
 
-			DateTime dt( sa[2].toInt64() );
-			date = dt.toString("%Y-%m-%d %H:%M:%S", DateTime::E_LOCAL_TIME);
+			Date dt( sa[2].toInt64() );
+			date = String(dt.form("%Y-%m-%d %H:%M:%S"));
 		}
 
 		std::map<String, String> reqLine;

@@ -24,7 +24,7 @@
 #include  <limal/ca-mgm/CertificateIssueData.hpp>
 #include  <limal/Exception.hpp>
 #include  <blocxx/Format.hpp>
-#include  <blocxx/DateTime.hpp>
+#include  <limal/Date.hpp>
 #include  <blocxx/COWIntrusiveCountableBase.hpp>
 
 #include  "Utils.hpp"
@@ -79,12 +79,12 @@ CertificateIssueData::CertificateIssueData()
 CertificateIssueData::CertificateIssueData(CAConfig* caConfig, Type type)
 	: m_impl(new CertificateIssueDataImpl())
 {
-	m_impl->notBefore = DateTime::getCurrent().get();
+	m_impl->notBefore = Date::now();
 
 	uint32_t days = caConfig->getValue(type2Section(type, false), "default_days").toUInt32();
-	DateTime dt = DateTime(getStartDate());
-	dt.addDays(days);
-	m_impl->notAfter    = dt.get();
+	Date dt = Date(getStartDate());
+	dt += (days*24*60*60);
+	m_impl->notAfter    = dt;
 
 	String md = caConfig->getValue(type2Section(type, false), "default_md");
 	if(md.equalsIgnoreCase("sha1"))
@@ -148,8 +148,8 @@ time_t
 blocxx::String
 CertificateIssueData::getStartDateAsString() const
 {
-	DateTime dt(getStartDate());
-	String time = dt.toString("%y%m%d%H%M%S", DateTime::E_UTC_TIME) + "Z";
+	Date dt(getStartDate());
+	blocxx::String time(dt.form("%y%m%d%H%M%S", true) + "Z");
 
 	return time;
 }
@@ -157,8 +157,8 @@ CertificateIssueData::getStartDateAsString() const
 blocxx::String
 CertificateIssueData::getEndDateAsString() const
 {
-	DateTime dt(getEndDate());
-	String time = dt.toString("%y%m%d%H%M%S", DateTime::E_UTC_TIME) + "Z";
+	Date dt(getEndDate());
+	blocxx::String time(dt.form("%y%m%d%H%M%S", true) + "Z");
 
 	return time;
 }

@@ -24,7 +24,7 @@
 #include  <limal/ValueRegExCheck.hpp>
 #include  <limal/Exception.hpp>
 #include  <blocxx/Format.hpp>
-#include  <blocxx/DateTime.hpp>
+#include  <limal/Date.hpp>
 #include  <blocxx/COWIntrusiveCountableBase.hpp>
 
 #include  "Utils.hpp"
@@ -212,8 +212,8 @@ CRLReason::getKeyCompromiseDateAsString() const
 
 	if(m_impl->compromiseDate != 0)
 	{
-		DateTime dt(m_impl->compromiseDate);
-		time = dt.toString("%Y%m%d%H%M%S") + "Z";
+		Date dt(m_impl->compromiseDate);
+		time = String(dt.form("%Y%m%d%H%M%SZ", true));
 	}
 
 	return time;
@@ -257,8 +257,8 @@ CRLReason::getCACompromiseDateAsString() const
 
 	if(m_impl->compromiseDate != 0)
 	{
-		DateTime dt(m_impl->compromiseDate);
-		time = dt.toString("%Y%m%d%H%M%S") + "Z";
+		Date dt(m_impl->compromiseDate);
+		time = String(dt.form("%Y%m%d%H%M%SZ", true));
 	}
 
 	return time;

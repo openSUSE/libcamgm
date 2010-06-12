@@ -30,7 +30,7 @@
 
 #include  <limal/Exception.hpp>
 #include  <blocxx/Format.hpp>
-#include  <blocxx/DateTime.hpp>
+#include  <limal/Date.hpp>
 
 #include  "Utils.hpp"
 
@@ -136,15 +136,15 @@ CRLReason_Priv::CRLReason_Priv(STACK_OF(X509_EXTENSION) *stack)
 		else if(nid == NID_invalidity_date)
 		{
             // e.g. Aug 18 15:56:46 2005 GMT
-			DateTime dtime(valueString);
+			Date dtime(std::string(valueString.c_str()), "%B %d %H:%M:%S %Y %Z", true);
 
 			if(getReason().equalsIgnoreCase("keyCompromise"))
 			{
-				setKeyCompromiseDate(dtime.get());
+				setKeyCompromiseDate(dtime);
 			}
 			else if(getReason().equalsIgnoreCase("CACompromise"))
 			{
-				setCACompromiseDate(dtime.get());
+				setCACompromiseDate(dtime);
 			}
 			else
 			{
