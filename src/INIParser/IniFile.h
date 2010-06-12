@@ -16,7 +16,6 @@
 
 #include <limal/Logger.hpp>
 #include <blocxx/String.hpp>
-#include <blocxx/Map.hpp>
 #include <blocxx/IntrusiveReference.hpp>
 #include "INIParser/INIParserDescr.hpp"
 #include <list>
@@ -49,7 +48,7 @@ struct SectionAll
 };
 
 typedef std::list<blocxx::String> StringList;
-typedef blocxx::Map<blocxx::String, blocxx::String> StringMap;
+typedef std::map<blocxx::String, blocxx::String> StringMap;
 
 /**
  * Base class of IniEntry and IniSection.

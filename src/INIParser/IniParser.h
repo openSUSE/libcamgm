@@ -143,7 +143,7 @@ private:
      * Times of last modification of read files, used in multiple files
      * mode.
      */
-    blocxx::Map<blocxx::String,FileDescr> multi_files;
+    std::map<blocxx::String,FileDescr> multi_files;
     /**
      * File name of the ini file -- single file mode only.
      */
