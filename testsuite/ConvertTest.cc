@@ -2,8 +2,8 @@
 #include <blocxx/AppenderLogger.hpp>
 #include <blocxx/CerrLogger.hpp>
 #include <blocxx/CerrAppender.hpp>
-#include <blocxx/String.hpp>
-#include <blocxx/PerlRegEx.hpp>
+#include <limal/String.hpp>
+#include <limal/PerlRegEx.hpp>
 #include <limal/Logger.hpp>
 #include <limal/PathInfo.hpp>
 #include <limal/PathUtils.hpp>
@@ -29,7 +29,7 @@ int main()
     {
         cout << "START" << endl;
 
-        blocxx::StringArray cat;
+        StringArray cat;
         cat.push_back("FATAL");
 		// do not log errors because the openssl errors include a pid which changes everytime
         //cat.push_back("ERROR");
@@ -210,9 +210,10 @@ int main()
 	{
 		cout << "Got expected Exception." << endl;
 		cerr << "Exception:" << endl << e.getFile() << ": " << e.type() << ": " << e.getErrorCode() << ": ";
-		blocxx::String msg = blocxx::String(e.getMessage());
-
-		cerr <<	msg.tokenize("\n\r")[0] << endl << "END" << endl;
+		std::string msg = std::string(e.getMessage());
+        std::vector<std::string> sa;
+        str::split(msg, std::back_inserter( sa ), "\n\r");
+		cerr << sa[0] << endl << "END" << endl;
 	}
 
 
@@ -238,9 +239,11 @@ int main()
 	{
 		cout << "Got expected Exception." << endl;
 		cerr << "Exception:" << endl << e.getFile() << ": " << e.type() << ": " << e.getErrorCode() << ": ";
-		blocxx::String msg = blocxx::String(e.getMessage());
+		std::string msg = std::string(e.getMessage());
+        std::vector<std::string> sa;
+        str::split(msg, std::back_inserter( sa ), "\n\r");
 
-		cerr << msg.tokenize("\n\r")[0] << endl << "END" << endl;
+		cerr << sa[0] << endl << "END" << endl;
 	}
 
 	p12 = LocalManagement::createPKCS12(crt, key, "system", "tralla",
@@ -271,9 +274,11 @@ int main()
 	{
 		cout << "Got expected Exception." << endl;
 		cerr << "Exception:" << endl << e.getFile() << ": " << e.type() << ": " << e.getErrorCode() << ": ";
-		blocxx::String msg = blocxx::String(e.getMessage());
+		std::string msg = std::string(e.getMessage());
+        std::vector<std::string> sa;
+        str::split(msg, std::back_inserter( sa ), "\n\r");
 
-		cerr << msg.tokenize("\n\r")[0] << endl << "END" << endl;
+		cerr << sa[0] << endl << "END" << endl;
 	}
 
 	cout << "DONE" << endl;

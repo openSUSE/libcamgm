@@ -38,7 +38,7 @@
 #include <limal/PathName.hpp>
 #include <limal/Exception.hpp>
 #include <blocxx/EnvVars.hpp>
-#include <blocxx/Format.hpp>
+#include <limal/String.hpp>
 
 #include "Utils.hpp"
 #include <iostream>
@@ -66,7 +66,7 @@ namespace
 {
 
     size_t
-    findTildeEnd(const String &name)
+    findTildeEnd(const std::string &name)
     {
         const char *beg, *end;
 
@@ -80,31 +80,31 @@ namespace
                 return end - beg;
             }
         } while( *end++);
-        return String::npos;
+        return std::string::npos;
     }
 
-    String
-    expandTilde(const String &name)
+    std::string
+    expandTilde(const std::string &name)
     {
         // FIXME: improve blocxx::UserInfo and use it!!!
-        if( name.startsWith('~'))
+        if( name.compare(0, 1, "~") == 0)
         {
-            String user;
-            String home;
-            String rest;
+            std::string user;
+            std::string home;
+            std::string rest;
             size_t end = findTildeEnd(name);
 
-            user = name.substring(1, end);
-            rest = name.substring(end);
+            user = name.substr(1, end);
+            rest = name.substr(end);
 
             if( user.empty())
             {
                 if( ::getuid() != ::geteuid())
                 {
                     EnvVars env(EnvVars::E_CURRENT_ENVIRONMENT);
-                    home = env.getValue("HOME");
+                    home = env.getValue("HOME").c_str();
 
-                    if( home.startsWith('~'))
+                    if( home.compare(0, 1, "~") == 0)
                         home = "";
                 }
 
@@ -119,8 +119,8 @@ namespace
                     ::endpwent();
                 }
             }
-            else if(('a' <= user[0] && user[0] <= 'z' ||
-                     'A' <= user[0] && user[0] <= 'Z'))
+            else if(('a' <= user[0] && user[0] <= 'z') ||
+                    ('A' <= user[0] && user[0] <= 'Z'))
             {
                 ::setpwent();
                 struct passwd *pw = ::getpwnam(user.c_str());
@@ -140,13 +140,13 @@ namespace
     }
 
     inline size_t
-    withDrivePrefix(const String &name)
+    withDrivePrefix(const std::string &name)
     {
         size_t len = name.length();
 
         return (len >= 2 && name[1] == ':' &&
-                ('a' <= name[0] && name[0] <= 'z' ||
-                 'A' <= name[0] && name[0] <= 'Z')) ? len : 0;
+                (('a' <= name[0] && name[0] <= 'z') ||
+                ('A' <= name[0] && name[0] <= 'Z'))) ? len : 0;
     }
 
     class DirStack
@@ -183,15 +183,15 @@ namespace
         }
 
         void
-        push(const String &name)
+        push(const std::string &name)
         {
-            if( name.indexOf('/')  != String::npos ||
-                name.indexOf('\\') != String::npos)
+            if( name.find_first_of('/')  != std::string::npos ||
+                name.find_first_of('\\') != std::string::npos)
             {
                 BLOCXX_THROW(ca_mgm::ValueException,
-                    Format(__("The specified filename component '%1' "
+                    str::form(__("The specified filename component '%s' "
                               "contains a filename separator"),
-                           name).c_str()
+                           name.c_str()).c_str()
                 );
             }
 
@@ -231,7 +231,7 @@ namespace
         }
 
         void
-        split(const String &path)
+        split(const std::string &path)
         {
             const char *beg, *end;
 
@@ -244,7 +244,7 @@ namespace
                     case '\\':
                     case '\0':
                         if( end > beg)
-                            push(String(beg, end - beg));
+                            push(std::string(beg, end - beg));
                         else
                             push("");
                         beg = end + 1;
@@ -259,13 +259,13 @@ namespace
             return m_list;
         }
 
-        String
-        getPathName(const String &sep = BLOCXX_FILENAME_SEPARATOR) const
+        std::string
+        getPathName(const std::string &sep = BLOCXX_FILENAME_SEPARATOR) const
         {
             if( m_first)
                 return "";
 
-            String path;
+            std::string path;
             PathName::List::const_iterator i(m_list.begin());
             for( ; i != m_list.end(); ++i)
             {
@@ -310,7 +310,7 @@ PathName::PathName(const PathName::List &list)
 
 
 // -------------------------------------------------------------------
-PathName::PathName(const blocxx::String &name)
+PathName::PathName(const std::string &name)
     : m_prefix(0)
 {
     assign( name);
@@ -343,7 +343,7 @@ PathName::assign(const PathName::List &list)
 
     PathName::List::const_iterator item(list.begin());
 
-    String drive;
+    std::string drive;
     size_t prefix = withDrivePrefix(*item);
 
     if( prefix)
@@ -384,7 +384,7 @@ PathName::assign(const PathName::List &list)
 
 // -------------------------------------------------------------------
 void
-PathName::assign(const String &name)
+PathName::assign(const std::string &name)
 {
     m_prefix = 0;
     m_name   = "";
@@ -392,14 +392,14 @@ PathName::assign(const String &name)
     if ( name.empty())
         return;
 
-    String drive;
-    String path(name);
+    std::string drive;
+    std::string path(name);
     size_t prefix = 0;
 
     if( withDrivePrefix(path))
     {
         prefix = 2;
-        drive  = path.substring(0, 2);
+        drive  = path.substr(0, 2);
     }
     else
     {
@@ -407,7 +407,7 @@ PathName::assign(const String &name)
         if( withDrivePrefix(path))
         {
             prefix = 2;
-            drive  = path.substring(0, 2);
+            drive  = path.substr(0, 2);
         }
     }
 
@@ -420,7 +420,7 @@ PathName::assign(const String &name)
 
 
 // -------------------------------------------------------------------
-blocxx::String
+std::string
 PathName::toString() const
 {
     return m_name;
@@ -447,10 +447,10 @@ PathName::toList() const
 
 
 // -------------------------------------------------------------------
-blocxx::String
+std::string
 PathName::prefix() const
 {
-    return m_name.empty() ? "" : m_name.substring(0, m_prefix);
+    return m_name.empty() ? "" : m_name.substr(0, m_prefix);
 }
 
 
@@ -489,7 +489,7 @@ PathName::dirName() const
 
 
 // -------------------------------------------------------------------
-blocxx::String
+std::string
 PathName::baseName() const
 {
     return baseName( *this);
@@ -522,8 +522,8 @@ PathName::dirName(const PathName &name)
 
     PathName ret( name);
 
-    size_t idx = ret.m_name.lastIndexOf( BLOCXX_FILENAME_SEPARATOR_C);
-    if ( idx == String::npos)
+    size_t idx = ret.m_name.find_last_of( BLOCXX_FILENAME_SEPARATOR_C);
+    if ( idx == std::string::npos)
     {
         ret.m_name.erase( ret.m_prefix);
         ret.m_name += ".";
@@ -544,17 +544,17 @@ PathName::dirName(const PathName &name)
 
 // -------------------------------------------------------------------
 // STATIC
-String
+std::string
 PathName::baseName(const PathName &name)
 {
     if ( name.empty() )
         return "";
 
-    String ret( name.toString());
+    std::string ret( name.toString());
     ret.erase( 0, name.m_prefix);
 
-    size_t idx = ret.lastIndexOf( BLOCXX_FILENAME_SEPARATOR_C);
-    if ( idx != String::npos)
+    size_t idx = ret.find_last_of( BLOCXX_FILENAME_SEPARATOR_C);
+    if ( idx != std::string::npos)
     {
         ret.erase( 0, idx + 1);
     }
@@ -591,7 +591,7 @@ PathName::cat(const PathName &add) const
 
 // -------------------------------------------------------------------
 PathName
-PathName::extend(const blocxx::String &ext) const
+PathName::extend(const std::string &ext) const
 {
     return extend( *this, ext);
 }
@@ -616,8 +616,8 @@ PathName::cat(const PathName &name, const PathName &add)
     if ( name.empty())
         return add;
 
-    String ret = BLOCXX_FILENAME_SEPARATOR +
-                 add.toString().substring(add.m_prefix) ;
+    std::string ret = BLOCXX_FILENAME_SEPARATOR +
+                 add.toString().substr(add.m_prefix) ;
 
     return PathName(name.toString() + ret);
 }
@@ -626,7 +626,7 @@ PathName::cat(const PathName &name, const PathName &add)
 // -------------------------------------------------------------------
 // STATIC
 PathName
-PathName::extend(const PathName &name, const String &ext)
+PathName::extend(const PathName &name, const std::string &ext)
 {
     return PathName(name.toString() + ext);
 }

@@ -39,75 +39,75 @@ class OpenSSLUtils {
 
 public:
 
-	OpenSSLUtils(const blocxx::String &onfigFile,
-	             const blocxx::String &command = OPENSSL_COMMAND,
-	             const blocxx::String &tmpDir = "/tmp/");
+	OpenSSLUtils(const std::string &onfigFile,
+	             const std::string &command = OPENSSL_COMMAND,
+	             const std::string &tmpDir = "/tmp/");
 
-	void createRSAKey(const blocxx::String &outFile,
-	                  const blocxx::String &password,
+	void createRSAKey(const std::string &outFile,
+	                  const std::string &password,
 	                  uint32_t        bits = 2048,
-	                  const blocxx::String &cryptAlgorithm = "des3");
+	                  const std::string &cryptAlgorithm = "des3");
 
 	void createRequest(const DNObject       &dn,
-	                   const blocxx::String &outFile,
-	                   const blocxx::String &keyFile,
-	                   const blocxx::String &password,
-	                   const blocxx::String &extension,
+	                   const std::string &outFile,
+	                   const std::string &keyFile,
+	                   const std::string &password,
+	                   const std::string &extension,
 	                   FormatType            outForm           = E_PEM,
-	                   const blocxx::String &challengePassword = "",
-	                   const blocxx::String &unstructuredName  = "");
+	                   const std::string &challengePassword = "",
+	                   const std::string &unstructuredName  = "");
 
-	void createSelfSignedCertificate(const blocxx::String &outFile,
-	                                 const blocxx::String &keyFile,
-	                                 const blocxx::String &requestFile,
-	                                 const blocxx::String &password,
-	                                 const blocxx::String &extension,
+	void createSelfSignedCertificate(const std::string &outFile,
+	                                 const std::string &keyFile,
+	                                 const std::string &requestFile,
+	                                 const std::string &password,
+	                                 const std::string &extension,
 	                                 const uint32_t  days,
 	                                 bool                  noEmailDN = false);
 
-	void signRequest(const blocxx::String &requestFile,
-	                 const blocxx::String &outFile,
-	                 const blocxx::String &caKeyFile,
-	                 const blocxx::String &caPassword,
-	                 const blocxx::String &extension,
-	                 const blocxx::String &startDate,
-	                 const blocxx::String &endDate,
-	                 const blocxx::String &caSection,
-	                 const blocxx::String &outDir     = "",
+	void signRequest(const std::string &requestFile,
+	                 const std::string &outFile,
+	                 const std::string &caKeyFile,
+	                 const std::string &caPassword,
+	                 const std::string &extension,
+	                 const std::string &startDate,
+	                 const std::string &endDate,
+	                 const std::string &caSection,
+	                 const std::string &outDir     = "",
 	                 bool                  noEmailDN  = false,
 	                 bool                  noUniqueDN = false,
 	                 bool                  noText     = true);
 
-	void revokeCertificate(const blocxx::String &caCertFile,
-	                       const blocxx::String &caKeyFile,
-	                       const blocxx::String &caPassword,
-	                       const blocxx::String &certFile,
+	void revokeCertificate(const std::string &caCertFile,
+	                       const std::string &caKeyFile,
+	                       const std::string &caPassword,
+	                       const std::string &certFile,
 	                       const CRLReason      &reason     = CRLReason(),
 	                       bool                  noUniqueDN = false);
 
-	void issueCRL(const blocxx::String &caCertFile,
-	              const blocxx::String &caKeyFile,
-	              const blocxx::String &caPassword,
+	void issueCRL(const std::string &caCertFile,
+	              const std::string &caKeyFile,
+	              const std::string &caPassword,
 	              uint32_t        hours,
-	              const blocxx::String &outfile,
-	              const blocxx::String &extension,
+	              const std::string &outfile,
+	              const std::string &extension,
 	              bool                  noUniqueDN = false);
 
-	void updateDB(const blocxx::String &caCertFile,
-	              const blocxx::String &caKeyFile,
-	              const blocxx::String &caPassword);
+	void updateDB(const std::string &caCertFile,
+	              const std::string &caKeyFile,
+	              const std::string &caPassword);
 
-	blocxx::String verify(const blocxx::String &certFile,
-	                      const blocxx::String &caPath,
+	std::string verify(const std::string &certFile,
+	                      const std::string &caPath,
 	                      bool                  crlCheck = false,
-	                      const blocxx::String &purpose  = "");
+	                      const std::string &purpose  = "");
 
-	blocxx::String status(const blocxx::String &serial);
+	std::string status(const std::string &serial);
 
-	bool checkKey(const blocxx::String &caName,
-	              const blocxx::String &password,
-	              const blocxx::String &certificateName = "cacert",
-	              const blocxx::String &repository      = REPOSITORY);
+	bool checkKey(const std::string &caName,
+	              const std::string &password,
+	              const std::string &certificateName = "cacert",
+	              const std::string &repository      = REPOSITORY);
 
 
 		// ###################################################
@@ -123,9 +123,9 @@ public:
 	rsaConvert(const ByteBuffer &key,
 	           FormatType inform,
 	           FormatType outform,
-	           const String &inPassword,
-	           const String &outPassword,
-	           const String &algorithm = "des3" );
+	           const std::string &inPassword,
+	           const std::string &outPassword,
+	           const std::string &algorithm = "des3" );
 
 	static ByteBuffer
 	crlConvert(const ByteBuffer &crl,
@@ -143,10 +143,10 @@ public:
 	static ByteBuffer
 	createPKCS12(const ByteBuffer &certificate,
 	             const ByteBuffer &key,
-	             const String     &inPassword,
-	             const String     &outPassword,
+	             const std::string     &inPassword,
+	             const std::string     &outPassword,
 	             const ByteBuffer &caCert,
-	             const String     &caPath,
+	             const std::string     &caPath,
 	             bool              withChain );
 
 		/**
@@ -154,53 +154,56 @@ public:
          */
 	static ByteBuffer
 	pkcs12ToPEM(const ByteBuffer &pkcs12,
-	            const String     &inPassword,
-	            const String     &outPassword,
-	            const String     &algorithm = "des3");
+	            const std::string     &inPassword,
+	            const std::string     &outPassword,
+	            const std::string     &algorithm = "des3");
 
-	static std::vector<blocxx::String>
-	listCA(const String &repository = REPOSITORY);
+	static std::vector<std::string>
+	listCA(const std::string &repository = REPOSITORY);
 
-	static blocxx::String
-	nextSerial(const String &serialFile);
-
-	static void
-	addCAM(const String &caName,
-	       const String &md5,
-	       const String &dnString,
-	       const String &repository = REPOSITORY);
+	static std::string
+	nextSerial(const std::string &serialFile);
 
 	static void
-	delCAM(const String &caName,
-	       const String &md5,
-	       const String &repository = REPOSITORY);
-
-	static std::vector<std::vector<blocxx::String> >
-	parseCAMDB(const String &caName,
-	           const String &repository = REPOSITORY);
-
-	static std::vector<std::vector<blocxx::String> >
-	parseIndexTXT(const String &caName,
-	              const String &repository = REPOSITORY);
-
-	static std::vector<std::map<blocxx::String, blocxx::String> >
-	listRequests(const String &caName,
-	             const String &repository = REPOSITORY);
-
-	static std::vector<std::map<blocxx::String, blocxx::String> >
-	listCertificates(const String &caName,
-	                 const String &repository = REPOSITORY);
+	addCAM(const std::string &caName,
+	       const std::string &md5,
+	       const std::string &dnString,
+	       const std::string &repository = REPOSITORY);
 
 	static void
-	createCaInfrastructure(const String &caName,
-	                       const String &repository = REPOSITORY);
+	delCAM(const std::string &caName,
+	       const std::string &md5,
+	       const std::string &repository = REPOSITORY);
+
+	static std::vector<std::vector<std::string> >
+	parseCAMDB(const std::string &caName,
+	           const std::string &repository = REPOSITORY);
+
+	static std::vector<std::vector<std::string> >
+	parseIndexTXT(const std::string &caName,
+	              const std::string &repository = REPOSITORY);
+
+	static std::vector<std::map<std::string, std::string> >
+	listRequests(const std::string &caName,
+	             const std::string &repository = REPOSITORY);
+
+	static std::vector<std::map<std::string, std::string> >
+	listCertificates(const std::string &caName,
+	                 const std::string &repository = REPOSITORY);
+
+	static void
+	createCaInfrastructure(const std::string &caName,
+	                       const std::string &repository = REPOSITORY);
+
+    static std::string
+    digestMD5(const std::string &in);
 
 private:
 
-	blocxx::String   m_cmd;
-	blocxx::String   m_tmp;
-	blocxx::String   m_conf;
-	blocxx::String   m_rand;
+	std::string   m_cmd;
+	std::string   m_tmp;
+	std::string   m_conf;
+	std::string   m_rand;
 
 	OpenSSLUtils();
 	OpenSSLUtils(const OpenSSLUtils&);

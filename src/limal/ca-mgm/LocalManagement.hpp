@@ -35,7 +35,7 @@ namespace CA_MGM_NAMESPACE {
      * @brief Functions for local certificate management
      *
      * This class provides functions for local certificate management which
-     * are usefull on every host. 
+     * are usefull on every host.
      */
     class LocalManagement {
 
@@ -51,13 +51,13 @@ namespace CA_MGM_NAMESPACE {
          * @param destinationKeyFile the path where the private key should be stored
          *
          */
-        static void 
-        importAsLocalCertificate(const String &pkcs12File,
-                                 const String &password,
-                                 const String &destinationCAsDir,
-                                 const String &destinationCertFile,
-                                 const String &destinationKeyFile);
-        
+        static void
+        importAsLocalCertificate(const std::string &pkcs12File,
+                                 const std::string &password,
+                                 const std::string &destinationCAsDir,
+                                 const std::string &destinationCertFile,
+                                 const std::string &destinationKeyFile);
+
         /**
          * Import a certificate to a specific destination
          *
@@ -70,10 +70,10 @@ namespace CA_MGM_NAMESPACE {
          */
         static void
         importAsLocalCertificate(const ca_mgm::ByteBuffer &pkcs12Data,
-                                 const String            &password,
-                                 const String            &destinationCAsDir,
-                                 const String            &destinationCertFile,
-                                 const String            &destinationKeyFile);
+                                 const std::string            &password,
+                                 const std::string            &destinationCAsDir,
+                                 const std::string            &destinationCertFile,
+                                 const std::string            &destinationKeyFile);
 
         /**
          * Import a certificate as common server certificate.
@@ -85,10 +85,10 @@ namespace CA_MGM_NAMESPACE {
          * @param password the password for the PKCS12 file
          *
          */
-        static void 
-        importCommonServerCertificate(const String &pkcs12File,
-                                      const String &password);
-        
+        static void
+        importCommonServerCertificate(const std::string &pkcs12File,
+                                      const std::string &password);
+
         /**
          * Import a certificate as common server certificate.
          * This function store the CAs to '/etc/ssl/certs', the
@@ -101,8 +101,8 @@ namespace CA_MGM_NAMESPACE {
          */
         static void
         importCommonServerCertificate(const ca_mgm::ByteBuffer &pkcs12Data,
-                                      const String            &password);
-        
+                                      const std::string            &password);
+
         /**
          * Parse a Certificate and return the data
          *
@@ -112,9 +112,9 @@ namespace CA_MGM_NAMESPACE {
          * @return the parsed certificate data
          */
         static CertificateData
-        getCertificate(const String &file,
+        getCertificate(const std::string &file,
                        FormatType    type);
-        
+
         /**
          * Parse a Certificate and return the data
          *
@@ -136,9 +136,9 @@ namespace CA_MGM_NAMESPACE {
          * @return the parsed request data
          */
         static RequestData
-        getRequest(const String &file,
+        getRequest(const std::string &file,
                    FormatType    type);
-        
+
         /**
          * Parse a Request and return the data
          *
@@ -151,7 +151,7 @@ namespace CA_MGM_NAMESPACE {
         getRequest(const ca_mgm::ByteBuffer &data,
                    FormatType               type);
 
-        
+
         /**
          * Parse a CRL and return the data
          *
@@ -161,10 +161,10 @@ namespace CA_MGM_NAMESPACE {
          * @return the parsed CRL data
          */
         static CRLData
-        getCRL(const String &file,
+        getCRL(const std::string &file,
                FormatType    type);
-        
-        
+
+
         /**
          * Parse a CRL and return the data
          *
@@ -176,7 +176,7 @@ namespace CA_MGM_NAMESPACE {
         static CRLData
         getCRL(const ca_mgm::ByteBuffer &data,
                FormatType               type);
-        
+
         /**
          * Read a file from the harddisk and return
          * the content as ByteBuffer Object
@@ -186,7 +186,7 @@ namespace CA_MGM_NAMESPACE {
          * @return the file content
          */
         static ca_mgm::ByteBuffer
-        readFile(const String& file);
+        readFile(const std::string& file);
 
         /**
          * Write data into a file
@@ -200,14 +200,14 @@ namespace CA_MGM_NAMESPACE {
          */
         static void
         writeFile(const ca_mgm::ByteBuffer& data,
-                  const String &file,
+                  const std::string &file,
                   bool overwrite = true,
                   mode_t mode = 0644);
 
     	/**
     	 * Convert a certificate from PEM/DER to DER/PEM format
     	 *
-    	 * @param certificate the certificate in PEM or DER Format
+    	 * @param certificate the certificate in PEM or DER str::form
     	 * @param inform format of certificate
     	 * @param outform the output format
     	 * @return the converted certificate in the new format
@@ -236,9 +236,9 @@ namespace CA_MGM_NAMESPACE {
     	rsaConvert(const ca_mgm::ByteBuffer &key,
     	           FormatType inform,
     	           FormatType outform,
-    	           const String &inPassword,
-    	           const String &outPassword,
-    	           const String &algorithm = "des3" );
+    	           const std::string &inPassword,
+    	           const std::string &outPassword,
+    	           const std::string &algorithm = "des3" );
 
     	/**
     	 * Convert a CRL from PEM/DER to DER/PEM format
@@ -266,7 +266,7 @@ namespace CA_MGM_NAMESPACE {
     	           FormatType inform,
     	           FormatType outform );
 
-    	
+
     	/**
     	 * Create a PKCS12 bundle.
     	 * Certificate and key has to be in PEM format.
@@ -284,12 +284,12 @@ namespace CA_MGM_NAMESPACE {
     	static ca_mgm::ByteBuffer
     	createPKCS12(const ca_mgm::ByteBuffer &certificate,
     	             const ca_mgm::ByteBuffer &key,
-    	             const String            &inPassword,
-    	             const String            &outPassword,
+    	             const std::string            &inPassword,
+    	             const std::string            &outPassword,
     	             const ca_mgm::ByteBuffer &caCert,
-    	             const String            &caPath,
+    	             const std::string            &caPath,
     	             bool                     withChain = false);
-    	
+
     	/**
     	 * Extract PKCS12 to PEM
     	 *
@@ -303,9 +303,9 @@ namespace CA_MGM_NAMESPACE {
     	 */
     	static ca_mgm::ByteBuffer
     	pkcs12ToPEM(const ca_mgm::ByteBuffer &pkcs12,
-    	            const String            &inPassword,
-    	            const String            &outPassword,
-    	            const String            &algorithm = "des3");
+    	            const std::string            &inPassword,
+    	            const std::string            &outPassword,
+    	            const std::string            &algorithm = "des3");
     };
 }
 #endif //LIMAL_CA_MGM_LOCAL_MANAGEMENT_HPP

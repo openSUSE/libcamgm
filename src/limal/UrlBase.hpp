@@ -355,7 +355,7 @@ public:
 	 * \throws url::UrlBadComponentException if one of the components
 	 *         contains an invalid character.
 	 */
-	UrlBase(const blocxx::String &urlString);
+	UrlBase(const std::string &urlString);
 
 
 	// -----------------
@@ -388,7 +388,7 @@ public:
 	 *         contains an invalid character.
 	 */
 	UrlBase&
-	operator = (const blocxx::String &urlString);
+	operator = (const std::string &urlString);
 
 
 	// -----------------
@@ -443,7 +443,7 @@ public:
 	 *
 	 * \return An array with scheme names known by this object.
 	 */
-	virtual std::vector<blocxx::String>
+	virtual std::vector<std::string>
 	getKnownSchemes() const;
 
 	/**
@@ -451,7 +451,7 @@ public:
 	 * \return True, if scheme name is known to this object.
 	 */
 	virtual bool
-	isKnownScheme(const blocxx::String &scheme) const;
+	isKnownScheme(const std::string &scheme) const;
 
 
 	/**
@@ -467,7 +467,7 @@ public:
 	 *         the scheme name is known to the current object.
 	 */
 	virtual bool
-	isValidScheme(const blocxx::String &scheme) const;
+	isValidScheme(const std::string &scheme) const;
 
 	/**
 	 * \brief Verifies the Url.
@@ -490,7 +490,7 @@ public:
 	 *
 	 * \return A default string representation of the Url object.
 	 */
-	virtual blocxx::String
+	virtual std::string
 	toString() const;
 
 	/**
@@ -505,7 +505,7 @@ public:
 	 * \param opts  A combination of view options.
 	 * \return A string representation of the Url object. 
 	 */
-	virtual blocxx::String
+	virtual std::string
 	toString(const ca_mgm::url::ViewOptions &opts) const;
 
 
@@ -514,7 +514,7 @@ public:
 	 * Returns the scheme name of the URL.
 	 * \return Scheme name of the current Url object.
 	 */
-	virtual blocxx::String
+	virtual std::string
 	getScheme() const;
 
 
@@ -528,7 +528,7 @@ public:
 	 *
 	 * \return The encoded authority component string.
 	 */
-	virtual blocxx::String
+	virtual std::string
 	getAuthority() const;
 
 	/**
@@ -538,7 +538,7 @@ public:
 	 * \throws UrlDecodingException if the decoded result string
 	 *         would contain a '\\0' character.
 	 */
-	virtual blocxx::String
+	virtual std::string
 	getUsername(EEncoding eflag) const;
 
 	/**
@@ -548,7 +548,7 @@ public:
 	 * \throws UrlDecodingException if the decoded result string
 	 *         would contain a '\\0' character.
 	 */
-	virtual blocxx::String
+	virtual std::string
 	getPassword(EEncoding eflag) const;
 
 	/**
@@ -563,14 +563,14 @@ public:
 	 * \throws UrlDecodingException if the decoded result string
 	 *         would contain a '\\0' character.
 	 */
-	virtual blocxx::String
+	virtual std::string
 	getHost(EEncoding eflag) const;
 
 	/**
 	 * Returns the port number from the URL authority.
 	 * \return The port sub-component from the URL authority.
 	 */
-	virtual blocxx::String
+	virtual std::string
 	getPort() const;
 
 
@@ -584,7 +584,7 @@ public:
 	 *
 	 * \return The encoded path component of the URL.
 	 */
-	virtual blocxx::String
+	virtual std::string
 	getPathData() const;
 
 	/**
@@ -595,14 +595,14 @@ public:
 	 * \throws UrlDecodingException if the decoded result string
 	 *         would contain a '\\0' character.
 	 */
-	virtual blocxx::String
+	virtual std::string
 	getPathName(EEncoding eflag) const;
 
 	/**
 	 * Returns the encoded path parameters from the URL.
 	 * \return The encoded path parameters from the URL.
 	 */
-	virtual blocxx::String
+	virtual std::string
 	getPathParams() const;
 
 	/**
@@ -617,7 +617,7 @@ public:
 	 *
 	 * \return The encoded path parameters array.
 	 */
-	virtual std::vector<blocxx::String>
+	virtual std::vector<std::string>
 	getPathParamsArray() const;
 
 	/**
@@ -658,8 +658,8 @@ public:
 	 * \throws UrlDecodingException if the decoded result string
 	 *         would contain a '\\0' character.
 	 */
-	virtual blocxx::String
-	getPathParam(const blocxx::String &param, EEncoding eflag) const;
+	virtual std::string
+	getPathParam(const std::string &param, EEncoding eflag) const;
 
 
 	// -----------------
@@ -672,7 +672,7 @@ public:
 	 *
 	 * \return The encoded query string component of the URL.
 	 */
-	virtual blocxx::String
+	virtual std::string
 	getQueryString() const;
 
 	/**
@@ -688,7 +688,7 @@ public:
 	 *
 	 * \return The query string splited into an array of substrings.
 	 */
-	virtual std::vector<blocxx::String>
+	virtual std::vector<std::string>
 	getQueryStringArray() const;
 
 	/**
@@ -728,8 +728,8 @@ public:
 	 * \throws UrlDecodingException if the decoded result string
 	 *         would contain a '\\0' character.
 	 */
-	virtual blocxx::String
-	getQueryParam(const blocxx::String &param, EEncoding eflag) const;
+	virtual std::string
+	getQueryParam(const std::string &param, EEncoding eflag) const;
 
 
 	// -----------------
@@ -740,7 +740,7 @@ public:
 	 * \throws UrlDecodingException if the decoded result string
 	 *         would contain a '\\0' character.
 	 */
-	virtual blocxx::String
+	virtual std::string
 	getFragment(EEncoding eflag) const;
 
 
@@ -752,7 +752,7 @@ public:
 	 *         contains an invalid character or is empty.
 	 */
 	virtual void
-	setScheme(const blocxx::String &scheme);
+	setScheme(const std::string &scheme);
 
 
 	// -----------------
@@ -770,7 +770,7 @@ public:
 	 * \throws UrlParsingException if \p authority parsing fails.
 	 */
 	virtual void
-	setAuthority(const blocxx::String &authority);
+	setAuthority(const std::string &authority);
 
 	/**
 	 * \brief Set the username in the URL authority.
@@ -782,7 +782,7 @@ public:
 	 *         contains an invalid character.
 	 */
 	virtual void
-	setUsername(const blocxx::String &user,
+	setUsername(const std::string &user,
 		    EEncoding            eflag);
 
 	/**
@@ -795,7 +795,7 @@ public:
 	 *         contains an invalid character.
 	 */
 	virtual void
-	setPassword(const blocxx::String &pass,
+	setPassword(const std::string &pass,
 		    EEncoding            eflag);
 
 	/**
@@ -819,7 +819,7 @@ public:
 	 * \throws UrlBadComponentException if the \p host is invalid.
 	 */
 	virtual void
-	setHost(const blocxx::String &host,
+	setHost(const std::string &host,
 		EEncoding            eflag);
 
 	/**
@@ -830,7 +830,7 @@ public:
 	 * \throws UrlBadComponentException if the \p port is invalid.
 	 */
 	virtual void
-	setPort(const blocxx::String &port);
+	setPort(const std::string &port);
 
 
 	// -----------------
@@ -845,7 +845,7 @@ public:
 	 *         contains an invalid character.
 	 */
 	virtual void
-	setPathData(const blocxx::String &pathdata);
+	setPathData(const std::string &pathdata);
 
 	/**
 	 * \brief Set the path name.
@@ -855,7 +855,7 @@ public:
 	 *         contains an invalid character.
 	 */
 	virtual void
-	setPathName(const blocxx::String &path,
+	setPathName(const std::string &path,
 		    EEncoding            eflag);
 
 	/**
@@ -865,7 +865,7 @@ public:
 	 *         contains an invalid character.
 	 */
 	virtual void
-	setPathParams(const blocxx::String &params);
+	setPathParams(const std::string &params);
 
 	/**
 	 * \brief Set the path parameters.
@@ -874,7 +874,7 @@ public:
 	 *         contains an invalid character.
 	 */
 	virtual void
-	setPathParamsArray(const std::vector<blocxx::String> &parray);
+	setPathParamsArray(const std::vector<std::string> &parray);
 
 	/**
 	 * \brief Set the path parameters.
@@ -895,7 +895,7 @@ public:
 	 *         would contain a '\\0' character.
 	 */
 	virtual void
-	setPathParam(const blocxx::String &param, const blocxx::String &value);
+	setPathParam(const std::string &param, const std::string &value);
 
 
 	// -----------------
@@ -912,7 +912,7 @@ public:
 	 *         contains an invalid character.
 	 */
 	virtual void
-	setQueryString(const blocxx::String &querystr);
+	setQueryString(const std::string &querystr);
 
 	/**
 	 * \brief Set the query parameters.
@@ -921,7 +921,7 @@ public:
 	 *         contains an invalid character.
 	 */
 	virtual void
-	setQueryStringArray(const std::vector<blocxx::String> &qarray);
+	setQueryStringArray(const std::vector<std::string> &qarray);
 
 	/**
 	 * \brief Set the query parameters.
@@ -942,7 +942,7 @@ public:
 	 *         would contain a '\\0' character.
 	 */
 	virtual void
-	setQueryParam(const blocxx::String &param, const blocxx::String &value);
+	setQueryParam(const std::string &param, const std::string &value);
 
 
 	// -----------------
@@ -954,7 +954,7 @@ public:
 	 *         contains an invalid character.
 	 */
 	virtual void
-	setFragment(const blocxx::String &fragment,
+	setFragment(const std::string &fragment,
 		    EEncoding            eflag);
 
 
@@ -1028,8 +1028,8 @@ public:
 	 * \return The value of the specified variable
 	 *         or empty string.
 	 */
-	blocxx::String
-	config(const blocxx::String &opt) const;
+	std::string
+	config(const std::string &opt) const;
 
 	/**
 	 * Set the value of a UrlBase configuration variable.
@@ -1041,7 +1041,7 @@ public:
 	 * \param val The new value for the configuration variable.
 	 */
 	void
-	config(const blocxx::String &opt, const blocxx::String &val);
+	config(const std::string &opt, const std::string &val);
 
 
 	/**
@@ -1094,8 +1094,8 @@ protected:
 	 * \param authority Whether the url contains authority or not.
 	 * \return A modified encoded path.
 	 */
-	virtual blocxx::String
-	cleanupPathName(const blocxx::String &path, bool authority) const;
+	virtual std::string
+	cleanupPathName(const std::string &path, bool authority) const;
 
 	/**
 	 * Utility method to cleanup an encoded path name.
@@ -1107,17 +1107,17 @@ protected:
 	 * \param path      The encoded path name to cleanup.
 	 * \return A modified encoded path.
 	 */
-	virtual blocxx::String
-	cleanupPathName(const blocxx::String &path) const;
+	virtual std::string
+	cleanupPathName(const std::string &path) const;
 
 	virtual void
-	checkValidScheme(const blocxx::String &scheme, EEncoding eflag) const;
+	checkValidScheme(const std::string &scheme, EEncoding eflag) const;
 
 	virtual void
-	checkValidUser(const blocxx::String &user, EEncoding eflag) const;
+	checkValidUser(const std::string &user, EEncoding eflag) const;
 
 	virtual void
-	checkValidPass(const blocxx::String &pass, EEncoding eflag) const;
+	checkValidPass(const std::string &pass, EEncoding eflag) const;
 
 	/**
 	 * \brief Verifies specified host or IP.
@@ -1143,7 +1143,7 @@ protected:
 	 * \throws UrlBadComponentException if the hostname is invalid.
 	 */
 	virtual void
-	checkValidHost(const blocxx::String &host, EEncoding eflag) const;
+	checkValidHost(const std::string &host, EEncoding eflag) const;
 
 	/**
 	 * \brief Verifies if specified port number is in the range 0..65535.
@@ -1152,19 +1152,19 @@ protected:
 	 * \throws UrlBadComponentException if the port number is invalid.
 	 */
 	virtual void
-	checkValidPort(const blocxx::String &port, EEncoding eflag) const;
+	checkValidPort(const std::string &port, EEncoding eflag) const;
 
 	virtual void
-	checkValidPathName(const blocxx::String &path, EEncoding eflag) const;
+	checkValidPathName(const std::string &path, EEncoding eflag) const;
 
 	virtual void
-	checkValidPathParams(const blocxx::String &params, EEncoding eflag) const;
+	checkValidPathParams(const std::string &params, EEncoding eflag) const;
 
 	virtual void
-	checkValidQueryStr(const blocxx::String &querystr, EEncoding eflag) const;
+	checkValidQueryStr(const std::string &querystr, EEncoding eflag) const;
 
 	virtual void
-	checkValidFragment(const blocxx::String &fragment, EEncoding eflag) const;
+	checkValidFragment(const std::string &fragment, EEncoding eflag) const;
 
 private:
 	blocxx::COWReference<UrlBaseData> m_data;

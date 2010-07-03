@@ -80,23 +80,23 @@ SubjectAlternativeNameExt::SubjectAlternativeNameExt(CAConfig* caConfig, Type ty
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             Format(__("Wrong type: %1."), type).c_str());
+		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
 	bool p = caConfig->exists(type2Section(type, true), "subjectAltName");
 	if(p)
 	{
-		std::vector<blocxx::String>   sp   = convStringArray(PerlRegEx("\\s*,\\s*")
-			.split(caConfig->getValue(type2Section(type, true), "subjectAltName")));
+		std::vector<std::string>   sp   = PerlRegEx("\\s*,\\s*")
+			.split(caConfig->getValue(type2Section(type, true), "subjectAltName"));
 
-		if(sp[0].equalsIgnoreCase("critical"))  setCritical(true);
+		if(0 == str::compareCI(sp[0], "critical"))  setCritical(true);
 
-		std::vector<blocxx::String>::const_iterator it = sp.begin();
+		std::vector<std::string>::const_iterator it = sp.begin();
 		for(; it != sp.end(); ++it)
 		{
-			if((*it).indexOf(":") != String::npos)
+			if((*it).find_first_of(":") != std::string::npos)
 			{
-				if((*it).equalsIgnoreCase("email:copy"))
+				if(0 == str::compareCI(*it, "email:copy"))
 					m_impl->emailCopy = true;
 				else
 				{
@@ -121,7 +121,7 @@ SubjectAlternativeNameExt::SubjectAlternativeNameExt(bool copyEmail,
 	: ExtensionBase()
 	, m_impl(new SubjectAlternativeNameExtImpl(copyEmail, alternativeNameList))
 {
-	std::vector<blocxx::String> r = checkLiteralValueList(alternativeNameList);
+	std::vector<std::string> r = checkLiteralValueList(alternativeNameList);
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -162,7 +162,7 @@ SubjectAlternativeNameExt::setCopyEmail(bool copyEmail)
 void
 SubjectAlternativeNameExt::setAlternativeNameList(const std::list<LiteralValue> &alternativeNameList)
 {
-	std::vector<blocxx::String> r = checkLiteralValueList(alternativeNameList);
+	std::vector<std::string> r = checkLiteralValueList(alternativeNameList);
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -210,17 +210,17 @@ SubjectAlternativeNameExt::commit2Config(CA& ca, Type type) const
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             Format(__("Wrong type: %1."), type).c_str());
+		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
 	if(isPresent())
 	{
-		String extString;
+		std::string extString;
 
 		if(isCritical())      extString += "critical,";
 		if(m_impl->emailCopy) extString += "email:copy,";
 
-		String val;
+		std::string val;
 		std::list<LiteralValue>::const_iterator it = m_impl->altNameList.begin();
 		for(int j = 0;it != m_impl->altNameList.end(); ++it, ++j)
 		{
@@ -250,7 +250,7 @@ SubjectAlternativeNameExt::valid() const
 		LOGIT_DEBUG("return SubjectAlternativeNameExt::::valid() is false");
 		return false;
 	}
-	std::vector<blocxx::String> r = checkLiteralValueList(m_impl->altNameList);
+	std::vector<std::string> r = checkLiteralValueList(m_impl->altNameList);
 	if(!r.empty())
 	{
 		LOGIT_DEBUG(r[0]);
@@ -259,16 +259,16 @@ SubjectAlternativeNameExt::valid() const
 	return true;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 SubjectAlternativeNameExt::verify() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 
 	if(!isPresent()) return result;
 
 	if(!m_impl->emailCopy && m_impl->altNameList.empty())
 	{
-		result.push_back(String("invalid value for SubjectAlternativeNameExt"));
+		result.push_back(std::string("invalid value for SubjectAlternativeNameExt"));
 	}
 	appendArray(result, checkLiteralValueList(m_impl->altNameList));
 
@@ -277,16 +277,16 @@ SubjectAlternativeNameExt::verify() const
 	return result;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 SubjectAlternativeNameExt::dump() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 	result.push_back("SubjectAlternativeNameExt::dump()");
 
 	appendArray(result, ExtensionBase::dump());
 	if(!isPresent()) return result;
 
-	result.push_back("email:copy = " + Bool(m_impl->emailCopy).toString());
+	result.push_back("email:copy = " + str::toString(m_impl->emailCopy));
 
 	std::list< LiteralValue >::const_iterator it = m_impl->altNameList.begin();
 	for(; it != m_impl->altNameList.end(); ++it)

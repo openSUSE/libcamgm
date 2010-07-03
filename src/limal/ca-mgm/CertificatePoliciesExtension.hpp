@@ -34,7 +34,7 @@ namespace CA_MGM_NAMESPACE {
 	class UserNoticeImpl;
 	class CertificatePolicyImpl;
 	class CertificatePoliciesExtImpl;
-	
+
 	class UserNotice {
     public:
 		UserNotice();
@@ -42,48 +42,48 @@ namespace CA_MGM_NAMESPACE {
 		virtual ~UserNotice();
 
 #ifndef SWIG
-    	
+
 		UserNotice&
 		operator=(const UserNotice& notice);
 
 #endif
-		
-		void
-		initWithSection(CAConfig* caConfig, Type type, const String& sectionName);
 
 		void
-		setExplicitText(const String& text);
-		
-		String
+		initWithSection(CAConfig* caConfig, Type type, const std::string& sectionName);
+
+		void
+		setExplicitText(const std::string& text);
+
+		std::string
 		getExplicitText() const;
 
 		void
-		setOrganizationNotice(const String& org, 
+		setOrganizationNotice(const std::string& org,
 		                      const std::list<int32_t>& numbers);
 
-		String
+		std::string
 		getOrganization() const;
-		
+
 		std::list<int32_t>
 		getNoticeNumbers() const;
 
-		virtual blocxx::String
+		virtual std::string
 		commit2Config(CA& ca, Type type, uint32_t num) const;
 
 		virtual bool
 		valid() const;
-		
-		virtual std::vector<blocxx::String>
+
+		virtual std::vector<std::string>
 		verify() const;
 
-		virtual std::vector<blocxx::String>
+		virtual std::vector<std::string>
 		dump() const;
 
 #ifndef SWIG
 
 		friend bool
 		operator==(const UserNotice &l, const UserNotice &r);
-		
+
 		friend bool
 		operator<(const UserNotice &l, const UserNotice &r);
 
@@ -91,16 +91,16 @@ namespace CA_MGM_NAMESPACE {
 
 	private:
 		blocxx::COWIntrusiveReference<UserNoticeImpl> m_impl;
-    	
+
 	};
 
 	class CertificatePolicy {
 	public:
 		CertificatePolicy();
-		CertificatePolicy(const String& policyIdetifier);
+		CertificatePolicy(const std::string& policyIdetifier);
 		CertificatePolicy(const CertificatePolicy& policy);
 		virtual ~CertificatePolicy();
-		
+
 #ifndef SWIG
 
 		CertificatePolicy&
@@ -109,43 +109,43 @@ namespace CA_MGM_NAMESPACE {
 #endif
 
 		void
-		initWithSection(CAConfig* caConfig, Type type, const String& sectionName);
+		initWithSection(CAConfig* caConfig, Type type, const std::string& sectionName);
 
 		void
-		setPolicyIdentifier(const String& policyIdentifier);
-		
-		String
+		setPolicyIdentifier(const std::string& policyIdentifier);
+
+		std::string
 		getPolicyIdentifier() const;
 
 		void
 		setCpsURI(const StringList& cpsURI);
-		
+
 		StringList
 		getCpsURI() const;
-		
+
 		void
 		setUserNoticeList(const std::list<UserNotice>& list);
-		
+
 		std::list<UserNotice>
 		getUserNoticeList() const;
-        
-		virtual blocxx::String
+
+		virtual std::string
 		commit2Config(CA& ca, Type type, uint32_t num) const;
 
 		virtual bool
 		valid() const;
-		
-		virtual std::vector<blocxx::String>
+
+		virtual std::vector<std::string>
 		verify() const;
 
-		virtual std::vector<blocxx::String>
+		virtual std::vector<std::string>
 		dump() const;
 
 #ifndef SWIG
 
 		friend bool
 		operator==(const CertificatePolicy &l, const CertificatePolicy &r);
-		
+
 		friend bool
 		operator<(const CertificatePolicy &l, const CertificatePolicy &r);
 
@@ -153,11 +153,11 @@ namespace CA_MGM_NAMESPACE {
 
 	private:
 		blocxx::COWIntrusiveReference<CertificatePolicyImpl> m_impl;
-		
-		std::vector<blocxx::String>
+
+		std::vector<std::string>
 		checkCpsURIs(const StringList& cpsURIs) const;
-		
-		std::vector<blocxx::String>
+
+		std::vector<std::string>
 		checkNoticeList(const std::list<UserNotice>& list) const;
     };
 
@@ -168,7 +168,7 @@ namespace CA_MGM_NAMESPACE {
 		CertificatePoliciesExt(CAConfig* caConfig, Type type);
 		CertificatePoliciesExt(const CertificatePoliciesExt& extension);
 		virtual ~CertificatePoliciesExt();
-		
+
 #ifndef SWIG
 
 		CertificatePoliciesExt&
@@ -178,32 +178,32 @@ namespace CA_MGM_NAMESPACE {
 
 		void
 		enableIA5org(bool ia5org = true);
-		
+
 		bool
 		isIA5orgEnabled() const;
-		
+
 		void
 		setPolicies(const std::list<CertificatePolicy>& policies);
-		
+
 		std::list<CertificatePolicy>
 		getPolicies() const;
 
         virtual void
         commit2Config(CA& ca, Type type) const;
-		
+
 		virtual bool
 		valid() const;
-		
-		virtual std::vector<blocxx::String>
+
+		virtual std::vector<std::string>
 		verify() const;
 
-		virtual std::vector<blocxx::String>
+		virtual std::vector<std::string>
 		dump() const;
 
 	private:
 		blocxx::COWIntrusiveReference<CertificatePoliciesExtImpl> m_impl;
-		
-		std::vector<blocxx::String>
+
+		std::vector<std::string>
 		checkPolicies(const std::list<CertificatePolicy>& pl) const;
 
     };

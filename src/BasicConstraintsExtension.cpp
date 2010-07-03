@@ -79,7 +79,7 @@ BasicConstraintsExt::BasicConstraintsExt(CAConfig* caConfig, Type type)
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             Format(__("Wrong type: %1."), type).c_str());
+		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
 	bool p = caConfig->exists(type2Section(type, true), "basicConstraints");
@@ -88,19 +88,19 @@ BasicConstraintsExt::BasicConstraintsExt(CAConfig* caConfig, Type type)
 		bool          isCA = false;
 		int32_t pl   = -1;
 
-		std::vector<blocxx::String>   sp   = convStringArray(PerlRegEx("\\s*,\\s*")
-			.split(caConfig->getValue(type2Section(type, true), "basicConstraints")));
-		if(sp[0].equalsIgnoreCase("critical"))  setCritical(true);
+		std::vector<std::string>   sp   = PerlRegEx("\\s*,\\s*")
+			.split(caConfig->getValue(type2Section(type, true), "basicConstraints"));
+		if(0 == str::compareCI(sp[0], "critical"))  setCritical(true);
 
-		std::vector<blocxx::String>::const_iterator it = sp.begin();
+		std::vector<std::string>::const_iterator it = sp.begin();
 		for(; it != sp.end(); ++it)
 		{
-			if((*it).equalsIgnoreCase("ca:true"))  isCA = true;
-			else if((*it).equalsIgnoreCase("ca:false"))  isCA = false;
-			else if((*it).startsWith("pathlen:", String::E_CASE_INSENSITIVE))
+			if(0 == str::compareCI(*it, "ca:true"))  isCA = true;
+			else if(0 == str::compareCI(*it, "ca:false"))  isCA = false;
+			else if(0 == str::startsWithCI(*it, "pathlen:"))
 			{
-				std::vector<blocxx::String> plA = convStringArray(PerlRegEx(":").split(*it));
-				pl = plA[1].toInt32();
+				std::vector<std::string> plA = PerlRegEx(":").split(*it);
+				pl = str::strtonum<int32_t>(plA[1]);
 			}
 		}
 		setBasicConstraints(isCA, pl);
@@ -182,12 +182,12 @@ BasicConstraintsExt::commit2Config(CA& ca, Type type) const
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             Format(__("Wrong type: %1."), type).c_str());
+		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
 	if(isPresent())
 	{
-		String basicConstraintsString;
+		std::string basicConstraintsString;
 
 		if(isCritical()) basicConstraintsString += "critical,";
 
@@ -196,7 +196,7 @@ BasicConstraintsExt::commit2Config(CA& ca, Type type) const
 			basicConstraintsString += "CA:TRUE";
 			if(getPathLength() > -1)
 			{
-				basicConstraintsString += ",pathlen:"+String(getPathLength());
+				basicConstraintsString += ",pathlen:"+str::numstring(getPathLength());
 			}
 		}
 		else
@@ -234,38 +234,38 @@ BasicConstraintsExt::valid() const
 	return true;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 BasicConstraintsExt::verify() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 
 	if(!isPresent()) return result;
 
 	if(isCA() && getPathLength() < -1)
 	{
-		result.push_back(Format("invalid value for pathLength(%1). Has to be >= -1",
-		                     getPathLength()).toString());
+		result.push_back(str::form("invalid value for pathLength(%d). Has to be >= -1",
+		                     getPathLength()));
 	}
 	if(!isCA() && getPathLength() != -1)
 	{
-		result.push_back(Format("invalid value for pathLength(%1). Has to be -1",
-		                     getPathLength()).toString());
+		result.push_back(str::form("invalid value for pathLength(%d). Has to be -1",
+		                     getPathLength()));
 	}
 	LOGIT_DEBUG_STRINGARRAY("BasicConstraintsExt::verify()", result);
 	return result;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 BasicConstraintsExt::dump() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 	result.push_back("BasicConstraintsExt::dump()");
 
 	appendArray(result, ExtensionBase::dump());
 	if(!isPresent()) return result;
 
-	result.push_back("CA = " + Bool(isCA()).toString());
-	result.push_back("pathlen = " + String(getPathLength()));
+	result.push_back("CA = " + str::toString(isCA()));
+	result.push_back("pathlen = " + str::numstring(getPathLength()));
 
 	return result;
 }

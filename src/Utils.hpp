@@ -176,22 +176,22 @@ inline ValueCheck initAccessOIDCheck() {
 	return checkAccessOID;
 }
 
-inline std::vector<blocxx::String>
+inline std::vector<std::string>
 	checkLiteralValueList(const std::list<LiteralValue>& list)
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 	std::list<LiteralValue>::const_iterator it = list.begin();
 	for(;it != list.end(); it++) {
 		//result.appendArray((*it).verify());
-                std::vector<blocxx::String> v = (*it).verify();
+                std::vector<std::string> v = (*it).verify();
                 result.insert(result.end(), v.begin(), v.end());
 	}
 	return result;
 }
 
-inline blocxx::String type2Section(Type type, bool v3section)
+inline std::string type2Section(Type type, bool v3section)
 {
-	blocxx::String result;
+	std::string result;
 
 	switch(type)
 	{
@@ -239,7 +239,7 @@ inline blocxx::String type2Section(Type type, bool v3section)
 		break;
 	default:
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ValueException, blocxx::Format("wrong type: %1", type).c_str());
+		BLOCXX_THROW(ValueException, str::form("wrong type: %d", type).c_str());
 	}
 	LOGIT_DEBUG("type2Section: type=" << type << " result=" << result);
 	return result;
@@ -247,26 +247,26 @@ inline blocxx::String type2Section(Type type, bool v3section)
 
 // throws or returns the process exit code or -1 (term by signal).
 int wrapExecuteProcessAndGatherOutput(
-                                       const std::vector<blocxx::String> &cmd,
-                                       blocxx::String                      &out,
-                                       blocxx::String                      &err,
-                                       const blocxx::EnvVars               &env,
-                                       int                                 tmax=-1,
-                                       int                                 omax=-1,
-                                       const blocxx::String                &in=blocxx::String()
+                                       const std::vector<std::string> &cmd,
+                                       std::string                    &out,
+                                       std::string                    &err,
+                                       const blocxx::EnvVars          &env,
+                                       int                            tmax=-1,
+                                       int                            omax=-1,
+                                       const std::string              &in=std::string()
                                      );
 
-inline int rehashCAs(const blocxx::String &repositoryDir)
+inline int rehashCAs(const std::string &repositoryDir)
 {
-	std::vector<blocxx::String> cmd;
+	std::vector<std::string> cmd;
 	cmd.push_back(C_REHASH_COMMAND);
 	cmd.push_back(repositoryDir);
 
 	blocxx::EnvVars env;
 	env.addVar("PATH", "/usr/bin/");
 
-	blocxx::String stdOutput;
-	blocxx::String errOutput;
+	std::string stdOutput;
+	std::string errOutput;
 	int    status = -1;
 	try
 	{
@@ -279,7 +279,7 @@ inline int rehashCAs(const blocxx::String &repositoryDir)
 	}
 	if(status != 0)
 	{
-		LOGIT_INFO( "c_rehash status:" << blocxx::String(status));
+		LOGIT_INFO( "c_rehash status:" << str::numstring(status));
 	}
 	if(!errOutput.empty())
 	{
@@ -295,8 +295,8 @@ inline int rehashCAs(const blocxx::String &repositoryDir)
 	return status;
 }
 
-std::vector<blocxx::String> convStringArray(const blocxx::StringArray &in);
-void appendArray(std::vector<blocxx::String> &in, const std::vector<blocxx::String> &arr);
+//std::vector<std::string> convStringArray(const std::stringArray &in);
+void appendArray(std::vector<std::string> &in, const std::vector<std::string> &arr);
 
 
 }

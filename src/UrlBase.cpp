@@ -18,8 +18,8 @@
 /-*/
 
 #include <limal/UrlBase.hpp>
-#include <blocxx/Format.hpp>
-#include <blocxx/PosixRegEx.hpp>
+#include <limal/String.hpp>
+#include <limal/PosixRegEx.hpp>
 
 #include "Utils.hpp"
 
@@ -74,9 +74,6 @@ namespace LIMAL_NAMESPACE
 namespace url
 {
 
-using namespace blocxx;
-
-
 // -------------------------------------------------------------------
 ViewOptions::ViewOptions()
 	: opt(ViewOptions::WITH_SCHEME     |
@@ -101,7 +98,7 @@ ViewOptions::ViewOptions(int o)
 /*
 ** Behaviour configuration variables.
 */
-typedef std::map< blocxx::String, blocxx::String > UrlConfig;
+typedef std::map< std::string, std::string > UrlConfig;
 
 
 // -------------------------------------------------------------------
@@ -127,15 +124,15 @@ public:
 	UrlConfig       config;
 	ViewOptions     vopts;
 
-	blocxx::String  scheme;
-	blocxx::String  user;
-	blocxx::String  pass;
-	blocxx::String  host;
-	blocxx::String  port;
-	blocxx::String  pathname;
-	blocxx::String  pathparams;
-	blocxx::String  querystr;
-	blocxx::String  fragment;
+	std::string  scheme;
+	std::string  user;
+	std::string  pass;
+	std::string  host;
+	std::string  port;
+	std::string  pathname;
+	std::string  pathparams;
+	std::string  querystr;
+	std::string  fragment;
 };
 
 
@@ -148,17 +145,17 @@ namespace // anonymous
 
         // -----------------------------------------------------------
 	inline void
-	checkUrlData(const blocxx::String &data,
-		     const blocxx::String &name,
-		     const blocxx::String &regx,
+	checkUrlData(const std::string &data,
+		     const std::string &name,
+		     const std::string &regx,
 		     bool               show=true)
 	{
 		if( regx.empty() || regx == "^$")
 		{
 			BLOCXX_THROW(UrlNotAllowedException,
-				Format(__("The %1 url component is "
+				str::form(__("The %s url component is "
 				          "not allowed in this scheme"),
-				       name).c_str()
+				       name.c_str()).c_str()
 			);
 		}
 
@@ -175,14 +172,14 @@ namespace // anonymous
 			if( show)
 			{
 				BLOCXX_THROW(UrlBadComponentException,
-					Format(__("Invalid %1 URL component data '%2'."),
-					       name, data).c_str()
+					str::form(__("Invalid %s URL component data '%s'."),
+					       name.c_str(), data.c_str()).c_str()
 				);
 			}
 			else
 			{
 				BLOCXX_THROW(UrlBadComponentException,
-					Format(__("Invalid data in the %1 URL component."), name).c_str()
+					str::form(__("Invalid data in the %s URL component."), name.c_str()).c_str()
 				);
 			}
 		}
@@ -213,7 +210,7 @@ UrlBase::UrlBase(const UrlBase &url)
 
 
 // -------------------------------------------------------------------
-UrlBase::UrlBase(const blocxx::String &urlString)
+UrlBase::UrlBase(const std::string &urlString)
 	: m_data( new UrlBaseData())
 {
 	configure();
@@ -241,7 +238,7 @@ UrlBase::operator = (const UrlBase& url)
 
 // -------------------------------------------------------------------
 UrlBase&
-UrlBase::operator = (const blocxx::String &urlString)
+UrlBase::operator = (const std::string &urlString)
 {
 	UrlBaseData   saved_data( *m_data);
 
@@ -341,21 +338,21 @@ UrlBase::configure()
 
 // -------------------------------------------------------------------
 void
-UrlBase::config(const blocxx::String &opt, const blocxx::String &val)
+UrlBase::config(const std::string &opt, const std::string &val)
 {
 	m_data->config[opt] = val;
 }
 
 
 // -------------------------------------------------------------------
-blocxx::String
-UrlBase::config(const blocxx::String &opt) const
+std::string
+UrlBase::config(const std::string &opt) const
 {
 	UrlConfig::const_iterator v( m_data->config.find(opt));
 	if( v != m_data->config.end())
 		return v->second;
 	else
-		return blocxx::String();
+		return std::string();
 }
 
 
@@ -396,24 +393,24 @@ UrlBase::clone() const
 
 
 // -------------------------------------------------------------------
-std::vector<blocxx::String>
+std::vector<std::string>
 UrlBase::getKnownSchemes() const
 {
-	return std::vector<blocxx::String>();
+	return std::vector<std::string>();
 }
 
 
 // -------------------------------------------------------------------
 bool
-UrlBase::isKnownScheme(const blocxx::String &scheme) const
+UrlBase::isKnownScheme(const std::string &scheme) const
 {
-	String                      lscheme( String(scheme).toLowerCase());
-	std::vector<blocxx::String>                 schemes( getKnownSchemes());
-	std::vector<blocxx::String>::const_iterator s;
+	std::string                              lscheme( str::toLower(scheme));
+	std::vector<std::string>                 schemes( getKnownSchemes());
+	std::vector<std::string>::const_iterator s;
 
 	for(s=schemes.begin(); s!=schemes.end(); ++s)
 	{
-		if( lscheme == String(*s).toLowerCase())
+		if( lscheme == str::toLower(*s))
 			return true;
 	}
 	return false;
@@ -422,7 +419,7 @@ UrlBase::isKnownScheme(const blocxx::String &scheme) const
 
 // -------------------------------------------------------------------
 bool
-UrlBase::isValidScheme(const blocxx::String &scheme) const
+UrlBase::isValidScheme(const std::string &scheme) const
 {
 	bool valid = false;
 	try
@@ -435,16 +432,16 @@ UrlBase::isValidScheme(const blocxx::String &scheme) const
 
 	if(valid)
 	{
-		String      lscheme( String(scheme).toLowerCase());
-		std::vector<blocxx::String> schemes( getKnownSchemes());
+		std::string              lscheme( str::toLower(scheme));
+		std::vector<std::string> schemes( getKnownSchemes());
 
 		if( schemes.empty())
 			return true;
 
-		std::vector<blocxx::String>::const_iterator s;
+		std::vector<std::string>::const_iterator s;
 		for(s=schemes.begin(); s!=schemes.end(); ++s)
 		{
-			if( lscheme == String(*s).toLowerCase())
+			if( lscheme == str::toLower(*s))
 				return true;
 		}
 	}
@@ -465,11 +462,11 @@ UrlBase::isValid() const
 	if( getScheme().empty())
 		return false;
 
-	blocxx::String host( getHost(ca_mgm::url::E_ENCODED));
+	std::string host( getHost(ca_mgm::url::E_ENCODED));
 	if( host.empty() && config("require_host")     != "n")
 		return false;
 
-	blocxx::String path( getPathName(ca_mgm::url::E_ENCODED));
+	std::string path( getPathName(ca_mgm::url::E_ENCODED));
 	if( path.empty() && config("require_pathname") != "n")
 		return false;
 
@@ -477,7 +474,7 @@ UrlBase::isValid() const
 	** path has to begin with "/" if authority avaliable
 	** if host is set after the pathname, we can't throw
 	*/
-	if( !host.empty() && !path.empty() && path.charAt(0) != '/')
+	if( !host.empty() && !path.empty() && path.at(0) != '/')
 		return false;
 
 	return true;
@@ -485,7 +482,7 @@ UrlBase::isValid() const
 
 
 // -------------------------------------------------------------------
-blocxx::String
+std::string
 UrlBase::toString() const
 {
 	return toString(getViewOptions());
@@ -493,10 +490,10 @@ UrlBase::toString() const
 
 
 // -------------------------------------------------------------------
-blocxx::String
+std::string
 UrlBase::toString(const ca_mgm::url::ViewOptions &opts) const
 {
-	blocxx::String   url;
+	std::string   url;
 	UrlBaseData   tmp;
 
 	if( opts.has(ViewOptions::WITH_SCHEME))
@@ -561,12 +558,12 @@ UrlBase::toString(const ca_mgm::url::ViewOptions &opts) const
 		tmp.pathname = getPathName(ca_mgm::url::E_ENCODED);
 		if( !tmp.pathname.empty())
 		{
-			if(url.indexOf("/") != String::npos)
+			if(url.find_first_of("/") != std::string::npos)
 			{
 				// Url contains authority (that may be empty),
 				// we may need a rewrite of the encoded path.
 				tmp.pathname = cleanupPathName(tmp.pathname, true);
-				if(tmp.pathname.charAt(0) != '/')
+				if(tmp.pathname.at(0) != '/')
 				{
 					url += "/";
 				}
@@ -587,7 +584,7 @@ UrlBase::toString(const ca_mgm::url::ViewOptions &opts) const
 			}
 		}
 		else if( opts.has(ViewOptions::EMPTY_PATH_NAME)
-		         && url.indexOf("/") != String::npos)
+		         && url.find_first_of("/") != std::string::npos)
 		{
 			url += "/";
 			if( opts.has(ViewOptions::EMPTY_PATH_PARAMS))
@@ -628,7 +625,7 @@ UrlBase::toString(const ca_mgm::url::ViewOptions &opts) const
 
 
 // -------------------------------------------------------------------
-blocxx::String
+std::string
 UrlBase::getScheme() const
 {
 	return m_data->scheme;
@@ -636,10 +633,10 @@ UrlBase::getScheme() const
 
 
 // -------------------------------------------------------------------
-blocxx::String
+std::string
 UrlBase::getAuthority() const
 {
-	blocxx::String str;
+	std::string str;
 	if( !getHost(ca_mgm::url::E_ENCODED).empty())
 	{
 		if( !getUsername(ca_mgm::url::E_ENCODED).empty())
@@ -663,7 +660,7 @@ UrlBase::getAuthority() const
 
 
 // -------------------------------------------------------------------
-blocxx::String
+std::string
 UrlBase::getPathData() const
 {
 	return getPathName(ca_mgm::url::E_ENCODED) +
@@ -673,7 +670,7 @@ UrlBase::getPathData() const
 
 
 // -------------------------------------------------------------------
-blocxx::String
+std::string
 UrlBase::getQueryString() const
 {
 	return m_data->querystr;
@@ -681,7 +678,7 @@ UrlBase::getQueryString() const
 
 
 // -------------------------------------------------------------------
-blocxx::String
+std::string
 UrlBase::getFragment(EEncoding eflag) const
 {
 	if(eflag == ca_mgm::url::E_DECODED)
@@ -692,7 +689,7 @@ UrlBase::getFragment(EEncoding eflag) const
 
 
 // -------------------------------------------------------------------
-blocxx::String
+std::string
 UrlBase::getUsername(EEncoding eflag) const
 {
 	if(eflag == ca_mgm::url::E_DECODED)
@@ -703,7 +700,7 @@ UrlBase::getUsername(EEncoding eflag) const
 
 
 // -------------------------------------------------------------------
-blocxx::String
+std::string
 UrlBase::getPassword(EEncoding eflag) const
 {
 	if(eflag == ca_mgm::url::E_DECODED)
@@ -714,7 +711,7 @@ UrlBase::getPassword(EEncoding eflag) const
 
 
 // -------------------------------------------------------------------
-blocxx::String
+std::string
 UrlBase::getHost(EEncoding eflag) const
 {
 	if(eflag == ca_mgm::url::E_DECODED)
@@ -725,7 +722,7 @@ UrlBase::getHost(EEncoding eflag) const
 
 
 // -------------------------------------------------------------------
-blocxx::String
+std::string
 UrlBase::getPort() const
 {
 	return m_data->port;
@@ -733,7 +730,7 @@ UrlBase::getPort() const
 
 
 // -------------------------------------------------------------------
-blocxx::String
+std::string
 UrlBase::getPathName(EEncoding eflag) const
 {
 	if(eflag == ca_mgm::url::E_DECODED)
@@ -744,7 +741,7 @@ UrlBase::getPathName(EEncoding eflag) const
 
 
 // -------------------------------------------------------------------
-blocxx::String
+std::string
 UrlBase::getPathParams() const
 {
 	return m_data->pathparams;
@@ -752,12 +749,12 @@ UrlBase::getPathParams() const
 
 
 // -------------------------------------------------------------------
-std::vector<blocxx::String>
+std::vector<std::string>
 UrlBase::getPathParamsArray() const
 {
 	if( config("psep_pathparam").empty())
 	{
-		return std::vector<blocxx::String>(1, getPathParams());
+		return std::vector<std::string>(1, getPathParams());
 	}
 	else
 	{
@@ -790,23 +787,23 @@ UrlBase::getPathParamsMap(EEncoding eflag) const
 
 
 // -------------------------------------------------------------------
-blocxx::String
-UrlBase::getPathParam(const blocxx::String &param, EEncoding eflag) const
+std::string
+UrlBase::getPathParam(const std::string &param, EEncoding eflag) const
 {
 	ca_mgm::url::ParamMap pmap( getPathParamsMap( eflag));
 	ca_mgm::url::ParamMap::const_iterator i( pmap.find(param));
 
-	return i != pmap.end() ? i->second : blocxx::String();
+	return i != pmap.end() ? i->second : std::string();
 }
 
 
 // -------------------------------------------------------------------
-std::vector<blocxx::String>
+std::vector<std::string>
 UrlBase::getQueryStringArray() const
 {
 	if( config("psep_querystr").empty())
 	{
-		return std::vector<blocxx::String>(1, getQueryString());
+		return std::vector<std::string>(1, getQueryString());
 	}
 	else
 	{
@@ -839,23 +836,23 @@ UrlBase::getQueryStringMap(EEncoding eflag) const
 
 
 // -------------------------------------------------------------------
-blocxx::String
-UrlBase::getQueryParam(const blocxx::String &param, EEncoding eflag) const
+std::string
+UrlBase::getQueryParam(const std::string &param, EEncoding eflag) const
 {
 	ca_mgm::url::ParamMap pmap( getQueryStringMap( eflag));
 	ca_mgm::url::ParamMap::const_iterator i( pmap.find(param));
 
-	return i != pmap.end() ? i->second : blocxx::String();
+	return i != pmap.end() ? i->second : std::string();
 }
 
 
 // -------------------------------------------------------------------
 void
-UrlBase::setScheme(const blocxx::String &scheme)
+UrlBase::setScheme(const std::string &scheme)
 {
 	if( isValidScheme(scheme))
 	{
-		m_data->scheme = String(scheme).toLowerCase();
+		m_data->scheme = str::toLower(scheme);
 	}
 	else
 	if( scheme.empty())
@@ -867,8 +864,8 @@ UrlBase::setScheme(const blocxx::String &scheme)
 	else
 	{
 		BLOCXX_THROW(UrlBadComponentException,
-			Format(__("Invalid URL scheme '%1'."),
-			       scheme).c_str()
+			str::form(__("Invalid URL scheme '%s'."),
+			       scheme.c_str()).c_str()
 		);
 	}
 }
@@ -876,7 +873,7 @@ UrlBase::setScheme(const blocxx::String &scheme)
 
 // -------------------------------------------------------------------
 void
-UrlBase::setAuthority(const blocxx::String &authority)
+UrlBase::setAuthority(const std::string &authority)
 {
 	UrlAuthority tmp( parse_url_authority(authority));
 
@@ -889,19 +886,19 @@ UrlBase::setAuthority(const blocxx::String &authority)
 
 // -------------------------------------------------------------------
 void
-UrlBase::setPathData(const blocxx::String &pathdata)
+UrlBase::setPathData(const std::string &pathdata)
 {
-	size_t      pos = blocxx::String::npos;
-	blocxx::String sep(config("sep_pathparams"));
+	size_t      pos = std::string::npos;
+	std::string sep(config("sep_pathparams"));
 
 	if( !sep.empty())
-		pos = pathdata.indexOf(sep);
+		pos = pathdata.find_first_of(sep);
 
-	if( pos != String::npos)
+	if( pos != std::string::npos)
 	{
-		setPathName(pathdata.substring(0, pos),
+		setPathName(pathdata.substr(0, pos),
 		            ca_mgm::url::E_ENCODED);
-		setPathParams(pathdata.substring(pos + 1));
+		setPathParams(pathdata.substr(pos + 1));
 	}
 	else
 	{
@@ -913,7 +910,7 @@ UrlBase::setPathData(const blocxx::String &pathdata)
 
 // -------------------------------------------------------------------
 void
-UrlBase::setQueryString(const blocxx::String &querystr)
+UrlBase::setQueryString(const std::string &querystr)
 {
 	if( querystr.empty())
 	{
@@ -930,7 +927,7 @@ UrlBase::setQueryString(const blocxx::String &querystr)
 
 // -------------------------------------------------------------------
 void
-UrlBase::setFragment(const blocxx::String &fragment, EEncoding eflag)
+UrlBase::setFragment(const std::string &fragment, EEncoding eflag)
 {
 	if( fragment.empty())
 	{
@@ -956,7 +953,7 @@ UrlBase::setFragment(const blocxx::String &fragment, EEncoding eflag)
 
 // -------------------------------------------------------------------
 void
-UrlBase::setUsername(const blocxx::String &user, EEncoding eflag)
+UrlBase::setUsername(const std::string &user, EEncoding eflag)
 {
 	if( user.empty())
 	{
@@ -990,7 +987,7 @@ UrlBase::setUsername(const blocxx::String &user, EEncoding eflag)
 
 // -------------------------------------------------------------------
 void
-UrlBase::setPassword(const blocxx::String &pass, EEncoding eflag)
+UrlBase::setPassword(const std::string &pass, EEncoding eflag)
 {
 	if( pass.empty())
 	{
@@ -1024,7 +1021,7 @@ UrlBase::setPassword(const blocxx::String &pass, EEncoding eflag)
 
 // -------------------------------------------------------------------
 void
-UrlBase::setHost(const blocxx::String &host, EEncoding eflag)
+UrlBase::setHost(const std::string &host, EEncoding eflag)
 {
 	if( host.empty())
 	{
@@ -1048,9 +1045,9 @@ UrlBase::setHost(const blocxx::String &host, EEncoding eflag)
 
 		checkValidHost( host, eflag);
 
-		if( host.charAt(0) == '[')
+		if( host.at(0) == '[')
 		{
-			if( host.charAt(1) == 'v')
+			if( host.at(1) == 'v')
 			{
 				// Hmm... checkValidHost may be reimplemented
 				// and supports the IPvFuture brace format.
@@ -1068,7 +1065,7 @@ UrlBase::setHost(const blocxx::String &host, EEncoding eflag)
 			else
 			{
 				// use upper case in IPv6 addresses
-				m_data->host = String(host).toUpperCase();
+				m_data->host = str::toUpper(host);
 			}
 		}
 		else
@@ -1076,15 +1073,14 @@ UrlBase::setHost(const blocxx::String &host, EEncoding eflag)
 			if(eflag == ca_mgm::url::E_ENCODED)
 			{
 				m_data->host = ca_mgm::url::encode(
-					ca_mgm::url::decode(host).toLowerCase(),
+					str::toLower(ca_mgm::url::decode(host)),
 					SAFE_CHARS_HOSTNAME
 				);
 			}
 			else
 			{
 				m_data->host = ca_mgm::url::encode(
-					String(host).toLowerCase(),
-					SAFE_CHARS_HOSTNAME
+					str::toLower(host), SAFE_CHARS_HOSTNAME
 				);
 			}
 		}
@@ -1094,7 +1090,7 @@ UrlBase::setHost(const blocxx::String &host, EEncoding eflag)
 
 // -------------------------------------------------------------------
 void
-UrlBase::setPort(const blocxx::String &port)
+UrlBase::setPort(const std::string &port)
 {
 	if( port.empty())
 	{
@@ -1120,7 +1116,7 @@ UrlBase::setPort(const blocxx::String &port)
 
 // -------------------------------------------------------------------
 void
-UrlBase::setPathName(const blocxx::String &path, EEncoding eflag)
+UrlBase::setPathName(const std::string &path, EEncoding eflag)
 {
 	if( path.empty())
 	{
@@ -1154,7 +1150,7 @@ UrlBase::setPathName(const blocxx::String &path, EEncoding eflag)
 
 // -------------------------------------------------------------------
 void
-UrlBase::setPathParams(const blocxx::String &params)
+UrlBase::setPathParams(const std::string &params)
 {
 	if( params.empty())
 	{
@@ -1171,7 +1167,7 @@ UrlBase::setPathParams(const blocxx::String &params)
 
 // -------------------------------------------------------------------
 void
-UrlBase::setPathParamsArray(const std::vector<blocxx::String> &parray)
+UrlBase::setPathParamsArray(const std::vector<std::string> &parray)
 {
 	setPathParams(
 		ca_mgm::url::join(
@@ -1206,7 +1202,7 @@ UrlBase::setPathParamsMap(const ca_mgm::url::ParamMap &pmap)
 
 // -------------------------------------------------------------------
 void
-UrlBase::setPathParam(const blocxx::String &param, const blocxx::String &value)
+UrlBase::setPathParam(const std::string &param, const std::string &value)
 {
 	ca_mgm::url::ParamMap pmap( getPathParamsMap(ca_mgm::url::E_DECODED));
 	pmap[param] = value;
@@ -1216,7 +1212,7 @@ UrlBase::setPathParam(const blocxx::String &param, const blocxx::String &value)
 
 // -------------------------------------------------------------------
 void
-UrlBase::setQueryStringArray(const std::vector<blocxx::String> &qarray)
+UrlBase::setQueryStringArray(const std::vector<std::string> &qarray)
 {
 	setQueryString(
 		ca_mgm::url::join(
@@ -1250,7 +1246,7 @@ UrlBase::setQueryStringMap(const ca_mgm::url::ParamMap &pmap)
 
 // -------------------------------------------------------------------
 void
-UrlBase::setQueryParam(const blocxx::String &param, const blocxx::String &value)
+UrlBase::setQueryParam(const std::string &param, const std::string &value)
 {
 	ca_mgm::url::ParamMap pmap( getQueryStringMap(ca_mgm::url::E_DECODED));
 	pmap[param] = value;
@@ -1259,24 +1255,24 @@ UrlBase::setQueryParam(const blocxx::String &param, const blocxx::String &value)
 
 
 // -------------------------------------------------------------------
-blocxx::String
-UrlBase::cleanupPathName(const blocxx::String &path) const
+std::string
+UrlBase::cleanupPathName(const std::string &path) const
 {
 	bool authority = !getHost(ca_mgm::url::E_ENCODED).empty();
 	return cleanupPathName(path, authority);
 }
 
 // -------------------------------------------------------------------
-blocxx::String
-UrlBase::cleanupPathName(const blocxx::String &path, bool authority) const
+std::string
+UrlBase::cleanupPathName(const std::string &path, bool authority) const
 {
-	blocxx::String copy( path);
+	std::string copy( path);
 
 	// decode the first slash if it is encoded ...
-	if(copy.length() >= 3 && copy.charAt(0) != '/' &&
-	   copy.substring(0, 3).toLowerCase() == "%2f")
+	if(copy.length() >= 3 && copy.at(0) != '/' &&
+	   str::toLower(copy.substr(0, 3)) == "%2f")
 	{
-		copy = "/" + copy.substring(3);
+		copy = "/" + copy.substr(3);
 	}
 
 	// if path begins with a double slash ("//"); encode the second
@@ -1291,27 +1287,27 @@ UrlBase::cleanupPathName(const blocxx::String &path, bool authority) const
 		if(config("path_encode_slash2") == "y")
 		{
 			// rewrite "//" ==> "/%2f"
-			if(copy.length() >= 2 && copy.charAt(0) == '/' && copy.charAt(1) == '/')
+			if(copy.length() >= 2 && copy.at(0) == '/' && copy.at(1) == '/')
 			{
-				copy = "/%2F" + copy.substring(2);
+				copy = "/%2F" + copy.substr(2);
 			}
 		}
 		else
 		{
 			// rewrite "/%2f" ==> "//"
-			if(copy.length() >= 4 && copy.charAt(0) == '/' &&
-			   copy.substring(1, 4).toLowerCase() == "%2f")
+			if(copy.length() >= 4 && copy.at(0) == '/' &&
+			   str::toLower(copy.substr(1, 4)) == "%2f")
 			{
-				copy = "//" + copy.substring(4);
+				copy = "//" + copy.substr(4);
 			}
 		}
 	}
 	else
 	{
 		// rewrite of "//" to "/%2f" is required (no authority)
-		if(copy.length() >= 2 && copy.charAt(0) == '/' && copy.charAt(1) == '/')
+		if(copy.length() >= 2 && copy.at(0) == '/' && copy.at(1) == '/')
 		{
-			copy = "/%2F" + copy.substring(2);
+			copy = "/%2F" + copy.substr(2);
 		}
 	}
 	return copy;
@@ -1319,7 +1315,7 @@ UrlBase::cleanupPathName(const blocxx::String &path, bool authority) const
 
 // -------------------------------------------------------------------
 void
-UrlBase::checkValidScheme(const blocxx::String  &scheme,
+UrlBase::checkValidScheme(const std::string  &scheme,
                           ca_mgm::url::EEncoding eflag) const
 {
 	(void)eflag; // scheme never needs percent-encoding
@@ -1330,7 +1326,7 @@ UrlBase::checkValidScheme(const blocxx::String  &scheme,
 
 // -------------------------------------------------------------------
 void
-UrlBase::checkValidUser(const blocxx::String  &user,
+UrlBase::checkValidUser(const std::string  &user,
                         ca_mgm::url::EEncoding eflag) const
 {
 	if( eflag == ca_mgm::url::E_ENCODED)
@@ -1342,7 +1338,7 @@ UrlBase::checkValidUser(const blocxx::String  &user,
 
 // -------------------------------------------------------------------
 void
-UrlBase::checkValidPass(const blocxx::String  &pass,
+UrlBase::checkValidPass(const std::string  &pass,
                         ca_mgm::url::EEncoding eflag) const
 {
 	if( eflag == ca_mgm::url::E_ENCODED)
@@ -1354,16 +1350,16 @@ UrlBase::checkValidPass(const blocxx::String  &pass,
 
 // -------------------------------------------------------------------
 void
-UrlBase::checkValidHost(const blocxx::String  &host,
+UrlBase::checkValidHost(const std::string  &host,
                         ca_mgm::url::EEncoding eflag) const
 {
 	bool valid = false;
 	try
 	{
-		if( host.charAt(0) == '[')
+		if( host.at(0) == '[')
 		{
 			// We don't support the IP-Literal "[v<HEX> ... ]" format
-			if( host.charAt(1) == 'v')
+			if( host.at(1) == 'v')
 			{
 				BLOCXX_THROW(UrlBadComponentException,
 					__("The IPvFuture URL host format is not supported.")
@@ -1373,7 +1369,7 @@ UrlBase::checkValidHost(const blocxx::String  &host,
 			checkUrlData(host, "ipv6 host", config("rx_hostipv6"));
 
 			struct in6_addr ip;
-			blocxx::String temp( host.substring(1, host.length()-2));
+			std::string temp( host.substr(1, host.length()-2));
 			valid = inet_pton(AF_INET6, temp.c_str(), &ip) > 0;
 		}
 		else
@@ -1386,7 +1382,7 @@ UrlBase::checkValidHost(const blocxx::String  &host,
 			}
 			else
 			{
-				blocxx::String temp( ca_mgm::url::decode(host));
+				std::string temp( ca_mgm::url::decode(host));
 				checkUrlData(temp, "hostname", config("rx_hostname"));
 				valid = true;
 			}
@@ -1400,8 +1396,8 @@ UrlBase::checkValidHost(const blocxx::String  &host,
 	if( !valid)
 	{
 		BLOCXX_THROW(UrlBadComponentException,
-			Format(__("Invalid hostname URL component data '%1'."),
-			       host).c_str()
+			str::form(__("Invalid hostname URL component data '%s'."),
+			       host.c_str()).c_str()
 		);
 	}
 }
@@ -1409,7 +1405,7 @@ UrlBase::checkValidHost(const blocxx::String  &host,
 
 // -------------------------------------------------------------------
 void
-UrlBase::checkValidPort(const blocxx::String  &port,
+UrlBase::checkValidPort(const std::string  &port,
                         ca_mgm::url::EEncoding eflag) const
 {
 	(void)eflag; // port never needs percent-encoding
@@ -1419,7 +1415,7 @@ UrlBase::checkValidPort(const blocxx::String  &port,
 	{
 		checkUrlData(port, "port number", config("rx_portnumber"));
 
-		uint16_t pnum = port.toUInt16();
+		uint16_t pnum = str::strtonum<uint16_t>(port);
 		valid = pnum >= 1;
 	}
 	catch( ... )
@@ -1430,8 +1426,8 @@ UrlBase::checkValidPort(const blocxx::String  &port,
 	if( !valid)
 	{
 		BLOCXX_THROW(UrlBadComponentException,
-			Format(__("Invalid port number URL component data '%1'."),
-			       port).c_str()
+			str::form(__("Invalid port number URL component data '%s'."),
+			       port.c_str()).c_str()
 		);
 	}
 }
@@ -1439,7 +1435,7 @@ UrlBase::checkValidPort(const blocxx::String  &port,
 
 // -------------------------------------------------------------------
 void
-UrlBase::checkValidPathName(const blocxx::String  &path,
+UrlBase::checkValidPathName(const std::string  &path,
                             ca_mgm::url::EEncoding eflag) const
 {
 	if(eflag == ca_mgm::url::E_ENCODED)
@@ -1452,8 +1448,8 @@ UrlBase::checkValidPathName(const blocxx::String  &path,
 			// setPathName while the host is empty, we allow
 			// it in encoded ("%2f") form - cleanupPathName()
 			// will fix / decode the first slash if needed.
-			if(!(path.charAt(0) == '/' || (path.length() >= 3 &&
-			   path.substring(0, 3).toLowerCase() == "%2f")))
+			if(!(path.at(0) == '/' || (path.length() >= 3 &&
+			   str::toLower(path.substr(0, 3)) == "%2f")))
 			{
 				BLOCXX_THROW(UrlNotAllowedException,
 					__("A relative path is not allowed if authority exists.")
@@ -1466,7 +1462,7 @@ UrlBase::checkValidPathName(const blocxx::String  &path,
 	{
 		if( !getHost(ca_mgm::url::E_ENCODED).empty())
 		{
-			if(path.charAt(0) != '/')
+			if(path.at(0) != '/')
 			{
 				BLOCXX_THROW(UrlNotAllowedException,
 					__("A relative path is not allowed if authority exists.")
@@ -1479,7 +1475,7 @@ UrlBase::checkValidPathName(const blocxx::String  &path,
 
 // -------------------------------------------------------------------
 void
-UrlBase::checkValidPathParams(const blocxx::String  &params,
+UrlBase::checkValidPathParams(const std::string  &params,
                               ca_mgm::url::EEncoding eflag) const
 {
 	if( eflag == ca_mgm::url::E_ENCODED)
@@ -1491,7 +1487,7 @@ UrlBase::checkValidPathParams(const blocxx::String  &params,
 
 // -------------------------------------------------------------------
 void
-UrlBase::checkValidQueryStr(const blocxx::String  &querystr,
+UrlBase::checkValidQueryStr(const std::string  &querystr,
                             ca_mgm::url::EEncoding eflag) const
 {
 	if( eflag == ca_mgm::url::E_ENCODED)
@@ -1503,7 +1499,7 @@ UrlBase::checkValidQueryStr(const blocxx::String  &querystr,
 
 // -------------------------------------------------------------------
 void
-UrlBase::checkValidFragment(const blocxx::String  &fragment,
+UrlBase::checkValidFragment(const std::string  &fragment,
                             ca_mgm::url::EEncoding eflag) const
 {
 	if( eflag == ca_mgm::url::E_ENCODED)

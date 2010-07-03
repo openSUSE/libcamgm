@@ -2,9 +2,9 @@
 #include <blocxx/AppenderLogger.hpp>
 #include <blocxx/CerrLogger.hpp>
 #include <blocxx/CerrAppender.hpp>
-#include <blocxx/String.hpp>
-#include <blocxx/DateTime.hpp>
-#include <blocxx/PerlRegEx.hpp>
+#include <limal/String.hpp>
+#include <limal/Date.hpp>
+#include <limal/PerlRegEx.hpp>
 #include <limal/Logger.hpp>
 #include <limal/PathInfo.hpp>
 #include <limal/ca-mgm/CA.hpp>
@@ -28,7 +28,7 @@ int main()
     {
         cout << "START" << endl;
 
-        blocxx::StringArray cat;
+        StringArray cat;
         cat.push_back("FATAL");
         cat.push_back("ERROR");
         cat.push_back("INFO");
@@ -47,14 +47,14 @@ int main()
         {
             CA ca("Test_CA2", "system", "./TestRepos/");
 
-            std::vector< std::map<blocxx::String, blocxx::String> > ret;
+            std::vector< std::map<std::string, std::string> > ret;
             ret = ca.getRequestList();
 
-            std::vector< std::map<blocxx::String, blocxx::String> >::const_iterator it;
+            std::vector< std::map<std::string, std::string> >::const_iterator it;
 
             for(it = ret.begin(); it != ret.end(); ++it)
             {
-                map<blocxx::String, blocxx::String>::const_iterator it2;
+                map<std::string, std::string>::const_iterator it2;
 
                 cout << "New Entry" << endl;
 
@@ -62,20 +62,9 @@ int main()
                 {
                     if((*it2).first == "date")
                     {
-                        PerlRegEx r("^(\\d\\d\\d\\d)-(\\d\\d)-(\\d\\d)\\s(\\d\\d):(\\d\\d):(\\d\\d)");
-                        std::vector<blocxx::String> sa = convStringArray(r.capture( (*it2).second ));
+                      Date dt((*it2).second, "%Y-%m-%d %H:%M:%S", true);
 
-                        if(sa.size() == 7)
-                        {
-                            blocxx::DateTime dt( sa[1].toInt(), sa[2].toInt(), sa[3].toInt(),
-                                                 sa[4].toInt(), sa[5].toInt(), sa[6].toInt() );
-                            cout << (*it2).first << " = " <<
-                                dt.toString("%Y-%m-%d %H:%M:%S UTC", DateTime::E_UTC_TIME) << endl;
-                        }
-                        else
-                        {
-                            cout << (*it2).first << " = " << (*it2).second << endl;
-                        }
+                      cout << (*it2).first << " = " << dt.form("%Y-%m-%d %H:%M:%S UTC", true) << endl;
                     }
                     else
                     {
@@ -89,14 +78,14 @@ int main()
         {
             CA ca2("Test_CA2", "system", "./TestRepos/");
 
-            std::vector<map<blocxx::String, blocxx::String> > ret;
+            std::vector<map<std::string, std::string> > ret;
             ret = ca2.getCertificateList();
 
-            std::vector<map<blocxx::String, blocxx::String> >::const_iterator it = ret.begin();
+            std::vector<map<std::string, std::string> >::const_iterator it = ret.begin();
 
             for(it = ret.begin(); it != ret.end(); ++it)
             {
-                map<blocxx::String, blocxx::String>::const_iterator it2;
+                map<std::string, std::string>::const_iterator it2;
 
                 cout << "New Entry" << endl;
 

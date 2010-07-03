@@ -2,8 +2,7 @@
 #include <blocxx/AppenderLogger.hpp>
 #include <blocxx/CerrLogger.hpp>
 #include <blocxx/CerrAppender.hpp>
-#include <blocxx/Format.hpp>
-#include <blocxx/String.hpp>
+#include <limal/String.hpp>
 #include <limal/Logger.hpp>
 #include "INIParser/INIParser.hpp"
 
@@ -20,21 +19,21 @@ ca_mgm::Logger logger("parser");
 
 void dumpTree(Section *section, int level = 0)
 {
-    String tab = "";
+    std::string tab = "";
     for (int i = 0; i <= level; i++) tab += "  ";
 
     if (level == 0)
 	LIMAL_SLOG_INFO(logger, tab);
 
     LIMAL_SLOG_INFO(logger, tab <<
-		    "SectionComment " << section->getComment());	
-    
+		    "SectionComment " << section->getComment());
+
     EntryMap eMap= section->getEntries();
     for (EntryMap::iterator i = eMap.begin(); i != eMap.end(); i++)
     {
 	Entry entry = i->second;
 	LIMAL_SLOG_INFO(logger, tab <<
-			"Comment " << i->first << " : " << entry.getComment());	
+			"Comment " << i->first << " : " << entry.getComment());
 	LIMAL_SLOG_INFO(logger, tab <<
 			"Entry   " << i->first << " : " << entry.getValue());
     }
@@ -70,13 +69,13 @@ int main(int argc, char **argv)
 
 	// Initialize parser for testfile
 	SysConfig parser;
-	
+
         // Parsing input file
-	String srcFile("iniParser/sysconfig.ini.test");
-	String command = "/bin/cp iniParser/sysconfig.ini " + srcFile;
+	std::string srcFile("iniParser/sysconfig.ini.test");
+	std::string command = "/bin/cp iniParser/sysconfig.ini " + srcFile;
 	system(command.c_str());
 	parser.initFiles (srcFile);
-	
+
 	if (!parser.initMachine ())
 	{
 	    LIMAL_SLOG(logger, "ERROR", "Cannot initialize parser for file " << srcFile);
@@ -88,20 +87,20 @@ int main(int argc, char **argv)
 	    LIMAL_SLOG(logger, "ERROR", "Cannot parse file " << srcFile);
 	    exit (1);
 	}
-	
+
 	LIMAL_SLOG(logger, "DEBUG", "file " << srcFile << " parsed.");
 	dumpTree(&(parser.iniFile));
 
 	parser.iniFile.addValue ("DEFAULT_LANGUAGE2", "german");
 	parser.iniFile.delEntry ("DEFAULT_LANGUAGE");
 	parser.iniFile.setValue ("ENABLE_SUSECONFIG", "no");
-	
+
 	parser.write();
 
 	// Re-reading testfile
 	SysConfig testparser;
 	testparser.initFiles (srcFile);
-	
+
 	if (!testparser.initMachine ())
 	{
 	    LIMAL_SLOG(logger, "ERROR", "Cannot initialize parser for file " << srcFile);
@@ -113,7 +112,7 @@ int main(int argc, char **argv)
 	    LIMAL_SLOG(logger, "ERROR", "Cannot parse file " << srcFile);
 	    exit (1);
 	}
-	
+
 	LIMAL_SLOG(logger, "DEBUG", "file " << srcFile << " parsed AGAIN.");
 	dumpTree(&(testparser.iniFile));
 

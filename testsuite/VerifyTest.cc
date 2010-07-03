@@ -2,8 +2,8 @@
 #include <blocxx/AppenderLogger.hpp>
 #include <blocxx/CerrLogger.hpp>
 #include <blocxx/CerrAppender.hpp>
-#include <blocxx/String.hpp>
-#include <blocxx/PerlRegEx.hpp>
+#include <limal/String.hpp>
+#include <limal/PerlRegEx.hpp>
 #include <limal/Logger.hpp>
 #include <limal/PathInfo.hpp>
 #include <limal/ca-mgm/CA.hpp>
@@ -24,13 +24,13 @@ int main()
     {
         cout << "START" << endl;
 
-        blocxx::StringArray cat;
+        StringArray cat;
         cat.push_back("FATAL");
         cat.push_back("ERROR");
         cat.push_back("INFO");
         cat.push_back("DEBUG");
 
-        blocxx::StringArray comp;
+        StringArray comp;
         comp.push_back("ca-mgm");
         comp.push_back("limal");
 
@@ -54,15 +54,15 @@ int main()
 
             ca.createCRL(cgd);
 
-            std::vector<map<blocxx::String, blocxx::String> > ret;
+            std::vector<map<std::string, std::string> > ret;
             ret = ca.getCertificateList();
 
-            std::vector<map<blocxx::String, blocxx::String> >::const_iterator it;
+            std::vector<map<std::string, std::string> >::const_iterator it;
 
             for(it = ret.begin(); it != ret.end(); ++it)
             {
-                blocxx::String name = (*(*it).find("certificate")).second;
-                blocxx::String serial = (*(*it).find("serial")).second;
+                std::string name = (*(*it).find("certificate")).second;
+                std::string serial = (*(*it).find("serial")).second;
 
                 try
                 {

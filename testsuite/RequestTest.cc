@@ -2,8 +2,8 @@
 #include <blocxx/AppenderLogger.hpp>
 #include <blocxx/CerrLogger.hpp>
 #include <blocxx/CerrAppender.hpp>
-#include <blocxx/String.hpp>
-#include <blocxx/PerlRegEx.hpp>
+#include <limal/String.hpp>
+#include <limal/PerlRegEx.hpp>
 #include <limal/Logger.hpp>
 #include <limal/PathInfo.hpp>
 #include <limal/ca-mgm/CA.hpp>
@@ -26,7 +26,7 @@ int main()
 	{
 		cout << "START" << endl;
 
-		blocxx::StringArray cat;
+		StringArray cat;
 		cat.push_back("FATAL");
 		cat.push_back("ERROR");
 		cat.push_back("INFO");
@@ -95,7 +95,7 @@ int main()
 		rgd.extensions().subjectAlternativeName().setAlternativeNameList(list);
 
 
-		blocxx::String r = ca.createRequest("system", rgd, E_Server_Req);
+		std::string r = ca.createRequest("system", rgd, E_Server_Req);
 
 		cout << "RETURN Request " << endl;
 
@@ -105,12 +105,12 @@ int main()
 
 		RequestData rd = ca.getRequest(r);
 
-		std::vector<blocxx::String> ret = rd.getExtensions().dump();
-		std::vector<blocxx::String>::const_iterator it;
+		std::vector<std::string> ret = rd.getExtensions().dump();
+		std::vector<std::string>::const_iterator it;
 
 		for(it = ret.begin(); it != ret.end(); ++it)
 		{
-			if((*it).startsWith("KeyID"))
+			if(str::startsWith((*it), "KeyID"))
 			{
 				cout << "found KeyID" << endl;
 			}

@@ -35,7 +35,7 @@ namespace CA_MGM_NAMESPACE
 	class CA;
 	class CAConfig;
 	class RequestGenerationDataImpl;
-	
+
     /**
      * @brief Data representation for generating a certificate request
      *
@@ -58,10 +58,10 @@ namespace CA_MGM_NAMESPACE
 		operator=(const RequestGenerationData& data);
 
 #endif
-		
+
 		void
 		setSubjectDN(const DNObject dn);
-        
+
 		DNObject
 		getSubjectDN() const;
 
@@ -70,31 +70,31 @@ namespace CA_MGM_NAMESPACE
 
 		void
 		setKeysize(uint32_t size);
-        
+
 		uint32_t
 		getKeysize() const;
 
 		void
 		setMessageDigest(MD md);
-        
+
 		MD
 		getMessageDigest() const;
-                               
+
 		void
-		setChallengePassword(const String &passwd);
-        
-		String
+		setChallengePassword(const std::string &passwd);
+
+		std::string
 		getChallengePassword() const;
 
 		void
-		setUnstructuredName(const String &name);
-        
-		String
+		setUnstructuredName(const std::string &name);
+
+		std::string
 		getUnstructuredName() const;
 
 		void
 		setExtensions(const X509v3RequestExts &ext);
-		
+
 		X509v3RequestExts
 		getExtensions() const;
 
@@ -109,16 +109,16 @@ namespace CA_MGM_NAMESPACE
 
 		virtual bool
 		valid() const;
-        
-		virtual std::vector<blocxx::String>
+
+		virtual std::vector<std::string>
 		verify() const;
 
-		virtual std::vector<blocxx::String>
+		virtual std::vector<std::string>
 		dump() const;
 
 	private:
 		blocxx::COWIntrusiveReference<RequestGenerationDataImpl> m_impl;
-    	
+
 	};
 }
 #endif //LIMAL_CA_MGM_REQUEST_GENERATION_DATA_HPP

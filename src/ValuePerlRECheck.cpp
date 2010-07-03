@@ -27,11 +27,9 @@
 #include  <limal/ValuePerlRECheck.hpp>
 
 #include  <limal/ca-mgm/CommonData.hpp>
-#include  <blocxx/String.hpp>
-#include  <blocxx/Format.hpp>
+#include  <limal/String.hpp>
 
 
-#ifdef BLOCXX_HAVE_PCRE
 namespace LIMAL_NAMESPACE
 {
 
@@ -39,7 +37,7 @@ using namespace blocxx;
 
 
 // -------------------------------------------------------------------
-ValuePerlRECheck::ValuePerlRECheck(const blocxx::String &regex,
+ValuePerlRECheck::ValuePerlRECheck(const std::string &regex,
                                    bool                  icase,
                                    bool                  utf8)
 	: ValueCheckBase()
@@ -61,22 +59,21 @@ ValuePerlRECheck::ValuePerlRECheck(const ValuePerlRECheck & check)
 
 // -------------------------------------------------------------------
 bool
-ValuePerlRECheck::isValid(const blocxx::String &value) const
+ValuePerlRECheck::isValid(const std::string &value) const
 {
 	return m_reg.match(value);
 }
 
 
 // -------------------------------------------------------------------
-blocxx::String
-ValuePerlRECheck::explain(const blocxx::String &value) const
+std::string
+ValuePerlRECheck::explain(const std::string &value) const
 {
-	return blocxx::Format("ValuePerlRECheck('%1' =~ /%2/%3)",
-	                      value, m_reg.patternString(),
+	return str::form("ValuePerlRECheck('%s' =~ /%s/%s)",
+	                      value.c_str(), m_reg.patternString().c_str(),
 			      (m_reg.compileFlags() & PCRE_CASELESS ? "i" : ""));
 }
 
 
 }       // End of LIMAL_NAMESPACE
-#endif
 // vim: set ts=8 sts=8 sw=8 ai noet:

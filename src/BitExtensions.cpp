@@ -129,7 +129,7 @@ KeyUsageExt::KeyUsageExt(CAConfig* caConfig, Type type)
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             Format(__("Wrong type: %1."), type).c_str());
+		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
 	bool p = caConfig->exists(type2Section(type, true), "keyUsage");
@@ -137,23 +137,23 @@ KeyUsageExt::KeyUsageExt(CAConfig* caConfig, Type type)
 	{
 		uint32_t keyUsage = 0;
 
-		String ku = caConfig->getValue(type2Section(type, true), "keyUsage");
-		std::vector<blocxx::String> sp = convStringArray(PerlRegEx("\\s*,\\s*").split(ku));
+		std::string ku = caConfig->getValue(type2Section(type, true), "keyUsage");
+		std::vector<std::string> sp = PerlRegEx("\\s*,\\s*").split(ku);
 
-		if(sp[0].equalsIgnoreCase("critical")) setCritical(true);
+		if(0 == str::compareCI(sp[0], "critical")) setCritical(true);
 
-		std::vector<blocxx::String>::const_iterator it = sp.begin();
+		std::vector<std::string>::const_iterator it = sp.begin();
 		for(; it != sp.end(); ++it)
 		{
-			if((*it).equalsIgnoreCase("digitalSignature"))      keyUsage |= digitalSignature;
-			else if((*it).equalsIgnoreCase("nonRepudiation"))   keyUsage |= nonRepudiation;
-			else if((*it).equalsIgnoreCase("keyEncipherment"))  keyUsage |= keyEncipherment;
-			else if((*it).equalsIgnoreCase("dataEncipherment")) keyUsage |= dataEncipherment;
-			else if((*it).equalsIgnoreCase("keyAgreement"))     keyUsage |= keyAgreement;
-			else if((*it).equalsIgnoreCase("keyCertSign"))      keyUsage |= keyCertSign;
-			else if((*it).equalsIgnoreCase("cRLSign"))          keyUsage |= cRLSign;
-			else if((*it).equalsIgnoreCase("encipherOnly"))     keyUsage |= encipherOnly;
-			else if((*it).equalsIgnoreCase("decipherOnly"))     keyUsage |= decipherOnly;
+			if(0 == str::compareCI(*it, "digitalSignature"))      keyUsage |= digitalSignature;
+			else if(0 == str::compareCI(*it, "nonRepudiation"))   keyUsage |= nonRepudiation;
+			else if(0 == str::compareCI(*it, "keyEncipherment"))  keyUsage |= keyEncipherment;
+			else if(0 == str::compareCI(*it, "dataEncipherment")) keyUsage |= dataEncipherment;
+			else if(0 == str::compareCI(*it, "keyAgreement"))     keyUsage |= keyAgreement;
+			else if(0 == str::compareCI(*it, "keyCertSign"))      keyUsage |= keyCertSign;
+			else if(0 == str::compareCI(*it, "cRLSign"))          keyUsage |= cRLSign;
+			else if(0 == str::compareCI(*it, "encipherOnly"))     keyUsage |= encipherOnly;
+			else if(0 == str::compareCI(*it, "decipherOnly"))     keyUsage |= decipherOnly;
 			else
 				LOGIT_INFO("Unknown KeyUsage option: " << (*it));
 
@@ -242,12 +242,12 @@ KeyUsageExt::commit2Config(CA& ca, Type type) const
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             Format(__("Wrong type: %1."), type).c_str());
+		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
 	if(isPresent())
 	{
-		String keyUsageString;
+		std::string keyUsageString;
 
 		if(isCritical()) keyUsageString += "critical,";
 
@@ -307,34 +307,32 @@ KeyUsageExt::valid() const
 	return true;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 KeyUsageExt::verify() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 
 	if(!isPresent()) return result;
 
 	if(!validKeyUsage(getValue()))
 	{
-		result.push_back(Format("invalid value '%1' for keyUsage", getValue()).toString());
+		result.push_back(str::form("invalid value '%d' for keyUsage", getValue()));
 	}
 
 	LOGIT_DEBUG_STRINGARRAY("KeyUsageExt::verify()", result);
 	return result;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 KeyUsageExt::dump() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 	result.push_back("KeyUsageExt::dump()");
 
 	appendArray(result, ExtensionBase::dump());
 	if(!isPresent()) return result;
 
-	String ku;
-	ku.format("%04x", getValue());
-	result.push_back("KeyUsage = 0x" + ku);
+	result.push_back("KeyUsage = " + str::hexstring(getValue(), 4));
 
 	return result;
 }
@@ -369,7 +367,7 @@ NsCertTypeExt::NsCertTypeExt(CAConfig* caConfig, Type type)
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             Format(__("Wrong type: %1."), type).c_str());
+		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
 	bool p = caConfig->exists(type2Section(type, true), "nsCertType");
@@ -377,22 +375,22 @@ NsCertTypeExt::NsCertTypeExt(CAConfig* caConfig, Type type)
 	{
 		uint32_t bits = 0;
 
-		String ct = caConfig->getValue(type2Section(type, true), "nsCertType");
-		std::vector<blocxx::String> sp = convStringArray(PerlRegEx("\\s*,\\s*").split(ct));
+		std::string ct = caConfig->getValue(type2Section(type, true), "nsCertType");
+		std::vector<std::string> sp = PerlRegEx("\\s*,\\s*").split(ct);
 
-		if(sp[0].equalsIgnoreCase("critical")) setCritical(true);
+		if(0 == str::compareCI(sp[0], "critical")) setCritical(true);
 
-		std::vector<blocxx::String>::const_iterator it = sp.begin();
+		std::vector<std::string>::const_iterator it = sp.begin();
 		for(; it != sp.end(); ++it)
 		{
-			if((*it).equalsIgnoreCase("client"))        bits |= client;
-			else if((*it).equalsIgnoreCase("server"))   bits |= server;
-			else if((*it).equalsIgnoreCase("email"))    bits |= email;
-			else if((*it).equalsIgnoreCase("objsign"))  bits |= objsign;
-			else if((*it).equalsIgnoreCase("reserved")) bits |= reserved;
-			else if((*it).equalsIgnoreCase("sslCA"))    bits |= sslCA;
-			else if((*it).equalsIgnoreCase("emailCA"))  bits |= emailCA;
-			else if((*it).equalsIgnoreCase("objCA"))    bits |= objCA;
+			if(0 == str::compareCI(*it, "client"))        bits |= client;
+			else if(0 == str::compareCI(*it, "server"))   bits |= server;
+			else if(0 == str::compareCI(*it, "email"))    bits |= email;
+			else if(0 == str::compareCI(*it, "objsign"))  bits |= objsign;
+			else if(0 == str::compareCI(*it, "reserved")) bits |= reserved;
+			else if(0 == str::compareCI(*it, "sslCA"))    bits |= sslCA;
+			else if(0 == str::compareCI(*it, "emailCA"))  bits |= emailCA;
+			else if(0 == str::compareCI(*it, "objCA"))    bits |= objCA;
 			else
 				LOGIT_INFO("Unknown NsCertType option: " << (*it));
 		}
@@ -436,7 +434,7 @@ NsCertTypeExt::setNsCertType(uint32_t nsCertTypes)
 	if(nsCertTypes > 0xFF || nsCertTypes == 0)
 	{
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             Format(__("Invalid value for NsCertTypeExt: %1."), nsCertTypes).c_str());
+		             str::form(__("Invalid value for NsCertTypeExt: %1."), nsCertTypes).c_str());
 	}
 	setValue(nsCertTypes);
 	setPresent(true);
@@ -477,12 +475,12 @@ NsCertTypeExt::commit2Config(CA& ca, Type type) const
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             Format(__("Wrong type: %1."), type).c_str());
+		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
 	if(isPresent())
 	{
-		String nsCertTypeString;
+		std::string nsCertTypeString;
 
 		if(isCritical()) nsCertTypeString += "critical,";
 
@@ -538,33 +536,31 @@ NsCertTypeExt::valid() const
 	return true;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 NsCertTypeExt::verify() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 
 	if(!isPresent()) return result;
 
 	if(getValue() > 0xFF || getValue() == 0)
 	{
-		result.push_back(Format("invalid value '%1' for nsCertType", getValue()).toString());
+		result.push_back(str::form("invalid value '%d' for nsCertType", getValue()));
 	}
 	LOGIT_DEBUG_STRINGARRAY("NsCertTypeExt::verify()", result);
 	return result;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 NsCertTypeExt::dump() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 	result.push_back("NsCertTypeExt::dump()");
 
 	appendArray(result, ExtensionBase::dump());
 	if(!isPresent()) return result;
 
-	String nsct;
-	nsct.format("%02x", getValue());
-	result.push_back("NsCertType = 0x" + nsct);
+	result.push_back("NsCertType = " + str::hexstring( getValue(), 4));
 
 	return result;
 }

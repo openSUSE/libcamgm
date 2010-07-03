@@ -101,19 +101,19 @@ RequestData::getExtensions() const
 	return m_impl->extensions;
 }
 
-blocxx::String
+std::string
 RequestData::getChallengePassword() const
 {
 	return m_impl->challengePassword;
 }
 
-blocxx::String
+std::string
 RequestData::getUnstructuredName() const
 {
 	return m_impl->unstructuredName;
 }
 
-blocxx::String
+std::string
 RequestData::getRequestAsText() const
 {
 	unsigned char *ustringval = NULL;
@@ -123,13 +123,13 @@ RequestData::getRequestAsText() const
 	X509_REQ_print_ex(bio, m_impl->x509, 0, 0);
 	n = BIO_get_mem_data(bio, &ustringval);
 
-	String text = String((const char*)ustringval, n);
+	std::string text = std::string((const char*)ustringval, n);
 	BIO_free(bio);
 
 	return text;
 }
 
-blocxx::String
+std::string
 RequestData::getExtensionsAsText() const
 {
 	unsigned char *ustringval = NULL;
@@ -139,7 +139,7 @@ RequestData::getExtensionsAsText() const
 	X509V3_extensions_print(bio, NULL, X509_REQ_get_extensions(m_impl->x509), 0, 4);
 	n = BIO_get_mem_data(bio, &ustringval);
 
-	String extText = String((const char*)ustringval, n);
+	std::string extText = std::string((const char*)ustringval, n);
 	BIO_free(bio);
 
 	return extText;
@@ -169,14 +169,14 @@ RequestData::valid() const
 	return true;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 RequestData::verify() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 
 	if(m_impl->version < 1 || m_impl->version > 1)
 	{
-		result.push_back(Format("invalid version: %1", m_impl->version).toString());
+		result.push_back(str::form("invalid version: %d", m_impl->version));
 	}
 
 	appendArray(result, m_impl->subject.verify());
@@ -195,34 +195,30 @@ RequestData::verify() const
 	return result;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 RequestData::dump() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 	result.push_back("RequestData::dump()");
 
-	result.push_back("Version = " + String(m_impl->version));
+	result.push_back("Version = " + str::numstring(m_impl->version));
 	appendArray(result, m_impl->subject.dump());
-	result.push_back("Keysize = " + String(m_impl->keysize));
-	result.push_back("pubkeyAlgorithm = " + String(m_impl->pubkeyAlgorithm));
+	result.push_back("Keysize = " + str::numstring(m_impl->keysize));
+	result.push_back("pubkeyAlgorithm = " + str::numstring(m_impl->pubkeyAlgorithm));
 
-	String pk;
+	std::string pk;
 	for(size_t i = 0; i < m_impl->publicKey.size(); ++i)
 	{
-		String s;
-		s.format("%02x", static_cast<UInt8>(m_impl->publicKey[i]));
-		pk += s + ":";
+		pk += str::form( "%02x", static_cast<UInt8>(m_impl->publicKey[i])) + ":";
 	}
 	result.push_back("public Key = " + pk);
 
-	result.push_back("signatureAlgorithm = "+ String(m_impl->signatureAlgorithm));
+	result.push_back("signatureAlgorithm = "+ str::numstring(m_impl->signatureAlgorithm));
 
-	String s;
+	std::string s;
 	for(uint i = 0; i < m_impl->signature.size(); ++i)
 	{
-		String d;
-		d.format("%02x:", static_cast<UInt8>(m_impl->signature[i]));
-		s += d;
+		s += str::form( "%02x", static_cast<UInt8>(m_impl->signature[i]));
 	}
 
 	result.push_back("Signature = " + s);

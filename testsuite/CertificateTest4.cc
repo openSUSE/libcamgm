@@ -2,8 +2,8 @@
 #include <blocxx/AppenderLogger.hpp>
 #include <blocxx/CerrLogger.hpp>
 #include <blocxx/CerrAppender.hpp>
-#include <blocxx/String.hpp>
-#include <blocxx/PerlRegEx.hpp>
+#include <limal/String.hpp>
+#include <limal/PerlRegEx.hpp>
 #include <limal/Logger.hpp>
 #include <limal/PathInfo.hpp>
 #include <limal/ca-mgm/CA.hpp>
@@ -27,7 +27,7 @@ int main()
 	{
 		cout << "START" << endl;
 
-		blocxx::StringArray cat;
+		StringArray cat;
 		cat.push_back("FATAL");
 		cat.push_back("ERROR");
 		cat.push_back("INFO");
@@ -73,7 +73,7 @@ int main()
 
 		// ------------------------ create request --------------------------------
 
-		blocxx::String r = ca.createRequest("system", rgd, E_Client_Req);
+		std::string r = ca.createRequest("system", rgd, E_Client_Req);
 
 		cout << "RETURN Request " << endl;
 
@@ -182,7 +182,7 @@ int main()
 
 		//---------------------------------------------------------------------------------
 
-		blocxx::String c = ca.issueCertificate(r, cid, E_CA_Cert);
+		std::string c = ca.issueCertificate(r, cid, E_CA_Cert);
 
 		cout << "RETURN Certificate " << endl;
 
@@ -192,12 +192,12 @@ int main()
 
 		CertificateData cd = ca.getCertificate(c);
 
-		std::vector<blocxx::String> ret = cd.getExtensions().dump();
-		std::vector<blocxx::String>::const_iterator it;
+		std::vector<std::string> ret = cd.getExtensions().dump();
+		std::vector<std::string>::const_iterator it;
 
 		for(it = ret.begin(); it != ret.end(); ++it)
 		{
-			if((*it).startsWith("KeyID"))
+			if(str::startsWith((*it), "KeyID"))
 			{
 				cout << "found KeyID" << endl;
 			}

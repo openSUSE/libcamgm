@@ -2,9 +2,8 @@
 #include <blocxx/AppenderLogger.hpp>
 #include <blocxx/CerrLogger.hpp>
 #include <blocxx/CerrAppender.hpp>
-#include <blocxx/Format.hpp>
-#include <blocxx/String.hpp>
-#include <blocxx/PerlRegEx.hpp>
+#include <limal/String.hpp>
+#include <limal/PerlRegEx.hpp>
 #include <limal/Logger.hpp>
 #include <limal/ca-mgm/CA.hpp>
 
@@ -25,7 +24,7 @@ int main()
     {
         cout << "START" << endl;
 
-        blocxx::StringArray comp;
+        StringArray comp;
         comp.push_back("ca-mgm");
         comp.push_back("limal");
 
@@ -48,9 +47,9 @@ int main()
 
         cout << "======================== call verify() =================" << endl;
 
-        std::vector<blocxx::String> a = rgd.verify();
+        std::vector<std::string> a = rgd.verify();
 
-        StringArray::const_iterator it;
+        std::vector<std::string>::const_iterator it;
 
         for(it = a.begin(); it != a.end(); ++it)
         {
@@ -59,8 +58,8 @@ int main()
 
         cout << "======================== call dump() =================" << endl;
 
-        std::vector<blocxx::String> dump = rgd.dump();
-        StringArray::const_iterator it2;
+        std::vector<std::string> dump = rgd.dump();
+        std::vector<std::string>::const_iterator it2;
 
         for(it2 = dump.begin(); it2 != dump.end(); ++it2)
         {

@@ -31,7 +31,7 @@ namespace CA_MGM_NAMESPACE {
 
 	class LiteralValueImpl;
 	class CA;
-	
+
 	/**
 	 * A Literal Value is a pair of a type and a value
 	 * Valid types are: URI, DNS, RID, IP, email,
@@ -48,7 +48,7 @@ namespace CA_MGM_NAMESPACE {
 		 * @param type Valid types are: URI, DNS, RID, IP, email, 1.3.6.1.4.1.311.20.2.3 and 1.3.6.1.5.2.2
 		 * @param value a value for the type
 		 */
-		LiteralValue(const String &type, const String &value);
+		LiteralValue(const std::string &type, const std::string &value);
 
 		/**
 		 * Constructor
@@ -56,7 +56,7 @@ namespace CA_MGM_NAMESPACE {
 		 * @param value in the form &lt;type&gt;:&lt;value&gt;
 		 *              Valid types are: URI, DNS, RID, IP, email, 1.3.6.1.4.1.311.20.2.3 and 1.3.6.1.5.2.2
 		 */
-		LiteralValue(const String& value);
+		LiteralValue(const std::string& value);
 		LiteralValue(const LiteralValue& value);
 
 #ifndef SWIG
@@ -65,7 +65,7 @@ namespace CA_MGM_NAMESPACE {
 		operator=(const LiteralValue& value);
 
 #endif
-		
+
 		virtual ~LiteralValue();
 
 		/**
@@ -75,7 +75,7 @@ namespace CA_MGM_NAMESPACE {
 		 * @param value a value for the type
 		 */
 		void
-		setLiteral(const String &type, const String &value);
+		setLiteral(const std::string &type, const std::string &value);
 
 		/**
 		 * Set new values
@@ -84,42 +84,42 @@ namespace CA_MGM_NAMESPACE {
 		 *              Valid types are: URI, DNS, RID, IP, email, 1.3.6.1.4.1.311.20.2.3 and 1.3.6.1.5.2.2
 		 */
 		void
-		setValue(const String &value);
+		setValue(const std::string &value);
 
 		/**
 		 * Return the type of this Literal Value
 		 */
-		String
+		std::string
 		getType() const;
 
 		/**
 		 * Return the value of this Literal Value
 		 */
-		String
+	    std::string
 		getValue() const;
 
 		virtual bool
 		valid() const;
-		
-		virtual std::vector<blocxx::String>
+
+		virtual std::vector<std::string>
 		verify() const;
 
-		virtual std::vector<blocxx::String>
+		virtual std::vector<std::string>
 		dump() const;
 
 		/**
 		 * Return the LiteralValue in the form &lt;type&gt;:&lt;value&gt;
 		 */
-		String
+	    std::string
 		toString() const;
 
 		/**
 		 * Return the string for the configuration. This method silently ignore
 		 * unsupported types like othername.
 		 */
-		blocxx::String
+		std::string
 		commit2Config(CA& ca, Type type, uint32_t num) const;
-		
+
 #ifndef SWIG
 
 		friend bool
@@ -129,10 +129,10 @@ namespace CA_MGM_NAMESPACE {
 		operator<(const LiteralValue &l, const LiteralValue &r);
 
 #endif
-		
+
 	private:
 		blocxx::COWIntrusiveReference<LiteralValueImpl> m_impl;
-    	
+
 	};
 }
 

@@ -21,8 +21,7 @@
 #include <limal/PathUtils.hpp>
 #include <limal/PathInfo.hpp>
 #include <limal/Logger.hpp>
-#include <blocxx/Format.hpp>
-#include <blocxx/Exec.hpp>
+#include <limal/String.hpp>
 #include "Utils.hpp"
 
 #include <sys/stat.h>
@@ -33,18 +32,18 @@ namespace path {
 
 using namespace blocxx;
 
-inline static String mode2String(mode_t o) {
-    String s;
+inline static std::string mode2String(mode_t o) {
+    std::string s;
     //s.format("%#4o", o);
-    s.format("0%03o", o);
+    s = str::form("0%03o", o);
     return s;
 }
 
-inline static String errno2String(int e) {
+inline static std::string errno2String(int e) {
     char buf[blocxx::ExceptionDetail::BUFSZ];
     blocxx::ExceptionDetail::portable_strerror_r(e, buf, sizeof(buf));
-    String s(buf);
-    s += "(" + String(e) + ")";
+    std::string s(buf);
+    s += "(" + str::numstring(e) + ")";
     return s;
 }
 
@@ -78,7 +77,7 @@ int createDir( const PathName & path, mode_t mode )
 int createDirRecursive( const PathName & path, unsigned mode )
 {
     size_t pos, lastpos = 0;
-    String spath = path.toString()+"/";
+    std::string spath = path.toString()+"/";
     int ret = 0;
 
     if(path.empty())
@@ -91,8 +90,8 @@ int createDirRecursive( const PathName & path, unsigned mode )
     else
         lastpos=1;
 
-    while((pos = spath.indexOf('/',lastpos)) != String::npos ) {
-        String dir = spath.substring(0,pos);
+    while((pos = spath.find_first_of('/',lastpos)) != std::string::npos ) {
+        std::string dir = spath.substr(0,pos);
         ret = ::mkdir(dir.c_str(), mode);
         if(ret == -1)
             {
@@ -147,42 +146,24 @@ int removeDirRecursive( const PathName & path )
         return ENOTDIR ;
     }
 
-    //std::vector<blocxx::String> cmd;
-    StringArray cmd;
+    std::vector<std::string> cmd;
     cmd.push_back(RM_COMMAND);
     cmd.push_back("-rf");
     cmd.push_back("--preserve-root");
     cmd.push_back("--");
     cmd.push_back(path.toString());
 
-    String stdOutput;
-    String errOutput;
+    std::string stdOutput;
+    std::string errOutput;
     int    status = -1;
-#if BLOCXX_LIBRARY_VERSION >= 5
     try {
-        Process::Status ps;
-        ps = Exec::executeProcessAndGatherOutput(
+        status = wrapExecuteProcessAndGatherOutput(
             cmd, stdOutput, errOutput, EnvVars()
         );
-        if( ps.exitTerminated())
-            status = ps.exitStatus();
     }
     catch(const blocxx::Exception &e) {
         LOGIT_ERROR( "removeDirRecursive exception: " << e);
     }
-#else
-    try {
-        int execStatus = -1;
-        Exec::executeProcessAndGatherOutput(
-            cmd, stdOutput, errOutput, execStatus, EnvVars()
-        );
-        if( execStatus != -1 && WIFEXITED(execStatus))
-            status = WEXITSTATUS(execStatus);
-    }
-    catch(const blocxx::Exception &e) {
-        LOGIT_ERROR( "removeDirRecursive exception: " << e);
-    }
-#endif
     if(status != 0) {
         LOGIT_ERROR( "removeDirRecursive status: " << status );
     }
@@ -224,40 +205,23 @@ int copyDir( const PathName & srcpath, const PathName & destpath )
         return EEXIST ;
     }
 
-    StringArray cmd;
+    std::vector<std::string> cmd;
     cmd.push_back(CP_COMMAND);
     cmd.push_back("-a");
     cmd.push_back(srcpath.toString());
     cmd.push_back(destpath.toString());
 
-    String stdOutput;
-    String errOutput;
+    std::string stdOutput;
+    std::string errOutput;
     int    status = -1;
-#if BLOCXX_LIBRARY_VERSION >= 5
     try {
-        Process::Status ps;
-        ps = Exec::executeProcessAndGatherOutput(
+        status = wrapExecuteProcessAndGatherOutput(
             cmd, stdOutput, errOutput, EnvVars()
         );
-        if( ps.exitTerminated())
-            status = ps.exitStatus();
     }
     catch(const blocxx::Exception &e) {
         LOGIT_ERROR( "copyDir exception: " << e);
     }
-#else
-    try {
-        int execStatus = -1;
-        Exec::executeProcessAndGatherOutput(
-            cmd, stdOutput, errOutput, execStatus, EnvVars()
-        );
-        if( execStatus != -1 && WIFEXITED(execStatus))
-            status = WEXITSTATUS(execStatus);
-    }
-    catch(const blocxx::Exception &e) {
-        LOGIT_ERROR( "copyDir exception: " << e);
-    }
-#endif
     if(status != 0) {
         LOGIT_ERROR( "copyDir status: " << status );
     }
@@ -279,7 +243,7 @@ int copyDir( const PathName & srcpath, const PathName & destpath )
 //
 //	DESCRIPTION :
 //
-int readDir( std::list<String> & retlist,
+int readDir( std::list<std::string> & retlist,
              const PathName & path, bool dots )
 {
     retlist.clear();
@@ -380,39 +344,22 @@ int copyFile( const PathName & file, const PathName & dest )
         return EISDIR;
     }
 
-    StringArray cmd;
+    std::vector<std::string> cmd;
     cmd.push_back(CP_COMMAND);
     cmd.push_back(file.toString());
     cmd.push_back(dest.toString());
 
-    String stdOutput;
-    String errOutput;
+    std::string stdOutput;
+    std::string errOutput;
     int    status = -1;
-#if BLOCXX_LIBRARY_VERSION >= 5
     try {
-        Process::Status ps;
-        ps = Exec::executeProcessAndGatherOutput(
+        status = wrapExecuteProcessAndGatherOutput(
             cmd, stdOutput, errOutput, EnvVars()
         );
-        if( ps.exitTerminated())
-            status = ps.exitStatus();
     }
     catch(const blocxx::Exception &e) {
         LOGIT_ERROR( "copyFile exception: " << e);
     }
-#else
-    try {
-        int execStatus = -1;
-        Exec::executeProcessAndGatherOutput(
-            cmd, stdOutput, errOutput, execStatus, EnvVars()
-        );
-        if( execStatus != -1 && WIFEXITED(execStatus))
-            status = WEXITSTATUS(execStatus);
-    }
-    catch(const blocxx::Exception &e) {
-        LOGIT_ERROR( "copyFile exception: " << e);
-    }
-#endif
     if(status != 0) {
         LOGIT_ERROR( "copyFile status:" << status );
     }

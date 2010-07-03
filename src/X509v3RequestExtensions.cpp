@@ -276,10 +276,10 @@ X509v3RequestExts::valid() const
 	return true;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 X509v3RequestExts::verify() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 
 	appendArray(result, m_impl->nsSslServerName.verify());
 	appendArray(result, m_impl->nsComment.verify());
@@ -294,10 +294,10 @@ X509v3RequestExts::verify() const
 	return result;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 X509v3RequestExts::dump() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 	result.push_back("X509v3RequestExts::dump()");
 
 	appendArray(result, m_impl->nsSslServerName.dump());

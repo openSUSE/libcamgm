@@ -73,12 +73,12 @@ public:
 		return new X509v3RequestExtsImpl(*this);
 	}
 
-	/* String extensions */
+	/* std::string extensions */
 
 	NsSslServerNameExt        nsSslServerName;
 	NsCommentExt              nsComment;
 
-	/* Bit Strings */
+	/* Bit std::strings */
 	KeyUsageExt               keyUsage;
 	NsCertTypeExt             nsCertType;
 

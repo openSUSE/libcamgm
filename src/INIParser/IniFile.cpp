@@ -28,10 +28,10 @@ using std::multimap;
 using std::pair;
 using namespace blocxx;
 
-String pathToString(const std::vector<blocxx::String>&p)
+std::string pathToString(const std::vector<std::string>&p)
 {
-    if (p.empty()) return String(".");
-    String v;
+    if (p.empty()) return std::string(".");
+    std::string v;
     for (unsigned c=0; c<p.size(); c++)
     {
 	v += ".";
@@ -41,9 +41,9 @@ String pathToString(const std::vector<blocxx::String>&p)
 }
 
 
-void IniSection::initValue (const String&key,const String&val,const String&comment,int rb)
+void IniSection::initValue (const std::string&key,const std::string&val,const std::string&comment,int rb)
 {
-    String k = ip->changeCase (key);
+    std::string k = ip->changeCase (key);
     IniEntry e;
     IniEntryIdxIterator exi;
     if (!ip->repeatNames () && (exi = ivalues.find (k)) != ivalues.end ())
@@ -71,9 +71,9 @@ void IniSection::initValue (const String&key,const String&val,const String&comme
     ivalues.insert (IniEntryIndex::value_type (k, --container.end ()));
 
 }
-void IniSection::initSection (const String&name,const String&comment,int rb, int wb)
+void IniSection::initSection (const std::string&name,const std::string&comment,int rb, int wb)
 {
-    String k = ip->changeCase (name);
+    std::string k = ip->changeCase (name);
 
     IniSection s (ip);
     IniSectionIdxIterator sxi;
@@ -109,9 +109,9 @@ void IniSection::initSection (const String&name,const String&comment,int rb, int
     isections.insert (IniSectionIndex::value_type (k, --container.end ()));
 }
 
-IniSection& IniSection::findSection(const std::vector<blocxx::String>&path, int from)
+IniSection& IniSection::findSection(const std::vector<std::string>&path, int from)
 {
-    String k = ip->changeCase (path[from]);
+    std::string k = ip->changeCase (path[from]);
     IniSectionIdxIterator v = isections.find(k);
     if (v == isections.end ())
 	{
@@ -122,7 +122,7 @@ IniSection& IniSection::findSection(const std::vector<blocxx::String>&path, int 
     return from+1 >= (int)path.size() ? s : s.findSection (path, from+1);
 }
 
-int IniSection::findEndFromUp (const std::vector<blocxx::String>&path, int wanted, int found, int from)
+int IniSection::findEndFromUp (const std::vector<std::string>&path, int wanted, int found, int from)
 {
 
 
@@ -133,7 +133,7 @@ int IniSection::findEndFromUp (const std::vector<blocxx::String>&path, int wante
 
     if (from < (int)path.size())
     {
-	String k = ip->changeCase (path[from]);
+	std::string k = ip->changeCase (path[from]);
 	// find the _last_ section with key k
 	pair <IniSectionIdxIterator, IniSectionIdxIterator> r =
 	    isections.equal_range (k);
@@ -213,20 +213,20 @@ void IniSection::reindex ()
 
 	if (ci->t () == VALUE)
 	{
-	    String k = ip->changeCase (ci->e ().getName ());
+	    std::string k = ip->changeCase (ci->e ().getName ());
 	    ivalues.insert (IniEntryIndex::value_type (k, ci));
 	}
 	else
 	{
-	    String k = ip->changeCase (ci->s ().getName ());
+	    std::string k = ip->changeCase (ci->s ().getName ());
 	    isections.insert (IniSectionIndex::value_type (k, ci));
 	}
     }
 }
 
-int IniSection::getMyValue (const std::vector<blocxx::String> &p, StringList &out, int what, int depth)
+int IniSection::getMyValue (const std::vector<std::string> &p, StringList &out, int what, int depth)
 {
-    String k = ip->changeCase (p[depth]);
+    std::string k = ip->changeCase (p[depth]);
     // Find all values and return them according to repeat_names
     StringList results;
     bool found = false;
@@ -240,14 +240,14 @@ int IniSection::getMyValue (const std::vector<blocxx::String> &p, StringList &ou
 	out.clear();
 	switch (what)
 	{
-	    case 0:  out.push_back (String (e.getValue ()));
-		results.push_back (String (e.getValue ()));
+	    case 0:  out.push_back (std::string (e.getValue ()));
+		results.push_back (std::string (e.getValue ()));
 		break;
-	    case 1:  out.push_back (String (e.getComment()));
-		results.push_back (String (e.getComment()));
+	    case 1:  out.push_back (std::string (e.getComment()));
+		results.push_back (std::string (e.getComment()));
 		break;
-	    default: out.push_back (String (e.getReadBy ()));
-		results.push_back (String (e.getReadBy ()));
+ 	    default: out.push_back (str::numstring (e.getReadBy ()));
+		results.push_back (str::numstring (e.getReadBy ()));
 		break;
 	}
     }
@@ -268,9 +268,9 @@ int IniSection::getMyValue (const std::vector<blocxx::String> &p, StringList &ou
     return -1;
 }
 
-int IniSection::getValue (const std::vector<blocxx::String>&p, StringList&out,int what, int depth)
+int IniSection::getValue (const std::vector<std::string>&p, StringList&out,int what, int depth)
 {
-    String k = ip->changeCase (p[depth]);
+    std::string k = ip->changeCase (p[depth]);
     if ( depth + 1 < int(p.size()))
     {
 	// it must be a section
@@ -292,9 +292,9 @@ int IniSection::getValue (const std::vector<blocxx::String>&p, StringList&out,in
 }
 
 // Read calls us with the path length >= 2
-int IniSection::getSectionProp (const std::vector<blocxx::String>&p, StringList&out, int what, int depth)
+int IniSection::getSectionProp (const std::vector<std::string>&p, StringList&out, int what, int depth)
 {
-    String k = ip->changeCase (p[depth]);
+    std::string k = ip->changeCase (p[depth]);
     // Find the matching sections.
     // If we need to recurse, choose one
     // Otherwise gather properties of all of the leaf sections
@@ -331,13 +331,13 @@ int IniSection::getSectionProp (const std::vector<blocxx::String>&p, StringList&
 	    }
 	    else if (what == 1)
 	    {
-		out.push_back (String (s.rewrite_by));
-		results.push_back (String (s.rewrite_by));
+		out.push_back (str::numstring (s.rewrite_by));
+		results.push_back (str::numstring (s.rewrite_by));
 	    }
 	    else
 	    {
-		out.push_back (String (s.read_by));
-		results.push_back (String (s.read_by));
+		out.push_back (str::numstring (s.read_by));
+		results.push_back (str::numstring (s.read_by));
 	    }
 
 	}
@@ -359,13 +359,13 @@ int IniSection::getSectionProp (const std::vector<blocxx::String>&p, StringList&
     return -1;
 }
 
-int IniSection::getAll (const std::vector<blocxx::String>&p, SectionAll&out, int depth)
+int IniSection::getAll (const std::vector<std::string>&p, SectionAll&out, int depth)
 {
     if (depth < int(p.size ()))
     {
 	// recurse to find the starting section
 	// Get any section of that name
-	String k = ip->changeCase (p[depth]);
+	std::string k = ip->changeCase (p[depth]);
 	IniSectionIdxIterator sxi = isections.find (k);
 	if (sxi != isections.end())
 	{
@@ -388,7 +388,7 @@ SectionAll IniSection::getAllDoIt ()
     SectionAll m = IniBase::getAllDoIt ();
 
     m.kind = "section";
-    m.file = String(rewrite_by);
+    m.file = str::numstring(rewrite_by);
     m.value = "";
 
     IniIterator
@@ -415,7 +415,7 @@ SectionAll IniSection::getAllDoIt ()
     return m;
 }
 
-int IniSection::Delete (const std::vector<blocxx::String>&p)
+int IniSection::Delete (const std::vector<std::string>&p)
 {
     if (ip->isFlat ())
 	return delValueFlat (p);
@@ -424,7 +424,7 @@ int IniSection::Delete (const std::vector<blocxx::String>&p)
 	LIMAL_SLOG_ERROR (logger, "I do not know what to delete at " <<  pathToString(p).c_str());
 	return -1;
     }
-    String s (p[0]);
+    std::string s (p[0]);
     if (s == "v" || s == "value")
 	return delValue (p, 1);
     if (s == "s" || s == "section")
@@ -432,7 +432,7 @@ int IniSection::Delete (const std::vector<blocxx::String>&p)
     return -1;
 }
 
-int IniSection::Write (const std::vector<blocxx::String>&p, const StringList&v, bool rewrite)
+int IniSection::Write (const std::vector<std::string>&p, const StringList&v, bool rewrite)
 {
     if (ip->isFlat ())
 	return setValueFlat (p, v);
@@ -442,7 +442,7 @@ int IniSection::Write (const std::vector<blocxx::String>&p, const StringList&v, 
 	LIMAL_SLOG_ERROR (logger, "I do not know what to write to " <<  pathToString(p).c_str());
 	return -1;
     }
-    String s (p[0]);
+    std::string s (p[0]);
     if (s == "v" || s == "value")
 	return setValue (p, v, 0, 1);
     if (s == "vc" || s == "value_comment" || s == "valuecomment")
@@ -456,9 +456,9 @@ int IniSection::Write (const std::vector<blocxx::String>&p, const StringList&v, 
     return -1;
 }
 
-int IniSection::setSectionProp (const std::vector<blocxx::String>&p,const StringList&in, int what, int depth)
+int IniSection::setSectionProp (const std::vector<std::string>&p,const StringList&in, int what, int depth)
 {
-    String k = ip->changeCase (p[depth]);
+    std::string k = ip->changeCase (p[depth]);
     // Find the matching sections.
     // If we need to recurse, choose one, creating if necessary
     // Otherwise set properties of all of the leaf sections,
@@ -514,7 +514,7 @@ int IniSection::setSectionProp (const std::vector<blocxx::String>&p,const String
 	    }
 	    else
 	    {
-		String prop = String(*pi);
+		std::string prop = std::string(*pi);
 		IniIterator si;
 		if (xi == xe)
 		{
@@ -539,9 +539,9 @@ int IniSection::setSectionProp (const std::vector<blocxx::String>&p,const String
 		if (what == 0)
 		    s.setComment (prop);
 		else if (what == 1)
-		    s.setRewriteBy (prop.toInt());
+		    s.setRewriteBy (str::strtonum<int>(prop));
 		else
-		    s.setReadBy (prop.toInt());
+ 		    s.setReadBy (str::strtonum<int>(prop));
 
 		if (xi != xe)
 		{
@@ -563,9 +563,9 @@ void IniSection::delSection1 (IniSectionIdxIterator sxi)
     isections.erase (sxi);
 }
 
-int IniSection::delSection(const std::vector<blocxx::String>&p, int depth)
+int IniSection::delSection(const std::vector<std::string>&p, int depth)
 {
-    String k = ip->changeCase (p[depth]);
+    std::string k = ip->changeCase (p[depth]);
 
     // Find the matching sections.
     // If we need to recurse, choose one
@@ -603,14 +603,14 @@ int IniSection::delSection(const std::vector<blocxx::String>&p, int depth)
     return 0;
 }
 
-int IniSection::WriteAll (const std::vector<blocxx::String>&p, const SectionAll& in, int depth)
+int IniSection::WriteAll (const std::vector<std::string>&p, const SectionAll& in, int depth)
 {
     LIMAL_SLOG_INFO (logger, "This function has not been tested cause it is not needed at the moment.");
     if (depth < int(p.size ()))
     {
 	// recurse to find the starting section
 	// Get any section of that name
-	String k = ip->changeCase (p[depth]);
+	std::string k = ip->changeCase (p[depth]);
 	IniSectionIdxIterator sxi = isections.find (k);
 	if (sxi != isections.end())
 	{
@@ -635,14 +635,14 @@ int IniSection::setAllDoIt (const SectionAll &in)
 	return ret;
     }
 
-    String kind = in.kind;
+    std::string kind = in.kind;
     if (kind != "section")
     {
 	LIMAL_SLOG_ERROR (logger, "Kind should be 'section'");
 	return -1;
     }
 
-    rewrite_by = in.file.toInt();
+    rewrite_by = str::strtonum<int>(in.file);
 
     SectionList l = in.sectionList;
 
@@ -686,10 +686,10 @@ int IniSection::setAllDoIt (const SectionAll &in)
     return ret;
 }
 
-int IniSection::setMyValue (const std::vector<blocxx::String> &p, const StringList&in, int what, int depth)
+int IniSection::setMyValue (const std::vector<std::string> &p, const StringList&in, int what, int depth)
 {
     // assert (depth == p.size ()); //not, it can have a .comment suffix
-    String k = ip->changeCase (p[depth]);
+    std::string k = ip->changeCase (p[depth]);
     pair <IniEntryIdxIterator, IniEntryIdxIterator> r =
 	ivalues.equal_range (k);
     IniEntryIdxIterator xi = r.first, xe = r.second;
@@ -713,7 +713,7 @@ int IniSection::setMyValue (const std::vector<blocxx::String> &p, const StringLi
 	}
 	else
 	{
-	    String prop = String(*pi);
+	    std::string prop = std::string(*pi);
 	    IniIterator ei;
 	    if (xi == xe)
 	    {
@@ -749,7 +749,7 @@ int IniSection::setMyValue (const std::vector<blocxx::String> &p, const StringLi
 	    {
 		case 0:	e.setValue   (prop); break;
 		case 1:	e.setComment (prop); break;
-		default:	e.setReadBy  (prop.toInt());break;
+		default:	e.setReadBy  (str::strtonum<int>(prop));break;
 	    }
 
 	    if (xi != xe)
@@ -764,9 +764,9 @@ int IniSection::setMyValue (const std::vector<blocxx::String> &p, const StringLi
     return 0;
 }
 
-int IniSection::setValue (const std::vector<blocxx::String>&p,const StringList&in,int what, int depth)
+int IniSection::setValue (const std::vector<std::string>&p,const StringList&in,int what, int depth)
 {
-    String k = ip->changeCase (p[depth]);
+    std::string k = ip->changeCase (p[depth]);
     // Find the matching sections.
     // If we need to recurse, choose one, creating if necessary
     // Otherwise set all the matching values
@@ -813,7 +813,7 @@ void IniSection::delValue1 (IniEntryIdxIterator exi)
     ivalues.erase (exi);
 }
 
-void IniSection::delMyValue (const String &k)
+void IniSection::delMyValue (const std::string &k)
 {
     pair <IniEntryIdxIterator, IniEntryIdxIterator> r =
 	ivalues.equal_range (k);
@@ -829,9 +829,9 @@ void IniSection::delMyValue (const String &k)
     }
 }
 
-int IniSection::delValue (const std::vector<blocxx::String>&p, int depth)
+int IniSection::delValue (const std::vector<std::string>&p, int depth)
 {
-    String k = ip->changeCase (p[depth]);
+    std::string k = ip->changeCase (p[depth]);
     // Find the matching sections.
     // If we need to recurse, choose one
     // Otherwise kill all values of the name
@@ -868,7 +868,7 @@ int IniSection::myDir (StringList& l, IniType what)
     {
 	if (i->t () == what)
 	{
-	    String n = (what == SECTION) ?
+	    std::string n = (what == SECTION) ?
 		i->s ().getName () :
 		i->e ().getName ();
 	    l.push_back (n);
@@ -877,7 +877,7 @@ int IniSection::myDir (StringList& l, IniType what)
     return 0;
 }
 
-int IniSection::dirValueFlat (const std::vector<blocxx::String>&p, StringList&l)
+int IniSection::dirValueFlat (const std::vector<std::string>&p, StringList&l)
 {
     // This function used to discard p and always return Dir (.)
     // #21574
@@ -892,37 +892,37 @@ int IniSection::dirValueFlat (const std::vector<blocxx::String>&p, StringList&l)
     return myDir (l, VALUE);
 }
 
-int IniSection::getValueFlat (const std::vector<blocxx::String>&p, StringList&out)
+int IniSection::getValueFlat (const std::vector<std::string>&p, StringList&out)
 {
     if (!p.size ())
 	return -1;
-    String k = ip->changeCase (p[0]);
+    std::string k = ip->changeCase (p[0]);
     bool want_comment = p.size()>1 && p[1]=="comment";
 
     return getMyValue (p, out, want_comment, 0);
 }
 
-int IniSection::delValueFlat (const std::vector<blocxx::String>&p)
+int IniSection::delValueFlat (const std::vector<std::string>&p)
 {
     if (!p.size ())
 	return -1;
-    String k = ip->changeCase (p[0]);
+    std::string k = ip->changeCase (p[0]);
 
     delMyValue (k);
     return 0;
 }
 
-int IniSection::setValueFlat (const std::vector<blocxx::String>&p, const StringList &in)
+int IniSection::setValueFlat (const std::vector<std::string>&p, const StringList &in)
 {
     if (!p.size ())
 	return -1;
-    String k = ip->changeCase (p[0]);
+    std::string k = ip->changeCase (p[0]);
     bool want_comment = p.size()>1 && p[1]=="comment";
 
     return setMyValue (p, in, want_comment, 0);
 }
 
-int IniSection::Read (const std::vector<blocxx::String>&p, StringList&out, bool rewrite)
+int IniSection::Read (const std::vector<std::string>&p, StringList&out, bool rewrite)
 {
     if (ip->isFlat ())
 	return getValueFlat (p, out);
@@ -932,7 +932,7 @@ int IniSection::Read (const std::vector<blocxx::String>&p, StringList&out, bool 
 	    LIMAL_SLOG_ERROR (logger, "I do not know what to read from " <<  pathToString(p).c_str());
 	    return -1;
 	}
-    String s (p[0]);
+    std::string s (p[0]);
     if (s == "v" || s == "value")
 	return getValue (p, out, 0, 1);
     else if (s == "vc" || s == "value_comment" || s == "valuecomment")
@@ -948,7 +948,7 @@ int IniSection::Read (const std::vector<blocxx::String>&p, StringList&out, bool 
     return -1;
 }
 
-int IniSection::ReadAll (const std::vector<blocxx::String>&p, SectionAll&out)
+int IniSection::ReadAll (const std::vector<std::string>&p, SectionAll&out)
 {
     LIMAL_SLOG_INFO (logger, "This function has not been tested cause it is not needed at the moment.");
     if (p.size() >= 1 && p[0] == "all")
@@ -961,7 +961,7 @@ int IniSection::ReadAll (const std::vector<blocxx::String>&p, SectionAll&out)
     }
 }
 
-int IniSection::Dir (const std::vector<blocxx::String>&p, StringList&l)
+int IniSection::Dir (const std::vector<std::string>&p, StringList&l)
 {
     if (ip->isFlat ())
 	return dirValueFlat (p, l);
@@ -971,7 +971,7 @@ int IniSection::Dir (const std::vector<blocxx::String>&p, StringList&l)
 	    return -1;
 	}
 
-    String s (p[0]);
+    std::string s (p[0]);
     if (s == "v" || s == "value")
 	return dirHelper (p, l, 0, 1);
     else if (s == "s" || s == "section")
@@ -980,7 +980,7 @@ int IniSection::Dir (const std::vector<blocxx::String>&p, StringList&l)
     LIMAL_SLOG_ERROR (logger, "I do not know what to dir from "<< pathToString(p).c_str());
     return -1;
 }
-int IniSection::dirHelper (const std::vector<blocxx::String>&p, StringList&out,int get_sect,int depth)
+int IniSection::dirHelper (const std::vector<std::string>&p, StringList&out,int get_sect,int depth)
 {
     if (depth >= int(p.size()))
     {
@@ -988,7 +988,7 @@ int IniSection::dirHelper (const std::vector<blocxx::String>&p, StringList&out,i
     }
 
     // recurse
-    String k = ip->changeCase (p[depth]);
+    std::string k = ip->changeCase (p[depth]);
 
     pair <IniSectionIdxIterator, IniSectionIdxIterator> r =
 	isections.equal_range (k);

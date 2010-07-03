@@ -23,7 +23,8 @@ limalinclude_HEADERS =          \
         Url.hpp                 \
         Date.hpp                \
         String.hpp              \
-        PerlRegEx.hpp
+        PerlRegEx.hpp           \
+        PosixRegEx.hpp          
 
 
 CLEANFILES = *~

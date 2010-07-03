@@ -98,8 +98,8 @@ public:
 	X509v3RequestExts extensions;
 
         // attributes
-	String            challengePassword;
-	String            unstructuredName;
+	std::string            challengePassword;
+	std::string            unstructuredName;
 
 	X509_REQ          *x509;
 };

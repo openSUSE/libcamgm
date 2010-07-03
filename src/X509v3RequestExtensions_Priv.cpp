@@ -129,14 +129,14 @@ X509v3RequestExts_Priv::parseStringExt(STACK_OF(X509_EXTENSION) * cert,
 			// extension occurred more than once
 			LOGIT_ERROR("Extension occurred more than once: " << nid);
 			BLOCXX_THROW(ca_mgm::SyntaxException,
-			             Format(__("Extension occurred more than once: %1."),
+			             str::form(__("Extension occurred more than once: %1."),
 			                    nid).c_str());
 		}
 
 		LOGIT_ERROR("Unable to parse the certificate (NID:" << nid <<
 		            " Crit:" << crit << ")");
 		BLOCXX_THROW(ca_mgm::SyntaxException,
-		             Format(__("Unable to parse the certificate (NID: %1 Crit: %2)."),
+		             str::form(__("Unable to parse the certificate (NID: %1 Crit: %2)."),
 		                    nid, crit).c_str());
 	}
 
@@ -184,14 +184,14 @@ X509v3RequestExts_Priv::parseBitExt(STACK_OF(X509_EXTENSION)* cert,
 			// extension occurred more than once
 			LOGIT_ERROR("Extension occurred more than once: " << nid);
 			BLOCXX_THROW(ca_mgm::SyntaxException,
-			             Format(__("Extension occurred more than once: %1."),
+			             str::form(__("Extension occurred more than once: %1."),
 			                    nid).c_str());
 		}
 
 		LOGIT_ERROR("Unable to parse the certificate (NID:" << nid <<
 		            " Crit:" << crit << ")");
 		BLOCXX_THROW(ca_mgm::SyntaxException,
-		             Format(__("Unable to parse the certificate (NID: %1 Crit: %2)."),
+		             str::form(__("Unable to parse the certificate (NID: %1 Crit: %2)."),
 		                    nid, crit).c_str());
 	}
 
@@ -249,7 +249,7 @@ X509v3RequestExts_Priv::parseExtendedKeyUsageExt(STACK_OF(X509_EXTENSION)* cert,
 
 		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
 		BLOCXX_THROW(ca_mgm::SyntaxException,
-		             Format(__("Unable to parse the certificate (Crit: %1)."),
+		             str::form(__("Unable to parse the certificate (Crit: %1)."),
 		                    crit).c_str());
 	}
 
@@ -269,7 +269,7 @@ X509v3RequestExts_Priv::parseExtendedKeyUsageExt(STACK_OF(X509_EXTENSION)* cert,
 		}
 		else
 		{
-			usageList.push_back(String(OBJ_nid2sn(nid)));
+			usageList.push_back(std::string(OBJ_nid2sn(nid)));
 		}
 	}
 	ext.setExtendedKeyUsage(usageList);
@@ -315,7 +315,7 @@ X509v3RequestExts_Priv::parseBasicConstraintsExt(STACK_OF(X509_EXTENSION)* cert,
 
 		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
 		BLOCXX_THROW(ca_mgm::SyntaxException,
-		             Format(__("Unable to parse the certificate (Crit: %1)."),
+		             str::form(__("Unable to parse the certificate (Crit: %1)."),
 		                    crit).c_str());
 	}
 
@@ -379,18 +379,15 @@ X509v3RequestExts_Priv::parseSubjectKeyIdentifierExt(STACK_OF(X509_EXTENSION) *c
 
 		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
 		BLOCXX_THROW(ca_mgm::SyntaxException,
-		             Format(__("Unable to parse the certificate (Crit: %1)."),
+		             str::form(__("Unable to parse the certificate (Crit: %1)."),
 		                    crit).c_str());
 	}
 
-	String s;
+	std::string s;
 
 	for(int i = 0; i < ski->length; ++i)
 	{
-		String d;
-		d.format("%02x", ski->data[i]);
-
-		s += d;
+		s += str::form( "%02x", ski->data[i]);
 		if( (i+1) < ski->length)
 		{
 			s += ":";
@@ -439,7 +436,7 @@ X509v3RequestExts_Priv::parseSubjectAlternativeNameExt(STACK_OF(X509_EXTENSION) 
 
 		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
 		BLOCXX_THROW(ca_mgm::SyntaxException,
-		             Format(__("Unable to parse the certificate (Crit: %1)."),
+		             str::form(__("Unable to parse the certificate (Crit: %1)."),
 		                    crit).c_str());
 	}
 

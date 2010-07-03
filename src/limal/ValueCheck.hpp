@@ -81,7 +81,7 @@ public:
 	 * @return The boolean result of the check.
 	 */
 	virtual bool
-	isValid(const blocxx::String &value) const = 0;
+	isValid(const std::string &value) const = 0;
 
 	/**
 	 * Returns a string explaining / showing the check.
@@ -90,7 +90,7 @@ public:
 	 * whether the value (e.g. @c "2") is lower than @c 5,
 	 * implement it as:
 	 * @code
-	 *	return blocxx::Format("MyCheck('%1' < 5)", value);
+	 *	return str::form("MyCheck('%1' < 5)", value);
 	 * @endcode
 	 *
 	 * The resulting string will be @c "MyCheck('2' < 5)"
@@ -99,8 +99,8 @@ public:
 	 * @param value The value to evaluate.
 	 * @return A string showing the check.
 	 */
-	virtual blocxx::String
-	explain(const blocxx::String &value) const = 0;
+	virtual std::string
+	explain(const std::string &value) const = 0;
 
 protected:
 	/**
@@ -239,7 +239,7 @@ public:
 	 * @return The boolean result of the check.
 	 */
 	virtual bool
-	isValid(const blocxx::String &value) const;
+	isValid(const std::string &value) const;
 
 	/**
 	 * Returns a string explaining / showing the checks that
@@ -248,8 +248,8 @@ public:
 	 * @param value A string value.
 	 * @return A string showing the check (list).
 	 */
-	virtual blocxx::String
-	explain(const blocxx::String &value) const;
+	virtual std::string
+	explain(const std::string &value) const;
 
 	/**
 	 * Append a sub-expression to the list of checks

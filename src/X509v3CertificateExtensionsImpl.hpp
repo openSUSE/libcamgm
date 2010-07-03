@@ -94,7 +94,7 @@ public:
 		return new X509v3CertificateExtsImpl(*this);
 	}
 
-		/* String extensions */
+		/* std::string extensions */
 
 	NsBaseUrlExt              nsBaseUrl;
 	NsRevocationUrlExt        nsRevocationUrl;
@@ -104,7 +104,7 @@ public:
 	NsSslServerNameExt        nsSslServerName;
 	NsCommentExt              nsComment;
 
-		/* Bit Strings */
+		/* Bit std::strings */
 	KeyUsageExt               keyUsage;
 	NsCertTypeExt             nsCertType;
 

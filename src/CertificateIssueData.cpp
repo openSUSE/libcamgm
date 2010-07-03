@@ -81,21 +81,21 @@ CertificateIssueData::CertificateIssueData(CAConfig* caConfig, Type type)
 {
 	m_impl->notBefore = Date::now();
 
-	uint32_t days = caConfig->getValue(type2Section(type, false), "default_days").toUInt32();
+	uint32_t days = str::strtonum<uint32_t>(caConfig->getValue(type2Section(type, false), "default_days"));
 	Date dt = Date(getStartDate());
 	dt += (days*24*60*60);
 	m_impl->notAfter    = dt;
 
-	String md = caConfig->getValue(type2Section(type, false), "default_md");
-	if(md.equalsIgnoreCase("sha1"))
+	std::string md = caConfig->getValue(type2Section(type, false), "default_md");
+	if(0 == str::compareCI(md, "sha1"))
 	{
 		setMessageDigest( E_SHA1 );
 	}
-	else if(md.equalsIgnoreCase("md5"))
+	else if(0 == str::compareCI(md, "md5"))
 	{
 		setMessageDigest( E_MD5 );
 	}
-	else if(md.equalsIgnoreCase("mdc2"))
+	else if(0 == str::compareCI(md, "mdc2"))
 	{
 		setMessageDigest( E_MDC2 );
 	}
@@ -145,20 +145,20 @@ time_t
 	return m_impl->notAfter;
 }
 
-blocxx::String
+std::string
 CertificateIssueData::getStartDateAsString() const
 {
 	Date dt(getStartDate());
-	blocxx::String time(dt.form("%y%m%d%H%M%S", true) + "Z");
+	std::string time(dt.form("%y%m%d%H%M%S", true) + "Z");
 
 	return time;
 }
 
-blocxx::String
+std::string
 CertificateIssueData::getEndDateAsString() const
 {
 	Date dt(getEndDate());
-	blocxx::String time(dt.form("%y%m%d%H%M%S", true) + "Z");
+	std::string time(dt.form("%y%m%d%H%M%S", true) + "Z");
 
 	return time;
 }
@@ -178,7 +178,7 @@ CertificateIssueData::getMessageDigest() const
 void
 CertificateIssueData::setExtensions(const X509v3CertificateIssueExts& ext)
 {
-	std::vector<blocxx::String> r = ext.verify();
+	std::vector<std::string> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -214,13 +214,13 @@ CertificateIssueData::commit2Config(CA& ca, Type type) const
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             Format(__("Wrong type: %1."), type).c_str());
+		             str::form(__("Wrong type: %d."), type).c_str());
 	}
 	uint32_t t = (uint32_t)((getEndDate() - getStartDate())/(60*60*24));
 
-	ca.getConfig()->setValue(type2Section(type, false), "default_days", String(t));
+	ca.getConfig()->setValue(type2Section(type, false), "default_days", str::numstring(t));
 
-	String md("sha1");
+	std::string md("sha1");
 	switch(getMessageDigest())
 	{
 	case E_SHA1:
@@ -258,20 +258,19 @@ CertificateIssueData::valid() const
 	return true;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 CertificateIssueData::verify() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 
 	if(getStartDate() == 0)
 	{
-		result.push_back(Format("invalid notBefore: %1", getStartDate()).toString());
+		result.push_back(str::form("invalid notBefore: %ld", getStartDate()));
 	}
 	if(getEndDate() <= getStartDate())
 	{
-		result.push_back(Format("invalid notAfter %1 <= notBefore %2",
-		                     getEndDate(), getStartDate())
-		              .toString());
+		result.push_back(str::form("invalid notAfter %ld <= notBefore %ld",
+		                     getEndDate(), getStartDate()));
 	}
 
 	appendArray(result, m_impl->extensions.verify());
@@ -281,17 +280,17 @@ CertificateIssueData::verify() const
 	return result;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 CertificateIssueData::dump() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 	result.push_back("CertificateIssueData::dump()");
 
-	result.push_back("!CHANGING DATA! notBefore = " + String(getStartDate()));
-	result.push_back("!CHANGING DATA! notAfter = " + String(getEndDate()));
+	result.push_back("!CHANGING DATA! notBefore = " + str::numstring(getStartDate()));
+	result.push_back("!CHANGING DATA! notAfter = " + str::numstring(getEndDate()));
 	result.push_back("notAfter - notBefore (in days)= " +
-	              String((getEndDate() - getStartDate())/86400));
-	result.push_back("MessageDigest = " + String(getMessageDigest()));
+	              str::numstring((getEndDate() - getStartDate())/86400));
+	result.push_back("MessageDigest = " + str::numstring(getMessageDigest()));
 	appendArray(result, getExtensions().dump());
 
 	return result;

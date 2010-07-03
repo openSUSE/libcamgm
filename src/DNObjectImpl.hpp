@@ -34,9 +34,9 @@ class RDNObjectImpl : public blocxx::COWIntrusiveCountableBase
 {
 public:
 	RDNObjectImpl()
-		: type(String())
-		, value(String())
-		, prompt(String())
+		: type(std::string())
+		, value(std::string())
+		, prompt(std::string())
 		, min(0)
 		, max(0)
 	{}
@@ -57,10 +57,10 @@ public:
 		return new RDNObjectImpl(*this);
 	}
 
-	blocxx::String type;
-	blocxx::String value;
+	std::string type;
+	std::string value;
 
-	blocxx::String prompt;
+	std::string prompt;
 	uint32_t min;
 	uint32_t max;
 };

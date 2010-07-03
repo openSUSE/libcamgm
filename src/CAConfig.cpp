@@ -45,10 +45,10 @@ class CAConfigImpl : public blocxx::COWIntrusiveCountableBase
 public:
 	CAConfigImpl()
 		: parser(INIParser ())
-		, srcFilename(String())
+		, srcFilename(std::string())
 	{}
 
-	CAConfigImpl(const String &file)
+	CAConfigImpl(const std::string &file)
 		: parser(INIParser ())
 		, srcFilename(file)
 	{}
@@ -68,16 +68,16 @@ public:
 	}
 
 	INI::INIParser  parser;
-	String          srcFilename;
+	std::string          srcFilename;
 
 };
 
 
-CAConfig::CAConfig(const String &file)
+CAConfig::CAConfig(const std::string &file)
 	: m_impl(new CAConfigImpl(file))
 {
 	std::vector<Options>          options;
-	std::vector<blocxx::String>             commentsDescr;
+	std::vector<std::string>             commentsDescr;
 	std::vector<SectionDescr>     sectionDescr;
 	std::vector<EntryDescr>       entryDescr;
 	std::vector<IoPatternDescr>   rewrites;
@@ -119,13 +119,13 @@ CAConfig::~CAConfig()
 void
 CAConfig::dumpTree(CASection *casection, int level)
 {
-	String tab = "";
+	std::string tab = "";
 	for (int i = 0; i <= level; i++) tab += "  ";
 
 	if (level == 0)
 		LOGIT_INFO (tab);
 
-	String sectionComment = casection->section->getComment();
+	std::string sectionComment = casection->section->getComment();
 	if (sectionComment.length() > 0)
 		LOGIT_INFO (tab <<
 		            "SectionComment " << casection->section->getComment());
@@ -134,7 +134,7 @@ CAConfig::dumpTree(CASection *casection, int level)
 	for (EntryMap::iterator i = eMap.begin(); i != eMap.end(); i++)
 	{
 		Entry entry = i->second;
-		String comment = entry.getComment();
+		std::string comment = entry.getComment();
 		if (comment.length() > 0)
 			LOGIT_INFO (tab <<
 			            "Comment " << i->first << " : " << entry.getComment());
@@ -156,7 +156,7 @@ CAConfig::dumpTree(CASection *casection, int level)
 
 
 void
-CAConfig::setValue(const String &section, const String &key, const String &value)
+CAConfig::setValue(const std::string &section, const std::string &key, const std::string &value)
 {
 	if (m_impl->parser.iniFile.contains (section) == NO)
 	{
@@ -174,7 +174,7 @@ CAConfig::setValue(const String &section, const String &key, const String &value
 }
 
 void
-CAConfig::deleteValue(const String &section, const String &key)
+CAConfig::deleteValue(const std::string &section, const std::string &key)
 {
 	if (m_impl->parser.iniFile.contains (section) == SECTION)
 	{
@@ -185,8 +185,8 @@ CAConfig::deleteValue(const String &section, const String &key)
 	}
 }
 
-blocxx::String
-CAConfig::getValue(const String &section, const String &key) const
+std::string
+CAConfig::getValue(const std::string &section, const std::string &key) const
 {
 	if (m_impl->parser.iniFile.contains (section) == SECTION)
 	{
@@ -197,7 +197,7 @@ CAConfig::getValue(const String &section, const String &key) const
 }
 
 bool
-CAConfig::exists(const String &section, const String &key) const
+CAConfig::exists(const std::string &section, const std::string &key) const
 {
 	if (m_impl->parser.iniFile.contains(section) == SECTION)
 	{
@@ -209,10 +209,10 @@ CAConfig::exists(const String &section, const String &key) const
 	return false;
 }
 
-std::list<blocxx::String>
-CAConfig::getKeylist(const String &section) const
+std::list<std::string>
+CAConfig::getKeylist(const std::string &section) const
 {
-	std::list<String> keylist;
+	std::list<std::string> keylist;
 
 	if (m_impl->parser.iniFile.contains(section) == SECTION)
 	{
@@ -222,13 +222,13 @@ CAConfig::getKeylist(const String &section) const
 }
 
 void
-CAConfig::copySection(const String &srcSection, const String &destSection)
+CAConfig::copySection(const std::string &srcSection, const std::string &destSection)
 {
-	std::list<String> keylist;
+	std::list<std::string> keylist;
 
 	keylist = getKeylist(srcSection);
 
-	std::list<String>::const_iterator it = keylist.begin();
+	std::list<std::string>::const_iterator it = keylist.begin();
 
 	for(; it != keylist.end(); ++it)
 	{
@@ -237,7 +237,7 @@ CAConfig::copySection(const String &srcSection, const String &destSection)
 }
 
 CAConfig*
-CAConfig::clone(const String &file)
+CAConfig::clone(const std::string &file)
 {
 	ifstream in (m_impl->srcFilename.c_str());
 	ofstream out (file.c_str());
@@ -262,7 +262,7 @@ CAConfig::clone(const String &file)
 	return new CAConfig (file);
 }
 
-String
+std::string
 CAConfig::filename() const
 {
 	return m_impl->srcFilename;

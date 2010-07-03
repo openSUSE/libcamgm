@@ -2,8 +2,8 @@
 #include <blocxx/AppenderLogger.hpp>
 #include <blocxx/CerrLogger.hpp>
 #include <blocxx/CerrAppender.hpp>
-#include <blocxx/String.hpp>
-#include <blocxx/PerlRegEx.hpp>
+#include <limal/String.hpp>
+#include <limal/PerlRegEx.hpp>
 #include <limal/Logger.hpp>
 #include <limal/PathInfo.hpp>
 #include <limal/ca-mgm/CA.hpp>
@@ -27,7 +27,7 @@ int main()
     {
         cout << "START" << endl;
 
-        blocxx::StringArray cat;
+        StringArray cat;
         cat.push_back("FATAL");
         cat.push_back("ERROR");
         cat.push_back("INFO");
@@ -46,18 +46,18 @@ int main()
         {
             CA ca("Test_CA1", "system", "./TestRepos/");
 
-            std::vector<map<blocxx::String, blocxx::String> > ret;
+            std::vector<map<std::string, std::string> > ret;
             ret = ca.getCertificateList();
 
-            std::vector<map<blocxx::String, blocxx::String> >::const_iterator it;
+            std::vector<map<std::string, std::string> >::const_iterator it;
             int i = 0;
             for(it = ret.begin(); it != ret.end(); ++it)
             {
-                blocxx::String certificateName = (*((*it).find("certificate"))).second;
-                blocxx::String state           = (*((*it).find("status"))).second;
+                std::string certificateName = (*((*it).find("certificate"))).second;
+                std::string state           = (*((*it).find("status"))).second;
 
                 PerlRegEx p("^([[:xdigit:]]+):([[:xdigit:]]+[\\d-]*)$");
-                std::vector<blocxx::String> sa = convStringArray(p.capture(certificateName));
+                std::vector<std::string> sa = p.capture(certificateName);
 
                 if(sa.size() != 3)
                 {
@@ -65,8 +65,8 @@ int main()
                     continue;
                 }
 
-                blocxx::String serial  = sa[1];
-                blocxx::String request = sa[2];
+                std::string serial  = sa[1];
+                std::string request = sa[2];
 
                 //cerr << "i == " << i << " State == " << state << endl;
 

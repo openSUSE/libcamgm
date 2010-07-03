@@ -69,10 +69,10 @@ X509v3CRLExts::valid() const
 	return true;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 X509v3CRLExts::verify() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 
 	appendArray(result, m_impl->authorityKeyIdentifier.verify());
 	appendArray(result, m_impl->issuerAlternativeName.verify());
@@ -81,10 +81,10 @@ X509v3CRLExts::verify() const
 	return result;;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 X509v3CRLExts::dump() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 	result.push_back("X509v3CRLExts::dump()");
 
 	appendArray(result, m_impl->authorityKeyIdentifier.dump());

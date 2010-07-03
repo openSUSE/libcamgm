@@ -141,7 +141,7 @@ X509v3CertificateExts_Priv::~X509v3CertificateExts_Priv()
 void
 X509v3CertificateExts_Priv::setNsBaseUrl(const NsBaseUrlExt &ext)
 {
-	std::vector<blocxx::String> r = ext.verify();
+	std::vector<std::string> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -153,7 +153,7 @@ X509v3CertificateExts_Priv::setNsBaseUrl(const NsBaseUrlExt &ext)
 void
 X509v3CertificateExts_Priv::setNsRevocationUrl(const NsRevocationUrlExt &ext)
 {
-	std::vector<blocxx::String> r = ext.verify();
+	std::vector<std::string> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -165,7 +165,7 @@ X509v3CertificateExts_Priv::setNsRevocationUrl(const NsRevocationUrlExt &ext)
 void
 X509v3CertificateExts_Priv::setNsCaRevocationUrl(const NsCaRevocationUrlExt &ext)
 {
-	std::vector<blocxx::String> r = ext.verify();
+	std::vector<std::string> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -177,7 +177,7 @@ X509v3CertificateExts_Priv::setNsCaRevocationUrl(const NsCaRevocationUrlExt &ext
 void
 X509v3CertificateExts_Priv::setNsRenewalUrl(const NsRenewalUrlExt &ext)
 {
-	std::vector<blocxx::String> r = ext.verify();
+	std::vector<std::string> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -189,7 +189,7 @@ X509v3CertificateExts_Priv::setNsRenewalUrl(const NsRenewalUrlExt &ext)
 void
 X509v3CertificateExts_Priv::setNsCaPolicyUrl(const NsCaPolicyUrlExt &ext)
 {
-	std::vector<blocxx::String> r = ext.verify();
+	std::vector<std::string> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -201,7 +201,7 @@ X509v3CertificateExts_Priv::setNsCaPolicyUrl(const NsCaPolicyUrlExt &ext)
 void
 X509v3CertificateExts_Priv::setNsSslServerName(const NsSslServerNameExt &ext)
 {
-	std::vector<blocxx::String> r = ext.verify();
+	std::vector<std::string> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -213,7 +213,7 @@ X509v3CertificateExts_Priv::setNsSslServerName(const NsSslServerNameExt &ext)
 void
 X509v3CertificateExts_Priv::setNsComment(const NsCommentExt &ext)
 {
-	std::vector<blocxx::String> r = ext.verify();
+	std::vector<std::string> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -225,7 +225,7 @@ X509v3CertificateExts_Priv::setNsComment(const NsCommentExt &ext)
 void
 X509v3CertificateExts_Priv::setNsCertType(const NsCertTypeExt &ext)
 {
-	std::vector<blocxx::String> r = ext.verify();
+	std::vector<std::string> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -237,7 +237,7 @@ X509v3CertificateExts_Priv::setNsCertType(const NsCertTypeExt &ext)
 void
 X509v3CertificateExts_Priv::setKeyUsage(const KeyUsageExt &ext)
 {
-	std::vector<blocxx::String> r = ext.verify();
+	std::vector<std::string> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -249,7 +249,7 @@ X509v3CertificateExts_Priv::setKeyUsage(const KeyUsageExt &ext)
 void
 X509v3CertificateExts_Priv::setBasicConstraints(const BasicConstraintsExt &ext)
 {
-	std::vector<blocxx::String> r = ext.verify();
+	std::vector<std::string> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -261,7 +261,7 @@ X509v3CertificateExts_Priv::setBasicConstraints(const BasicConstraintsExt &ext)
 void
 X509v3CertificateExts_Priv::setExtendedKeyUsage(const ExtendedKeyUsageExt &ext)
 {
-	std::vector<blocxx::String> r = ext.verify();
+	std::vector<std::string> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -273,7 +273,7 @@ X509v3CertificateExts_Priv::setExtendedKeyUsage(const ExtendedKeyUsageExt &ext)
 void
 X509v3CertificateExts_Priv::setSubjectKeyIdentifier(const SubjectKeyIdentifierExt &ext)
 {
-	std::vector<blocxx::String> r = ext.verify();
+	std::vector<std::string> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -285,7 +285,7 @@ X509v3CertificateExts_Priv::setSubjectKeyIdentifier(const SubjectKeyIdentifierEx
 void
 X509v3CertificateExts_Priv::setAuthorityKeyIdentifier(const AuthorityKeyIdentifierExt &ext)
 {
-	std::vector<blocxx::String> r = ext.verify();
+	std::vector<std::string> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -297,7 +297,7 @@ X509v3CertificateExts_Priv::setAuthorityKeyIdentifier(const AuthorityKeyIdentifi
 void
 X509v3CertificateExts_Priv::setSubjectAlternativeName(const SubjectAlternativeNameExt &ext)
 {
-	std::vector<blocxx::String> r = ext.verify();
+	std::vector<std::string> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -309,7 +309,7 @@ X509v3CertificateExts_Priv::setSubjectAlternativeName(const SubjectAlternativeNa
 void
 X509v3CertificateExts_Priv::setIssuerAlternativeName(const IssuerAlternativeNameExt &ext)
 {
-	std::vector<blocxx::String> r = ext.verify();
+	std::vector<std::string> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -321,7 +321,7 @@ X509v3CertificateExts_Priv::setIssuerAlternativeName(const IssuerAlternativeName
 void
 X509v3CertificateExts_Priv::setAuthorityInfoAccess(const AuthorityInfoAccessExt &ext)
 {
-	std::vector<blocxx::String> r = ext.verify();
+	std::vector<std::string> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -333,7 +333,7 @@ X509v3CertificateExts_Priv::setAuthorityInfoAccess(const AuthorityInfoAccessExt 
 void
 X509v3CertificateExts_Priv::setCRLDistributionPoints(const CRLDistributionPointsExt &ext)
 {
-	std::vector<blocxx::String> r = ext.verify();
+	std::vector<std::string> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -345,7 +345,7 @@ X509v3CertificateExts_Priv::setCRLDistributionPoints(const CRLDistributionPoints
 void
 X509v3CertificateExts_Priv::setCertificatePolicies(const CertificatePoliciesExt &ext)
 {
-	std::vector<blocxx::String> r = ext.verify();
+	std::vector<std::string> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -390,14 +390,14 @@ X509v3CertificateExts_Priv::parseStringExt(STACK_OF(X509_EXTENSION) * cert,
 			// extension occurred more than once
 			LOGIT_ERROR("Extension occurred more than once: " << nid);
 			BLOCXX_THROW(SyntaxException,
-			             Format(__("Extension occurred more than once: %1."),
+			             str::form(__("Extension occurred more than once: %1."),
 			                    nid).c_str());
 		}
 
 		LOGIT_ERROR("Unable to parse the certificate (NID:" <<
 		            nid << " Crit:" << crit << ")");
 		BLOCXX_THROW(SyntaxException,
-		             Format(__("Unable to parse the certificate (NID: %1 Crit: %2)."),
+		             str::form(__("Unable to parse the certificate (NID: %1 Crit: %2)."),
 		                    nid, crit).c_str());
 	}
 
@@ -447,14 +447,14 @@ X509v3CertificateExts_Priv::parseBitExt(STACK_OF(X509_EXTENSION)* cert,
 			// extension occurred more than once
 			LOGIT_ERROR("Extension occurred more than once: " << nid);
 			BLOCXX_THROW(SyntaxException,
-			             Format(__("Extension occurred more than once: %1."),
+			             str::form(__("Extension occurred more than once: %1."),
 			                    nid).c_str());
 		}
 
 		LOGIT_ERROR("Unable to parse the certificate (NID:" <<
 		            nid << " Crit:" << crit << ")");
 		BLOCXX_THROW(SyntaxException,
-		             Format(__("Unable to parse the certificate (NID: %1 Crit: %2)."),
+		             str::form(__("Unable to parse the certificate (NID: %1 Crit: %2)."),
 		                    nid, crit).c_str());
 	}
 
@@ -511,7 +511,7 @@ X509v3CertificateExts_Priv::parseExtendedKeyUsageExt(STACK_OF(X509_EXTENSION)* c
 
 		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
 		BLOCXX_THROW(SyntaxException,
-		             Format(__("Unable to parse the certificate (Crit: %1)."),
+		             str::form(__("Unable to parse the certificate (Crit: %1)."),
 		                    crit).c_str());
 	}
 
@@ -530,7 +530,7 @@ X509v3CertificateExts_Priv::parseExtendedKeyUsageExt(STACK_OF(X509_EXTENSION)* c
 		}
 		else
 		{
-			usageList.push_back(String(OBJ_nid2sn(nid)));
+			usageList.push_back(std::string(OBJ_nid2sn(nid)));
 		}
 	}
 	ext.setExtendedKeyUsage(usageList);
@@ -577,7 +577,7 @@ X509v3CertificateExts_Priv::parseBasicConstraintsExt(STACK_OF(X509_EXTENSION)* c
 
 		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
 		BLOCXX_THROW(SyntaxException,
-		             Format(__("Unable to parse the certificate (Crit: %1)."),
+		             str::form(__("Unable to parse the certificate (Crit: %1)."),
 		                    crit).c_str());
 	}
 
@@ -641,18 +641,15 @@ X509v3CertificateExts_Priv::parseSubjectKeyIdentifierExt(STACK_OF(X509_EXTENSION
 
 		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
 		BLOCXX_THROW(SyntaxException,
-		             Format(__("Unable to parse the certificate (Crit: %1)."),
+		             str::form(__("Unable to parse the certificate (Crit: %1)."),
 		                    crit).c_str());
 	}
 
-	String s;
+	std::string s;
 
 	for(int i = 0; i < ski->length; ++i)
 	{
-		String d;
-		d.format("%02x", ski->data[i]);
-
-		s += d;
+		s += str::form( "%02x", ski->data[i]);
 		if( (i+1) < ski->length)
 		{
 			s += ":";
@@ -704,7 +701,7 @@ X509v3CertificateExts_Priv::parseSubjectAlternativeNameExt(STACK_OF(X509_EXTENSI
 
 		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
 		BLOCXX_THROW(SyntaxException,
-		             Format(__("Unable to parse the certificate (Crit: %1)."),
+		             str::form(__("Unable to parse the certificate (Crit: %1)."),
 		                    crit).c_str());
 	}
 
@@ -773,7 +770,7 @@ X509v3CertificateExts_Priv::parseIssuerAlternativeNameExt(STACK_OF(X509_EXTENSIO
 
 		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
 		BLOCXX_THROW(SyntaxException,
-		             Format(__("Unable to parse the certificate (Crit: %1)."),
+		             str::form(__("Unable to parse the certificate (Crit: %1)."),
 		                    crit).c_str());
 	}
 
@@ -843,7 +840,7 @@ X509v3CertificateExts_Priv::parseCRLDistributionPointsExt(STACK_OF(X509_EXTENSIO
 
 		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
 		BLOCXX_THROW(SyntaxException,
-		             Format(__("Unable to parse the certificate (Crit: %1)."),
+		             str::form(__("Unable to parse the certificate (Crit: %1)."),
 		                    crit).c_str());
 	}
 
@@ -918,7 +915,7 @@ X509v3CertificateExts_Priv::parseAuthorityInfoAccessExt(STACK_OF(X509_EXTENSION)
 
 		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
 		BLOCXX_THROW(SyntaxException,
-		             Format(__("Unable to parse the certificate (Crit: %1)."), crit).c_str());
+		             str::form(__("Unable to parse the certificate (Crit: %1)."), crit).c_str());
 	}
 
 
@@ -941,7 +938,7 @@ X509v3CertificateExts_Priv::parseAuthorityInfoAccessExt(STACK_OF(X509_EXTENSION)
 			             __("Invalid location in authorityInfoAccess."));
 		}
 
-		String method;
+		std::string method;
 
 		i2t_ASN1_OBJECT(objtmp, sizeof objtmp, desc->method);
 
@@ -949,11 +946,11 @@ X509v3CertificateExts_Priv::parseAuthorityInfoAccessExt(STACK_OF(X509_EXTENSION)
 
 		if(nid == 0)
 		{
-			method = String(objtmp);
+			method = std::string(objtmp);
 		}
 		else
 		{
-			method = String(OBJ_nid2sn(nid));
+			method = std::string(OBJ_nid2sn(nid));
 		}
 
 		AuthorityInformation ai(method, lv);
@@ -1004,7 +1001,7 @@ X509v3CertificateExts_Priv::parseCertificatePoliciesExt(STACK_OF(X509_EXTENSION)
 
 		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
 		BLOCXX_THROW(SyntaxException,
-		             Format(__("Unable to parse the certificate (Crit: %1)."),
+		             str::form(__("Unable to parse the certificate (Crit: %1)."),
 		                    crit).c_str());
 	}
 
@@ -1042,7 +1039,7 @@ X509v3CertificateExts_Priv::parseCertificatePoliciesExt(STACK_OF(X509_EXTENSION)
 					memcpy(s, qualinfo->d.cpsuri->data, qualinfo->d.cpsuri->length);
 					s[qualinfo->d.cpsuri->length] = '\0';
 
-					cpsURI.push_back(String(s));
+					cpsURI.push_back(std::string(s));
 					delete [] s;
 					break;
 				case NID_id_qt_unotice:

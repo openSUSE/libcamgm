@@ -27,14 +27,10 @@
 #include  <limal/ValueIntCheck.hpp>
 
 #include  <limal/ca-mgm/CommonData.hpp>
-#include  <blocxx/String.hpp>
-#include  <blocxx/Format.hpp>
+#include  <limal/String.hpp>
 
 namespace LIMAL_NAMESPACE
 {
-
-using namespace blocxx;
-
 
 // -------------------------------------------------------------------
 ValueIntCheck::ValueIntCheck(int            minValue,
@@ -78,10 +74,10 @@ ValueIntCheck::ValueIntCheck(int64_t minValue,
 
 // -------------------------------------------------------------------
 bool
-ValueIntCheck::isValid(const blocxx::String &value) const
+ValueIntCheck::isValid(const std::string &value) const
 {
 	if( m_sign) {
-		Int64 val  = value.toInt64();
+		int64_t val  = str::strtonum<int64_t>(value);
 		if( m_incl)
 		{
 			return (val >= m_min.s && val <= m_max.s);
@@ -91,7 +87,7 @@ ValueIntCheck::isValid(const blocxx::String &value) const
 			return (val > m_min.s && val < m_max.s);
 		}
 	} else {
-		UInt64 val = value.toUInt64();
+		uint64_t val = str::strtonum<uint64_t>(value);
 		if( m_incl)
 		{
 			return (val >= m_min.u && val <= m_max.u);
@@ -105,19 +101,21 @@ ValueIntCheck::isValid(const blocxx::String &value) const
 
 
 // -------------------------------------------------------------------
-blocxx::String
-ValueIntCheck::explain(const blocxx::String &value) const
+std::string
+ValueIntCheck::explain(const std::string &value) const
 {
-	String s;
-	String o(m_incl ? "=" : "");
+	std::string s;
+	std::string o(m_incl ? "=" : "");
 	if( m_sign) {
-		s = Format("ValueIntCheck('%1' >%2 %3 && '%4' <%5 %6)",
-		           value, o, m_min.s, value, o, m_max.s);
+		s = str::form("ValueIntCheck(%s >%s %lld && %s <%s %lld)",
+		              value.c_str(), o.c_str(), m_min.s,
+                      value.c_str(), o.c_str(), m_max.s);
 	}
 	else
 	{
-		s = Format("ValueIntCheck('%1' >%2 %3 && '%4' <%5 %6)",
-		           value, o, m_min.u, value, o, m_max.u);
+		s = str::form("ValueIntCheck('%s' >%s %lld && '%s' <%s %lld)",
+		              value.c_str(), o.c_str(), m_min.u,
+                      value.c_str(), o.c_str(), m_max.u);
 	}
 	return s;
 }

@@ -108,11 +108,11 @@ public:
 	 *
 	 * @param value A string value.
 	 * @return true, if the value fits into the range.
-	 * @throws blocxx::StringConversionException if the
+	 * @throws std::stringConversionException if the
 	 * value can't be converted to a integer value.
 	 */
 	virtual bool
-	isValid(const blocxx::String &value) const;
+	isValid(const std::string &value) const;
 
 	/**
 	 * Return a string showing the integer range check.
@@ -120,8 +120,8 @@ public:
 	 * @param value A string value.
 	 * @return A string showing the check.
 	 */
-	virtual blocxx::String
-	explain(const blocxx::String &value) const;
+	virtual std::string
+	explain(const std::string &value) const;
 
 private:
 	bool	m_sign;

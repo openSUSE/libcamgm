@@ -72,7 +72,7 @@ namespace path {
  * @code
  *  PathInfo pi1( "/foo/bar/some_file");            // new object from c-string
  *  PathInfo pi2( PathName( "/foo/bar/some_file");  // new object from PathName object
- *  PathInfo pi3( blocxx::String( "/foo/bar/some_file" ); // new object from blocxx::String
+ *  PathInfo pi3( std::string( "/foo/bar/some_file" ); // new object from std::string
 
  *  std::cout << "File: \t\t" << pi1 << std::endl;
  *  std::cout << "Type: \t\t" << pi1.fileType() << std::endl; 
@@ -81,7 +81,7 @@ namespace path {
  *  std::cout << "#links: \t" << pi1.nlink() << std::endl;
  *
  *  // Note the comment further down on the return value of size()!
- *  std::cout << "size: \t\t" << blocxx::String( pi1.size() ) << std::endl;
+ *  std::cout << "size: \t\t" << std::string( pi1.size() ) << std::endl;
  *  std::cout << "blksize: \t" << pi1.blksize() << std::endl;
  *  std::cout << "blocks: \t" << pi1.blocks() << std::endl;
  *  std::cout << "dev: \t\t" << pi1.dev() << std::endl;
@@ -166,14 +166,14 @@ class PathInfo {
     PathInfo( const PathName & path = "", Mode initial = E_STAT );
 
     /**
-     * @brief  Constructor to create a PathInfo object from a blocxx::String.
+     * @brief  Constructor to create a PathInfo object from a std::string.
      *         Initial stat-mode defaults to E_STAT. 
      *
-     * @param path      The blocxx::String representing a path which is used 
+     * @param path      The std::string representing a path which is used 
      *                  to create the new PathInfo object.
      * @param initial   The stat-mode used when performing stat operations.
      */
-    PathInfo( const blocxx::String & path, Mode initial = E_STAT );
+    PathInfo( const std::string & path, Mode initial = E_STAT );
 
     /**
      * @brief  Constructor to create a PathInfo object from a c-string.
@@ -196,12 +196,12 @@ class PathInfo {
     const PathName           path()     const { return m_path; }
 
     /**
-     * @brief  Returns a blocxx::String formed from the PathName object this
+     * @brief  Returns a std::string formed from the PathName object this
      *         this PathInfo object holds.
-     * @return A blocxx::String created from the PathName object this PathInfo
+     * @return A std::string created from the PathName object this PathInfo
      *         object holds.
      */          
-    blocxx::String           toString() const { return m_path.toString(); }
+    std::string           toString() const { return m_path.toString(); }
     /**
      * @brief  Returns the stat mode which is currently set in this PathInfo 
      *         object.
@@ -627,7 +627,7 @@ class PathInfo {
      * @note The off_t type may be of type "long long" (64bit) and
      * the stream operator "<<" may convert off_t to int, causing
      * unexpected wrong outputs.
-     * You can workaround it using blocxx::String(p.size()), that
+     * You can workaround it using std::string(p.size()), that
      * provides proper conversion constructors for 64bit integers.
      */
     ::off_t                  size()    const;

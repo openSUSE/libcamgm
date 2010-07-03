@@ -18,8 +18,8 @@
 /-*/
 
 #include <limal/UrlUtils.hpp>
-#include <blocxx/Format.hpp>
-#include <blocxx/PosixRegEx.hpp>
+#include <limal/String.hpp>
+#include <limal/PosixRegEx.hpp>
 
 #include "Utils.hpp"
 
@@ -67,30 +67,30 @@ namespace // anonymous
 
 	inline size_t
 	find_first_not_of(const ca_mgm::ByteBuffer &src,
-	                  const blocxx::String    &set,
+	                  const std::string    &set,
 	                  size_t                   off = 0)
 	{
 		for(size_t pos = off; pos < src.size(); pos++)
 		{
-			if( set.indexOf(src.at(pos)) == String::npos)
+			if( set.find_first_of(src.at(pos)) == std::string::npos)
 			{
 				return pos;
 			}
 		}
-		return blocxx::String::npos;
+		return std::string::npos;
 	}
 
 } // anonymous namespace
 
 
 // -------------------------------------------------------------------
-blocxx::String
-encode(const blocxx::String &str, const blocxx::String  &safe,
+std::string
+encode(const std::string &str, const std::string  &safe,
                                   ca_mgm::url::EEncoding eflag)
 {
 	if( str.empty())
 	{
-		return String();
+		return std::string();
 	}
 	else
 	{
@@ -103,26 +103,26 @@ encode(const blocxx::String &str, const blocxx::String  &safe,
 
 
 // -------------------------------------------------------------------
-blocxx::String
-encode_buf(const ca_mgm::ByteBuffer &buf, const blocxx::String  &safe,
+std::string
+encode_buf(const ca_mgm::ByteBuffer &buf, const std::string  &safe,
                                          ca_mgm::url::EEncoding eflag)
 {
 	if( buf.empty())
 	{
-		return String();
+		return std::string();
 	}
 
-	String skip("ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-	            "abcdefghijklmnopqrstuvwxyz"
-	            "0123456789.~_-");
-	String more(":/?#[]@!$&'()*+,;=");
-	String out;
+	std::string skip("ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	                 "abcdefghijklmnopqrstuvwxyz"
+	                 "0123456789.~_-");
+	std::string more(":/?#[]@!$&'()*+,;=");
+	std::string out;
 	size_t beg, pos, len;
 
 	for(size_t i=0; i<safe.length(); i++)
 	{
-		if( more.indexOf(safe[i]) != String::npos)
-			skip.concat(safe[i]);
+		if( more.find_first_of(safe[i]) != std::string::npos)
+			skip += safe[i];
 	}
 
 	len = buf.size();
@@ -130,11 +130,11 @@ encode_buf(const ca_mgm::ByteBuffer &buf, const blocxx::String  &safe,
 	while( beg < len)
 	{
 		pos = find_first_not_of(buf, skip, beg);
-		if(pos != String::npos)
+		if(pos != std::string::npos)
 		{
 			if( pos > beg)
 			{
-				out.concat(String(buf.data() + beg, pos - beg));
+				out += std::string(buf.data() + beg, pos - beg);
 			}
 
 			if( eflag == E_ENCODED &&
@@ -143,18 +143,18 @@ encode_buf(const ca_mgm::ByteBuffer &buf, const blocxx::String  &safe,
 			    ::isxdigit(buf.at(pos + 1)) &&
 			    ::isxdigit(buf.at(pos + 2)))
 			{
-				out.concat(String(buf.data() + pos, 3));
+				out += std::string(buf.data() + pos, 3);
 				beg = pos + 3;
 			}
 			else
 			{
-				out.concat( encode_octet( buf.at(pos)));
+				out += encode_octet( buf.at(pos));
 				beg = pos + 1;
 			}
 		}
 		else
 		{
-			out.concat(String(buf.data() + beg, len - beg));
+			out += std::string(buf.data() + beg, len - beg);
 			beg = len;
 		}
 	}
@@ -163,16 +163,16 @@ encode_buf(const ca_mgm::ByteBuffer &buf, const blocxx::String  &safe,
 
 
 // -------------------------------------------------------------------
-blocxx::String
-decode(const blocxx::String &str)
+std::string
+decode(const std::string &str)
 {
-	return String( ByteBuffer(decode_buf(str, false)).data());
+	return std::string( ByteBuffer(decode_buf(str, false)).data());
 }
 
 
 // -------------------------------------------------------------------
 ca_mgm::ByteBuffer
-decode_buf(const blocxx::String &str, bool allowNUL)
+decode_buf(const std::string &str, bool allowNUL)
 {
 	size_t      pos, ins, len;
 	ByteBuffer  out(str.c_str(), str.length());
@@ -181,7 +181,7 @@ decode_buf(const blocxx::String &str, bool allowNUL)
 	pos = ins = 0;
 	while(pos < len)
 	{
-		out[ins] = str.charAt(pos);
+		out[ins] = str.at(pos);
 		if( pos + 2 < len && out[pos] == '%')
 		{
 			int c = decode_octet(str.c_str() + pos + 1);
@@ -217,7 +217,7 @@ decode_buf(const blocxx::String &str, bool allowNUL)
 
 
 // -------------------------------------------------------------------
-blocxx::String
+std::string
 encode_octet(const unsigned char c)
 {
 	static const unsigned char tab[] = "0123456789ABCDEF";
@@ -229,7 +229,7 @@ encode_octet(const unsigned char c)
 	out[3] = '\0';
 
 	//snprintf(out, sizeof(out), "%%%02X", c);
-	return blocxx::String((char *)out);
+	return std::string((char *)out);
 }
 
 
@@ -250,9 +250,9 @@ decode_octet(const char *hex)
 
 
 // -------------------------------------------------------------------
-std::vector<blocxx::String>
-split(const blocxx::String &pstr,
-      const blocxx::String &psep)
+std::vector<std::string>
+split(const std::string &pstr,
+      const std::string &psep)
 {
 	if( psep.empty())
 	{
@@ -261,7 +261,7 @@ split(const blocxx::String &pstr,
 		);
 	}
 
-	std::vector<blocxx::String> params;
+	std::vector<std::string> params;
 	size_t beg, pos, len;
 
 	len = pstr.length();
@@ -269,15 +269,15 @@ split(const blocxx::String &pstr,
 
 	while( beg < len)
 	{
-		pos = pstr.indexOf(psep, beg);
-		if(pos != String::npos)
+		pos = pstr.find_first_of(psep, beg);
+		if(pos != std::string::npos)
 		{
-			params.push_back( pstr.substring(beg, pos - beg));
+			params.push_back( pstr.substr(beg, pos - beg));
 			beg = pos + 1;
 		}
 		else
 		{
-			params.push_back( pstr.substring(beg, len - beg));
+			params.push_back( pstr.substr(beg, len - beg));
 			beg = len;
 		}
 	}
@@ -287,9 +287,9 @@ split(const blocxx::String &pstr,
 
 // -------------------------------------------------------------------
 ca_mgm::url::ParamMap
-split(const blocxx::String &str,
-      const blocxx::String &psep,
-      const blocxx::String &vsep,
+split(const std::string &str,
+      const std::string &psep,
+      const std::string &vsep,
       EEncoding         eflag)
 {
 	if( psep.empty() || vsep.empty())
@@ -299,27 +299,27 @@ split(const blocxx::String &str,
 		);
 	}
 
-	std::vector<blocxx::String>                 params( split(str, psep));
-	std::vector<blocxx::String>::const_iterator piter;
-	blocxx::String              key, val;
+	std::vector<std::string>                 params( split(str, psep));
+	std::vector<std::string>::const_iterator piter;
+	std::string              key, val;
 	size_t                      pos;
 	ParamMap                    pmap;
 
 	for( piter = params.begin(); piter != params.end(); ++piter)
 	{
-		pos = piter->indexOf(vsep);
-		if(pos != String::npos)
+		pos = piter->find_first_of(vsep);
+		if(pos != std::string::npos)
 		{
 			if( eflag == E_DECODED)
 			{
-				key = url::decode(piter->substring(0, pos));
-				val = url::decode(piter->substring(pos + 1));
+				key = url::decode(piter->substr(0, pos));
+				val = url::decode(piter->substr(pos + 1));
 				pmap[ key ] = val;
 			}
 			else
 			{
-				key = piter->substring(0, pos);
-				val = piter->substring(pos + 1);
+				key = piter->substr(0, pos);
+				val = piter->substr(pos + 1);
 				pmap[ key ] = val;
 			}
 		}
@@ -340,12 +340,12 @@ split(const blocxx::String &str,
 
 
 // -------------------------------------------------------------------
-blocxx::String
-join(const std::vector<blocxx::String> &params,
-     const blocxx::String      &psep)
+std::string
+join(const std::vector<std::string> &params,
+     const std::string      &psep)
 {
-	blocxx::String                      str;
-	std::vector<blocxx::String>::const_iterator p( params.begin());
+	std::string                      str;
+	std::vector<std::string>::const_iterator p( params.begin());
 
 	if( p != params.end())
 	{
@@ -360,11 +360,11 @@ join(const std::vector<blocxx::String> &params,
 
 
 // -------------------------------------------------------------------
-blocxx::String
+std::string
 join(const ca_mgm::url::ParamMap &pmap,
-     const blocxx::String       &psep,
-     const blocxx::String       &vsep,
-     const blocxx::String       &safe)
+     const std::string       &psep,
+     const std::string       &vsep,
+     const std::string       &safe)
 {
 	if( psep.empty() || vsep.empty())
 	{
@@ -373,16 +373,16 @@ join(const ca_mgm::url::ParamMap &pmap,
 		);
 	}
 
-	blocxx::String join_safe;
+	std::string join_safe;
 	for(size_t i=0; i<safe.length(); i++)
 	{
-		if( psep.indexOf(safe[i]) == String::npos &&
-		    vsep.indexOf(safe[i]) == String::npos)
+		if( psep.find_first_of(safe[i]) == std::string::npos &&
+		    vsep.find_first_of(safe[i]) == std::string::npos)
 		{
-			join_safe.concat(safe[i]);
+			join_safe += safe[i];
 		}
 	}
-	blocxx::String           str;
+	std::string           str;
 	ParamMap::const_iterator p( pmap.begin());
 
 	if( p != pmap.end())
@@ -405,13 +405,13 @@ join(const ca_mgm::url::ParamMap &pmap,
 
 // -------------------------------------------------------------------
 UrlComponents
-parse_url_string(const blocxx::String &url)
+parse_url_string(const std::string &url)
 {
-	std::vector<blocxx::String> cap;
+	std::vector<std::string> cap;
 	try
 	{
-		blocxx::PosixRegEx reg(RX_SPLIT_URL);
-		cap = convStringArray(reg.capture(url));
+		PosixRegEx reg(RX_SPLIT_URL);
+		cap = reg.capture(url);
 	}
 	catch(...)
 	{}
@@ -453,13 +453,13 @@ parse_url_string(const blocxx::String &url)
 
 // -------------------------------------------------------------------
 UrlAuthority
-parse_url_authority(const blocxx::String &authority)
+parse_url_authority(const std::string &authority)
 {
-	std::vector<blocxx::String> cap;
+	std::vector<std::string> cap;
 	try
 	{
-		blocxx::PosixRegEx reg(RX_SPLIT_URL_AUTHORITY);
-		cap = convStringArray(reg.capture(authority));
+		PosixRegEx reg(RX_SPLIT_URL_AUTHORITY);
+		cap = reg.capture(authority);
 	}
 	catch(...)
 	{}

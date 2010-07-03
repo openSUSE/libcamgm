@@ -36,8 +36,8 @@ RDNObject_Priv::RDNObject_Priv()
 	: RDNObject()
 {}
 
-RDNObject_Priv::RDNObject_Priv(const String& type, const String& value,
-                               const String&  prompt,
+RDNObject_Priv::RDNObject_Priv(const std::string& type, const std::string& value,
+                               const std::string&  prompt,
                                uint32_t min,
                                uint32_t max)
 	: RDNObject()
@@ -53,8 +53,8 @@ RDNObject_Priv::~RDNObject_Priv()
 {}
 
 void
-	RDNObject_Priv::setRDN(const String& type, const String& value,
-	                       const String&  prompt,
+	RDNObject_Priv::setRDN(const std::string& type, const std::string& value,
+	                       const std::string&  prompt,
 	                       uint32_t min,
 	                       uint32_t max)
 {
@@ -95,16 +95,17 @@ DNObject_Priv::DNObject_Priv(X509_NAME *x509_name)
 
 	int n = BIO_get_mem_data(bio, &d);
 
-	String      name(d, n);
+	std::string      name(d, n);
 	PerlRegEx   re("(^[\\w]+)\\s=\\s(.+)$");
-	StringArray lines = name.tokenize("\n");
+	std::vector<std::string> lines;
+    str::split(name, std::back_inserter(lines), "\n");
 
 	/*
 	 * This is one option.
 	 *
 	 for(uint j = 0 ; j < lines.size(); ++j) {
 
-	 std::vector<blocxx::String> vals = re.capture(lines[j]);
+	 std::vector<std::string> vals = re.capture(lines[j]);
 
 	 if(vals.size() != 3) {
 
@@ -112,7 +113,7 @@ DNObject_Priv::DNObject_Priv(X509_NAME *x509_name)
 
 	 LOGIT_ERROR("Can not parse DN line: " << lines[j]);
 	 BLOCXX_THROW(ca_mgm::RuntimeException,
-	 Format("Can not parse DN line: %1", lines[j]).c_str());
+	 str::form("Can not parse DN line: %1", lines[j]).c_str());
 
 	 }
 
@@ -145,7 +146,7 @@ DNObject_Priv::DNObject_Priv(X509_NAME *x509_name)
 
 	for(uint j = 0 ; j < lines.size(); ++j)
 	{
-		StringArray vals = re.capture(lines[j]);
+		std::vector<std::string> vals = re.capture(lines[j]);
 
 		if(vals.size() != 3)
 		{
@@ -154,7 +155,7 @@ DNObject_Priv::DNObject_Priv(X509_NAME *x509_name)
 			LOGIT_ERROR("Can not parse DN line: " << lines[j]);
 			BLOCXX_THROW(ca_mgm::RuntimeException,
 			             // %1 is the wrong part of a DN which could not be parsed
-			             Format(__("Cannot parse DN line: %1."), lines[j]).c_str());
+			             str::form(__("Cannot parse DN line: %s."), lines[j].c_str()).c_str());
 		}
 
 		tmpDN.push_back(RDNObject_Priv(vals[1], vals[2]));
@@ -196,7 +197,7 @@ DNObject_Priv::setDefaults2Config(CA& ca)
 		BLOCXX_THROW(ca_mgm::SyntaxException,
 		             __("Missing section 'distinguished_name' in the configuration file."));
 	}
-	String dnSect = ca.getConfig()->getValue("req_ca", "distinguished_name");
+	std::string dnSect = ca.getConfig()->getValue("req_ca", "distinguished_name");
 
 	StringList dnKeys = ca.getConfig()->getKeylist(dnSect);
 
@@ -204,17 +205,17 @@ DNObject_Priv::setDefaults2Config(CA& ca)
 	{
 		LOGIT_ERROR("Can not parse Section " << dnSect);
 		BLOCXX_THROW(ca_mgm::SyntaxException,
-		             Format(__("Cannot parse section %1."), dnSect).c_str());
+		             str::form(__("Cannot parse section %s."), dnSect.c_str()).c_str());
 	}
 	StringList::const_iterator it = dnKeys.begin();
-	std::vector<std::vector<blocxx::String> > newDNSect;
+	std::vector<std::vector<std::string> > newDNSect;
 
-	String lastFieldName;
-	String defaultValue;
+	std::string lastFieldName;
+	std::string defaultValue;
 
 	for(; it != dnKeys.end(); ++it)
 	{
-		if((*it).endsWith("_default", String::E_CASE_INSENSITIVE))
+		if(str::endsWithCI(*it, "_default"))
 		{
 			// delete the old default value
 			// if there is a new one we add it later
@@ -226,8 +227,8 @@ DNObject_Priv::setDefaults2Config(CA& ca)
 			// we enter a new fieldName
 			// let's have a look if we need and have a default for lastFieldName
 
-			if(!(lastFieldName.startsWith("commonName", String::E_CASE_INSENSITIVE) ||
-			     lastFieldName.startsWith("emailAddress", String::E_CASE_INSENSITIVE)))
+			if(!(str::startsWithCI(lastFieldName, "commonName") ||
+			     str::startsWithCI(lastFieldName, "emailAddress")))
 			{
 				// do we have a default for lastFiledName?
 				std::list<RDNObject>::const_iterator rdnIT;
@@ -242,7 +243,7 @@ DNObject_Priv::setDefaults2Config(CA& ca)
 				}
 				if(defaultValue != "")
 				{
-					std::vector<blocxx::String> line(2, "");
+					std::vector<std::string> line(2, "");
 					line[0] = lastFieldName + "_default";
 					line[1] = defaultValue;
 					newDNSect.push_back(line);
@@ -253,14 +254,14 @@ DNObject_Priv::setDefaults2Config(CA& ca)
 			defaultValue = "";
 		}
 
-		std::vector<blocxx::String> line(2, "");
+		std::vector<std::string> line(2, "");
 		line[0] = *it;
 		line[1] = ca.getConfig()->getValue(dnSect, *it);
 		newDNSect.push_back(line);
 		ca.getConfig()->deleteValue(dnSect, *it);
 	}
 
-	std::vector<std::vector<blocxx::String> >::const_iterator newIT;
+	std::vector<std::vector<std::string> >::const_iterator newIT;
 
 	for(newIT = newDNSect.begin(); newIT != newDNSect.end(); ++newIT)
 	{

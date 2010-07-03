@@ -17,8 +17,8 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <regex.h>
-#include <blocxx/String.hpp>
-#include <blocxx/PosixRegEx.hpp>
+#include <limal/String.hpp>
+#include <limal/PosixRegEx.hpp>
 #include <blocxx/IntrusiveCountableBase.hpp>
 
 #include <iosfwd>
@@ -40,12 +40,12 @@ class RegexMatch
 {
 public:
     /** Matched subexpressions (0 - the whole regex) */
-    std::vector<blocxx::String> matches;
+    std::vector<std::string> matches;
     /** The unmatched part of the String */
-    blocxx::String rest;
+    std::string rest;
 
     /** @return i-th match */
-    const blocxx::String& operator[] (size_t i) { return matches[i]; }
+    const std::string& operator[] (size_t i) { return matches[i]; }
     /** did the String match */
     operator bool () { return matches.size () > 0; }
 
@@ -54,13 +54,13 @@ public:
      * @param s  a String to match
      * @param nmatch how many rm_matches to reserve
      */
-    RegexMatch (blocxx::PosixRegEx& rx, const blocxx::String& s) {
-	blocxx::PosixRegEx::MatchArray  rm_matches;
+    RegexMatch (PosixRegEx& rx, const std::string& s) {
+	PosixRegEx::MatchArray  rm_matches;
 	if( rx.execute(rm_matches, s) && !rm_matches.empty())
 	{
 	    // match
-	    rest = s.substring (0, rm_matches[0].rm_so) +
-		s.substring (rm_matches[0].rm_eo);
+	    rest = s.substr (0, rm_matches[0].rm_so) +
+		s.substr (rm_matches[0].rm_eo);
 	}
 	else
 	{
@@ -69,7 +69,7 @@ public:
 	}
 	for (size_t i = 0; i < rm_matches.size() ; ++i)
 	{
-	    matches.push_back (s.substring (rm_matches[i].rm_so,
+	    matches.push_back (s.substr (rm_matches[i].rm_so,
 					    rm_matches[i].rm_eo - rm_matches[i].rm_so));
 	}
     }
@@ -81,8 +81,8 @@ public:
  */
 struct IoPattern
 {
-    blocxx::PosixRegEx rx;
-    blocxx::String out;
+    PosixRegEx rx;
+    std::string out;
 };
 
 /**
@@ -103,9 +103,9 @@ struct param
     /** single-line values, the normal case */
     IoPattern line;
     /** multiline begin */
-    blocxx::PosixRegEx begin;
+    PosixRegEx begin;
     /** multiline end */
-    blocxx::PosixRegEx end;
+    PosixRegEx end;
     /** was multiline specified*/
     bool multiline_valid;
 };
@@ -115,11 +115,11 @@ struct FileDescr
     /**
      * File name
      */
-    blocxx::String fn;
+    std::string fn;
     /**
      * Section name
      */
-    blocxx::String sn;
+    std::string sn;
     /**
      * Time of the last modification
      */
@@ -143,11 +143,11 @@ private:
      * Times of last modification of read files, used in multiple files
      * mode.
      */
-    std::map<blocxx::String,FileDescr> multi_files;
+    std::map<std::string,FileDescr> multi_files;
     /**
      * File name of the ini file -- single file mode only.
      */
-    blocxx::String file;
+    std::string file;
     /**
      * Get time stamp of file in sinble file mode.
      */
@@ -183,15 +183,15 @@ private:
     bool flat;
 
     /** this String is printed before each line in subsections */
-    blocxx::String subindent;
+    std::string subindent;
     /**
      * Regular expression for comments over whole line.
      */
-    std::vector<blocxx::PosixRegEx> linecomments;
+    std::vector<PosixRegEx> linecomments;
     /**
      * Regular expressions for comments over part of the line.
      */
-    std::vector<blocxx::PosixRegEx> comments;
+    std::vector<PosixRegEx> comments;
     /**
      * Regular expressions for sections.
      */
@@ -212,7 +212,7 @@ private:
     /**
      * name of scanned file
      */
-    blocxx::String scanner_file;
+    std::string scanner_file;
     /**
      * line number of scanned file
      */
@@ -231,7 +231,7 @@ private:
     /**
      * Array of globe-expressions.
      */
-    std::vector<blocxx::String> files;
+    std::vector<std::string> files;
 
     /**
      * Open ini file.
@@ -244,7 +244,7 @@ private:
     /**
      * get line from ini file.
      */
-    int scanner_get(blocxx::String&s);
+    int scanner_get(std::string&s);
 
     /**
      * Parse one ini file and build a structure of IniSection.
@@ -287,11 +287,11 @@ public:
      * Sets parser to multiple file mode and sets the glob-expressions.
      * @param f list of glob-expressions
      */
-    void initFiles (const std::vector<blocxx::String>&f);
+    void initFiles (const std::vector<std::string>&f);
     /**
      * Sets flags and regular expressions.
      */
-    void initOptions (const std::vector<blocxx::String>&options);
+    void initOptions (const std::vector<std::string>&options);
     /**
      * Sets flags and regular expressions.
      */
@@ -299,11 +299,11 @@ public:
     /**
      * Sets flags and regular expressions.
      */
-    void initSubident (const blocxx::String ident);
+    void initSubident (const std::string ident);
     /**
      * Sets flags and regular expressions.
      */
-    void initComments (const std::vector<blocxx::String>&comm);
+    void initComments (const std::vector<std::string>&comm);
     /**
      * Sets flags and regular expressions.
      */
@@ -354,7 +354,7 @@ public:
      * @param rb index of rewrite rule
      * @return rewritten file name
      */
-    blocxx::String getFileName (const blocxx::String&sec, int rb);
+    std::string getFileName (const std::string&sec, int rb);
     /**
      * Using file name rewriting?
      */
@@ -370,7 +370,7 @@ public:
      * @param str String to change
      * @return changed String
      */
-    blocxx::String changeCase (const blocxx::String&str) const;
+    std::string changeCase (const std::string&str) const;
 };
 
 }      // End of INI namespace

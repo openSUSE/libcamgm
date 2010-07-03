@@ -33,7 +33,7 @@
 namespace CA_MGM_NAMESPACE {
 
 	class RequestDataImpl;
-	
+
     /**
      * @brief Read-only data representation of a request
      *
@@ -50,63 +50,63 @@ namespace CA_MGM_NAMESPACE {
 		operator=(const RequestData& data);
 
 #endif
-		
+
 		uint32_t
 		getVersion() const;
-        
+
 		uint32_t
 		getKeysize() const;
-        
+
 		DNObject
 		getSubjectDN() const;
-        
+
 		KeyAlg
 		getKeyAlgorithm() const;
-        
+
 		ca_mgm::ByteBuffer
 		getPublicKey() const;
-        
+
 		SigAlg
 		getSignatureAlgorithm() const;
-        
+
 		ca_mgm::ByteBuffer
 		getSignature() const;
-        
+
 		X509v3RequestExts
 		getExtensions() const;
-        
-		String
+
+		std::string
 		getChallengePassword() const;
-        
-		String
+
+		std::string
 		getUnstructuredName() const;
 
 		/**
 		 * Return the Request in a human readable format
 		 * (Format may change)
 		 */
-		String
+		std::string
 		getRequestAsText() const;
 
 		/**
 		 * Return the Request extensions in a human readable format
 		 * (Format may change)
 		 */
-		String
+		std::string
 		getExtensionsAsText() const;
-    	
+
 		virtual bool
 		valid() const;
-        
-		virtual std::vector<blocxx::String>
+
+		virtual std::vector<std::string>
 		verify() const;
 
-		virtual std::vector<blocxx::String>
+		virtual std::vector<std::string>
 		dump() const;
 
 	protected:
 		blocxx::COWIntrusiveReference<RequestDataImpl> m_impl;
-    	
+
 		RequestData();
 
 	};

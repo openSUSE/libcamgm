@@ -2,8 +2,8 @@
 #include <blocxx/AppenderLogger.hpp>
 #include <blocxx/CerrLogger.hpp>
 #include <blocxx/CerrAppender.hpp>
-#include <blocxx/String.hpp>
-#include <blocxx/PerlRegEx.hpp>
+#include <limal/String.hpp>
+#include <limal/PerlRegEx.hpp>
 #include <limal/Logger.hpp>
 #include <limal/PathInfo.hpp>
 #include <limal/ca-mgm/CA.hpp>
@@ -26,7 +26,7 @@ int main()
     {
         cout << "START" << endl;
 
-        blocxx::StringArray cat;
+        StringArray cat;
         cat.push_back("FATAL");
         cat.push_back("ERROR");
         cat.push_back("INFO");
@@ -69,7 +69,7 @@ int main()
 
         CertificateIssueData cid = ca.getIssueDefaults(E_Server_Cert);
 
-        blocxx::String c = ca.createCertificate("system", rgd, cid, E_Server_Cert);
+        std::string c = ca.createCertificate("system", rgd, cid, E_Server_Cert);
 
         cout << "RETURN Certificate " << endl;
 
@@ -82,15 +82,13 @@ int main()
         ca.revokeCertificate(c);
 
         PerlRegEx r0("^([0-9a-fA-F]+):.*");
-        std::vector<blocxx::String> serial = convStringArray(r0.capture(c));
+        std::vector<std::string> serial = r0.capture(c);
 
         ifstream in ("./TestRepos/Test_CA1/index.txt");
 
-        StringBuffer b;
-
         while(1)
         {
-            blocxx::String line = b.getLine(in);
+            std::string line = str::getline(in);
 
             PerlRegEx r1("^R.+\\t"+serial[1]+"\\t.*");
 

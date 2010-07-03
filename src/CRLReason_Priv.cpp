@@ -53,7 +53,7 @@ CRLReason_Priv::CRLReason_Priv(STACK_OF(X509_EXTENSION) *stack)
 		X509_EXTENSION *xe = sk_X509_EXTENSION_value(stack, x);
 
 		int             nid = 0;
-		String          valueString;
+		std::string          valueString;
 		char           *value;
 		char            obj_tmp[80];
 		BIO            *out;
@@ -67,9 +67,8 @@ CRLReason_Priv::CRLReason_Priv(STACK_OF(X509_EXTENSION) *stack)
 		X509V3_EXT_print(out, xe, 0, 1);
 
 		int n = BIO_get_mem_data(out, &value);
-		valueString = String(value, n);
-		valueString.ltrim();
-		valueString.rtrim();
+		valueString = std::string(value, n);
+		valueString = str::trim(valueString);
 		BIO_free(out);
 
 		LOGIT_DEBUG("Value: " << valueString);
@@ -138,11 +137,11 @@ CRLReason_Priv::CRLReason_Priv(STACK_OF(X509_EXTENSION) *stack)
             // e.g. Aug 18 15:56:46 2005 GMT
 			Date dtime(std::string(valueString.c_str()), "%B %d %H:%M:%S %Y %Z", true);
 
-			if(getReason().equalsIgnoreCase("keyCompromise"))
+			if(0 == str::compareCI(getReason(), "keyCompromise"))
 			{
 				setKeyCompromiseDate(dtime);
 			}
-			else if(getReason().equalsIgnoreCase("CACompromise"))
+			else if(0 == str::compareCI(getReason(), "CACompromise"))
 			{
 				setCACompromiseDate(dtime);
 			}

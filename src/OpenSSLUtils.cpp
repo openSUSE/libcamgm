@@ -40,9 +40,9 @@ using namespace ca_mgm;
 using namespace blocxx;
 
 
-OpenSSLUtils::OpenSSLUtils(const String &configFile,
-                           const String &command,
-                           const String &tmpDir)
+OpenSSLUtils::OpenSSLUtils(const std::string &configFile,
+                           const std::string &command,
+                           const std::string &tmpDir)
 	: m_cmd(command), m_tmp(tmpDir), m_conf(configFile)
 {
 	path::PathInfo pi(configFile);
@@ -51,7 +51,7 @@ OpenSSLUtils::OpenSSLUtils(const String &configFile,
 	{
 		LOGIT_ERROR("File does not exist: " << configFile);
 		BLOCXX_THROW_ERR(ca_mgm::ValueException,
-		                 Format(__("File does not exist: %1."), configFile).c_str(),
+		                 str::form(__("File does not exist: %s."), configFile.c_str()).c_str(),
 		                 E_FILE_NOT_FOUND);
 	}
 
@@ -60,7 +60,7 @@ OpenSSLUtils::OpenSSLUtils(const String &configFile,
 	{
 		LOGIT_ERROR("Directory does not exist: " << tmpDir);
 		BLOCXX_THROW_ERR(ca_mgm::ValueException,
-		                 Format(__("Directory does not exist: %1."), tmpDir).c_str(),
+		                 str::form(__("Directory does not exist: %s."), tmpDir.c_str()).c_str(),
 		                 E_FILE_NOT_FOUND);
 	}
 
@@ -69,7 +69,7 @@ OpenSSLUtils::OpenSSLUtils(const String &configFile,
 	{
 		LOGIT_ERROR("Invalid command: " << command);
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             Format(__("Invalid command %1."), command).c_str());
+		             str::form(__("Invalid command %s."), command.c_str()).c_str());
 	}
 
 	path::PathName r = path::PathName::dirName(configFile);
@@ -84,12 +84,12 @@ OpenSSLUtils::OpenSSLUtils(const String &configFile,
 }
 
 void
-OpenSSLUtils::createRSAKey(const String &outFile,
-                           const String &password,
+OpenSSLUtils::createRSAKey(const std::string &outFile,
+                           const std::string &password,
                            uint32_t     bits,
-                           const String &cryptAlgorithm)
+                           const std::string &cryptAlgorithm)
 {
-	blocxx::String debugCmd;
+	std::string debugCmd;
 
 	debugCmd += m_cmd + " ";
 	debugCmd += "genrsa ";
@@ -102,20 +102,20 @@ OpenSSLUtils::createRSAKey(const String &outFile,
 		debugCmd += "-" + cryptAlgorithm + " ";
 	}
 
-	debugCmd += String(bits);
+	debugCmd += str::numstring(bits);
 
-	std::vector<blocxx::String> cmd = convStringArray(PerlRegEx("\\s").split(debugCmd));
+	std::vector<std::string> cmd = PerlRegEx("\\s").split(debugCmd);
 
 	LOGIT_DEBUG("Command: " << debugCmd);
 
 	blocxx::EnvVars env;
 	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", m_rand);
+	env.addVar("RANDFILE", m_rand.c_str());
 
-	env.addVar("pass", password);
+	env.addVar("pass", password.c_str());
 
-	blocxx::String stdOutput;
-	blocxx::String errOutput;
+	std::string stdOutput;
+	std::string errOutput;
 	int            status    = -1;
 
 	try
@@ -131,14 +131,15 @@ OpenSSLUtils::createRSAKey(const String &outFile,
 	}
 	if(status != 0)
 	{
-		LOGIT_ERROR("openssl status:" << blocxx::String(status));
+		LOGIT_ERROR("openssl status:" << str::numstring(status));
 		LOGIT_ERROR("openssl stderr:" << errOutput);
 		LOGIT_DEBUG("openssl stdout:" << stdOutput);
 
-		std::vector<blocxx::String> sa = convStringArray(errOutput.tokenize("\n\r"));
-		String msg = (sa.empty()? "" : sa[0]);
+		std::vector<std::string> sa;
+        str::split(errOutput, std::back_inserter(sa), "\n\r");
+		std::string msg = (sa.empty()? "" : sa[0]);
 		BLOCXX_THROW(ca_mgm::RuntimeException,
-		             Format(__("openssl command failed: %1"), msg).c_str());
+		             str::form(__("openssl command failed: %s"), msg.c_str()).c_str());
 	}
 
 	if(!errOutput.empty())
@@ -153,15 +154,15 @@ OpenSSLUtils::createRSAKey(const String &outFile,
 
 void
 OpenSSLUtils::createRequest(const DNObject &dn,
-                            const String   &outFile,
-                            const String   &keyFile,
-                            const String   &password,
-                            const String   &extension,
+                            const std::string   &outFile,
+                            const std::string   &keyFile,
+                            const std::string   &password,
+                            const std::string   &extension,
                             FormatType      outForm,
-                            const String   &challengePassword,
-                            const String   &unstructuredName)
+                            const std::string   &challengePassword,
+                            const std::string   &unstructuredName)
 {
-	blocxx::String debugCmd;
+	std::string debugCmd;
 
 	debugCmd += m_cmd + " ";
 	debugCmd += "req -new ";
@@ -197,19 +198,19 @@ OpenSSLUtils::createRequest(const DNObject &dn,
 
 	debugCmd += "-passin env:pass ";
 
-	std::vector<blocxx::String> cmd = convStringArray(PerlRegEx("\\s").split(debugCmd));
+	std::vector<std::string> cmd = PerlRegEx("\\s").split(debugCmd);
 
 	LOGIT_DEBUG("Command: " << debugCmd);
 
 	blocxx::EnvVars env;
 	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", m_rand);
+	env.addVar("RANDFILE", m_rand.c_str());
 
-	env.addVar("pass", password);
+	env.addVar("pass", password.c_str());
 
-	blocxx::String stdInput;
-	blocxx::String stdOutput;
-	blocxx::String errOutput;
+	std::string stdInput;
+	std::string stdOutput;
+	std::string errOutput;
 	int            status    = -1;
 
 	std::list<RDNObject> dnList = dn.getDN();
@@ -239,14 +240,16 @@ OpenSSLUtils::createRequest(const DNObject &dn,
 	}
 	if(status != 0)
 	{
-		LOGIT_ERROR("openssl status:" << blocxx::String(status));
+		LOGIT_ERROR("openssl status:" << str::numstring(status));
 		LOGIT_ERROR("openssl stderr:" << errOutput);
 		LOGIT_DEBUG("openssl stdout:" << stdOutput);
 
-		std::vector<blocxx::String> sa = convStringArray(errOutput.tokenize("\n\r"));
-		String msg = (sa.empty()? "" : sa[0]);
+		std::vector<std::string> sa;
+        str::split(errOutput, std::back_inserter(sa), "\n\r");
+
+		std::string msg = (sa.empty()? "" : sa[0]);
 		BLOCXX_THROW(ca_mgm::RuntimeException,
-		             Format(__("openssl command failed: %1"), msg).c_str());
+		             str::form(__("openssl command failed: %s"), msg.c_str()).c_str());
 	}
 
 	if(!errOutput.empty())
@@ -260,11 +263,11 @@ OpenSSLUtils::createRequest(const DNObject &dn,
 }
 
 void
-OpenSSLUtils::createSelfSignedCertificate(const String &outFile,
-                                          const String &keyFile,
-                                          const String &requestFile,
-                                          const String &password,
-                                          const String &extension,
+OpenSSLUtils::createSelfSignedCertificate(const std::string &outFile,
+                                          const std::string &keyFile,
+                                          const std::string &requestFile,
+                                          const std::string &password,
+                                          const std::string &extension,
                                           uint32_t     days,
                                           bool          noEmailDN)
 {
@@ -284,7 +287,7 @@ OpenSSLUtils::createSelfSignedCertificate(const String &outFile,
 		             __("No valid request file specified."));
 	}
 
-	blocxx::String debugCmd;
+	std::string debugCmd;
 
 	debugCmd += m_cmd + " ";
 	debugCmd += "req -x509 ";
@@ -304,24 +307,24 @@ OpenSSLUtils::createSelfSignedCertificate(const String &outFile,
 		debugCmd += "-extensions " + extension + " ";
 	}
 
-	debugCmd += "-days " + String(days) + " ";
+	debugCmd += "-days " + str::numstring(days) + " ";
 
 	debugCmd += "-in "  + requestFile + " ";
 	debugCmd += "-key " + keyFile + " ";
 	debugCmd += "-out " + outFile + " ";
 
-	std::vector<blocxx::String> cmd = convStringArray(PerlRegEx("\\s").split(debugCmd));
+	std::vector<std::string> cmd = PerlRegEx("\\s").split(debugCmd);
 
 	LOGIT_DEBUG("Command: " << debugCmd);
 
 	blocxx::EnvVars env;
 	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", m_rand);
+	env.addVar("RANDFILE", m_rand.c_str());
 
-	env.addVar("pass", password);
+	env.addVar("pass", password.c_str());
 
-	blocxx::String stdOutput;
-	blocxx::String errOutput;
+	std::string stdOutput;
+	std::string errOutput;
 	int            status    = -1;
 
 	try
@@ -337,14 +340,16 @@ OpenSSLUtils::createSelfSignedCertificate(const String &outFile,
 	}
 	if(status != 0)
 	{
-		LOGIT_ERROR("openssl status:" << blocxx::String(status));
+		LOGIT_ERROR("openssl status:" << str::numstring(status));
 		LOGIT_ERROR("openssl stderr:" << errOutput);
 		LOGIT_DEBUG("openssl stdout:" << stdOutput);
 
-		std::vector<blocxx::String> sa = convStringArray(errOutput.tokenize("\n\r"));
-		String msg = (sa.empty()? "" : sa[0]);
+		std::vector<std::string> sa;
+        str::split(errOutput, std::back_inserter(sa), "\n\r");
+
+		std::string msg = (sa.empty()? "" : sa[0]);
 		BLOCXX_THROW(ca_mgm::RuntimeException,
-		             Format(__("openssl command failed: %1"), msg).c_str());
+		             str::form(__("openssl command failed: %s"), msg.c_str()).c_str());
 	}
 
 	if(!errOutput.empty())
@@ -358,15 +363,15 @@ OpenSSLUtils::createSelfSignedCertificate(const String &outFile,
 }
 
 void
-OpenSSLUtils::signRequest(const String &requestFile,
-                          const String &outFile,
-                          const String &caKeyFile,
-                          const String &caPassword,
-                          const String &extension,
-                          const String &startDate,
-                          const String &endDate,
-                          const String &caSection,
-                          const String &outDir,
+OpenSSLUtils::signRequest(const std::string &requestFile,
+                          const std::string &outFile,
+                          const std::string &caKeyFile,
+                          const std::string &caPassword,
+                          const std::string &extension,
+                          const std::string &startDate,
+                          const std::string &endDate,
+                          const std::string &caSection,
+                          const std::string &outDir,
                           bool          noEmailDN,
                           bool          noUniqueDN,
                           bool          noText)
@@ -387,7 +392,7 @@ OpenSSLUtils::signRequest(const String &requestFile,
 		             __("No valid request file specified."));
 	}
 
-	blocxx::String debugCmd;
+	std::string debugCmd;
 
 	debugCmd += m_cmd + " ";
 	debugCmd += "ca -batch ";
@@ -433,19 +438,19 @@ OpenSSLUtils::signRequest(const String &requestFile,
 		debugCmd += "-outdir " + outDir + " ";
 	}
 
-	std::vector<blocxx::String> cmd = convStringArray(PerlRegEx("\\s").split(debugCmd));
+	std::vector<std::string> cmd = PerlRegEx("\\s").split(debugCmd);
 
 	LOGIT_DEBUG("Command: " << debugCmd);
 	//LOGIT_DEBUG("PASSWORD: " << caPassword);
 
 	blocxx::EnvVars env;
 	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", m_rand);
+	env.addVar("RANDFILE", m_rand.c_str());
 
-	env.addVar("pass", caPassword);
+	env.addVar("pass", caPassword.c_str());
 
-	blocxx::String stdOutput;
-	blocxx::String errOutput;
+	std::string stdOutput;
+	std::string errOutput;
 	int            status    = -1;
 
 	try
@@ -461,14 +466,16 @@ OpenSSLUtils::signRequest(const String &requestFile,
 	}
 	if(status != 0)
 	{
-		LOGIT_ERROR("openssl status:" << blocxx::String(status));
+		LOGIT_ERROR("openssl status:" << str::numstring(status));
 		LOGIT_ERROR("openssl stderr:" << errOutput);
 		LOGIT_DEBUG("openssl stdout:" << stdOutput);
 
-		std::vector<blocxx::String> sa = convStringArray(errOutput.tokenize("\n\r"));
-		String msg = (sa.empty()? "" : sa[0]);
+		std::vector<std::string> sa;
+        str::split(errOutput, std::back_inserter(sa), "\n\r");
+
+		std::string msg = (sa.empty()? "" : sa[0]);
 		BLOCXX_THROW(ca_mgm::RuntimeException,
-		             Format(__("openssl command failed: %1"), msg).c_str());
+		             str::form(__("openssl command failed: %s"), msg.c_str()).c_str());
 	}
 
 	if(!errOutput.empty())
@@ -482,10 +489,10 @@ OpenSSLUtils::signRequest(const String &requestFile,
 }
 
 void
-OpenSSLUtils::revokeCertificate(const blocxx::String &caCertFile,
-                                const blocxx::String &caKeyFile,
-                                const blocxx::String &caPassword,
-                                const blocxx::String &certFile,
+OpenSSLUtils::revokeCertificate(const std::string &caCertFile,
+                                const std::string &caKeyFile,
+                                const std::string &caPassword,
+                                const std::string &certFile,
                                 const CRLReason      &reason,
                                 bool                  noUniqueDN)
 {
@@ -513,7 +520,7 @@ OpenSSLUtils::revokeCertificate(const blocxx::String &caCertFile,
 		             __("No valid certificate file specified."));
 	}
 
-	blocxx::String debugCmd;
+	std::string debugCmd;
 
 	debugCmd += m_cmd + " ";
 	debugCmd += "ca ";
@@ -534,15 +541,15 @@ OpenSSLUtils::revokeCertificate(const blocxx::String &caCertFile,
 		debugCmd += "-nouniqueDN ";
 	}
 
-	if(!reason.getReason().equalsIgnoreCase("none"))
+	if(0 != str::compareCI(reason.getReason(), "none"))
 	{
-		String reasonStr = reason.getReason();
+		std::string reasonStr = reason.getReason();
 
-		if(reasonStr.equalsIgnoreCase("certificateHold"))
+		if(0 == str::compareCI(reasonStr, "certificateHold"))
 		{
 			debugCmd += "-crl_hold " + reason.getHoldInstruction() + " ";
 		}
-		else if(reasonStr.equalsIgnoreCase("keyCompromise"))
+		else if(0 == str::compareCI(reasonStr, "keyCompromise"))
 		{
 			if(reason.getKeyCompromiseDateAsString() == "")
 			{
@@ -554,7 +561,7 @@ OpenSSLUtils::revokeCertificate(const blocxx::String &caCertFile,
 					reason.getKeyCompromiseDateAsString() + " ";
 			}
 		}
-		else if(reasonStr.equalsIgnoreCase("CACompromise"))
+		else if(0 == str::compareCI(reasonStr, "CACompromise"))
 		{
 			if(reason.getCACompromiseDateAsString() == "")
 			{
@@ -572,18 +579,18 @@ OpenSSLUtils::revokeCertificate(const blocxx::String &caCertFile,
 		}
 	}
 
-	std::vector<blocxx::String> cmd = convStringArray(PerlRegEx("\\s").split(debugCmd));
+	std::vector<std::string> cmd = PerlRegEx("\\s").split(debugCmd);
 
 	LOGIT_DEBUG("Command: " << debugCmd);
 
 	blocxx::EnvVars env;
 	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", m_rand);
+	env.addVar("RANDFILE", m_rand.c_str());
 
-	env.addVar("pass", caPassword);
+	env.addVar("pass", caPassword.c_str());
 
-	blocxx::String stdOutput;
-	blocxx::String errOutput;
+	std::string stdOutput;
+	std::string errOutput;
 	int            status    = -1;
 
 	try
@@ -599,14 +606,16 @@ OpenSSLUtils::revokeCertificate(const blocxx::String &caCertFile,
 	}
 	if(status != 0)
 	{
-		LOGIT_ERROR("openssl status:" << blocxx::String(status));
+		LOGIT_ERROR("openssl status:" << str::numstring(status));
 		LOGIT_ERROR("openssl stderr:" << errOutput);
 		LOGIT_DEBUG("openssl stdout:" << stdOutput);
 
-		std::vector<blocxx::String> sa = convStringArray(errOutput.tokenize("\n\r"));
-		String msg = (sa.empty()? "" : sa[0]);
+		std::vector<std::string> sa;
+        str::split(errOutput, std::back_inserter(sa), "\n\r");
+
+		std::string msg = (sa.empty()? "" : sa[0]);
 		BLOCXX_THROW(ca_mgm::RuntimeException,
-		             Format(__("openssl command failed: %1"), msg).c_str());
+		             str::form(__("openssl command failed: %s"), msg.c_str()).c_str());
 	}
 
 	if(!errOutput.empty())
@@ -620,12 +629,12 @@ OpenSSLUtils::revokeCertificate(const blocxx::String &caCertFile,
 }
 
 void
-OpenSSLUtils::issueCRL(const blocxx::String &caCertFile,
-                       const blocxx::String &caKeyFile,
-                       const blocxx::String &caPassword,
+OpenSSLUtils::issueCRL(const std::string &caCertFile,
+                       const std::string &caKeyFile,
+                       const std::string &caPassword,
                        uint32_t        hours,
-                       const blocxx::String &outfile,
-                       const blocxx::String &extension,
+                       const std::string &outfile,
+                       const std::string &extension,
                        bool                  noUniqueDN)
 {
 	path::PathInfo pi(caKeyFile);
@@ -644,7 +653,7 @@ OpenSSLUtils::issueCRL(const blocxx::String &caCertFile,
 		             __("No valid CA certificate file specified."));
 	}
 
-	blocxx::String debugCmd;
+	std::string debugCmd;
 
 	debugCmd += m_cmd + " ";
 	debugCmd += "ca -gencrl ";
@@ -660,7 +669,7 @@ OpenSSLUtils::issueCRL(const blocxx::String &caCertFile,
 
 	debugCmd += "-passin env:pass ";
 
-	debugCmd += "-crlhours " + String(hours) + " ";
+	debugCmd += "-crlhours " + str::numstring(hours) + " ";
 
 	if(!extension.empty())
 	{
@@ -672,18 +681,18 @@ OpenSSLUtils::issueCRL(const blocxx::String &caCertFile,
 		debugCmd += "-nouniqueDN ";
 	}
 
-	std::vector<blocxx::String> cmd = convStringArray(PerlRegEx("\\s").split(debugCmd));
+	std::vector<std::string> cmd = PerlRegEx("\\s").split(debugCmd);
 
 	LOGIT_DEBUG("Command: " << debugCmd);
 
 	blocxx::EnvVars env;
 	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", m_rand);
+	env.addVar("RANDFILE", m_rand.c_str());
 
-	env.addVar("pass", caPassword);
+	env.addVar("pass", caPassword.c_str());
 
-	blocxx::String stdOutput;
-	blocxx::String errOutput;
+	std::string stdOutput;
+	std::string errOutput;
 	int            status    = -1;
 
 	try
@@ -699,14 +708,16 @@ OpenSSLUtils::issueCRL(const blocxx::String &caCertFile,
 	}
 	if(status != 0)
 	{
-		LOGIT_ERROR("openssl status:" << blocxx::String(status));
+		LOGIT_ERROR("openssl status:" << str::numstring(status));
 		LOGIT_ERROR("openssl stderr:" << errOutput);
 		LOGIT_DEBUG("openssl stdout:" << stdOutput);
 
-		std::vector<blocxx::String> sa = convStringArray(errOutput.tokenize("\n\r"));
-		String msg = (sa.empty()? "" : sa[0]);
+		std::vector<std::string> sa;
+        str::split(errOutput, std::back_inserter(sa), "\n\r");
+
+		std::string msg = (sa.empty()? "" : sa[0]);
 		BLOCXX_THROW(ca_mgm::RuntimeException,
-		             Format(__("openssl command failed: %1"), msg).c_str());
+		             str::form(__("openssl command failed: %s"), msg.c_str()).c_str());
 	}
 
 	if(!errOutput.empty())
@@ -720,9 +731,9 @@ OpenSSLUtils::issueCRL(const blocxx::String &caCertFile,
 }
 
 void
-OpenSSLUtils::updateDB(const blocxx::String &caCertFile,
-                       const blocxx::String &caKeyFile,
-                       const blocxx::String &caPassword)
+OpenSSLUtils::updateDB(const std::string &caCertFile,
+                       const std::string &caKeyFile,
+                       const std::string &caPassword)
 {
 	path::PathInfo pi(caKeyFile);
 	if(!pi.exists() || !pi.isFile())
@@ -740,7 +751,7 @@ OpenSSLUtils::updateDB(const blocxx::String &caCertFile,
 		             __("No valid CA certificate file specified."));
 	}
 
-	blocxx::String debugCmd;
+	std::string debugCmd;
 
 	debugCmd += m_cmd + " ";
 	debugCmd += "ca -updatedb ";
@@ -754,18 +765,18 @@ OpenSSLUtils::updateDB(const blocxx::String &caCertFile,
 
 	debugCmd += "-passin env:pass ";
 
-	std::vector<blocxx::String> cmd = convStringArray(PerlRegEx("\\s").split(debugCmd));
+	std::vector<std::string> cmd = PerlRegEx("\\s").split(debugCmd);
 
 	LOGIT_DEBUG("Command: " << debugCmd);
 
 	blocxx::EnvVars env;
 	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", m_rand);
+	env.addVar("RANDFILE", m_rand.c_str());
 
-	env.addVar("pass", caPassword);
+	env.addVar("pass", caPassword.c_str());
 
-	blocxx::String stdOutput;
-	blocxx::String errOutput;
+	std::string stdOutput;
+	std::string errOutput;
 	int            status    = -1;
 
 	try
@@ -784,14 +795,16 @@ OpenSSLUtils::updateDB(const blocxx::String &caCertFile,
 
 	if( (status != 0 && status != 256) || r.match(errOutput) )
 	{
-		LOGIT_ERROR("openssl status:" << blocxx::String(status));
+		LOGIT_ERROR("openssl status:" << str::numstring(status));
 		LOGIT_ERROR("openssl stderr:" << errOutput);
 		LOGIT_DEBUG("openssl stdout:" << stdOutput);
 
-		std::vector<blocxx::String> sa = convStringArray(errOutput.tokenize("\n\r"));
-		String msg = (sa.empty()? "" : sa[0]);
+		std::vector<std::string> sa;
+        str::split(errOutput, std::back_inserter(sa), "\n\r");
+
+		std::string msg = (sa.empty()? "" : sa[0]);
 		BLOCXX_THROW(ca_mgm::RuntimeException,
-		             Format(__("openssl command failed: %1"), msg).c_str());
+		             str::form(__("openssl command failed: %s"), msg.c_str()).c_str());
 	}
 
 	if(!errOutput.empty())
@@ -804,11 +817,11 @@ OpenSSLUtils::updateDB(const blocxx::String &caCertFile,
 	}
 }
 
-blocxx::String
-OpenSSLUtils::verify(const blocxx::String &certFile,
-                     const blocxx::String &caPath,
+std::string
+OpenSSLUtils::verify(const std::string &certFile,
+                     const std::string &caPath,
                      bool                  crlCheck,
-                     const blocxx::String &purpose)
+                     const std::string &purpose)
 {
 	path::PathInfo pi(certFile);
 	if(!pi.exists() || !pi.isFile())
@@ -826,7 +839,7 @@ OpenSSLUtils::verify(const blocxx::String &certFile,
 		             __("No valid CA directory specified."));
 	}
 
-	blocxx::String debugCmd;
+	std::string debugCmd;
 
 	debugCmd += m_cmd + " ";
 	debugCmd += "verify ";
@@ -845,16 +858,16 @@ OpenSSLUtils::verify(const blocxx::String &certFile,
 
 	debugCmd += certFile;
 
-	std::vector<blocxx::String> cmd = convStringArray(PerlRegEx("\\s").split(debugCmd));
+	std::vector<std::string> cmd = PerlRegEx("\\s").split(debugCmd);
 
 	LOGIT_DEBUG("Command: " << debugCmd);
 
 	blocxx::EnvVars env;
 	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", m_rand);
+	env.addVar("RANDFILE", m_rand.c_str());
 
-	blocxx::String stdOutput;
-	blocxx::String errOutput;
+	std::string stdOutput;
+	std::string errOutput;
 	int            status    = -1;
 
 	try
@@ -869,18 +882,18 @@ OpenSSLUtils::verify(const blocxx::String &certFile,
 		                   __("Executing openssl command failed."), e);
 	}
 
-	std::vector<blocxx::String> lines = convStringArray(PerlRegEx("\n").split(stdOutput));
-	std::vector<blocxx::String>::const_iterator line;
+	std::vector<std::string> lines = PerlRegEx("\n").split(stdOutput);
+	std::vector<std::string>::const_iterator line;
 
-	String result;
-	String errMsg;
-	String errNum;
+	std::string result;
+	std::string errMsg;
+	std::string errNum;
 	PerlRegEx ok("\\.pem:\\s+(.*)\\s*$");
 	PerlRegEx error("^error\\s+(\\d+)\\s+at\\s+\\d+\\s+[\\w\\s]+:(.*)$");
 
 	for(line = lines.begin(); line != lines.end(); ++line)
 	{
-		std::vector<blocxx::String> sa = convStringArray(ok.capture(*line));
+		std::vector<std::string> sa = ok.capture(*line);
 
 		if(sa.size() == 2 && sa[1] == "OK")
 		{
@@ -888,7 +901,7 @@ OpenSSLUtils::verify(const blocxx::String &certFile,
 			break;
 		}
 
-		sa = convStringArray(error.capture(*line));
+		sa = error.capture(*line);
 
 		if(sa.size() == 3)
 		{
@@ -902,11 +915,11 @@ OpenSSLUtils::verify(const blocxx::String &certFile,
 	{
 		if(!errOutput.empty())
 		{
-			LOGIT_INFO(Format("Certificate invalid! (%1 / %2)", result, errMsg).toString());
+			LOGIT_INFO(str::form("Certificate invalid! (%s / %s)", result.c_str(), errMsg.c_str()));
 			LOGIT_ERROR("openssl stderr:" << errOutput);
 		}
 
-		return Format("Certificate invalid! (%1 / %2)", result, errMsg).toString();
+		return str::form("Certificate invalid! (%s / %s)", result.c_str(), errMsg.c_str());
 	}
 	else
 	{
@@ -914,10 +927,10 @@ OpenSSLUtils::verify(const blocxx::String &certFile,
 	}
 }
 
-blocxx::String
-OpenSSLUtils::status(const blocxx::String &serial)
+std::string
+OpenSSLUtils::status(const std::string &serial)
 {
-	blocxx::String debugCmd;
+	std::string debugCmd;
 
 	debugCmd += m_cmd + " ";
 	debugCmd += "ca ";
@@ -926,16 +939,16 @@ OpenSSLUtils::status(const blocxx::String &serial)
 
 	debugCmd += "-status " + serial;
 
-	std::vector<blocxx::String> cmd = convStringArray(PerlRegEx("\\s").split(debugCmd));
+	std::vector<std::string> cmd = PerlRegEx("\\s").split(debugCmd);
 
 	LOGIT_DEBUG("Command: " << debugCmd);
 
 	blocxx::EnvVars env;
 	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", m_rand);
+	env.addVar("RANDFILE", m_rand.c_str());
 
-	blocxx::String stdOutput;
-	blocxx::String errOutput;
+	std::string stdOutput;
+	std::string errOutput;
 	int            status    = -1;
 
 	try
@@ -950,16 +963,16 @@ OpenSSLUtils::status(const blocxx::String &serial)
 		                   __("Executing openssl command failed."), e);
 	}
 
-	std::vector<blocxx::String> lines = convStringArray(PerlRegEx("\n").split(errOutput));
-	std::vector<blocxx::String>::const_iterator line;
+	std::vector<std::string> lines = PerlRegEx("\n").split(errOutput);
+	std::vector<std::string>::const_iterator line;
 
-	String errMsg;
+	std::string errMsg;
 
 	PerlRegEx serialMatch(serial + "=(\\w+)\\s+.*$");
 
 	for(line = lines.begin(); line != lines.end(); ++line)
 	{
-		std::vector<blocxx::String> sa = convStringArray(serialMatch.capture(*line));
+		std::vector<std::string> sa = serialMatch.capture(*line);
 
 		if(sa.size() == 2)
 		{
@@ -970,24 +983,24 @@ OpenSSLUtils::status(const blocxx::String &serial)
 			errMsg += *line + "\n";
 		}
 	}
-	LOGIT_ERROR(Format("Show certificate status with serial '%1' failed.(%2)",
-	                   serial, status).toString());
+	LOGIT_ERROR(str::form("Show certificate status with serial '%s' failed.(%d)",
+	                   serial.c_str(), status));
 	if(!errOutput.empty())
 	{
 		LOGIT_ERROR("openssl stderr:" << errOutput);
 	}
 	BLOCXX_THROW(ca_mgm::RuntimeException,
-	             Format(__("Showing certificate status with serial %1 failed (%2)."),
-	                    serial, status).c_str());
+	             str::form(__("Showing certificate status with serial %s failed (%d)."),
+	                    serial.c_str(), status).c_str());
 }
 
 bool
-OpenSSLUtils::checkKey(const blocxx::String &caName,
-                       const blocxx::String &password,
-                       const blocxx::String &certificateName,
-                       const blocxx::String &repository)
+OpenSSLUtils::checkKey(const std::string &caName,
+                       const std::string &password,
+                       const std::string &certificateName,
+                       const std::string &repository)
 {
-	String keyFile;
+	std::string keyFile;
 
 	if(certificateName == "cacert")
 	{
@@ -996,7 +1009,7 @@ OpenSSLUtils::checkKey(const blocxx::String &caName,
 	else
 	{
 		PerlRegEx r("^[[:xdigit:]]+:([[:xdigit:]]+[\\d-]*)$");
-		std::vector<blocxx::String> sa = convStringArray(r.capture(certificateName));
+		std::vector<std::string> sa = r.capture(certificateName);
 
 		if(sa.size() != 2)
 		{
@@ -1016,25 +1029,25 @@ OpenSSLUtils::checkKey(const blocxx::String &caName,
 		             __("The key file does not exist."));
 	}
 
-	blocxx::String debugCmd;
+	std::string debugCmd;
 
 	debugCmd += ca_mgm::OPENSSL_COMMAND + " ";
 	debugCmd += "rsa -noout -in ";
 	debugCmd += keyFile + " ";
 	debugCmd += "-passin env:PASSWORD ";
 
-	std::vector<blocxx::String> cmd = convStringArray(PerlRegEx("\\s").split(debugCmd));
+	std::vector<std::string> cmd = PerlRegEx("\\s").split(debugCmd);
 
 	LOGIT_DEBUG("Command: " << debugCmd);
 
 	blocxx::EnvVars env;
 	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", m_rand);
+	env.addVar("RANDFILE", m_rand.c_str());
 
-	env.addVar("PASSWORD", password);
+	env.addVar("PASSWORD", password.c_str());
 
-	blocxx::String stdOutput;
-	blocxx::String errOutput;
+	std::string stdOutput;
+	std::string errOutput;
 	int            status    = -1;
 
 	try
@@ -1069,13 +1082,13 @@ OpenSSLUtils::x509Convert(const ByteBuffer &certificate,
                           FormatType outform )
 {
 	// FIXME: use tmp file
-	blocxx::String inFileName(::tempnam("/tmp/", "x509I"));
-	blocxx::String outFileName(::tempnam("/tmp/", "x509O"));
+	std::string inFileName(::tempnam("/tmp/", "x509I"));
+	std::string outFileName(::tempnam("/tmp/", "x509O"));
 
 	LocalManagement::writeFile(certificate, inFileName,
 	                           false, 0600);
 
-	blocxx::String debugCmd;
+	std::string debugCmd;
 	bool foundError = false;
 
 	debugCmd += ca_mgm::OPENSSL_COMMAND + " ";
@@ -1110,16 +1123,16 @@ OpenSSLUtils::x509Convert(const ByteBuffer &certificate,
 		break;
 	}
 
-	std::vector<blocxx::String> cmd = convStringArray(PerlRegEx("\\s").split(debugCmd));
+	std::vector<std::string> cmd = PerlRegEx("\\s").split(debugCmd);
 
 	LOGIT_DEBUG("Command: " << debugCmd);
 
-	blocxx::String randfile(::tempnam("/tmp/", ".rand-"));
+	std::string randfile(::tempnam("/tmp/", ".rand-"));
 	blocxx::EnvVars env;
 	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", randfile);
-	blocxx::String stdOutput;
-	blocxx::String errOutput;
+	env.addVar("RANDFILE", randfile.c_str());
+	std::string stdOutput;
+	std::string errOutput;
 	int            status    = -1;
 
 	try
@@ -1138,7 +1151,7 @@ OpenSSLUtils::x509Convert(const ByteBuffer &certificate,
 	}
 	if(status != 0)
 	{
-		LOGIT_INFO( "openssl status:" << blocxx::String(status));
+		LOGIT_INFO( "openssl status:" << str::numstring(status));
 		foundError = true;
 	}
 	if(!errOutput.empty())
@@ -1157,10 +1170,12 @@ OpenSSLUtils::x509Convert(const ByteBuffer &certificate,
 		path::removeFile(outFileName);
 		path::removeFile(randfile);
 
-		std::vector<blocxx::String> sa = convStringArray(errOutput.tokenize("\n\r"));
-		String msg = (sa.empty()? "" : sa[0]);
+		std::vector<std::string> sa;
+        str::split(errOutput, std::back_inserter(sa), "\n\r");
+
+		std::string msg = (sa.empty()? "" : sa[0]);
 		BLOCXX_THROW(ca_mgm::RuntimeException,
-		             Format(__("openssl command failed: %1"), msg).c_str());
+		             str::form(__("openssl command failed: %s"), msg.c_str()).c_str());
 	}
 
 	ByteBuffer out = LocalManagement::readFile(outFileName);
@@ -1176,13 +1191,13 @@ ca_mgm::ByteBuffer
 OpenSSLUtils::rsaConvert(const ByteBuffer &key,
                          FormatType inform,
                          FormatType outform,
-                         const String &inPassword,
-                         const String &outPassword,
-                         const String &algorithm)
+                         const std::string &inPassword,
+                         const std::string &outPassword,
+                         const std::string &algorithm)
 {
 	// FIXME: use tmp file
-	blocxx::String inFileName(::tempnam("/tmp/", "keyIn"));
-	blocxx::String outFileName(::tempnam("/tmp/", "keyOt"));
+	std::string inFileName(::tempnam("/tmp/", "keyIn"));
+	std::string outFileName(::tempnam("/tmp/", "keyOt"));
 
 	bool isInPassSet = false;
 	bool isOutPassSet = false;
@@ -1191,7 +1206,7 @@ OpenSSLUtils::rsaConvert(const ByteBuffer &key,
 	LocalManagement::writeFile(key, inFileName,
 	                           false, 0600);
 
-	blocxx::String debugCmd;
+	std::string debugCmd;
 
 	debugCmd += ca_mgm::OPENSSL_COMMAND + " ";
 	debugCmd += "rsa ";
@@ -1237,27 +1252,27 @@ OpenSSLUtils::rsaConvert(const ByteBuffer &key,
 		isOutPassSet = true;
 	}
 
-	std::vector<blocxx::String> cmd = convStringArray(PerlRegEx("\\s").split(debugCmd));
+	std::vector<std::string> cmd = PerlRegEx("\\s").split(debugCmd);
 
 	LOGIT_DEBUG("Command: " << debugCmd);
 
-	blocxx::String randfile(::tempnam("/tmp/", ".rand-"));
+	std::string randfile(::tempnam("/tmp/", ".rand-"));
 	blocxx::EnvVars env;
 	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", randfile);
+	env.addVar("RANDFILE", randfile.c_str());
 
 	if(isInPassSet)
 	{
-		env.addVar("inpass", inPassword);
+		env.addVar("inpass", inPassword.c_str());
 	}
 
 	if(isOutPassSet)
 	{
-		env.addVar("outpass", outPassword);
+		env.addVar("outpass", outPassword.c_str());
 	}
 
-	blocxx::String stdOutput;
-	blocxx::String errOutput;
+	std::string stdOutput;
+	std::string errOutput;
 	int            status    = -1;
 
 	try
@@ -1276,7 +1291,7 @@ OpenSSLUtils::rsaConvert(const ByteBuffer &key,
 	}
 	if(status != 0)
 	{
-		LOGIT_INFO( "openssl status:" << blocxx::String(status));
+		LOGIT_INFO( "openssl status:" << str::numstring(status));
 		foundError = true;
 	}
 	if(!errOutput.empty())
@@ -1303,8 +1318,10 @@ OpenSSLUtils::rsaConvert(const ByteBuffer &key,
 		path::removeFile(outFileName);
 		path::removeFile(randfile);
 
-		std::vector<blocxx::String> sa = convStringArray(errOutput.tokenize("\n\r"));
-		String msg = (sa.empty()? "" : sa[0]);
+		std::vector<std::string> sa;
+        str::split(errOutput, std::back_inserter(sa), "\n\r");
+
+		std::string msg = (sa.empty()? "" : sa[0]);
 		if(PerlRegEx("unable to load Private Key", PCRE_CASELESS).match(msg))
 		{
 			BLOCXX_THROW_ERR(ca_mgm::ValueException,
@@ -1313,7 +1330,7 @@ OpenSSLUtils::rsaConvert(const ByteBuffer &key,
 		else
 		{
 			BLOCXX_THROW(ca_mgm::RuntimeException,
-			             Format(__("openssl command failed: %1"),msg).c_str());
+			             str::form(__("openssl command failed: %s"),msg.c_str()).c_str());
 		}
 	}
 
@@ -1332,13 +1349,13 @@ OpenSSLUtils::crlConvert(const ByteBuffer &crl,
                          FormatType outform )
 {
 	// FIXME: use tmp file
-	blocxx::String inFileName(::tempnam("/tmp/", "crlIn"));
-	blocxx::String outFileName(::tempnam("/tmp/", "crlOt"));
+	std::string inFileName(::tempnam("/tmp/", "crlIn"));
+	std::string outFileName(::tempnam("/tmp/", "crlOt"));
 
 	LocalManagement::writeFile(crl, inFileName,
 	                           false, 0600);
 
-	blocxx::String debugCmd;
+	std::string debugCmd;
 	bool foundError = false;
 
 	debugCmd += ca_mgm::OPENSSL_COMMAND + " ";
@@ -1371,16 +1388,16 @@ OpenSSLUtils::crlConvert(const ByteBuffer &crl,
 		break;
 	}
 
-	std::vector<blocxx::String> cmd = convStringArray(PerlRegEx("\\s").split(debugCmd));
+	std::vector<std::string> cmd = PerlRegEx("\\s").split(debugCmd);
 
 	LOGIT_DEBUG("Command: " << debugCmd);
 
-	blocxx::String randfile(::tempnam("/tmp/", ".rand-"));
+	std::string randfile(::tempnam("/tmp/", ".rand-"));
 	blocxx::EnvVars env;
 	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", randfile);
-	blocxx::String stdOutput;
-	blocxx::String errOutput;
+	env.addVar("RANDFILE", randfile.c_str());
+	std::string stdOutput;
+	std::string errOutput;
 	int            status    = -1;
 
 	try
@@ -1399,7 +1416,7 @@ OpenSSLUtils::crlConvert(const ByteBuffer &crl,
 	}
 	if(status != 0)
 	{
-		LOGIT_INFO( "openssl status:" << blocxx::String(status));
+		LOGIT_INFO( "openssl status:" << str::numstring(status));
 		foundError = true;
 	}
 	if(!errOutput.empty())
@@ -1418,10 +1435,12 @@ OpenSSLUtils::crlConvert(const ByteBuffer &crl,
 		path::removeFile(outFileName);
 		path::removeFile(randfile);
 
-		std::vector<blocxx::String> sa = convStringArray(errOutput.tokenize("\n\r"));
-		String msg = (sa.empty()? "" : sa[0]);
+		std::vector<std::string> sa;
+        str::split(errOutput, std::back_inserter(sa), "\n\r");
+
+		std::string msg = (sa.empty()? "" : sa[0]);
 		BLOCXX_THROW(ca_mgm::RuntimeException,
-		             Format(__("openssl command failed: %1"), msg).c_str());
+		             str::form(__("openssl command failed: %s"), msg.c_str()).c_str());
 	}
 
 	ByteBuffer out = LocalManagement::readFile(outFileName);
@@ -1439,13 +1458,13 @@ OpenSSLUtils::reqConvert(const ByteBuffer &req,
                          FormatType outform )
 {
 	// FIXME: use tmp file
-	blocxx::String inFileName(::tempnam("/tmp/", "reqIn"));
-	blocxx::String outFileName(::tempnam("/tmp/", "reqOt"));
+	std::string inFileName(::tempnam("/tmp/", "reqIn"));
+	std::string outFileName(::tempnam("/tmp/", "reqOt"));
 
 	LocalManagement::writeFile(req, inFileName,
 	                           false, 0600);
 
-	blocxx::String debugCmd;
+	std::string debugCmd;
 	bool foundError = false;
 
 	debugCmd += ca_mgm::OPENSSL_COMMAND + " ";
@@ -1478,16 +1497,16 @@ OpenSSLUtils::reqConvert(const ByteBuffer &req,
 		break;
 	}
 
-	std::vector<blocxx::String> cmd = convStringArray(PerlRegEx("\\s").split(debugCmd));
+	std::vector<std::string> cmd = PerlRegEx("\\s").split(debugCmd);
 
 	LOGIT_DEBUG("Command: " << debugCmd);
 
-	blocxx::String randfile(::tempnam("/tmp/", ".rand-"));
+	std::string randfile(::tempnam("/tmp/", ".rand-"));
 	blocxx::EnvVars env;
 	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", randfile);
-	blocxx::String stdOutput;
-	blocxx::String errOutput;
+	env.addVar("RANDFILE", randfile.c_str());
+	std::string stdOutput;
+	std::string errOutput;
 	int            status    = -1;
 
 	try
@@ -1506,7 +1525,7 @@ OpenSSLUtils::reqConvert(const ByteBuffer &req,
 	}
 	if(status != 0)
 	{
-		LOGIT_INFO( "openssl status:" << blocxx::String(status));
+		LOGIT_INFO( "openssl status:" << str::numstring(status));
 		foundError = true;
 	}
 	if(!errOutput.empty())
@@ -1525,10 +1544,12 @@ OpenSSLUtils::reqConvert(const ByteBuffer &req,
 		path::removeFile(outFileName);
 		path::removeFile(randfile);
 
-		std::vector<blocxx::String> sa = convStringArray(errOutput.tokenize("\n\r"));
-		String msg = (sa.empty()? "" : sa[0]);
+		std::vector<std::string> sa;
+        str::split(errOutput, std::back_inserter(sa), "\n\r");
+
+		std::string msg = (sa.empty()? "" : sa[0]);
 		BLOCXX_THROW(ca_mgm::RuntimeException,
-		             Format(__("openssl command failed: %1"), msg).c_str());
+		             str::form(__("openssl command failed: %s"), msg.c_str()).c_str());
 	}
 
 	ByteBuffer out = LocalManagement::readFile(outFileName);
@@ -1543,17 +1564,17 @@ OpenSSLUtils::reqConvert(const ByteBuffer &req,
 ca_mgm::ByteBuffer
 OpenSSLUtils::createPKCS12(const ByteBuffer &certificate,
                            const ByteBuffer &key,
-                           const String     &inPassword,
-                           const String     &outPassword,
+                           const std::string     &inPassword,
+                           const std::string     &outPassword,
                            const ByteBuffer &caCert,
-                           const String     &caPath,
+                           const std::string     &caPath,
                            bool              withChain )
 {
 	// FIXME: use tmp file
-	blocxx::String inFileName1(::tempnam("/tmp/", "crtIn"));
-	blocxx::String inFileName2(::tempnam("/tmp/", "keyIn"));
-	blocxx::String inFileName3(::tempnam("/tmp/", "caIn"));
-	blocxx::String outFileName(::tempnam("/tmp/", "p12Ot"));
+	std::string inFileName1(::tempnam("/tmp/", "crtIn"));
+	std::string inFileName2(::tempnam("/tmp/", "keyIn"));
+	std::string inFileName3(::tempnam("/tmp/", "caIn"));
+	std::string outFileName(::tempnam("/tmp/", "p12Ot"));
 
 	bool isInPassSet = false;
 	bool isOutPassSet = false;
@@ -1569,7 +1590,7 @@ OpenSSLUtils::createPKCS12(const ByteBuffer &certificate,
 		                           false, 0600);
 	}
 
-	blocxx::String debugCmd;
+	std::string debugCmd;
 
 	debugCmd += ca_mgm::OPENSSL_COMMAND + " ";
 	debugCmd += "pkcs12 ";
@@ -1618,27 +1639,27 @@ OpenSSLUtils::createPKCS12(const ByteBuffer &certificate,
 		debugCmd += inFileName3 + " ";
 	}
 
-	std::vector<blocxx::String> cmd = convStringArray(PerlRegEx("\\s").split(debugCmd));
+	std::vector<std::string> cmd = PerlRegEx("\\s").split(debugCmd);
 
 	LOGIT_DEBUG("Command: " << debugCmd);
 
-	blocxx::String randfile(::tempnam("/tmp/", ".rand-"));
+	std::string randfile(::tempnam("/tmp/", ".rand-"));
 	blocxx::EnvVars env;
 	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", randfile);
+	env.addVar("RANDFILE", randfile.c_str());
 
 	if(isInPassSet)
 	{
-		env.addVar("inpass", inPassword);
+		env.addVar("inpass", inPassword.c_str());
 	}
 
 	if(isOutPassSet)
 	{
-		env.addVar("outpass", outPassword);
+		env.addVar("outpass", outPassword.c_str());
 	}
 
-	blocxx::String stdOutput;
-	blocxx::String errOutput;
+	std::string stdOutput;
+	std::string errOutput;
 	int            status    = -1;
 
 	try
@@ -1662,7 +1683,7 @@ OpenSSLUtils::createPKCS12(const ByteBuffer &certificate,
 	}
 	if(status != 0)
 	{
-		LOGIT_INFO( "openssl status:" << blocxx::String(status));
+		LOGIT_INFO( "openssl status:" << str::numstring(status));
 		foundError = true;
 	}
 	if(!errOutput.empty())
@@ -1686,8 +1707,10 @@ OpenSSLUtils::createPKCS12(const ByteBuffer &certificate,
 		path::removeFile(outFileName);
 		path::removeFile(randfile);
 
-		std::vector<blocxx::String> sa = convStringArray(errOutput.tokenize("\n\r"));
-		String msg = (sa.empty()? "" : sa[0]);
+		std::vector<std::string> sa;
+        str::split(errOutput, std::back_inserter(sa), "\n\r");
+
+		std::string msg = (sa.empty()? "" : sa[0]);
 		if(PerlRegEx("unable to load Private Key", PCRE_CASELESS).match(msg))
 		{
 			BLOCXX_THROW_ERR(ca_mgm::ValueException,
@@ -1696,7 +1719,7 @@ OpenSSLUtils::createPKCS12(const ByteBuffer &certificate,
 		else
 		{
 			BLOCXX_THROW(ca_mgm::RuntimeException,
-		             Format(__("openssl command failed: %1"), msg).c_str());
+		             str::form(__("openssl command failed: %s"), msg.c_str()).c_str());
 		}
 	}
 
@@ -1716,13 +1739,13 @@ OpenSSLUtils::createPKCS12(const ByteBuffer &certificate,
 
 ca_mgm::ByteBuffer
 OpenSSLUtils::pkcs12ToPEM(const ByteBuffer &pkcs12,
-                          const String     &inPassword,
-                          const String     &outPassword,
-                          const String     &algorithm)
+                          const std::string     &inPassword,
+                          const std::string     &outPassword,
+                          const std::string     &algorithm)
 {
 	// FIXME: use tmp file
-	blocxx::String inFileName(::tempnam("/tmp/", "p12In"));
-	blocxx::String outFileName(::tempnam("/tmp/", "x509O"));
+	std::string inFileName(::tempnam("/tmp/", "p12In"));
+	std::string outFileName(::tempnam("/tmp/", "x509O"));
 
 	bool isInPassSet = false;
 	bool isOutPassSet = false;
@@ -1731,7 +1754,7 @@ OpenSSLUtils::pkcs12ToPEM(const ByteBuffer &pkcs12,
 	LocalManagement::writeFile(pkcs12, inFileName,
 	                           false, 0600);
 
-	blocxx::String debugCmd;
+	std::string debugCmd;
 
 	debugCmd += ca_mgm::OPENSSL_COMMAND + " ";
 	debugCmd += "pkcs12 ";
@@ -1765,27 +1788,27 @@ OpenSSLUtils::pkcs12ToPEM(const ByteBuffer &pkcs12,
 		debugCmd += "-nodes ";
 	}
 
-	std::vector<blocxx::String> cmd = convStringArray(PerlRegEx("\\s").split(debugCmd));
+	std::vector<std::string> cmd = PerlRegEx("\\s").split(debugCmd);
 
 	LOGIT_DEBUG("Command: " << debugCmd);
 
-	blocxx::String randfile(::tempnam("/tmp/", ".rand-"));
+	std::string randfile(::tempnam("/tmp/", ".rand-"));
 	blocxx::EnvVars env;
 	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", randfile);
+	env.addVar("RANDFILE", randfile.c_str());
 
 	if(isInPassSet)
 	{
-		env.addVar("inpass", inPassword);
+		env.addVar("inpass", inPassword.c_str());
 	}
 
 	if(isOutPassSet)
 	{
-		env.addVar("outpass", outPassword);
+		env.addVar("outpass", outPassword.c_str());
 	}
 
-	blocxx::String stdOutput;
-	blocxx::String errOutput;
+	std::string stdOutput;
+	std::string errOutput;
 	int            status    = -1;
 
 	try
@@ -1804,7 +1827,7 @@ OpenSSLUtils::pkcs12ToPEM(const ByteBuffer &pkcs12,
 	}
 	if(status != 0)
 	{
-		LOGIT_INFO( "openssl status:" << blocxx::String(status));
+		LOGIT_INFO( "openssl status:" << str::numstring(status));
 		foundError = true;
 	}
 	if(!errOutput.empty())
@@ -1831,8 +1854,10 @@ OpenSSLUtils::pkcs12ToPEM(const ByteBuffer &pkcs12,
 		path::removeFile(outFileName);
 		path::removeFile(randfile);
 
-		std::vector<blocxx::String> sa = convStringArray(errOutput.tokenize("\n\r"));
-		String msg = (sa.empty()? "" : sa[0]);
+		std::vector<std::string> sa;
+        str::split(errOutput, std::back_inserter(sa), "\n\r");
+
+		std::string msg = (sa.empty()? "" : sa[0]);
 		if(PerlRegEx("invalid password", PCRE_CASELESS).match(msg))
 		{
 			BLOCXX_THROW_ERR(ca_mgm::ValueException,
@@ -1841,7 +1866,7 @@ OpenSSLUtils::pkcs12ToPEM(const ByteBuffer &pkcs12,
 		else
 		{
 			BLOCXX_THROW(ca_mgm::RuntimeException,
-		             Format(__("openssl command failed: %1"), msg).c_str());
+		             str::form(__("openssl command failed: %s"), msg.c_str()).c_str());
 		}
 	}
 
@@ -1854,11 +1879,11 @@ OpenSSLUtils::pkcs12ToPEM(const ByteBuffer &pkcs12,
 	return out;
 }
 
-std::vector<blocxx::String>
-OpenSSLUtils::listCA(const String &repository)
+std::vector<std::string>
+OpenSSLUtils::listCA(const std::string &repository)
 {
-	std::list<String>  tmpList;
-	std::vector<String> retList;
+	std::list<std::string>  tmpList;
+	std::vector<std::string> retList;
 
 	int r = path::readDir(tmpList, repository, false);
 
@@ -1867,13 +1892,13 @@ OpenSSLUtils::listCA(const String &repository)
 		LOGIT_ERROR("Cannot read directory: " << repository <<
 		            "(" << System::errorMsg(r) << ") [" << r << "]");
 		BLOCXX_THROW(ca_mgm::SystemException,
-		             Format(__("Cannot read directory: %1 (%2) [%3]."),
-		                    repository, System::errorMsg(r), r).c_str());
+		             str::form(__("Cannot read directory: %s (%s) [%d]."),
+		                    repository.c_str(), ::strerror(r), r).c_str());
 	}
 
 	tmpList.sort();
 
-	std::list<String>::const_iterator cont;
+	std::list<std::string>::const_iterator cont;
 
 	path::PathInfo pi(repository);
 
@@ -1899,15 +1924,15 @@ OpenSSLUtils::listCA(const String &repository)
 	return retList;
 }
 
-blocxx::String
-OpenSSLUtils::nextSerial(const String &serialFile)
+std::string
+OpenSSLUtils::nextSerial(const std::string &serialFile)
 {
 	ByteBuffer b = LocalManagement::readFile(serialFile);
 
-	String s(b.data(), b.size());
+	std::string s(b.data(), b.size());
 	PerlRegEx r("^([[:xdigit:]]+)$");
 
-	std::vector<blocxx::String> sa = convStringArray(r.capture(s));
+	std::vector<std::string> sa = r.capture(s);
 
 	if(sa.size() == 2)
 	{
@@ -1917,19 +1942,19 @@ OpenSSLUtils::nextSerial(const String &serialFile)
 	{
 		LOGIT_ERROR("No serial number found in " << serialFile);
 		BLOCXX_THROW(ca_mgm::RuntimeException,
-		             Format(__("No serial number found in %1."),
-		                    serialFile).c_str());
+		             str::form(__("No serial number found in %s."),
+		                    serialFile.c_str()).c_str());
 	}
 }
 
 void
-OpenSSLUtils::addCAM(const String &caName,
-                     const String &md5,
-                     const String &dnString,
-                     const String &repository)
+OpenSSLUtils::addCAM(const std::string &caName,
+                     const std::string &md5,
+                     const std::string &dnString,
+                     const std::string &repository)
 {
-	std::vector<std::vector<String> > db = OpenSSLUtils::parseCAMDB(caName, repository);
-	std::vector<std::vector<String> >::const_iterator it;
+	std::vector<std::vector<std::string> > db = OpenSSLUtils::parseCAMDB(caName, repository);
+	std::vector<std::vector<std::string> >::const_iterator it;
 
 	for(it = db.begin(); it != db.end(); ++it)
 	{
@@ -1943,7 +1968,7 @@ OpenSSLUtils::addCAM(const String &caName,
 
 	ByteBuffer b = LocalManagement::readFile(repository + "/" + caName + "/cam.txt");
 
-	String cam(b.data(), b.size());
+	std::string cam(b.data(), b.size());
 	cam += md5 + " " + dnString + "\n";
 
 	LocalManagement::writeFile(ByteBuffer(cam.c_str(), cam.length()),
@@ -1952,18 +1977,18 @@ OpenSSLUtils::addCAM(const String &caName,
 }
 
 void
-OpenSSLUtils::delCAM(const String &caName,
-                     const String &md5,
-                     const String &repository)
+OpenSSLUtils::delCAM(const std::string &caName,
+                     const std::string &md5,
+                     const std::string &repository)
 {
 	ByteBuffer b = LocalManagement::readFile(repository + "/" + caName + "/cam.txt");
 
-	String cam(b.data(), b.size());
+	std::string cam(b.data(), b.size());
 
-	std::vector<blocxx::String> lines = convStringArray(PerlRegEx("\n").split(cam));
+	std::vector<std::string> lines = PerlRegEx("\n").split(cam);
 
-	std::vector<blocxx::String>::const_iterator line;
-	String camNew;
+	std::vector<std::string>::const_iterator line;
+	std::string camNew;
 
 	for(line = lines.begin(); line != lines.end(); ++line)
 	{
@@ -1979,25 +2004,25 @@ OpenSSLUtils::delCAM(const String &caName,
 
 }
 
-std::vector<std::vector<blocxx::String> >
-OpenSSLUtils::parseCAMDB(const String &caName,
-                         const String &repository)
+std::vector<std::vector<std::string> >
+OpenSSLUtils::parseCAMDB(const std::string &caName,
+                         const std::string &repository)
 {
-	std::vector<std::vector<String> > ret;
+	std::vector<std::vector<std::string> > ret;
 
 	ByteBuffer b = LocalManagement::readFile(repository + "/" + caName + "/cam.txt");
 
-	String cam(b.data(), b.size());
+	std::string cam(b.data(), b.size());
 
-	std::vector<blocxx::String> lines = convStringArray(PerlRegEx("\n").split(cam));
+	std::vector<std::string> lines = PerlRegEx("\n").split(cam);
 
-	std::vector<blocxx::String>::const_iterator line;
+	std::vector<std::string>::const_iterator line;
 
 	for(line = lines.begin(); line != lines.end(); ++line)
 	{
 		PerlRegEx r("^([[:xdigit:]]+[\\d-]*)\\s(.*)$");
 
-		std::vector<blocxx::String> col = convStringArray(r.capture(*line));
+		std::vector<std::string> col = r.capture(*line);
 
 		if(col.size() != 3)
 		{
@@ -2005,7 +2030,7 @@ OpenSSLUtils::parseCAMDB(const String &caName,
 			continue;
 		}
 
-		std::vector<String> a;
+		std::vector<std::string> a;
 		a.push_back(col[1]);
 		a.push_back(col[2]);
 		ret.push_back(a);
@@ -2013,25 +2038,25 @@ OpenSSLUtils::parseCAMDB(const String &caName,
 	return ret;
 }
 
-std::vector<std::vector<blocxx::String> >
-OpenSSLUtils::parseIndexTXT(const String &caName,
-                            const String &repository)
+std::vector<std::vector<std::string> >
+OpenSSLUtils::parseIndexTXT(const std::string &caName,
+                            const std::string &repository)
 {
-	std::vector<std::vector<String> > ret;
+	std::vector<std::vector<std::string> > ret;
 
 	ByteBuffer b = LocalManagement::readFile(repository + "/" + caName + "/index.txt");
 
-	String cam(b.data(), b.size());
+	std::string cam(b.data(), b.size());
 
-	std::vector<blocxx::String> lines = convStringArray(PerlRegEx("\n").split(cam));
+	std::vector<std::string> lines = PerlRegEx("\n").split(cam);
 
-	std::vector<blocxx::String>::const_iterator line;
+	std::vector<std::string>::const_iterator line;
 
 	for(line = lines.begin(); line != lines.end(); ++line)
 	{
 		PerlRegEx r("^(\\w)\\s([\\d\\w]+)\\s([\\w\\d,.]*)\\s([[:xdigit:]]+)\\s(\\w+)\\s(.*)$");
 
-		std::vector<blocxx::String> col = convStringArray(r.capture(*line));
+		std::vector<std::string> col = r.capture(*line);
 
 		if(col.size() != 7)
 		{
@@ -2039,7 +2064,7 @@ OpenSSLUtils::parseIndexTXT(const String &caName,
 			continue;
 		}
 
-		std::vector<String> a;
+		std::vector<std::string> a;
 		a.push_back(col[1]);
 		a.push_back(col[2]);
 		a.push_back(col[3]);
@@ -2051,14 +2076,14 @@ OpenSSLUtils::parseIndexTXT(const String &caName,
 	return ret;
 }
 
-std::vector<std::map<blocxx::String, blocxx::String> >
-OpenSSLUtils::listRequests(const String &caName,
-                           const String &repository)
+std::vector<std::map<std::string, std::string> >
+OpenSSLUtils::listRequests(const std::string &caName,
+                           const std::string &repository)
 {
-	std::vector<std::map<String, String> > ret;
-	std::list<String> tmpList;
+	std::vector<std::map<std::string, std::string> > ret;
+	std::list<std::string> tmpList;
 
-	String reqDir = repository + "/" + caName + "/req/";
+	std::string reqDir = repository + "/" + caName + "/req/";
 
 	int r = path::readDir(tmpList, reqDir , false);
 
@@ -2067,14 +2092,14 @@ OpenSSLUtils::listRequests(const String &caName,
 		LOGIT_ERROR("Cannot read directory: " << reqDir <<
 		            "(" << System::errorMsg(r) << ") [" << r << "]");
 		BLOCXX_THROW(ca_mgm::SystemException,
-		             Format(__("Cannot read directory: %1 (%2) [%3]."),
-		                    reqDir, System::errorMsg(r), r).c_str());
+		             str::form(__("Cannot read directory: %s (%s) [%d]."),
+		                    reqDir.c_str(), ::strerror(r), r).c_str());
 	}
 
 	tmpList.sort();
 
-	std::vector<std::vector<String> >        camdb = OpenSSLUtils::parseCAMDB(caName, repository);
-	std::list<String>::const_iterator cont;
+	std::vector<std::vector<std::string> >        camdb = OpenSSLUtils::parseCAMDB(caName, repository);
+	std::list<std::string>::const_iterator cont;
 	path::PathInfo pi(reqDir);
 
 	for(cont = tmpList.begin(); cont != tmpList.end(); ++cont)
@@ -2089,7 +2114,7 @@ OpenSSLUtils::listRequests(const String &caName,
 
 		PerlRegEx requestR("^([[:xdigit:]]+)-?(\\d*)\\.req$");
 
-		std::vector<blocxx::String> sa = convStringArray(requestR.capture(*cont));
+		std::vector<std::string> sa = requestR.capture(*cont);
 
 		if(sa.size() <= 1)
 		{
@@ -2097,24 +2122,24 @@ OpenSSLUtils::listRequests(const String &caName,
 			continue;
 		}
 
-		String md5 = sa[1];
-		String date;
+		std::string md5 = sa[1];
+		std::string date;
 
 		if(sa.size() == 3 && !sa[2].empty())
 		{
 			md5 += "-" + sa[2];
 
-			Date dt( sa[2].toInt64() );
-			date = String(dt.form("%Y-%m-%d %H:%M:%S"));
+			Date dt( str::strtonum<int64_t>(sa[2]) );
+			date = std::string(dt.form("%Y-%m-%d %H:%M:%S"));
 		}
 
-		std::map<String, String> reqLine;
-		String              subject;
+		std::map<std::string, std::string> reqLine;
+		std::string              subject;
 
 		reqLine["request"] = md5;
 		reqLine["date"]    = date;
 
-		std::vector<std::vector<String> >::const_iterator dbIT;
+		std::vector<std::vector<std::string> >::const_iterator dbIT;
 		for(dbIT = camdb.begin(); dbIT != camdb.end(); ++dbIT)
 		{
 			if( (*dbIT)[0] == md5 )
@@ -2134,7 +2159,7 @@ OpenSSLUtils::listRequests(const String &caName,
 		sa.clear();
 		while(1)
 		{
-			std::vector<blocxx::String> saTmp = convStringArray(PerlRegEx("(.*?[^\\\\])(\\/|$)").capture(subject));
+			std::vector<std::string> saTmp = PerlRegEx("(.*?[^\\\\])(\\/|$)").capture(subject);
 			uint pos = 0;
 
 			if(saTmp.size() >=2)
@@ -2146,7 +2171,7 @@ OpenSSLUtils::listRequests(const String &caName,
 			{
 				break;
 			}
-			subject = subject.substring(pos);
+			subject = subject.substr(pos);
 		}
 
 		PerlRegEx cR("^C=");
@@ -2159,39 +2184,39 @@ OpenSSLUtils::listRequests(const String &caName,
 
 		PerlRegEx quoteR("\\\\/");
 
-		std::vector<blocxx::String>::const_iterator it;
+		std::vector<std::string>::const_iterator it;
 		for(it = sa.begin(); it != sa.end(); ++it)
 		{
-			String toMatch = quoteR.replace(*it, "/", true);
+			std::string toMatch = quoteR.replace(*it, "/", true);
 			toMatch = PerlRegEx("^/").replace(toMatch, "");
 
 			if(cR.match(toMatch))
 			{
-				reqLine["country"]  = toMatch.substring(2);
+				reqLine["country"]  = toMatch.substr(2);
 			}
 			else if(stR.match(toMatch))
 			{
-				reqLine["stateOrProvinceName"]  = toMatch.substring(3);
+				reqLine["stateOrProvinceName"]  = toMatch.substr(3);
 			}
 			else if(lR.match(toMatch))
 			{
-				reqLine["localityName"]  = toMatch.substring(2);
+				reqLine["localityName"]  = toMatch.substr(2);
 			}
 			else if(oR.match(toMatch))
 			{
-				reqLine["organizationName"]  = toMatch.substring(2);
+				reqLine["organizationName"]  = toMatch.substr(2);
 			}
 			else if(ouR.match(toMatch))
 			{
-				reqLine["organizationalUnitName"]  = toMatch.substring(3);
+				reqLine["organizationalUnitName"]  = toMatch.substr(3);
 			}
 			else if(cnR.match(toMatch))
 			{
-				reqLine["commonName"]  = toMatch.substring(3);
+				reqLine["commonName"]  = toMatch.substr(3);
 			}
 			else if(emailR.match(toMatch))
 			{
-				reqLine["emailAddress"]  = toMatch.substring(13);
+				reqLine["emailAddress"]  = toMatch.substr(13);
 			}
 			else
 			{
@@ -2203,14 +2228,14 @@ OpenSSLUtils::listRequests(const String &caName,
 	return ret;
 }
 
-std::vector<std::map<blocxx::String, blocxx::String> >
-OpenSSLUtils::listCertificates(const String &caName,
-                               const String &repository)
+std::vector<std::map<std::string, std::string> >
+OpenSSLUtils::listCertificates(const std::string &caName,
+                               const std::string &repository)
 {
-	std::vector<std::map<String, String> > ret;
-	std::list<String> tmpList;
+	std::vector<std::map<std::string, std::string> > ret;
+	std::list<std::string> tmpList;
 
-	String certDir = repository + "/" + caName + "/newcerts/";
+	std::string certDir = repository + "/" + caName + "/newcerts/";
 
 	int r = path::readDir(tmpList, certDir , false);
 
@@ -2219,14 +2244,14 @@ OpenSSLUtils::listCertificates(const String &caName,
 		LOGIT_ERROR("Cannot read directory: " << certDir <<
 		            "(" << System::errorMsg(r) << ") [" << r << "]");
 		BLOCXX_THROW(ca_mgm::SystemException,
-		             Format(__("Cannot read directory: %1 (%2) [%3]."),
-		                    certDir, System::errorMsg(r), r).c_str());
+		             str::form(__("Cannot read directory: %s (%s) [%d]."),
+		                    certDir.c_str(), ::strerror(r), r).c_str());
 	}
 
 	tmpList.sort();
 
-	std::vector<std::vector<String> >        indexTXT = OpenSSLUtils::parseIndexTXT(caName, repository);
-	std::list<String>::const_iterator cont;
+	std::vector<std::vector<std::string> >        indexTXT = OpenSSLUtils::parseIndexTXT(caName, repository);
+	std::list<std::string>::const_iterator cont;
 	path::PathInfo pi(certDir);
 
 	for(cont = tmpList.begin(); cont != tmpList.end(); ++cont)
@@ -2241,7 +2266,7 @@ OpenSSLUtils::listCertificates(const String &caName,
 
 		PerlRegEx certR("^([[:xdigit:]]+):([[:xdigit:]]+-?\\d*)\\.pem$");
 
-		std::vector<blocxx::String> sa = convStringArray(certR.capture(*cont));
+		std::vector<std::string> sa = certR.capture(*cont);
 
 		if(sa.size() != 3)
 		{
@@ -2249,16 +2274,16 @@ OpenSSLUtils::listCertificates(const String &caName,
 			continue;
 		}
 
-		String serial = sa[1];
-		String md5    = sa[2];
+		std::string serial = sa[1];
+		std::string md5    = sa[2];
 
-		std::map<String, String> certLine;
-		String              subject;
+		std::map<std::string, std::string> certLine;
+		std::string              subject;
 
 		certLine["serial"]      = serial;
 		certLine["certificate"] = serial + ":" + md5;
 
-		std::vector<std::vector<String> >::const_iterator dbIT;
+		std::vector<std::vector<std::string> >::const_iterator dbIT;
 		for(dbIT = indexTXT.begin(); dbIT != indexTXT.end(); ++dbIT)
 		{
 			if( (*dbIT)[3] == serial )
@@ -2295,7 +2320,7 @@ OpenSSLUtils::listCertificates(const String &caName,
 		sa.clear();
 		while(1)
 		{
-			std::vector<blocxx::String> saTmp = convStringArray(PerlRegEx("(.*?[^\\\\])(\\/|$)").capture(subject));
+			std::vector<std::string> saTmp = PerlRegEx("(.*?[^\\\\])(\\/|$)").capture(subject);
 			uint pos = 0;
 
 			if(saTmp.size() >=2)
@@ -2307,7 +2332,7 @@ OpenSSLUtils::listCertificates(const String &caName,
 			{
 				break;
 			}
-			subject = subject.substring(pos);
+			subject = subject.substr(pos);
 		}
 
 		PerlRegEx cR("^C=");
@@ -2320,54 +2345,54 @@ OpenSSLUtils::listCertificates(const String &caName,
 
 		PerlRegEx quoteR("\\\\/");
 
-		std::vector<blocxx::String>::const_iterator it;
-		String lastPart;
+		std::vector<std::string>::const_iterator it;
+		std::string lastPart;
 		for(it = sa.begin(); it != sa.end(); ++it)
 		{
-			String toMatch = quoteR.replace(*it, "/", true);
+			std::string toMatch = quoteR.replace(*it, "/", true);
 			toMatch = PerlRegEx("^/").replace(toMatch, "");
 
 			if(cR.match(toMatch))
 			{
-				certLine["country"]  = toMatch.substring(2);
+				certLine["country"]  = toMatch.substr(2);
 				lastPart = "country";
 			}
 			else if(stR.match(toMatch))
 			{
-				certLine["stateOrProvinceName"]  = toMatch.substring(3);
+				certLine["stateOrProvinceName"]  = toMatch.substr(3);
 				lastPart = "stateOrProvinceName";
 			}
 			else if(lR.match(toMatch))
 			{
-				certLine["localityName"]  = toMatch.substring(2);
+				certLine["localityName"]  = toMatch.substr(2);
 				lastPart = "localityName";
 			}
 			else if(oR.match(toMatch))
 			{
-				certLine["organizationName"]  = toMatch.substring(2);
+				certLine["organizationName"]  = toMatch.substr(2);
 				lastPart = "organizationName";
 			}
 			else if(ouR.match(toMatch))
 			{
-				certLine["organizationalUnitName"]  = toMatch.substring(3);
+				certLine["organizationalUnitName"]  = toMatch.substr(3);
 				lastPart = "organizationalUnitName";
 			}
 			else if(cnR.match(toMatch))
 			{
-				certLine["commonName"]  = toMatch.substring(3);
+				certLine["commonName"]  = toMatch.substr(3);
 				lastPart = "commonName";
 			}
 			else if(emailR.match(toMatch))
 			{
-				certLine["emailAddress"]  = toMatch.substring(13);
+				certLine["emailAddress"]  = toMatch.substr(13);
 				lastPart = "emailAddress";
 			}
 			else
 			{
-				if(!lastPart.empty() && (*it).charAt(0) == '/')
+				if(!lastPart.empty() && (*it).at(0) == '/')
 				{
 					certLine[lastPart]  = certLine[lastPart] + *it;
-					LOGIT_DEBUG(Format("Append '%1' to %2", *it, lastPart));
+					LOGIT_DEBUG(str::form("Append '%s' to %s", (*it).c_str(), lastPart.c_str()));
 				}
 				else
 				{
@@ -2381,14 +2406,14 @@ OpenSSLUtils::listCertificates(const String &caName,
 }
 
 void
-OpenSSLUtils::createCaInfrastructure(const String &caName,
-                                     const String &repository)
+OpenSSLUtils::createCaInfrastructure(const std::string &caName,
+                                     const std::string &repository)
 {
 	if(caName.empty() || !PerlRegEx("\\w+").match(caName))
 	{
 		LOGIT_ERROR("Invalid caName: " << caName);
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             Format(__("Invalid caName: %1."), caName).c_str());
+		             str::form(__("Invalid caName: %s."), caName.c_str()).c_str());
 	}
 
 	path::PathInfo pi(repository);
@@ -2397,7 +2422,7 @@ OpenSSLUtils::createCaInfrastructure(const String &caName,
 	{
 		LOGIT_ERROR(repository << " does not exist");
 		BLOCXX_THROW_ERR(ca_mgm::SystemException,
-		                 Format(__("'%1' does not exist."), repository).c_str(),
+		                 str::form(__("'%s' does not exist."), repository.c_str()).c_str(),
 		                 E_FILE_NOT_FOUND);
 	}
 
@@ -2407,7 +2432,7 @@ OpenSSLUtils::createCaInfrastructure(const String &caName,
 	{
 		LOGIT_ERROR(pi.toString() << " still exist");
 		BLOCXX_THROW_ERR(ca_mgm::SystemException,
-		                 Format(__("%1 still exists."), pi.toString()).c_str(),
+		                 str::form(__("%s still exists."), pi.toString().c_str()).c_str(),
 		                 E_FILE_EXISTS);
 	}
 
@@ -2415,11 +2440,11 @@ OpenSSLUtils::createCaInfrastructure(const String &caName,
 
 	if( r != 0 )
 	{
-		LOGIT_ERROR(Format("Can not create directory: %1 (%2 [%3])",
-		                   pi.toString(), System::errorMsg(r), r));
+		LOGIT_ERROR(Format("Can not create directory: %s (%s [%d])",
+		                   pi.toString().c_str(), ::strerror(r), r));
 		BLOCXX_THROW(ca_mgm::SystemException,
-		             Format(__("Cannot create directory: %1 (%2 [%3])."),
-		                    pi.toString(), System::errorMsg(r), r).c_str());
+		             str::form(__("Cannot create directory: %s (%s [%d])."),
+		                    pi.toString().c_str(), ::strerror(r), r).c_str());
 	}
 
 	ByteBuffer tmpl;
@@ -2427,11 +2452,11 @@ OpenSSLUtils::createCaInfrastructure(const String &caName,
 	{
 		tmpl = LocalManagement::readFile(repository + "/openssl.cnf.tmpl");
 
-		std::vector<blocxx::String> tmplArray = convStringArray(PerlRegEx("\n").split(String(tmpl.data(), tmpl.size()), true));
+		std::vector<std::string> tmplArray = PerlRegEx("\n").split(std::string(tmpl.data(), tmpl.size()), true);
 
 		PerlRegEx                   dirR("^\\s*dir\\s*=");
-		String                      newConf;
-		std::vector<blocxx::String>::const_iterator line;
+		std::string                      newConf;
+		std::vector<std::string>::const_iterator line;
 
 		for(line = tmplArray.begin(); line != tmplArray.end(); ++line)
 		{
@@ -2456,18 +2481,18 @@ OpenSSLUtils::createCaInfrastructure(const String &caName,
 		                   __("Cannot copy the configuration template."), e);
 	}
 
-	String dir = pi.toString() + "/certs";
+	std::string dir = pi.toString() + "/certs";
 	r   = path::createDir(dir, 0700);
 
 	if( r != 0 )
 	{
 		path::removeDirRecursive(repository + "/" + caName);
 
-		LOGIT_ERROR(Format("Can not create directory: %1 (%2 [%3])",
-		                   dir, System::errorMsg(r), r));
+		LOGIT_ERROR(Format("Can not create directory: %s (%s [%d])",
+		                   dir.c_str(), ::strerror(r), r));
 		BLOCXX_THROW(ca_mgm::SystemException,
-		             Format(__("Cannot create directory: %1 (%2 [%3])."),
-		                    dir, System::errorMsg(r), r).c_str());
+		             str::form(__("Cannot create directory: %s (%s [%d])."),
+		                    dir.c_str(), ::strerror(r), r).c_str());
 	}
 
 	dir = pi.toString() + "/crl";
@@ -2477,11 +2502,11 @@ OpenSSLUtils::createCaInfrastructure(const String &caName,
 	{
 		path::removeDirRecursive(repository + "/" + caName);
 
-		LOGIT_ERROR(Format("Can not create directory: %1 (%2 [%3])",
-		                   dir, System::errorMsg(r), r));
+		LOGIT_ERROR(Format("Can not create directory: %s (%s [%d])",
+		                   dir.c_str(), ::strerror(r), r));
 		BLOCXX_THROW(ca_mgm::SystemException,
-		             Format(__("Cannot create directory: %1 (%2 [%3])."),
-		                    dir, System::errorMsg(r), r).c_str());
+		             str::form(__("Cannot create directory: %s (%s [%d])."),
+		                    dir.c_str(), ::strerror(r), r).c_str());
 	}
 
 	dir = pi.toString() + "/newcerts";
@@ -2491,11 +2516,11 @@ OpenSSLUtils::createCaInfrastructure(const String &caName,
 	{
 		path::removeDirRecursive(repository + "/" + caName);
 
-		LOGIT_ERROR(Format("Can not create directory: %1 (%2 [%3])",
-		                   dir, System::errorMsg(r), r));
+		LOGIT_ERROR(Format("Can not create directory: %s (%s [%d])",
+		                   dir.c_str(), ::strerror(r), r));
 		BLOCXX_THROW(ca_mgm::SystemException,
-		             Format(__("Cannot create directory: %1 (%2 [%3])."),
-		                    dir, System::errorMsg(r), r).c_str());
+		             str::form(__("Cannot create directory: %s (%s [%d])."),
+		                    dir.c_str(), ::strerror(r), r).c_str());
 	}
 
 	dir = pi.toString() + "/req";
@@ -2505,11 +2530,11 @@ OpenSSLUtils::createCaInfrastructure(const String &caName,
 	{
 		path::removeDirRecursive(repository + "/" + caName);
 
-		LOGIT_ERROR(Format("Can not create directory: %1 (%2 [%3])",
-		                   dir, System::errorMsg(r), r));
+		LOGIT_ERROR(Format("Can not create directory: %s (%s [%d])",
+		                   dir.c_str(), ::strerror(r), r));
 		BLOCXX_THROW(ca_mgm::SystemException,
-		             Format(__("Cannot create directory: %1 (%2 [%3])."),
-		                    dir, System::errorMsg(r), r).c_str());
+		             str::form(__("Cannot create directory: %s (%s [%d])."),
+		                    dir.c_str(), ::strerror(r), r).c_str());
 	}
 
 	dir = pi.toString() + "/keys";
@@ -2519,11 +2544,11 @@ OpenSSLUtils::createCaInfrastructure(const String &caName,
 	{
 		path::removeDirRecursive(repository + "/" + caName);
 
-		LOGIT_ERROR(Format("Can not create directory: %1 (%2 [%3])",
-		                   dir, System::errorMsg(r), r));
+		LOGIT_ERROR(Format("Can not create directory: %s (%s [%d])",
+		                   dir.c_str(), ::strerror(r), r));
 		BLOCXX_THROW(ca_mgm::SystemException,
-		             Format(__("Cannot create directory: %1 (%2 [%3])."),
-		                    dir, System::errorMsg(r), r).c_str());
+		             str::form(__("Cannot create directory: %s (%s [%d])."),
+		                    dir.c_str(), ::strerror(r), r).c_str());
 	}
 
 	try
@@ -2542,6 +2567,66 @@ OpenSSLUtils::createCaInfrastructure(const String &caName,
 		BLOCXX_THROW_SUBEX(ca_mgm::SystemException,
 		                   __("Cannot create the file."), e);
 	}
+}
+
+std::string
+OpenSSLUtils::digestMD5(const std::string &in)
+{
+  std::string dcmd;
+  bool foundError = false;
+
+  dcmd += ca_mgm::OPENSSL_COMMAND + " ";
+  dcmd += "dgst ";
+  dcmd += "-md5 ";
+
+  std::vector<std::string> cmd = PerlRegEx("\\s").split(dcmd);
+
+  LOGIT_DEBUG("Command: " << dcmd);
+
+  std::string randfile(::tempnam("/tmp/", ".rand-"));
+  blocxx::EnvVars env;
+  env.addVar("PATH", "/usr/bin/");
+  env.addVar("RANDFILE", randfile.c_str());
+
+  std::string stdOutput;
+  std::string errOutput;
+  int            status    = -1;
+
+  try
+  {
+    status = wrapExecuteProcessAndGatherOutput(cmd, stdOutput,
+                                               errOutput, env,
+                                               -1, -1, in);
+  }
+  catch(blocxx::Exception& e)
+  {
+    LOGIT_ERROR( "openssl exception:" << e);
+    path::removeFile(randfile);
+    BLOCXX_THROW_SUBEX(ca_mgm::RuntimeException,
+                       __("Executing openssl command failed."), e);
+  }
+  if(status != 0)
+  {
+    LOGIT_INFO( "openssl status:" << str::numstring(status));
+    foundError = true;
+  }
+  if(!errOutput.empty())
+  {
+    LOGIT_ERROR("openssl stderr:" << errOutput);
+    foundError = true;
+  }
+  if(!stdOutput.empty())
+  {
+    LOGIT_DEBUG("openssl stdout:" << stdOutput);
+  }
+  path::removeFile(randfile);
+
+  if(foundError)
+  {
+    BLOCXX_THROW(ca_mgm::RuntimeException,
+                 str::form(__("openssl command failed: %s"), errOutput.c_str()).c_str());
+  }
+  return stdOutput;
 }
 
 }

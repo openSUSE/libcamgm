@@ -140,7 +140,7 @@ Section::Section(const Key &key, const Section &parentSection)
 {
     m_path.push_back(key);
 
-    std::vector<blocxx::String> path;
+    std::vector<std::string> path;
     StringList  valueList;
 
     valueList.clear();
@@ -169,7 +169,7 @@ Section::~Section()
 EntrySize Section::entrySize() const
 {
     StringList stringList;
-    std::vector<blocxx::String> path;
+    std::vector<std::string> path;
     path.clear();
     stringList.clear();
     path.push_back("value");
@@ -185,7 +185,7 @@ EntrySize Section::entrySize() const
 EntrySize Section::sectionSize() const
 {
     StringList stringList;
-    std::vector<blocxx::String> path;
+    std::vector<std::string> path;
     path.clear();
     stringList.clear();
     path.push_back("section");
@@ -217,7 +217,7 @@ IniType Section::contains(const Key &key) const
 {
     IniType ret = NO;
     StringList stringList;
-    std::vector<blocxx::String> path;
+    std::vector<std::string> path;
     path.clear();
     stringList.clear();
     path.push_back("value");
@@ -256,11 +256,11 @@ IniType Section::contains(const Key &key) const
 }
 
 // -------------------------------------------------------------------
-std::list<blocxx::String> Section::getEntryKeys() const
+std::list<std::string> Section::getEntryKeys() const
 {
     StringList entryKeys;
     StringList stringList;
-    std::vector<blocxx::String> path;
+    std::vector<std::string> path;
 
     path.clear();
     stringList.clear();
@@ -286,7 +286,7 @@ EntryMap Section::getEntries() const
 {
     EntryMap entrymap;
     StringList stringList;
-    std::vector<blocxx::String> path;
+    std::vector<std::string> path;
 
     path.clear();
     stringList.clear();
@@ -300,7 +300,7 @@ EntryMap Section::getEntries() const
 	     it != stringList.end(); it++)
 	{
 	    //evaluate
-	    std::vector<blocxx::String> valuePath;
+	    std::vector<std::string> valuePath;
 	    StringList  valueList;
 	    Value	value("");
 	    Comment     comment("");
@@ -338,11 +338,11 @@ EntryMap Section::getEntries() const
 }
 
 // -------------------------------------------------------------------
-EntryMap Section::selectEntries(const blocxx::String &pattern,
+EntryMap Section::selectEntries(const std::string &pattern,
 				bool icase) const
 {
     EntryMap entryMap = getEntries();
-    blocxx::PosixRegEx reg(pattern, REG_EXTENDED | (icase ? REG_ICASE : 0));
+    PosixRegEx reg(pattern, REG_EXTENDED | (icase ? REG_ICASE : 0));
     EntryMap ret;
 
     for (EntryMap::iterator it = entryMap.begin(); it !=entryMap.end(); it++ )
@@ -399,7 +399,7 @@ bool Section::delEntry(const Key &key)
 	return false;
     }
 
-    std::vector<blocxx::String> path;
+    std::vector<std::string> path;
     path.clear();
     path.push_back("value");
     appendArray (path, m_path);
@@ -411,7 +411,7 @@ bool Section::delEntry(const Key &key)
 // -------------------------------------------------------------------
 bool Section::addValue(const Key &key, const Value &value)
 {
-    std::vector<blocxx::String> valuePath;
+    std::vector<std::string> valuePath;
     StringList  valueList;
 
     valueList.clear();
@@ -438,7 +438,7 @@ bool Section::addEntry(const Key &key, const Entry &entry)
     // adding value
     ok = addValue (key, entry.getValue());
 
-    std::vector<blocxx::String> valuePath;
+    std::vector<std::string> valuePath;
     StringList  valueList;
 
     valueList.clear();
@@ -490,11 +490,11 @@ bool Section::setEntry(const Key &key,
 }
 
 // -------------------------------------------------------------------
-std::list<blocxx::String> Section::getSectionKeys() const
+std::list<std::string> Section::getSectionKeys() const
 {
     StringList sectionList;
     StringList stringList;
-    std::vector<blocxx::String> path;
+    std::vector<std::string> path;
 
     path.clear();
     stringList.clear();
@@ -520,7 +520,7 @@ SectionMap Section::getSections() const
 {
     SectionMap sectionMap;
     StringList stringList;
-    std::vector<blocxx::String> path;
+    std::vector<std::string> path;
 
     path.clear();
     stringList.clear();
@@ -546,11 +546,11 @@ SectionMap Section::getSections() const
 
 
 // -------------------------------------------------------------------
-SectionMap Section::selectSections(const blocxx::String &pattern,
+SectionMap Section::selectSections(const std::string &pattern,
 				   bool icase) const
 {
     SectionMap sectionMap = getSections();
-    blocxx::PosixRegEx reg(pattern, REG_EXTENDED | (icase ? REG_ICASE : 0));
+    PosixRegEx reg(pattern, REG_EXTENDED | (icase ? REG_ICASE : 0));
     SectionMap ret;
 
     for (SectionMap::iterator it = sectionMap.begin(); it !=sectionMap.end(); it++ )
@@ -595,7 +595,7 @@ bool Section::delSection(const Key &key)
 	return false;
     }
 
-    std::vector<blocxx::String> path;
+    std::vector<std::string> path;
     path.clear();
     path.push_back("section");
     appendArray (path, m_path);
@@ -608,7 +608,7 @@ bool Section::delSection(const Key &key)
 // -------------------------------------------------------------------
 bool Section::setComment( const Comment &comment)
 {
-    std::vector<blocxx::String> valuePath;
+    std::vector<std::string> valuePath;
     StringList  valueList;
 
     valueList.clear();
@@ -630,7 +630,7 @@ bool Section::setComment( const Comment &comment)
 // -------------------------------------------------------------------
 Comment	Section::getComment()
 {
-    std::vector<blocxx::String> valuePath;
+    std::vector<std::string> valuePath;
     StringList  valueList;
     Comment comment;
 
@@ -691,30 +691,30 @@ INIParser::~INIParser ()
 
 
 // -------------------------------------------------------------------
-void INIParser::initFiles (const String &filename)
+void INIParser::initFiles (const std::string &filename)
 {
     parser->initFiles (filename.c_str());
 }
 
 // -------------------------------------------------------------------
-void INIParser::initFiles (const std::vector<blocxx::String> &fileList )
+void INIParser::initFiles (const std::vector<std::string> &fileList )
 {
     parser->initFiles(fileList);
 }
 
 // -------------------------------------------------------------------
 bool INIParser::initMachine (const std::vector<Options> &options,
-			     const std::vector<blocxx::String> &commentsDescr,
+			     const std::vector<std::string> &commentsDescr,
 			     const std::vector<SectionDescr> &sectionDescr,
 			     const std::vector<EntryDescr> &entryDescr,
 			     const std::vector<IoPatternDescr> &rewrites,
-			     const blocxx::String &subident)
+			     const std::string &subident)
 {
 
     // Resetting flags; set to "is init"
     parser->reset();
     // options
-    std::vector<blocxx::String> opt;
+    std::vector<std::string> opt;
     opt.clear();
     for (unsigned int i = 0;i<options.size();i++)
     {
@@ -810,7 +810,7 @@ bool INIParser::write ()
 bool SysConfig::initMachine ()
 {
     std::vector<Options>  		options;
-    std::vector<blocxx::String> 		commentsDescr;
+    std::vector<std::string> 		commentsDescr;
     std::vector<SectionDescr> 	sectionDescr;
     std::vector<EntryDescr> 		entryDescr;
     std::vector<IoPatternDescr> 	rewrites;

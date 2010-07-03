@@ -17,8 +17,8 @@
 
 /-*/
 
-#include <blocxx/PosixRegEx.hpp>
-#include <blocxx/Format.hpp>
+#include <limal/PosixRegEx.hpp>
+#include <limal/String.hpp>
 
 #include "LDAPUrlImpl.hpp"
 #include "Utils.hpp"
@@ -29,9 +29,6 @@ namespace LIMAL_NAMESPACE
 {
 namespace url
 {
-
-using namespace blocxx;
-
 
 // ---------------------------------------------------------------
 LDAPUrlImpl::LDAPUrlImpl()
@@ -53,10 +50,10 @@ LDAPUrlImpl::clone() const
 }
 
 // -------------------------------------------------------------------
-std::vector<blocxx::String>
+std::vector<std::string>
 LDAPUrlImpl::getKnownSchemes() const
 {
-	std::vector<blocxx::String> schemes(2);
+	std::vector<std::string> schemes(2);
 	schemes[0] = "ldap";
 	schemes[1] = "ldaps";
 	return schemes;
@@ -90,7 +87,7 @@ LDAPUrlImpl::getQueryStringMap(ca_mgm::url::EEncoding eflag) const
 		"attrs", "scope", "filter", "exts", NULL
 	};
 	ca_mgm::url::ParamMap pmap;
-	std::vector<blocxx::String>          parr( getQueryStringArray());
+	std::vector<std::string>          parr( getQueryStringArray());
 	if( parr.size() <= 4)
 	{
 		for(size_t i=0; i<parr.size(); i++)
@@ -120,16 +117,16 @@ LDAPUrlImpl::setQueryStringMap(const ca_mgm::url::ParamMap &pmap)
 	};
 
 	// remove psep ("?") from safe chars
-	blocxx::String join_safe;
-	blocxx::String safe(config("safe_querystr"));
-	blocxx::String psep(config("psep_querystr"));
+	std::string join_safe;
+	std::string safe(config("safe_querystr"));
+	std::string psep(config("psep_querystr"));
 	for(size_t i=0; i<safe.length(); i++)
 	{
-		if( psep.indexOf(safe[i]) == String::npos)
-			join_safe.concat(safe[i]);
+		if( psep.find_first_of(safe[i]) == std::string::npos)
+			join_safe += safe[i];
 	}
 
-	std::vector<blocxx::String>                  parr(4);
+	std::vector<std::string>                  parr(4);
 	ca_mgm::url::ParamMap::const_iterator p;
 	for(p=pmap.begin(); p!=pmap.end(); ++p)
 	{

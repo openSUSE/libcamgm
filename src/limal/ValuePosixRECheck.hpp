@@ -29,15 +29,14 @@
 #include <limal/ca-mgm/config.h>
 #include <limal/ValueCheck.hpp>
 
-#include  <limal/ca-mgm/CommonData.hpp>
-#include <blocxx/String.hpp>
-#include <blocxx/PosixRegEx.hpp>
+#include <limal/ca-mgm/CommonData.hpp>
+#include <limal/String.hpp>
+#include <limal/PosixRegEx.hpp>
 
 namespace LIMAL_NAMESPACE
 {
 
 // -------------------------------------------------------------------
-#ifdef BLOCXX_HAVE_REGEX
 /**
  * @brief Posix regex value check.
  *
@@ -57,7 +56,7 @@ public:
 	 * @param icase  Match case insensitive.
 	 * @throws blocxx::RegExCompileException on invalid pattern
 	 */
-	ValuePosixRECheck(const blocxx::String &regex,
+	ValuePosixRECheck(const std::string &regex,
 	                  bool icase = false);
 
 	/**
@@ -69,7 +68,7 @@ public:
 	 * @throws blocxx::RegExExecuteException on execute failure.
 	 */
 	virtual bool
-	isValid(const blocxx::String &value) const;
+	isValid(const std::string &value) const;
 
 	/**
 	 * Return a string showing the regex matching the
@@ -78,16 +77,12 @@ public:
 	 * @param value A string value.
 	 * @return A string showing the check.
 	 */
-	virtual blocxx::String
-	explain(const blocxx::String &value) const;
+	virtual std::string
+	explain(const std::string &value) const;
 
 private:
-	blocxx::PosixRegEx  m_reg;
+	PosixRegEx  m_reg;
 };
-#else
-#warning PosixRegEx is not avaliable in blocxx
-#endif
-
 
 }      // End of LIMAL_NAMESPACE
 #endif // LIMAL_VALUE_POSIX_REGEX_CHECK_HPP

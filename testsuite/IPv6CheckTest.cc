@@ -2,8 +2,8 @@
 #include <blocxx/AppenderLogger.hpp>
 #include <blocxx/CerrLogger.hpp>
 #include <blocxx/CerrAppender.hpp>
-#include <blocxx/String.hpp>
-#include <blocxx/PerlRegEx.hpp>
+#include <limal/String.hpp>
+#include <limal/PerlRegEx.hpp>
 #include <limal/Logger.hpp>
 #include <limal/PathInfo.hpp>
 #include <limal/ca-mgm/CA.hpp>
@@ -26,7 +26,7 @@ int main()
     {
         cout << "START" << endl;
 
-        blocxx::StringArray cat;
+        StringArray cat;
         cat.push_back("FATAL");
         cat.push_back("ERROR");
         cat.push_back("INFO");
@@ -45,7 +45,7 @@ int main()
 
 		ValueCheck check = initIP6Check();
 
-		std::vector<blocxx::String> iparr ;
+		std::vector<std::string> iparr ;
 		iparr.push_back("2001:780:101:a00:211:11ff:fee6:a5af");
 		iparr.push_back("fe80::211:11ff:fee6:a5af");
 		iparr.push_back("2001::a5af");
@@ -55,7 +55,7 @@ int main()
 		iparr.push_back("2001:780:101:a00:211:11ff:fee6:a5af:afff");
 		iparr.push_back("g001:780:101:a00:211:11ff:fee6:a5af");
 
-		StringArray::const_iterator ip_it;
+		std::vector<std::string>::const_iterator ip_it;
 		for(ip_it = iparr.begin(); ip_it != iparr.end(); ++ip_it)
 		{
 			//cout << "Explain: "<< check.explain(*ip_it) << endl;

@@ -2,8 +2,8 @@
 #include <blocxx/AppenderLogger.hpp>
 #include <blocxx/CerrLogger.hpp>
 #include <blocxx/CerrAppender.hpp>
-#include <blocxx/String.hpp>
-#include <blocxx/PerlRegEx.hpp>
+#include <limal/String.hpp>
+#include <limal/PerlRegEx.hpp>
 #include <limal/Logger.hpp>
 #include <limal/PathInfo.hpp>
 #include <limal/ca-mgm/CA.hpp>
@@ -24,7 +24,7 @@ int main()
     try
     {
         cout << "START" << endl;
-        
+
         // Logging
         LoggerRef l = ca_mgm::Logger::createCerrLogger(
                                                       "CA9",
@@ -33,12 +33,12 @@ int main()
                                                       "%-5p %c - %m"
                                                   );
         ca_mgm::Logger::setDefaultLogger(l);
-        
+
         cout << "=================== start CA List ======================" << endl;
 
-        std::vector<blocxx::String> list = CA::getCAList("./TestRepos/");
+        std::vector<std::string> list = CA::getCAList("./TestRepos/");
 
-        StringArray::const_iterator it;
+        std::vector<std::string>::const_iterator it;
 
         for(it = list.begin(); it != list.end(); ++it)
         {

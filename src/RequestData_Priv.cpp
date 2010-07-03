@@ -57,7 +57,7 @@ RequestData_Priv::RequestData_Priv(const ByteBuffer& request,
 	init(request, formatType);
 }
 
-RequestData_Priv::RequestData_Priv(const String& requestPath,
+RequestData_Priv::RequestData_Priv(const std::string& requestPath,
                                    FormatType formatType)
 	: RequestData()
 {
@@ -90,7 +90,7 @@ RequestData_Priv::setKeysize(uint32_t size)
 void
 RequestData_Priv::setSubjectDN(const DNObject dn)
 {
-	std::vector<blocxx::String> r = dn.verify();
+	std::vector<std::string> r = dn.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -126,7 +126,7 @@ RequestData_Priv::setSignature(const ByteBuffer &sig)
 void
 RequestData_Priv::setExtensions(const X509v3RequestExts &ext)
 {
-	std::vector<blocxx::String> r = ext.verify();
+	std::vector<std::string> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -136,13 +136,13 @@ RequestData_Priv::setExtensions(const X509v3RequestExts &ext)
 }
 
 void
-RequestData_Priv::setChallengePassword(const String &passwd)
+RequestData_Priv::setChallengePassword(const std::string &passwd)
 {
 	m_impl->challengePassword = passwd;
 }
 
 void
-RequestData_Priv::setUnstructuredName(const String &name)
+RequestData_Priv::setUnstructuredName(const std::string &name)
 {
 	m_impl->unstructuredName = name;
 }
@@ -249,18 +249,18 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
 	i2a_ASN1_OBJECT(bio, x509->sig_alg->algorithm);
 	int n = BIO_get_mem_data(bio, &cbuf);
 
-	String sbuf = String(cbuf, n);
+	std::string sbuf = std::string(cbuf, n);
 	BIO_free(bio);
 
-	if(sbuf.equalsIgnoreCase("sha1WithRSAEncryption") )
+	if(0 == str::compareCI(sbuf, "sha1WithRSAEncryption") )
 	{
 		m_impl->signatureAlgorithm = E_SHA1RSA;
 	}
-	else if(sbuf.equalsIgnoreCase("md5WithRSAEncryption") )
+	else if(0 == str::compareCI(sbuf, "md5WithRSAEncryption") )
 	{
 		m_impl->signatureAlgorithm = E_MD5RSA;
 	}
-	else if(sbuf.equalsIgnoreCase("dsaWithSHA1") )
+	else if(0 == str::compareCI(sbuf, "dsaWithSHA1") )
 	{
 		m_impl->signatureAlgorithm = E_SHA1DSA;
 	}
@@ -270,7 +270,7 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
 
 		LOGIT_ERROR("Unsupported signature algorithm: '" << sbuf << "'");
 		BLOCXX_THROW(ca_mgm::RuntimeException,
-		             Format(__("Unsupported signature algorithm %1."), sbuf).c_str());
+		             str::form(__("Unsupported signature algorithm %s."), sbuf.c_str()).c_str());
 	}
 
 	// get signature
@@ -327,7 +327,7 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
 			memcpy(d, bs->data, bs->length);
 			d[bs->length] = '\0';
 
-			String s(d, bs->length);
+			std::string s(d, bs->length);
 			delete [] d;
 
 			if(nid == NID_pkcs9_challengePassword)

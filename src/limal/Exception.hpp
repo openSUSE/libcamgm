@@ -37,7 +37,7 @@
  *                    MY_INVALID_EMAIL_ERROR_NUMBER);
  *
  *   BLOCXX_THROW(ca_mgm::SyntaxException,
- *                Format("Syntax error in line %1", 42).c_str());
+ *                str::form("Syntax error in line %1", 42).c_str());
  *
  *   try
  *   {

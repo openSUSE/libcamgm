@@ -72,13 +72,13 @@ namespace CA_MGM_NAMESPACE
 		/**
 		 * Returns the start date as string for openssl (GMT)
 		 */ 
-		blocxx::String
+		std::string
 		getStartDateAsString() const;
 
 		/**
 		 * Returns the end date as string for openssl (GMT)
 		 */ 
-		blocxx::String
+		std::string
 		getEndDateAsString() const;
 
 		void
@@ -117,13 +117,13 @@ namespace CA_MGM_NAMESPACE
 		 * @return Array with error messages. If this Array is empty this
 		 * object is valid
 		 */
-		virtual std::vector<blocxx::String>
+		virtual std::vector<std::string>
 		verify() const;
 
 		/**
 		 * Return the content of this object for debugging
 		 */
-		virtual std::vector<blocxx::String>
+		virtual std::vector<std::string>
 		dump() const;
 
 	private:

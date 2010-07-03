@@ -71,7 +71,7 @@ X509v3CRLExts_Priv::~X509v3CRLExts_Priv()
 void
 X509v3CRLExts_Priv::setAuthorityKeyIdentifier(const AuthorityKeyIdentifierExt &ext)
 {
-	std::vector<blocxx::String> r = ext.verify();
+	std::vector<std::string> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -83,7 +83,7 @@ X509v3CRLExts_Priv::setAuthorityKeyIdentifier(const AuthorityKeyIdentifierExt &e
 void
 X509v3CRLExts_Priv::setIssuerAlternativeName(const IssuerAlternativeNameExt &ext)
 {
-	std::vector<blocxx::String> r = ext.verify();
+	std::vector<std::string> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -135,7 +135,7 @@ X509v3CRLExts_Priv::parseIssuerAlternativeNameExt(STACK_OF(X509_EXTENSION) *cert
 
 		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
 		BLOCXX_THROW(ca_mgm::SyntaxException,
-		             Format(__("Unable to parse the certificate (Crit: %1)."),
+		             str::form(__("Unable to parse the certificate (Crit: %1)."),
 		                    crit).c_str());
 	}
 

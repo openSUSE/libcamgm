@@ -44,7 +44,7 @@ public:
 		, holdInstruction("holdInstructionNone")
 	{}
 
-	CRLReasonImpl(const String& reason)
+	CRLReasonImpl(const std::string& reason)
 		: reason(reason)
 		, compromiseDate(0)
 		, holdInstruction("holdInstructionNone")
@@ -64,7 +64,7 @@ public:
 		return new CRLReasonImpl(*this);
 	}
 
-	String         reason;
+	std::string         reason;
 
 	// used if reason is keyCompromise or CACompromise.
 	// 0 == no compromise Date set
@@ -76,7 +76,7 @@ public:
 	//    holdInstructionCallIssuer,
 	//    holdInstructionReject
 	// or an OID
-	String         holdInstruction;
+	std::string         holdInstruction;
 
 };
 
@@ -89,13 +89,13 @@ CRLReason::CRLReason()
 
 // ----------------------------------------------------------------------------
 
-CRLReason::CRLReason(const String& reason)
+CRLReason::CRLReason(const std::string& reason)
 	: m_impl(new CRLReasonImpl(reason))
 {
 	if(!checkReason(reason))
 	{
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             Format(__("Invalid revoke reason %1."), reason).c_str());
+		             str::form(__("Invalid revoke reason %s."), reason.c_str()).c_str());
 	}
 }
 
@@ -125,20 +125,20 @@ CRLReason::operator=(const CRLReason& reason)
 // ----------------------------------------------------------------------------
 
 void
-CRLReason::setReason(const String& reason)
+CRLReason::setReason(const std::string& reason)
 {
 	if(!checkReason(reason))
 	{
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             // %1 is the wrong reason string
-		             Format(__("Invalid revoke reason %1."), reason).c_str());
+		             // %s is the wrong reason string
+		             str::form(__("Invalid revoke reason %s."), reason.c_str()).c_str());
 	}
 	m_impl->reason = reason;
 }
 
 // ----------------------------------------------------------------------------
 
-blocxx::String
+std::string
 CRLReason::getReason() const
 {
 	return m_impl->reason;
@@ -147,9 +147,9 @@ CRLReason::getReason() const
 // ----------------------------------------------------------------------------
 
 void
-CRLReason::setHoldInstruction(const String& holdInstruction)
+CRLReason::setHoldInstruction(const std::string& holdInstruction)
 {
-	String r = checkHoldInstruction(holdInstruction);
+	std::string r = checkHoldInstruction(holdInstruction);
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r);
@@ -162,10 +162,10 @@ CRLReason::setHoldInstruction(const String& holdInstruction)
 
 // ----------------------------------------------------------------------------
 
-blocxx::String
+std::string
 CRLReason::getHoldInstruction() const
 {
-	if(!m_impl->reason.equalsIgnoreCase("certificateHold"))
+	if(0 != str::compareCI(m_impl->reason, "certificateHold"))
 	{
 		LOGIT_ERROR("Reason is not certificateHold");
 		BLOCXX_THROW(ca_mgm::RuntimeException,
@@ -188,7 +188,7 @@ CRLReason::setKeyCompromiseDate(time_t compromiseDate)
 time_t
 CRLReason::getKeyCompromiseDate() const
 {
-	if(!m_impl->reason.equalsIgnoreCase("keyCompromise"))
+	if(0 != str::compareCI(m_impl->reason, "keyCompromise"))
 	{
 		LOGIT_ERROR("Reason is not keyCompromise");
 		BLOCXX_THROW(ca_mgm::RuntimeException,
@@ -199,21 +199,21 @@ CRLReason::getKeyCompromiseDate() const
 
 // ----------------------------------------------------------------------------
 
-blocxx::String
+std::string
 CRLReason::getKeyCompromiseDateAsString() const
 {
-	if(!m_impl->reason.equalsIgnoreCase("keyCompromise"))
+	if(0 != str::compareCI(m_impl->reason, "keyCompromise"))
 	{
 		LOGIT_ERROR("Reason is not keyCompromise");
 		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             __("Reason is not keyCompromise."));
 	}
-	String time;
+	std::string time;
 
 	if(m_impl->compromiseDate != 0)
 	{
 		Date dt(m_impl->compromiseDate);
-		time = String(dt.form("%Y%m%d%H%M%SZ", true));
+		time = std::string(dt.form("%Y%m%d%H%M%SZ", true));
 	}
 
 	return time;
@@ -233,7 +233,7 @@ CRLReason::setCACompromiseDate(time_t compromiseDate)
 time_t
 CRLReason::getCACompromiseDate() const
 {
-	if(!m_impl->reason.equalsIgnoreCase("CACompromise"))
+	if(0 != str::compareCI(m_impl->reason, "CACompromise"))
 	{
 		LOGIT_ERROR("Reason is not CACompromise");
 		BLOCXX_THROW(ca_mgm::RuntimeException,
@@ -244,21 +244,21 @@ CRLReason::getCACompromiseDate() const
 
 // ----------------------------------------------------------------------------
 
-blocxx::String
+std::string
 CRLReason::getCACompromiseDateAsString() const
 {
-	if(!m_impl->reason.equalsIgnoreCase("CACompromise"))
+	if(0 != str::compareCI(m_impl->reason, "CACompromise"))
 	{
 		LOGIT_ERROR("Reason is not CACompromise");
 		BLOCXX_THROW(ca_mgm::RuntimeException,
 		             __("Reason is not CACompromise."));
 	}
-	String time;
+	std::string time;
 
 	if(m_impl->compromiseDate != 0)
 	{
 		Date dt(m_impl->compromiseDate);
-		time = String(dt.form("%Y%m%d%H%M%SZ", true));
+		time = std::string(dt.form("%Y%m%d%H%M%SZ", true));
 	}
 
 	return time;
@@ -269,9 +269,9 @@ CRLReason::getCACompromiseDateAsString() const
 bool
 CRLReason::valid() const
 {
-	if(m_impl->reason.equalsIgnoreCase("certificateHold"))
+	if(0 == str::compareCI(m_impl->reason, "certificateHold"))
 	{
-		String r = checkHoldInstruction(m_impl->holdInstruction);
+		std::string r = checkHoldInstruction(m_impl->holdInstruction);
 		if(!r.empty())
 		{
 			LOGIT_DEBUG(r);
@@ -286,14 +286,14 @@ CRLReason::valid() const
 
 // ----------------------------------------------------------------------------
 
-std::vector<blocxx::String>
+std::vector<std::string>
 CRLReason::verify() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 
-	if(m_impl->reason.equalsIgnoreCase("certificateHold"))
+	if(0 == str::compareCI(m_impl->reason, "certificateHold"))
 	{
-		String err = checkHoldInstruction(m_impl->holdInstruction);
+		std::string err = checkHoldInstruction(m_impl->holdInstruction);
 		if(!err.empty())
 		{
 			result.push_back(err);
@@ -301,7 +301,7 @@ CRLReason::verify() const
 	}
 	else if(!checkReason(m_impl->reason))
 	{
-		result.push_back(Format("Invalid revoke reason", m_impl->reason));
+		result.push_back(str::form("Invalid revoke reason: %s", m_impl->reason.c_str()));
 	}
 
 	//    compromiseDate == 0 is now a valid date
@@ -312,22 +312,22 @@ CRLReason::verify() const
 
 // ----------------------------------------------------------------------------
 
-std::vector<blocxx::String>
+std::vector<std::string>
 CRLReason::dump() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 	result.push_back("CRLReason::dump()");
 
-	result.push_back(Format("Revoke Reason = %1", m_impl->reason));
+	result.push_back(str::form("Revoke Reason = %s", m_impl->reason.c_str()));
 
-	if(m_impl->reason.equalsIgnoreCase("certificateHold"))
+	if(0 == str::compareCI(m_impl->reason, "certificateHold"))
 	{
 		result.push_back("hold Instruction =" + m_impl->holdInstruction);
 	}
-	else if(m_impl->reason.equalsIgnoreCase("keyCompromise") ||
-	        m_impl->reason.equalsIgnoreCase("CACompromise"))
+	else if(0 == str::compareCI(m_impl->reason, "keyCompromise") ||
+	        0 == str::compareCI(m_impl->reason, "CACompromise"))
 	{
-		result.push_back("compromise Date = " + String(m_impl->compromiseDate));
+		result.push_back("compromise Date = " + str::numstring(m_impl->compromiseDate));
 	}
 
 	return result;
@@ -337,33 +337,33 @@ CRLReason::dump() const
 // private:
 // ----------------------------------------------------------------------------
 
-blocxx::String
-CRLReason::checkHoldInstruction(const String& hi) const
+std::string
+CRLReason::checkHoldInstruction(const std::string& hi) const
 {
-	if(!hi.equalsIgnoreCase("holdInstructionNone")       &&
-	   !hi.equalsIgnoreCase("holdInstructionCallIssuer") &&
-	   !hi.equalsIgnoreCase("holdInstructionReject")     &&
+	if(0 != str::compareCI(hi, "holdInstructionNone")       &&
+	   0 != str::compareCI(hi, "holdInstructionCallIssuer") &&
+	   0 != str::compareCI(hi, "holdInstructionReject")     &&
 	   !initOIDCheck().isValid(hi)) {
 
-		   return (Format("Invalid holdInstruction: %1", hi).toString());
+		   return (str::form("Invalid holdInstruction: %s", hi.c_str()));
 	   }
-	return String();
+	return std::string();
 }
 
 // ----------------------------------------------------------------------------
 
 bool
-CRLReason::checkReason(const String& reason) const
+CRLReason::checkReason(const std::string& reason) const
 {
-	if(reason.equalsIgnoreCase("none")                 ||
-	   reason.equalsIgnoreCase("unspecified")          ||
-	   reason.equalsIgnoreCase("keyCompromise")        ||
-	   reason.equalsIgnoreCase("CACompromise")         ||
-	   reason.equalsIgnoreCase("affiliationChanged")   ||
-	   reason.equalsIgnoreCase("superseded")           ||
-	   reason.equalsIgnoreCase("cessationOfOperation") ||
-	   reason.equalsIgnoreCase("certificateHold")      ||
-	   reason.equalsIgnoreCase("removeFromCRL"))
+	if(0 == str::compareCI(reason, "none")                 ||
+	   0 == str::compareCI(reason, "unspecified")          ||
+	   0 == str::compareCI(reason, "keyCompromise")        ||
+	   0 == str::compareCI(reason, "CACompromise")         ||
+	   0 == str::compareCI(reason, "affiliationChanged")   ||
+	   0 == str::compareCI(reason, "superseded")           ||
+	   0 == str::compareCI(reason, "cessationOfOperation") ||
+	   0 == str::compareCI(reason, "certificateHold")      ||
+	   0 == str::compareCI(reason, "removeFromCRL"))
 	{
 		return true;
 	}

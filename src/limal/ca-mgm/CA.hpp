@@ -62,7 +62,7 @@ namespace CA_MGM_NAMESPACE
 		 * @param caPasswd the password of this CA.
 		 * @param repos directory path to the repository root
 		 */
-		CA(const String& caName, const String& caPasswd, const String& repos=REPOSITORY);
+		CA(const std::string& caName, const std::string& caPasswd, const std::string& repos=REPOSITORY);
 
 		/**
 		 * Destructor of CA.
@@ -81,9 +81,9 @@ namespace CA_MGM_NAMESPACE
 		 *
 		 * @return The name of the certificate file
 		 */
-		String
-		createSubCA(const String& newCaName,
-		            const String& keyPasswd,
+		std::string
+		createSubCA(const std::string& newCaName,
+		            const std::string& keyPasswd,
 		            const RequestGenerationData& caRequestData,
 		            const CertificateIssueData& caIssueData);
 
@@ -97,8 +97,8 @@ namespace CA_MGM_NAMESPACE
 		 *
 		 * @return the name of the new request
 		 */
-		String
-		createRequest(const String& keyPasswd,
+		std::string
+		createRequest(const std::string& keyPasswd,
 		              const RequestGenerationData& requestData,
 		              Type requestType);
 
@@ -113,8 +113,8 @@ namespace CA_MGM_NAMESPACE
 		 *
 		 * @return the name of the certificate
 		 */
-		String
-		issueCertificate(const String& requestName,
+		std::string
+		issueCertificate(const std::string& requestName,
 		                 const CertificateIssueData& issueData,
 		                 Type certType);
 
@@ -129,8 +129,8 @@ namespace CA_MGM_NAMESPACE
 		 *
 		 * @return the name of the certificate
 		 */
-		String
-		createCertificate(const String& keyPasswd,
+		std::string
+		createCertificate(const std::string& keyPasswd,
 		                  const RequestGenerationData& requestData,
 		                  const CertificateIssueData&  certificateData,
 		                  Type type);
@@ -148,7 +148,7 @@ namespace CA_MGM_NAMESPACE
 		 *
 		 */
 		void
-		revokeCertificate(const String& certificateName,
+		revokeCertificate(const std::string& certificateName,
 		                  const CRLReason& crlReason = CRLReason());
 
 		/**
@@ -170,7 +170,7 @@ namespace CA_MGM_NAMESPACE
 		 *
 		 * @return the name of the request
 		 */
-		String
+		std::string
 		importRequestData(const ca_mgm::ByteBuffer& request,
 		                  FormatType formatType = E_PEM);
 
@@ -183,8 +183,8 @@ namespace CA_MGM_NAMESPACE
 		 *
 		 * @return the name of the request
 		 */
-		String
-		importRequest(const String& requestFile,
+		std::string
+		importRequest(const std::string& requestFile,
 		              FormatType formatType = E_PEM);
 
 
@@ -275,7 +275,7 @@ namespace CA_MGM_NAMESPACE
 		 *   <li>status (The status of the certificate: "valid", "revoked", "expired")</li>
 		 * </ul>
 		 */
-		std::vector<std::map<blocxx::String, blocxx::String> >
+		std::vector<std::map<std::string, std::string> >
 		getCertificateList();
 
 
@@ -297,7 +297,7 @@ namespace CA_MGM_NAMESPACE
 		 *   <li>date</li>
 		 * </ul>
 		 */
-		std::vector<std::map<blocxx::String, blocxx::String> >
+		std::vector<std::map<std::string, std::string> >
 		getRequestList();
 
 
@@ -320,7 +320,7 @@ namespace CA_MGM_NAMESPACE
 		 * @return the request data
 		 */
 		RequestData
-		getRequest(const String& requestName);
+		getRequest(const std::string& requestName);
 
 		/**
 		 * Parse a certificate and return the data.
@@ -331,7 +331,7 @@ namespace CA_MGM_NAMESPACE
 		 * @return the certificate data
 		 */
 		CertificateData
-		getCertificate(const String& certificateName);
+		getCertificate(const std::string& certificateName);
 
 
 		/**
@@ -368,7 +368,7 @@ namespace CA_MGM_NAMESPACE
 		 * @return the private key of the CA in PEM format
 		 */
 		ca_mgm::ByteBuffer
-		exportCAKeyAsPEM(const String& newPassword);
+		exportCAKeyAsPEM(const std::string& newPassword);
 
 		/**
 		 * Return the CA private key in DER format.
@@ -393,7 +393,7 @@ namespace CA_MGM_NAMESPACE
 		 * @return the data in PKCS12 format
 		 */
 		ca_mgm::ByteBuffer
-		exportCAasPKCS12(const String& p12Password,
+		exportCAasPKCS12(const std::string& p12Password,
 		                 bool withChain = false);
 
 
@@ -409,7 +409,7 @@ namespace CA_MGM_NAMESPACE
 		 *
 		 */
 		ca_mgm::ByteBuffer
-		exportCertificate(const String& certificateName,
+		exportCertificate(const std::string& certificateName,
 		                  FormatType exportType);
 
 		/**
@@ -427,9 +427,9 @@ namespace CA_MGM_NAMESPACE
 		 * @return the private key of the certificate in PEM format
 		 */
 		ca_mgm::ByteBuffer
-		exportCertificateKeyAsPEM(const String& certificateName,
-		                          const String& keyPassword,
-		                          const String& newPassword);
+		exportCertificateKeyAsPEM(const std::string& certificateName,
+		                          const std::string& keyPassword,
+		                          const std::string& newPassword);
 
 		/**
 		 * Return the certificate private key in DER format.
@@ -442,8 +442,8 @@ namespace CA_MGM_NAMESPACE
 		 * @return the private key in DER format
 		 */
 		ca_mgm::ByteBuffer
-		exportCertificateKeyAsDER(const String& certificateName,
-		                          const String& keyPassword);
+		exportCertificateKeyAsDER(const std::string& certificateName,
+		                          const std::string& keyPassword);
 
 		/**
 		 * Return the certificate in PKCS12 format.
@@ -460,9 +460,9 @@ namespace CA_MGM_NAMESPACE
 		 * @return the data in PKCS12 format
 		 */
 		ca_mgm::ByteBuffer
-		exportCertificateAsPKCS12(const String& certificateName,
-		                          const String& keyPassword,
-		                          const String& p12Password,
+		exportCertificateAsPKCS12(const std::string& certificateName,
+		                          const std::string& keyPassword,
+		                          const std::string& p12Password,
 		                          bool withChain = false);
 
 		/**
@@ -486,7 +486,7 @@ namespace CA_MGM_NAMESPACE
 		 *
 		 */
 		void
-		deleteRequest(const String& requestName);
+		deleteRequest(const std::string& requestName);
 
 		/**
 		 * Delete the specified certificate together with the corresponding
@@ -500,7 +500,7 @@ namespace CA_MGM_NAMESPACE
 		 *
 		 */
 		void
-		deleteCertificate(const String& certificateName,
+		deleteCertificate(const std::string& certificateName,
 		                  bool requestToo = true);
 
 
@@ -534,9 +534,9 @@ namespace CA_MGM_NAMESPACE
 		 * @return true if the certificate is valid, otherwise false.
 		 */
 		bool
-		verifyCertificate(const String& certificateName,
+		verifyCertificate(const std::string& certificateName,
 		                  bool crlCheck = true,
-		                  const String& purpose = String("any"));
+		                  const std::string& purpose = std::string("any"));
 
 		/**
 		 * Return the current config object
@@ -565,11 +565,11 @@ namespace CA_MGM_NAMESPACE
 		 *
 		 */
 		static void
-		createRootCA(const String& caName,
-		             const String& caPasswd,
+		createRootCA(const std::string& caName,
+		             const std::string& caPasswd,
 		             const RequestGenerationData& caRequestData,
 		             const CertificateIssueData& caIssueData,
-		             const String& repos=REPOSITORY);
+		             const std::string& repos=REPOSITORY);
 
 
 		/**
@@ -585,11 +585,11 @@ namespace CA_MGM_NAMESPACE
 		 *
 		 */
 		static void
-		importCA(const String& caName,
+		importCA(const std::string& caName,
 		         const ca_mgm::ByteBuffer& caCertificate,
 		         const ca_mgm::ByteBuffer& caKey,
-		         const String& caPasswd = String(),
-		         const String& repos=REPOSITORY);
+		         const std::string& caPasswd = std::string(),
+		         const std::string& repos=REPOSITORY);
 
 		/**
 		 * Get a list of available CAs
@@ -597,10 +597,10 @@ namespace CA_MGM_NAMESPACE
 		 *
 		 * @param repos the path to the repository root directory
 		 *
-		 * @return Array of Strings of available CAs
+		 * @return Array of std::strings of available CAs
 		 */
-		static std::vector<blocxx::String>
-		getCAList(const String& repos=REPOSITORY);
+		static std::vector<std::string>
+		getCAList(const std::string& repos=REPOSITORY);
 
 		/**
 		 * Return a table of the available CAs and its issuer.
@@ -619,8 +619,8 @@ namespace CA_MGM_NAMESPACE
 		 *
 		 * @return a list of lists of the available CAs
 		 */
-		static std::list<std::vector<blocxx::String> >
-		getCATree(const String& repos=REPOSITORY);
+		static std::list<std::vector<std::string> >
+		getCATree(const std::string& repos=REPOSITORY);
 
 		/**
 		 * Get a CertificateIssueData object with current signing default
@@ -632,7 +632,7 @@ namespace CA_MGM_NAMESPACE
 		 * @return a CertificateIssueData object with the current defaults
 		 */
 		static CertificateIssueData
-		getRootCAIssueDefaults(const String& repos=REPOSITORY);
+		getRootCAIssueDefaults(const std::string& repos=REPOSITORY);
 
 		/**
 		 * Get a RequestGenerationData object with current request default
@@ -644,7 +644,7 @@ namespace CA_MGM_NAMESPACE
 		 * @return a RequestGenerationData object with the current defaults
 		 */
 		static RequestGenerationData
-		getRootCARequestDefaults(const String& repos=REPOSITORY);
+		getRootCARequestDefaults(const std::string& repos=REPOSITORY);
 
 
 		/**
@@ -663,10 +663,10 @@ namespace CA_MGM_NAMESPACE
 		 *
 		 */
 		static void
-		deleteCA(const String& caName,
-		         const String& caPasswd,
+		deleteCA(const std::string& caName,
+		         const std::string& caPasswd,
 		         bool  force = false,
-		         const String& repos = REPOSITORY);
+		         const std::string& repos = REPOSITORY);
 
 	private:
 		blocxx::COWIntrusiveReference<CAImpl> m_impl;
@@ -698,7 +698,7 @@ namespace CA_MGM_NAMESPACE
 		 *
 		 * @return the name of the config file
 		 */
-		String
+		std::string
 		initConfigFile();
 
 		/**

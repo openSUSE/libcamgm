@@ -2,8 +2,8 @@
 #include <blocxx/AppenderLogger.hpp>
 #include <blocxx/CerrLogger.hpp>
 #include <blocxx/CerrAppender.hpp>
-#include <blocxx/String.hpp>
-#include <blocxx/PerlRegEx.hpp>
+#include <limal/String.hpp>
+#include <limal/PerlRegEx.hpp>
 #include <limal/Logger.hpp>
 #include <limal/PathInfo.hpp>
 #include <limal/ca-mgm/CA.hpp>
@@ -23,7 +23,7 @@ int main()
     {
         cout << "START" << endl;
 
-        blocxx::StringArray cat;
+        StringArray cat;
         cat.push_back("FATAL");
         cat.push_back("ERROR");
         cat.push_back("INFO");
@@ -65,13 +65,13 @@ int main()
         DNObject dn(dnl);
         rgd.setSubjectDN(dn);
 
-        blocxx::String r = ca.createRequest("system", rgd, E_Client_Req);
+        std::string r = ca.createRequest("system", rgd, E_Client_Req);
 
         cout << "RETURN Request " << endl;
 
         CertificateIssueData cid = ca.getIssueDefaults(E_Client_Cert);
 
-        blocxx::String c = ca.issueCertificate(r, cid, E_Client_Cert);
+        std::string c = ca.issueCertificate(r, cid, E_Client_Cert);
 
         cout << "RETURN Certificate " << endl;
 

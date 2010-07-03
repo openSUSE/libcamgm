@@ -126,7 +126,7 @@ namespace path
      *
      * @return 0 on success, errno on failure.
      **/
-    int readDir(std::list<blocxx::String> & retlist,
+    int readDir(std::list<std::string> & retlist,
                 const PathName& path, bool dots);
 
     /**
@@ -167,9 +167,9 @@ namespace path
     int changeMode(const PathName& path, mode_t mode);
 
     /**
-     * ??? Or String ???
+     * ??? Or std::string ???
      */
-    // int changeOwner(const PathName& path, const String& uid, const String& gid);
+    // int changeOwner(const PathName& path, const std::string& uid, const std::string& gid);
 
 }
 }

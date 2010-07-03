@@ -25,10 +25,9 @@
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ValueCheck.hpp>
 
-#include  <blocxx/Exception.hpp>
-#include  <blocxx/NULLValueException.hpp>
+#include  <limal/Exception.hpp>
 #include  <limal/ca-mgm/CommonData.hpp>
-#include  <blocxx/String.hpp>
+#include  <limal/String.hpp>
 #include  <blocxx/RefCount.hpp>
 #include  <list>
 
@@ -121,11 +120,11 @@ ValueCheck::operator=(ValueCheckBase *check)
 
 // -------------------------------------------------------------------
 bool
-ValueCheck::isValid(const blocxx::String &value) const
+ValueCheck::isValid(const std::string &value) const
 {
 	if( !m_self)
 	{
-		BLOCXX_THROW(blocxx::NULLValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		__("The value check may not contain a NULL pointer."));
 	}
 
@@ -151,16 +150,16 @@ ValueCheck::isValid(const blocxx::String &value) const
 
 
 // -------------------------------------------------------------------
-blocxx::String
-ValueCheck::explain(const blocxx::String &value) const
+std::string
+ValueCheck::explain(const std::string &value) const
 {
 	if( !m_self)
 	{
-		BLOCXX_THROW(blocxx::NULLValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		__("The value check may not contain a NULL pointer."));
 	}
 
-	String	res(m_self->explain(value));
+	std::string res(m_self->explain(value));
 	if( !m_list.empty())
 	{
 		std::list<ValueCheck>::const_iterator i;
@@ -237,7 +236,7 @@ ValueCheck::incRCnt(ValueCheckBase *ptr)
 	}
 	else
 	{
-		BLOCXX_THROW(blocxx::NULLValueException,
+		BLOCXX_THROW(ca_mgm::ValueException,
 		__("The value check may not contain a NULL pointer."));
 	}
 }

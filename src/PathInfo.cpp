@@ -70,7 +70,7 @@ PathInfo::PathInfo( const PathName & path, Mode initial )
 //
 //	DESCRIPTION :
 //
-PathInfo::PathInfo( const String & path, Mode initial )
+PathInfo::PathInfo( const std::string & path, Mode initial )
     : m_path( path )
     , m_mode( initial )
     , m_error( -1 )

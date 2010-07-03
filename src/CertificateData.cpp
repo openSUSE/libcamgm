@@ -60,7 +60,7 @@ CertificateData::getVersion() const
 	return m_impl->version;
 }
 
-blocxx::String
+std::string
 CertificateData::getSerial() const
 {
 	return m_impl->serial;
@@ -102,7 +102,7 @@ CertificateData::getPublicKeyAlgorithm() const
 	return m_impl->pubkeyAlgorithm;
 }
 
-blocxx::String
+std::string
 CertificateData::getPublicKeyAlgorithmAsString() const
 {
 	switch(m_impl->pubkeyAlgorithm)
@@ -117,7 +117,7 @@ CertificateData::getPublicKeyAlgorithmAsString() const
 		return "DH";
 		break;
 	}
-	return String();
+	return std::string();
 }
 
 ByteBuffer
@@ -132,7 +132,7 @@ CertificateData::getSignatureAlgorithm() const
 	return m_impl->signatureAlgorithm;
 }
 
-blocxx::String
+std::string
 CertificateData::getSignatureAlgorithmAsString() const
 {
 	switch(m_impl->signatureAlgorithm)
@@ -147,7 +147,7 @@ CertificateData::getSignatureAlgorithmAsString() const
 		return "SHA1DSA";
 		break;
 	}
-	return String();
+	return std::string();
 }
 
 ByteBuffer
@@ -156,7 +156,7 @@ ByteBuffer
 	return m_impl->signature;
 }
 
-blocxx::String
+std::string
 	CertificateData::getFingerprint() const
 {
 	return m_impl->fingerprint;
@@ -168,7 +168,7 @@ X509v3CertificateExts
 	return m_impl->extensions;
 }
 
-String
+std::string
 CertificateData::getCertificateAsText() const
 {
 	unsigned char *ustringval = NULL;
@@ -178,13 +178,13 @@ CertificateData::getCertificateAsText() const
 	X509_print_ex(bio, m_impl->x509, 0, 0);
 	n = BIO_get_mem_data(bio, &ustringval);
 
-	String text = String((const char*)ustringval, n);
+	std::string text = std::string((const char*)ustringval, n);
 	BIO_free(bio);
 
 	return text;
 }
 
-String
+std::string
 CertificateData::getExtensionsAsText() const
 {
 	unsigned char *ustringval = NULL;
@@ -194,7 +194,7 @@ CertificateData::getExtensionsAsText() const
 	X509V3_extensions_print(bio, NULL, m_impl->x509->cert_info->extensions, 0, 4);
 	n = BIO_get_mem_data(bio, &ustringval);
 
-	String extText = String((const char*)ustringval, n);
+	std::string extText = std::string((const char*)ustringval, n);
 	BIO_free(bio);
 
 	return extText;
@@ -243,28 +243,28 @@ CertificateData::valid() const
 	return true;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 CertificateData::verify() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 
 	if(m_impl->version < 1 || m_impl->version > 3)
 	{
-		result.push_back(Format("invalid version: %1", m_impl->version).toString());
+		result.push_back(str::form("invalid version: %d", m_impl->version));
 	}
 
 	if(!initHexCheck().isValid(m_impl->serial))
 	{
-		result.push_back(Format("invalid serial: %1", m_impl->serial).toString());
+		result.push_back(str::form("invalid serial: %s", m_impl->serial.c_str()));
 	}
 
 	if(m_impl->notBefore == 0)
 	{
-		result.push_back(Format("invalid notBefore: %1", m_impl->notBefore).toString());
+		result.push_back(str::form("invalid notBefore: %ld", m_impl->notBefore));
 	}
 	if(m_impl->notAfter <= m_impl->notBefore)
 	{
-		result.push_back(Format("invalid notAfter: %1", m_impl->notAfter).toString());
+		result.push_back(str::form("invalid notAfter: %ld", m_impl->notAfter));
 	}
 	appendArray(result, m_impl->issuer.verify());
 	appendArray(result, m_impl->subject.verify());
@@ -283,38 +283,34 @@ CertificateData::verify() const
 	return result;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 CertificateData::dump() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 	result.push_back("CertificateData::dump()");
 
-	result.push_back("Version = " + String(m_impl->version));
+	result.push_back("Version = " + str::numstring(m_impl->version));
 	result.push_back("Serial = " + m_impl->serial);
-	result.push_back("notBefore = " + String(m_impl->notBefore));
-	result.push_back("notAfter = " + String(m_impl->notAfter));
+	result.push_back("notBefore = " + str::numstring(m_impl->notBefore));
+	result.push_back("notAfter = " + str::numstring(m_impl->notAfter));
 	result.push_back("Fingerprint = " + m_impl->fingerprint);
 	appendArray(result, m_impl->issuer.dump());
 	appendArray(result, m_impl->subject.dump());
-	result.push_back("Keysize = " + String(m_impl->keysize));
-	result.push_back("public key algorithm = " + String(m_impl->pubkeyAlgorithm));
+	result.push_back("Keysize = " + str::numstring(m_impl->keysize));
+	result.push_back("public key algorithm = " + str::numstring(m_impl->pubkeyAlgorithm));
 
-	String pk;
+	std::string pk;
 	for(size_t i = 0; i < m_impl->publicKey.size(); ++i)
 	{
-		String s;
-		s.format("%02x", (UInt8)m_impl->publicKey[i]);
-		pk += s + ":";
+      pk += str::form( "%02x", (UInt8)m_impl->publicKey[i] ) + ":";
 	}
 	result.push_back("public Key = " + pk);
-	result.push_back("signatureAlgorithm = "+ String(m_impl->signatureAlgorithm));
+	result.push_back("signatureAlgorithm = "+ str::numstring(m_impl->signatureAlgorithm));
 
-	String s;
+	std::string s;
 	for(uint i = 0; i < m_impl->signature.size(); ++i)
 	{
-		String d;
-		d.format("%02x:", (UInt8)m_impl->signature[i]);
-		s += d;
+      s += str::form( "%02x", (UInt8)m_impl->signature[i] );
 	}
 
 	result.push_back("Signature = " + s);

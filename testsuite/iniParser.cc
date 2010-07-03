@@ -2,8 +2,7 @@
 #include <blocxx/AppenderLogger.hpp>
 #include <blocxx/CerrLogger.hpp>
 #include <blocxx/CerrAppender.hpp>
-#include <blocxx/Format.hpp>
-#include <blocxx/String.hpp>
+#include <limal/String.hpp>
 #include <limal/Logger.hpp>
 #include "INIParser/INIParser.hpp"
 
@@ -14,6 +13,7 @@
 using namespace blocxx;
 
 using namespace ca_mgm::INI;
+using namespace ca_mgm;
 
 ca_mgm::Logger logger("parser");
 
@@ -149,7 +149,7 @@ void searchSections(Section descSection, Section section)
 
 void dumpTree(Section *section, int level = 0)
 {
-    String tab = "";
+    std::string tab = "";
     for (int i = 0; i <= level; i++) tab += "  ";
 
     if (level == 0)
@@ -205,11 +205,11 @@ int main(int argc, char **argv)
 	// Loading description file
 	INIParser descParser;
 	std::vector<Options>  	options;
-	std::vector<blocxx::String> 		commentsDescr;
+	std::vector<std::string> 		commentsDescr;
 	std::vector<SectionDescr> 	sectionDescr;
 	std::vector<EntryDescr> 	entryDescr;
 	std::vector<IoPatternDescr> 	rewrites;
-        String file = argv[ 1 ];
+        std::string file = argv[ 1 ];
 	std::cout << "== loading file : " << file << std::endl;
 
 	descParser.initFiles (file);
@@ -217,7 +217,7 @@ int main(int argc, char **argv)
 	IoPatternDescr pattern = {"^[ \t]*([^=]*[^ \t=])[ \t]*=[ \t]*(.*[^ \t]|)[ \t]*$" ,"%s=%s"};
 	EntryDescr eDescr =  {pattern, "", "" ,false};
 	entryDescr.push_back (eDescr);
-	commentsDescr.push_back(String("^[ \t]*;.*"));
+	commentsDescr.push_back(std::string("^[ \t]*;.*"));
 
 	IoPatternDescr patternBegin = {"[ \t]*\\+([A-Za-z0-9_]+)[ \t]*", "+%s"};
 	IoPatternDescr patternEnd = {"[ \t]*\\-([A-Za-z0-9_]+)[ \t]*", "-%s"};
@@ -273,7 +273,7 @@ int main(int argc, char **argv)
 	    COMPARE_OPTION(READ_ONLY);
 
 	    key = "option";
-	    key += String(++counter);
+	    key += str::numstring(++counter);
 	}
 
 	counter = 1;
@@ -282,44 +282,44 @@ int main(int argc, char **argv)
 	{
 	    commentsDescr.push_back (descParser.iniFile.getValue (key));
 	    key = "comment";
-	    key += String(++counter);
+	    key += str::numstring(++counter);
 	}
 
 	counter = 1;
 	key = "match1";
 	while (descParser.iniFile.contains (key) == VALUE)
 	{
-	    String keyWrite = "write" + String(counter);
+	    std::string keyWrite = "write" + str::numstring(counter);
 	    IoPatternDescr pattern = {descParser.iniFile.getValue (key) ,
 				      descParser.iniFile.getValue (keyWrite)};
 	    EntryDescr eDescr =  {pattern, "", "" ,false};
 	    entryDescr.push_back (eDescr);
 	    key = "match";
-	    key += String(++counter);
+	    key += str::numstring(++counter);
 	}
 
 	counter = 1;
 	key = "secBeginReg1";
 	while (descParser.iniFile.contains (key) == VALUE)
 	{
-	    String keyWrite = "secBeginWrite" + String(counter);
+	    std::string keyWrite = "secBeginWrite" + str::numstring(counter);
 	    IoPatternDescr patternBegin = {descParser.iniFile.getValue (key) ,
 					   descParser.iniFile.getValue (keyWrite)};
-	    key = "secEndReg" + String(counter);
-	    keyWrite = "secEndWrite" + String(counter);
+	    key = "secEndReg" + str::numstring(counter);
+	    keyWrite = "secEndWrite" + str::numstring(counter);
 	    IoPatternDescr patternEnd = {descParser.iniFile.getValue (key),
 					 descParser.iniFile.getValue (keyWrite)};
 	    SectionDescr sDescr =  {patternBegin, patternEnd ,
 				    descParser.iniFile.contains (key) == VALUE };
 	    sectionDescr.push_back (sDescr);
 	    key = "secBeginReg";
-	    key += String(++counter);
+	    key += str::numstring(++counter);
 	}
 
         // Parsing input file
 
-	String srcFile = file + String("i.test");
-	String command = "/bin/cp " + file + "i " + srcFile;
+	std::string srcFile = file + std::string("i.test");
+	std::string command = "/bin/cp " + file + "i " + srcFile;
 	system(command.c_str());
 	parser.initFiles (srcFile);
 
@@ -347,7 +347,7 @@ int main(int argc, char **argv)
 	    Section section = descParser.iniFile.getSection (key);
 	    addEntries (section, parser.iniFile);
 	    key = "add";
-	    key += String(++counter);
+	    key += str::numstring(++counter);
 	}
 
 	// Deleting entries
@@ -358,7 +358,7 @@ int main(int argc, char **argv)
 	    Section section = descParser.iniFile.getSection (key);
 	    deleteEntries (section, parser.iniFile);
 	    key = "delete";
-	    key += String(++counter);
+	    key += str::numstring(++counter);
 	}
 
 	// Searching entries
@@ -369,7 +369,7 @@ int main(int argc, char **argv)
 	    Section section = descParser.iniFile.getSection (key);
 	    searchEntries (section, parser.iniFile);
 	    key = "searchEntry";
-	    key += String(++counter);
+	    key += str::numstring(++counter);
 	}
 
 	// Searching sections
@@ -380,7 +380,7 @@ int main(int argc, char **argv)
 	    Section section = descParser.iniFile.getSection (key);
 	    searchSections (section, parser.iniFile);
 	    key = "searchSection";
-	    key += String(++counter);
+	    key += str::numstring(++counter);
 	}
 
 

@@ -58,7 +58,7 @@ CertificateData_Priv::CertificateData_Priv(const ByteBuffer &certificate,
 	init(certificate, formatType);
 }
 
-CertificateData_Priv::CertificateData_Priv(const String &certificatePath,
+CertificateData_Priv::CertificateData_Priv(const std::string &certificatePath,
                                            FormatType formatType)
 	: CertificateData()
 {
@@ -83,14 +83,14 @@ CertificateData_Priv::setVersion(uint32_t v)
 }
 
 void
-CertificateData_Priv::setSerial(const String& serial)
+CertificateData_Priv::setSerial(const std::string& serial)
 {
 	if(!initHexCheck().isValid(serial))
 	{
 		LOGIT_ERROR("invalid serial: " << serial);
 		BLOCXX_THROW(ca_mgm::ValueException,
 		             // %1 is an invalid serial number
-		             Format(__("Invalid serial %1."), serial).c_str());
+		             str::form(__("Invalid serial %s."), serial.c_str()).c_str());
 	}
 	m_impl->serial = serial;
 }
@@ -105,7 +105,7 @@ CertificateData_Priv::setCertifyPeriode(time_t start, time_t end)
 void
 CertificateData_Priv::setIssuerDN(const DNObject& issuer)
 {
-	std::vector<blocxx::String> r = issuer.verify();
+	std::vector<std::string> r = issuer.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -117,7 +117,7 @@ CertificateData_Priv::setIssuerDN(const DNObject& issuer)
 void
 CertificateData_Priv::setSubjectDN(const DNObject& subject)
 {
-	std::vector<blocxx::String> r = subject.verify();
+	std::vector<std::string> r = subject.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -159,7 +159,7 @@ CertificateData_Priv::setSignature(const ByteBuffer& sig)
 void
 	CertificateData_Priv::setExtensions(const X509v3CertificateExts& ext)
 {
-	std::vector<blocxx::String> r = ext.verify();
+	std::vector<std::string> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -169,7 +169,7 @@ void
 }
 
 void
-CertificateData_Priv::setFingerprint(const String& fp)
+CertificateData_Priv::setFingerprint(const std::string& fp)
 {
 	m_impl->fingerprint = fp;
 }
@@ -264,7 +264,7 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 
 	BIO *bioS           = BIO_new(BIO_s_mem());
 	ASN1_INTEGER *bs=X509_get_serialNumber(x509);
-	String serialStr;
+	std::string serialStr;
 	for (int i=0; i<bs->length; i++)
 	{
 		if (BIO_printf(bioS,"%02x",bs->data[i]) <= 0)
@@ -275,7 +275,7 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 		}
 	}
 	n = BIO_get_mem_data(bioS, &ustringval);
-	setSerial( String(reinterpret_cast<const char*>(ustringval), n).toUpperCase());
+	setSerial( str::toUpper(std::string(reinterpret_cast<const char*>(ustringval), n)));
 	BIO_free(bioS);
 
 	// get notBefore
@@ -321,7 +321,7 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 		}
 	}
 	n = BIO_get_mem_data(bioFP, &ustringval);
-	setFingerprint( String(reinterpret_cast<const char*>(ustringval), n));
+	setFingerprint( std::string(reinterpret_cast<const char*>(ustringval), n));
 	BIO_free(bioFP);
 
     // get issuer
@@ -437,8 +437,8 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 
 		LOGIT_ERROR("Unsupported signature algorithm: '" << sbuf << "'");
 		BLOCXX_THROW(ca_mgm::RuntimeException,
-		             // %1 is the unsupported signature algorithm string
-		             Format(__("Unsupported signature algorithm %1."), sbuf).c_str());
+		             // %s is the unsupported signature algorithm string
+		             str::form(__("Unsupported signature algorithm %s."), sbuf.c_str()).c_str());
 	}
 
 	// get signature

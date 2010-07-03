@@ -36,7 +36,7 @@ class RevocationEntry_Priv : public RevocationEntry {
 public:
 	RevocationEntry_Priv();
 	RevocationEntry_Priv(X509_REVOKED *rev);
-	RevocationEntry_Priv(const String&    serial,
+	RevocationEntry_Priv(const std::string&    serial,
 	                     time_t           revokeDate,
 	                     const CRLReason& reason);
 	RevocationEntry_Priv(const RevocationEntry_Priv& entry);
@@ -44,7 +44,7 @@ public:
 
 	RevocationEntry_Priv& operator=(const RevocationEntry_Priv& entry);
 
-	void        setSerial(const String& serial);
+	void        setSerial(const std::string& serial);
 
 	void        setRevocationDate(time_t date);
 	void        setReason(const CRLReason& reason);
@@ -56,7 +56,7 @@ public:
 	CRLData_Priv();
 	CRLData_Priv(const ByteBuffer &crl,
 	             FormatType formatType = E_PEM);
-	CRLData_Priv(const String &crlPath,
+	CRLData_Priv(const std::string &crlPath,
 	             FormatType formatType = E_PEM);
 	CRLData_Priv(const CRLData_Priv& data);
 	virtual ~CRLData_Priv();
@@ -65,7 +65,7 @@ public:
 	setVersion(int32_t version);
 
 	void
-	setFingerprint(const String& fp);
+	setFingerprint(const std::string& fp);
 
 	void
 	setValidityPeriod(time_t last,
@@ -84,7 +84,7 @@ public:
 	setExtensions(const X509v3CRLExts& ext);
 
 	void
-	setRevocationData(const std::map<String, RevocationEntry>& data);
+	setRevocationData(const std::map<std::string, RevocationEntry>& data);
 
 private:
 	CRLData_Priv& operator=(const CRLData_Priv& data);

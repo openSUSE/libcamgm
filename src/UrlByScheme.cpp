@@ -171,7 +171,7 @@ namespace
 
 // -------------------------------------------------------------------
 ca_mgm::url::UrlRef
-getUrlByScheme(const blocxx::String &scheme)
+getUrlByScheme(const std::string &scheme)
 {
 	url_by_scheme *ptr;
 	for( ptr=url_by_scheme_table; ptr->scheme != NULL; ptr++)

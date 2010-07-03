@@ -32,12 +32,12 @@ namespace CA_MGM_NAMESPACE {
 	class CA;
 	class CAConfig;
 	class SubjectKeyIdentifierExtImpl;
-	
+
 	class SubjectKeyIdentifierExt : public ExtensionBase {
 	public:
 		SubjectKeyIdentifierExt();
 		SubjectKeyIdentifierExt(CAConfig* caConfig, Type type);
-		SubjectKeyIdentifierExt(bool autoDetect, const String& keyid = String());
+		SubjectKeyIdentifierExt(bool autoDetect, const std::string& keyid = std::string());
 		SubjectKeyIdentifierExt(const SubjectKeyIdentifierExt& extension);
 		virtual ~SubjectKeyIdentifierExt();
 
@@ -47,9 +47,9 @@ namespace CA_MGM_NAMESPACE {
 		operator=(const SubjectKeyIdentifierExt& extension);
 
 #endif
-		
+
 		void
-		setSubjectKeyIdentifier(bool autoDetect, const String& keyId = String());
+		setSubjectKeyIdentifier(bool autoDetect, const std::string& keyId = std::string());
 
 		bool
 		isAutoDetectionEnabled() const;
@@ -59,7 +59,7 @@ namespace CA_MGM_NAMESPACE {
 		 *
 		 * @return the keyID
 		 */
-		String
+		std::string
 		getKeyID() const;
 
 		virtual void
@@ -67,11 +67,11 @@ namespace CA_MGM_NAMESPACE {
 
 		virtual bool
 		valid() const;
-        
-		virtual std::vector<blocxx::String>
+
+		virtual std::vector<std::string>
 		verify() const;
 
-		virtual std::vector<blocxx::String>
+		virtual std::vector<std::string>
 		dump() const;
 
 	private:

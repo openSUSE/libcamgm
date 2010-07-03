@@ -81,27 +81,27 @@ AuthorityKeyIdentifierGenerateExt::AuthorityKeyIdentifierGenerateExt(CAConfig* c
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             Format(__("Wrong type: %1."), type).c_str());
+		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
 	bool p = caConfig->exists(type2Section(type, true), "authorityKeyIdentifier");
 	if(p)
 	{
-		std::vector<blocxx::String>   sp   = convStringArray(PerlRegEx("\\s*,\\s*")
-			.split(caConfig->getValue(type2Section(type, true), "authorityKeyIdentifier")));
-		if(sp[0].equalsIgnoreCase("critical"))
+		std::vector<std::string>   sp   = PerlRegEx("\\s*,\\s*")
+			.split(caConfig->getValue(type2Section(type, true), "authorityKeyIdentifier"));
+		if(0 == str::compareCI(sp[0], "critical"))
 		{
 			setCritical(true);
 			sp.erase(sp.begin());
 		}
 
-		std::vector<blocxx::String>::const_iterator it = sp.begin();
+		std::vector<std::string>::const_iterator it = sp.begin();
 		for(; it != sp.end(); ++it)
 		{
-			if((*it).equalsIgnoreCase("keyid")) m_impl->keyid = KeyID_normal;
-			else if((*it).equalsIgnoreCase("keyid:always")) m_impl->keyid = KeyID_always;
-			else if((*it).equalsIgnoreCase("issuer")) m_impl->issuer = Issuer_normal;
-			else if((*it).equalsIgnoreCase("issuer:always")) m_impl->issuer = Issuer_always;
+			if(0 == str::compareCI(*it, "keyid")) m_impl->keyid = KeyID_normal;
+			else if(0 == str::compareCI(*it, "keyid:always")) m_impl->keyid = KeyID_always;
+			else if(0 == str::compareCI(*it, "issuer")) m_impl->issuer = Issuer_normal;
+			else if(0 == str::compareCI(*it, "issuer:always")) m_impl->issuer = Issuer_always;
 		}
 	}
 	setPresent(p);
@@ -188,12 +188,12 @@ AuthorityKeyIdentifierGenerateExt::commit2Config(CA& ca, Type type) const
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             Format(__("Wrong type: %1."), type).c_str());
+		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
 	if(isPresent())
 	{
-		String extString;
+		std::string extString;
 
 		if(isCritical()) extString += "critical,";
 
@@ -247,32 +247,32 @@ AuthorityKeyIdentifierGenerateExt::valid() const
 	return true;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 AuthorityKeyIdentifierGenerateExt::verify() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 
 	if(!isPresent()) return result;
 	if(getKeyID() == KeyID_none && getIssuer() == Issuer_none)
 	{
-		result.push_back(String("Invalid value for keyid and issuer. ") +
-		              String("At least one of both must be set"));
+		result.push_back(std::string("Invalid value for keyid and issuer. ") +
+		              std::string("At least one of both must be set"));
 	}
 	LOGIT_DEBUG_STRINGARRAY("AuthorityKeyIdentifierGenerateExt::verify()", result);
 	return result;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 AuthorityKeyIdentifierGenerateExt::dump() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 	result.push_back("AuthorityKeyIdentifierGenerateExt::dump()");
 
 	appendArray(result, ExtensionBase::dump());
 	if(!isPresent()) return result;
 
-	result.push_back("KeyID = " + String(getKeyID()));
-	result.push_back("Issuer = " + String(getIssuer()));
+	result.push_back("KeyID = " + str::numstring(getKeyID()));
+	result.push_back("Issuer = " + str::numstring(getIssuer()));
 
 	return result;
 }

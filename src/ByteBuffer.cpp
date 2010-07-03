@@ -19,8 +19,7 @@
 
 #include <limal/ByteBuffer.hpp>
 
-#include <blocxx/String.hpp>
-#include <blocxx/Format.hpp>
+#include <limal/String.hpp>
 #include <blocxx/COWIntrusiveCountableBase.hpp>
 
 #include <cstring>
@@ -244,7 +243,7 @@ ByteBuffer::at(size_t pos) const
 
     LOGIT_ERROR("ByteBuffer index out of bounds: size="
                 << size() << ", pos=" << pos);
-    BLOCXX_THROW(blocxx::OutOfBoundsException, Format(
+    BLOCXX_THROW(blocxx::OutOfBoundsException, str::form(
                  __("ByteBuffer index out of bounds: size=%1, pos=%2."),
                  size(), pos).c_str());
 }
@@ -294,7 +293,7 @@ ByteBuffer::operator[](size_t pos) const
 
     LOGIT_ERROR("ByteBuffer index out of bounds: size="
                 << size() << ", pos=" << pos);
-    BLOCXX_THROW(blocxx::OutOfBoundsException, Format(
+    BLOCXX_THROW(blocxx::OutOfBoundsException, str::form(
                  __("ByteBuffer index out of bounds: size=%1, pos=%2."),
                  size(), pos).c_str());
 }
@@ -311,7 +310,7 @@ ByteBuffer::operator[](size_t pos)
 
     LOGIT_ERROR("ByteBuffer index out of bounds: size="
                 << size() << ", pos=" << pos);
-    BLOCXX_THROW(blocxx::OutOfBoundsException, Format(
+    BLOCXX_THROW(blocxx::OutOfBoundsException, str::form(
                  __("ByteBuffer index out of bounds: size=%1, pos=%2."),
                  size(), pos).c_str());
 }
@@ -441,24 +440,24 @@ operator+(const ByteBuffer &b1, const ByteBuffer &b2)
 std::ostream &
 operator<<(std::ostream &out, const ByteBuffer &buf)
 {
-    if(buf.size() > 0)
+  if(buf.size() > 0)
+  {
+    const char    *x = buf.data();
+    std::string s;
+    for(size_t i = 0; i < buf.size(); ++i)
     {
-        const char    *x = buf.data();
-        blocxx::String s;
-        for(size_t i = 0; i < buf.size(); ++i)
-	{
-	    s.format("0x%02x ", x[i]);
-	    out << s;
-	    if( ((i + 1) % 16) == 0)
-		out << std::endl;
-	}
+      s = str::form("0x%02x ", x[i]);
+      out << s;
+      if( ((i + 1) % 16) == 0)
+        out << std::endl;
     }
-    else
-    {
-        out << "No data";
-    }
+  }
+  else
+  {
+    out << "No data";
+  }
 
-    return out;
+  return out;
 }
 
 

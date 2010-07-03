@@ -35,7 +35,7 @@ namespace CA_MGM_NAMESPACE {
 class RequestData_Priv : public RequestData {
 public:
 	RequestData_Priv();
-	RequestData_Priv(const String& requestPath,
+	RequestData_Priv(const std::string& requestPath,
 	                 FormatType formatType = E_PEM);
 	RequestData_Priv(const ByteBuffer& request,
 	                 FormatType formatType = E_PEM);
@@ -50,8 +50,8 @@ public:
 	void                setSignatureAlgorithm(SigAlg alg);
 	void                setSignature(const ByteBuffer &sig);
 	void                setExtensions(const X509v3RequestExts &ext);
-	void                setChallengePassword(const String &passwd);
-	void                setUnstructuredName(const String &name);
+	void                setChallengePassword(const std::string &passwd);
+	void                setUnstructuredName(const std::string &name);
 
 private:
 

@@ -34,7 +34,7 @@ namespace CA_MGM_NAMESPACE {
 	class CAConfig;
 	class AuthorityInformationImpl;
 	class AuthorityInfoAccessExtImpl;
-	
+
 	class AuthorityInformation {
 
 	public:
@@ -57,7 +57,7 @@ namespace CA_MGM_NAMESPACE {
          * @param location location of the information
          *
          */
-		AuthorityInformation(const String &accessOID, 
+		AuthorityInformation(const std::string &accessOID,
 		                     const LiteralValue& location);
 
 		/**
@@ -69,14 +69,14 @@ namespace CA_MGM_NAMESPACE {
 		 * Destructor
 		 */
 		~AuthorityInformation();
-				
+
 #ifndef SWIG
 
 		AuthorityInformation&
 		operator=(const AuthorityInformation& ai);
 
 #endif
-		
+
 		/**
          * Set new Authority Informations
          *
@@ -85,13 +85,13 @@ namespace CA_MGM_NAMESPACE {
          *
          */
 		void
-		setAuthorityInformation(const String &accessOID, 
+		setAuthorityInformation(const std::string &accessOID,
 		                        const LiteralValue& location);
 
 		/**
          * Return the access OID
          */
-		String
+		std::string
 		getAccessOID() const;
 
         /**
@@ -115,25 +115,25 @@ namespace CA_MGM_NAMESPACE {
          * @return Array with error messages. If this Array is empty this
          * object is valid
          */
-		std::vector<String>
+		std::vector<std::string>
 		verify() const;
 
         /**
          * Return the content of this object for debugging
          */
-		std::vector<String>
+		std::vector<std::string>
 		dump() const;
 
 #ifndef SWIG
 
 		friend bool
 		operator==(const AuthorityInformation &l, const AuthorityInformation &r);
-        
+
 		friend bool
 		operator<(const AuthorityInformation &l, const AuthorityInformation &r);
 
 #endif
-		
+
 	private:
 		blocxx::COWIntrusiveReference<AuthorityInformationImpl> m_impl;
 
@@ -183,7 +183,7 @@ namespace CA_MGM_NAMESPACE {
         operator=(const AuthorityInfoAccessExt& extension);
 
 #endif
-    	
+
         /**
          * Set a new list of Authority Informations
          */
@@ -211,7 +211,7 @@ namespace CA_MGM_NAMESPACE {
          * @return true if this object is valid, otherwise false
          */
         virtual bool
-        valid() const; 
+        valid() const;
 
         /**
          * Verify this object and return an Array with all
@@ -220,18 +220,18 @@ namespace CA_MGM_NAMESPACE {
          * @return Array with error messages. If this Array is empty this
          * object is valid
          */
-        virtual std::vector<blocxx::String>
+        virtual std::vector<std::string>
         verify() const;
 
         /**
          * Return the content of this object for debugging
          */
-        virtual std::vector<blocxx::String>
+        virtual std::vector<std::string>
         dump() const;
 
     private:
     	blocxx::COWIntrusiveReference<AuthorityInfoAccessExtImpl> m_impl;
-    	
+
     };
 
 }

@@ -72,18 +72,18 @@ ExtendedKeyUsageExt::ExtendedKeyUsageExt(CAConfig* caConfig, Type type)
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             Format(__("Wrong type: %1."), type).c_str());
+		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
 	bool p = caConfig->exists(type2Section(type, true), "extendedKeyUsage");
 	if(p)
 	{
-		String      ct    = caConfig->getValue(type2Section(type, true),
+		std::string      ct    = caConfig->getValue(type2Section(type, true),
 		                                       "extendedKeyUsage");
-		std::vector<blocxx::String> sp    = convStringArray(PerlRegEx("\\s*,\\s*").split(ct));
+		std::vector<std::string> sp    = PerlRegEx("\\s*,\\s*").split(ct);
 
-		std::vector<blocxx::String>::const_iterator it = sp.begin();
-		if(sp[0].equalsIgnoreCase("critical"))
+		std::vector<std::string>::const_iterator it = sp.begin();
+		if(0 == str::compareCI(sp[0], "critical"))
 		{
 			setCritical(true);
 			++it;             // ignore critical for further checks
@@ -117,8 +117,8 @@ ExtendedKeyUsageExt::ExtendedKeyUsageExt(const StringList& extKeyUsages)
 		{
 			LOGIT_INFO("Unknown ExtendedKeyUsage option: " << (*it));
 			BLOCXX_THROW(ca_mgm::ValueException,
-			             Format(__("Invalid ExtendedKeyUsage option %1."),
-			                    *it).c_str());
+			             str::form(__("Invalid ExtendedKeyUsage option %s."),
+			                    (*it).c_str()).c_str());
 		}
 	}
 
@@ -166,8 +166,8 @@ ExtendedKeyUsageExt::setExtendedKeyUsage(const StringList& usageList)
 		{
 			LOGIT_INFO("Unknown ExtendedKeyUsage option: " << (*it));
 			BLOCXX_THROW(ca_mgm::ValueException,
-			             Format(__("Invalid ExtendedKeyUsage option %1."),
-			                    *it).c_str());
+			             str::form(__("Invalid ExtendedKeyUsage option %s."),
+			                    (*it).c_str()).c_str());
 		}
 	}
 
@@ -193,7 +193,7 @@ ExtendedKeyUsageExt::getExtendedKeyUsage() const
 }
 
 bool
-ExtendedKeyUsageExt::isEnabledFor(const String& extKeyUsage) const
+ExtendedKeyUsageExt::isEnabledFor(const std::string& extKeyUsage) const
 {
 	// if ! isPresent() ... throw exceptions?
 	if(!isPresent() || m_impl->usage.empty()) return false;
@@ -201,7 +201,7 @@ ExtendedKeyUsageExt::isEnabledFor(const String& extKeyUsage) const
 	StringList::const_iterator it = m_impl->usage.begin();
 	for(;it != m_impl->usage.end(); ++it)
 	{
-		if(extKeyUsage.equalsIgnoreCase(*it))
+		if(0 == str::compareCI(extKeyUsage, *it))
 		{
 			return true;
 		}
@@ -224,12 +224,12 @@ ExtendedKeyUsageExt::commit2Config(CA& ca, Type type) const
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             Format(__("Wrong type: %1."), type).c_str());
+		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
 	if(isPresent())
 	{
-		String extendedKeyUsageString;
+		std::string extendedKeyUsageString;
 
 		if(isCritical()) extendedKeyUsageString += "critical,";
 
@@ -270,16 +270,16 @@ ExtendedKeyUsageExt::valid() const
 	return true;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 ExtendedKeyUsageExt::verify() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 
 	if(!isPresent()) return result;
 
 	if(m_impl->usage.empty())
 	{
-		result.push_back(String("invalid ExtendedKeyUsageExt."));
+		result.push_back(std::string("invalid ExtendedKeyUsageExt."));
 	}
 
 	StringList::const_iterator it = m_impl->usage.begin();
@@ -287,17 +287,17 @@ ExtendedKeyUsageExt::verify() const
 	{
 		if(!checkValue(*it))
 		{
-			result.push_back(Format("invalid additionalOID(%1)", *it).toString());
+			result.push_back(str::form("invalid additionalOID(%s)", (*it).c_str()));
 		}
 	}
 	LOGIT_DEBUG_STRINGARRAY("ExtendedKeyUsageExt::verify()", result);
 	return result;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 ExtendedKeyUsageExt::dump() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 	result.push_back("ExtendedKeyUsageExt::dump()");
 
 	appendArray(result, ExtensionBase::dump());
@@ -313,7 +313,7 @@ ExtendedKeyUsageExt::dump() const
 }
 
 bool
-ExtendedKeyUsageExt::checkValue(const String& value) const
+ExtendedKeyUsageExt::checkValue(const std::string& value) const
 {
 	if(OBJ_sn2nid(value.c_str()) == NID_undef)
 	{

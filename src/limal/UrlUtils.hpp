@@ -92,7 +92,7 @@ BLOCXX_DECLARE_EXCEPTION2(UrlNotSupported, UrlException);
  * A string map, containing key and value pairs parsed from a
  * PathParam- or Query-String.
  */
-typedef std::map<blocxx::String,blocxx::String>	ParamMap;
+typedef std::map<std::string,std::string>	ParamMap;
 
 
 // -------------------------------------------------------------------
@@ -101,11 +101,11 @@ typedef std::map<blocxx::String,blocxx::String>	ParamMap;
  */
 struct UrlComponents
 {
-	blocxx::String  scheme;
-	blocxx::String  authority;
-	blocxx::String	pathdata;
-	blocxx::String  querystr;
-	blocxx::String  fragment;
+	std::string  scheme;
+	std::string  authority;
+	std::string	pathdata;
+	std::string  querystr;
+	std::string  fragment;
 	bool            has_scheme;
 	bool            has_authority;
 	bool            has_querystr;
@@ -119,10 +119,10 @@ struct UrlComponents
  */
 struct UrlAuthority
 {
-	blocxx::String  user;
-	blocxx::String  pass;
-	blocxx::String  host;
-	blocxx::String  port;
+	std::string  user;
+	std::string  pass;
+	std::string  host;
+	std::string  port;
 	bool            has_user;
 	bool            has_pass;
 	bool            has_port;
@@ -164,9 +164,9 @@ typedef enum {
  * @param eflag    If to detect and skip already encoded substrings.
  * @return A percent encoded string.
  */
-blocxx::String
-encode(const blocxx::String    &str,
-       const blocxx::String    &safe = "",
+std::string
+encode(const std::string    &str,
+       const std::string    &safe = "",
        ca_mgm::url::EEncoding   eflag = E_DECODED);
 
 
@@ -181,9 +181,9 @@ encode(const blocxx::String    &str,
  * @param eflag    If to detect and skip already encoded substrings.
  * @return A percent encoded string.
  */
-blocxx::String
+std::string
 encode_buf(const ca_mgm::ByteBuffer &buf,
-           const blocxx::String    &safe = "",
+           const std::string    &safe = "",
            ca_mgm::url::EEncoding   eflag = E_DECODED);
 
 
@@ -201,8 +201,8 @@ encode_buf(const ca_mgm::ByteBuffer &buf,
  * @return A decoded strig.
  * @throws UrlDecodingException if @p str contains encoded NUL byte.
  */
-blocxx::String
-decode(const blocxx::String &str);
+std::string
+decode(const std::string &str);
 
 
 // -------------------------------------------------------------------
@@ -222,7 +222,7 @@ decode(const blocxx::String &str);
  *         encoded NUL byte (@c "%00").
  */
 ca_mgm::ByteBuffer
-decode_buf(const blocxx::String &str, bool allowNUL);
+decode_buf(const std::string &str, bool allowNUL);
 
 
 // -------------------------------------------------------------------
@@ -235,7 +235,7 @@ decode_buf(const blocxx::String &str, bool allowNUL);
  * @return A percent encoded representation of the character,
  *         e.g. %20 for a ' ' (space).
  */
-blocxx::String
+std::string
 encode_octet(const unsigned char c);
 
 
@@ -276,9 +276,9 @@ decode_octet(const char *hex);
  * @return The resulting parameter array.
  * @throws UrlNotSupportedException if @p psep separator is empty.
  */
-std::vector<blocxx::String>
-split(const blocxx::String &pstr,
-      const blocxx::String &psep);
+std::vector<std::string>
+split(const std::string &pstr,
+      const std::string &psep);
 
 
 // -------------------------------------------------------------------
@@ -310,9 +310,9 @@ split(const blocxx::String &pstr,
  *         is empty.
  */
 ca_mgm::url::ParamMap
-split(const blocxx::String &pstr,
-      const blocxx::String &psep,
-      const blocxx::String &vsep,
+split(const std::string &pstr,
+      const std::string &psep,
+      const std::string &vsep,
       EEncoding            eflag = E_ENCODED);
 
 
@@ -330,9 +330,9 @@ split(const blocxx::String &pstr,
  * @param psep    Parameter separator character to use.
  * @return A parameter string.
  */
-blocxx::String
-join(const std::vector<blocxx::String> &parr,
-     const blocxx::String      &psep);
+std::string
+join(const std::vector<std::string> &parr,
+     const std::string      &psep);
 
 
 // -------------------------------------------------------------------
@@ -357,11 +357,11 @@ join(const std::vector<blocxx::String> &parr,
  * @throws UrlNotSupportedException if @p psep or @p vsep separator
  *         is empty.
  */
-blocxx::String
+std::string
 join(const ca_mgm::url::ParamMap &pmap,
-     const blocxx::String       &psep,
-     const blocxx::String       &vsep,
-     const blocxx::String       &safe);
+     const std::string       &psep,
+     const std::string       &vsep,
+     const std::string       &safe);
 
 
 // -------------------------------------------------------------------
@@ -371,7 +371,7 @@ join(const ca_mgm::url::ParamMap &pmap,
  * @returns An url components structure.
  */
 UrlComponents
-parse_url_string(const blocxx::String &url);
+parse_url_string(const std::string &url);
 
 
 // -------------------------------------------------------------------
@@ -381,7 +381,7 @@ parse_url_string(const blocxx::String &url);
  * @returns An string array containing authority components.
  */
 UrlAuthority
-parse_url_authority(const blocxx::String &authority);
+parse_url_authority(const std::string &authority);
 
 
 // -------------------------------------------------------------------

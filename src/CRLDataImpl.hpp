@@ -54,7 +54,7 @@ public:
 		return new RevocationEntryImpl(*this);
 	}
 
-	String      serial;
+	std::string      serial;
 	time_t      revocationDate;
 	CRLReason   revocationReason;
 
@@ -72,7 +72,7 @@ public:
 		, signatureAlgorithm(E_SHA1RSA)
 		, signature(ByteBuffer())
 		, extensions(X509v3CRLExts_Priv())
-		, revocationData(std::map<String, RevocationEntry>())
+		, revocationData(std::map<std::string, RevocationEntry>())
 		, x509(NULL)
 	{}
 
@@ -105,7 +105,7 @@ public:
 	}
 
 	int32_t                        version;
-	String                               fingerprint;
+	std::string                               fingerprint;
 	time_t                               lastUpdate;
 	time_t                               nextUpdate;
 
@@ -116,7 +116,7 @@ public:
 
 	X509v3CRLExts                        extensions;
 
-	std::map<String, RevocationEntry> revocationData;
+	std::map<std::string, RevocationEntry> revocationData;
 
 	X509_CRL                             *x509;
 };

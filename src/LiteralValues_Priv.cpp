@@ -62,13 +62,13 @@ ASN1_SEQUENCE(KRB5_PRINC_NAME) = {
 IMPLEMENT_ASN1_FUNCTIONS(KRB5_NAME);
 IMPLEMENT_ASN1_FUNCTIONS(KRB5_PRINC_NAME);
 
-String asn1string2string(ASN1_STRING* str)
+std::string asn1string2string(ASN1_STRING* str)
 {
 	char *s = new char[str->length +1];
 	memcpy(s, str->data, str->length);
 	s[str->length] = '\0';
 
-	String ret(s);
+	std::string ret(s);
 	delete [] s;
 
 	return ret;
@@ -173,7 +173,7 @@ LiteralValue_Priv::LiteralValue_Priv(GENERAL_NAME *gen)
 		else
 		{
 			setLiteral("othername",
-			           String("unsupported(") + String(OBJ_obj2nid(gen->d.otherName->type_id)) + ")");
+			           std::string("unsupported(") + str::numstring(OBJ_obj2nid(gen->d.otherName->type_id)) + ")");
 		}
 		break;
 	case GEN_X400:
@@ -207,11 +207,11 @@ LiteralValue_Priv::decode_krb5_principal_name(unsigned char* data, int len)
 		//ERR_print_errors_fp(stderr);
 		LOGIT_ERROR("Unable to decode KRB5PrincipalName");
 
-		setLiteral("othername", String("unsupported(1.3.6.1.5.2.2)"));
+		setLiteral("othername", std::string("unsupported(1.3.6.1.5.2.2)"));
 		return;
 	}
 
-	String principal = "";
+	std::string principal = "";
 
 	for(int i = 0; i < sk_ASN1_GENERALSTRING_num(pname->kerberosname->namelist); i++)
 	{

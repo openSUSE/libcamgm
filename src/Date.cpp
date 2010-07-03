@@ -48,11 +48,12 @@ namespace ca_mgm
 
     char * res = ::strptime( date_str.c_str(), format.c_str(), &tm );
     if ( res != NULL )
+    {
       if(utc)
         _date = ::timegm( &tm );
       else
         _date = ::timelocal( &tm );
-
+    }
     restoreLocale(thisLocale);
 
     if (res == NULL)

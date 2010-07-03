@@ -70,20 +70,17 @@ AuthorityKeyIdentifierExt_Priv::AuthorityKeyIdentifierExt_Priv(STACK_OF(X509_EXT
 
 		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
 		BLOCXX_THROW(ca_mgm::SyntaxException,
-		             Format("Unable to parse the certificate (Crit: %2)",
+		             str::form("Unable to parse the certificate (Crit: %d)",
 		                    crit).c_str());
 	}
 
 	if(aki->keyid)
 	{
-		String tmpKeyID;
+		std::string tmpKeyID;
 
 		for(int i = 0; i < aki->keyid->length; ++i)
 		{
-			String d;
-			d.format("%02x", aki->keyid->data[i]);
-
-			tmpKeyID += d;
+			tmpKeyID += str::form( "%02x", aki->keyid->data[i]);
 			if( (i+1) < aki->keyid->length)
 			{
 				tmpKeyID += ":";
@@ -96,7 +93,7 @@ AuthorityKeyIdentifierExt_Priv::AuthorityKeyIdentifierExt_Priv(STACK_OF(X509_EXT
 	{
 		int j;
 		GENERAL_NAME *gen;
-		String tmpDirName;
+		std::string tmpDirName;
 
 		for(j = 0; j < sk_GENERAL_NAME_num(aki->issuer); j++)
 		{
@@ -120,14 +117,11 @@ AuthorityKeyIdentifierExt_Priv::AuthorityKeyIdentifierExt_Priv(STACK_OF(X509_EXT
 
 	if(aki->serial)
 	{
-		String tmpSerial;
+		std::string tmpSerial;
 
 		for(int i = 0; i < aki->serial->length; ++i)
 		{
-			String d;
-			d.format("%02x", aki->serial->data[i]);
-
-			tmpSerial += d;
+			tmpSerial += str::form( "%02x", aki->serial->data[i]);
 			if( (i+1) < aki->serial->length)
 			{
 				tmpSerial += ":";

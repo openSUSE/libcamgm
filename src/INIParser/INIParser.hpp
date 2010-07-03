@@ -54,19 +54,19 @@ namespace INI  // INI_NAMESPACE (incl. version?)
 /**
  * @brief INI keyword string
  */
-typedef blocxx::String		Key;
+typedef std::string		Key;
 
 
 /**
  * @brief INI value string
  */
-typedef blocxx::String		Value;
+typedef std::string		Value;
 
 
 /**
  * @brief INI comment string array
  */
-typedef blocxx::String		Comment;
+typedef std::string		Comment;
 
 
 /**
@@ -183,9 +183,9 @@ public:
     /**
      * Get all entry keys of a section in the order like they
      * have been written to file.
-     * @return std::list<blocxx::String>
+     * @return std::list<std::string>
      */
-    std::list<blocxx::String> getEntryKeys() const;
+    std::list<std::string> getEntryKeys() const;
 
 
     /**
@@ -199,7 +199,7 @@ public:
      * @param pattern string, ignore cases
      * @return EntryMap ( key, entry )
      */
-    EntryMap	selectEntries(const blocxx::String &pattern,
+    EntryMap	selectEntries(const std::string &pattern,
 			      bool icase = false) const;
 
     /**
@@ -277,9 +277,9 @@ public:
     /**
      * Get all section keys of a section in the order like they
      * have been written to file.
-     * @return std::list<blocxx::String>
+     * @return std::list<std::string>
      */
-     std::list<blocxx::String> getSectionKeys() const;
+     std::list<std::string> getSectionKeys() const;
 
 
     /**
@@ -293,7 +293,7 @@ public:
      * @param pattern string, ignore cases
      * @return SectionMap (key, section)
      */
-    SectionMap selectSections(const blocxx::String &pattern,
+    SectionMap selectSections(const std::string &pattern,
 			      bool icase = false ) const;
 
 
@@ -321,7 +321,7 @@ public:
 
 
 private:
-    std::vector<blocxx::String> m_path;
+    std::vector<std::string> m_path;
     blocxx::IntrusiveReference<IniParser> m_parser;
 };
 
@@ -404,7 +404,7 @@ enum    Options { IGNOMR_CASE_REGEXPS,
  *   using namespace ca_mgm::INI;
  *
  *   std::vector<Options>  		options; // Options like NO_NESTED_SECTIONS, LINE_CAN_CONTINUE, ...
- *   std::vector<blocxx::String> 		commentsDescr; // Regular expression of the comments description
+ *   std::vector<std::string> 		commentsDescr; // Regular expression of the comments description
  *   std::vector<SectionDescr> 	sectionDescr; // Regular expression of a section description
  *   std::vector<EntryDescr> 		entryDescr; // Regular expressions for entries (keys/values).
  *   std::vector<IoPatternDescr> 	rewrites; // rules for writing key/value
@@ -480,13 +480,13 @@ public:
      * Sets parser to single file mode and sets the file name to read.
      * @param fn file name of ini file
      */
-    void initFiles (const blocxx::String &filename);
+    void initFiles (const std::string &filename);
 
     /**
      * Sets parser to multiple file mode and sets the glob-expressions.
      * @param fileList list of glob-expressions
      */
-    void initFiles (const std::vector<blocxx::String> &fileList );
+    void initFiles (const std::vector<std::string> &fileList );
 
     /**
      * Sets flags and regular expressions.
@@ -536,11 +536,11 @@ ne
      * @return true if successful
      */
     virtual bool initMachine (const std::vector<Options> &options,
-		      const std::vector<blocxx::String> &commentsDescr,
+		      const std::vector<std::string> &commentsDescr,
 		      const std::vector<SectionDescr> &sectionDescr,
 		      const std::vector<EntryDescr> &entryDescr,
 		      const std::vector<IoPatternDescr> &rewrites,
-		      const blocxx::String &subident = "");
+		      const std::string &subident = "");
 
     /**
      * Check, if the parser has been already initialized

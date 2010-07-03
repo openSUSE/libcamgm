@@ -41,10 +41,10 @@ class AuthorityInformationImpl : public blocxx::COWIntrusiveCountableBase
 public:
 
 	AuthorityInformationImpl()
-		: accessOID(String()), location(LiteralValue())
+		: accessOID(std::string()), location(LiteralValue())
 	{}
 
-	AuthorityInformationImpl(const String &accessOID_,
+	AuthorityInformationImpl(const std::string &accessOID_,
 	                         const LiteralValue& location_ )
 		: accessOID(accessOID_), location(location_)
 	{}
@@ -62,7 +62,7 @@ public:
 		return new AuthorityInformationImpl(*this);
 	}
 
-	String                  accessOID;
+	std::string             accessOID;
 	LiteralValue            location;
 
 };
@@ -98,7 +98,7 @@ AuthorityInformation::AuthorityInformation(const AuthorityInformation& ai)
 	: m_impl(ai.m_impl)
 {}
 
-AuthorityInformation::AuthorityInformation(const String &accessOID,
+AuthorityInformation::AuthorityInformation(const std::string &accessOID,
                                            const LiteralValue& location)
 	: m_impl(new AuthorityInformationImpl(accessOID, location))
 {
@@ -128,7 +128,7 @@ AuthorityInformation::operator=(const AuthorityInformation& ai)
 }
 
 void
-AuthorityInformation::setAuthorityInformation(const String &accessOID,
+AuthorityInformation::setAuthorityInformation(const std::string &accessOID,
                                               const LiteralValue& location)
 {
 	if(!location.valid())
@@ -146,7 +146,7 @@ AuthorityInformation::setAuthorityInformation(const String &accessOID,
 	m_impl->location  = location;
 }
 
-blocxx::String
+std::string
 AuthorityInformation::getAccessOID() const
 {
 	return m_impl->accessOID;
@@ -177,14 +177,14 @@ AuthorityInformation::valid() const
 	return true;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 AuthorityInformation::verify() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 
 	if(!initAccessOIDCheck().isValid(m_impl->accessOID))
 	{
-		result.push_back(Format("invalid value(%1) for accessOID", m_impl->accessOID).toString());
+		result.push_back(str::form("invalid value(%s) for accessOID", m_impl->accessOID.c_str()));
 	}
 	appendArray(result, m_impl->location.verify());
 
@@ -192,10 +192,10 @@ AuthorityInformation::verify() const
 	return result;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 AuthorityInformation::dump() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 	result.push_back("AuthorityInformation::dump()");
 
 	result.push_back("accessOID = " + getAccessOID());
@@ -254,23 +254,21 @@ AuthorityInfoAccessExt::AuthorityInfoAccessExt(CAConfig* caConfig, Type type)
 	   type == E_CA_Req     || type == E_CRL           )
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException, Format(__("Wrong type: %1."), type).c_str());
+		BLOCXX_THROW(ca_mgm::ValueException, str::form(__("Wrong type: %1."), type).c_str());
 	}
 
 	bool p = caConfig->exists(type2Section(type, true), "authorityInfoAccess");
 	if(p)
 	{
-		std::vector<blocxx::String>   sp   = convStringArray(
-		  PerlRegEx("\\s*,\\s*")
-			.split(caConfig->getValue(type2Section(type, true), "authorityInfoAccess"))
-			);
+		std::vector<std::string>   sp   = PerlRegEx("\\s*,\\s*")
+			.split(caConfig->getValue(type2Section(type, true), "authorityInfoAccess"));
 
-		if(sp[0].equalsIgnoreCase("critical"))  setCritical(true);
+		if(0 == str::compareCI(sp[0], "critical"))  setCritical(true);
 
-		std::vector<blocxx::String>::const_iterator it = sp.begin();
+		std::vector<std::string>::const_iterator it = sp.begin();
 		for(; it != sp.end(); ++it)
 		{
-			std::vector<blocxx::String> al = convStringArray(PerlRegEx(";").split(*it));
+			std::vector<std::string> al = PerlRegEx(";").split(*it);
 
 			try
 			{
@@ -339,16 +337,16 @@ AuthorityInfoAccessExt::commit2Config(CA& ca, Type type) const
 	   type == E_CA_Req     || type == E_CRL           )
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException, Format(__("Wrong type: %1."), type).c_str());
+		BLOCXX_THROW(ca_mgm::ValueException, str::form(__("Wrong type: %1."), type).c_str());
 	}
 
 	if(isPresent())
 	{
-		String extString;
+		std::string extString;
 
 		if(isCritical()) extString += "critical,";
 
-		String val;
+		std::string val;
 		std::list<AuthorityInformation>::const_iterator it = m_impl->info.begin();
 		for(;it != m_impl->info.end(); ++it)
 		{
@@ -393,16 +391,16 @@ AuthorityInfoAccessExt::valid() const
 	return true;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 AuthorityInfoAccessExt::verify() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 
 	if(!isPresent()) return result;
 
 	if(m_impl->info.empty())
 	{
-		result.push_back(String("No access informations available"));
+		result.push_back(std::string("No access informations available"));
 	}
 	std::list<AuthorityInformation>::const_iterator it = m_impl->info.begin();
 	for(;it != m_impl->info.end(); it++)
@@ -414,10 +412,10 @@ AuthorityInfoAccessExt::verify() const
 	return result;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 AuthorityInfoAccessExt::dump() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 	result.push_back("AuthorityInfoAccessExt::dump()");
 
 	appendArray(result, ExtensionBase::dump());

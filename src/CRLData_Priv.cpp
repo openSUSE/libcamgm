@@ -64,7 +64,7 @@ RevocationEntry_Priv::RevocationEntry_Priv(X509_REVOKED *rev)
 	i2a_ASN1_INTEGER(bioS, rev->serialNumber);
 	n = BIO_get_mem_data(bioS, &ustringval);
 
-	setSerial(String(reinterpret_cast<const char*>(ustringval), n));
+	setSerial(std::string(reinterpret_cast<const char*>(ustringval), n));
 	BIO_free(bioS);
 
 	LOGIT_DEBUG("=>=> New Entry with Serial: " << getSerial());
@@ -87,7 +87,7 @@ RevocationEntry_Priv::RevocationEntry_Priv(X509_REVOKED *rev)
 	setReason( CRLReason_Priv(rev->extensions) );
 }
 
-RevocationEntry_Priv::RevocationEntry_Priv(const String&    serial,
+RevocationEntry_Priv::RevocationEntry_Priv(const std::string&    serial,
                                            time_t           revokeDate,
                                            const CRLReason& reason)
 	: RevocationEntry()
@@ -96,9 +96,9 @@ RevocationEntry_Priv::RevocationEntry_Priv(const String&    serial,
 	{
 		LOGIT_ERROR("invalid serial: " << serial);
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             Format(__("Invalid serial %1."), serial).c_str());
+		             str::form(__("Invalid serial %s."), serial.c_str()).c_str());
 	}
-	std::vector<blocxx::String> r = reason.verify();
+	std::vector<std::string> r = reason.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -127,13 +127,13 @@ RevocationEntry_Priv::operator=(const RevocationEntry_Priv& entry)
 }
 
 void
-RevocationEntry_Priv::setSerial(const String& serial)
+RevocationEntry_Priv::setSerial(const std::string& serial)
 {
 	if(!initHexCheck().isValid(serial))
 	{
 		LOGIT_ERROR("invalid serial: " << serial);
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             Format(__("Invalid serial %1."), serial).c_str());
+		             str::form(__("Invalid serial %s."), serial.c_str()).c_str());
 	}
 	m_impl->serial = serial;
 }
@@ -171,7 +171,7 @@ CRLData_Priv::CRLData_Priv(const ByteBuffer &crl,
 }
 
 
-CRLData_Priv::CRLData_Priv(const String &crlPath,
+CRLData_Priv::CRLData_Priv(const std::string &crlPath,
                            FormatType formatType)
 	: CRLData()
 {
@@ -194,7 +194,7 @@ CRLData_Priv::setVersion(int32_t version)
 }
 
 void
-CRLData_Priv::setFingerprint(const String& fp)
+CRLData_Priv::setFingerprint(const std::string& fp)
 {
 	m_impl->fingerprint = fp;
 }
@@ -210,7 +210,7 @@ CRLData_Priv::setValidityPeriod(time_t last,
 void
 CRLData_Priv::setIssuerDN(const DNObject& issuer)
 {
-	std::vector<blocxx::String> r = issuer.verify();
+	std::vector<std::string> r = issuer.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -234,7 +234,7 @@ CRLData_Priv::setSignature(const ByteBuffer& sig)
 void
 CRLData_Priv::setExtensions(const X509v3CRLExts& ext)
 {
-	std::vector<blocxx::String> r = ext.verify();
+	std::vector<std::string> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -244,9 +244,9 @@ CRLData_Priv::setExtensions(const X509v3CRLExts& ext)
 }
 
 void
-CRLData_Priv::setRevocationData(const std::map<String, RevocationEntry>& data)
+CRLData_Priv::setRevocationData(const std::map<std::string, RevocationEntry>& data)
 {
-	std::vector<blocxx::String> r = checkRevocationData(data);
+	std::vector<std::string> r = checkRevocationData(data);
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -293,7 +293,7 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
 		}
 	}
 	n = BIO_get_mem_data(bioFP, &ustringval);
-	setFingerprint(String(reinterpret_cast<const char*>(ustringval), n));
+	setFingerprint(std::string(reinterpret_cast<const char*>(ustringval), n));
 	BIO_free(bioFP);
 
     // get lastUpdate
@@ -352,7 +352,7 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
 	{
 		LOGIT_ERROR("Unsupported signature algorithm: '" << sbuf << "'");
 		BLOCXX_THROW(ca_mgm::RuntimeException,
-		             Format(__("Unsupported signature algorithm %1."), sbuf).c_str());
+		             str::form(__("Unsupported signature algorithm %s."), sbuf.c_str()).c_str());
 	}
 
 	// get signature
@@ -364,13 +364,13 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
 
 	// get revocationData
 
-	std::map<String, RevocationEntry> revData;
+	std::map<std::string, RevocationEntry> revData;
 
 	for (int i=0; i<sk_X509_REVOKED_num(x509->crl->revoked); i++)
 	{
 		RevocationEntry_Priv revEntry(sk_X509_REVOKED_value(x509->crl->revoked,i));
 
-		String ser = revEntry.getSerial();
+		std::string ser = revEntry.getSerial();
 		revData[ser] = revEntry;
 	}
 	setRevocationData(revData);

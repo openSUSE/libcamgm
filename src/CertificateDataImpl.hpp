@@ -83,9 +83,9 @@ public:
 		return new CertificateDataImpl(*this);
 	}
 
-	uint32_t        version;   // allowed 1, 2, 3
-	String                serial;
-	String                fingerprint;
+	uint32_t              version;   // allowed 1, 2, 3
+	std::string           serial;
+	std::string           fingerprint;
 	time_t                notBefore;
 	time_t                notAfter;
 

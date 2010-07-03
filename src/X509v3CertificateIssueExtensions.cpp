@@ -109,7 +109,7 @@ public:
 		return new X509v3CertificateIssueExtsImpl(*this);
 	}
 
-	/* String extensions */
+	/* std::string extensions */
 
 	NsBaseUrlExt                      nsBaseUrl;
 	NsRevocationUrlExt                nsRevocationUrl;
@@ -119,7 +119,7 @@ public:
 	NsSslServerNameExt                nsSslServerName;
 	NsCommentExt                      nsComment;
 
-	/* Bit Strings */
+	/* Bit std::strings */
 	KeyUsageExt                       keyUsage;
 	NsCertTypeExt                     nsCertType;
 
@@ -631,10 +631,10 @@ X509v3CertificateIssueExts::valid() const
 	return true;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 X509v3CertificateIssueExts::verify() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 
 	appendArray(result, m_impl->nsBaseUrl.verify());
 	appendArray(result, m_impl->nsRevocationUrl.verify());
@@ -659,10 +659,10 @@ X509v3CertificateIssueExts::verify() const
 	return result;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 X509v3CertificateIssueExts::dump() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 	result.push_back("X509v3CertificateIssueExts::dump()");
 
 	appendArray(result, m_impl->nsBaseUrl.dump());

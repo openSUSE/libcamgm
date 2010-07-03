@@ -75,10 +75,10 @@ namespace CA_MGM_NAMESPACE
 		virtual bool
 		valid() const;
         
-		virtual std::vector<blocxx::String>
+		virtual std::vector<std::string>
 		verify() const;
 
-		virtual std::vector<blocxx::String>
+		virtual std::vector<std::string>
 		dump() const;
 
 	private:

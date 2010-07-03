@@ -36,9 +36,9 @@ class AuthorityKeyIdentifierExtImpl : public blocxx::COWIntrusiveCountableBase
 public:
 
 	AuthorityKeyIdentifierExtImpl()
-		: keyid(String())
-		, DirName(String())
-		, serial(String())
+		: keyid(std::string())
+		, DirName(std::string())
+		, serial(std::string())
 	{}
 
 	AuthorityKeyIdentifierExtImpl(const AuthorityKeyIdentifierExtImpl &impl)
@@ -55,9 +55,9 @@ public:
 		return new AuthorityKeyIdentifierExtImpl(*this);
 	}
 
-	String keyid;
-	String DirName;
-	String serial;
+	std::string keyid;
+	std::string DirName;
+	std::string serial;
 };
 
 // ======================================================================
@@ -86,7 +86,7 @@ AuthorityKeyIdentifierExt::operator=(const AuthorityKeyIdentifierExt& extension)
 	return *this;
 }
 
-blocxx::String
+std::string
 AuthorityKeyIdentifierExt::getKeyID() const
 {
 	if(!isPresent()) {
@@ -97,7 +97,7 @@ AuthorityKeyIdentifierExt::getKeyID() const
 	return m_impl->keyid;
 }
 
-blocxx::String
+std::string
 AuthorityKeyIdentifierExt::getDirName() const
 {
 	if(!isPresent()) {
@@ -108,7 +108,7 @@ AuthorityKeyIdentifierExt::getDirName() const
 	return m_impl->DirName;
 }
 
-blocxx::String
+std::string
 AuthorityKeyIdentifierExt::getSerial() const
 {
 	if(!isPresent()) {
@@ -125,16 +125,16 @@ AuthorityKeyIdentifierExt::valid() const
 	return true;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 AuthorityKeyIdentifierExt::verify() const
 {
-	return std::vector<blocxx::String>();
+	return std::vector<std::string>();
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 AuthorityKeyIdentifierExt::dump() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 	result.push_back("AuthorityKeyIdentifierExt::dump()");
 
 	appendArray(result, ExtensionBase::dump());
@@ -150,19 +150,19 @@ AuthorityKeyIdentifierExt::dump() const
 // protected
 
 void
-AuthorityKeyIdentifierExt::setKeyID(const String& kid)
+AuthorityKeyIdentifierExt::setKeyID(const std::string& kid)
 {
 	m_impl->keyid = kid;
 }
 
 void
-AuthorityKeyIdentifierExt::setDirName(const String& dirName)
+AuthorityKeyIdentifierExt::setDirName(const std::string& dirName)
 {
 	m_impl->DirName = dirName;
 }
 
 void
-AuthorityKeyIdentifierExt::setSerial(const String& serial)
+AuthorityKeyIdentifierExt::setSerial(const std::string& serial)
 {
 	m_impl->serial = serial;
 }

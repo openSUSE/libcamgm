@@ -34,36 +34,36 @@ namespace CA_MGM_NAMESPACE {
 
 	class RevocationEntryImpl;
 	class CRLDataImpl;
-	
+
 	class RevocationEntry {
 	public:
 		RevocationEntry();
 		RevocationEntry(const RevocationEntry& entry);
 		virtual ~RevocationEntry();
-        
+
 #ifndef SWIG
 
 		RevocationEntry&
 		operator=(const RevocationEntry& entry);
 
 #endif
-		
-		String
+
+		std::string
 		getSerial() const;
 
 		time_t
 		getRevocationDate() const;
-        
+
 		CRLReason
 		getReason() const;
 
 		virtual bool
 		valid() const;
-        
-		virtual std::vector<blocxx::String>
+
+		virtual std::vector<std::string>
 		verify() const;
 
-		virtual std::vector<blocxx::String>
+		virtual std::vector<std::string>
 		dump() const;
 
 	protected:
@@ -87,70 +87,70 @@ namespace CA_MGM_NAMESPACE {
 		operator=(const CRLData& data);
 
 #endif
-		
+
 		int32_t
 		getVersion() const;
-        
-		String
+
+		std::string
 		getFingerprint() const;
-		
+
 		time_t
 		getLastUpdateDate() const;
-        
+
 		time_t
 		getNextUpdateDate() const;
-        
+
 		DNObject
 		getIssuerDN() const;
-        
+
 		SigAlg
 		getSignatureAlgorithm() const;
-        
-		String
+
+		std::string
 		getSignatureAlgorithmAsString() const;
-        
+
 		ca_mgm::ByteBuffer
 		getSignature() const;
-        
+
 		X509v3CRLExts
 		getExtensions() const;
-        
-		std::map<String, RevocationEntry>
+
+		std::map<std::string, RevocationEntry>
 		getRevocationData() const;
-        
+
 		RevocationEntry
-		getRevocationEntry(const String& oid);
+		getRevocationEntry(const std::string& oid);
 
 		/**
 		 * Return the CRL data as human readable text.
 		 * (Format may change)
 		 */
-		String
+		std::string
 		getCRLAsText() const;
 
 		/**
 		 * Return the CRL extensions as human readable text.
 		 * (Format may change)
 		 */
-		String
+		std::string
 		getExtensionsAsText() const;
-    	
+
 		virtual bool
 		valid() const;
-        
-		virtual std::vector<blocxx::String>
+
+		virtual std::vector<std::string>
 		verify() const;
 
-		virtual std::vector<blocxx::String>
+		virtual std::vector<std::string>
 		dump() const;
 
 	protected:
 		blocxx::COWIntrusiveReference<CRLDataImpl> m_impl;
 
 		CRLData();
-    	    	
-		std::vector<blocxx::String>
-		checkRevocationData(const std::map<String, RevocationEntry>& rd) const;
+
+		std::vector<std::string>
+		checkRevocationData(const std::map<std::string, RevocationEntry>& rd) const;
 
 	};
 

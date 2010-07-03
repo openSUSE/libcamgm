@@ -11,7 +11,7 @@
 |                                         (C) SUSE Linux Products GmbH |
 \----------------------------------------------------------------------/
 
-  File:       String.cpp
+  File:       std::string.cpp
 
   Author: Michael Andres
 

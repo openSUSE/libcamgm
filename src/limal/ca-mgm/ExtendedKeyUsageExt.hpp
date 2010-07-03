@@ -32,7 +32,7 @@ namespace CA_MGM_NAMESPACE {
 	class CA;
 	class CAConfig;
 	class ExtendedKeyUsageExtImpl;
-	
+
     /**
      * This extensions consists of a list of usages.
      *
@@ -49,9 +49,9 @@ namespace CA_MGM_NAMESPACE {
 		 * a List of additional OIDs
 		 */
 		ExtendedKeyUsageExt(const StringList& extKeyUsages);
-        
+
 		ExtendedKeyUsageExt(const ExtendedKeyUsageExt& extension);
-        
+
 		virtual ~ExtendedKeyUsageExt();
 
 #ifndef SWIG
@@ -60,7 +60,7 @@ namespace CA_MGM_NAMESPACE {
 		operator=(const ExtendedKeyUsageExt& extension);
 
 #endif
-		
+
 		/**
 		 * Set new extended key usage.
 		 *
@@ -85,7 +85,7 @@ namespace CA_MGM_NAMESPACE {
 
 
 		/**
-		 * Return the list of extended keyusages 
+		 * Return the list of extended keyusages
 		 */
 		StringList
 		getExtendedKeyUsage() const;
@@ -94,7 +94,7 @@ namespace CA_MGM_NAMESPACE {
 		 * Return true if the specified usage is set
 		 */
 		bool
-		isEnabledFor(const String& extKeyUsage) const;
+		isEnabledFor(const std::string& extKeyUsage) const;
 
 
 		/**
@@ -105,7 +105,7 @@ namespace CA_MGM_NAMESPACE {
 		 */
 		virtual void
 		commit2Config(CA& ca, Type type) const;
-        
+
 		/**
 		 * Check if this object is valid
 		 *
@@ -121,20 +121,20 @@ namespace CA_MGM_NAMESPACE {
 		 * @return Array with error messages. If this Array is empty this
 		 * object is valid
 		 */
-		virtual std::vector<blocxx::String>
+		virtual std::vector<std::string>
 		verify() const;
 
 		/**
 		 * Return the content of this object for debugging
 		 */
-		virtual std::vector<blocxx::String>
+		virtual std::vector<std::string>
 		dump() const;
 
 	private:
 		blocxx::COWIntrusiveReference<ExtendedKeyUsageExtImpl> m_impl;
-    	
+
 		bool
-		checkValue(const String& value) const;
+		checkValue(const std::string& value) const;
 
 	};
 

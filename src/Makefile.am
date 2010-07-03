@@ -15,6 +15,7 @@ limallib_LTLIBRARIES = liblimal-ca-mgm.la
 liblimal_ca_mgm_la_SOURCES  =	\
         Date.cpp                \
         PerlRegEx.cpp           \
+        PosixRegEx.cpp          \
         String.cpp              \
         ValuePosixRECheck.cpp   \
         ValuePerlRECheck.cpp    \

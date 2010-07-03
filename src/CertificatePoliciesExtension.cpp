@@ -57,12 +57,12 @@ public:
 		return new UserNoticeImpl(*this);
 	}
 
-	String              explicitText;      // max 200 characters
+	std::string              explicitText;      // max 200 characters
 
 	// The organization and noticeNumbers options
 	// (if included) must BOTH be present.
 
-	String                      organization;      // max 200 characters
+	std::string                      organization;      // max 200 characters
 	std::list<int32_t> noticeNumbers;
 
 };
@@ -72,12 +72,12 @@ class CertificatePolicyImpl : public blocxx::COWIntrusiveCountableBase
 public:
 
 	CertificatePolicyImpl()
-		: policyIdentifier(String())
+		: policyIdentifier(std::string())
 		, cpsURI(StringList())
 		, noticeList(std::list<UserNotice>())
 	{}
 
-	CertificatePolicyImpl(const String &policyIdentifier)
+	CertificatePolicyImpl(const std::string &policyIdentifier)
 		: policyIdentifier(policyIdentifier)
 		, cpsURI(StringList())
 		, noticeList(std::list<UserNotice>())
@@ -97,7 +97,7 @@ public:
 		return new CertificatePolicyImpl(*this);
 	}
 
-	String                   policyIdentifier;  // required
+	std::string                   policyIdentifier;  // required
 	StringList               cpsURI;            // Certification Practice Statement
 
 	std::list<UserNotice> noticeList;
@@ -156,7 +156,7 @@ UserNotice::operator=(const UserNotice& notice)
 }
 
 void
-UserNotice::initWithSection(CAConfig* caConfig, Type type, const String& sectionName)
+UserNotice::initWithSection(CAConfig* caConfig, Type type, const std::string& sectionName)
 {
     // These types are not supported by this object
 	if(type == E_CRL        || type == E_Client_Req ||
@@ -164,7 +164,7 @@ UserNotice::initWithSection(CAConfig* caConfig, Type type, const String& section
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             Format(__("Wrong type: %1."), type).c_str());
+		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
 	bool p = caConfig->exists(sectionName, "explicitText");
@@ -190,12 +190,12 @@ UserNotice::initWithSection(CAConfig* caConfig, Type type, const String& section
 	p = caConfig->exists(sectionName, "noticeNumbers");
 	if(p)
 	{
-		std::vector<blocxx::String> a = convStringArray(PerlRegEx(",").
-			split(caConfig->getValue(sectionName, "noticeNumbers")));
-		std::vector<blocxx::String>::const_iterator it = a.begin();
+		std::vector<std::string> a = PerlRegEx(",").
+			split(caConfig->getValue(sectionName, "noticeNumbers"));
+		std::vector<std::string>::const_iterator it = a.begin();
 		for(; it != a.end(); ++it)
 		{
-			m_impl->noticeNumbers.push_back((*it).toInt32());
+			m_impl->noticeNumbers.push_back(str::strtonum<uint32_t>(*it));
 		}
 	}
 	else
@@ -205,7 +205,7 @@ UserNotice::initWithSection(CAConfig* caConfig, Type type, const String& section
 }
 
 void
-UserNotice::setExplicitText(const String& text)
+UserNotice::setExplicitText(const std::string& text)
 {
 	if(text.length() > 200)
 	{
@@ -217,21 +217,21 @@ UserNotice::setExplicitText(const String& text)
 	m_impl->explicitText = text;
 }
 
-blocxx::String
+std::string
 UserNotice::getExplicitText() const
 {
 	return m_impl->explicitText;
 }
 
 void
-UserNotice::setOrganizationNotice(const String& org,
+UserNotice::setOrganizationNotice(const std::string& org,
                                   const std::list<int32_t>& numbers)
 {
 	m_impl->organization  = org;
 	m_impl->noticeNumbers = numbers;
 }
 
-blocxx::String
+std::string
 UserNotice::getOrganization() const
 {
 	return m_impl->organization;
@@ -243,7 +243,7 @@ UserNotice::getNoticeNumbers() const
 	return m_impl->noticeNumbers;
 }
 
-blocxx::String
+std::string
 UserNotice::commit2Config(CA& ca, Type type, uint32_t num) const
 {
 	if(!valid())
@@ -259,11 +259,11 @@ UserNotice::commit2Config(CA& ca, Type type, uint32_t num) const
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             Format(__("Wrong type: %1."), type).c_str());
+		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
     // we need a User Notice section
-	String sectionName = String("notice")+type2Section(type, true)+String(num);
+	std::string sectionName = std::string("notice")+type2Section(type, true)+str::numstring(num);
 
 	if(!m_impl->explicitText.empty())
 	{
@@ -274,11 +274,11 @@ UserNotice::commit2Config(CA& ca, Type type, uint32_t num) const
 	{
 		ca.getConfig()->setValue(sectionName, "organization", m_impl->organization);
 
-		String numbers;
+		std::string numbers;
 		std::list<int32_t>::const_iterator it = m_impl->noticeNumbers.begin();
 		for(;it != m_impl->noticeNumbers.end(); ++it)
 		{
-			numbers += String(*it)+",";
+			numbers += str::numstring(*it)+",";
 		}
 		ca.getConfig()->setValue(sectionName, "noticeNumbers",
 		                         numbers.erase(numbers.length()-1));
@@ -304,10 +304,10 @@ UserNotice::valid() const
 	return true;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 UserNotice::verify() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 
 	if(m_impl->explicitText.length() > 200)
 	{
@@ -323,20 +323,20 @@ UserNotice::verify() const
 	return result;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 UserNotice::dump() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 	result.push_back("UserNotice::dump()");
 
 	result.push_back("explicitText = "+ m_impl->explicitText);
 	result.push_back("organization = " + m_impl->organization);
 
-	String n;
+	std::string n;
 	std::list< int32_t >::const_iterator it = m_impl->noticeNumbers.begin();
 	for(; it != m_impl->noticeNumbers.end(); ++it)
 	{
-		n += String(*it) + " ";
+		n += str::numstring(*it) + " ";
 	}
 	result.push_back("noticeNumbers = " + n);
 
@@ -382,15 +382,15 @@ CertificatePolicy::CertificatePolicy()
 	: m_impl(new CertificatePolicyImpl())
 {}
 
-CertificatePolicy::CertificatePolicy(const String& policyIdentifier)
+CertificatePolicy::CertificatePolicy(const std::string& policyIdentifier)
 	: m_impl(new CertificatePolicyImpl(policyIdentifier))
 {
 	if(!initOIDCheck().isValid(policyIdentifier))
 	{
 		LOGIT_ERROR("invalid value for policyIdentifier" << policyIdentifier);
 		BLOCXX_THROW(ca_mgm::ValueException ,
-		             // %1 is the wrong string for policyIdentifier
-		             Format(__("Invalid value for policyIdentifier: %1."), policyIdentifier).c_str());
+		             // %s is the wrong string for policyIdentifier
+		             str::form(__("Invalid value for policyIdentifier: %s."), policyIdentifier.c_str()).c_str());
 	}
 }
 
@@ -412,7 +412,7 @@ CertificatePolicy::operator=(const CertificatePolicy& policy)
 }
 
 void
-CertificatePolicy::initWithSection(CAConfig* caConfig, Type type, const String& sectionName)
+CertificatePolicy::initWithSection(CAConfig* caConfig, Type type, const std::string& sectionName)
 {
     // These types are not supported by this object
 	if(type == E_CRL        || type == E_Client_Req ||
@@ -420,7 +420,7 @@ CertificatePolicy::initWithSection(CAConfig* caConfig, Type type, const String& 
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             Format(__("Wrong type: %1."), type).c_str());
+		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
 	bool p = caConfig->exists(sectionName, "policyIdentifier");
@@ -433,34 +433,34 @@ CertificatePolicy::initWithSection(CAConfig* caConfig, Type type, const String& 
 	StringList::const_iterator it = kl.begin();
 	for(; it != kl.end(); ++it)
 	{
-		if((*it).startsWith("CPS", String::E_CASE_INSENSITIVE))
+		if(str::startsWith(*it,"CPS"))
 		{
 			m_impl->cpsURI.push_back(caConfig->getValue(sectionName, *it));
 		}
-		else if((*it).startsWith("userNotice", String::E_CASE_INSENSITIVE))
+		else if(str::startsWith(*it, "userNotice"))
 		{
-			String uns = caConfig->getValue(sectionName, *it);
+			std::string uns = caConfig->getValue(sectionName, *it);
 			UserNotice un = UserNotice();
-			un.initWithSection(caConfig, type, uns.substring(1));
+			un.initWithSection(caConfig, type, uns.substr(1));
 			m_impl->noticeList.push_back(un);
 		}
 	}
 }
 
 void
-CertificatePolicy::setPolicyIdentifier(const String& policyIdentifier)
+CertificatePolicy::setPolicyIdentifier(const std::string& policyIdentifier)
 {
 	if(!initOIDCheck().isValid(policyIdentifier))
 	{
 		LOGIT_ERROR("invalid value for policyIdentifier" << policyIdentifier);
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             Format(__("Invalid value for policyIdentifier: %1."), policyIdentifier).c_str());
+		             str::form(__("Invalid value for policyIdentifier: %s."), policyIdentifier.c_str()).c_str());
 	}
 
 	m_impl->policyIdentifier = policyIdentifier;
 }
 
-blocxx::String
+std::string
 CertificatePolicy::getPolicyIdentifier() const
 {
 	return m_impl->policyIdentifier;
@@ -469,7 +469,7 @@ CertificatePolicy::getPolicyIdentifier() const
 void
 CertificatePolicy::setCpsURI(const StringList& cpsURI)
 {
-	std::vector<blocxx::String> r = checkCpsURIs(cpsURI);
+	std::vector<std::string> r = checkCpsURIs(cpsURI);
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -487,7 +487,7 @@ CertificatePolicy::getCpsURI() const
 void
 CertificatePolicy::setUserNoticeList(const std::list<UserNotice>& list)
 {
-	std::vector<blocxx::String> r = checkNoticeList(list);
+	std::vector<std::string> r = checkNoticeList(list);
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -502,7 +502,7 @@ CertificatePolicy::getUserNoticeList() const
 	return m_impl->noticeList;
 }
 
-blocxx::String
+std::string
 CertificatePolicy::commit2Config(CA& ca, Type type, uint32_t num) const
 {
 	if(!valid())
@@ -518,7 +518,7 @@ CertificatePolicy::commit2Config(CA& ca, Type type, uint32_t num) const
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             Format(__("Wrong type: %1."), type).c_str());
+		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
 	if(m_impl->cpsURI.empty()) {
@@ -526,21 +526,21 @@ CertificatePolicy::commit2Config(CA& ca, Type type, uint32_t num) const
 		return m_impl->policyIdentifier;
 	}
     // we need a policy section
-	String sectionName = String("polsec")+type2Section(type, true)+String(num);
+	std::string sectionName = std::string("polsec")+type2Section(type, true)+str::numstring(num);
 
 	ca.getConfig()->setValue(sectionName, "policyIdentifier", m_impl->policyIdentifier);
 
 	StringList::const_iterator it = m_impl->cpsURI.begin();
 	for(uint32_t i = 1;it != m_impl->cpsURI.end(); ++it, ++i)
 	{
-		ca.getConfig()->setValue(sectionName, "CPS."+String(i),(*it));
+		ca.getConfig()->setValue(sectionName, "CPS."+str::numstring(i),(*it));
 	}
 
 	std::list<UserNotice>::const_iterator nit = m_impl->noticeList.begin();
 	for(uint32_t j = 1;nit != m_impl->noticeList.end(); ++nit, ++j)
 	{
-		String n = (*nit).commit2Config(ca, type, j);
-		ca.getConfig()->setValue(sectionName, "userNotice."+String(j),n);
+		std::string n = (*nit).commit2Config(ca, type, j);
+		ca.getConfig()->setValue(sectionName, "userNotice."+str::numstring(j),n);
 	}
 
 	return ("@"+sectionName);
@@ -556,7 +556,7 @@ CertificatePolicy::valid() const
 		return false;
 	}
 
-	std::vector<blocxx::String> r = checkCpsURIs(m_impl->cpsURI);
+	std::vector<std::string> r = checkCpsURIs(m_impl->cpsURI);
 	if(!r.empty())
 	{
 		LOGIT_DEBUG(r[0]);
@@ -572,18 +572,18 @@ CertificatePolicy::valid() const
 	return true;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 CertificatePolicy::verify() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 
 	ValueCheck oidCheck = initOIDCheck();
 
 	if(m_impl->policyIdentifier.empty() ||
 	   !oidCheck.isValid(m_impl->policyIdentifier))
 	{
-		result.push_back(Format("invalid value for policyIdentifier: %1",
-		                     m_impl->policyIdentifier).toString());
+		result.push_back(str::form("invalid value for policyIdentifier: %s",
+		                     m_impl->policyIdentifier.c_str()));
 	}
 
 	appendArray(result, checkCpsURIs(m_impl->cpsURI));
@@ -594,10 +594,10 @@ CertificatePolicy::verify() const
 	return result;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 CertificatePolicy::dump() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 	result.push_back("CertificatePolicy::dump()");
 
 	result.push_back("policy Identifier = " + m_impl->policyIdentifier);
@@ -648,10 +648,10 @@ operator<(const CertificatePolicy &l, const CertificatePolicy &r)
 	}
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 CertificatePolicy::checkCpsURIs(const StringList& cpsURIs) const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 	ValueCheck  uriCheck = initURICheck();
 
 	StringList::const_iterator it = cpsURIs.begin();
@@ -659,16 +659,16 @@ CertificatePolicy::checkCpsURIs(const StringList& cpsURIs) const
 	{
 		if(!uriCheck.isValid(*it))
 		{
-			result.push_back(Format("invalid URI: %1", *it).toString());
+			result.push_back(str::form("invalid URI: %s", (*it).c_str()));
 		}
 	}
 	return result;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 CertificatePolicy::checkNoticeList(const std::list<UserNotice>& list) const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 	std::list<UserNotice>::const_iterator it = list.begin();
 	for(;it != list.end(); it++)
 	{
@@ -689,7 +689,7 @@ CertificatePoliciesExt::CertificatePoliciesExt(const std::list<CertificatePolicy
 	: ExtensionBase()
 	, m_impl(new CertificatePoliciesExtImpl(policies))
 {
-	std::vector<blocxx::String> r = checkPolicies(policies);
+	std::vector<std::string> r = checkPolicies(policies);
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -708,26 +708,26 @@ CertificatePoliciesExt::CertificatePoliciesExt(CAConfig* caConfig, Type type)
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             Format(__("Wrong type: %1."), type).c_str());
+		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
 	bool p = caConfig->exists(type2Section(type, true), "certificatePolicies");
 	if(p)
 	{
 		ValueCheck    check = initOIDCheck();
-		std::vector<blocxx::String>   sp    = convStringArray(PerlRegEx("\\s*,\\s*")
-			.split(caConfig->getValue(type2Section(type, true), "certificatePolicies")));
+		std::vector<std::string>   sp    = PerlRegEx("\\s*,\\s*")
+			.split(caConfig->getValue(type2Section(type, true), "certificatePolicies"));
 
-		if(sp[0].equalsIgnoreCase("critical"))
+		if(0 == str::compareCI(sp[0], "critical"))
 		{
 			setCritical(true);
 			sp.erase(sp.begin());
 		}
 
-		std::vector<blocxx::String>::const_iterator it = sp.begin();
+		std::vector<std::string>::const_iterator it = sp.begin();
 		for(; it != sp.end(); ++it)
 		{
-			if((*it).equalsIgnoreCase("ia5org"))
+			if(0 == str::compareCI(*it, "ia5org"))
 			{
 				m_impl->ia5org = true;
 			}
@@ -735,10 +735,10 @@ CertificatePoliciesExt::CertificatePoliciesExt(CAConfig* caConfig, Type type)
 			{
 				m_impl->policies.push_back(CertificatePolicy(*it));
 			}
-			else if((*it).startsWith("@"))
+			else if(str::startsWith(*it, "@"))
 			{
 				CertificatePolicy cp = CertificatePolicy();
-				cp.initWithSection(caConfig, type, (*it).substring(1));
+				cp.initWithSection(caConfig, type, (*it).substr(1));
 				m_impl->policies.push_back(cp);
 			}
 		}
@@ -786,7 +786,7 @@ CertificatePoliciesExt::isIA5orgEnabled() const
 void
 CertificatePoliciesExt::setPolicies(const std::list<CertificatePolicy>& policies)
 {
-	std::vector<blocxx::String> r = checkPolicies(policies);
+	std::vector<std::string> r = checkPolicies(policies);
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -825,12 +825,12 @@ CertificatePoliciesExt::commit2Config(CA& ca, Type type) const
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             Format(__("Wrong type: %1."), type).c_str());
+		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
 	if(isPresent())
 	{
-		String extString;
+		std::string extString;
 
 		if(isCritical()) extString += "critical,";
 
@@ -861,7 +861,7 @@ CertificatePoliciesExt::valid() const
 		LOGIT_DEBUG("No policy set");
 		return false;
 	}
-	std::vector<blocxx::String> r = checkPolicies(m_impl->policies);
+	std::vector<std::string> r = checkPolicies(m_impl->policies);
 	if(!r.empty())
 	{
 		LOGIT_DEBUG(r[0]);
@@ -870,10 +870,10 @@ CertificatePoliciesExt::valid() const
 	return true;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 CertificatePoliciesExt::verify() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 
 	if(!isPresent()) return result;
 
@@ -888,16 +888,16 @@ CertificatePoliciesExt::verify() const
 	return result;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 CertificatePoliciesExt::dump() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 	result.push_back("CertificatePoliciesExt::dump()");
 
 	appendArray(result, ExtensionBase::dump());
 	if(!isPresent()) return result;
 
-	result.push_back("ia5org = " + blocxx::Bool(m_impl->ia5org).toString());
+	result.push_back("ia5org = " + str::toString(m_impl->ia5org));
 	std::list< CertificatePolicy >::const_iterator it = m_impl->policies.begin();
 	for(; it != m_impl->policies.end(); ++it)
 	{
@@ -908,10 +908,10 @@ CertificatePoliciesExt::dump() const
 }
 
 
-std::vector<blocxx::String>
+std::vector<std::string>
 CertificatePoliciesExt::checkPolicies(const std::list<CertificatePolicy>& pl) const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 	std::list<CertificatePolicy>::const_iterator it = pl.begin();
 	for(;it != pl.end(); it++)
 	{

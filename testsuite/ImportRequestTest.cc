@@ -2,8 +2,8 @@
 #include <blocxx/AppenderLogger.hpp>
 #include <blocxx/CerrLogger.hpp>
 #include <blocxx/CerrAppender.hpp>
-#include <blocxx/String.hpp>
-#include <blocxx/PerlRegEx.hpp>
+#include <limal/String.hpp>
+#include <limal/PerlRegEx.hpp>
 #include <limal/Logger.hpp>
 #include <limal/PathInfo.hpp>
 #include <limal/ca-mgm/CA.hpp>
@@ -24,7 +24,7 @@ int main()
     {
         cout << "START" << endl;
 
-        blocxx::StringArray cat;
+        StringArray cat;
         cat.push_back("FATAL");
         cat.push_back("ERROR");
         cat.push_back("INFO");
@@ -43,7 +43,7 @@ int main()
         {
             CA ca("Test_CA1", "system", "./TestRepos/");
 
-            blocxx::String name = ca.importRequest(blocxx::String("./TestRepos/importRequestTest.req"),
+            std::string name = ca.importRequest(std::string("./TestRepos/importRequestTest.req"),
                                                    E_PEM);
 
             path::PathInfo pi("./TestRepos/Test_CA1/req/" + name + ".req");
@@ -54,7 +54,7 @@ int main()
 
             sleep(1);
 
-            name = ca.importRequest(blocxx::String("./TestRepos/c293624b6a877f401407ce8f8f1f327e.req"),
+            name = ca.importRequest(std::string("./TestRepos/c293624b6a877f401407ce8f8f1f327e.req"),
                                     E_PEM);
 
             path::PathInfo pi2("./TestRepos/Test_CA1/req/" + name + ".req");
@@ -64,7 +64,7 @@ int main()
             }
             sleep(1);
 
-            name = ca.importRequest(blocxx::String("./TestRepos/importRequestTest-DER.req"),
+            name = ca.importRequest(std::string("./TestRepos/importRequestTest-DER.req"),
                                     E_DER);
 
             path::PathInfo pi3("./TestRepos/Test_CA1/req/" + name + ".req");

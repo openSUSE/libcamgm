@@ -52,7 +52,7 @@ class CAImpl : public blocxx::COWIntrusiveCountableBase
 {
 public:
 
-	CAImpl(const String& caName, const String& caPasswd, const String& repos)
+	CAImpl(const std::string& caName, const std::string& caPasswd, const std::string& repos)
 		: caName(caName)
 		, caPasswd(caPasswd)
 		, repositoryDir(repos)
@@ -80,7 +80,7 @@ public:
 		return new CAImpl(*this);
 	}
 
-	String
+	std::string
 		initConfigFile()
 	{
 		if(templ)
@@ -102,9 +102,9 @@ public:
 		return "";
 	}
 
-	String caName;
-	String caPasswd;
-	String repositoryDir;
+	std::string caName;
+	std::string caPasswd;
+	std::string repositoryDir;
 
 	CAConfig *config;
 	CAConfig *templ;
@@ -121,8 +121,8 @@ private:
 class CATreeCompare
 {
 public:
-	int operator()(const std::vector<blocxx::String> &l,
-	               const std::vector<blocxx::String> r) const
+	int operator()(const std::vector<std::string> &l,
+	               const std::vector<std::string> r) const
 	{
 		if(l.back() == "" && r.back() != "")
 		{
@@ -149,7 +149,7 @@ public:
 };
 
 
-CA::CA(const String& caName, const String& caPasswd, const String& repos)
+CA::CA(const std::string& caName, const std::string& caPasswd, const std::string& repos)
 {
 
 	if(caName.empty())
@@ -163,7 +163,7 @@ CA::CA(const String& caName, const String& caPasswd, const String& repos)
 	{
 		LOGIT_ERROR("Template does not exists: " << pi.toString());
 		BLOCXX_THROW_ERR(ca_mgm::SystemException,
-		                 Format(__("Template does not exist: %1."), pi.toString()).c_str(),
+		                 str::form(__("Template does not exist: %s."), pi.toString().c_str()).c_str(),
 		                 E_FILE_NOT_FOUND);
 	}
 
@@ -200,14 +200,14 @@ CA::~CA()
 	}
 }
 
-blocxx::String
-CA::createSubCA(const String& newCaName,
-                const String& keyPasswd,
+std::string
+CA::createSubCA(const std::string& newCaName,
+                const std::string& keyPasswd,
                 const RequestGenerationData& caRequestData,
                 const CertificateIssueData& caIssueData)
 {
 
-	String certificate = createCertificate(keyPasswd,
+	std::string certificate = createCertificate(keyPasswd,
 	                                       caRequestData,
 	                                       caIssueData,
 	                                       E_CA_Cert);
@@ -224,10 +224,10 @@ CA::createSubCA(const String& newCaName,
 		                   __("Error while creating the CA infrastructure."),
 		                   e);
 	}
-	String request;
+	std::string request;
 
 	PerlRegEx p("^([[:xdigit:]]+):([[:xdigit:]]+[\\d-]*)$");
-	StringArray sa = p.capture(certificate);
+	std::vector<std::string> sa = p.capture(certificate);
 
 	if(sa.size() == 3)
 	{
@@ -241,7 +241,7 @@ CA::createSubCA(const String& newCaName,
 		LOGIT_ERROR("Can not parse certificate name: " << certificate);
 		// %1 is the name of the CA
 		BLOCXX_THROW(ca_mgm::RuntimeException,
-		             Format(__("Cannot parse the certificate name %1."), certificate).c_str());
+		             str::form(__("Cannot parse the certificate name %s."), certificate.c_str()).c_str());
 	}
 
 	int r = path::copyFile(m_impl->repositoryDir + "/" + m_impl->caName + "/keys/" + request + ".key",
@@ -287,8 +287,8 @@ CA::createSubCA(const String& newCaName,
 }
 
 
-blocxx::String
-CA::createRequest(const String& keyPasswd,
+std::string
+CA::createRequest(const std::string& keyPasswd,
                   const RequestGenerationData& requestData,
                   Type requestType)
 {
@@ -299,23 +299,22 @@ CA::createRequest(const String& keyPasswd,
 	}
 
 	// copy template to config
-	String configFilename = initConfigFile();
+	std::string configFilename = initConfigFile();
 
 	removeDefaultsFromConfig();
 
 	OpenSSLUtils ost(configFilename);
 
-	String opensslDN = requestData.getSubjectDN().getOpenSSLString();
-	blocxx::MD5 md5(opensslDN);
-	String request = md5.toString() + "-" +
-		String(Date::now());
+	std::string opensslDN = requestData.getSubjectDN().getOpenSSLString();
+	std::string request = OpenSSLUtils::digestMD5(opensslDN) + "-" +
+		str::numstring(Date::now());
 
 	path::PathInfo dKey(m_impl->repositoryDir + "/" + m_impl->caName + "/keys/"+ request + ".key");
 	if(dKey.exists())
 	{
 		LOGIT_ERROR("Duplicate DN. Key '" << request <<".key' already exists.");
 		BLOCXX_THROW(RuntimeException,
-		             Format(__("Duplicate DN. Key %1.key already exists."), request).c_str());
+		             str::form(__("Duplicate DN. Key %s.key already exists."), request.c_str()).c_str());
 	}
 
 	path::PathInfo r(m_impl->repositoryDir + "/" + m_impl->caName + "/req/"+ request + ".req");
@@ -323,7 +322,7 @@ CA::createRequest(const String& keyPasswd,
 	{
 		LOGIT_ERROR("Duplicate DN. Request '" << request <<".req' already exists.");
 		BLOCXX_THROW(RuntimeException,
-		             Format(__("Duplicate DN. Request %1.req already exists."), request).c_str());
+		             str::form(__("Duplicate DN. Request %s.req already exists."), request.c_str()).c_str());
 	}
 
 	// write request data to config
@@ -356,19 +355,19 @@ CA::createRequest(const String& keyPasswd,
 }
 
 
-blocxx::String
-CA::issueCertificate(const String& requestName,
+std::string
+CA::issueCertificate(const std::string& requestName,
                      const CertificateIssueData& issueData,
                      Type certType)
 {
-	String requestFile = String(m_impl->repositoryDir + "/" + m_impl->caName + "/req/"+ requestName + ".req");
+	std::string requestFile = std::string(m_impl->repositoryDir + "/" + m_impl->caName + "/req/"+ requestName + ".req");
 	path::PathInfo p(requestFile);
 	if(!p.exists())
 	{
 		LOGIT_ERROR("Request does not exist.(" << requestFile << ")");
 		// %1 is the absolute path to the request
 		BLOCXX_THROW(ValueException,
-		             Format(__("Request does not exist (%1)."), requestFile ).c_str());
+		             str::form(__("Request does not exist (%s)."), requestFile.c_str() ).c_str());
 	}
 
 	if(!issueData.valid())
@@ -377,8 +376,8 @@ CA::issueCertificate(const String& requestName,
 		BLOCXX_THROW(ca_mgm::ValueException, __("Invalid issue data."));
 	}
 
-	String serial = OpenSSLUtils::nextSerial(m_impl->repositoryDir + "/" + m_impl->caName + "/serial");
-	String certificate = serial + ":" + requestName;
+	std::string serial = OpenSSLUtils::nextSerial(m_impl->repositoryDir + "/" + m_impl->caName + "/serial");
+	std::string certificate = serial + ":" + requestName;
 
 	// parse the CA and check if the end date of the ca is greater
 	// than the end date of the certificate
@@ -400,7 +399,7 @@ CA::issueCertificate(const String& requestName,
 	checkDNPolicy(rdata.getSubjectDN(), certType);
 
 	// copy template to config
-	String configFilename = initConfigFile();
+	std::string configFilename = initConfigFile();
 
 	// write data to config
 	issueData.commit2Config(*this, certType);
@@ -420,8 +419,8 @@ CA::issueCertificate(const String& requestName,
 	return certificate;
 }
 
-blocxx::String
-CA::createCertificate(const String& keyPasswd,
+std::string
+CA::createCertificate(const std::string& keyPasswd,
                       const RequestGenerationData& requestData,
                       const CertificateIssueData&  certificateData,
                       Type type)
@@ -441,7 +440,7 @@ CA::createCertificate(const String& keyPasswd,
 		t = E_CA_Req;
 	}
 
-	String requestName = createRequest(keyPasswd, requestData, t);
+	std::string requestName = createRequest(keyPasswd, requestData, t);
 
 	if(type == E_Client_Req || type == E_Client_Cert)
 	{
@@ -456,7 +455,7 @@ CA::createCertificate(const String& keyPasswd,
 		t = E_CA_Cert;
 	}
 
-	String certificate;
+	std::string certificate;
 
 	try
 	{
@@ -476,7 +475,7 @@ CA::createCertificate(const String& keyPasswd,
 }
 
 void
-CA::revokeCertificate(const String& certificateName,
+CA::revokeCertificate(const std::string& certificateName,
                       const CRLReason& crlReason)
 {
 	path::PathInfo pi(m_impl->repositoryDir + "/" +
@@ -486,7 +485,7 @@ CA::revokeCertificate(const String& certificateName,
 	{
 		LOGIT_ERROR("File '" << certificateName << ".pem' not found in repository");
 		BLOCXX_THROW_ERR(ca_mgm::SystemException,
-		                 Format(__("File %1 not found in the repository."), certificateName).c_str(),
+		                 str::form(__("File %s not found in the repository."), certificateName.c_str()).c_str(),
 		                 E_FILE_NOT_FOUND);
 	}
 
@@ -497,7 +496,7 @@ CA::revokeCertificate(const String& certificateName,
 	}
 
 	// copy template to config
-	String configFilename = initConfigFile();
+	std::string configFilename = initConfigFile();
 
 	OpenSSLUtils ost(configFilename);
 
@@ -520,7 +519,7 @@ CA::createCRL(const CRLGenerationData& crlData)
 	}
 
 	// copy template to config
-	String configFilename = initConfigFile();
+	std::string configFilename = initConfigFile();
 
 	// write crl data to config
 	crlData.commit2Config(*this, E_CRL);
@@ -545,18 +544,16 @@ CA::createCRL(const CRLGenerationData& crlData)
 	rehashCAs(m_impl->repositoryDir + "/.cas/");
 }
 
-blocxx::String
+std::string
 CA::importRequestData(const ByteBuffer& request,
                       FormatType formatType)
 {
 	RequestData rd = RequestData_Priv(request, formatType);
 
-	String name = rd.getSubjectDN().getOpenSSLString();
+	std::string name = rd.getSubjectDN().getOpenSSLString();
 
-	blocxx::MD5 md5(name);
-
-	String requestName = md5.toString() + "-" +
-		String(Date::now());
+	std::string requestName = OpenSSLUtils::digestMD5(name) + "-" +
+		str::numstring(Date::now());
 
 	path::PathInfo outPi(m_impl->repositoryDir + "/" + m_impl->caName + "/req/" + requestName + ".req");
 
@@ -601,8 +598,8 @@ CA::importRequestData(const ByteBuffer& request,
 	return requestName;
 }
 
-blocxx::String
-CA::importRequest(const String& requestFile,
+std::string
+CA::importRequest(const std::string& requestFile,
                   FormatType formatType)
 {
 	ByteBuffer ba = LocalManagement::readFile(requestFile);
@@ -662,22 +659,22 @@ CA::setCRLDefaults(const CRLGenerationData& defaults)
 	commitConfig2Template();
 }
 
-std::vector<std::map<blocxx::String, blocxx::String> >
+std::vector<std::map<std::string, std::string> >
 CA::getCertificateList()
 {
 	updateDB();
 
-	std::vector< std::map<blocxx::String, blocxx::String> > ret;
+	std::vector< std::map<std::string, std::string> > ret;
 
 	ret = OpenSSLUtils::listCertificates(m_impl->caName, m_impl->repositoryDir);
 
 	return ret;
 }
 
-std::vector<std::map<blocxx::String, blocxx::String> >
+std::vector<std::map<std::string, std::string> >
 CA::getRequestList()
 {
-	std::vector< std::map<String, String> > ret;
+	std::vector< std::map<std::string, std::string> > ret;
 
 	ret = OpenSSLUtils::listRequests(m_impl->caName, m_impl->repositoryDir);
 
@@ -693,13 +690,13 @@ CA::getCA()
 
 
 RequestData
-CA::getRequest(const String& requestName)
+CA::getRequest(const std::string& requestName)
 {
 	return RequestData_Priv(m_impl->repositoryDir + "/" + m_impl->caName + "/req/" + requestName + ".req");
 }
 
 CertificateData
-CA::getCertificate(const String& certificateName)
+CA::getCertificate(const std::string& certificateName)
 {
 	return CertificateData_Priv(m_impl->repositoryDir + "/" + m_impl->caName +
 	                            "/newcerts/" + certificateName + ".pem");
@@ -739,7 +736,7 @@ CA::exportCACert(FormatType exportType)
  * If newPassword is empty the returned key is decrypted.
  */
 ByteBuffer
-CA::exportCAKeyAsPEM(const String& newPassword)
+CA::exportCAKeyAsPEM(const std::string& newPassword)
 {
 	ByteBuffer ret;
 
@@ -772,7 +769,7 @@ CA::exportCAKeyAsDER()
  * will be included.
  */
 ByteBuffer
-CA::exportCAasPKCS12(const String& p12Password,
+CA::exportCAasPKCS12(const std::string& p12Password,
                      bool withChain)
 {
 	ByteBuffer ret;
@@ -794,7 +791,7 @@ CA::exportCAasPKCS12(const String& p12Password,
  *
  */
 ByteBuffer
-CA::exportCertificate(const String& certificateName,
+CA::exportCertificate(const std::string& certificateName,
                       FormatType exportType)
 {
 	ByteBuffer ret;
@@ -817,14 +814,14 @@ CA::exportCertificate(const String& certificateName,
  * If newPassword is empty the returned key is decrypted.
  */
 ByteBuffer
-CA::exportCertificateKeyAsPEM(const String& certificateName,
-                              const String& keyPassword,
-                              const String& newPassword)
+CA::exportCertificateKeyAsPEM(const std::string& certificateName,
+                              const std::string& keyPassword,
+                              const std::string& newPassword)
 {
 	ByteBuffer ret;
 
 	PerlRegEx rReq("^[[:xdigit:]]+:([[:xdigit:]]+[\\d-]*)$");
-	StringArray sa = rReq.capture(certificateName);
+	std::vector<std::string> sa = rReq.capture(certificateName);
 
 	if(sa.size() != 2)
 	{
@@ -845,13 +842,13 @@ CA::exportCertificateKeyAsPEM(const String& certificateName,
  * The private Key is decrypted.
  */
 ByteBuffer
-CA::exportCertificateKeyAsDER(const String& certificateName,
-                              const String& keyPassword)
+CA::exportCertificateKeyAsDER(const std::string& certificateName,
+                              const std::string& keyPassword)
 {
 	ByteBuffer ret;
 
 	PerlRegEx rReq("^[[:xdigit:]]+:([[:xdigit:]]+[\\d-]*)$");
-	StringArray sa = rReq.capture(certificateName);
+	std::vector<std::string> sa = rReq.capture(certificateName);
 
 	if(sa.size() != 2)
 	{
@@ -873,15 +870,15 @@ CA::exportCertificateKeyAsDER(const String& certificateName,
  * will be included.
  */
 ByteBuffer
-CA::exportCertificateAsPKCS12(const String& certificateName,
-                              const String& keyPassword,
-                              const String& p12Password,
+CA::exportCertificateAsPKCS12(const std::string& certificateName,
+                              const std::string& keyPassword,
+                              const std::string& p12Password,
                               bool withChain)
 {
 	ByteBuffer ret;
 
 	PerlRegEx rReq("^[[:xdigit:]]+:([[:xdigit:]]+[\\d-]*)$");
-	StringArray sa = rReq.capture(certificateName);
+	std::vector<std::string> sa = rReq.capture(certificateName);
 
 	if(sa.size() != 2)
 	{
@@ -931,14 +928,14 @@ CA::exportCRL(FormatType exportType)
 
 
 void
-CA::deleteRequest(const String& requestName)
+CA::deleteRequest(const std::string& requestName)
 {
 	path::PathInfo reqFile(m_impl->repositoryDir + "/" + m_impl->caName + "/req/" + requestName + ".req");
 	if(!reqFile.exists())
 	{
 		LOGIT_ERROR("Request '" << reqFile.toString() <<"' does not exist." );
-		BLOCXX_THROW(ca_mgm::SystemException, Format(__("Request %1 does not exist."),
-		                                            reqFile.toString()).c_str());
+		BLOCXX_THROW(ca_mgm::SystemException, str::form(__("Request %s does not exist."),
+		                                            reqFile.toString().c_str()).c_str());
 	}
 
 	OpenSSLUtils::delCAM(m_impl->caName, requestName, m_impl->repositoryDir);
@@ -959,12 +956,12 @@ CA::deleteRequest(const String& requestName)
 	{
 		BLOCXX_THROW(ca_mgm::SystemException,
 		             // %1 is the error code
-		             Format(__("Removing the request failed (%1)."), r).c_str());
+		             str::form(__("Removing the request failed (%1)."), r).c_str());
 	}
 }
 
 void
-CA::deleteCertificate(const String& certificateName,
+CA::deleteCertificate(const std::string& certificateName,
                       bool requestToo)
 {
 	path::PathInfo certFile(m_impl->repositoryDir + "/" + m_impl->caName + "/newcerts/" + certificateName + ".pem");
@@ -972,33 +969,33 @@ CA::deleteCertificate(const String& certificateName,
 	{
 		LOGIT_ERROR("Certificate does not exist." << certFile.toString());
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             // %1 is the absolute path to the certificate
-		             Format(__("Certificate %1 does not exist."),
-		                    certFile.toString()).c_str());
+		             // %s is the absolute path to the certificate
+		             str::form(__("Certificate %s does not exist."),
+		                    certFile.toString().c_str()).c_str());
 	}
 
 	PerlRegEx p("^([[:xdigit:]]+):([[:xdigit:]]+[\\d-]*)$");
-	StringArray sa = p.capture(certificateName);
+	std::vector<std::string> sa = p.capture(certificateName);
 
 	if(sa.size() != 3)
 	{
 		LOGIT_ERROR("Can not parse certificate name: " << certificateName);
 		BLOCXX_THROW(ca_mgm::RuntimeException,
-		             // %1 is the certificate name
-		             Format(__("Cannot parse the certificate name %1."), certificateName).c_str());
+		             // %s is the certificate name
+		             str::form(__("Cannot parse the certificate name %s."), certificateName.c_str()).c_str());
 	}
 
-	String serial  = sa[1];
-	String request = sa[2];
+	std::string serial  = sa[1];
+	std::string request = sa[2];
 
-	String configFilename = initConfigFile();
+	std::string configFilename = initConfigFile();
 
 	OpenSSLUtils ost(configFilename);
 
-	String state = ost.status(serial);
+	std::string state = ost.status(serial);
 
-	if(state.equalsIgnoreCase("Revoked") ||
-	   state.equalsIgnoreCase("Expired"))
+	if(0 == str::compareCI(state, "Revoked") ||
+	   0 == str::compareCI(state, "Expired"))
 	{
 		if(requestToo)
 		{
@@ -1008,7 +1005,7 @@ CA::deleteCertificate(const String& certificateName,
 			}
 			catch(ca_mgm::SystemException &e)
 			{
-				String msg = e.what();
+				std::string msg = e.what();
 				if(!PerlRegEx("does\\s+not\\s+exist").match(msg))
 				{
 					throw;
@@ -1021,16 +1018,16 @@ CA::deleteCertificate(const String& certificateName,
 		if(r != 0)
 		{
 			BLOCXX_THROW(ca_mgm::SystemException,
-			             // %1 is the error code of rm
-			             Format(__("Removing the certificate failed: %1."), r).c_str());
+			             // %2 is the error code of rm
+			             str::form(__("Removing the certificate failed: %d."), r).c_str());
 		}
 	}
 	else
 	{
 		LOGIT_ERROR("Only revoked or expired certificates can be deleted. " <<
-		            Format("The status of the certificate is '%1'.", state).c_str());
+		            str::form("The status of the certificate is '%s'.", state.c_str()).c_str());
 		BLOCXX_THROW(ca_mgm::RuntimeException,
-		             Format(__("Only revoked or expired certificates can be deleted. The status of the certificate is %1."), state).c_str());
+		             str::form(__("Only revoked or expired certificates can be deleted. The status of the certificate is %s."), state.c_str()).c_str());
 	}
 }
 
@@ -1047,7 +1044,7 @@ CA::updateDB()
 
 	if(db.size() != 0)
 	{
-		String configFilename = initConfigFile();
+		std::string configFilename = initConfigFile();
 
 		OpenSSLUtils ost(configFilename);
 
@@ -1060,9 +1057,9 @@ CA::updateDB()
 }
 
 bool
-CA::verifyCertificate(const String& certificateName,
+CA::verifyCertificate(const std::string& certificateName,
                       bool crlCheck,
-                      const String& purpose)
+                      const std::string& purpose)
 {
 	path::PathInfo certFile(m_impl->repositoryDir + "/" + m_impl->caName + "/newcerts/" + certificateName + ".pem");
 	if(!certFile.exists())
@@ -1082,14 +1079,14 @@ CA::verifyCertificate(const String& certificateName,
 	{
 		LOGIT_ERROR("Invalid purpose: " << purpose);
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             Format(__("Invalid purpose %1."), purpose).c_str());
+		             str::form(__("Invalid purpose %s."), purpose.c_str()).c_str());
 	}
 
-	String configFilename = initConfigFile();
+	std::string configFilename = initConfigFile();
 
 	OpenSSLUtils ost(configFilename);
 
-	String ret = ost.verify(certFile.toString(),
+	std::string ret = ost.verify(certFile.toString(),
 	                        m_impl->repositoryDir + "/.cas/",
 	                        crlCheck,
 	                        purpose);
@@ -1116,11 +1113,11 @@ CA::getConfig()
  */
 
 void
-CA::createRootCA(const String& caName,
-                 const String& caPasswd,
+CA::createRootCA(const std::string& caName,
+                 const std::string& caPasswd,
                  const RequestGenerationData& caRequestData,
                  const CertificateIssueData& caIssueData,
-                 const String& repos)
+                 const std::string& repos)
 {
 	if(!caRequestData.valid())
 	{
@@ -1162,7 +1159,7 @@ CA::createRootCA(const String& caName,
 	CA tmpCA = CA(caName, caPasswd, repos);
 
 	// copy template to config
-	String configFilename = tmpCA.initConfigFile();
+	std::string configFilename = tmpCA.initConfigFile();
 
 	tmpCA.removeDefaultsFromConfig();
 
@@ -1216,11 +1213,11 @@ CA::createRootCA(const String& caName,
 
 
 void
-CA::importCA(const String& caName,
+CA::importCA(const std::string& caName,
              const ByteBuffer& caCertificate,
              const ByteBuffer& caKey,
-             const String& caPasswd,
-             const String& repos)
+             const std::string& caPasswd,
+             const std::string& repos)
 {
 	if(caName.empty())
 	{
@@ -1258,7 +1255,7 @@ CA::importCA(const String& caName,
 
 	PerlRegEx keyregex("-----BEGIN[\\w\\s]+KEY[-]{5}[\\S\\s\n]+-----END[\\w\\s]+KEY[-]{5}");
 
-	if(!keyregex.match(String(caKey.data(), caKey.size())))
+	if(!keyregex.match(std::string(caKey.data(), caKey.size())))
 	{
 		LOGIT_ERROR("Invalid Key data.");
 		BLOCXX_THROW(ca_mgm::ValueException,
@@ -1273,7 +1270,7 @@ CA::importCA(const String& caName,
 	}
 
 	PerlRegEx keycrypt("ENCRYPTED");
-	if(keycrypt.match( String(caKey.data(), caKey.size()) ))
+	if(keycrypt.match( std::string(caKey.data(), caKey.size()) ))
 	{
 		// Try to decrypt the key.
 		// In case of invalid password rsaConvert throws an exception.
@@ -1294,7 +1291,7 @@ CA::importCA(const String& caName,
 
 	LocalManagement::writeFile(caCertificate, caDir.toString() + "/cacert.pem");
 
-	if(keycrypt.match( String(caKey.data(), caKey.size()) ))
+	if(keycrypt.match( std::string(caKey.data(), caKey.size()) ))
 	{
 		LocalManagement::writeFile(caKey,
 		                           caDir.toString() + "/cacert.key");
@@ -1350,10 +1347,10 @@ CA::importCA(const String& caName,
 }
 
 
-std::vector<blocxx::String>
-CA::getCAList(const String& repos)
+std::vector<std::string>
+CA::getCAList(const std::string& repos)
 {
-	std::vector<String> caList;
+	std::vector<std::string> caList;
 
 	caList = OpenSSLUtils::listCA(repos);
 
@@ -1361,42 +1358,42 @@ CA::getCAList(const String& repos)
 }
 
 
-std::list<std::vector<blocxx::String> >
-CA::getCATree(const String& repos)
+std::list<std::vector<std::string> >
+CA::getCATree(const std::string& repos)
 {
-	std::list<std::vector<String> > ret;
+	std::list<std::vector<std::string> > ret;
 
-	std::vector<String> caList = CA::getCAList(repos);
+	std::vector<std::string> caList = CA::getCAList(repos);
 
 	if(caList.empty())
 	{
 		return ret;
 	}
 
-	std::map<String, std::vector<String> > caHash;
+	std::map<std::string, std::vector<std::string> > caHash;
 
-	std::vector<String>::const_iterator it = caList.begin();
+	std::vector<std::string>::const_iterator it = caList.begin();
 	for(; it != caList.end(); ++it)
 	{
 		CertificateData caData =
 			LocalManagement::getCertificate(repos + "/" + (*it) + "/cacert.pem",
 			                                E_PEM);
 
-		std::vector<String> d;
+		std::vector<std::string> d;
 		d.push_back(caData.getSubjectDN().getOpenSSLString());
 		d.push_back(caData.getIssuerDN().getOpenSSLString());
 		caHash[*it] = d;
 	}
 
 
-	std::map<String, std::vector<String> >::const_iterator chit = caHash.begin();
+	std::map<std::string, std::vector<std::string> >::const_iterator chit = caHash.begin();
 	for(; chit != caHash.end(); ++chit)
 	{
 		//       subject        ==       issuer
 		if( ((*chit).second)[0] == ((*chit).second)[1] )
 		{
 			// root CA
-			std::vector<String> d;
+			std::vector<std::string> d;
 			d.push_back((*chit).first);
 			d.push_back("");
 
@@ -1407,13 +1404,13 @@ CA::getCATree(const String& repos)
 			bool issuerFound = false;
 
 			// sub CA; find caName of the issuer
-			std::map<String, std::vector<String> >::const_iterator chitnew = caHash.begin();
+			std::map<std::string, std::vector<std::string> >::const_iterator chitnew = caHash.begin();
 			for(; chitnew != caHash.end(); ++chitnew)
 			{
 				//       issuer          ==       subject
 				if(  ((*chit).second)[1] == ((*chitnew).second)[0]  )
 				{
-					std::vector<String> d;
+					std::vector<std::string> d;
 					d.push_back((*chit).first);
 					d.push_back((*chitnew).first);
 
@@ -1426,7 +1423,7 @@ CA::getCATree(const String& repos)
 			if(!issuerFound)
 			{
 				// the issuer is not in our repository
-				std::vector<String> d;
+				std::vector<std::string> d;
 				d.push_back((*chit).first);
 				d.push_back("");
 
@@ -1441,7 +1438,7 @@ CA::getCATree(const String& repos)
 }
 
 CertificateIssueData
-CA::getRootCAIssueDefaults(const String& repos)
+CA::getRootCAIssueDefaults(const std::string& repos)
 {
 	CAConfig *config = new CAConfig(repos+"/openssl.cnf.tmpl");
 	CertificateIssueData cid = CertificateIssueData(config, E_CA_Cert);
@@ -1451,7 +1448,7 @@ CA::getRootCAIssueDefaults(const String& repos)
 }
 
 RequestGenerationData
-CA::getRootCARequestDefaults(const String& repos)
+CA::getRootCARequestDefaults(const std::string& repos)
 {
 	CAConfig *config = new CAConfig(repos+"/openssl.cnf.tmpl");
 	RequestGenerationData rgd = RequestGenerationData(config, E_CA_Req);
@@ -1461,10 +1458,10 @@ CA::getRootCARequestDefaults(const String& repos)
 }
 
 void
-CA::deleteCA(const String& caName,
-             const String& caPasswd,
+CA::deleteCA(const std::string& caName,
+             const std::string& caPasswd,
              bool force,
-             const String& repos)
+             const std::string& repos)
 {
 	if(caName.empty())
 	{
@@ -1478,8 +1475,8 @@ CA::deleteCA(const String& caName,
 	{
 		LOGIT_ERROR("CA name does not exist.(" << pi.toString() << ")");
 		BLOCXX_THROW_ERR(ca_mgm::ValueException,
-		                 // %1 is the absolute path name to the CA
-		                 Format(__("CA name does not exist (%1)."), pi.toString()).c_str(),
+		                 // %s is the absolute path name to the CA
+		                 str::form(__("CA name does not exist (%s)."), pi.toString().c_str()).c_str(),
 		                 E_FILE_NOT_FOUND);
 	}
 
@@ -1535,7 +1532,7 @@ CA::deleteCA(const String& caName,
 		LOGIT_ERROR("Deleting the CA failed: " << r);
 		BLOCXX_THROW(ca_mgm::SystemException,
 		             // %1 is the error code of rm
-		             Format(__("Deleting the CA failed: %1."), r).c_str());
+		             str::form(__("Deleting the CA failed: %1."), r).c_str());
 	}
 
 	path::PathInfo p(repos + "/.cas/" + caName + ".pem");
@@ -1578,7 +1575,7 @@ CA::checkDNPolicy(const DNObject& dn, Type type)
 	   type == E_CA_Req     || type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException, Format(__("Wrong type: %1."), type).c_str());
+		BLOCXX_THROW(ca_mgm::ValueException, str::form(__("Wrong type: %1."), type).c_str());
 	}
 
 	bool p = m_impl->config->exists(type2Section(type, false), "policy");
@@ -1588,7 +1585,7 @@ CA::checkDNPolicy(const DNObject& dn, Type type)
 		BLOCXX_THROW(ca_mgm::SyntaxException,
 		             __("The configuration file is missing a value for policy."));
 	}
-	String policySect = m_impl->config->getValue(type2Section(type, false), "policy");
+	std::string policySect = m_impl->config->getValue(type2Section(type, false), "policy");
 
 	StringList policyKeys = m_impl->config->getKeylist(policySect);
 
@@ -1596,7 +1593,7 @@ CA::checkDNPolicy(const DNObject& dn, Type type)
 	{
 		LOGIT_ERROR("Can not parse Section " << policySect);
 		BLOCXX_THROW(ca_mgm::SyntaxException,
-		             Format(__("Cannot parse section %1."), policySect).c_str());
+		             str::form(__("Cannot parse section %s."), policySect.c_str()).c_str());
 	}
 	StringList::const_iterator it = policyKeys.begin();
 
@@ -1610,16 +1607,16 @@ CA::checkDNPolicy(const DNObject& dn, Type type)
 		policyFound = false;  // reset
 
 		// could be optional, supplied or match
-		String policyString = m_impl->config->getValue(policySect, *it);
+		std::string policyString = m_impl->config->getValue(policySect, *it);
 
 		LOGIT_DEBUG("PolicyKey:" << *it << "  PolicyString:"<< policyString);
 
-		if(policyString.equalsIgnoreCase("optional"))
+		if(0 == str::compareCI(policyString, "optional"))
 		{
 			// do not care
 			policyFound = true;
 		}
-		else if(policyString.equalsIgnoreCase("supplied"))
+		else if(0 == str::compareCI(policyString, "supplied"))
 		{
 			policyFound = true;
 
@@ -1630,7 +1627,7 @@ CA::checkDNPolicy(const DNObject& dn, Type type)
 
 			for(; rdnit != l.end(); ++rdnit)
 			{
-				if( (*it).equalsIgnoreCase( (*rdnit).getType() ) )
+				if( 0 == str::compareCI(*it, (*rdnit).getType() ) )
 				{
 					foundInDN = true;
 
@@ -1668,8 +1665,8 @@ CA::checkDNPolicy(const DNObject& dn, Type type)
 
 						LOGIT_ERROR("Field '" << *it << "' must have a value");
 						BLOCXX_THROW_ERR(ca_mgm::ValueException,
-						                 Format(__("Field %1 must have a value."),
-						                        *it).c_str(),
+						                 str::form(__("Field %s must have a value."),
+						                        (*it).c_str()).c_str(),
 						                 errorCode);
 					}
 				}
@@ -1707,14 +1704,14 @@ CA::checkDNPolicy(const DNObject& dn, Type type)
 				}
 				LOGIT_ERROR("The '" << *it << "' field must be defined.");
 				BLOCXX_THROW_ERR(ca_mgm::ValueException,
-				                 Format(__("%1 must be defined."), *it).c_str(),
+				                 str::form(__("%s must be defined."), (*it).c_str()).c_str(),
 				                 errorCode);
 			}
 		}
-		else if(policyString.equalsIgnoreCase("match"))
+		else if(0 == str::compareCI(policyString, "match"))
 		{
-			String caMatchValue;
-			String reqMatchValue;
+			std::string caMatchValue;
+			std::string reqMatchValue;
 
 			// read the CA and check the value
 			// *it == key (e.g. commonName, emailAddress, ...
@@ -1724,7 +1721,7 @@ CA::checkDNPolicy(const DNObject& dn, Type type)
 
 			for(; rdnit != l.end(); ++rdnit)
 			{
-				if( (*it).equalsIgnoreCase( (*rdnit).getType() ) )
+				if( 0 == str::compareCI(*it, (*rdnit).getType() ) )
 				{
 					rdn2check = *rdnit;
 					break;
@@ -1740,7 +1737,7 @@ CA::checkDNPolicy(const DNObject& dn, Type type)
 				LOGIT_DEBUG("Type (ca == request): " <<(*caRdnIT).getType() << "==" << rdn2check.getType());
 				LOGIT_DEBUG("Value(ca == request): " <<(*caRdnIT).getValue() << "==" << rdn2check.getValue());
 
-				if((*caRdnIT).getType().equalsIgnoreCase(rdn2check.getType()))
+				if(0 == str::compareCI((*caRdnIT).getType(), rdn2check.getType() ))
 				{
 					if((*caRdnIT).getValue()  == rdn2check.getValue())
 					{
@@ -1792,8 +1789,8 @@ CA::checkDNPolicy(const DNObject& dn, Type type)
 				            caMatchValue<<") and the request ("<< reqMatchValue <<")");
 
 				BLOCXX_THROW_ERR(ca_mgm::ValueException,
-				                 Format(__("%1 must be the same in the CA certificate (%2) and the request (%3)."),
-				                        *it, caMatchValue, reqMatchValue).c_str(),
+				                 str::form(__("%s must be the same in the CA certificate (%s) and the request (%s)."),
+				                        (*it).c_str(), caMatchValue.c_str(), reqMatchValue.c_str()).c_str(),
 				                 errorCode);
 			}
 
@@ -1810,7 +1807,7 @@ CA::checkDNPolicy(const DNObject& dn, Type type)
 	return;
 }
 
-String
+std::string
 CA::initConfigFile()
 {
 	return m_impl->initConfigFile();
@@ -1850,7 +1847,7 @@ CA::removeDefaultsFromConfig()
 		BLOCXX_THROW(ca_mgm::SyntaxException,
 		             __("Missing section 'distinguished_name' in the configuration file."));
 	}
-	String dnSect = m_impl->config->getValue("req_ca", "distinguished_name");
+	std::string dnSect = m_impl->config->getValue("req_ca", "distinguished_name");
 
 	StringList dnKeys = m_impl->config->getKeylist(dnSect);
 
@@ -1858,13 +1855,13 @@ CA::removeDefaultsFromConfig()
 	{
 		LOGIT_ERROR("Can not parse Section " << dnSect);
 		BLOCXX_THROW(ca_mgm::SyntaxException,
-		             Format(__("Cannot parse section %1."), dnSect).c_str());
+		             str::form(__("Cannot parse section %s."), dnSect.c_str()).c_str());
 	}
 	StringList::const_iterator it = dnKeys.begin();
 
 	for(; it != dnKeys.end(); ++it)
 	{
-		if((*it).endsWith("_default", String::E_CASE_INSENSITIVE))
+		if(str::endsWithCI(*it, "_default"))
 		{
 			// delete the default value
 			m_impl->config->deleteValue(dnSect, *it);

@@ -37,12 +37,12 @@ using namespace blocxx;
 
 // -------------------------------------------------------------------
 ca_mgm::url::UrlRef
-getUrlByScheme(const blocxx::String &scheme);
+getUrlByScheme(const std::string &scheme);
 
 
 // -------------------------------------------------------------------
 #if 0
-std::vector<blocxx::String>
+std::vector<std::string>
 getUrlBySchemeNames();
 #endif
 

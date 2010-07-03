@@ -40,10 +40,10 @@ class SubjectKeyIdentifierExtImpl : public blocxx::COWIntrusiveCountableBase
 public:
 	SubjectKeyIdentifierExtImpl()
 		: autodetect(false)
-		, keyid(String())
+		, keyid(std::string())
 	{}
 
-	SubjectKeyIdentifierExtImpl(bool autoDetect, const String& keyID)
+	SubjectKeyIdentifierExtImpl(bool autoDetect, const std::string& keyID)
 		: autodetect(autoDetect)
 		, keyid(keyID)
 	{}
@@ -62,7 +62,7 @@ public:
 	}
 
 	bool   autodetect;  // ??
-	String keyid;
+	std::string keyid;
 };
 
 
@@ -80,18 +80,18 @@ SubjectKeyIdentifierExt::SubjectKeyIdentifierExt(CAConfig* caConfig, Type type)
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             Format(__("Wrong type: %1."), type).c_str());
+		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
 	bool p = caConfig->exists(type2Section(type, true), "subjectKeyIdentifier");
 	if(p)
 	{
-		String        str;
+		std::string        str;
 
-		std::vector<blocxx::String>   sp   = convStringArray(PerlRegEx("\\s*,\\s*")
-			.split(caConfig->getValue(type2Section(type, true), "subjectKeyIdentifier")));
+		std::vector<std::string>   sp   = PerlRegEx("\\s*,\\s*")
+			.split(caConfig->getValue(type2Section(type, true), "subjectKeyIdentifier"));
 
-		if(sp[0].equalsIgnoreCase("critical"))
+		if(0 == str::compareCI(sp[0], "critical"))
 		{
 			setCritical(true);
 			str = sp[1];
@@ -101,10 +101,10 @@ SubjectKeyIdentifierExt::SubjectKeyIdentifierExt(CAConfig* caConfig, Type type)
 			str = sp[0];
 		}
 
-		if(str.equalsIgnoreCase("hash"))
+		if(0 == str::compareCI(str, "hash"))
 		{
 			m_impl->autodetect = true;
-			m_impl->keyid      = String();
+			m_impl->keyid      = std::string();
 		}
 		else
 		{
@@ -115,7 +115,7 @@ SubjectKeyIdentifierExt::SubjectKeyIdentifierExt(CAConfig* caConfig, Type type)
 	setPresent(p);
 }
 
-SubjectKeyIdentifierExt::SubjectKeyIdentifierExt(bool autoDetect, const String& keyid)
+SubjectKeyIdentifierExt::SubjectKeyIdentifierExt(bool autoDetect, const std::string& keyid)
 	: ExtensionBase()
 	, m_impl(new SubjectKeyIdentifierExtImpl(autoDetect, keyid))
 {
@@ -152,7 +152,7 @@ SubjectKeyIdentifierExt::operator=(const SubjectKeyIdentifierExt& extension)
 
 void
 SubjectKeyIdentifierExt::setSubjectKeyIdentifier(bool autoDetect,
-	const String& keyId)
+	const std::string& keyId)
 {
 	if(!keyId.empty() && !initHexCheck().isValid(keyId))
 	{
@@ -176,7 +176,7 @@ SubjectKeyIdentifierExt::isAutoDetectionEnabled() const
 	return m_impl->autodetect;
 }
 
-blocxx::String
+std::string
 SubjectKeyIdentifierExt::getKeyID() const
 {
 	if(!isPresent())
@@ -203,12 +203,12 @@ SubjectKeyIdentifierExt::commit2Config(CA& ca, Type type) const
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             Format(__("Wrong type: %1."), type).c_str());
+		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
 	if(isPresent())
 	{
-		String extString;
+		std::string extString;
 
 		if(isCritical())         extString += "critical,";
 		if(m_impl->autodetect)   extString += "hash";
@@ -231,17 +231,17 @@ SubjectKeyIdentifierExt::valid() const
 
 	if(!m_impl->autodetect && m_impl->keyid.empty())
 	{
-		LOGIT_DEBUG(String("Wrong value for SubjectKeyIdentifierExt: ") +
-		            Format("autodetect(%1), keyId(%2)",
-		                   m_impl->autodetect?"true":"false", m_impl->keyid));
+		LOGIT_DEBUG(std::string("Wrong value for SubjectKeyIdentifierExt: ") +
+		            str::form("autodetect(%s), keyId(%s)",
+		                   m_impl->autodetect?"true":"false", m_impl->keyid.c_str()));
 		return false;
 	}
 
 	if(m_impl->autodetect && !m_impl->keyid.empty())
 	{
-		LOGIT_DEBUG(String("Wrong value for SubjectKeyIdentifierExt: ") +
-		            Format("autodetect(%1), keyId(%2)",
-		                   m_impl->autodetect?"true":"false", m_impl->keyid));
+		LOGIT_DEBUG(std::string("Wrong value for SubjectKeyIdentifierExt: ") +
+		            str::form("autodetect(%s), keyId(%s)",
+		                   m_impl->autodetect?"true":"false", m_impl->keyid.c_str()));
 		return false;
 	}
 	if(!m_impl->keyid.empty())
@@ -256,51 +256,51 @@ SubjectKeyIdentifierExt::valid() const
 	return true;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 SubjectKeyIdentifierExt::verify() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 
 	if(!isPresent()) return result;
 
 	if(!m_impl->autodetect && m_impl->keyid.empty())
 	{
-		result.push_back(String("Wrong value for SubjectKeyIdentifierExt: ") +
-		              Format("autodetect(%1), keyId(%2)",
+		result.push_back(std::string("Wrong value for SubjectKeyIdentifierExt: ") +
+		              str::form("autodetect(%s), keyId(%s)",
 		                     m_impl->autodetect?"true":"false",
-		                     m_impl->keyid.c_str()).toString());
+		                     m_impl->keyid.c_str()));
 	}
 
 	if(m_impl->autodetect && !m_impl->keyid.empty())
 	{
-		result.push_back(String("Wrong value for SubjectKeyIdentifierExt: ") +
-		              Format("autodetect(%1), keyId(%2)",
+		result.push_back(std::string("Wrong value for SubjectKeyIdentifierExt: ") +
+		              str::form("autodetect(%s), keyId(%s)",
 		                     m_impl->autodetect?"true":"false",
-		                     m_impl->keyid.c_str()).toString());
+		                     m_impl->keyid.c_str()));
 	}
 	if(!m_impl->keyid.empty())
 	{
 		ValueCheck check = initHexCheck();
 		if(!check.isValid(m_impl->keyid))
 		{
-			result.push_back(Format("Wrong keyID in SubjectKeyIdentifierExt: %1",
-			                     m_impl->keyid.c_str()).toString());
+			result.push_back(str::form("Wrong keyID in SubjectKeyIdentifierExt: %s",
+			                     m_impl->keyid.c_str()));
 		}
 	}
 	LOGIT_DEBUG_STRINGARRAY("SubjectKeyIdentifierExt::verify()", result);
 	return result;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 SubjectKeyIdentifierExt::dump() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 	result.push_back("SubjectKeyIdentifierExt::dump()");
 
 	appendArray(result, ExtensionBase::dump());
 	if(!isPresent()) return result;
 
-	result.push_back("Autodetect = " + Bool(m_impl->autodetect).toString());
+	result.push_back("Autodetect = " + str::toString(m_impl->autodetect));
 	result.push_back("KeyID = " + m_impl->keyid);
 
 	return result;

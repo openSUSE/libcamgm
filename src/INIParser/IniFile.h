@@ -15,7 +15,7 @@
 #define IniFile_h
 
 #include <limal/Logger.hpp>
-#include <blocxx/String.hpp>
+#include <limal/String.hpp>
 #include <blocxx/IntrusiveReference.hpp>
 #include "INIParser/INIParserDescr.hpp"
 #include <list>
@@ -38,17 +38,17 @@ typedef std::list<SectionAll> SectionList;
 
 struct SectionAll
 {
-    blocxx::String kind;    //section,value
-    blocxx::String name;
-    blocxx::String type;    // section_type
-    blocxx::String file;    // "rewrite", section_file
-    blocxx::String comment;
-    blocxx::String value;   // if kind == value
+    std::string kind;    //section,value
+    std::string name;
+    std::string type;    // section_type
+    std::string file;    // "rewrite", section_file
+    std::string comment;
+    std::string value;   // if kind == value
     SectionList sectionList;
 };
 
-typedef std::list<blocxx::String> StringList;
-typedef std::map<blocxx::String, blocxx::String> StringMap;
+typedef std::list<std::string> StringList;
+typedef std::map<std::string, std::string> StringMap;
 
 /**
  * Base class of IniEntry and IniSection.
@@ -60,9 +60,9 @@ class IniBase
 {
 protected:
     /** name */
-    blocxx::String name;
+    std::string name;
     /** comment */
-    blocxx::String comment;
+    std::string comment;
     /** index to params/sections in IniParser using which this item was read */
     int read_by;
     /** changed? */
@@ -72,7 +72,7 @@ protected:
     IniBase (int rb)
 	: name (), comment (), read_by (rb), dirty (false) {}
     /** Used by another IniSection ctor */
-    IniBase (const blocxx::String &n)
+    IniBase (const std::string &n)
 	: name (n), comment (), read_by (0), dirty (true) {}
 public:
     virtual ~IniBase () {}
@@ -85,24 +85,24 @@ public:
     virtual void clean() { dirty = false; }
 
     /** changes and sets dirty flag */
-    void setName(const blocxx::String&c)    { dirty = true; name = c;    }
+    void setName(const std::string&c)    { dirty = true; name = c;    }
     /** changes and sets dirty flag */
-    void setComment(const blocxx::String&c) { dirty = true; comment = c; }
+    void setComment(const std::string&c) { dirty = true; comment = c; }
     /** changes and sets dirty flag */
     void setReadBy(int r)	    { dirty = true; read_by = r; }
     /** sets dirty flag */
     void setDirty()		    { dirty = true; }
 
     /** changes value only if not dirty */
-    void initName(const blocxx::String&c)    { if (!dirty) name = c;    }
+    void initName(const std::string&c)    { if (!dirty) name = c;    }
     /** changes value only if not dirty */
-    void initComment(const blocxx::String&c) { if (!dirty) comment = c; }
+    void initComment(const std::string&c) { if (!dirty) comment = c; }
     /** changes value only if not dirty */
     void initReadBy(const int r)     { if (!dirty) read_by = r; }
 
     /** changes values only if not dirty */
-    void init(const blocxx::String &n,
-	      const blocxx::String&c, int rb)
+    void init(const std::string &n,
+	      const std::string&c, int rb)
 	    {
 		if (!dirty)
 		    {
@@ -120,7 +120,7 @@ protected:
 	SectionAll m;
 
 	m.name = name;
-	m.type = blocxx::String (read_by);
+	m.type = str::numstring (read_by);
 	m.comment = comment;
 	return m;
     }
@@ -131,7 +131,7 @@ protected:
 	bool ok = true;
 	name = in.name;
 	comment = in.comment;
-	read_by = in.type.toInt();
+	read_by = str::strtonum<int>(in.type);
 	return ok? 0: -1;
     }
 };
@@ -143,7 +143,7 @@ class IniEntry : public IniBase
 {
 private:
     /** value */
-    blocxx::String val;
+    std::string val;
 public:
     IniEntry ()
 	: IniBase (0), val () {}
@@ -152,18 +152,18 @@ public:
 
     const char* getValue()   const { return val.c_str();     }
 
-    void setValue(const blocxx::String&c)   { dirty = true; val = c;     }
+    void setValue(const std::string&c)   { dirty = true; val = c;     }
 
     /** changes value only if not dirty */
-    void initValue(const blocxx::String&c)   { if (!dirty) val = c;     }
+    void initValue(const std::string&c)   { if (!dirty) val = c;     }
     /** changes value only if not dirty */
     void initReadBy(const int r)     { if (!dirty) read_by = r; }
 
     /** changes values only if not dirty */
-    void init(const blocxx::String &n,
-	      const blocxx::String &c,
+    void init(const std::string &n,
+	      const std::string &c,
 	      int rb,
-	      const blocxx::String &v)
+	      const std::string &v)
 	    {
 		if (!dirty)
 		    {
@@ -183,7 +183,7 @@ public:
 	int ret = IniBase::setAllDoIt (in);
 	if (ret == 0)
 	{
-	    blocxx::String kind = in.kind;
+	    std::string kind = in.kind;
 	    if (kind != "value")
 	    {
 		return -1;
@@ -204,8 +204,8 @@ typedef std::list<IniContainerElement> IniContainer;
 typedef IniContainer::iterator IniIterator;
 
 /** indices */
-typedef std::multimap<blocxx::String, IniIterator> IniEntryIndex;
-typedef std::multimap<blocxx::String, IniIterator> IniSectionIndex;
+typedef std::multimap<std::string, IniIterator> IniEntryIndex;
+typedef std::multimap<std::string, IniIterator> IniSectionIndex;
 /**
   Watch it, "find" finds an iterator pointing at an iterator (which is
   in a pair with the key, uninteresting).
@@ -236,7 +236,7 @@ private:
      * if this is global section, there may be comment at the end
      * this is quite special case, it is impossible to change it
      */
-    blocxx::String end_comment;
+    std::string end_comment;
 
     /** index to IniParser::rewrites for filename - section name mapping
      * It appears that read_by was used for both purposes,
@@ -276,7 +276,7 @@ private:
      * @param depth path index
      * @return 0 in case of success
      */
-    int getMyValue (const std::vector<blocxx::String> &p,
+    int getMyValue (const std::vector<std::string> &p,
 		    StringList &out, int what, int depth);
     /**
      * Get a value on a path
@@ -288,7 +288,7 @@ private:
      * path[depth] in current "scope"
      * @return 0 in case of success
      */
-    int getValue (const std::vector<blocxx::String>&p,
+    int getValue (const std::vector<std::string>&p,
 		  StringList&out,int what, int depth = 0);
     /**
      * Get section property -- comment or read-by
@@ -300,7 +300,7 @@ private:
      * path[depth] in current "scope"
      * @return 0 in case of success
      */
-    int getSectionProp (const std::vector<blocxx::String>&p,
+    int getSectionProp (const std::vector<std::string>&p,
 			StringList&out,int what, int depth = 0);
     /**
      * Get a complete subtree
@@ -311,7 +311,7 @@ private:
      * path[depth] in current "scope"
      * @return 0 in case of success
      */
-    int getAll (const std::vector<blocxx::String>&p,
+    int getAll (const std::vector<std::string>&p,
 		SectionAll&out, int depth);
     /**
      * Gets data for this section and all its values and subsections
@@ -335,7 +335,7 @@ private:
      * @param depth see getSectionProp
      * @return 0 in case of success
      */
-    int dirHelper (const std::vector<blocxx::String>&p,
+    int dirHelper (const std::vector<std::string>&p,
 		   StringList&out,int sections,int depth = 0);
     /**
      * Set a value (or list of them if repeat_names) in this section
@@ -347,7 +347,7 @@ private:
      * @param depth path index
      * @return 0
      */
-    int setMyValue (const std::vector<blocxx::String> &p,
+    int setMyValue (const std::vector<std::string> &p,
 		    const StringList&in, int what, int depth);
     /**
      * Set value on path. Creates recursively all non-existing subsections.
@@ -357,7 +357,7 @@ private:
      * @param depth see getSectionProp
      * @return 0
      */
-    int setValue (const std::vector<blocxx::String>&p,
+    int setValue (const std::vector<std::string>&p,
 		  const StringList&in,int what, int depth = 0);
     /**
      * Set section comment or read-by. Creates recursively all non-existing subsections.
@@ -367,7 +367,7 @@ private:
      * @param depth see getSectionProp
      * @return 0
      */
-    int setSectionProp (const std::vector<blocxx::String>&p,
+    int setSectionProp (const std::vector<std::string>&p,
 			const StringList&in, int what, int depth);
 
     /**
@@ -382,7 +382,7 @@ private:
      * @param depth see getSectionProp
      * @return 0 in case of success
      */
-    int delValue (const std::vector<blocxx::String>&p,
+    int delValue (const std::vector<std::string>&p,
 		  int depth);
     /**
      * Delete section on path. Deletes also all its subsections.
@@ -390,14 +390,14 @@ private:
      * @param depth see getSectionProp
      * @return 0 in case of success
      */
-    int delSection (const std::vector<blocxx::String>&p,
+    int delSection (const std::vector<std::string>&p,
 		    int depth);
 
     /**
      * deletes all values of this name we own
      * @param k normalized key
      */
-    void delMyValue (const blocxx::String &k);
+    void delMyValue (const std::string &k);
     /**
      * deletes a section we own
      */
@@ -413,7 +413,7 @@ private:
      * @param out output
      * @return 0 in case of success
      */
-    int getValueFlat (const std::vector<blocxx::String>&p,
+    int getValueFlat (const std::vector<std::string>&p,
 		      StringList&out);
     /**
      * Set value in flat mode.
@@ -421,16 +421,16 @@ private:
      * @param out input
      * @return 0 in case of success
      */
-    int setValueFlat (const std::vector<blocxx::String>&p,
+    int setValueFlat (const std::vector<std::string>&p,
 		      const StringList& in);
     /**
      * Delete value in flat mode
      */
-    int delValueFlat (const std::vector<blocxx::String>&p);
+    int delValueFlat (const std::vector<std::string>&p);
     /**
      * Get list of values in flat mode.
      */
-    int dirValueFlat (const std::vector<blocxx::String>&p, StringList&l);
+    int dirValueFlat (const std::vector<std::string>&p, StringList&l);
 //    IniSection ();
 public:
     /** explicit uninitialized constructor */
@@ -478,7 +478,7 @@ public:
      * @param ip parser to take options from
      * @param n name of section
      */
-    IniSection (const blocxx::IntrusiveReference<IniParser> &p, blocxx::String n)
+    IniSection (const blocxx::IntrusiveReference<IniParser> &p, std::string n)
 	: IniBase (n),
 	  ip (p),
 	  end_comment (), rewrite_by(0),
@@ -492,9 +492,9 @@ public:
      * @param comment comment
      * @param rb read-by
      */
-    void initValue (const blocxx::String&key,
-		    const blocxx::String&val,
-		    const blocxx::String&comment,int rb);
+    void initValue (const std::string&key,
+		    const std::string&val,
+		    const std::string&comment,int rb);
     /**
      * If section already exist, it is updated only in case, that it isn't
      * dirty.
@@ -503,8 +503,8 @@ public:
      * @param rb read-by
      * @param wb rewrite-by. if -2 (default), it is not changed
      */
-    void initSection (const blocxx::String&name,
-		      const blocxx::String&comment,int rb, int wb=-2);
+    void initSection (const std::string&name,
+		      const std::string&comment,int rb, int wb=-2);
     /**
      * This function has very special purpose, it ensures that top-section
      * delimiter is not written when saving multiple files.
@@ -541,7 +541,7 @@ public:
      * @param from recursion depth
      * @return Found ini section iterator
      */
-    IniSection& findSection(const std::vector<blocxx::String>&path, int from = 0);
+    IniSection& findSection(const std::vector<std::string>&path, int from = 0);
     /**
      * If currently parsed end-section-tag hasn't matched currently
      * processed section by name, we need to find the best possible match
@@ -555,7 +555,7 @@ public:
      * @param from let unset, current path index
      * @return index to path
      */
-    int findEndFromUp(const std::vector<blocxx::String>&path,
+    int findEndFromUp(const std::vector<std::string>&path,
 		      int wanted, int found = -1, int from = 0);
 
     /**
@@ -567,20 +567,20 @@ public:
      * Generic interface to SCR::Read
      * @param rewrite a #19066 hack - if rewriting is active, .st accesses rewrite_by
      */
-    int Read (const std::vector<blocxx::String>&p, StringList&out, bool rewrite);
+    int Read (const std::vector<std::string>&p, StringList&out, bool rewrite);
     /**
      * Get all properties and values of a section.
      */
-    int ReadAll (const std::vector<blocxx::String>&p, SectionAll&out);
+    int ReadAll (const std::vector<std::string>&p, SectionAll&out);
     /**
      * Generic interface to SCR::Dir
      */
-    int Dir (const std::vector<blocxx::String>&p, StringList&out);
+    int Dir (const std::vector<std::string>&p, StringList&out);
     /**
      * Generic interface to SCR::Write
      * @param rewrite a #19066 hack - if rewriting is active, .st accesses rewrite_by
      */
-    int Write (const std::vector<blocxx::String>&p, const StringList&v, bool rewrite);
+    int Write (const std::vector<std::string>&p, const StringList&v, bool rewrite);
     /**
      * Set all properties and values for a section.
      * No recursive creation of the specified path.
@@ -589,14 +589,14 @@ public:
      * @param depth see getSectionProp
      * @return 0 in case of success
      */
-    int WriteAll (const std::vector<blocxx::String>&p,
+    int WriteAll (const std::vector<std::string>&p,
 		  const SectionAll& in, int depth);
     /**
      * Generic delete for values, sections.
      * @param p path to delete
      * 	@return 0: success
      */
-    int Delete (const std::vector<blocxx::String>&p);
+    int Delete (const std::vector<std::string>&p);
 
     // used by IniParser::write
     IniIterator getContainerBegin ();

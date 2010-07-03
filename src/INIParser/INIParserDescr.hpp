@@ -50,12 +50,12 @@ struct IoPatternDescr
      * Reading description; 
      * An extended regular expression contatining two subexpressions ("...(...)...(...)..."), the name and the value of the entry
      */
-    blocxx::String regExpr;
+    std::string regExpr;
     /**    
      * Writing description;
      * A pair item is a printf format string containing two %s placeholders for the name and the value.
      */
-    blocxx::String out; 
+    std::string out; 
 };
 
 /**
@@ -115,13 +115,13 @@ struct EntryDescr
 
     IoPatternDescr line;
     /**
-    * String which marks the beginning of a value.
+    * std::string which marks the beginning of a value.
     */
-    blocxx::String multiBegin;
+    std::string multiBegin;
     /**
-    * String which marks the ending of a value.
+    * std::string which marks the ending of a value.
     */
-    blocxx::String multiEnd;
+    std::string multiEnd;
     /**
     * Flag if the multiline has been specified
     */

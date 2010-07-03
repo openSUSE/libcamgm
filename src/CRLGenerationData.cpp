@@ -76,14 +76,14 @@ CRLGenerationData::CRLGenerationData(CAConfig* caConfig, Type type)
 	: m_impl(new CRLGenerationDataImpl())
 {
 	m_impl->extensions = X509v3CRLGenerationExts(caConfig, type);
-	m_impl->crlHours = caConfig->getValue(type2Section(type, false), "default_crl_hours").toUInt32();
+	m_impl->crlHours = str::strtonum<uint32_t>(caConfig->getValue(type2Section(type, false), "default_crl_hours"));
 }
 
 CRLGenerationData::CRLGenerationData(uint32_t hours,
                                      const X509v3CRLGenerationExts& ext)
 	: m_impl(new CRLGenerationDataImpl(hours, ext))
 {
-	std::vector<blocxx::String> r = ext.verify();
+	std::vector<std::string> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -123,7 +123,7 @@ CRLGenerationData::getCRLLifeTime() const
 void
 CRLGenerationData::setExtensions(const X509v3CRLGenerationExts& ext)
 {
-	std::vector<blocxx::String> r = ext.verify();
+	std::vector<std::string> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -158,12 +158,12 @@ CRLGenerationData::commit2Config(CA& ca, Type type) const
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             Format(__("Wrong type: %1."), type).c_str());
+		             str::form(__("Wrong type: %d."), type).c_str());
 	}
 
 	ca.getConfig()->setValue(type2Section(type, false),
 	                         "default_crl_hours",
-	                         String(m_impl->crlHours));
+	                         str::numstring(m_impl->crlHours));
 
 	m_impl->extensions.commit2Config(ca, type);
 }
@@ -179,14 +179,14 @@ CRLGenerationData::valid() const
 	return m_impl->extensions.valid();
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 CRLGenerationData::verify() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 
 	if(m_impl->crlHours == 0)
 	{
-		result.push_back(Format("invalid crlhours: %1", m_impl->crlHours).toString());
+		result.push_back(str::form("invalid crlhours: %d", m_impl->crlHours));
 	}
 	appendArray(result, m_impl->extensions.verify());
 
@@ -195,13 +195,13 @@ CRLGenerationData::verify() const
 	return result;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 CRLGenerationData::dump() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 	result.push_back("CRLGenerationData::dump()");
 
-	result.push_back("CRL Hours = " + String(m_impl->crlHours));
+	result.push_back("CRL Hours = " + str::numstring(m_impl->crlHours));
 	appendArray(result, m_impl->extensions.dump());
 
 	return result;

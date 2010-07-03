@@ -30,7 +30,7 @@
 namespace CA_MGM_NAMESPACE {
 
 	class AuthorityKeyIdentifierExtImpl;
-	
+
 	class AuthorityKeyIdentifierExt : public ExtensionBase {
 	public:
 
@@ -44,23 +44,23 @@ namespace CA_MGM_NAMESPACE {
 		operator=(const AuthorityKeyIdentifierExt& extension);
 
 #endif
-		
+
 		/**
          * Return the key ID  of the Authority
          */
-		String
+		std::string
 		getKeyID() const;
 
         /**
          * Return the DirName of the Authority
          */
-		String
+		std::string
 		getDirName() const;
 
         /**
          * Return the serial number of the Authority
          */
-		String
+		std::string
 		getSerial() const;
 
         /**
@@ -69,7 +69,7 @@ namespace CA_MGM_NAMESPACE {
          * @return true if this object is valid, otherwise false
          */
 		virtual bool
-		valid() const;  
+		valid() const;
 
         /**
          * Verify this object and return an Array with all
@@ -78,26 +78,26 @@ namespace CA_MGM_NAMESPACE {
          * @return Array with error messages. If this Array is empty this
          * object is valid
          */
-		virtual std::vector<blocxx::String>
-		verify() const; 
-        
+		virtual std::vector<std::string>
+		verify() const;
+
         /**
          * Return the content of this object for debugging
          */
-		virtual std::vector<blocxx::String>
+		virtual std::vector<std::string>
 		dump() const;
 
 	protected:
 		blocxx::COWIntrusiveReference<AuthorityKeyIdentifierExtImpl> m_impl;
-		
+
 		void
-		setKeyID(const String& kid);
-		
+		setKeyID(const std::string& kid);
+
 		void
-		setDirName(const String& dirName);
-		
+		setDirName(const std::string& dirName);
+
 		void
-		setSerial(const String& serial);
+		setSerial(const std::string& serial);
 
 	private:
 		virtual void commit2Config(CA& ca, Type type) const;

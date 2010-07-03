@@ -31,31 +31,31 @@ int main()
 
     CAConfig *config    = new CAConfig("openssl.cnf.tmpl");
     CAConfig *configNew = config->clone("openssl.cnf.tmpl.test");
-    
+
     LIMAL_SLOG(ca_mgm::Logger("ca-mgm"),
                "DEBUG", "file openssl.cnf.tmpl.test parsed.");
-    
+
     configNew->setValue ("v3_req_server", "basicConstraints", "CA:TRUE");
     configNew->deleteValue ("v3_req_server", "keyUsage");
-    
+
     CAConfig *configDump = new CAConfig("openssl.cnf.tmpl.test");
     configDump->dump();
-    
-    typedef std::list<blocxx::String> StringList;
+
+    typedef std::list<std::string> StringList;
     StringList listKey = config->getKeylist("ca");
-    
+
     cout << "Key for section : ca" << endl;
-    
+
     for (StringList::iterator i = listKey.begin();
          i != listKey.end(); i++)
     {
         cout << "key   " << *i <<endl;
     }
-    
+
     delete (config);
     delete (configNew);
     delete (configDump);
-    
+
     cout << "DONE" << endl;
     return 0;
 }

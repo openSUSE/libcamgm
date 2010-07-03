@@ -45,7 +45,7 @@ public:
 	 *
 	 *
 	 */
-	CertificateData_Priv(const String &certificatePath,
+	CertificateData_Priv(const std::string &certificatePath,
 	                     FormatType formatType = E_PEM);
 
 	CertificateData_Priv(const CertificateData_Priv& data);
@@ -56,7 +56,7 @@ public:
 	setVersion(uint32_t v);
 
 	void
-	setSerial(const String& serial);
+	setSerial(const std::string& serial);
 
 	void
 	setCertifyPeriode(time_t start, time_t end);
@@ -86,7 +86,7 @@ public:
 	setExtensions(const X509v3CertificateExts& ext);
 
 	void
-	setFingerprint(const String& fp);
+	setFingerprint(const std::string& fp);
 
 private:
 	CertificateData_Priv& operator=(const CertificateData_Priv& data);

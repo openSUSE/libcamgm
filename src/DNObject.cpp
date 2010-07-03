@@ -61,30 +61,30 @@ RDNObject::operator=(const RDNObject& rdn)
 }
 
 void
-RDNObject::setRDNValue(const String& value)
+RDNObject::setRDNValue(const std::string& value)
 {
 	m_impl->value = value;
 }
 
 
-blocxx::String
+std::string
 RDNObject::getType() const
 {
 	return m_impl->type;
 }
 
-blocxx::String
+std::string
 RDNObject::getValue() const
 {
 	return m_impl->value;
 }
 
-blocxx::String
+std::string
 RDNObject::getOpenSSLValue() const
 {
-	if(m_impl->value.empty()) return String();
+	if(m_impl->value.empty()) return std::string();
 
-	std::map<String, String> opensslKeys;
+	std::map<std::string, std::string> opensslKeys;
 	opensslKeys["countryName"] = "C";
 	opensslKeys["stateOrProvinceName"] = "ST";
 	opensslKeys["localityName"] = "L";
@@ -94,8 +94,8 @@ RDNObject::getOpenSSLValue() const
 	opensslKeys["emailAddress"] = "emailAddress";
 	//opensslKeys[""] = "";
 
-	String ret;
-	std::map<String, String>::const_iterator it = opensslKeys.find(m_impl->type);
+	std::string ret;
+	std::map<std::string, std::string>::const_iterator it = opensslKeys.find(m_impl->type);
 
 	if( it != opensslKeys.end())
 	{
@@ -105,12 +105,12 @@ RDNObject::getOpenSSLValue() const
 	{
 		LOGIT_ERROR("Invalid type:" << m_impl->type);
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             // %1 is the invalid string for a DN type
-		             Format(__("Invalid type %1."), m_impl->type).c_str());
+		             // %s is the invalid string for a DN type
+		             str::form(__("Invalid type %s."), m_impl->type.c_str()).c_str());
 	}
 
 	PerlRegEx regex("([\\\\/])");
-	String v = regex.replace(m_impl->value, "\\\\\\1", true);
+	std::string v = regex.replace(m_impl->value, "\\\\\\1", true);
 
 	ret += v;
 
@@ -125,16 +125,16 @@ RDNObject::valid() const
 		LOGIT_DEBUG("type is empty");
 		return false;
 	}
-
-	if(m_impl->min != 0 && m_impl->value.UTF8Length() < m_impl->min)
+    // was UTF8Length
+	if(m_impl->min != 0 && m_impl->value.size() < m_impl->min)
 	{
 		LOGIT_DEBUG("value(" << m_impl->value <<
 		            ") is too small. Value has to be a minimal length of " <<
 		            m_impl->min);
 		return false;
 	}
-
-	if(m_impl->max != 0 && m_impl->value.UTF8Length() > m_impl->max)
+    // was UTF8Length
+	if(m_impl->max != 0 && m_impl->value.size() > m_impl->max)
 	{
 		LOGIT_DEBUG("value(" << m_impl->value <<
 		            ") is too long. Value has to be a maximal length of " <<
@@ -145,28 +145,30 @@ RDNObject::valid() const
 	return true;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 RDNObject::verify() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 
 	if(m_impl->type.empty())
 	{
 		result.push_back("type is empty");
 	}
 
-	if(m_impl->min != 0 && m_impl->value.UTF8Length() < m_impl->min)
+    // was UTF8Length
+	if(m_impl->min != 0 && m_impl->value.size() < m_impl->min)
 	{
 		result.push_back("Value(" + m_impl->value +
 		              ") is too small. Value has to be a minimal length of " +
-		              String(m_impl->min));
+		              str::numstring(m_impl->min));
 	}
 
-	if(m_impl->max != 0 && m_impl->value.UTF8Length() > m_impl->max)
+    // was UTF8Length
+	if(m_impl->max != 0 && m_impl->value.size() > m_impl->max)
 	{
 		result.push_back("Value(" + m_impl->value +
 		              ") is too long. Value has to be a maximal length of " +
-		              String(m_impl->max));
+		              str::numstring(m_impl->max));
 	}
 
 	LOGIT_DEBUG_STRINGARRAY("RDNObject::verify()", result);
@@ -174,16 +176,16 @@ RDNObject::verify() const
 	return result;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 RDNObject::dump() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 	result.push_back("RDNObject::dump()");
 
 	result.push_back(m_impl->type + "=" + m_impl->value);
 	result.push_back("Prompt:" + m_impl->prompt);
-	result.push_back("Min:" + String(m_impl->min));
-	result.push_back("Max:" + String(m_impl->max));
+	result.push_back("Min:" + str::numstring(m_impl->min));
+	result.push_back("Max:" + str::numstring(m_impl->max));
 	return result;
 }
 
@@ -246,7 +248,7 @@ DNObject::DNObject(CAConfig* caConfig, Type type)
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             Format(__("Wrong type: %1."), type).c_str());
+		             str::form(__("Wrong type: %d."), type).c_str());
 	}
 
 	bool p = caConfig->exists(type2Section(type, false), "distinguished_name");
@@ -256,7 +258,7 @@ DNObject::DNObject(CAConfig* caConfig, Type type)
 		BLOCXX_THROW(ca_mgm::SyntaxException,
 		             __("Missing section 'distinguished_name' in the configuration file."));
 	}
-	String dnSect = caConfig->getValue(type2Section(type, false),
+	std::string dnSect = caConfig->getValue(type2Section(type, false),
 	                                   "distinguished_name");
 
 	StringList dnKeys = caConfig->getKeylist(dnSect);
@@ -265,21 +267,21 @@ DNObject::DNObject(CAConfig* caConfig, Type type)
 	{
 		LOGIT_ERROR("Can not parse Section " << dnSect);
 		BLOCXX_THROW(ca_mgm::SyntaxException,
-		             Format(__("Cannot parse section %1."), dnSect).c_str());
+		             str::form(__("Cannot parse section %s."), dnSect.c_str()).c_str());
 	}
 	StringList::const_iterator it = dnKeys.begin();
 
-	String fieldName;
-	String prompt;
-	String defaultValue;
-	String min("0");
-	String max("0");
+	std::string fieldName;
+	std::string prompt;
+	std::string defaultValue;
+	std::string min("0");
+	std::string max("0");
 
 	for(; it != dnKeys.end(); ++it)
 	{
-		if((*it).endsWith("_default", String::E_CASE_INSENSITIVE))
+		if(str::endsWithCI(*it, "_default"))
 		{
-			if((*it).startsWith(fieldName, String::E_CASE_INSENSITIVE))
+			if(str::startsWithCI(*it, fieldName))
 			{
 				defaultValue = caConfig->getValue(dnSect, *it);
 			}
@@ -292,9 +294,9 @@ DNObject::DNObject(CAConfig* caConfig, Type type)
 				continue;
 			}
 		}
-		else if((*it).endsWith("_min", String::E_CASE_INSENSITIVE))
+		else if(str::endsWithCI(*it,  "_min"))
 		{
-			if((*it).startsWith(fieldName, String::E_CASE_INSENSITIVE))
+			if(str::startsWithCI(*it, fieldName))
 			{
 				min = caConfig->getValue(dnSect, *it);
 			}
@@ -307,9 +309,9 @@ DNObject::DNObject(CAConfig* caConfig, Type type)
 				continue;
 			}
 		}
-		else if((*it).endsWith("_max", String::E_CASE_INSENSITIVE))
+		else if(str::endsWithCI(*it, "_max"))
 		{
-			if((*it).startsWith(fieldName, String::E_CASE_INSENSITIVE))
+			if(str::startsWithCI(*it, fieldName))
 			{
 				max = caConfig->getValue(dnSect, *it);
 			}
@@ -332,15 +334,15 @@ DNObject::DNObject(CAConfig* caConfig, Type type)
 				m_impl->dn.push_back(RDNObject_Priv(fieldName,
 				                                    defaultValue,
 				                                    prompt,
-				                                    min.toUInt32(),
-				                                    max.toUInt32()));
+				                                    str::strtonum<uint32_t>(min),
+				                                    str::strtonum<uint32_t>(max)));
 			}
 
 			// reset
-			prompt       = String();
-			defaultValue = String();
-			min          = String("0");
-			max          = String("0");
+			prompt       = std::string();
+			defaultValue = std::string();
+			min          = std::string("0");
+			max          = std::string("0");
 
 			fieldName    = *it;
 			prompt       = caConfig->getValue(dnSect, *it);
@@ -352,8 +354,8 @@ DNObject::DNObject(CAConfig* caConfig, Type type)
 		m_impl->dn.push_back(RDNObject_Priv(fieldName,
 		                                    defaultValue,
 		                                    prompt,
-		                                    min.toUInt32(),
-		                                    max.toUInt32()));
+		                                    str::strtonum<uint32_t>(min),
+		                                    str::strtonum<uint32_t>(max)));
 	}
 }
 
@@ -361,7 +363,7 @@ DNObject::DNObject(const std::list<RDNObject> &dn)
 	: m_impl(new DNObjectImpl())
 {
 	m_impl->dn = dn;
-	std::vector<blocxx::String> r = this->verify();
+	std::vector<std::string> r = this->verify();
 	if(!r.empty())
 	{
 		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
@@ -388,7 +390,7 @@ DNObject::operator=(const DNObject& dn)
 void
 DNObject::setDN(const std::list<RDNObject> &dn)
 {
-	std::vector<blocxx::String> r = checkRDNList(dn);
+	std::vector<std::string> r = checkRDNList(dn);
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -403,10 +405,10 @@ DNObject::getDN() const
 	return m_impl->dn;
 }
 
-blocxx::String
+std::string
 DNObject::getOpenSSLString() const
 {
-	String ret;
+	std::string ret;
 
 	std::list<RDNObject>::const_iterator it = m_impl->dn.begin();
 	for(; it != m_impl->dn.end(); ++it)
@@ -428,7 +430,7 @@ DNObject::valid() const
 		LOGIT_DEBUG("empty DN");
 		return false;
 	}
-	std::vector<blocxx::String> r = checkRDNList(m_impl->dn);
+	std::vector<std::string> r = checkRDNList(m_impl->dn);
 	if(!r.empty())
 	{
 		LOGIT_DEBUG(r[0]);
@@ -437,10 +439,10 @@ DNObject::valid() const
 	return true;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 DNObject::verify() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 
 	if(m_impl->dn.empty())
 	{
@@ -453,10 +455,10 @@ DNObject::verify() const
 	return result;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 DNObject::checkRDNList(const std::list<RDNObject>& list) const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 
 	std::list<RDNObject>::const_iterator it = list.begin();
 	for(; it != list.end(); ++it)
@@ -466,10 +468,10 @@ DNObject::checkRDNList(const std::list<RDNObject>& list) const
 	return result;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 DNObject::dump() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 	result.push_back("DNObject::dump()");
 
 	std::list< RDNObject >::const_iterator it = m_impl->dn.begin();

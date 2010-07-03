@@ -11,7 +11,7 @@
 |                                         (C) SUSE Linux Products GmbH |
 \----------------------------------------------------------------------/
 
-  File:       String.hpp
+  File:       std::string.hpp
 
   Author:     Michael Andres
 
@@ -24,6 +24,7 @@
 #include <iosfwd>
 #include <vector>
 #include <string>
+#include <iostream>
 
 #include <stdlib.h>
 
@@ -108,7 +109,7 @@ namespace ca_mgm
   { return str << obj.c_str(); }
 
   ///////////////////////////////////////////////////////////////////
-  /** String related utilities and \ref ZYPP_STR_REGEX.
+  /** std::string related utilities and \ref ZYPP_STR_REGEX.
    \see \ref ZYPP_STR_REGEX
   */
   namespace str
@@ -118,6 +119,8 @@ namespace ca_mgm
     /**
      * Global asString() that works with std::string too
      */
+    inline std::string toString( bool b) { return (b?"true":"false"); }
+
     template<class _T>
         inline std::string asString( const _T &t )
         { return t.asString(); }
@@ -168,7 +171,7 @@ namespace ca_mgm
     };
 
     ///////////////////////////////////////////////////////////////////
-    /** \name String representation of number.
+    /** \name std::string representation of number.
      *
      * Optional second argument sets the minimal string width (' ' padded).
      * Negative values will cause the number to be left adjusted within the string.
@@ -194,7 +197,7 @@ namespace ca_mgm
     //@}
 
     ///////////////////////////////////////////////////////////////////
-    /** \name String representation of number as hex value with leading '0x'.
+    /** \name std::string representation of number as hex value with leading '0x'.
      * Optional second argument sets the minimal
      * string width (0 padded). Negative values will cause the number to be left adjusted
      * within the string. Default width is 10 (4 for char).
@@ -218,7 +221,7 @@ namespace ca_mgm
     //@}
 
     ///////////////////////////////////////////////////////////////////
-    /** \name String representation of number as octal value with leading '0'.
+    /** \name std::string representation of number as octal value with leading '0'.
      * Optional second argument sets the minimal
      * string width (0 padded). Negative values will cause the number to be left adjusted
      * within the string. Default width is 5 (4 for char).
@@ -245,7 +248,7 @@ namespace ca_mgm
     /** Parsing numbers from string.
     */
     //@{
-    /** String to integer type determined by template arg.
+    /** std::string to integer type determined by template arg.
      * \note Only specializations are defined.
      * \code
      * time_t t = strtonum<time_t>( "42" );
@@ -272,7 +275,7 @@ namespace ca_mgm
     template<>
       inline unsigned long long strtonum( const C_Str & str ) { return ::strtoull( str, NULL, 0 ); }
 
-    /** String to integer type detemined 2nd function arg \a i.
+    /** std::string to integer type detemined 2nd function arg \a i.
      * \code
      * time_t t; strtonum( "42", t );
      * \endcode
@@ -387,7 +390,7 @@ namespace ca_mgm
      *
      * \param line_r   The string to parse.
      * \param result_r
-     * \param sepchars_r  String of separator characters.
+     * \param sepchars_r  std::string of separator characters.
      * \param withEmpty   Whether to include empty fields between separators in the result.
      *
      * \endcode
@@ -750,12 +753,15 @@ namespace ca_mgm
 
     ///////////////////////////////////////////////////////////////////
 
-    /** \name String prefix/suffix handling.
+    /** \name std::string prefix/suffix handling.
      */
     //@{
     /** Return whether \a str_r has prefix \a prefix_r. */
     inline bool hasPrefix( const C_Str & str_r, const C_Str & prefix_r )
     { return( ::strncmp( str_r, prefix_r, prefix_r.size() ) == 0 ); }
+
+    inline bool hasPrefixCI( const C_Str & str_r, const C_Str & prefix_r )
+    { return( ::strncasecmp( str_r, prefix_r, prefix_r.size() ) == 0 ); }
 
     /** Strip a \a prefix_r from \a str_r and return the resulting string. */
     inline std::string stripPrefix( const C_Str & str_r, const C_Str & prefix_r )
@@ -764,6 +770,9 @@ namespace ca_mgm
     /** Return whether \a str_r has suffix \a suffix_r. */
     inline bool hasSuffix( const C_Str & str_r, const C_Str & suffix_r )
     { return( str_r.size() >= suffix_r.size() && ::strncmp( str_r + str_r.size() - suffix_r.size() , suffix_r, suffix_r.size() ) == 0 ); }
+
+    inline bool hasSuffixCI( const C_Str & str_r, const C_Str & suffix_r )
+    { return( str_r.size() >= suffix_r.size() && ::strncasecmp( str_r + str_r.size() - suffix_r.size() , suffix_r, suffix_r.size() ) == 0 ); }
 
     /** Strip a \a suffix_r from \a str_r and return the resulting string. */
     inline std::string stripSuffix( const C_Str & str_r, const C_Str & suffix_r )
@@ -776,10 +785,18 @@ namespace ca_mgm
     /** alias for \ref hasPrefix */
     inline bool startsWith( const C_Str & str_r, const C_Str & prefix_r )
     { return hasPrefix( str_r, prefix_r ); }
+    /** alias for \ref hasPrefixCI */
+    inline bool startsWithCI( const C_Str & str_r, const C_Str & prefix_r )
+    { return hasPrefixCI( str_r, prefix_r ); }
+
     /** alias for \ref hasSuffix */
     inline bool endsWith( const C_Str & str_r, const C_Str & prefix_r )
     { return hasSuffix( str_r, prefix_r ); }
+
+    inline bool endsWithCI( const C_Str & str_r, const C_Str & prefix_r )
+    { return hasSuffixCI( str_r, prefix_r ); }
     //@}
+
     /////////////////////////////////////////////////////////////////
   } // namespace str
   ///////////////////////////////////////////////////////////////////

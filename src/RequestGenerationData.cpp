@@ -73,8 +73,8 @@ public:
 	MD                messageDigest;       // parameter default_md
 
 	// attributes
-	String            challengePassword;
-	String            unstructuredName;
+	std::string            challengePassword;
+	std::string            unstructuredName;
 
 	X509v3RequestExts extensions;
 
@@ -90,18 +90,18 @@ RequestGenerationData::RequestGenerationData(CAConfig* caConfig, Type type)
 {
 	m_impl->subject = DNObject(caConfig, type);
 	m_impl->extensions = X509v3RequestExts(caConfig, type);
-	m_impl->keysize = caConfig->getValue(type2Section(type, false), "default_bits").toUInt32();
+	m_impl->keysize = str::strtonum<uint32_t>(caConfig->getValue(type2Section(type, false), "default_bits"));
 
-	String md = caConfig->getValue(type2Section(type, false), "default_md");
-	if(md.equalsIgnoreCase("sha1"))
+	std::string md = caConfig->getValue(type2Section(type, false), "default_md");
+	if(0 == str::compareCI(md, "sha1"))
 	{
 		m_impl->messageDigest = E_SHA1;
 	}
-	else if(md.equalsIgnoreCase("md5"))
+	else if(0 == str::compareCI(md, "md5"))
 	{
 		m_impl->messageDigest = E_MD5;
 	}
-	else if(md.equalsIgnoreCase("mdc2"))
+	else if(0 == str::compareCI(md, "mdc2"))
 	{
 		m_impl->messageDigest = E_MDC2;
 	}
@@ -133,7 +133,7 @@ RequestGenerationData::operator=(const RequestGenerationData& data)
 void
 RequestGenerationData::setSubjectDN(const DNObject dn)
 {
-	std::vector<blocxx::String> r = dn.verify();
+	std::vector<std::string> r = dn.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -179,24 +179,24 @@ RequestGenerationData::getMessageDigest() const
 }
 
 void
-RequestGenerationData::setChallengePassword(const String &passwd)
+RequestGenerationData::setChallengePassword(const std::string &passwd)
 {
 	m_impl->challengePassword = passwd;
 }
 
-blocxx::String
+std::string
 RequestGenerationData::getChallengePassword() const
 {
 	return m_impl->challengePassword;
 }
 
 void
-RequestGenerationData::setUnstructuredName(const String &name)
+RequestGenerationData::setUnstructuredName(const std::string &name)
 {
 	m_impl->unstructuredName = name;
 }
 
-blocxx::String
+std::string
 RequestGenerationData::getUnstructuredName() const
 {
 	return m_impl->unstructuredName;
@@ -205,7 +205,7 @@ RequestGenerationData::getUnstructuredName() const
 void
 RequestGenerationData::setExtensions(const X509v3RequestExts &ext)
 {
-	std::vector<blocxx::String> r = ext.verify();
+	std::vector<std::string> r = ext.verify();
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -243,12 +243,12 @@ RequestGenerationData::commit2Config(CA& ca, Type type) const
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             Format(__("Wrong type: %1."), type).c_str());
+		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
-	ca.getConfig()->setValue(type2Section(type, false), "default_bits", String(m_impl->keysize));
+	ca.getConfig()->setValue(type2Section(type, false), "default_bits", str::numstring(m_impl->keysize));
 
-	String md("sha1");
+	std::string md("sha1");
 	switch(m_impl->messageDigest)
 	{
 	case E_SHA1:
@@ -276,10 +276,10 @@ RequestGenerationData::valid() const
 	return m_impl->extensions.valid();
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 RequestGenerationData::verify() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 
 	appendArray(result, m_impl->subject.verify());
 
@@ -292,15 +292,15 @@ RequestGenerationData::verify() const
 	return result;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 RequestGenerationData::dump() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 	result.push_back("RequestGenerationData::dump()");
 
 	appendArray(result, m_impl->subject.dump());
-	result.push_back("Keysize = " + String(m_impl->keysize));
-	result.push_back("MessageDigest = " + String(m_impl->messageDigest));
+	result.push_back("Keysize = " + str::numstring(m_impl->keysize));
+	result.push_back("MessageDigest = " + str::numstring(m_impl->messageDigest));
 	result.push_back("Challenge Password = " + m_impl->challengePassword);
 	result.push_back("Unstructured Name = " + m_impl->unstructuredName);
 	appendArray(result, m_impl->extensions.dump());

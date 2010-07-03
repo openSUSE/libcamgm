@@ -30,14 +30,13 @@
 #include  <limal/ValueCheck.hpp>
 
 #include  <limal/ca-mgm/CommonData.hpp>
-#include  <blocxx/String.hpp>
-#include  <blocxx/PerlRegEx.hpp>
+#include  <limal/String.hpp>
+#include  <limal/PerlRegEx.hpp>
 
 namespace LIMAL_NAMESPACE
 {
 
 // -------------------------------------------------------------------
-#ifdef BLOCXX_HAVE_PCRE
 /**
  * @brief Perl regex value check.
  *
@@ -59,7 +58,7 @@ public:
 	 * @throws blocxx::RegExCompileException on invalid pattern
 	 * or enabled utf8 mode with pcre that does not support it.
 	 */
-	ValuePerlRECheck(const blocxx::String &regex,
+	ValuePerlRECheck(const std::string &regex,
 	                 bool icase  = false,
 	                 bool utf8   = false);
 
@@ -72,7 +71,7 @@ public:
 	 * @throws blocxx::RegExExecuteException on execute failure.
 	 */
 	virtual bool
-	isValid(const blocxx::String &value) const;
+	isValid(const std::string &value) const;
 
 	/**
 	 * Return a string showing the regex matching the
@@ -81,16 +80,12 @@ public:
 	 * @param value A string value.
 	 * @return A string showing the check.
 	 */
-	virtual blocxx::String
-	explain(const blocxx::String &value) const;
+	virtual std::string
+	explain(const std::string &value) const;
 
 private:
-	blocxx::PerlRegEx  m_reg;
+	PerlRegEx  m_reg;
 };
-#else
-#warning PerlRegEx is not avaliable in blocxx
-#endif
-
 
 }       // End of LIMAL_NAMESPACE
 #endif  // LIMAL_VALUE_PERL_REGEX_CHECK_HPP

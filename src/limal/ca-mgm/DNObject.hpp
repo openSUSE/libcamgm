@@ -31,7 +31,7 @@ namespace CA_MGM_NAMESPACE {
 	class CAConfig;
 	class RDNObjectImpl;
 	class DNObjectImpl;
-	
+
 	class RDNObject {
 	public:
 		RDNObject();
@@ -39,21 +39,21 @@ namespace CA_MGM_NAMESPACE {
 		virtual ~RDNObject();
 
 #ifndef SWIG
-		
+
 		RDNObject& operator=(const RDNObject& rdn);
 
 #endif
-		void   setRDNValue(const String& value);
+		void   setRDNValue(const std::string& value);
 
-		String getType() const;
-		String getValue() const;
+		std::string getType() const;
+		std::string getValue() const;
 
-		String getOpenSSLValue() const;
+		std::string getOpenSSLValue() const;
 
 		virtual bool                 valid() const;
-		virtual std::vector<blocxx::String>  verify() const;
+		virtual std::vector<std::string>  verify() const;
 
-		virtual std::vector<blocxx::String>  dump() const;
+		virtual std::vector<std::string>  dump() const;
 
 #ifndef SWIG
 
@@ -61,10 +61,10 @@ namespace CA_MGM_NAMESPACE {
 		friend bool operator<(const RDNObject &l, const RDNObject &r);
 
 #endif
-		
+
 	protected:
 		blocxx::COWIntrusiveReference<RDNObjectImpl> m_impl;
-    	
+
 	};
 
 	class DNObject {
@@ -80,22 +80,22 @@ namespace CA_MGM_NAMESPACE {
 		DNObject& operator=(const DNObject& dn);
 
 #endif
-		
+
 		void                         setDN(const std::list<RDNObject> &dn);
 		std::list<RDNObject>         getDN() const;
 
-		String                       getOpenSSLString() const;
+		std::string                       getOpenSSLString() const;
 
 		virtual bool                 valid() const;
-		virtual std::vector<blocxx::String>  verify() const;
-        
-		virtual std::vector<blocxx::String>  dump() const;
+		virtual std::vector<std::string>  verify() const;
+
+		virtual std::vector<std::string>  dump() const;
 
 	protected:
 		blocxx::COWIntrusiveReference<DNObjectImpl> m_impl;
-    	
+
 	private:
-		std::vector<blocxx::String>
+		std::vector<std::string>
 		checkRDNList(const std::list<RDNObject>& list) const;
 	};
 

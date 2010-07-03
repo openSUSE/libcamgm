@@ -40,7 +40,7 @@ public:
 	virtual UrlBase *
 	clone() const;
 
-	virtual std::vector<blocxx::String>
+	virtual std::vector<std::string>
 	getKnownSchemes() const;
 
 	virtual void

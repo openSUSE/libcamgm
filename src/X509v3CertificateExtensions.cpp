@@ -181,10 +181,10 @@ X509v3CertificateExts::valid() const
 	return true;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 X509v3CertificateExts::verify() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 
 	appendArray(result, m_impl->nsBaseUrl.verify());
 	appendArray(result, m_impl->nsRevocationUrl.verify());
@@ -209,10 +209,10 @@ X509v3CertificateExts::verify() const
 	return result;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 X509v3CertificateExts::dump() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 	result.push_back("X509v3CertificateExts::dump()");
 
 	appendArray(result, m_impl->nsBaseUrl.dump());

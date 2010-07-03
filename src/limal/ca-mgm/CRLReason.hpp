@@ -42,7 +42,7 @@ namespace CA_MGM_NAMESPACE {
 		 * unspecified, keyCompromise, CACompromise, affiliationChanged,
 		 * superseded, cessationOfOperation, certificateHold and removeFromCRL
 		 */
-		CRLReason(const String& reason);
+		CRLReason(const std::string& reason);
 		CRLReason(const CRLReason& reason);
 		virtual ~CRLReason();
 
@@ -61,12 +61,12 @@ namespace CA_MGM_NAMESPACE {
 		 * superseded, cessationOfOperation, certificateHold and removeFromCRL
 		 */
 		void
-		setReason(const String& reason);
+		setReason(const std::string& reason);
 
 		/**
 		 * Return the revocation reason as string
 		 */
-		String
+		std::string
 		getReason() const;
 
 		/**
@@ -76,9 +76,9 @@ namespace CA_MGM_NAMESPACE {
 		 * holdInstructionCallIssuer, holdInstructionReject or an OID
 		 */
 		void
-		setHoldInstruction(const String& holdInstruction);
-        
-		String
+		setHoldInstruction(const std::string& holdInstruction);
+
+		std::string
 		getHoldInstruction() const;
 
 		/**
@@ -88,11 +88,11 @@ namespace CA_MGM_NAMESPACE {
 		 */
 		void
 		setKeyCompromiseDate(time_t compromiseDate);
-        
+
 		time_t
 		getKeyCompromiseDate() const;
-        
-		String
+
+		std::string
 		getKeyCompromiseDateAsString() const;
 
 		/**
@@ -102,31 +102,31 @@ namespace CA_MGM_NAMESPACE {
 		 */
 		void
 		setCACompromiseDate(time_t compromiseDate);
-        
+
 		time_t
 		getCACompromiseDate() const;
-        
-		String
+
+		std::string
 		getCACompromiseDateAsString() const;
 
 		virtual bool
 		valid() const;
-        
-		virtual std::vector<blocxx::String>
+
+		virtual std::vector<std::string>
 		verify() const;
 
-		virtual std::vector<blocxx::String>
+		virtual std::vector<std::string>
 		dump() const;
 
 	private:
 		blocxx::COWIntrusiveReference<CRLReasonImpl> m_impl;
-       
-		blocxx::String
-		checkHoldInstruction(const String& hi) const;
-        
+
+		std::string
+		checkHoldInstruction(const std::string& hi) const;
+
 		bool
-		checkReason(const String& reason) const;
-                
+		checkReason(const std::string& reason) const;
+
 	};
 
 }

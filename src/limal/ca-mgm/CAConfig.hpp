@@ -36,7 +36,7 @@ namespace CA_MGM_NAMESPACE
 {
 
 	class CAConfigImpl;
-	
+
 	/**
      * Class for reading and writing the openssl.cnf
      */
@@ -47,45 +47,45 @@ namespace CA_MGM_NAMESPACE
 		/**
 		 * Create a new object from <b>file</b>
 		 */
-		CAConfig(const String &file);
+		CAConfig(const std::string &file);
 		~CAConfig();
 
 		/**
 		 * Set a new value in Section <b>section</b> with the Key <b>key</b>.
 		 */
 		void
-		setValue(const String &section, const String &key, const String &value);
+		setValue(const std::string &section, const std::string &key, const std::string &value);
 
 		/**
 		 * Delete the Key <b>key</b> in Section <b>section</b>
 		 */
 		void
-		deleteValue(const String &section, const String &key);
+		deleteValue(const std::string &section, const std::string &key);
 
 		/**
 		 * Get the value of Section  <b>section</b> with the Key <b>key</b>.
 		 */
-		String
-		getValue(const String &section, const String &key) const;
+		std::string
+		getValue(const std::string &section, const std::string &key) const;
 
 		/**
 		 * Check if Key <b>key</b> in Section <b>section</b> exists.
 		 */
 		bool
-		exists(const String &section, const String &key) const;
+		exists(const std::string &section, const std::string &key) const;
 
 		/**
 		 * Return a List of all Keys in Section <b>section</b>.
 		 */
-		std::list<blocxx::String>
-		getKeylist(const String &section) const;
+		std::list<std::string>
+		getKeylist(const std::string &section) const;
 
 		/**
 		 * Copy all Keys and values from Section <b>srcSection</b> to
 		 * Section <b>destSection</b>.
 		 */
 		void
-		copySection(const String &srcSection, const String &destSection);
+		copySection(const std::string &srcSection, const std::string &destSection);
 
 		/**
 		 * Clone this object
@@ -93,14 +93,14 @@ namespace CA_MGM_NAMESPACE
 		 * @param file a new filename for this object
 		 */
 		CAConfig*
-		clone(const String &file);
+		clone(const std::string &file);
 
 		/**
 		 * return current filename
 		 */
-		String
+		std::string
 		filename() const;
-		
+
 		void	 dump();
 
 
@@ -110,7 +110,7 @@ namespace CA_MGM_NAMESPACE
 		CAConfig();
 		CAConfig(const CAConfig&);
 		CAConfig& operator=(const CAConfig&);
-        
+
 		class CASection;
 		void dumpTree(CASection *section, int level = 0);
 
@@ -120,7 +120,7 @@ namespace CA_MGM_NAMESPACE
 		 */
 		void validateAndFix();
 	};
-    
+
 }
 
 #endif  //LIMAL_CA_CONFIG_HPP

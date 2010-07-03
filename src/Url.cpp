@@ -68,7 +68,7 @@ Url::Url(const ca_mgm::url::UrlRef &url)
 
 
 // -----------------------------------------------------------------
-Url::Url(const blocxx::String &urlString)
+Url::Url(const std::string &urlString)
   : m_impl( parseUrl(urlString))
 {
 }
@@ -76,7 +76,7 @@ Url::Url(const blocxx::String &urlString)
 
 // -----------------------------------------------------------------
 Url&
-Url::operator = (const blocxx::String &urlString)
+Url::operator = (const std::string &urlString)
 {
 	UrlRef url( parseUrl(urlString));
 	if( !url)
@@ -102,7 +102,7 @@ Url::operator = (const Url &url)
 // -----------------------------------------------------------------
 // static
 UrlRef
-Url::parseUrl(const blocxx::String &urlString)
+Url::parseUrl(const std::string &urlString)
 {
 	try
 	{
@@ -135,7 +135,7 @@ Url::parseUrl(const blocxx::String &urlString)
 
 
 // -----------------------------------------------------------------
-std::vector<blocxx::String>
+std::vector<std::string>
 Url::getKnownSchemes() const
 {
 	return m_impl->getKnownSchemes();
@@ -144,7 +144,7 @@ Url::getKnownSchemes() const
 
 // -----------------------------------------------------------------
 bool
-Url::isValidScheme(const blocxx::String &scheme) const
+Url::isValidScheme(const std::string &scheme) const
 {
 	return m_impl->isValidScheme(scheme);
 }
@@ -159,7 +159,7 @@ Url::isValid() const
 
 
 // -----------------------------------------------------------------
-blocxx::String
+std::string
 Url::toString() const
 {
   return m_impl->toString();
@@ -167,7 +167,7 @@ Url::toString() const
 
 
 // -----------------------------------------------------------------
-blocxx::String
+std::string
 Url::toCompleteString() const
 {
 	// make sure, all url components are included;
@@ -187,7 +187,7 @@ Url::toCompleteString() const
 
 
 // -----------------------------------------------------------------
-blocxx::String
+std::string
 Url::toString(const ViewOptions &opts) const
 {
 	return m_impl->toString(opts);
@@ -195,7 +195,7 @@ Url::toString(const ViewOptions &opts) const
 
 
 // -----------------------------------------------------------------
-blocxx::String
+std::string
 Url::getScheme() const
 {
 	 return m_impl->getScheme();
@@ -203,14 +203,14 @@ Url::getScheme() const
 
 
 // -----------------------------------------------------------------
-blocxx::String
+std::string
 Url::getAuthority() const
 {
   	return m_impl->getAuthority();
 }
 
 // -----------------------------------------------------------------
-blocxx::String
+std::string
 Url::getPathData() const
 {
   	return m_impl->getPathData();
@@ -218,7 +218,7 @@ Url::getPathData() const
 
 
 // -----------------------------------------------------------------
-blocxx::String
+std::string
 Url::getQueryString() const
 {
 	return m_impl->getQueryString();
@@ -226,7 +226,7 @@ Url::getQueryString() const
 
 
 // -----------------------------------------------------------------
-blocxx::String
+std::string
 Url::getFragment(ca_mgm::url::EEncoding eflag) const
 {
 	return m_impl->getFragment(eflag);
@@ -234,7 +234,7 @@ Url::getFragment(ca_mgm::url::EEncoding eflag) const
 
 
 // -----------------------------------------------------------------
-blocxx::String
+std::string
 Url::getUsername(EEncoding eflag) const
 {
 	return m_impl->getUsername(eflag);
@@ -242,7 +242,7 @@ Url::getUsername(EEncoding eflag) const
 
 
 // -----------------------------------------------------------------
-blocxx::String
+std::string
 Url::getPassword(EEncoding eflag) const
 {
 	return m_impl->getPassword(eflag);
@@ -250,7 +250,7 @@ Url::getPassword(EEncoding eflag) const
 
 
 // -----------------------------------------------------------------
-blocxx::String
+std::string
 Url::getHost(EEncoding eflag) const
 {
 	return m_impl->getHost(eflag);
@@ -258,7 +258,7 @@ Url::getHost(EEncoding eflag) const
 
 
 // -----------------------------------------------------------------
-blocxx::String
+std::string
 Url::getPort() const
 {
 	return m_impl->getPort();
@@ -266,7 +266,7 @@ Url::getPort() const
 
 
 // -----------------------------------------------------------------
-blocxx::String
+std::string
 Url::getPathName(EEncoding eflag) const
 {
 	return m_impl->getPathName(eflag);
@@ -274,7 +274,7 @@ Url::getPathName(EEncoding eflag) const
 
 
 // -----------------------------------------------------------------
-blocxx::String
+std::string
 Url::getPathParams() const
 {
 	return m_impl->getPathParams();
@@ -282,7 +282,7 @@ Url::getPathParams() const
 
 
 // -----------------------------------------------------------------
-std::vector<blocxx::String>
+std::vector<std::string>
 Url::getPathParamsArray() const
 {
 	 return m_impl->getPathParamsArray();
@@ -298,15 +298,15 @@ Url::getPathParamsMap(EEncoding eflag) const
 
 
 // -----------------------------------------------------------------
-blocxx::String
-Url::getPathParam(const blocxx::String &param, EEncoding eflag) const
+std::string
+Url::getPathParam(const std::string &param, EEncoding eflag) const
 {
 	 return m_impl->getPathParam(param, eflag);
 }
 
 
 // -----------------------------------------------------------------
-std::vector<blocxx::String>
+std::vector<std::string>
 Url::getQueryStringArray() const
 {
 	return m_impl->getQueryStringArray();
@@ -322,8 +322,8 @@ Url::getQueryStringMap(EEncoding eflag) const
 
 
 // -----------------------------------------------------------------
-blocxx::String
-Url::getQueryParam(const blocxx::String &param, EEncoding eflag) const
+std::string
+Url::getQueryParam(const std::string &param, EEncoding eflag) const
 {
 	return m_impl->getQueryParam(param, eflag);
 }
@@ -331,7 +331,7 @@ Url::getQueryParam(const blocxx::String &param, EEncoding eflag) const
 
 // -----------------------------------------------------------------
 void
-Url::setScheme(const blocxx::String &scheme)
+Url::setScheme(const std::string &scheme)
 {
 	if(scheme == m_impl->getScheme())
 	{
@@ -358,7 +358,7 @@ Url::setScheme(const blocxx::String &scheme)
 
 // -----------------------------------------------------------------
 void
-Url::setAuthority(const blocxx::String &authority)
+Url::setAuthority(const std::string &authority)
 {
 	m_impl->setAuthority(authority);
 }
@@ -366,7 +366,7 @@ Url::setAuthority(const blocxx::String &authority)
 
 // -----------------------------------------------------------------
 void
-Url::setPathData(const blocxx::String &pathdata)
+Url::setPathData(const std::string &pathdata)
 {
 	m_impl->setPathData(pathdata);
 }
@@ -374,7 +374,7 @@ Url::setPathData(const blocxx::String &pathdata)
 
 // -----------------------------------------------------------------
 void
-Url::setQueryString(const blocxx::String &querystr)
+Url::setQueryString(const std::string &querystr)
 {
 	m_impl->setQueryString(querystr);
 }
@@ -382,7 +382,7 @@ Url::setQueryString(const blocxx::String &querystr)
 
 // -----------------------------------------------------------------
 void
-Url::setFragment(const blocxx::String &fragment, EEncoding eflag)
+Url::setFragment(const std::string &fragment, EEncoding eflag)
 {
 	m_impl->setFragment(fragment, eflag);
 }
@@ -390,7 +390,7 @@ Url::setFragment(const blocxx::String &fragment, EEncoding eflag)
 
 // -----------------------------------------------------------------
 void
-Url::setUsername(const blocxx::String &user, EEncoding eflag)
+Url::setUsername(const std::string &user, EEncoding eflag)
 {
 	m_impl->setUsername(user, eflag);
 }
@@ -398,7 +398,7 @@ Url::setUsername(const blocxx::String &user, EEncoding eflag)
 
 // -----------------------------------------------------------------
 void
-Url::setPassword(const blocxx::String &pass, EEncoding eflag)
+Url::setPassword(const std::string &pass, EEncoding eflag)
 {
 	m_impl->setPassword(pass, eflag);
 }
@@ -406,7 +406,7 @@ Url::setPassword(const blocxx::String &pass, EEncoding eflag)
 
 // -----------------------------------------------------------------
 void
-Url::setHost(const blocxx::String &host, EEncoding eflag)
+Url::setHost(const std::string &host, EEncoding eflag)
 {
 	m_impl->setHost(host, eflag);
 }
@@ -414,7 +414,7 @@ Url::setHost(const blocxx::String &host, EEncoding eflag)
 
 // -----------------------------------------------------------------
 void
-Url::setPort(const blocxx::String &port)
+Url::setPort(const std::string &port)
 {
 	m_impl->setPort(port);
 }
@@ -422,7 +422,7 @@ Url::setPort(const blocxx::String &port)
 
 // -----------------------------------------------------------------
 void
-Url::setPathName(const blocxx::String &path, EEncoding eflag)
+Url::setPathName(const std::string &path, EEncoding eflag)
 {
 	m_impl->setPathName(path, eflag);
 }
@@ -430,7 +430,7 @@ Url::setPathName(const blocxx::String &path, EEncoding eflag)
 
 // -----------------------------------------------------------------
 void
-Url::setPathParams(const blocxx::String &params)
+Url::setPathParams(const std::string &params)
 {
 	m_impl->setPathParams(params);
 }
@@ -438,7 +438,7 @@ Url::setPathParams(const blocxx::String &params)
 
 // -----------------------------------------------------------------
 void
-Url::setPathParamsArray(const std::vector<blocxx::String> &parray)
+Url::setPathParamsArray(const std::vector<std::string> &parray)
 {
 	m_impl->setPathParamsArray(parray);
 }
@@ -454,7 +454,7 @@ Url::setPathParamsMap(const ca_mgm::url::ParamMap &pmap)
 
 // -----------------------------------------------------------------
 void
-Url::setPathParam(const blocxx::String &param, const blocxx::String &value)
+Url::setPathParam(const std::string &param, const std::string &value)
 {
 	m_impl->setPathParam(param, value);
 }
@@ -462,7 +462,7 @@ Url::setPathParam(const blocxx::String &param, const blocxx::String &value)
 
 // -----------------------------------------------------------------
 void
-Url::setQueryStringArray(const std::vector<blocxx::String> &qarray)
+Url::setQueryStringArray(const std::vector<std::string> &qarray)
 {
 	m_impl->setQueryStringArray(qarray);
 }
@@ -477,7 +477,7 @@ Url::setQueryStringMap(const ca_mgm::url::ParamMap &pmap)
 
 // -----------------------------------------------------------------
 void
-Url::setQueryParam(const blocxx::String &param, const blocxx::String &value)
+Url::setQueryParam(const std::string &param, const std::string &value)
 {
 	m_impl->setQueryParam(param, value);
 }

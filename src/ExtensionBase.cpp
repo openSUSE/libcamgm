@@ -116,16 +116,16 @@ ExtensionBase::isPresent() const
 	return m_impl->isPresent();
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 ExtensionBase::dump() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 	result.push_back("ExtensionBase::dump()");
 
-	result.push_back("is Present = " + Bool(isPresent()).toString());
+	result.push_back("is Present = " + str::toString(isPresent()));
 	if(!isPresent()) return result;
 
-	result.push_back("is Critical = " + Bool(isCritical()).toString());
+	result.push_back("is Critical = " + str::toString(isCritical()));
 
 	return result;
 }

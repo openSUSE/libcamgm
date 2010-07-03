@@ -2,9 +2,8 @@
 #include <blocxx/AppenderLogger.hpp>
 #include <blocxx/CerrLogger.hpp>
 #include <blocxx/CerrAppender.hpp>
-#include <blocxx/Format.hpp>
-#include <blocxx/String.hpp>
-#include <blocxx/PerlRegEx.hpp>
+#include <limal/String.hpp>
+#include <limal/PerlRegEx.hpp>
 #include <limal/Logger.hpp>
 #include <limal/ca-mgm/CA.hpp>
 
@@ -38,7 +37,7 @@ int main(int argc, char **argv)
                                                   );
     ca_mgm::Logger::setDefaultLogger(l);
 
-    blocxx::String file = argv[ 1 ];
+    std::string file = argv[ 1 ];
 
     cout << "START" << endl;
     cout << "file: " << file << endl;
@@ -54,10 +53,10 @@ int main(int argc, char **argv)
     {
         try
         {
-            blocxx::String     line = blocxx::String::getLine( in );
+            std::string     line = str::getline( in );
             if(line == "EOF" || line.empty()) break;
 
-            std::vector<blocxx::String> params = convStringArray(blocxx::PerlRegEx("\\s").split(line));
+            std::vector<std::string> params = PerlRegEx("\\s").split(line);
             if(params.size() != 2) break;
 
             CA ca(params[0], "system", "./TestRepos/");
@@ -66,8 +65,8 @@ int main(int argc, char **argv)
 
             CertificateData cd = ca.getCertificate(params[1]);
 
-            std::vector<blocxx::String> ret = cd.dump();
-            StringArray::const_iterator it;
+            std::vector<std::string> ret = cd.dump();
+            std::vector<std::string>::const_iterator it;
 
             for(it = ret.begin(); it != ret.end(); ++it)
             {

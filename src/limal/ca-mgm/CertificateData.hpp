@@ -32,7 +32,7 @@
 namespace CA_MGM_NAMESPACE {
 
 	class CertificateDataImpl;
-	
+
     /**
      * @brief Read-only data representation of a certificate
      *
@@ -50,49 +50,49 @@ namespace CA_MGM_NAMESPACE {
 		operator=(const CertificateData& data);
 
 #endif
-		
+
 		uint32_t
 		getVersion() const;
-        
-		String
+
+		std::string
 		getSerial() const;
-        
+
 		time_t
 		getStartDate() const;
-        
+
 		time_t
 		getEndDate() const;
-        
+
 		DNObject
 		getIssuerDN() const;
-        
+
 		DNObject
 		getSubjectDN() const;
-        
+
 		uint32_t
 		getKeysize() const;
-        
+
 		KeyAlg
 		getPublicKeyAlgorithm() const;
-        
-		String
+
+		std::string
 		getPublicKeyAlgorithmAsString() const;
-        
+
 		ca_mgm::ByteBuffer
 		getPublicKey() const;
-        
+
 		SigAlg
 		getSignatureAlgorithm() const;
-        
-		String
+
+		std::string
 		getSignatureAlgorithmAsString() const;
-        
+
 		ca_mgm::ByteBuffer
 		getSignature() const;
-        
-		String
+
+		std::string
 		getFingerprint() const;
-        
+
 		X509v3CertificateExts
 		getExtensions() const;
 
@@ -100,25 +100,25 @@ namespace CA_MGM_NAMESPACE {
 		 * Return the Certificate data as human readable text.
 		 * (Format may change)
 		 */
-		String
+		std::string
 		getCertificateAsText() const;
 
 		/**
 		 * Return the Certificate extensions as human readable text.
 		 * (Format may change)
 		 */
-		String
+		std::string
 		getExtensionsAsText() const;
-    	
+
 		virtual bool
 		valid() const;
-        
-		virtual std::vector<blocxx::String>
+
+		virtual std::vector<std::string>
 		verify() const;
 
-		virtual std::vector<blocxx::String>
+		virtual std::vector<std::string>
 		dump() const;
-        
+
 	protected:
 		CertificateData();
 

@@ -29,7 +29,7 @@ using std::ifstream;
 using std::ofstream;
 using namespace blocxx;
 
-int assert_dir( const String & spath)
+int assert_dir( const std::string & spath)
 {
     size_t pos, lastpos = 0;
     int ret = 0;
@@ -39,15 +39,15 @@ int assert_dir( const String & spath)
 
     // skip ./
     if(spath.length() > 2 &&
-       spath.substring(0,2) == "./")
+       spath.substr(0,2) == "./")
 	lastpos=2;
     // skip /
     else if (spath[0] == '/')
 	lastpos=1;
 
-    while((pos = spath.indexOf('/',lastpos)) != String::npos )
+    while((pos = spath.find_first_of('/',lastpos)) != std::string::npos )
     {
-	String dir = spath.substring(0,pos);
+	std::string dir = spath.substr(0,pos);
 	ret = ::mkdir(dir.c_str(), 0755);
 	if(ret == -1)
 	{
@@ -70,7 +70,7 @@ IniParser::~IniParser ()
 /**
  * Debugging.
  */
-void printPath(const std::vector<blocxx::String>&p, const char*c = "")
+void printPath(const std::vector<std::string>&p, const char*c = "")
 {
     int i = 0;
     int len = p.size();
@@ -93,7 +93,7 @@ bool onlySpaces (const char*str)
 
 
 
-void IniParser::initFiles (const std::vector<blocxx::String>&f)
+void IniParser::initFiles (const std::vector<std::string>&f)
 {
     multiple_files = true;
     files.clear ();
@@ -107,12 +107,12 @@ void IniParser::initFiles (const char*fn)
     file = fn;
     multiple_files = false;
 }
-void IniParser::initOptions (const std::vector<blocxx::String>&options)
+void IniParser::initOptions (const std::vector<std::string>&options)
 {
     int len = options.size();
     for (int i = 0;i<len;i++)
     {
-	String sv = options[i];
+	std::string sv = options[i];
 #define COMPARE_OPTION(X) if (sv == #X) X = true; else
 		    COMPARE_OPTION (ignore_case_regexps)
 		    COMPARE_OPTION (ignore_case)
@@ -151,18 +151,18 @@ void IniParser::initRewrite (const std::vector<IoPatternDescr>&rewriteArray)
 	if (p.rx.compile (val.regExpr,
 			   REG_EXTENDED | (ignore_case ? REG_ICASE : 0)))
 	{
-	    p.out = String (val.out);
+	    p.out = std::string (val.out);
 	    rewrites.push_back (p);
 	}
     }
 }
 
-void IniParser::initSubident (const String ident)
+void IniParser::initSubident (const std::string ident)
 {
-    subindent = String(ident);
+    subindent = std::string(ident);
 }
 
-void IniParser::initComments (const std::vector<blocxx::String>&comm)
+void IniParser::initComments (const std::vector<std::string>&comm)
 {
     int len = comm.size();
     linecomments.clear ();
@@ -171,7 +171,7 @@ void IniParser::initComments (const std::vector<blocxx::String>&comm)
     comments.reserve (len);
     for (int i = 0;  i < len; i++)
     {
-	String s = comm[i];
+	std::string s = comm[i];
 	std::vector<PosixRegEx> & regexes = ('^' == s[0]) ?
 	    linecomments : comments;
 	PosixRegEx r;
@@ -199,7 +199,7 @@ void IniParser::initSection (const std::vector<SectionDescr>& sect)
 	    if (!s.end.rx.compile (end.regExpr,
 				  REG_EXTENDED | (ignore_case ? REG_ICASE : 0)))
 		continue;
-	    s.end.out = String (end.out);
+	    s.end.out = std::string (end.out);
 	}
 	IoPatternDescr begin = m.begin;
 	if (!s.begin.rx.compile (begin.regExpr,
@@ -208,7 +208,7 @@ void IniParser::initSection (const std::vector<SectionDescr>& sect)
 	    // compile failed
 	    continue;
 	}
-	s.begin.out = String(begin.out);
+	s.begin.out = std::string(begin.out);
 	sections.push_back (s);
     }
 }
@@ -245,7 +245,7 @@ void IniParser::initParam (const std::vector<EntryDescr>& entries)
 	    }
 	}
 
-	if (!pa.line.rx.compile ( String (entry.line.regExpr),
+	if (!pa.line.rx.compile ( std::string (entry.line.regExpr),
 				 REG_EXTENDED | (ignore_case ? REG_ICASE : 0)))
 	{
 	    if (pa.multiline_valid)
@@ -257,7 +257,7 @@ void IniParser::initParam (const std::vector<EntryDescr>& entries)
 	}
 	else
 	{
-	    pa.line.out = String (entry.line.out);
+	    pa.line.out = std::string (entry.line.out);
 	    params.push_back (pa);
 	}
     }
@@ -277,19 +277,19 @@ void IniParser::scanner_stop()
     scanner.close();
     scanner.clear();
 }
-int IniParser::scanner_get(String&s)
+int IniParser::scanner_get(std::string&s)
 {
     if (!scanner)
 	return -1;
-    s = String::getLine (scanner);
+    s = str::getline (scanner);
 
     scanner_line++;
     if (line_can_continue && s.length ())
     {
-	String tmp;
+	std::string tmp;
 	while (s[s.length()-1] == '\\')
 	{
-	    tmp = String::getLine (scanner);
+	    tmp = str::getline (scanner);
 	    scanner_line++;
 	    s = s + "\n" + tmp;
 	}
@@ -298,14 +298,14 @@ int IniParser::scanner_get(String&s)
 }
 
 #define scanner_error(format,args...) \
-	LIMAL_LOG_ERROR (logger, blocxx::Format( "%1:%2 " format, scanner_file.c_str (),  scanner_line, ##args))
+	LIMAL_LOG_ERROR (logger, str::form( "%s:%d " format, scanner_file.c_str (),  scanner_line, ##args).c_str())
 
-void StripLine (String&l, regmatch_t&r)
+void StripLine (std::string&l, regmatch_t&r)
 {
-    String out;
+    std::string out;
     if (r.rm_so>1)
-	out = l.substring (0,r.rm_so);
-    out = out + l.substring(r.rm_eo);
+	out = l.substr (0,r.rm_so);
+    out = out + l.substr(r.rm_eo);
     l = out;
 }
 
@@ -363,7 +363,7 @@ int IniParser::parse()
 	for (unsigned int i = 0;i<do_files.gl_pathc;i++, f++)
 	{
 	    int section_index = -1;
-	    String section_name = *f;
+	    std::string section_name = *f;
 	    //FIXME: create function out of it.
 	    // do we have name rewrite rules?
 	    for (size_t j = 0; j < rewrites.size (); j++)
@@ -379,7 +379,7 @@ int IniParser::parse()
 		}
 
 	    // do we know about the file?
-	    std::map<String,FileDescr>::iterator ff = multi_files.find (*f);
+	    std::map<std::string,FileDescr>::iterator ff = multi_files.find (*f);
 	    if (ff == multi_files.end())
 	    {
 		// new file
@@ -429,17 +429,17 @@ int IniParser::parse()
 
 int IniParser::parse_helper(IniSection&ini)
 {
-    String comment = "";
-    String key = "";
-    String val = "";
+    std::string comment = "";
+    std::string key = "";
+    std::string val = "";
     int state = 0;		// 1: precessing a multiline value
     int matched_by = -1;
 
-    String line;
+    std::string line;
     size_t i;
 
     // stack of section names
-    std::vector<blocxx::String> path;
+    std::vector<std::string> path;
 
     //
     // read line
@@ -495,7 +495,7 @@ int IniParser::parse_helper(IniSection&ini)
 			    {   // we are in toplevel section, going deeper
 				// check for toplevel values allowance
 				if (!global_values)
-				    scanner_error ("%3: values at the top level not allowed.", key.c_str ());
+				    scanner_error ("%s: values at the top level not allowed.", key.c_str ());
 				else
 				    ini.initValue (key, val, comment, matched_by);
 			    }
@@ -514,7 +514,7 @@ int IniParser::parse_helper(IniSection&ini)
 		    // check for section begin
 		    //
 		    {
-			String found;
+			std::string found;
 
 			for (i = 0; i < sections.size (); i++)
 			    {
@@ -536,7 +536,7 @@ int IniParser::parse_helper(IniSection&ini)
 					    {
 						if(no_nested_sections)
 						    {
-							scanner_error ("Section %3 started but section %4 is not finished",
+							scanner_error ("Section %s started but section %s is not finished",
 								 found.c_str(),
 								 path[path.size()-1].c_str());
 							path.pop_back();
@@ -552,7 +552,7 @@ int IniParser::parse_helper(IniSection&ini)
 				else
 				    {
 					if (no_nested_sections)
-					    scanner_error ("Attempt to create nested section %3.", found.c_str ());
+					    scanner_error ("Attempt to create nested section %s.", found.c_str ());
 					else
 					{
 					    ini.findSection(path).initSection(found, comment, i);
@@ -567,7 +567,7 @@ int IniParser::parse_helper(IniSection&ini)
 		    // check for section end
 		    //
 		    {
-			String found;
+			std::string found;
 
 			for (i = 0; i < sections.size (); i++)
 			    {
@@ -617,7 +617,7 @@ int IniParser::parse_helper(IniSection&ini)
 					    {
 						toclose = m - 1;
 					    }
-					    scanner_error ("Unexpected closing %3. Closing section %4.", found.c_str(), path[toclose].c_str());
+					    scanner_error ("Unexpected closing %s. Closing section %s.", found.c_str(), path[toclose].c_str());
 					    path.resize (toclose);
 					}
 				    }
@@ -640,7 +640,7 @@ int IniParser::parse_helper(IniSection&ini)
 		    // check for line
 		    //
 		    {
-			String key,val;
+			std::string key,val;
 			for (i = 0; i < params.size (); i++)
 			{
 			    RegexMatch m (params[i].line.rx, line);
@@ -658,7 +658,7 @@ int IniParser::parse_helper(IniSection&ini)
 				    {   // we are in toplevel section, going deeper
 					// check for toplevel values allowance
 					if (!global_values)
-					    scanner_error ("%3: values at the top level not allowed.", key.c_str ());
+					    scanner_error ("%s: values at the top level not allowed.", key.c_str ());
 					else
 					    ini.initValue (key, val, comment, i);
 				    }
@@ -714,7 +714,7 @@ int IniParser::parse_helper(IniSection&ini)
 		    //
 		    {
 			if (!onlySpaces (line.c_str()))
-			    scanner_error ("Extra characters: %3", line.c_str ());
+			    scanner_error ("Extra characters: %s", line.c_str ());
 		    }
 		}
 	}
@@ -791,7 +791,7 @@ int IniParser::write()
     }
 
     int bugs = 0;
-    String filename = multiple_files ? files[0] : file;
+    std::string filename = multiple_files ? files[0] : file;
     if (!inifile.isDirty())
     {
         LIMAL_SLOG_DEBUG (logger, "File " << filename << " did not change. Not saving." );
@@ -816,7 +816,7 @@ int IniParser::write()
 		    {
 			IniSection&s = ci->s ();
 			int wb = s.getRewriteBy (); // bug #19066
-			String filename = getFileName (s.getName (), wb);
+			std::string filename = getFileName (s.getName (), wb);
 
 			if (!s.isDirty ()) {
 			    LIMAL_SLOG_DEBUG (logger, "Skipping file " << filename.c_str() << " that was not changed." );
@@ -864,8 +864,8 @@ int IniParser::write()
 int IniParser::write_helper(IniSection&ini, ofstream&of, int depth)
 {
     char out_buffer[2048];
-    String indent;
-    String indent2;
+    std::string indent;
+    std::string indent2;
     int readby = ini.getReadBy ();
     if (!subindent.empty ())
     {
@@ -916,9 +916,9 @@ int IniParser::write_helper(IniSection&ini, ofstream&of, int depth)
     ini.clean();
     return 0;
 }
-String IniParser::getFileName (const String&sec, int rb)
+std::string IniParser::getFileName (const std::string&sec, int rb)
 {
-    String file = sec;
+    std::string file = sec;
     if (-1 != rb && (int) rewrites.size () > rb)
     {
 	int max = rewrites[rb].out.length () + sec.length () + 1;
@@ -932,22 +932,22 @@ String IniParser::getFileName (const String&sec, int rb)
 }
 
 /**
- * change case of String
- * @param str String to change
- * @return changed String
+ * change case of std::string
+ * @param str std::string to change
+ * @return changed std::string
  */
-String IniParser::changeCase (const String&str) const
+std::string IniParser::changeCase (const std::string&str) const
 {
-    String tmp = str;
+    std::string tmp = str;
     if (!ignore_case)
       return tmp;
     if (prefer_uppercase)
     {
-	tmp.toUpperCase();
+	tmp = str::toUpper(tmp);
     }
     else
     {
-	tmp.toLowerCase();
+	tmp = str::toLower(tmp);
 	if (first_upper
 	    && tmp.length() > 0)
 	{

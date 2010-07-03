@@ -2,8 +2,8 @@
 #include <blocxx/AppenderLogger.hpp>
 #include <blocxx/CerrLogger.hpp>
 #include <blocxx/CerrAppender.hpp>
-#include <blocxx/String.hpp>
-#include <blocxx/PerlRegEx.hpp>
+#include <limal/String.hpp>
+#include <limal/PerlRegEx.hpp>
 #include <limal/Logger.hpp>
 #include <limal/PathInfo.hpp>
 #include <limal/PathUtils.hpp>
@@ -29,7 +29,7 @@ int main()
     {
         cout << "START" << endl;
 
-        blocxx::StringArray cat;
+        StringArray cat;
         cat.push_back("FATAL");
         cat.push_back("ERROR");
         cat.push_back("INFO");
@@ -75,7 +75,7 @@ int main()
         {
             cout << "Key exists" << endl;
 
-            if(!r.match(blocxx::String(ba.data(), ba.size())))
+            if(!r.match(std::string(ba.data(), ba.size())))
             {
                 cout << "Key is decrypted" << endl;
 
@@ -99,7 +99,7 @@ int main()
         {
             cout << "Key exists" << endl;
 
-            if(!r.match(blocxx::String(ba.data(), ba.size())))
+            if(!r.match(std::string(ba.data(), ba.size())))
             {
                 cout << "Key is decrypted" << endl;
             }
@@ -187,7 +187,7 @@ int main()
         {
             cout << "Key exists" << endl;
 
-            if(!r.match(blocxx::String(ba.data(), ba.size())))
+            if(!r.match(std::string(ba.data(), ba.size())))
             {
                 cout << "Key is decrypted" << endl;
 
@@ -213,7 +213,7 @@ int main()
         {
             cout << "Key exists" << endl;
 
-            if(!r.match(blocxx::String(ba.data(), ba.size())))
+            if(!r.match(std::string(ba.data(), ba.size())))
             {
                 cout << "Key is decrypted" << endl;
 

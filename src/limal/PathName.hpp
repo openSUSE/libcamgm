@@ -63,7 +63,7 @@ namespace path
 class PathName
 {
 public:
-    typedef std::list<blocxx::String> List;
+    typedef std::list<std::string> List;
 
     /**
     * @brief Create an empty PathName object.	 
@@ -87,12 +87,12 @@ public:
     PathName(const PathName::List &list);
 
     /**
-    * @brief Create a new PathName object from a blocxx::String.
+    * @brief Create a new PathName object from a std::string.
     * @param name The string from which the new PathName object
     * shall be created.
     * @throws ca_mgm::ValueException
     */	 
-    PathName(const blocxx::String &name);
+    PathName(const std::string &name);
     /**
     * @brief Create a new PathName object from a c string.
     * @param name The character pointer to the c string from which
@@ -130,7 +130,7 @@ public:
     *
     * @return The complete path this PathName object holds.
     */	 
-    blocxx::String          toString() const;
+    std::string          toString() const;
 
     /**
     * @brief Returns the path this PathName object holds, as
@@ -154,7 +154,7 @@ public:
     *
     * @return prefix/drive letter or the empty string
     */    
-    blocxx::String          prefix()   const;
+    std::string          prefix()   const;
 
     /** 
     * @brief Returns true if this PathName object holds an empty path.
@@ -221,7 +221,7 @@ public:
     * @endcode
     * @return the file name part of the path string
     */ 
-    blocxx::String          baseName()     const;
+    std::string          baseName()     const;
     
     /**
     * @brief Returns the base name part of <b>path</b>  
@@ -237,7 +237,7 @@ public:
     * @param path The PathName object you want to inspect
     * @return The file name part of the path string
     */ 
-    static blocxx::String   baseName(const PathName &path);
+    static std::string   baseName(const PathName &path);
 
     /**
     * @brief Returns the absolute name of the path string this object holds.
@@ -333,20 +333,20 @@ public:
     *  
     * Use this function to create a new PathName object that consists of
     * <b>this</b> PathName object extended by the string <b>ext</b>. Basically it just
-    * glues the two strings together and calls PathName( const blocxx::String )
+    * glues the two strings together and calls PathName( const std::string )
     * For Example:
     *
     * @code
     * PathName p1("/foo");
-    * blocxx::String strExt(".old");
+    * std::string strExt(".old");
     * std::cout << p1.extend( strExt ); // == "/foo.old"
     * @endcode
     *
-    * @param ext Reference to a blocxx::String containing the extension.
+    * @param ext Reference to a std::string containing the extension.
     * @return A new PathName object that consists of <b>path</b> extended by 
     * <b>ext</b>.
     */  
-    PathName                extend(const blocxx::String &ext) const;
+    PathName                extend(const std::string &ext) const;
     
     /**
     * @brief Create a new PathName object by extending <b>path</b> by
@@ -354,22 +354,22 @@ public:
     *  
     * Static function to create a new PathName object that consists of
     * <b>path</b> extended by the string <b>ext</b>. Basically it just
-    * glues the two strings together and calls PathName( const blocxx::String )
+    * glues the two strings together and calls PathName( const std::string )
     * For Example:
     *
     * @code
     * PathName p1("/foo");
-    * blocxx::String strExt(".old");
+    * std::string strExt(".old");
     * std::cout << PathName::extend(p1, strExt ); // == "/foo.old"
     * @endcode
     *
     * @param path Reference to a PathName object that is to be extended.
-    * @param ext Reference to a blocxx::String containing the extension.
+    * @param ext Reference to a std::string containing the extension.
     * @return A new PathName object that consists of <b>path</b> extended by 
     * <b>ext</b>.
     */  
     static PathName         extend(const PathName       &path,
-                                   const blocxx::String &ext);
+                                   const std::string &ext);
 
     /**
     * @brief Test for equality of <b>this</b> and <b>rpath</b>.  
@@ -403,7 +403,7 @@ protected:
      * @throws ca_mgm::ValueException
      */
      
-    void                    assign(const blocxx::String &path);
+    void                    assign(const std::string &path);
 
      /**
      * @brief Assigns <b>list</b> to this PathName objects m_name string.
@@ -423,7 +423,7 @@ private:
      * an (optional) drive letter.
      */ 
     size_t          m_prefix;
-    blocxx::String  m_name;
+    std::string  m_name;
 };
 
 

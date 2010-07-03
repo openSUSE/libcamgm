@@ -2,8 +2,8 @@
 #include <blocxx/AppenderLogger.hpp>
 #include <blocxx/CerrLogger.hpp>
 #include <blocxx/CerrAppender.hpp>
-#include <blocxx/String.hpp>
-#include <blocxx/PerlRegEx.hpp>
+#include <limal/String.hpp>
+#include <limal/PerlRegEx.hpp>
 #include <limal/Logger.hpp>
 #include <limal/PathInfo.hpp>
 #include <limal/ca-mgm/CA.hpp>
@@ -24,7 +24,7 @@ int main()
     {
         cout << "START" << endl;
 
-        blocxx::StringArray cat;
+        StringArray cat;
         cat.push_back("FATAL");
         cat.push_back("ERROR");
         cat.push_back("INFO");
@@ -43,10 +43,10 @@ int main()
         {
             CA ca("Test_CA1", "system", "./TestRepos/");
 
-            std::vector<map<blocxx::String, blocxx::String> > ret;
+            std::vector<map<std::string, std::string> > ret;
             ret = ca.getRequestList();
 
-            blocxx::String requestName = (*(ret[0].find("request"))).second;
+            std::string requestName = (*(ret[0].find("request"))).second;
 
             path::PathInfo reqFile("./TestRepos/Test_CA1/req/" + requestName + ".req");
             if(reqFile.exists())

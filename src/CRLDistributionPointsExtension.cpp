@@ -71,20 +71,20 @@ CRLDistributionPointsExt::CRLDistributionPointsExt(CAConfig* caConfig, Type type
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             Format(__("Wrong type: %1."), type).c_str());
+		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
 	bool p = caConfig->exists(type2Section(type, true), "crlDistributionPoints");
 	if(p)
 	{
-		std::vector<blocxx::String>   sp   = convStringArray(PerlRegEx("\\s*,\\s*")
-			.split(caConfig->getValue(type2Section(type, true), "crlDistributionPoints")));
-		if(sp[0].equalsIgnoreCase("critical"))  setCritical(true);
+		std::vector<std::string>   sp   = PerlRegEx("\\s*,\\s*")
+			.split(caConfig->getValue(type2Section(type, true), "crlDistributionPoints"));
+		if(0 == str::compareCI(sp[0], "critical"))  setCritical(true);
 
-		std::vector<blocxx::String>::const_iterator it = sp.begin();
+		std::vector<std::string>::const_iterator it = sp.begin();
 		for(; it != sp.end(); ++it)
 		{
-			if((*it).indexOf(":") != String::npos)
+			if((*it).find_first_of(":") != std::string::npos)
 			{
 				try
 				{
@@ -123,7 +123,7 @@ CRLDistributionPointsExt::operator=(const CRLDistributionPointsExt& extension)
 void
 CRLDistributionPointsExt::setCRLDistributionPoints(std::list<LiteralValue> dp)
 {
-	std::vector<blocxx::String> r = checkLiteralValueList(dp);
+	std::vector<std::string> r = checkLiteralValueList(dp);
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
@@ -161,16 +161,16 @@ CRLDistributionPointsExt::commit2Config(CA& ca, Type type) const
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             Format(__("Wrong type: %1."), type).c_str());
+		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
 	if(isPresent())
 	{
-		String extString;
+		std::string extString;
 
 		if(isCritical()) extString += "critical,";
 
-		String val;
+		std::string val;
 		std::list<LiteralValue>::const_iterator it = m_impl->altNameList.begin();
 		for(int j = 0;it != m_impl->altNameList.end(); ++it, ++j)
 		{
@@ -201,7 +201,7 @@ CRLDistributionPointsExt::valid() const
 
 	if(m_impl->altNameList.empty()) return false;
 
-	std::vector<blocxx::String> r = checkLiteralValueList(m_impl->altNameList);
+	std::vector<std::string> r = checkLiteralValueList(m_impl->altNameList);
 	if(!r.empty())
 	{
 		LOGIT_DEBUG(r[0]);
@@ -210,16 +210,16 @@ CRLDistributionPointsExt::valid() const
 	return true;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 CRLDistributionPointsExt::verify() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 
 	if(!isPresent()) return result;
 
 	if(m_impl->altNameList.empty())
 	{
-		result.push_back(String("No value for CRLDistributionPointsExt."));
+		result.push_back(std::string("No value for CRLDistributionPointsExt."));
 	}
 	appendArray(result, checkLiteralValueList(m_impl->altNameList));
 
@@ -227,10 +227,10 @@ CRLDistributionPointsExt::verify() const
 	return result;
 }
 
-std::vector<blocxx::String>
+std::vector<std::string>
 CRLDistributionPointsExt::dump() const
 {
-	std::vector<blocxx::String> result;
+	std::vector<std::string> result;
 	result.push_back("CRLDistributionPointsExt::dump()");
 
 	appendArray(result, ExtensionBase::dump());

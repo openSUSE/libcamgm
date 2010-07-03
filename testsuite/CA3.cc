@@ -2,9 +2,8 @@
 #include <blocxx/AppenderLogger.hpp>
 #include <blocxx/CerrLogger.hpp>
 #include <blocxx/CerrAppender.hpp>
-#include <blocxx/Format.hpp>
-#include <blocxx/String.hpp>
-#include <blocxx/PerlRegEx.hpp>
+#include <limal/String.hpp>
+#include <limal/PerlRegEx.hpp>
 #include <limal/Logger.hpp>
 #include <limal/ca-mgm/CA.hpp>
 
@@ -38,7 +37,7 @@ int main(int argc, char **argv)
                                                   );
     ca_mgm::Logger::setDefaultLogger(l);
 
-    blocxx::String file = argv[ 1 ];
+    std::string file = argv[ 1 ];
 
     cout << "START" << endl;
     cout << "file: " << file << endl;
@@ -54,10 +53,10 @@ int main(int argc, char **argv)
     {
         try
         {
-            blocxx::String    line = blocxx::String::getLine( in );
+            std::string    line = str::getline( in );
             if(line == "EOF") break;
 
-            std::vector<blocxx::String> params = convStringArray(PerlRegEx("\\s").split(line));
+            std::vector<std::string> params = ca_mgm::PerlRegEx("\\s").split(line);
 
             cout << "creating CA object" << endl;
 
@@ -86,9 +85,9 @@ int main(int argc, char **argv)
 
             cout << "============= Call Verify" << endl;
 
-            std::vector<blocxx::String> a = cid.verify();
+            std::vector<std::string> a = cid.verify();
 
-            StringArray::const_iterator it;
+            std::vector<std::string>::const_iterator it;
             for(it = a.begin(); it != a.end(); ++it)
             {
                 cout << (*it) << endl;
@@ -97,9 +96,9 @@ int main(int argc, char **argv)
             cout << "============= Call Dump" << endl;
             PerlRegEx r("^!CHANGING DATA!.*$");
 
-            std::vector<blocxx::String> dump = cid.dump();
+            std::vector<std::string> dump = cid.dump();
 
-            StringArray::const_iterator it2;
+            std::vector<std::string>::const_iterator it2;
             for(it2 = dump.begin(); it2 != dump.end(); ++it2)
             {
                 if(!r.match(*it2))
