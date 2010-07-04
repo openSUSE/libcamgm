@@ -24,7 +24,6 @@
 #include  <limal/ca-mgm/CAConfig.hpp>
 #include  <limal/ValueRegExCheck.hpp>
 #include  <limal/Exception.hpp>
-#include  <blocxx/Format.hpp>
 #include  <map>
 #include  <blocxx/COWIntrusiveCountableBase.hpp>
 
@@ -109,8 +108,11 @@ RDNObject::getOpenSSLValue() const
 		             str::form(__("Invalid type %s."), m_impl->type.c_str()).c_str());
 	}
 
-	PerlRegEx regex("([\\\\/])");
-	std::string v = regex.replace(m_impl->value, "\\\\\\1", true);
+    //PosixRegEx regex("([\\\\/])");
+	//std::string v = regex.replace(m_impl->value, "\\1", true);
+    std::string v = str::escape(m_impl->value, '\\');
+    v = str::escape(v, '/');
+    //LOGIT_DEBUG("RDNObject::getOpenSSLValue Value: '" << m_impl->value << "'  quoted: '" << v << "'");
 
 	ret += v;
 

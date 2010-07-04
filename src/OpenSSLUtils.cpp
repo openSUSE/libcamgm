@@ -2125,12 +2125,12 @@ OpenSSLUtils::listRequests(const std::string &caName,
 		std::string md5 = sa[1];
 		std::string date;
 
-		if(sa.size() == 3 && !sa[2].empty())
+        if(sa.size() == 3 && !sa[2].empty())
 		{
 			md5 += "-" + sa[2];
 
-			Date dt( str::strtonum<int64_t>(sa[2]) );
-			date = std::string(dt.form("%Y-%m-%d %H:%M:%S"));
+			Date dt( sa[2] );
+			date = std::string(dt.form("%Y-%m-%d %H:%M:%S", false));
 		}
 
 		std::map<std::string, std::string> reqLine;
@@ -2617,6 +2617,7 @@ OpenSSLUtils::digestMD5(const std::string &in)
   }
   if(!stdOutput.empty())
   {
+    stdOutput = str::rtrim(stdOutput);
     LOGIT_DEBUG("openssl stdout:" << stdOutput);
   }
   path::removeFile(randfile);

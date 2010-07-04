@@ -310,7 +310,7 @@ CertificateData::dump() const
 	std::string s;
 	for(uint i = 0; i < m_impl->signature.size(); ++i)
 	{
-      s += str::form( "%02x", (UInt8)m_impl->signature[i] );
+      s += str::form( "%02x", (UInt8)m_impl->signature[i] ) + ":";
 	}
 
 	result.push_back("Signature = " + s);

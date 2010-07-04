@@ -62,9 +62,12 @@ int main()
                 {
                     if((*it2).first == "date")
                     {
-                      Date dt((*it2).second, "%Y-%m-%d %H:%M:%S", true);
-
-                      cout << (*it2).first << " = " << dt.form("%Y-%m-%d %H:%M:%S UTC", true) << endl;
+                      if(!((*it2).second.empty()) )
+                      {
+                        //cout << "DATE: " << (*it2).second << endl;
+                        Date dt((*it2).second, "%Y-%m-%d %H:%M:%S", false);
+                        cout << (*it2).first << " = " << dt.form("%Y-%m-%d %H:%M:%S", true) << " UTC"<< endl;
+                      }
                     }
                     else
                     {

@@ -23,7 +23,6 @@
 #include  <limal/ca-mgm/CA.hpp>
 #include  <limal/ValueRegExCheck.hpp>
 #include  <limal/Exception.hpp>
-#include  <blocxx/Format.hpp>
 #include  <blocxx/COWIntrusiveCountableBase.hpp>
 
 #include "Utils.hpp"
@@ -129,7 +128,7 @@ KeyUsageExt::KeyUsageExt(CAConfig* caConfig, Type type)
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             str::form(__("Wrong type: %1."), type).c_str());
+		             str::form(__("Wrong type: %d."), type).c_str());
 	}
 
 	bool p = caConfig->exists(type2Section(type, true), "keyUsage");
@@ -242,7 +241,7 @@ KeyUsageExt::commit2Config(CA& ca, Type type) const
 	{
 		LOGIT_ERROR("wrong type" << type);
 		BLOCXX_THROW(ca_mgm::ValueException,
-		             str::form(__("Wrong type: %1."), type).c_str());
+		             str::form(__("Wrong type: %d."), type).c_str());
 	}
 
 	if(isPresent())
@@ -332,7 +331,7 @@ KeyUsageExt::dump() const
 	appendArray(result, ExtensionBase::dump());
 	if(!isPresent()) return result;
 
-	result.push_back("KeyUsage = " + str::hexstring(getValue(), 4));
+	result.push_back("KeyUsage = " + str::hexstring(getValue(), 6));
 
 	return result;
 }

@@ -23,8 +23,8 @@
 #include  <limal/ca-mgm/CRLReason.hpp>
 #include  <limal/ValueRegExCheck.hpp>
 #include  <limal/Exception.hpp>
-#include  <blocxx/Format.hpp>
 #include  <limal/Date.hpp>
+#include  <limal/String.hpp>
 #include  <blocxx/COWIntrusiveCountableBase.hpp>
 
 #include  "Utils.hpp"

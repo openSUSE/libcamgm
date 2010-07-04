@@ -31,6 +31,7 @@ namespace ca_mgm
 
   static std::string adjustLocale();
   static void restoreLocale(const std::string & locale);
+  static bool isDST( tm tm );
 
   ///////////////////////////////////////////////////////////////////
   //
@@ -49,10 +50,18 @@ namespace ca_mgm
     char * res = ::strptime( date_str.c_str(), format.c_str(), &tm );
     if ( res != NULL )
     {
+      if( isDST( tm ) )
+      {
+        tm.tm_isdst = 1;
+      }
       if(utc)
+      {
         _date = ::timegm( &tm );
+      }
       else
+      {
         _date = ::timelocal( &tm );
+      }
     }
     restoreLocale(thisLocale);
 
@@ -81,6 +90,15 @@ namespace ca_mgm
     restoreLocale(thisLocale);
 
     return buf;
+  }
+
+  static bool isDST( tm tm )
+  {
+    time_t t = ::mktime( &tm );
+    struct tm *tm2 = ::localtime( &t );
+    if( tm2->tm_isdst > 0 )
+      return true;
+    return false;
   }
 
   static std::string adjustLocale()

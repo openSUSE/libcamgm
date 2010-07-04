@@ -60,7 +60,7 @@ int main(int argc, char **argv)
             std::vector<std::string> params = PerlRegEx("\\s").split(line);
             if(params.size() != 2) break;
 
-            cout << "Parse " << params[0] << " str::form:" << params[1] <<endl;
+            cout << "Parse " << params[0] << " Format:" << params[1] <<endl;
 
             FormatType t = E_PEM;
 

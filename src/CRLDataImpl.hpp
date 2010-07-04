@@ -35,7 +35,7 @@ class RevocationEntryImpl : public blocxx::COWIntrusiveCountableBase
 {
 public:
 	RevocationEntryImpl()
-		: serial(0)
+		: serial("0")
 		, revocationDate(0)
 		, revocationReason(CRLReason())
 	{}

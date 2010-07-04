@@ -97,7 +97,7 @@ BasicConstraintsExt::BasicConstraintsExt(CAConfig* caConfig, Type type)
 		{
 			if(0 == str::compareCI(*it, "ca:true"))  isCA = true;
 			else if(0 == str::compareCI(*it, "ca:false"))  isCA = false;
-			else if(0 == str::startsWithCI(*it, "pathlen:"))
+			else if(str::startsWithCI(*it, "pathlen:"))
 			{
 				std::vector<std::string> plA = PerlRegEx(":").split(*it);
 				pl = str::strtonum<int32_t>(plA[1]);

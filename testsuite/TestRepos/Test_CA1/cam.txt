@@ -1,6 +1,0 @@
-05bbd3f28fafdff5d068dcdc6559ba6f
--1278156285 /C=DE/CN=Test CA//SUSE Inc.Gmbh/emailAddress=suse@suse.de
-c293624b6a877f401407ce8f8f1f327e
--1278156286 /C=DE/L=Nuremberg/O=SUSE Linux GmbH/OU=IT/CN=SUSE User CA/emailAddress=security-team@suse.de
-05bbd3f28fafdff5d068dcdc6559ba6f
--1278156288 /C=DE/CN=Test CA//SUSE Inc.Gmbh/emailAddress=suse@suse.de
