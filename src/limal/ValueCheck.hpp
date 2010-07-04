@@ -27,7 +27,7 @@
 #define    LIMAL_VALUE_CHECK_HPP
 
 #include  <limal/ca-mgm/config.h>
-#include  <blocxx/String.hpp>
+#include  <limal/String.hpp>
 #include  <blocxx/RefCount.hpp>
 #include  <list>
 

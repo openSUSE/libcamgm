@@ -36,8 +36,7 @@
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <limal/ValueCheck.hpp>
-
-#include  <blocxx/String.hpp>
+#include  <limal/String.hpp>
 
 
 namespace LIMAL_NAMESPACE

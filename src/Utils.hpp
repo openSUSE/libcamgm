@@ -32,7 +32,7 @@
 #include <limal/ca-mgm/LiteralValues.hpp>
 #include <limal/ca-mgm/CommonData.hpp>
 
-#include <blocxx/String.hpp>
+#include <limal/String.hpp>
 
 #include <blocxx/Exec.hpp>
 #include <blocxx/EnvVars.hpp>

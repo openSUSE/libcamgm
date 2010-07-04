@@ -27,7 +27,7 @@
 #include <limal/ca-mgm/config.h>
 #include <limal/ByteBuffer.hpp>
 #include "blocxx/Exception.hpp"
-#include <blocxx/String.hpp>
+#include <limal/String.hpp>
 
 #include <map>
 #include <vector>

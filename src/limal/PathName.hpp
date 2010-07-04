@@ -41,8 +41,8 @@
 #define LIMAL_PATH_PATHNAME_HPP
 
 #include <limal/ca-mgm/config.h>
-#include <blocxx/String.hpp>
-#include <blocxx/List.hpp>
+#include <limal/String.hpp>
+#include <list>
 #include <iosfwd>
 
 
@@ -66,24 +66,24 @@ public:
     typedef std::list<std::string> List;
 
     /**
-    * @brief Create an empty PathName object.	 
+    * @brief Create an empty PathName object.
     *
-    */	 
+    */
     PathName();
-    
+
     /**
     * @brief Create a Copy of a PathName object.
-    * @param path The PathName object to be copied.	 
-    */	 
+    * @param path The PathName object to be copied.
+    */
     PathName(const PathName       &path);
-	 
+
     /**
     * @brief Create a new PathName object from a PathName::List.
     * @param list The PathName::List from which the new PathName
-    * object shall be created. The first element of this List has 
+    * object shall be created. The first element of this List has
     * to be a prefix, or if there is no prefix an empty string.
     * @throws ca_mgm::ValueException
-    */	 
+    */
     PathName(const PathName::List &list);
 
     /**
@@ -91,19 +91,19 @@ public:
     * @param name The string from which the new PathName object
     * shall be created.
     * @throws ca_mgm::ValueException
-    */	 
+    */
     PathName(const std::string &name);
     /**
     * @brief Create a new PathName object from a c string.
     * @param name The character pointer to the c string from which
     * the new PathName object shall be created.
     * @throws ca_mgm::ValueException
-    */	 
+    */
     PathName(const char           *name);
 
     /**
     * Destructor
-    */	 
+    */
     virtual ~PathName();
 
    /**
@@ -112,7 +112,7 @@ public:
     *
     * @param path The PathName object to assign.
     * @return A reference to this PathName object.
-    */	 
+    */
     PathName & operator= (const PathName &path);
 
     /**
@@ -120,7 +120,7 @@ public:
     * a reference to it.
     *
     * @param path The PathName object that is to be appended.
-    *	 
+    *
     * @return A reference to this PathName object.
     */
     PathName & operator+=(const PathName &path);
@@ -129,12 +129,12 @@ public:
     * @brief Returns the complete path this PathName object holds.
     *
     * @return The complete path this PathName object holds.
-    */	 
+    */
     std::string          toString() const;
 
     /**
     * @brief Returns the path this PathName object holds, as
-    * a PathName::List. The first element of that list is 
+    * a PathName::List. The first element of that list is
     * either the prefix, or, if there is no drive prefix it's an
     * empty string.
     *
@@ -142,60 +142,60 @@ public:
     * a PathName::List.
     *
     * @throws ca_mgm::ValueException
-    */	 
+    */
     PathName::List          toList()   const;
 
-    /** 
+    /**
     * @brief Returns the path prefix if existent, otherwise ""
     *
-    * Returns the path prefix (i.e. drive letter), if the path this 
+    * Returns the path prefix (i.e. drive letter), if the path this
     * PathName object holds contains one (like in 'c:/foo/bar'),
     * otherwise the empty string will be returned.
     *
     * @return prefix/drive letter or the empty string
-    */    
+    */
     std::string          prefix()   const;
 
-    /** 
+    /**
     * @brief Returns true if this PathName object holds an empty path.
     *
     * @return True if this PathName object holds an empty path.
-    */  
+    */
     bool                    empty()    const;
 
     /**
-    * @brief Returns true if this PathName object holds an absolute Path.  
+    * @brief Returns true if this PathName object holds an absolute Path.
     *
-    * @return True if this PathName object holds an absolute path  
-    * (like '/foo/bar').  
+    * @return True if this PathName object holds an absolute path
+    * (like '/foo/bar').
     */
     bool                    absolute() const;
 
-    /** 
+    /**
     * @brief Returns true if this PathName object holds an relative path
     *
     * @return True if this PathName object holds an relative path
     * (like './foo/bar').
-    */  
+    */
     bool                    relative() const;
 
     /**
-    * @brief Returns the directory part of the path string.  
+    * @brief Returns the directory part of the path string.
     *
     * Returns the directory part of the path string this PathName object
-    * holds. For example:  
+    * holds. For example:
     *
     * @code
     * std::cout << PathName("/foo/bar/some_file").dirName(); // == "/foo/bar"
-    * @endcode  
+    * @endcode
     *
     * @return The substring of the path up to the file name (without
-    * prefix)  
+    * prefix)
     */
     PathName                dirName()      const;
 
-    /** 
-    * @brief Returns the directory part of <b>path</b>  
+    /**
+    * @brief Returns the directory part of <b>path</b>
     *
     * Static function to aquire the directory part of a PathName object.
     * For example:
@@ -211,7 +211,7 @@ public:
     static PathName         dirName(const PathName &path);
 
     /**
-    * @brief Returns the base name part of the path string   
+    * @brief Returns the base name part of the path string
     *
     * Returns the base name (i.e. the file name) of the path string.
     * For example:
@@ -220,11 +220,11 @@ public:
     * std::cout << PathName("/foo/bar/some_file").baseName(); // == "some_file"
     * @endcode
     * @return the file name part of the path string
-    */ 
+    */
     std::string          baseName()     const;
-    
+
     /**
-    * @brief Returns the base name part of <b>path</b>  
+    * @brief Returns the base name part of <b>path</b>
     *
     * Returns the base name (i.e. the file name) of the path string.
     * For example:
@@ -236,7 +236,7 @@ public:
     *
     * @param path The PathName object you want to inspect
     * @return The file name part of the path string
-    */ 
+    */
     static std::string   baseName(const PathName &path);
 
     /**
@@ -248,7 +248,7 @@ public:
     * @endcode
     *
     * @return The absolute name form of the path string.
-    */    
+    */
     PathName                absoluteName() const;
 
     /**
@@ -260,7 +260,7 @@ public:
     * @endcode
     *
     * @return The absolute name form of <b>path</b>.
-    */   
+    */
     static PathName         absoluteName(const PathName &path);
 
    /**
@@ -272,7 +272,7 @@ public:
     * @endcode
     *
     * @return The absolute name form of the path string.
-    */    
+    */
     PathName                relativeName() const;
 
      /**
@@ -284,12 +284,12 @@ public:
     * @endcode
     *
     * @return The relative name form of <b>path</b>.
-    */   
+    */
     static PathName         relativeName(const PathName &path);
 
     /**
-    * @brief Create a new PathName object from the concatenation of 
-    * <b>this</b> and <b>add</b>.  
+    * @brief Create a new PathName object from the concatenation of
+    * <b>this</b> and <b>add</b>.
     *
     * Creates a new PathName object consisting of the concatenation of
     * this PathName object and <b>add</b> and returns it. For example:
@@ -302,15 +302,15 @@ public:
     *
     * @param add Reference to the PathName object to be added to this
     * object.
-    * @return A new PathName object consisting of the concatenation of 
-    * this object and <b>add</b>.   
+    * @return A new PathName object consisting of the concatenation of
+    * this object and <b>add</b>.
     */
     PathName                cat(const PathName &add) const;
 
     /**
     * @brief Create a new PathName object by concatenating two existing
     * ones.
-    *  
+    *
     * Static function for concatenating two PathName objects.
     * For example:
     *
@@ -328,9 +328,9 @@ public:
     static PathName         cat(const PathName &path,
                                 const PathName &add);
     /**
-    * @brief Create a new PathName object by extending <b>this</b> PathName 
+    * @brief Create a new PathName object by extending <b>this</b> PathName
     * object by <b>ext</b>.
-    *  
+    *
     * Use this function to create a new PathName object that consists of
     * <b>this</b> PathName object extended by the string <b>ext</b>. Basically it just
     * glues the two strings together and calls PathName( const std::string )
@@ -343,15 +343,15 @@ public:
     * @endcode
     *
     * @param ext Reference to a std::string containing the extension.
-    * @return A new PathName object that consists of <b>path</b> extended by 
+    * @return A new PathName object that consists of <b>path</b> extended by
     * <b>ext</b>.
-    */  
+    */
     PathName                extend(const std::string &ext) const;
-    
+
     /**
     * @brief Create a new PathName object by extending <b>path</b> by
     * <b>ext</b>.
-    *  
+    *
     * Static function to create a new PathName object that consists of
     * <b>path</b> extended by the string <b>ext</b>. Basically it just
     * glues the two strings together and calls PathName( const std::string )
@@ -365,20 +365,20 @@ public:
     *
     * @param path Reference to a PathName object that is to be extended.
     * @param ext Reference to a std::string containing the extension.
-    * @return A new PathName object that consists of <b>path</b> extended by 
+    * @return A new PathName object that consists of <b>path</b> extended by
     * <b>ext</b>.
-    */  
+    */
     static PathName         extend(const PathName       &path,
                                    const std::string &ext);
 
     /**
-    * @brief Test for equality of <b>this</b> and <b>rpath</b>.  
+    * @brief Test for equality of <b>this</b> and <b>rpath</b>.
     *
-    * @param rpath Reference to the PathName object that is to 
-    * be compared to this object. 
+    * @param rpath Reference to the PathName object that is to
+    * be compared to this object.
     * @return True if path string of <b>rpath</b> equals the path
     * string this object holds.
-    */  
+    */
     bool                    equal(const PathName &rpath) const;
 
     /**
@@ -387,7 +387,7 @@ public:
     * @param lpath Reference to PathName object one.
     * @param rpath Reference to PathName object two.
     * @return True if <b>lpath</b> equals <b>rpath</b>.
-    */  
+    */
     static bool             equal(const PathName &lpath,
                                   const PathName &rpath);
 
@@ -395,20 +395,20 @@ protected:
     /**
      * @brief Assigns <b>path</b> to this PathName objects m_name string.
      *
-     * Takes the given path string, cleans it (i.e.: removing redundant 
+     * Takes the given path string, cleans it (i.e.: removing redundant
      * parts from it like './foo/../bar/some_file" -> './bar/some_file')
      * sets m_prefix and assigns the cleansed path string to m_path.
      *
      * @param path path string that is to be assigned to this object.
      * @throws ca_mgm::ValueException
      */
-     
+
     void                    assign(const std::string &path);
 
      /**
      * @brief Assigns <b>list</b> to this PathName objects m_name string.
      *
-     * Takes the given path list, cleans it (i.e.: removing redundant 
+     * Takes the given path list, cleans it (i.e.: removing redundant
      * parts from it like './foo/../bar/some_file" -> './bar/some_file')
      * sets m_prefix and assigns the cleansed path string to m_path.
      *
@@ -421,7 +421,7 @@ private:
     /**
      * @brief holds index of first character in the path string <b>after</b>
      * an (optional) drive letter.
-     */ 
+     */
     size_t          m_prefix;
     std::string  m_name;
 };

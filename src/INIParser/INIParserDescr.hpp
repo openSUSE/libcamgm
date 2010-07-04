@@ -28,7 +28,7 @@
 #define LIMAL_INI_PARSERDESCR_HPP
 
 #include  <limal/ca-mgm/config.h>
-#include  <blocxx/String.hpp>
+#include  <limal/String.hpp>
 
 namespace LIMAL_NAMESPACE
 {
@@ -46,16 +46,16 @@ enum    IniType { NO, VALUE, SECTION, VALUEandSECTION };
  */
 struct IoPatternDescr
 {
-    /**    
-     * Reading description; 
+    /**
+     * Reading description;
      * An extended regular expression contatining two subexpressions ("...(...)...(...)..."), the name and the value of the entry
      */
     std::string regExpr;
-    /**    
+    /**
      * Writing description;
      * A pair item is a printf format string containing two %s placeholders for the name and the value.
      */
-    std::string out; 
+    std::string out;
 };
 
 /**
@@ -67,22 +67,22 @@ struct IoPatternDescr
  */
 struct SectionDescr
 {
-    /**    
+    /**
      * Decribes the begin descripiton of a section.
      */
-    
+
     IoPatternDescr begin; // Begin of a section
-    
-    /**    
+
+    /**
      * Decribes the end descripiton of a section (optional).
      */
 
-    IoPatternDescr end; 
-    /**    
+    IoPatternDescr end;
+    /**
      * Flag, if a seleciton has an end description.
      */
-    
-    bool end_valid; // 
+
+    bool end_valid; //
 };
 
 
@@ -99,7 +99,7 @@ struct SectionDescr
  *     Key="value value
  *     still value
  *     still value"
- *     
+ *
  * @endcode
  * Then begin regexp is: ([^=]+)="([^"]*) and end regexp is ([^"]"). These are compared at
  * the end so they are the last possibility. But once we get into this "divided line" by

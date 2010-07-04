@@ -23,7 +23,7 @@
 #define    LIMAL_CA_MGM_COMMON_DATA_HPP
 
 
-#include  <blocxx/String.hpp>
+#include  <limal/String.hpp>
 #include  <list>
 #include  <vector>
 #include  <map>
@@ -71,7 +71,7 @@ namespace CA_MGM_NAMESPACE {
 
 	enum EErrorCodes
 	{
-		E_GENERIC  = blocxx::Exception::UNKNOWN_ERROR_CODE,  // == -1
+		E_GENERIC  = -1, //blocxx::Exception::UNKNOWN_ERROR_CODE,  // == -1
 		E_C_EMPTY  = -100, // value empty
 		E_ST_EMPTY = -101,
 		E_L_EMPTY  = -102,

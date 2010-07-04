@@ -2,8 +2,8 @@
 #include <blocxx/AppenderLogger.hpp>
 #include <blocxx/CerrLogger.hpp>
 #include <blocxx/CerrAppender.hpp>
-#include <blocxx/String.hpp>
-#include <blocxx/PerlRegEx.hpp>
+#include <limal/String.hpp>
+#include <limal/PerlRegEx.hpp>
 #include <limal/Logger.hpp>
 #include <limal/PathInfo.hpp>
 #include <limal/PathUtils.hpp>
@@ -24,7 +24,7 @@ int main()
     try
     {
         cout << "START" << endl;
-        
+
         // Logging
         LoggerRef l = ca_mgm::Logger::createCerrLogger(
                                                       "DeleteCATest",
@@ -35,7 +35,7 @@ int main()
         ca_mgm::Logger::setDefaultLogger(l);
 
         // fake the index.txt
-        path::copyFile("./TestRepos/Test_CA1/index.txt", 
+        path::copyFile("./TestRepos/Test_CA1/index.txt",
                        "./TestRepos/Test_CA/index.txt");
 
         try
@@ -51,7 +51,7 @@ int main()
         }
 
         CA::deleteCA("Test_CA", "system", true, "./TestRepos/");
-        
+
         cout << "DONE" << endl;
     }
     catch(Exception& e)

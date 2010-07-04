@@ -35,8 +35,8 @@
 #include  <map>
 #include  <list>
 #include  <vector>
-#include  <blocxx/String.hpp>
-#include  <blocxx/StringStream.hpp>
+#include  <limal/String.hpp>
+//#include  <blocxx/StringStream.hpp>
 #include  <blocxx/IntrusiveReference.hpp>
 #include  "INIParser/INIParserDescr.hpp"
 
