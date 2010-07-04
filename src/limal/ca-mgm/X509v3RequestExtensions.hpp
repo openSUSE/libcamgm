@@ -30,7 +30,7 @@
 #include  <limal/ca-mgm/BasicConstraintsExtension.hpp>
 #include  <limal/ca-mgm/SubjectKeyIdentifierExtension.hpp>
 #include  <limal/ca-mgm/SubjectAlternativeNameExtension.hpp>
-#include  <blocxx/COWIntrusiveReference.hpp>
+#include <limal/PtrTypes.hpp>
 
 
 namespace CA_MGM_NAMESPACE {
@@ -145,7 +145,7 @@ namespace CA_MGM_NAMESPACE {
 		dump() const;
 
 	protected:
-		blocxx::COWIntrusiveReference<X509v3RequestExtsImpl> m_impl;
+		ca_mgm::RWCOW_pointer<X509v3RequestExtsImpl> m_impl;
 
 	};
 

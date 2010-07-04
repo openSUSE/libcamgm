@@ -25,7 +25,7 @@
 #include  <limal/ValueRegExCheck.hpp>
 #include  <limal/Exception.hpp>
 #include  <blocxx/Format.hpp>
-#include  <blocxx/COWIntrusiveCountableBase.hpp>
+
 
 #include  "Utils.hpp"
 
@@ -35,7 +35,7 @@ namespace CA_MGM_NAMESPACE
 using namespace ca_mgm;
 using namespace blocxx;
 
-class StringExtensionImpl : public blocxx::COWIntrusiveCountableBase
+class StringExtensionImpl
 {
 public:
 	StringExtensionImpl()
@@ -47,8 +47,7 @@ public:
 	{}
 
 	StringExtensionImpl(const StringExtensionImpl& impl)
-		: COWIntrusiveCountableBase(impl)
-		, value(impl.value)
+		: value(impl.value)
 	{}
 
 	~StringExtensionImpl() {}

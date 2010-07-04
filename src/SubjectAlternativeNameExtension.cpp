@@ -23,7 +23,7 @@
 #include  <limal/ca-mgm/SubjectAlternativeNameExtension.hpp>
 #include  <limal/ca-mgm/CA.hpp>
 #include  <limal/Exception.hpp>
-#include  <blocxx/COWIntrusiveCountableBase.hpp>
+
 
 #include  "Utils.hpp"
 
@@ -33,7 +33,7 @@ namespace CA_MGM_NAMESPACE
 using namespace ca_mgm;
 using namespace blocxx;
 
-class SubjectAlternativeNameExtImpl : public blocxx::COWIntrusiveCountableBase
+class SubjectAlternativeNameExtImpl
 {
 public:
 	SubjectAlternativeNameExtImpl()
@@ -48,8 +48,7 @@ public:
 	{}
 
 	SubjectAlternativeNameExtImpl(const SubjectAlternativeNameExtImpl& impl)
-		: COWIntrusiveCountableBase(impl)
-		, emailCopy(impl.emailCopy)
+		: emailCopy(impl.emailCopy)
 		, altNameList(impl.altNameList)
 	{}
 

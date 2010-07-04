@@ -26,7 +26,7 @@
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <limal/ca-mgm/LiteralValues.hpp>
 #include  <limal/ca-mgm/ExtensionBase.hpp>
-#include  <blocxx/COWIntrusiveReference.hpp>
+#include <limal/PtrTypes.hpp>
 
 namespace CA_MGM_NAMESPACE {
 
@@ -135,7 +135,7 @@ namespace CA_MGM_NAMESPACE {
 #endif
 
 	private:
-		blocxx::COWIntrusiveReference<AuthorityInformationImpl> m_impl;
+		ca_mgm::RWCOW_pointer<AuthorityInformationImpl> m_impl;
 
 	};
 
@@ -230,7 +230,7 @@ namespace CA_MGM_NAMESPACE {
         dump() const;
 
     private:
-    	blocxx::COWIntrusiveReference<AuthorityInfoAccessExtImpl> m_impl;
+    	ca_mgm::RWCOW_pointer<AuthorityInfoAccessExtImpl> m_impl;
 
     };
 

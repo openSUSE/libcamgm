@@ -29,7 +29,7 @@
 #include  <limal/Date.hpp>
 #include  <limal/String.hpp>
 #include  <blocxx/StringBuffer.hpp>
-#include  <blocxx/COWIntrusiveCountableBase.hpp>
+
 
 #include  <openssl/pem.h>
 
@@ -48,7 +48,7 @@ namespace CA_MGM_NAMESPACE
 using namespace ca_mgm;
 using namespace blocxx;
 
-class CAImpl : public blocxx::COWIntrusiveCountableBase
+class CAImpl
 {
 public:
 
@@ -109,12 +109,23 @@ public:
 	CAConfig *config;
 	CAConfig *templ;
 
+    // FIXME: have a look at this
 private:
 	CAImpl() {}
-	CAImpl(const CAImpl &impl)
-		: COWIntrusiveCountableBase(impl)
+	CAImpl(const CAImpl &)
 	{}
-	CAImpl& operator=(const CAImpl &) { return *this; }
+    CAImpl& operator=(const CAImpl &i)
+    {
+      if(this == &i) return *this;
+
+      caName = i.caName;
+      caPasswd = i.caPasswd;
+      repositoryDir = i.repositoryDir;
+      config = i.config;
+      templ = i.templ;
+
+      return *this;
+    }
 
 };
 
@@ -150,6 +161,7 @@ public:
 
 
 CA::CA(const std::string& caName, const std::string& caPasswd, const std::string& repos)
+  : m_impl( new CAImpl(caName, caPasswd, repos))
 {
 
 	if(caName.empty())
@@ -177,8 +189,6 @@ CA::CA(const std::string& caName, const std::string& caPasswd, const std::string
 		BLOCXX_THROW_ERR(ca_mgm::ValueException,
 		                 __("Invalid CA password."), E_INVALID_PASSWD);
 	}
-
-	m_impl = new CAImpl(caName, caPasswd, repos);
 
 	m_impl->templ = new CAConfig(repos+"/"+caName+"/openssl.cnf.tmpl");
 }

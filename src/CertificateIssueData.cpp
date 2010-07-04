@@ -25,7 +25,7 @@
 #include  <limal/Exception.hpp>
 #include  <blocxx/Format.hpp>
 #include  <limal/Date.hpp>
-#include  <blocxx/COWIntrusiveCountableBase.hpp>
+
 
 #include  "Utils.hpp"
 
@@ -35,7 +35,7 @@ namespace CA_MGM_NAMESPACE
 using namespace ca_mgm;
 using namespace blocxx;
 
-class CertificateIssueDataImpl : public blocxx::COWIntrusiveCountableBase
+class CertificateIssueDataImpl
 {
 public:
 	CertificateIssueDataImpl()
@@ -46,8 +46,7 @@ public:
 	{}
 
 	CertificateIssueDataImpl(const CertificateIssueDataImpl& impl)
-		: COWIntrusiveCountableBase(impl)
-		, notBefore(impl.notBefore)
+		: notBefore(impl.notBefore)
 		, notAfter(impl.notAfter)
 		, messageDigest(impl.messageDigest)
 		, extensions(impl.extensions)

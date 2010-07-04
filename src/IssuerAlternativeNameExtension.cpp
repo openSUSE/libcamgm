@@ -23,7 +23,7 @@
 #include  <limal/ca-mgm/IssuerAlternativeNameExtension.hpp>
 #include  <limal/ca-mgm/CA.hpp>
 #include  <limal/Exception.hpp>
-#include  <blocxx/COWIntrusiveCountableBase.hpp>
+
 
 #include  "Utils.hpp"
 
@@ -33,7 +33,7 @@ namespace CA_MGM_NAMESPACE
 using namespace ca_mgm;
 using namespace blocxx;
 
-class IssuerAlternativeNameExtImpl : public blocxx::COWIntrusiveCountableBase
+class IssuerAlternativeNameExtImpl
 {
 public:
 	IssuerAlternativeNameExtImpl()
@@ -48,8 +48,7 @@ public:
 	{}
 
 	IssuerAlternativeNameExtImpl(const IssuerAlternativeNameExtImpl& impl)
-		: COWIntrusiveCountableBase(impl)
-		, issuerCopy(impl.issuerCopy)
+		: issuerCopy(impl.issuerCopy)
 		, altNameList(impl.altNameList)
 	{}
 

@@ -37,7 +37,7 @@
 #include  <limal/ca-mgm/CertificateData.hpp>
 #include  <limal/ca-mgm/CAConfig.hpp>
 #include  <limal/ByteBuffer.hpp>
-#include  <blocxx/COWIntrusiveReference.hpp>
+#include <limal/PtrTypes.hpp>
 
 namespace CA_MGM_NAMESPACE
 {
@@ -669,7 +669,7 @@ namespace CA_MGM_NAMESPACE
 		         const std::string& repos = REPOSITORY);
 
 	private:
-		blocxx::COWIntrusiveReference<CAImpl> m_impl;
+		ca_mgm::RWCOW_pointer<CAImpl> m_impl;
 
 
 		CA();

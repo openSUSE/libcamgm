@@ -24,7 +24,7 @@
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
-#include  <blocxx/COWIntrusiveReference.hpp>
+#include <limal/PtrTypes.hpp>
 
 namespace CA_MGM_NAMESPACE {
 
@@ -119,7 +119,7 @@ namespace CA_MGM_NAMESPACE {
 		dump() const;
 
 	private:
-		blocxx::COWIntrusiveReference<CRLReasonImpl> m_impl;
+		ca_mgm::RWCOW_pointer<CRLReasonImpl> m_impl;
 
 		std::string
 		checkHoldInstruction(const std::string& hi) const;

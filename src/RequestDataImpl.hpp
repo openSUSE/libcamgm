@@ -24,14 +24,14 @@
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
-#include  <blocxx/COWIntrusiveCountableBase.hpp>
+
 
 #include  "X509v3RequestExtensions_Priv.hpp"
 
 
 namespace CA_MGM_NAMESPACE {
 
-class RequestDataImpl : public blocxx::COWIntrusiveCountableBase
+class RequestDataImpl
 {
 public:
 
@@ -50,8 +50,7 @@ public:
 	{}
 
 	RequestDataImpl(const RequestDataImpl& impl)
-		: COWIntrusiveCountableBase(impl)
-		, version(impl.version)
+		: version(impl.version)
 		, subject(impl.subject)
 		, keysize(impl.keysize)
 		, pubkeyAlgorithm(impl.pubkeyAlgorithm)

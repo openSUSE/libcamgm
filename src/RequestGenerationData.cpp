@@ -25,7 +25,7 @@
 #include  <limal/ca-mgm/CA.hpp>
 #include  <limal/Exception.hpp>
 #include  <blocxx/Format.hpp>
-#include  <blocxx/COWIntrusiveCountableBase.hpp>
+
 
 #include  "Utils.hpp"
 
@@ -35,7 +35,7 @@ namespace CA_MGM_NAMESPACE
 using namespace ca_mgm;
 using namespace blocxx;
 
-class RequestGenerationDataImpl : public blocxx::COWIntrusiveCountableBase
+class RequestGenerationDataImpl
 {
 public:
 	RequestGenerationDataImpl()
@@ -48,8 +48,7 @@ public:
 	{}
 
 	RequestGenerationDataImpl(const RequestGenerationDataImpl& impl)
-		: COWIntrusiveCountableBase(impl)
-		, subject(impl.subject)
+		: subject(impl.subject)
 		, keysize(impl.keysize)
 		, messageDigest(impl.messageDigest)
 		, challengePassword(impl.challengePassword)

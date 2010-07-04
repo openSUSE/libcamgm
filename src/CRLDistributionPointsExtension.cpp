@@ -23,7 +23,7 @@
 #include  <limal/ca-mgm/CRLDistributionPointsExtension.hpp>
 #include  <limal/ca-mgm/CA.hpp>
 #include  <limal/Exception.hpp>
-#include  <blocxx/COWIntrusiveCountableBase.hpp>
+
 
 #include  "Utils.hpp"
 
@@ -33,7 +33,7 @@ namespace CA_MGM_NAMESPACE
 using namespace ca_mgm;
 using namespace blocxx;
 
-class CRLDistributionPointsExtImpl : public blocxx::COWIntrusiveCountableBase
+class CRLDistributionPointsExtImpl
 {
 public:
 	CRLDistributionPointsExtImpl()
@@ -41,8 +41,7 @@ public:
 	{}
 
 	CRLDistributionPointsExtImpl(const CRLDistributionPointsExtImpl& impl)
-		: COWIntrusiveCountableBase(impl)
-		, altNameList(impl.altNameList)
+		: altNameList(impl.altNameList)
 	{}
 
 	~CRLDistributionPointsExtImpl() {}

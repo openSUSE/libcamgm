@@ -61,7 +61,7 @@ namespace CA_MGM_NAMESPACE {
 		virtual std::vector<std::string>  dump() const = 0;
 
 	protected:
-		//blocxx::COWIntrusiveReference<BitExtensionImpl> m_impl;
+		//ca_mgm::RWCOW_pointer<BitExtensionImpl> m_impl;
         ca_mgm::RWCOW_pointer<BitExtensionImpl> m_impl;
 
 	};

@@ -24,7 +24,7 @@
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
-#include  <blocxx/COWIntrusiveReference.hpp>
+#include <limal/PtrTypes.hpp>
 
 namespace CA_MGM_NAMESPACE {
 
@@ -63,7 +63,7 @@ namespace CA_MGM_NAMESPACE {
 #endif
 
 	protected:
-		blocxx::COWIntrusiveReference<RDNObjectImpl> m_impl;
+		ca_mgm::RWCOW_pointer<RDNObjectImpl> m_impl;
 
 	};
 
@@ -92,7 +92,7 @@ namespace CA_MGM_NAMESPACE {
 		virtual std::vector<std::string>  dump() const;
 
 	protected:
-		blocxx::COWIntrusiveReference<DNObjectImpl> m_impl;
+		ca_mgm::RWCOW_pointer<DNObjectImpl> m_impl;
 
 	private:
 		std::vector<std::string>

@@ -36,12 +36,12 @@
 #include  <limal/ca-mgm/AuthorityInfoAccessExtension.hpp>
 #include  <limal/ca-mgm/CRLDistributionPointsExtension.hpp>
 #include  <limal/ca-mgm/CertificatePoliciesExtension.hpp>
-#include  <blocxx/COWIntrusiveCountableBase.hpp>
+
 
 
 namespace CA_MGM_NAMESPACE {
 
-class X509v3CertificateExtsImpl : public blocxx::COWIntrusiveCountableBase
+class X509v3CertificateExtsImpl
 {
 public:
 	X509v3CertificateExtsImpl()
@@ -66,8 +66,7 @@ public:
 	{}
 
 	X509v3CertificateExtsImpl(const X509v3CertificateExtsImpl& impl)
-		: COWIntrusiveCountableBase(impl),
-		nsBaseUrl(impl.nsBaseUrl),
+		: nsBaseUrl(impl.nsBaseUrl),
 		nsRevocationUrl(impl.nsRevocationUrl),
 		nsCaRevocationUrl(impl.nsCaRevocationUrl),
 		nsRenewalUrl(impl.nsRenewalUrl),

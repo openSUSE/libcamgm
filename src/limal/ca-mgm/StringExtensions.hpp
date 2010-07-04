@@ -25,7 +25,7 @@
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <limal/ca-mgm/ExtensionBase.hpp>
-#include  <blocxx/COWIntrusiveReference.hpp>
+#include <limal/PtrTypes.hpp>
 
 namespace CA_MGM_NAMESPACE {
 
@@ -55,7 +55,7 @@ namespace CA_MGM_NAMESPACE {
 
 		StringExtension& operator=(const StringExtension& extension);
 
-		blocxx::COWIntrusiveReference<StringExtensionImpl> m_impl;
+		ca_mgm::RWCOW_pointer<StringExtensionImpl> m_impl;
 
 	};
 

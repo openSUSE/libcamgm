@@ -25,7 +25,7 @@
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <limal/ca-mgm/ExtensionBase.hpp>
-#include  <blocxx/COWIntrusiveReference.hpp>
+#include <limal/PtrTypes.hpp>
 
 namespace CA_MGM_NAMESPACE {
 
@@ -88,7 +88,7 @@ namespace CA_MGM_NAMESPACE {
 		dump() const;
 
 	protected:
-		blocxx::COWIntrusiveReference<AuthorityKeyIdentifierExtImpl> m_impl;
+		ca_mgm::RWCOW_pointer<AuthorityKeyIdentifierExtImpl> m_impl;
 
 		void
 		setKeyID(const std::string& kid);

@@ -37,7 +37,7 @@
 #include  <limal/ca-mgm/AuthorityInfoAccessExtension.hpp>
 #include  <limal/ca-mgm/CRLDistributionPointsExtension.hpp>
 #include  <limal/ca-mgm/CertificatePoliciesExtension.hpp>
-#include  <blocxx/COWIntrusiveReference.hpp>
+#include <limal/PtrTypes.hpp>
 
 namespace CA_MGM_NAMESPACE
 {
@@ -240,7 +240,7 @@ namespace CA_MGM_NAMESPACE
 		dump() const;
 
 	private:
-		blocxx::COWIntrusiveReference<X509v3CertificateIssueExtsImpl> m_impl;
+		ca_mgm::RWCOW_pointer<X509v3CertificateIssueExtsImpl> m_impl;
 
 	};
 

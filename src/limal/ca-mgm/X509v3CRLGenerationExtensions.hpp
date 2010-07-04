@@ -27,7 +27,7 @@
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <limal/ca-mgm/AuthorityKeyIdentifierGenerateExtension.hpp>
 #include  <limal/ca-mgm/IssuerAlternativeNameExtension.hpp>
-#include  <blocxx/COWIntrusiveReference.hpp>
+#include <limal/PtrTypes.hpp>
 
 namespace CA_MGM_NAMESPACE
 {
@@ -86,7 +86,7 @@ namespace CA_MGM_NAMESPACE
 		dump() const;
 
 	private:
-		blocxx::COWIntrusiveReference<X509v3CRLGenerationExtsImpl> m_impl;
+		ca_mgm::RWCOW_pointer<X509v3CRLGenerationExtsImpl> m_impl;
     	
 	};
 }

@@ -24,7 +24,7 @@
 #include  <limal/ca-mgm/X509v3CRLGenerationExtensions.hpp>
 #include  <limal/ca-mgm/CA.hpp>
 #include  <limal/Exception.hpp>
-#include  <blocxx/COWIntrusiveCountableBase.hpp>
+
 
 #include  "Utils.hpp"
 
@@ -34,7 +34,7 @@ namespace CA_MGM_NAMESPACE
 using namespace ca_mgm;
 using namespace blocxx;
 
-class X509v3CRLGenerationExtsImpl : public blocxx::COWIntrusiveCountableBase
+class X509v3CRLGenerationExtsImpl
 {
 public:
 	X509v3CRLGenerationExtsImpl()
@@ -49,9 +49,8 @@ public:
 	{}
 
 	X509v3CRLGenerationExtsImpl(const X509v3CRLGenerationExtsImpl& impl)
-		: COWIntrusiveCountableBase(impl),
-		authorityKeyIdentifier(impl.authorityKeyIdentifier),
-		issuerAlternativeName(impl.issuerAlternativeName)
+		: authorityKeyIdentifier(impl.authorityKeyIdentifier)
+		, issuerAlternativeName(impl.issuerAlternativeName)
 	{}
 
 	~X509v3CRLGenerationExtsImpl() {}

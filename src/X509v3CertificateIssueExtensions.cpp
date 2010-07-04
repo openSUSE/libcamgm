@@ -24,7 +24,7 @@
 #include  <limal/ca-mgm/X509v3CertificateIssueExtensions.hpp>
 #include  <limal/ca-mgm/CA.hpp>
 #include  <limal/Exception.hpp>
-#include  <blocxx/COWIntrusiveCountableBase.hpp>
+
 
 #include  "Utils.hpp"
 
@@ -34,7 +34,7 @@ namespace CA_MGM_NAMESPACE
 using namespace ca_mgm;
 using namespace blocxx;
 
-class X509v3CertificateIssueExtsImpl : public blocxx::COWIntrusiveCountableBase
+class X509v3CertificateIssueExtsImpl
 {
 public:
 	X509v3CertificateIssueExtsImpl()
@@ -81,8 +81,7 @@ public:
 	{}
 
 	X509v3CertificateIssueExtsImpl(const X509v3CertificateIssueExtsImpl& impl)
-		: COWIntrusiveCountableBase(impl),
-		nsBaseUrl(impl.nsBaseUrl),
+		: nsBaseUrl(impl.nsBaseUrl),
 		nsRevocationUrl(impl.nsRevocationUrl),
 		nsCaRevocationUrl(impl.nsCaRevocationUrl),
 		nsRenewalUrl(impl.nsRenewalUrl),

@@ -25,7 +25,7 @@
 #include  <limal/ValueRegExCheck.hpp>
 #include  <limal/Exception.hpp>
 #include  <blocxx/Format.hpp>
-#include  <blocxx/COWIntrusiveCountableBase.hpp>
+
 
 #include  "Utils.hpp"
 
@@ -36,7 +36,7 @@ using namespace ca_mgm;
 using namespace blocxx;
 
 
-class AuthorityInformationImpl : public blocxx::COWIntrusiveCountableBase
+class AuthorityInformationImpl
 {
 public:
 
@@ -50,9 +50,8 @@ public:
 	{}
 
 	AuthorityInformationImpl(const AuthorityInformationImpl &ai)
-		: blocxx::COWIntrusiveCountableBase(ai),
-		accessOID(ai.accessOID),
-		location(ai.location)
+		: accessOID(ai.accessOID)
+		, location(ai.location)
 	{}
 
 	virtual ~AuthorityInformationImpl() {}
@@ -67,7 +66,7 @@ public:
 
 };
 
-class AuthorityInfoAccessExtImpl : public blocxx::COWIntrusiveCountableBase
+class AuthorityInfoAccessExtImpl
 {
 public:
 	AuthorityInfoAccessExtImpl()
@@ -75,8 +74,7 @@ public:
 	{}
 
 	AuthorityInfoAccessExtImpl(const AuthorityInfoAccessExtImpl &aie)
-		: blocxx::COWIntrusiveCountableBase(aie),
-		info(aie.info)
+		: info(aie.info)
 	{}
 
 	virtual ~AuthorityInfoAccessExtImpl() {}

@@ -21,7 +21,7 @@
 /-*/
 #include  <limal/ca-mgm/AuthorityKeyIdentifierExtension.hpp>
 #include  <limal/Exception.hpp>
-#include  <blocxx/COWIntrusiveCountableBase.hpp>
+
 
 #include  "Utils.hpp"
 
@@ -31,7 +31,7 @@ namespace CA_MGM_NAMESPACE
 using namespace ca_mgm;
 using namespace blocxx;
 
-class AuthorityKeyIdentifierExtImpl : public blocxx::COWIntrusiveCountableBase
+class AuthorityKeyIdentifierExtImpl
 {
 public:
 
@@ -42,8 +42,7 @@ public:
 	{}
 
 	AuthorityKeyIdentifierExtImpl(const AuthorityKeyIdentifierExtImpl &impl)
-		: COWIntrusiveCountableBase(impl)
-		, keyid(impl.keyid)
+		: keyid(impl.keyid)
 		, DirName(impl.DirName)
 		, serial(impl.serial)
 	{}

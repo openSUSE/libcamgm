@@ -29,7 +29,7 @@
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
-#include  <blocxx/COWIntrusiveReference.hpp>
+#include <limal/PtrTypes.hpp>
 
 
 namespace CA_MGM_NAMESPACE
@@ -105,7 +105,7 @@ namespace CA_MGM_NAMESPACE
 
 
 	private:
-		blocxx::COWIntrusiveReference<CAConfigImpl> m_impl;
+		ca_mgm::RWCOW_pointer<CAConfigImpl> m_impl;
 
 		CAConfig();
 		CAConfig(const CAConfig&);

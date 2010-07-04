@@ -27,7 +27,7 @@
 #include  <limal/ca-mgm/X509v3CertificateExtensions.hpp>
 #include  <limal/ca-mgm/DNObject.hpp>
 #include  <limal/ByteBuffer.hpp>
-#include  <blocxx/COWIntrusiveReference.hpp>
+#include <limal/PtrTypes.hpp>
 
 namespace CA_MGM_NAMESPACE {
 
@@ -123,7 +123,7 @@ namespace CA_MGM_NAMESPACE {
 		CertificateData();
 
 
-		blocxx::COWIntrusiveReference<CertificateDataImpl> m_impl;
+		ca_mgm::RWCOW_pointer<CertificateDataImpl> m_impl;
 	};
 
 }

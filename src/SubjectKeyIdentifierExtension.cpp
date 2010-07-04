@@ -25,7 +25,7 @@
 #include  <limal/ValueRegExCheck.hpp>
 #include  <limal/Exception.hpp>
 #include  <blocxx/Format.hpp>
-#include  <blocxx/COWIntrusiveCountableBase.hpp>
+
 
 #include  "Utils.hpp"
 
@@ -35,7 +35,7 @@ namespace CA_MGM_NAMESPACE
 using namespace ca_mgm;
 using namespace blocxx;
 
-class SubjectKeyIdentifierExtImpl : public blocxx::COWIntrusiveCountableBase
+class SubjectKeyIdentifierExtImpl
 {
 public:
 	SubjectKeyIdentifierExtImpl()
@@ -49,8 +49,7 @@ public:
 	{}
 
 	SubjectKeyIdentifierExtImpl(const SubjectKeyIdentifierExtImpl& impl)
-		: COWIntrusiveCountableBase(impl)
-		, autodetect(impl.autodetect)
+		: autodetect(impl.autodetect)
 		, keyid(impl.keyid)
 	{}
 

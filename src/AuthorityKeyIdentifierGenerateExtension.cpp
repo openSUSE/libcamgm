@@ -23,7 +23,7 @@
 #include  <limal/ca-mgm/AuthorityKeyIdentifierGenerateExtension.hpp>
 #include  <limal/ca-mgm/CA.hpp>
 #include  <limal/Exception.hpp>
-#include  <blocxx/COWIntrusiveCountableBase.hpp>
+
 
 #include  "Utils.hpp"
 
@@ -33,7 +33,7 @@ namespace CA_MGM_NAMESPACE
 using namespace ca_mgm;
 using namespace blocxx;
 
-class AuthorityKeyIdentifierGenerateExtImpl : public blocxx::COWIntrusiveCountableBase
+class AuthorityKeyIdentifierGenerateExtImpl
 {
 public:
 
@@ -49,8 +49,7 @@ public:
 	{}
 
 	AuthorityKeyIdentifierGenerateExtImpl(const AuthorityKeyIdentifierGenerateExtImpl& impl)
-		: COWIntrusiveCountableBase(impl)
-		, keyid(impl.keyid)
+		: keyid(impl.keyid)
 		, issuer(impl.issuer)
 	{}
 

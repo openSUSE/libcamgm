@@ -25,7 +25,7 @@
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <limal/ca-mgm/ExtensionBase.hpp>
-#include  <blocxx/COWIntrusiveReference.hpp>
+#include <limal/PtrTypes.hpp>
 
 namespace CA_MGM_NAMESPACE {
 
@@ -90,7 +90,7 @@ namespace CA_MGM_NAMESPACE {
 #endif
 
 	private:
-		blocxx::COWIntrusiveReference<UserNoticeImpl> m_impl;
+		ca_mgm::RWCOW_pointer<UserNoticeImpl> m_impl;
 
 	};
 
@@ -152,7 +152,7 @@ namespace CA_MGM_NAMESPACE {
 #endif
 
 	private:
-		blocxx::COWIntrusiveReference<CertificatePolicyImpl> m_impl;
+		ca_mgm::RWCOW_pointer<CertificatePolicyImpl> m_impl;
 
 		std::vector<std::string>
 		checkCpsURIs(const StringList& cpsURIs) const;
@@ -201,7 +201,7 @@ namespace CA_MGM_NAMESPACE {
 		dump() const;
 
 	private:
-		blocxx::COWIntrusiveReference<CertificatePoliciesExtImpl> m_impl;
+		ca_mgm::RWCOW_pointer<CertificatePoliciesExtImpl> m_impl;
 
 		std::vector<std::string>
 		checkPolicies(const std::list<CertificatePolicy>& pl) const;

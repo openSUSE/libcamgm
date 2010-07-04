@@ -33,7 +33,7 @@ using namespace ca_mgm;
 using namespace blocxx;
 
 class BitExtensionImpl
-//: public blocxx::COWIntrusiveCountableBase
+//
 {
 public:
 	BitExtensionImpl()

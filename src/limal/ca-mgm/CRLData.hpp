@@ -28,7 +28,7 @@
 #include  <limal/ca-mgm/DNObject.hpp>
 #include  <limal/ca-mgm/X509v3CRLExtensions.hpp>
 #include  <limal/ByteBuffer.hpp>
-#include  <blocxx/COWIntrusiveReference.hpp>
+#include <limal/PtrTypes.hpp>
 
 namespace CA_MGM_NAMESPACE {
 
@@ -67,7 +67,7 @@ namespace CA_MGM_NAMESPACE {
 		dump() const;
 
 	protected:
-		blocxx::COWIntrusiveReference<RevocationEntryImpl> m_impl;
+		ca_mgm::RWCOW_pointer<RevocationEntryImpl> m_impl;
 
 	};
 
@@ -145,7 +145,7 @@ namespace CA_MGM_NAMESPACE {
 		dump() const;
 
 	protected:
-		blocxx::COWIntrusiveReference<CRLDataImpl> m_impl;
+		ca_mgm::RWCOW_pointer<CRLDataImpl> m_impl;
 
 		CRLData();
 

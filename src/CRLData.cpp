@@ -24,7 +24,7 @@
 #include  <limal/ValueRegExCheck.hpp>
 #include  <limal/Exception.hpp>
 #include  <blocxx/Format.hpp>
-#include  <blocxx/COWIntrusiveCountableBase.hpp>
+
 
 #include  "CRLDataImpl.hpp"
 #include  "DNObject_Priv.hpp"

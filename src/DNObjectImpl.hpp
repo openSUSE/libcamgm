@@ -25,12 +25,12 @@
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <list>
-#include  <blocxx/COWIntrusiveCountableBase.hpp>
+
 
 
 namespace CA_MGM_NAMESPACE {
 
-class RDNObjectImpl : public blocxx::COWIntrusiveCountableBase
+class RDNObjectImpl
 {
 public:
 	RDNObjectImpl()
@@ -42,8 +42,7 @@ public:
 	{}
 
 	RDNObjectImpl(const RDNObjectImpl& impl)
-		: COWIntrusiveCountableBase(impl)
-		, type(impl.type)
+		: type(impl.type)
 		, value(impl.value)
 		, prompt(impl.prompt)
 		, min(impl.min)
@@ -65,7 +64,7 @@ public:
 	uint32_t max;
 };
 
-class DNObjectImpl : public blocxx::COWIntrusiveCountableBase
+class DNObjectImpl
 {
 public:
 	DNObjectImpl()
@@ -73,8 +72,7 @@ public:
 	{}
 
 	DNObjectImpl(const DNObjectImpl& impl)
-		: COWIntrusiveCountableBase(impl)
-		, dn(impl.dn)
+		: dn(impl.dn)
 	{}
 
 	~DNObjectImpl() {}

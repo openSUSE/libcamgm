@@ -20,7 +20,7 @@
 #include <limal/ByteBuffer.hpp>
 
 #include <limal/String.hpp>
-#include <blocxx/COWIntrusiveCountableBase.hpp>
+
 
 #include <cstring>
 
@@ -38,7 +38,7 @@ using namespace blocxx;
 // --- Inner ByteBufferImpl class ----------------------------------------
 // -----------------------------------------------------------------------
 class ByteBufferImpl
-    : public blocxx::COWIntrusiveCountableBase
+
 {
 public:
 
@@ -65,8 +65,7 @@ public:
 	}
 
 	ByteBufferImpl(const ByteBufferImpl &buf)
-	    : COWIntrusiveCountableBase(buf)
-	    , m_len(buf.m_len)
+	    : m_len(buf.m_len)
 	    , m_buf(new char[m_len + 1])
 	{
 	    ::memmove(m_buf, buf.m_buf, m_len);
@@ -120,6 +119,13 @@ public:
 	    }
 	}
 
+	void
+	clear()
+	{
+      m_len = 0;
+      m_buf = NULL;
+    }
+
 	size_t
 	size() const
 	{
@@ -149,30 +155,20 @@ private:
 // --- ByteBuffer class ----------------------------------------------
 // -------------------------------------------------------------------
 ByteBuffer::ByteBuffer()
-    : m_impl(NULL)
+    : m_impl(new ByteBufferImpl())
 {}
 
 
 // -------------------------------------------------------------------
 ByteBuffer::ByteBuffer(const char *str)
-    : m_impl(NULL)
-{
-    if( str != NULL)
-    {
-	m_impl = new ByteBufferImpl(str);
-    }
-}
+    : m_impl(new ByteBufferImpl(str))
+{}
 
 
 // -------------------------------------------------------------------
 ByteBuffer::ByteBuffer(const char *ptr, size_t len)
-    : m_impl(NULL)
-{
-    if( ptr != NULL)
-    {
-	m_impl = new ByteBufferImpl(ptr, len);
-    }
-}
+    : m_impl(new ByteBufferImpl(ptr, len))
+{}
 
 
 // -------------------------------------------------------------------
@@ -204,7 +200,7 @@ ByteBuffer::operator=(const ByteBuffer& buf)
 void
 ByteBuffer::clear()
 {
-    m_impl = NULL;
+    m_impl->clear();
 }
 
 
@@ -255,14 +251,14 @@ ByteBuffer::append(const char *ptr, size_t len)
 {
     if(ptr != NULL)
     {
-	if(m_impl)
-	{
-	    m_impl->append(ptr, len);
-	}
-	else
-	{
-	    m_impl = new ByteBufferImpl(ptr, len);
-	}
+      if(m_impl)
+      {
+        m_impl->append(ptr, len);
+      }
+      else
+      {
+        BLOCXX_THROW(ca_mgm::RuntimeException, __("ByteBuffer not initialized"));
+      }
     }
 }
 
@@ -271,14 +267,14 @@ ByteBuffer::append(const char *ptr, size_t len)
 void
 ByteBuffer::append(char c)
 {
-    if(m_impl)
-    {
-	m_impl->append(&c, 1);
-    }
-    else
-    {
-	m_impl = new ByteBufferImpl(&c, 1);
-    }
+  if(m_impl)
+  {
+    m_impl->append(&c, 1);
+  }
+  else
+  {
+    BLOCXX_THROW(ca_mgm::RuntimeException, __("ByteBuffer not initialized"));
+  }
 }
 
 

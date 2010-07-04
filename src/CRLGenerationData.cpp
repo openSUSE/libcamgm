@@ -24,7 +24,7 @@
 #include  <limal/ca-mgm/CRLGenerationData.hpp>
 #include  <limal/Exception.hpp>
 #include  <blocxx/Format.hpp>
-#include  <blocxx/COWIntrusiveCountableBase.hpp>
+
 
 #include  "Utils.hpp"
 
@@ -34,7 +34,7 @@ namespace CA_MGM_NAMESPACE
 using namespace ca_mgm;
 using namespace blocxx;
 
-class CRLGenerationDataImpl : public blocxx::COWIntrusiveCountableBase
+class CRLGenerationDataImpl
 {
 public:
 
@@ -50,8 +50,7 @@ public:
 	{}
 
 	CRLGenerationDataImpl(const CRLGenerationDataImpl& impl)
-		: COWIntrusiveCountableBase(impl)
-		, crlHours(impl.crlHours)
+		: crlHours(impl.crlHours)
 		, extensions(impl.extensions)
 	{}
 

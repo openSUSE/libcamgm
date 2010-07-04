@@ -27,7 +27,7 @@
 #include  <limal/ca-mgm/X509v3RequestExtensions.hpp>
 #include  <limal/ca-mgm/DNObject.hpp>
 #include  <limal/ByteBuffer.hpp>
-#include  <blocxx/COWIntrusiveReference.hpp>
+#include <limal/PtrTypes.hpp>
 
 
 namespace CA_MGM_NAMESPACE {
@@ -105,7 +105,7 @@ namespace CA_MGM_NAMESPACE {
 		dump() const;
 
 	protected:
-		blocxx::COWIntrusiveReference<RequestDataImpl> m_impl;
+		ca_mgm::RWCOW_pointer<RequestDataImpl> m_impl;
 
 		RequestData();
 

@@ -24,12 +24,12 @@
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
-#include  <blocxx/COWIntrusiveCountableBase.hpp>
+
 
 
 namespace CA_MGM_NAMESPACE {
 
-class X509v3CRLExtsImpl : public blocxx::COWIntrusiveCountableBase
+class X509v3CRLExtsImpl
 {
 public:
 	X509v3CRLExtsImpl()
@@ -38,9 +38,8 @@ public:
 	{}
 
 	X509v3CRLExtsImpl(const X509v3CRLExtsImpl& impl)
-		: COWIntrusiveCountableBase(impl),
-		authorityKeyIdentifier(impl.authorityKeyIdentifier),
-		issuerAlternativeName(impl.issuerAlternativeName)
+		: authorityKeyIdentifier(impl.authorityKeyIdentifier)
+		, issuerAlternativeName(impl.issuerAlternativeName)
 	{}
 
 	~X509v3CRLExtsImpl() {}

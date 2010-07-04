@@ -24,7 +24,7 @@
 #include  <limal/ValueRegExCheck.hpp>
 #include  <limal/Exception.hpp>
 #include  <blocxx/Format.hpp>
-#include  <blocxx/COWIntrusiveCountableBase.hpp>
+
 
 #include  "Utils.hpp"
 
@@ -34,7 +34,7 @@ namespace CA_MGM_NAMESPACE
 using namespace ca_mgm;
 using namespace blocxx;
 
-class UserNoticeImpl : public blocxx::COWIntrusiveCountableBase
+class UserNoticeImpl
 {
 public:
 	UserNoticeImpl()
@@ -44,8 +44,7 @@ public:
 	{}
 
 	UserNoticeImpl(const UserNoticeImpl& impl)
-		: COWIntrusiveCountableBase(impl)
-		, explicitText(impl.explicitText)
+		: explicitText(impl.explicitText)
 		, organization(impl.organization)
 		, noticeNumbers(impl.noticeNumbers)
 	{}
@@ -67,7 +66,7 @@ public:
 
 };
 
-class CertificatePolicyImpl : public blocxx::COWIntrusiveCountableBase
+class CertificatePolicyImpl
 {
 public:
 
@@ -84,8 +83,7 @@ public:
 	{}
 
 	CertificatePolicyImpl(const CertificatePolicyImpl& impl)
-		: COWIntrusiveCountableBase(impl)
-		, policyIdentifier(impl.policyIdentifier)
+		: policyIdentifier(impl.policyIdentifier)
 		, cpsURI(impl.cpsURI)
 		, noticeList(impl.noticeList)
 	{}
@@ -103,7 +101,7 @@ public:
 	std::list<UserNotice> noticeList;
 };
 
-class CertificatePoliciesExtImpl : public blocxx::COWIntrusiveCountableBase
+class CertificatePoliciesExtImpl
 {
 public:
 	CertificatePoliciesExtImpl()
@@ -117,8 +115,7 @@ public:
 	{}
 
 	CertificatePoliciesExtImpl(const CertificatePoliciesExtImpl& impl)
-		: COWIntrusiveCountableBase(impl)
-		, ia5org(impl.ia5org)
+		: ia5org(impl.ia5org)
 		, policies(impl.policies)
 	{}
 

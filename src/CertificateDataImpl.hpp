@@ -24,14 +24,14 @@
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
-#include  <blocxx/COWIntrusiveCountableBase.hpp>
+
 
 #include  "X509v3CertificateExtensions_Priv.hpp"
 
 
 namespace CA_MGM_NAMESPACE {
 
-class CertificateDataImpl : public blocxx::COWIntrusiveCountableBase
+class CertificateDataImpl
 {
 public:
 	CertificateDataImpl()
@@ -52,8 +52,7 @@ public:
 	{}
 
 	CertificateDataImpl(const CertificateDataImpl& impl)
-		: COWIntrusiveCountableBase(impl)
-		, version(impl.version)
+		: version(impl.version)
 		, serial(impl.serial)
 		, fingerprint(impl.fingerprint)
 		, notBefore(impl.notBefore)

@@ -24,12 +24,12 @@
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
-#include  <blocxx/COWIntrusiveCountableBase.hpp>
+
 
 
 namespace CA_MGM_NAMESPACE {
 
-class X509v3RequestExtsImpl : public blocxx::COWIntrusiveCountableBase
+class X509v3RequestExtsImpl
 {
 public:
 	X509v3RequestExtsImpl()
@@ -55,8 +55,7 @@ public:
 	{}
 
 	X509v3RequestExtsImpl(const X509v3RequestExtsImpl& impl)
-		: COWIntrusiveCountableBase(impl),
-		nsSslServerName(impl.nsSslServerName),
+		: nsSslServerName(impl.nsSslServerName),
 		nsComment(impl.nsComment),
 		keyUsage(impl.keyUsage),
 		nsCertType(impl.nsCertType),

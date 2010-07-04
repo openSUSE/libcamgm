@@ -27,7 +27,7 @@
 #define LIMAL_BYTEBUFFER_HPP
 
 #include <limal/ca-mgm/config.h>
-#include <blocxx/COWIntrusiveReference.hpp>
+#include <limal/PtrTypes.hpp>
 #include <iostream>
 extern "C"
 {
@@ -257,7 +257,7 @@ namespace LIMAL_NAMESPACE
 #endif
 
     private:
-        blocxx::COWIntrusiveReference<ByteBufferImpl> m_impl;
+        ca_mgm::RWCOW_pointer<ByteBufferImpl> m_impl;
     };
 
 }      // End Of LIMAL_NAMESPACE

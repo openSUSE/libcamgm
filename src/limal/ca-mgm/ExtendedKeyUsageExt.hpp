@@ -25,7 +25,7 @@
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <limal/ca-mgm/ExtensionBase.hpp>
-#include  <blocxx/COWIntrusiveReference.hpp>
+#include <limal/PtrTypes.hpp>
 
 namespace CA_MGM_NAMESPACE {
 
@@ -131,7 +131,7 @@ namespace CA_MGM_NAMESPACE {
 		dump() const;
 
 	private:
-		blocxx::COWIntrusiveReference<ExtendedKeyUsageExtImpl> m_impl;
+		ca_mgm::RWCOW_pointer<ExtendedKeyUsageExtImpl> m_impl;
 
 		bool
 		checkValue(const std::string& value) const;

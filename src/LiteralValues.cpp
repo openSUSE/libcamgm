@@ -25,7 +25,7 @@
 #include  <limal/ValueRegExCheck.hpp>
 #include  <limal/Exception.hpp>
 #include  <limal/String.hpp>
-#include  <blocxx/COWIntrusiveCountableBase.hpp>
+
 
 #include  "Utils.hpp"
 
@@ -36,7 +36,7 @@ using namespace ca_mgm;
 using namespace blocxx;
 
 
-class LiteralValueImpl : public blocxx::COWIntrusiveCountableBase
+class LiteralValueImpl
 {
 public:
 	std::string literalType;
@@ -52,9 +52,8 @@ public:
 	{}
 
 	LiteralValueImpl(const LiteralValueImpl &lv)
-		: blocxx::COWIntrusiveCountableBase(lv),
-		literalType(lv.literalType),
-		literalValue(lv.literalValue)
+		: literalType(lv.literalType)
+		, literalValue(lv.literalValue)
 	{}
 
 	virtual ~LiteralValueImpl() {}
@@ -64,6 +63,7 @@ public:
 		return new LiteralValueImpl(*this);
 	}
 };
+
 
 
 LiteralValue::LiteralValue()

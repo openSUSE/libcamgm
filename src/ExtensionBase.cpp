@@ -21,7 +21,7 @@
 /-*/
 
 #include  <limal/ca-mgm/ExtensionBase.hpp>
-#include  <blocxx/COWIntrusiveCountableBase.hpp>
+
 
 #include  "Utils.hpp"
 
@@ -31,7 +31,8 @@ namespace CA_MGM_NAMESPACE
 using namespace ca_mgm;
 using namespace blocxx;
 
-class ExtensionBaseImpl : public COWIntrusiveCountableBase {
+class ExtensionBaseImpl
+{
 
 public:
 
@@ -40,8 +41,7 @@ public:
 	{}
 
 	ExtensionBaseImpl(const ExtensionBaseImpl &ebi)
-		: COWIntrusiveCountableBase(ebi)
-		, present(ebi.present)
+		: present(ebi.present)
 		, critical(ebi.critical)
 	{}
 

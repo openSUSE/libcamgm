@@ -24,14 +24,14 @@
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
-#include  <blocxx/COWIntrusiveCountableBase.hpp>
+
 
 #include  "X509v3CRLExtensions_Priv.hpp"
 
 
 namespace CA_MGM_NAMESPACE {
 
-class RevocationEntryImpl : public blocxx::COWIntrusiveCountableBase
+class RevocationEntryImpl
 {
 public:
 	RevocationEntryImpl()
@@ -41,8 +41,7 @@ public:
 	{}
 
 	RevocationEntryImpl(const RevocationEntryImpl& impl)
-		: COWIntrusiveCountableBase(impl)
-		, serial(impl.serial)
+		: serial(impl.serial)
 		, revocationDate(impl.revocationDate)
 		, revocationReason(impl.revocationReason)
 	{}
@@ -60,7 +59,7 @@ public:
 
 };
 
-class CRLDataImpl : public blocxx::COWIntrusiveCountableBase
+class CRLDataImpl
 {
 public:
 	CRLDataImpl()
@@ -77,8 +76,7 @@ public:
 	{}
 
 	CRLDataImpl(const CRLDataImpl& impl)
-		: COWIntrusiveCountableBase(impl)
-		, version(impl.version)
+		: version(impl.version)
 		, fingerprint(impl.fingerprint)
 		, lastUpdate(impl.lastUpdate)
 		, nextUpdate(impl.nextUpdate)

@@ -26,7 +26,7 @@
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <limal/ca-mgm/ExtensionBase.hpp>
 #include  <limal/ca-mgm/LiteralValues.hpp>
-#include  <blocxx/COWIntrusiveReference.hpp>
+#include <limal/PtrTypes.hpp>
 
 namespace CA_MGM_NAMESPACE {
 
@@ -68,7 +68,7 @@ namespace CA_MGM_NAMESPACE {
 		dump() const;
 
 	private:
-		blocxx::COWIntrusiveReference<CRLDistributionPointsExtImpl> m_impl;
+		ca_mgm::RWCOW_pointer<CRLDistributionPointsExtImpl> m_impl;
 		
 	};
 

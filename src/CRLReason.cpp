@@ -25,7 +25,7 @@
 #include  <limal/Exception.hpp>
 #include  <limal/Date.hpp>
 #include  <limal/String.hpp>
-#include  <blocxx/COWIntrusiveCountableBase.hpp>
+
 
 #include  "Utils.hpp"
 
@@ -35,7 +35,7 @@ namespace CA_MGM_NAMESPACE
 using namespace ca_mgm;
 using namespace blocxx;
 
-class CRLReasonImpl : public blocxx::COWIntrusiveCountableBase
+class CRLReasonImpl
 {
 public:
 	CRLReasonImpl()
@@ -51,8 +51,7 @@ public:
 	{}
 
 	CRLReasonImpl(const CRLReasonImpl& impl)
-		: COWIntrusiveCountableBase(impl)
-		, reason(impl.reason)
+		: reason(impl.reason)
 		, compromiseDate(impl.compromiseDate)
 		, holdInstruction(impl.holdInstruction)
 	{}

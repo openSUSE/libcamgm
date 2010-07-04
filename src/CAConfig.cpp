@@ -23,7 +23,7 @@
 #include <fstream>
 #include <iostream>
 #include  <limal/ca-mgm/CAConfig.hpp>
-#include  <blocxx/COWIntrusiveCountableBase.hpp>
+
 #include  "Utils.hpp"
 #include  "INIParser/INIParser.hpp"
 
@@ -40,7 +40,7 @@ struct CAConfig::CASection
 	INI::Section *section;
 };
 
-class CAConfigImpl : public blocxx::COWIntrusiveCountableBase
+class CAConfigImpl
 {
 public:
 	CAConfigImpl()
@@ -54,8 +54,7 @@ public:
 	{}
 
 	CAConfigImpl(const CAConfigImpl& impl)
-		: COWIntrusiveCountableBase(impl)
-		, parser(impl.parser)
+		: parser(impl.parser)
 		, srcFilename(impl.srcFilename)
 	{}
 
