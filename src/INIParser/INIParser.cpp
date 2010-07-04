@@ -24,7 +24,7 @@
 #include "INIParser/IniParser.h"
 #include "INIParser/IniFile.h"
 #include "INIParser/INIParser.hpp"
-#include  <blocxx/PosixRegEx.hpp>
+#include  <limal/PosixRegEx.hpp>
 
 #include "Utils.hpp"
 

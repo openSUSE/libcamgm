@@ -1,11 +1,11 @@
-V	110704090908Z		01	unknown	/C=DE/CN=Test CA/SUSE Inc.\Gmbh/emailAddress=suse@suse.de
-V	110704090908Z		02	unknown	/C=DE/CN=Test Server Certificate/SUSE Inc.\Gmbh/emailAddress=suse@suse.de
-V	110704090910Z		03	unknown	/C=DE/CN=Full Test Certificate/emailAddress=suse@suse.de
-V	110704090913Z		04	unknown	/C=DE/CN=Full Test Certificate/emailAddress=suse@suse.de
-V	110704090916Z		05	unknown	/C=DE/CN=Full Test Certificate/emailAddress=suse@suse.de
-R	110704090931Z	100704090932Z	06	unknown	/C=DE/CN=Test Certificate for revocation/emailAddress=suse@suse.de
-R	110704090932Z	100704090936Z,holdInstruction,holdInstructionCallIssuer	07	unknown	/C=DE/CN=Test Certificate for revocation 2/emailAddress=suse@suse.de
-R	110704090936Z	100704090937Z,keyTime,20100704085257Z	08	unknown	/C=DE/CN=Test Certificate for revocation 3/emailAddress=suse@suse.de
-R	110704090938Z	100704090939Z,CAkeyTime,20100704085259Z	09	unknown	/C=DE/CN=Test Certificate for revocation 4/emailAddress=suse@suse.de
-R	110704090939Z	100704090940Z,holdInstruction,1.6.21.43	0A	unknown	/C=DE/CN=Test Certificate for revocation 5 oid test/emailAddress=suse@suse.de
-V	120703090941Z		0B	unknown	/C=DE/CN=Test Sub CA/emailAddress=suse@suse.de
+V	110704091458Z		01	unknown	/C=DE/CN=Test CA/SUSE Inc.\Gmbh/emailAddress=suse@suse.de
+V	110704091458Z		02	unknown	/C=DE/CN=Test Server Certificate/SUSE Inc.\Gmbh/emailAddress=suse@suse.de
+V	110704091501Z		03	unknown	/C=DE/CN=Full Test Certificate/emailAddress=suse@suse.de
+V	110704091505Z		04	unknown	/C=DE/CN=Full Test Certificate/emailAddress=suse@suse.de
+V	110704091509Z		05	unknown	/C=DE/CN=Full Test Certificate/emailAddress=suse@suse.de
+R	110704091524Z	100704091526Z	06	unknown	/C=DE/CN=Test Certificate for revocation/emailAddress=suse@suse.de
+R	110704091526Z	100704091528Z,holdInstruction,holdInstructionCallIssuer	07	unknown	/C=DE/CN=Test Certificate for revocation 2/emailAddress=suse@suse.de
+R	110704091529Z	100704091530Z,keyTime,20100704085850Z	08	unknown	/C=DE/CN=Test Certificate for revocation 3/emailAddress=suse@suse.de
+R	110704091531Z	100704091531Z,CAkeyTime,20100704085851Z	09	unknown	/C=DE/CN=Test Certificate for revocation 4/emailAddress=suse@suse.de
+R	110704091532Z	100704091533Z,holdInstruction,1.6.21.43	0A	unknown	/C=DE/CN=Test Certificate for revocation 5 oid test/emailAddress=suse@suse.de
+V	120703091534Z		0B	unknown	/C=DE/CN=Test Sub CA/emailAddress=suse@suse.de
