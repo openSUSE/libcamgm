@@ -2,7 +2,7 @@
 #include <blocxx/AppenderLogger.hpp>
 #include <blocxx/CerrLogger.hpp>
 #include <blocxx/CerrAppender.hpp>
-#include <blocxx/Format.hpp>
+
 #include <blocxx/String.hpp>
 #include <limal/Logger.hpp>
 #include <limal/ca-mgm/CAConfig.hpp>

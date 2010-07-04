@@ -101,8 +101,8 @@ LDAPUrlImpl::getQueryStringMap(ca_mgm::url::EEncoding eflag) const
 	else
 	{
 		BLOCXX_THROW(ca_mgm::url::UrlNotSupportedException,
-			Format(__("Unable to parse LDAP URL query string '%1'."),
-			       getQueryString()).c_str()
+			str::form(__("Unable to parse LDAP URL query string '%s'."),
+			       getQueryString().c_str()).c_str()
 		);
 	}
 	return pmap;
@@ -142,8 +142,8 @@ LDAPUrlImpl::setQueryStringMap(const ca_mgm::url::ParamMap &pmap)
 		if( !found)
 		{
 			BLOCXX_THROW(UrlNotSupportedException,
-				Format(__("Invalid LDAP URL query parameter '%1'."),
-				       p->first).c_str()
+				str::form(__("Invalid LDAP URL query parameter '%s'."),
+				       p->first.c_str()).c_str()
 			);
 		}
 	}

@@ -24,8 +24,8 @@
 #include <limal/PathInfo.hpp>
 #include <limal/PathName.hpp>
 #include <limal/ca-mgm/LocalManagement.hpp>
-#include <blocxx/PerlRegEx.hpp>
-#include <blocxx/Format.hpp>
+#include <limal/PerlRegEx.hpp>
+#include <limal/String.hpp>
 #include <blocxx/Exec.hpp>
 #include <blocxx/EnvVars.hpp>
 #include <blocxx/System.hpp>
@@ -2440,7 +2440,7 @@ OpenSSLUtils::createCaInfrastructure(const std::string &caName,
 
 	if( r != 0 )
 	{
-		LOGIT_ERROR(Format("Can not create directory: %s (%s [%d])",
+		LOGIT_ERROR(str::form("Can not create directory: %s (%s [%d])",
 		                   pi.toString().c_str(), ::strerror(r), r));
 		BLOCXX_THROW(ca_mgm::SystemException,
 		             str::form(__("Cannot create directory: %s (%s [%d])."),
@@ -2488,7 +2488,7 @@ OpenSSLUtils::createCaInfrastructure(const std::string &caName,
 	{
 		path::removeDirRecursive(repository + "/" + caName);
 
-		LOGIT_ERROR(Format("Can not create directory: %s (%s [%d])",
+		LOGIT_ERROR(str::form("Can not create directory: %s (%s [%d])",
 		                   dir.c_str(), ::strerror(r), r));
 		BLOCXX_THROW(ca_mgm::SystemException,
 		             str::form(__("Cannot create directory: %s (%s [%d])."),
@@ -2502,7 +2502,7 @@ OpenSSLUtils::createCaInfrastructure(const std::string &caName,
 	{
 		path::removeDirRecursive(repository + "/" + caName);
 
-		LOGIT_ERROR(Format("Can not create directory: %s (%s [%d])",
+		LOGIT_ERROR(str::form("Can not create directory: %s (%s [%d])",
 		                   dir.c_str(), ::strerror(r), r));
 		BLOCXX_THROW(ca_mgm::SystemException,
 		             str::form(__("Cannot create directory: %s (%s [%d])."),
@@ -2516,7 +2516,7 @@ OpenSSLUtils::createCaInfrastructure(const std::string &caName,
 	{
 		path::removeDirRecursive(repository + "/" + caName);
 
-		LOGIT_ERROR(Format("Can not create directory: %s (%s [%d])",
+		LOGIT_ERROR(str::form("Can not create directory: %s (%s [%d])",
 		                   dir.c_str(), ::strerror(r), r));
 		BLOCXX_THROW(ca_mgm::SystemException,
 		             str::form(__("Cannot create directory: %s (%s [%d])."),
@@ -2530,7 +2530,7 @@ OpenSSLUtils::createCaInfrastructure(const std::string &caName,
 	{
 		path::removeDirRecursive(repository + "/" + caName);
 
-		LOGIT_ERROR(Format("Can not create directory: %s (%s [%d])",
+		LOGIT_ERROR(str::form("Can not create directory: %s (%s [%d])",
 		                   dir.c_str(), ::strerror(r), r));
 		BLOCXX_THROW(ca_mgm::SystemException,
 		             str::form(__("Cannot create directory: %s (%s [%d])."),
@@ -2544,7 +2544,7 @@ OpenSSLUtils::createCaInfrastructure(const std::string &caName,
 	{
 		path::removeDirRecursive(repository + "/" + caName);
 
-		LOGIT_ERROR(Format("Can not create directory: %s (%s [%d])",
+		LOGIT_ERROR(str::form("Can not create directory: %s (%s [%d])",
 		                   dir.c_str(), ::strerror(r), r));
 		BLOCXX_THROW(ca_mgm::SystemException,
 		             str::form(__("Cannot create directory: %s (%s [%d])."),

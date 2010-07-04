@@ -18,8 +18,8 @@
 /-*/
 
 #include <limal/Url.hpp>
-#include <blocxx/PosixRegEx.hpp>
-#include <blocxx/Format.hpp>
+#include <limal/PosixRegEx.hpp>
+#include <limal/String.hpp>
 
 #include "UrlByScheme.hpp"
 #include "Utils.hpp"
@@ -120,15 +120,15 @@ Url::parseUrl(const std::string &urlString)
 	catch(const blocxx::Exception &e)
 	{
 		BLOCXX_THROW_SUBEX(url::UrlParsingException,
-			Format(__("Unable to parse url string '%1'."),
-			       urlString).c_str(), e
+			str::form(__("Unable to parse url string '%s'."),
+			       urlString.c_str()).c_str(), e
 		);
 	}
 	catch( ... )
 	{
 		BLOCXX_THROW(url::UrlParsingException,
-			Format(__("Unable to parse url string '%1'."),
-			       urlString).c_str()
+			str::form(__("Unable to parse url string '%s'."),
+			       urlString.c_str()).c_str()
 		);
 	}
 }

@@ -18,13 +18,13 @@
 /-*/
 #include <limal/Logger.hpp>
 #include <limal/Exception.hpp>
-
+#include <limal/String.hpp>
 #include <blocxx/NullAppender.hpp>
 #include <blocxx/CerrAppender.hpp>
 #include <blocxx/FileAppender.hpp>
 #include <blocxx/SyslogAppender.hpp>
 #include <blocxx/LogMessage.hpp>
-#include <blocxx/Format.hpp>
+
 
 #include "Utils.hpp"
 
@@ -325,9 +325,9 @@ Logger::createFileLogger(const String      &component,
 	if( !filename.startsWith(BLOCXX_FILENAME_SEPARATOR))
 	{
 		BLOCXX_THROW(ca_mgm::ValueException,
-			Format(__("The specified log file name '%1' "
+			str::form(__("The specified log file name '%s' "
 			          "is not absolute"),
-			       filename).c_str()
+			       filename.c_str()).c_str()
 		);
 	}
 

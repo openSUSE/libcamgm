@@ -26,7 +26,7 @@
  * BloCxx provides several macros helping to throw exceptions:
  * @code
  *   #include <limal/Exception.hpp>
- *   #include <blocxx/Format.hpp>
+ *   
  *
  *   BLOCXX_THROW_ERRNO_MSG(ca_mgm::SystemException,
  *                          "Can't do this and that");
