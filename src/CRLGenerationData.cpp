@@ -23,7 +23,6 @@
 #include  <limal/ca-mgm/CA.hpp>
 #include  <limal/ca-mgm/CRLGenerationData.hpp>
 #include  <limal/Exception.hpp>
-#include  <blocxx/Format.hpp>
 
 
 #include  "Utils.hpp"
