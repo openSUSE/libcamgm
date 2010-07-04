@@ -33,7 +33,7 @@
 #include  <limal/PathInfo.hpp>
 #include  <limal/ValueRegExCheck.hpp>
 #include  <limal/Exception.hpp>
-#include  <blocxx/Format.hpp>
+
 #include  <limal/Date.hpp>
 #include  <limal/String.hpp>
 
