@@ -111,7 +111,7 @@ Url::parseUrl(const std::string &urlString)
 		UrlRef        url(getUrlByScheme( components.scheme));
 		if( !url)
 		{
-			url = new UrlBase();
+			*url = UrlBase();
 		}
 		url->init(components);
 
@@ -345,7 +345,7 @@ Url::setScheme(const std::string &scheme)
 	UrlRef url = getUrlByScheme(scheme);
 	if( !url)
 	{
-		url = new UrlBase();
+		*url = UrlBase();
 	}
 	url->setScheme     ( scheme);
 	url->setAuthority  ( m_impl->getAuthority());

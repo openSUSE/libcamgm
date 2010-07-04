@@ -23,7 +23,6 @@
 #include  <limal/ca-mgm/CA.hpp>
 #include  <limal/ValueRegExCheck.hpp>
 #include  <limal/Exception.hpp>
-#include  <blocxx/COWIntrusiveCountableBase.hpp>
 
 #include "Utils.hpp"
 
@@ -33,7 +32,8 @@ namespace CA_MGM_NAMESPACE
 using namespace ca_mgm;
 using namespace blocxx;
 
-class BitExtensionImpl : public blocxx::COWIntrusiveCountableBase
+class BitExtensionImpl
+//: public blocxx::COWIntrusiveCountableBase
 {
 public:
 	BitExtensionImpl()
@@ -45,8 +45,8 @@ public:
 	{}
 
 	BitExtensionImpl(const BitExtensionImpl& impl)
-		: COWIntrusiveCountableBase(impl)
-		, value(impl.value)
+		: //COWIntrusiveCountableBase(impl) ,
+		value(impl.value)
 	{}
 
 	~BitExtensionImpl() {}

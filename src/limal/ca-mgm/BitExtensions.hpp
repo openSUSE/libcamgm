@@ -25,14 +25,14 @@
 #include  <limal/ca-mgm/config.h>
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <limal/ca-mgm/ExtensionBase.hpp>
-#include  <blocxx/COWIntrusiveReference.hpp>
+#include  <limal/PtrTypes.hpp>
 
 namespace CA_MGM_NAMESPACE {
 
 	class CA;
 	class CAConfig;
 	class BitExtensionImpl;
-	
+
     /**
      * Base Class for Bit Extensions
      */
@@ -49,7 +49,7 @@ namespace CA_MGM_NAMESPACE {
 		BitExtension&  operator=(const BitExtension& extension);
 
 #endif
-		
+
 		void           setValue(uint32_t value);
 		uint32_t getValue() const;
 
@@ -61,7 +61,8 @@ namespace CA_MGM_NAMESPACE {
 		virtual std::vector<std::string>  dump() const = 0;
 
 	protected:
-		blocxx::COWIntrusiveReference<BitExtensionImpl> m_impl;
+		//blocxx::COWIntrusiveReference<BitExtensionImpl> m_impl;
+        ca_mgm::RWCOW_pointer<BitExtensionImpl> m_impl;
 
 	};
 
@@ -82,7 +83,7 @@ namespace CA_MGM_NAMESPACE {
 			encipherOnly      = 0x0001, // KU_ENCIPHER_ONLY
 			decipherOnly      = 0x8000  // KU_DECIPHER_ONLY
 		};
-        
+
 		KeyUsageExt();
 		KeyUsageExt(CAConfig* caConfig, Type type);
 
@@ -98,7 +99,7 @@ namespace CA_MGM_NAMESPACE {
 		KeyUsageExt& operator=(const KeyUsageExt& extension);
 
 #endif
-		
+
 		/**
 		 * Set a new key usage
 		 */
@@ -163,7 +164,7 @@ namespace CA_MGM_NAMESPACE {
 			emailCA  = 0x0002, // NS_SMIME_CA
 			objCA    = 0x0001  // NS_OBJSIGN_CA
 		};
-        
+
 		NsCertTypeExt();
 		NsCertTypeExt(CAConfig* caConfig, Type type);
 
@@ -179,7 +180,7 @@ namespace CA_MGM_NAMESPACE {
 		NsCertTypeExt& operator=(const NsCertTypeExt& extension);
 
 #endif
-		
+
 		/**
 		 * Set a new certificate type
 		 */
@@ -189,7 +190,7 @@ namespace CA_MGM_NAMESPACE {
 		 * Return the certificate type
 		 */
 		uint32_t getNsCertType() const;
-        
+
 		/**
 		 * Return true if the specified bit is set
 		 */

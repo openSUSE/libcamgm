@@ -26,7 +26,8 @@
 
 #include <limal/ca-mgm/config.h>
 #include <limal/UrlUtils.hpp>
-#include <blocxx/COWReference.hpp>
+//#include <blocxx/COWReference.hpp>
+#include <limal/PtrTypes.hpp>
 
 
 // -------------------------------------------------------------------
@@ -172,7 +173,7 @@ struct ViewOptions
 		 * It causes, that if the fragment string is requested using
 		 * the WITH_FRAGMENT option, the URL allways contains the "#"
 		 * fragment string separator, even if the fragment string is
-		 * empty. 
+		 * empty.
 		 * This option depends on a enabled WITH_FRAGMENT view
 		 * option and is disabled by default.
 		 */
@@ -503,7 +504,7 @@ public:
 	 * \endcode
 	 *
 	 * \param opts  A combination of view options.
-	 * \return A string representation of the Url object. 
+	 * \return A string representation of the Url object.
 	 */
 	virtual std::string
 	toString(const ca_mgm::url::ViewOptions &opts) const;
@@ -1085,7 +1086,7 @@ protected:
 	 * It is not required if there is an authority ("//" behind
 	 * the "scheme:"), that is in the path-abempty rule, but it
 	 * is used e.g. in ftp url's defined by RFC1738.
-	 * 
+	 *
 	 * We apply this operation in both cases (for all paths),
 	 * but if \p authority is true, the encoding of the second
 	 * slash depends on the schema configuration (for ftp only).
@@ -1167,7 +1168,8 @@ protected:
 	checkValidFragment(const std::string &fragment, EEncoding eflag) const;
 
 private:
-	blocxx::COWReference<UrlBaseData> m_data;
+	//blocxx::COWReference<UrlBaseData> m_data;
+    RWCOW_pointer<UrlBaseData> m_data;
 };
 
 
@@ -1175,7 +1177,8 @@ private:
 /**
  * \brief Copy-On-Write Url reference.
  */
-typedef blocxx::COWReference<UrlBase>          UrlRef;
+//typedef blocxx::COWReference<UrlBase>          UrlRef;
+typedef RWCOW_pointer<UrlBase>          UrlRef;
 
 
 // -------------------------------------------------------------------

@@ -250,7 +250,7 @@ UrlBase::operator = (const std::string &urlString)
 	catch( ... )
 	{
 		// restore on failure
-		m_data = saved_data.clone();
+		*m_data = *saved_data.clone();
 		throw;
 	}
 	return *this;
@@ -378,7 +378,7 @@ UrlBase::clear()
 {
 	ca_mgm::url::UrlConfig   config(m_data->config);
 	ca_mgm::url::ViewOptions vopts(m_data->vopts);
-	m_data = new UrlBaseData();
+	*m_data = UrlBaseData();
 	m_data->config = config;
 	m_data->vopts  = vopts;
 }
