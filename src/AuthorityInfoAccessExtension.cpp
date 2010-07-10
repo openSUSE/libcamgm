@@ -273,7 +273,7 @@ AuthorityInfoAccessExt::AuthorityInfoAccessExt(CAConfig* caConfig, Type type)
 				AuthorityInformation ai = AuthorityInformation(al[0], LiteralValue(al[1]));
 				m_impl->info.push_back(ai);
 			}
-			catch(blocxx::Exception& e)
+			catch(ca_mgm::Exception& e)
 			{
 				LOGIT_ERROR("invalid value: " << *it << "(" << al[0] << "/" << al[1] << ")");
 			}

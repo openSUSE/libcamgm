@@ -104,7 +104,7 @@ SubjectAlternativeNameExt::SubjectAlternativeNameExt(CAConfig* caConfig, Type ty
 						LiteralValue lv = LiteralValue(*it);
 						m_impl->altNameList.push_back(lv);
 					}
-					catch(blocxx::Exception& e)
+					catch(ca_mgm::Exception& e)
 					{
 						LOGIT_ERROR("invalid value: " << *it << "\n" <<e);
 					}

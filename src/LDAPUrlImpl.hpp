@@ -27,9 +27,6 @@ namespace LIMAL_NAMESPACE
 namespace url
 {
 
-using namespace blocxx;
-
-
 // ---------------------------------------------------------------
 class LDAPUrlImpl: public UrlBase
 {

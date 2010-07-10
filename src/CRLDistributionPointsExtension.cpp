@@ -90,7 +90,7 @@ CRLDistributionPointsExt::CRLDistributionPointsExt(CAConfig* caConfig, Type type
 					LiteralValue lv = LiteralValue(*it);
 					m_impl->altNameList.push_back(lv);
 				}
-				catch(blocxx::Exception& e)
+				catch(Exception& e)
 				{
 					LOGIT_ERROR("invalid value: " << *it);
 				}

@@ -26,7 +26,7 @@
 
 #include <limal/ca-mgm/config.h>
 #include <limal/ByteBuffer.hpp>
-#include "blocxx/Exception.hpp"
+#include <limal/Exception.hpp>
 #include <limal/String.hpp>
 
 #include <map>
@@ -43,7 +43,7 @@ namespace url
  * @class UrlException
  * Base class common for all URL exceptions.
  */
-BLOCXX_DECLARE_EXCEPTION (Url);
+CA_MGM_DECLARE_EXCEPTION (Url);
 
 
 // -------------------------------------------------------------------
@@ -51,7 +51,7 @@ BLOCXX_DECLARE_EXCEPTION (Url);
  * @class UrlParsingException
  * Thrown if the url or a component can't be parsed at all.
  */
-BLOCXX_DECLARE_EXCEPTION2(UrlParsing,      UrlException);
+CA_MGM_DECLARE_EXCEPTION2(UrlParsing,      UrlException);
 
 
 // -------------------------------------------------------------------
@@ -59,7 +59,7 @@ BLOCXX_DECLARE_EXCEPTION2(UrlParsing,      UrlException);
  * @class UrlDecodingException
  * Thrown if the encoded string contains a NUL byte (%00).
  */
-BLOCXX_DECLARE_EXCEPTION2(UrlDecoding,     UrlException);
+CA_MGM_DECLARE_EXCEPTION2(UrlDecoding,     UrlException);
 
 
 // -------------------------------------------------------------------
@@ -67,7 +67,7 @@ BLOCXX_DECLARE_EXCEPTION2(UrlDecoding,     UrlException);
  * @class UrlBadComponentException
  * Thrown if a url component is invalid.
  */
-BLOCXX_DECLARE_EXCEPTION2(UrlBadComponent, UrlException);
+CA_MGM_DECLARE_EXCEPTION2(UrlBadComponent, UrlException);
 
 
 // -------------------------------------------------------------------
@@ -75,7 +75,7 @@ BLOCXX_DECLARE_EXCEPTION2(UrlBadComponent, UrlException);
  * @class UrlNotAllowedException
  * Thrown if scheme does not allow a component.
  */
-BLOCXX_DECLARE_EXCEPTION2(UrlNotAllowed,   UrlException);
+CA_MGM_DECLARE_EXCEPTION2(UrlNotAllowed,   UrlException);
 
 
 // -------------------------------------------------------------------
@@ -84,7 +84,7 @@ BLOCXX_DECLARE_EXCEPTION2(UrlNotAllowed,   UrlException);
  * Thrown if a feature e.g. parsing of a component
  * is not supported for the url/scheme.
  */
-BLOCXX_DECLARE_EXCEPTION2(UrlNotSupported, UrlException);
+CA_MGM_DECLARE_EXCEPTION2(UrlNotSupported, UrlException);
 
 
 // -------------------------------------------------------------------

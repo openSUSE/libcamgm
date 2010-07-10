@@ -20,6 +20,7 @@
 #include <limal/Url.hpp>
 #include <limal/PosixRegEx.hpp>
 #include <limal/String.hpp>
+#include <limal/Exception.hpp>
 
 #include "UrlByScheme.hpp"
 #include "Utils.hpp"
@@ -30,8 +31,6 @@ namespace LIMAL_NAMESPACE
 {
 namespace url
 {
-
-using namespace blocxx;
 
 
 // -----------------------------------------------------------------
@@ -117,7 +116,7 @@ Url::parseUrl(const std::string &urlString)
 
 		return url;
 	}
-	catch(const blocxx::Exception &e)
+	catch(const ca_mgm::Exception &e)
 	{
 		CA_MGM_THROW_SUBEX(url::UrlParsingException,
 			str::form(__("Unable to parse url string '%s'."),

@@ -31,9 +31,6 @@ namespace LIMAL_NAMESPACE
 namespace url
 {
 
-using namespace blocxx;
-
-
 // -------------------------------------------------------------------
 namespace
 {
@@ -179,7 +176,7 @@ getUrlByScheme(const std::string &scheme)
 		if( scheme == ptr->scheme && ptr->initfn != NULL)
 		{
 			return ptr->initfn();
-		}	
+		}
 	}
 	return ca_mgm::url::UrlRef();
 }

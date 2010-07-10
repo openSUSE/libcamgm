@@ -32,9 +32,6 @@ namespace LIMAL_NAMESPACE
 namespace url
 {
 
-using namespace blocxx;
-
-
 // -------------------------------------------------------------------
 ca_mgm::url::UrlRef
 getUrlByScheme(const std::string &scheme);

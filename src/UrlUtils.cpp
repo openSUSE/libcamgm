@@ -53,12 +53,12 @@ using namespace blocxx;
 
 
 // -------------------------------------------------------------------
-BLOCXX_DEFINE_EXCEPTION (Url);
-BLOCXX_DEFINE_EXCEPTION2(UrlParsing,      UrlException);
-BLOCXX_DEFINE_EXCEPTION2(UrlDecoding,     UrlException);
-BLOCXX_DEFINE_EXCEPTION2(UrlBadComponent, UrlException);
-BLOCXX_DEFINE_EXCEPTION2(UrlNotAllowed,   UrlException);
-BLOCXX_DEFINE_EXCEPTION2(UrlNotSupported, UrlException);
+CA_MGM_DEFINE_EXCEPTION (Url);
+CA_MGM_DEFINE_EXCEPTION2(UrlParsing,      UrlException);
+CA_MGM_DEFINE_EXCEPTION2(UrlDecoding,     UrlException);
+CA_MGM_DEFINE_EXCEPTION2(UrlBadComponent, UrlException);
+CA_MGM_DEFINE_EXCEPTION2(UrlNotAllowed,   UrlException);
+CA_MGM_DEFINE_EXCEPTION2(UrlNotSupported, UrlException);
 
 
 // -------------------------------------------------------------------

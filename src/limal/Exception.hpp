@@ -149,14 +149,22 @@ namespace ExceptionDetail
  * @param NAME The name of the new class (Exception will be postfixed)
  * @param BASE The base class.
  */
-#define CA_MGM_DECLARE_EXCEPTION(NAME) \
-class NAME##Exception : public ca_mgm::Exception \
+#define CA_MGM_DECLARE_EXCEPTION2(NAME, BASE) \
+class NAME##Exception : public BASE \
 { \
 public: \
         NAME##Exception(const char* file, int line, const char* msg, int errorCode = 0, const ca_mgm::Exception* otherException = 0); \
         virtual ~NAME##Exception() throw(); \
         virtual const char* type() const; \
 };
+
+/**
+ * Declare a new exception class named \<NAME\>Exception that derives from Exception
+ * This macro is typically used in a header file.
+ *
+ * @param NAME The name of the new class (Exception will be postfixed)
+ */
+#define CA_MGM_DECLARE_EXCEPTION(NAME) CA_MGM_DECLARE_EXCEPTION2(NAME, ca_mgm::Exception)
 
 /**
  * Define a new exception class named \<NAME\>Exception that derives from \<BASE\>.
@@ -166,12 +174,21 @@ public: \
  * @param NAME The name of the new class (Exception will be postfixed)
  * @param BASE The base class.
  */
-#define CA_MGM_DEFINE_EXCEPTION(NAME) \
+#define CA_MGM_DEFINE_EXCEPTION2(NAME, BASE) \
 NAME##Exception::NAME##Exception(const char* file, int line, const char* msg, int errorCode, const ::ca_mgm::Exception* otherException) \
-        : ca_mgm::Exception(file, line, msg, errorCode, otherException) {} \
+        : BASE(file, line, msg, errorCode, otherException) {} \
 NAME##Exception::~NAME##Exception() throw() { } \
 const char* NAME##Exception::type() const { return #NAME "Exception"; }\
 
+/**
+ * Define a new exception class named \<NAME\>Exception that derives from Exception.
+ * The new class will use UNKNOWN_SUBCLASS_ID for the subclass id.
+ * Use this macro for internal implementation exceptions that don't have an id.
+ * This macro is typically used in a cpp file.
+ *
+ * @param NAME The name of the new class (Exception will be postfixed)
+ */
+#define CA_MGM_DEFINE_EXCEPTION(NAME) CA_MGM_DEFINE_EXCEPTION2(NAME, ca_mgm::Exception)
 
 /**
  * Throw an exception using __FILE__ and __LINE__.  If applicable,

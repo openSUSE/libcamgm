@@ -26,7 +26,6 @@
 
 #include <limal/ca-mgm/config.h>
 #include <limal/UrlUtils.hpp>
-//#include <blocxx/COWReference.hpp>
 #include <limal/PtrTypes.hpp>
 
 
@@ -1168,7 +1167,6 @@ protected:
 	checkValidFragment(const std::string &fragment, EEncoding eflag) const;
 
 private:
-	//blocxx::COWReference<UrlBaseData> m_data;
     RWCOW_pointer<UrlBaseData> m_data;
 };
 
@@ -1177,7 +1175,6 @@ private:
 /**
  * \brief Copy-On-Write Url reference.
  */
-//typedef blocxx::COWReference<UrlBase>          UrlRef;
 typedef RWCOW_pointer<UrlBase>          UrlRef;
 
 

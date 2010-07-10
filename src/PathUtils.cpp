@@ -158,7 +158,7 @@ int removeDirRecursive( const PathName & path )
             cmd, stdOutput, errOutput, EnvVars()
         );
     }
-    catch(const blocxx::Exception &e) {
+    catch(const ca_mgm::Exception &e) {
         LOGIT_ERROR( "removeDirRecursive exception: " << e);
     }
     if(status != 0) {
@@ -216,7 +216,7 @@ int copyDir( const PathName & srcpath, const PathName & destpath )
             cmd, stdOutput, errOutput, EnvVars()
         );
     }
-    catch(const blocxx::Exception &e) {
+    catch(const ca_mgm::Exception &e) {
         LOGIT_ERROR( "copyDir exception: " << e);
     }
     if(status != 0) {
@@ -354,7 +354,7 @@ int copyFile( const PathName & file, const PathName & dest )
             cmd, stdOutput, errOutput, EnvVars()
         );
     }
-    catch(const blocxx::Exception &e) {
+    catch(const ca_mgm::Exception &e) {
         LOGIT_ERROR( "copyFile exception: " << e);
     }
     if(status != 0) {

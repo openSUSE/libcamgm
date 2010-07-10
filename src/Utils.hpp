@@ -273,7 +273,7 @@ inline int rehashCAs(const std::string &repositoryDir)
 		status = wrapExecuteProcessAndGatherOutput(cmd, stdOutput,
 		                                           errOutput, env);
 	}
-	catch(blocxx::Exception& e)
+	catch(ca_mgm::Exception& e)
 	{
 		LOGIT_INFO( "c_rehash exception:" << e);
 	}
