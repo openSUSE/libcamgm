@@ -95,7 +95,7 @@ X509v3CRLGenerationExts::setAuthorityKeyIdentifier(const AuthorityKeyIdentifierG
 {
 	if(!ext.valid())
 	{
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid value for X509v3CRLGenerationExts::setAuthorityKeyIdentifier."));
 	}
 	m_impl->authorityKeyIdentifier = ext;
@@ -118,7 +118,7 @@ X509v3CRLGenerationExts::setIssuerAlternativeName(const IssuerAlternativeNameExt
 {
 	if(!ext.valid())
 	{
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid value for X509v3CRLGenerationExts::setIssuerAlternativeName."));
 	}
 	m_impl->issuerAlternativeName = ext;
@@ -142,7 +142,7 @@ X509v3CRLGenerationExts::commit2Config(CA& ca, Type type) const
 	if(!valid())
 	{
 		LOGIT_ERROR("invalid X509v3RequestExts object");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid X509v3RequestExts object."));
 	}
 

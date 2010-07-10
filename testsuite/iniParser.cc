@@ -5,6 +5,7 @@
 #include <limal/String.hpp>
 #include <limal/Logger.hpp>
 #include "INIParser/INIParser.hpp"
+#include <limal/Exception.hpp>
 
 #include <iostream>
 #include <fstream>

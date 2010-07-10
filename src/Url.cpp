@@ -60,7 +60,7 @@ Url::Url(const ca_mgm::url::UrlRef &url)
 {
 	if( !m_impl)
 	{
-		BLOCXX_THROW(url::UrlException,
+		CA_MGM_THROW(url::UrlException,
 			__("The URL implementation reference cannot be empty.")
 		);
 	}
@@ -81,7 +81,7 @@ Url::operator = (const std::string &urlString)
 	UrlRef url( parseUrl(urlString));
 	if( !url)
 	{
-		BLOCXX_THROW(url::UrlException,
+		CA_MGM_THROW(url::UrlException,
 			__("The URL implementation reference cannot be empty.")
 		);
 	}
@@ -119,14 +119,14 @@ Url::parseUrl(const std::string &urlString)
 	}
 	catch(const blocxx::Exception &e)
 	{
-		BLOCXX_THROW_SUBEX(url::UrlParsingException,
+		CA_MGM_THROW_SUBEX(url::UrlParsingException,
 			str::form(__("Unable to parse url string '%s'."),
 			       urlString.c_str()).c_str(), e
 		);
 	}
 	catch( ... )
 	{
-		BLOCXX_THROW(url::UrlParsingException,
+		CA_MGM_THROW(url::UrlParsingException,
 			str::form(__("Unable to parse url string '%s'."),
 			       urlString.c_str()).c_str()
 		);

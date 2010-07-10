@@ -239,7 +239,7 @@ ByteBuffer::at(size_t pos) const
 
     LOGIT_ERROR("ByteBuffer index out of bounds: size="
                 << size() << ", pos=" << pos);
-    BLOCXX_THROW(blocxx::OutOfBoundsException, str::form(
+    CA_MGM_THROW(blocxx::OutOfBoundsException, str::form(
                  __("ByteBuffer index out of bounds: size=%1, pos=%2."),
                  size(), pos).c_str());
 }
@@ -257,7 +257,7 @@ ByteBuffer::append(const char *ptr, size_t len)
       }
       else
       {
-        BLOCXX_THROW(ca_mgm::RuntimeException, __("ByteBuffer not initialized"));
+        CA_MGM_THROW(ca_mgm::RuntimeException, __("ByteBuffer not initialized"));
       }
     }
 }
@@ -273,7 +273,7 @@ ByteBuffer::append(char c)
   }
   else
   {
-    BLOCXX_THROW(ca_mgm::RuntimeException, __("ByteBuffer not initialized"));
+    CA_MGM_THROW(ca_mgm::RuntimeException, __("ByteBuffer not initialized"));
   }
 }
 
@@ -289,7 +289,7 @@ ByteBuffer::operator[](size_t pos) const
 
     LOGIT_ERROR("ByteBuffer index out of bounds: size="
                 << size() << ", pos=" << pos);
-    BLOCXX_THROW(blocxx::OutOfBoundsException, str::form(
+    CA_MGM_THROW(blocxx::OutOfBoundsException, str::form(
                  __("ByteBuffer index out of bounds: size=%1, pos=%2."),
                  size(), pos).c_str());
 }
@@ -306,7 +306,7 @@ ByteBuffer::operator[](size_t pos)
 
     LOGIT_ERROR("ByteBuffer index out of bounds: size="
                 << size() << ", pos=" << pos);
-    BLOCXX_THROW(blocxx::OutOfBoundsException, str::form(
+    CA_MGM_THROW(blocxx::OutOfBoundsException, str::form(
                  __("ByteBuffer index out of bounds: size=%1, pos=%2."),
                  size(), pos).c_str());
 }

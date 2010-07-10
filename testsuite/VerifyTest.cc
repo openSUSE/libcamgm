@@ -70,7 +70,7 @@ int main()
 
                     cout << serial << ": Verify success" << endl;
                 }
-                catch(RuntimeException &e)
+                catch(ca_mgm::RuntimeException &e)
                 {
                 	if(r1.match(e.what()))
                     {
@@ -91,7 +91,7 @@ int main()
 
         cout << "DONE" << endl;
     }
-    catch(Exception& e)
+    catch(ca_mgm::Exception& e)
     {
         cerr << e << endl;
     }

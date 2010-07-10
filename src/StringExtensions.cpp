@@ -102,7 +102,7 @@ NsBaseUrlExt::NsBaseUrlExt(const std::string &v)
 	if(!initURICheck().isValid(v))
 	{
 		LOGIT_ERROR("invalid value for NsBaseUrlExt");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid value for NsBaseUrlExt."));
 	}
 	setPresent(true);
@@ -115,7 +115,7 @@ NsBaseUrlExt::NsBaseUrlExt(CAConfig* caConfig, Type type)
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -160,7 +160,7 @@ NsBaseUrlExt::setValue(const std::string &v)
 	if(!initURICheck().isValid(v))
 	{
 		LOGIT_ERROR("invalid value for NsBaseUrlExt");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid value for NsBaseUrlExt."));
 	}
 	m_impl->value = v;
@@ -172,7 +172,7 @@ NsBaseUrlExt::getValue() const
 {
 	if(!isPresent())
 	{
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             __("NsBaseUrlExt is not present."));
 	}
 	return m_impl->value;
@@ -184,7 +184,7 @@ NsBaseUrlExt::commit2Config(CA& ca, Type type) const
 	if(!valid())
 	{
 		LOGIT_ERROR("invalid NsBaseUrlExt object");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid NsBaseUrlExt object."));
 	}
 
@@ -192,7 +192,7 @@ NsBaseUrlExt::commit2Config(CA& ca, Type type) const
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -267,7 +267,7 @@ NsRevocationUrlExt::NsRevocationUrlExt(const std::string &v)
 {
 	if(!initURICheck().isValid(v)) {
 		LOGIT_ERROR("invalid value for NsRevocationUrlExt");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid value for NsRevocationUrlExt."));
 	}
 	setPresent(true);
@@ -280,7 +280,7 @@ NsRevocationUrlExt::NsRevocationUrlExt(CAConfig* caConfig, Type type)
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -320,7 +320,7 @@ NsRevocationUrlExt::setValue(const std::string &v)
 {
 	if(!initURICheck().isValid(v)) {
 		LOGIT_ERROR("invalid value for NsRevocationUrlExt");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid value for NsRevocationUrlExt."));
 	}
 	m_impl->value = v;
@@ -331,7 +331,7 @@ std::string
 NsRevocationUrlExt::getValue() const
 {
 	if(!isPresent()) {
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             __("NsRevocationUrlExt is not present."));
 	}
 	return m_impl->value;
@@ -342,7 +342,7 @@ NsRevocationUrlExt::commit2Config(CA& ca, Type type) const
 {
 	if(!valid()) {
 		LOGIT_ERROR("invalid NsRevocationUrlExt object");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid NsRevocationUrlExt object."));
 	}
 
@@ -350,7 +350,7 @@ NsRevocationUrlExt::commit2Config(CA& ca, Type type) const
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -421,7 +421,7 @@ NsCaRevocationUrlExt::NsCaRevocationUrlExt(const std::string &v)
 {
 	if(!initURICheck().isValid(v)) {
 		LOGIT_ERROR("invalid value for NsCaRevocationUrlExt");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid value for NsCaRevocationUrlExt."));
 	}
 	setPresent(true);
@@ -434,7 +434,7 @@ NsCaRevocationUrlExt::NsCaRevocationUrlExt(CAConfig* caConfig, Type type)
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -474,7 +474,7 @@ NsCaRevocationUrlExt::setValue(const std::string &v)
 {
 	if(!initURICheck().isValid(v)) {
 		LOGIT_ERROR("invalid value for NsCaRevocationUrlExt");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid value for NsCaRevocationUrlExt."));
 	}
 	m_impl->value = v;
@@ -485,7 +485,7 @@ std::string
 NsCaRevocationUrlExt::getValue() const
 {
 	if(!isPresent()) {
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             __("NsCaRevocationUrlExt is not present."));
 	}
 	return m_impl->value;
@@ -496,7 +496,7 @@ NsCaRevocationUrlExt::commit2Config(CA& ca, Type type) const
 {
 	if(!valid()) {
 		LOGIT_ERROR("invalid NsCaRevocationUrlExt object");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid NsCaRevocationUrlExt object."));
 	}
 
@@ -504,7 +504,7 @@ NsCaRevocationUrlExt::commit2Config(CA& ca, Type type) const
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -574,7 +574,7 @@ NsRenewalUrlExt::NsRenewalUrlExt(const std::string &v)
 {
 	if(!initURICheck().isValid(v)) {
 		LOGIT_ERROR("invalid value for NsRenewalUrlExt");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid value for NsRenewalUrlExt."));
 	}
 	setPresent(true);
@@ -587,7 +587,7 @@ NsRenewalUrlExt::NsRenewalUrlExt(CAConfig* caConfig, Type type)
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -627,7 +627,7 @@ NsRenewalUrlExt::setValue(const std::string &v)
 {
 	if(!initURICheck().isValid(v)) {
 		LOGIT_ERROR("invalid value for NsRenewalUrlExt");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid value for NsRenewalUrlExt."));
 	}
 	m_impl->value = v;
@@ -638,7 +638,7 @@ std::string
 NsRenewalUrlExt::getValue() const
 {
 	if(!isPresent()) {
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             __("NsRenewalUrlExt is not present."));
 	}
 	return m_impl->value;
@@ -649,7 +649,7 @@ NsRenewalUrlExt::commit2Config(CA& ca, Type type) const
 {
 	if(!valid()) {
 		LOGIT_ERROR("invalid NsRenewalUrlExt object");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid NsRenewalUrlExt object."));
 	}
 
@@ -657,7 +657,7 @@ NsRenewalUrlExt::commit2Config(CA& ca, Type type) const
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -726,7 +726,7 @@ NsCaPolicyUrlExt::NsCaPolicyUrlExt(const std::string &v)
 {
 	if(!initURICheck().isValid(v)) {
 		LOGIT_ERROR("invalid value for NsCaPolicyUrlExt");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid value for NsCaPolicyUrlExt."));
 	}
 	setPresent(true);
@@ -739,7 +739,7 @@ NsCaPolicyUrlExt::NsCaPolicyUrlExt(CAConfig* caConfig, Type type)
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -779,7 +779,7 @@ NsCaPolicyUrlExt::setValue(const std::string &v)
 {
 	if(!initURICheck().isValid(v)) {
 		LOGIT_ERROR("invalid value for NsCaPolicyUrlExt");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid value for NsCaPolicyUrlExt."));
 	}
 	m_impl->value = v;
@@ -790,7 +790,7 @@ std::string
 NsCaPolicyUrlExt::getValue() const
 {
 	if(!isPresent()) {
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             __("NsCaPolicyUrlExt is not present."));
 	}
 	return m_impl->value;
@@ -801,7 +801,7 @@ NsCaPolicyUrlExt::commit2Config(CA& ca, Type type) const
 {
 	if(!valid()) {
 		LOGIT_ERROR("invalid NsCaPolicyUrlExt object");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid NsCaPolicyUrlExt object."));
 	}
 
@@ -809,7 +809,7 @@ NsCaPolicyUrlExt::commit2Config(CA& ca, Type type) const
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -887,7 +887,7 @@ NsSslServerNameExt::NsSslServerNameExt(CAConfig* caConfig, Type type)
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Invalid type: %1."), type).c_str());
 	}
 
@@ -933,7 +933,7 @@ std::string
 NsSslServerNameExt::getValue() const
 {
 	if(!isPresent()) {
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             __("NsSslServerNameExt is not present."));
 	}
 	return m_impl->value;
@@ -944,14 +944,14 @@ NsSslServerNameExt::commit2Config(CA& ca, Type type) const
 {
 	if(!valid()) {
 		LOGIT_ERROR("invalid NsSslServerNameExt object");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid NsSslServerNameExt object."));
 	}
 
 	// This extension is not supported by type CRL
 	if(type == E_CRL) {
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -1013,7 +1013,7 @@ NsCommentExt::NsCommentExt(CAConfig* caConfig, Type type)
 	// These types are not supported by this object
 	if(type == E_CRL) {
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -1059,7 +1059,7 @@ std::string
 NsCommentExt::getValue() const
 {
 	if(!isPresent()) {
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             __("NsCommentExt is not present."));
 	}
 	return m_impl->value;
@@ -1070,14 +1070,14 @@ NsCommentExt::commit2Config(CA& ca, Type type) const
 {
 	if(!valid()) {
 		LOGIT_ERROR("invalid NsCommentExt object");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid NsCommentExt object."));
 	}
 
 	// This extension is not supported by type CRL
 	if(type == E_CRL) {
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 

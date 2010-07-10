@@ -69,7 +69,7 @@ CRLDistributionPointsExt::CRLDistributionPointsExt(CAConfig* caConfig, Type type
 	   type == E_Server_Req || type == E_CA_Req      )
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -126,7 +126,7 @@ CRLDistributionPointsExt::setCRLDistributionPoints(std::list<LiteralValue> dp)
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
+		CA_MGM_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 	m_impl->altNameList = dp;
 	setPresent(true);
@@ -138,7 +138,7 @@ CRLDistributionPointsExt::getCRLDistributionPoints() const
 	if(!isPresent())
 	{
 		LOGIT_ERROR("CRLDistributionPointsExt is not present");
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             __("CRLDistributionPointsExt is not present."));
 	}
 	return m_impl->altNameList;
@@ -150,7 +150,7 @@ CRLDistributionPointsExt::commit2Config(CA& ca, Type type) const
 	if(!valid())
 	{
 		LOGIT_ERROR("invalid CRLDistributionPointsExt object");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid CRLDistributionPointsExt object."));
 	}
 
@@ -159,7 +159,7 @@ CRLDistributionPointsExt::commit2Config(CA& ca, Type type) const
 	   type == E_Server_Req || type == E_CA_Req      )
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 

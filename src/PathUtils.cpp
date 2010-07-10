@@ -34,15 +34,12 @@ using namespace blocxx;
 
 inline static std::string mode2String(mode_t o) {
     std::string s;
-    //s.format("%#4o", o);
     s = str::form("0%03o", o);
     return s;
 }
 
 inline static std::string errno2String(int e) {
-    char buf[blocxx::ExceptionDetail::BUFSZ];
-    blocxx::ExceptionDetail::portable_strerror_r(e, buf, sizeof(buf));
-    std::string s(buf);
+    std::string s(::strerror(e));
     s += "(" + str::numstring(e) + ")";
     return s;
 }

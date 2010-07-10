@@ -312,19 +312,19 @@ Logger::createFileLogger(const String      &component,
 
 	if( maxLogFileSize >= (UInt64(-1) / UInt64(1024)))
 	{
-		BLOCXX_THROW(ca_mgm::OverflowException,
+		CA_MGM_THROW(ca_mgm::OverflowException,
 			__("The specified maximum log file size is too big.")
 		);
 	}
 	if( filename.empty())
 	{
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 			__("The log file path should be set.")
 		);
 	}
 	if( !filename.startsWith(BLOCXX_FILENAME_SEPARATOR))
 	{
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 			str::form(__("The specified log file name '%s' "
 			          "is not absolute"),
 			       filename.c_str()).c_str()

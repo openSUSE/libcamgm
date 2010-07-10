@@ -239,7 +239,7 @@ inline std::string type2Section(Type type, bool v3section)
 		break;
 	default:
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ValueException, str::form("wrong type: %d", type).c_str());
+		CA_MGM_THROW(ValueException, str::form("wrong type: %d", type).c_str());
 	}
 	LOGIT_DEBUG("type2Section: type=" << type << " result=" << result);
 	return result;

@@ -77,7 +77,7 @@ BasicConstraintsExt::BasicConstraintsExt(CAConfig* caConfig, Type type)
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -148,7 +148,7 @@ BasicConstraintsExt::isCA() const
 	if(!isPresent())
 	{
 		LOGIT_ERROR("BasicConstraintsExt is not present");
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             __("BasicConstraintsExt is not present."));
 	}
 	return m_impl->ca;
@@ -160,7 +160,7 @@ BasicConstraintsExt::getPathLength() const
 	if(!isPresent())
 	{
 		LOGIT_ERROR("BasicConstraintsExt is not present");
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             __("BasicConstraintsExt is not present."));
 	}
 	return m_impl->pathlen;
@@ -172,7 +172,7 @@ BasicConstraintsExt::commit2Config(CA& ca, Type type) const
 	if(!valid())
 	{
 		LOGIT_ERROR("invalid BasicConstraintsExt object");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid BasicConstraintsExt object."));
 	}
 
@@ -180,7 +180,7 @@ BasicConstraintsExt::commit2Config(CA& ca, Type type) const
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 

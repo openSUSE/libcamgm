@@ -97,7 +97,7 @@ public:
 		{
 			LOGIT_ERROR("template not initialized");
 			// exception
-			BLOCXX_THROW(ca_mgm::RuntimeException, __("Template not initialized."));
+			CA_MGM_THROW(ca_mgm::RuntimeException, __("Template not initialized."));
 		}
 		return "";
 	}
@@ -167,14 +167,14 @@ CA::CA(const std::string& caName, const std::string& caPasswd, const std::string
 	if(caName.empty())
 	{
 		LOGIT_ERROR("Empty CA name.");
-		BLOCXX_THROW(ca_mgm::ValueException, __("Empty CA name."));
+		CA_MGM_THROW(ca_mgm::ValueException, __("Empty CA name."));
 	}
 
 	path::PathInfo pi(repos+"/"+caName+"/openssl.cnf.tmpl");
 	if(!pi.exists())
 	{
 		LOGIT_ERROR("Template does not exists: " << pi.toString());
-		BLOCXX_THROW_ERR(ca_mgm::SystemException,
+		CA_MGM_THROW_ERR(ca_mgm::SystemException,
 		                 str::form(__("Template does not exist: %s."), pi.toString().c_str()).c_str(),
 		                 E_FILE_NOT_FOUND);
 	}
@@ -186,7 +186,7 @@ CA::CA(const std::string& caName, const std::string& caPasswd, const std::string
 	if(!passOK)
 	{
 		LOGIT_ERROR("Invalid CA password");
-		BLOCXX_THROW_ERR(ca_mgm::ValueException,
+		CA_MGM_THROW_ERR(ca_mgm::ValueException,
 		                 __("Invalid CA password."), E_INVALID_PASSWD);
 	}
 
@@ -227,10 +227,10 @@ CA::createSubCA(const std::string& newCaName,
 	{
 		OpenSSLUtils::createCaInfrastructure(newCaName, m_impl->repositoryDir);
 	}
-	catch(blocxx::Exception &e)
+	catch(Exception &e)
 	{
 		LOGIT_ERROR(e);
-		BLOCXX_THROW_SUBEX(ca_mgm::SystemException,
+		CA_MGM_THROW_SUBEX(ca_mgm::SystemException,
 		                   __("Error while creating the CA infrastructure."),
 		                   e);
 	}
@@ -250,7 +250,7 @@ CA::createSubCA(const std::string& newCaName,
 
 		LOGIT_ERROR("Can not parse certificate name: " << certificate);
 		// %1 is the name of the CA
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             str::form(__("Cannot parse the certificate name %s."), certificate.c_str()).c_str());
 	}
 
@@ -262,7 +262,7 @@ CA::createSubCA(const std::string& newCaName,
 		path::removeDirRecursive(m_impl->repositoryDir + "/" + newCaName);
 
 		LOGIT_ERROR("Can not copy the private key." << r);
-		BLOCXX_THROW(ca_mgm::SystemException, __("Cannot copy the private key."));
+		CA_MGM_THROW(ca_mgm::SystemException, __("Cannot copy the private key."));
 	}
 
 	r = path::copyFile(m_impl->repositoryDir +"/"+ m_impl->caName +"/newcerts/"+ certificate +".pem",
@@ -273,7 +273,7 @@ CA::createSubCA(const std::string& newCaName,
 		path::removeDirRecursive(m_impl->repositoryDir + "/" + newCaName);
 
 		LOGIT_ERROR("Can not copy the certificate." << r);
-		BLOCXX_THROW(ca_mgm::SystemException, __("Cannot copy the certificate."));
+		CA_MGM_THROW(ca_mgm::SystemException, __("Cannot copy the certificate."));
 	}
 
 	r = path::copyFile(m_impl->repositoryDir + "/" + newCaName + "/" + "cacert.pem",
@@ -305,7 +305,7 @@ CA::createRequest(const std::string& keyPasswd,
 	if(!requestData.valid())
 	{
 		LOGIT_ERROR("Invalid request data");
-		BLOCXX_THROW(ca_mgm::ValueException, __("Invalid request data."));
+		CA_MGM_THROW(ca_mgm::ValueException, __("Invalid request data."));
 	}
 
 	// copy template to config
@@ -323,7 +323,7 @@ CA::createRequest(const std::string& keyPasswd,
 	if(dKey.exists())
 	{
 		LOGIT_ERROR("Duplicate DN. Key '" << request <<".key' already exists.");
-		BLOCXX_THROW(RuntimeException,
+		CA_MGM_THROW(RuntimeException,
 		             str::form(__("Duplicate DN. Key %s.key already exists."), request.c_str()).c_str());
 	}
 
@@ -331,7 +331,7 @@ CA::createRequest(const std::string& keyPasswd,
 	if(r.exists())
 	{
 		LOGIT_ERROR("Duplicate DN. Request '" << request <<".req' already exists.");
-		BLOCXX_THROW(RuntimeException,
+		CA_MGM_THROW(RuntimeException,
 		             str::form(__("Duplicate DN. Request %s.req already exists."), request.c_str()).c_str());
 	}
 
@@ -376,14 +376,14 @@ CA::issueCertificate(const std::string& requestName,
 	{
 		LOGIT_ERROR("Request does not exist.(" << requestFile << ")");
 		// %1 is the absolute path to the request
-		BLOCXX_THROW(ValueException,
+		CA_MGM_THROW(ValueException,
 		             str::form(__("Request does not exist (%s)."), requestFile.c_str() ).c_str());
 	}
 
 	if(!issueData.valid())
 	{
 		LOGIT_ERROR("Invalid issue data");
-		BLOCXX_THROW(ca_mgm::ValueException, __("Invalid issue data."));
+		CA_MGM_THROW(ca_mgm::ValueException, __("Invalid issue data."));
 	}
 
 	std::string serial = OpenSSLUtils::nextSerial(m_impl->repositoryDir + "/" + m_impl->caName + "/serial");
@@ -399,7 +399,7 @@ CA::issueCertificate(const std::string& requestName,
 		LOGIT_ERROR("CA expires before the certificate should expire.");
 		LOGIT_ERROR("CA expires: '" << cdata.getEndDate() <<
 		            "' Cert should expire: '" << issueData.getEndDate()<< "'");
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             __("The CA expires before the certificate should expire."));
 	}
 
@@ -471,13 +471,13 @@ CA::createCertificate(const std::string& keyPasswd,
 	{
 		certificate = issueCertificate(requestName, certificateData, t);
 	}
-	catch(blocxx::Exception &e)
+	catch(Exception &e)
 	{
 		OpenSSLUtils::delCAM(m_impl->caName, requestName, m_impl->repositoryDir);
 
 		path::removeFile(m_impl->repositoryDir + "/" + m_impl->caName + "/keys/" + requestName + ".key");
 		path::removeFile(m_impl->repositoryDir + "/" + m_impl->caName + "/req/" + requestName + ".req");
-		BLOCXX_THROW_SUBEX(ca_mgm::RuntimeException,
+		CA_MGM_THROW_SUBEX(ca_mgm::RuntimeException,
 		                   __("Issuing the certificate failed."), e);
 	}
 
@@ -494,7 +494,7 @@ CA::revokeCertificate(const std::string& certificateName,
 	if(!pi.exists())
 	{
 		LOGIT_ERROR("File '" << certificateName << ".pem' not found in repository");
-		BLOCXX_THROW_ERR(ca_mgm::SystemException,
+		CA_MGM_THROW_ERR(ca_mgm::SystemException,
 		                 str::form(__("File %s not found in the repository."), certificateName.c_str()).c_str(),
 		                 E_FILE_NOT_FOUND);
 	}
@@ -502,7 +502,7 @@ CA::revokeCertificate(const std::string& certificateName,
 	if(!crlReason.valid())
 	{
 		LOGIT_ERROR("Invalid CRL reason");
-		BLOCXX_THROW(ca_mgm::ValueException, __("Invalid CRL reason."));
+		CA_MGM_THROW(ca_mgm::ValueException, __("Invalid CRL reason."));
 	}
 
 	// copy template to config
@@ -525,7 +525,7 @@ CA::createCRL(const CRLGenerationData& crlData)
 	if(!crlData.valid())
 	{
 		LOGIT_ERROR("Invalid CRL data");
-		BLOCXX_THROW(ca_mgm::ValueException, __("Invalid CRL data."));
+		CA_MGM_THROW(ca_mgm::ValueException, __("Invalid CRL data."));
 	}
 
 	// copy template to config
@@ -570,7 +570,7 @@ CA::importRequestData(const ByteBuffer& request,
 	if(outPi.exists())
 	{
 		LOGIT_ERROR("Duplicate DN. Request already exists.");
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             __("Duplicate DN. Request already exists."));
 	}
 
@@ -836,7 +836,7 @@ CA::exportCertificateKeyAsPEM(const std::string& certificateName,
 	if(sa.size() != 2)
 	{
 		LOGIT_ERROR("Cannot parse certificate Name");
-		BLOCXX_THROW(ca_mgm::ValueException, __("Cannot parse the certificate name."));
+		CA_MGM_THROW(ca_mgm::ValueException, __("Cannot parse the certificate name."));
 	}
 
 	ret = LocalManagement::readFile(m_impl->repositoryDir + "/" + m_impl->caName + "/keys/" +
@@ -863,7 +863,7 @@ CA::exportCertificateKeyAsDER(const std::string& certificateName,
 	if(sa.size() != 2)
 	{
 		LOGIT_ERROR("Cannot parse certificate Name");
-		BLOCXX_THROW(ca_mgm::ValueException, __("Cannot parse the certificate name."));
+		CA_MGM_THROW(ca_mgm::ValueException, __("Cannot parse the certificate name."));
 	}
 
 	ret = LocalManagement::readFile(m_impl->repositoryDir + "/" + m_impl->caName + "/keys/" +
@@ -893,7 +893,7 @@ CA::exportCertificateAsPKCS12(const std::string& certificateName,
 	if(sa.size() != 2)
 	{
 		LOGIT_ERROR("Cannot parse certificate Name");
-		BLOCXX_THROW(ca_mgm::ValueException, __("Cannot parse the certificate name."));
+		CA_MGM_THROW(ca_mgm::ValueException, __("Cannot parse the certificate name."));
 	}
 
 	ByteBuffer caCert;
@@ -944,7 +944,7 @@ CA::deleteRequest(const std::string& requestName)
 	if(!reqFile.exists())
 	{
 		LOGIT_ERROR("Request '" << reqFile.toString() <<"' does not exist." );
-		BLOCXX_THROW(ca_mgm::SystemException, str::form(__("Request %s does not exist."),
+		CA_MGM_THROW(ca_mgm::SystemException, str::form(__("Request %s does not exist."),
 		                                            reqFile.toString().c_str()).c_str());
 	}
 
@@ -964,7 +964,7 @@ CA::deleteRequest(const std::string& requestName)
 	r = path::removeFile(reqFile.toString());
 	if(r != 0)
 	{
-		BLOCXX_THROW(ca_mgm::SystemException,
+		CA_MGM_THROW(ca_mgm::SystemException,
 		             // %1 is the error code
 		             str::form(__("Removing the request failed (%1)."), r).c_str());
 	}
@@ -978,7 +978,7 @@ CA::deleteCertificate(const std::string& certificateName,
 	if(!certFile.exists())
 	{
 		LOGIT_ERROR("Certificate does not exist." << certFile.toString());
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             // %s is the absolute path to the certificate
 		             str::form(__("Certificate %s does not exist."),
 		                    certFile.toString().c_str()).c_str());
@@ -990,7 +990,7 @@ CA::deleteCertificate(const std::string& certificateName,
 	if(sa.size() != 3)
 	{
 		LOGIT_ERROR("Can not parse certificate name: " << certificateName);
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             // %s is the certificate name
 		             str::form(__("Cannot parse the certificate name %s."), certificateName.c_str()).c_str());
 	}
@@ -1027,7 +1027,7 @@ CA::deleteCertificate(const std::string& certificateName,
 		int r = path::removeFile(certFile.toString());
 		if(r != 0)
 		{
-			BLOCXX_THROW(ca_mgm::SystemException,
+			CA_MGM_THROW(ca_mgm::SystemException,
 			             // %2 is the error code of rm
 			             str::form(__("Removing the certificate failed: %d."), r).c_str());
 		}
@@ -1036,7 +1036,7 @@ CA::deleteCertificate(const std::string& certificateName,
 	{
 		LOGIT_ERROR("Only revoked or expired certificates can be deleted. " <<
 		            str::form("The status of the certificate is '%s'.", state.c_str()).c_str());
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             str::form(__("Only revoked or expired certificates can be deleted. The status of the certificate is %s."), state.c_str()).c_str());
 	}
 }
@@ -1049,7 +1049,7 @@ CA::updateDB()
 	if(!db.exists())
 	{
 		LOGIT_ERROR("Database not found.");
-		BLOCXX_THROW(ca_mgm::RuntimeException, __("Database not found."));
+		CA_MGM_THROW(ca_mgm::RuntimeException, __("Database not found."));
 	}
 
 	if(db.size() != 0)
@@ -1075,7 +1075,7 @@ CA::verifyCertificate(const std::string& certificateName,
 	if(!certFile.exists())
 	{
 		LOGIT_ERROR("Certificate does not exist");
-		BLOCXX_THROW(ca_mgm::SystemException, __("Certificate does not exist."));
+		CA_MGM_THROW(ca_mgm::SystemException, __("Certificate does not exist."));
 	}
 
 	if(purpose != "sslclient"    &&
@@ -1088,7 +1088,7 @@ CA::verifyCertificate(const std::string& certificateName,
 	   purpose != "ocsphelper")
 	{
 		LOGIT_ERROR("Invalid purpose: " << purpose);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Invalid purpose %s."), purpose.c_str()).c_str());
 	}
 
@@ -1104,7 +1104,7 @@ CA::verifyCertificate(const std::string& certificateName,
 	if(!ret.empty())
 	{
 		LOGIT_ERROR(ret);
-		BLOCXX_THROW(ca_mgm::RuntimeException, ret.c_str());
+		CA_MGM_THROW(ca_mgm::RuntimeException, ret.c_str());
 	}
 
 	return true;
@@ -1132,13 +1132,13 @@ CA::createRootCA(const std::string& caName,
 	if(!caRequestData.valid())
 	{
 		LOGIT_ERROR("Invalid CA request data");
-		BLOCXX_THROW(ca_mgm::ValueException, __("Invalid CA request data."));
+		CA_MGM_THROW(ca_mgm::ValueException, __("Invalid CA request data."));
 	}
 
 	if(!caIssueData.valid())
 	{
 		LOGIT_ERROR("Invalid CA issue data");
-		BLOCXX_THROW(ca_mgm::ValueException, __("Invalid CA issue data."));
+		CA_MGM_THROW(ca_mgm::ValueException, __("Invalid CA issue data."));
 	}
 
 
@@ -1148,10 +1148,10 @@ CA::createRootCA(const std::string& caName,
 	{
 		OpenSSLUtils::createCaInfrastructure(caName, repos);
 	}
-	catch(blocxx::Exception &e)
+	catch(Exception &e)
 	{
 		LOGIT_ERROR(e);
-		BLOCXX_THROW_SUBEX(ca_mgm::SystemException,
+		CA_MGM_THROW_SUBEX(ca_mgm::SystemException,
 		                   __("Error while creating the CA infrastructure."),
 		                   e);
 	}
@@ -1232,7 +1232,7 @@ CA::importCA(const std::string& caName,
 	if(caName.empty())
 	{
 		LOGIT_ERROR("CA name is empty");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("CA name is empty."));
 	}
 
@@ -1241,7 +1241,7 @@ CA::importCA(const std::string& caName,
 	if(caDir.exists())
 	{
 		LOGIT_ERROR("CA directory already exists");
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             __("CA directory already exists."));
 	}
 
@@ -1252,14 +1252,14 @@ CA::importCA(const std::string& caName,
 	if(!bs.isPresent() || !bs.isCA())
 	{
 		LOGIT_ERROR("According to 'basicConstraints', this is not a CA.");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("According to basicConstraints, this is not a CA."));
 	}
 
 	if(caKey.empty())
 	{
 		LOGIT_ERROR("CA key is empty");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("CA key is empty."));
 	}
 
@@ -1268,14 +1268,14 @@ CA::importCA(const std::string& caName,
 	if(!keyregex.match(std::string(caKey.data(), caKey.size())))
 	{
 		LOGIT_ERROR("Invalid Key data.");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid key data."));
 	}
 
 	if(caPasswd.empty())
 	{
 		LOGIT_ERROR("CA password is empty.");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("CA password is empty."));
 	}
 
@@ -1291,10 +1291,10 @@ CA::importCA(const std::string& caName,
 	{
 		OpenSSLUtils::createCaInfrastructure(caName, repos);
 	}
-	catch(blocxx::Exception &e)
+	catch(Exception &e)
 	{
 		LOGIT_ERROR(e);
-		BLOCXX_THROW_SUBEX(ca_mgm::SystemException,
+		CA_MGM_THROW_SUBEX(ca_mgm::SystemException,
 		                   __("Error while creating the CA infrastructure."),
 		                   e);
 	}
@@ -1319,7 +1319,7 @@ CA::importCA(const std::string& caName,
 			path::removeDirRecursive(repos + "/" + caName);
 
 			LOGIT_ERROR ("Error during key encryption." );
-			BLOCXX_THROW_SUBEX(ca_mgm::RuntimeException,
+			CA_MGM_THROW_SUBEX(ca_mgm::RuntimeException,
 			                   __("Error during key encryption."), e);
 		}
 
@@ -1341,7 +1341,7 @@ CA::importCA(const std::string& caName,
 		path::removeDirRecursive(repos + "/" + caName);
 
 		LOGIT_ERROR ("Error during write defaults." );
-		BLOCXX_THROW_SUBEX(ca_mgm::RuntimeException,
+		CA_MGM_THROW_SUBEX(ca_mgm::RuntimeException,
 		                   __("Error during write defaults."), e);
 	}
 
@@ -1476,7 +1476,7 @@ CA::deleteCA(const std::string& caName,
 	if(caName.empty())
 	{
 		LOGIT_ERROR("Empty CA name.");
-		BLOCXX_THROW(ca_mgm::ValueException, __("Empty CA name."));
+		CA_MGM_THROW(ca_mgm::ValueException, __("Empty CA name."));
 	}
 
 	path::PathInfo pi(repos + "/" + caName);
@@ -1484,7 +1484,7 @@ CA::deleteCA(const std::string& caName,
 	if(!pi.exists())
 	{
 		LOGIT_ERROR("CA name does not exist.(" << pi.toString() << ")");
-		BLOCXX_THROW_ERR(ca_mgm::ValueException,
+		CA_MGM_THROW_ERR(ca_mgm::ValueException,
 		                 // %s is the absolute path name to the CA
 		                 str::form(__("CA name does not exist (%s)."), pi.toString().c_str()).c_str(),
 		                 E_FILE_NOT_FOUND);
@@ -1497,7 +1497,7 @@ CA::deleteCA(const std::string& caName,
 	if(!ret)
 	{
 		LOGIT_ERROR("Invalid CA password");
-		BLOCXX_THROW_ERR(ca_mgm::ValueException, __("Invalid CA password."), E_INVALID_PASSWD);
+		CA_MGM_THROW_ERR(ca_mgm::ValueException, __("Invalid CA password."), E_INVALID_PASSWD);
 	}
 
 	if(!force)
@@ -1516,7 +1516,7 @@ CA::deleteCA(const std::string& caName,
 			{
 				LOGIT_ERROR("Deleting the CA is not allowed. " <<
 				            "The CA must be expired or no certificate was signed with this CA");
-				BLOCXX_THROW(ca_mgm::RuntimeException,
+				CA_MGM_THROW(ca_mgm::RuntimeException,
 				             __("Deleting the CA is not allowed. The CA must be expired or never have signed a certificate."));
 			}
 			else
@@ -1540,7 +1540,7 @@ CA::deleteCA(const std::string& caName,
 	if( r != 0 )
 	{
 		LOGIT_ERROR("Deleting the CA failed: " << r);
-		BLOCXX_THROW(ca_mgm::SystemException,
+		CA_MGM_THROW(ca_mgm::SystemException,
 		             // %1 is the error code of rm
 		             str::form(__("Deleting the CA failed: %1."), r).c_str());
 	}
@@ -1585,14 +1585,14 @@ CA::checkDNPolicy(const DNObject& dn, Type type)
 	   type == E_CA_Req     || type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException, str::form(__("Wrong type: %1."), type).c_str());
+		CA_MGM_THROW(ca_mgm::ValueException, str::form(__("Wrong type: %1."), type).c_str());
 	}
 
 	bool p = m_impl->config->exists(type2Section(type, false), "policy");
 	if(!p)
 	{
 		LOGIT_ERROR("missing value 'policy' in config file");
-		BLOCXX_THROW(ca_mgm::SyntaxException,
+		CA_MGM_THROW(ca_mgm::SyntaxException,
 		             __("The configuration file is missing a value for policy."));
 	}
 	std::string policySect = m_impl->config->getValue(type2Section(type, false), "policy");
@@ -1602,7 +1602,7 @@ CA::checkDNPolicy(const DNObject& dn, Type type)
 	if(policyKeys.empty())
 	{
 		LOGIT_ERROR("Can not parse Section " << policySect);
-		BLOCXX_THROW(ca_mgm::SyntaxException,
+		CA_MGM_THROW(ca_mgm::SyntaxException,
 		             str::form(__("Cannot parse section %s."), policySect.c_str()).c_str());
 	}
 	StringList::const_iterator it = policyKeys.begin();
@@ -1674,7 +1674,7 @@ CA::checkDNPolicy(const DNObject& dn, Type type)
 						}
 
 						LOGIT_ERROR("Field '" << *it << "' must have a value");
-						BLOCXX_THROW_ERR(ca_mgm::ValueException,
+						CA_MGM_THROW_ERR(ca_mgm::ValueException,
 						                 str::form(__("Field %s must have a value."),
 						                        (*it).c_str()).c_str(),
 						                 errorCode);
@@ -1713,7 +1713,7 @@ CA::checkDNPolicy(const DNObject& dn, Type type)
 					errorCode = E_EM_NF;
 				}
 				LOGIT_ERROR("The '" << *it << "' field must be defined.");
-				BLOCXX_THROW_ERR(ca_mgm::ValueException,
+				CA_MGM_THROW_ERR(ca_mgm::ValueException,
 				                 str::form(__("%s must be defined."), (*it).c_str()).c_str(),
 				                 errorCode);
 			}
@@ -1798,7 +1798,7 @@ CA::checkDNPolicy(const DNObject& dn, Type type)
 				LOGIT_ERROR("The '"<<*it<<"' field needed to be the same in the CA certificate ("<<
 				            caMatchValue<<") and the request ("<< reqMatchValue <<")");
 
-				BLOCXX_THROW_ERR(ca_mgm::ValueException,
+				CA_MGM_THROW_ERR(ca_mgm::ValueException,
 				                 str::form(__("%s must be the same in the CA certificate (%s) and the request (%s)."),
 				                        (*it).c_str(), caMatchValue.c_str(), reqMatchValue.c_str()).c_str(),
 				                 errorCode);
@@ -1810,7 +1810,7 @@ CA::checkDNPolicy(const DNObject& dn, Type type)
 		if(!policyFound)
 		{
 			LOGIT_ERROR("Invalid policy in config file ? (" << *it << "/" << policyString << ")");
-			BLOCXX_THROW(ca_mgm::SyntaxException,
+			CA_MGM_THROW(ca_mgm::SyntaxException,
 			             __("The configuration file seems to have an invalid policy."));
 		}
 	}
@@ -1837,7 +1837,7 @@ CA::commitConfig2Template()
 	else
 	{
 		LOGIT_ERROR("config not initialized");
-		BLOCXX_THROW(ca_mgm::RuntimeException, __("The configuration is not initialized."));
+		CA_MGM_THROW(ca_mgm::RuntimeException, __("The configuration is not initialized."));
 	}
 }
 
@@ -1847,14 +1847,14 @@ CA::removeDefaultsFromConfig()
 	if(!m_impl->config)
 	{
 		LOGIT_ERROR("config not initialized");
-		BLOCXX_THROW(ca_mgm::RuntimeException, __("The configuration is not initialized."));
+		CA_MGM_THROW(ca_mgm::RuntimeException, __("The configuration is not initialized."));
 	}
 
 	bool p = m_impl->config->exists("req_ca", "distinguished_name");
 	if(!p)
 	{
 		LOGIT_ERROR("missing section 'distinguished_name' in config file");
-		BLOCXX_THROW(ca_mgm::SyntaxException,
+		CA_MGM_THROW(ca_mgm::SyntaxException,
 		             __("Missing section 'distinguished_name' in the configuration file."));
 	}
 	std::string dnSect = m_impl->config->getValue("req_ca", "distinguished_name");
@@ -1864,7 +1864,7 @@ CA::removeDefaultsFromConfig()
 	if(dnKeys.empty())
 	{
 		LOGIT_ERROR("Can not parse Section " << dnSect);
-		BLOCXX_THROW(ca_mgm::SyntaxException,
+		CA_MGM_THROW(ca_mgm::SyntaxException,
 		             str::form(__("Cannot parse section %s."), dnSect.c_str()).c_str());
 	}
 	StringList::const_iterator it = dnKeys.begin();

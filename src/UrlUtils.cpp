@@ -195,7 +195,7 @@ decode_buf(const std::string &str, bool allowNUL)
 					// is a %00 octet allowed ?
 					if( !allowNUL)
 					{
-						BLOCXX_THROW(UrlDecodingException,
+						CA_MGM_THROW(UrlDecodingException,
 							__("The URL-encoded string may not contain a NULL byte.")
 						);
 					}
@@ -256,7 +256,7 @@ split(const std::string &pstr,
 {
 	if( psep.empty())
 	{
-		BLOCXX_THROW(UrlNotSupportedException,
+		CA_MGM_THROW(UrlNotSupportedException,
 			__("Invalid split separator character.")
 		);
 	}
@@ -294,7 +294,7 @@ split(const std::string &str,
 {
 	if( psep.empty() || vsep.empty())
 	{
-		BLOCXX_THROW(UrlNotSupportedException,
+		CA_MGM_THROW(UrlNotSupportedException,
 			__("Invalid split separator character.")
 		);
 	}
@@ -368,7 +368,7 @@ join(const ca_mgm::url::ParamMap &pmap,
 {
 	if( psep.empty() || vsep.empty())
 	{
-		BLOCXX_THROW(UrlNotSupportedException,
+		CA_MGM_THROW(UrlNotSupportedException,
 			__("Invalid parameter map join separator character.")
 		);
 	}
@@ -444,7 +444,7 @@ parse_url_string(const std::string &url)
 	}
 	else
 	{
-                BLOCXX_THROW(UrlParsingException,
+                CA_MGM_THROW(UrlParsingException,
 			__("Unable to parse main URL components.")
 		);
 	}
@@ -489,7 +489,7 @@ parse_url_authority(const std::string &authority)
 	}
 	else
 	{
-                BLOCXX_THROW(UrlParsingException,
+                CA_MGM_THROW(UrlParsingException,
 			__("Unable to parse URL authority components.")
 		);
 	}

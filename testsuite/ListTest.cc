@@ -103,7 +103,7 @@ int main()
 
         cout << "DONE" << endl;
     }
-    catch(blocxx::Exception& e)
+    catch(ca_mgm::Exception& e)
     {
         cerr << e << endl;
     }

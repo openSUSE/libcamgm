@@ -136,7 +136,7 @@ RequestGenerationData::setSubjectDN(const DNObject dn)
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
+		CA_MGM_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 	m_impl->subject = dn;
 }
@@ -208,7 +208,7 @@ RequestGenerationData::setExtensions(const X509v3RequestExts &ext)
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
+		CA_MGM_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 	m_impl->extensions = ext;
 }
@@ -233,7 +233,7 @@ RequestGenerationData::commit2Config(CA& ca, Type type) const
 	if(!m_impl->extensions.valid())
 	{
 		LOGIT_ERROR("invalid RequestGenerationData object");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid RequestGenerationData object."));
 	}
 
@@ -241,7 +241,7 @@ RequestGenerationData::commit2Config(CA& ca, Type type) const
 	   type == E_Server_Cert || type == E_CA_Cert )
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 

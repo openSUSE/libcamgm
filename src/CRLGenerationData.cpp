@@ -85,7 +85,7 @@ CRLGenerationData::CRLGenerationData(uint32_t hours,
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
+		CA_MGM_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 }
 
@@ -125,7 +125,7 @@ CRLGenerationData::setExtensions(const X509v3CRLGenerationExts& ext)
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
+		CA_MGM_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 	m_impl->extensions = ext;
 }
@@ -148,14 +148,14 @@ CRLGenerationData::commit2Config(CA& ca, Type type) const
 	if(!valid())
 	{
 		LOGIT_ERROR("invalid CRLGenerationData object");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid CRLGenerationData object."));
 	}
 	// These types are not supported by this object
 	if(type != E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Wrong type: %d."), type).c_str());
 	}
 

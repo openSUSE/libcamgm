@@ -90,7 +90,7 @@ AuthorityKeyIdentifierExt::getKeyID() const
 {
 	if(!isPresent()) {
 		LOGIT_ERROR("AuthorityKeyIdentifierExt is not present");
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             __("AuthorityKeyIdentifierExt is not present."));
 	}
 	return m_impl->keyid;
@@ -101,7 +101,7 @@ AuthorityKeyIdentifierExt::getDirName() const
 {
 	if(!isPresent()) {
 		LOGIT_ERROR("AuthorityKeyIdentifierExt is not present");
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             __("AuthorityKeyIdentifierExt is not present."));
 	}
 	return m_impl->DirName;
@@ -112,7 +112,7 @@ AuthorityKeyIdentifierExt::getSerial() const
 {
 	if(!isPresent()) {
 		LOGIT_ERROR("AuthorityKeyIdentifierExt is not present");
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             __("AuthorityKeyIdentifierExt is not present."));
 	}
 	return m_impl->serial;

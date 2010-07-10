@@ -79,7 +79,7 @@ AuthorityKeyIdentifierGenerateExt::AuthorityKeyIdentifierGenerateExt(CAConfig* c
 	if(type == E_Client_Req || type == E_Server_Req || type == E_CA_Req)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -147,7 +147,7 @@ AuthorityKeyIdentifierGenerateExt::getKeyID() const
 	if(!isPresent())
 	{
 		LOGIT_ERROR("AuthorityKeyIdentifierGenerateExt is not present");
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             __("AuthorityKeyIdentifierGenerateExt is not present."));
 	}
 	return m_impl->keyid;
@@ -166,7 +166,7 @@ AuthorityKeyIdentifierGenerateExt::getIssuer() const
 	if(!isPresent())
 	{
 		LOGIT_ERROR("AuthorityKeyIdentifierGenerateExt is not present");
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             __("AuthorityKeyIdentifierGenerateExt is not present."));
 	}
 	return m_impl->issuer;
@@ -178,7 +178,7 @@ AuthorityKeyIdentifierGenerateExt::commit2Config(CA& ca, Type type) const
 	if(!valid())
 	{
 		LOGIT_ERROR("invalid AuthorityKeyIdentifierGenerateExt object");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid AuthorityKeyIdentifierGenerateExt object."));
 	}
 
@@ -186,7 +186,7 @@ AuthorityKeyIdentifierGenerateExt::commit2Config(CA& ca, Type type) const
 	if(type == E_Client_Req || type == E_Server_Req || type == E_CA_Req)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 

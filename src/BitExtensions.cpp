@@ -104,7 +104,7 @@ BitExtension::getValue() const
 {
 	if(!isPresent())
 	{
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             __("This BitExtension is not present."));
 	}
 	return m_impl->value;
@@ -127,7 +127,7 @@ KeyUsageExt::KeyUsageExt(CAConfig* caConfig, Type type)
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Wrong type: %d."), type).c_str());
 	}
 
@@ -167,7 +167,7 @@ KeyUsageExt::KeyUsageExt(uint32_t keyUsage)
 {
 	if(!validKeyUsage(keyUsage))
 	{
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid value for keyUsage."));
 	}
 	setPresent(true);
@@ -196,7 +196,7 @@ KeyUsageExt::setKeyUsage(uint32_t keyUsage)
 {
 	if(!validKeyUsage(keyUsage))
 	{
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid value for keyUsage."));
 	}
 	setValue(keyUsage);
@@ -208,7 +208,7 @@ KeyUsageExt::getKeyUsage() const
 {
 	if(!isPresent())
 	{
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             __("KeyUsageExt is not present."));
 	}
 	return getValue();
@@ -219,7 +219,7 @@ KeyUsageExt::isEnabledFor(KeyUsage ku) const
 {
 	if(!isPresent())
 	{
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             __("KeyUsageExt is not present."));
 	}
 
@@ -232,7 +232,7 @@ KeyUsageExt::commit2Config(CA& ca, Type type) const
 	if(!valid())
 	{
 		LOGIT_ERROR("invalid KeyUsageExt object");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid KeyUsageExt object."));
 	}
 
@@ -240,7 +240,7 @@ KeyUsageExt::commit2Config(CA& ca, Type type) const
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Wrong type: %d."), type).c_str());
 	}
 
@@ -365,7 +365,7 @@ NsCertTypeExt::NsCertTypeExt(CAConfig* caConfig, Type type)
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -403,7 +403,7 @@ NsCertTypeExt::NsCertTypeExt(uint32_t nsCertTypes)
 {
 	if(nsCertTypes > 0xFF || nsCertTypes == 0)
 	{
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid value for NsCertTypeExt."));
 	}
 	setPresent(true);
@@ -432,7 +432,7 @@ NsCertTypeExt::setNsCertType(uint32_t nsCertTypes)
 {
 	if(nsCertTypes > 0xFF || nsCertTypes == 0)
 	{
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Invalid value for NsCertTypeExt: %1."), nsCertTypes).c_str());
 	}
 	setValue(nsCertTypes);
@@ -444,7 +444,7 @@ NsCertTypeExt::getNsCertType() const
 {
 	if(!isPresent())
 	{
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             __("NsCertTypeExt is not present."));
 	}
 	return getValue();
@@ -465,7 +465,7 @@ NsCertTypeExt::commit2Config(CA& ca, Type type) const
 	if(!valid())
 	{
 		LOGIT_ERROR("invalid NsCertTypeExt object");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid NsCertTypeExt object."));
 	}
 
@@ -473,7 +473,7 @@ NsCertTypeExt::commit2Config(CA& ca, Type type) const
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 

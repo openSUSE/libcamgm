@@ -78,7 +78,7 @@ SubjectKeyIdentifierExt::SubjectKeyIdentifierExt(CAConfig* caConfig, Type type)
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -122,7 +122,7 @@ SubjectKeyIdentifierExt::SubjectKeyIdentifierExt(bool autoDetect, const std::str
 	   !initHexCheck().isValid(keyid))
 	{
 		LOGIT_ERROR("invalid KeyID");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid KeyID."));
 	}
 	setPresent(true);
@@ -156,7 +156,7 @@ SubjectKeyIdentifierExt::setSubjectKeyIdentifier(bool autoDetect,
 	if(!keyId.empty() && !initHexCheck().isValid(keyId))
 	{
 		LOGIT_ERROR("invalid KeyID");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid KeyID."));
 	}
 	m_impl->autodetect = autoDetect;
@@ -169,7 +169,7 @@ SubjectKeyIdentifierExt::isAutoDetectionEnabled() const
 {
 	if(!isPresent())
 	{
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             __("SubjectKeyIdentifierExt is not present."));
 	}
 	return m_impl->autodetect;
@@ -180,7 +180,7 @@ SubjectKeyIdentifierExt::getKeyID() const
 {
 	if(!isPresent())
 	{
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             __("SubjectKeyIdentifierExt is not present."));
 	}
 	return m_impl->keyid;
@@ -193,7 +193,7 @@ SubjectKeyIdentifierExt::commit2Config(CA& ca, Type type) const
 	if(!valid())
 	{
 		LOGIT_ERROR("invalid SubjectKeyIdentifierExt object");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid SubjectKeyIdentifierExt object."));
 	}
 
@@ -201,7 +201,7 @@ SubjectKeyIdentifierExt::commit2Config(CA& ca, Type type) const
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 

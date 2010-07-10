@@ -139,7 +139,7 @@ int main(int argc, char **argv)
                 }
             }
         }
-        catch(Exception& e)
+        catch(ca_mgm::Exception& e)
         {
             cerr << e << endl;
         }

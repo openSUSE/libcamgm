@@ -50,7 +50,7 @@ OpenSSLUtils::OpenSSLUtils(const std::string &configFile,
 	if(!pi.exists() || !pi.isFile())
 	{
 		LOGIT_ERROR("File does not exist: " << configFile);
-		BLOCXX_THROW_ERR(ca_mgm::ValueException,
+		CA_MGM_THROW_ERR(ca_mgm::ValueException,
 		                 str::form(__("File does not exist: %s."), configFile.c_str()).c_str(),
 		                 E_FILE_NOT_FOUND);
 	}
@@ -59,7 +59,7 @@ OpenSSLUtils::OpenSSLUtils(const std::string &configFile,
 	if(!pi.exists() || !pi.isDir())
 	{
 		LOGIT_ERROR("Directory does not exist: " << tmpDir);
-		BLOCXX_THROW_ERR(ca_mgm::ValueException,
+		CA_MGM_THROW_ERR(ca_mgm::ValueException,
 		                 str::form(__("Directory does not exist: %s."), tmpDir.c_str()).c_str(),
 		                 E_FILE_NOT_FOUND);
 	}
@@ -68,7 +68,7 @@ OpenSSLUtils::OpenSSLUtils(const std::string &configFile,
 	if(!pi.exists() || !pi.isFile() || !pi.isX())
 	{
 		LOGIT_ERROR("Invalid command: " << command);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Invalid command %s."), command.c_str()).c_str());
 	}
 
@@ -123,10 +123,10 @@ OpenSSLUtils::createRSAKey(const std::string &outFile,
 		status = wrapExecuteProcessAndGatherOutput(cmd, stdOutput,
 		                                           errOutput, env);
 	}
-	catch(blocxx::Exception& e)
+	catch(Exception& e)
 	{
 		LOGIT_ERROR( "openssl exception:" << e);
-		BLOCXX_THROW_SUBEX(ca_mgm::RuntimeException,
+		CA_MGM_THROW_SUBEX(ca_mgm::RuntimeException,
 		                   __("Executing openssl command failed."), e);
 	}
 	if(status != 0)
@@ -138,7 +138,7 @@ OpenSSLUtils::createRSAKey(const std::string &outFile,
 		std::vector<std::string> sa;
         str::split(errOutput, std::back_inserter(sa), "\n\r");
 		std::string msg = (sa.empty()? "" : sa[0]);
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             str::form(__("openssl command failed: %s"), msg.c_str()).c_str());
 	}
 
@@ -171,7 +171,7 @@ OpenSSLUtils::createRequest(const DNObject &dn,
 	if(!pi.exists() || !pi.isFile())
 	{
 		LOGIT_ERROR("No valid keyfile specified");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("No valid key file specified."));
 	}
 
@@ -232,10 +232,10 @@ OpenSSLUtils::createRequest(const DNObject &dn,
 		                                           errOutput, env,
 		                                           -1, -1, stdInput);
 	}
-	catch(blocxx::Exception& e)
+	catch(Exception& e)
 	{
 		LOGIT_ERROR( "openssl exception:" << e);
-		BLOCXX_THROW_SUBEX(ca_mgm::RuntimeException,
+		CA_MGM_THROW_SUBEX(ca_mgm::RuntimeException,
 		                   __("Executing openssl command failed."), e);
 	}
 	if(status != 0)
@@ -248,7 +248,7 @@ OpenSSLUtils::createRequest(const DNObject &dn,
         str::split(errOutput, std::back_inserter(sa), "\n\r");
 
 		std::string msg = (sa.empty()? "" : sa[0]);
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             str::form(__("openssl command failed: %s"), msg.c_str()).c_str());
 	}
 
@@ -275,7 +275,7 @@ OpenSSLUtils::createSelfSignedCertificate(const std::string &outFile,
 	if(!pi.exists() || !pi.isFile())
 	{
 		LOGIT_ERROR("No valid keyfile specified");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("No valid key file specified."));
 	}
 
@@ -283,7 +283,7 @@ OpenSSLUtils::createSelfSignedCertificate(const std::string &outFile,
 	if(!pi.exists() || !pi.isFile())
 	{
 		LOGIT_ERROR("No valid request file specified");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("No valid request file specified."));
 	}
 
@@ -332,10 +332,10 @@ OpenSSLUtils::createSelfSignedCertificate(const std::string &outFile,
 		status = wrapExecuteProcessAndGatherOutput(cmd, stdOutput,
 		                                           errOutput, env);
 	}
-	catch(blocxx::Exception& e)
+	catch(Exception& e)
 	{
 		LOGIT_ERROR( "openssl exception:" << e);
-		BLOCXX_THROW_SUBEX(ca_mgm::RuntimeException,
+		CA_MGM_THROW_SUBEX(ca_mgm::RuntimeException,
 		                   __("Executing openssl command failed."), e);
 	}
 	if(status != 0)
@@ -348,7 +348,7 @@ OpenSSLUtils::createSelfSignedCertificate(const std::string &outFile,
         str::split(errOutput, std::back_inserter(sa), "\n\r");
 
 		std::string msg = (sa.empty()? "" : sa[0]);
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             str::form(__("openssl command failed: %s"), msg.c_str()).c_str());
 	}
 
@@ -380,7 +380,7 @@ OpenSSLUtils::signRequest(const std::string &requestFile,
 	if(!pi.exists() || !pi.isFile())
 	{
 		LOGIT_ERROR("No valid keyfile specified");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("No valid key file specified."));
 	}
 
@@ -388,7 +388,7 @@ OpenSSLUtils::signRequest(const std::string &requestFile,
 	if(!pi.exists() || !pi.isFile())
 	{
 		LOGIT_ERROR("No valid request file specified");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("No valid request file specified."));
 	}
 
@@ -458,10 +458,10 @@ OpenSSLUtils::signRequest(const std::string &requestFile,
 		status = wrapExecuteProcessAndGatherOutput(cmd, stdOutput,
 		                                           errOutput, env);
 	}
-	catch(blocxx::Exception& e)
+	catch(Exception& e)
 	{
 		LOGIT_ERROR( "openssl exception:" << e);
-		BLOCXX_THROW_SUBEX(ca_mgm::RuntimeException,
+		CA_MGM_THROW_SUBEX(ca_mgm::RuntimeException,
 		                   __("Executing openssl command failed."), e);
 	}
 	if(status != 0)
@@ -474,7 +474,7 @@ OpenSSLUtils::signRequest(const std::string &requestFile,
         str::split(errOutput, std::back_inserter(sa), "\n\r");
 
 		std::string msg = (sa.empty()? "" : sa[0]);
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             str::form(__("openssl command failed: %s"), msg.c_str()).c_str());
 	}
 
@@ -500,7 +500,7 @@ OpenSSLUtils::revokeCertificate(const std::string &caCertFile,
 	if(!pi.exists() || !pi.isFile())
 	{
 		LOGIT_ERROR("No valid keyfile specified");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("No valid key file specified."));
 	}
 
@@ -508,7 +508,7 @@ OpenSSLUtils::revokeCertificate(const std::string &caCertFile,
 	if(!pi.exists() || !pi.isFile())
 	{
 		LOGIT_ERROR("No valid CA certificate file specified");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("No valid CA certificate file specified."));
 	}
 
@@ -516,7 +516,7 @@ OpenSSLUtils::revokeCertificate(const std::string &caCertFile,
 	if(!pi.exists() || !pi.isFile())
 	{
 		LOGIT_ERROR("No valid certificate file specified");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("No valid certificate file specified."));
 	}
 
@@ -598,10 +598,10 @@ OpenSSLUtils::revokeCertificate(const std::string &caCertFile,
 		status = wrapExecuteProcessAndGatherOutput(cmd, stdOutput,
 		                                           errOutput, env);
 	}
-	catch(blocxx::Exception& e)
+	catch(Exception& e)
 	{
 		LOGIT_ERROR( "openssl exception:" << e);
-		BLOCXX_THROW_SUBEX(ca_mgm::RuntimeException,
+		CA_MGM_THROW_SUBEX(ca_mgm::RuntimeException,
 		                   __("Executing openssl command failed."), e);
 	}
 	if(status != 0)
@@ -614,7 +614,7 @@ OpenSSLUtils::revokeCertificate(const std::string &caCertFile,
         str::split(errOutput, std::back_inserter(sa), "\n\r");
 
 		std::string msg = (sa.empty()? "" : sa[0]);
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             str::form(__("openssl command failed: %s"), msg.c_str()).c_str());
 	}
 
@@ -641,7 +641,7 @@ OpenSSLUtils::issueCRL(const std::string &caCertFile,
 	if(!pi.exists() || !pi.isFile())
 	{
 		LOGIT_ERROR("No valid keyfile specified");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("No valid key file specified."));
 	}
 
@@ -649,7 +649,7 @@ OpenSSLUtils::issueCRL(const std::string &caCertFile,
 	if(!pi.exists() || !pi.isFile())
 	{
 		LOGIT_ERROR("No valid CA certificate file specified");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("No valid CA certificate file specified."));
 	}
 
@@ -700,10 +700,10 @@ OpenSSLUtils::issueCRL(const std::string &caCertFile,
 		status = wrapExecuteProcessAndGatherOutput(cmd, stdOutput,
 		                                           errOutput, env);
 	}
-	catch(blocxx::Exception& e)
+	catch(Exception& e)
 	{
 		LOGIT_ERROR( "openssl exception:" << e);
-		BLOCXX_THROW_SUBEX(ca_mgm::RuntimeException,
+		CA_MGM_THROW_SUBEX(ca_mgm::RuntimeException,
 		                   __("Executing openssl command failed."), e);
 	}
 	if(status != 0)
@@ -716,7 +716,7 @@ OpenSSLUtils::issueCRL(const std::string &caCertFile,
         str::split(errOutput, std::back_inserter(sa), "\n\r");
 
 		std::string msg = (sa.empty()? "" : sa[0]);
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             str::form(__("openssl command failed: %s"), msg.c_str()).c_str());
 	}
 
@@ -739,7 +739,7 @@ OpenSSLUtils::updateDB(const std::string &caCertFile,
 	if(!pi.exists() || !pi.isFile())
 	{
 		LOGIT_ERROR("No valid keyfile specified");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("No valid key file specified."));
 	}
 
@@ -747,7 +747,7 @@ OpenSSLUtils::updateDB(const std::string &caCertFile,
 	if(!pi.exists() || !pi.isFile())
 	{
 		LOGIT_ERROR("No valid CA certificate file specified");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("No valid CA certificate file specified."));
 	}
 
@@ -784,10 +784,10 @@ OpenSSLUtils::updateDB(const std::string &caCertFile,
 		status = wrapExecuteProcessAndGatherOutput(cmd, stdOutput,
 		                                           errOutput, env);
 	}
-	catch(blocxx::Exception& e)
+	catch(Exception& e)
 	{
 		LOGIT_ERROR( "openssl exception:" << e);
-		BLOCXX_THROW_SUBEX(ca_mgm::RuntimeException,
+		CA_MGM_THROW_SUBEX(ca_mgm::RuntimeException,
 		                   __("Executing openssl command failed."), e);
 	}
 
@@ -803,7 +803,7 @@ OpenSSLUtils::updateDB(const std::string &caCertFile,
         str::split(errOutput, std::back_inserter(sa), "\n\r");
 
 		std::string msg = (sa.empty()? "" : sa[0]);
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             str::form(__("openssl command failed: %s"), msg.c_str()).c_str());
 	}
 
@@ -827,7 +827,7 @@ OpenSSLUtils::verify(const std::string &certFile,
 	if(!pi.exists() || !pi.isFile())
 	{
 		LOGIT_ERROR("No valid certificate file specified");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("No valid certificate file specified."));
 	}
 
@@ -835,7 +835,7 @@ OpenSSLUtils::verify(const std::string &certFile,
 	if(!pi.exists() || !pi.isDir())
 	{
 		LOGIT_ERROR("No valid CA directory specified");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("No valid CA directory specified."));
 	}
 
@@ -875,10 +875,10 @@ OpenSSLUtils::verify(const std::string &certFile,
 		status = wrapExecuteProcessAndGatherOutput(cmd, stdOutput,
 		                                           errOutput, env);
 	}
-	catch(blocxx::Exception& e)
+	catch(Exception& e)
 	{
 		LOGIT_ERROR( "openssl exception:" << e);
-		BLOCXX_THROW_SUBEX(ca_mgm::RuntimeException,
+		CA_MGM_THROW_SUBEX(ca_mgm::RuntimeException,
 		                   __("Executing openssl command failed."), e);
 	}
 
@@ -956,10 +956,10 @@ OpenSSLUtils::status(const std::string &serial)
 		status = wrapExecuteProcessAndGatherOutput(cmd, stdOutput,
 		                                           errOutput, env);
 	}
-	catch(blocxx::Exception& e)
+	catch(Exception& e)
 	{
 		LOGIT_ERROR( "openssl exception:" << e);
-		BLOCXX_THROW_SUBEX(ca_mgm::RuntimeException,
+		CA_MGM_THROW_SUBEX(ca_mgm::RuntimeException,
 		                   __("Executing openssl command failed."), e);
 	}
 
@@ -989,7 +989,7 @@ OpenSSLUtils::status(const std::string &serial)
 	{
 		LOGIT_ERROR("openssl stderr:" << errOutput);
 	}
-	BLOCXX_THROW(ca_mgm::RuntimeException,
+	CA_MGM_THROW(ca_mgm::RuntimeException,
 	             str::form(__("Showing certificate status with serial %s failed (%d)."),
 	                    serial.c_str(), status).c_str());
 }
@@ -1014,7 +1014,7 @@ OpenSSLUtils::checkKey(const std::string &caName,
 		if(sa.size() != 2)
 		{
 			LOGIT_ERROR("Can not parse certificate name");
-			BLOCXX_THROW(ca_mgm::RuntimeException,
+			CA_MGM_THROW(ca_mgm::RuntimeException,
 			             __("Cannot parse the certificate name."));
 		}
 
@@ -1025,7 +1025,7 @@ OpenSSLUtils::checkKey(const std::string &caName,
 	if(!pi.exists() || !pi.isFile())
 	{
 		LOGIT_ERROR("Keyfile does not exist");
-		BLOCXX_THROW(ca_mgm::SystemException,
+		CA_MGM_THROW(ca_mgm::SystemException,
 		             __("The key file does not exist."));
 	}
 
@@ -1055,10 +1055,10 @@ OpenSSLUtils::checkKey(const std::string &caName,
 		status = wrapExecuteProcessAndGatherOutput(cmd, stdOutput,
 		                                           errOutput, env);
 	}
-	catch(blocxx::Exception& e)
+	catch(Exception& e)
 	{
 		LOGIT_ERROR( "openssl exception:" << e);
-		BLOCXX_THROW_SUBEX(ca_mgm::RuntimeException,
+		CA_MGM_THROW_SUBEX(ca_mgm::RuntimeException,
 		                   __("Executing openssl command failed."), e);
 	}
 	if(status == 0)
@@ -1140,13 +1140,13 @@ OpenSSLUtils::x509Convert(const ByteBuffer &certificate,
 		status = wrapExecuteProcessAndGatherOutput(cmd, stdOutput,
 		                                           errOutput, env);
 	}
-	catch(blocxx::Exception& e)
+	catch(Exception& e)
 	{
 		LOGIT_ERROR( "openssl exception:" << e);
 		path::removeFile(inFileName);
 		path::removeFile(outFileName);
 		path::removeFile(randfile);
-		BLOCXX_THROW_SUBEX(ca_mgm::RuntimeException,
+		CA_MGM_THROW_SUBEX(ca_mgm::RuntimeException,
 		                   __("Executing openssl command failed."), e);
 	}
 	if(status != 0)
@@ -1174,7 +1174,7 @@ OpenSSLUtils::x509Convert(const ByteBuffer &certificate,
         str::split(errOutput, std::back_inserter(sa), "\n\r");
 
 		std::string msg = (sa.empty()? "" : sa[0]);
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             str::form(__("openssl command failed: %s"), msg.c_str()).c_str());
 	}
 
@@ -1280,13 +1280,13 @@ OpenSSLUtils::rsaConvert(const ByteBuffer &key,
 		status = wrapExecuteProcessAndGatherOutput(cmd, stdOutput,
 		                                           errOutput, env);
 	}
-	catch(blocxx::Exception& e)
+	catch(Exception& e)
 	{
 		LOGIT_ERROR( "openssl exception:" << e);
 		path::removeFile(inFileName);
 		path::removeFile(outFileName);
 		path::removeFile(randfile);
-		BLOCXX_THROW_SUBEX(ca_mgm::RuntimeException,
+		CA_MGM_THROW_SUBEX(ca_mgm::RuntimeException,
 		                   __("Executing openssl command failed."), e);
 	}
 	if(status != 0)
@@ -1324,12 +1324,12 @@ OpenSSLUtils::rsaConvert(const ByteBuffer &key,
 		std::string msg = (sa.empty()? "" : sa[0]);
 		if(PerlRegEx("unable to load Private Key", PCRE_CASELESS).match(msg))
 		{
-			BLOCXX_THROW_ERR(ca_mgm::ValueException,
+			CA_MGM_THROW_ERR(ca_mgm::ValueException,
 			                 __("Invalid password."), E_INVALID_PASSWD);
 		}
 		else
 		{
-			BLOCXX_THROW(ca_mgm::RuntimeException,
+			CA_MGM_THROW(ca_mgm::RuntimeException,
 			             str::form(__("openssl command failed: %s"),msg.c_str()).c_str());
 		}
 	}
@@ -1405,13 +1405,13 @@ OpenSSLUtils::crlConvert(const ByteBuffer &crl,
 		status = wrapExecuteProcessAndGatherOutput(cmd, stdOutput,
 		                                           errOutput, env);
 	}
-	catch(blocxx::Exception& e)
+	catch(Exception& e)
 	{
 		LOGIT_ERROR( "openssl exception:" << e);
 		path::removeFile(inFileName);
 		path::removeFile(outFileName);
 		path::removeFile(randfile);
-		BLOCXX_THROW_SUBEX(ca_mgm::RuntimeException,
+		CA_MGM_THROW_SUBEX(ca_mgm::RuntimeException,
 		                   __("Executing openssl command failed."), e);
 	}
 	if(status != 0)
@@ -1439,7 +1439,7 @@ OpenSSLUtils::crlConvert(const ByteBuffer &crl,
         str::split(errOutput, std::back_inserter(sa), "\n\r");
 
 		std::string msg = (sa.empty()? "" : sa[0]);
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             str::form(__("openssl command failed: %s"), msg.c_str()).c_str());
 	}
 
@@ -1514,13 +1514,13 @@ OpenSSLUtils::reqConvert(const ByteBuffer &req,
 		status = wrapExecuteProcessAndGatherOutput(cmd, stdOutput,
 		                                           errOutput, env);
 	}
-	catch(blocxx::Exception& e)
+	catch(Exception& e)
 	{
 		LOGIT_ERROR( "openssl exception:" << e);
 		path::removeFile(inFileName);
 		path::removeFile(outFileName);
 		path::removeFile(randfile);
-		BLOCXX_THROW_SUBEX(ca_mgm::RuntimeException,
+		CA_MGM_THROW_SUBEX(ca_mgm::RuntimeException,
 		                   __("Executing openssl command failed."), e);
 	}
 	if(status != 0)
@@ -1548,7 +1548,7 @@ OpenSSLUtils::reqConvert(const ByteBuffer &req,
         str::split(errOutput, std::back_inserter(sa), "\n\r");
 
 		std::string msg = (sa.empty()? "" : sa[0]);
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             str::form(__("openssl command failed: %s"), msg.c_str()).c_str());
 	}
 
@@ -1626,7 +1626,7 @@ OpenSSLUtils::createPKCS12(const ByteBuffer &certificate,
 	else
 	{
 		LOGIT_ERROR("Out password is required");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("The password for encrypting the output is required."));
 	}
 
@@ -1667,7 +1667,7 @@ OpenSSLUtils::createPKCS12(const ByteBuffer &certificate,
 		status = wrapExecuteProcessAndGatherOutput(cmd, stdOutput,
 		                                           errOutput, env);
 	}
-	catch(blocxx::Exception& e)
+	catch(Exception& e)
 	{
 		LOGIT_ERROR( "openssl exception:" << e);
 		path::removeFile(inFileName1);
@@ -1678,7 +1678,7 @@ OpenSSLUtils::createPKCS12(const ByteBuffer &certificate,
 		}
 		path::removeFile(outFileName);
 		path::removeFile(randfile);
-		BLOCXX_THROW_SUBEX(ca_mgm::RuntimeException,
+		CA_MGM_THROW_SUBEX(ca_mgm::RuntimeException,
 		                   __("Executing openssl command failed."), e);
 	}
 	if(status != 0)
@@ -1713,12 +1713,12 @@ OpenSSLUtils::createPKCS12(const ByteBuffer &certificate,
 		std::string msg = (sa.empty()? "" : sa[0]);
 		if(PerlRegEx("unable to load Private Key", PCRE_CASELESS).match(msg))
 		{
-			BLOCXX_THROW_ERR(ca_mgm::ValueException,
+			CA_MGM_THROW_ERR(ca_mgm::ValueException,
 			                 __("Invalid password."), E_INVALID_PASSWD);
 		}
 		else
 		{
-			BLOCXX_THROW(ca_mgm::RuntimeException,
+			CA_MGM_THROW(ca_mgm::RuntimeException,
 		             str::form(__("openssl command failed: %s"), msg.c_str()).c_str());
 		}
 	}
@@ -1773,7 +1773,7 @@ OpenSSLUtils::pkcs12ToPEM(const ByteBuffer &pkcs12,
 	else
 	{
 		LOGIT_ERROR("PKCS12 password is required");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("The PKCS12 password is required."));
 	}
 
@@ -1816,13 +1816,13 @@ OpenSSLUtils::pkcs12ToPEM(const ByteBuffer &pkcs12,
 		status = wrapExecuteProcessAndGatherOutput(cmd, stdOutput,
 		                                           errOutput, env);
 	}
-	catch(blocxx::Exception& e)
+	catch(Exception& e)
 	{
 		LOGIT_ERROR( "openssl exception:" << e);
 		path::removeFile(inFileName);
 		path::removeFile(outFileName);
 		path::removeFile(randfile);
-		BLOCXX_THROW_SUBEX(ca_mgm::RuntimeException,
+		CA_MGM_THROW_SUBEX(ca_mgm::RuntimeException,
 		                   __("Executing openssl command failed."), e);
 	}
 	if(status != 0)
@@ -1860,12 +1860,12 @@ OpenSSLUtils::pkcs12ToPEM(const ByteBuffer &pkcs12,
 		std::string msg = (sa.empty()? "" : sa[0]);
 		if(PerlRegEx("invalid password", PCRE_CASELESS).match(msg))
 		{
-			BLOCXX_THROW_ERR(ca_mgm::ValueException,
+			CA_MGM_THROW_ERR(ca_mgm::ValueException,
 			                 __("Invalid password."), E_INVALID_PASSWD);
 		}
 		else
 		{
-			BLOCXX_THROW(ca_mgm::RuntimeException,
+			CA_MGM_THROW(ca_mgm::RuntimeException,
 		             str::form(__("openssl command failed: %s"), msg.c_str()).c_str());
 		}
 	}
@@ -1891,7 +1891,7 @@ OpenSSLUtils::listCA(const std::string &repository)
 	{
 		LOGIT_ERROR("Cannot read directory: " << repository <<
 		            "(" << System::errorMsg(r) << ") [" << r << "]");
-		BLOCXX_THROW(ca_mgm::SystemException,
+		CA_MGM_THROW(ca_mgm::SystemException,
 		             str::form(__("Cannot read directory: %s (%s) [%d]."),
 		                    repository.c_str(), ::strerror(r), r).c_str());
 	}
@@ -1941,7 +1941,7 @@ OpenSSLUtils::nextSerial(const std::string &serialFile)
 	else
 	{
 		LOGIT_ERROR("No serial number found in " << serialFile);
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             str::form(__("No serial number found in %s."),
 		                    serialFile.c_str()).c_str());
 	}
@@ -1961,7 +1961,7 @@ OpenSSLUtils::addCAM(const std::string &caName,
 		if( (*it)[0] == md5 )
 		{
 			LOGIT_ERROR("Request already exist.");
-			BLOCXX_THROW(ca_mgm::RuntimeException,
+			CA_MGM_THROW(ca_mgm::RuntimeException,
 			             __("The request already exists."));
 		}
 	}
@@ -2091,7 +2091,7 @@ OpenSSLUtils::listRequests(const std::string &caName,
 	{
 		LOGIT_ERROR("Cannot read directory: " << reqDir <<
 		            "(" << System::errorMsg(r) << ") [" << r << "]");
-		BLOCXX_THROW(ca_mgm::SystemException,
+		CA_MGM_THROW(ca_mgm::SystemException,
 		             str::form(__("Cannot read directory: %s (%s) [%d]."),
 		                    reqDir.c_str(), ::strerror(r), r).c_str());
 	}
@@ -2152,7 +2152,7 @@ OpenSSLUtils::listRequests(const std::string &caName,
 		if(subject.empty())
 		{
 			LOGIT_ERROR("Can not find request subject.");
-			BLOCXX_THROW(ca_mgm::RuntimeException,
+			CA_MGM_THROW(ca_mgm::RuntimeException,
 			             __("Cannot find the request subject."));
 		}
 
@@ -2243,7 +2243,7 @@ OpenSSLUtils::listCertificates(const std::string &caName,
 	{
 		LOGIT_ERROR("Cannot read directory: " << certDir <<
 		            "(" << System::errorMsg(r) << ") [" << r << "]");
-		BLOCXX_THROW(ca_mgm::SystemException,
+		CA_MGM_THROW(ca_mgm::SystemException,
 		             str::form(__("Cannot read directory: %s (%s) [%d]."),
 		                    certDir.c_str(), ::strerror(r), r).c_str());
 	}
@@ -2313,7 +2313,7 @@ OpenSSLUtils::listCertificates(const std::string &caName,
 		if(subject.empty())
 		{
 			LOGIT_ERROR("Can not find certificate subject.");
-			BLOCXX_THROW(ca_mgm::RuntimeException,
+			CA_MGM_THROW(ca_mgm::RuntimeException,
 			             __("Cannot find the certificate subject."));
 		}
 
@@ -2412,7 +2412,7 @@ OpenSSLUtils::createCaInfrastructure(const std::string &caName,
 	if(caName.empty() || !PerlRegEx("\\w+").match(caName))
 	{
 		LOGIT_ERROR("Invalid caName: " << caName);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Invalid caName: %s."), caName.c_str()).c_str());
 	}
 
@@ -2421,7 +2421,7 @@ OpenSSLUtils::createCaInfrastructure(const std::string &caName,
 	if(!pi.exists() || !pi.isDir())
 	{
 		LOGIT_ERROR(repository << " does not exist");
-		BLOCXX_THROW_ERR(ca_mgm::SystemException,
+		CA_MGM_THROW_ERR(ca_mgm::SystemException,
 		                 str::form(__("'%s' does not exist."), repository.c_str()).c_str(),
 		                 E_FILE_NOT_FOUND);
 	}
@@ -2431,7 +2431,7 @@ OpenSSLUtils::createCaInfrastructure(const std::string &caName,
 	if(pi.exists())
 	{
 		LOGIT_ERROR(pi.toString() << " still exist");
-		BLOCXX_THROW_ERR(ca_mgm::SystemException,
+		CA_MGM_THROW_ERR(ca_mgm::SystemException,
 		                 str::form(__("%s still exists."), pi.toString().c_str()).c_str(),
 		                 E_FILE_EXISTS);
 	}
@@ -2442,9 +2442,9 @@ OpenSSLUtils::createCaInfrastructure(const std::string &caName,
 	{
 		LOGIT_ERROR(str::form("Can not create directory: %s (%s [%d])",
 		                   pi.toString().c_str(), ::strerror(r), r));
-		BLOCXX_THROW(ca_mgm::SystemException,
+		CA_MGM_THROW(ca_mgm::SystemException,
 		             str::form(__("Cannot create directory: %s (%s [%d])."),
-		                    pi.toString().c_str(), ::strerror(r), r).c_str());
+                     pi.toString().c_str(), ::strerror(r), r).c_str());
 	}
 
 	ByteBuffer tmpl;
@@ -2473,11 +2473,11 @@ OpenSSLUtils::createCaInfrastructure(const std::string &caName,
 		LocalManagement::writeFile(ByteBuffer(newConf.c_str(), newConf.length()),
 		                           pi.toString() + "/openssl.cnf.tmpl");
 	}
-	catch(blocxx::Exception &e)
+	catch(Exception &e)
 	{
 		path::removeDirRecursive(repository + "/" + caName);
 
-		BLOCXX_THROW_SUBEX(ca_mgm::SystemException,
+		CA_MGM_THROW_SUBEX(ca_mgm::SystemException,
 		                   __("Cannot copy the configuration template."), e);
 	}
 
@@ -2490,7 +2490,7 @@ OpenSSLUtils::createCaInfrastructure(const std::string &caName,
 
 		LOGIT_ERROR(str::form("Can not create directory: %s (%s [%d])",
 		                   dir.c_str(), ::strerror(r), r));
-		BLOCXX_THROW(ca_mgm::SystemException,
+		CA_MGM_THROW(ca_mgm::SystemException,
 		             str::form(__("Cannot create directory: %s (%s [%d])."),
 		                    dir.c_str(), ::strerror(r), r).c_str());
 	}
@@ -2504,7 +2504,7 @@ OpenSSLUtils::createCaInfrastructure(const std::string &caName,
 
 		LOGIT_ERROR(str::form("Can not create directory: %s (%s [%d])",
 		                   dir.c_str(), ::strerror(r), r));
-		BLOCXX_THROW(ca_mgm::SystemException,
+		CA_MGM_THROW(ca_mgm::SystemException,
 		             str::form(__("Cannot create directory: %s (%s [%d])."),
 		                    dir.c_str(), ::strerror(r), r).c_str());
 	}
@@ -2518,7 +2518,7 @@ OpenSSLUtils::createCaInfrastructure(const std::string &caName,
 
 		LOGIT_ERROR(str::form("Can not create directory: %s (%s [%d])",
 		                   dir.c_str(), ::strerror(r), r));
-		BLOCXX_THROW(ca_mgm::SystemException,
+		CA_MGM_THROW(ca_mgm::SystemException,
 		             str::form(__("Cannot create directory: %s (%s [%d])."),
 		                    dir.c_str(), ::strerror(r), r).c_str());
 	}
@@ -2532,7 +2532,7 @@ OpenSSLUtils::createCaInfrastructure(const std::string &caName,
 
 		LOGIT_ERROR(str::form("Can not create directory: %s (%s [%d])",
 		                   dir.c_str(), ::strerror(r), r));
-		BLOCXX_THROW(ca_mgm::SystemException,
+		CA_MGM_THROW(ca_mgm::SystemException,
 		             str::form(__("Cannot create directory: %s (%s [%d])."),
 		                    dir.c_str(), ::strerror(r), r).c_str());
 	}
@@ -2546,7 +2546,7 @@ OpenSSLUtils::createCaInfrastructure(const std::string &caName,
 
 		LOGIT_ERROR(str::form("Can not create directory: %s (%s [%d])",
 		                   dir.c_str(), ::strerror(r), r));
-		BLOCXX_THROW(ca_mgm::SystemException,
+		CA_MGM_THROW(ca_mgm::SystemException,
 		             str::form(__("Cannot create directory: %s (%s [%d])."),
 		                    dir.c_str(), ::strerror(r), r).c_str());
 	}
@@ -2560,11 +2560,11 @@ OpenSSLUtils::createCaInfrastructure(const std::string &caName,
 		LocalManagement::writeFile(ByteBuffer(),
 		                           pi.toString() + "/cam.txt");
 	}
-	catch(blocxx::Exception &e)
+	catch(Exception &e)
 	{
 		path::removeDirRecursive(repository + "/" + caName);
 
-		BLOCXX_THROW_SUBEX(ca_mgm::SystemException,
+		CA_MGM_THROW_SUBEX(ca_mgm::SystemException,
 		                   __("Cannot create the file."), e);
 	}
 }
@@ -2598,11 +2598,11 @@ OpenSSLUtils::digestMD5(const std::string &in)
                                                errOutput, env,
                                                -1, -1, in);
   }
-  catch(blocxx::Exception& e)
+  catch(Exception& e)
   {
     LOGIT_ERROR( "openssl exception:" << e);
     path::removeFile(randfile);
-    BLOCXX_THROW_SUBEX(ca_mgm::RuntimeException,
+    CA_MGM_THROW_SUBEX(ca_mgm::RuntimeException,
                        __("Executing openssl command failed."), e);
   }
   if(status != 0)
@@ -2624,7 +2624,7 @@ OpenSSLUtils::digestMD5(const std::string &in)
 
   if(foundError)
   {
-    BLOCXX_THROW(ca_mgm::RuntimeException,
+    CA_MGM_THROW(ca_mgm::RuntimeException,
                  str::form(__("openssl command failed: %s"), errOutput.c_str()).c_str());
   }
   return stdOutput;

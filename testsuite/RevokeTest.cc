@@ -7,6 +7,7 @@
 #include <limal/Logger.hpp>
 #include <limal/PathInfo.hpp>
 #include <limal/ca-mgm/CA.hpp>
+#include <limal/Exception.hpp>
 
 #include <iostream>
 #include <fstream>
@@ -113,7 +114,7 @@ int main()
         }
         cout << "DONE" << endl;
     }
-    catch(Exception& e)
+    catch(ca_mgm::Exception& e)
     {
         cerr << e << endl;
     }

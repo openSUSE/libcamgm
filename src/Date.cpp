@@ -66,7 +66,7 @@ namespace ca_mgm
     restoreLocale(thisLocale);
 
     if (res == NULL)
-      BLOCXX_THROW(ca_mgm::ValueException,
+      CA_MGM_THROW(ca_mgm::ValueException,
           str::form( __("Invalid date format: '%s'"), date_str.c_str() ).c_str() );
   }
 

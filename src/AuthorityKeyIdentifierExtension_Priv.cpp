@@ -64,12 +64,12 @@ AuthorityKeyIdentifierExt_Priv::AuthorityKeyIdentifierExt_Priv(STACK_OF(X509_EXT
 		{
 			// extension occurred more than once
 			LOGIT_ERROR("Extension occurred more than once");
-			BLOCXX_THROW(ca_mgm::SyntaxException,
+			CA_MGM_THROW(ca_mgm::SyntaxException,
 			             "Extension occurred more than once");
 		}
 
 		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
-		BLOCXX_THROW(ca_mgm::SyntaxException,
+		CA_MGM_THROW(ca_mgm::SyntaxException,
 		             str::form("Unable to parse the certificate (Crit: %d)",
 		                    crit).c_str());
 	}

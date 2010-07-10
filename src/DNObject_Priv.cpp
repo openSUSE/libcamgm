@@ -75,7 +75,7 @@ DNObject_Priv::DNObject_Priv(X509_NAME *x509_name)
 	if(!bio)
 	{
 		LOGIT_ERROR("Can not create a memory BIO");
-		BLOCXX_THROW(ca_mgm::MemoryException,
+		CA_MGM_THROW(ca_mgm::MemoryException,
 		             __("Cannot create a memory BIO."));
 	}
 
@@ -112,7 +112,7 @@ DNObject_Priv::DNObject_Priv(X509_NAME *x509_name)
 	 BIO_free(bio);
 
 	 LOGIT_ERROR("Can not parse DN line: " << lines[j]);
-	 BLOCXX_THROW(ca_mgm::RuntimeException,
+	 CA_MGM_THROW(ca_mgm::RuntimeException,
 	 str::form("Can not parse DN line: %1", lines[j]).c_str());
 
 	 }
@@ -153,7 +153,7 @@ DNObject_Priv::DNObject_Priv(X509_NAME *x509_name)
 			BIO_free(bio);
 
 			LOGIT_ERROR("Can not parse DN line: " << lines[j]);
-			BLOCXX_THROW(ca_mgm::RuntimeException,
+			CA_MGM_THROW(ca_mgm::RuntimeException,
 			             // %1 is the wrong part of a DN which could not be parsed
 			             str::form(__("Cannot parse DN line: %s."), lines[j].c_str()).c_str());
 		}
@@ -194,7 +194,7 @@ DNObject_Priv::setDefaults2Config(CA& ca)
 	if(!p)
 	{
 		LOGIT_ERROR("missing section 'distinguished_name' in config file");
-		BLOCXX_THROW(ca_mgm::SyntaxException,
+		CA_MGM_THROW(ca_mgm::SyntaxException,
 		             __("Missing section 'distinguished_name' in the configuration file."));
 	}
 	std::string dnSect = ca.getConfig()->getValue("req_ca", "distinguished_name");
@@ -204,7 +204,7 @@ DNObject_Priv::setDefaults2Config(CA& ca)
 	if(dnKeys.empty())
 	{
 		LOGIT_ERROR("Can not parse Section " << dnSect);
-		BLOCXX_THROW(ca_mgm::SyntaxException,
+		CA_MGM_THROW(ca_mgm::SyntaxException,
 		             str::form(__("Cannot parse section %s."), dnSect.c_str()).c_str());
 	}
 	StringList::const_iterator it = dnKeys.begin();

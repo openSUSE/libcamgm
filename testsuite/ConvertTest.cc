@@ -11,6 +11,7 @@
 #include <limal/ByteBuffer.hpp>
 #include <limal/ca-mgm/CA.hpp>
 #include <limal/ca-mgm/LocalManagement.hpp>
+#include <limal/Exception.hpp>
 
 #include <iostream>
 #include <fstream>
@@ -187,7 +188,7 @@ int main()
         	}
         }
     }
-    catch(Exception& e)
+    catch(ca_mgm::Exception& e)
     {
         cerr << e << endl;
     }
@@ -206,7 +207,7 @@ int main()
 			cout << "Got DER Key" << endl;
 		}
 	}
-	catch(Exception& e)
+	catch(ca_mgm::Exception& e)
 	{
 		cout << "Got expected Exception." << endl;
 		cerr << "Exception:" << endl << e.getFile() << ": " << e.type() << ": " << e.getErrorCode() << ": ";
@@ -235,7 +236,7 @@ int main()
 			cout << "Got PKCS12 data" << endl;
 		}
 	}
-	catch(Exception &e)
+	catch(ca_mgm::Exception &e)
 	{
 		cout << "Got expected Exception." << endl;
 		cerr << "Exception:" << endl << e.getFile() << ": " << e.type() << ": " << e.getErrorCode() << ": ";
@@ -270,7 +271,7 @@ int main()
 			//cout << pem.data() << endl;
 		}
 	}
-	catch(Exception &e)
+	catch(ca_mgm::Exception &e)
 	{
 		cout << "Got expected Exception." << endl;
 		cerr << "Exception:" << endl << e.getFile() << ": " << e.type() << ": " << e.getErrorCode() << ": ";

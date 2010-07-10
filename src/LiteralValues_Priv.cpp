@@ -150,7 +150,7 @@ LiteralValue_Priv::LiteralValue_Priv(GENERAL_NAME *gen)
 		else
 		{
 			LOGIT_ERROR("Invalid IP Address");
-			BLOCXX_THROW(ca_mgm::SyntaxException, "Invalid IP Address");
+			CA_MGM_THROW(ca_mgm::SyntaxException, "Invalid IP Address");
 			break;
 		}
 		setLiteral("IP", oline);

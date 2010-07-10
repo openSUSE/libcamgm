@@ -217,7 +217,7 @@ CRLData::getRevocationEntry(const std::string& oid)
 		return (*(m_impl->revocationData.find(oid))).second;
 	}
 	LOGIT_ERROR("Entry not found: " << oid);
-	BLOCXX_THROW(ca_mgm::ValueException,
+	CA_MGM_THROW(ca_mgm::ValueException,
 	             __("Entry not found."));
 }
 

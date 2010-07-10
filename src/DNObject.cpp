@@ -103,7 +103,7 @@ RDNObject::getOpenSSLValue() const
 	else
 	{
 		LOGIT_ERROR("Invalid type:" << m_impl->type);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             // %s is the invalid string for a DN type
 		             str::form(__("Invalid type %s."), m_impl->type.c_str()).c_str());
 	}
@@ -249,7 +249,7 @@ DNObject::DNObject(CAConfig* caConfig, Type type)
 	   type == E_CA_Cert     || type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Wrong type: %d."), type).c_str());
 	}
 
@@ -257,7 +257,7 @@ DNObject::DNObject(CAConfig* caConfig, Type type)
 	if(!p)
 	{
 		LOGIT_ERROR("missing section 'distinguished_name' in config file");
-		BLOCXX_THROW(ca_mgm::SyntaxException,
+		CA_MGM_THROW(ca_mgm::SyntaxException,
 		             __("Missing section 'distinguished_name' in the configuration file."));
 	}
 	std::string dnSect = caConfig->getValue(type2Section(type, false),
@@ -268,7 +268,7 @@ DNObject::DNObject(CAConfig* caConfig, Type type)
 	if(dnKeys.empty())
 	{
 		LOGIT_ERROR("Can not parse Section " << dnSect);
-		BLOCXX_THROW(ca_mgm::SyntaxException,
+		CA_MGM_THROW(ca_mgm::SyntaxException,
 		             str::form(__("Cannot parse section %s."), dnSect.c_str()).c_str());
 	}
 	StringList::const_iterator it = dnKeys.begin();
@@ -368,7 +368,7 @@ DNObject::DNObject(const std::list<RDNObject> &dn)
 	std::vector<std::string> r = this->verify();
 	if(!r.empty())
 	{
-		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
+		CA_MGM_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 }
 
@@ -396,7 +396,7 @@ DNObject::setDN(const std::list<RDNObject> &dn)
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
+		CA_MGM_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 	m_impl->dn = dn;
 }

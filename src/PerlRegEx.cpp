@@ -205,7 +205,7 @@ PerlRegEx::PerlRegEx(const std::string &regex, int cflags)
 {
 	if( !compile(regex, cflags))
 	{
-		BLOCXX_THROW_ERR(ca_mgm::ValueException,
+		CA_MGM_THROW_ERR(ca_mgm::ValueException,
 			errorString().c_str(), m_ecode);
 	}
 }
@@ -220,7 +220,7 @@ PerlRegEx::PerlRegEx(const PerlRegEx &ref)
 {
 	if( ref.m_pcre != NULL && !compile(ref.m_rxstr, ref.m_flags))
 	{
-		BLOCXX_THROW_ERR(ca_mgm::ValueException,
+		CA_MGM_THROW_ERR(ca_mgm::ValueException,
 			errorString().c_str(), m_ecode);
 	}
 }
@@ -254,7 +254,7 @@ PerlRegEx::operator = (const PerlRegEx &ref)
 	}
 	else if( !compile(ref.m_rxstr, ref.m_flags))
 	{
-		BLOCXX_THROW_ERR(ca_mgm::ValueException,
+		CA_MGM_THROW_ERR(ca_mgm::ValueException,
 			errorString().c_str(), m_ecode);
 	}
 	return *this;
@@ -340,18 +340,18 @@ PerlRegEx::execute(MatchArray &sub, const std::string &str,
 {
 	if( m_pcre == NULL)
 	{
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 			"Regular expression is not compiled");
 	}
 	if( count >= size_t(INT_MAX / 3))
 	{
-		BLOCXX_THROW(ca_mgm::SystemException,
+		CA_MGM_THROW(ca_mgm::SystemException,
 			"Match count limit exceeded");
 	}
 
 	if( index > str.length())
 	{
-		BLOCXX_THROW(ca_mgm::OverflowException,
+		CA_MGM_THROW(ca_mgm::OverflowException,
 			str::form("String index out of bounds ("
 			          "length = %d, index = %d).",
 			          str.length(), index
@@ -410,18 +410,18 @@ PerlRegEx::execute(MatchVector &sub, const std::string &str,
 {
 	if( m_pcre == NULL)
 	{
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 			"Regular expression is not compiled");
 	}
 	if( count >= size_t(INT_MAX / 3))
 	{
-		BLOCXX_THROW(ca_mgm::SystemException,
+		CA_MGM_THROW(ca_mgm::SystemException,
 			"Match count limit exceeded");
 	}
 
 	if( index > str.length())
 	{
-		BLOCXX_THROW(ca_mgm::OverflowException,
+		CA_MGM_THROW(ca_mgm::OverflowException,
 			str::form("String index out of bounds ("
 			          "length = %d, index = %d)",
 			          str.length(), index
@@ -478,7 +478,7 @@ PerlRegEx::capture(const std::string &str, size_t index, size_t count, int eflag
 {
 	if( m_pcre == NULL)
 	{
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 			"Regular expression is not compiled");
 	}
 
@@ -490,7 +490,7 @@ PerlRegEx::capture(const std::string &str, size_t index, size_t count, int eflag
 	{
 		if( rsub.empty())
 		{
-			BLOCXX_THROW(ca_mgm::ValueException,
+			CA_MGM_THROW(ca_mgm::ValueException,
 				"Non-capturing regular expression");
 		}
 
@@ -510,7 +510,7 @@ PerlRegEx::capture(const std::string &str, size_t index, size_t count, int eflag
 	}
 	else if(m_ecode != PCRE_ERROR_NOMATCH)
 	{
-		BLOCXX_THROW_ERR(ca_mgm::RuntimeException,
+		CA_MGM_THROW_ERR(ca_mgm::RuntimeException,
 			errorString().c_str(), m_ecode);
 	}
 	return ssub;
@@ -524,7 +524,7 @@ PerlRegEx::replace(const std::string &str, const std::string &rep,
 {
 	if( m_pcre == NULL)
 	{
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 			"Regular expression is not compiled");
 	}
 
@@ -543,7 +543,7 @@ PerlRegEx::replace(const std::string &str, const std::string &rep,
 			    rsub[0].rm_eo < 0)
 			{
 				// only if empty (missused as guard).
-				BLOCXX_THROW(ca_mgm::ValueException,
+				CA_MGM_THROW(ca_mgm::ValueException,
 					"Non-capturing regular expression");
 			}
 
@@ -561,7 +561,7 @@ PerlRegEx::replace(const std::string &str, const std::string &rep,
 		}
 		else
 		{
-			BLOCXX_THROW_ERR(ca_mgm::RuntimeException,
+			CA_MGM_THROW_ERR(ca_mgm::RuntimeException,
 				errorString().c_str(), m_ecode);
 		}
 	} while(global && match && out.length() > off);
@@ -576,7 +576,7 @@ PerlRegEx::split(const std::string &str, bool empty, int eflags)
 {
 	if( m_pcre == NULL)
 	{
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 			"Regular expression is not compiled");
 	}
 
@@ -595,7 +595,7 @@ PerlRegEx::split(const std::string &str, bool empty, int eflags)
 			    rsub[0].rm_so < 0 ||
 			    rsub[0].rm_eo < 0)
 			{
-				BLOCXX_THROW(ca_mgm::ValueException,
+				CA_MGM_THROW(ca_mgm::ValueException,
 					"Non-capturing regular expression");
 			}
 
@@ -618,7 +618,7 @@ PerlRegEx::split(const std::string &str, bool empty, int eflags)
 		}
 		else
 		{
-			BLOCXX_THROW_ERR(ca_mgm::RuntimeException,
+			CA_MGM_THROW_ERR(ca_mgm::RuntimeException,
 				errorString().c_str(), m_ecode);
 		}
 	} while(match && len > off);
@@ -633,7 +633,7 @@ PerlRegEx::grep(const std::vector<std::string> &src, int eflags)
 {
 	if( m_pcre == NULL)
 	{
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 			"Regular expression is not compiled");
 	}
 
@@ -656,7 +656,7 @@ PerlRegEx::grep(const std::vector<std::string> &src, int eflags)
 			{
 				m_ecode = ret;
 				m_error = getError(m_ecode);
-				BLOCXX_THROW_ERR(ca_mgm::RuntimeException,
+				CA_MGM_THROW_ERR(ca_mgm::RuntimeException,
 					errorString().c_str(), m_ecode);
 			}
 		}
@@ -671,13 +671,13 @@ PerlRegEx::match(const std::string &str, size_t index, int eflags) const
 {
 	if( m_pcre == NULL)
 	{
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 			"Regular expression is not compiled");
 	}
 
 	if( index > str.length())
 	{
-		BLOCXX_THROW(ca_mgm::OverflowException,
+		CA_MGM_THROW(ca_mgm::OverflowException,
 			str::form("String index out of bounds."
 			          "length = %d, index = %d",
 			          str.length(), index
@@ -699,7 +699,7 @@ PerlRegEx::match(const std::string &str, size_t index, int eflags) const
 	else
 	{
 		m_error = getError(m_ecode);
-		BLOCXX_THROW_ERR(ca_mgm::RuntimeException,
+		CA_MGM_THROW_ERR(ca_mgm::RuntimeException,
 			errorString().c_str(), m_ecode);
 	}
 }

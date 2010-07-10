@@ -78,7 +78,7 @@ SubjectAlternativeNameExt::SubjectAlternativeNameExt(CAConfig* caConfig, Type ty
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 
@@ -124,7 +124,7 @@ SubjectAlternativeNameExt::SubjectAlternativeNameExt(bool copyEmail,
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
+		CA_MGM_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 	setPresent(true);
 }
@@ -165,7 +165,7 @@ SubjectAlternativeNameExt::setAlternativeNameList(const std::list<LiteralValue> 
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
+		CA_MGM_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 	m_impl->altNameList = alternativeNameList;
 	setPresent(true);
@@ -176,7 +176,7 @@ SubjectAlternativeNameExt::getCopyEmail() const
 {
 	if(!isPresent())
 	{
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             __("SubjectAlternativeNameExt is not present."));
 	}
 	return m_impl->emailCopy;
@@ -187,7 +187,7 @@ SubjectAlternativeNameExt::getAlternativeNameList() const
 {
 	if(!isPresent())
 	{
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             __("SubjectAlternativeNameExt is not present."));
 	}
 	return m_impl->altNameList;
@@ -200,7 +200,7 @@ SubjectAlternativeNameExt::commit2Config(CA& ca, Type type) const
 	if(!valid())
 	{
 		LOGIT_ERROR("invalid SubjectAlternativeNameExt object");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid SubjectAlternativeNameExt object."));
 	}
 
@@ -208,7 +208,7 @@ SubjectAlternativeNameExt::commit2Config(CA& ca, Type type) const
 	if(type == E_CRL)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Wrong type: %1."), type).c_str());
 	}
 

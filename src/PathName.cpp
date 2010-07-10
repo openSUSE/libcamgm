@@ -188,7 +188,7 @@ namespace
             if( name.find_first_of('/')  != std::string::npos ||
                 name.find_first_of('\\') != std::string::npos)
             {
-                BLOCXX_THROW(ca_mgm::ValueException,
+                CA_MGM_THROW(ca_mgm::ValueException,
                     str::form(__("The specified filename component '%s' "
                               "contains a filename separator"),
                            name.c_str()).c_str()
@@ -350,7 +350,7 @@ PathName::assign(const PathName::List &list)
     {
         if( prefix != 2)
         {
-            BLOCXX_THROW(ca_mgm::ValueException,
+            CA_MGM_THROW(ca_mgm::ValueException,
             __("Invalid drive letter prefix in the specified path list."));
         }
         drive = *item;
@@ -358,7 +358,7 @@ PathName::assign(const PathName::List &list)
     else
     if( !item->empty() )
     {
-        BLOCXX_THROW(ca_mgm::ValueException,
+        CA_MGM_THROW(ca_mgm::ValueException,
             __("The first pathname list component has to be "
                "empty or contain a drive letter prefix")
         );
@@ -372,7 +372,7 @@ PathName::assign(const PathName::List &list)
     }
     catch(const ca_mgm::ValueException &e)
     {
-        BLOCXX_THROW_SUBEX(ca_mgm::ValueException,
+        CA_MGM_THROW_SUBEX(ca_mgm::ValueException,
             __("The path list contains an element with a filename separator."),
             e);
     }

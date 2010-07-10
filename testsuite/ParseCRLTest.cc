@@ -6,6 +6,7 @@
 #include <limal/PerlRegEx.hpp>
 #include <limal/Logger.hpp>
 #include <limal/ca-mgm/CA.hpp>
+#include <limal/Exception.hpp>
 
 #include <iostream>
 #include <fstream>
@@ -90,7 +91,7 @@ int main(int argc, char **argv)
             cout << crl.getCRLAsText() << endl;
             cout << crl.getExtensionsAsText() << endl;
         }
-        catch(Exception& e)
+        catch(ca_mgm::Exception& e)
         {
             cerr << e << endl;
         }

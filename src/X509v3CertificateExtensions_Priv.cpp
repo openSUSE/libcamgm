@@ -145,7 +145,7 @@ X509v3CertificateExts_Priv::setNsBaseUrl(const NsBaseUrlExt &ext)
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(ValueException, r[0].c_str());
+		CA_MGM_THROW(ValueException, r[0].c_str());
 	}
 	m_impl->nsBaseUrl = ext;
 }
@@ -157,7 +157,7 @@ X509v3CertificateExts_Priv::setNsRevocationUrl(const NsRevocationUrlExt &ext)
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(ValueException, r[0].c_str());
+		CA_MGM_THROW(ValueException, r[0].c_str());
 	}
 	m_impl->nsRevocationUrl = ext;
 }
@@ -169,7 +169,7 @@ X509v3CertificateExts_Priv::setNsCaRevocationUrl(const NsCaRevocationUrlExt &ext
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(ValueException, r[0].c_str());
+		CA_MGM_THROW(ValueException, r[0].c_str());
 	}
 	m_impl->nsCaRevocationUrl = ext;
 }
@@ -181,7 +181,7 @@ X509v3CertificateExts_Priv::setNsRenewalUrl(const NsRenewalUrlExt &ext)
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(ValueException, r[0].c_str());
+		CA_MGM_THROW(ValueException, r[0].c_str());
 	}
 	m_impl->nsRenewalUrl = ext;
 }
@@ -193,7 +193,7 @@ X509v3CertificateExts_Priv::setNsCaPolicyUrl(const NsCaPolicyUrlExt &ext)
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(ValueException, r[0].c_str());
+		CA_MGM_THROW(ValueException, r[0].c_str());
 	}
 	m_impl->nsCaPolicyUrl = ext;
 }
@@ -205,7 +205,7 @@ X509v3CertificateExts_Priv::setNsSslServerName(const NsSslServerNameExt &ext)
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(ValueException, r[0].c_str());
+		CA_MGM_THROW(ValueException, r[0].c_str());
 	}
 	m_impl->nsSslServerName = ext;
 }
@@ -217,7 +217,7 @@ X509v3CertificateExts_Priv::setNsComment(const NsCommentExt &ext)
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(ValueException, r[0].c_str());
+		CA_MGM_THROW(ValueException, r[0].c_str());
 	}
 	m_impl->nsComment = ext;
 }
@@ -229,7 +229,7 @@ X509v3CertificateExts_Priv::setNsCertType(const NsCertTypeExt &ext)
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(ValueException, r[0].c_str());
+		CA_MGM_THROW(ValueException, r[0].c_str());
 	}
 	m_impl->nsCertType = ext;
 }
@@ -241,7 +241,7 @@ X509v3CertificateExts_Priv::setKeyUsage(const KeyUsageExt &ext)
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(ValueException, r[0].c_str());
+		CA_MGM_THROW(ValueException, r[0].c_str());
 	}
 	m_impl->keyUsage = ext;
 }
@@ -253,7 +253,7 @@ X509v3CertificateExts_Priv::setBasicConstraints(const BasicConstraintsExt &ext)
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(ValueException, r[0].c_str());
+		CA_MGM_THROW(ValueException, r[0].c_str());
 	}
 	m_impl->basicConstraints = ext;
 }
@@ -265,7 +265,7 @@ X509v3CertificateExts_Priv::setExtendedKeyUsage(const ExtendedKeyUsageExt &ext)
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(ValueException, r[0].c_str());
+		CA_MGM_THROW(ValueException, r[0].c_str());
 	}
 	m_impl->extendedKeyUsage = ext;
 }
@@ -277,7 +277,7 @@ X509v3CertificateExts_Priv::setSubjectKeyIdentifier(const SubjectKeyIdentifierEx
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(ValueException, r[0].c_str());
+		CA_MGM_THROW(ValueException, r[0].c_str());
 	}
 	m_impl->subjectKeyIdentifier = ext;
 }
@@ -289,7 +289,7 @@ X509v3CertificateExts_Priv::setAuthorityKeyIdentifier(const AuthorityKeyIdentifi
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(ValueException, r[0].c_str());
+		CA_MGM_THROW(ValueException, r[0].c_str());
 	}
 	m_impl->authorityKeyIdentifier = ext;
 }
@@ -301,7 +301,7 @@ X509v3CertificateExts_Priv::setSubjectAlternativeName(const SubjectAlternativeNa
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(ValueException, r[0].c_str());
+		CA_MGM_THROW(ValueException, r[0].c_str());
 	}
 	m_impl->subjectAlternativeName = ext;
 }
@@ -313,7 +313,7 @@ X509v3CertificateExts_Priv::setIssuerAlternativeName(const IssuerAlternativeName
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(ValueException, r[0].c_str());
+		CA_MGM_THROW(ValueException, r[0].c_str());
 	}
 	m_impl->issuerAlternativeName = ext;
 }
@@ -325,7 +325,7 @@ X509v3CertificateExts_Priv::setAuthorityInfoAccess(const AuthorityInfoAccessExt 
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(ValueException, r[0].c_str());
+		CA_MGM_THROW(ValueException, r[0].c_str());
 	}
 	m_impl->authorityInfoAccess = ext;
 }
@@ -337,7 +337,7 @@ X509v3CertificateExts_Priv::setCRLDistributionPoints(const CRLDistributionPoints
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(ValueException, r[0].c_str());
+		CA_MGM_THROW(ValueException, r[0].c_str());
 	}
 	m_impl->crlDistributionPoints = ext;
 }
@@ -349,7 +349,7 @@ X509v3CertificateExts_Priv::setCertificatePolicies(const CertificatePoliciesExt 
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(ValueException, r[0].c_str());
+		CA_MGM_THROW(ValueException, r[0].c_str());
 	}
 	m_impl->certificatePolicies = ext;
 }
@@ -389,14 +389,14 @@ X509v3CertificateExts_Priv::parseStringExt(STACK_OF(X509_EXTENSION) * cert,
 		{
 			// extension occurred more than once
 			LOGIT_ERROR("Extension occurred more than once: " << nid);
-			BLOCXX_THROW(SyntaxException,
+			CA_MGM_THROW(SyntaxException,
 			             str::form(__("Extension occurred more than once: %1."),
 			                    nid).c_str());
 		}
 
 		LOGIT_ERROR("Unable to parse the certificate (NID:" <<
 		            nid << " Crit:" << crit << ")");
-		BLOCXX_THROW(SyntaxException,
+		CA_MGM_THROW(SyntaxException,
 		             str::form(__("Unable to parse the certificate (NID: %1 Crit: %2)."),
 		                    nid, crit).c_str());
 	}
@@ -446,14 +446,14 @@ X509v3CertificateExts_Priv::parseBitExt(STACK_OF(X509_EXTENSION)* cert,
 		{
 			// extension occurred more than once
 			LOGIT_ERROR("Extension occurred more than once: " << nid);
-			BLOCXX_THROW(SyntaxException,
+			CA_MGM_THROW(SyntaxException,
 			             str::form(__("Extension occurred more than once: %1."),
 			                    nid).c_str());
 		}
 
 		LOGIT_ERROR("Unable to parse the certificate (NID:" <<
 		            nid << " Crit:" << crit << ")");
-		BLOCXX_THROW(SyntaxException,
+		CA_MGM_THROW(SyntaxException,
 		             str::form(__("Unable to parse the certificate (NID: %1 Crit: %2)."),
 		                    nid, crit).c_str());
 	}
@@ -505,12 +505,12 @@ X509v3CertificateExts_Priv::parseExtendedKeyUsageExt(STACK_OF(X509_EXTENSION)* c
 		{
 			// extension occurred more than once
 			LOGIT_ERROR("Extension occurred more than once");
-			BLOCXX_THROW(SyntaxException,
+			CA_MGM_THROW(SyntaxException,
 			             __("Extension occurred more than once."));
 		}
 
 		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
-		BLOCXX_THROW(SyntaxException,
+		CA_MGM_THROW(SyntaxException,
 		             str::form(__("Unable to parse the certificate (Crit: %1)."),
 		                    crit).c_str());
 	}
@@ -571,12 +571,12 @@ X509v3CertificateExts_Priv::parseBasicConstraintsExt(STACK_OF(X509_EXTENSION)* c
 		{
 			// extension occurred more than once
 			LOGIT_ERROR("Extension occurred more than once");
-			BLOCXX_THROW(SyntaxException,
+			CA_MGM_THROW(SyntaxException,
 			             __("Extension occurred more than once."));
 		}
 
 		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
-		BLOCXX_THROW(SyntaxException,
+		CA_MGM_THROW(SyntaxException,
 		             str::form(__("Unable to parse the certificate (Crit: %1)."),
 		                    crit).c_str());
 	}
@@ -635,12 +635,12 @@ X509v3CertificateExts_Priv::parseSubjectKeyIdentifierExt(STACK_OF(X509_EXTENSION
 		{
 			// extension occurred more than once
 			LOGIT_ERROR("Extension occurred more than once");
-			BLOCXX_THROW(SyntaxException,
+			CA_MGM_THROW(SyntaxException,
 			             __("Extension occurred more than once."));
 		}
 
 		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
-		BLOCXX_THROW(SyntaxException,
+		CA_MGM_THROW(SyntaxException,
 		             str::form(__("Unable to parse the certificate (Crit: %1)."),
 		                    crit).c_str());
 	}
@@ -694,13 +694,13 @@ X509v3CertificateExts_Priv::parseSubjectAlternativeNameExt(STACK_OF(X509_EXTENSI
 		{
 			// extension occurred more than once
 			LOGIT_ERROR("Extension occurred more than once");
-			BLOCXX_THROW(SyntaxException,
+			CA_MGM_THROW(SyntaxException,
 			             __("Extension occurred more than once."));
 
 		}
 
 		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
-		BLOCXX_THROW(SyntaxException,
+		CA_MGM_THROW(SyntaxException,
 		             str::form(__("Unable to parse the certificate (Crit: %1)."),
 		                    crit).c_str());
 	}
@@ -764,12 +764,12 @@ X509v3CertificateExts_Priv::parseIssuerAlternativeNameExt(STACK_OF(X509_EXTENSIO
 		{
 			// extension occurred more than once
 			LOGIT_ERROR("Extension occurred more than once");
-			BLOCXX_THROW(SyntaxException,
+			CA_MGM_THROW(SyntaxException,
 			             __("Extension occurred more than once."));
 		}
 
 		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
-		BLOCXX_THROW(SyntaxException,
+		CA_MGM_THROW(SyntaxException,
 		             str::form(__("Unable to parse the certificate (Crit: %1)."),
 		                    crit).c_str());
 	}
@@ -833,13 +833,13 @@ X509v3CertificateExts_Priv::parseCRLDistributionPointsExt(STACK_OF(X509_EXTENSIO
 		{
 			// extension occurred more than once
 			LOGIT_ERROR("Extension occurred more than once");
-			BLOCXX_THROW(SyntaxException,
+			CA_MGM_THROW(SyntaxException,
 			             __("Extension occurred more than once."));
 
 		}
 
 		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
-		BLOCXX_THROW(SyntaxException,
+		CA_MGM_THROW(SyntaxException,
 		             str::form(__("Unable to parse the certificate (Crit: %1)."),
 		                    crit).c_str());
 	}
@@ -909,12 +909,12 @@ X509v3CertificateExts_Priv::parseAuthorityInfoAccessExt(STACK_OF(X509_EXTENSION)
 		{
 			// extension occurred more than once
 			LOGIT_ERROR("Extension occurred more than once");
-			BLOCXX_THROW(SyntaxException,
+			CA_MGM_THROW(SyntaxException,
 			             __("Extension occurred more than once."));
 		}
 
 		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
-		BLOCXX_THROW(SyntaxException,
+		CA_MGM_THROW(SyntaxException,
 		             str::form(__("Unable to parse the certificate (Crit: %1)."), crit).c_str());
 	}
 
@@ -934,7 +934,7 @@ X509v3CertificateExts_Priv::parseAuthorityInfoAccessExt(STACK_OF(X509_EXTENSION)
 		if(!lv.valid())
 		{
 			LOGIT_ERROR("Invalid location in authorityInfoAccess");
-			BLOCXX_THROW(SyntaxException,
+			CA_MGM_THROW(SyntaxException,
 			             __("Invalid location in authorityInfoAccess."));
 		}
 
@@ -995,12 +995,12 @@ X509v3CertificateExts_Priv::parseCertificatePoliciesExt(STACK_OF(X509_EXTENSION)
 		{
 			// extension occurred more than once
 			LOGIT_ERROR("Extension occurred more than once");
-			BLOCXX_THROW(SyntaxException,
+			CA_MGM_THROW(SyntaxException,
 			             __("Extension occurred more than once."));
 		}
 
 		LOGIT_ERROR("Unable to parse the certificate (" << "Crit:" << crit << ")");
-		BLOCXX_THROW(SyntaxException,
+		CA_MGM_THROW(SyntaxException,
 		             str::form(__("Unable to parse the certificate (Crit: %1)."),
 		                    crit).c_str());
 	}

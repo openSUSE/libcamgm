@@ -124,7 +124,7 @@ ValueCheck::isValid(const std::string &value) const
 {
 	if( !m_self)
 	{
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		__("The value check may not contain a NULL pointer."));
 	}
 
@@ -155,7 +155,7 @@ ValueCheck::explain(const std::string &value) const
 {
 	if( !m_self)
 	{
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		__("The value check may not contain a NULL pointer."));
 	}
 
@@ -236,7 +236,7 @@ ValueCheck::incRCnt(ValueCheckBase *ptr)
 	}
 	else
 	{
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		__("The value check may not contain a NULL pointer."));
 	}
 }

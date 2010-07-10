@@ -103,12 +103,12 @@ AuthorityInformation::AuthorityInformation(const std::string &accessOID,
 	if(!location.valid())
 	{
 		LOGIT_ERROR("invalid location");
-		BLOCXX_THROW(ca_mgm::ValueException, __("Invalid location."));
+		CA_MGM_THROW(ca_mgm::ValueException, __("Invalid location."));
 	}
 	if(!initAccessOIDCheck().isValid(accessOID))
 	{
 		LOGIT_ERROR("invalid accessOID");
-		BLOCXX_THROW(ca_mgm::ValueException, __("Invalid accessOID."));
+		CA_MGM_THROW(ca_mgm::ValueException, __("Invalid accessOID."));
 	}
 }
 
@@ -132,12 +132,12 @@ AuthorityInformation::setAuthorityInformation(const std::string &accessOID,
 	if(!location.valid())
 	{
 		LOGIT_ERROR("invalid location");
-		BLOCXX_THROW(ca_mgm::ValueException, __("Invalid location."));
+		CA_MGM_THROW(ca_mgm::ValueException, __("Invalid location."));
 	}
 	if(!initAccessOIDCheck().isValid(accessOID))
 	{
 		LOGIT_ERROR("invalid accessOID");
-		BLOCXX_THROW(ca_mgm::ValueException, __("Invalid accessOID."));
+		CA_MGM_THROW(ca_mgm::ValueException, __("Invalid accessOID."));
 	}
 
 	m_impl->accessOID = accessOID;
@@ -252,7 +252,7 @@ AuthorityInfoAccessExt::AuthorityInfoAccessExt(CAConfig* caConfig, Type type)
 	   type == E_CA_Req     || type == E_CRL           )
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException, str::form(__("Wrong type: %1."), type).c_str());
+		CA_MGM_THROW(ca_mgm::ValueException, str::form(__("Wrong type: %1."), type).c_str());
 	}
 
 	bool p = caConfig->exists(type2Section(type, true), "authorityInfoAccess");
@@ -302,7 +302,7 @@ AuthorityInfoAccessExt::setAuthorityInformation(const std::list<AuthorityInforma
 	for(;it != infolist.end(); it++) {
 		if(!(*it).valid()) {
 			LOGIT_ERROR("invalid AuthorityInformation in infolist");
-			BLOCXX_THROW(ca_mgm::ValueException,
+			CA_MGM_THROW(ca_mgm::ValueException,
 			             __("Invalid AuthorityInformation in the information list."));
 		}
 	}
@@ -315,7 +315,7 @@ AuthorityInfoAccessExt::getAuthorityInformation() const
 {
 	if(!isPresent()) {
 		LOGIT_ERROR("AuthorityInfoAccessExt is not present");
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             __("AuthorityInfoAccessExt is not present."));
 	}
 	return m_impl->info;
@@ -327,7 +327,7 @@ AuthorityInfoAccessExt::commit2Config(CA& ca, Type type) const
 	if(!valid())
 	{
 		LOGIT_ERROR("invalid AuthorityInfoAccessExt object");
-		BLOCXX_THROW(ca_mgm::ValueException, __("Invalid AuthorityInfoAccessExt object."));
+		CA_MGM_THROW(ca_mgm::ValueException, __("Invalid AuthorityInfoAccessExt object."));
 	}
 
 	// These types are not supported by this object
@@ -335,7 +335,7 @@ AuthorityInfoAccessExt::commit2Config(CA& ca, Type type) const
 	   type == E_CA_Req     || type == E_CRL           )
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException, str::form(__("Wrong type: %1."), type).c_str());
+		CA_MGM_THROW(ca_mgm::ValueException, str::form(__("Wrong type: %1."), type).c_str());
 	}
 
 	if(isPresent())

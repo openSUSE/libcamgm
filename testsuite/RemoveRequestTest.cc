@@ -80,7 +80,7 @@ int main()
         }
         cout << "DONE" << endl;
     }
-    catch(Exception& e)
+    catch(ca_mgm::Exception& e)
     {
         cerr << e << endl;
     }

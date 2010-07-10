@@ -152,7 +152,7 @@ namespace // anonymous
 	{
 		if( regx.empty() || regx == "^$")
 		{
-			BLOCXX_THROW(UrlNotAllowedException,
+			CA_MGM_THROW(UrlNotAllowedException,
 				str::form(__("The %s url component is "
 				          "not allowed in this scheme"),
 				       name.c_str()).c_str()
@@ -171,14 +171,14 @@ namespace // anonymous
 		{
 			if( show)
 			{
-				BLOCXX_THROW(UrlBadComponentException,
+				CA_MGM_THROW(UrlBadComponentException,
 					str::form(__("Invalid %s URL component data '%s'."),
 					       name.c_str(), data.c_str()).c_str()
 				);
 			}
 			else
 			{
-				BLOCXX_THROW(UrlBadComponentException,
+				CA_MGM_THROW(UrlBadComponentException,
 					str::form(__("Invalid data in the %s URL component."), name.c_str()).c_str()
 				);
 			}
@@ -263,21 +263,21 @@ UrlBase::init(const UrlComponents &components)
 {
 	if( components.has_authority && config("with_authority") != "y")
 	{
-		BLOCXX_THROW(UrlNotAllowedException,
+		CA_MGM_THROW(UrlNotAllowedException,
 			__("The authority url component is not "
 			   "allowed in this scheme")
 		);
 	}
 	if( components.has_querystr && config("rx_querystr").empty())
 	{
-		BLOCXX_THROW(UrlNotAllowedException,
+		CA_MGM_THROW(UrlNotAllowedException,
 			__("The query string url component is not "
 			   "allowed in this scheme")
 		);
 	}
 	if( components.has_fragment && config("rx_fragment").empty())
 	{
-		BLOCXX_THROW(UrlNotAllowedException,
+		CA_MGM_THROW(UrlNotAllowedException,
 			__("The fragment string url component is not "
 			   "allowed in this scheme")
 		);
@@ -773,7 +773,7 @@ UrlBase::getPathParamsMap(EEncoding eflag) const
 	if( config("psep_pathparam").empty() ||
 	    config("vsep_pathparam").empty())
 	{
-		BLOCXX_THROW(UrlNotSupportedException,
+		CA_MGM_THROW(UrlNotSupportedException,
 			__("Path parameter parsing is not supported for this URL.")
 		);
 	}
@@ -822,7 +822,7 @@ UrlBase::getQueryStringMap(EEncoding eflag) const
 	if( config("psep_querystr").empty() ||
 	    config("vsep_querystr").empty())
 	{
-		BLOCXX_THROW(UrlNotSupportedException,
+		CA_MGM_THROW(UrlNotSupportedException,
 			__("Query string parsing is not supported for this URL.")
 		);
 	}
@@ -857,13 +857,13 @@ UrlBase::setScheme(const std::string &scheme)
 	else
 	if( scheme.empty())
 	{
-		BLOCXX_THROW(UrlBadComponentException,
+		CA_MGM_THROW(UrlBadComponentException,
 			__("The URL scheme is a required component.")
 		);
 	}
 	else
 	{
-		BLOCXX_THROW(UrlBadComponentException,
+		CA_MGM_THROW(UrlBadComponentException,
 			str::form(__("Invalid URL scheme '%s'."),
 			       scheme.c_str()).c_str()
 		);
@@ -963,7 +963,7 @@ UrlBase::setUsername(const std::string &user, EEncoding eflag)
 	{
 		if( config("with_authority") != "y")
 		{
-			BLOCXX_THROW(UrlNotAllowedException,
+			CA_MGM_THROW(UrlNotAllowedException,
 				__("The username component is not "
 				   "allowed in this scheme")
 			);
@@ -997,7 +997,7 @@ UrlBase::setPassword(const std::string &pass, EEncoding eflag)
 	{
 		if( config("with_authority") != "y")
 		{
-			BLOCXX_THROW(UrlNotAllowedException,
+			CA_MGM_THROW(UrlNotAllowedException,
 				__("The password component is not "
 				   "allowed in this scheme")
 			);
@@ -1027,7 +1027,7 @@ UrlBase::setHost(const std::string &host, EEncoding eflag)
 	{
 		if(config("require_host") == "m")
 		{
-			BLOCXX_THROW(UrlNotAllowedException,
+			CA_MGM_THROW(UrlNotAllowedException,
 				__("The URL scheme requires a host.")
 			);
 		}
@@ -1037,7 +1037,7 @@ UrlBase::setHost(const std::string &host, EEncoding eflag)
 	{
 		if( config("with_authority") != "y")
 		{
-			BLOCXX_THROW(UrlNotAllowedException,
+			CA_MGM_THROW(UrlNotAllowedException,
 				__("The hostname component is not "
 				   "allowed in this scheme")
 			);
@@ -1101,7 +1101,7 @@ UrlBase::setPort(const std::string &port)
 		if( config("with_authority") != "y" ||
 		    config("with_port")      != "y")
 		{
-			BLOCXX_THROW(UrlNotAllowedException,
+			CA_MGM_THROW(UrlNotAllowedException,
 				__("The port number component is not "
 				   "allowed in this scheme")
 			);
@@ -1122,7 +1122,7 @@ UrlBase::setPathName(const std::string &path, EEncoding eflag)
 	{
 		if(config("require_pathname") == "m")
 		{
-			BLOCXX_THROW(UrlNotAllowedException,
+			CA_MGM_THROW(UrlNotAllowedException,
 				__("The URL scheme requires a path.")
 			);
 		}
@@ -1185,7 +1185,7 @@ UrlBase::setPathParamsMap(const ca_mgm::url::ParamMap &pmap)
 	if( config("psep_pathparam").empty() ||
 	    config("vsep_pathparam").empty())
 	{
-		BLOCXX_THROW(UrlNotSupportedException,
+		CA_MGM_THROW(UrlNotSupportedException,
 			__("Path parameter parsing is not supported for this URL.")
 		);
 	}
@@ -1230,7 +1230,7 @@ UrlBase::setQueryStringMap(const ca_mgm::url::ParamMap &pmap)
 	if( config("psep_querystr").empty() ||
 	    config("vsep_querystr").empty())
 	{
-		BLOCXX_THROW(UrlNotSupportedException,
+		CA_MGM_THROW(UrlNotSupportedException,
 			__("Query string parsing is not supported for this URL.")
 		);
 	}
@@ -1361,7 +1361,7 @@ UrlBase::checkValidHost(const std::string  &host,
 			// We don't support the IP-Literal "[v<HEX> ... ]" format
 			if( host.at(1) == 'v')
 			{
-				BLOCXX_THROW(UrlBadComponentException,
+				CA_MGM_THROW(UrlBadComponentException,
 					__("The IPvFuture URL host format is not supported.")
 				);
 			}
@@ -1395,7 +1395,7 @@ UrlBase::checkValidHost(const std::string  &host,
 
 	if( !valid)
 	{
-		BLOCXX_THROW(UrlBadComponentException,
+		CA_MGM_THROW(UrlBadComponentException,
 			str::form(__("Invalid hostname URL component data '%s'."),
 			       host.c_str()).c_str()
 		);
@@ -1425,7 +1425,7 @@ UrlBase::checkValidPort(const std::string  &port,
 
 	if( !valid)
 	{
-		BLOCXX_THROW(UrlBadComponentException,
+		CA_MGM_THROW(UrlBadComponentException,
 			str::form(__("Invalid port number URL component data '%s'."),
 			       port.c_str()).c_str()
 		);
@@ -1451,7 +1451,7 @@ UrlBase::checkValidPathName(const std::string  &path,
 			if(!(path.at(0) == '/' || (path.length() >= 3 &&
 			   str::toLower(path.substr(0, 3)) == "%2f")))
 			{
-				BLOCXX_THROW(UrlNotAllowedException,
+				CA_MGM_THROW(UrlNotAllowedException,
 					__("A relative path is not allowed if authority exists.")
 				);
 			}
@@ -1464,7 +1464,7 @@ UrlBase::checkValidPathName(const std::string  &path,
 		{
 			if(path.at(0) != '/')
 			{
-				BLOCXX_THROW(UrlNotAllowedException,
+				CA_MGM_THROW(UrlNotAllowedException,
 					__("A relative path is not allowed if authority exists.")
 				);
 			}

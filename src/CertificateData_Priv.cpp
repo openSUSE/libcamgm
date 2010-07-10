@@ -88,7 +88,7 @@ CertificateData_Priv::setSerial(const std::string& serial)
 	if(!initHexCheck().isValid(serial))
 	{
 		LOGIT_ERROR("invalid serial: " << serial);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             // %1 is an invalid serial number
 		             str::form(__("Invalid serial %s."), serial.c_str()).c_str());
 	}
@@ -109,7 +109,7 @@ CertificateData_Priv::setIssuerDN(const DNObject& issuer)
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
+		CA_MGM_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 	m_impl->issuer = issuer;
 }
@@ -121,7 +121,7 @@ CertificateData_Priv::setSubjectDN(const DNObject& subject)
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
+		CA_MGM_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 	m_impl->subject = subject;
 }
@@ -163,7 +163,7 @@ void
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
+		CA_MGM_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 	m_impl->extensions = ext;
 }
@@ -201,7 +201,7 @@ CertificateData_Priv::init(const ByteBuffer &certificate, FormatType formatType)
 		if(!bio)
 		{
 			LOGIT_ERROR("Can not create a memory BIO");
-			BLOCXX_THROW(ca_mgm::MemoryException,
+			CA_MGM_THROW(ca_mgm::MemoryException,
 			             __("Cannot create a memory BIO."));
 		}
 
@@ -230,7 +230,7 @@ CertificateData_Priv::init(const ByteBuffer &certificate, FormatType formatType)
 	if(m_impl->x509 == NULL)
 	{
 		LOGIT_ERROR("Can not parse certificate");
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             __("Cannot parse the certificate."));
 	}
 
@@ -243,7 +243,7 @@ CertificateData_Priv::init(const ByteBuffer &certificate, FormatType formatType)
 		X509_free(m_impl->x509);
 		m_impl->x509 = NULL;
 
-		BLOCXX_THROW_SUBEX(ca_mgm::SyntaxException,
+		CA_MGM_THROW_SUBEX(ca_mgm::SyntaxException,
 		                   __("Error while parsing the certificate."),
 		                   e);
 	}
@@ -270,7 +270,7 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 		if (BIO_printf(bioS,"%02x",bs->data[i]) <= 0)
 		{
 			LOGIT_ERROR("Can not parse serial.");
-			BLOCXX_THROW(ca_mgm::RuntimeException,
+			CA_MGM_THROW(ca_mgm::RuntimeException,
 						 __("Cannot parse serial."));
 		}
 	}
@@ -338,7 +338,7 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 	if(pkey == NULL)
 	{
 		LOGIT_ERROR("Unable to get public key");
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             __("Unable to get the public key."));
 	}
 
@@ -349,7 +349,7 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 		if(!rsa)
 		{
 			LOGIT_ERROR("could not get RSA key");
-			BLOCXX_THROW(ca_mgm::RuntimeException,
+			CA_MGM_THROW(ca_mgm::RuntimeException,
 			             __("Could not get RSA key."));
 		}
 
@@ -369,7 +369,7 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 		EVP_PKEY_free(pkey);
 
 		LOGIT_ERROR("Unsupported public key type");
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             __("Unsupported public key type."));
 	}
 
@@ -405,7 +405,7 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 		EVP_PKEY_free(pkey);
 
 		LOGIT_ERROR("Unsupported public key algorithm");
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             __("Unsupported public key algorithm."));
 	}
 
@@ -436,7 +436,7 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 		EVP_PKEY_free(pkey);
 
 		LOGIT_ERROR("Unsupported signature algorithm: '" << sbuf << "'");
-		BLOCXX_THROW(ca_mgm::RuntimeException,
+		CA_MGM_THROW(ca_mgm::RuntimeException,
 		             // %s is the unsupported signature algorithm string
 		             str::form(__("Unsupported signature algorithm %s."), sbuf.c_str()).c_str());
 	}

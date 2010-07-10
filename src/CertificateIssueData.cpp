@@ -181,7 +181,7 @@ CertificateIssueData::setExtensions(const X509v3CertificateIssueExts& ext)
 	if(!r.empty())
 	{
 		LOGIT_ERROR(r[0]);
-		BLOCXX_THROW(ca_mgm::ValueException, r[0].c_str());
+		CA_MGM_THROW(ca_mgm::ValueException, r[0].c_str());
 	}
 	m_impl->extensions = ext;
 }
@@ -204,7 +204,7 @@ CertificateIssueData::commit2Config(CA& ca, Type type) const
 	if(!valid())
 	{
 		LOGIT_ERROR("invalid CertificateIssueData object");
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             __("Invalid CertificateIssueData object."));
 	}
 	// These types are not supported by this object
@@ -212,7 +212,7 @@ CertificateIssueData::commit2Config(CA& ca, Type type) const
 	   type == E_Server_Req || type == E_CA_Req)
 	{
 		LOGIT_ERROR("wrong type" << type);
-		BLOCXX_THROW(ca_mgm::ValueException,
+		CA_MGM_THROW(ca_mgm::ValueException,
 		             str::form(__("Wrong type: %d."), type).c_str());
 	}
 	uint32_t t = (uint32_t)((getEndDate() - getStartDate())/(60*60*24));
