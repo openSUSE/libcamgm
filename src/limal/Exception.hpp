@@ -28,15 +28,15 @@
  *   #include <limal/Exception.hpp>
  *
  *
- *   BLOCXX_THROW_ERRNO_MSG(ca_mgm::SystemException,
+ *   CA_MGM_THROW_ERRNO_MSG(ca_mgm::SystemException,
  *                          "Can't do this and that");
  *
  *   const int MY_INVALID_EMAIL_ERROR_NUMBER = 42;
- *   BLOCXX_THROW_ERR(ca_mgm::ValueException,
+ *   CA_MGM_THROW_ERR(ca_mgm::ValueException,
  *                    "Argument is not a valid email",
  *                    MY_INVALID_EMAIL_ERROR_NUMBER);
  *
- *   BLOCXX_THROW(ca_mgm::SyntaxException,
+ *   CA_MGM_THROW(ca_mgm::SyntaxException,
  *                str::form("Syntax error in line %1", 42).c_str());
  *
  *   try
@@ -45,7 +45,7 @@
  *   }
  *   catch(const blocxx::Exception &subex)
  *   {
- *       BLOCXX_THROW_SUBEX(ca_mgm::RuntimeException,
+ *       CA_MGM_THROW_SUBEX(ca_mgm::RuntimeException,
  *                          "Bad things happened", subex);
  *   }
  * @endcode
@@ -192,7 +192,7 @@ const char* NAME##Exception::type() const { return #NAME "Exception"; }\
 
 /**
  * Throw an exception using __FILE__ and __LINE__.  If applicable,
- * BLOCXX_THROW_ERR should be used instead of this macro.
+ * CA_MGM_THROW_ERR should be used instead of this macro.
  *
  * @param exType The type of the exception
  * @param msg The exception message.  A string that will be copied.
