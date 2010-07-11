@@ -24,11 +24,11 @@
  *         text domain initializaton.
  */
 #include <limal/ca-mgm/config.h>
-#include <blocxx/ThreadOnce.hpp>
 
 #include "Utils.hpp"
 #include <libintl.h>
 #include <openssl/objects.h>
+#include <pthread.h>
 
 // -------------------------------------------------------------------
 namespace CA_MGM_NAMESPACE
@@ -36,7 +36,7 @@ namespace CA_MGM_NAMESPACE
 namespace
 {
 	// -----------------------------------------------------------
-blocxx::OnceFlag   g_i18n_init_guard = BLOCXX_ONCE_INIT;
+pthread_once_t g_i18n_init_guard = PTHREAD_ONCE_INIT;
 
 
 	// -----------------------------------------------------------
@@ -51,7 +51,7 @@ void               init_i18n_domain()
 // -------------------------------------------------------------------
 const char *       gettext (const char *msgid)
 {
-	blocxx::callOnce( g_i18n_init_guard, init_i18n_domain);
+	pthread_once(&g_i18n_init_guard, init_i18n_domain);
 	return ::dgettext(i18n_domain, msgid);
 }
 
@@ -61,7 +61,7 @@ const char *       gettext (const char *msgid,
                             const char *plural,
                             unsigned long int n)
 {
-	blocxx::callOnce( g_i18n_init_guard, init_i18n_domain);
+	pthread_once(&g_i18n_init_guard, init_i18n_domain);
 	return ::dngettext(i18n_domain, msgid, plural, n);
 }
 
