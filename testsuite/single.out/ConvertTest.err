@@ -1,12 +1,20 @@
 INFO  ca-mgm - openssl status:1
+ERROR ca-mgm - not log openssl errors for testing
+ERROR ca-mgm - not log openssl errors for testing
+ERROR ca-mgm - not log openssl errors for testing
+ERROR ca-mgm - not log openssl errors for testing
 Exception:
 OpenSSLUtils.cpp: ValueException: -200: Invalid password.
 END
 INFO  ca-mgm - openssl status:1
+ERROR ca-mgm - not log openssl errors for testing
+ERROR ca-mgm - not log openssl errors for testing
 Exception:
 OpenSSLUtils.cpp: ValueException: -200: Invalid password.
 END
 INFO  ca-mgm - openssl status:1
+ERROR ca-mgm - not log openssl errors for testing
+ERROR ca-mgm - not log openssl errors for testing
 Exception:
 OpenSSLUtils.cpp: ValueException: -200: Invalid password.
 END

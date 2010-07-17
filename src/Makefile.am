@@ -22,7 +22,7 @@ liblimal_ca_mgm_la_SOURCES  =	\
         ValueIntCheck.cpp       \
         ValueCheck.cpp          \
         Exception.cpp           \
-        Logger.cpp              \
+        LogControl.cpp          \
         PathName.cpp            \
         PathInfo.cpp            \
         PathUtils.cpp           \

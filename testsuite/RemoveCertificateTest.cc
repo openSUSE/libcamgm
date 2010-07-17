@@ -1,10 +1,6 @@
-#include <blocxx/Logger.hpp>
-#include <blocxx/AppenderLogger.hpp>
-#include <blocxx/CerrLogger.hpp>
-#include <blocxx/CerrAppender.hpp>
 #include <limal/String.hpp>
 #include <limal/PerlRegEx.hpp>
-#include <limal/Logger.hpp>
+#include <limal/LogControl.hpp>
 #include <limal/PathInfo.hpp>
 #include <limal/ca-mgm/CA.hpp>
 #include <limal/Exception.hpp>
@@ -16,7 +12,7 @@
 // FIXME: need to be removed
 #include <Utils.hpp>
 
-using namespace blocxx;
+#include "TestLineFormater.hpp"
 
 using namespace ca_mgm;
 using namespace std;
@@ -27,20 +23,12 @@ int main()
     {
         cout << "START" << endl;
 
-        StringArray cat;
-        cat.push_back("FATAL");
-        cat.push_back("ERROR");
-        cat.push_back("INFO");
-        //cat.push_back("DEBUG");
-
         // Logging
-        LoggerRef l = ca_mgm::Logger::createCerrLogger(
-                                                      "RemoveCertificateTest",
-                                                      LogAppender::ALL_COMPONENTS,
-                                                      cat,
-                                                      "%-5p %c - %m"
-                                                      );
-        ca_mgm::Logger::setDefaultLogger(l);
+        shared_ptr<LogControl::LineFormater> formater(new TestLineFormater());
+        LogControl logger = LogControl::instance();
+        logger.setLineFormater( formater );
+        logger.setLogLevel( logger::E_INFO );
+        logger.logToStdErr();
 
         cout << "=================== start ======================" << endl;
         {

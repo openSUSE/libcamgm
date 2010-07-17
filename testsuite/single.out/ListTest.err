@@ -4,7 +4,7 @@ DEBUG IniParser - File ./TestRepos//Test_CA2/openssl.cnf.tmpl did not change. No
 DEBUG ca-mgm - Command: /usr/bin/openssl rsa -noout -in ./TestRepos//Test_CA2/cacert.key -passin env:PASSWORD 
 DEBUG ca-mgm - Command: /usr/bin/openssl ca -updatedb -config ./TestRepos//Test_CA2/openssl.cnf -keyfile ./TestRepos//Test_CA2/cacert.key -cert ./TestRepos//Test_CA2/cacert.pem -passin env:pass 
 DEBUG ca-mgm - openssl stderr:Using configuration from ./TestRepos//Test_CA2/openssl.cnf
-
+DEBUG ca-mgm - 
 DEBUG ca-mgm - readDir ./TestRepos/Test_CA2/newcerts 
 DEBUG ca-mgm - Append '/SUSE Inc.\Gmbh' to commonName
 DEBUG ca-mgm - Append '/SUSE Inc.\Gmbh' to commonName

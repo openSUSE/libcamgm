@@ -1,3 +1,8 @@
+ERROR ca-mgm - not log openssl errors for testing
 CA.cpp: ValueException: CA password is empty.
 INFO  ca-mgm - openssl status:1
+ERROR ca-mgm - not log openssl errors for testing
+ERROR ca-mgm - not log openssl errors for testing
+ERROR ca-mgm - not log openssl errors for testing
+ERROR ca-mgm - not log openssl errors for testing
 OpenSSLUtils.cpp: ValueException: Invalid password.

@@ -4,7 +4,7 @@ DEBUG parser - Configuration file iniParser/chg1.in parsed.
 INFO  parser -   
 INFO  parser -   SectionComment 
 INFO  parser -   Comment comment1 : ; comment description
-
+INFO  parser - 
 INFO  parser -   Entry   comment1 : ^[ \t]*;.*
 INFO  parser -   Comment comment2 : 
 INFO  parser -   Entry   comment2 : ^[ \t]*$
@@ -13,10 +13,10 @@ INFO  parser -   Entry   comment3 : ;.*
 INFO  parser -   Comment comment4 : 
 INFO  parser -   Entry   comment4 : \{[^}]*\}
 INFO  parser -   Comment match1 : ; entry READ description
-
+INFO  parser - 
 INFO  parser -   Entry   match1 : ^[ \t]*([^=]*[^ \t=])[ \t]*=[ \t]*(.*[^ \t]|)[ \t]*$
 INFO  parser -   Comment option1 : ; options 
-
+INFO  parser - 
 INFO  parser -   Entry   option1 : GLOBAL_VALUES
 INFO  parser -   Comment secBeginReg1 : 
 INFO  parser -   Entry   secBeginReg1 : [ \t]*\+([A-z0-9_]+)[ \t]*
@@ -27,7 +27,7 @@ INFO  parser -   Entry   secEndReg1 : [ \t]*\-([A-z0-9_]+)[ \t]*
 INFO  parser -   Comment secEndWrite1 : 
 INFO  parser -   Entry   secEndWrite1 : -%s
 INFO  parser -   Comment write1 : ; entry WRITE description
-
+INFO  parser - 
 INFO  parser -   Entry   write1 : %s=%s
 DEBUG parser - file iniParser/chg1.ini.test parsed.
 INFO  parser -   

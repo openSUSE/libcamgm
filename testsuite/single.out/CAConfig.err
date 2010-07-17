@@ -1,13 +1,12 @@
-DEBUG ca-mgm - file openssl.cnf.tmpl.test parsed.
 INFO  ca-mgm -   
 INFO  ca-mgm -   Section ca
 INFO  ca-mgm -     SectionComment ###############################################
-# YaMC Template for CA Management
-#
-# !!! Never rename the sections !!!
-#
-###############################################
-
+INFO  ca-mgm - # YaMC Template for CA Management
+INFO  ca-mgm - #
+INFO  ca-mgm - # !!! Never rename the sections !!!
+INFO  ca-mgm - #
+INFO  ca-mgm - ###############################################
+INFO  ca-mgm - 
 INFO  ca-mgm -     Entry   RANDFILE : $dir/.rand
 INFO  ca-mgm -     Entry   certificate : $dir/cacert.pem
 INFO  ca-mgm -     Entry   certopt : default_ca
@@ -31,9 +30,9 @@ INFO  ca-mgm -     Entry   serial : $dir/serial
 INFO  ca-mgm -     Entry   x509_extensions : v3_ca
 INFO  ca-mgm -   Section client_cert
 INFO  ca-mgm -     SectionComment 
-#utf8                = yes
-# used to sign a client cert
-
+INFO  ca-mgm - #utf8                = yes
+INFO  ca-mgm - # used to sign a client cert
+INFO  ca-mgm - 
 INFO  ca-mgm -     Entry   RANDFILE : $dir/.rand
 INFO  ca-mgm -     Entry   certificate : $dir/cacert.pem
 INFO  ca-mgm -     Entry   certopt : default_ca
@@ -56,8 +55,8 @@ INFO  ca-mgm -     Entry   serial : $dir/serial
 INFO  ca-mgm -     Entry   x509_extensions : v3_client
 INFO  ca-mgm -   Section policy_client
 INFO  ca-mgm -     SectionComment 
-#utf8                = yes
-
+INFO  ca-mgm - #utf8                = yes
+INFO  ca-mgm - 
 INFO  ca-mgm -     Entry   commonName : supplied
 INFO  ca-mgm -     Entry   countryName : optional
 INFO  ca-mgm -     Entry   emailAddress : supplied
@@ -67,7 +66,7 @@ INFO  ca-mgm -     Entry   organizationalUnitName : optional
 INFO  ca-mgm -     Entry   stateOrProvinceName : optional
 INFO  ca-mgm -   Section policy_server
 INFO  ca-mgm -     SectionComment 
-
+INFO  ca-mgm - 
 INFO  ca-mgm -     Entry   commonName : supplied
 INFO  ca-mgm -     Entry   countryName : optional
 INFO  ca-mgm -     Entry   emailAddress : optional
@@ -77,7 +76,7 @@ INFO  ca-mgm -     Entry   organizationalUnitName : optional
 INFO  ca-mgm -     Entry   stateOrProvinceName : optional
 INFO  ca-mgm -   Section req_attributes
 INFO  ca-mgm -     SectionComment 
-
+INFO  ca-mgm - 
 INFO  ca-mgm -     Entry   challengePassword : A challenge password
 INFO  ca-mgm -     Entry   challengePassword_max : 20
 INFO  ca-mgm -     Entry   challengePassword_min : 4
@@ -102,7 +101,7 @@ INFO  ca-mgm -     Entry   string_mask : nombstr
 INFO  ca-mgm -     Entry   x509_extensions : v3_ca
 INFO  ca-mgm -   Section req_distinguished_name
 INFO  ca-mgm -     SectionComment 
-
+INFO  ca-mgm - 
 INFO  ca-mgm -     Entry   commonName : Common Name (eg, YOUR name)
 INFO  ca-mgm -     Entry   commonName_max : 64
 INFO  ca-mgm -     Entry   countryName : Country Name (2 letter code)
@@ -125,9 +124,9 @@ INFO  ca-mgm -     Entry   string_mask : nombstr
 INFO  ca-mgm -     Entry   x509_extensions : v3_ca
 INFO  ca-mgm -   Section server_cert
 INFO  ca-mgm -     SectionComment 
-#utf8                = yes
-# used to sign a server cert
-
+INFO  ca-mgm - #utf8                = yes
+INFO  ca-mgm - # used to sign a server cert
+INFO  ca-mgm - 
 INFO  ca-mgm -     Entry   RANDFILE : $dir/.rand
 INFO  ca-mgm -     Entry   certificate : $dir/cacert.pem
 INFO  ca-mgm -     Entry   certopt : default_ca
@@ -150,7 +149,7 @@ INFO  ca-mgm -     Entry   serial : $dir/serial
 INFO  ca-mgm -     Entry   x509_extensions : v3_server
 INFO  ca-mgm -   Section v3_ca
 INFO  ca-mgm -     SectionComment 
-
+INFO  ca-mgm - 
 INFO  ca-mgm -     Entry   authorityKeyIdentifier : keyid:always,issuer:always
 INFO  ca-mgm -     Entry   basicConstraints : critical, CA:true
 INFO  ca-mgm -     Entry   issuerAltName : issuer:copy
@@ -161,8 +160,8 @@ INFO  ca-mgm -     Entry   subjectAltName : email:copy
 INFO  ca-mgm -     Entry   subjectKeyIdentifier : hash
 INFO  ca-mgm -   Section v3_client
 INFO  ca-mgm -     SectionComment 
-# v3 extensions sections
-
+INFO  ca-mgm - # v3 extensions sections
+INFO  ca-mgm - 
 INFO  ca-mgm -     Entry   authorityKeyIdentifier : keyid,issuer:always
 INFO  ca-mgm -     Entry   basicConstraints : CA:FALSE
 INFO  ca-mgm -     Entry   issuerAltName : issuer:copy
@@ -173,7 +172,7 @@ INFO  ca-mgm -     Entry   subjectAltName : email:copy
 INFO  ca-mgm -     Entry   subjectKeyIdentifier : hash
 INFO  ca-mgm -   Section v3_crl
 INFO  ca-mgm -     SectionComment 
-
+INFO  ca-mgm - 
 INFO  ca-mgm -     Entry   authorityKeyIdentifier : keyid:always,issuer:always
 INFO  ca-mgm -   Section v3_req_ca
 INFO  ca-mgm -     Entry   basicConstraints : CA:TRUE
@@ -185,7 +184,7 @@ INFO  ca-mgm -   Section v3_req_server
 INFO  ca-mgm -     Entry   basicConstraints : CA:TRUE
 INFO  ca-mgm -   Section v3_server
 INFO  ca-mgm -     SectionComment 
-
+INFO  ca-mgm - 
 INFO  ca-mgm -     Entry   authorityKeyIdentifier : keyid,issuer:always
 INFO  ca-mgm -     Entry   basicConstraints : CA:FALSE
 INFO  ca-mgm -     Entry   issuerAltName : issuer:copy
@@ -197,3 +196,4 @@ INFO  ca-mgm -     Entry   subjectKeyIdentifier : hash
 DEBUG IniParser - File openssl.cnf.tmpl did not change. Not saving.
 DEBUG IniParser - File openssl.cnf.tmpl.test did not change. Not saving.
 DEBUG IniParser - File openssl.cnf.tmpl.test did not change. Not saving.
+DEBUG ca-mgm - file openssl.cnf.tmpl.test parsed.

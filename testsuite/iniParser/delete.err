@@ -4,7 +4,7 @@ DEBUG parser - Configuration file iniParser/delete.in parsed.
 INFO  parser -   
 INFO  parser -   SectionComment 
 INFO  parser -   Comment comment1 : ; comment description
-
+INFO  parser - 
 INFO  parser -   Entry   comment1 : ^[ \t]*;.*
 INFO  parser -   Comment comment2 : 
 INFO  parser -   Entry   comment2 : ^[ \t]*$
@@ -13,10 +13,10 @@ INFO  parser -   Entry   comment3 : ;.*
 INFO  parser -   Comment comment4 : 
 INFO  parser -   Entry   comment4 : \{[^}]*\}
 INFO  parser -   Comment match1 : ; entry READ description
-
+INFO  parser - 
 INFO  parser -   Entry   match1 : ^[ \t]*([^=]*[^ \t=])[ \t]*=[ \t]*(.*[^ \t]|)[ \t]*$
 INFO  parser -   Comment option1 : ; options 
-
+INFO  parser - 
 INFO  parser -   Entry   option1 : GLOBAL_VALUES
 INFO  parser -   Comment secBeginReg1 : 
 INFO  parser -   Entry   secBeginReg1 : [ \t]*\+([A-z0-9_]+)[ \t]*
@@ -27,16 +27,16 @@ INFO  parser -   Entry   secEndReg1 : [ \t]*\-([A-z0-9_]+)[ \t]*
 INFO  parser -   Comment secEndWrite1 : 
 INFO  parser -   Entry   secEndWrite1 : -%s
 INFO  parser -   Comment write1 : ; entry WRITE description
-
+INFO  parser - 
 INFO  parser -   Entry   write1 : %s=%s
 INFO  parser -   Section delete1
 INFO  parser -     SectionComment ; delete key level on toplevel 
-
+INFO  parser - 
 INFO  parser -     Comment level : 
 INFO  parser -     Entry   level : ""
 INFO  parser -   Section delete2
 INFO  parser -       SectionComment ; delete Val2 in Section1.Section1
-
+INFO  parser - 
 INFO  parser -       Section Section1
 INFO  parser -         SectionComment 
 INFO  parser -         Section Section1
@@ -45,15 +45,15 @@ INFO  parser -           Comment Val2 :
 INFO  parser -           Entry   Val2 : ""
 INFO  parser -   Section delete3
 INFO  parser -         SectionComment ; delete Section2
-
+INFO  parser - 
 INFO  parser -         Section Section2
 INFO  parser -           SectionComment 
 DEBUG parser - file iniParser/delete.ini.test parsed.
 INFO  parser -   
 INFO  parser -   SectionComment 
 INFO  parser -   Comment level : ; first line comment
-; second line comment
-
+INFO  parser - ; second line comment
+INFO  parser - 
 INFO  parser -   Entry   level : value
 INFO  parser -   Section Section1
 INFO  parser -     SectionComment 
@@ -71,7 +71,7 @@ INFO  parser -       Comment Val2 :
 INFO  parser -       Entry   Val2 : value 222
 INFO  parser -   Section Section2
 INFO  parser -       SectionComment 
-
+INFO  parser - 
 INFO  parser -       Comment Val1 : 
 INFO  parser -       Entry   Val1 : value21
 INFO  parser -       Comment Val2 : 

@@ -55,6 +55,7 @@ DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
+DEBUG IniParser - File ./TestRepos//ca1_test/openssl.cnf did not change. Not saving.
 DEBUG ca-mgm - return BasicConstraintsExt::valid() is true
 DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExt::valid() is true
 DEBUG ca-mgm - return IssuerAlternativeNameExt::valid() is true
@@ -68,17 +69,31 @@ DEBUG ca-mgm - return IssuerAlternativeNameExt::valid() is true
 DEBUG ca-mgm - return AuthorityInfoAccessExt::valid() is true
 DEBUG ca-mgm - return CRLDistributionPointsExt::valid() is true
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG IniParser - Can not delete nsBaseUrl Key does not exist.
+DEBUG IniParser - File ./TestRepos//ca1_test/openssl.cnf did not change. Not saving.
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG IniParser - Can not delete nsRevocationUrl Key does not exist.
+DEBUG IniParser - File ./TestRepos//ca1_test/openssl.cnf did not change. Not saving.
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG IniParser - Can not delete nsCaRevocationUrl Key does not exist.
+DEBUG IniParser - File ./TestRepos//ca1_test/openssl.cnf did not change. Not saving.
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG IniParser - Can not delete nsRenewalUrl Key does not exist.
+DEBUG IniParser - File ./TestRepos//ca1_test/openssl.cnf did not change. Not saving.
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG IniParser - Can not delete nsCaPolicyUrl Key does not exist.
+DEBUG IniParser - File ./TestRepos//ca1_test/openssl.cnf did not change. Not saving.
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG IniParser - Can not delete nsSslServerName Key does not exist.
+DEBUG IniParser - File ./TestRepos//ca1_test/openssl.cnf did not change. Not saving.
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - return BasicConstraintsExt::valid() is true
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG IniParser - Can not delete extendedKeyUsage Key does not exist.
+DEBUG IniParser - File ./TestRepos//ca1_test/openssl.cnf did not change. Not saving.
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExt::valid() is true
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
@@ -87,9 +102,16 @@ DEBUG ca-mgm - return IssuerAlternativeNameExt::valid() is true
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - return AuthorityInfoAccessExt::valid() is true
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG IniParser - Can not delete authorityInfoAccess Key does not exist.
+DEBUG IniParser - File ./TestRepos//ca1_test/openssl.cnf did not change. Not saving.
 DEBUG ca-mgm - return CRLDistributionPointsExt::valid() is true
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG IniParser - Can not delete crlDistributionPoints Key does not exist.
+DEBUG IniParser - File ./TestRepos//ca1_test/openssl.cnf did not change. Not saving.
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG IniParser - Can not delete certificatePolicies Key does not exist.
+DEBUG IniParser - File ./TestRepos//ca1_test/openssl.cnf did not change. Not saving.
+DEBUG IniParser - File ./TestRepos//ca1_test/openssl.cnf did not change. Not saving.
 DEBUG ca-mgm - type2Section: type=5 result=ca
 DEBUG ca-mgm - type2Section: type=5 result=ca
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
@@ -147,6 +169,8 @@ DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): false
 DEBUG ca-mgm - removeFile ./TestRepos/ca1_test/openssl.cnf
+DEBUG IniParser - File ./TestRepos//ca1_test/openssl.cnf did not change. Not saving.
+DEBUG IniParser - File ./TestRepos//ca1_test/openssl.cnf.tmpl did not change. Not saving.
 DEBUG ca-mgm - Command: /usr/bin/openssl rsa -noout -in ./TestRepos//ca2_test/cacert.key -passin env:PASSWORD 
 DEBUG ca-mgm - type2Section: type=5 result=ca
 DEBUG ca-mgm - type2Section: type=5 result=ca
@@ -214,6 +238,7 @@ DEBUG ca-mgm - ExtensionBase::setPresent(): true
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): true
+DEBUG IniParser - File ./TestRepos//ca2_test/openssl.cnf did not change. Not saving.
 DEBUG ca-mgm - return BasicConstraintsExt::valid() is true
 DEBUG ca-mgm - return AuthorityKeyIdentifierGenerateExt::valid() is true
 DEBUG ca-mgm - return IssuerAlternativeNameExt::valid() is true
@@ -251,6 +276,7 @@ DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
+DEBUG IniParser - File ./TestRepos//ca2_test/openssl.cnf did not change. Not saving.
 DEBUG ca-mgm - type2Section: type=5 result=ca
 DEBUG ca-mgm - type2Section: type=5 result=ca
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
@@ -318,3 +344,5 @@ DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - type2Section: type=5 result=v3_ca
 DEBUG ca-mgm - ExtensionBase::setPresent(): true
 DEBUG ca-mgm - removeFile ./TestRepos/ca2_test/openssl.cnf
+DEBUG IniParser - File ./TestRepos//ca2_test/openssl.cnf did not change. Not saving.
+DEBUG IniParser - File ./TestRepos//ca2_test/openssl.cnf.tmpl did not change. Not saving.

@@ -127,13 +127,13 @@ void IniParser::initOptions (const std::vector<std::string>&options)
 		    COMPARE_OPTION (no_finalcomment_kill)
 		    COMPARE_OPTION (read_only)
 		    COMPARE_OPTION (flat)
-			LIMAL_SLOG_ERROR (logger,"Option not implemented yet:"<<  sv.c_str());
+			ERR <<"Option not implemented yet:"<<  sv.c_str() << std::endl;
 #undef  COMPARE_OPTION
     }
 
     if (ignore_case && multiple_files)
     {
-       LIMAL_SLOG_ERROR (logger, "When using multiple files, ignore_case does not work");
+       ERR << "When using multiple files, ignore_case does not work" << std::endl;
        ignore_case = false;
     }
 }
@@ -233,15 +233,15 @@ void IniParser::initParam (const std::vector<EntryDescr>& entries)
 		if (!pa.end.compile (entry.multiEnd,
 				    REG_EXTENDED | (ignore_case ? REG_ICASE : 0)))
 		{
-		    LIMAL_SLOG_ERROR (logger,"Bad regexp(multiline): "<<
-				      entry.multiEnd.c_str());
+		    ERR <<"Bad regexp(multiline): "<<
+				      entry.multiEnd.c_str() << std::endl;
 		    pa.multiline_valid = false;
 		}
 	    }
 	    else
 	    {
-		LIMAL_SLOG_ERROR (logger,"Bad regexp(multiline): "<<
-				  entry.multiBegin.c_str());
+		ERR <<"Bad regexp(multiline): "<<
+				  entry.multiBegin.c_str() << std::endl;
 	    }
 	}
 
@@ -250,8 +250,8 @@ void IniParser::initParam (const std::vector<EntryDescr>& entries)
 	{
 	    if (pa.multiline_valid)
 	    {
-		LIMAL_SLOG_ERROR (logger,"Bad regexp(match): "<<
-				  entry.line.regExpr.c_str());
+		ERR <<"Bad regexp(match): "<<
+				  entry.line.regExpr.c_str() << std::endl;
 	    }
 	    break;
 	}
@@ -298,7 +298,7 @@ int IniParser::scanner_get(std::string&s)
 }
 
 #define scanner_error(format,args...) \
-	LIMAL_LOG_ERROR (logger, str::form( "%s:%d " format, scanner_file.c_str (),  scanner_line, ##args).c_str())
+	ERR << str::form( "%s:%d " format, scanner_file.c_str (),  scanner_line, ##args).c_str() << std::endl
 
 void StripLine (std::string&l, regmatch_t&r)
 {
@@ -345,7 +345,7 @@ int IniParser::parse()
 {
     if ( !started)
     {
-	LIMAL_SLOG_ERROR (logger,"Parser not initialized");
+	ERR <<"Parser not initialized" << std::endl;
 	return -1;
     }
 
@@ -373,7 +373,7 @@ int IniParser::parse()
 		    {
 			section_index = j;
 			section_name = m[1];
-			LIMAL_SLOG_DEBUG (logger, "Rewriting " << *f << " to " << section_name.c_str());
+			DBG << "Rewriting " << *f << " to " << section_name.c_str() << std::endl;
 			break;
 		    }
 		}
@@ -384,7 +384,7 @@ int IniParser::parse()
 	    {
 		// new file
 		if (scanner_start (*f))
-		    LIMAL_SLOG_ERROR (logger,"Cannot open " << *f);
+		    ERR <<"Cannot open " << *f << std::endl;
 		else
 		{
 		    FileDescr fdsc (*f);
@@ -399,10 +399,10 @@ int IniParser::parse()
 		if ((*ff).second.changed ())
 		{
 		    if (scanner_start (*f))
-			LIMAL_SLOG_ERROR (logger,"Cannot open " << *f);
+			ERR <<"Cannot open " << *f << std::endl;
 		    else
 		    {
-			LIMAL_SLOG_DEBUG (logger, "File " << *f << " changed. Reloading.");
+			DBG << "File " << *f << " changed. Reloading." << std::endl;
 			FileDescr fdsc (*f);
 			multi_files [*f] = fdsc;
 			inifile.initSection (section_name, "", -1, section_index);
@@ -417,7 +417,7 @@ int IniParser::parse()
     {
 	if (scanner_start (file.c_str()))
 	    {
-		LIMAL_SLOG_ERROR (logger,"Can not open " << file.c_str());
+		ERR <<"Can not open " << file.c_str() << std::endl;
 		return -1;
 	    }
 	parse_helper(inifile);
@@ -751,7 +751,7 @@ void IniParser::UpdateIfModif ()
     // Therefore we do not reparse.
     if (repeat_names)
     {
-	LIMAL_SLOG_DEBUG (logger, "Skipping possible reparse due to repeat_names");
+	DBG << "Skipping possible reparse due to repeat_names" << std::endl;
 	return;
     }
     if (multiple_files)
@@ -760,7 +760,7 @@ void IniParser::UpdateIfModif ()
     {
 	if (timestamp != getTimeStamp())
 	{
-	    LIMAL_SLOG_ERROR (logger, "Data file '" <<  file.c_str() << "' was changed externaly!");
+	    ERR << "Data file '" <<  file.c_str() << "' was changed externaly!" << std::endl;
 	    parse ();
 	}
     }
@@ -777,7 +777,7 @@ time_t IniParser::getTimeStamp()
     }
     if (stat(file.c_str(), &st))
     {
-	LIMAL_SLOG_ERROR (logger, "Unable to stat '" << file.c_str() << "': " << strerror(errno));
+	ERR << "Unable to stat '" << file.c_str() << "': " << strerror(errno) << std::endl;
 	return 0;
     }
     return st.st_mtime;
@@ -786,7 +786,7 @@ int IniParser::write()
 {
     if ( !started)
     {
-	LIMAL_SLOG_ERROR (logger,"Parser not initialized");
+	ERR <<"Parser not initialized" << std::endl;
 	return -1;
     }
 
@@ -794,12 +794,12 @@ int IniParser::write()
     std::string filename = multiple_files ? files[0] : file;
     if (!inifile.isDirty())
     {
-        LIMAL_SLOG_DEBUG (logger, "File " << filename << " did not change. Not saving." );
+        DBG << "File " << filename << " did not change. Not saving." << std::endl;
 	return 0;
     }
     if (read_only)
     {
-        LIMAL_SLOG_DEBUG (logger, "Attempt to write file " << filename << " that was mounted read-only. Not saving." );
+        DBG << "Attempt to write file " << filename << " that was mounted read-only. Not saving." << std::endl;
 	return 0;
     }
     UpdateIfModif ();
@@ -819,7 +819,7 @@ int IniParser::write()
 			std::string filename = getFileName (s.getName (), wb);
 
 			if (!s.isDirty ()) {
-			    LIMAL_SLOG_DEBUG (logger, "Skipping file " << filename.c_str() << " that was not changed." );
+			    DBG << "Skipping file " << filename.c_str() << " that was not changed." << std::endl;
 			    continue;
 			}
 			s.initReadBy ();
@@ -829,7 +829,7 @@ int IniParser::write()
 			if (!of.good())
 			{
 			    bugs++;
-			    LIMAL_SLOG_ERROR (logger,"Can not open file " << filename.c_str() << "  for write");
+			    ERR <<"Can not open file " << filename.c_str() << "  for write" << std::endl;
 			    continue;
 			}
 			write_helper (s, of, 0);
@@ -838,7 +838,7 @@ int IniParser::write()
 		    }
 		else
 		    {
-			LIMAL_SLOG_ERROR (logger,"Value "<< ci->e ().getName () <<" encountered at multifile top level" );
+			ERR <<"Value "<< ci->e ().getName () <<" encountered at multifile top level" << std::endl;
 		    }
 	    }
     }
@@ -849,7 +849,7 @@ int IniParser::write()
 	ofstream of(file.c_str());
 	if (!of.good())
 	{
-	    LIMAL_SLOG_ERROR (logger,"Can not open file " << file.c_str() << " for write");
+	    ERR <<"Can not open file " << file.c_str() << " for write" << std::endl;
 	    return -1;
 	}
 
@@ -924,7 +924,7 @@ std::string IniParser::getFileName (const std::string&sec, int rb)
 	int max = rewrites[rb].out.length () + sec.length () + 1;
 	char*buf = new char[max + 1];
 	snprintf (buf, max, rewrites[rb].out.c_str (), sec.c_str());
-	LIMAL_SLOG_DEBUG (logger, "Rewriting " <<  sec.c_str() << " to " << buf);
+	DBG << "Rewriting " <<  sec.c_str() << " to " << buf << std::endl;
 	file = buf;
 	delete [] buf;
     }

@@ -46,17 +46,27 @@ namespace CA_MGM_NAMESPACE
 
 // -------------------------------------------------------------------
 #define LOGIT(level,message)	\
-LIMAL_SLOG(Logger("ca-mgm"), level, message)
+LIMAL_LOGGER_LOG("ca-mgm", level) << message << std::endl
 
 #define LOGIT_DEBUG(message)	\
-	LIMAL_SLOG(Logger("ca-mgm"), blocxx::E_DEBUG_LEVEL, message)
+	_DBG("ca-mgm") << message << std::endl
 
 #define LOGIT_INFO(message)	\
-	LIMAL_SLOG(Logger("ca-mgm"), blocxx::E_INFO_LEVEL, message)
+	_INF("ca-mgm") << message << std::endl
 
 #define LOGIT_ERROR(message)	\
-	LIMAL_SLOG(Logger("ca-mgm"), blocxx::E_ERROR_LEVEL, message)
+	_ERR("ca-mgm") << message << std::endl
 
+#define LOGIT_DEBUG_STRINGARRAY(text, stringarray)                      \
+    if( ca_mgm::logger::isEnabledFor(ca_mgm::logger::E_DEBUG) ) {       \
+        uint s = stringarray.size();                                    \
+        for(uint i = 0; i < s; i++) {                                   \
+            _DBG("ca-mgm") << text << "(" << (i+1) << "/" << s << "):"  \
+                           << stringarray[i] << std::endl;              \
+        }                                                               \
+    }                                                                   \
+
+/*
 #define LOGIT_DEBUG_STRINGARRAY(text, stringarray)                      \
 	Logger d("ca-mgm");                                          \
 	if(d.isEnabledFor("DEBUG")) {                                       \
@@ -68,6 +78,7 @@ LIMAL_SLOG(Logger("ca-mgm"), level, message)
 			           << stringarray[i]);                              \
 		}                                                               \
 	}
+*/
 
 // -------------------------------------------------------------------
 

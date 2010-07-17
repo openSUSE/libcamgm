@@ -14,6 +14,8 @@
 #ifndef IniFile_h
 #define IniFile_h
 
+#define LIMAL_LOGGER_LOGGROUP "IniParser"
+
 #include <limal/Logger.hpp>
 #include <limal/String.hpp>
 #include <blocxx/IntrusiveReference.hpp>
@@ -22,7 +24,7 @@
 #include <map>
 #include <vector>
 
-#define INIPARSER "IniParser"
+//#define INIPARSER "IniParser"
 
 namespace LIMAL_NAMESPACE
 {
@@ -261,7 +263,7 @@ private:
     IniSectionIndex isections;
 
     // create Logger instance
-    Logger logger;
+    //Logger logger;
 
     /** build ivalues and isections */
     void reindex ();
@@ -434,15 +436,16 @@ private:
 //    IniSection ();
 public:
     /** explicit uninitialized constructor */
-    IniSection (const char *u): IniBase (u),
-	logger(INIPARSER) {}
+    IniSection (const char *u): IniBase (u)
+	//, logger(INIPARSER)
+    {}
 
     IniSection (const blocxx::IntrusiveReference<IniParser> &p)
 	: IniBase (-1),
 	  ip (p),
 	  end_comment (), rewrite_by(-1),
-	  container (), ivalues (), isections (),
-	  logger(INIPARSER)
+	  container (), ivalues (), isections ()
+	  //,logger(INIPARSER)
 	    {}
 
     /**
@@ -453,8 +456,8 @@ public:
 	IniBase (s),
 	ip (s.ip),
 	end_comment (s.end_comment), rewrite_by (s.rewrite_by),
-	container (s.container),
-	logger("IniParser")
+	container (s.container)
+	// , logger("IniParser")
 	{ reindex (); }
 
     void operator = (const IniSection &s)

@@ -1,7 +1,4 @@
-#include <blocxx/Logger.hpp>
-#include <blocxx/AppenderLogger.hpp>
-#include <blocxx/CerrLogger.hpp>
-#include <blocxx/CerrAppender.hpp>
+#include <limal/LogControl.hpp>
 #include <limal/String.hpp>
 #include <limal/PerlRegEx.hpp>
 #include <limal/Logger.hpp>
@@ -12,7 +9,7 @@
 #include <fstream>
 #include <unistd.h>
 
-using namespace blocxx;
+#include "TestLineFormater.hpp"
 
 using namespace ca_mgm;
 using namespace std;
@@ -26,13 +23,11 @@ int main(int argc, char **argv)
     }
 
     // Logging
-    LoggerRef l = ca_mgm::Logger::createCerrLogger(
-                                                  "CA4",
-                                                  LogAppender::ALL_COMPONENTS,
-                                                  LogAppender::ALL_CATEGORIES,
-                                                  "%-5p %c - %m"
-                                                  );
-    ca_mgm::Logger::setDefaultLogger(l);
+    shared_ptr<LogControl::LineFormater> formater(new TestLineFormater());
+    LogControl logger = LogControl::instance();
+    logger.setLineFormater( formater );
+    logger.setLogLevel( logger::E_DEBUG );
+    logger.logToStdErr();
 
     std::string file = argv[ 1 ];
     cout << "START" << endl;

@@ -256,7 +256,7 @@ private:
     int write_helper(IniSection&ini, std::ofstream&of,int depth);
 
     // create Logger instance
-    Logger logger;
+    //Logger logger;
 
     IniParser(const IniParser &);
     IniParser& operator=(const IniParser &);
@@ -273,7 +273,7 @@ public:
 	linecomments (), comments (),
 	sections (), params (), rewrites (),
 	started (false), multiple_files (false),
-	logger (INIPARSER),
+	//logger (INIPARSER),
 //	inifile ("toplevel")
 	inifile (this)
 	    {}

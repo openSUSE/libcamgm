@@ -115,7 +115,7 @@ IniSection& IniSection::findSection(const std::vector<std::string>&path, int fro
     IniSectionIdxIterator v = isections.find(k);
     if (v == isections.end ())
 	{
-	    LIMAL_SLOG_ERROR (logger,  "Internal error. Section " << k.c_str() << " not found. This can't happen." );
+	    ERR << "Internal error. Section " << k.c_str() << " not found. This can't happen." << std::endl;
 	    abort();
 	}
     IniSection &s = v->second->s ();
@@ -139,7 +139,7 @@ int IniSection::findEndFromUp (const std::vector<std::string>&path, int wanted, 
 	    isections.equal_range (k);
 	if (r.first == r.second) // empty range = not found
 	{
-	    LIMAL_SLOG_ERROR (logger, "Internal error. Value " << path[from].c_str() << " not found. This can't happen." );
+	    ERR << "Internal error. Value " << path[from].c_str() << " not found. This can't happen." << std::endl;
 	    abort ();
 	}
 	IniSection&  s = (--r.second)->second->s ();
@@ -264,7 +264,7 @@ int IniSection::getMyValue (const std::vector<std::string> &p, StringList &out, 
     }
     // empty range, no such key
 
-    LIMAL_SLOG_DEBUG (logger, "Read: Invalid path" << pathToString(p).c_str() << "[" << depth <<"]");
+    DBG << "Read: Invalid path" << pathToString(p).c_str() << "[" << depth <<"]" << std::endl;
     return -1;
 }
 
@@ -287,7 +287,7 @@ int IniSection::getValue (const std::vector<std::string>&p, StringList&out,int w
 	    return getMyValue (p, out, what, depth);
 	}
 
-    LIMAL_SLOG_DEBUG (logger, "Read: Invalid path" << pathToString (p).c_str() << "[" << depth <<"]");
+    DBG << "Read: Invalid path" << pathToString (p).c_str() << "[" << depth <<"]" << std::endl;
     return -1;
 }
 
@@ -355,7 +355,7 @@ int IniSection::getSectionProp (const std::vector<std::string>&p, StringList&out
 	// empty range, no such key
     }
 
-    LIMAL_SLOG_DEBUG (logger, "Read: Invalid path " << pathToString (p).c_str() << "[" << depth <<"]");
+    DBG << "Read: Invalid path " << pathToString (p).c_str() << "[" << depth <<"]" << std::endl;
     return -1;
 }
 
@@ -379,7 +379,7 @@ int IniSection::getAll (const std::vector<std::string>&p, SectionAll&out, int de
 	return 0;
     }
 
-    LIMAL_SLOG_ERROR (logger, "Read: Invalid path " << pathToString (p).c_str() << "[" << depth <<"]");
+    ERR << "Read: Invalid path " << pathToString (p).c_str() << "[" << depth <<"]" << std::endl;
     return -1;
 }
 
@@ -421,7 +421,7 @@ int IniSection::Delete (const std::vector<std::string>&p)
 	return delValueFlat (p);
     if (p.size() < 2)
     {
-	LIMAL_SLOG_ERROR (logger, "I do not know what to delete at " <<  pathToString(p).c_str());
+	ERR << "I do not know what to delete at " <<  pathToString(p).c_str() << std::endl;
 	return -1;
     }
     std::string s (p[0]);
@@ -439,7 +439,7 @@ int IniSection::Write (const std::vector<std::string>&p, const StringList&v, boo
 
     if (p.size() < 2)
     {
-	LIMAL_SLOG_ERROR (logger, "I do not know what to write to " <<  pathToString(p).c_str());
+	ERR << "I do not know what to write to " <<  pathToString(p).c_str() << std::endl;
 	return -1;
     }
     std::string s (p[0]);
@@ -475,7 +475,7 @@ int IniSection::setSectionProp (const std::vector<std::string>&p,const StringLis
 	if (xi == xe)
 	{
 	    // not found, need to add it;
-	    LIMAL_SLOG_DEBUG (logger,  "Write: adding recursively "<< k.c_str () << " to " << pathToString(p).c_str());
+	    DBG <<  "Write: adding recursively "<< k.c_str () << " to " << pathToString(p).c_str() << std::endl;
 
 	    IniSection s (ip, k);
 	    container.push_back (IniContainerElement (s));
@@ -519,7 +519,7 @@ int IniSection::setSectionProp (const std::vector<std::string>&p,const StringLis
 		if (xi == xe)
 		{
 		    ///need to add a section ...
-		    LIMAL_SLOG_DEBUG (logger, "Adding section " << pathToString(p).c_str());
+		    DBG << "Adding section " << pathToString(p).c_str() << std::endl;
 		    // prepare it to have its property set
 		    // create it
 		    IniSection s (ip, k);
@@ -585,7 +585,7 @@ int IniSection::delSection(const std::vector<std::string>&p, int depth)
 	    return s.delSection (p, depth+1);
 	}
 	//error
-	LIMAL_SLOG_ERROR (logger, "Delete: Invalid path" << pathToString(p).c_str() << "[" << depth << "]");
+	ERR << "Delete: Invalid path" << pathToString(p).c_str() << "[" << depth << "]" << std::endl;
 	return -1;
     }
     else
@@ -593,7 +593,7 @@ int IniSection::delSection(const std::vector<std::string>&p, int depth)
 	// bottom level, massacre begins
 	if (xi == xe)
 	{
-	    LIMAL_SLOG_DEBUG (logger,  "Can not delete " << pathToString(p).c_str() <<". Key does not exist." );
+	    DBG <<  "Can not delete " << pathToString(p).c_str() <<". Key does not exist." << std::endl;
 	}
 	while (xi != xe)
 	{
@@ -605,7 +605,7 @@ int IniSection::delSection(const std::vector<std::string>&p, int depth)
 
 int IniSection::WriteAll (const std::vector<std::string>&p, const SectionAll& in, int depth)
 {
-    LIMAL_SLOG_INFO (logger, "This function has not been tested cause it is not needed at the moment.");
+    INF << "This function has not been tested cause it is not needed at the moment." << std::endl;
     if (depth < int(p.size ()))
     {
 	// recurse to find the starting section
@@ -623,7 +623,7 @@ int IniSection::WriteAll (const std::vector<std::string>&p, const SectionAll& in
 	return setAllDoIt (in);
     }
 
-    LIMAL_SLOG_DEBUG (logger, "Read: Invalid path" << pathToString (p).c_str() << "[" << depth <<"]");
+    DBG << "Read: Invalid path" << pathToString (p).c_str() << "[" << depth <<"]" << std::endl;
     return -1;
 }
 
@@ -638,7 +638,7 @@ int IniSection::setAllDoIt (const SectionAll &in)
     std::string kind = in.kind;
     if (kind != "section")
     {
-	LIMAL_SLOG_ERROR (logger, "Kind should be 'section'");
+	ERR << "Kind should be 'section'" << std::endl;
 	return -1;
     }
 
@@ -676,7 +676,7 @@ int IniSection::setAllDoIt (const SectionAll &in)
 	}
 	else
 	{
-	    LIMAL_SLOG_ERROR (logger, "Item in Write (.all) of unrecognized kind " << kind.c_str ());
+	    ERR << "Item in Write (.all) of unrecognized kind " << kind.c_str () << std::endl;
 	    ret = -1;
 	    break;
 	}
@@ -718,13 +718,13 @@ int IniSection::setMyValue (const std::vector<std::string> &p, const StringList&
 	    if (xi == xe)
 	    {
 		///need to add a value ...
-		LIMAL_SLOG_DEBUG (logger, "Adding value " <<
+		DBG << "Adding value " <<
 				       pathToString (p).c_str() << "=" <<
-				       prop.c_str ());
+				       prop.c_str () << std::endl;
 		if (what)
 		{
-		    LIMAL_SLOG_ERROR (logger, "You must add value before changing comment/type. " <<
-			     pathToString (p).c_str ());
+		    ERR << "You must add value before changing comment/type. " <<
+			     pathToString (p).c_str () << std::endl;
 		    return -1;
 		}
 		// prepare it to have its property set
@@ -783,7 +783,7 @@ int IniSection::setValue (const std::vector<std::string>&p,const StringList&in,i
 	if (xi == xe)
 	{
 	    // not found, need to add it;
-	    LIMAL_SLOG_DEBUG (logger, "Write: adding recursively " << k.c_str () << " to " <<  pathToString(p).c_str());
+	    DBG << "Write: adding recursively " << k.c_str () << " to " <<  pathToString(p).c_str() << std::endl;
 
 	    IniSection s (ip, k);
 	    container.push_back (IniContainerElement (s));
@@ -821,7 +821,7 @@ void IniSection::delMyValue (const std::string &k)
 
     if (xi == xe)
     {
-	LIMAL_SLOG_DEBUG ( logger, "Can not delete " << k.c_str() << " Key does not exist." );
+	DBG << "Can not delete " << k.c_str() << " Key does not exist." << std::endl;
     }
     while (xi != xe)
     {
@@ -850,7 +850,7 @@ int IniSection::delValue (const std::vector<std::string>&p, int depth)
 	    return s.delValue (p, depth+1);
 	}
 	//error
-	LIMAL_SLOG_ERROR (logger, "Delete: Invalid path "<< pathToString (p).c_str() << "[" << depth <<"]");
+	ERR << "Delete: Invalid path "<< pathToString (p).c_str() << "[" << depth <<"]" << std::endl;
 	return -1;
     }
     else
@@ -929,7 +929,7 @@ int IniSection::Read (const std::vector<std::string>&p, StringList&out, bool rew
 
     if (p.size()<2)
 	{
-	    LIMAL_SLOG_ERROR (logger, "I do not know what to read from " <<  pathToString(p).c_str());
+	    ERR << "I do not know what to read from " <<  pathToString(p).c_str() << std::endl;
 	    return -1;
 	}
     std::string s (p[0]);
@@ -944,13 +944,13 @@ int IniSection::Read (const std::vector<std::string>&p, StringList&out, bool rew
     else if (s == "st" || s == "section_type" || s == "sectiontype")
 	return getSectionProp (p, out, rewrite? 1:2, 1);
 
-    LIMAL_SLOG_ERROR (logger, "I do not know what to read from " <<  pathToString(p).c_str());
+    ERR << "I do not know what to read from " <<  pathToString(p).c_str() << std::endl;
     return -1;
 }
 
 int IniSection::ReadAll (const std::vector<std::string>&p, SectionAll&out)
 {
-    LIMAL_SLOG_INFO (logger, "This function has not been tested cause it is not needed at the moment.");
+    INF << "This function has not been tested cause it is not needed at the moment." << std::endl;
     if (p.size() >= 1 && p[0] == "all")
     {
 	return getAll (p, out, 1);
@@ -967,7 +967,7 @@ int IniSection::Dir (const std::vector<std::string>&p, StringList&l)
 	return dirValueFlat (p, l);
     if (p.size()<1)
 	{
-	    LIMAL_SLOG_ERROR (logger, "I do not know what to dir from "<< pathToString(p).c_str());
+	    ERR << "I do not know what to dir from "<< pathToString(p).c_str() << std::endl;
 	    return -1;
 	}
 
@@ -977,7 +977,7 @@ int IniSection::Dir (const std::vector<std::string>&p, StringList&l)
     else if (s == "s" || s == "section")
 	return dirHelper (p, l, 1, 1);
 
-    LIMAL_SLOG_ERROR (logger, "I do not know what to dir from "<< pathToString(p).c_str());
+    ERR << "I do not know what to dir from "<< pathToString(p).c_str() << std::endl;
     return -1;
 }
 int IniSection::dirHelper (const std::vector<std::string>&p, StringList&out,int get_sect,int depth)
@@ -1001,7 +1001,7 @@ int IniSection::dirHelper (const std::vector<std::string>&p, StringList&out,int 
 	return s.dirHelper (p, out, get_sect, depth+1);
     }
     //error
-    LIMAL_SLOG_DEBUG (logger, "Dir: Invalid path "<< pathToString (p).c_str() << "[" << depth <<"]");
+    DBG << "Dir: Invalid path "<< pathToString (p).c_str() << "[" << depth <<"]" << std::endl;
     return -1;
 }
 
@@ -1011,8 +1011,8 @@ IniEntry&IniSection::getEntry (const char*n)
     IniEntryMapIterator i = values.find(n);
     if (i == values.end())
 	{
-	LIMAL_SLOG_ERROR (logger, "Internal error. Value " << n << " not found in section " << name.c_str());
-	    abort();
+	ERR << "Internal error. Value " << n << " not found in section " << name.c_str();
+	    abort() << std::endl;
 	}
     return (*i).second;
 }
@@ -1039,7 +1039,7 @@ IniSection&IniSection::getSection (const char*n)
 
     if (xi == xe)
     {
-	LIMAL_SLOG_ERROR (logger, "Internal error. Section " << n << " not found in section " << name.c_str());
+	ERR << "Internal error. Section " << n << " not found in section " << name.c_str() << std::endl;
 	abort();
     }
     return (--xe)->second->s ();

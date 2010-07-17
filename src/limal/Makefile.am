@@ -14,6 +14,7 @@ limalinclude_HEADERS =          \
         CallbackBase.hpp        \
         Exception.hpp           \
         Logger.hpp              \
+        LogControl.hpp          \
         PathName.hpp            \
         PathInfo.hpp            \
         PathUtils.hpp           \
