@@ -37,7 +37,6 @@
 
 #include <limal/PathName.hpp>
 #include <limal/Exception.hpp>
-#include <blocxx/EnvVars.hpp>
 #include <limal/String.hpp>
 
 #include "Utils.hpp"
@@ -57,14 +56,11 @@ namespace LIMAL_NAMESPACE
 namespace path
 {
 
-using namespace blocxx;
-
 
 // -------------------------------------------------------------------
 // anonymous namespace
 namespace
 {
-
     size_t
     findTildeEnd(const std::string &name)
     {
@@ -86,7 +82,6 @@ namespace
     std::string
     expandTilde(const std::string &name)
     {
-        // FIXME: improve blocxx::UserInfo and use it!!!
         if( name.compare(0, 1, "~") == 0)
         {
             std::string user;
@@ -101,8 +96,7 @@ namespace
             {
                 if( ::getuid() != ::geteuid())
                 {
-                    EnvVars env(EnvVars::E_CURRENT_ENVIRONMENT);
-                    home = env.getValue("HOME").c_str();
+                    home = getenv("HOME");
 
                     if( home.compare(0, 1, "~") == 0)
                         home = "";
@@ -133,7 +127,7 @@ namespace
 
             if( !home.empty())
             {
-                return home + BLOCXX_FILENAME_SEPARATOR + rest;
+                return home + "/" + rest;
             }
         }
         return name;
