@@ -38,7 +38,6 @@ namespace CA_MGM_NAMESPACE
 {
 
 using namespace ca_mgm;
-using namespace blocxx;
 
 
 CRLReason_Priv::CRLReason_Priv()

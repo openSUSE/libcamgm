@@ -34,7 +34,6 @@ namespace CA_MGM_NAMESPACE
 {
 
 using namespace ca_mgm;
-using namespace blocxx;
 
 
 CertificateData::CertificateData(const CertificateData& data)
@@ -302,7 +301,7 @@ CertificateData::dump() const
 	std::string pk;
 	for(size_t i = 0; i < m_impl->publicKey.size(); ++i)
 	{
-      pk += str::form( "%02x", (UInt8)m_impl->publicKey[i] ) + ":";
+      pk += str::form( "%02x", (uint8_t)m_impl->publicKey[i] ) + ":";
 	}
 	result.push_back("public Key = " + pk);
 	result.push_back("signatureAlgorithm = "+ str::numstring(m_impl->signatureAlgorithm));
@@ -310,7 +309,7 @@ CertificateData::dump() const
 	std::string s;
 	for(uint i = 0; i < m_impl->signature.size(); ++i)
 	{
-      s += str::form( "%02x", (UInt8)m_impl->signature[i] ) + ":";
+      s += str::form( "%02x", (uint8_t)m_impl->signature[i] ) + ":";
 	}
 
 	result.push_back("Signature = " + s);

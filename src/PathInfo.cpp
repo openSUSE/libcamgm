@@ -43,9 +43,6 @@
 namespace LIMAL_NAMESPACE {
 namespace path {
 
-using namespace blocxx;
-
-
 ///////////////////////////////////////////////////////////////////
 //
 //
@@ -109,7 +106,7 @@ PathInfo::~PathInfo()
 void
 PathInfo::setPath(const PathName& path)
 {
-    if ( path != m_path ) 
+    if ( path != m_path )
         m_error = -1;
     m_path = path;
 }
@@ -117,17 +114,17 @@ PathInfo::setPath(const PathName& path)
 void
 PathInfo::setMode(Mode mode)
 {
-    if(mode != m_mode) 
+    if(mode != m_mode)
         m_error = -1;
-    m_mode = mode; 
+    m_mode = mode;
 }
 
 bool
-PathInfo::stat(const PathName& path ) 
-{ 
-    setPath( path ); 
+PathInfo::stat(const PathName& path )
+{
+    setPath( path );
     setMode( E_STAT );
-    return operator()(); 
+    return operator()();
 }
 
 bool
@@ -135,7 +132,7 @@ PathInfo::lstat(const PathName& path)
 {
     setPath( path );
     setMode( E_LSTAT );
-    return operator()(); 
+    return operator()();
 }
 
 bool
@@ -149,7 +146,7 @@ bool
 PathInfo::stat()
 {
     setMode( E_STAT );
-    return operator()(); 
+    return operator()();
 }
 
 bool
@@ -278,7 +275,7 @@ PathInfo::isXUsr() const
 {
     return exists() && (m_statbuf_C.st_mode & S_IXUSR);
 }
- 
+
 bool
 PathInfo::isR() const
 {
@@ -477,8 +474,8 @@ PathInfo::ino() const
 
 ::off_t
 PathInfo::size() const
-{ 
-    return exists() ? m_statbuf_C.st_size : 0; 
+{
+    return exists() ? m_statbuf_C.st_size : 0;
 }
 
 blksize_t
@@ -525,17 +522,17 @@ PathInfo::ctime() const
 std::ostream & operator<<( std::ostream & str, const PathInfo & obj )
 {
     std::ios::fmtflags state_ii = str.flags();
-    
+
     str << obj.toString() << "{";
     if ( !obj.exists() ) {
         str << "does not exist}";
     } else {
-        str << PathInfo::StatMode( obj.st_mode() ) << " " << std::dec 
+        str << PathInfo::StatMode( obj.st_mode() ) << " " << std::dec
             << obj.owner() << "/" << obj.group();
-        
+
         if ( obj.isFile() )
             str << " size " << obj.size();
-        
+
         str << "}";
     }
     str.flags( state_ii );

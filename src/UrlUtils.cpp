@@ -49,9 +49,6 @@ namespace LIMAL_NAMESPACE
 namespace url
 {
 
-using namespace blocxx;
-
-
 // -------------------------------------------------------------------
 CA_MGM_DEFINE_EXCEPTION (Url);
 CA_MGM_DEFINE_EXCEPTION2(UrlParsing,      UrlException);

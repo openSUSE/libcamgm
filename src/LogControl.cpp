@@ -7,7 +7,6 @@
 
 #include <limal/Logger.hpp>
 #include <limal/LogControl.hpp>
-//#include "zypp/base/ProfilingFormater.h"
 #include <limal/String.hpp>
 #include <limal/Date.hpp>
 #include <limal/PathInfo.hpp>

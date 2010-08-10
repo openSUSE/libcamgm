@@ -45,7 +45,6 @@ namespace CA_MGM_NAMESPACE
 {
 
 using namespace ca_mgm;
-using namespace blocxx;
 
 CertificateData_Priv::CertificateData_Priv()
 	: CertificateData()

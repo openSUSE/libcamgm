@@ -47,7 +47,6 @@ namespace CA_MGM_NAMESPACE
 {
 
 using namespace ca_mgm;
-using namespace blocxx;
 
 RevocationEntry_Priv::RevocationEntry_Priv()
 	: RevocationEntry()

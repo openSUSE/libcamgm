@@ -32,7 +32,6 @@ namespace CA_MGM_NAMESPACE
 {
 
 using namespace ca_mgm;
-using namespace blocxx;
 
 class X509v3CRLGenerationExtsImpl
 {

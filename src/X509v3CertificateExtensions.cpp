@@ -30,7 +30,6 @@ namespace CA_MGM_NAMESPACE
 {
 
 using namespace ca_mgm;
-using namespace blocxx;
 
 X509v3CertificateExts::X509v3CertificateExts(const X509v3CertificateExts& extensions)
 	: m_impl(extensions.m_impl)

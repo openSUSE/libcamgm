@@ -33,7 +33,6 @@ namespace CA_MGM_NAMESPACE
 {
 
 using namespace ca_mgm;
-using namespace blocxx;
 
 
 RequestData::RequestData(const RequestData& data)
@@ -209,7 +208,7 @@ RequestData::dump() const
 	std::string pk;
 	for(size_t i = 0; i < m_impl->publicKey.size(); ++i)
 	{
-		pk += str::form( "%02x", static_cast<UInt8>(m_impl->publicKey[i])) + ":";
+		pk += str::form( "%02x", static_cast<uint8_t>(m_impl->publicKey[i])) + ":";
 	}
 	result.push_back("public Key = " + pk);
 
@@ -218,7 +217,7 @@ RequestData::dump() const
 	std::string s;
 	for(uint i = 0; i < m_impl->signature.size(); ++i)
 	{
-		s += str::form( "%02x", static_cast<UInt8>(m_impl->signature[i])) + ":";
+		s += str::form( "%02x", static_cast<uint8_t>(m_impl->signature[i])) + ":";
 	}
 
 	result.push_back("Signature = " + s);

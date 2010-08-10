@@ -39,7 +39,6 @@ namespace CA_MGM_NAMESPACE
 {
 
 using namespace ca_mgm;
-using namespace blocxx;
 
 
 X509v3CRLExts_Priv::X509v3CRLExts_Priv()

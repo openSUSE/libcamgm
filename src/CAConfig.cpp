@@ -31,7 +31,6 @@ namespace CA_MGM_NAMESPACE
 {
 
 using namespace ca_mgm;
-using namespace blocxx;
 using namespace ca_mgm::INI;
 using namespace std;
 

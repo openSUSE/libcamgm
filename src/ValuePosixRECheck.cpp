@@ -33,9 +33,6 @@
 namespace LIMAL_NAMESPACE
 {
 
-using namespace blocxx;
-
-
 // -------------------------------------------------------------------
 ValuePosixRECheck::ValuePosixRECheck(const std::string &regex,
                                      bool                  icase)

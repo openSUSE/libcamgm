@@ -25,15 +25,12 @@
 #include  <limal/ValueRegExCheck.hpp>
 #include  <limal/Exception.hpp>
 
-
-
 #include  "Utils.hpp"
 
 namespace CA_MGM_NAMESPACE
 {
 
 using namespace ca_mgm;
-using namespace blocxx;
 
 class SubjectKeyIdentifierExtImpl
 {

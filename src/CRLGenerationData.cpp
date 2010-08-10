@@ -31,7 +31,6 @@ namespace CA_MGM_NAMESPACE
 {
 
 using namespace ca_mgm;
-using namespace blocxx;
 
 class CRLGenerationDataImpl
 {

@@ -37,8 +37,6 @@ namespace CA_MGM_NAMESPACE
 {
 
 using namespace ca_mgm;
-using namespace blocxx;
-
 
 X509v3RequestExts_Priv::X509v3RequestExts_Priv()
 	: X509v3RequestExts()
@@ -320,7 +318,7 @@ X509v3RequestExts_Priv::parseBasicConstraintsExt(STACK_OF(X509_EXTENSION)* cert,
 	}
 
 	bool  ca = false;
-	Int32 pl = -1;
+	int32_t pl = -1;
 
 	if(bs->ca)
 	{

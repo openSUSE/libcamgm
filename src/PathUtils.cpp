@@ -27,6 +27,8 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
+#include <blocxx/EnvVars.hpp>
+
 namespace LIMAL_NAMESPACE {
 namespace path {
 

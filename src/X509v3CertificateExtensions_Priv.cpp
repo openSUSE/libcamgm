@@ -38,7 +38,6 @@ namespace CA_MGM_NAMESPACE
 {
 
 using namespace ca_mgm;
-using namespace blocxx;
 
 
 X509v3CertificateExts_Priv::X509v3CertificateExts_Priv()
@@ -582,7 +581,7 @@ X509v3CertificateExts_Priv::parseBasicConstraintsExt(STACK_OF(X509_EXTENSION)* c
 	}
 
 	bool  ca = false;
-	Int32 pl = -1;
+	int32_t pl = -1;
 
 	if(bs->ca)
 	{
@@ -1061,7 +1060,7 @@ X509v3CertificateExts_Priv::parseCertificatePoliciesExt(STACK_OF(X509_EXTENSION)
 							num = sk_ASN1_INTEGER_value(ref->noticenos, k);
 							tmp = i2s_ASN1_INTEGER(NULL, num);
 
-							numberList.push_back(String(tmp).toInt32());
+							numberList.push_back(str::strtonum<int32_t>(tmp));
 
 							OPENSSL_free(tmp);
 						}

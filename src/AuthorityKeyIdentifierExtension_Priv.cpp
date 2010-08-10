@@ -34,7 +34,6 @@ namespace CA_MGM_NAMESPACE
 {
 
 using namespace ca_mgm;
-using namespace blocxx;
 
 AuthorityKeyIdentifierExt_Priv::AuthorityKeyIdentifierExt_Priv()
 	: AuthorityKeyIdentifierExt()
