@@ -397,7 +397,6 @@ enum    Options { IGNOMR_CASE_REGEXPS,
  *    @code
  *   #include "INIParser/INIParser.hpp"
  *
- *   using namespace blocxx;
  *   using namespace ca_mgm;
  *   using namespace ca_mgm::INI;
  *

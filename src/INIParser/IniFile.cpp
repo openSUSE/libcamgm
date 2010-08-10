@@ -26,7 +26,6 @@ namespace INI
 using std::map;
 using std::multimap;
 using std::pair;
-using namespace blocxx;
 
 std::string pathToString(const std::vector<std::string>&p)
 {

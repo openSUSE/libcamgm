@@ -19,7 +19,6 @@
 #include <regex.h>
 #include <limal/String.hpp>
 #include <limal/PosixRegEx.hpp>
-#include <blocxx/IntrusiveCountableBase.hpp>
 
 #include <iosfwd>
 #include <fstream>
@@ -132,7 +131,7 @@ struct FileDescr
 /**
  * Contains info from scrconf file and ini file read routines.
  */
-class IniParser: public blocxx::IntrusiveCountableBase
+class IniParser
 {
 private:
     /**
@@ -269,7 +268,7 @@ public:
     IniSection inifile;
     // apparently the uninitialized members are filled in
     // by the grammar definition
-    IniParser () : blocxx::IntrusiveCountableBase(),
+    IniParser () : 
 	linecomments (), comments (),
 	sections (), params (), rewrites (),
 	started (false), multiple_files (false),

@@ -27,7 +27,6 @@ namespace INI
 
 using std::ifstream;
 using std::ofstream;
-using namespace blocxx;
 
 int assert_dir( const std::string & spath)
 {

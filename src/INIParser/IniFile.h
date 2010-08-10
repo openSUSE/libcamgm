@@ -231,7 +231,6 @@ private:
     // were never actuially used
 
     /** The parser, queried about global settings */
-    //blocxx::IntrusiveReference<IniParser> ip;
     const IniParser *ip;
 
     /**
