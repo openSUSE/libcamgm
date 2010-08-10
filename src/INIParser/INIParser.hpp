@@ -36,8 +36,6 @@
 #include  <list>
 #include  <vector>
 #include  <limal/String.hpp>
-//#include  <blocxx/StringStream.hpp>
-#include  <blocxx/IntrusiveReference.hpp>
 #include  "INIParser/INIParserDescr.hpp"
 
 namespace LIMAL_NAMESPACE
@@ -113,7 +111,7 @@ private:
      * This constructor will only be used for creating the toplevel
      * section
      */
-    Section(const blocxx::IntrusiveReference<IniParser> &parser);
+    Section(IniParser *parser);
 
 public:
     Section();
@@ -322,7 +320,7 @@ public:
 
 private:
     std::vector<std::string> m_path;
-    blocxx::IntrusiveReference<IniParser> m_parser;
+    IniParser *m_parser;
 };
 
 
@@ -461,7 +459,7 @@ class INIParser
 {
 private:
     friend class Section;
-    blocxx::IntrusiveReference<IniParser> parser;
+    IniParser *parser;
 
 public:
 

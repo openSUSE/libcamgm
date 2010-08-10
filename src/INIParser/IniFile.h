@@ -18,7 +18,6 @@
 
 #include <limal/Logger.hpp>
 #include <limal/String.hpp>
-#include <blocxx/IntrusiveReference.hpp>
 #include "INIParser/INIParserDescr.hpp"
 #include <list>
 #include <map>
@@ -232,7 +231,8 @@ private:
     // were never actuially used
 
     /** The parser, queried about global settings */
-    blocxx::IntrusiveReference<IniParser> ip;
+    //blocxx::IntrusiveReference<IniParser> ip;
+    const IniParser *ip;
 
     /**
      * if this is global section, there may be comment at the end
@@ -440,7 +440,7 @@ public:
 	//, logger(INIPARSER)
     {}
 
-    IniSection (const blocxx::IntrusiveReference<IniParser> &p)
+    IniSection (const IniParser *p)
 	: IniBase (-1),
 	  ip (p),
 	  end_comment (), rewrite_by(-1),
@@ -481,7 +481,7 @@ public:
      * @param ip parser to take options from
      * @param n name of section
      */
-    IniSection (const blocxx::IntrusiveReference<IniParser> &p, std::string n)
+    IniSection (const IniParser *p, std::string n)
 	: IniBase (n),
 	  ip (p),
 	  end_comment (), rewrite_by(0),
@@ -643,7 +643,7 @@ public:
 	_t (VALUE),
 	_e (e),
 //	_s (IniSection ("uninitialized"))
-	_s (IniSection (blocxx::IntrusiveReference<IniParser>()))
+	_s (IniSection ((const IniParser*)NULL))
 	{}
 
     /// construct from a section

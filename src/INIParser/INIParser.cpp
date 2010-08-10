@@ -28,8 +28,6 @@
 
 #include "Utils.hpp"
 
-using namespace blocxx;
-
 // ===================================================================
 namespace LIMAL_NAMESPACE
 {
@@ -111,7 +109,7 @@ Section::Section()
 {}
 
 // -------------------------------------------------------------------
-Section::Section(const blocxx::IntrusiveReference<IniParser> &parser)
+Section::Section(IniParser *parser)
     : m_path()
     , m_parser(parser)
 {
@@ -685,8 +683,8 @@ INIParser::operator=(const INIParser &iniParser)
 // -------------------------------------------------------------------
 INIParser::~INIParser ()
 {
-    if (parser->isStarted())
-	parser->write();
+  if (parser && parser->isStarted())
+    parser->write();
 }
 
 
