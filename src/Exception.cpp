@@ -180,4 +180,6 @@ Exception::getErrorCode() const
   CA_MGM_DEFINE_EXCEPTION(Syntax);
   CA_MGM_DEFINE_EXCEPTION(Value);
   CA_MGM_DEFINE_EXCEPTION(System);
+  CA_MGM_DEFINE_EXCEPTION(OutOfBounds);
+
 }

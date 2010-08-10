@@ -315,6 +315,8 @@ throw ::ca_mgm::ExceptionDetail::Errno< exType >:: \
 	 */
 	CA_MGM_DECLARE_EXCEPTION(System);
 
+	CA_MGM_DECLARE_EXCEPTION(OutOfBounds);
+
 }      // End of LIMAL_NAMESPACE
 
 #endif /* LIMAL_EXCEPTION_HPP */

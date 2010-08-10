@@ -20,7 +20,7 @@
 #include <limal/ByteBuffer.hpp>
 
 #include <limal/String.hpp>
-
+#include <limal/Exception.hpp>
 
 #include <cstring>
 
@@ -30,8 +30,6 @@
 // -----------------------------------------------------------------------
 namespace LIMAL_NAMESPACE
 {
-
-using namespace blocxx;
 
 
 // -----------------------------------------------------------------------
@@ -239,7 +237,7 @@ ByteBuffer::at(size_t pos) const
 
     LOGIT_ERROR("ByteBuffer index out of bounds: size="
                 << size() << ", pos=" << pos);
-    CA_MGM_THROW(blocxx::OutOfBoundsException, str::form(
+    CA_MGM_THROW(ca_mgm::OutOfBoundsException, str::form(
                  __("ByteBuffer index out of bounds: size=%1, pos=%2."),
                  size(), pos).c_str());
 }
@@ -289,7 +287,7 @@ ByteBuffer::operator[](size_t pos) const
 
     LOGIT_ERROR("ByteBuffer index out of bounds: size="
                 << size() << ", pos=" << pos);
-    CA_MGM_THROW(blocxx::OutOfBoundsException, str::form(
+    CA_MGM_THROW(ca_mgm::OutOfBoundsException, str::form(
                  __("ByteBuffer index out of bounds: size=%1, pos=%2."),
                  size(), pos).c_str());
 }
@@ -306,7 +304,7 @@ ByteBuffer::operator[](size_t pos)
 
     LOGIT_ERROR("ByteBuffer index out of bounds: size="
                 << size() << ", pos=" << pos);
-    CA_MGM_THROW(blocxx::OutOfBoundsException, str::form(
+    CA_MGM_THROW(ca_mgm::OutOfBoundsException, str::form(
                  __("ByteBuffer index out of bounds: size=%1, pos=%2."),
                  size(), pos).c_str());
 }
