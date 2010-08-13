@@ -71,13 +71,13 @@ int wrapExecuteProcessAndGatherOutput(
                                        const std::vector<std::string> &cmd,
                                        std::string                    &out,
                                        std::string                    &err,
-                                       const blocxx::EnvVars          &env,
-                                       int                            tmax,
-                                       int                            omax,
-                                       const std::string              &in
+                                       const blocxx::EnvVars          &env
                                      )
 {
 	int exitStatus = -1;
+    int tmax=-1;
+    int omax=-1;
+    std::string in=std::string();
 
 	blocxx::Process::Status status;
 

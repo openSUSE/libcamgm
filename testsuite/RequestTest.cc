@@ -56,6 +56,8 @@ int main()
 
 		DNObject dn(dnl);
 		rgd.setSubjectDN(dn);
+        rgd.setChallengePassword("secret");
+        rgd.setUnstructuredName("this is an unstructured name");
 
 		// ------------------------ create netscape extension -----------------------------
 
@@ -94,7 +96,7 @@ int main()
 
 		RequestData rd = ca.getRequest(r);
 
-		std::vector<std::string> ret = rd.getExtensions().dump();
+		std::vector<std::string> ret = rd.dump();
 		std::vector<std::string>::const_iterator it;
 
 		for(it = ret.begin(); it != ret.end(); ++it)
@@ -103,6 +105,14 @@ int main()
 			{
 				cout << "found KeyID" << endl;
 			}
+            else if(str::startsWith((*it), "public Key"))
+            {
+                cout << "found PublicKey" << endl;
+            }
+            else if(str::startsWith((*it), "Signature"))
+            {
+                cout << "found Signature" << endl;
+            }
 			else
 			{
 				cout << (*it) << endl;

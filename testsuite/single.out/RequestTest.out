@@ -8,6 +8,29 @@ DN Key commonName
 DN Key emailAddress
 RETURN Request 
 Request exists: true
+RequestData::dump()
+Version = 1
+DNObject::dump()
+RDNObject::dump()
+countryName=DE
+Prompt:
+Min:0
+Max:0
+RDNObject::dump()
+commonName=Test Request
+Prompt:
+Min:0
+Max:0
+RDNObject::dump()
+emailAddress=suse@suse.de
+Prompt:
+Min:0
+Max:0
+Keysize = 2048
+pubkeyAlgorithm = 0
+found PublicKey
+signatureAlgorithm = 0
+found Signature
 X509v3RequestExts::dump()
 NsSslServerNameExt::dump()
 ExtensionBase::dump()
@@ -52,4 +75,6 @@ LiteralValue::dump()
 email:me@my-company.com
 LiteralValue::dump()
 URI:http://www.my-company.com/
+Challenge Password = secret
+Unstructured Name = this is an unstructured name
 DONE

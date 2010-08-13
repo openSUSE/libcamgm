@@ -337,6 +337,27 @@ CA::createRequest(const std::string& keyPasswd,
 	// copy Section, because "req" is hard coded in openssl :-(
 	m_impl->config->copySection(type2Section(requestType, false), "req");
 
+    //write request distinguished_name values to config
+    requestData.getSubjectDN().commit2Config(*this, requestType);
+    m_impl->config->setValue("req", "distinguished_name", "req_distinguished_name_val");
+    // required to read the DN values directly from the config file
+    m_impl->config->setValue("req", "prompt", "no");
+    if(!(requestData.getChallengePassword().empty() && requestData.getUnstructuredName().empty()))
+    {
+      m_impl->config->setValue("req", "attributes", "req_attributes_val");
+      if(!requestData.getChallengePassword().empty())
+      {
+        m_impl->config->setValue("req_attributes_val", "challengePassword", requestData.getChallengePassword());
+      }
+      if(!requestData.getUnstructuredName().empty())
+      {
+        m_impl->config->setValue("req_attributes_val", "unstructuredName", requestData.getUnstructuredName());
+      }
+    }
+    else
+    {
+      m_impl->config->deleteValue("req", "attributes");
+    }
 	// create key
 
 	ost.createRSAKey(m_impl->repositoryDir + "/" + m_impl->caName + "/keys/"+ request + ".key",
@@ -345,17 +366,20 @@ CA::createRequest(const std::string& keyPasswd,
 
 	// create request
 
-	ost.createRequest(requestData.getSubjectDN(),
-	                  m_impl->repositoryDir + "/" + m_impl->caName + "/req/"+ request + ".req",
+	ost.createRequest(m_impl->repositoryDir + "/" + m_impl->caName + "/req/"+ request + ".req",
 	                  m_impl->repositoryDir + "/" + m_impl->caName + "/keys/"+ request + ".key",
 	                  keyPasswd,
 	                  type2Section(requestType, true),
-	                  E_PEM,
-	                  requestData.getChallengePassword(),
-	                  requestData.getUnstructuredName());
+	                  E_PEM);
 
 
 	OpenSSLUtils::addCAM(m_impl->caName, request, opensslDN, m_impl->repositoryDir);
+
+    // restore req_distinguished_name section
+    m_impl->config->deleteSection("req_distinguished_name_val");
+    m_impl->config->deleteSection("req_attributes_val");
+    m_impl->config->setValue("req", "attributes", "req_attributes");
+    m_impl->config->setValue("req", "distinguished_name", "req_distinguished_name");
 
 	return request;
 }
@@ -1175,17 +1199,40 @@ CA::createRootCA(const std::string& caName,
 	// copy Section, because "req" is hard coded in openssl :-(
 	tmpCA.getConfig()->copySection(type2Section(E_CA_Req, false), "req");
 
+    //write request distinguished_name values to config
+    caRequestData.getSubjectDN().commit2Config(tmpCA, E_CA_Req);
+    tmpCA.getConfig()->setValue("req", "distinguished_name", "req_distinguished_name_val");
+    // required to read the DN values directly from the config file
+    tmpCA.getConfig()->setValue("req", "prompt", "no");
+    if(!(caRequestData.getChallengePassword().empty() && caRequestData.getUnstructuredName().empty()))
+    {
+      tmpCA.getConfig()->setValue("req", "attributes", "req_attributes_val");
+      if(!caRequestData.getChallengePassword().empty())
+      {
+        tmpCA.getConfig()->setValue("req_attributes_val", "challengePassword", caRequestData.getChallengePassword());
+      }
+      if(!caRequestData.getUnstructuredName().empty())
+      {
+        tmpCA.getConfig()->setValue("req_attributes_val", "unstructuredName", caRequestData.getUnstructuredName());
+      }
+    }
+    else
+    {
+      tmpCA.getConfig()->deleteValue("req", "attributes");
+    }
+
 	OpenSSLUtils ost(configFilename);
 
 	// create request
-	ost.createRequest(caRequestData.getSubjectDN(),
-	                  repos + "/" + caName + "/" + "cacert.req",
+	ost.createRequest(repos + "/" + caName + "/" + "cacert.req",
 	                  repos + "/" + caName + "/" + "cacert.key",
-	                  caPasswd,
-	                  "v3_req_ca",
-	                  E_PEM,
-	                  caRequestData.getChallengePassword(),
-	                  caRequestData.getUnstructuredName());
+	                  caPasswd, "v3_req_ca", E_PEM);
+
+    // restore req_distinguished_name section
+    tmpCA.getConfig()->deleteSection("req_distinguished_name_val");
+    tmpCA.getConfig()->deleteSection("req_attributes_val");
+    tmpCA.getConfig()->setValue("req", "attributes", "req_attributes");
+    tmpCA.getConfig()->setValue("req", "distinguished_name", "req_distinguished_name");
 
 	// write certificate issue data to config
 	caIssueData.commit2Config(tmpCA, E_CA_Cert);

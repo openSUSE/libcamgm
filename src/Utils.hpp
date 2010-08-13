@@ -261,10 +261,7 @@ int wrapExecuteProcessAndGatherOutput(
                                        const std::vector<std::string> &cmd,
                                        std::string                    &out,
                                        std::string                    &err,
-                                       const blocxx::EnvVars          &env,
-                                       int                            tmax=-1,
-                                       int                            omax=-1,
-                                       const std::string              &in=std::string()
+                                       const blocxx::EnvVars          &env
                                      );
 
 inline int rehashCAs(const std::string &repositoryDir)

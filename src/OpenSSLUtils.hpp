@@ -48,14 +48,11 @@ public:
 	                  uint32_t        bits = 2048,
 	                  const std::string &cryptAlgorithm = "des3");
 
-	void createRequest(const DNObject       &dn,
-	                   const std::string &outFile,
+	void createRequest(const std::string &outFile,
 	                   const std::string &keyFile,
 	                   const std::string &password,
 	                   const std::string &extension,
-	                   FormatType            outForm           = E_PEM,
-	                   const std::string &challengePassword = "",
-	                   const std::string &unstructuredName  = "");
+	                   FormatType         outForm = E_PEM);
 
 	void createSelfSignedCertificate(const std::string &outFile,
 	                                 const std::string &keyFile,

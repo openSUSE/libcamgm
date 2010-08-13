@@ -183,6 +183,18 @@ CAConfig::deleteValue(const std::string &section, const std::string &key)
 	}
 }
 
+void
+CAConfig::deleteSection(const std::string &section)
+{
+  if (m_impl->parser.iniFile.contains (section) == SECTION)
+  {
+    // delete entry
+    m_impl->parser.iniFile.delSection (section);
+    // and save
+    m_impl->parser.write();
+  }
+}
+
 std::string
 CAConfig::getValue(const std::string &section, const std::string &key) const
 {

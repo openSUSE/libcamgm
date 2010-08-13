@@ -20,6 +20,7 @@
 
 /-*/
 
+#include  <limal/ca-mgm/CA.hpp>
 #include  <limal/ca-mgm/DNObject.hpp>
 #include  <limal/ca-mgm/CAConfig.hpp>
 #include  <limal/ValueRegExCheck.hpp>
@@ -72,6 +73,36 @@ RDNObject::getType() const
 }
 
 std::string
+RDNObject::getOpenSSLType() const
+{
+  std::map<std::string, std::string> opensslKeys;
+  opensslKeys["countryName"] = "C";
+  opensslKeys["stateOrProvinceName"] = "ST";
+  opensslKeys["localityName"] = "L";
+  opensslKeys["organizationName"] = "O";
+  opensslKeys["organizationalUnitName"] = "OU";
+  opensslKeys["commonName"] = "CN";
+  opensslKeys["emailAddress"] = "emailAddress";
+  //opensslKeys[""] = "";
+
+  std::string ret;
+  std::map<std::string, std::string>::const_iterator it = opensslKeys.find(m_impl->type);
+
+  if( it != opensslKeys.end())
+  {
+    ret = (*it).second;
+  }
+  else
+  {
+    LOGIT_ERROR("Invalid type:" << m_impl->type);
+    CA_MGM_THROW(ca_mgm::ValueException,
+                 // %s is the invalid string for a DN type
+                 str::form(__("Invalid type %s."), m_impl->type.c_str()).c_str());
+  }
+  return ret;
+}
+
+std::string
 RDNObject::getValue() const
 {
 	return m_impl->value;
@@ -80,42 +111,17 @@ RDNObject::getValue() const
 std::string
 RDNObject::getOpenSSLValue() const
 {
-	if(m_impl->value.empty()) return std::string();
+  if(m_impl->value.empty()) return std::string();
 
-	std::map<std::string, std::string> opensslKeys;
-	opensslKeys["countryName"] = "C";
-	opensslKeys["stateOrProvinceName"] = "ST";
-	opensslKeys["localityName"] = "L";
-	opensslKeys["organizationName"] = "O";
-	opensslKeys["organizationalUnitName"] = "OU";
-	opensslKeys["commonName"] = "CN";
-	opensslKeys["emailAddress"] = "emailAddress";
-	//opensslKeys[""] = "";
+  std::string ret = getOpenSSLType();
 
-	std::string ret;
-	std::map<std::string, std::string>::const_iterator it = opensslKeys.find(m_impl->type);
+  std::string v = str::escape(m_impl->value, '\\');
+  v = str::escape(v, '/');
+  //LOGIT_DEBUG("RDNObject::getOpenSSLValue Value: '" << m_impl->value << "'  quoted: '" << v << "'");
 
-	if( it != opensslKeys.end())
-	{
-		ret += (*it).second + "=";
-	}
-	else
-	{
-		LOGIT_ERROR("Invalid type:" << m_impl->type);
-		CA_MGM_THROW(ca_mgm::ValueException,
-		             // %s is the invalid string for a DN type
-		             str::form(__("Invalid type %s."), m_impl->type.c_str()).c_str());
-	}
+  ret += "=" + v;
 
-    //PosixRegEx regex("([\\\\/])");
-	//std::string v = regex.replace(m_impl->value, "\\1", true);
-    std::string v = str::escape(m_impl->value, '\\');
-    v = str::escape(v, '/');
-    //LOGIT_DEBUG("RDNObject::getOpenSSLValue Value: '" << m_impl->value << "'  quoted: '" << v << "'");
-
-	ret += v;
-
-	return ret;
+  return ret;
 }
 
 bool
@@ -482,6 +488,27 @@ DNObject::dump() const
 	}
 
 	return result;
+}
+
+void
+DNObject::commit2Config(CA& ca, Type type) const
+{
+  if(!(type == E_Client_Req || type == E_Server_Req || E_CA_Req) )
+  {
+    LOGIT_ERROR("wrong type" << type);
+    CA_MGM_THROW(ca_mgm::ValueException,
+                 str::form(__("Wrong type: %1."), type).c_str());
+  }
+
+  ca.getConfig()->deleteSection("req_distinguished_name_val");
+  std::list< RDNObject >::const_iterator it = m_impl->dn.begin();
+  for(; it != m_impl->dn.end(); ++it)
+  {
+    if(!it->getValue().empty())
+    {
+      ca.getConfig()->setValue("req_distinguished_name_val", it->getOpenSSLType(), it->getValue());
+    }
+  }
 }
 
 }

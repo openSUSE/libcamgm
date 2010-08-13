@@ -59,6 +59,8 @@ int main()
 
 		DNObject dn(dnl);
 		rgd.setSubjectDN(dn);
+        rgd.setChallengePassword("secret");
+        rgd.setUnstructuredName("this is an unstructured name");
 
 		// ------------------------ create request --------------------------------
 
@@ -190,7 +192,7 @@ int main()
 			{
 				cout << "found KeyID" << endl;
 			}
-			else
+            else
 			{
 				cout << (*it) << endl;
 			}

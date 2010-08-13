@@ -29,6 +29,7 @@
 namespace CA_MGM_NAMESPACE {
 
 	class CAConfig;
+    class CA;
 	class RDNObjectImpl;
 	class DNObjectImpl;
 
@@ -46,6 +47,7 @@ namespace CA_MGM_NAMESPACE {
 		void   setRDNValue(const std::string& value);
 
 		std::string getType() const;
+        std::string getOpenSSLType() const;
 		std::string getValue() const;
 
 		std::string getOpenSSLValue() const;
@@ -84,12 +86,14 @@ namespace CA_MGM_NAMESPACE {
 		void                         setDN(const std::list<RDNObject> &dn);
 		std::list<RDNObject>         getDN() const;
 
-		std::string                       getOpenSSLString() const;
+		std::string                  getOpenSSLString() const;
 
 		virtual bool                 valid() const;
 		virtual std::vector<std::string>  verify() const;
 
 		virtual std::vector<std::string>  dump() const;
+
+        virtual void commit2Config(CA& ca, Type type) const;
 
 	protected:
 		ca_mgm::RWCOW_pointer<DNObjectImpl> m_impl;

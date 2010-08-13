@@ -62,6 +62,9 @@ namespace CA_MGM_NAMESPACE
 		void
 		deleteValue(const std::string &section, const std::string &key);
 
+        void
+        deleteSection(const std::string &section);
+
 		/**
 		 * Get the value of Section  <b>section</b> with the Key <b>key</b>.
 		 */

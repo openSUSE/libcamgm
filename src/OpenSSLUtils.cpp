@@ -30,7 +30,7 @@
 #include <blocxx/EnvVars.hpp>
 #include <blocxx/System.hpp>
 #include <limal/Date.hpp>
-
+#include <fstream>
 #include "Utils.hpp"
 
 namespace CA_MGM_NAMESPACE
@@ -153,19 +153,16 @@ OpenSSLUtils::createRSAKey(const std::string &outFile,
 }
 
 void
-OpenSSLUtils::createRequest(const DNObject &dn,
-                            const std::string   &outFile,
-                            const std::string   &keyFile,
-                            const std::string   &password,
-                            const std::string   &extension,
-                            FormatType      outForm,
-                            const std::string   &challengePassword,
-                            const std::string   &unstructuredName)
+OpenSSLUtils::createRequest(const std::string &outFile,
+                            const std::string &keyFile,
+                            const std::string &password,
+                            const std::string &extension,
+                            FormatType         outForm)
 {
 	std::string debugCmd;
 
 	debugCmd += m_cmd + " ";
-	debugCmd += "req -new ";
+	debugCmd += "req -new -batch ";
 
 	path::PathInfo pi(keyFile);
 	if(!pi.exists() || !pi.isFile())
@@ -208,29 +205,14 @@ OpenSSLUtils::createRequest(const DNObject &dn,
 
 	env.addVar("pass", password.c_str());
 
-	std::string stdInput;
 	std::string stdOutput;
 	std::string errOutput;
 	int            status    = -1;
 
-	std::list<RDNObject> dnList = dn.getDN();
-	std::list<RDNObject>::const_iterator it;
-
-	for(it = dnList.begin(); it != dnList.end(); ++it)
-	{
-		stdInput += (*it).getValue() + "\n";
-	}
-
-	stdInput += challengePassword + "\n";
-	stdInput += unstructuredName  + "\n";
-
-	// LOGIT_DEBUG("INPUT: " << stdInput);  // disclose secure data
-
 	try
 	{
 		status = wrapExecuteProcessAndGatherOutput(cmd, stdOutput,
-		                                           errOutput, env,
-		                                           -1, -1, stdInput);
+		                                           errOutput, env);
 	}
 	catch(Exception& e)
 	{
@@ -2575,9 +2557,20 @@ OpenSSLUtils::digestMD5(const std::string &in)
   std::string dcmd;
   bool foundError = false;
 
+  std::string input(::tempnam("/tmp/", "md5in"));
+  std::ofstream of(input.c_str());
+  if (!of.good())
+  {
+    ERR << "Can not open file for write" << std::endl;
+    CA_MGM_THROW_ERRNO_MSG(ca_mgm::RuntimeException, __("Can not open file."));
+  }
+  of << in;
+  of.close();
+
   dcmd += ca_mgm::OPENSSL_COMMAND + " ";
   dcmd += "dgst ";
   dcmd += "-md5 ";
+  dcmd += input;
 
   std::vector<std::string> cmd = PerlRegEx("\\s").split(dcmd);
 
@@ -2590,18 +2583,18 @@ OpenSSLUtils::digestMD5(const std::string &in)
 
   std::string stdOutput;
   std::string errOutput;
-  int            status    = -1;
+  int         status    = -1;
 
   try
   {
     status = wrapExecuteProcessAndGatherOutput(cmd, stdOutput,
-                                               errOutput, env,
-                                               -1, -1, in);
+                                               errOutput, env);
   }
   catch(Exception& e)
   {
     LOGIT_ERROR( "openssl exception:" << e);
     path::removeFile(randfile);
+    path::removeFile(input);
     CA_MGM_THROW_SUBEX(ca_mgm::RuntimeException,
                        __("Executing openssl command failed."), e);
   }
@@ -2617,10 +2610,15 @@ OpenSSLUtils::digestMD5(const std::string &in)
   }
   if(!stdOutput.empty())
   {
-    stdOutput = str::rtrim(stdOutput);
     LOGIT_DEBUG("openssl stdout:" << stdOutput);
+
+    std::vector<std::string> words;
+    str::split( stdOutput, std::back_inserter(words), "=" );
+    stdOutput = str::trim(words.back());
+    LOGIT_DEBUG("openssl md5sum:" << stdOutput);
   }
   path::removeFile(randfile);
+  path::removeFile(input);
 
   if(foundError)
   {
