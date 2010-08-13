@@ -26,7 +26,10 @@ limalinclude_HEADERS =          \
         String.hpp              \
         PerlRegEx.hpp           \
         PosixRegEx.hpp          \
-        PtrTypes.hpp
+        PtrTypes.hpp            \
+        ExternalProgram.hpp     \
+        ExternalDataSource.hpp
+
 
 
 CLEANFILES = *~

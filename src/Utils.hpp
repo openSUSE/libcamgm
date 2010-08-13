@@ -31,11 +31,8 @@
 #include <limal/ValueRegExCheck.hpp>
 #include <limal/ca-mgm/LiteralValues.hpp>
 #include <limal/ca-mgm/CommonData.hpp>
-
+#include <limal/ExternalProgram.hpp>
 #include <limal/String.hpp>
-
-#include <blocxx/Exec.hpp>
-#include <blocxx/EnvVars.hpp>
 
 #include <openssl/x509v3.h>
 
@@ -65,20 +62,6 @@ LIMAL_LOGGER_LOG("ca-mgm", level) << message << std::endl
                            << stringarray[i] << std::endl;              \
         }                                                               \
     }                                                                   \
-
-/*
-#define LOGIT_DEBUG_STRINGARRAY(text, stringarray)                      \
-	Logger d("ca-mgm");                                          \
-	if(d.isEnabledFor("DEBUG")) {                                       \
-		uint s = stringarray.size();                                    \
-		for(uint i = 0; i < s; i++) {                                   \
-			LIMAL_SLOG(d, blocxx::E_DEBUG_LEVEL,                        \
-			           text <<                                          \
-			           "(" << (i+1) << "/" << s << "):"                 \
-			           << stringarray[i]);                              \
-		}                                                               \
-	}
-*/
 
 // -------------------------------------------------------------------
 
@@ -258,10 +241,10 @@ inline std::string type2Section(Type type, bool v3section)
 
 // throws or returns the process exit code or -1 (term by signal).
 int wrapExecuteProcessAndGatherOutput(
-                                       const std::vector<std::string> &cmd,
-                                       std::string                    &out,
-                                       std::string                    &err,
-                                       const blocxx::EnvVars          &env
+                                       const ExternalProgram::Arguments   &cmd,
+                                       std::string       &out,
+                                       std::string       &err,
+                                       const ExternalProgram::Environment &env = ExternalProgram::Environment()
                                      );
 
 inline int rehashCAs(const std::string &repositoryDir)
@@ -270,8 +253,8 @@ inline int rehashCAs(const std::string &repositoryDir)
 	cmd.push_back(C_REHASH_COMMAND);
 	cmd.push_back(repositoryDir);
 
-	blocxx::EnvVars env;
-	env.addVar("PATH", "/usr/bin/");
+	ExternalProgram::Environment env;
+	env["PATH"] = "/usr/bin/";
 
 	std::string stdOutput;
 	std::string errOutput;

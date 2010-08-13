@@ -27,12 +27,10 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
-#include <blocxx/EnvVars.hpp>
 
 namespace LIMAL_NAMESPACE {
 namespace path {
 
-using namespace blocxx;
 
 inline static std::string mode2String(mode_t o) {
     std::string s;
@@ -157,7 +155,7 @@ int removeDirRecursive( const PathName & path )
     int    status = -1;
     try {
         status = wrapExecuteProcessAndGatherOutput(
-            cmd, stdOutput, errOutput, EnvVars()
+            cmd, stdOutput, errOutput
         );
     }
     catch(const ca_mgm::Exception &e) {
@@ -215,7 +213,7 @@ int copyDir( const PathName & srcpath, const PathName & destpath )
     int    status = -1;
     try {
         status = wrapExecuteProcessAndGatherOutput(
-            cmd, stdOutput, errOutput, EnvVars()
+            cmd, stdOutput, errOutput
         );
     }
     catch(const ca_mgm::Exception &e) {
@@ -353,7 +351,7 @@ int copyFile( const PathName & file, const PathName & dest )
     int    status = -1;
     try {
         status = wrapExecuteProcessAndGatherOutput(
-            cmd, stdOutput, errOutput, EnvVars()
+            cmd, stdOutput, errOutput
         );
     }
     catch(const ca_mgm::Exception &e) {

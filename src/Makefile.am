@@ -77,7 +77,9 @@ liblimal_ca_mgm_la_SOURCES  =	\
 	OpenSSLUtils.cpp \
 	INIParser/IniFile.cpp   \
 	INIParser/IniParser.cpp \
-	INIParser/INIParser.cpp
+	INIParser/INIParser.cpp \
+	ExternalProgram.cpp \
+	ExternalDataSource.cpp
 
 #        config.cpp              \
 liblimal_ca_mgm_la_CXXFLAGS = $(LIMAL_CFLAGS)
@@ -86,7 +88,7 @@ liblimal_ca_mgm_la_LDFLAGS  = \
 	-version-info $(LIB_VERSION_INFO) \
 	$(LIMAL_LIBS) -lssl
 
-liblimal_ca_mgm_la_LIBADD = $(LIB_SSL)
+liblimal_ca_mgm_la_LIBADD = $(LIB_SSL) $(LIB_UTIL)
 
 CLEANFILES     = *~
 DISTCLEANFILES = Commands.hpp Utils.hpp config.log

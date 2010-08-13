@@ -45,6 +45,8 @@
 #include <list>
 #include <iosfwd>
 
+#define  FILENAME_SEPARATOR   "/"
+#define  FILENAME_SEPARATOR_C '/'
 
 // -------------------------------------------------------------------
 namespace LIMAL_NAMESPACE
@@ -131,6 +133,7 @@ public:
     * @return The complete path this PathName object holds.
     */
     std::string          toString() const;
+    std::string          asString() const { return toString(); }
 
     /**
     * @brief Returns the path this PathName object holds, as

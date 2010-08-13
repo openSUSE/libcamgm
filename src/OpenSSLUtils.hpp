@@ -29,6 +29,7 @@
 #include <limal/ca-mgm/DNObject.hpp>
 #include <limal/ca-mgm/CRLReason.hpp>
 #include <limal/ByteBuffer.hpp>
+#include <limal/ExternalProgram.hpp>
 
 #include "Commands.hpp"
 
@@ -36,6 +37,8 @@
 namespace CA_MGM_NAMESPACE {
 
 class OpenSSLUtils {
+
+  typedef ExternalProgram::Environment Environment;
 
 public:
 

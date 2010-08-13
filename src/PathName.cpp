@@ -254,7 +254,7 @@ namespace
         }
 
         std::string
-        getPathName(const std::string &sep = BLOCXX_FILENAME_SEPARATOR) const
+        getPathName(const std::string &sep = FILENAME_SEPARATOR) const
         {
             if( m_first)
                 return "";
@@ -516,7 +516,7 @@ PathName::dirName(const PathName &name)
 
     PathName ret( name);
 
-    size_t idx = ret.m_name.find_last_of( BLOCXX_FILENAME_SEPARATOR_C);
+    size_t idx = ret.m_name.find_last_of( FILENAME_SEPARATOR_C);
     if ( idx == std::string::npos)
     {
         ret.m_name.erase( ret.m_prefix);
@@ -525,7 +525,7 @@ PathName::dirName(const PathName &name)
     else if ( idx == ret.m_prefix )
     {
         ret.m_name.erase( ret.m_prefix);
-        ret.m_name += BLOCXX_FILENAME_SEPARATOR;
+        ret.m_name += FILENAME_SEPARATOR;
     }
     else
     {
@@ -547,7 +547,7 @@ PathName::baseName(const PathName &name)
     std::string ret( name.toString());
     ret.erase( 0, name.m_prefix);
 
-    size_t idx = ret.find_last_of( BLOCXX_FILENAME_SEPARATOR_C);
+    size_t idx = ret.find_last_of( FILENAME_SEPARATOR_C);
     if ( idx != std::string::npos)
     {
         ret.erase( 0, idx + 1);
@@ -562,7 +562,7 @@ PathName::baseName(const PathName &name)
 PathName
 PathName::absoluteName(const PathName &name)
 {
-    return name.relative() ? cat( BLOCXX_FILENAME_SEPARATOR, name) : name;
+    return name.relative() ? cat( FILENAME_SEPARATOR, name) : name;
 }
 
 
@@ -610,7 +610,7 @@ PathName::cat(const PathName &name, const PathName &add)
     if ( name.empty())
         return add;
 
-    std::string ret = BLOCXX_FILENAME_SEPARATOR +
+    std::string ret = FILENAME_SEPARATOR +
                  add.toString().substr(add.m_prefix) ;
 
     return PathName(name.toString() + ret);

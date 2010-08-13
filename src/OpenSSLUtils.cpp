@@ -26,8 +26,6 @@
 #include <limal/ca-mgm/LocalManagement.hpp>
 #include <limal/PerlRegEx.hpp>
 #include <limal/String.hpp>
-#include <blocxx/Exec.hpp>
-#include <blocxx/EnvVars.hpp>
 #include <blocxx/System.hpp>
 #include <limal/Date.hpp>
 #include <fstream>
@@ -108,11 +106,10 @@ OpenSSLUtils::createRSAKey(const std::string &outFile,
 
 	LOGIT_DEBUG("Command: " << debugCmd);
 
-	blocxx::EnvVars env;
-	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", m_rand.c_str());
-
-	env.addVar("pass", password.c_str());
+	Environment env;
+	env["PATH"] = "/usr/bin/";
+	env["RANDFILE"] = m_rand.c_str();
+	env["pass"] = password.c_str();
 
 	std::string stdOutput;
 	std::string errOutput;
@@ -199,11 +196,10 @@ OpenSSLUtils::createRequest(const std::string &outFile,
 
 	LOGIT_DEBUG("Command: " << debugCmd);
 
-	blocxx::EnvVars env;
-	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", m_rand.c_str());
-
-	env.addVar("pass", password.c_str());
+    Environment env;
+    env["PATH"] = "/usr/bin/";
+    env["RANDFILE"] = m_rand.c_str();
+    env["pass"] = password.c_str();
 
 	std::string stdOutput;
 	std::string errOutput;
@@ -299,11 +295,10 @@ OpenSSLUtils::createSelfSignedCertificate(const std::string &outFile,
 
 	LOGIT_DEBUG("Command: " << debugCmd);
 
-	blocxx::EnvVars env;
-	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", m_rand.c_str());
-
-	env.addVar("pass", password.c_str());
+    Environment env;
+    env["PATH"] = "/usr/bin/";
+    env["RANDFILE"] = m_rand.c_str();
+    env["pass"] = password.c_str();
 
 	std::string stdOutput;
 	std::string errOutput;
@@ -425,11 +420,10 @@ OpenSSLUtils::signRequest(const std::string &requestFile,
 	LOGIT_DEBUG("Command: " << debugCmd);
 	//LOGIT_DEBUG("PASSWORD: " << caPassword);
 
-	blocxx::EnvVars env;
-	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", m_rand.c_str());
-
-	env.addVar("pass", caPassword.c_str());
+    Environment env;
+    env["PATH"] = "/usr/bin/";
+    env["RANDFILE"] = m_rand.c_str();
+    env["pass"] = caPassword.c_str();
 
 	std::string stdOutput;
 	std::string errOutput;
@@ -565,11 +559,10 @@ OpenSSLUtils::revokeCertificate(const std::string &caCertFile,
 
 	LOGIT_DEBUG("Command: " << debugCmd);
 
-	blocxx::EnvVars env;
-	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", m_rand.c_str());
-
-	env.addVar("pass", caPassword.c_str());
+    Environment env;
+    env["PATH"] = "/usr/bin/";
+    env["RANDFILE"] = m_rand.c_str();
+    env["pass"] = caPassword.c_str();
 
 	std::string stdOutput;
 	std::string errOutput;
@@ -667,11 +660,10 @@ OpenSSLUtils::issueCRL(const std::string &caCertFile,
 
 	LOGIT_DEBUG("Command: " << debugCmd);
 
-	blocxx::EnvVars env;
-	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", m_rand.c_str());
-
-	env.addVar("pass", caPassword.c_str());
+    Environment env;
+    env["PATH"] = "/usr/bin/";
+    env["RANDFILE"] = m_rand.c_str();
+    env["pass"] = caPassword.c_str();
 
 	std::string stdOutput;
 	std::string errOutput;
@@ -751,11 +743,10 @@ OpenSSLUtils::updateDB(const std::string &caCertFile,
 
 	LOGIT_DEBUG("Command: " << debugCmd);
 
-	blocxx::EnvVars env;
-	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", m_rand.c_str());
-
-	env.addVar("pass", caPassword.c_str());
+    Environment env;
+    env["PATH"] = "/usr/bin/";
+    env["RANDFILE"] = m_rand.c_str();
+    env["pass"] = caPassword.c_str();
 
 	std::string stdOutput;
 	std::string errOutput;
@@ -844,9 +835,9 @@ OpenSSLUtils::verify(const std::string &certFile,
 
 	LOGIT_DEBUG("Command: " << debugCmd);
 
-	blocxx::EnvVars env;
-	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", m_rand.c_str());
+    Environment env;
+    env["PATH"] = "/usr/bin/";
+    env["RANDFILE"] = m_rand.c_str();
 
 	std::string stdOutput;
 	std::string errOutput;
@@ -925,9 +916,9 @@ OpenSSLUtils::status(const std::string &serial)
 
 	LOGIT_DEBUG("Command: " << debugCmd);
 
-	blocxx::EnvVars env;
-	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", m_rand.c_str());
+    Environment env;
+    env["PATH"] = "/usr/bin/";
+    env["RANDFILE"] = m_rand.c_str();
 
 	std::string stdOutput;
 	std::string errOutput;
@@ -1022,11 +1013,10 @@ OpenSSLUtils::checkKey(const std::string &caName,
 
 	LOGIT_DEBUG("Command: " << debugCmd);
 
-	blocxx::EnvVars env;
-	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", m_rand.c_str());
-
-	env.addVar("PASSWORD", password.c_str());
+    Environment env;
+    env["PATH"] = "/usr/bin/";
+    env["RANDFILE"] = m_rand.c_str();
+    env["PASSWORD"] = password.c_str();
 
 	std::string stdOutput;
 	std::string errOutput;
@@ -1109,10 +1099,10 @@ OpenSSLUtils::x509Convert(const ByteBuffer &certificate,
 
 	LOGIT_DEBUG("Command: " << debugCmd);
 
-	std::string randfile(::tempnam("/tmp/", ".rand-"));
-	blocxx::EnvVars env;
-	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", randfile.c_str());
+    std::string randfile(::tempnam("/tmp/", ".rand-"));
+    Environment env;
+    env["PATH"] = "/usr/bin/";
+    env["RANDFILE"] = randfile.c_str();
 	std::string stdOutput;
 	std::string errOutput;
 	int            status    = -1;
@@ -1239,18 +1229,18 @@ OpenSSLUtils::rsaConvert(const ByteBuffer &key,
 	LOGIT_DEBUG("Command: " << debugCmd);
 
 	std::string randfile(::tempnam("/tmp/", ".rand-"));
-	blocxx::EnvVars env;
-	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", randfile.c_str());
+    Environment env;
+    env["PATH"] = "/usr/bin/";
+    env["RANDFILE"] = randfile.c_str();
 
 	if(isInPassSet)
 	{
-		env.addVar("inpass", inPassword.c_str());
+		env["inpass"] = inPassword.c_str();
 	}
 
 	if(isOutPassSet)
 	{
-		env.addVar("outpass", outPassword.c_str());
+		env["outpass"] = outPassword.c_str();
 	}
 
 	std::string stdOutput;
@@ -1375,9 +1365,9 @@ OpenSSLUtils::crlConvert(const ByteBuffer &crl,
 	LOGIT_DEBUG("Command: " << debugCmd);
 
 	std::string randfile(::tempnam("/tmp/", ".rand-"));
-	blocxx::EnvVars env;
-	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", randfile.c_str());
+    Environment env;
+    env["PATH"] = "/usr/bin/";
+    env["RANDFILE"] = randfile.c_str();
 	std::string stdOutput;
 	std::string errOutput;
 	int            status    = -1;
@@ -1484,9 +1474,9 @@ OpenSSLUtils::reqConvert(const ByteBuffer &req,
 	LOGIT_DEBUG("Command: " << debugCmd);
 
 	std::string randfile(::tempnam("/tmp/", ".rand-"));
-	blocxx::EnvVars env;
-	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", randfile.c_str());
+    Environment env;
+    env["PATH"] = "/usr/bin/";
+    env["RANDFILE"] = randfile.c_str();
 	std::string stdOutput;
 	std::string errOutput;
 	int            status    = -1;
@@ -1626,18 +1616,18 @@ OpenSSLUtils::createPKCS12(const ByteBuffer &certificate,
 	LOGIT_DEBUG("Command: " << debugCmd);
 
 	std::string randfile(::tempnam("/tmp/", ".rand-"));
-	blocxx::EnvVars env;
-	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", randfile.c_str());
+    Environment env;
+    env["PATH"] = "/usr/bin/";
+    env["RANDFILE"] = randfile.c_str();
 
 	if(isInPassSet)
 	{
-		env.addVar("inpass", inPassword.c_str());
+		env["inpass"] = inPassword.c_str();
 	}
 
 	if(isOutPassSet)
 	{
-		env.addVar("outpass", outPassword.c_str());
+		env["outpass"] = outPassword.c_str();
 	}
 
 	std::string stdOutput;
@@ -1775,18 +1765,18 @@ OpenSSLUtils::pkcs12ToPEM(const ByteBuffer &pkcs12,
 	LOGIT_DEBUG("Command: " << debugCmd);
 
 	std::string randfile(::tempnam("/tmp/", ".rand-"));
-	blocxx::EnvVars env;
-	env.addVar("PATH", "/usr/bin/");
-	env.addVar("RANDFILE", randfile.c_str());
+    Environment env;
+    env["PATH"] = "/usr/bin/";
+    env["RANDFILE"] = randfile.c_str();
 
 	if(isInPassSet)
 	{
-		env.addVar("inpass", inPassword.c_str());
+		env["inpass"] = inPassword.c_str();
 	}
 
 	if(isOutPassSet)
 	{
-		env.addVar("outpass", outPassword.c_str());
+		env["outpass"] = outPassword.c_str();
 	}
 
 	std::string stdOutput;
@@ -2577,9 +2567,9 @@ OpenSSLUtils::digestMD5(const std::string &in)
   LOGIT_DEBUG("Command: " << dcmd);
 
   std::string randfile(::tempnam("/tmp/", ".rand-"));
-  blocxx::EnvVars env;
-  env.addVar("PATH", "/usr/bin/");
-  env.addVar("RANDFILE", randfile.c_str());
+  Environment env;
+  env["PATH"] = "/usr/bin/";
+  env["RANDFILE"] = randfile.c_str();
 
   std::string stdOutput;
   std::string errOutput;
