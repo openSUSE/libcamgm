@@ -54,7 +54,7 @@ public:
 	 *
 	 * @param regex	 Extended regular expression string.
 	 * @param icase  Match case insensitive.
-	 * @throws blocxx::RegExCompileException on invalid pattern
+	 * @throws ca_mgm::ValueException on invalid pattern
 	 */
 	ValuePosixRECheck(const std::string &regex,
 	                  bool icase = false);
@@ -65,7 +65,7 @@ public:
 	 *
 	 * @param value A string value.
 	 * @return true, if the regex matches the value, false on no match.
-	 * @throws blocxx::RegExExecuteException on execute failure.
+	 * @throws ca_mgm::ValueException on execute failure.
 	 */
 	virtual bool
 	isValid(const std::string &value) const;

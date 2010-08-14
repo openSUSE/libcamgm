@@ -43,7 +43,7 @@
  *   {
  *       do_something();
  *   }
- *   catch(const blocxx::Exception &subex)
+ *   catch(const ca_mgm::Exception &subex)
  *   {
  *       CA_MGM_THROW_SUBEX(ca_mgm::RuntimeException,
  *                          "Bad things happened", subex);

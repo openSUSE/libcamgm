@@ -55,7 +55,7 @@ public:
 	 * @param regex  Perl regular expression string.
 	 * @param icase  Match case insensitive.
 	 * @param utf8   Whether to enable UTF8 mode.
-	 * @throws blocxx::RegExCompileException on invalid pattern
+	 * @throws ca_mgm::ValueException on invalid pattern
 	 * or enabled utf8 mode with pcre that does not support it.
 	 */
 	ValuePerlRECheck(const std::string &regex,
@@ -68,7 +68,7 @@ public:
 	 *
 	 * @param value A string value.
 	 * @return true, if the regex matches the value, false on no match.
-	 * @throws blocxx::RegExExecuteException on execute failure.
+	 * @throws ca_mgm::ValueException on execute failure.
 	 */
 	virtual bool
 	isValid(const std::string &value) const;

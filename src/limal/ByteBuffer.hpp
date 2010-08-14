@@ -130,7 +130,7 @@ namespace LIMAL_NAMESPACE
          * @brief Return the byte at position <b>pos</b>.
          *
          * @return Return the byte at position <b>pos</b>.
-         * @throws blocxx::OutOfBoundsException if the position is bigger
+         * @throws ca_mgm::OutOfBoundsException if the position is bigger
          *         than the number of bytes in this ByteBuffer.
          */
         char        at(size_t pos) const;
@@ -162,7 +162,7 @@ namespace LIMAL_NAMESPACE
          *
          * @param buf The ByteBuffer object to assign
          * @return    A reference to this ByteBuffer object
-         * @throws    std::bad_alloc 
+         * @throws    std::bad_alloc
          */
         ByteBuffer& operator=(const ByteBuffer& buf);
 
@@ -172,7 +172,7 @@ namespace LIMAL_NAMESPACE
          * @param pos The position of the byte which should be returned.
          * @return    Read-Only reference to the byte at the specified
          *            position <b>pos</b>.
-         * @throws    blocxx::OutOfBoundsException if position is bigger
+         * @throws    ca_mgm::OutOfBoundsException if position is bigger
          *            than the size of this ByteBuffer.
          */
         const char& operator[](size_t pos) const;
@@ -183,7 +183,7 @@ namespace LIMAL_NAMESPACE
          * @param pos The position of the byte which should be returned.
          * @return    Read-Write reference to the byte at the specified
          *            position <b>pos</b>.
-         * @throws    blocxx::OutOfBoundsException if position is bigger
+         * @throws    ca_mgm::OutOfBoundsException if position is bigger
          *            than the size of this ByteBuffer.
          */
         char& operator[](size_t pos);
@@ -248,7 +248,7 @@ namespace LIMAL_NAMESPACE
 
         /**
          * @return   A ByteBuffer object that is the result of concatenating
-         *           the ByteBuffer object <b>b1</b> and the ByteBuffer object 
+         *           the ByteBuffer object <b>b1</b> and the ByteBuffer object
          *           <b>b2</b>.
          * @throws   std::bad_alloc
          */

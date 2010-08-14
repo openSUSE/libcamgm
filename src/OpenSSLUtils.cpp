@@ -26,7 +26,6 @@
 #include <limal/ca-mgm/LocalManagement.hpp>
 #include <limal/PerlRegEx.hpp>
 #include <limal/String.hpp>
-#include <blocxx/System.hpp>
 #include <limal/Date.hpp>
 #include <fstream>
 #include "Utils.hpp"
@@ -35,8 +34,6 @@ namespace CA_MGM_NAMESPACE
 {
 
 using namespace ca_mgm;
-using namespace blocxx;
-
 
 OpenSSLUtils::OpenSSLUtils(const std::string &configFile,
                            const std::string &command,
@@ -1862,7 +1859,7 @@ OpenSSLUtils::listCA(const std::string &repository)
 	if(r != 0)
 	{
 		LOGIT_ERROR("Cannot read directory: " << repository <<
-		            "(" << System::errorMsg(r) << ") [" << r << "]");
+		            "(" << ::strerror(r) << ") [" << r << "]");
 		CA_MGM_THROW(ca_mgm::SystemException,
 		             str::form(__("Cannot read directory: %s (%s) [%d]."),
 		                    repository.c_str(), ::strerror(r), r).c_str());
@@ -2062,7 +2059,7 @@ OpenSSLUtils::listRequests(const std::string &caName,
 	if(r != 0)
 	{
 		LOGIT_ERROR("Cannot read directory: " << reqDir <<
-		            "(" << System::errorMsg(r) << ") [" << r << "]");
+		            "(" << ::strerror(r) << ") [" << r << "]");
 		CA_MGM_THROW(ca_mgm::SystemException,
 		             str::form(__("Cannot read directory: %s (%s) [%d]."),
 		                    reqDir.c_str(), ::strerror(r), r).c_str());
@@ -2214,7 +2211,7 @@ OpenSSLUtils::listCertificates(const std::string &caName,
 	if(r != 0)
 	{
 		LOGIT_ERROR("Cannot read directory: " << certDir <<
-		            "(" << System::errorMsg(r) << ") [" << r << "]");
+		            "(" << ::strerror(r) << ") [" << r << "]");
 		CA_MGM_THROW(ca_mgm::SystemException,
 		             str::form(__("Cannot read directory: %s (%s) [%d]."),
 		                    certDir.c_str(), ::strerror(r), r).c_str());

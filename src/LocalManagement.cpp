@@ -33,14 +33,13 @@
 #include  "Commands.hpp"
 #include  "OpenSSLUtils.hpp"
 
-#include  <blocxx/File.hpp>
-#include  <blocxx/System.hpp>
+#include <unistd.h>
+#include <sys/file.h>
 
 namespace CA_MGM_NAMESPACE
 {
 
 using namespace ca_mgm;
-using namespace blocxx;
 
 namespace {
 inline std::string errno2String(int e) {
@@ -462,18 +461,17 @@ LocalManagement::readFile(const std::string& file)
 
 	}
 
-	File fileObject(fd);
 	ByteBuffer  ret;
 	size_t      i = 1;
 
 	while( i != 0 ) {
 		char *buf = new char[1025];
-		i = fileObject.read(buf, 1024);
+		i = ::read(fd, buf, 1024);
 
 		if(i == size_t(-1)) {
 
 			delete(buf);
-			fileObject.close();
+			::close(fd);
 
 			LOGIT_ERROR("Cannot read from file: " << file << "(" << errno << ")");
 			CA_MGM_THROW_ERRNO_MSG1(ca_mgm::SystemException,
@@ -486,7 +484,7 @@ LocalManagement::readFile(const std::string& file)
 		delete [] buf;
 	}
 
-	fileObject.close();
+	close(fd);
 
 	return ret;
 }
@@ -517,24 +515,20 @@ LocalManagement::writeFile(const ByteBuffer& data,
 
 	}
 
-	File fileObject(fd);
+    if(::flock(fd, LOCK_EX|LOCK_NB) != 0)
+    {
+      close(fd);
+      LOGIT_ERROR("Cannot get lock on file: " << file << "(" << errno << ")");
+      CA_MGM_THROW_ERRNO_MSG1(ca_mgm::SystemException,
+                              str::form(__("Cannot get lock on file %s."), file.c_str()).c_str(),
+                              errno);
+    }
+	size_t st = ::write(fd, data.data(), data.size());
 
-	int r = fileObject.getLock();
-	if(r != 0) {
-
-		LOGIT_ERROR("Cannot get lock on file: " << file << "(" << errno << ")");
-		CA_MGM_THROW_ERRNO_MSG1(ca_mgm::SystemException,
-		                        str::form(__("Cannot get lock on file %s."), file.c_str()).c_str(),
-		                        errno);
-
-	}
-
-	size_t st = fileObject.write(data.data(), data.size());
-
-	if(st == size_t(-1)) {
-
-		fileObject.unlock();
-		fileObject.close();
+	if(st == size_t(-1))
+    {
+      ::flock(fd, LOCK_UN);
+      ::close(fd);
 
 		LOGIT_ERROR("Cannot write to file: " << file << "(" << errno << ")");
 		CA_MGM_THROW_ERRNO_MSG1(ca_mgm::SystemException,
@@ -542,9 +536,9 @@ LocalManagement::writeFile(const ByteBuffer& data,
 		                        errno);
 	}
 
-	fileObject.flush();
-	fileObject.unlock();
-	fileObject.close();
+    ::fsync(fd);
+    ::flock(fd, LOCK_UN);
+    ::close(fd);
 }
 
 ByteBuffer

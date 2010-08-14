@@ -74,8 +74,6 @@ public:
 	 *      return (value.toInt() < 5);
 	 * @endcode
 	 *
-	 * The blocxx toInt() method may throw an string
-	 * conversion exception.
 	 *
 	 * @param value The value to evaluate.
 	 * @return The boolean result of the check.
