@@ -28,7 +28,7 @@
 
 #include  <limal/ca-mgm/config.h>
 #include  <limal/String.hpp>
-#include  <blocxx/RefCount.hpp>
+#include  <limal/ReferenceCounted.hpp>
 #include  <list>
 
 namespace LIMAL_NAMESPACE
@@ -51,7 +51,7 @@ class ValueCheck;
  *
  * @see ValueRegExCheck, ValueIntCheck and the ValueCheck class.
  */
-class ValueCheckBase
+class ValueCheckBase : public ReferenceCounted
 {
 public:
 	/**
@@ -107,7 +107,7 @@ protected:
 	 * Default constructor.
 	 */
 	ValueCheckBase()
-		: m_rcnt(0)
+		: ReferenceCounted()
 	{
 	}
 
@@ -117,12 +117,15 @@ private:
 	 * Use the default constructor to implement
 	 * a copy constructor in your derived class.
 	 */
-	ValueCheckBase(const ValueCheckBase &);
+	ValueCheckBase(const ValueCheckBase &r)
+	: ReferenceCounted(r)
+	{}
 
 	/**
 	 * Copy operator, private.
 	 */
-	ValueCheckBase & operator = (const ValueCheckBase &);
+	ValueCheckBase & operator = (const ValueCheckBase &r);
+
 
 	/**
 	 * Permit the ValueCheck class the access
@@ -130,10 +133,6 @@ private:
 	 */
 	friend class ValueCheck;
 
-	/**
-	 * The atomic reference counter variable.
-	 */
-	blocxx::RefCount m_rcnt;
 };
 
 

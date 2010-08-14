@@ -17,6 +17,7 @@ liblimal_ca_mgm_la_SOURCES  =	\
         PerlRegEx.cpp           \
         PosixRegEx.cpp          \
         String.cpp              \
+        ReferenceCounted.cpp    \
         ValuePosixRECheck.cpp   \
         ValuePerlRECheck.cpp    \
         ValueIntCheck.cpp       \

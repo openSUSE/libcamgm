@@ -28,7 +28,7 @@
 #include  <limal/Exception.hpp>
 #include  <limal/ca-mgm/CommonData.hpp>
 #include  <limal/String.hpp>
-#include  <blocxx/RefCount.hpp>
+#include  <limal/ReferenceCounted.hpp>
 #include  <list>
 
 #include  "Utils.hpp"
@@ -36,9 +36,6 @@
 
 namespace LIMAL_NAMESPACE
 {
-
-using namespace blocxx;
-
 
 // -------------------------------------------------------------------
 ValueCheck::ValueCheck()
@@ -57,7 +54,7 @@ ValueCheck::ValueCheck(ValueCheckBase *check)
 	, m_neg(false)
 	, m_self(check)
 {
-	incRCnt(m_self);
+	m_self->ref();
 }
 
 
@@ -69,7 +66,7 @@ ValueCheck::ValueCheck(const ValueCheck &ref)
 	, m_self(ref.m_self)
 	, m_list(ref.m_list)
 {
-	incRCnt(m_self);
+	m_self->ref();
 }
 
 
@@ -81,14 +78,14 @@ ValueCheck::ValueCheck(const ValueCheck &ref, ECheckOp op)
 	, m_self(ref.m_self)
 	, m_list(ref.m_list)
 {
-	incRCnt( m_self);
+	m_self->ref();
 }
 
 
 // -------------------------------------------------------------------
 ValueCheck::~ValueCheck()
 {
-	delRCnt(m_self);
+	m_self->unref();
 	m_self = NULL;
 }
 
@@ -97,8 +94,8 @@ ValueCheck::~ValueCheck()
 ValueCheck &
 ValueCheck::operator=(const ValueCheck &ref)
 {
-	incRCnt(ref.m_self);
-	delRCnt(m_self);
+	ref.ref();
+	m_self->unref();
 	m_cop  = ref.m_cop;
 	m_neg  = ref.m_neg;
 	m_self = ref.m_self;
@@ -111,8 +108,8 @@ ValueCheck::operator=(const ValueCheck &ref)
 ValueCheck &
 ValueCheck::operator=(ValueCheckBase *check)
 {
-	incRCnt(check);
-	delRCnt(m_self);
+	check->ref();
+	m_self->unref();
 	m_self = check;
 	return *this;
 }
@@ -232,7 +229,7 @@ ValueCheck::incRCnt(ValueCheckBase *ptr)
 {
 	if( ptr)
 	{
-		ptr->m_rcnt.inc();
+		ptr->ref();
 	}
 	else
 	{
@@ -245,13 +242,14 @@ ValueCheck::incRCnt(ValueCheckBase *ptr)
 inline void
 ValueCheck::delRCnt(ValueCheckBase *ptr)
 {
-	if( ptr)
-	{
-		if(ptr->m_rcnt.decAndTest())
-		{
-			delete ptr;
-		}
-	}
+  if( ptr)
+  {
+    ptr->unref();
+    if(ptr->refCount())
+    {
+      delete ptr;
+    }
+  }
 }
 
 

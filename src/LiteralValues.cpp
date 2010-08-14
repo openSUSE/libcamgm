@@ -426,8 +426,8 @@ LiteralValue::verify() const
 		if(!check.isValid(m_impl->literalValue))
 		{
 			// IPv6 address is allowed too
-			check = initIP6Check();
-			if(!check.isValid(m_impl->literalValue))
+			ValueCheck check2 = initIP6Check();
+			if(!check2.isValid(m_impl->literalValue))
 			{
 				LOGIT_DEBUG("Wrong LiteralValue for type 'IP': " << m_impl->literalValue);
 				result.push_back(str::form("Wrong LiteralValue for type 'IP': %s",
