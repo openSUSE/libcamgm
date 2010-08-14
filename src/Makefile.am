@@ -89,7 +89,7 @@ liblimal_ca_mgm_la_LDFLAGS  = \
 	-version-info $(LIB_VERSION_INFO) \
 	$(LIMAL_LIBS) -lssl
 
-liblimal_ca_mgm_la_LIBADD = $(LIB_SSL) $(LIB_UTIL)
+liblimal_ca_mgm_la_LIBADD = $(LIB_SSL) $(LIB_UTIL) $(LIB_PCRE)
 
 CLEANFILES     = *~
 DISTCLEANFILES = Commands.hpp config.log

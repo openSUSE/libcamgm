@@ -22,6 +22,7 @@ RPMNAME="limal-ca-mgm"
 RPMARCH=""
 RPMLIB="ca-mgm"
 MAINTAINER="Michael Calmer <mc@novell.com>"
+PCRE_REQUIRED=1
 
 limalbindir=\${bindir}
 limallibdir=\${libdir}/limal
@@ -153,9 +154,6 @@ AC_FUNC_ALLOCA
 AC_FUNC_STRERROR_R
 AC_HEADER_STDC
 
-dnl Check BloCxx installation
-LIMAL_CHECK_BLOCXX([1.0.0])
-
 dnl Check Swig installation
 LIMAL_CHECK_SWIG
 
@@ -268,6 +266,8 @@ if test "x${PCRE_LIB}" != x ; then
                 [
                         AC_DEFINE(HAVE_PCRE, 1, [Define to 1 if PCRE regex is avaliable])
                         AC_SUBST(HAVE_PCRE)
+                        LIB_PCRE="$PCRE_LIB"
+                        AC_SUBST(LIB_PCRE)
                         AC_MSG_RESULT([yes])
                 ],
                 [
