@@ -34,7 +34,7 @@ $(RPMNAME)-$(VERSION).tar.bz2: dist-bzip2
 	fi
 
 CLEANFILES = *~
-MAINTAINERCLEANFILES = configure configure.in $(RPMNAME).pc Makefile Makefile.in Makefile.am    \
+MAINTAINERCLEANFILES = configure $(RPMNAME).pc Makefile Makefile.in  \
                        package/$(RPMNAME)-$(VERSION).tar.bz2 package/$(RPMNAME).spec            \
                        ltmain.sh depcomp config.sub config.guess aclocal.m4 install-sh missing  \
 		       config.rpath config.h.in ABOUT-NLS mkinstalldirs

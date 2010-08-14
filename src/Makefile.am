@@ -92,7 +92,7 @@ liblimal_ca_mgm_la_LDFLAGS  = \
 liblimal_ca_mgm_la_LIBADD = $(LIB_SSL) $(LIB_UTIL)
 
 CLEANFILES     = *~
-DISTCLEANFILES = Commands.hpp Utils.hpp config.log
+DISTCLEANFILES = Commands.hpp config.log
 EXTRA_DIST     = *.hpp Commands.hpp.in openssl.cnf.tmpl \
                  INIParser/*.h INIParser/*.hpp
 
