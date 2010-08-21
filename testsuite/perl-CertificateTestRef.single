@@ -1,19 +1,18 @@
-#!/usr/bin/perl 
+#!/usr/bin/perl
 
-BEGIN 
+BEGIN
 {
     unshift @INC, '../swig/perl5';
 }
 
 use strict;
-use LIMAL;
-use LIMAL::CaMgm;
+use CaMgm;
 use Data::Dumper;
 
 print "START\n";
 
-my $ca = new LIMAL::CaMgm::CA("Test_CA1", "system", "./TestRepos/");
-my $rgd = $ca->getRequestDefaults($LIMAL::CaMgm::E_Client_Req);
+my $ca = new CaMgm::CA("Test_CA1", "system", "./TestRepos/");
+my $rgd = $ca->getRequestDefaults($CaMgm::E_Client_Req);
 
 my $rdnlist = $rgd->getSubjectDN()->getDN();
 
@@ -22,8 +21,8 @@ for(my $it = $rdnlist->begin();
     $rdnlist->iterator_incr($it))
 {
     print "DN Key ", $rdnlist->iterator_value($it)->getType(), "\n";
-    
-            
+
+
     if($rdnlist->iterator_value($it)->getType() eq "countryName")
     {
         $rdnlist->iterator_value($it)->setRDNValue("DE");
@@ -38,14 +37,14 @@ for(my $it = $rdnlist->begin();
     }
 }
 
-my $dn = new LIMAL::CaMgm::DNObject($rdnlist);
+my $dn = new CaMgm::DNObject($rdnlist);
 $rgd->setSubjectDN($dn);
 
-my $r = $ca->createRequest("system", $rgd, $LIMAL::CaMgm::E_Client_Req);
+my $r = $ca->createRequest("system", $rgd, $CaMgm::E_Client_Req);
 
 print "RETURN Request \n";
 
-my $cid = $ca->getIssueDefaults($LIMAL::CaMgm::E_Client_Cert);
+my $cid = $ca->getIssueDefaults($CaMgm::E_Client_Cert);
 
 # ------------------------ create netscape extension -----------------------------
 
@@ -60,10 +59,10 @@ $cid->extensions()->nsComment()->setValue("My Company Certificate");
 
 # ------------------------ create bit extension -----------------------------
 
-$cid->extensions()->keyUsage()->setKeyUsage($LIMAL::CaMgm::KeyUsageExt::decipherOnly);
-$cid->extensions()->nsCertType()->setNsCertType($LIMAL::CaMgm::NsCertTypeExt::objCA | 
-                                                $LIMAL::CaMgm::NsCertTypeExt::emailCA |
-                                                $LIMAL::CaMgm::NsCertTypeExt::sslCA);
+$cid->extensions()->keyUsage()->setKeyUsage($CaMgm::KeyUsageExt::decipherOnly);
+$cid->extensions()->nsCertType()->setNsCertType($CaMgm::NsCertTypeExt::objCA |
+                                                $CaMgm::NsCertTypeExt::emailCA |
+                                                $CaMgm::NsCertTypeExt::sslCA);
 
 # ----------------- create basic constrains extension -----------------------
 
@@ -71,7 +70,7 @@ $cid->extensions()->basicConstraints()->setBasicConstraints(1, 3);
 
 # ----------------- create extended keyUsage extension ----------------------
 
-my $sl = new LIMAL::StringList();
+my $sl = new CaMgm::StringList();
 $sl->push_back("2.3.4.5");
 $sl->push_back("2.12.10.39");
 $sl->push_back("codeSigning");
@@ -79,89 +78,89 @@ $sl->push_back("msCTLSign");
 $sl->push_back("nsSGC");
 
 $cid->extensions()->extendedKeyUsage()->setExtendedKeyUsage( $sl );
-        
+
 # ------------------------ create key identifier extension -----------------------------
-        
+
 $cid->extensions()->subjectKeyIdentifier()->setSubjectKeyIdentifier(1);
-$cid->extensions()->authorityKeyIdentifier()->setKeyID($LIMAL::CaMgm::AuthorityKeyIdentifierGenerateExt::KeyID_always);
-$cid->extensions()->authorityKeyIdentifier()->setIssuer($LIMAL::CaMgm::AuthorityKeyIdentifierGenerateExt::Issuer_always);
+$cid->extensions()->authorityKeyIdentifier()->setKeyID($CaMgm::AuthorityKeyIdentifierGenerateExt::KeyID_always);
+$cid->extensions()->authorityKeyIdentifier()->setIssuer($CaMgm::AuthorityKeyIdentifierGenerateExt::Issuer_always);
 
 # ------------------------ create alternative extension -----------------------------
-        
-my $list = new LIMAL::CaMgm::LiteralValueList();
-               
-$list->push_back(new LIMAL::CaMgm::LiteralValue("IP", "164.34.35.184"));
-$list->push_back(new LIMAL::CaMgm::LiteralValue("DNS", "ca.my-company.com"));
-$list->push_back(new LIMAL::CaMgm::LiteralValue("RID", "1.2.3.4"));
-$list->push_back(new LIMAL::CaMgm::LiteralValue("email", 'me@my-company.com'));
-$list->push_back(new LIMAL::CaMgm::LiteralValue("URI", "http://www.my-company.com/"));
-        
+
+my $list = new CaMgm::LiteralValueList();
+
+$list->push_back(new CaMgm::LiteralValue("IP", "164.34.35.184"));
+$list->push_back(new CaMgm::LiteralValue("DNS", "ca.my-company.com"));
+$list->push_back(new CaMgm::LiteralValue("RID", "1.2.3.4"));
+$list->push_back(new CaMgm::LiteralValue("email", 'me@my-company.com'));
+$list->push_back(new CaMgm::LiteralValue("URI", "http://www.my-company.com/"));
+
 $cid->extensions()->subjectAlternativeName()->setCopyEmail(1);
 $cid->extensions()->subjectAlternativeName()->setAlternativeNameList($list);
 $cid->extensions()->issuerAlternativeName()->setCopyIssuer(1);
 $cid->extensions()->issuerAlternativeName()->setAlternativeNameList($list);
-        
+
 # ---------------- create authority information extension ------------------------
-       
-my $info = new LIMAL::CaMgm::AuthorityInformationList();
-$info->push_back(new LIMAL::CaMgm::AuthorityInformation("OCSP", 
-                                                        new LIMAL::CaMgm::LiteralValue("URI", "http://www.my-company.com/ocsp.pl")));
-$info->push_back(new LIMAL::CaMgm::AuthorityInformation("caIssuers", 
-                                                        new LIMAL::CaMgm::LiteralValue("URI", "http://www.my-company.com/caIssuer.html")));
+
+my $info = new CaMgm::AuthorityInformationList();
+$info->push_back(new CaMgm::AuthorityInformation("OCSP",
+                                                        new CaMgm::LiteralValue("URI", "http://www.my-company.com/ocsp.pl")));
+$info->push_back(new CaMgm::AuthorityInformation("caIssuers",
+                                                        new CaMgm::LiteralValue("URI", "http://www.my-company.com/caIssuer.html")));
 
 $cid->extensions()->authorityInfoAccess()->setAuthorityInformation($info);
 
 # ------------------------ create CRL dist point extension -----------------------
 
-my $crldist = new LIMAL::CaMgm::LiteralValueList() ;
-$crldist->push_back(new LIMAL::CaMgm::LiteralValue("URI", "ldap://ldap.my-company.com/?ou=PKI%2ddc=my-company%2ddc=com"));
+my $crldist = new CaMgm::LiteralValueList() ;
+$crldist->push_back(new CaMgm::LiteralValue("URI", "ldap://ldap.my-company.com/?ou=PKI%2ddc=my-company%2ddc=com"));
 
 $cid->extensions()->crlDistributionPoints()->setCRLDistributionPoints($crldist);
 
 # -------------------- create certificate policy extension -----------------------
 
-my $p = new LIMAL::CaMgm::CertificatePolicyList();
-$p->push_back(new LIMAL::CaMgm::CertificatePolicy("1.12.35.1"));
+my $p = new CaMgm::CertificatePolicyList();
+$p->push_back(new CaMgm::CertificatePolicy("1.12.35.1"));
 
-my $p2 = new LIMAL::CaMgm::CertificatePolicy();
+my $p2 = new CaMgm::CertificatePolicy();
 $p2->setPolicyIdentifier("1.3.6.8");
 
-my $slp = new LIMAL::StringList();
+my $slp = new CaMgm::StringList();
 $slp->push_back("http://www.my-company.com/");
 $slp->push_back("http://www2.my-company.com/");
 $p2->setCpsURI($slp);
 
-my $num = new LIMAL::Int32List();
+my $num = new CaMgm::Int32List();
 $num->push_back(1);
 $num->push_back(5);
 $num->push_back(8);
 
-my $un = new LIMAL::CaMgm::UserNotice();
+my $un = new CaMgm::UserNotice();
 $un->setExplicitText("This is the explicite Text");
 $un->setOrganizationNotice("My Company", $num);
 
-my $unl = new LIMAL::CaMgm::UserNoticeList();
+my $unl = new CaMgm::UserNoticeList();
 $unl->push_back($un);
 $p2->setUserNoticeList($unl);
 $p->push_back($p2);
 
 $cid->extensions()->certificatePolicies()->setPolicies($p);
-        
+
 #---------------------------------------------------------------------------------
-        
-my $c = $ca->issueCertificate($r, $cid, $LIMAL::CaMgm::E_CA_Cert);
+
+my $c = $ca->issueCertificate($r, $cid, $CaMgm::E_CA_Cert);
 
 print "RETURN Certificate \n";
 
-if( -e "./TestRepos/Test_CA1/newcerts/$c.pem") 
-{                             
+if( -e "./TestRepos/Test_CA1/newcerts/$c.pem")
+{
     print "Certificate exists: true\n";
 }
 
 my $cd = $ca->getCertificate($c);
-        
+
 my $ret = $cd->getExtensions()->dump();
-        
+
 for(my $it = $ret->begin();
     !$ret->iterator_equal($it, $ret->end());
     $ret->iterator_incr($it))

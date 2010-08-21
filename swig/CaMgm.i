@@ -1,6 +1,4 @@
-%module "LIMAL::CaMgm"
-
-%include "limal.i"
+%module "CaMgm"
 
 %{
 #include <limal/ca-mgm/config.h>
@@ -8,7 +6,20 @@
 #include <limal/ca-mgm/CA.hpp>
 %}
 
-typedef blocxx::Array<blocxx::String> StringArray;
+%include <camgm_exceptions.i>
+%include <camgm_types.i>
+%include <camgm_std_list.i>
+%include <camgm_std_map.i>
+%include <camgm_std_vector.i>
+%include <camgm_CommonTypes.i>
+
+%template(StringArray) std::vector<std::string>;
+%template(StringList)  std::list<std::string>;
+%template(StringMap)   std::map<std::string, std::string>;
+%template(Int32List)   std::list<int32_t>;
+
+
+typedef std::vector<std::string> StringArray;
 
 %include limal/ca-mgm/config.h
 %include limal/ca-mgm/CommonData.hpp
@@ -57,14 +68,13 @@ typedef blocxx::Array<blocxx::String> StringArray;
 %include limal/ca-mgm/LocalManagement.hpp
 %include limal/ca-mgm/CA.hpp
 
-%template(StringArrayList) blocxx::List<blocxx::Array<blocxx::String> >;
-%template(StringMapArray)  blocxx::Array<blocxx::Map<blocxx::String, blocxx::String> >;
+%template(StringArrayList) std::list<std::vector<std::string> >;
+%template(StringMapArray)  std::vector<std::map<std::string, std::string> >;
 
-%template(AuthorityInformationList) blocxx::List<limal::ca_mgm::AuthorityInformation>;
-%template(UserNoticeList)           blocxx::List<limal::ca_mgm::UserNotice>;
-%template(CertificatePolicyList)    blocxx::List<limal::ca_mgm::CertificatePolicy>;
-%template(RevocationEntryMap)       blocxx::Map<blocxx::String, limal::ca_mgm::RevocationEntry>;
-%template(LiteralValueList)         blocxx::List<limal::ca_mgm::LiteralValue>;
-%template(RDNObjectList)            blocxx::List<limal::ca_mgm::RDNObject>;
-
+%template(AuthorityInformationList) std::list<ca_mgm::AuthorityInformation>;
+%template(UserNoticeList)           std::list<ca_mgm::UserNotice>;
+%template(CertificatePolicyList)    std::list<ca_mgm::CertificatePolicy>;
+%template(RevocationEntryMap)       std::map<std::string, ca_mgm::RevocationEntry>;
+%template(LiteralValueList)         std::list<ca_mgm::LiteralValue>;
+%template(RDNObjectList)            std::list<ca_mgm::RDNObject>;
 

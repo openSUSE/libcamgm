@@ -7,18 +7,13 @@ DN Key organizationalUnitName
 DN Key commonName
 DN Key emailAddress
 2:$VAR1 = {
-          'subexception' => {
-                              'file' => 'CA.cpp',
-                              'type' => 'ValueException',
-                              'line' => 1712,
-                              'message' => 'emailAddress must be defined.',
-                              'code' => -116
-                            },
           'file' => 'CA.cpp',
           'type' => 'RuntimeException',
-          'line' => 473,
-          'message' => 'Issuing the certificate failed.',
+          'line' => 501,
+          'message' => 'Issuing the certificate failed.
+	CA.cpp: 1761 ValueException: -116: emailAddress must be defined.',
           'code' => -1
         };
 RuntimeException:-1:Issuing the certificate failed.
+	CA.cpp: 1761 ValueException: -116: emailAddress must be defined.
 DONE

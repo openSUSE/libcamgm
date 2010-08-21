@@ -1,6 +1,6 @@
-#!/usr/bin/perl 
+#!/usr/bin/perl
 
-BEGIN 
+BEGIN
 {
     unshift @INC, '../swig/perl5';
     $ENV{LANG} = "en_US";
@@ -8,24 +8,21 @@ BEGIN
 }
 
 use strict;
-use LIMAL;
-use LIMAL::CaMgm;
+use CaMgm;
 use Data::Dumper;
 
-my $comp = new LIMAL::StringArray();
-$comp->push_back("*");
+my $logref = CaMgm::LogControl::instance();
+$logref->setLogLevel( $CaMgm::logger::E_INFO );
+$logref->logToStdErr();
 
-my $cat = new LIMAL::StringArray();
-$cat->push_back("INFO");
 
-my $logref = LIMAL::Logger::createCerrLogger("$0", $comp, $cat,
-                                             "%-6p %c [%M:%L] %m");
-LIMAL::Logger::setDefaultLogger($logref);
+#my $logref = CaMgm::Logger::createCerrLogger("$0", $comp, $cat,
+#                                             "%-6p %c [%M:%L] %m");
 
 print "START\n";
 
-my $ca = new LIMAL::CaMgm::CA("Test_CA1", "system", "./TestRepos/");
-my $rgd = $ca->getRequestDefaults($LIMAL::CaMgm::E_Client_Req);
+my $ca = new CaMgm::CA("Test_CA1", "system", "./TestRepos/");
+my $rgd = $ca->getRequestDefaults($CaMgm::E_Client_Req);
 
 my $rdnlist = $rgd->getSubjectDN()->getDN();
 
@@ -34,8 +31,8 @@ for(my $it = $rdnlist->begin();
     $rdnlist->iterator_incr($it))
 {
     print "DN Key ", $rdnlist->iterator_value($it)->getType(), "\n";
-    
-            
+
+
     if($rdnlist->iterator_value($it)->getType() eq "countryName")
     {
         $rdnlist->iterator_value($it)->setRDNValue("DE");
@@ -51,21 +48,21 @@ for(my $it = $rdnlist->begin();
 }
 
 
-my $dn = new LIMAL::CaMgm::DNObject($rdnlist);
+my $dn = new CaMgm::DNObject($rdnlist);
 $rgd->setSubjectDN($dn);
 
 my $cid = "";
 
 eval{
-    $cid = $ca->getIssueDefaults($LIMAL::CaMgm::E_Client_Cert);
+    $cid = $ca->getIssueDefaults($CaMgm::E_Client_Cert);
 };
-if($@) 
+if($@)
 {
     use Data::Dumper;
-    
+
     print "1:".Data::Dumper->Dump([$@]);
     print $@->{type}.":".$@->{code}.":".$@->{message}."\n";
-    
+
     exit 0;
 }
 
@@ -74,17 +71,17 @@ my $c = undef;
 
 #---------------------------------------------------------------------------------
 eval {
-        
-    $c = $ca->createCertificate("system", $rgd, $cid, $LIMAL::CaMgm::E_Client_Cert);
+
+    $c = $ca->createCertificate("system", $rgd, $cid, $CaMgm::E_Client_Cert);
 
 };
-if($@) 
+if($@)
 {
     use Data::Dumper;
-    
+
     print "2:".Data::Dumper->Dump([$@]);
     print $@->{type}.":".$@->{code}.":".$@->{message}."\n";
-    
+
     #exit 0;
 }
 

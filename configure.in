@@ -303,6 +303,8 @@ testsuite/Makefile
 testsuite/TestRepos/Makefile
 testsuite/limal.test/Makefile
 po/Makefile.in
+typemaps/perl5/Makefile
+typemaps/Makefile
 )
 AC_OUTPUT
 

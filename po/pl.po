@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2010-06-03 17:06+0200\n"
+"POT-Creation-Date: 2010-08-21 18:28+0200\n"
 "PO-Revision-Date: 2010-05-24 03:03+0200\n"
 "Last-Translator: Mariusz Fik <fisiu@opensuse.org>\n"
 "Language-Team: Polish <opensuse-pl@opensuse.org>\n"
@@ -17,276 +17,292 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 
-#: src/AuthorityInfoAccessExtension.cpp:108
-#: src/AuthorityInfoAccessExtension.cpp:137
+#: src/AuthorityInfoAccessExtension.cpp:104
+#: src/AuthorityInfoAccessExtension.cpp:133
 msgid "Invalid location."
 msgstr "Nieprawidłowa lokalizacja."
 
-#: src/AuthorityInfoAccessExtension.cpp:113
-#: src/AuthorityInfoAccessExtension.cpp:142
+#: src/AuthorityInfoAccessExtension.cpp:109
+#: src/AuthorityInfoAccessExtension.cpp:138
 msgid "Invalid accessOID."
 msgstr "Nieprawidłowy OID dostępu."
 
-#: src/AuthorityInfoAccessExtension.cpp:257
-#: src/AuthorityInfoAccessExtension.cpp:340
-#: src/AuthorityKeyIdentifierGenerateExtension.cpp:84
-#: src/AuthorityKeyIdentifierGenerateExtension.cpp:191
-#: src/BasicConstraintsExtension.cpp:82 src/BasicConstraintsExtension.cpp:185
-#: src/BitExtensions.cpp:132 src/BitExtensions.cpp:245
-#: src/BitExtensions.cpp:372 src/BitExtensions.cpp:480 src/CA.cpp:1580
-#: src/CertificateIssueData.cpp:217 src/CertificatePoliciesExtension.cpp:167
-#: src/CertificatePoliciesExtension.cpp:262
-#: src/CertificatePoliciesExtension.cpp:423
-#: src/CertificatePoliciesExtension.cpp:521
-#: src/CertificatePoliciesExtension.cpp:711
-#: src/CertificatePoliciesExtension.cpp:828
-#: src/CRLDistributionPointsExtension.cpp:74
-#: src/CRLDistributionPointsExtension.cpp:164 src/CRLGenerationData.cpp:161
-#: src/DNObject.cpp:249 src/ExtendedKeyUsageExt.cpp:75
-#: src/ExtendedKeyUsageExt.cpp:227 src/IssuerAlternativeNameExtension.cpp:96
-#: src/IssuerAlternativeNameExtension.cpp:222
-#: src/RequestGenerationData.cpp:246 src/StringExtensions.cpp:120
-#: src/StringExtensions.cpp:197 src/StringExtensions.cpp:285
-#: src/StringExtensions.cpp:355 src/StringExtensions.cpp:439
-#: src/StringExtensions.cpp:509 src/StringExtensions.cpp:592
-#: src/StringExtensions.cpp:662 src/StringExtensions.cpp:744
-#: src/StringExtensions.cpp:814 src/StringExtensions.cpp:956
-#: src/StringExtensions.cpp:1018 src/StringExtensions.cpp:1082
-#: src/SubjectAlternativeNameExtension.cpp:83
-#: src/SubjectAlternativeNameExtension.cpp:213
-#: src/SubjectKeyIdentifierExtension.cpp:83
-#: src/SubjectKeyIdentifierExtension.cpp:206
+#: src/AuthorityInfoAccessExtension.cpp:253
+#: src/AuthorityInfoAccessExtension.cpp:336
+#: src/AuthorityKeyIdentifierGenerateExtension.cpp:82
+#: src/AuthorityKeyIdentifierGenerateExtension.cpp:189
+#: src/BasicConstraintsExtension.cpp:80 src/BasicConstraintsExtension.cpp:183
+#: src/BitExtensions.cpp:368 src/BitExtensions.cpp:476 src/CA.cpp:1631
+#: src/CertificatePoliciesExtension.cpp:163
+#: src/CertificatePoliciesExtension.cpp:258
+#: src/CertificatePoliciesExtension.cpp:419
+#: src/CertificatePoliciesExtension.cpp:517
+#: src/CertificatePoliciesExtension.cpp:707
+#: src/CertificatePoliciesExtension.cpp:824
+#: src/CRLDistributionPointsExtension.cpp:72
+#: src/CRLDistributionPointsExtension.cpp:162 src/DNObject.cpp:500
+#: src/ExtendedKeyUsageExt.cpp:73 src/ExtendedKeyUsageExt.cpp:225
+#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:244
+#: src/StringExtensions.cpp:118 src/StringExtensions.cpp:195
+#: src/StringExtensions.cpp:283 src/StringExtensions.cpp:353
+#: src/StringExtensions.cpp:437 src/StringExtensions.cpp:507
+#: src/StringExtensions.cpp:590 src/StringExtensions.cpp:660
+#: src/StringExtensions.cpp:742 src/StringExtensions.cpp:812
+#: src/StringExtensions.cpp:954 src/StringExtensions.cpp:1016
+#: src/StringExtensions.cpp:1080 src/SubjectAlternativeNameExtension.cpp:81
+#: src/SubjectAlternativeNameExtension.cpp:211
+#: src/SubjectKeyIdentifierExtension.cpp:79
+#: src/SubjectKeyIdentifierExtension.cpp:202
 msgid "Wrong type: %1."
 msgstr "Nieprawidłowy typ: %1."
 
-#: src/AuthorityInfoAccessExtension.cpp:308
+#: src/AuthorityInfoAccessExtension.cpp:304
 msgid "Invalid AuthorityInformation in the information list."
 msgstr "Nieprawidłowy wpis AuthorityInformation na liście informacyjnej."
 
-#: src/AuthorityInfoAccessExtension.cpp:321
+#: src/AuthorityInfoAccessExtension.cpp:317
 msgid "AuthorityInfoAccessExt is not present."
 msgstr "AuthorityInfoAccessExt nie istnieje."
 
-#: src/AuthorityInfoAccessExtension.cpp:332
+#: src/AuthorityInfoAccessExtension.cpp:328
 msgid "Invalid AuthorityInfoAccessExt object."
 msgstr "Nieprawidłowy obiekt AuthorityInfoAccessExt."
 
-#: src/AuthorityKeyIdentifierExtension.cpp:95
-#: src/AuthorityKeyIdentifierExtension.cpp:106
-#: src/AuthorityKeyIdentifierExtension.cpp:117
+#: src/AuthorityKeyIdentifierExtension.cpp:93
+#: src/AuthorityKeyIdentifierExtension.cpp:104
+#: src/AuthorityKeyIdentifierExtension.cpp:115
 msgid "AuthorityKeyIdentifierExt is not present."
 msgstr "AuthorityKeyIdentifierExt nie istnieje."
 
-#: src/AuthorityKeyIdentifierGenerateExtension.cpp:152
-#: src/AuthorityKeyIdentifierGenerateExtension.cpp:171
+#: src/AuthorityKeyIdentifierGenerateExtension.cpp:150
+#: src/AuthorityKeyIdentifierGenerateExtension.cpp:169
 msgid "AuthorityKeyIdentifierGenerateExt is not present."
 msgstr "AuthorityKeyIdentifierGenerateExt nie istnieje."
 
-#: src/AuthorityKeyIdentifierGenerateExtension.cpp:183
+#: src/AuthorityKeyIdentifierGenerateExtension.cpp:181
 msgid "Invalid AuthorityKeyIdentifierGenerateExt object."
 msgstr "Nieprawidłowy obiekt AuthorityKeyIdentifierGenerateExt."
 
-#: src/BasicConstraintsExtension.cpp:153 src/BasicConstraintsExtension.cpp:165
+#: src/BasicConstraintsExtension.cpp:151 src/BasicConstraintsExtension.cpp:163
 msgid "BasicConstraintsExt is not present."
 msgstr "BasicConstraintsExt nie istnieje."
 
-#: src/BasicConstraintsExtension.cpp:177
+#: src/BasicConstraintsExtension.cpp:175
 msgid "Invalid BasicConstraintsExt object."
 msgstr "Nieprawidłowy obiekt BasicConstraintsExt."
 
-#: src/BitExtensions.cpp:109
+#: src/BitExtensions.cpp:107
 msgid "This BitExtension is not present."
 msgstr "Taki BitExtension nie istnieje."
 
-#: src/BitExtensions.cpp:172 src/BitExtensions.cpp:201
+#: src/BitExtensions.cpp:130 src/BitExtensions.cpp:243
+#: src/CertificateIssueData.cpp:215 src/CRLGenerationData.cpp:158
+#: src/DNObject.cpp:258 src/IssuerAlternativeNameExtension.cpp:220
+#, fuzzy, c-format
+msgid "Wrong type: %d."
+msgstr "Nieprawidłowy typ: %1."
+
+#: src/BitExtensions.cpp:170 src/BitExtensions.cpp:199
 msgid "Invalid value for keyUsage."
 msgstr "Nieprawidłowa wartość dla keyUsage."
 
-#: src/BitExtensions.cpp:213 src/BitExtensions.cpp:224
+#: src/BitExtensions.cpp:211 src/BitExtensions.cpp:222
 msgid "KeyUsageExt is not present."
 msgstr "KeyUsageExt nie istnieje."
 
-#: src/BitExtensions.cpp:237
+#: src/BitExtensions.cpp:235
 msgid "Invalid KeyUsageExt object."
 msgstr "Nieprawidłowy obiekt KeyUsageExt."
 
-#: src/BitExtensions.cpp:410
+#: src/BitExtensions.cpp:406
 msgid "Invalid value for NsCertTypeExt."
 msgstr "Nieprawidłowa wartość dla NsCertTypeExt."
 
-#: src/BitExtensions.cpp:439
+#: src/BitExtensions.cpp:435
 msgid "Invalid value for NsCertTypeExt: %1."
 msgstr "Nieprawidłowa wartość dla NsCertTypeExt: %1."
 
-#: src/BitExtensions.cpp:451
+#: src/BitExtensions.cpp:447
 msgid "NsCertTypeExt is not present."
 msgstr "NsCertTypeExt nie istnieje."
 
-#: src/BitExtensions.cpp:472
+#: src/BitExtensions.cpp:468
 msgid "Invalid NsCertTypeExt object."
 msgstr "Nieprawidłowy obiekt NsCertTypeExt."
 
-#: src/CA.cpp:99
+#: src/CA.cpp:96
 msgid "Template not initialized."
 msgstr "Szablon nie został zainicjowany."
 
-#: src/CA.cpp:157 src/CA.cpp:1471
+#: src/CA.cpp:166 src/CA.cpp:1522
 msgid "Empty CA name."
 msgstr "Pusta nazwa CA."
 
-#: src/CA.cpp:165
-msgid "Template does not exist: %1."
+#: src/CA.cpp:174
+#, fuzzy, c-format
+msgid "Template does not exist: %s."
 msgstr "Szablon nie istnieje: %1."
 
-#: src/CA.cpp:177 src/CA.cpp:1492
+#: src/CA.cpp:186 src/CA.cpp:1543
 msgid "Invalid CA password."
 msgstr "Nieprawidłowe hasło CA."
 
-#: src/CA.cpp:223 src/CA.cpp:1147 src/CA.cpp:1290
+#: src/CA.cpp:230 src/CA.cpp:1175 src/CA.cpp:1341
 msgid "Error while creating the CA infrastructure."
 msgstr "Błąd podczas tworzenia infrastruktury CA."
 
-#: src/CA.cpp:243 src/CA.cpp:987
-msgid "Cannot parse the certificate name %1."
+#: src/CA.cpp:250 src/CA.cpp:1015
+#, fuzzy, c-format
+msgid "Cannot parse the certificate name %s."
 msgstr "Zanalizowanie nazwy certyfikatu %1 nie powiodło się."
 
-#: src/CA.cpp:254
+#: src/CA.cpp:261
 msgid "Cannot copy the private key."
 msgstr "Kopiowanie klucza prywatnego nie powiodło się."
 
-#: src/CA.cpp:265
+#: src/CA.cpp:272
 msgid "Cannot copy the certificate."
 msgstr "Kopiowanie certyfikatu nie powiodło się."
 
-#: src/CA.cpp:297
+#: src/CA.cpp:304
 msgid "Invalid request data."
 msgstr "Zażądano nieprawidłowych danych."
 
-#: src/CA.cpp:317
-msgid "Duplicate DN. Key %1.key already exists."
+#: src/CA.cpp:323
+#, fuzzy, c-format
+msgid "Duplicate DN. Key %s.key already exists."
 msgstr "Zduplikowany DN. Klucz %1.key już istnieje."
 
-#: src/CA.cpp:325
-msgid "Duplicate DN. Request %1.req already exists."
+#: src/CA.cpp:331
+#, fuzzy, c-format
+msgid "Duplicate DN. Request %s.req already exists."
 msgstr "Zduplikowany DN. Żądanie %1.req już istnieje."
 
-#: src/CA.cpp:370
-msgid "Request does not exist (%1)."
+#: src/CA.cpp:400
+#, fuzzy, c-format
+msgid "Request does not exist (%s)."
 msgstr "Żądanie nie istnieje (%1)."
 
-#: src/CA.cpp:376
+#: src/CA.cpp:406
 msgid "Invalid issue data."
 msgstr "Niezgodne dane."
 
-#: src/CA.cpp:393
+#: src/CA.cpp:423
 msgid "The CA expires before the certificate should expire."
 msgstr "Ważność CA wygasła, zanim certyfikat powinien wygasnąć."
 
-#: src/CA.cpp:471
+#: src/CA.cpp:501
 msgid "Issuing the certificate failed."
 msgstr "Sprawdzenie zgodności certyfikatu nie powiodło się."
 
-#: src/CA.cpp:488
-msgid "File %1 not found in the repository."
+#: src/CA.cpp:518
+#, fuzzy, c-format
+msgid "File %s not found in the repository."
 msgstr "Plik %1 nie został znaleziony w repozytorium."
 
-#: src/CA.cpp:495 src/CRLData_Priv.cpp:177
+#: src/CA.cpp:525 src/CRLData_Priv.cpp:153
 msgid "Invalid CRL reason."
 msgstr "Nieprawidłowy powód CRL."
 
-#: src/CA.cpp:518
+#: src/CA.cpp:548
 msgid "Invalid CRL data."
 msgstr "Nieprawidłowe dane CRL."
 
-#: src/CA.cpp:566
+#: src/CA.cpp:594
 msgid "Duplicate DN. Request already exists."
 msgstr "Zduplikowany DN. Żądanie już istnieje."
 
-#: src/CA.cpp:831 src/CA.cpp:858 src/CA.cpp:888 src/OpenSSLUtils.cpp:1005
+#: src/CA.cpp:859 src/CA.cpp:886 src/CA.cpp:916 src/OpenSSLUtils.cpp:988
 msgid "Cannot parse the certificate name."
 msgstr "Zanalizowanie nazwy certyfikatu nie powiodło się."
 
-#: src/CA.cpp:939
-msgid "Request %1 does not exist."
+#: src/CA.cpp:967
+#, fuzzy, c-format
+msgid "Request %s does not exist."
 msgstr "Żądanie %1 nie istnieje."
 
-#: src/CA.cpp:961
+#: src/CA.cpp:989
 msgid "Removing the request failed (%1)."
 msgstr "Usunięcie żądania nie powiodło się (%1)."
 
-#: src/CA.cpp:975
-msgid "Certificate %1 does not exist."
+#: src/CA.cpp:1003
+#, fuzzy, c-format
+msgid "Certificate %s does not exist."
 msgstr "Certyfikat %1 nie istnieje."
 
-#: src/CA.cpp:1024
-msgid "Removing the certificate failed: %1."
+#: src/CA.cpp:1052
+#, fuzzy, c-format
+msgid "Removing the certificate failed: %d."
 msgstr "Usunięcie certyfikatu nie powiodło się: %1."
 
-#: src/CA.cpp:1032
+#: src/CA.cpp:1060
+#, fuzzy, c-format
 msgid ""
 "Only revoked or expired certificates can be deleted. The status of the "
-"certificate is %1."
+"certificate is %s."
 msgstr ""
 "Tylko unieważnione lub przestarzałe certyfikaty mogą zostać usunięte. Status "
 "tego certyfikatu: %1."
 
-#: src/CA.cpp:1044
+#: src/CA.cpp:1072
 msgid "Database not found."
 msgstr "Baza danych nie została znaleziona."
 
-#: src/CA.cpp:1070
+#: src/CA.cpp:1098
 msgid "Certificate does not exist."
 msgstr "Certyfikat nie istnieje."
 
-#: src/CA.cpp:1084
-msgid "Invalid purpose %1."
+#: src/CA.cpp:1112
+#, fuzzy, c-format
+msgid "Invalid purpose %s."
 msgstr "Nieprawidłowe przeznaczenie: %1."
 
-#: src/CA.cpp:1127
+#: src/CA.cpp:1155
 msgid "Invalid CA request data."
 msgstr "Nieprawidłowe dane żądania CA."
 
-#: src/CA.cpp:1133
+#: src/CA.cpp:1161
 msgid "Invalid CA issue data."
 msgstr "Niezgodne dane CA."
 
-#: src/CA.cpp:1228
+#: src/CA.cpp:1279
 msgid "CA name is empty."
 msgstr "Nazwa CA jest pusta."
 
-#: src/CA.cpp:1237
+#: src/CA.cpp:1288
 msgid "CA directory already exists."
 msgstr "Katalog CA już istnieje."
 
-#: src/CA.cpp:1248
+#: src/CA.cpp:1299
 msgid "According to basicConstraints, this is not a CA."
 msgstr "Zgodnie z  basicConstraints, to nie jest CA."
 
-#: src/CA.cpp:1255
+#: src/CA.cpp:1306
 msgid "CA key is empty."
 msgstr "Klucz CA jest pusty."
 
-#: src/CA.cpp:1264
+#: src/CA.cpp:1315
 msgid "Invalid key data."
 msgstr "Nieprawidłowe dane klucza."
 
-#: src/CA.cpp:1271
+#: src/CA.cpp:1322
 msgid "CA password is empty."
 msgstr "Hasło CA jest puste."
 
-#: src/CA.cpp:1315
+#: src/CA.cpp:1366
 msgid "Error during key encryption."
 msgstr "Wystąpił błąd podczas szyfrowania klucza.."
 
-#: src/CA.cpp:1337
+#: src/CA.cpp:1388
 msgid "Error during write defaults."
 msgstr "Wystąpił błąd podczas zapisu wartości domyślnych."
 
-#: src/CA.cpp:1481
-msgid "CA name does not exist (%1)."
+#: src/CA.cpp:1532
+#, fuzzy, c-format
+msgid "CA name does not exist (%s)."
 msgstr "Nazwa CA nie istnieje (%1)."
 
-#: src/CA.cpp:1512
+#: src/CA.cpp:1563
 msgid ""
 "Deleting the CA is not allowed. The CA must be expired or never have signed "
 "a certificate."
@@ -294,51 +310,56 @@ msgstr ""
 "Usunięcie CA nie jest dozwolone. Ważność CA musi wygasnąć jeśli podpisał "
 "jakikolwiek certyfikat."
 
-#: src/CA.cpp:1537
+#: src/CA.cpp:1588
 msgid "Deleting the CA failed: %1."
 msgstr "Usunięcie CA nie powiodło się: %1."
 
-#: src/CA.cpp:1588
+#: src/CA.cpp:1639
 msgid "The configuration file is missing a value for policy."
 msgstr "Plik konfiguracyjny nie zawiera wartości dla reguły."
 
-#: src/CA.cpp:1598 src/CA.cpp:1860 src/DNObject.cpp:268
+#: src/CA.cpp:1649 src/CA.cpp:1911 src/DNObject.cpp:277
 #: src/DNObject_Priv.cpp:207
-msgid "Cannot parse section %1."
+#, fuzzy, c-format
+msgid "Cannot parse section %s."
 msgstr "Zanalizowanie sekcji %1 nie powiodło się."
 
-#: src/CA.cpp:1670
-msgid "Field %1 must have a value."
+#: src/CA.cpp:1721
+#, fuzzy, c-format
+msgid "Field %s must have a value."
 msgstr "Pole %1 musi mieć podaną wartość."
 
-#: src/CA.cpp:1709
-msgid "%1 must be defined."
+#: src/CA.cpp:1760
+#, fuzzy, c-format
+msgid "%s must be defined."
 msgstr "%1 musi być zdefiniowany."
 
-#: src/CA.cpp:1794
-msgid "%1 must be the same in the CA certificate (%2) and the request (%3)."
+#: src/CA.cpp:1845
+#, fuzzy, c-format
+msgid "%s must be the same in the CA certificate (%s) and the request (%s)."
 msgstr ""
 "Pole %1 musi mieć tą samą wartość w certyfikacie CA (%2) i w żądaniu (%3)."
 
-#: src/CA.cpp:1806
+#: src/CA.cpp:1857
 msgid "The configuration file seems to have an invalid policy."
 msgstr "Nieprawidłowa reguła w pliku konfiguracyjnym."
 
-#: src/CA.cpp:1832 src/CA.cpp:1842
+#: src/CA.cpp:1883 src/CA.cpp:1893
 msgid "The configuration is not initialized."
 msgstr "Konfiguracja nie została zainicjowana."
 
-#: src/CA.cpp:1850 src/DNObject.cpp:257 src/DNObject_Priv.cpp:197
+#: src/CA.cpp:1901 src/DNObject.cpp:266 src/DNObject_Priv.cpp:197
 msgid "Missing section 'distinguished_name' in the configuration file."
 msgstr "Brak sekcji 'distinguished_name' w pliku konfiguracyjnym."
 
-#: src/CertificateData_Priv.cpp:92 src/CRLData_Priv.cpp:122
-#: src/CRLData_Priv.cpp:159
-msgid "Invalid serial %1."
+#: src/CertificateData_Priv.cpp:92 src/CRLData_Priv.cpp:98
+#: src/CRLData_Priv.cpp:135
+#, fuzzy, c-format
+msgid "Invalid serial %s."
 msgstr "Nieprawidłowa seria %1."
 
-#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:461
-#: src/DNObject_Priv.cpp:79 src/RequestData_Priv.cpp:367
+#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:393
+#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:365
 msgid "Cannot create a memory BIO."
 msgstr "Nie można utworzyć pamięci BIO"
 
@@ -354,613 +375,642 @@ msgstr "Wystąpił błąd podczas analizowania certyfikatu."
 msgid "Cannot parse serial."
 msgstr "Nie można przetworzyć numeru seryjnego."
 
-#: src/CertificateData_Priv.cpp:298 src/CertificateData_Priv.cpp:332
-#: src/CRLData_Priv.cpp:89 src/CRLData_Priv.cpp:339 src/CRLData_Priv.cpp:373
-msgid "Cannot parse date %1."
-msgstr "Zanalizowanie daty %1 nie powiodło się."
-
-#: src/CertificateData_Priv.cpp:387 src/RequestData_Priv.cpp:180
+#: src/CertificateData_Priv.cpp:341 src/RequestData_Priv.cpp:178
 msgid "Unable to get the public key."
 msgstr "Uzyskanie klucza publicznego nie powiodło się."
 
-#: src/CertificateData_Priv.cpp:398 src/RequestData_Priv.cpp:191
+#: src/CertificateData_Priv.cpp:352 src/RequestData_Priv.cpp:189
 msgid "Could not get RSA key."
 msgstr "Uzyskanie klucza RSA nie powiodło się."
 
-#: src/CertificateData_Priv.cpp:418 src/RequestData_Priv.cpp:211
+#: src/CertificateData_Priv.cpp:372 src/RequestData_Priv.cpp:209
 msgid "Unsupported public key type."
 msgstr "Nieobsługiwany typ klucza publicznego."
 
-#: src/CertificateData_Priv.cpp:454 src/RequestData_Priv.cpp:244
+#: src/CertificateData_Priv.cpp:408 src/RequestData_Priv.cpp:242
 msgid "Unsupported public key algorithm."
 msgstr "Nieobsługiwany algorytm klucza publicznego."
 
-#: src/CertificateData_Priv.cpp:486 src/CRLData_Priv.cpp:422
-#: src/RequestData_Priv.cpp:274
-msgid "Unsupported signature algorithm %1."
+#: src/CertificateData_Priv.cpp:440 src/CRLData_Priv.cpp:354
+#: src/RequestData_Priv.cpp:272
+#, fuzzy, c-format
+msgid "Unsupported signature algorithm %s."
 msgstr "Nieobsługiwana sygnatura algorytmu %1."
 
-#: src/CertificateIssueData.cpp:209
+#: src/CertificateIssueData.cpp:207
 msgid "Invalid CertificateIssueData object."
 msgstr "Nieprawidłowy obiekt CertificateIssueData."
 
-#: src/CertificatePoliciesExtension.cpp:214
+#: src/CertificatePoliciesExtension.cpp:210
 msgid "The text is too long."
 msgstr "Tekst jest za długi"
 
-#: src/CertificatePoliciesExtension.cpp:253
+#: src/CertificatePoliciesExtension.cpp:249
 msgid "Invalid UserNotice object."
 msgstr "Nieprawidłowy obiekt UserNotice."
 
-#: src/CertificatePoliciesExtension.cpp:393
-#: src/CertificatePoliciesExtension.cpp:457
-msgid "Invalid value for policyIdentifier: %1."
+#: src/CertificatePoliciesExtension.cpp:389
+#: src/CertificatePoliciesExtension.cpp:453
+#, fuzzy, c-format
+msgid "Invalid value for policyIdentifier: %s."
 msgstr "Nieprawidłowa wartość policyIdentifier: %1."
 
-#: src/CertificatePoliciesExtension.cpp:512
+#: src/CertificatePoliciesExtension.cpp:508
 msgid "Invalid CertificatePolicy object."
 msgstr "Nieprawidłowy obiekt CertificatePolicy."
 
-#: src/CertificatePoliciesExtension.cpp:781
-#: src/CertificatePoliciesExtension.cpp:806
+#: src/CertificatePoliciesExtension.cpp:777
+#: src/CertificatePoliciesExtension.cpp:802
 msgid "CertificatePoliciesExt is not present."
 msgstr "CertificatePoliciesExt nie istnieje."
 
-#: src/CertificatePoliciesExtension.cpp:819
+#: src/CertificatePoliciesExtension.cpp:815
 msgid "Invalid CertificatePoliciesExt object."
 msgstr "Nieprawidłowy obiekt CertificatePoliciesExt."
 
-#: src/CRLData.cpp:221
+#: src/CRLData.cpp:220
 msgid "Entry not found."
 msgstr "Nie znaleziono wpisu."
 
-#: src/CRLData_Priv.cpp:489
+#: src/CRLData_Priv.cpp:421
 msgid "Cannot parse CRL."
 msgstr "Zanalizowanie CRL nie powiodło się."
 
-#: src/CRLData_Priv.cpp:502
+#: src/CRLData_Priv.cpp:434
 msgid "Error parsing the CRL."
 msgstr "Wystąpił błąd podczas analizy CRL."
 
-#: src/CRLDistributionPointsExtension.cpp:143
+#: src/CRLDistributionPointsExtension.cpp:141
 msgid "CRLDistributionPointsExt is not present."
 msgstr "CRLDistributionPointsExt nie istnieje."
 
-#: src/CRLDistributionPointsExtension.cpp:155
+#: src/CRLDistributionPointsExtension.cpp:153
 msgid "Invalid CRLDistributionPointsExt object."
 msgstr "Nieprawidłowy obiekt CRLDistributionPointsExt."
 
-#: src/CRLGenerationData.cpp:154
+#: src/CRLGenerationData.cpp:151
 msgid "Invalid CRLGenerationData object."
 msgstr "Nieprawidłowy obiekt CRLGenerationData object."
 
-#: src/CRLReason.cpp:98 src/CRLReason.cpp:134
-msgid "Invalid revoke reason %1."
+#: src/CRLReason.cpp:96 src/CRLReason.cpp:132
+#, fuzzy, c-format
+msgid "Invalid revoke reason %s."
 msgstr "Nieprawidłowy powód unieważnienia: %1."
 
-#: src/CRLReason.cpp:172
+#: src/CRLReason.cpp:170
 msgid "Reason is not certificateHold."
 msgstr "Powód nie jest certificateHold."
 
-#: src/CRLReason.cpp:195 src/CRLReason.cpp:209
+#: src/CRLReason.cpp:193 src/CRLReason.cpp:207
 msgid "Reason is not keyCompromise."
 msgstr "Powód nie jest keyCompromise."
 
-#: src/CRLReason.cpp:240 src/CRLReason.cpp:254
+#: src/CRLReason.cpp:238 src/CRLReason.cpp:252
 msgid "Reason is not CACompromise."
 msgstr "Powód nie jest CACompromise."
 
-#: src/DNObject.cpp:109
-msgid "Invalid type %1."
+#: src/DNObject.cpp:100
+#, fuzzy, c-format
+msgid "Invalid type %s."
 msgstr "Nieprawidłowy typ %1."
 
 #: src/DNObject_Priv.cpp:157
-msgid "Cannot parse DN line: %1."
+#, fuzzy, c-format
+msgid "Cannot parse DN line: %s."
 msgstr "Nie można przetworzyć linii DN: %1."
 
-#: src/ExtendedKeyUsageExt.cpp:120 src/ExtendedKeyUsageExt.cpp:169
-msgid "Invalid ExtendedKeyUsage option %1."
+#: src/ExtendedKeyUsageExt.cpp:118 src/ExtendedKeyUsageExt.cpp:167
+#, fuzzy, c-format
+msgid "Invalid ExtendedKeyUsage option %s."
 msgstr "Nieprawidłowa opcja ExtendedKeyUsage: %1."
 
-#: src/ExtendedKeyUsageExt.cpp:128 src/ExtendedKeyUsageExt.cpp:177
+#: src/ExtendedKeyUsageExt.cpp:126 src/ExtendedKeyUsageExt.cpp:175
 msgid "Invalid ExtendedKeyUsageExt."
 msgstr "Nieprawidłowy ExtendedKeyUsageExt."
 
-#: src/ExtendedKeyUsageExt.cpp:190
+#: src/ExtendedKeyUsageExt.cpp:188
 msgid "ExtendedKeyUsageExt is not present."
 msgstr "ExtendedKeyUsageExt nie istnieje."
 
-#: src/ExtendedKeyUsageExt.cpp:219
+#: src/ExtendedKeyUsageExt.cpp:217
 msgid "Invalid ExtendedKeyUsageExt object."
 msgstr "Nieprawidłowy obiekt ExtendedKeyUsageExt."
 
-#: src/IssuerAlternativeNameExtension.cpp:164
-#: src/IssuerAlternativeNameExtension.cpp:189
+#: src/IssuerAlternativeNameExtension.cpp:162
+#: src/IssuerAlternativeNameExtension.cpp:187
 msgid "IssuerAlternativeNameExt is not present."
 msgstr "IssuerAlternativeNameExt nie istnieje."
 
-#: src/IssuerAlternativeNameExtension.cpp:201
+#: src/IssuerAlternativeNameExtension.cpp:199
 msgid "Invalid literal value for IssuerAlternativeNameExt."
 msgstr "Nieprawidłowa wartość iteralna dla IssuerAlternativeNameExt."
 
-#: src/IssuerAlternativeNameExtension.cpp:214
+#: src/IssuerAlternativeNameExtension.cpp:212
 msgid "Invalid IssuerAlternativeNameExt object."
 msgstr "Nieprawidłowy obiekt IssuerAlternativeNameExt."
 
-#: src/LiteralValues.cpp:128
+#: src/LiteralValues.cpp:127
 msgid "Unknown type."
 msgstr "Nieznany typ."
 
-#: src/LocalManagement.cpp:93
+#: src/LocalManagement.cpp:91
 msgid "Cannot split certificate output."
 msgstr "Podział wyjściowego certyfikatu nie powiódł się."
 
-#: src/LocalManagement.cpp:290 src/LocalManagement.cpp:311
-#: src/LocalManagement.cpp:330
-msgid "Cannot create directory %1: %2."
+#: src/LocalManagement.cpp:288 src/LocalManagement.cpp:309
+#: src/LocalManagement.cpp:328
+#, fuzzy, c-format
+msgid "Cannot create directory %s: %s."
 msgstr "Nie można utworzyć katalogu %1: %2"
 
-#: src/LocalManagement.cpp:344
-msgid "%1 is not a directory."
+#: src/LocalManagement.cpp:342
+#, fuzzy, c-format
+msgid "%s is not a directory."
 msgstr "%1 nie jest katalogiem."
 
-#: src/LocalManagement.cpp:365
+#: src/LocalManagement.cpp:363
 msgid "Invalid certificate file."
 msgstr "Nieprawidłowy plik certyfikatu."
 
-#: src/LocalManagement.cpp:443
-msgid "File not found: %1."
+#: src/LocalManagement.cpp:441
+#, fuzzy, c-format
+msgid "File not found: %s."
 msgstr "Nie znaleziono pliku: %1"
 
-#: src/LocalManagement.cpp:452
-msgid "File too big: %1."
+#: src/LocalManagement.cpp:450
+#, fuzzy, c-format
+msgid "File too big: %s."
 msgstr "Plik jest za duży: %1"
 
-#: src/LocalManagement.cpp:461 src/LocalManagement.cpp:516
-msgid "Cannot open file %1."
+#: src/LocalManagement.cpp:459 src/LocalManagement.cpp:513
+#, fuzzy, c-format
+msgid "Cannot open file %s."
 msgstr "Utworzenie pliku %1 nie powiodło się."
 
-#: src/LocalManagement.cpp:481
-msgid "Cannot read from file %1."
+#: src/LocalManagement.cpp:478
+#, fuzzy, c-format
+msgid "Cannot read from file %s."
 msgstr "Odczyt z pliku %1 nie powiódł się."
 
-#: src/LocalManagement.cpp:506
-msgid "File already exists: %1."
+#: src/LocalManagement.cpp:503
+#, fuzzy, c-format
+msgid "File already exists: %s."
 msgstr "Plik już istnieje: %1."
 
-#: src/LocalManagement.cpp:528
-msgid "Cannot get lock on file %1."
+#: src/LocalManagement.cpp:523
+#, fuzzy, c-format
+msgid "Cannot get lock on file %s."
 msgstr "Zablokowanie fliku %1 nie powiodło się."
 
-#: src/LocalManagement.cpp:542
-msgid "Cannot write to file %1."
+#: src/LocalManagement.cpp:535
+#, fuzzy, c-format
+msgid "Cannot write to file %s."
 msgstr "Zapis do pliku %1 nie powiódł się."
 
-#: src/OpenSSLUtils.cpp:54
-msgid "File does not exist: %1."
+#: src/OpenSSLUtils.cpp:49
+#, fuzzy, c-format
+msgid "File does not exist: %s."
 msgstr "Plik nie istnieje: %1."
 
-#: src/OpenSSLUtils.cpp:63
-msgid "Directory does not exist: %1."
+#: src/OpenSSLUtils.cpp:58
+#, fuzzy, c-format
+msgid "Directory does not exist: %s."
 msgstr "Katalog nie istnieje: %1."
 
-#: src/OpenSSLUtils.cpp:72
-msgid "Invalid command %1."
+#: src/OpenSSLUtils.cpp:67
+#, fuzzy, c-format
+msgid "Invalid command %s."
 msgstr "Nieprawidłowe polecenie %1."
 
-#: src/OpenSSLUtils.cpp:130 src/OpenSSLUtils.cpp:238 src/OpenSSLUtils.cpp:336
-#: src/OpenSSLUtils.cpp:460 src/OpenSSLUtils.cpp:598 src/OpenSSLUtils.cpp:698
-#: src/OpenSSLUtils.cpp:780 src/OpenSSLUtils.cpp:869 src/OpenSSLUtils.cpp:950
-#: src/OpenSSLUtils.cpp:1049 src/OpenSSLUtils.cpp:1137
-#: src/OpenSSLUtils.cpp:1275 src/OpenSSLUtils.cpp:1398
-#: src/OpenSSLUtils.cpp:1505 src/OpenSSLUtils.cpp:1661
-#: src/OpenSSLUtils.cpp:1803
+#: src/OpenSSLUtils.cpp:124 src/OpenSSLUtils.cpp:214 src/OpenSSLUtils.cpp:313
+#: src/OpenSSLUtils.cpp:438 src/OpenSSLUtils.cpp:577 src/OpenSSLUtils.cpp:678
+#: src/OpenSSLUtils.cpp:761 src/OpenSSLUtils.cpp:852 src/OpenSSLUtils.cpp:933
+#: src/OpenSSLUtils.cpp:1031 src/OpenSSLUtils.cpp:1119
+#: src/OpenSSLUtils.cpp:1259 src/OpenSSLUtils.cpp:1384
+#: src/OpenSSLUtils.cpp:1493 src/OpenSSLUtils.cpp:1651
+#: src/OpenSSLUtils.cpp:1795 src/OpenSSLUtils.cpp:2586
 msgid "Executing openssl command failed."
 msgstr "Wykonanie polecenia openssl zakończone niepowodzeniem."
 
-#: src/OpenSSLUtils.cpp:141 src/OpenSSLUtils.cpp:249 src/OpenSSLUtils.cpp:347
-#: src/OpenSSLUtils.cpp:471 src/OpenSSLUtils.cpp:609 src/OpenSSLUtils.cpp:709
-#: src/OpenSSLUtils.cpp:794 src/OpenSSLUtils.cpp:1163
-#: src/OpenSSLUtils.cpp:1316 src/OpenSSLUtils.cpp:1424
-#: src/OpenSSLUtils.cpp:1531 src/OpenSSLUtils.cpp:1699
-#: src/OpenSSLUtils.cpp:1844
-msgid "openssl command failed: %1"
+#: src/OpenSSLUtils.cpp:136 src/OpenSSLUtils.cpp:227 src/OpenSSLUtils.cpp:326
+#: src/OpenSSLUtils.cpp:451 src/OpenSSLUtils.cpp:590 src/OpenSSLUtils.cpp:691
+#: src/OpenSSLUtils.cpp:777 src/OpenSSLUtils.cpp:1147
+#: src/OpenSSLUtils.cpp:1302 src/OpenSSLUtils.cpp:1412
+#: src/OpenSSLUtils.cpp:1521 src/OpenSSLUtils.cpp:1691
+#: src/OpenSSLUtils.cpp:1838 src/OpenSSLUtils.cpp:2613
+#, fuzzy, c-format
+msgid "openssl command failed: %s"
 msgstr "polecenie openssl zakończone niepowodzeniem: %1"
 
-#: src/OpenSSLUtils.cpp:174 src/OpenSSLUtils.cpp:276 src/OpenSSLUtils.cpp:379
-#: src/OpenSSLUtils.cpp:497 src/OpenSSLUtils.cpp:636 src/OpenSSLUtils.cpp:732
+#: src/OpenSSLUtils.cpp:166 src/OpenSSLUtils.cpp:254 src/OpenSSLUtils.cpp:358
+#: src/OpenSSLUtils.cpp:477 src/OpenSSLUtils.cpp:617 src/OpenSSLUtils.cpp:714
 msgid "No valid key file specified."
 msgstr "Nie podano prawidłowego pliku klucza."
 
-#: src/OpenSSLUtils.cpp:284 src/OpenSSLUtils.cpp:387
+#: src/OpenSSLUtils.cpp:262 src/OpenSSLUtils.cpp:366
 msgid "No valid request file specified."
 msgstr "Nie podano prawidłowego pliku żądania."
 
-#: src/OpenSSLUtils.cpp:505 src/OpenSSLUtils.cpp:644 src/OpenSSLUtils.cpp:740
+#: src/OpenSSLUtils.cpp:485 src/OpenSSLUtils.cpp:625 src/OpenSSLUtils.cpp:722
 msgid "No valid CA certificate file specified."
 msgstr "Nie podano prawidłowego pliku certyfikatu CA."
 
-#: src/OpenSSLUtils.cpp:513 src/OpenSSLUtils.cpp:818
+#: src/OpenSSLUtils.cpp:493 src/OpenSSLUtils.cpp:801
 msgid "No valid certificate file specified."
 msgstr "Nie podano prawidłowego pliku certyfikatu."
 
-#: src/OpenSSLUtils.cpp:826
+#: src/OpenSSLUtils.cpp:809
 msgid "No valid CA directory specified."
 msgstr "Nie podano prawidłowego katalogu CA."
 
-#: src/OpenSSLUtils.cpp:980
-msgid "Showing certificate status with serial %1 failed (%2)."
+#: src/OpenSSLUtils.cpp:963
+#, fuzzy, c-format
+msgid "Showing certificate status with serial %s failed (%d)."
 msgstr "Wyświetlenie statusu certyfikatu z serii %1 nie powiodło się (%2)."
 
-#: src/OpenSSLUtils.cpp:1016
+#: src/OpenSSLUtils.cpp:999
 msgid "The key file does not exist."
 msgstr "Plik klucza nie istnieje."
 
-#: src/OpenSSLUtils.cpp:1311 src/OpenSSLUtils.cpp:1694
-#: src/OpenSSLUtils.cpp:1839
+#: src/OpenSSLUtils.cpp:1297 src/OpenSSLUtils.cpp:1686
+#: src/OpenSSLUtils.cpp:1833
 msgid "Invalid password."
 msgstr "Nieprawidłowe hasło."
 
-#: src/OpenSSLUtils.cpp:1609
+#: src/OpenSSLUtils.cpp:1599
 msgid "The password for encrypting the output is required."
 msgstr "Do zakodowania wyjścia wymagane jest hasło."
 
-#: src/OpenSSLUtils.cpp:1754
+#: src/OpenSSLUtils.cpp:1746
 msgid "The PKCS12 password is required."
 msgstr "Wymagane jest hasło PKCS12."
 
-#: src/OpenSSLUtils.cpp:1870 src/OpenSSLUtils.cpp:2070
-#: src/OpenSSLUtils.cpp:2222
-msgid "Cannot read directory: %1 (%2) [%3]."
+#: src/OpenSSLUtils.cpp:1864 src/OpenSSLUtils.cpp:2064
+#: src/OpenSSLUtils.cpp:2216
+#, fuzzy, c-format
+msgid "Cannot read directory: %s (%s) [%d]."
 msgstr "Nie można odczytać zawartości katalogu: %1 (%2) [%3]."
 
-#: src/OpenSSLUtils.cpp:1920
-msgid "No serial number found in %1."
+#: src/OpenSSLUtils.cpp:1914
+#, fuzzy, c-format
+msgid "No serial number found in %s."
 msgstr "Nie znaleziono numeru seryjnego w %1."
 
-#: src/OpenSSLUtils.cpp:1940
+#: src/OpenSSLUtils.cpp:1934
 msgid "The request already exists."
 msgstr "Żądanie już istnieje."
 
-#: src/OpenSSLUtils.cpp:2131
+#: src/OpenSSLUtils.cpp:2125
 msgid "Cannot find the request subject."
 msgstr "Nie można odnaleźć tematu żądania."
 
-#: src/OpenSSLUtils.cpp:2292
+#: src/OpenSSLUtils.cpp:2286
 msgid "Cannot find the certificate subject."
 msgstr "Nie można odnaleźć tematu certyfikatu."
 
-#: src/OpenSSLUtils.cpp:2391
-msgid "Invalid caName: %1."
+#: src/OpenSSLUtils.cpp:2385
+#, fuzzy, c-format
+msgid "Invalid caName: %s."
 msgstr "Nieprawidłowy caName: %1."
 
-#: src/OpenSSLUtils.cpp:2400
-msgid "'%1' does not exist."
+#: src/OpenSSLUtils.cpp:2394
+#, fuzzy, c-format
+msgid "'%s' does not exist."
 msgstr "\"%1\" nie istnieje."
 
-#: src/OpenSSLUtils.cpp:2410
-msgid "%1 still exists."
+#: src/OpenSSLUtils.cpp:2404
+#, fuzzy, c-format
+msgid "%s still exists."
 msgstr "%1 wciąż istnieje."
 
-#: src/OpenSSLUtils.cpp:2421 src/OpenSSLUtils.cpp:2469
-#: src/OpenSSLUtils.cpp:2483 src/OpenSSLUtils.cpp:2497
-#: src/OpenSSLUtils.cpp:2511 src/OpenSSLUtils.cpp:2525
-msgid "Cannot create directory: %1 (%2 [%3])."
+#: src/OpenSSLUtils.cpp:2415 src/OpenSSLUtils.cpp:2463
+#: src/OpenSSLUtils.cpp:2477 src/OpenSSLUtils.cpp:2491
+#: src/OpenSSLUtils.cpp:2505 src/OpenSSLUtils.cpp:2519
+#, fuzzy, c-format
+msgid "Cannot create directory: %s (%s [%d])."
 msgstr "Nie można utworzyć katalogu: %1 (%2 [%3])."
 
-#: src/OpenSSLUtils.cpp:2456
+#: src/OpenSSLUtils.cpp:2450
 msgid "Cannot copy the configuration template."
 msgstr "Nie można skopiować szablonu konfiguracji."
 
-#: src/OpenSSLUtils.cpp:2543
+#: src/OpenSSLUtils.cpp:2537
 msgid "Cannot create the file."
 msgstr "Nie można utworzyć pliku."
 
-#: src/RequestData_Priv.cpp:394
+#: src/OpenSSLUtils.cpp:2552
+#, fuzzy
+msgid "Can not open file."
+msgstr "Utworzenie pliku %1 nie powiodło się."
+
+#: src/RequestData_Priv.cpp:392
 msgid "Cannot parse the request."
 msgstr "Nie można przetworzyć żądania."
 
-#: src/RequestData_Priv.cpp:407
+#: src/RequestData_Priv.cpp:405
 msgid "Error while parsing the request."
 msgstr "Wystąpił błąd podczas przetwarzania żądania."
 
-#: src/RequestGenerationData.cpp:238
+#: src/RequestGenerationData.cpp:236
 msgid "Invalid RequestGenerationData object."
 msgstr "Nieprawidłowy obiekt RequestGenerationData."
 
-#: src/StringExtensions.cpp:107 src/StringExtensions.cpp:165
+#: src/StringExtensions.cpp:105 src/StringExtensions.cpp:163
 msgid "Invalid value for NsBaseUrlExt."
 msgstr "Nieprawidłowa wartość dla NsBaseUrlExt."
 
-#: src/StringExtensions.cpp:177
+#: src/StringExtensions.cpp:175
 msgid "NsBaseUrlExt is not present."
 msgstr "NsBaseUrlExt nie istnieje."
 
-#: src/StringExtensions.cpp:189
+#: src/StringExtensions.cpp:187
 msgid "Invalid NsBaseUrlExt object."
 msgstr "Nieprawidłowy obiekt NsBaseUrlExt."
 
-#: src/StringExtensions.cpp:272 src/StringExtensions.cpp:325
+#: src/StringExtensions.cpp:270 src/StringExtensions.cpp:323
 msgid "Invalid value for NsRevocationUrlExt."
 msgstr "Nieprawidłowa wartość dla NsRevocationUrlExt."
 
-#: src/StringExtensions.cpp:336
+#: src/StringExtensions.cpp:334
 msgid "NsRevocationUrlExt is not present."
 msgstr "NsRevocationUrlExt nie istnieje."
 
-#: src/StringExtensions.cpp:347
+#: src/StringExtensions.cpp:345
 msgid "Invalid NsRevocationUrlExt object."
 msgstr "Nieprawidłowy obiekt NsRevocationUrlExt."
 
-#: src/StringExtensions.cpp:426 src/StringExtensions.cpp:479
+#: src/StringExtensions.cpp:424 src/StringExtensions.cpp:477
 msgid "Invalid value for NsCaRevocationUrlExt."
 msgstr "Nieprawidłowa wartość dla NsCaRevocationUrlExt."
 
-#: src/StringExtensions.cpp:490
+#: src/StringExtensions.cpp:488
 msgid "NsCaRevocationUrlExt is not present."
 msgstr "NsCaRevocationUrlExt nie istnieje."
 
-#: src/StringExtensions.cpp:501
+#: src/StringExtensions.cpp:499
 msgid "Invalid NsCaRevocationUrlExt object."
 msgstr "Nieprawidłowy obiekt NsCaRevocationUrlExt."
 
-#: src/StringExtensions.cpp:579 src/StringExtensions.cpp:632
+#: src/StringExtensions.cpp:577 src/StringExtensions.cpp:630
 msgid "Invalid value for NsRenewalUrlExt."
 msgstr "Nieprawidłowa wartość dla NsRenewalUrlExt."
 
-#: src/StringExtensions.cpp:643
+#: src/StringExtensions.cpp:641
 msgid "NsRenewalUrlExt is not present."
 msgstr "NsRenewalUrlExt nie istnieje."
 
-#: src/StringExtensions.cpp:654
+#: src/StringExtensions.cpp:652
 msgid "Invalid NsRenewalUrlExt object."
 msgstr "Nieprawidłowy obiekt NsRenewalUrlExt."
 
-#: src/StringExtensions.cpp:731 src/StringExtensions.cpp:784
+#: src/StringExtensions.cpp:729 src/StringExtensions.cpp:782
 msgid "Invalid value for NsCaPolicyUrlExt."
 msgstr "Nieprawidłowa wartość dla NsCaPolicyUrlExt."
 
-#: src/StringExtensions.cpp:795
+#: src/StringExtensions.cpp:793
 msgid "NsCaPolicyUrlExt is not present."
 msgstr "NsCaPolicyUrlExt nie istnieje."
 
-#: src/StringExtensions.cpp:806
+#: src/StringExtensions.cpp:804
 msgid "Invalid NsCaPolicyUrlExt object."
 msgstr "Nieprawidłowy obiekt NsCaPolicyUrlExt."
 
-#: src/StringExtensions.cpp:892
+#: src/StringExtensions.cpp:890
 msgid "Invalid type: %1."
 msgstr "Nieprawidłowy typ: %1."
 
-#: src/StringExtensions.cpp:938
+#: src/StringExtensions.cpp:936
 msgid "NsSslServerNameExt is not present."
 msgstr "NsSslServerNameExt nie istnieje."
 
-#: src/StringExtensions.cpp:949
+#: src/StringExtensions.cpp:947
 msgid "Invalid NsSslServerNameExt object."
 msgstr "Nieprawidłowy obiekt NsSslServerNameExt."
 
-#: src/StringExtensions.cpp:1064
+#: src/StringExtensions.cpp:1062
 msgid "NsCommentExt is not present."
 msgstr "NsCommentExt nie istnieje."
 
-#: src/StringExtensions.cpp:1075
+#: src/StringExtensions.cpp:1073
 msgid "Invalid NsCommentExt object."
 msgstr "Nieprawidłowy obiekt NsCommentExt."
 
-#: src/SubjectAlternativeNameExtension.cpp:181
-#: src/SubjectAlternativeNameExtension.cpp:192
+#: src/SubjectAlternativeNameExtension.cpp:179
+#: src/SubjectAlternativeNameExtension.cpp:190
 msgid "SubjectAlternativeNameExt is not present."
 msgstr "SubjectAlternativeNameExt nie istnieje."
 
-#: src/SubjectAlternativeNameExtension.cpp:205
+#: src/SubjectAlternativeNameExtension.cpp:203
 msgid "Invalid SubjectAlternativeNameExt object."
 msgstr "Nieprawidłowy obiekt SubjectAlternativeNameExt."
 
-#: src/SubjectKeyIdentifierExtension.cpp:127
-#: src/SubjectKeyIdentifierExtension.cpp:161
+#: src/SubjectKeyIdentifierExtension.cpp:123
+#: src/SubjectKeyIdentifierExtension.cpp:157
 msgid "Invalid KeyID."
 msgstr "Nieprawidłowy KeyID."
 
-#: src/SubjectKeyIdentifierExtension.cpp:174
-#: src/SubjectKeyIdentifierExtension.cpp:185
+#: src/SubjectKeyIdentifierExtension.cpp:170
+#: src/SubjectKeyIdentifierExtension.cpp:181
 msgid "SubjectKeyIdentifierExt is not present."
 msgstr "SubjectKeyIdentifierExt nie istnieje."
 
-#: src/SubjectKeyIdentifierExtension.cpp:198
+#: src/SubjectKeyIdentifierExtension.cpp:194
 msgid "Invalid SubjectKeyIdentifierExt object."
 msgstr "Nieprawidłowy obiekt SubjectKeyIdentifierExt."
 
-#: src/X509v3CertificateExtensions_Priv.cpp:393
-#: src/X509v3CertificateExtensions_Priv.cpp:450
-#: src/X509v3RequestExtensions_Priv.cpp:132
-#: src/X509v3RequestExtensions_Priv.cpp:187
+#: src/X509v3CertificateExtensions_Priv.cpp:392
+#: src/X509v3CertificateExtensions_Priv.cpp:449
+#: src/X509v3RequestExtensions_Priv.cpp:130
+#: src/X509v3RequestExtensions_Priv.cpp:185
 msgid "Extension occurred more than once: %1."
 msgstr "Rozszerzenie występuje więcej niż raz: %1."
 
-#: src/X509v3CertificateExtensions_Priv.cpp:400
-#: src/X509v3CertificateExtensions_Priv.cpp:457
-#: src/X509v3RequestExtensions_Priv.cpp:139
-#: src/X509v3RequestExtensions_Priv.cpp:194
+#: src/X509v3CertificateExtensions_Priv.cpp:399
+#: src/X509v3CertificateExtensions_Priv.cpp:456
+#: src/X509v3RequestExtensions_Priv.cpp:137
+#: src/X509v3RequestExtensions_Priv.cpp:192
 msgid "Unable to parse the certificate (NID: %1 Crit: %2)."
 msgstr "Przetworzenie certyfikatu nie było możliwe (NID: %1 Crit: %2)."
 
-#: src/X509v3CertificateExtensions_Priv.cpp:509
-#: src/X509v3CertificateExtensions_Priv.cpp:575
-#: src/X509v3CertificateExtensions_Priv.cpp:639
-#: src/X509v3CertificateExtensions_Priv.cpp:701
-#: src/X509v3CertificateExtensions_Priv.cpp:771
-#: src/X509v3CertificateExtensions_Priv.cpp:840
-#: src/X509v3CertificateExtensions_Priv.cpp:916
-#: src/X509v3CertificateExtensions_Priv.cpp:1002
-#: src/X509v3CRLExtensions_Priv.cpp:133
-#: src/X509v3RequestExtensions_Priv.cpp:247
-#: src/X509v3RequestExtensions_Priv.cpp:313
-#: src/X509v3RequestExtensions_Priv.cpp:376
-#: src/X509v3RequestExtensions_Priv.cpp:437
+#: src/X509v3CertificateExtensions_Priv.cpp:508
+#: src/X509v3CertificateExtensions_Priv.cpp:574
+#: src/X509v3CertificateExtensions_Priv.cpp:638
+#: src/X509v3CertificateExtensions_Priv.cpp:697
+#: src/X509v3CertificateExtensions_Priv.cpp:767
+#: src/X509v3CertificateExtensions_Priv.cpp:836
+#: src/X509v3CertificateExtensions_Priv.cpp:912
+#: src/X509v3CertificateExtensions_Priv.cpp:998
+#: src/X509v3CRLExtensions_Priv.cpp:132
+#: src/X509v3RequestExtensions_Priv.cpp:245
+#: src/X509v3RequestExtensions_Priv.cpp:311
+#: src/X509v3RequestExtensions_Priv.cpp:374
+#: src/X509v3RequestExtensions_Priv.cpp:432
 msgid "Extension occurred more than once."
 msgstr "Rozszerzenie występuje więcej niż raz."
 
-#: src/X509v3CertificateExtensions_Priv.cpp:514
-#: src/X509v3CertificateExtensions_Priv.cpp:580
-#: src/X509v3CertificateExtensions_Priv.cpp:644
-#: src/X509v3CertificateExtensions_Priv.cpp:707
-#: src/X509v3CertificateExtensions_Priv.cpp:776
-#: src/X509v3CertificateExtensions_Priv.cpp:846
-#: src/X509v3CertificateExtensions_Priv.cpp:921
-#: src/X509v3CertificateExtensions_Priv.cpp:1007
-#: src/X509v3CRLExtensions_Priv.cpp:138
-#: src/X509v3RequestExtensions_Priv.cpp:252
-#: src/X509v3RequestExtensions_Priv.cpp:318
-#: src/X509v3RequestExtensions_Priv.cpp:382
-#: src/X509v3RequestExtensions_Priv.cpp:442
+#: src/X509v3CertificateExtensions_Priv.cpp:513
+#: src/X509v3CertificateExtensions_Priv.cpp:579
+#: src/X509v3CertificateExtensions_Priv.cpp:643
+#: src/X509v3CertificateExtensions_Priv.cpp:703
+#: src/X509v3CertificateExtensions_Priv.cpp:772
+#: src/X509v3CertificateExtensions_Priv.cpp:842
+#: src/X509v3CertificateExtensions_Priv.cpp:917
+#: src/X509v3CertificateExtensions_Priv.cpp:1003
+#: src/X509v3CRLExtensions_Priv.cpp:137
+#: src/X509v3RequestExtensions_Priv.cpp:250
+#: src/X509v3RequestExtensions_Priv.cpp:316
+#: src/X509v3RequestExtensions_Priv.cpp:380
+#: src/X509v3RequestExtensions_Priv.cpp:437
 msgid "Unable to parse the certificate (Crit: %1)."
 msgstr "Przetworzenie certyfikatu nie było możliwe (Crit: %1)."
 
-#: src/X509v3CertificateExtensions_Priv.cpp:941
+#: src/X509v3CertificateExtensions_Priv.cpp:937
 msgid "Invalid location in authorityInfoAccess."
 msgstr "Nieprawidłowa lokalizacja w authorityInfoAccess."
 
-#: src/X509v3CertificateIssueExtensions.cpp:172
+#: src/X509v3CertificateIssueExtensions.cpp:170
 msgid "Invalid value for X509v3CertificateIssueExts::setNsBaseUrl."
 msgstr "Nieprawidłowa wartość dla X509v3CertificateIssueExts::setNsBaseUrl."
 
-#: src/X509v3CertificateIssueExtensions.cpp:195
+#: src/X509v3CertificateIssueExtensions.cpp:193
 msgid "Invalid value for X509v3CertificateIssueExts::setNsRevocationUrl."
 msgstr ""
 "Nieprawidłowa wartość dla X509v3CertificateIssueExts::setNsRevocationUrl."
 
-#: src/X509v3CertificateIssueExtensions.cpp:218
+#: src/X509v3CertificateIssueExtensions.cpp:216
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCaRevocationUrl."
 msgstr ""
 "Nieprawidłowa wartość dla X509v3CertificateIssueExts::setNsCaRevocationUrl."
 
-#: src/X509v3CertificateIssueExtensions.cpp:241
+#: src/X509v3CertificateIssueExtensions.cpp:239
 msgid "Invalid value for X509v3CertificateIssueExts::setNsRenewalUrl."
 msgstr "Nieprawidłowa wartość dla X509v3CertificateIssueExts::setNsRenewalUrl."
 
-#: src/X509v3CertificateIssueExtensions.cpp:264
+#: src/X509v3CertificateIssueExtensions.cpp:262
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCaPolicyUrl."
 msgstr ""
 "Nieprawidłowa wartość dla X509v3CertificateIssueExts::setNsCaPolicyUrl."
 
-#: src/X509v3CertificateIssueExtensions.cpp:287
+#: src/X509v3CertificateIssueExtensions.cpp:285
 msgid "Invalid value for X509v3CertificateIssueExts::setNsSslServerName."
 msgstr ""
 "Nieprawidłowa wartość dla X509v3CertificateIssueExts::setNsSslServerName."
 
-#: src/X509v3CertificateIssueExtensions.cpp:310
+#: src/X509v3CertificateIssueExtensions.cpp:308
 msgid "Invalid value for X509v3CertificateIssueExts::setNsComment."
 msgstr "Nieprawidłowa wartość dla X509v3CertificateIssueExts::setNsComment."
 
-#: src/X509v3CertificateIssueExtensions.cpp:333
+#: src/X509v3CertificateIssueExtensions.cpp:331
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCertType."
 msgstr "Nieprawidłowa wartość dla X509v3CertificateIssueExts::setNsCertType."
 
-#: src/X509v3CertificateIssueExtensions.cpp:356
+#: src/X509v3CertificateIssueExtensions.cpp:354
 msgid "Invalid value for X509v3CertificateIssueExts::setKeyUsage."
 msgstr "Nieprawidłowa wartość dla X509v3CertificateIssueExts::setKeyUsage."
 
-#: src/X509v3CertificateIssueExtensions.cpp:379
+#: src/X509v3CertificateIssueExtensions.cpp:377
 msgid "Invalid value for X509v3CertificateIssueExts::setBasicConstraints."
 msgstr ""
 "Nieprawidłowa wartość dla X509v3CertificateIssueExts::setBasicConstraints."
 
-#: src/X509v3CertificateIssueExtensions.cpp:402
+#: src/X509v3CertificateIssueExtensions.cpp:400
 msgid "Invalid value for X509v3CertificateIssueExts::setExtendedKeyUsage."
 msgstr ""
 "Nieprawidłowa wartość dla X509v3CertificateIssueExts::setExtendedKeyUsage."
 
-#: src/X509v3CertificateIssueExtensions.cpp:425
+#: src/X509v3CertificateIssueExtensions.cpp:423
 msgid "Invalid value for X509v3CertificateIssueExts::setSubjectKeyIdentifier."
 msgstr ""
 "Nieprawidłowa wartość dla X509v3CertificateIssueExts::"
 "setSubjectKeyIdentifier."
 
-#: src/X509v3CertificateIssueExtensions.cpp:448
+#: src/X509v3CertificateIssueExtensions.cpp:446
 msgid ""
 "Invalid value for X509v3CertificateIssueExts::setAuthorityKeyIdentifier."
 msgstr ""
 "Nieprawidłowa wartość dla X509v3CertificateIssueExts::"
 "setAuthorityKeyIdentifier."
 
-#: src/X509v3CertificateIssueExtensions.cpp:471
+#: src/X509v3CertificateIssueExtensions.cpp:469
 msgid ""
 "Invalid value for X509v3CertificateIssueExts::setSubjectAlternativeName."
 msgstr ""
 "Nieprawidłowa wartość dla X509v3CertificateIssueExts::"
 "setSubjectAlternativeName."
 
-#: src/X509v3CertificateIssueExtensions.cpp:494
+#: src/X509v3CertificateIssueExtensions.cpp:492
 msgid "Invalid value for X509v3CertificateIssueExts::setIssuerAlternativeName."
 msgstr ""
 "Nieprawidłowa wartość dla X509v3CertificateIssueExts::"
 "setIssuerAlternativeName."
 
-#: src/X509v3CertificateIssueExtensions.cpp:517
+#: src/X509v3CertificateIssueExtensions.cpp:515
 msgid "Invalid value for X509v3CertificateIssueExts::setAuthorityInfoAccess."
 msgstr ""
 "Nieprawidłowa wartość dla X509v3CertificateIssueExts::setAuthorityInfoAccess."
 
-#: src/X509v3CertificateIssueExtensions.cpp:540
+#: src/X509v3CertificateIssueExtensions.cpp:538
 msgid "Invalid value for X509v3CertificateIssueExts::setCRLDistributionPoints."
 msgstr ""
 "Nieprawidłowa wartość dla X509v3CertificateIssueExts::"
 "setCRLDistributionPoints."
 
-#: src/X509v3CertificateIssueExtensions.cpp:563
+#: src/X509v3CertificateIssueExtensions.cpp:561
 msgid "Invalid value for X509v3CertificateIssueExts::setCertificatePolicies."
 msgstr ""
 "Nieprawidłowa wartość dla X509v3CertificateIssueExts::setCertificatePolicies."
 
-#: src/X509v3CertificateIssueExtensions.cpp:587
-#: src/X509v3CRLGenerationExtensions.cpp:147
-#: src/X509v3RequestExtensions.cpp:253
+#: src/X509v3CertificateIssueExtensions.cpp:585
+#: src/X509v3CRLGenerationExtensions.cpp:145
+#: src/X509v3RequestExtensions.cpp:252
 msgid "Invalid X509v3RequestExts object."
 msgstr "Nieprawidłowy obiekt X509v3RequestExts."
 
-#: src/X509v3CRLGenerationExtensions.cpp:100
+#: src/X509v3CRLGenerationExtensions.cpp:98
 msgid "Invalid value for X509v3CRLGenerationExts::setAuthorityKeyIdentifier."
 msgstr ""
 "Nieprawidłowa wartość dla X509v3CRLGenerationExts::setAuthorityKeyIdentifier."
 
-#: src/X509v3CRLGenerationExtensions.cpp:123
+#: src/X509v3CRLGenerationExtensions.cpp:121
 msgid "Invalid value for X509v3CRLGenerationExts::setIssuerAlternativeName."
 msgstr ""
 "Nieprawidłowa wartość dla X509v3CRLGenerationExts::setIssuerAlternativeName."
 
-#: src/X509v3RequestExtensions.cpp:68
+#: src/X509v3RequestExtensions.cpp:67
 msgid "Invalid value for X509v3RequestExts::setNsSslServerName."
 msgstr "Nieprawidłowa wartość dla X509v3RequestExts::setNsSslServerName."
 
-#: src/X509v3RequestExtensions.cpp:91
+#: src/X509v3RequestExtensions.cpp:90
 msgid "Invalid value for X509v3RequestExts::setNsComment."
 msgstr "Nieprawidłowa wartość dla X509v3RequestExts::setNsComment."
 
-#: src/X509v3RequestExtensions.cpp:114
+#: src/X509v3RequestExtensions.cpp:113
 msgid "Invalid value for X509v3RequestExts::setNsCertType."
 msgstr "Nieprawidłowa wartość dla X509v3RequestExts::setNsCertType."
 
-#: src/X509v3RequestExtensions.cpp:137
+#: src/X509v3RequestExtensions.cpp:136
 msgid "Invalid value for X509v3RequestExts::setKeyUsage."
 msgstr "Nieprawidłowa wartość dla X509v3RequestExts::setKeyUsage."
 
-#: src/X509v3RequestExtensions.cpp:160
+#: src/X509v3RequestExtensions.cpp:159
 msgid "Invalid value for X509v3RequestExts::setBasicConstraints."
 msgstr "Nieprawidłowa wartość dla X509v3RequestExts::setBasicConstraints."
 
-#: src/X509v3RequestExtensions.cpp:183
+#: src/X509v3RequestExtensions.cpp:182
 msgid "Invalid value for X509v3RequestExts::setExtendedKeyUsage."
 msgstr "Nieprawidłowa wartość dla X509v3RequestExts::setExtendedKeyUsage."
 
-#: src/X509v3RequestExtensions.cpp:206
+#: src/X509v3RequestExtensions.cpp:205
 msgid "Invalid value for X509v3RequestExts::setSubjectKeyIdentifier."
 msgstr "Nieprawidłowa wartość dla X509v3RequestExts::setSubjectKeyIdentifier."
 
-#: src/X509v3RequestExtensions.cpp:229
+#: src/X509v3RequestExtensions.cpp:228
 msgid "Invalid value for X509v3RequestExts::setSubjectAlternativeName."
 msgstr ""
 "Nieprawidłowa wartość dla X509v3RequestExts::setSubjectAlternativeName."
+
+#~ msgid "Cannot parse date %1."
+#~ msgstr "Zanalizowanie daty %1 nie powiodło się."
 
 #~ msgid "Command returned '%1' : %2"
 #~ msgstr "Polecenie %2 zwróciło wartość '%1'."

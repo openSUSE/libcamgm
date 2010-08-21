@@ -42,11 +42,11 @@ MAINTAINERCLEANFILES = configure $(RPMNAME).pc Makefile Makefile.in  \
 maintainer-clean-local:
 	-rm -rf m4 
 
-configure.in: $(srcdir)/VERSION
+configure: $(srcdir)/VERSION
 	$(MAKE) -f Makefile.cvs all
 
 EXTRA_DIST = \
-	VERSION RPMNAME MAINTAINER configure.in.in		\
+	VERSION RPMNAME MAINTAINER configure.in		\
 	$(SUBDIRS_FILE) $(ACINCLUDE_FILE) limal*.spec.in			
 
 show-extra-dist:
@@ -62,7 +62,7 @@ $(RPMNAME).pc.in: $(DEVTOOLS_DIR)/admin/generic.pc.in
 # because the prerequisite is made here
 # and we don't want any paths in limalautoconf
 # info '(autoconf)config.status Invocation'
-$(RPMNAME).pc: $(RPMNAME).pc.in configure.in
+$(RPMNAME).pc: $(RPMNAME).pc.in configure
 	./config.status --file=$@:$<
 
 pkgconfig_DATA = $(RPMNAME).pc
@@ -148,4 +148,4 @@ checkin-stable: package
 
 ACLOCAL_AMFLAGS = -I m4
 # Contents of ./SUBDIRS # swig
-SUBDIRS = src doc testsuite po
+SUBDIRS = src swig doc testsuite po typemaps

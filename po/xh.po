@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2010-06-03 17:06+0200\n"
+"POT-Creation-Date: 2010-08-21 18:28+0200\n"
 "PO-Revision-Date: 2006-11-03 12:03\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -13,277 +13,293 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/AuthorityInfoAccessExtension.cpp:108
-#: src/AuthorityInfoAccessExtension.cpp:137
+#: src/AuthorityInfoAccessExtension.cpp:104
+#: src/AuthorityInfoAccessExtension.cpp:133
 msgid "Invalid location."
 msgstr "Indawo yokuhlala ayisebenziseki."
 
-#: src/AuthorityInfoAccessExtension.cpp:113
-#: src/AuthorityInfoAccessExtension.cpp:142
+#: src/AuthorityInfoAccessExtension.cpp:109
+#: src/AuthorityInfoAccessExtension.cpp:138
 msgid "Invalid accessOID."
 msgstr "Ufikeleleko lwe-OID alusebenziseki."
 
-#: src/AuthorityInfoAccessExtension.cpp:257
-#: src/AuthorityInfoAccessExtension.cpp:340
-#: src/AuthorityKeyIdentifierGenerateExtension.cpp:84
-#: src/AuthorityKeyIdentifierGenerateExtension.cpp:191
-#: src/BasicConstraintsExtension.cpp:82 src/BasicConstraintsExtension.cpp:185
-#: src/BitExtensions.cpp:132 src/BitExtensions.cpp:245
-#: src/BitExtensions.cpp:372 src/BitExtensions.cpp:480 src/CA.cpp:1580
-#: src/CertificateIssueData.cpp:217 src/CertificatePoliciesExtension.cpp:167
-#: src/CertificatePoliciesExtension.cpp:262
-#: src/CertificatePoliciesExtension.cpp:423
-#: src/CertificatePoliciesExtension.cpp:521
-#: src/CertificatePoliciesExtension.cpp:711
-#: src/CertificatePoliciesExtension.cpp:828
-#: src/CRLDistributionPointsExtension.cpp:74
-#: src/CRLDistributionPointsExtension.cpp:164 src/CRLGenerationData.cpp:161
-#: src/DNObject.cpp:249 src/ExtendedKeyUsageExt.cpp:75
-#: src/ExtendedKeyUsageExt.cpp:227 src/IssuerAlternativeNameExtension.cpp:96
-#: src/IssuerAlternativeNameExtension.cpp:222
-#: src/RequestGenerationData.cpp:246 src/StringExtensions.cpp:120
-#: src/StringExtensions.cpp:197 src/StringExtensions.cpp:285
-#: src/StringExtensions.cpp:355 src/StringExtensions.cpp:439
-#: src/StringExtensions.cpp:509 src/StringExtensions.cpp:592
-#: src/StringExtensions.cpp:662 src/StringExtensions.cpp:744
-#: src/StringExtensions.cpp:814 src/StringExtensions.cpp:956
-#: src/StringExtensions.cpp:1018 src/StringExtensions.cpp:1082
-#: src/SubjectAlternativeNameExtension.cpp:83
-#: src/SubjectAlternativeNameExtension.cpp:213
-#: src/SubjectKeyIdentifierExtension.cpp:83
-#: src/SubjectKeyIdentifierExtension.cpp:206
+#: src/AuthorityInfoAccessExtension.cpp:253
+#: src/AuthorityInfoAccessExtension.cpp:336
+#: src/AuthorityKeyIdentifierGenerateExtension.cpp:82
+#: src/AuthorityKeyIdentifierGenerateExtension.cpp:189
+#: src/BasicConstraintsExtension.cpp:80 src/BasicConstraintsExtension.cpp:183
+#: src/BitExtensions.cpp:368 src/BitExtensions.cpp:476 src/CA.cpp:1631
+#: src/CertificatePoliciesExtension.cpp:163
+#: src/CertificatePoliciesExtension.cpp:258
+#: src/CertificatePoliciesExtension.cpp:419
+#: src/CertificatePoliciesExtension.cpp:517
+#: src/CertificatePoliciesExtension.cpp:707
+#: src/CertificatePoliciesExtension.cpp:824
+#: src/CRLDistributionPointsExtension.cpp:72
+#: src/CRLDistributionPointsExtension.cpp:162 src/DNObject.cpp:500
+#: src/ExtendedKeyUsageExt.cpp:73 src/ExtendedKeyUsageExt.cpp:225
+#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:244
+#: src/StringExtensions.cpp:118 src/StringExtensions.cpp:195
+#: src/StringExtensions.cpp:283 src/StringExtensions.cpp:353
+#: src/StringExtensions.cpp:437 src/StringExtensions.cpp:507
+#: src/StringExtensions.cpp:590 src/StringExtensions.cpp:660
+#: src/StringExtensions.cpp:742 src/StringExtensions.cpp:812
+#: src/StringExtensions.cpp:954 src/StringExtensions.cpp:1016
+#: src/StringExtensions.cpp:1080 src/SubjectAlternativeNameExtension.cpp:81
+#: src/SubjectAlternativeNameExtension.cpp:211
+#: src/SubjectKeyIdentifierExtension.cpp:79
+#: src/SubjectKeyIdentifierExtension.cpp:202
 msgid "Wrong type: %1."
 msgstr "Uhlobo olungalunganga: %1."
 
-#: src/AuthorityInfoAccessExtension.cpp:308
+#: src/AuthorityInfoAccessExtension.cpp:304
 msgid "Invalid AuthorityInformation in the information list."
 msgstr "Ulwazi Logunyaziso Olungasebenzisekiyo kuludwe lolwazi."
 
-#: src/AuthorityInfoAccessExtension.cpp:321
+#: src/AuthorityInfoAccessExtension.cpp:317
 msgid "AuthorityInfoAccessExt is not present."
 msgstr "UkuphumaKufikelelekoLolwaziLogunyaziso alukho."
 
-#: src/AuthorityInfoAccessExtension.cpp:332
+#: src/AuthorityInfoAccessExtension.cpp:328
 msgid "Invalid AuthorityInfoAccessExt object."
 msgstr "Into YesoluloSofikelelekoKulwaziLogunyaziso Ayisebenziseki."
 
-#: src/AuthorityKeyIdentifierExtension.cpp:95
-#: src/AuthorityKeyIdentifierExtension.cpp:106
-#: src/AuthorityKeyIdentifierExtension.cpp:117
+#: src/AuthorityKeyIdentifierExtension.cpp:93
+#: src/AuthorityKeyIdentifierExtension.cpp:104
+#: src/AuthorityKeyIdentifierExtension.cpp:115
 msgid "AuthorityKeyIdentifierExt is not present."
 msgstr "IsoluloSesichongiSeqhoshaLogunyaziso asikho."
 
-#: src/AuthorityKeyIdentifierGenerateExtension.cpp:152
-#: src/AuthorityKeyIdentifierGenerateExtension.cpp:171
+#: src/AuthorityKeyIdentifierGenerateExtension.cpp:150
+#: src/AuthorityKeyIdentifierGenerateExtension.cpp:169
 msgid "AuthorityKeyIdentifierGenerateExt is not present."
 msgstr "IsoluloSoyiloLwesichongiSeqhoshaLogunyaziso alukho."
 
-#: src/AuthorityKeyIdentifierGenerateExtension.cpp:183
+#: src/AuthorityKeyIdentifierGenerateExtension.cpp:181
 msgid "Invalid AuthorityKeyIdentifierGenerateExt object."
 msgstr "Into YesoluloSofikelelekoKulwaziLogunyaziso Ayisebenziseki."
 
-#: src/BasicConstraintsExtension.cpp:153 src/BasicConstraintsExtension.cpp:165
+#: src/BasicConstraintsExtension.cpp:151 src/BasicConstraintsExtension.cpp:163
 msgid "BasicConstraintsExt is not present."
 msgstr "IsoluloSezithintelekoZesiseko alukho."
 
-#: src/BasicConstraintsExtension.cpp:177
+#: src/BasicConstraintsExtension.cpp:175
 msgid "Invalid BasicConstraintsExt object."
 msgstr "Into YesoluloSofikelelekoKulwaziLogunyaziso Ayisebenziseki."
 
-#: src/BitExtensions.cpp:109
+#: src/BitExtensions.cpp:107
 msgid "This BitExtension is not present."
 msgstr "Esi SoluloSesuntsu asikho."
 
-#: src/BitExtensions.cpp:172 src/BitExtensions.cpp:201
+#: src/BitExtensions.cpp:130 src/BitExtensions.cpp:243
+#: src/CertificateIssueData.cpp:215 src/CRLGenerationData.cpp:158
+#: src/DNObject.cpp:258 src/IssuerAlternativeNameExtension.cpp:220
+#, fuzzy, c-format
+msgid "Wrong type: %d."
+msgstr "Uhlobo olungalunganga: %1."
+
+#: src/BitExtensions.cpp:170 src/BitExtensions.cpp:199
 msgid "Invalid value for keyUsage."
 msgstr "Ixabiso elingasebenzisekiyo Lokusetyenziswa Kweqhosha."
 
-#: src/BitExtensions.cpp:213 src/BitExtensions.cpp:224
+#: src/BitExtensions.cpp:211 src/BitExtensions.cpp:222
 msgid "KeyUsageExt is not present."
 msgstr "IsoluloSokusetyenziswaKweqhosha asikho."
 
-#: src/BitExtensions.cpp:237
+#: src/BitExtensions.cpp:235
 msgid "Invalid KeyUsageExt object."
 msgstr "Into YesoluloSokusetyenziswaKweqhosha Ayisebenziseki."
 
-#: src/BitExtensions.cpp:410
+#: src/BitExtensions.cpp:406
 msgid "Invalid value for NsCertTypeExt."
 msgstr "Ixabiso elingasebenzisekiyo Lesolulo Sohlobolwe-NsCert."
 
-#: src/BitExtensions.cpp:439
+#: src/BitExtensions.cpp:435
 msgid "Invalid value for NsCertTypeExt: %1."
 msgstr "Ixabiso elingasebenzisekiyo Lesolulo Sohlobolwe-NsCert. %1."
 
-#: src/BitExtensions.cpp:451
+#: src/BitExtensions.cpp:447
 msgid "NsCertTypeExt is not present."
 msgstr "IsoluloSohlobolwe-NsCert asikho."
 
-#: src/BitExtensions.cpp:472
+#: src/BitExtensions.cpp:468
 msgid "Invalid NsCertTypeExt object."
 msgstr "Into YesoluloSohlobo lwe-NsCert Ayisebenziseki."
 
-#: src/CA.cpp:99
+#: src/CA.cpp:96
 msgid "Template not initialized."
 msgstr "Isakhelo seenkcukacha asindululwanga."
 
-#: src/CA.cpp:157 src/CA.cpp:1471
+#: src/CA.cpp:166 src/CA.cpp:1522
 msgid "Empty CA name."
 msgstr "Igama le-CA elikhamte."
 
-#: src/CA.cpp:165
-msgid "Template does not exist: %1."
+#: src/CA.cpp:174
+#, fuzzy, c-format
+msgid "Template does not exist: %s."
 msgstr "Isakhelo seenkcukacha asikho kwasona %1."
 
-#: src/CA.cpp:177 src/CA.cpp:1492
+#: src/CA.cpp:186 src/CA.cpp:1543
 msgid "Invalid CA password."
 msgstr "Igama lokugqithisa le-CA alisebenziseki."
 
-#: src/CA.cpp:223 src/CA.cpp:1147 src/CA.cpp:1290
+#: src/CA.cpp:230 src/CA.cpp:1175 src/CA.cpp:1341
 msgid "Error while creating the CA infrastructure."
 msgstr "Imposiso xa bekudalwa isakhiwo sesiseko se-CA."
 
-#: src/CA.cpp:243 src/CA.cpp:987
-msgid "Cannot parse the certificate name %1."
+#: src/CA.cpp:250 src/CA.cpp:1015
+#, fuzzy, c-format
+msgid "Cannot parse the certificate name %s."
 msgstr "Akukwazeki ukwahlula igama lesatifikethi %1."
 
-#: src/CA.cpp:254
+#: src/CA.cpp:261
 msgid "Cannot copy the private key."
 msgstr "Akukwazeki ukukopa iqhosha labucala."
 
-#: src/CA.cpp:265
+#: src/CA.cpp:272
 msgid "Cannot copy the certificate."
 msgstr "Akukwazeki kukopa isatifikethi."
 
-#: src/CA.cpp:297
+#: src/CA.cpp:304
 msgid "Invalid request data."
 msgstr "Iinkcukacha zesicelo azisebenziseki."
 
-#: src/CA.cpp:317
-msgid "Duplicate DN. Key %1.key already exists."
+#: src/CA.cpp:323
+#, fuzzy, c-format
+msgid "Duplicate DN. Key %s.key already exists."
 msgstr "i-DN Yekopi Yesibini. Iqhosha %1.iqhosha selikhona kakade."
 
-#: src/CA.cpp:325
-msgid "Duplicate DN. Request %1.req already exists."
+#: src/CA.cpp:331
+#, fuzzy, c-format
+msgid "Duplicate DN. Request %s.req already exists."
 msgstr "i-DN Yekopi Yesibini. Isicelo%1.isicelo sesikhona kakade."
 
-#: src/CA.cpp:370
-msgid "Request does not exist (%1)."
+#: src/CA.cpp:400
+#, fuzzy, c-format
+msgid "Request does not exist (%s)."
 msgstr "Isicelo asikho kwasona (%1)."
 
-#: src/CA.cpp:376
+#: src/CA.cpp:406
 msgid "Invalid issue data."
 msgstr "Iinkcukacha zombandela azisebenziseki."
 
-#: src/CA.cpp:393
+#: src/CA.cpp:423
 msgid "The CA expires before the certificate should expire."
 msgstr "I-CA idlulelwa lixesha phambi kokudlulelwa kwexesha kwesatifikethi."
 
-#: src/CA.cpp:471
+#: src/CA.cpp:501
 msgid "Issuing the certificate failed."
 msgstr "Ukukhupha isatifikethi kusilele."
 
-#: src/CA.cpp:488
-msgid "File %1 not found in the repository."
+#: src/CA.cpp:518
+#, fuzzy, c-format
+msgid "File %s not found in the repository."
 msgstr "Ifayili %1 ayifunyenwanga elugcinweni."
 
-#: src/CA.cpp:495 src/CRLData_Priv.cpp:177
+#: src/CA.cpp:525 src/CRLData_Priv.cpp:153
 msgid "Invalid CRL reason."
 msgstr "Isizathu esingasebenzisekiyo se-CRL."
 
-#: src/CA.cpp:518
+#: src/CA.cpp:548
 msgid "Invalid CRL data."
 msgstr "Iinkcukacha ezingasebenzisekiyo ze-CRL."
 
-#: src/CA.cpp:566
+#: src/CA.cpp:594
 msgid "Duplicate DN. Request already exists."
 msgstr "i-DN Yekopi Yesibini. Isicelo sesikhona kakade."
 
-#: src/CA.cpp:831 src/CA.cpp:858 src/CA.cpp:888 src/OpenSSLUtils.cpp:1005
+#: src/CA.cpp:859 src/CA.cpp:886 src/CA.cpp:916 src/OpenSSLUtils.cpp:988
 msgid "Cannot parse the certificate name."
 msgstr "Akukwazeki ukwahlula igama lesatifikethi "
 
-#: src/CA.cpp:939
-msgid "Request %1 does not exist."
+#: src/CA.cpp:967
+#, fuzzy, c-format
+msgid "Request %s does not exist."
 msgstr "Isicelo %1 asikho kwasona."
 
-#: src/CA.cpp:961
+#: src/CA.cpp:989
 msgid "Removing the request failed (%1)."
 msgstr "Ukushenxisa isicelo kusilele (%1)."
 
-#: src/CA.cpp:975
-msgid "Certificate %1 does not exist."
+#: src/CA.cpp:1003
+#, fuzzy, c-format
+msgid "Certificate %s does not exist."
 msgstr "Isatifikethi %1 asikho kwasona."
 
-#: src/CA.cpp:1024
-msgid "Removing the certificate failed: %1."
+#: src/CA.cpp:1052
+#, fuzzy, c-format
+msgid "Removing the certificate failed: %d."
 msgstr "Ukushenxisa isatifikethi kusilele: %1."
 
-#: src/CA.cpp:1032
+#: src/CA.cpp:1060
+#, fuzzy, c-format
 msgid ""
 "Only revoked or expired certificates can be deleted. The status of the "
-"certificate is %1."
+"certificate is %s."
 msgstr ""
 "Zizatifikethi ezilandulwayo okanye ezidlulelwe lixesha kuphela "
 "ezinokucinywa. Isimo sesatifikethi sesi %1."
 
-#: src/CA.cpp:1044
+#: src/CA.cpp:1072
 msgid "Database not found."
 msgstr "Isiseko seenkcukacha asifunyenwanga."
 
-#: src/CA.cpp:1070
+#: src/CA.cpp:1098
 msgid "Certificate does not exist."
 msgstr "Isatifikethi  asikho kwasona."
 
-#: src/CA.cpp:1084
-msgid "Invalid purpose %1."
+#: src/CA.cpp:1112
+#, fuzzy, c-format
+msgid "Invalid purpose %s."
 msgstr "Injongo %1.ayisebenziseki."
 
-#: src/CA.cpp:1127
+#: src/CA.cpp:1155
 msgid "Invalid CA request data."
 msgstr "Iinkcukacha zesicelo se-CA azisebenziseki."
 
-#: src/CA.cpp:1133
+#: src/CA.cpp:1161
 msgid "Invalid CA issue data."
 msgstr "Iinkcukacha zombandela we-CA azisebenziseki."
 
-#: src/CA.cpp:1228
+#: src/CA.cpp:1279
 msgid "CA name is empty."
 msgstr "Igama le-CA lilikhamte."
 
-#: src/CA.cpp:1237
+#: src/CA.cpp:1288
 msgid "CA directory already exists."
 msgstr "Uvimba weefayili selekhona kakade."
 
-#: src/CA.cpp:1248
+#: src/CA.cpp:1299
 msgid "According to basicConstraints, this is not a CA."
 msgstr "NgokweZithintelo zesiseko, oku asiyo-CA."
 
-#: src/CA.cpp:1255
+#: src/CA.cpp:1306
 msgid "CA key is empty."
 msgstr "Iqhosha le-CA lilikhamte."
 
-#: src/CA.cpp:1264
+#: src/CA.cpp:1315
 msgid "Invalid key data."
 msgstr "Iinkcukacha zeqhosha azisebenziseki."
 
-#: src/CA.cpp:1271
+#: src/CA.cpp:1322
 msgid "CA password is empty."
 msgstr "Igama lokugqithisa le-CA lilikhamte."
 
-#: src/CA.cpp:1315
+#: src/CA.cpp:1366
 msgid "Error during key encryption."
 msgstr "Imposiso ngethuba loguqulelo oluntsonkothileyo lweqhosha."
 
-#: src/CA.cpp:1337
+#: src/CA.cpp:1388
 #, fuzzy
 msgid "Error during write defaults."
 msgstr "Imposiso ngethuba loguqulelo oluntsonkothileyo lweqhosha."
 
-#: src/CA.cpp:1481
-msgid "CA name does not exist (%1)."
+#: src/CA.cpp:1532
+#, fuzzy, c-format
+msgid "CA name does not exist (%s)."
 msgstr "Igama le-CA alikho kwalona (%1)."
 
-#: src/CA.cpp:1512
+#: src/CA.cpp:1563
 msgid ""
 "Deleting the CA is not allowed. The CA must be expired or never have signed "
 "a certificate."
@@ -291,50 +307,55 @@ msgstr ""
 "Ukucima i-CA akuvunyelwa. I-CA mayidlulelwe lixesha okanye ube akuzange "
 "usayine isatifikethi."
 
-#: src/CA.cpp:1537
+#: src/CA.cpp:1588
 msgid "Deleting the CA failed: %1."
 msgstr "Ukucinywa kwe-CA kusilele: %1."
 
-#: src/CA.cpp:1588
+#: src/CA.cpp:1639
 msgid "The configuration file is missing a value for policy."
 msgstr "Ifayili yobumbeko ilahle ixabiso lomgaqonkqubo."
 
-#: src/CA.cpp:1598 src/CA.cpp:1860 src/DNObject.cpp:268
+#: src/CA.cpp:1649 src/CA.cpp:1911 src/DNObject.cpp:277
 #: src/DNObject_Priv.cpp:207
-msgid "Cannot parse section %1."
+#, fuzzy, c-format
+msgid "Cannot parse section %s."
 msgstr "Akukwazeki ukwahlula icandelo %1."
 
-#: src/CA.cpp:1670
-msgid "Field %1 must have a value."
+#: src/CA.cpp:1721
+#, fuzzy, c-format
+msgid "Field %s must have a value."
 msgstr "Ummandla we-%1 unokuba nexabiso."
 
-#: src/CA.cpp:1709
-msgid "%1 must be defined."
+#: src/CA.cpp:1760
+#, fuzzy, c-format
+msgid "%s must be defined."
 msgstr "%1 mayichazwe."
 
-#: src/CA.cpp:1794
-msgid "%1 must be the same in the CA certificate (%2) and the request (%3)."
+#: src/CA.cpp:1845
+#, fuzzy, c-format
+msgid "%s must be the same in the CA certificate (%s) and the request (%s)."
 msgstr "%1 makufane ncam kwisatifikethi se-CA (%2) nesicelo (%3)."
 
-#: src/CA.cpp:1806
+#: src/CA.cpp:1857
 msgid "The configuration file seems to have an invalid policy."
 msgstr "Ifayili yobumbeko ibonakala inomgaqonkqubo ongasebenzisekiyo."
 
-#: src/CA.cpp:1832 src/CA.cpp:1842
+#: src/CA.cpp:1883 src/CA.cpp:1893
 msgid "The configuration is not initialized."
 msgstr "Ubumbeko alundululwa."
 
-#: src/CA.cpp:1850 src/DNObject.cpp:257 src/DNObject_Priv.cpp:197
+#: src/CA.cpp:1901 src/DNObject.cpp:266 src/DNObject_Priv.cpp:197
 msgid "Missing section 'distinguished_name' in the configuration file."
 msgstr "Kulahleke icandelo kwifayili yobumbeko 'igama_elinokubalulwa'. "
 
-#: src/CertificateData_Priv.cpp:92 src/CRLData_Priv.cpp:122
-#: src/CRLData_Priv.cpp:159
-msgid "Invalid serial %1."
+#: src/CertificateData_Priv.cpp:92 src/CRLData_Priv.cpp:98
+#: src/CRLData_Priv.cpp:135
+#, fuzzy, c-format
+msgid "Invalid serial %s."
 msgstr "Ulandelelwano %1.alusebenziseki."
 
-#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:461
-#: src/DNObject_Priv.cpp:79 src/RequestData_Priv.cpp:367
+#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:393
+#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:365
 msgid "Cannot create a memory BIO."
 msgstr "Akukwazeki ukudala uvimba wolwazi lwe-BIO."
 
@@ -351,651 +372,680 @@ msgstr "Imposiso xa kwahlulwa isatifikethi."
 msgid "Cannot parse serial."
 msgstr "Akukwazeki ukwahlula icandelo %1."
 
-#: src/CertificateData_Priv.cpp:298 src/CertificateData_Priv.cpp:332
-#: src/CRLData_Priv.cpp:89 src/CRLData_Priv.cpp:339 src/CRLData_Priv.cpp:373
-msgid "Cannot parse date %1."
-msgstr "Akukwazeki ukwahlula umhla %1."
-
-#: src/CertificateData_Priv.cpp:387 src/RequestData_Priv.cpp:180
+#: src/CertificateData_Priv.cpp:341 src/RequestData_Priv.cpp:178
 msgid "Unable to get the public key."
 msgstr "Akukwazeki ukufumana iqhosha likawonkewonke."
 
-#: src/CertificateData_Priv.cpp:398 src/RequestData_Priv.cpp:191
+#: src/CertificateData_Priv.cpp:352 src/RequestData_Priv.cpp:189
 msgid "Could not get RSA key."
 msgstr "Alifumanekanga iqhosha le-RSA."
 
-#: src/CertificateData_Priv.cpp:418 src/RequestData_Priv.cpp:211
+#: src/CertificateData_Priv.cpp:372 src/RequestData_Priv.cpp:209
 msgid "Unsupported public key type."
 msgstr "Uhlobo lweqhosha likawonkewonke elingenankxaso."
 
-#: src/CertificateData_Priv.cpp:454 src/RequestData_Priv.cpp:244
+#: src/CertificateData_Priv.cpp:408 src/RequestData_Priv.cpp:242
 msgid "Unsupported public key algorithm."
 msgstr "Isisombululo sengxaki yeqhosha likawonkewonke elingenankxaso."
 
-#: src/CertificateData_Priv.cpp:486 src/CRLData_Priv.cpp:422
-#: src/RequestData_Priv.cpp:274
-msgid "Unsupported signature algorithm %1."
+#: src/CertificateData_Priv.cpp:440 src/CRLData_Priv.cpp:354
+#: src/RequestData_Priv.cpp:272
+#, fuzzy, c-format
+msgid "Unsupported signature algorithm %s."
 msgstr "Isisombulo sengxaki somtyibelo ongenankxaso we- %1."
 
-#: src/CertificateIssueData.cpp:209
+#: src/CertificateIssueData.cpp:207
 msgid "Invalid CertificateIssueData object."
 msgstr "Into YeenkcukachaZokukhutshwaKwesatifiketi Ayisebenziseki."
 
-#: src/CertificatePoliciesExtension.cpp:214
+#: src/CertificatePoliciesExtension.cpp:210
 msgid "The text is too long."
 msgstr "Isiqendu side kakhulu."
 
-#: src/CertificatePoliciesExtension.cpp:253
+#: src/CertificatePoliciesExtension.cpp:249
 msgid "Invalid UserNotice object."
 msgstr "Into YesazisoSomsebenzisi Ayisebenziseki."
 
-#: src/CertificatePoliciesExtension.cpp:393
-#: src/CertificatePoliciesExtension.cpp:457
-msgid "Invalid value for policyIdentifier: %1."
+#: src/CertificatePoliciesExtension.cpp:389
+#: src/CertificatePoliciesExtension.cpp:453
+#, fuzzy, c-format
+msgid "Invalid value for policyIdentifier: %s."
 msgstr "Ixabiso elingasebenzisekiyo Lesichongisomgaqonkqubo: %1."
 
-#: src/CertificatePoliciesExtension.cpp:512
+#: src/CertificatePoliciesExtension.cpp:508
 msgid "Invalid CertificatePolicy object."
 msgstr "Into YomgaqonkquboWesatifiketi Ayisebenziseki."
 
-#: src/CertificatePoliciesExtension.cpp:781
-#: src/CertificatePoliciesExtension.cpp:806
+#: src/CertificatePoliciesExtension.cpp:777
+#: src/CertificatePoliciesExtension.cpp:802
 msgid "CertificatePoliciesExt is not present."
 msgstr "IsoluloSemigaqonkquboYezatifikethi asikho."
 
-#: src/CertificatePoliciesExtension.cpp:819
+#: src/CertificatePoliciesExtension.cpp:815
 msgid "Invalid CertificatePoliciesExt object."
 msgstr "Into YesoluloSemigaqonkquboYezatifiketi Ayisebenziseki."
 
-#: src/CRLData.cpp:221
+#: src/CRLData.cpp:220
 msgid "Entry not found."
 msgstr "Ukungenisa akufunyenwanga."
 
-#: src/CRLData_Priv.cpp:489
+#: src/CRLData_Priv.cpp:421
 msgid "Cannot parse CRL."
 msgstr "Ayikwazi kwahlulwa i-CRL."
 
-#: src/CRLData_Priv.cpp:502
+#: src/CRLData_Priv.cpp:434
 msgid "Error parsing the CRL."
 msgstr "Imposiso xa bekusahlulwa i-CRL."
 
-#: src/CRLDistributionPointsExtension.cpp:143
+#: src/CRLDistributionPointsExtension.cpp:141
 msgid "CRLDistributionPointsExt is not present."
 msgstr "IsoluloSeendawoZosasazolwe-CRLD asikho."
 
-#: src/CRLDistributionPointsExtension.cpp:155
+#: src/CRLDistributionPointsExtension.cpp:153
 msgid "Invalid CRLDistributionPointsExt object."
 msgstr "Into YesoluloSeendawoZosasazolwe-CRL Ayisebenziseki."
 
-#: src/CRLGenerationData.cpp:154
+#: src/CRLGenerationData.cpp:151
 msgid "Invalid CRLGenerationData object."
 msgstr "Into YeenkcukachaZoyiloLwe-CRL Ayisebenziseki."
 
-#: src/CRLReason.cpp:98 src/CRLReason.cpp:134
-msgid "Invalid revoke reason %1."
+#: src/CRLReason.cpp:96 src/CRLReason.cpp:132
+#, fuzzy, c-format
+msgid "Invalid revoke reason %s."
 msgstr "Isizathu sokulandula %1asisebenziseki."
 
-#: src/CRLReason.cpp:172
+#: src/CRLReason.cpp:170
 msgid "Reason is not certificateHold."
 msgstr "Isizathu Asibambisatifikethi."
 
-#: src/CRLReason.cpp:195 src/CRLReason.cpp:209
+#: src/CRLReason.cpp:193 src/CRLReason.cpp:207
 msgid "Reason is not keyCompromise."
 msgstr "Isizathu AsibambiKuhlangabezana."
 
-#: src/CRLReason.cpp:240 src/CRLReason.cpp:254
+#: src/CRLReason.cpp:238 src/CRLReason.cpp:252
 msgid "Reason is not CACompromise."
 msgstr "Isizathu Asihlangabezani neCA."
 
-#: src/DNObject.cpp:109
-msgid "Invalid type %1."
+#: src/DNObject.cpp:100
+#, fuzzy, c-format
+msgid "Invalid type %s."
 msgstr "Uhlobo %1.alusebenziseki."
 
 #: src/DNObject_Priv.cpp:157
-msgid "Cannot parse DN line: %1."
+#, fuzzy, c-format
+msgid "Cannot parse DN line: %s."
 msgstr "Akukwazeki ukwahlula umgca we-DN: %1."
 
-#: src/ExtendedKeyUsageExt.cpp:120 src/ExtendedKeyUsageExt.cpp:169
-msgid "Invalid ExtendedKeyUsage option %1."
+#: src/ExtendedKeyUsageExt.cpp:118 src/ExtendedKeyUsageExt.cpp:167
+#, fuzzy, c-format
+msgid "Invalid ExtendedKeyUsage option %s."
 msgstr "Isikhethwa SokusetyenziswaKweqhoshaLesolulo %1 asisebenziseki."
 
-#: src/ExtendedKeyUsageExt.cpp:128 src/ExtendedKeyUsageExt.cpp:177
+#: src/ExtendedKeyUsageExt.cpp:126 src/ExtendedKeyUsageExt.cpp:175
 msgid "Invalid ExtendedKeyUsageExt."
 msgstr "IsoluloSokusetyenziswaKweqhoshaSoluliweyo Asisebenziseki"
 
-#: src/ExtendedKeyUsageExt.cpp:190
+#: src/ExtendedKeyUsageExt.cpp:188
 msgid "ExtendedKeyUsageExt is not present."
 msgstr "IsoluloSokusetyenziswaKweqhoshaEsolulweyo asikho."
 
-#: src/ExtendedKeyUsageExt.cpp:219
+#: src/ExtendedKeyUsageExt.cpp:217
 msgid "Invalid ExtendedKeyUsageExt object."
 msgstr "Into YesoluloSokusetyenziswaKweqhoshaEluliweyo Asisebenziseki."
 
-#: src/IssuerAlternativeNameExtension.cpp:164
-#: src/IssuerAlternativeNameExtension.cpp:189
+#: src/IssuerAlternativeNameExtension.cpp:162
+#: src/IssuerAlternativeNameExtension.cpp:187
 msgid "IssuerAlternativeNameExt is not present."
 msgstr "IsoluloSegama ElilelinyeLomnikeli asikho."
 
-#: src/IssuerAlternativeNameExtension.cpp:201
+#: src/IssuerAlternativeNameExtension.cpp:199
 msgid "Invalid literal value for IssuerAlternativeNameExt."
 msgstr ""
 "Ixabiso elingantsonkothanga elingasebenzisekiyo ukwenzela "
 "IsoluloSegamaEsisesinyeSomnikeli"
 
-#: src/IssuerAlternativeNameExtension.cpp:214
+#: src/IssuerAlternativeNameExtension.cpp:212
 msgid "Invalid IssuerAlternativeNameExt object."
 msgstr "Into YesoluloSegama EsisesinyeSomnikeli Ayisebenziseki."
 
-#: src/LiteralValues.cpp:128
+#: src/LiteralValues.cpp:127
 msgid "Unknown type."
 msgstr "Uhlobo olungaziwayo."
 
-#: src/LocalManagement.cpp:93
+#: src/LocalManagement.cpp:91
 msgid "Cannot split certificate output."
 msgstr "Akukwazeki ukucanda isiphumo sesatifiketi."
 
-#: src/LocalManagement.cpp:290 src/LocalManagement.cpp:311
-#: src/LocalManagement.cpp:330
-msgid "Cannot create directory %1: %2."
+#: src/LocalManagement.cpp:288 src/LocalManagement.cpp:309
+#: src/LocalManagement.cpp:328
+#, fuzzy, c-format
+msgid "Cannot create directory %s: %s."
 msgstr "Akakwazi kudaleka uvimba weefayili %1: %2."
 
-#: src/LocalManagement.cpp:344
-msgid "%1 is not a directory."
+#: src/LocalManagement.cpp:342
+#, fuzzy, c-format
+msgid "%s is not a directory."
 msgstr "%1 asingovimba weefayili."
 
-#: src/LocalManagement.cpp:365
+#: src/LocalManagement.cpp:363
 msgid "Invalid certificate file."
 msgstr "Ifayili yesatifikethi engasebenzisekiyo."
 
-#: src/LocalManagement.cpp:443
-msgid "File not found: %1."
+#: src/LocalManagement.cpp:441
+#, fuzzy, c-format
+msgid "File not found: %s."
 msgstr "Ayifunyanwa ifayili: %1."
 
-#: src/LocalManagement.cpp:452
-msgid "File too big: %1."
+#: src/LocalManagement.cpp:450
+#, fuzzy, c-format
+msgid "File too big: %s."
 msgstr "Inkulu kakhulu ifayili: %1."
 
-#: src/LocalManagement.cpp:461 src/LocalManagement.cpp:516
-msgid "Cannot open file %1."
+#: src/LocalManagement.cpp:459 src/LocalManagement.cpp:513
+#, fuzzy, c-format
+msgid "Cannot open file %s."
 msgstr "Ayikwazi kuvuleka ifayili %1."
 
-#: src/LocalManagement.cpp:481
-msgid "Cannot read from file %1."
+#: src/LocalManagement.cpp:478
+#, fuzzy, c-format
+msgid "Cannot read from file %s."
 msgstr "Akukwazeki kufundeka kwifayili '%1'"
 
-#: src/LocalManagement.cpp:506
-msgid "File already exists: %1."
+#: src/LocalManagement.cpp:503
+#, fuzzy, c-format
+msgid "File already exists: %s."
 msgstr "Ifayili seyikhona: %1."
 
-#: src/LocalManagement.cpp:528
-msgid "Cannot get lock on file %1."
+#: src/LocalManagement.cpp:523
+#, fuzzy, c-format
+msgid "Cannot get lock on file %s."
 msgstr "Akukwazeki kufumaneka ukutshixeka kwifayili %1."
 
-#: src/LocalManagement.cpp:542
-msgid "Cannot write to file %1."
+#: src/LocalManagement.cpp:535
+#, fuzzy, c-format
+msgid "Cannot write to file %s."
 msgstr "Akukwazi kubhaleka ukuphawuleka kwefayili %1."
 
-#: src/OpenSSLUtils.cpp:54
-msgid "File does not exist: %1."
+#: src/OpenSSLUtils.cpp:49
+#, fuzzy, c-format
+msgid "File does not exist: %s."
 msgstr "Ifayili ayikho kwayona: %1."
 
-#: src/OpenSSLUtils.cpp:63
-msgid "Directory does not exist: %1."
+#: src/OpenSSLUtils.cpp:58
+#, fuzzy, c-format
+msgid "Directory does not exist: %s."
 msgstr "Uvimba weefayili akakho kwayena: %1."
 
-#: src/OpenSSLUtils.cpp:72
-msgid "Invalid command %1."
+#: src/OpenSSLUtils.cpp:67
+#, fuzzy, c-format
+msgid "Invalid command %s."
 msgstr "Umyalelo %1.awusebenziseki."
 
-#: src/OpenSSLUtils.cpp:130 src/OpenSSLUtils.cpp:238 src/OpenSSLUtils.cpp:336
-#: src/OpenSSLUtils.cpp:460 src/OpenSSLUtils.cpp:598 src/OpenSSLUtils.cpp:698
-#: src/OpenSSLUtils.cpp:780 src/OpenSSLUtils.cpp:869 src/OpenSSLUtils.cpp:950
-#: src/OpenSSLUtils.cpp:1049 src/OpenSSLUtils.cpp:1137
-#: src/OpenSSLUtils.cpp:1275 src/OpenSSLUtils.cpp:1398
-#: src/OpenSSLUtils.cpp:1505 src/OpenSSLUtils.cpp:1661
-#: src/OpenSSLUtils.cpp:1803
+#: src/OpenSSLUtils.cpp:124 src/OpenSSLUtils.cpp:214 src/OpenSSLUtils.cpp:313
+#: src/OpenSSLUtils.cpp:438 src/OpenSSLUtils.cpp:577 src/OpenSSLUtils.cpp:678
+#: src/OpenSSLUtils.cpp:761 src/OpenSSLUtils.cpp:852 src/OpenSSLUtils.cpp:933
+#: src/OpenSSLUtils.cpp:1031 src/OpenSSLUtils.cpp:1119
+#: src/OpenSSLUtils.cpp:1259 src/OpenSSLUtils.cpp:1384
+#: src/OpenSSLUtils.cpp:1493 src/OpenSSLUtils.cpp:1651
+#: src/OpenSSLUtils.cpp:1795 src/OpenSSLUtils.cpp:2586
 msgid "Executing openssl command failed."
 msgstr ""
 
-#: src/OpenSSLUtils.cpp:141 src/OpenSSLUtils.cpp:249 src/OpenSSLUtils.cpp:347
-#: src/OpenSSLUtils.cpp:471 src/OpenSSLUtils.cpp:609 src/OpenSSLUtils.cpp:709
-#: src/OpenSSLUtils.cpp:794 src/OpenSSLUtils.cpp:1163
-#: src/OpenSSLUtils.cpp:1316 src/OpenSSLUtils.cpp:1424
-#: src/OpenSSLUtils.cpp:1531 src/OpenSSLUtils.cpp:1699
-#: src/OpenSSLUtils.cpp:1844
-msgid "openssl command failed: %1"
+#: src/OpenSSLUtils.cpp:136 src/OpenSSLUtils.cpp:227 src/OpenSSLUtils.cpp:326
+#: src/OpenSSLUtils.cpp:451 src/OpenSSLUtils.cpp:590 src/OpenSSLUtils.cpp:691
+#: src/OpenSSLUtils.cpp:777 src/OpenSSLUtils.cpp:1147
+#: src/OpenSSLUtils.cpp:1302 src/OpenSSLUtils.cpp:1412
+#: src/OpenSSLUtils.cpp:1521 src/OpenSSLUtils.cpp:1691
+#: src/OpenSSLUtils.cpp:1838 src/OpenSSLUtils.cpp:2613
+#, c-format
+msgid "openssl command failed: %s"
 msgstr ""
 
-#: src/OpenSSLUtils.cpp:174 src/OpenSSLUtils.cpp:276 src/OpenSSLUtils.cpp:379
-#: src/OpenSSLUtils.cpp:497 src/OpenSSLUtils.cpp:636 src/OpenSSLUtils.cpp:732
+#: src/OpenSSLUtils.cpp:166 src/OpenSSLUtils.cpp:254 src/OpenSSLUtils.cpp:358
+#: src/OpenSSLUtils.cpp:477 src/OpenSSLUtils.cpp:617 src/OpenSSLUtils.cpp:714
 msgid "No valid key file specified."
 msgstr "Akukho fayili ixeliweyo isebenzisekayo."
 
-#: src/OpenSSLUtils.cpp:284 src/OpenSSLUtils.cpp:387
+#: src/OpenSSLUtils.cpp:262 src/OpenSSLUtils.cpp:366
 msgid "No valid request file specified."
 msgstr "Akukho fayili yokucela ixeliweyo isebenzisekayo."
 
-#: src/OpenSSLUtils.cpp:505 src/OpenSSLUtils.cpp:644 src/OpenSSLUtils.cpp:740
+#: src/OpenSSLUtils.cpp:485 src/OpenSSLUtils.cpp:625 src/OpenSSLUtils.cpp:722
 msgid "No valid CA certificate file specified."
 msgstr "Akukho fayili ye-CA ixeliweyo isebenzisekayo."
 
-#: src/OpenSSLUtils.cpp:513 src/OpenSSLUtils.cpp:818
+#: src/OpenSSLUtils.cpp:493 src/OpenSSLUtils.cpp:801
 msgid "No valid certificate file specified."
 msgstr "Akukho fayili yesatifikethi ixeliweyo isebenzisekayo."
 
-#: src/OpenSSLUtils.cpp:826
+#: src/OpenSSLUtils.cpp:809
 msgid "No valid CA directory specified."
 msgstr "Akukho vimba weefayili we-CA uxeliweyo usebenzisekayo."
 
-#: src/OpenSSLUtils.cpp:980
-msgid "Showing certificate status with serial %1 failed (%2)."
+#: src/OpenSSLUtils.cpp:963
+#, fuzzy, c-format
+msgid "Showing certificate status with serial %s failed (%d)."
 msgstr "Ukuboniswa kwesimo sesatifiketi ngolandelelwano %1 kusilele (%2)."
 
-#: src/OpenSSLUtils.cpp:1016
+#: src/OpenSSLUtils.cpp:999
 msgid "The key file does not exist."
 msgstr "Ifayili esentloko ayikho kwayona."
 
-#: src/OpenSSLUtils.cpp:1311 src/OpenSSLUtils.cpp:1694
-#: src/OpenSSLUtils.cpp:1839
+#: src/OpenSSLUtils.cpp:1297 src/OpenSSLUtils.cpp:1686
+#: src/OpenSSLUtils.cpp:1833
 #, fuzzy
 msgid "Invalid password."
 msgstr "Igama lokugqithisa le-CA alisebenziseki."
 
-#: src/OpenSSLUtils.cpp:1609
+#: src/OpenSSLUtils.cpp:1599
 msgid "The password for encrypting the output is required."
 msgstr "Igama lokugqithisa lokwenza isiphumo esintsonkothileyo liyafuneka."
 
-#: src/OpenSSLUtils.cpp:1754
+#: src/OpenSSLUtils.cpp:1746
 msgid "The PKCS12 password is required."
 msgstr "Igama lokugqithisa le-PKCS12 liyafuneka."
 
-#: src/OpenSSLUtils.cpp:1870 src/OpenSSLUtils.cpp:2070
-#: src/OpenSSLUtils.cpp:2222
-msgid "Cannot read directory: %1 (%2) [%3]."
+#: src/OpenSSLUtils.cpp:1864 src/OpenSSLUtils.cpp:2064
+#: src/OpenSSLUtils.cpp:2216
+#, fuzzy, c-format
+msgid "Cannot read directory: %s (%s) [%d]."
 msgstr "Uvimba weefayili akakwazi kufundeka: %1 (%2) [%3]."
 
-#: src/OpenSSLUtils.cpp:1920
-msgid "No serial number found in %1."
+#: src/OpenSSLUtils.cpp:1914
+#, fuzzy, c-format
+msgid "No serial number found in %s."
 msgstr "Akukho nombolo yolandelelwano ifunyenweyo apha %1."
 
-#: src/OpenSSLUtils.cpp:1940
+#: src/OpenSSLUtils.cpp:1934
 msgid "The request already exists."
 msgstr "Isicelo sesikhona kakade."
 
-#: src/OpenSSLUtils.cpp:2131
+#: src/OpenSSLUtils.cpp:2125
 msgid "Cannot find the request subject."
 msgstr "Asifumaneki isihloko sesicelo."
 
-#: src/OpenSSLUtils.cpp:2292
+#: src/OpenSSLUtils.cpp:2286
 msgid "Cannot find the certificate subject."
 msgstr "Asifumaneki isihloko sesatifikethi."
 
-#: src/OpenSSLUtils.cpp:2391
-msgid "Invalid caName: %1."
+#: src/OpenSSLUtils.cpp:2385
+#, fuzzy, c-format
+msgid "Invalid caName: %s."
 msgstr "Igama le-ca elingasebenzisekiyo: %1."
 
-#: src/OpenSSLUtils.cpp:2400
-msgid "'%1' does not exist."
+#: src/OpenSSLUtils.cpp:2394
+#, fuzzy, c-format
+msgid "'%s' does not exist."
 msgstr "'%1ayikho kwayona."
 
-#: src/OpenSSLUtils.cpp:2410
-msgid "%1 still exists."
+#: src/OpenSSLUtils.cpp:2404
+#, fuzzy, c-format
+msgid "%s still exists."
 msgstr "%1 isekhona."
 
-#: src/OpenSSLUtils.cpp:2421 src/OpenSSLUtils.cpp:2469
-#: src/OpenSSLUtils.cpp:2483 src/OpenSSLUtils.cpp:2497
-#: src/OpenSSLUtils.cpp:2511 src/OpenSSLUtils.cpp:2525
-msgid "Cannot create directory: %1 (%2 [%3])."
+#: src/OpenSSLUtils.cpp:2415 src/OpenSSLUtils.cpp:2463
+#: src/OpenSSLUtils.cpp:2477 src/OpenSSLUtils.cpp:2491
+#: src/OpenSSLUtils.cpp:2505 src/OpenSSLUtils.cpp:2519
+#, fuzzy, c-format
+msgid "Cannot create directory: %s (%s [%d])."
 msgstr "Akakwazi kudaleka uvimba weefayili:  %1 (%2 [%3])."
 
-#: src/OpenSSLUtils.cpp:2456
+#: src/OpenSSLUtils.cpp:2450
 msgid "Cannot copy the configuration template."
 msgstr "Asikwazi kukopeka isakhelo sobumbeko."
 
-#: src/OpenSSLUtils.cpp:2543
+#: src/OpenSSLUtils.cpp:2537
 msgid "Cannot create the file."
 msgstr "Ayikwazi kudaleka ifayili."
 
-#: src/RequestData_Priv.cpp:394
+#: src/OpenSSLUtils.cpp:2552
+#, fuzzy
+msgid "Can not open file."
+msgstr "Ayikwazi kuvuleka ifayili %1."
+
+#: src/RequestData_Priv.cpp:392
 msgid "Cannot parse the request."
 msgstr "Akukwazeki ukwahlula isicelo."
 
-#: src/RequestData_Priv.cpp:407
+#: src/RequestData_Priv.cpp:405
 msgid "Error while parsing the request."
 msgstr "Imposiso xa kwahlulwa isicelo."
 
-#: src/RequestGenerationData.cpp:238
+#: src/RequestGenerationData.cpp:236
 msgid "Invalid RequestGenerationData object."
 msgstr "Into YeenkcukachaZoyiloLwesicelo Ayisebenziseki."
 
-#: src/StringExtensions.cpp:107 src/StringExtensions.cpp:165
+#: src/StringExtensions.cpp:105 src/StringExtensions.cpp:163
 msgid "Invalid value for NsBaseUrlExt."
 msgstr "Ixabiso elingasebenzisekiyo Lesolulole-UrlSesisekose-Ns."
 
-#: src/StringExtensions.cpp:177
+#: src/StringExtensions.cpp:175
 msgid "NsBaseUrlExt is not present."
 msgstr "Isolulose-UrlSesisekose-Ns."
 
-#: src/StringExtensions.cpp:189
+#: src/StringExtensions.cpp:187
 msgid "Invalid NsBaseUrlExt object."
 msgstr "Into Yesolulose-UrlSesisekose-Ns."
 
-#: src/StringExtensions.cpp:272 src/StringExtensions.cpp:325
+#: src/StringExtensions.cpp:270 src/StringExtensions.cpp:323
 msgid "Invalid value for NsRevocationUrlExt."
 msgstr "Ixabiso elingasebenzisekiyo LesoluloSokulandulwakwe-Ns."
 
-#: src/StringExtensions.cpp:336
+#: src/StringExtensions.cpp:334
 msgid "NsRevocationUrlExt is not present."
 msgstr "Isolulose-UrlSokulandelai-Ns."
 
-#: src/StringExtensions.cpp:347
+#: src/StringExtensions.cpp:345
 msgid "Invalid NsRevocationUrlExt object."
 msgstr "Into Yesolulose-UrlSokulandulwakwe-Ns."
 
-#: src/StringExtensions.cpp:426 src/StringExtensions.cpp:479
+#: src/StringExtensions.cpp:424 src/StringExtensions.cpp:477
 msgid "Invalid value for NsCaRevocationUrlExt."
 msgstr "Ixabiso elingasebenzisekiyo Lesolulose-UrlSokulandulwakwe-NsCa."
 
-#: src/StringExtensions.cpp:490
+#: src/StringExtensions.cpp:488
 msgid "NsCaRevocationUrlExt is not present."
 msgstr "Isolulose-UrlSokulandulai-NsCa asikho."
 
-#: src/StringExtensions.cpp:501
+#: src/StringExtensions.cpp:499
 msgid "Invalid NsCaRevocationUrlExt object."
 msgstr "Into Yesolulose-UrlSokulandulai-NsCa Ayisebenziseki."
 
-#: src/StringExtensions.cpp:579 src/StringExtensions.cpp:632
+#: src/StringExtensions.cpp:577 src/StringExtensions.cpp:630
 msgid "Invalid value for NsRenewalUrlExt."
 msgstr "Ixabiso elingasebenzisekiyo Lesolulose-UrlSokwenziwantshakwe-Ns."
 
-#: src/StringExtensions.cpp:643
+#: src/StringExtensions.cpp:641
 msgid "NsRenewalUrlExt is not present."
 msgstr "Isolulose-UrlSokwenziwantshakwe-Ns asikho."
 
-#: src/StringExtensions.cpp:654
+#: src/StringExtensions.cpp:652
 msgid "Invalid NsRenewalUrlExt object."
 msgstr "Into Yesolulose-UrlSokwenziwantshakwe-Ns Ayisebenziseki."
 
-#: src/StringExtensions.cpp:731 src/StringExtensions.cpp:784
+#: src/StringExtensions.cpp:729 src/StringExtensions.cpp:782
 msgid "Invalid value for NsCaPolicyUrlExt."
 msgstr "Ixabiso elingasebenzisekiyo Lesolulose-UrlSomgaqonkqubowe-NsCa."
 
-#: src/StringExtensions.cpp:795
+#: src/StringExtensions.cpp:793
 msgid "NsCaPolicyUrlExt is not present."
 msgstr "Isolulose-UrlSomgaqonkqubowe-NsCa asikho."
 
-#: src/StringExtensions.cpp:806
+#: src/StringExtensions.cpp:804
 msgid "Invalid NsCaPolicyUrlExt object."
 msgstr "Into Yesolulose-UrlSomgaqonkqubowe-NsCa Ayisebenziseki."
 
-#: src/StringExtensions.cpp:892
+#: src/StringExtensions.cpp:890
 msgid "Invalid type: %1."
 msgstr "Uhlobo alusebenziseki: %1."
 
-#: src/StringExtensions.cpp:938
+#: src/StringExtensions.cpp:936
 msgid "NsSslServerNameExt is not present."
 msgstr "IsoluloSegamaLesevale-NsSsl asikho."
 
-#: src/StringExtensions.cpp:949
+#: src/StringExtensions.cpp:947
 msgid "Invalid NsSslServerNameExt object."
 msgstr "Into YesoluloSegamaLesevaye-NsSsl Ayisebenziseki."
 
-#: src/StringExtensions.cpp:1064
+#: src/StringExtensions.cpp:1062
 msgid "NsCommentExt is not present."
 msgstr "IsoluloSokuphawulase-Ns asikho."
 
-#: src/StringExtensions.cpp:1075
+#: src/StringExtensions.cpp:1073
 msgid "Invalid NsCommentExt object."
 msgstr "Into YesoluloSokuphawulase-Ns Ayisebenziseki."
 
-#: src/SubjectAlternativeNameExtension.cpp:181
-#: src/SubjectAlternativeNameExtension.cpp:192
+#: src/SubjectAlternativeNameExtension.cpp:179
+#: src/SubjectAlternativeNameExtension.cpp:190
 msgid "SubjectAlternativeNameExt is not present."
 msgstr "IsoluloSegamaElilelinyeLesihloko asikho."
 
-#: src/SubjectAlternativeNameExtension.cpp:205
+#: src/SubjectAlternativeNameExtension.cpp:203
 msgid "Invalid SubjectAlternativeNameExt object."
 msgstr "Into YesoluloSegamaElilelinyeLesihloko Ayisebenziseki."
 
-#: src/SubjectKeyIdentifierExtension.cpp:127
-#: src/SubjectKeyIdentifierExtension.cpp:161
+#: src/SubjectKeyIdentifierExtension.cpp:123
+#: src/SubjectKeyIdentifierExtension.cpp:157
 msgid "Invalid KeyID."
 msgstr "i-ID Yeqhosha Ayisebenziseki."
 
-#: src/SubjectKeyIdentifierExtension.cpp:174
-#: src/SubjectKeyIdentifierExtension.cpp:185
+#: src/SubjectKeyIdentifierExtension.cpp:170
+#: src/SubjectKeyIdentifierExtension.cpp:181
 msgid "SubjectKeyIdentifierExt is not present."
 msgstr "IsoluloSesichongiSeqhoshaSesihloko asikho."
 
-#: src/SubjectKeyIdentifierExtension.cpp:198
+#: src/SubjectKeyIdentifierExtension.cpp:194
 msgid "Invalid SubjectKeyIdentifierExt object."
 msgstr "Into YesoluloSesichongiSeqhoshaLesihloko Ayisebenziseki."
 
-#: src/X509v3CertificateExtensions_Priv.cpp:393
-#: src/X509v3CertificateExtensions_Priv.cpp:450
-#: src/X509v3RequestExtensions_Priv.cpp:132
-#: src/X509v3RequestExtensions_Priv.cpp:187
+#: src/X509v3CertificateExtensions_Priv.cpp:392
+#: src/X509v3CertificateExtensions_Priv.cpp:449
+#: src/X509v3RequestExtensions_Priv.cpp:130
+#: src/X509v3RequestExtensions_Priv.cpp:185
 msgid "Extension occurred more than once: %1."
 msgstr "Isolulo senzeke ngaphezu kwesinye: %1."
 
-#: src/X509v3CertificateExtensions_Priv.cpp:400
-#: src/X509v3CertificateExtensions_Priv.cpp:457
-#: src/X509v3RequestExtensions_Priv.cpp:139
-#: src/X509v3RequestExtensions_Priv.cpp:194
+#: src/X509v3CertificateExtensions_Priv.cpp:399
+#: src/X509v3CertificateExtensions_Priv.cpp:456
+#: src/X509v3RequestExtensions_Priv.cpp:137
+#: src/X509v3RequestExtensions_Priv.cpp:192
 msgid "Unable to parse the certificate (NID: %1 Crit: %2)."
 msgstr "Akukwazekanga ukwahlula isatifiketi (NID: %1 Crit: %2)."
 
-#: src/X509v3CertificateExtensions_Priv.cpp:509
-#: src/X509v3CertificateExtensions_Priv.cpp:575
-#: src/X509v3CertificateExtensions_Priv.cpp:639
-#: src/X509v3CertificateExtensions_Priv.cpp:701
-#: src/X509v3CertificateExtensions_Priv.cpp:771
-#: src/X509v3CertificateExtensions_Priv.cpp:840
-#: src/X509v3CertificateExtensions_Priv.cpp:916
-#: src/X509v3CertificateExtensions_Priv.cpp:1002
-#: src/X509v3CRLExtensions_Priv.cpp:133
-#: src/X509v3RequestExtensions_Priv.cpp:247
-#: src/X509v3RequestExtensions_Priv.cpp:313
-#: src/X509v3RequestExtensions_Priv.cpp:376
-#: src/X509v3RequestExtensions_Priv.cpp:437
+#: src/X509v3CertificateExtensions_Priv.cpp:508
+#: src/X509v3CertificateExtensions_Priv.cpp:574
+#: src/X509v3CertificateExtensions_Priv.cpp:638
+#: src/X509v3CertificateExtensions_Priv.cpp:697
+#: src/X509v3CertificateExtensions_Priv.cpp:767
+#: src/X509v3CertificateExtensions_Priv.cpp:836
+#: src/X509v3CertificateExtensions_Priv.cpp:912
+#: src/X509v3CertificateExtensions_Priv.cpp:998
+#: src/X509v3CRLExtensions_Priv.cpp:132
+#: src/X509v3RequestExtensions_Priv.cpp:245
+#: src/X509v3RequestExtensions_Priv.cpp:311
+#: src/X509v3RequestExtensions_Priv.cpp:374
+#: src/X509v3RequestExtensions_Priv.cpp:432
 msgid "Extension occurred more than once."
 msgstr "Isolulo senzeke ngaphezu kwesinye:"
 
-#: src/X509v3CertificateExtensions_Priv.cpp:514
-#: src/X509v3CertificateExtensions_Priv.cpp:580
-#: src/X509v3CertificateExtensions_Priv.cpp:644
-#: src/X509v3CertificateExtensions_Priv.cpp:707
-#: src/X509v3CertificateExtensions_Priv.cpp:776
-#: src/X509v3CertificateExtensions_Priv.cpp:846
-#: src/X509v3CertificateExtensions_Priv.cpp:921
-#: src/X509v3CertificateExtensions_Priv.cpp:1007
-#: src/X509v3CRLExtensions_Priv.cpp:138
-#: src/X509v3RequestExtensions_Priv.cpp:252
-#: src/X509v3RequestExtensions_Priv.cpp:318
-#: src/X509v3RequestExtensions_Priv.cpp:382
-#: src/X509v3RequestExtensions_Priv.cpp:442
+#: src/X509v3CertificateExtensions_Priv.cpp:513
+#: src/X509v3CertificateExtensions_Priv.cpp:579
+#: src/X509v3CertificateExtensions_Priv.cpp:643
+#: src/X509v3CertificateExtensions_Priv.cpp:703
+#: src/X509v3CertificateExtensions_Priv.cpp:772
+#: src/X509v3CertificateExtensions_Priv.cpp:842
+#: src/X509v3CertificateExtensions_Priv.cpp:917
+#: src/X509v3CertificateExtensions_Priv.cpp:1003
+#: src/X509v3CRLExtensions_Priv.cpp:137
+#: src/X509v3RequestExtensions_Priv.cpp:250
+#: src/X509v3RequestExtensions_Priv.cpp:316
+#: src/X509v3RequestExtensions_Priv.cpp:380
+#: src/X509v3RequestExtensions_Priv.cpp:437
 msgid "Unable to parse the certificate (Crit: %1)."
 msgstr "Akukwazekanga ukwahlula isatifiketi (Crit: %1)."
 
-#: src/X509v3CertificateExtensions_Priv.cpp:941
+#: src/X509v3CertificateExtensions_Priv.cpp:937
 msgid "Invalid location in authorityInfoAccess."
 msgstr "Indawo engasebenzisekiyoKufikelelekoLolwazilogunyaziso."
 
-#: src/X509v3CertificateIssueExtensions.cpp:172
+#: src/X509v3CertificateIssueExtensions.cpp:170
 msgid "Invalid value for X509v3CertificateIssueExts::setNsBaseUrl."
 msgstr ""
 "Ixabiso ElingasebenzisekiyoLesoluloSokukhutshwaKwesatifiketise-X509v3::"
 "miselai-NsBaseUrl."
 
-#: src/X509v3CertificateIssueExtensions.cpp:195
+#: src/X509v3CertificateIssueExtensions.cpp:193
 msgid "Invalid value for X509v3CertificateIssueExts::setNsRevocationUrl."
 msgstr ""
 "Ixabiso elingasebenzisekiyo LesoluloSokukhutshwaKwesatifiketise-X509v3::"
 "miselai-NsYokulandulwakwe-Url."
 
-#: src/X509v3CertificateIssueExtensions.cpp:218
+#: src/X509v3CertificateIssueExtensions.cpp:216
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCaRevocationUrl."
 msgstr ""
 "Ixabiso elingasebenzisekiyo LesoluloSokukhutshwaKwesatifiketise-X509v3::"
 "miselai-NsCaYokulandulwakwe-Url."
 
-#: src/X509v3CertificateIssueExtensions.cpp:241
+#: src/X509v3CertificateIssueExtensions.cpp:239
 msgid "Invalid value for X509v3CertificateIssueExts::setNsRenewalUrl."
 msgstr ""
 "Ixabiso elingasebenzisekiyo LesoluloSokukhutshwaKwesatifiketise-X509v3::"
 "miselai-NsYokwenziwantshakwe-Url."
 
-#: src/X509v3CertificateIssueExtensions.cpp:264
+#: src/X509v3CertificateIssueExtensions.cpp:262
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCaPolicyUrl."
 msgstr ""
 "Ixabiso elingasebenzisekiyo LesoluloSokukhutshwaKwesatifiketise-X509v3::"
 "miselaUmgaqonkqubowe-NsCaye-Url."
 
-#: src/X509v3CertificateIssueExtensions.cpp:287
+#: src/X509v3CertificateIssueExtensions.cpp:285
 msgid "Invalid value for X509v3CertificateIssueExts::setNsSslServerName."
 msgstr ""
 "Ixabiso elingasebenzisekiyo LesoluloSokukhutshwaKwesatifiketise-X509v3::"
 "miselaIgamaLeseva ye-NsSslye-Url."
 
-#: src/X509v3CertificateIssueExtensions.cpp:310
+#: src/X509v3CertificateIssueExtensions.cpp:308
 msgid "Invalid value for X509v3CertificateIssueExts::setNsComment."
 msgstr ""
 "Ixabiso elingasebenzisekiyo LesoluloSokukhutshwaKwesatifiketise-X509v3::"
 "miselaUkuphawulekakwe-Ns."
 
-#: src/X509v3CertificateIssueExtensions.cpp:333
+#: src/X509v3CertificateIssueExtensions.cpp:331
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCertType."
 msgstr ""
 "Ixabiso elingasebenzisekiyo LesoluloSokukhutshwaKwesatifiketise-X509v3::"
 "miselaUhloboLwesatifiketise-Ns."
 
-#: src/X509v3CertificateIssueExtensions.cpp:356
+#: src/X509v3CertificateIssueExtensions.cpp:354
 msgid "Invalid value for X509v3CertificateIssueExts::setKeyUsage."
 msgstr ""
 "Ixabiso ElingasebenzisekiyoLesoluloSokukhutshwaKwesatifiketise-X509v3::"
 "miselaUkusetyenziswaKweqhosha."
 
-#: src/X509v3CertificateIssueExtensions.cpp:379
+#: src/X509v3CertificateIssueExtensions.cpp:377
 msgid "Invalid value for X509v3CertificateIssueExts::setBasicConstraints."
 msgstr ""
 "Ixabiso ElingasebenzisekiyoLesoluloSokukhutshwaKwesatifiketise-X509v3::"
 "miselaIzithinteloZesiseko."
 
-#: src/X509v3CertificateIssueExtensions.cpp:402
+#: src/X509v3CertificateIssueExtensions.cpp:400
 msgid "Invalid value for X509v3CertificateIssueExts::setExtendedKeyUsage."
 msgstr ""
 "Ixabiso ElingasebenzisekiyoLesoluloSokukhutshwaKwesatifiketise-X509v3::"
 "miselaUkusetyenziswaKweqhoshaLesolulo."
 
-#: src/X509v3CertificateIssueExtensions.cpp:425
+#: src/X509v3CertificateIssueExtensions.cpp:423
 msgid "Invalid value for X509v3CertificateIssueExts::setSubjectKeyIdentifier."
 msgstr ""
 "Ixabiso ElingasebenzisekiyoLesoluloSokukhutshwaKwesatifiketise-X509v3::"
 "miselaIsichongiSeqhoshaLesihloko."
 
-#: src/X509v3CertificateIssueExtensions.cpp:448
+#: src/X509v3CertificateIssueExtensions.cpp:446
 msgid ""
 "Invalid value for X509v3CertificateIssueExts::setAuthorityKeyIdentifier."
 msgstr ""
 "Ixabiso ElingasebenzisekiyoLesoluloSokukhutshwaKwesatifiketise-X509v3::"
 "miselasIchongiSeqhoshaLogunyaziso."
 
-#: src/X509v3CertificateIssueExtensions.cpp:471
+#: src/X509v3CertificateIssueExtensions.cpp:469
 msgid ""
 "Invalid value for X509v3CertificateIssueExts::setSubjectAlternativeName."
 msgstr ""
 "Ixabiso ElingasebenzisekiyoLesoluloSokukhutshwaKwesatifiketise-X509v3::"
 "miselaIgamaElilelinyeLesihloko."
 
-#: src/X509v3CertificateIssueExtensions.cpp:494
+#: src/X509v3CertificateIssueExtensions.cpp:492
 msgid "Invalid value for X509v3CertificateIssueExts::setIssuerAlternativeName."
 msgstr ""
 "Ixabiso ElingasebenzisekiyoLesoluloSokukhutshwaKwesatifiketise-X509v3::"
 "miselaIgamaElilelinyeLominikeli."
 
-#: src/X509v3CertificateIssueExtensions.cpp:517
+#: src/X509v3CertificateIssueExtensions.cpp:515
 msgid "Invalid value for X509v3CertificateIssueExts::setAuthorityInfoAccess."
 msgstr ""
 "Ixabiso ElingasebenzisekiyoLesoluloSokukhutshwaKwesatifiketise-X509v3::"
 "miselaUfikelelekoKulwaziNgogunyaziso."
 
-#: src/X509v3CertificateIssueExtensions.cpp:540
+#: src/X509v3CertificateIssueExtensions.cpp:538
 msgid "Invalid value for X509v3CertificateIssueExts::setCRLDistributionPoints."
 msgstr ""
 "Ixabiso ElingasebenzisekiyoLesoluloSokukhutshwaKwesatifiketise-X509v3::"
 "miselaIindawoZosasazolwe-CRLD."
 
-#: src/X509v3CertificateIssueExtensions.cpp:563
+#: src/X509v3CertificateIssueExtensions.cpp:561
 msgid "Invalid value for X509v3CertificateIssueExts::setCertificatePolicies."
 msgstr ""
 "Ixabiso ElingasebenzisekiyoLesoluloSokukhutshwaKwesatifiketise-X509v3::"
 "miselaImigaqonkquboYesatifikethi."
 
-#: src/X509v3CertificateIssueExtensions.cpp:587
-#: src/X509v3CRLGenerationExtensions.cpp:147
-#: src/X509v3RequestExtensions.cpp:253
+#: src/X509v3CertificateIssueExtensions.cpp:585
+#: src/X509v3CRLGenerationExtensions.cpp:145
+#: src/X509v3RequestExtensions.cpp:252
 msgid "Invalid X509v3RequestExts object."
 msgstr "Into Engasebenzisekiyo YezoluloZeziceloze-X509v3."
 
-#: src/X509v3CRLGenerationExtensions.cpp:100
+#: src/X509v3CRLGenerationExtensions.cpp:98
 msgid "Invalid value for X509v3CRLGenerationExts::setAuthorityKeyIdentifier."
 msgstr ""
 "Ixabiso ElingasebenzisekiyoLezoluloZoyilolwe-X509v3CRL::"
 "miselasIchongiSeqhoshaLogunyaziso."
 
-#: src/X509v3CRLGenerationExtensions.cpp:123
+#: src/X509v3CRLGenerationExtensions.cpp:121
 msgid "Invalid value for X509v3CRLGenerationExts::setIssuerAlternativeName."
 msgstr ""
 "Ixabiso ElingasebenzisekiyoLezoluloZoyilolwe-X509v3CRL::"
 "miselaIgamaElilelinyeLominikeli."
 
-#: src/X509v3RequestExtensions.cpp:68
+#: src/X509v3RequestExtensions.cpp:67
 msgid "Invalid value for X509v3RequestExts::setNsSslServerName."
 msgstr ""
 "Ixabiso elingasebenzisekiyo LezoluloZeziceloze-X509v3::miselaIgamaLesevaye-"
 "NsSsl"
 
-#: src/X509v3RequestExtensions.cpp:91
+#: src/X509v3RequestExtensions.cpp:90
 msgid "Invalid value for X509v3RequestExts::setNsComment."
 msgstr ""
 "Ixabiso elingasebenzisekiyo LezoluloZeziceloze-X509v3::miselaUkuphawulakwe-"
 "Ns."
 
-#: src/X509v3RequestExtensions.cpp:114
+#: src/X509v3RequestExtensions.cpp:113
 msgid "Invalid value for X509v3RequestExts::setNsCertType."
 msgstr ""
 "Ixabiso elingasebenzisekiyo LezoluloZeziceloze-X509v3::"
 "miselaUhloboLwesatifiketise-Ns."
 
-#: src/X509v3RequestExtensions.cpp:137
+#: src/X509v3RequestExtensions.cpp:136
 msgid "Invalid value for X509v3RequestExts::setKeyUsage."
 msgstr ""
 "Ixabiso elingasebenzisekiyo LezoluloZeziceloze-X509v3::"
 "miselaUkusetyenziswaKweqhosha."
 
-#: src/X509v3RequestExtensions.cpp:160
+#: src/X509v3RequestExtensions.cpp:159
 msgid "Invalid value for X509v3RequestExts::setBasicConstraints."
 msgstr ""
 "Ixabiso elingasebenzisekiyo LezoluloZeziceloze-X509v3::"
 "miselaIzithinteloZesiseko."
 
-#: src/X509v3RequestExtensions.cpp:183
+#: src/X509v3RequestExtensions.cpp:182
 msgid "Invalid value for X509v3RequestExts::setExtendedKeyUsage."
 msgstr ""
 "Ixabiso elingasebenzisekiyo LezoluloZeziceloze-X509v3::"
 "miselaUkusetyenziswaKweqhoshaEloluliweyo."
 
-#: src/X509v3RequestExtensions.cpp:206
+#: src/X509v3RequestExtensions.cpp:205
 msgid "Invalid value for X509v3RequestExts::setSubjectKeyIdentifier."
 msgstr ""
 "Ixabiso elingasebenzisekiyo LezoluloZeziceloze-X509v3::"
 "miselaIsichongiSeqhoshaLesihloko."
 
-#: src/X509v3RequestExtensions.cpp:229
+#: src/X509v3RequestExtensions.cpp:228
 msgid "Invalid value for X509v3RequestExts::setSubjectAlternativeName."
 msgstr ""
 "Ixabiso elingasebenzisekiyo LezoluloZeziceloze-X509v3::"
 "miselaIsichongiSeqhoshaLesihloko."
+
+#~ msgid "Cannot parse date %1."
+#~ msgstr "Akukwazeki ukwahlula umhla %1."
 
 #~ msgid "Command returned '%1' : %2"
 #~ msgstr "Umyalelo '%1' ubuyiselwe: %2"

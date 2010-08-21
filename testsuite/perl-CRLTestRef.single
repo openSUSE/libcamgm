@@ -1,28 +1,27 @@
-#!/usr/bin/perl 
+#!/usr/bin/perl
 
-BEGIN 
+BEGIN
 {
     unshift @INC, '../swig/perl5';
 }
 
 use strict;
-use LIMAL;
-use LIMAL::CaMgm;
+use CaMgm;
 use Data::Dumper;
 
 print "START\n";
 
-my $ca = new LIMAL::CaMgm::CA("Test_CA1", "system", "./TestRepos/");
+my $ca = new CaMgm::CA("Test_CA1", "system", "./TestRepos/");
 
 my $cgd = $ca->getCRLDefaults();
 
-$cgd->extensions()->authorityKeyIdentifier()->setKeyID($LIMAL::CaMgm::AuthorityKeyIdentifierGenerateExt::KeyID_always);
-$cgd->extensions()->authorityKeyIdentifier()->setIssuer($LIMAL::CaMgm::AuthorityKeyIdentifierGenerateExt::Issuer_always);
+$cgd->extensions()->authorityKeyIdentifier()->setKeyID($CaMgm::AuthorityKeyIdentifierGenerateExt::KeyID_always);
+$cgd->extensions()->authorityKeyIdentifier()->setIssuer($CaMgm::AuthorityKeyIdentifierGenerateExt::Issuer_always);
 
-my $list = new LIMAL::CaMgm::LiteralValueList();
+my $list = new CaMgm::LiteralValueList();
 
-$list->push_back(new LIMAL::CaMgm::LiteralValue("email", 'me@my-company.com'));
-$list->push_back(new LIMAL::CaMgm::LiteralValue("URI", "http://www.my-company.com/"));
+$list->push_back(new CaMgm::LiteralValue("email", 'me@my-company.com'));
+$list->push_back(new CaMgm::LiteralValue("URI", "http://www.my-company.com/"));
 
 $cgd->extensions()->issuerAlternativeName()->setCopyIssuer(1);
 $cgd->extensions()->issuerAlternativeName()->setAlternativeNameList($list);
@@ -35,9 +34,9 @@ if( -e "./TestRepos/Test_CA1/crl/crl.pem")
 }
 
 my $cd = $ca->getCRL();
-        
+
 my $ret = $cd->getExtensions()->dump();
-        
+
 for(my $it = $ret->begin();
     !$ret->iterator_equal($it, $ret->end());
     $ret->iterator_incr($it))

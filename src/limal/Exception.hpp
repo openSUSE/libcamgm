@@ -207,7 +207,7 @@ const char* NAME##Exception::type() const { return #NAME "Exception"; }\
  *   exception constructor, which should clone() it.
  */
 #define CA_MGM_THROW_SUBEX(exType, msg, subex) \
-throw exType(__FILE__, __LINE__, (msg), 0, &(subex))
+throw exType(__FILE__, __LINE__, (msg), -1, &(subex))
 
 /**
  * Throw an exception using __FILE__ and __LINE__.

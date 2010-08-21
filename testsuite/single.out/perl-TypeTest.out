@@ -1,77 +1,77 @@
-$VAR1 = bless( {}, 'LIMAL::StringArray' );
-$VAR1 = bless( {}, 'LIMAL::Int32List' );
-1		_p_blocxx__ListT_blocxx__Int32_t__iterator
-5		_p_blocxx__ListT_blocxx__Int32_t__iterator
-56836564		_p_blocxx__ListT_blocxx__Int32_t__iterator
-$VAR1 = bless( {}, 'LIMAL::StringList' );
-serverAuth		_p_blocxx__ListT_blocxx__String_t__iterator
-nsSGC		_p_blocxx__ListT_blocxx__String_t__iterator
-1.5.2.6		_p_blocxx__ListT_blocxx__String_t__iterator
-$VAR1 = bless( {}, 'LIMAL::CaMgm::StringMapArray' );
-$VAR1 = bless( {}, 'LIMAL::StringMap' );
-certificate = 01:b4d4e48e6de644c953290eb2854a6ced
-commonName = Test CA/SUSE Inc.\Gmbh
+$VAR1 = bless( {}, 'CaMgm::StringArray' );
+$VAR1 = bless( {}, 'CaMgm::Int32List' );
+1		_p_std__listT_int32_t_t__iterator
+5		_p_std__listT_int32_t_t__iterator
+56836564		_p_std__listT_int32_t_t__iterator
+$VAR1 = bless( {}, 'CaMgm::StringList' );
+serverAuth		_p_std__listT_std__string_t__iterator
+nsSGC		_p_std__listT_std__string_t__iterator
+1.5.2.6		_p_std__listT_std__string_t__iterator
+$VAR1 = bless( {}, 'CaMgm::StringMapArray' );
+$VAR1 = bless( {}, 'CaMgm::StringMap' );
+certificate = 01:d12f85f32848ae7f9f1d8064813aaa53
+commonName = Test CA/SUSE Inc.Gmbh
 country = DE
 emailAddress = suse@suse.de
 serial = 01
 status = Valid
-$VAR1 = bless( {}, 'LIMAL::StringMap' );
-certificate = 02:bc5324c7f5c2a27492fb6795745b596b
-commonName = Test Server Certificate/SUSE Inc.\Gmbh
+$VAR1 = bless( {}, 'CaMgm::StringMap' );
+certificate = 02:68b3a1b7290aadfd42361b1b3c14e69a
+commonName = Test Server Certificate/SUSE Inc.Gmbh
 country = DE
 emailAddress = suse@suse.de
 serial = 02
 status = Valid
-$VAR1 = bless( {}, 'LIMAL::StringMap' );
+$VAR1 = bless( {}, 'CaMgm::StringMap' );
 certificate = 03:40717a16174dc4d516f6fa7ee8eeb18c
 commonName = Full Test Certificate
 country = DE
 emailAddress = suse@suse.de
 serial = 03
 status = Valid
-$VAR1 = bless( {}, 'LIMAL::StringMap' );
+$VAR1 = bless( {}, 'CaMgm::StringMap' );
 certificate = 04:40717a16174dc4d516f6fa7ee8eeb18c
 commonName = Full Test Certificate
 country = DE
 emailAddress = suse@suse.de
 serial = 04
 status = Valid
-$VAR1 = bless( {}, 'LIMAL::StringMap' );
+$VAR1 = bless( {}, 'CaMgm::StringMap' );
 certificate = 05:40717a16174dc4d516f6fa7ee8eeb18c
 commonName = Full Test Certificate
 country = DE
 emailAddress = suse@suse.de
 serial = 05
 status = Valid
-$VAR1 = bless( {}, 'LIMAL::StringMap' );
+$VAR1 = bless( {}, 'CaMgm::StringMap' );
 certificate = 08:9198f6798d9da70d7cbfb67b610633f5
 commonName = Test Certificate for revocation 3
 country = DE
 emailAddress = suse@suse.de
 serial = 08
 status = Revoked
-$VAR1 = bless( {}, 'LIMAL::StringMap' );
+$VAR1 = bless( {}, 'CaMgm::StringMap' );
 certificate = 09:3e248858337c2b46dc67a0f9389376dd
 commonName = Test Certificate for revocation 4
 country = DE
 emailAddress = suse@suse.de
 serial = 09
 status = Revoked
-$VAR1 = bless( {}, 'LIMAL::StringMap' );
+$VAR1 = bless( {}, 'CaMgm::StringMap' );
 certificate = 0A:bf04fdd95062554800c1556085f47063
 commonName = Test Certificate for revocation 5 oid test
 country = DE
 emailAddress = suse@suse.de
 serial = 0A
 status = Revoked
-$VAR1 = bless( {}, 'LIMAL::StringMap' );
+$VAR1 = bless( {}, 'CaMgm::StringMap' );
 certificate = 0B:9797ac11af29f94b82c1e5b0499ab5f2
 commonName = Test Sub CA
 country = DE
 emailAddress = suse@suse.de
 serial = 0B
 status = Valid
-$VAR1 = bless( {}, 'LIMAL::StringMap' );
+$VAR1 = bless( {}, 'CaMgm::StringMap' );
 certificate = 0C:40717a16174dc4d516f6fa7ee8eeb18c
 commonName = Full Test Certificate
 country = DE

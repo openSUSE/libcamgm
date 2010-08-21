@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2010-06-03 17:06+0200\n"
+"POT-Creation-Date: 2010-08-21 18:28+0200\n"
 "PO-Revision-Date: 2003-08-14 10:47+0200\n"
 "Last-Translator: Priyavert Sharma<priyavert.sharma@agreeya.com>\n"
 "Language-Team: AgreeYa Solutions<linux_team@agreeya.com>\n"
@@ -11,277 +11,293 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: src/AuthorityInfoAccessExtension.cpp:108
-#: src/AuthorityInfoAccessExtension.cpp:137
+#: src/AuthorityInfoAccessExtension.cpp:104
+#: src/AuthorityInfoAccessExtension.cpp:133
 msgid "Invalid location."
 msgstr "செல்லாத அமைவிடம்."
 
-#: src/AuthorityInfoAccessExtension.cpp:113
-#: src/AuthorityInfoAccessExtension.cpp:142
+#: src/AuthorityInfoAccessExtension.cpp:109
+#: src/AuthorityInfoAccessExtension.cpp:138
 msgid "Invalid accessOID."
 msgstr "செல்லாத அணுக்கOID"
 
-#: src/AuthorityInfoAccessExtension.cpp:257
-#: src/AuthorityInfoAccessExtension.cpp:340
-#: src/AuthorityKeyIdentifierGenerateExtension.cpp:84
-#: src/AuthorityKeyIdentifierGenerateExtension.cpp:191
-#: src/BasicConstraintsExtension.cpp:82 src/BasicConstraintsExtension.cpp:185
-#: src/BitExtensions.cpp:132 src/BitExtensions.cpp:245
-#: src/BitExtensions.cpp:372 src/BitExtensions.cpp:480 src/CA.cpp:1580
-#: src/CertificateIssueData.cpp:217 src/CertificatePoliciesExtension.cpp:167
-#: src/CertificatePoliciesExtension.cpp:262
-#: src/CertificatePoliciesExtension.cpp:423
-#: src/CertificatePoliciesExtension.cpp:521
-#: src/CertificatePoliciesExtension.cpp:711
-#: src/CertificatePoliciesExtension.cpp:828
-#: src/CRLDistributionPointsExtension.cpp:74
-#: src/CRLDistributionPointsExtension.cpp:164 src/CRLGenerationData.cpp:161
-#: src/DNObject.cpp:249 src/ExtendedKeyUsageExt.cpp:75
-#: src/ExtendedKeyUsageExt.cpp:227 src/IssuerAlternativeNameExtension.cpp:96
-#: src/IssuerAlternativeNameExtension.cpp:222
-#: src/RequestGenerationData.cpp:246 src/StringExtensions.cpp:120
-#: src/StringExtensions.cpp:197 src/StringExtensions.cpp:285
-#: src/StringExtensions.cpp:355 src/StringExtensions.cpp:439
-#: src/StringExtensions.cpp:509 src/StringExtensions.cpp:592
-#: src/StringExtensions.cpp:662 src/StringExtensions.cpp:744
-#: src/StringExtensions.cpp:814 src/StringExtensions.cpp:956
-#: src/StringExtensions.cpp:1018 src/StringExtensions.cpp:1082
-#: src/SubjectAlternativeNameExtension.cpp:83
-#: src/SubjectAlternativeNameExtension.cpp:213
-#: src/SubjectKeyIdentifierExtension.cpp:83
-#: src/SubjectKeyIdentifierExtension.cpp:206
+#: src/AuthorityInfoAccessExtension.cpp:253
+#: src/AuthorityInfoAccessExtension.cpp:336
+#: src/AuthorityKeyIdentifierGenerateExtension.cpp:82
+#: src/AuthorityKeyIdentifierGenerateExtension.cpp:189
+#: src/BasicConstraintsExtension.cpp:80 src/BasicConstraintsExtension.cpp:183
+#: src/BitExtensions.cpp:368 src/BitExtensions.cpp:476 src/CA.cpp:1631
+#: src/CertificatePoliciesExtension.cpp:163
+#: src/CertificatePoliciesExtension.cpp:258
+#: src/CertificatePoliciesExtension.cpp:419
+#: src/CertificatePoliciesExtension.cpp:517
+#: src/CertificatePoliciesExtension.cpp:707
+#: src/CertificatePoliciesExtension.cpp:824
+#: src/CRLDistributionPointsExtension.cpp:72
+#: src/CRLDistributionPointsExtension.cpp:162 src/DNObject.cpp:500
+#: src/ExtendedKeyUsageExt.cpp:73 src/ExtendedKeyUsageExt.cpp:225
+#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:244
+#: src/StringExtensions.cpp:118 src/StringExtensions.cpp:195
+#: src/StringExtensions.cpp:283 src/StringExtensions.cpp:353
+#: src/StringExtensions.cpp:437 src/StringExtensions.cpp:507
+#: src/StringExtensions.cpp:590 src/StringExtensions.cpp:660
+#: src/StringExtensions.cpp:742 src/StringExtensions.cpp:812
+#: src/StringExtensions.cpp:954 src/StringExtensions.cpp:1016
+#: src/StringExtensions.cpp:1080 src/SubjectAlternativeNameExtension.cpp:81
+#: src/SubjectAlternativeNameExtension.cpp:211
+#: src/SubjectKeyIdentifierExtension.cpp:79
+#: src/SubjectKeyIdentifierExtension.cpp:202
 msgid "Wrong type: %1."
 msgstr "தவறான வகை: %1."
 
-#: src/AuthorityInfoAccessExtension.cpp:308
+#: src/AuthorityInfoAccessExtension.cpp:304
 msgid "Invalid AuthorityInformation in the information list."
 msgstr "தகவல் பட்டியலில் செல்லாத அதிகாரதகவல்."
 
-#: src/AuthorityInfoAccessExtension.cpp:321
+#: src/AuthorityInfoAccessExtension.cpp:317
 msgid "AuthorityInfoAccessExt is not present."
 msgstr "அதிகாரவிவரஅணுக்கவிரிவு இல்லை."
 
-#: src/AuthorityInfoAccessExtension.cpp:332
+#: src/AuthorityInfoAccessExtension.cpp:328
 msgid "Invalid AuthorityInfoAccessExt object."
 msgstr "செல்லாத அதிகாரவிவரஅணுக்கவிரிவு பொருள்."
 
-#: src/AuthorityKeyIdentifierExtension.cpp:95
-#: src/AuthorityKeyIdentifierExtension.cpp:106
-#: src/AuthorityKeyIdentifierExtension.cpp:117
+#: src/AuthorityKeyIdentifierExtension.cpp:93
+#: src/AuthorityKeyIdentifierExtension.cpp:104
+#: src/AuthorityKeyIdentifierExtension.cpp:115
 msgid "AuthorityKeyIdentifierExt is not present."
 msgstr "அதிகாரவிசைஅடையாளங்காட்டிவிரிவு இல்லை."
 
-#: src/AuthorityKeyIdentifierGenerateExtension.cpp:152
-#: src/AuthorityKeyIdentifierGenerateExtension.cpp:171
+#: src/AuthorityKeyIdentifierGenerateExtension.cpp:150
+#: src/AuthorityKeyIdentifierGenerateExtension.cpp:169
 msgid "AuthorityKeyIdentifierGenerateExt is not present."
 msgstr "அதிகாரவிசைஅடையாளங்காட்டிஉருவாக்கவிரிவு இல்லை."
 
-#: src/AuthorityKeyIdentifierGenerateExtension.cpp:183
+#: src/AuthorityKeyIdentifierGenerateExtension.cpp:181
 msgid "Invalid AuthorityKeyIdentifierGenerateExt object."
 msgstr "செல்லாத திகாரவிசைஅடையாளங்காட்டிஉருவாக்கவிரிவு பொருள்."
 
-#: src/BasicConstraintsExtension.cpp:153 src/BasicConstraintsExtension.cpp:165
+#: src/BasicConstraintsExtension.cpp:151 src/BasicConstraintsExtension.cpp:163
 msgid "BasicConstraintsExt is not present."
 msgstr "அடிப்படைவரம்புகள்விரிவு இல்லை."
 
-#: src/BasicConstraintsExtension.cpp:177
+#: src/BasicConstraintsExtension.cpp:175
 msgid "Invalid BasicConstraintsExt object."
 msgstr "செல்லாத அடிப்படைவரம்புகள்விரிவு பொருள்."
 
-#: src/BitExtensions.cpp:109
+#: src/BitExtensions.cpp:107
 msgid "This BitExtension is not present."
 msgstr "இந்த பிட்விரிவு இல்லை."
 
-#: src/BitExtensions.cpp:172 src/BitExtensions.cpp:201
+#: src/BitExtensions.cpp:130 src/BitExtensions.cpp:243
+#: src/CertificateIssueData.cpp:215 src/CRLGenerationData.cpp:158
+#: src/DNObject.cpp:258 src/IssuerAlternativeNameExtension.cpp:220
+#, fuzzy, c-format
+msgid "Wrong type: %d."
+msgstr "தவறான வகை: %1."
+
+#: src/BitExtensions.cpp:170 src/BitExtensions.cpp:199
 msgid "Invalid value for keyUsage."
 msgstr "விசைபயன்பாட்டிற்கான செல்லாத மதிப்பு."
 
-#: src/BitExtensions.cpp:213 src/BitExtensions.cpp:224
+#: src/BitExtensions.cpp:211 src/BitExtensions.cpp:222
 msgid "KeyUsageExt is not present."
 msgstr "விசைபயன்பாட்டின்விரிவு இல்லை."
 
-#: src/BitExtensions.cpp:237
+#: src/BitExtensions.cpp:235
 msgid "Invalid KeyUsageExt object."
 msgstr "செல்லாத விசைபயன்பாட்டின்விரிவு பொருள்."
 
-#: src/BitExtensions.cpp:410
+#: src/BitExtensions.cpp:406
 msgid "Invalid value for NsCertTypeExt."
 msgstr "என்எஸ்சான்றிதழ்வகைவிரிவுக்கான செல்லாத மதிப்பு."
 
-#: src/BitExtensions.cpp:439
+#: src/BitExtensions.cpp:435
 msgid "Invalid value for NsCertTypeExt: %1."
 msgstr "என்எஸ்சான்றிதழ்வகைவிரிவுக்கான செல்லாத மதிப்பு: %1."
 
-#: src/BitExtensions.cpp:451
+#: src/BitExtensions.cpp:447
 msgid "NsCertTypeExt is not present."
 msgstr "என்எஸ்சான்றிதழ்வகைவிரிவு இல்லை."
 
-#: src/BitExtensions.cpp:472
+#: src/BitExtensions.cpp:468
 msgid "Invalid NsCertTypeExt object."
 msgstr "செல்லாத என்எஸ்சான்றிதழ்வகைவிரிவு பொருள்."
 
-#: src/CA.cpp:99
+#: src/CA.cpp:96
 msgid "Template not initialized."
 msgstr "வார்ப்புரு துவக்கப்படவில்லை."
 
-#: src/CA.cpp:157 src/CA.cpp:1471
+#: src/CA.cpp:166 src/CA.cpp:1522
 msgid "Empty CA name."
 msgstr "சிஏ பெயா காலி செய்."
 
-#: src/CA.cpp:165
-msgid "Template does not exist: %1."
+#: src/CA.cpp:174
+#, fuzzy, c-format
+msgid "Template does not exist: %s."
 msgstr "வார்ப்புரு கிடையாது: %1."
 
-#: src/CA.cpp:177 src/CA.cpp:1492
+#: src/CA.cpp:186 src/CA.cpp:1543
 msgid "Invalid CA password."
 msgstr "செல்லாத சிஏ கடவுச்சொல்."
 
-#: src/CA.cpp:223 src/CA.cpp:1147 src/CA.cpp:1290
+#: src/CA.cpp:230 src/CA.cpp:1175 src/CA.cpp:1341
 msgid "Error while creating the CA infrastructure."
 msgstr "சிஏ கட்டமைப்பை உருவாக்கும்போது பிழை."
 
-#: src/CA.cpp:243 src/CA.cpp:987
-msgid "Cannot parse the certificate name %1."
+#: src/CA.cpp:250 src/CA.cpp:1015
+#, fuzzy, c-format
+msgid "Cannot parse the certificate name %s."
 msgstr "சான்றிதழ் பெயர் %1 விளக்க முடியவில்லை."
 
-#: src/CA.cpp:254
+#: src/CA.cpp:261
 msgid "Cannot copy the private key."
 msgstr "தனிப்பட்ட விசையை பிரதியெடுக்க முடியவில்லை."
 
-#: src/CA.cpp:265
+#: src/CA.cpp:272
 msgid "Cannot copy the certificate."
 msgstr "சான்றிதழை பிரதியெடுக்க முடியவில்லை."
 
-#: src/CA.cpp:297
+#: src/CA.cpp:304
 msgid "Invalid request data."
 msgstr "செல்லாத கோரிக்கை தரவு."
 
-#: src/CA.cpp:317
-msgid "Duplicate DN. Key %1.key already exists."
+#: src/CA.cpp:323
+#, fuzzy, c-format
+msgid "Duplicate DN. Key %s.key already exists."
 msgstr "டிஎன் நகலெடு. விசை %1. விசை ஏற்கனவே உள்ளது."
 
-#: src/CA.cpp:325
-msgid "Duplicate DN. Request %1.req already exists."
+#: src/CA.cpp:331
+#, fuzzy, c-format
+msgid "Duplicate DN. Request %s.req already exists."
 msgstr " டிஎன் நகலெடு. கோரிக்கை %1. கோரிக்கை ஏற்கனவே உள்ளது."
 
-#: src/CA.cpp:370
-msgid "Request does not exist (%1)."
+#: src/CA.cpp:400
+#, fuzzy, c-format
+msgid "Request does not exist (%s)."
 msgstr "கோரிக்கை இல்லை (%1)."
 
-#: src/CA.cpp:376
+#: src/CA.cpp:406
 msgid "Invalid issue data."
 msgstr "செல்லாத அளிப்பு தரவு."
 
-#: src/CA.cpp:393
+#: src/CA.cpp:423
 msgid "The CA expires before the certificate should expire."
 msgstr "சான்றிதழ் காலாவதியாவதற்குமுன் சிஏ காலாவதியாகிறது."
 
-#: src/CA.cpp:471
+#: src/CA.cpp:501
 msgid "Issuing the certificate failed."
 msgstr "சான்றிதழ் அளிப்பது தோல்வியுற்றது."
 
-#: src/CA.cpp:488
-msgid "File %1 not found in the repository."
+#: src/CA.cpp:518
+#, fuzzy, c-format
+msgid "File %s not found in the repository."
 msgstr "சேமிப்பிடத்தில் கோப்பு %1 காணப்படவில்லை."
 
-#: src/CA.cpp:495 src/CRLData_Priv.cpp:177
+#: src/CA.cpp:525 src/CRLData_Priv.cpp:153
 msgid "Invalid CRL reason."
 msgstr "செல்லாத சிஆர்எல் காரணம்."
 
-#: src/CA.cpp:518
+#: src/CA.cpp:548
 msgid "Invalid CRL data."
 msgstr "செல்லாத சிஆர்எல் தரவு."
 
-#: src/CA.cpp:566
+#: src/CA.cpp:594
 msgid "Duplicate DN. Request already exists."
 msgstr "டிஎன் நகலெடு. கோரிக்கை ஏற்கனவே உள்ளது."
 
-#: src/CA.cpp:831 src/CA.cpp:858 src/CA.cpp:888 src/OpenSSLUtils.cpp:1005
+#: src/CA.cpp:859 src/CA.cpp:886 src/CA.cpp:916 src/OpenSSLUtils.cpp:988
 msgid "Cannot parse the certificate name."
 msgstr "சான்றிதழ் பெயரை விளக்க முடியவில்லை."
 
-#: src/CA.cpp:939
-msgid "Request %1 does not exist."
+#: src/CA.cpp:967
+#, fuzzy, c-format
+msgid "Request %s does not exist."
 msgstr "கோரிக்கை %1 இல்லை."
 
-#: src/CA.cpp:961
+#: src/CA.cpp:989
 msgid "Removing the request failed (%1)."
 msgstr "கோரிக்கையை நீக்குதல் தோல்வியுற்றது (%1)."
 
-#: src/CA.cpp:975
-msgid "Certificate %1 does not exist."
+#: src/CA.cpp:1003
+#, fuzzy, c-format
+msgid "Certificate %s does not exist."
 msgstr "சான்றிதழ் %1 இல்லை."
 
-#: src/CA.cpp:1024
-msgid "Removing the certificate failed: %1."
+#: src/CA.cpp:1052
+#, fuzzy, c-format
+msgid "Removing the certificate failed: %d."
 msgstr "சான்றிதழை நீக்குதல் தோல்வியுற்றது: %1."
 
-#: src/CA.cpp:1032
+#: src/CA.cpp:1060
+#, fuzzy, c-format
 msgid ""
 "Only revoked or expired certificates can be deleted. The status of the "
-"certificate is %1."
+"certificate is %s."
 msgstr ""
 "திரும்பப் பெறப்பட்ட மற்றும் காலாவதியான சான்றிதழ்களை மட்டுமே நீக்க முடியும். சான்றிதழின் "
 "நிலை %1."
 
-#: src/CA.cpp:1044
+#: src/CA.cpp:1072
 msgid "Database not found."
 msgstr "தரவுத்தளம் காணவில்லை."
 
-#: src/CA.cpp:1070
+#: src/CA.cpp:1098
 msgid "Certificate does not exist."
 msgstr "சான்றிதழ் இல்லை."
 
-#: src/CA.cpp:1084
-msgid "Invalid purpose %1."
+#: src/CA.cpp:1112
+#, fuzzy, c-format
+msgid "Invalid purpose %s."
 msgstr "செல்லாத நோக்கம் %1."
 
-#: src/CA.cpp:1127
+#: src/CA.cpp:1155
 msgid "Invalid CA request data."
 msgstr "செல்லாத சிஏ கோரிக்கை தரவு."
 
-#: src/CA.cpp:1133
+#: src/CA.cpp:1161
 msgid "Invalid CA issue data."
 msgstr "செல்லாத சிஏ அளிப்பு தரவு."
 
-#: src/CA.cpp:1228
+#: src/CA.cpp:1279
 msgid "CA name is empty."
 msgstr "சிஏ பெயர் காலியாக உள்ளது."
 
-#: src/CA.cpp:1237
+#: src/CA.cpp:1288
 msgid "CA directory already exists."
 msgstr "சிஏ அடைவு ஏற்கனவே உள்ளது."
 
-#: src/CA.cpp:1248
+#: src/CA.cpp:1299
 msgid "According to basicConstraints, this is not a CA."
 msgstr "அடிப்படைகட்டுப்பாடுகளின்படி, இது சிஏ அல்ல."
 
-#: src/CA.cpp:1255
+#: src/CA.cpp:1306
 msgid "CA key is empty."
 msgstr "சிஏ விசை காலியாக உள்ளது."
 
-#: src/CA.cpp:1264
+#: src/CA.cpp:1315
 msgid "Invalid key data."
 msgstr "செல்லாத விசை தரவு."
 
-#: src/CA.cpp:1271
+#: src/CA.cpp:1322
 msgid "CA password is empty."
 msgstr "சிஏ கடவுச்சொல் காலியாக உள்ளது."
 
-#: src/CA.cpp:1315
+#: src/CA.cpp:1366
 msgid "Error during key encryption."
 msgstr "விசை என்கிரிப்ட் செய்யும்போது பிழை."
 
-#: src/CA.cpp:1337
+#: src/CA.cpp:1388
 #, fuzzy
 msgid "Error during write defaults."
 msgstr "விசை என்கிரிப்ட் செய்யும்போது பிழை."
 
-#: src/CA.cpp:1481
-msgid "CA name does not exist (%1)."
+#: src/CA.cpp:1532
+#, fuzzy, c-format
+msgid "CA name does not exist (%s)."
 msgstr "சிஏ பெயர் இல்லை (%1)."
 
-#: src/CA.cpp:1512
+#: src/CA.cpp:1563
 msgid ""
 "Deleting the CA is not allowed. The CA must be expired or never have signed "
 "a certificate."
@@ -289,51 +305,56 @@ msgstr ""
 "சிஏ நீக்கப்படுவதற்கு அனுமதி இல்லை. சிஎ காலாவதியாகியிருக்கும் அல்லது சான்றிதழில் "
 "கையொப்பமிட்டிருக்காது"
 
-#: src/CA.cpp:1537
+#: src/CA.cpp:1588
 msgid "Deleting the CA failed: %1."
 msgstr "சிடீ நீக்கப்படுதல் தோல்வியுற்றது: %1."
 
-#: src/CA.cpp:1588
+#: src/CA.cpp:1639
 msgid "The configuration file is missing a value for policy."
 msgstr "உள்ளமைவு கோப்பில் கொள்கைக்கான மதிப்பை ஒன்று தவறியுள்ளது."
 
-#: src/CA.cpp:1598 src/CA.cpp:1860 src/DNObject.cpp:268
+#: src/CA.cpp:1649 src/CA.cpp:1911 src/DNObject.cpp:277
 #: src/DNObject_Priv.cpp:207
-msgid "Cannot parse section %1."
+#, fuzzy, c-format
+msgid "Cannot parse section %s."
 msgstr "பிரிவு %1 விளக்க முடியவில்லை."
 
-#: src/CA.cpp:1670
-msgid "Field %1 must have a value."
+#: src/CA.cpp:1721
+#, fuzzy, c-format
+msgid "Field %s must have a value."
 msgstr "புலம் %1 ஒரு மதிப்பை கொண்டிருக்க வேண்டும்."
 
-#: src/CA.cpp:1709
-msgid "%1 must be defined."
+#: src/CA.cpp:1760
+#, fuzzy, c-format
+msgid "%s must be defined."
 msgstr "%1 விளக்கப்பட வேண்டும்."
 
-#: src/CA.cpp:1794
-msgid "%1 must be the same in the CA certificate (%2) and the request (%3)."
+#: src/CA.cpp:1845
+#, fuzzy, c-format
+msgid "%s must be the same in the CA certificate (%s) and the request (%s)."
 msgstr ""
 "சிடீ சான்றிதழிலும் (%2) மற்றும் கோரிக்கையிலும் (%3) %1 ஒரே மாதிரி இருக்க வேண்டும்."
 
-#: src/CA.cpp:1806
+#: src/CA.cpp:1857
 msgid "The configuration file seems to have an invalid policy."
 msgstr "உள்ளமைவு கோப்பில் ஒரு செல்லாத கொள்கை இருப்பது போலுள்ளது."
 
-#: src/CA.cpp:1832 src/CA.cpp:1842
+#: src/CA.cpp:1883 src/CA.cpp:1893
 msgid "The configuration is not initialized."
 msgstr "உள்ளமைவு துவக்கப்படவில்லை."
 
-#: src/CA.cpp:1850 src/DNObject.cpp:257 src/DNObject_Priv.cpp:197
+#: src/CA.cpp:1901 src/DNObject.cpp:266 src/DNObject_Priv.cpp:197
 msgid "Missing section 'distinguished_name' in the configuration file."
 msgstr "உள்ளமைவு கோப்பில் காணப்படாத பிரிவு ‘அடையாளம் காணப்பட்ட பெயர்’"
 
-#: src/CertificateData_Priv.cpp:92 src/CRLData_Priv.cpp:122
-#: src/CRLData_Priv.cpp:159
-msgid "Invalid serial %1."
+#: src/CertificateData_Priv.cpp:92 src/CRLData_Priv.cpp:98
+#: src/CRLData_Priv.cpp:135
+#, fuzzy, c-format
+msgid "Invalid serial %s."
 msgstr "செல்லாத வரிசை %1."
 
-#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:461
-#: src/DNObject_Priv.cpp:79 src/RequestData_Priv.cpp:367
+#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:393
+#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:365
 msgid "Cannot create a memory BIO."
 msgstr "ஒரு நினைவக BIO உருவாக்க முடியவில்லை."
 
@@ -350,598 +371,627 @@ msgstr "சான்றிதழை விளக்கும்போது �
 msgid "Cannot parse serial."
 msgstr "பிரிவு %1 விளக்க முடியவில்லை."
 
-#: src/CertificateData_Priv.cpp:298 src/CertificateData_Priv.cpp:332
-#: src/CRLData_Priv.cpp:89 src/CRLData_Priv.cpp:339 src/CRLData_Priv.cpp:373
-msgid "Cannot parse date %1."
-msgstr "தேதி %1 விளக்க முடியவில்லை."
-
-#: src/CertificateData_Priv.cpp:387 src/RequestData_Priv.cpp:180
+#: src/CertificateData_Priv.cpp:341 src/RequestData_Priv.cpp:178
 msgid "Unable to get the public key."
 msgstr "பொது விசையை பெற முடியவில்லை."
 
-#: src/CertificateData_Priv.cpp:398 src/RequestData_Priv.cpp:191
+#: src/CertificateData_Priv.cpp:352 src/RequestData_Priv.cpp:189
 msgid "Could not get RSA key."
 msgstr "RSA விசையை பெற முடியவில்லை."
 
-#: src/CertificateData_Priv.cpp:418 src/RequestData_Priv.cpp:211
+#: src/CertificateData_Priv.cpp:372 src/RequestData_Priv.cpp:209
 msgid "Unsupported public key type."
 msgstr "ஆதரவற்ற பொது விசை வகை."
 
-#: src/CertificateData_Priv.cpp:454 src/RequestData_Priv.cpp:244
+#: src/CertificateData_Priv.cpp:408 src/RequestData_Priv.cpp:242
 msgid "Unsupported public key algorithm."
 msgstr "ஆதரவற்ற பொது விசை சிக்கல் தீர்வு."
 
-#: src/CertificateData_Priv.cpp:486 src/CRLData_Priv.cpp:422
-#: src/RequestData_Priv.cpp:274
-msgid "Unsupported signature algorithm %1."
+#: src/CertificateData_Priv.cpp:440 src/CRLData_Priv.cpp:354
+#: src/RequestData_Priv.cpp:272
+#, fuzzy, c-format
+msgid "Unsupported signature algorithm %s."
 msgstr "ஆதரவற்ற கையொப்ப சிக்கல் தீர்வு %1."
 
-#: src/CertificateIssueData.cpp:209
+#: src/CertificateIssueData.cpp:207
 msgid "Invalid CertificateIssueData object."
 msgstr "செல்லாத சான்றிதழ்அளிப்புதரவு பொருள்."
 
-#: src/CertificatePoliciesExtension.cpp:214
+#: src/CertificatePoliciesExtension.cpp:210
 msgid "The text is too long."
 msgstr "உரை மிக நீண்டதாக உள்ளது"
 
-#: src/CertificatePoliciesExtension.cpp:253
+#: src/CertificatePoliciesExtension.cpp:249
 msgid "Invalid UserNotice object."
 msgstr "செல்லாத பயனர்அறிவிப்பு பொருள்."
 
-#: src/CertificatePoliciesExtension.cpp:393
-#: src/CertificatePoliciesExtension.cpp:457
-msgid "Invalid value for policyIdentifier: %1."
+#: src/CertificatePoliciesExtension.cpp:389
+#: src/CertificatePoliciesExtension.cpp:453
+#, fuzzy, c-format
+msgid "Invalid value for policyIdentifier: %s."
 msgstr "கொள்கைஅடையாளங்காட்டிக்கான செல்லாத மதிப்பு: %1."
 
-#: src/CertificatePoliciesExtension.cpp:512
+#: src/CertificatePoliciesExtension.cpp:508
 msgid "Invalid CertificatePolicy object."
 msgstr "செல்லாத சான்றிதழ்கொள்கை பொருள்."
 
-#: src/CertificatePoliciesExtension.cpp:781
-#: src/CertificatePoliciesExtension.cpp:806
+#: src/CertificatePoliciesExtension.cpp:777
+#: src/CertificatePoliciesExtension.cpp:802
 msgid "CertificatePoliciesExt is not present."
 msgstr "சான்றிதழ்கொள்கைகள்விரிவு இல்லை."
 
-#: src/CertificatePoliciesExtension.cpp:819
+#: src/CertificatePoliciesExtension.cpp:815
 msgid "Invalid CertificatePoliciesExt object."
 msgstr "செல்லாத சான்றிதழ்கொள்கைகள்விரிவு பொருள்."
 
-#: src/CRLData.cpp:221
+#: src/CRLData.cpp:220
 msgid "Entry not found."
 msgstr "உள்ளீடு காணப்படவில்லை."
 
-#: src/CRLData_Priv.cpp:489
+#: src/CRLData_Priv.cpp:421
 msgid "Cannot parse CRL."
 msgstr "CRLஐ விளக்க முடியவில்லை."
 
-#: src/CRLData_Priv.cpp:502
+#: src/CRLData_Priv.cpp:434
 msgid "Error parsing the CRL."
 msgstr "CRLஐ விளக்குவதில் பிழை."
 
-#: src/CRLDistributionPointsExtension.cpp:143
+#: src/CRLDistributionPointsExtension.cpp:141
 msgid "CRLDistributionPointsExt is not present."
 msgstr "CRLவிநியோகஇடங்கள்விரிவு இல்லை."
 
-#: src/CRLDistributionPointsExtension.cpp:155
+#: src/CRLDistributionPointsExtension.cpp:153
 msgid "Invalid CRLDistributionPointsExt object."
 msgstr "செல்லாத CRLவிநியோகஇடங்கள்விரிவு பொருள்."
 
-#: src/CRLGenerationData.cpp:154
+#: src/CRLGenerationData.cpp:151
 msgid "Invalid CRLGenerationData object."
 msgstr "செல்லாத CRLஉருவாக்கதரவு பொருள்."
 
-#: src/CRLReason.cpp:98 src/CRLReason.cpp:134
-msgid "Invalid revoke reason %1."
+#: src/CRLReason.cpp:96 src/CRLReason.cpp:132
+#, fuzzy, c-format
+msgid "Invalid revoke reason %s."
 msgstr "செல்லாத திரும்பப்பெறுதல் காரணம் %1."
 
-#: src/CRLReason.cpp:172
+#: src/CRLReason.cpp:170
 msgid "Reason is not certificateHold."
 msgstr "சான்றிதழ்நிறுத்தம் காரணமல்ல."
 
-#: src/CRLReason.cpp:195 src/CRLReason.cpp:209
+#: src/CRLReason.cpp:193 src/CRLReason.cpp:207
 msgid "Reason is not keyCompromise."
 msgstr "விசைஇணக்கம் காரணமல்ல."
 
-#: src/CRLReason.cpp:240 src/CRLReason.cpp:254
+#: src/CRLReason.cpp:238 src/CRLReason.cpp:252
 msgid "Reason is not CACompromise."
 msgstr "சிஏஇணக்கம் காரணமல்ல."
 
-#: src/DNObject.cpp:109
-msgid "Invalid type %1."
+#: src/DNObject.cpp:100
+#, fuzzy, c-format
+msgid "Invalid type %s."
 msgstr "செல்லாத வகை %1."
 
 #: src/DNObject_Priv.cpp:157
-msgid "Cannot parse DN line: %1."
+#, fuzzy, c-format
+msgid "Cannot parse DN line: %s."
 msgstr "DN வரிசை விளக்க முடியவில்லை: %1."
 
-#: src/ExtendedKeyUsageExt.cpp:120 src/ExtendedKeyUsageExt.cpp:169
-msgid "Invalid ExtendedKeyUsage option %1."
+#: src/ExtendedKeyUsageExt.cpp:118 src/ExtendedKeyUsageExt.cpp:167
+#, fuzzy, c-format
+msgid "Invalid ExtendedKeyUsage option %s."
 msgstr "செல்லாத விரிபடுத்தப்பட்டவிசைபயன்பாடு விருப்பத்தேர்வு %1."
 
-#: src/ExtendedKeyUsageExt.cpp:128 src/ExtendedKeyUsageExt.cpp:177
+#: src/ExtendedKeyUsageExt.cpp:126 src/ExtendedKeyUsageExt.cpp:175
 msgid "Invalid ExtendedKeyUsageExt."
 msgstr "செல்லாத விரிபடுத்தப்பட்டவிசைபயன்பாடுவிரிவு."
 
-#: src/ExtendedKeyUsageExt.cpp:190
+#: src/ExtendedKeyUsageExt.cpp:188
 msgid "ExtendedKeyUsageExt is not present."
 msgstr "செல்லாத விரிபடுத்தப்பட்டவிசைபயன்பாடுவிரிவு காணப்படவில்லை."
 
-#: src/ExtendedKeyUsageExt.cpp:219
+#: src/ExtendedKeyUsageExt.cpp:217
 msgid "Invalid ExtendedKeyUsageExt object."
 msgstr "செல்லாத விரிபடுத்தப்பட்டவிசைபயன்பாடுவிரிவு பொருள்."
 
-#: src/IssuerAlternativeNameExtension.cpp:164
-#: src/IssuerAlternativeNameExtension.cpp:189
+#: src/IssuerAlternativeNameExtension.cpp:162
+#: src/IssuerAlternativeNameExtension.cpp:187
 msgid "IssuerAlternativeNameExt is not present."
 msgstr "அளிப்பவர்மாற்றுபெயர்விரிவு காணப்படவில்லை."
 
-#: src/IssuerAlternativeNameExtension.cpp:201
+#: src/IssuerAlternativeNameExtension.cpp:199
 msgid "Invalid literal value for IssuerAlternativeNameExt."
 msgstr "அளிப்பவர்மாற்றுபெயர்விரிவுக்கான செல்லாத மூல மதிப்பு."
 
-#: src/IssuerAlternativeNameExtension.cpp:214
+#: src/IssuerAlternativeNameExtension.cpp:212
 msgid "Invalid IssuerAlternativeNameExt object."
 msgstr "செல்லாத அளிப்பவர்மாற்றுபெயர்விரிவு பொருள்."
 
-#: src/LiteralValues.cpp:128
+#: src/LiteralValues.cpp:127
 msgid "Unknown type."
 msgstr "அறிந்திராத வகை."
 
-#: src/LocalManagement.cpp:93
+#: src/LocalManagement.cpp:91
 msgid "Cannot split certificate output."
 msgstr "சான்றிதழ் வெளியீட்டை பிரிக்க முடியாது."
 
-#: src/LocalManagement.cpp:290 src/LocalManagement.cpp:311
-#: src/LocalManagement.cpp:330
-msgid "Cannot create directory %1: %2."
+#: src/LocalManagement.cpp:288 src/LocalManagement.cpp:309
+#: src/LocalManagement.cpp:328
+#, fuzzy, c-format
+msgid "Cannot create directory %s: %s."
 msgstr "அடைவு %1 உருவாக்க முடியவில்லை: %2."
 
-#: src/LocalManagement.cpp:344
-msgid "%1 is not a directory."
+#: src/LocalManagement.cpp:342
+#, fuzzy, c-format
+msgid "%s is not a directory."
 msgstr "%1 ஒரு அடைவல்ல."
 
-#: src/LocalManagement.cpp:365
+#: src/LocalManagement.cpp:363
 msgid "Invalid certificate file."
 msgstr "செல்லாத சான்றிதழ் கோப்பு."
 
-#: src/LocalManagement.cpp:443
-msgid "File not found: %1."
+#: src/LocalManagement.cpp:441
+#, fuzzy, c-format
+msgid "File not found: %s."
 msgstr "கோப்பு இல்லை: %1."
 
-#: src/LocalManagement.cpp:452
-msgid "File too big: %1."
+#: src/LocalManagement.cpp:450
+#, fuzzy, c-format
+msgid "File too big: %s."
 msgstr "கோப்பு மிகப் பெரிது: %1."
 
-#: src/LocalManagement.cpp:461 src/LocalManagement.cpp:516
-msgid "Cannot open file %1."
+#: src/LocalManagement.cpp:459 src/LocalManagement.cpp:513
+#, fuzzy, c-format
+msgid "Cannot open file %s."
 msgstr "கோப்பை %1 திறக்க முடியவில்லை."
 
-#: src/LocalManagement.cpp:481
-msgid "Cannot read from file %1."
+#: src/LocalManagement.cpp:478
+#, fuzzy, c-format
+msgid "Cannot read from file %s."
 msgstr "கோப்பிலிருந்து %1 படிக்க முடியவில்லை."
 
-#: src/LocalManagement.cpp:506
-msgid "File already exists: %1."
+#: src/LocalManagement.cpp:503
+#, fuzzy, c-format
+msgid "File already exists: %s."
 msgstr "கோப்பு ஏற்கனவே உள்ளது: %1."
 
-#: src/LocalManagement.cpp:528
-msgid "Cannot get lock on file %1."
+#: src/LocalManagement.cpp:523
+#, fuzzy, c-format
+msgid "Cannot get lock on file %s."
 msgstr "%1 கோப்பின் மீது பூட்ட முடியவில்லை."
 
-#: src/LocalManagement.cpp:542
-msgid "Cannot write to file %1."
+#: src/LocalManagement.cpp:535
+#, fuzzy, c-format
+msgid "Cannot write to file %s."
 msgstr "%1 கோப்பில் எழுத முடியவில்லை."
 
-#: src/OpenSSLUtils.cpp:54
-msgid "File does not exist: %1."
+#: src/OpenSSLUtils.cpp:49
+#, fuzzy, c-format
+msgid "File does not exist: %s."
 msgstr "கோப்பு இல்லை: %1."
 
-#: src/OpenSSLUtils.cpp:63
-msgid "Directory does not exist: %1."
+#: src/OpenSSLUtils.cpp:58
+#, fuzzy, c-format
+msgid "Directory does not exist: %s."
 msgstr "அடைவு இல்லை: %1."
 
-#: src/OpenSSLUtils.cpp:72
-msgid "Invalid command %1."
+#: src/OpenSSLUtils.cpp:67
+#, fuzzy, c-format
+msgid "Invalid command %s."
 msgstr "செல்லாத ஆணை %1."
 
-#: src/OpenSSLUtils.cpp:130 src/OpenSSLUtils.cpp:238 src/OpenSSLUtils.cpp:336
-#: src/OpenSSLUtils.cpp:460 src/OpenSSLUtils.cpp:598 src/OpenSSLUtils.cpp:698
-#: src/OpenSSLUtils.cpp:780 src/OpenSSLUtils.cpp:869 src/OpenSSLUtils.cpp:950
-#: src/OpenSSLUtils.cpp:1049 src/OpenSSLUtils.cpp:1137
-#: src/OpenSSLUtils.cpp:1275 src/OpenSSLUtils.cpp:1398
-#: src/OpenSSLUtils.cpp:1505 src/OpenSSLUtils.cpp:1661
-#: src/OpenSSLUtils.cpp:1803
+#: src/OpenSSLUtils.cpp:124 src/OpenSSLUtils.cpp:214 src/OpenSSLUtils.cpp:313
+#: src/OpenSSLUtils.cpp:438 src/OpenSSLUtils.cpp:577 src/OpenSSLUtils.cpp:678
+#: src/OpenSSLUtils.cpp:761 src/OpenSSLUtils.cpp:852 src/OpenSSLUtils.cpp:933
+#: src/OpenSSLUtils.cpp:1031 src/OpenSSLUtils.cpp:1119
+#: src/OpenSSLUtils.cpp:1259 src/OpenSSLUtils.cpp:1384
+#: src/OpenSSLUtils.cpp:1493 src/OpenSSLUtils.cpp:1651
+#: src/OpenSSLUtils.cpp:1795 src/OpenSSLUtils.cpp:2586
 msgid "Executing openssl command failed."
 msgstr ""
 
-#: src/OpenSSLUtils.cpp:141 src/OpenSSLUtils.cpp:249 src/OpenSSLUtils.cpp:347
-#: src/OpenSSLUtils.cpp:471 src/OpenSSLUtils.cpp:609 src/OpenSSLUtils.cpp:709
-#: src/OpenSSLUtils.cpp:794 src/OpenSSLUtils.cpp:1163
-#: src/OpenSSLUtils.cpp:1316 src/OpenSSLUtils.cpp:1424
-#: src/OpenSSLUtils.cpp:1531 src/OpenSSLUtils.cpp:1699
-#: src/OpenSSLUtils.cpp:1844
-msgid "openssl command failed: %1"
+#: src/OpenSSLUtils.cpp:136 src/OpenSSLUtils.cpp:227 src/OpenSSLUtils.cpp:326
+#: src/OpenSSLUtils.cpp:451 src/OpenSSLUtils.cpp:590 src/OpenSSLUtils.cpp:691
+#: src/OpenSSLUtils.cpp:777 src/OpenSSLUtils.cpp:1147
+#: src/OpenSSLUtils.cpp:1302 src/OpenSSLUtils.cpp:1412
+#: src/OpenSSLUtils.cpp:1521 src/OpenSSLUtils.cpp:1691
+#: src/OpenSSLUtils.cpp:1838 src/OpenSSLUtils.cpp:2613
+#, c-format
+msgid "openssl command failed: %s"
 msgstr ""
 
-#: src/OpenSSLUtils.cpp:174 src/OpenSSLUtils.cpp:276 src/OpenSSLUtils.cpp:379
-#: src/OpenSSLUtils.cpp:497 src/OpenSSLUtils.cpp:636 src/OpenSSLUtils.cpp:732
+#: src/OpenSSLUtils.cpp:166 src/OpenSSLUtils.cpp:254 src/OpenSSLUtils.cpp:358
+#: src/OpenSSLUtils.cpp:477 src/OpenSSLUtils.cpp:617 src/OpenSSLUtils.cpp:714
 msgid "No valid key file specified."
 msgstr "செல்லத்தக்க விசை கோப்பு குறிப்பிடப்படவில்லை."
 
-#: src/OpenSSLUtils.cpp:284 src/OpenSSLUtils.cpp:387
+#: src/OpenSSLUtils.cpp:262 src/OpenSSLUtils.cpp:366
 msgid "No valid request file specified."
 msgstr "செல்லத்தக்க கோரிக்கை கோப்பு குறிப்பிடப்படவில்லை. "
 
-#: src/OpenSSLUtils.cpp:505 src/OpenSSLUtils.cpp:644 src/OpenSSLUtils.cpp:740
+#: src/OpenSSLUtils.cpp:485 src/OpenSSLUtils.cpp:625 src/OpenSSLUtils.cpp:722
 msgid "No valid CA certificate file specified."
 msgstr "செல்லத்தக்க சிஏ சான்றிதழ் கோப்பு குறிப்பிடப்படவில்லை."
 
-#: src/OpenSSLUtils.cpp:513 src/OpenSSLUtils.cpp:818
+#: src/OpenSSLUtils.cpp:493 src/OpenSSLUtils.cpp:801
 msgid "No valid certificate file specified."
 msgstr "செல்லத்தக்க சான்றிதழ் கோப்பு குறிப்பிடப்படவில்லை."
 
-#: src/OpenSSLUtils.cpp:826
+#: src/OpenSSLUtils.cpp:809
 msgid "No valid CA directory specified."
 msgstr "செல்லத்தக்க சிஏ அடைவு குறிப்பிடப்படவில்லை."
 
-#: src/OpenSSLUtils.cpp:980
-msgid "Showing certificate status with serial %1 failed (%2)."
+#: src/OpenSSLUtils.cpp:963
+#, fuzzy, c-format
+msgid "Showing certificate status with serial %s failed (%d)."
 msgstr "%1 வரிசை மூலம் சான்றிதழ் நிலையை காட்டவது தோல்வியுற்றது(%2)."
 
-#: src/OpenSSLUtils.cpp:1016
+#: src/OpenSSLUtils.cpp:999
 msgid "The key file does not exist."
 msgstr "விசை கோப்பு இல்லை."
 
-#: src/OpenSSLUtils.cpp:1311 src/OpenSSLUtils.cpp:1694
-#: src/OpenSSLUtils.cpp:1839
+#: src/OpenSSLUtils.cpp:1297 src/OpenSSLUtils.cpp:1686
+#: src/OpenSSLUtils.cpp:1833
 #, fuzzy
 msgid "Invalid password."
 msgstr "செல்லாத சிஏ கடவுச்சொல்."
 
-#: src/OpenSSLUtils.cpp:1609
+#: src/OpenSSLUtils.cpp:1599
 msgid "The password for encrypting the output is required."
 msgstr "வெளியீட்டை என்கிரிப்ட் செய்வதற்கான கடவுச்சொல் தேவை."
 
-#: src/OpenSSLUtils.cpp:1754
+#: src/OpenSSLUtils.cpp:1746
 msgid "The PKCS12 password is required."
 msgstr "PKCS12 கடவுச்சொல் தேவை."
 
-#: src/OpenSSLUtils.cpp:1870 src/OpenSSLUtils.cpp:2070
-#: src/OpenSSLUtils.cpp:2222
-msgid "Cannot read directory: %1 (%2) [%3]."
+#: src/OpenSSLUtils.cpp:1864 src/OpenSSLUtils.cpp:2064
+#: src/OpenSSLUtils.cpp:2216
+#, fuzzy, c-format
+msgid "Cannot read directory: %s (%s) [%d]."
 msgstr "அடைவை படிக்க முடியவில்லை: %1 (%2) [%3]."
 
-#: src/OpenSSLUtils.cpp:1920
-msgid "No serial number found in %1."
+#: src/OpenSSLUtils.cpp:1914
+#, fuzzy, c-format
+msgid "No serial number found in %s."
 msgstr "%1-ல் வரிசை எண் காணப்படவில்லை."
 
-#: src/OpenSSLUtils.cpp:1940
+#: src/OpenSSLUtils.cpp:1934
 msgid "The request already exists."
 msgstr "கோரிக்கை ஏற்கனவே உள்ளது."
 
-#: src/OpenSSLUtils.cpp:2131
+#: src/OpenSSLUtils.cpp:2125
 msgid "Cannot find the request subject."
 msgstr "கோரிக்கையின் பொருளை காணமுடியவில்லை."
 
-#: src/OpenSSLUtils.cpp:2292
+#: src/OpenSSLUtils.cpp:2286
 msgid "Cannot find the certificate subject."
 msgstr "சான்றிதழின் பொருளை காணமுடியவில்லை."
 
-#: src/OpenSSLUtils.cpp:2391
-msgid "Invalid caName: %1."
+#: src/OpenSSLUtils.cpp:2385
+#, fuzzy, c-format
+msgid "Invalid caName: %s."
 msgstr "செல்லாத சிஏபெயர்: %1."
 
-#: src/OpenSSLUtils.cpp:2400
-msgid "'%1' does not exist."
+#: src/OpenSSLUtils.cpp:2394
+#, fuzzy, c-format
+msgid "'%s' does not exist."
 msgstr "'%1' காணப்படவில்லை."
 
-#: src/OpenSSLUtils.cpp:2410
-msgid "%1 still exists."
+#: src/OpenSSLUtils.cpp:2404
+#, fuzzy, c-format
+msgid "%s still exists."
 msgstr "%1 இன்னும் உள்ளது."
 
-#: src/OpenSSLUtils.cpp:2421 src/OpenSSLUtils.cpp:2469
-#: src/OpenSSLUtils.cpp:2483 src/OpenSSLUtils.cpp:2497
-#: src/OpenSSLUtils.cpp:2511 src/OpenSSLUtils.cpp:2525
-msgid "Cannot create directory: %1 (%2 [%3])."
+#: src/OpenSSLUtils.cpp:2415 src/OpenSSLUtils.cpp:2463
+#: src/OpenSSLUtils.cpp:2477 src/OpenSSLUtils.cpp:2491
+#: src/OpenSSLUtils.cpp:2505 src/OpenSSLUtils.cpp:2519
+#, fuzzy, c-format
+msgid "Cannot create directory: %s (%s [%d])."
 msgstr "அடைவை உருவாக்க முடியவில்லை: %1 (%2) [%3]."
 
-#: src/OpenSSLUtils.cpp:2456
+#: src/OpenSSLUtils.cpp:2450
 msgid "Cannot copy the configuration template."
 msgstr "உள்ளமைவு வார்ப்புருவை பிரதியெடுக்க முடியவில்லை."
 
-#: src/OpenSSLUtils.cpp:2543
+#: src/OpenSSLUtils.cpp:2537
 msgid "Cannot create the file."
 msgstr "கோப்பை உருவாக்க முடியவில்லை."
 
-#: src/RequestData_Priv.cpp:394
+#: src/OpenSSLUtils.cpp:2552
+#, fuzzy
+msgid "Can not open file."
+msgstr "கோப்பை %1 திறக்க முடியவில்லை."
+
+#: src/RequestData_Priv.cpp:392
 msgid "Cannot parse the request."
 msgstr "கோரிக்கையை விளக்க முடியவில்லை."
 
-#: src/RequestData_Priv.cpp:407
+#: src/RequestData_Priv.cpp:405
 msgid "Error while parsing the request."
 msgstr "கோரிக்கையை விளக்கும்போது பிழை."
 
-#: src/RequestGenerationData.cpp:238
+#: src/RequestGenerationData.cpp:236
 msgid "Invalid RequestGenerationData object."
 msgstr "செல்லாத கோரிக்கைஉருவாக்கதரவு பொருள்."
 
-#: src/StringExtensions.cpp:107 src/StringExtensions.cpp:165
+#: src/StringExtensions.cpp:105 src/StringExtensions.cpp:163
 msgid "Invalid value for NsBaseUrlExt."
 msgstr "என்எஸ்அடிப்படையூஆர்எல்விரிவு-க்கு செல்லாத மதிப்பு."
 
-#: src/StringExtensions.cpp:177
+#: src/StringExtensions.cpp:175
 msgid "NsBaseUrlExt is not present."
 msgstr "என்எஸ்அடிப்படையூஆர்எல்விரிவு காணப்படவில்லை."
 
-#: src/StringExtensions.cpp:189
+#: src/StringExtensions.cpp:187
 msgid "Invalid NsBaseUrlExt object."
 msgstr "செல்லாத என்எஸ்அடிப்படையூஆர்எல்விரிவு பொருள்."
 
-#: src/StringExtensions.cpp:272 src/StringExtensions.cpp:325
+#: src/StringExtensions.cpp:270 src/StringExtensions.cpp:323
 msgid "Invalid value for NsRevocationUrlExt."
 msgstr "என்எஸ்திரும்பபெறுதலுக்கானயூஆர்எல்விரிவு.க்கு செல்லாத மதிப்பு."
 
-#: src/StringExtensions.cpp:336
+#: src/StringExtensions.cpp:334
 msgid "NsRevocationUrlExt is not present."
 msgstr "என்எஸ்திரும்பபெறுதலுக்கானயூஆர்எல்விரிவு காணப்படவில்லை."
 
-#: src/StringExtensions.cpp:347
+#: src/StringExtensions.cpp:345
 msgid "Invalid NsRevocationUrlExt object."
 msgstr "செல்லாத என்எஸ்திரும்பபெறுதலுக்கானயூஆர்எல்விரிவு பொருள்."
 
-#: src/StringExtensions.cpp:426 src/StringExtensions.cpp:479
+#: src/StringExtensions.cpp:424 src/StringExtensions.cpp:477
 msgid "Invalid value for NsCaRevocationUrlExt."
 msgstr "என்எஸ்சிஏதிரும்பபெறுதலுக்கானயூஆர்எல்விரிவு.க்கு செல்லாத மதிப்பு."
 
-#: src/StringExtensions.cpp:490
+#: src/StringExtensions.cpp:488
 msgid "NsCaRevocationUrlExt is not present."
 msgstr "என்எஸ்சிஏதிரும்பபெறுதலுக்கானயூஆர்எல்விரிவு காணப்படவில்லை."
 
-#: src/StringExtensions.cpp:501
+#: src/StringExtensions.cpp:499
 msgid "Invalid NsCaRevocationUrlExt object."
 msgstr "செல்லாத என்எஸ்சிஏதிரும்பபெறுதலுக்கானயூஆர்எல்விரிவு பொருள்."
 
-#: src/StringExtensions.cpp:579 src/StringExtensions.cpp:632
+#: src/StringExtensions.cpp:577 src/StringExtensions.cpp:630
 msgid "Invalid value for NsRenewalUrlExt."
 msgstr "என்எஸ்புதுப்பித்தல்யூஆர்எல்விரிவு.க்கான செல்லாத மதிப்பு."
 
-#: src/StringExtensions.cpp:643
+#: src/StringExtensions.cpp:641
 msgid "NsRenewalUrlExt is not present."
 msgstr "என்எஸ்புதுப்பித்தல்யூஆர்எல்விரிவு காணப்படவில்லை."
 
-#: src/StringExtensions.cpp:654
+#: src/StringExtensions.cpp:652
 msgid "Invalid NsRenewalUrlExt object."
 msgstr "செல்லாத என்எஸ்புதுப்பித்தல்யூஆர்எல்விரிவு பொருள்."
 
-#: src/StringExtensions.cpp:731 src/StringExtensions.cpp:784
+#: src/StringExtensions.cpp:729 src/StringExtensions.cpp:782
 msgid "Invalid value for NsCaPolicyUrlExt."
 msgstr "என்எஸ்சிஏகொள்கையூஆர்எல்விரிவு.க்கு செல்லாத மதிப்பு."
 
-#: src/StringExtensions.cpp:795
+#: src/StringExtensions.cpp:793
 msgid "NsCaPolicyUrlExt is not present."
 msgstr "என்எஸ்சிஏகொள்கையூஆர்எல்விரிவு காணப்படவில்லை."
 
-#: src/StringExtensions.cpp:806
+#: src/StringExtensions.cpp:804
 msgid "Invalid NsCaPolicyUrlExt object."
 msgstr "செல்லாத என்எஸ்சிஏகொள்கையூஆர்எல்விரிவு பொருள்."
 
-#: src/StringExtensions.cpp:892
+#: src/StringExtensions.cpp:890
 msgid "Invalid type: %1."
 msgstr "செல்லாத வகை: %1."
 
-#: src/StringExtensions.cpp:938
+#: src/StringExtensions.cpp:936
 msgid "NsSslServerNameExt is not present."
 msgstr "என்எஸ்எஸ்எஸ்எல்சர்வர்பெயர்விரிவு காணப்படவில்லை."
 
-#: src/StringExtensions.cpp:949
+#: src/StringExtensions.cpp:947
 msgid "Invalid NsSslServerNameExt object."
 msgstr "செல்லாத என்எஸ்எஸ்எஸ்எல்சர்வர்பெயர்விரிவு பொருள்."
 
-#: src/StringExtensions.cpp:1064
+#: src/StringExtensions.cpp:1062
 msgid "NsCommentExt is not present."
 msgstr "என்எஸ்கருத்துவிரிவு காணப்படவில்லை."
 
-#: src/StringExtensions.cpp:1075
+#: src/StringExtensions.cpp:1073
 msgid "Invalid NsCommentExt object."
 msgstr "செல்லாத என்எஸ்கருத்துவிரிவு பொருள்."
 
-#: src/SubjectAlternativeNameExtension.cpp:181
-#: src/SubjectAlternativeNameExtension.cpp:192
+#: src/SubjectAlternativeNameExtension.cpp:179
+#: src/SubjectAlternativeNameExtension.cpp:190
 msgid "SubjectAlternativeNameExt is not present."
 msgstr "பொருள்மாற்றுபெயர்விரிவு காணப்படவில்லை."
 
-#: src/SubjectAlternativeNameExtension.cpp:205
+#: src/SubjectAlternativeNameExtension.cpp:203
 msgid "Invalid SubjectAlternativeNameExt object."
 msgstr "செல்லாத பொருள்மாற்றுபெயர்விரிவு பொருள்."
 
-#: src/SubjectKeyIdentifierExtension.cpp:127
-#: src/SubjectKeyIdentifierExtension.cpp:161
+#: src/SubjectKeyIdentifierExtension.cpp:123
+#: src/SubjectKeyIdentifierExtension.cpp:157
 msgid "Invalid KeyID."
 msgstr "செல்லாத விசைஅடையாளம்."
 
-#: src/SubjectKeyIdentifierExtension.cpp:174
-#: src/SubjectKeyIdentifierExtension.cpp:185
+#: src/SubjectKeyIdentifierExtension.cpp:170
+#: src/SubjectKeyIdentifierExtension.cpp:181
 msgid "SubjectKeyIdentifierExt is not present."
 msgstr "பொருள்விசைஅடையாளங்காட்டிவிரிவு காணப்படவில்லை."
 
-#: src/SubjectKeyIdentifierExtension.cpp:198
+#: src/SubjectKeyIdentifierExtension.cpp:194
 msgid "Invalid SubjectKeyIdentifierExt object."
 msgstr "செல்லாத பொருள்விசைஅடையாளங்காட்டிவிரிவு பொருள்."
 
-#: src/X509v3CertificateExtensions_Priv.cpp:393
-#: src/X509v3CertificateExtensions_Priv.cpp:450
-#: src/X509v3RequestExtensions_Priv.cpp:132
-#: src/X509v3RequestExtensions_Priv.cpp:187
+#: src/X509v3CertificateExtensions_Priv.cpp:392
+#: src/X509v3CertificateExtensions_Priv.cpp:449
+#: src/X509v3RequestExtensions_Priv.cpp:130
+#: src/X509v3RequestExtensions_Priv.cpp:185
 msgid "Extension occurred more than once: %1."
 msgstr "விரிவாக்கம் ஒருமுறைக்கும் அதிகமாக ஏற்பட்டது: %1."
 
-#: src/X509v3CertificateExtensions_Priv.cpp:400
-#: src/X509v3CertificateExtensions_Priv.cpp:457
-#: src/X509v3RequestExtensions_Priv.cpp:139
-#: src/X509v3RequestExtensions_Priv.cpp:194
+#: src/X509v3CertificateExtensions_Priv.cpp:399
+#: src/X509v3CertificateExtensions_Priv.cpp:456
+#: src/X509v3RequestExtensions_Priv.cpp:137
+#: src/X509v3RequestExtensions_Priv.cpp:192
 msgid "Unable to parse the certificate (NID: %1 Crit: %2)."
 msgstr "(NID: %1 Crit: %2) சான்றிதழை விளக்க முடியவில்லை."
 
-#: src/X509v3CertificateExtensions_Priv.cpp:509
-#: src/X509v3CertificateExtensions_Priv.cpp:575
-#: src/X509v3CertificateExtensions_Priv.cpp:639
-#: src/X509v3CertificateExtensions_Priv.cpp:701
-#: src/X509v3CertificateExtensions_Priv.cpp:771
-#: src/X509v3CertificateExtensions_Priv.cpp:840
-#: src/X509v3CertificateExtensions_Priv.cpp:916
-#: src/X509v3CertificateExtensions_Priv.cpp:1002
-#: src/X509v3CRLExtensions_Priv.cpp:133
-#: src/X509v3RequestExtensions_Priv.cpp:247
-#: src/X509v3RequestExtensions_Priv.cpp:313
-#: src/X509v3RequestExtensions_Priv.cpp:376
-#: src/X509v3RequestExtensions_Priv.cpp:437
+#: src/X509v3CertificateExtensions_Priv.cpp:508
+#: src/X509v3CertificateExtensions_Priv.cpp:574
+#: src/X509v3CertificateExtensions_Priv.cpp:638
+#: src/X509v3CertificateExtensions_Priv.cpp:697
+#: src/X509v3CertificateExtensions_Priv.cpp:767
+#: src/X509v3CertificateExtensions_Priv.cpp:836
+#: src/X509v3CertificateExtensions_Priv.cpp:912
+#: src/X509v3CertificateExtensions_Priv.cpp:998
+#: src/X509v3CRLExtensions_Priv.cpp:132
+#: src/X509v3RequestExtensions_Priv.cpp:245
+#: src/X509v3RequestExtensions_Priv.cpp:311
+#: src/X509v3RequestExtensions_Priv.cpp:374
+#: src/X509v3RequestExtensions_Priv.cpp:432
 msgid "Extension occurred more than once."
 msgstr "விரிவாக்கம் ஒருமுறைக்கும் அதிகமாக ஏற்பட்டது."
 
-#: src/X509v3CertificateExtensions_Priv.cpp:514
-#: src/X509v3CertificateExtensions_Priv.cpp:580
-#: src/X509v3CertificateExtensions_Priv.cpp:644
-#: src/X509v3CertificateExtensions_Priv.cpp:707
-#: src/X509v3CertificateExtensions_Priv.cpp:776
-#: src/X509v3CertificateExtensions_Priv.cpp:846
-#: src/X509v3CertificateExtensions_Priv.cpp:921
-#: src/X509v3CertificateExtensions_Priv.cpp:1007
-#: src/X509v3CRLExtensions_Priv.cpp:138
-#: src/X509v3RequestExtensions_Priv.cpp:252
-#: src/X509v3RequestExtensions_Priv.cpp:318
-#: src/X509v3RequestExtensions_Priv.cpp:382
-#: src/X509v3RequestExtensions_Priv.cpp:442
+#: src/X509v3CertificateExtensions_Priv.cpp:513
+#: src/X509v3CertificateExtensions_Priv.cpp:579
+#: src/X509v3CertificateExtensions_Priv.cpp:643
+#: src/X509v3CertificateExtensions_Priv.cpp:703
+#: src/X509v3CertificateExtensions_Priv.cpp:772
+#: src/X509v3CertificateExtensions_Priv.cpp:842
+#: src/X509v3CertificateExtensions_Priv.cpp:917
+#: src/X509v3CertificateExtensions_Priv.cpp:1003
+#: src/X509v3CRLExtensions_Priv.cpp:137
+#: src/X509v3RequestExtensions_Priv.cpp:250
+#: src/X509v3RequestExtensions_Priv.cpp:316
+#: src/X509v3RequestExtensions_Priv.cpp:380
+#: src/X509v3RequestExtensions_Priv.cpp:437
 msgid "Unable to parse the certificate (Crit: %1)."
 msgstr "(Crit: %1)சான்றிதழை விளக்க முடியவில்லை."
 
-#: src/X509v3CertificateExtensions_Priv.cpp:941
+#: src/X509v3CertificateExtensions_Priv.cpp:937
 msgid "Invalid location in authorityInfoAccess."
 msgstr "அதிகாரவிவரஅணுக்கத்தில் செல்லாத அமைவிடம்."
 
-#: src/X509v3CertificateIssueExtensions.cpp:172
+#: src/X509v3CertificateIssueExtensions.cpp:170
 msgid "Invalid value for X509v3CertificateIssueExts::setNsBaseUrl."
 msgstr "X509v3சான்றிதழ்அளிப்புவிரிவுக்கு செல்லாத மதிப்பு :: என்எஸ்அடிப்படையூஆர்எல்அமை."
 
-#: src/X509v3CertificateIssueExtensions.cpp:195
+#: src/X509v3CertificateIssueExtensions.cpp:193
 msgid "Invalid value for X509v3CertificateIssueExts::setNsRevocationUrl."
 msgstr ""
 "X509v3சான்றிதழ்அளிப்புவிரிவுக்கு செல்லாத மதிப்பு:: என்எஸ்திரும்பபெறுதலுக்கானயூஆர்எல்அமை."
 
-#: src/X509v3CertificateIssueExtensions.cpp:218
+#: src/X509v3CertificateIssueExtensions.cpp:216
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCaRevocationUrl."
 msgstr ""
 "X509v3சான்றிதழ்அளிப்புவிரிவுக்கு செல்லாத மதிப்பு::"
 "என்எஸ்சிஏதிரும்பபெறுதலுக்கானயூஆர்எல்அமை."
 
-#: src/X509v3CertificateIssueExtensions.cpp:241
+#: src/X509v3CertificateIssueExtensions.cpp:239
 msgid "Invalid value for X509v3CertificateIssueExts::setNsRenewalUrl."
 msgstr "X509v3சான்றிதழ்அளிப்புவிரிவுக்கு செல்லாத மதிப்பு::என்எஸ்புதுப்பித்தல்யூஆர்எல்அமை."
 
-#: src/X509v3CertificateIssueExtensions.cpp:264
+#: src/X509v3CertificateIssueExtensions.cpp:262
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCaPolicyUrl."
 msgstr "X509v3சான்றிதழ்அளிப்புவிரிவுக்கு செல்லாத மதிப்பு::என்எஸ்சிஏகொள்கையூஆர்எல்அமை."
 
-#: src/X509v3CertificateIssueExtensions.cpp:287
+#: src/X509v3CertificateIssueExtensions.cpp:285
 msgid "Invalid value for X509v3CertificateIssueExts::setNsSslServerName."
 msgstr "X509v3சான்றிதழ்அளிப்புவிரிவுக்கு செல்லாத மதிப்பு::என்எஸ்எஸ்எஸ்எல்சர்வர்அமை."
 
-#: src/X509v3CertificateIssueExtensions.cpp:310
+#: src/X509v3CertificateIssueExtensions.cpp:308
 msgid "Invalid value for X509v3CertificateIssueExts::setNsComment."
 msgstr "X509v3சான்றிதழ்அளிப்புவிரிவுக்கு செல்லாத மதிப்பு::என்எஸ்கருத்துஅமை."
 
-#: src/X509v3CertificateIssueExtensions.cpp:333
+#: src/X509v3CertificateIssueExtensions.cpp:331
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCertType."
 msgstr "X509v3சான்றிதழ்அளிப்புவிரிவுக்கு செல்லாத மதிப்பு::என்எஸ்சான்றிதழ்வகைஅமை."
 
-#: src/X509v3CertificateIssueExtensions.cpp:356
+#: src/X509v3CertificateIssueExtensions.cpp:354
 msgid "Invalid value for X509v3CertificateIssueExts::setKeyUsage."
 msgstr "X509v3சான்றிதழ்அளிப்புவிரிவுக்கு செல்லாத மதிப்பு::விசைபயன்பாடுஅமை."
 
-#: src/X509v3CertificateIssueExtensions.cpp:379
+#: src/X509v3CertificateIssueExtensions.cpp:377
 msgid "Invalid value for X509v3CertificateIssueExts::setBasicConstraints."
 msgstr "X509v3சான்றிதழ்அளிப்புவிரிவுக்கு செல்லாத மதிப்பு::அடிப்படைகட்டுப்பாடுகள்அமை."
 
-#: src/X509v3CertificateIssueExtensions.cpp:402
+#: src/X509v3CertificateIssueExtensions.cpp:400
 msgid "Invalid value for X509v3CertificateIssueExts::setExtendedKeyUsage."
 msgstr ""
 "X509v3சான்றிதழ்அளிப்புவிரிவுக்கு செல்லாத மதிப்பு::விரிவாக்கப்பட்டவிசைபயன்பாடுஅமை."
 
-#: src/X509v3CertificateIssueExtensions.cpp:425
+#: src/X509v3CertificateIssueExtensions.cpp:423
 msgid "Invalid value for X509v3CertificateIssueExts::setSubjectKeyIdentifier."
 msgstr ""
 "X509v3சான்றிதழ்அளிப்புவிரிவுக்கு செல்லாத மதிப்பு::பொருள்விசை அடையாளங்காட்டிஅமை."
 
-#: src/X509v3CertificateIssueExtensions.cpp:448
+#: src/X509v3CertificateIssueExtensions.cpp:446
 msgid ""
 "Invalid value for X509v3CertificateIssueExts::setAuthorityKeyIdentifier."
 msgstr "X509v3சான்றிதழ்அளிப்புவிரிவுக்கு செல்லாத மதிப்பு::அதிகாரவிசைஅடையாளங்காட்டிஅமை."
 
-#: src/X509v3CertificateIssueExtensions.cpp:471
+#: src/X509v3CertificateIssueExtensions.cpp:469
 msgid ""
 "Invalid value for X509v3CertificateIssueExts::setSubjectAlternativeName."
 msgstr "X509v3சான்றிதழ்அளிப்புவிரிவுக்கு செல்லாத மதிப்பு::பொருள்மாற்றுபெயர்அமை."
 
-#: src/X509v3CertificateIssueExtensions.cpp:494
+#: src/X509v3CertificateIssueExtensions.cpp:492
 msgid "Invalid value for X509v3CertificateIssueExts::setIssuerAlternativeName."
 msgstr "X509v3சான்றிதழ்அளிப்புவிரிவுக்கு செல்லாத மதிப்பு::அளிப்பவர்மாற்றுபெயர்அமை."
 
-#: src/X509v3CertificateIssueExtensions.cpp:517
+#: src/X509v3CertificateIssueExtensions.cpp:515
 msgid "Invalid value for X509v3CertificateIssueExts::setAuthorityInfoAccess."
 msgstr "X509v3சான்றிதழ்அளிப்புவிரிவுக்கு செல்லாத மதிப்பு::அதிகாரவிவரஅணுக்கம்அமை."
 
-#: src/X509v3CertificateIssueExtensions.cpp:540
+#: src/X509v3CertificateIssueExtensions.cpp:538
 msgid "Invalid value for X509v3CertificateIssueExts::setCRLDistributionPoints."
 msgstr "X509v3சான்றிதழ்அளிப்புவிரிவுக்கு செல்லாத மதிப்பு::CRLDவிநியோகஇடங்கள்அமை."
 
-#: src/X509v3CertificateIssueExtensions.cpp:563
+#: src/X509v3CertificateIssueExtensions.cpp:561
 msgid "Invalid value for X509v3CertificateIssueExts::setCertificatePolicies."
 msgstr "X509v3சான்றிதழ்அளிப்புவிரிவுக்கு செல்லாத மதிப்பு::சான்றிதழ்கொள்கைகள்அமை."
 
-#: src/X509v3CertificateIssueExtensions.cpp:587
-#: src/X509v3CRLGenerationExtensions.cpp:147
-#: src/X509v3RequestExtensions.cpp:253
+#: src/X509v3CertificateIssueExtensions.cpp:585
+#: src/X509v3CRLGenerationExtensions.cpp:145
+#: src/X509v3RequestExtensions.cpp:252
 msgid "Invalid X509v3RequestExts object."
 msgstr "X509v3கோரிக்கைவிரிவு பொருள்."
 
-#: src/X509v3CRLGenerationExtensions.cpp:100
+#: src/X509v3CRLGenerationExtensions.cpp:98
 msgid "Invalid value for X509v3CRLGenerationExts::setAuthorityKeyIdentifier."
 msgstr "X509v3உருவாக்கவிரிவுக்கு செல்லாத மதிப்பு::அதிகாரவிசைஅடையாளங்காட்டிஅமை."
 
-#: src/X509v3CRLGenerationExtensions.cpp:123
+#: src/X509v3CRLGenerationExtensions.cpp:121
 msgid "Invalid value for X509v3CRLGenerationExts::setIssuerAlternativeName."
 msgstr "X509v3உருவாக்கவிரிவுக்கு செல்லாத மதிப்பு::அளிப்பவர்மாற்றுபெயர்அமை."
 
-#: src/X509v3RequestExtensions.cpp:68
+#: src/X509v3RequestExtensions.cpp:67
 msgid "Invalid value for X509v3RequestExts::setNsSslServerName."
 msgstr "X509v3கோரிக்கைவிரிவுக்கு செல்லாத மதிப்பு::என்எஸ்எஸ்எஸ்எல்சர்வர்அமை."
 
-#: src/X509v3RequestExtensions.cpp:91
+#: src/X509v3RequestExtensions.cpp:90
 msgid "Invalid value for X509v3RequestExts::setNsComment."
 msgstr "X509v3கோரிக்கைவிரிவுக்கு செல்லாத மதிப்பு::என்எஸ்கருத்துஅமை."
 
-#: src/X509v3RequestExtensions.cpp:114
+#: src/X509v3RequestExtensions.cpp:113
 msgid "Invalid value for X509v3RequestExts::setNsCertType."
 msgstr "X509v3கோரிக்கைவிரிவுக்கு செல்லாத மதிப்பு::என்எஸ்சான்றிதழ்வகைஅமை."
 
-#: src/X509v3RequestExtensions.cpp:137
+#: src/X509v3RequestExtensions.cpp:136
 msgid "Invalid value for X509v3RequestExts::setKeyUsage."
 msgstr "X509v3கோரிக்கைவிரிவுக்கு செல்லாத மதிப்பு::விசைபயன்பாடுஅமை."
 
-#: src/X509v3RequestExtensions.cpp:160
+#: src/X509v3RequestExtensions.cpp:159
 msgid "Invalid value for X509v3RequestExts::setBasicConstraints."
 msgstr "X509v3கோரிக்கைவிரிவுக்கு செல்லாத மதிப்பு::அடிப்படைகட்டுப்பாடுகள்அமை."
 
-#: src/X509v3RequestExtensions.cpp:183
+#: src/X509v3RequestExtensions.cpp:182
 msgid "Invalid value for X509v3RequestExts::setExtendedKeyUsage."
 msgstr "X509v3கோரிக்கைவிரிவு::விரிவாக்கப்பட்டவிசைபயன்பாடுஅமை.க்கு செல்லாத மதிப்பு"
 
-#: src/X509v3RequestExtensions.cpp:206
+#: src/X509v3RequestExtensions.cpp:205
 msgid "Invalid value for X509v3RequestExts::setSubjectKeyIdentifier."
 msgstr "X509v3கோரிக்கைவிரிவுக்கு செல்லாத மதிப்பு::பொருள்விசைஅடையாளங்காட்டிஅமை."
 
-#: src/X509v3RequestExtensions.cpp:229
+#: src/X509v3RequestExtensions.cpp:228
 msgid "Invalid value for X509v3RequestExts::setSubjectAlternativeName."
 msgstr "X509v3கோரிக்கைவிரிவு::பொருள்மாற்றுபெயர்அமை.க்கு செல்லாத மதிப்பு."
+
+#~ msgid "Cannot parse date %1."
+#~ msgstr "தேதி %1 விளக்க முடியவில்லை."
 
 #~ msgid "Command returned '%1' : %2"
 #~ msgstr "ஆணை திருப்பப்பட்டது'%1' : %2"

@@ -1,30 +1,27 @@
-#!/usr/bin/perl 
+#!/usr/bin/perl
 
-BEGIN 
+BEGIN
 {
     unshift @INC, '../swig/perl5';
 }
 
 use strict;
-use LIMAL;
-use LIMAL::CaMgm;
+use CaMgm;
 use Data::Dumper;
 
-my $ca = new LIMAL::CaMgm::CA("Test_CA1", "system", "./TestRepos/");
-my $rgd = $ca->getRequestDefaults($LIMAL::CaMgm::E_Client_Req);
+my $ca = new CaMgm::CA("Test_CA1", "system", "./TestRepos/");
+my $rgd = $ca->getRequestDefaults($CaMgm::E_Client_Req);
 
 my $strArr = $rgd->dump();
 
 print Data::Dumper->Dump([$strArr]);
 
-
-my $int32list = new LIMAL::Int32List();
+my $int32list = new CaMgm::Int32List();
 $int32list->push_back(1);
 $int32list->push_back(5);
 $int32list->push_back(56836564);
 
-
-my $userNotice = new LIMAL::CaMgm::UserNotice();
+my $userNotice = new CaMgm::UserNotice();
 $userNotice->setOrganizationNotice("Organisation text",
                                    $int32list);
 
@@ -37,19 +34,15 @@ for(my $it = $copy->begin();
     $copy->iterator_incr($it))
 {
     print $copy->iterator_value($it)."\t\t";
-    # swig before 1.3.34 didn't have the '_'
-    if(ref($it) =~ /_p_blocxx__ListT_?blocxx__Int32_t__iterator/)
-    {
-        print "_p_blocxx__ListT_blocxx__Int32_t__iterator\n";
-    }
+    print ref($it)."\n";
 }
 
-my $stringList = new LIMAL::StringList();
+my $stringList = new CaMgm::StringList();
 $stringList->push_back("serverAuth");
 $stringList->push_back("nsSGC");
 $stringList->push_back("1.5.2.6");
 
-my $ExtKeyUsage = new LIMAL::CaMgm::ExtendedKeyUsageExt($stringList);
+my $ExtKeyUsage = new CaMgm::ExtendedKeyUsageExt($stringList);
 
 my $outList = $ExtKeyUsage->getExtendedKeyUsage();
 
@@ -59,11 +52,7 @@ for(my $it = $outList->begin();
     $outList->iterator_incr($it))
 {
     print $outList->iterator_value($it)."\t\t";
-    # swig before 1.3.34 didn't have the '_'
-    if(ref($it) =~ /_p_blocxx__ListT_?blocxx__String_t__iterator/)
-    {
-        print "_p_blocxx__ListT_blocxx__String_t__iterator\n";
-    }
+    print ref($it)."\n";
 }
 
 my $stringMapArray = $ca->getCertificateList();
@@ -80,12 +69,12 @@ for(my $i = 0;
         !$stringMap->iterator_equal($it, $stringMap->end());
         $stringMap->iterator_incr($it))
     {
-        if($stringMap->iterator_key($it) eq "certificate") 
+        if($stringMap->iterator_key($it) eq "certificate")
         {
             my $v = "";
             $stringMap->iterator_value($it) =~ /^([[:xdigit:]]+:[[:xdigit:]]+)-*\d*$/;
             $v = $1 if(defined $1);
-            
+
             print $stringMap->iterator_key($it)." = ".$v."\n";
         }
         else
@@ -97,9 +86,3 @@ for(my $i = 0;
 
 
 exit 0;
-
-                             
-
-
-
-
