@@ -10,12 +10,12 @@ VENDOR_ARCH  = $(shell $(PERL) -MConfig -e 'print $$Config{installvendorarch};')
 INCLUDES     = -I$(top_builddir)/src -I$(top_srcdir)/src $(LIMAL_CFLAGS) $(PERL_CC)
 
 # FIXME:
-LIBS         = -L$(top_builddir)/src/.libs -Wl,-rpath,$(limallibdir) -llimal-ca-mgm $(LIB_SSL) $(LIB_UTIL) $(LIB_PCRE) $(PERL_LD) 
+LIBS         = -L$(top_builddir)/src/.libs -Wl,-rpath,$(camgmlibdir) -lcamgm $(LIB_SSL) $(LIB_UTIL) $(LIB_PCRE) $(PERL_LD)
 
 # FIXME:
 CXXFLAGS    += -Wno-unused -fPIC -DPIC
 #AM_CPPFLAGS = $(DEBUG_FLAGS) -D_GNU_SOURCE -DLOCALEDIR=\"${localedir}\"
-SWIGFLAGS    = -I${top_builddir}/typemaps/perl5 -I$(top_srcdir)/src -DLIMAL_NAMESPACE=ca_mgm -DCA_MGM_NAMESPACE=ca_mgm 
+SWIGFLAGS    = -I${top_builddir}/typemaps/perl5 -I$(top_srcdir)/src -DLIMAL_NAMESPACE=ca_mgm -DCA_MGM_NAMESPACE=ca_mgm
 
 
 # ========================================================
@@ -40,7 +40,7 @@ clean:
 	rm -f $(NAME).so
 	rm -f *.cxx
 	rm -f $(NAME).pm
-	rm -fr auto 
+	rm -fr auto
 
 $(NAME).so: $(NAME)_wrap.o
 	$(CXX) -shared -o $(NAME).so $< $(LDFLAGS) $(LIBS)

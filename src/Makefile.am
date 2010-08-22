@@ -10,9 +10,9 @@ INCLUDES = -I. -I$(srcdir)
 AM_CPPFLAGS = $(DEBUG_FLAGS) -pthread -DLOCALEDIR=\"${localedir}\"
 AM_LDFLAGS  = -pthread
 
-limallib_LTLIBRARIES = liblimal-ca-mgm.la
+camgmlib_LTLIBRARIES = libcamgm.la
 
-liblimal_ca_mgm_la_SOURCES  =	\
+libcamgm_la_SOURCES  =	\
         Date.cpp                \
         PerlRegEx.cpp           \
         PosixRegEx.cpp          \
@@ -83,13 +83,13 @@ liblimal_ca_mgm_la_SOURCES  =	\
 	ExternalDataSource.cpp
 
 #        config.cpp              \
-liblimal_ca_mgm_la_CXXFLAGS = $(LIMAL_CFLAGS)
+libcamgm_la_CXXFLAGS = $(LIMAL_CFLAGS)
 
-liblimal_ca_mgm_la_LDFLAGS  = \
+libcamgm_la_LDFLAGS  = \
 	-version-info $(LIB_VERSION_INFO) \
 	$(LIMAL_LIBS) -lssl
 
-liblimal_ca_mgm_la_LIBADD = $(LIB_SSL) $(LIB_UTIL) $(LIB_PCRE)
+libcamgm_la_LIBADD = $(LIB_SSL) $(LIB_UTIL) $(LIB_PCRE)
 
 CLEANFILES     = *~
 DISTCLEANFILES = Commands.hpp config.log

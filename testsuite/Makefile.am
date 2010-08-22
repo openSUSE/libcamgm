@@ -5,14 +5,14 @@ SUBDIRS = TestRepos lib config limal.test single.out
 PACKAGE = limal
 AUTOMAKE_OPTIONS = dejagnu
 
-INCLUDES= -I. -I$(top_srcdir)/src $(BLOCXX_INCLUDES)
+INCLUDES= -I. -I$(top_srcdir)/src
 
-AM_CPPFLAGS = $(DEBUG_FLAGS) -pthread -DLOCALEDIR=\"${localedir}\" 
+AM_CPPFLAGS = $(DEBUG_FLAGS) -pthread -DLOCALEDIR=\"${localedir}\"
 
-AM_LDFLAGS = $(BLOCXX_LIBS) \
+AM_LDFLAGS =  \
 	-pthread -Xlinker --whole-archive \
-	$(top_builddir)/src/liblimal-ca-mgm.la \
-	-Xlinker --no-whole-archive 
+	$(top_builddir)/src/libcamgm.la \
+	-Xlinker --no-whole-archive
 
 noinst_PROGRAMS = CAConfig.single CA1.single CA2.multi \
                   CA3.multi CA4.multi  \
@@ -67,17 +67,17 @@ CertificateTest5_single_SOURCES = CertificateTest5.cc
 
 CertificateTest6_single_SOURCES = CertificateTest6.cc
 
-RevokeTest_single_SOURCES = RevokeTest.cc 
+RevokeTest_single_SOURCES = RevokeTest.cc
 
-RevokeTest2_single_SOURCES = RevokeTest2.cc 
+RevokeTest2_single_SOURCES = RevokeTest2.cc
 
-RevokeTest3_single_SOURCES = RevokeTest3.cc 
+RevokeTest3_single_SOURCES = RevokeTest3.cc
 
 RevokeTest4_single_SOURCES = RevokeTest4.cc
 
-RevokeTest5_single_SOURCES = RevokeTest5.cc 
+RevokeTest5_single_SOURCES = RevokeTest5.cc
 
-UpdateDBTest_single_SOURCES = UpdateDBTest.cc 
+UpdateDBTest_single_SOURCES = UpdateDBTest.cc
 
 ListTest_single_SOURCES = ListTest.cc
 
@@ -103,7 +103,7 @@ ImportRequestTest_single_SOURCES = ImportRequestTest.cc
 
 DeleteCATest_single_SOURCES = DeleteCATest.cc
 
-ImportCATest_single_SOURCES = ImportCATest.cc 
+ImportCATest_single_SOURCES = ImportCATest.cc
 
 X_ListCATreeTest_single_SOURCES = ListCATreeTest.cc
 
@@ -175,5 +175,6 @@ EXTRA_DIST = CA2/*.* CA3/*.* CA4/*.* CA5/*.* single.out/*.* \
              openssl.cnf.tmpl                               \
              perl-*.single                                  \
              iniParser/*.out iniParser/*.in                 \
-             iniParser/*.ini iniParser/*.err
+             iniParser/*.ini iniParser/*.err                \
+             TestLineFormater.hpp TestLineFormater2.hpp
 

@@ -1,0 +1,16 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+bindir=@bindir@
+libdir=@libdir@
+includedir=@includedir@
+camgmbindir=@camgmbindir@
+camgmlibdir=@camgmlibdir@
+camgmdatadir=@camgmdatadir@
+camgmincluledir=@camgmincludedir@
+
+Name: @RPMNAME@
+Version: @VERSION@
+Description: CaMgm package "@RPMNAME@"
+Requires: openssl
+Cflags: -I${includedir}
+Libs: -L${camgmlibdir} -lcamgm

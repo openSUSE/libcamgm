@@ -23,16 +23,16 @@ extern "C" {
 
 
 // -------------------------------------------------------------------
-	const char * limal_ca_mgm_lib_version()
+	const char * ca_mgm_lib_version()
 	{
-		return LIMAL_CA_MGM_LIB_VERSION;
+		return CA_MGM_LIB_VERSION;
 	}
 
 
 // -------------------------------------------------------------------
-	unsigned int limal_ca_mgm_api_version()
+	unsigned int ca_mgm_api_version()
 	{
-		return LIMAL_CA_MGM_API_VERSION;
+		return CA_MGM_API_VERSION;
 	}
 
 

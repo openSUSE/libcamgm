@@ -1,0 +1,53 @@
+#
+# Makefile.am for ca-mgm/swig/ruby
+#
+
+RUBY_INCLUDE   = -I$(shell ruby -r rbconfig -e "print Config::CONFIG['archdir']")
+VENDOR_ARCHDIR = $(shell ruby -r rbconfig -e "print Config::CONFIG['vendorarchdir']")
+RUBY_LIB       = -lruby
+
+INCLUDES       = -I$(top_builddir)/src -I$(top_srcdir)/src $(LIMAL_CFLAGS) $(RUBY_INCLUDE)
+# FIXME:
+LIBS         = -L$(top_builddir)/src/.libs -Wl,-rpath,$(camgmlibdir) -lcamgm $(LIB_SSL) $(LIB_UTIL) $(LIB_PCRE) $(PERL_LD) $(RUBY_LIB)
+
+# FIXME:
+CXXFLAGS    += -Wno-unused -fPIC -DPIC
+#AM_CPPFLAGS = $(DEBUG_FLAGS) -D_GNU_SOURCE -DLOCALEDIR=\"${localedir}\"
+SWIGFLAGS    = -I${top_builddir}/typemaps -I$(top_srcdir)/src -DLIMAL_NAMESPACE=ca_mgm -DCA_MGM_NAMESPACE=ca_mgm
+
+
+# ========================================================
+
+
+NAME    = CaMgm
+
+sources = $(top_srcdir)/swig/$(NAME).i \
+	  $(wildcard $(top_srcdir)/src/limal/*.hpp) \
+	  $(wildcard $(top_srcdir)/src/limal/ca-mgm/*.hpp) \
+	  $(wildcard $(top_builddir)/src/limal/ca-mgm/*.h)
+
+
+# ========================================================
+
+
+all: $(NAME).so
+
+clean:
+	rm -f *.o
+	rm -f $(NAME).so
+	rm -f *.cxx
+	rm -f $(NAME).rb
+
+$(NAME).so: $(NAME)_wrap.o
+	$(CXX) -shared -o $(NAME).so $< $(LDFLAGS) $(LIBS)
+
+$(NAME)_wrap.o: $(NAME)_wrap.cxx
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $<
+
+$(NAME)_wrap.cxx: $(sources)
+	$(SWIG) -c++ -ruby $(SWIGFLAGS) -o $(NAME)_wrap.cxx $<
+
+install-data-local:
+	mkdir -p $(DESTDIR)/$(VENDOR_ARCHDIR)
+	install -m 755 $(NAME).so $(DESTDIR)/$(VENDOR_ARCHDIR)/
+

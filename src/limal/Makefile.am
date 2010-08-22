@@ -4,8 +4,8 @@
 
 SUBDIRS = ca-mgm
 # these go to $(limalincludedir)
-#pkglimalinclude_HEADERS =          \
-limalinclude_HEADERS =          \
+pkgcamgmincludedir =    $(camgmincludedir)/      
+pkgcamgminclude_HEADERS =          \
         ReferenceCounted.hpp    \
         ValuePosixRECheck.hpp   \
         ValuePerlRECheck.hpp    \

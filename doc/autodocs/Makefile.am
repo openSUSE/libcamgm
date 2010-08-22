@@ -12,8 +12,8 @@ doxygen.css @RPMNAME@.tag: index.html
 
 headers = $(wildcard $(srcdir)/../../src/limal/*.hpp $(srcdir)/../../src/limal/ca-mgm/*.hpp)
 
-index.html: $(headers) $(srcdir)/../../doc/examples/*.cpp
-	doxygen doxygen.conf
+index.html: $(headers) $(srcdir)/../../doc/examples/*.cpp doxygen.conf
+	@DOXYGEN_COMMAND@ doxygen.conf
 
 EXTRA_DIST = doxygen.conf
 

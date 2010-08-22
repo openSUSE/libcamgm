@@ -1,3 +1,3 @@
-SUBDIRS = perl5
+SUBDIRS = perl5 ruby
 
 EXTRA_DIST = *.i

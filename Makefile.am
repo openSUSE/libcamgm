@@ -13,17 +13,6 @@ RPMNAME 		= $(shell cat $(srcdir)/RPMNAME)
 SUBDIRS_FILE		= $(shell test -e $(srcdir)/SUBDIRS      && echo SUBDIRS)
 ACINCLUDE_FILE		= $(shell test -e $(srcdir)/acinclude.m4 && echo acinclude.m4)
 
-# do we do Makefile.am for devtools? It is a little special...
-IS_DEVTOOLS		= $(findstring limal-devtools,$(RPMNAME))
-
-DEVTOOLS_DIR 		= $(if $(IS_DEVTOOLS),$(srcdir)/devtools,$(PREFIX)/share/limal/devtools)
-CREATE_SPEC             = $(if $(IS_DEVTOOLS),$(DEVTOOLS_DIR)/bin/create-spec,$(PREFIX)/bin/limaltool create-spec)
-LEGALESE_DIR		= $(DEVTOOLS_DIR)/admin/copyright/gpl
-
-COPYRIGHT_files_gpl	= README COPYING 
-
-extra_COPYRIGHT_files =   $(COPYRIGHT_files_gpl)
-
 AUTOMAKE_OPTIONS = foreign dist-bzip2
 
 # create bzip2ed tar and make some sanity checks
@@ -40,110 +29,36 @@ MAINTAINERCLEANFILES = configure $(RPMNAME).pc Makefile Makefile.in  \
 		       config.rpath config.h.in ABOUT-NLS mkinstalldirs
 
 maintainer-clean-local:
-	-rm -rf m4 
+	-rm -rf m4
 
 configure: $(srcdir)/VERSION
 	$(MAKE) -f Makefile.cvs all
 
 EXTRA_DIST = \
-	VERSION RPMNAME MAINTAINER configure.in		\
-	$(SUBDIRS_FILE) $(ACINCLUDE_FILE) limal*.spec.in			
+	VERSION RPMNAME MAINTAINER configure.in Makefile.cvs \
+	$(SUBDIRS_FILE) $(ACINCLUDE_FILE) COPYING \
+	$(RPMNAME).pc.in README
 
 show-extra-dist:
 	@echo $(EXTRA_DIST)
 
-# info '(automake)Conditionals'
-if CREATE_PKGCONFIG
 # pkg-config
-# if a package does not have its own pc, copy the generic one
-$(RPMNAME).pc.in: $(DEVTOOLS_DIR)/admin/generic.pc.in
-	test -f $@ || cp -p $< $@
 # create the file here instead of by configure
 # because the prerequisite is made here
-# and we don't want any paths in limalautoconf
-# info '(autoconf)config.status Invocation'
 $(RPMNAME).pc: $(RPMNAME).pc.in configure
 	./config.status --file=$@:$<
 
 pkgconfig_DATA = $(RPMNAME).pc
-EXTRA_DIST += $(RPMNAME).pc.in
-endif
 
 dist-hook:
-	@for I in $(extra_COPYRIGHT_files) ;					\
-	do									\
-	    EX="" ;								\
-	    if test -f $(srcdir)/$$I ; then					\
-		EX=$(srcdir)/$$I ;						\
-	    elif test -f $(LEGALESE_DIR)/$$I ; then				\
-		EX=$(LEGALESE_DIR)/$$I ;					\
-	    else								\
-	        echo "Error: No file $$I in $(srcdir)/ or in $$LEGALESE_DIR/";	\
-		exit 1 ;							\
-	    fi ;								\
-	    echo "cp $$EX $(distdir)" ;						\
-	    cp $$EX "$(distdir)" ;						\
-	done
 	rm -f `find $(distdir) -name .cvsignore`
 
-install-data-local: 
-	mkdir -p $(DESTDIR)$(docdir)
-	@for I in $(extra_COPYRIGHT_files) ;					\
-	do									\
-	    EX="" ;								\
-	    if test -f $(srcdir)/$$I ; then					\
-		EX=$(srcdir)/$$I ;						\
-	    elif test -f $(LEGALESE_DIR)/$$I ; then				\
-		EX=$(LEGALESE_DIR)/$$I ;					\
-	    else								\
-		echo "Error: No file $$I in $(srcdir)/ or in $(LEGALESE_DIR)/";	\
-		exit 1 ;							\
-	    fi ;								\
-	    echo "$(INSTALL_DATA) $$EX $(DESTDIR)$(docdir)" ;			\
-	    $(INSTALL_DATA) $$EX $(DESTDIR)$(docdir) ;				\
-	done
-
-package-local: $(RPMNAME)-$(VERSION).tar.bz2
+package: $(RPMNAME)-$(VERSION).tar.bz2
 	rm -f package/$(RPMNAME)-*.tar.bz2
 	rm -f package/*~
 	rm -f package/*.bak
 	rm -f package/*.auto
 	mv $(RPMNAME)-$(VERSION).tar.bz2 package/
-	if ! test -x $(PREFIX)/bin/limaltool; then \
-	    echo "$(PREFIX)/bin/limaltool: not found."; \
-	    echo "You have to install limal-devtools to making a package"; \
-	    false; \
-	fi
-	here=`pwd`; \
-	cd $(srcdir) && for i in $(RPMNAME)*.spec.in; do \
-	    newname="`echo "$$i" | sed "s/\.in$$//g"`"; \
-	    $(CREATE_SPEC) < $$i > $$here/package/$${newname} ; \
-	done
-
-package: check-svn-up-to-date check-tagversion package-local
-
-TAGVERSION	 = $(PREFIX)/bin/limaltool tagversion
-
-check-up-to-date check-svn-up-to-date:
-	@if [ -d $(srcdir)/.svn ]; then \
-	  if ! svn   --version &>/dev/null ; then \
-	    echo 'ERROR: Unable to find the 'svn' subversion command line client!' ; \
-	    echo '       Please install the subversion package and try again.'     ; \
-	    exit 1 ; \
-	  fi >&2 ; \
-	  cd $(srcdir) && ! LC_ALL=C svn status --show-updates --quiet | grep -v '^Status against revision' ; \
-	fi
-
-check-tagversion:
-	@if [ -d $(srcdir)/.svn ]; then \
-	  cd $(srcdir) && svn cat `$(TAGVERSION) --echourl`/VERSION; \
-	fi >/dev/null; \
-	[ $$? = 0 ] || ( echo "ERROR: Please run 'limaltool tagversion' first"; false )
-
-stable: checkin-stable
-
-checkin-stable: package
-	$(PREFIX)/bin/limaltool checkin-stable
 
 
 ACLOCAL_AMFLAGS = -I m4

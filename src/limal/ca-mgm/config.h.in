@@ -73,16 +73,16 @@
 /**
  * LiMaL ca-mgm library version.
  */
-#ifndef LIMAL_CA_MGM_LIB_VERSION
-#define LIMAL_CA_MGM_LIB_VERSION		"@LIMAL_CA_MGM_LIB_VERSION@"
+#ifndef CA_MGM_LIB_VERSION
+#define CA_MGM_LIB_VERSION		"@CA_MGM_LIB_VERSION@"
 #endif
 
 
 /**
  * LiMaL ca-mgm API/namespace version.
  */
-#ifndef LIMAL_CA_MGM_API_VERSION
-#define LIMAL_CA_MGM_API_VERSION		@LIMAL_CA_MGM_API_VERSION@
+#ifndef CA_MGM_API_VERSION
+#define CA_MGM_API_VERSION		@CA_MGM_API_VERSION@
 #endif
 
 
@@ -104,17 +104,17 @@ extern "C" {
 #endif /* __cplusplus */
 
 /**
- * LiMaL ca-mgm lib version number function.
+ * ca-mgm lib version number function.
  * @returns library version string
  */
-const char * limal_ca_mgm_lib_version();
+const char * ca_mgm_lib_version();
 
 
 /**
- * LiMaL ca-mgm API version number function.
+ * ca-mgm API version number function.
  * @returns library API version number
  */
-unsigned int limal_ca_mgm_api_version();
+unsigned int ca_mgm_api_version();
 
 #ifdef    __cplusplus
 }

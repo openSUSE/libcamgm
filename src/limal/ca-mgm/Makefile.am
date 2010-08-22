@@ -2,10 +2,10 @@
 # Makefile.am for limal-ca-mgm/src/limal/ca-mgm
 #
 
-pkglimalincludedir = $(limalincludedir)/ca-mgm
+pkgcamgmincludedir = $(camgmincludedir)/ca-mgm
 
 # these go to $(pkglimalincludedir)
-pkglimalinclude_HEADERS =   \
+pkgcamgminclude_HEADERS =   \
 	config.h \
         AuthorityInfoAccessExtension.hpp \
         AuthorityKeyIdentifierExtension.hpp \

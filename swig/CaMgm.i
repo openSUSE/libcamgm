@@ -6,12 +6,17 @@
 #include <limal/ca-mgm/CA.hpp>
 %}
 
+#ifdef SWIGPERL
 %include <camgm_exceptions.i>
 %include <camgm_types.i>
 %include <camgm_std_list.i>
 %include <camgm_std_map.i>
 %include <camgm_std_vector.i>
 %include <camgm_CommonTypes.i>
+#else
+%include <stl.i>
+%include <std_list.i>
+#endif
 
 %template(StringArray) std::vector<std::string>;
 %template(StringList)  std::list<std::string>;
