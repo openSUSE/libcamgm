@@ -22,13 +22,13 @@
  * @brief  Provides class allowing to implement chained
  *         checks on string values.
  */
-#include  <limal/ca-mgm/config.h>
-#include  <limal/ValueCheck.hpp>
+#include  <ca-mgm/config.h>
+#include  <ca-mgm/ValueCheck.hpp>
 
-#include  <limal/Exception.hpp>
-#include  <limal/ca-mgm/CommonData.hpp>
-#include  <limal/String.hpp>
-#include  <limal/ReferenceCounted.hpp>
+#include  <ca-mgm/Exception.hpp>
+#include  <ca-mgm/CommonData.hpp>
+#include  <ca-mgm/String.hpp>
+#include  <ca-mgm/ReferenceCounted.hpp>
 #include  <list>
 
 #include  "Utils.hpp"

@@ -1,9 +1,9 @@
 %module "CaMgm"
 
 %{
-#include <limal/ca-mgm/config.h>
-#include <limal/ca-mgm/LocalManagement.hpp>
-#include <limal/ca-mgm/CA.hpp>
+#include <ca-mgm/config.h>
+#include <ca-mgm/LocalManagement.hpp>
+#include <ca-mgm/CA.hpp>
 %}
 
 #ifdef SWIGPERL
@@ -26,52 +26,52 @@
 
 typedef std::vector<std::string> StringArray;
 
-%include limal/ca-mgm/config.h
-%include limal/ca-mgm/CommonData.hpp
-%include limal/ca-mgm/DNObject.hpp
-%include limal/ca-mgm/LiteralValues.hpp
+%include ca-mgm/config.h
+%include ca-mgm/CommonData.hpp
+%include ca-mgm/DNObject.hpp
+%include ca-mgm/LiteralValues.hpp
 
-%include limal/ca-mgm/ExtensionBase.hpp
-%include limal/ca-mgm/StringExtensions.hpp
-%include limal/ca-mgm/BitExtensions.hpp
-%include limal/ca-mgm/ExtendedKeyUsageExt.hpp
-%include limal/ca-mgm/BasicConstraintsExtension.hpp
-%include limal/ca-mgm/SubjectKeyIdentifierExtension.hpp
-%include limal/ca-mgm/SubjectAlternativeNameExtension.hpp
+%include ca-mgm/ExtensionBase.hpp
+%include ca-mgm/StringExtensions.hpp
+%include ca-mgm/BitExtensions.hpp
+%include ca-mgm/ExtendedKeyUsageExt.hpp
+%include ca-mgm/BasicConstraintsExtension.hpp
+%include ca-mgm/SubjectKeyIdentifierExtension.hpp
+%include ca-mgm/SubjectAlternativeNameExtension.hpp
 
-%include limal/ca-mgm/X509v3RequestExtensions.hpp
-%include limal/ca-mgm/RequestGenerationData.hpp
+%include ca-mgm/X509v3RequestExtensions.hpp
+%include ca-mgm/RequestGenerationData.hpp
 
-%include limal/ca-mgm/AuthorityKeyIdentifierGenerateExtension.hpp
-%include limal/ca-mgm/IssuerAlternativeNameExtension.hpp
+%include ca-mgm/AuthorityKeyIdentifierGenerateExtension.hpp
+%include ca-mgm/IssuerAlternativeNameExtension.hpp
 
-%include limal/ca-mgm/X509v3CRLGenerationExtensions.hpp
-%include limal/ca-mgm/CRLGenerationData.hpp
+%include ca-mgm/X509v3CRLGenerationExtensions.hpp
+%include ca-mgm/CRLGenerationData.hpp
 
-%include limal/ca-mgm/AuthorityInfoAccessExtension.hpp
-%include limal/ca-mgm/CRLDistributionPointsExtension.hpp
-%include limal/ca-mgm/CertificatePoliciesExtension.hpp
+%include ca-mgm/AuthorityInfoAccessExtension.hpp
+%include ca-mgm/CRLDistributionPointsExtension.hpp
+%include ca-mgm/CertificatePoliciesExtension.hpp
 
-%include limal/ca-mgm/X509v3CertificateIssueExtensions.hpp
-%include limal/ca-mgm/CertificateIssueData.hpp
-
-
-
-%include limal/ca-mgm/RequestData.hpp
-
-%include limal/ca-mgm/AuthorityKeyIdentifierExtension.hpp
-%include limal/ca-mgm/CRLReason.hpp
-
-%include limal/ca-mgm/X509v3CRLExtensions.hpp
-%include limal/ca-mgm/CRLData.hpp
-
-%include limal/ca-mgm/X509v3CertificateExtensions.hpp
-%include limal/ca-mgm/CertificateData.hpp
+%include ca-mgm/X509v3CertificateIssueExtensions.hpp
+%include ca-mgm/CertificateIssueData.hpp
 
 
-%include limal/ca-mgm/CAConfig.hpp
-%include limal/ca-mgm/LocalManagement.hpp
-%include limal/ca-mgm/CA.hpp
+
+%include ca-mgm/RequestData.hpp
+
+%include ca-mgm/AuthorityKeyIdentifierExtension.hpp
+%include ca-mgm/CRLReason.hpp
+
+%include ca-mgm/X509v3CRLExtensions.hpp
+%include ca-mgm/CRLData.hpp
+
+%include ca-mgm/X509v3CertificateExtensions.hpp
+%include ca-mgm/CertificateData.hpp
+
+
+%include ca-mgm/CAConfig.hpp
+%include ca-mgm/LocalManagement.hpp
+%include ca-mgm/CA.hpp
 
 %template(StringArrayList) std::list<std::vector<std::string> >;
 %template(StringMapArray)  std::vector<std::map<std::string, std::string> >;

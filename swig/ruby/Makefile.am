@@ -22,9 +22,8 @@ SWIGFLAGS    = -I${top_builddir}/typemaps -I$(top_srcdir)/src -DLIMAL_NAMESPACE=
 NAME    = CaMgm
 
 sources = $(top_srcdir)/swig/$(NAME).i \
-	  $(wildcard $(top_srcdir)/src/limal/*.hpp) \
-	  $(wildcard $(top_srcdir)/src/limal/ca-mgm/*.hpp) \
-	  $(wildcard $(top_builddir)/src/limal/ca-mgm/*.h)
+	  $(wildcard $(top_srcdir)/src/ca-mgm/*.hpp) \
+	  $(wildcard $(top_builddir)/src/ca-mgm/*.h)
 
 
 # ========================================================

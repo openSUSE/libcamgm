@@ -17,8 +17,8 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <regex.h>
-#include <limal/String.hpp>
-#include <limal/PosixRegEx.hpp>
+#include <ca-mgm/String.hpp>
+#include <ca-mgm/PosixRegEx.hpp>
 
 #include <iosfwd>
 #include <fstream>
@@ -268,7 +268,7 @@ public:
     IniSection inifile;
     // apparently the uninitialized members are filled in
     // by the grammar definition
-    IniParser () : 
+    IniParser () :
 	linecomments (), comments (),
 	sections (), params (), rewrites (),
 	started (false), multiple_files (false),

@@ -2,7 +2,7 @@
 # Makefile.am for limal-ca-mgm/src
 #
 
-SUBDIRS = limal
+SUBDIRS = ca-mgm
 
 INCLUDES = -I. -I$(srcdir)
 

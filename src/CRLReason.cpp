@@ -20,11 +20,11 @@
 
 /-*/
 
-#include  <limal/ca-mgm/CRLReason.hpp>
-#include  <limal/ValueRegExCheck.hpp>
-#include  <limal/Exception.hpp>
-#include  <limal/Date.hpp>
-#include  <limal/String.hpp>
+#include  <ca-mgm/CRLReason.hpp>
+#include  <ca-mgm/ValueRegExCheck.hpp>
+#include  <ca-mgm/Exception.hpp>
+#include  <ca-mgm/Date.hpp>
+#include  <ca-mgm/String.hpp>
 
 
 #include  "Utils.hpp"

@@ -20,8 +20,8 @@
 
 /-*/
 
-#include  <limal/ca-mgm/X509v3CRLExtensions.hpp>
-#include  <limal/Exception.hpp>
+#include  <ca-mgm/X509v3CRLExtensions.hpp>
+#include  <ca-mgm/Exception.hpp>
 
 #include  "X509v3CRLExtensionsImpl.hpp"
 #include  "Utils.hpp"

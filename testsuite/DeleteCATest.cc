@@ -1,10 +1,10 @@
-#include <limal/String.hpp>
-#include <limal/PerlRegEx.hpp>
-#include <limal/LogControl.hpp>
-#include <limal/PathInfo.hpp>
-#include <limal/PathUtils.hpp>
-#include <limal/Exception.hpp>
-#include <limal/ca-mgm/CA.hpp>
+#include <ca-mgm/String.hpp>
+#include <ca-mgm/PerlRegEx.hpp>
+#include <ca-mgm/LogControl.hpp>
+#include <ca-mgm/PathInfo.hpp>
+#include <ca-mgm/PathUtils.hpp>
+#include <ca-mgm/Exception.hpp>
+#include <ca-mgm/CA.hpp>
 
 #include <iostream>
 #include <fstream>

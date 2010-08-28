@@ -31,9 +31,9 @@
  * @author Marius Tomaschewski
  */
 
-#include <limal/PosixRegEx.hpp>
+#include <ca-mgm/PosixRegEx.hpp>
 
-#include "limal/Exception.hpp"
+#include <ca-mgm/Exception.hpp>
 
 
 namespace ca_mgm

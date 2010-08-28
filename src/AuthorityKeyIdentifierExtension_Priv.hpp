@@ -22,9 +22,9 @@
 #ifndef    LIMAL_CA_MGM_AUTHORITY_KEY_IDENTIFIER_EXTENSION_PRIV_HPP
 #define    LIMAL_CA_MGM_AUTHORITY_KEY_IDENTIFIER_EXTENSION_PRIV_HPP
 
-#include  <limal/ca-mgm/config.h>
-#include  <limal/ca-mgm/CommonData.hpp>
-#include  <limal/ca-mgm/AuthorityKeyIdentifierExtension.hpp>
+#include  <ca-mgm/config.h>
+#include  <ca-mgm/CommonData.hpp>
+#include  <ca-mgm/AuthorityKeyIdentifierExtension.hpp>
 #include  <openssl/x509.h>
 
 namespace CA_MGM_NAMESPACE {

@@ -23,11 +23,11 @@
  * @file   ValueIntCheck.cpp
  * @brief  Implements an integer range check
  */
-#include  <limal/ca-mgm/config.h>
-#include  <limal/ValueIntCheck.hpp>
+#include  <ca-mgm/config.h>
+#include  <ca-mgm/ValueIntCheck.hpp>
 
-#include  <limal/ca-mgm/CommonData.hpp>
-#include  <limal/String.hpp>
+#include  <ca-mgm/CommonData.hpp>
+#include  <ca-mgm/String.hpp>
 
 namespace LIMAL_NAMESPACE
 {

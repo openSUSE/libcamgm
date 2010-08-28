@@ -35,9 +35,9 @@
 
 /-*/
 
-#include <limal/PathName.hpp>
-#include <limal/Exception.hpp>
-#include <limal/String.hpp>
+#include <ca-mgm/PathName.hpp>
+#include <ca-mgm/Exception.hpp>
+#include <ca-mgm/String.hpp>
 
 #include "Utils.hpp"
 #include <iostream>

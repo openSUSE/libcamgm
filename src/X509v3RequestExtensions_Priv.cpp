@@ -21,7 +21,7 @@
 /-*/
 #include  "X509v3RequestExtensions_Priv.hpp"
 #include  "LiteralValues_Priv.hpp"
-#include  <limal/Exception.hpp>
+#include  <ca-mgm/Exception.hpp>
 
 #include <openssl/x509v3.h>
 #include <openssl/pem.h>

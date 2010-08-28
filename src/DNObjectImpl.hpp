@@ -22,8 +22,8 @@
 #ifndef    LIMAL_CA_MGM_DN_OBJECT_IMPL_HPP
 #define    LIMAL_CA_MGM_DN_OBJECT_IMPL_HPP
 
-#include  <limal/ca-mgm/config.h>
-#include  <limal/ca-mgm/CommonData.hpp>
+#include  <ca-mgm/config.h>
+#include  <ca-mgm/CommonData.hpp>
 #include  <list>
 
 

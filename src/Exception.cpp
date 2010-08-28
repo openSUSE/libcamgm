@@ -1,4 +1,4 @@
-#include <limal/Exception.hpp>
+#include <ca-mgm/Exception.hpp>
 
 namespace
 {

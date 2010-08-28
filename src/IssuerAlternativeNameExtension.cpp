@@ -20,9 +20,9 @@
 
 /-*/
 
-#include  <limal/ca-mgm/IssuerAlternativeNameExtension.hpp>
-#include  <limal/ca-mgm/CA.hpp>
-#include  <limal/Exception.hpp>
+#include  <ca-mgm/IssuerAlternativeNameExtension.hpp>
+#include  <ca-mgm/CA.hpp>
+#include  <ca-mgm/Exception.hpp>
 
 
 #include  "Utils.hpp"

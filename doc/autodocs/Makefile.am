@@ -10,7 +10,7 @@ CLEANFILES = $(html_DATA) doxygen.log installdox *~
 
 doxygen.css @RPMNAME@.tag: index.html
 
-headers = $(wildcard $(srcdir)/../../src/limal/*.hpp $(srcdir)/../../src/limal/ca-mgm/*.hpp)
+headers = $(wildcard $(srcdir)/../../src/ca-mgm/*.hpp)
 
 index.html: $(headers) $(srcdir)/../../doc/examples/*.cpp doxygen.conf
 	@DOXYGEN_COMMAND@ doxygen.conf

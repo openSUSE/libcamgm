@@ -1,10 +1,10 @@
 
 #define LIMAL_LOGGER_LOGGROUP "parser"
 
-#include <limal/String.hpp>
-#include <limal/LogControl.hpp>
+#include <ca-mgm/String.hpp>
+#include <ca-mgm/LogControl.hpp>
 #include "INIParser/INIParser.hpp"
-#include <limal/Exception.hpp>
+#include <ca-mgm/Exception.hpp>
 
 #include <iostream>
 #include <fstream>

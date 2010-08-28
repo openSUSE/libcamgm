@@ -22,10 +22,10 @@
 #ifndef    LIMAL_CA_MGM_REQUEST_DATA_PRIV_HPP
 #define    LIMAL_CA_MGM_REQUEST_DATA_PRIV_HPP
 
-#include  <limal/ca-mgm/config.h>
-#include  <limal/ca-mgm/CommonData.hpp>
-#include  <limal/ca-mgm/RequestData.hpp>
-#include  <limal/ByteBuffer.hpp>
+#include  <ca-mgm/config.h>
+#include  <ca-mgm/CommonData.hpp>
+#include  <ca-mgm/RequestData.hpp>
+#include  <ca-mgm/ByteBuffer.hpp>
 
 #include <openssl/x509.h>
 

@@ -20,10 +20,10 @@
 
 /-*/
 
-#include  <limal/ca-mgm/SubjectKeyIdentifierExtension.hpp>
-#include  <limal/ca-mgm/CA.hpp>
-#include  <limal/ValueRegExCheck.hpp>
-#include  <limal/Exception.hpp>
+#include  <ca-mgm/SubjectKeyIdentifierExtension.hpp>
+#include  <ca-mgm/CA.hpp>
+#include  <ca-mgm/ValueRegExCheck.hpp>
+#include  <ca-mgm/Exception.hpp>
 
 #include  "Utils.hpp"
 

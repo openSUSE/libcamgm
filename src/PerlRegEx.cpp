@@ -31,9 +31,9 @@
  * @author Marius Tomaschewski
  */
 
-#include <limal/ca-mgm/config.h>
-#include <limal/PerlRegEx.hpp>
-#include <limal/Exception.hpp>
+#include <ca-mgm/config.h>
+#include <ca-mgm/PerlRegEx.hpp>
+#include <ca-mgm/Exception.hpp>
 
 #include <climits> // for INT_MAX
 

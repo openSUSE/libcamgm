@@ -23,14 +23,14 @@
  *         It implements common utilities, like the gettext
  *         text domain initializaton.
  */
-#include <limal/ca-mgm/config.h>
+#include <ca-mgm/config.h>
 
 #include "Utils.hpp"
 #include <libintl.h>
 #include <openssl/objects.h>
 #include <pthread.h>
-#include <limal/ExternalProgram.hpp>
-#include <limal/PathUtils.hpp>
+#include <ca-mgm/ExternalProgram.hpp>
+#include <ca-mgm/PathUtils.hpp>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>

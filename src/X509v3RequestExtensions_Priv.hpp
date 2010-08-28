@@ -22,9 +22,9 @@
 #ifndef    LIMAL_CA_MGM_X509V3_REQUEST_EXTENSIONS_PRIV_HPP
 #define    LIMAL_CA_MGM_X509V3_REQUEST_EXTENSIONS_PRIV_HPP
 
-#include  <limal/ca-mgm/config.h>
-#include  <limal/ca-mgm/CommonData.hpp>
-#include  <limal/ca-mgm/X509v3RequestExtensions.hpp>
+#include  <ca-mgm/config.h>
+#include  <ca-mgm/CommonData.hpp>
+#include  <ca-mgm/X509v3RequestExtensions.hpp>
 #include  <openssl/x509.h>
 
 

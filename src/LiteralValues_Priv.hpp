@@ -22,10 +22,10 @@
 #ifndef    LIMAL_CA_MGM_LITERAL_VALUE_PRIV_HPP
 #define    LIMAL_CA_MGM_LITERAL_VALUE_PRIV_HPP
 
-#include  <limal/ca-mgm/config.h>
-#include  <limal/ca-mgm/CommonData.hpp>
-#include  <limal/ca-mgm/LiteralValues.hpp>
-#include  <limal/ByteBuffer.hpp>
+#include  <ca-mgm/config.h>
+#include  <ca-mgm/CommonData.hpp>
+#include  <ca-mgm/LiteralValues.hpp>
+#include  <ca-mgm/ByteBuffer.hpp>
 
 #include  <openssl/x509v3.h>
 

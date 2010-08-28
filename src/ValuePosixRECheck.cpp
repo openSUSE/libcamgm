@@ -23,11 +23,11 @@
  * @file   ValuePosixRECheck.cpp
  * @brief  Implements an posix regex based check.
  */
-#include  <limal/ca-mgm/config.h>
-#include  <limal/ValuePosixRECheck.hpp>
+#include  <ca-mgm/config.h>
+#include  <ca-mgm/ValuePosixRECheck.hpp>
 
-#include  <limal/ca-mgm/CommonData.hpp>
-#include  <limal/String.hpp>
+#include  <ca-mgm/CommonData.hpp>
+#include  <ca-mgm/String.hpp>
 
 
 namespace LIMAL_NAMESPACE

@@ -24,12 +24,12 @@
 #ifndef   LIMAL_CA_MGM_OPENSSL_UTILS_HPP
 #define   LIMAL_CA_MGM_OPENSSL_UTILS_HPP
 
-#include <limal/ca-mgm/config.h>
-#include <limal/ca-mgm/CommonData.hpp>
-#include <limal/ca-mgm/DNObject.hpp>
-#include <limal/ca-mgm/CRLReason.hpp>
-#include <limal/ByteBuffer.hpp>
-#include <limal/ExternalProgram.hpp>
+#include <ca-mgm/config.h>
+#include <ca-mgm/CommonData.hpp>
+#include <ca-mgm/DNObject.hpp>
+#include <ca-mgm/CRLReason.hpp>
+#include <ca-mgm/ByteBuffer.hpp>
+#include <ca-mgm/ExternalProgram.hpp>
 
 #include "Commands.hpp"
 

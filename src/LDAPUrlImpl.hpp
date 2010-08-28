@@ -18,7 +18,7 @@
 /-*/
 #ifndef  LIMAL_LDAPURLIMPL_HPP
 #define  LIMAL_LDAPURLIMPL_HPP
-#include <limal/UrlBase.hpp>
+#include <ca-mgm/UrlBase.hpp>
 
 
 // -------------------------------------------------------------------

@@ -20,13 +20,13 @@
 
 /-*/
 
-#include  <limal/ca-mgm/CA.hpp>
-#include  <limal/ca-mgm/LocalManagement.hpp>
-#include  <limal/Exception.hpp>
-#include  <limal/PathUtils.hpp>
-#include  <limal/PathInfo.hpp>
-#include  <limal/Date.hpp>
-#include  <limal/String.hpp>
+#include  <ca-mgm/CA.hpp>
+#include  <ca-mgm/LocalManagement.hpp>
+#include  <ca-mgm/Exception.hpp>
+#include  <ca-mgm/PathUtils.hpp>
+#include  <ca-mgm/PathInfo.hpp>
+#include  <ca-mgm/Date.hpp>
+#include  <ca-mgm/String.hpp>
 
 #include  <openssl/pem.h>
 

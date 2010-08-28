@@ -17,10 +17,10 @@
 
 /-*/
 
-#include <limal/Url.hpp>
-#include <limal/PosixRegEx.hpp>
-#include <limal/String.hpp>
-#include <limal/Exception.hpp>
+#include <ca-mgm/Url.hpp>
+#include <ca-mgm/PosixRegEx.hpp>
+#include <ca-mgm/String.hpp>
+#include <ca-mgm/Exception.hpp>
 
 #include "UrlByScheme.hpp"
 #include "Utils.hpp"

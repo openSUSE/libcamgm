@@ -17,8 +17,8 @@
 
 /-*/
 
-#include <limal/PosixRegEx.hpp>
-#include <limal/String.hpp>
+#include <ca-mgm/PosixRegEx.hpp>
+#include <ca-mgm/String.hpp>
 
 #include "LDAPUrlImpl.hpp"
 #include "Utils.hpp"

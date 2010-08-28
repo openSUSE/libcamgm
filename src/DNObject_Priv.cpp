@@ -20,7 +20,7 @@
 
 /-*/
 
-#include  <limal/ca-mgm/CA.hpp>
+#include  <ca-mgm/CA.hpp>
 #include  "DNObjectImpl.hpp"
 #include  "DNObject_Priv.hpp"
 

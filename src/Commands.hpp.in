@@ -25,8 +25,8 @@ Maintainer: Michael Calmer
 #ifndef   LIMAL_CA_MGM_COMMANDS_HPP
 #define   LIMAL_CA_MGM_COMMANDS_HPP
 
-#include <limal/ca-mgm/config.h>
-#include <limal/String.hpp>
+#include <ca-mgm/config.h>
+#include <ca-mgm/String.hpp>
 
 namespace CA_MGM_NAMESPACE {
 

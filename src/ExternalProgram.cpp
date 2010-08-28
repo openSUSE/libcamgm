@@ -23,9 +23,9 @@
 #include <iostream>
 #include <sstream>
 
-#include <limal/Logger.hpp>
-#include <limal/String.hpp>
-#include <limal/ExternalProgram.hpp>
+#include <ca-mgm/Logger.hpp>
+#include <ca-mgm/String.hpp>
+#include <ca-mgm/ExternalProgram.hpp>
 
 #include "Utils.hpp"
 

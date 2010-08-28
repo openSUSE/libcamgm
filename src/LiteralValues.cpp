@@ -20,11 +20,11 @@
 
 /-*/
 
-#include  <limal/ca-mgm/LiteralValues.hpp>
-#include  <limal/ca-mgm/CA.hpp>
-#include  <limal/ValueRegExCheck.hpp>
-#include  <limal/Exception.hpp>
-#include  <limal/String.hpp>
+#include  <ca-mgm/LiteralValues.hpp>
+#include  <ca-mgm/CA.hpp>
+#include  <ca-mgm/ValueRegExCheck.hpp>
+#include  <ca-mgm/Exception.hpp>
+#include  <ca-mgm/String.hpp>
 
 
 #include  "Utils.hpp"

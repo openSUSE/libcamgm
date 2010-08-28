@@ -19,8 +19,8 @@
   Purpose:
 
 /-*/
-#include  <limal/ca-mgm/AuthorityKeyIdentifierExtension.hpp>
-#include  <limal/Exception.hpp>
+#include  <ca-mgm/AuthorityKeyIdentifierExtension.hpp>
+#include  <ca-mgm/Exception.hpp>
 
 
 #include  "Utils.hpp"

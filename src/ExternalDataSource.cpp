@@ -25,8 +25,8 @@
 
 #include <string>
 
-#include <limal/Logger.hpp>
-#include <limal/ExternalDataSource.hpp>
+#include <ca-mgm/Logger.hpp>
+#include <ca-mgm/ExternalDataSource.hpp>
 
 using namespace std;
 

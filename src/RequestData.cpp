@@ -20,9 +20,9 @@
 
 /-*/
 
-#include  <limal/ca-mgm/RequestData.hpp>
-#include  <limal/ValueRegExCheck.hpp>
-#include  <limal/Exception.hpp>
+#include  <ca-mgm/RequestData.hpp>
+#include  <ca-mgm/ValueRegExCheck.hpp>
+#include  <ca-mgm/Exception.hpp>
 
 
 #include  "Utils.hpp"

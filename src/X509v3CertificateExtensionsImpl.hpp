@@ -22,20 +22,20 @@
 #ifndef    LIMAL_CA_MGM_X509V3_CERTIFICATE_EXTS_IMPL_HPP
 #define    LIMAL_CA_MGM_X509V3_CERTIFICATE_EXTS_IMPL_HPP
 
-#include  <limal/ca-mgm/config.h>
-#include  <limal/ca-mgm/CommonData.hpp>
-#include  <limal/ca-mgm/StringExtensions.hpp>
-#include  <limal/ca-mgm/BitExtensions.hpp>
-#include  <limal/ca-mgm/ExtendedKeyUsageExt.hpp>
-#include  <limal/ca-mgm/BasicConstraintsExtension.hpp>
-#include  <limal/ca-mgm/SubjectKeyIdentifierExtension.hpp>
-#include  <limal/ca-mgm/SubjectKeyIdentifierExtension.hpp>
-#include  <limal/ca-mgm/AuthorityKeyIdentifierExtension.hpp>
-#include  <limal/ca-mgm/SubjectAlternativeNameExtension.hpp>
-#include  <limal/ca-mgm/IssuerAlternativeNameExtension.hpp>
-#include  <limal/ca-mgm/AuthorityInfoAccessExtension.hpp>
-#include  <limal/ca-mgm/CRLDistributionPointsExtension.hpp>
-#include  <limal/ca-mgm/CertificatePoliciesExtension.hpp>
+#include  <ca-mgm/config.h>
+#include  <ca-mgm/CommonData.hpp>
+#include  <ca-mgm/StringExtensions.hpp>
+#include  <ca-mgm/BitExtensions.hpp>
+#include  <ca-mgm/ExtendedKeyUsageExt.hpp>
+#include  <ca-mgm/BasicConstraintsExtension.hpp>
+#include  <ca-mgm/SubjectKeyIdentifierExtension.hpp>
+#include  <ca-mgm/SubjectKeyIdentifierExtension.hpp>
+#include  <ca-mgm/AuthorityKeyIdentifierExtension.hpp>
+#include  <ca-mgm/SubjectAlternativeNameExtension.hpp>
+#include  <ca-mgm/IssuerAlternativeNameExtension.hpp>
+#include  <ca-mgm/AuthorityInfoAccessExtension.hpp>
+#include  <ca-mgm/CRLDistributionPointsExtension.hpp>
+#include  <ca-mgm/CertificatePoliciesExtension.hpp>
 
 
 

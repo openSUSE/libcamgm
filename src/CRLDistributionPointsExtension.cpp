@@ -20,9 +20,9 @@
 
 /-*/
 
-#include  <limal/ca-mgm/CRLDistributionPointsExtension.hpp>
-#include  <limal/ca-mgm/CA.hpp>
-#include  <limal/Exception.hpp>
+#include  <ca-mgm/CRLDistributionPointsExtension.hpp>
+#include  <ca-mgm/CA.hpp>
+#include  <ca-mgm/Exception.hpp>
 
 
 #include  "Utils.hpp"

@@ -18,8 +18,8 @@
 /-*/
 #include <iostream>
 
-#include <limal/Date.hpp>
-#include <limal/String.hpp>
+#include <ca-mgm/Date.hpp>
+#include <ca-mgm/String.hpp>
 
 #include "Utils.hpp"
 

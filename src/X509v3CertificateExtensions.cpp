@@ -20,8 +20,8 @@
 
 /-*/
 
-#include  <limal/ca-mgm/X509v3CertificateExtensions.hpp>
-#include  <limal/Exception.hpp>
+#include  <ca-mgm/X509v3CertificateExtensions.hpp>
+#include  <ca-mgm/Exception.hpp>
 
 #include  "X509v3CertificateExtensionsImpl.hpp"
 #include  "Utils.hpp"

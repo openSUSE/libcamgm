@@ -17,9 +17,9 @@
 
 /-*/
 
-#include <limal/UrlUtils.hpp>
-#include <limal/String.hpp>
-#include <limal/PosixRegEx.hpp>
+#include <ca-mgm/UrlUtils.hpp>
+#include <ca-mgm/String.hpp>
+#include <ca-mgm/PosixRegEx.hpp>
 
 #include "Utils.hpp"
 

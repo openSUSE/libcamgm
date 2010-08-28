@@ -11,9 +11,9 @@
 */
 #include <iostream>
 
-#include <limal/Logger.hpp>
-#include <limal/Exception.hpp>
-#include <limal/ReferenceCounted.hpp>
+#include <ca-mgm/Logger.hpp>
+#include <ca-mgm/Exception.hpp>
+#include <ca-mgm/ReferenceCounted.hpp>
 
 ///////////////////////////////////////////////////////////////////
 namespace ca_mgm

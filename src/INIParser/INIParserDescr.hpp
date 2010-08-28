@@ -27,8 +27,8 @@
 #ifndef LIMAL_INI_PARSERDESCR_HPP
 #define LIMAL_INI_PARSERDESCR_HPP
 
-#include  <limal/ca-mgm/config.h>
-#include  <limal/String.hpp>
+#include  <ca-mgm/config.h>
+#include  <ca-mgm/String.hpp>
 
 namespace LIMAL_NAMESPACE
 {

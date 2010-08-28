@@ -17,10 +17,10 @@
 
 /-*/
 
-#include <limal/ByteBuffer.hpp>
+#include <ca-mgm/ByteBuffer.hpp>
 
-#include <limal/String.hpp>
-#include <limal/Exception.hpp>
+#include <ca-mgm/String.hpp>
+#include <ca-mgm/Exception.hpp>
 
 #include <cstring>
 

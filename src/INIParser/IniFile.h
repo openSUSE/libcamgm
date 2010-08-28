@@ -16,8 +16,8 @@
 
 #define LIMAL_LOGGER_LOGGROUP "IniParser"
 
-#include <limal/Logger.hpp>
-#include <limal/String.hpp>
+#include <ca-mgm/Logger.hpp>
+#include <ca-mgm/String.hpp>
 #include "INIParser/INIParserDescr.hpp"
 #include <list>
 #include <map>

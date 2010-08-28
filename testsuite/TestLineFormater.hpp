@@ -3,7 +3,7 @@
 
 #include <iosfwd>
 #include <string>
-#include <limal/LogControl.hpp>
+#include <ca-mgm/LogControl.hpp>
 
 ///////////////////////////////////////////////////////////////////
 //namespace ca_mgm

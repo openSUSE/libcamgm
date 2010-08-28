@@ -6,8 +6,8 @@
 */
 
 %{
-#include <limal/ByteBuffer.hpp>
-#include <limal/LogControl.hpp>
+#include <ca-mgm/ByteBuffer.hpp>
+#include <ca-mgm/LogControl.hpp>
 %}
 
 namespace ca_mgm

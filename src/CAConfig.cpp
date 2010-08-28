@@ -22,7 +22,7 @@
 
 #include <fstream>
 #include <iostream>
-#include  <limal/ca-mgm/CAConfig.hpp>
+#include  <ca-mgm/CAConfig.hpp>
 
 #include  "Utils.hpp"
 #include  "INIParser/INIParser.hpp"

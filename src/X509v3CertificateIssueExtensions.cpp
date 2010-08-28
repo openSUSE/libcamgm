@@ -21,9 +21,9 @@
 /-*/
 
 
-#include  <limal/ca-mgm/X509v3CertificateIssueExtensions.hpp>
-#include  <limal/ca-mgm/CA.hpp>
-#include  <limal/Exception.hpp>
+#include  <ca-mgm/X509v3CertificateIssueExtensions.hpp>
+#include  <ca-mgm/CA.hpp>
+#include  <ca-mgm/Exception.hpp>
 
 
 #include  "Utils.hpp"

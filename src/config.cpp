@@ -17,7 +17,7 @@
   Maintainer: <Michael Calmer>     <mc@suse.de>
 
 /-*/
-#include  <limal/ca-mgm/config.h>
+#include  <ca-mgm/config.h>
 
 extern "C" {
 

@@ -28,9 +28,9 @@
 #include <openssl/x509.h>
 #include <openssl/evp.h>
 
-#include  <limal/Exception.hpp>
+#include  <ca-mgm/Exception.hpp>
 
-#include  <limal/Date.hpp>
+#include  <ca-mgm/Date.hpp>
 
 #include  "Utils.hpp"
 

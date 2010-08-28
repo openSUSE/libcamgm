@@ -22,7 +22,7 @@
 
 #include  "RequestData_Priv.hpp"
 
-#include <limal/ca-mgm/LocalManagement.hpp>
+#include <ca-mgm/LocalManagement.hpp>
 
 #include <openssl/x509v3.h>
 #include <openssl/pem.h>
@@ -31,9 +31,9 @@
 #include <openssl/evp.h>
 
 
-#include  <limal/Exception.hpp>
-#include  <limal/PathUtils.hpp>
-#include  <limal/PathInfo.hpp>
+#include  <ca-mgm/Exception.hpp>
+#include  <ca-mgm/PathUtils.hpp>
+#include  <ca-mgm/PathInfo.hpp>
 
 #include  "RequestDataImpl.hpp"
 #include  "DNObject_Priv.hpp"

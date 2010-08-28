@@ -5,11 +5,11 @@
 #include <fstream>
 #include <string>
 
-#include <limal/Logger.hpp>
-#include <limal/LogControl.hpp>
-#include <limal/String.hpp>
-#include <limal/Date.hpp>
-#include <limal/PathInfo.hpp>
+#include <ca-mgm/Logger.hpp>
+#include <ca-mgm/LogControl.hpp>
+#include <ca-mgm/String.hpp>
+#include <ca-mgm/Date.hpp>
+#include <ca-mgm/PathInfo.hpp>
 
 using std::endl;
 

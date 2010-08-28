@@ -20,11 +20,11 @@
 
 /-*/
 
-#include  <limal/ca-mgm/CA.hpp>
-#include  <limal/ca-mgm/CertificateIssueData.hpp>
-#include  <limal/Exception.hpp>
+#include  <ca-mgm/CA.hpp>
+#include  <ca-mgm/CertificateIssueData.hpp>
+#include  <ca-mgm/Exception.hpp>
 
-#include  <limal/Date.hpp>
+#include  <ca-mgm/Date.hpp>
 
 
 #include  "Utils.hpp"

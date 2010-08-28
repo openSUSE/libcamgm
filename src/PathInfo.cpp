@@ -34,7 +34,7 @@
 
 /-*/
 
-#include <limal/PathInfo.hpp>
+#include <ca-mgm/PathInfo.hpp>
 
 #include <iostream>
 #include <fstream>

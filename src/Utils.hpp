@@ -26,13 +26,13 @@
 #ifndef   LIMAL_CA_MGM_UTILS_HPP
 #define   LIMAL_CA_MGM_UTILS_HPP
 
-#include <limal/Logger.hpp>
-#include <limal/Exception.hpp>
-#include <limal/ValueRegExCheck.hpp>
-#include <limal/ca-mgm/LiteralValues.hpp>
-#include <limal/ca-mgm/CommonData.hpp>
-#include <limal/ExternalProgram.hpp>
-#include <limal/String.hpp>
+#include <ca-mgm/Logger.hpp>
+#include <ca-mgm/Exception.hpp>
+#include <ca-mgm/ValueRegExCheck.hpp>
+#include <ca-mgm/LiteralValues.hpp>
+#include <ca-mgm/CommonData.hpp>
+#include <ca-mgm/ExternalProgram.hpp>
+#include <ca-mgm/String.hpp>
 
 #include <openssl/x509v3.h>
 

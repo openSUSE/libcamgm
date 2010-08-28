@@ -28,7 +28,7 @@ PCRE_REQUIRED=1
 camgmbindir=\${bindir}
 camgmlibdir=\${libdir}/
 camgmdatadir=\${prefix}/share/$RPMNAME
-camgmincludedir=\${includedir}/
+camgmincludedir=\${includedir}/ca-mgm
 
 dnl pkgconfig honors lib64
 pkgconfigdir=\${libdir}/pkgconfig
@@ -311,9 +311,8 @@ fi
 
 
 AC_CONFIG_FILES(src/Commands.hpp)
-AC_CONFIG_FILES(Makefile src/limal/ca-mgm/Makefile
-src/limal/ca-mgm/config.h
-src/limal/Makefile
+AC_CONFIG_FILES(Makefile src/ca-mgm/Makefile
+src/ca-mgm/config.h
 src/Makefile
 swig/perl5/Makefile
 swig/ruby/Makefile

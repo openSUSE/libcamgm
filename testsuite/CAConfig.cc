@@ -1,7 +1,7 @@
 
-#include <limal/String.hpp>
-#include <limal/LogControl.hpp>
-#include <limal/ca-mgm/CAConfig.hpp>
+#include <ca-mgm/String.hpp>
+#include <ca-mgm/LogControl.hpp>
+#include <ca-mgm/CAConfig.hpp>
 
 #include <iostream>
 #include <fstream>

@@ -20,11 +20,11 @@
 
 /-*/
 
-#include  <limal/ca-mgm/CA.hpp>
-#include  <limal/ca-mgm/DNObject.hpp>
-#include  <limal/ca-mgm/CAConfig.hpp>
-#include  <limal/ValueRegExCheck.hpp>
-#include  <limal/Exception.hpp>
+#include  <ca-mgm/CA.hpp>
+#include  <ca-mgm/DNObject.hpp>
+#include  <ca-mgm/CAConfig.hpp>
+#include  <ca-mgm/ValueRegExCheck.hpp>
+#include  <ca-mgm/Exception.hpp>
 #include  <map>
 
 

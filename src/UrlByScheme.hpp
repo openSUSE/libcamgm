@@ -23,7 +23,7 @@
 #ifndef   LIMAL_URLBYSCHEME_HPP
 #define   LIMAL_URLBYSCHEME_HPP
 
-#include <limal/UrlBase.hpp>
+#include <ca-mgm/UrlBase.hpp>
 
 
 // -------------------------------------------------------------------

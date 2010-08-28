@@ -21,7 +21,7 @@
 /-*/
 #include  "CRLData_Priv.hpp"
 
-#include  <limal/ca-mgm/LocalManagement.hpp>
+#include  <ca-mgm/LocalManagement.hpp>
 
 #include <openssl/x509v3.h>
 #include <openssl/pem.h>
@@ -30,12 +30,12 @@
 #include <openssl/x509.h>
 #include <openssl/evp.h>
 
-#include  <limal/PathInfo.hpp>
-#include  <limal/ValueRegExCheck.hpp>
-#include  <limal/Exception.hpp>
+#include  <ca-mgm/PathInfo.hpp>
+#include  <ca-mgm/ValueRegExCheck.hpp>
+#include  <ca-mgm/Exception.hpp>
 
-#include  <limal/Date.hpp>
-#include  <limal/String.hpp>
+#include  <ca-mgm/Date.hpp>
+#include  <ca-mgm/String.hpp>
 
 #include  "CRLDataImpl.hpp"
 #include  "Utils.hpp"

@@ -31,11 +31,11 @@
 #ifndef LIMAL_INI_PARSER_HPP
 #define LIMAL_INI_PARSER_HPP
 
-#include  <limal/ca-mgm/config.h>
+#include  <ca-mgm/config.h>
 #include  <map>
 #include  <list>
 #include  <vector>
-#include  <limal/String.hpp>
+#include  <ca-mgm/String.hpp>
 #include  "INIParser/INIParserDescr.hpp"
 
 namespace LIMAL_NAMESPACE

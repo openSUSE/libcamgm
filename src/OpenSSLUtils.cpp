@@ -19,14 +19,14 @@
 
 #include "OpenSSLUtils.hpp"
 
-#include <limal/Exception.hpp>
-#include <limal/PathUtils.hpp>
-#include <limal/PathInfo.hpp>
-#include <limal/PathName.hpp>
-#include <limal/ca-mgm/LocalManagement.hpp>
-#include <limal/PerlRegEx.hpp>
-#include <limal/String.hpp>
-#include <limal/Date.hpp>
+#include <ca-mgm/Exception.hpp>
+#include <ca-mgm/PathUtils.hpp>
+#include <ca-mgm/PathInfo.hpp>
+#include <ca-mgm/PathName.hpp>
+#include <ca-mgm/LocalManagement.hpp>
+#include <ca-mgm/PerlRegEx.hpp>
+#include <ca-mgm/String.hpp>
+#include <ca-mgm/Date.hpp>
 #include <fstream>
 #include "Utils.hpp"
 

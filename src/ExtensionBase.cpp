@@ -20,7 +20,7 @@
 
 /-*/
 
-#include  <limal/ca-mgm/ExtensionBase.hpp>
+#include  <ca-mgm/ExtensionBase.hpp>
 
 
 #include  "Utils.hpp"

@@ -20,11 +20,11 @@
 
 /-*/
 
-#include  <limal/ca-mgm/LocalManagement.hpp>
+#include  <ca-mgm/LocalManagement.hpp>
 
-#include  <limal/PathInfo.hpp>
-#include  <limal/PathName.hpp>
-#include  <limal/PathUtils.hpp>
+#include  <ca-mgm/PathInfo.hpp>
+#include  <ca-mgm/PathName.hpp>
+#include  <ca-mgm/PathUtils.hpp>
 
 #include  "CertificateData_Priv.hpp"
 #include  "CRLData_Priv.hpp"

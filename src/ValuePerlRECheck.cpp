@@ -23,11 +23,11 @@
  * @file   ValuePerlRECheck.cpp
  * @brief  Implements an perl regex based check.
  */
-#include  <limal/ca-mgm/config.h>
-#include  <limal/ValuePerlRECheck.hpp>
+#include  <ca-mgm/config.h>
+#include  <ca-mgm/ValuePerlRECheck.hpp>
 
-#include  <limal/ca-mgm/CommonData.hpp>
-#include  <limal/String.hpp>
+#include  <ca-mgm/CommonData.hpp>
+#include  <ca-mgm/String.hpp>
 
 
 namespace LIMAL_NAMESPACE

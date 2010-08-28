@@ -18,10 +18,10 @@
   Maintainer: Michael Calmer
 /-*/
 
-#include <limal/PathUtils.hpp>
-#include <limal/PathInfo.hpp>
-#include <limal/Logger.hpp>
-#include <limal/String.hpp>
+#include <ca-mgm/PathUtils.hpp>
+#include <ca-mgm/PathInfo.hpp>
+#include <ca-mgm/Logger.hpp>
+#include <ca-mgm/String.hpp>
 #include "Utils.hpp"
 
 #include <sys/stat.h>
