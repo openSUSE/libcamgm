@@ -27,7 +27,7 @@
 #include "INIParser/INIParserDescr.hpp"
 #include "INIParser/IniFile.h"
 
-namespace LIMAL_NAMESPACE
+namespace CA_MGM_NAMESPACE
 {
 namespace INI
 {
@@ -373,6 +373,6 @@ public:
 };
 
 }      // End of INI namespace
-}      // End of LIMAL_NAMESPACE
+}      // End of CA_MGM_NAMESPACE
 
 #endif//IniParser_h

@@ -14,7 +14,7 @@
 #ifndef IniFile_h
 #define IniFile_h
 
-#define LIMAL_LOGGER_LOGGROUP "IniParser"
+#define CA_MGM_LOGGER_LOGGROUP "IniParser"
 
 #include <ca-mgm/Logger.hpp>
 #include <ca-mgm/String.hpp>
@@ -25,7 +25,7 @@
 
 //#define INIPARSER "IniParser"
 
-namespace LIMAL_NAMESPACE
+namespace CA_MGM_NAMESPACE
 {
 namespace INI
 {
@@ -662,6 +662,6 @@ public:
 
 
 }      // End of INI namespace
-}      // End of LIMAL_NAMESPACE
+}      // End of CA_MGM_NAMESPACE
 
 #endif//IniFile_h
