@@ -19,8 +19,8 @@
   Purpose:
 
 /-*/
-#ifndef    LIMAL_CA_MGM_COMMON_DATA_HPP
-#define    LIMAL_CA_MGM_COMMON_DATA_HPP
+#ifndef    CA_MGM_COMMON_DATA_HPP
+#define    CA_MGM_COMMON_DATA_HPP
 
 
 #include  <ca-mgm/String.hpp>
@@ -99,4 +99,4 @@ namespace CA_MGM_NAMESPACE {
 	};
 }
 
-#endif   // LIMAL_CA_MGM_COMMON_DATA_HPP
+#endif   // CA_MGM_COMMON_DATA_HPP

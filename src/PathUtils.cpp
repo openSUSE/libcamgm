@@ -28,7 +28,7 @@
 #include <sys/types.h>
 
 
-namespace LIMAL_NAMESPACE {
+namespace CA_MGM_NAMESPACE {
 namespace path {
 
 
@@ -407,5 +407,5 @@ int changeMode( const PathName & path, mode_t mode )
 }
 
 }	// namespace path
-}	// namespace LIMAL_NAMESPACE
+}	// namespace CA_MGM_NAMESPACE
 /* vim: set ts=8 sts=4 sw=4 ai noet: */

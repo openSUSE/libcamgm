@@ -24,13 +24,13 @@
  *
  * @todo FIXME
  */
-#ifndef LIMAL_INI_PARSERDESCR_HPP
-#define LIMAL_INI_PARSERDESCR_HPP
+#ifndef CA_MGM_INI_PARSERDESCR_HPP
+#define CA_MGM_INI_PARSERDESCR_HPP
 
 #include  <ca-mgm/config.h>
 #include  <ca-mgm/String.hpp>
 
-namespace LIMAL_NAMESPACE
+namespace CA_MGM_NAMESPACE
 {
 namespace INI
 {
@@ -131,8 +131,8 @@ struct EntryDescr
 
 
 }	// namespace INI
-}	// namespace LIMAL_NAMESPACE
+}	// namespace CA_MGM_NAMESPACE
 
 
-#endif  // LIMAL_INI_PARSERDESCR_HPP
+#endif  // CA_MGM_INI_PARSERDESCR_HPP
 /* vim: set ts=8 sts=8 sw=8 ai noet: */

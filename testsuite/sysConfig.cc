@@ -1,5 +1,5 @@
 
-#define LIMAL_LOGGER_LOGGROUP "parser"
+#define CA_MGM_LOGGER_LOGGROUP "parser"
 
 #include <ca-mgm/String.hpp>
 #include <ca-mgm/LogControl.hpp>

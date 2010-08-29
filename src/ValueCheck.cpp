@@ -34,7 +34,7 @@
 #include  "Utils.hpp"
 
 
-namespace LIMAL_NAMESPACE
+namespace CA_MGM_NAMESPACE
 {
 
 // -------------------------------------------------------------------
@@ -253,5 +253,5 @@ ValueCheck::delRCnt(ValueCheckBase *ptr)
 }
 
 
-}       // End of LIMAL_NAMESPACE
+}       // End of CA_MGM_NAMESPACE
 // vim: set ts=8 sts=8 sw=8 ai noet:

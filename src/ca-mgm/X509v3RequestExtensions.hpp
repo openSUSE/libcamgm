@@ -19,8 +19,8 @@
   Purpose:
 
 /-*/
-#ifndef    LIMAL_CA_MGM_X509V3_REQUEST_EXTENSIONS_HPP
-#define    LIMAL_CA_MGM_X509V3_REQUEST_EXTENSIONS_HPP
+#ifndef    CA_MGM_X509V3_REQUEST_EXTENSIONS_HPP
+#define    CA_MGM_X509V3_REQUEST_EXTENSIONS_HPP
 
 #include  <ca-mgm/config.h>
 #include  <ca-mgm/CommonData.hpp>
@@ -151,4 +151,4 @@ namespace CA_MGM_NAMESPACE {
 
 }
 
-#endif // LIMAL_CA_MGM_X509V3_REQUEST_EXTENSIONS_HPP
+#endif // CA_MGM_X509V3_REQUEST_EXTENSIONS_HPP

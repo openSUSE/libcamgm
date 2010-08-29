@@ -40,7 +40,7 @@
 #include <fstream>
 #include <iomanip>
 
-namespace LIMAL_NAMESPACE {
+namespace CA_MGM_NAMESPACE {
 namespace path {
 
 ///////////////////////////////////////////////////////////////////
@@ -798,4 +798,4 @@ std::ostream & operator<<( std::ostream & str, const PathInfo::StatMode & obj )
 }
 
 }	// namespace path
-}	// namespace LIMAL_NAMESPACE
+}	// namespace CA_MGM_NAMESPACE

@@ -30,8 +30,8 @@
  * function... value.toUInt64() vs. value.toInt64() ?
  *
  */
-#ifndef    LIMAL_VALUE_INT_CHECK_HPP
-#define    LIMAL_VALUE_INT_CHECK_HPP
+#ifndef    CA_MGM_VALUE_INT_CHECK_HPP
+#define    CA_MGM_VALUE_INT_CHECK_HPP
 
 #include  <ca-mgm/config.h>
 #include  <ca-mgm/CommonData.hpp>
@@ -39,7 +39,7 @@
 #include  <ca-mgm/String.hpp>
 
 
-namespace LIMAL_NAMESPACE
+namespace CA_MGM_NAMESPACE
 {
 
 // -------------------------------------------------------------------
@@ -136,7 +136,7 @@ private:
 };
 
 
-}       // End of LIMAL_NAMESPACE
+}       // End of CA_MGM_NAMESPACE
 
-#endif  // LIMAL_VALUE_INT_CHECK_HPP
+#endif  // CA_MGM_VALUE_INT_CHECK_HPP
 // vim: set ts=8 sts=8 sw=8 ai noet:

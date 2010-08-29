@@ -9,14 +9,14 @@
 /** \file zypp/base/Logger.h
  *
 */
-#ifndef LIMAL_LOGGER_H
-#define LIMAL_LOGGER_H
+#ifndef CA_MGM_LOGGER_H
+#define CA_MGM_LOGGER_H
 
 #include <iosfwd>
 #include <cstring>
 #include <ca-mgm/String.hpp>
 
-/** \defgroup LIMAL_LOGGER_MACROS LIMAL_LOGGER_MACROS
+/** \defgroup CA_MGM_LOGGER_MACROS CA_MGM_LOGGER_MACROS
  *  Convenience macros for logging.
  *
  * The macros finaly call @ref getStream, providing appropriate arguments,
@@ -28,8 +28,8 @@
  * Logs a debug message for group @a "foo".
  *
  * @code
- * #undef LIMAL_LOGGER_LOGGROUP
- * #define LIMAL_LOGGER_LOGGROUP "foo"
+ * #undef CA_MGM_LOGGER_LOGGROUP
+ * #define CA_MGM_LOGGER_LOGGROUP "foo"
  *
  * DBG << ....
  * @endcode
@@ -38,27 +38,27 @@
  */
 /*@{*/
 
-#ifndef LIMAL_LOGGER_LOGGROUP
+#ifndef CA_MGM_LOGGER_LOGGROUP
 /** Default log group is ca_mgm. */
-#define LIMAL_LOGGER_LOGGROUP "ca_mgm"
+#define CA_MGM_LOGGER_LOGGROUP "ca_mgm"
 #endif
 
-#define DBG _DBG( LIMAL_LOGGER_LOGGROUP )
-#define INF _INF( LIMAL_LOGGER_LOGGROUP )
-#define WAR _WAR( LIMAL_LOGGER_LOGGROUP )
-#define ERR _ERR( LIMAL_LOGGER_LOGGROUP )
-#define FAT _FAT( LIMAL_LOGGER_LOGGROUP )
+#define DBG _DBG( CA_MGM_LOGGER_LOGGROUP )
+#define INF _INF( CA_MGM_LOGGER_LOGGROUP )
+#define WAR _WAR( CA_MGM_LOGGER_LOGGROUP )
+#define ERR _ERR( CA_MGM_LOGGER_LOGGROUP )
+#define FAT _FAT( CA_MGM_LOGGER_LOGGROUP )
 
-#define _DBG(GROUP) LIMAL_LOGGER_LOG( GROUP, ca_mgm::logger::E_DEBUG )
-#define _INF(GROUP) LIMAL_LOGGER_LOG( GROUP, ca_mgm::logger::E_INFO )
-#define _WAR(GROUP) LIMAL_LOGGER_LOG( GROUP, ca_mgm::logger::E_WARN )
-#define _ERR(GROUP) LIMAL_LOGGER_LOG( GROUP, ca_mgm::logger::E_ERROR )
-#define _FAT(GROUP) LIMAL_LOGGER_LOG( GROUP, ca_mgm::logger::E_FATAL )
+#define _DBG(GROUP) CA_MGM_LOGGER_LOG( GROUP, ca_mgm::logger::E_DEBUG )
+#define _INF(GROUP) CA_MGM_LOGGER_LOG( GROUP, ca_mgm::logger::E_INFO )
+#define _WAR(GROUP) CA_MGM_LOGGER_LOG( GROUP, ca_mgm::logger::E_WARN )
+#define _ERR(GROUP) CA_MGM_LOGGER_LOG( GROUP, ca_mgm::logger::E_ERROR )
+#define _FAT(GROUP) CA_MGM_LOGGER_LOG( GROUP, ca_mgm::logger::E_FATAL )
 
 #define _BASEFILE ( *__FILE__ == '/' ? strrchr( __FILE__, '/' ) + 1 : __FILE__ )
 
 /** Actual call to @ref getStream. */
-#define LIMAL_LOGGER_LOG(GROUP,LEVEL) \
+#define CA_MGM_LOGGER_LOG(GROUP,LEVEL) \
         ca_mgm::logger::getStream( GROUP, LEVEL, _BASEFILE, __FUNCTION__, __LINE__ )
 
 /*@}*/
@@ -92,7 +92,7 @@ namespace ca_mgm
        * source code that issued the message.
        *
        * @note You won't call @ref getStream directly, but use the
-       * @ref LIMAL_LOGGER_MACROS.
+       * @ref CA_MGM_LOGGER_MACROS.
       */
       extern std::ostream & getStream( const char * group_r,
                                        LogLevel     level_r,
@@ -110,4 +110,4 @@ namespace ca_mgm
   /////////////////////////////////////////////////////////////////
 } // namespace ca_mgm
 ///////////////////////////////////////////////////////////////////
-#endif // LIMAL_LOGGER_H
+#endif // CA_MGM_LOGGER_H

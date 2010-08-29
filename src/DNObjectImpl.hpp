@@ -19,8 +19,8 @@
   Purpose:
 
 /-*/
-#ifndef    LIMAL_CA_MGM_DN_OBJECT_IMPL_HPP
-#define    LIMAL_CA_MGM_DN_OBJECT_IMPL_HPP
+#ifndef    CA_MGM_DN_OBJECT_IMPL_HPP
+#define    CA_MGM_DN_OBJECT_IMPL_HPP
 
 #include  <ca-mgm/config.h>
 #include  <ca-mgm/CommonData.hpp>
@@ -88,4 +88,4 @@ public:
 
 }
 
-#endif // LIMAL_CA_MGM_DN_OBJECT_IMPL_HPP
+#endif // CA_MGM_DN_OBJECT_IMPL_HPP

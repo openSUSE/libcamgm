@@ -1,8 +1,8 @@
 /** \file	ca-mgmLogControl.h
  *
 */
-#ifndef LIMAL_LOGCONTROL_H
-#define LIMAL_LOGCONTROL_H
+#ifndef CA_MGM_LOGCONTROL_H
+#define CA_MGM_LOGCONTROL_H
 
 #include <iosfwd>
 
@@ -163,4 +163,4 @@ namespace ca_mgm
   /////////////////////////////////////////////////////////////////
 } // namespace ca_mgm
 ///////////////////////////////////////////////////////////////////
-#endif // LIMAL_LOGCONTROL_H
+#endif // CA_MGM_LOGCONTROL_H

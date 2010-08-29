@@ -37,8 +37,8 @@
  * @file   PathName.hpp
  * @brief  LiMaL path name manipulation utilities.
  */
-#ifndef LIMAL_PATH_PATHNAME_HPP
-#define LIMAL_PATH_PATHNAME_HPP
+#ifndef CA_MGM_PATH_PATHNAME_HPP
+#define CA_MGM_PATH_PATHNAME_HPP
 
 #include <ca-mgm/config.h>
 #include <ca-mgm/String.hpp>
@@ -49,7 +49,7 @@
 #define  FILENAME_SEPARATOR_C '/'
 
 // -------------------------------------------------------------------
-namespace LIMAL_NAMESPACE
+namespace CA_MGM_NAMESPACE
 {
 namespace path
 {
@@ -461,7 +461,7 @@ operator<<(std::ostream &ostr, const PathName &path);
 
 // -------------------------------------------------------------------
 }       // End of namespace path
-}       // End of namespace LIMAL_NAMESPACE
+}       // End of namespace CA_MGM_NAMESPACE
 
-#endif  // LIMAL_PATH_PATHNAME_HPP
+#endif  // CA_MGM_PATH_PATHNAME_HPP
 // vim: set ts=8 sts=4 sw=4 ai et:

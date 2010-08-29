@@ -19,8 +19,8 @@
   Purpose:
 
 /-*/
-#ifndef    LIMAL_CA_MGM_EXTENDED_KEY_USAGE_EXT_HPP
-#define    LIMAL_CA_MGM_EXTENDED_KEY_USAGE_EXT_HPP
+#ifndef    CA_MGM_EXTENDED_KEY_USAGE_EXT_HPP
+#define    CA_MGM_EXTENDED_KEY_USAGE_EXT_HPP
 
 #include  <ca-mgm/config.h>
 #include  <ca-mgm/CommonData.hpp>
@@ -140,4 +140,4 @@ namespace CA_MGM_NAMESPACE {
 
 }
 
-#endif //LIMAL_CA_MGM_EXTENDED_KEY_USAGE_EXT_HPP
+#endif //CA_MGM_EXTENDED_KEY_USAGE_EXT_HPP

@@ -19,8 +19,8 @@
   Purpose:
 
 /-*/
-#ifndef    LIMAL_CA_MGM_LOCAL_MANAGEMENT_HPP
-#define    LIMAL_CA_MGM_LOCAL_MANAGEMENT_HPP
+#ifndef    CA_MGM_LOCAL_MANAGEMENT_HPP
+#define    CA_MGM_LOCAL_MANAGEMENT_HPP
 
 #include  <ca-mgm/config.h>
 #include  <ca-mgm/CommonData.hpp>
@@ -308,4 +308,4 @@ namespace CA_MGM_NAMESPACE {
     	            const std::string            &algorithm = "des3");
     };
 }
-#endif //LIMAL_CA_MGM_LOCAL_MANAGEMENT_HPP
+#endif //CA_MGM_LOCAL_MANAGEMENT_HPP

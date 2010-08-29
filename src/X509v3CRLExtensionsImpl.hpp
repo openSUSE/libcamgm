@@ -19,8 +19,8 @@
   Purpose:
 
 /-*/
-#ifndef    LIMAL_CA_MGM_X509V3_CRL_EXTS_IMPL_HPP
-#define    LIMAL_CA_MGM_X509V3_CRL_EXTS_IMPL_HPP
+#ifndef    CA_MGM_X509V3_CRL_EXTS_IMPL_HPP
+#define    CA_MGM_X509V3_CRL_EXTS_IMPL_HPP
 
 #include  <ca-mgm/config.h>
 #include  <ca-mgm/CommonData.hpp>
@@ -53,4 +53,4 @@ public:
 	IssuerAlternativeNameExt  issuerAlternativeName;
 };
 }
-#endif     /* LIMAL_CA_MGM_X509V3_CRL_EXTS_IMPL_HPP */
+#endif     /* CA_MGM_X509V3_CRL_EXTS_IMPL_HPP */

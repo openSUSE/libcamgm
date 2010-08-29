@@ -21,8 +21,8 @@
  * @brief  This file is private for the ca-mgm library.
  *         It defines functions from openssl
  */
-#ifndef   LIMAL_CA_MGM_OPENSSL_UTILS_HPP
-#define   LIMAL_CA_MGM_OPENSSL_UTILS_HPP
+#ifndef   CA_MGM_OPENSSL_UTILS_HPP
+#define   CA_MGM_OPENSSL_UTILS_HPP
 
 #include <ca-mgm/config.h>
 #include <ca-mgm/CommonData.hpp>
@@ -213,4 +213,4 @@ private:
 };
 }
 
-#endif // LIMAL_CA_MGM_OPENSSL_UTILS_HPP
+#endif // CA_MGM_OPENSSL_UTILS_HPP

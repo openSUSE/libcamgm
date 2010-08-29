@@ -23,11 +23,11 @@
  * @file   ValueRegExCheck.hpp
  * @brief  Include file providing posix and perl regex checks at once.
  */
-#ifndef   LIMAL_VALUE_REGEX_CHECK_HPP
-#define   LIMAL_VALUE_REGEX_CHECK_HPP
+#ifndef   CA_MGM_VALUE_REGEX_CHECK_HPP
+#define   CA_MGM_VALUE_REGEX_CHECK_HPP
 
 #include <ca-mgm/ValuePerlRECheck.hpp>
 #include <ca-mgm/ValuePosixRECheck.hpp>
 
-#endif // LIMAL_VALUE_REGEX_CHECK_HPP
+#endif // CA_MGM_VALUE_REGEX_CHECK_HPP
 // vim: set ts=8 sts=8 sw=8 ai noet:

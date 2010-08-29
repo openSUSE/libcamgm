@@ -16,8 +16,8 @@
   Author:     Michael Andres
 
 /-*/
-#ifndef LIMAL_DATE_HPP
-#define LIMAL_DATE_HPP
+#ifndef CA_MGM_DATE_HPP
+#define CA_MGM_DATE_HPP
 
 #include <ctime>
 #include <iosfwd>
@@ -124,4 +124,4 @@ namespace ca_mgm
   /////////////////////////////////////////////////////////////////
 } // namespace zypp
 ///////////////////////////////////////////////////////////////////
-#endif // LIMAL_DATE_HPP
+#endif // CA_MGM_DATE_HPP

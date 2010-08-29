@@ -23,8 +23,8 @@
  * @file   ValuePerlRECheck.hpp
  * @brief  Implements an perl regex based value check.
  */
-#ifndef    LIMAL_VALUE_PERL_REGEX_CHECK_HPP
-#define    LIMAL_VALUE_PERL_REGEX_CHECK_HPP
+#ifndef    CA_MGM_VALUE_PERL_REGEX_CHECK_HPP
+#define    CA_MGM_VALUE_PERL_REGEX_CHECK_HPP
 
 #include  <ca-mgm/config.h>
 #include  <ca-mgm/ValueCheck.hpp>
@@ -33,7 +33,7 @@
 #include  <ca-mgm/String.hpp>
 #include  <ca-mgm/PerlRegEx.hpp>
 
-namespace LIMAL_NAMESPACE
+namespace CA_MGM_NAMESPACE
 {
 
 // -------------------------------------------------------------------
@@ -87,6 +87,6 @@ private:
 	PerlRegEx  m_reg;
 };
 
-}       // End of LIMAL_NAMESPACE
-#endif  // LIMAL_VALUE_PERL_REGEX_CHECK_HPP
+}       // End of CA_MGM_NAMESPACE
+#endif  // CA_MGM_VALUE_PERL_REGEX_CHECK_HPP
 // vim: set ts=8 sts=8 sw=8 ai noet:

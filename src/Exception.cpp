@@ -23,7 +23,7 @@ static void freeBuf(char** ptr)
 }
 }
 
-namespace LIMAL_NAMESPACE
+namespace CA_MGM_NAMESPACE
 {
 
 Exception::Exception(const char* file, int line, const char* msg, int errorCode, const Exception* subException)

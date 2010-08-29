@@ -16,8 +16,8 @@
   Author:     Michael Andres
 
 /-*/
-#ifndef LIMAL_STRING_HPP
-#define LIMAL_STRING_HPP
+#ifndef CA_MGM_STRING_HPP
+#define CA_MGM_STRING_HPP
 
 #include <cstring>
 
@@ -803,4 +803,4 @@ namespace ca_mgm
   /////////////////////////////////////////////////////////////////
 } // namespace ca_mgm
 ///////////////////////////////////////////////////////////////////
-#endif // LIMAL_STRING_HPP
+#endif // CA_MGM_STRING_HPP

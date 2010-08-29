@@ -24,13 +24,13 @@
  * Provides an abstract template base class for the callback
  * interface supported in LiMaL.
  */
-#ifndef   LIMAL_CALLBACK_BASE_HPP
-#define   LIMAL_CALLBACK_BASE_HPP
+#ifndef   CA_MGM_CALLBACK_BASE_HPP
+#define   CA_MGM_CALLBACK_BASE_HPP
 
 #include <ca-mgm/config.h>
 
 
-namespace LIMAL_NAMESPACE
+namespace CA_MGM_NAMESPACE
 {
 
 // -------------------------------------------------------------------
@@ -204,6 +204,6 @@ private:
 
 
 // -------------------------------------------------------------------
-}      // End of LIMAL_NAMESPACE
-#endif // LIMAL_CALLBACK_BASE_HPP
+}      // End of CA_MGM_NAMESPACE
+#endif // CA_MGM_CALLBACK_BASE_HPP
 // vim: set ts=8 sts=8 sw=8 ai noet:

@@ -31,8 +31,8 @@
  * @author Marius Tomaschewski
  */
 
-#ifndef   LIMAL_PERL_REGEX_HPP
-#define   LIMAL_PERL_REGEX_HPP
+#ifndef   CA_MGM_PERL_REGEX_HPP
+#define   CA_MGM_PERL_REGEX_HPP
 
 #include <ca-mgm/String.hpp>
 #include <vector>
@@ -448,6 +448,6 @@ private:
 } // End of BLOCXX_NAMESPACE
 
 
-#endif // LIMAL_PERL_REGEX_HPP
+#endif // CA_MGM_PERL_REGEX_HPP
 /* vim: set ts=8 sts=8 sw=8 ai noet: */
 

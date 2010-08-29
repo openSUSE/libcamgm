@@ -28,8 +28,8 @@
  *
  * @todo FIXME
  */
-#ifndef LIMAL_INI_PARSER_HPP
-#define LIMAL_INI_PARSER_HPP
+#ifndef CA_MGM_INI_PARSER_HPP
+#define CA_MGM_INI_PARSER_HPP
 
 #include  <ca-mgm/config.h>
 #include  <map>
@@ -38,7 +38,7 @@
 #include  <ca-mgm/String.hpp>
 #include  "INIParser/INIParserDescr.hpp"
 
-namespace LIMAL_NAMESPACE
+namespace CA_MGM_NAMESPACE
 {
 
 /**
@@ -585,7 +585,7 @@ public:
 
 
 }	// namespace INI
-}	// namespace LIMAL_NAMESPACE
+}	// namespace CA_MGM_NAMESPACE
 
-#endif  // LIMAL_INI_PARSER_HPP
+#endif  // CA_MGM_INI_PARSER_HPP
 /* vim: set ts=8 sts=8 sw=8 ai noet: */

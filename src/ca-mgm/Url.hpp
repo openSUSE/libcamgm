@@ -21,15 +21,15 @@
  * @file   Url.hpp
  * @brief  LiMaL url implementation.
  */
-#ifndef   LIMAL_URL_HPP
-#define   LIMAL_URL_HPP
+#ifndef   CA_MGM_URL_HPP
+#define   CA_MGM_URL_HPP
 
 #include <ca-mgm/config.h>
 #include <ca-mgm/UrlBase.hpp>
 
 
 // -------------------------------------------------------------------
-namespace LIMAL_NAMESPACE
+namespace CA_MGM_NAMESPACE
 {
 namespace url
 {
@@ -764,6 +764,6 @@ private:
 
 // -------------------------------------------------------------------
 }      // End url namespace
-}      // End of LIMAL_NAMESPACE
-#endif // LIMAL_URLUTILS_HPP
+}      // End of CA_MGM_NAMESPACE
+#endif // CA_MGM_URLUTILS_HPP
 // vim: set ts=8 sts=8 sw=8 ai noet:

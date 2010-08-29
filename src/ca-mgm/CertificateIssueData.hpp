@@ -20,8 +20,8 @@
 
 /-*/
 
-#ifndef    LIMAL_CA_MGM_CERTIFICATE_ISSUE_DATAHPP
-#define    LIMAL_CA_MGM_CERTIFICATE_ISSUE_DATAHPP
+#ifndef    CA_MGM_CERTIFICATE_ISSUE_DATAHPP
+#define    CA_MGM_CERTIFICATE_ISSUE_DATAHPP
 
 #include  <ca-mgm/config.h>
 #include  <ca-mgm/CommonData.hpp>
@@ -133,4 +133,4 @@ namespace CA_MGM_NAMESPACE
 	};
 
 }
-#endif //LIMAL_CA_MGM_CERTIFICATE_ISSUE_DATA_HPP
+#endif //CA_MGM_CERTIFICATE_ISSUE_DATA_HPP

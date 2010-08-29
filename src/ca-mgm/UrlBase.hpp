@@ -21,8 +21,8 @@
  * @file   UrlBase.hpp
  * @brief  LiMaL url base class.
  */
-#ifndef   LIMAL_URLBASE_HPP
-#define   LIMAL_URLBASE_HPP
+#ifndef   CA_MGM_URLBASE_HPP
+#define   CA_MGM_URLBASE_HPP
 
 #include <ca-mgm/config.h>
 #include <ca-mgm/UrlUtils.hpp>
@@ -30,7 +30,7 @@
 
 
 // -------------------------------------------------------------------
-namespace LIMAL_NAMESPACE
+namespace CA_MGM_NAMESPACE
 {
 namespace url
 {
@@ -1180,6 +1180,6 @@ typedef RWCOW_pointer<UrlBase>          UrlRef;
 
 // -------------------------------------------------------------------
 }      // End url namespace
-}      // End of LIMAL_NAMESPACE
-#endif // LIMAL_URLBASE_HPP
+}      // End of CA_MGM_NAMESPACE
+#endif // CA_MGM_URLBASE_HPP
 // vim: set ts=8 sts=8 sw=8 ai noet:

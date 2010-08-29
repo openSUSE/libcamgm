@@ -69,7 +69,7 @@
 
 
 // -------------------------------------------------------------------
-namespace LIMAL_NAMESPACE
+namespace CA_MGM_NAMESPACE
 {
 namespace url
 {
@@ -1511,5 +1511,5 @@ UrlBase::checkValidFragment(const std::string  &fragment,
 
 // -------------------------------------------------------------------
 }      // End of url namespace
-}      // End of LIMAL_NAMESPACE
+}      // End of CA_MGM_NAMESPACE
 // vim: set ts=8 sts=8 sw=8 ai noet:

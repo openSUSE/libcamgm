@@ -37,8 +37,8 @@
  * @file   PathInfo.hpp
  * @brief  LiMaL path info (stat) utilities.
  */
-#ifndef LIMAL_PATH_PATHINFO_HPP
-#define LIMAL_PATH_PATHINFO_HPP
+#ifndef CA_MGM_PATH_PATHINFO_HPP
+#define CA_MGM_PATH_PATHINFO_HPP
 
 #include <ca-mgm/config.h>
 #include <ca-mgm/PathName.hpp>
@@ -57,7 +57,7 @@ extern "C"
 #include <dirent.h>
 }
 
-namespace LIMAL_NAMESPACE {
+namespace CA_MGM_NAMESPACE {
 
 namespace path {
 
@@ -797,4 +797,4 @@ class PathInfo::DevInoCache {
 }
 }
 
-#endif // LIMAL_PATH_PATHINFO_HPP
+#endif // CA_MGM_PATH_PATHINFO_HPP

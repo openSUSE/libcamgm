@@ -29,7 +29,7 @@
 #include "Utils.hpp"
 
 // ===================================================================
-namespace LIMAL_NAMESPACE
+namespace CA_MGM_NAMESPACE
 {
 namespace INI  // INI_NAMESPACE (incl. version?)
 {
@@ -846,5 +846,5 @@ bool SysConfig::initMachine ()
 
 // ===================================================================
 }	// namespace INI
-}	// namespace LIMAL_NAMESPACE
+}	// namespace CA_MGM_NAMESPACE
 /* vim: set ts=8 sts=8 sw=8 ai noet: */

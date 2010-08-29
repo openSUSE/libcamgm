@@ -18,7 +18,7 @@
 #include "INIParser/IniFile.h"
 #include "INIParser/IniParser.h"
 
-namespace LIMAL_NAMESPACE
+namespace CA_MGM_NAMESPACE
 {
 namespace INI
 {
@@ -1093,5 +1093,5 @@ IniIterator IniSection::getContainerEnd ()
 }
 
 }      // End of INI namespace
-}      // End of LIMAL_NAMESPACE
+}      // End of CA_MGM_NAMESPACE
 

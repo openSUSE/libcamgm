@@ -20,14 +20,14 @@
  * @file   UrlBase.hpp
  * @brief  LiMaL url scheme repository access methods.
  */
-#ifndef   LIMAL_URLBYSCHEME_HPP
-#define   LIMAL_URLBYSCHEME_HPP
+#ifndef   CA_MGM_URLBYSCHEME_HPP
+#define   CA_MGM_URLBYSCHEME_HPP
 
 #include <ca-mgm/UrlBase.hpp>
 
 
 // -------------------------------------------------------------------
-namespace LIMAL_NAMESPACE
+namespace CA_MGM_NAMESPACE
 {
 namespace url
 {
@@ -46,6 +46,6 @@ getUrlBySchemeNames();
 
 // -------------------------------------------------------------------
 }      // End of url namespace
-}      // End of LIMAL_NAMESPACE
-#endif // LIMAL_URLBYSCHEME_HPP
+}      // End of CA_MGM_NAMESPACE
+#endif // CA_MGM_URLBYSCHEME_HPP
 // vim: set ts=8 sts=8 sw=8 ai noet:

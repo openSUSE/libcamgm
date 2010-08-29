@@ -51,7 +51,7 @@ extern "C"
 
 
 // -------------------------------------------------------------------
-namespace LIMAL_NAMESPACE
+namespace CA_MGM_NAMESPACE
 {
 namespace path
 {
@@ -665,5 +665,5 @@ std::ostream & operator<< (std::ostream &ostr, const PathName &path)
 
 // -------------------------------------------------------------------
 }       // End of namespace path
-}       // End of namespace LIMAL_NAMESPACE
+}       // End of namespace CA_MGM_NAMESPACE
 // vim: set ts=8 sts=4 sw=4 ai et:

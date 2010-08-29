@@ -19,8 +19,8 @@
   Purpose:
 
 /-*/
-#ifndef    LIMAL_CA_MGM_CRL_REASON_PRIV_HPP
-#define    LIMAL_CA_MGM_CRL_REASON_PRIV_HPP
+#ifndef    CA_MGM_CRL_REASON_PRIV_HPP
+#define    CA_MGM_CRL_REASON_PRIV_HPP
 
 #include  <ca-mgm/config.h>
 #include  <ca-mgm/CommonData.hpp>
@@ -43,4 +43,4 @@ public:
 }
 
 
-#endif /* LIMAL_CA_MGM_CRL_REASON_PRIV_HPP */
+#endif /* CA_MGM_CRL_REASON_PRIV_HPP */

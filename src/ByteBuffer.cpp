@@ -28,7 +28,7 @@
 
 
 // -----------------------------------------------------------------------
-namespace LIMAL_NAMESPACE
+namespace CA_MGM_NAMESPACE
 {
 
 
@@ -456,5 +456,5 @@ operator<<(std::ostream &out, const ByteBuffer &buf)
 
 
 // -------------------------------------------------------------------
-}      // End Of LIMAL_NAMESPACE
+}      // End Of CA_MGM_NAMESPACE
 

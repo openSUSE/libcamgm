@@ -19,8 +19,8 @@
   Purpose:
 
 /-*/
-#ifndef    LIMAL_CA_MGM_CERTIFICATE_DATA_PRIV_HPP
-#define    LIMAL_CA_MGM_CERTIFICATE_DATA_PRIV_HPP
+#ifndef    CA_MGM_CERTIFICATE_DATA_PRIV_HPP
+#define    CA_MGM_CERTIFICATE_DATA_PRIV_HPP
 
 #include  <ca-mgm/config.h>
 #include  <ca-mgm/CommonData.hpp>
@@ -100,4 +100,4 @@ private:
 
 }
 
-#endif // LIMAL_CA_MGM_CERTIFICATE_DATA_PRIV_HPP
+#endif // CA_MGM_CERTIFICATE_DATA_PRIV_HPP

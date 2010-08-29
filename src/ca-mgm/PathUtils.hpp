@@ -26,15 +26,15 @@
  * @todo Review this file/classes.
  * @todo Reimplement functions in PathUtils to not to execute commands!
  */
-#ifndef LIMAL_PATH_UTILS_HPP
-#define LIMAL_PATH_UTILS_HPP
+#ifndef CA_MGM_PATH_UTILS_HPP
+#define CA_MGM_PATH_UTILS_HPP
 
 #include  <ca-mgm/config.h>
 #include  <ca-mgm/PathName.hpp>
 #include  <list>
 
 
-namespace LIMAL_NAMESPACE
+namespace CA_MGM_NAMESPACE
 {
 
 /**
@@ -174,4 +174,4 @@ namespace path
 }
 }
 
-#endif /* LIMAL_PATH_UTILS_HPP */
+#endif /* CA_MGM_PATH_UTILS_HPP */

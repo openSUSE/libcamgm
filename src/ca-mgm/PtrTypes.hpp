@@ -8,8 +8,8 @@
 \---------------------------------------------------------------------*/
 /** \file ca-mgmPtrTypes.h
 */
-#ifndef LIMAL_BASE_PTRTYPES_H
-#define LIMAL_BASE_PTRTYPES_H
+#ifndef CA_MGM_BASE_PTRTYPES_H
+#define CA_MGM_BASE_PTRTYPES_H
 
 #include <string>
 
@@ -503,4 +503,4 @@ typedef ca_mgm::intrusive_ptr<NAME>       NAME##_Ptr;        \
 typedef ca_mgm::intrusive_ptr<const NAME> NAME##_constPtr;
 
 ///////////////////////////////////////////////////////////////////
-#endif // LIMAL_BASE_PTRTYPES_H
+#endif // CA_MGM_BASE_PTRTYPES_H

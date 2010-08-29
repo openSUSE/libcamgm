@@ -24,8 +24,8 @@
  * @file   CAConfig.hpp
  * @brief  This is a short description of the library.
  */
-#ifndef    LIMAL_CA_CONFIG_HPP
-#define    LIMAL_CA_CONFIG_HPP
+#ifndef    CA_MGM_CA_CONFIG_HPP
+#define    CA_MGM_CA_CONFIG_HPP
 
 #include  <ca-mgm/config.h>
 #include  <ca-mgm/CommonData.hpp>
@@ -126,4 +126,4 @@ namespace CA_MGM_NAMESPACE
 
 }
 
-#endif  //LIMAL_CA_CONFIG_HPP
+#endif  //CA_MGM_CA_CONFIG_HPP

@@ -23,8 +23,8 @@
  * Provides a ByteBuffer class for storage and manipulation
  * of memory areas with custom data.
  */
-#ifndef LIMAL_BYTEBUFFER_HPP
-#define LIMAL_BYTEBUFFER_HPP
+#ifndef CA_MGM_BYTEBUFFER_HPP
+#define CA_MGM_BYTEBUFFER_HPP
 
 #include <ca-mgm/config.h>
 #include <ca-mgm/PtrTypes.hpp>
@@ -34,7 +34,7 @@ extern "C"
 #include <sys/types.h>
 }
 
-namespace LIMAL_NAMESPACE
+namespace CA_MGM_NAMESPACE
 {
 
     /*
@@ -260,5 +260,5 @@ namespace LIMAL_NAMESPACE
         ca_mgm::RWCOW_pointer<ByteBufferImpl> m_impl;
     };
 
-}      // End Of LIMAL_NAMESPACE
-#endif // LIMAL_BYTEBUFFER_HPP
+}      // End Of CA_MGM_NAMESPACE
+#endif // CA_MGM_BYTEBUFFER_HPP

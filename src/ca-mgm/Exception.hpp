@@ -51,14 +51,14 @@
  * @endcode
  * See BloCxx documentation for more informations.
  */
-#ifndef LIMAL_EXCEPTION_HPP
-#define LIMAL_EXCEPTION_HPP
+#ifndef CA_MGM_EXCEPTION_HPP
+#define CA_MGM_EXCEPTION_HPP
 
 #include "ca-mgm/config.h"
 #include <ca-mgm/String.hpp>
 #include <string.h>
 
-namespace LIMAL_NAMESPACE
+namespace CA_MGM_NAMESPACE
 {
 
   class Exception : public std::exception
@@ -317,6 +317,6 @@ throw ::ca_mgm::ExceptionDetail::Errno< exType >:: \
 
 	CA_MGM_DECLARE_EXCEPTION(OutOfBounds);
 
-}      // End of LIMAL_NAMESPACE
+}      // End of CA_MGM_NAMESPACE
 
-#endif /* LIMAL_EXCEPTION_HPP */
+#endif /* CA_MGM_EXCEPTION_HPP */

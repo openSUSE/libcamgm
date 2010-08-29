@@ -20,7 +20,7 @@
 #include "INIParser/IniParser.h"
 #include "INIParser/IniFile.h"
 
-namespace LIMAL_NAMESPACE
+namespace CA_MGM_NAMESPACE
 {
 namespace INI
 {
@@ -313,7 +313,7 @@ bool FileDescr::changed ()
     struct stat st;
     if (stat(fn.c_str(), &st))
     {
-//	LIMAL_LOG_ERROR (logger,"Unable to stat " <<  fn.c_str() << ": " << strerror(errno));
+//	CA_MGM_LOG_ERROR (logger,"Unable to stat " <<  fn.c_str() << ": " << strerror(errno));
 	return false;
     }
     if (timestamp != st.st_mtime)
@@ -331,7 +331,7 @@ FileDescr::FileDescr (char*fn_)
     struct stat st;
     if (stat(fn_, &st))
     {
-//	LIMAL_LOG_ERROR (logger, "Unable to stat " << fn_ << " : " << strerror(errno));
+//	CA_MGM_LOG_ERROR (logger, "Unable to stat " << fn_ << " : " << strerror(errno));
 	timestamp = 0;
     }
     else
@@ -957,6 +957,6 @@ std::string IniParser::changeCase (const std::string&str) const
 }
 
 }      // End of INI namespace
-}      // End of LIMAL_NAMESPACE
+}      // End of CA_MGM_NAMESPACE
 
 

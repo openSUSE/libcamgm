@@ -16,13 +16,13 @@
   Maintainer: Marius Tomaschewski
 
 /-*/
-#ifndef  LIMAL_LDAPURLIMPL_HPP
-#define  LIMAL_LDAPURLIMPL_HPP
+#ifndef  CA_MGM_LDAPURLIMPL_HPP
+#define  CA_MGM_LDAPURLIMPL_HPP
 #include <ca-mgm/UrlBase.hpp>
 
 
 // -------------------------------------------------------------------
-namespace LIMAL_NAMESPACE
+namespace CA_MGM_NAMESPACE
 {
 namespace url
 {
@@ -53,6 +53,6 @@ public:
 
 // -------------------------------------------------------------------
 }      // End of url namespace
-}      // End of LIMAL_NAMESPACE
-#endif // LIMAL_LDAPURLIMPL_HPP
+}      // End of CA_MGM_NAMESPACE
+#endif // CA_MGM_LDAPURLIMPL_HPP
 // vim: set ts=8 sts=8 sw=8 ai noet:

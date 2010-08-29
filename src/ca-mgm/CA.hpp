@@ -24,8 +24,8 @@
  * @file   CA.hpp
  * @brief  This is a short description of the library.
  */
-#ifndef    LIMAL_CA_HPP
-#define    LIMAL_CA_HPP
+#ifndef    CA_MGM_CA_HPP
+#define    CA_MGM_CA_HPP
 
 #include  <ca-mgm/config.h>
 #include  <ca-mgm/CommonData.hpp>
@@ -740,5 +740,5 @@ namespace CA_MGM_NAMESPACE
  * from the repository
  */
 
-#endif  // LIMAL_CA_MGM_HPP
+#endif  // CA_MGM_HPP
 

@@ -23,8 +23,8 @@
  *         It defines common utilities e.g. a helper macro
  *         for logging
  */
-#ifndef   LIMAL_CA_MGM_UTILS_HPP
-#define   LIMAL_CA_MGM_UTILS_HPP
+#ifndef   CA_MGM_UTILS_HPP
+#define   CA_MGM_UTILS_HPP
 
 #include <ca-mgm/Logger.hpp>
 #include <ca-mgm/Exception.hpp>
@@ -43,7 +43,7 @@ namespace CA_MGM_NAMESPACE
 
 // -------------------------------------------------------------------
 #define LOGIT(level,message)	\
-LIMAL_LOGGER_LOG("ca-mgm", level) << message << std::endl
+CA_MGM_LOGGER_LOG("ca-mgm", level) << message << std::endl
 
 #define LOGIT_DEBUG(message)	\
 	_DBG("ca-mgm") << message << std::endl
@@ -293,4 +293,4 @@ void appendArray(std::vector<std::string> &in, const std::vector<std::string> &a
 }
 // -------------------------------------------------------------------
 
-#endif // LIMAL_CA_MGM_UTILS_HPP
+#endif // CA_MGM_UTILS_HPP
