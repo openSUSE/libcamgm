@@ -52,19 +52,19 @@ Summary:	CA Management Library
 %description
 The CA Management Library provides methods for managing a certificate authority.
 
-%package 100
+%package -n %{name}100
 Group:      Development/Libraries/C and C++
 License:    GPL v2 or later
 Summary:    CA Management Library
 
-%description 100
+%description -n %{name}100
 The CA Management Library provides methods for managing a certificate authority.
 
 
 %package devel
 Requires:       %{name}100 = %version
 Requires:       openssl-devel
-
+Requires:       pcre-devel
 Group:		Development/Libraries/C and C++
 License:        GPL v2 or later
 Summary:	CA Management Library Development Files
@@ -137,20 +137,19 @@ install -m 0644 %{_builddir}/%{name}-%{version}/src/openssl.cnf.tmpl $RPM_BUILD_
 export LD_LIBRARY_PATH="$RPM_BUILD_ROOT/usr/lib/"
 make check DESTDIR="$RPM_BUILD_ROOT"
 
-%post 100
+%post -n %{name}100
 /sbin/ldconfig
 
 
-%postun 100
+%postun -n %{name}100
 /sbin/ldconfig
 
 
 %clean
 rm -rf "$RPM_BUILD_ROOT"
 
-%files 100 -f %name.lang
+%files -n %{name}100 -f %name.lang
 %defattr(-,root,root)
-%dir %{_libdir}/
 %attr(0700,root,root) %dir /var/lib/CAM
 %attr(0755,root,root) %dir /var/lib/CAM/.cas
 %config /var/lib/CAM/openssl.cnf.tmpl
@@ -158,22 +157,25 @@ rm -rf "$RPM_BUILD_ROOT"
 
 %files devel
 %defattr(-,root,root)
-%dir %{_libdir}/
 %{_libdir}/lib*.so
 %{_libdir}/lib*.la
-%dir %{_includedir}/camgm
-%{_includedir}/*
+%dir %{_includedir}/ca-mgm
+%{_includedir}/ca-mgm
 %{_libdir}/pkgconfig/libcamgm.pc
-%doc %{_prefix}/share/doc/packages/camgm
+%dir %{_datadir}/libcamgm
+%dir %{_datadir}/libcamgm/typemaps/
+%dir %{_datadir}/libcamgm/typemaps/perl5
+%{_datadir}/libcamgm/typemaps/perl5/*.i
+%doc %{_prefix}/share/doc/packages/libcamgm
 
 %files -n perl-camgm
 %defattr(-,root,root)
-%dir %{perl_vendorarch}/LIMAL
-%dir %{perl_vendorarch}/auto/LIMAL
-%dir %{perl_vendorarch}/auto/LIMAL/CaMgm/
-%{perl_vendorarch}/auto/LIMAL/CaMgm/*
-%{perl_vendorarch}/LIMAL/*.pm
+#%dir %{perl_vendorarch}/
+%dir %{perl_vendorarch}/auto/CaMgm/
+%{perl_vendorarch}/auto/CaMgm/*
+%{perl_vendorarch}/*.pm
 
 %files -n ruby-camgm
 %defattr(-,root,root)
 %ruby_archdir/*.so
+

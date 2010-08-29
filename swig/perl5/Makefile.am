@@ -58,5 +58,6 @@ $(NAME)_wrap.cxx: $(sources)
 
 install-data-local:
 	mkdir -p $(DESTDIR)/$(VENDOR_ARCH)/auto/CaMgm
+	install -m 644 $(NAME).pm $(DESTDIR)/$(VENDOR_ARCH)/
 	install -m 755 $(NAME).so $(DESTDIR)/$(VENDOR_ARCH)/auto/CaMgm
 
