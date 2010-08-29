@@ -13,7 +13,7 @@ LIBS         = -L$(top_builddir)/src/.libs -Wl,-rpath,$(camgmlibdir) -lcamgm $(L
 # FIXME:
 CXXFLAGS    += -Wno-unused -fPIC -DPIC
 #AM_CPPFLAGS = $(DEBUG_FLAGS) -D_GNU_SOURCE -DLOCALEDIR=\"${localedir}\"
-SWIGFLAGS    = -I${top_builddir}/typemaps -I$(top_srcdir)/src -DLIMAL_NAMESPACE=ca_mgm -DCA_MGM_NAMESPACE=ca_mgm
+SWIGFLAGS    = -I${top_builddir}/typemaps -I$(top_srcdir)/src -DCA_MGM_NAMESPACE=ca_mgm
 
 
 # ========================================================

@@ -34,7 +34,7 @@ Source0:	libcamgm-1.0.0.tar.bz2
 
 prefix:		/usr
 
-BuildRequires: curl gcc-c++ perl-gettext
+BuildRequires: curl gcc-c++ perl-gettext pkg-config
 BuildRequires: libopenssl-devel openssl doxygen swig pcre-devel
 BuildRequires: boost-devel ruby-devel dejagnu
 Requires: openssl
@@ -83,7 +83,7 @@ Requires: perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 %else
 Requires:       perl = %{perl_version}
 %endif
-Group:		Development/Libraries/Perl
+Group:		Development/Languages/Perl
 License:        GPL v2 or later
 Summary:	CA Management Library Perl Bindings
 
@@ -95,7 +95,7 @@ This package provides the perl bindings to the CA Management Library.
 
 %package -n ruby-camgm
 Requires: ruby
-Group:      Development/Libraries/Ruby
+Group:      Development/Languages/Ruby
 License:        GPL v2 or later
 Summary:    CA Management Library Ruby Bindings
 

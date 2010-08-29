@@ -94,10 +94,6 @@
 #define CA_MGM_NAMESPACE ca_mgm
 #endif /* CA_MGM_NAMESPACE */
 
-#ifndef LIMAL_NAMESPACE
-#define LIMAL_NAMESPACE ca_mgm
-#endif
-
 
 #ifdef    __cplusplus
 extern "C" {
