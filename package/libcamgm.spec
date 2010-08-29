@@ -31,7 +31,7 @@ Group:		Development/Libraries/C and C++
 BuildRoot:	%{_tmppath}/%{name}-%{version}-build
 
 Source0:	libcamgm-1.0.0.tar.bz2
-
+Patch0:         11_3.dif
 prefix:		/usr
 
 BuildRequires: curl gcc-c++ perl-gettext pkg-config
@@ -109,6 +109,9 @@ This package provides the ruby bindings to the CA Management Library.
 
 %prep
 %setup
+%if 0%{?suse_version} > 1120
+%patch0
+%endif
 
 %build
 autoreconf --force --install --verbose
