@@ -164,7 +164,7 @@ int main()
         	{
         		cout << "Got PEM " << endl;
 
-        		PerlRegEx p("DEK-Info: AES-256-CBC");
+        		PerlRegEx p("ENCRYPTED PRIVATE KEY");
         		if(p.match(pem.data()))
         		{
         			cout << "correct encryption" << endl;
@@ -248,7 +248,7 @@ int main()
 		{
 			cout << "Got PEM " << endl;
 
-			PerlRegEx p("DEK-Info: AES-256-CBC");
+			PerlRegEx p("ENCRYPTED PRIVATE KEY");
 			if(p.match(pem.data()))
 			{
 				cout << "correct encryption" << endl;

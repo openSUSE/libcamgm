@@ -1,5 +1,5 @@
-#ifndef LIMAL_TEST_LINE_FORMATER_HPP
-#define LIMAL_TEST_LINE_FORMATER_HPP
+#ifndef CA_MGM_TEST_LINE_FORMATER_HPP
+#define CA_MGM_TEST_LINE_FORMATER_HPP
 
 #include <iosfwd>
 #include <string>
@@ -29,4 +29,4 @@
   /////////////////////////////////////////////////////////////////
 //} // namespace ca_mgm
 ///////////////////////////////////////////////////////////////////
-#endif // LIMAL_TEST_LINE_FORMATER_HPP
+#endif // CA_MGM_TEST_LINE_FORMATER_HPP

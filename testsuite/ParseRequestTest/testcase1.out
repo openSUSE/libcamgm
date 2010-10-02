@@ -65,8 +65,8 @@ Certificate Request:
         Subject: C=DE, CN=Test Certificate for revocation/emailAddress=suse@suse.de
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
-            RSA Public Key: (2048 bit)
-                Modulus (2048 bit):
+                Public-Key: (2048 bit)
+                Modulus:
                     00:aa:a8:fc:e8:a5:2a:cc:17:a4:0b:14:e7:b5:bd:
                     b0:55:54:81:70:fa:26:6a:44:b3:c0:35:6b:e3:dc:
                     9c:ad:56:90:9a:92:25:4f:a6:07:42:0f:c2:f9:24:

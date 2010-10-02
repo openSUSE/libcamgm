@@ -22,8 +22,8 @@ Maintainer: Michael Calmer
 * @brief  This file is private for the ca-mgm library.
 *         It defines some commands with full path
 */
-#ifndef   LIMAL_CA_MGM_COMMANDS_HPP
-#define   LIMAL_CA_MGM_COMMANDS_HPP
+#ifndef   CA_MGM_COMMANDS_HPP
+#define   CA_MGM_COMMANDS_HPP
 
 #include <ca-mgm/config.h>
 #include <ca-mgm/String.hpp>
@@ -36,5 +36,5 @@ const std::string CP_COMMAND = "@CP_COMMAND@";
 const std::string RM_COMMAND = "@RM_COMMAND@";
 }
 
-#endif /* LIMAL_CA_MGM_COMMANDS_HPP */
+#endif /* CA_MGM_COMMANDS_HPP */
 
