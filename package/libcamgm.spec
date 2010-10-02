@@ -31,7 +31,7 @@ Group:		Development/Libraries/C and C++
 BuildRoot:	%{_tmppath}/%{name}-%{version}-build
 
 Source0:	libcamgm-1.0.0.tar.bz2
-Patch0:         11_3.dif
+Source1:        baselibs.conf
 prefix:		/usr
 
 BuildRequires: curl gcc-c++ perl-gettext pkg-config
@@ -109,9 +109,6 @@ This package provides the ruby bindings to the CA Management Library.
 
 %prep
 %setup
-%if 0%{?suse_version} > 1120
-%patch0
-%endif
 
 %build
 autoreconf --force --install --verbose
@@ -136,9 +133,12 @@ install -m 0644 %{_builddir}/%{name}-%{version}/src/openssl.cnf.tmpl $RPM_BUILD_
 %find_lang %name
 
 %check
+# testcases run only successfull with openssl >= 1.0 
+%if 0%{?suse_version} > 1120
 # required for perl test cases
 export LD_LIBRARY_PATH="$RPM_BUILD_ROOT/usr/lib/"
 make check DESTDIR="$RPM_BUILD_ROOT"
+%endif
 
 %post -n %{name}100
 /sbin/ldconfig
