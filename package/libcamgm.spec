@@ -37,6 +37,7 @@ prefix:		/usr
 BuildRequires: curl gcc-c++ perl-gettext pkg-config
 BuildRequires: libopenssl-devel openssl doxygen swig pcre-devel
 BuildRequires: boost-devel ruby-devel dejagnu
+BuildRequires: autoconf automake libtool
 Requires: openssl
 
 %if 0%{?fedora_version}
