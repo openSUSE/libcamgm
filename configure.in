@@ -315,7 +315,6 @@ AC_CONFIG_FILES(Makefile src/ca-mgm/Makefile
 src/ca-mgm/config.h
 src/Makefile
 swig/perl5/Makefile
-swig/ruby/Makefile
 swig/Makefile
 doc/autodocs/Makefile
 doc/Makefile

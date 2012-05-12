@@ -1,4 +1,4 @@
-SUBDIRS = perl5 ruby
+SUBDIRS = perl5 
 
 EXTRA_DIST = *.i
 
