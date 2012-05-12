@@ -359,6 +359,16 @@ namespace ca_mgm
 
     ///////////////////////////////////////////////////////////////////
 
+    /** \relates RWCOW_pointer Clone the underlying object.
+     * Calls \a rhs <tt>-\>clone()</tt>. Being defined as a
+     * function outside \ref RWCOW_pointer allows to overload
+     * it, in case a specific \a _D does not have <tt>clone()</tt>.
+    */
+    template<class _D>
+      inline _D * rwcowClone( const _D * rhs )
+      { return rhs->clone(); }
+
+
     ///////////////////////////////////////////////////////////////////
     //
     //	CLASS NAME : RWCOW_pointer
@@ -444,17 +454,6 @@ namespace ca_mgm
       private:
         _Ptr _dptr;
       };
-    ///////////////////////////////////////////////////////////////////
-
-    /** \relates RWCOW_pointer Clone the underlying object.
-     * Calls \a rhs <tt>-\>clone()</tt>. Being defined as a
-     * function outside \ref RWCOW_pointer allows to overload
-     * it, in case a specific \a _D does not have <tt>clone()</tt>.
-    */
-    template<class _D>
-      inline _D * rwcowClone( const _D * rhs )
-      { return rhs->clone(); }
-
     ///////////////////////////////////////////////////////////////////
 
     /** \relates RWCOW_pointer Stream output.
