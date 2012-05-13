@@ -21,12 +21,16 @@
 
 # norootforbuild
 
+%define with_ruby 0
+
+%if 0%{?with_ruby}
 %define ruby_archdir %(ruby -r rbconfig -e "print Config::CONFIG['vendorarchdir']")
+%endif
 
 Name:		libcamgm
 Version:	1.0.0
 Release:	0
-License:	GPL v2 or later
+License:	GPL-2.0
 Group:		Development/Libraries/C and C++
 BuildRoot:	%{_tmppath}/%{name}-%{version}-build
 
@@ -55,7 +59,7 @@ The CA Management Library provides methods for managing a certificate authority.
 
 %package -n %{name}100
 Group:      Development/Libraries/C and C++
-License:    GPL v2 or later
+License:    GPL-2.0
 Summary:    CA Management Library
 
 %description -n %{name}100
@@ -67,7 +71,7 @@ Requires:       %{name}100 = %version
 Requires:       openssl-devel
 Requires:       pcre-devel
 Group:		Development/Libraries/C and C++
-License:        GPL v2 or later
+License:        GPL-2.0
 Summary:	CA Management Library Development Files
 %if 0%{?suse_version} >= 1030
 Requires: libopenssl-devel
@@ -85,7 +89,7 @@ Requires: perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 Requires:       perl = %{perl_version}
 %endif
 Group:		Development/Languages/Perl
-License:        GPL v2 or later
+License:        GPL-2.0
 Summary:	CA Management Library Perl Bindings
 
 %description -n perl-camgm
@@ -94,10 +98,11 @@ a Certificate Authority.
 
 This package provides the perl bindings to the CA Management Library.
 
+%if 0%{?with_ruby}
 %package -n ruby-camgm
 Requires: ruby
 Group:      Development/Languages/Ruby
-License:        GPL v2 or later
+License:        GPL-2.0
 Summary:    CA Management Library Ruby Bindings
 
 %description -n ruby-camgm
@@ -106,7 +111,7 @@ a Certificate Authority.
 
 This package provides the ruby bindings to the CA Management Library.
 
-
+%endif
 
 %prep
 %setup
@@ -117,7 +122,6 @@ autoreconf --force --install --verbose
 export CFLAGS="$RPM_OPT_FLAGS -DNDEBUG"
 export CXXFLAGS="$RPM_OPT_FLAGS -DNDEBUG"
 
-%{?suse_update_config:%{suse_update_config -f}}
 # workaround for fedora gettext check on x86_64
 sed -i -e 's/return (int) gettext/return (long) gettext/g' ./configure
 ./configure --libdir=%{_libdir} --prefix=%{prefix} --mandir=%{_mandir} \
@@ -174,12 +178,12 @@ rm -rf "$RPM_BUILD_ROOT"
 
 %files -n perl-camgm
 %defattr(-,root,root)
-#%dir %{perl_vendorarch}/
 %dir %{perl_vendorarch}/auto/CaMgm/
 %{perl_vendorarch}/auto/CaMgm/*
 %{perl_vendorarch}/*.pm
 
+%if 0%{?with_ruby}
 %files -n ruby-camgm
 %defattr(-,root,root)
 %ruby_archdir/*.so
-
+%endif
