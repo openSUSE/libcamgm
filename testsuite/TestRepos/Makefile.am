@@ -39,7 +39,13 @@ MAINTAINERCLEANFILES = Makefile.in
 EXTRA_DIST = ca1_test/*.* ca2_test/*.* \
              Test_CA1/*                \
              Test_CA2/*                \
-             .cas
+             .cas                      \
+	     importCATestEnc.key       \
+	     importCATest.key importCATest.pem \
+	     importRequestTest-DER.req \
+	     importRequestTest.req     \
+	     openssl.cnf.tmpl \
+	     c293624b6a877f401407ce8f8f1f327e.req
 
 dist-hook:
 	rm -rf `find $(distdir)/ -name .svn`
