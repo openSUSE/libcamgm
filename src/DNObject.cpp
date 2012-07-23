@@ -83,7 +83,7 @@ RDNObject::getOpenSSLType() const
   opensslKeys["organizationalUnitName"] = "OU";
   opensslKeys["commonName"] = "CN";
   opensslKeys["emailAddress"] = "emailAddress";
-  //opensslKeys[""] = "";
+  opensslKeys["domainComponent"] = "DN";
 
   std::string ret;
   std::map<std::string, std::string>::const_iterator it = opensslKeys.find(m_impl->type);
