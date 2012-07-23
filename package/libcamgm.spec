@@ -32,6 +32,7 @@ Version:	1.0.0
 Release:	0
 License:	GPL-2.0
 Group:		Development/Libraries/C and C++
+Url:            https://github.com/openSUSE/libcamgm
 BuildRoot:	%{_tmppath}/%{name}-%{version}-build
 
 Source0:	libcamgm-1.0.0.tar.bz2
@@ -42,6 +43,7 @@ BuildRequires: curl gcc-c++ perl-gettext pkg-config
 BuildRequires: libopenssl-devel openssl doxygen swig pcre-devel
 BuildRequires: boost-devel ruby-devel dejagnu
 BuildRequires: autoconf automake libtool
+BuildRequires: translation-update-upstream
 Requires: openssl
 
 %if 0%{?fedora_version}
@@ -115,6 +117,7 @@ This package provides the ruby bindings to the CA Management Library.
 
 %prep
 %setup
+translation-update-upstream
 
 %build
 autoreconf --force --install --verbose
