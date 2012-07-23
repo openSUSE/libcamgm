@@ -41,7 +41,6 @@ CA_MGM_croak(SWIG_MAYBE_PERL_OBJECT const ca_mgm::Exception &e) {
 #endif
 
     sv_setsv(perl_get_sv("@", TRUE), newRV_noinc((SV*)hash));
-    croak(0);
 }
 
 #define CA_MGM_exception(a)  { CA_MGM_croak(a); SWIG_fail; }
@@ -59,7 +58,6 @@ CA_MGM_croak2(SWIG_MAYBE_PERL_OBJECT const std::exception &e) {
     hv_store(hash, "message", 7, value, 0);
 
     sv_setsv(perl_get_sv("@", TRUE), newRV_noinc((SV*)hash));
-    croak(0);
 }
 
 #define CA_MGM_exception2(a)  { CA_MGM_croak2(a); SWIG_fail; }
