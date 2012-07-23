@@ -6,14 +6,14 @@ DN Key organizationName
 DN Key organizationalUnitName
 DN Key commonName
 DN Key emailAddress
-2:$VAR1 = {
-          'file' => 'CA.cpp',
-          'type' => 'RuntimeException',
-          'line' => 501,
-          'message' => 'Issuing the certificate failed.
+2:$VAR1 = bless( {
+                 'file' => 'CA.cpp',
+                 'type' => 'RuntimeException',
+                 'line' => 501,
+                 'message' => 'Issuing the certificate failed.
 	CA.cpp: 1761 ValueException: -116: emailAddress must be defined.',
-          'code' => -1
-        };
+                 'code' => -1
+               }, 'CAMGM:Exception' );
 RuntimeException:-1:Issuing the certificate failed.
 	CA.cpp: 1761 ValueException: -116: emailAddress must be defined.
 DONE
