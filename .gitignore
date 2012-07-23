@@ -87,6 +87,7 @@ src/*.lo
 *.single
 *.o
 *.old
+*.gmo
 doc/autodocs/doxygen.css
 doc/autodocs/doxygen.log
 doc/autodocs/libcamgm.tag
@@ -122,4 +123,7 @@ testsuite/limal.sum
 testsuite/openssl.cnf.tmpl.test
 testsuite/single.out/out/
 testsuite/site.exp
-
+package/libcamgm-*.tar.bz2
+po/libcamgm.pot
+po/remove-potcdate.sed
+po/stamp-po
