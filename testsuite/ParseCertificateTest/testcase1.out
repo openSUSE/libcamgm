@@ -190,7 +190,7 @@ Certificate:
     Data:
         Version: 3 (0x2)
         Serial Number: 8 (0x8)
-        Signature Algorithm: sha1WithRSAEncryption
+    Signature Algorithm: sha1WithRSAEncryption
         Issuer: C=DE, CN=Static Test CA/emailAddress=suse@suse.de
         Validity
             Not Before: Aug 23 10:26:44 2005 GMT
@@ -273,21 +273,21 @@ Certificate:
                     Explicit Text: This is the explicite Text
 
     Signature Algorithm: sha1WithRSAEncryption
-        3b:ad:5b:2c:e3:a8:51:0b:04:94:f7:da:f1:a0:64:e5:2d:dd:
-        18:66:6b:2b:a2:73:fb:eb:0f:6b:d7:51:ff:5f:68:0e:9d:dd:
-        23:26:75:ca:63:05:b6:64:6e:24:2e:80:1e:e5:2b:81:e1:e9:
-        2e:07:c3:e4:eb:f0:c0:55:6f:98:96:fc:b8:6a:fc:39:dd:51:
-        c5:d6:29:9b:09:5e:b7:11:48:16:a7:b3:30:1f:74:f1:7c:20:
-        3e:09:46:10:92:5e:7c:3e:ab:28:c2:d3:0d:1d:2d:76:84:18:
-        29:23:3d:57:37:57:ae:73:a7:a1:ae:70:93:b3:50:01:f5:82:
-        1d:32:c8:aa:44:09:48:1d:8d:92:c5:7f:d8:36:15:fb:b4:38:
-        6b:04:0d:ed:23:48:4c:58:e7:da:c3:b0:cb:06:03:a1:05:58:
-        5d:0e:e1:04:93:89:43:51:ed:41:03:d0:8d:d0:46:23:76:eb:
-        14:4a:44:f7:35:0c:a8:76:d8:a1:ce:58:00:65:ce:a1:a5:88:
-        79:e3:7e:16:19:39:85:8a:f5:32:3a:ab:a9:d9:66:b2:dd:50:
-        05:e7:e0:ef:7b:43:df:83:a6:5e:f1:d9:9a:af:61:07:d0:1f:
-        88:21:56:de:76:c4:d7:08:d5:6a:73:eb:ab:e8:ed:73:a7:ee:
-        48:3b:7f:9d
+         3b:ad:5b:2c:e3:a8:51:0b:04:94:f7:da:f1:a0:64:e5:2d:dd:
+         18:66:6b:2b:a2:73:fb:eb:0f:6b:d7:51:ff:5f:68:0e:9d:dd:
+         23:26:75:ca:63:05:b6:64:6e:24:2e:80:1e:e5:2b:81:e1:e9:
+         2e:07:c3:e4:eb:f0:c0:55:6f:98:96:fc:b8:6a:fc:39:dd:51:
+         c5:d6:29:9b:09:5e:b7:11:48:16:a7:b3:30:1f:74:f1:7c:20:
+         3e:09:46:10:92:5e:7c:3e:ab:28:c2:d3:0d:1d:2d:76:84:18:
+         29:23:3d:57:37:57:ae:73:a7:a1:ae:70:93:b3:50:01:f5:82:
+         1d:32:c8:aa:44:09:48:1d:8d:92:c5:7f:d8:36:15:fb:b4:38:
+         6b:04:0d:ed:23:48:4c:58:e7:da:c3:b0:cb:06:03:a1:05:58:
+         5d:0e:e1:04:93:89:43:51:ed:41:03:d0:8d:d0:46:23:76:eb:
+         14:4a:44:f7:35:0c:a8:76:d8:a1:ce:58:00:65:ce:a1:a5:88:
+         79:e3:7e:16:19:39:85:8a:f5:32:3a:ab:a9:d9:66:b2:dd:50:
+         05:e7:e0:ef:7b:43:df:83:a6:5e:f1:d9:9a:af:61:07:d0:1f:
+         88:21:56:de:76:c4:d7:08:d5:6a:73:eb:ab:e8:ed:73:a7:ee:
+         48:3b:7f:9d
 
     X509v3 Basic Constraints: 
         CA:TRUE, pathlen:3

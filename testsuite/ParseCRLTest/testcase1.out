@@ -74,7 +74,7 @@ hold Instruction =1.6.21.43
 =================== call verify ======================
 Certificate Revocation List (CRL):
         Version 2 (0x1)
-        Signature Algorithm: sha1WithRSAEncryption
+    Signature Algorithm: sha1WithRSAEncryption
         Issuer: /C=DE/CN=Static Test CA/emailAddress=suse@suse.de
         Last Update: Aug 29 13:40:48 2005 GMT
         Next Update: Aug 30 13:40:48 2005 GMT
@@ -116,21 +116,21 @@ Revoked Certificates:
             Hold Instruction Code: 
                 1.6.21.43
     Signature Algorithm: sha1WithRSAEncryption
-        02:72:03:69:4d:76:7c:83:1d:53:50:66:58:88:d3:c4:83:d1:
-        0b:b8:dd:6c:15:47:54:5c:4e:98:62:d0:63:6d:cc:11:d4:fa:
-        18:74:20:cd:55:32:77:b1:eb:79:c4:8a:c9:3a:c2:f0:59:8f:
-        1f:87:82:19:be:fe:77:50:1e:3b:77:0c:6c:4b:0e:36:e2:7b:
-        04:1d:e6:30:22:60:07:28:db:0e:d1:3b:6d:bd:b8:c0:a1:37:
-        e4:05:de:a4:9e:26:69:07:0c:9c:d5:2b:a3:ab:7c:49:09:1b:
-        80:03:0b:da:06:fb:ba:20:d3:a0:32:6f:04:38:e4:16:30:24:
-        3e:83:1a:c5:82:07:ac:4b:8a:a8:84:ed:4e:f9:db:cc:43:cc:
-        bc:2e:27:34:45:be:34:3f:6d:68:44:63:f6:53:09:93:88:53:
-        eb:af:80:a1:9a:0e:c2:78:c0:9e:71:2f:9c:fe:0f:6a:8a:e1:
-        f3:f6:5e:37:95:05:20:31:80:59:61:2a:e6:bf:15:f7:f2:a1:
-        c8:ed:51:33:dc:de:4d:a6:9c:51:63:4a:cb:26:cb:db:1b:7e:
-        19:d9:c2:69:c1:92:ae:cc:11:37:7c:73:2d:2f:84:72:24:33:
-        d8:14:66:63:b1:5c:da:6d:af:48:b2:13:78:2f:ad:3b:33:b2:
-        83:8e:df:5e
+         02:72:03:69:4d:76:7c:83:1d:53:50:66:58:88:d3:c4:83:d1:
+         0b:b8:dd:6c:15:47:54:5c:4e:98:62:d0:63:6d:cc:11:d4:fa:
+         18:74:20:cd:55:32:77:b1:eb:79:c4:8a:c9:3a:c2:f0:59:8f:
+         1f:87:82:19:be:fe:77:50:1e:3b:77:0c:6c:4b:0e:36:e2:7b:
+         04:1d:e6:30:22:60:07:28:db:0e:d1:3b:6d:bd:b8:c0:a1:37:
+         e4:05:de:a4:9e:26:69:07:0c:9c:d5:2b:a3:ab:7c:49:09:1b:
+         80:03:0b:da:06:fb:ba:20:d3:a0:32:6f:04:38:e4:16:30:24:
+         3e:83:1a:c5:82:07:ac:4b:8a:a8:84:ed:4e:f9:db:cc:43:cc:
+         bc:2e:27:34:45:be:34:3f:6d:68:44:63:f6:53:09:93:88:53:
+         eb:af:80:a1:9a:0e:c2:78:c0:9e:71:2f:9c:fe:0f:6a:8a:e1:
+         f3:f6:5e:37:95:05:20:31:80:59:61:2a:e6:bf:15:f7:f2:a1:
+         c8:ed:51:33:dc:de:4d:a6:9c:51:63:4a:cb:26:cb:db:1b:7e:
+         19:d9:c2:69:c1:92:ae:cc:11:37:7c:73:2d:2f:84:72:24:33:
+         d8:14:66:63:b1:5c:da:6d:af:48:b2:13:78:2f:ad:3b:33:b2:
+         83:8e:df:5e
 
     X509v3 Authority Key Identifier: 
         keyid:32:00:C0:04:A4:2A:88:C2:3E:CA:D5:BD:D8:4C:D3:52:88:20:7F:3B

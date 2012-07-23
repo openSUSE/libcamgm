@@ -132,7 +132,7 @@ Certificate:
         Version: 3 (0x2)
         Serial Number:
             61:3d:d6:b1:00:00:00:00:00:02
-        Signature Algorithm: sha1WithRSAEncryption
+    Signature Algorithm: sha1WithRSAEncryption
         Issuer: DC=com, DC=redhat, DC=boston, CN=Certifying Authority
         Validity
             Not Before: Jul 18 23:48:25 2006 GMT
@@ -180,21 +180,21 @@ Certificate:
             X509v3 Subject Alternative Name: 
                 othername:<unsupported>, DNS:saber.boston.redhat.com
     Signature Algorithm: sha1WithRSAEncryption
-        b5:64:b1:97:c5:8c:79:c0:dc:0b:c2:50:ea:6a:0c:0b:1a:e9:
-        f7:20:58:b1:2c:d6:29:d1:c0:7f:6a:66:9d:56:5d:34:ce:49:
-        5c:8f:8b:e2:7a:82:d9:ef:7d:5b:e1:a4:88:c6:f0:97:c7:77:
-        66:a7:70:f2:ca:b0:03:b5:05:6c:a7:9b:3e:82:2c:57:91:ab:
-        53:4d:09:36:36:15:ca:b0:33:b1:42:13:db:0d:d6:82:af:85:
-        d1:cd:e8:b6:bc:e9:75:70:82:e1:7a:07:09:87:ac:cb:1e:ba:
-        b2:7a:58:ff:f8:57:7d:98:d0:86:07:39:45:44:a3:0e:fa:bd:
-        9c:09:aa:11:c6:09:e8:c0:50:55:6f:01:91:cf:bb:b7:19:f6:
-        00:ea:79:20:59:ab:2b:4d:f6:f5:8c:48:49:0b:e5:7b:5b:b2:
-        55:10:14:45:11:df:e3:84:db:6b:2c:de:80:58:8e:50:bf:ad:
-        08:a9:ca:76:13:40:11:78:5d:77:cb:c9:ab:55:77:f9:a1:8a:
-        3c:a5:5c:b6:d2:0c:ea:8e:eb:aa:2d:a1:2d:43:ed:91:ff:74:
-        76:e2:02:c6:d7:16:22:02:c6:13:f8:3c:73:d4:33:7b:0e:fe:
-        65:af:3c:cb:3b:f4:9b:dc:f4:b9:5b:e4:cd:ff:d4:74:6a:10:
-        57:ea:63:e5
+         b5:64:b1:97:c5:8c:79:c0:dc:0b:c2:50:ea:6a:0c:0b:1a:e9:
+         f7:20:58:b1:2c:d6:29:d1:c0:7f:6a:66:9d:56:5d:34:ce:49:
+         5c:8f:8b:e2:7a:82:d9:ef:7d:5b:e1:a4:88:c6:f0:97:c7:77:
+         66:a7:70:f2:ca:b0:03:b5:05:6c:a7:9b:3e:82:2c:57:91:ab:
+         53:4d:09:36:36:15:ca:b0:33:b1:42:13:db:0d:d6:82:af:85:
+         d1:cd:e8:b6:bc:e9:75:70:82:e1:7a:07:09:87:ac:cb:1e:ba:
+         b2:7a:58:ff:f8:57:7d:98:d0:86:07:39:45:44:a3:0e:fa:bd:
+         9c:09:aa:11:c6:09:e8:c0:50:55:6f:01:91:cf:bb:b7:19:f6:
+         00:ea:79:20:59:ab:2b:4d:f6:f5:8c:48:49:0b:e5:7b:5b:b2:
+         55:10:14:45:11:df:e3:84:db:6b:2c:de:80:58:8e:50:bf:ad:
+         08:a9:ca:76:13:40:11:78:5d:77:cb:c9:ab:55:77:f9:a1:8a:
+         3c:a5:5c:b6:d2:0c:ea:8e:eb:aa:2d:a1:2d:43:ed:91:ff:74:
+         76:e2:02:c6:d7:16:22:02:c6:13:f8:3c:73:d4:33:7b:0e:fe:
+         65:af:3c:cb:3b:f4:9b:dc:f4:b9:5b:e4:cd:ff:d4:74:6a:10:
+         57:ea:63:e5
 
     X509v3 Key Usage: 
         Digital Signature, Key Encipherment

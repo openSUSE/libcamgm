@@ -151,7 +151,7 @@ Certificate:
     Data:
         Version: 3 (0x2)
         Serial Number: 98 (0x62)
-        Signature Algorithm: sha1WithRSAEncryption
+    Signature Algorithm: sha1WithRSAEncryption
         Issuer: C=US, ST=Massachusetts, L=Westford, O=Red Hat, OU=Engineering, CN=Certificate Manager
         Validity
             Not Before: Sep  7 19:28:00 2006 GMT
@@ -191,14 +191,14 @@ Certificate:
                   URI:http://frenzy.boston.redhat.com/coolkey/crl/revocations.crl
 
     Signature Algorithm: sha1WithRSAEncryption
-        50:20:9d:bc:6c:f2:af:41:dd:8a:eb:b6:bd:67:b7:59:42:17:
-        c2:5b:af:8c:9a:c7:8e:dc:b5:49:9d:be:13:7b:2b:8c:74:7f:
-        1d:e2:94:d4:4f:e0:74:e4:0d:b1:59:f1:8e:f3:54:74:be:93:
-        60:f9:e9:e2:87:fa:5e:af:9b:47:3e:52:fa:fe:36:8f:3f:83:
-        bf:08:96:6a:96:8d:3d:94:d9:f9:3a:f9:c9:ee:ed:7a:64:f1:
-        d4:9b:32:eb:f8:dd:dc:e5:7f:c4:99:d5:f9:5b:98:cd:4d:f7:
-        7f:c3:07:fa:9b:aa:35:f2:36:6d:cd:9a:ec:b9:50:43:72:c4:
-        f5:ad
+         50:20:9d:bc:6c:f2:af:41:dd:8a:eb:b6:bd:67:b7:59:42:17:
+         c2:5b:af:8c:9a:c7:8e:dc:b5:49:9d:be:13:7b:2b:8c:74:7f:
+         1d:e2:94:d4:4f:e0:74:e4:0d:b1:59:f1:8e:f3:54:74:be:93:
+         60:f9:e9:e2:87:fa:5e:af:9b:47:3e:52:fa:fe:36:8f:3f:83:
+         bf:08:96:6a:96:8d:3d:94:d9:f9:3a:f9:c9:ee:ed:7a:64:f1:
+         d4:9b:32:eb:f8:dd:dc:e5:7f:c4:99:d5:f9:5b:98:cd:4d:f7:
+         7f:c3:07:fa:9b:aa:35:f2:36:6d:cd:9a:ec:b9:50:43:72:c4:
+         f5:ad
 
     X509v3 Key Usage: critical
         Digital Signature, Non Repudiation
