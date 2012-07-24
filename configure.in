@@ -112,6 +112,26 @@ AC_PROG_CPP
 AC_PROG_CXX
 AC_LANG(C++)
 
+AC_MSG_CHECKING([for version of C++ standard])
+GCCVER=`$CXX -v 2>&1 | tail -n1`
+case "$GCCVER" in
+[    gcc\ version\ 4.[3456789]*)]dnl **** quoting
+dnl we need a HAVE_* flag for a public header, yuck
+dnl     AC_DEFINE([HAVE_CXX0X], 1, [Define to 1 if the c++ compiler knows <unordered_map> and the like])
+dnl     Y2CORE_CFLAGS="-std=c++0x"
+        # gnu++0x instead of c++0x so that
+        # we do not lose gnu extensions like typeof
+        CFLAGS="${CFLAGS} -std=gnu++0x -DHAVE_CXX0X"
+        CXXFLAGS="${CXXFLAGS} -std=gnu++0x -DHAVE_CXX0X"
+        AC_MSG_RESULT([c++0x])
+        ;;
+    *)
+        CFLAGS="${CFLAGS}"
+        CXXFLAGS="${CXXFLAGS}"
+        AC_MSG_RESULT([older than c++0x])
+        ;;
+esac
+
 CFLAGS="${CFLAGS} -W -Wall"
 CXXFLAGS="${CXXFLAGS} -W -Wall"
 

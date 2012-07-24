@@ -28,7 +28,7 @@ int main()
 
 
         // Logging
-        shared_ptr<LogControl::LineFormater> formater(new TestLineFormater2());
+	boost::shared_ptr<LogControl::LineFormater> formater(new TestLineFormater2());
         LogControl logger = LogControl::instance();
         logger.setLineFormater( formater );
         // TestLineFormater2 do not log errors because the openssl errors include

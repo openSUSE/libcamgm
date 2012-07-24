@@ -23,7 +23,7 @@ int main()
         cout << "START" << endl;
 
         // Logging
-        shared_ptr<LogControl::LineFormater> formater(new TestLineFormater2());
+	boost::shared_ptr<LogControl::LineFormater> formater(new TestLineFormater2());
         LogControl logger = LogControl::instance();
         logger.setLineFormater( formater );
         // TestLineFormater2.hpp do not log errors

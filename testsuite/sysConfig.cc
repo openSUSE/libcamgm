@@ -46,7 +46,7 @@ int main(int , char **)
   std::cout << "START" << std::endl;
 
   // Logging
-  shared_ptr<LogControl::LineFormater> formater(new TestLineFormater());
+  boost::shared_ptr<LogControl::LineFormater> formater(new TestLineFormater());
   LogControl logger = LogControl::instance();
   logger.setLineFormater( formater );
   logger.setLogLevel( logger::E_DEBUG );

@@ -30,8 +30,11 @@
 
 //#include "zypp/base/Easy.h"
 //#include "zypp/base/PtrTypes.h"
-
+#ifndef __GXX_EXPERIMENTAL_CXX0X__
 #define for_(IT,BEG,END) for ( typeof(BEG) IT = BEG, _for_end = END; IT != _for_end; ++IT )
+#else
+#define for_(IT,BEG,END) for ( auto IT = BEG, _for_end = END; IT != _for_end; ++IT )
+#endif
 
 ///////////////////////////////////////////////////////////////////
 namespace ca_mgm
