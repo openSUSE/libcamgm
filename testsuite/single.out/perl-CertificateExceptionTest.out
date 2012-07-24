@@ -13,7 +13,7 @@ DN Key emailAddress
                  'message' => 'Issuing the certificate failed.
 	CA.cpp: 1761 ValueException: -116: emailAddress must be defined.',
                  'code' => -1
-               }, 'CAMGM:Exception' );
+               }, 'CaMgm:Exception' );
 RuntimeException:-1:Issuing the certificate failed.
 	CA.cpp: 1761 ValueException: -116: emailAddress must be defined.
 DONE

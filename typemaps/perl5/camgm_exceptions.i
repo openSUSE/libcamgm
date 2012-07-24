@@ -40,7 +40,7 @@ CA_MGM_croak(SWIG_MAYBE_PERL_OBJECT const ca_mgm::Exception &e) {
     CA_MGM_buildExceptionHash(hash, e);
 #endif
 
-    sv_setsv(perl_get_sv("@", TRUE), sv_bless(newRV_noinc((SV*)hash), gv_stashpv("CAMGM:Exception", GV_ADD)));
+    sv_setsv(perl_get_sv("@", TRUE), sv_bless(newRV_noinc((SV*)hash), gv_stashpv("CaMgm:Exception", GV_ADD)));
 }
 
 #define CA_MGM_exception(a)  { CA_MGM_croak(a); SWIG_fail; }
@@ -57,7 +57,7 @@ CA_MGM_croak2(SWIG_MAYBE_PERL_OBJECT const std::exception &e) {
     value = newSVpv(e.what(), 0);
     hv_store(hash, "message", 7, value, 0);
 
-    sv_setsv(perl_get_sv("@", TRUE), sv_bless(newRV_noinc((SV*)hash), gv_stashpv("CAMGM::Exception", GV_ADD)));
+    sv_setsv(perl_get_sv("@", TRUE), sv_bless(newRV_noinc((SV*)hash), gv_stashpv("CaMgm::Exception", GV_ADD)));
 }
 
 #define CA_MGM_exception2(a)  { CA_MGM_croak2(a); SWIG_fail; }
