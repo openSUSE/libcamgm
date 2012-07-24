@@ -1,4 +1,5 @@
 *~
+*.bak
 ABOUT-NLS
 Makefile
 Makefile.in
