@@ -6,9 +6,7 @@
 |                         /_____||_| |_| |_|                           |
 |                                                                      |
 \---------------------------------------------------------------------*/
-/** \file zypp/base/ExternalDataSource.cc
- *
- * \todo replace by Blocxx
+/** \file src/ExternalDataSource.cpp
  *
 */
 

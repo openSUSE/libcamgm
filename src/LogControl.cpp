@@ -292,15 +292,15 @@ namespace ca_mgm
 
       private:
         /** Singleton ctor.
-         * No logging per default, unless enabled via $ZYPP_LOGFILE.
+         * No logging per default, unless enabled via $CAMGM_LOGFILE.
         */
         LogControlImpl()
         : _no_stream( NULL )
         , _level( E_INFO )
         , _lineFormater( new LogControl::LineFormater )
         {
-          if ( getenv("ZYPP_LOGFILE") )
-            logfile( getenv("ZYPP_LOGFILE") );
+          if ( getenv("CAMGM_LOGFILE") )
+            logfile( getenv("CAMGM_LOGFILE") );
         }
 
       public:

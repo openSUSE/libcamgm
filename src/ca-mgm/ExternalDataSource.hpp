@@ -6,7 +6,7 @@
 |                         /_____||_| |_| |_|                           |
 |                                                                      |
 \---------------------------------------------------------------------*/
-/** \file zypp/base/ExternalDataSource.h
+/** \file src/ca-mgm/ExternalDataSource.hpp
  *
  * \todo replace by Blocxx
  *

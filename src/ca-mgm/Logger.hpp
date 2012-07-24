@@ -6,7 +6,7 @@
 |                         /_____||_| |_| |_|                           |
 |                                                                      |
 \---------------------------------------------------------------------*/
-/** \file zypp/base/Logger.h
+/** \file src/ca-mgm/Logger.h
  *
 */
 #ifndef CA_MGM_LOGGER_H

@@ -6,7 +6,7 @@
 |                         /_____||_| |_| |_|                           |
 |                                                                      |
 \---------------------------------------------------------------------*/
-/** \file	zypp/base/ReferenceCounted.h
+/** \file	src/ca-mgm/ReferenceCounted.hpp
  *
 */
 #ifndef CA_MGM_REFERENCECOUNTED_H
@@ -139,9 +139,9 @@ namespace ca_mgm
 
 #define IMPL_PTR_TYPE(NAME) \
 void intrusive_ptr_add_ref( const NAME * ptr_r )               \
-{ zypp::base::ReferenceCounted::add_ref( ptr_r ); }                  \
+{ ca_mgm::ReferenceCounted::add_ref( ptr_r ); }                  \
 void intrusive_ptr_release( const NAME * ptr_r )               \
-{ zypp::base::ReferenceCounted::release( ptr_r ); }
+{ ca_mgm::ReferenceCounted::release( ptr_r ); }
 
 ///////////////////////////////////////////////////////////////////
 #endif // CA_MGM_REFERENCECOUNTED_H

@@ -6,7 +6,7 @@
 |                         /_____||_| |_| |_|                           |
 |                                                                      |
 \---------------------------------------------------------------------*/
-/** \file zypp/ExternalProgram.cc
+/** \file src/ExternalProgram.cc
 */
 
 #define _GNU_SOURCE 1 // for ::getline
@@ -481,4 +481,4 @@ namespace ca_mgm {
       }
     }
 
-} // namespace zypp
+} // namespace ca_mgm

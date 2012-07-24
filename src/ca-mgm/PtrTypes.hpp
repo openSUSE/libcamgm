@@ -6,7 +6,7 @@
 |                         /_____||_| |_| |_|                           |
 |                                                                      |
 \---------------------------------------------------------------------*/
-/** \file ca-mgmPtrTypes.h
+/** \file ca-mgm/PtrTypes.h
 */
 #ifndef CA_MGM_BASE_PTRTYPES_H
 #define CA_MGM_BASE_PTRTYPES_H
