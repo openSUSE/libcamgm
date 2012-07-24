@@ -964,7 +964,7 @@ int IniSection::Dir (const std::vector<std::string>&p, StringList&l)
 {
     if (ip->isFlat ())
 	return dirValueFlat (p, l);
-    if (p.size()<1)
+    if (p.empty())
 	{
 	    ERR << "I do not know what to dir from "<< pathToString(p).c_str() << std::endl;
 	    return -1;
