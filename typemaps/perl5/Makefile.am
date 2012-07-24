@@ -1,7 +1,8 @@
 swigdir   = @SWIG_LIB@
 typefiles = $(wildcard $(srcdir)/*.i)
+swgfiles  = $(wildcard $(srcdir)/*.swg)
 
-EXTRA_DIST = $(typefiles)
+EXTRA_DIST = $(typefiles) $(swgfiles)
 CLEANFILES = *~
 MAINTAINERCLEANFILES = Makefile.in
 
