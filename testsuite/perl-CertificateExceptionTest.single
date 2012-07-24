@@ -12,12 +12,9 @@ use CaMgm;
 use Data::Dumper;
 
 my $logref = CaMgm::LogControl::instance();
-$logref->setLogLevel( $CaMgm::logger::E_INFO );
+$logref->setShortLineFormater();
+$logref->setLogLevel( $CaMgm::E_INFO );
 $logref->logToStdErr();
-
-
-#my $logref = CaMgm::Logger::createCerrLogger("$0", $comp, $cat,
-#                                             "%-6p %c [%M:%L] %m");
 
 print "START\n";
 
