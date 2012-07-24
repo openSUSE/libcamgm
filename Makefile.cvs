@@ -1,10 +1,12 @@
 #
 # Makefile.cvs
 #
-
-LIB = $(shell limaltool get-lib)
+LIB=$(shell rpm -E '%_lib')
 
 configure: all
+	if [ -z $(LIB) ] ; then \
+	    LIB="lib"; \
+	fi
 	./configure --libdir=/usr/$(LIB)
 
 all:
