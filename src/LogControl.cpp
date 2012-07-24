@@ -411,6 +411,12 @@ namespace ca_mgm
     void LogControl::setLineFormater( const shared_ptr<LineFormater> & formater_r )
     { LogControlImpl::instance.setLineFormater( formater_r ); }
 
+    void LogControl::setShortLineFormater()
+    {
+        boost::shared_ptr<LogControl::LineFormater> formater(new ShortLineFormater());
+        LogControl::setLineFormater(formater);
+    }
+
     void LogControl::logNothing()
     { LogControlImpl::instance.setLineWriter( shared_ptr<LineWriter>() ); }
 

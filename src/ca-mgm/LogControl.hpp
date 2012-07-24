@@ -110,12 +110,29 @@ namespace ca_mgm
         virtual ~LineFormater() {}
       };
 
+      struct ShortLineFormater : public ca_mgm::LogControl::LineFormater
+      {
+        virtual std::string format( const std::string &      group_r,
+                                    ca_mgm::logger::LogLevel level_r,
+                                    const char *             ,
+                                    const char *             ,
+                                    int                      ,
+                                    const std::string &      message_r )
+        {
+           return ca_mgm::str::form( "%-5s %s - %s",
+                                     ca_mgm::logger::logLevelToString( level_r).c_str(),
+                                     group_r.c_str(), message_r.c_str());
+        }
+        virtual ~ShortLineFormater() {}
+      };
+
     public:
       /** Assign a LineFormater.
        * If you want to format loglines by yourself. NULL installs the
        * default formater.
       */
       void setLineFormater( const shared_ptr<LineFormater> & formater_r );
+      void setShortLineFormater();
 
     public:
       /** Set path for the logfile.

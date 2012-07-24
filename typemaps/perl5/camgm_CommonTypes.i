@@ -48,6 +48,9 @@ namespace ca_mgm
       void logNothing();
       void logToStdErr();
       void setLogLevel( logger::LogLevel level_r );
+      void logfile( const std::string & logfile_r );
+      void logfile( const std::string & logfile_r, mode_t mode_r );
+      void setShortLineFormater();
     private:
       LogControl();
     };
