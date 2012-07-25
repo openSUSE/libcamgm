@@ -82,9 +82,9 @@ list << CaMgm::LiteralValue.new("RID", "1.2.3.4")
 list << CaMgm::LiteralValue.new("email", 'me@my-company.com')
 list << CaMgm::LiteralValue.new("URI", "http://www.my-company.com/")
 
-cid.extensions().subjectAlternativeName().setCopyEmail(1)
+cid.extensions().subjectAlternativeName().setCopyEmail(true)
 cid.extensions().subjectAlternativeName().setAlternativeNameList(list)
-cid.extensions().issuerAlternativeName().setCopyIssuer(1)
+cid.extensions().issuerAlternativeName().setCopyIssuer(true)
 cid.extensions().issuerAlternativeName().setAlternativeNameList(list)
 
 # ---------------- create authority information extension ------------------------
