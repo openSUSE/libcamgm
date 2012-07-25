@@ -86,6 +86,8 @@ doc/autodocs/*.png
 src/*.lo
 *.multi
 *.single
+!perl-*.single
+!ruby-*.single
 *.o
 *.old
 *.gmo
