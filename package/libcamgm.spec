@@ -21,11 +21,7 @@
 
 # norootforbuild
 
-%define with_ruby 0
-
-%if 0%{?with_ruby}
 %define ruby_archdir %(ruby -r rbconfig -e "print Config::CONFIG['vendorarchdir']")
-%endif
 
 Name:		libcamgm
 Version:	1.0.0
@@ -100,7 +96,6 @@ a Certificate Authority.
 
 This package provides the perl bindings to the CA Management Library.
 
-%if 0%{?with_ruby}
 %package -n ruby-camgm
 Requires: ruby
 Group:      Development/Languages/Ruby
@@ -113,7 +108,6 @@ a Certificate Authority.
 
 This package provides the ruby bindings to the CA Management Library.
 
-%endif
 
 %prep
 %setup
@@ -191,8 +185,6 @@ rm -rf "$RPM_BUILD_ROOT"
 %{perl_vendorarch}/auto/CaMgm/*
 %{perl_vendorarch}/*.pm
 
-%if 0%{?with_ruby}
 %files -n ruby-camgm
 %defattr(-,root,root)
 %ruby_archdir/*.so
-%endif
