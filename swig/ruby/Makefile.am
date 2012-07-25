@@ -2,7 +2,8 @@
 # Makefile.am for ca-mgm/swig/ruby
 #
 
-RUBY_INCLUDE   = -I$(shell ruby -r rbconfig -e "print Config::CONFIG['archdir']")
+RUBY_PC        = $(shell ruby -r rbconfig -e "print RbConfig::CONFIG[\"ruby_pc\"][0..-4]")
+RUBY_INCLUDE   = $(shell pkg-config --cflags $(RUBY_PC))
 VENDOR_ARCHDIR = $(shell ruby -r rbconfig -e "print Config::CONFIG['vendorarchdir']")
 RUBY_LIB       = -lruby
 
