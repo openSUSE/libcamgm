@@ -1,0 +1,164 @@
+#!/usr/bin/env ruby
+$: << File.expand_path(File.dirname(__FILE__) + "/../swig/ruby")
+
+require 'CaMgm'
+
+print "START\n"
+
+ca = CaMgm::CA.new("Test_CA1", "system", "./TestRepos/")
+rgd = ca.getRequestDefaults(CaMgm::E_Client_Req)
+
+rdnlist = rgd.getSubjectDN().getDN().dup()
+
+rdnlist.map!() do |rdn|
+
+    print "DN Key #{rdn.getType()}\n"
+
+    if rdn.getType() == "countryName"
+        rdn.setRDNValue("DE")
+    elsif rdn.getType() == "commonName"
+        rdn.setRDNValue("Full Test Certificate Ruby")
+    elsif rdn.getType() == "emailAddress"
+        rdn.setRDNValue('suse@suse.de')
+    end
+    rdn
+end
+
+dn = CaMgm::DNObject.new(rdnlist)
+rgd.setSubjectDN(dn)
+
+r = ca.createRequest("system", rgd, CaMgm::E_Client_Req)
+
+print "RETURN Request \n"
+
+cid = ca.getIssueDefaults(CaMgm::E_Client_Cert)
+
+# ------------------------ create netscape extension -----------------------------
+
+cid.extensions().nsBaseUrl().setValue("http://www.my-company.com/")
+
+cid.extensions().nsRevocationUrl().setValue("http://www.my-company.com/revoke.pl")
+cid.extensions().nsCaRevocationUrl().setValue("http://www.my-company.com/CArevoke.pl")
+cid.extensions().nsRenewalUrl().setValue("http://www.my-company.com/renew.pl")
+cid.extensions().nsCaPolicyUrl().setValue("http://www.my-company.com/policy.html")
+cid.extensions().nsSslServerName().setValue("*.my-company.com")
+cid.extensions().nsComment().setValue("My Company Certificate")
+
+# ------------------------ create bit extension -----------------------------
+
+cid.extensions().keyUsage().setKeyUsage(CaMgm::KeyUsageExt::DecipherOnly)
+cid.extensions().nsCertType().setNsCertType(CaMgm::NsCertTypeExt::ObjCA |
+                                            CaMgm::NsCertTypeExt::EmailCA |
+                                            CaMgm::NsCertTypeExt::SslCA)
+
+# ----------------- create basic constrains extension -----------------------
+
+cid.extensions().basicConstraints().setBasicConstraints(1, 3)
+
+# ----------------- create extended keyUsage extension ----------------------
+
+sl = CaMgm::StringList.new()
+sl << "2.3.4.5"
+sl << "2.12.10.39"
+sl << "codeSigning"
+sl << "msCTLSign"
+sl << "nsSGC"
+
+cid.extensions().extendedKeyUsage().setExtendedKeyUsage( sl )
+
+# ------------------------ create key identifier extension -----------------------------
+
+cid.extensions().subjectKeyIdentifier().setSubjectKeyIdentifier(1)
+cid.extensions().authorityKeyIdentifier().setKeyID(CaMgm::AuthorityKeyIdentifierGenerateExt::KeyID_always)
+cid.extensions().authorityKeyIdentifier().setIssuer(CaMgm::AuthorityKeyIdentifierGenerateExt::Issuer_always)
+
+# ------------------------ create alternative extension -----------------------------
+
+list = CaMgm::LiteralValueList.new()
+
+list << CaMgm::LiteralValue.new("IP", "164.34.35.184")
+list << CaMgm::LiteralValue.new("DNS", "ca.my-company.com")
+list << CaMgm::LiteralValue.new("RID", "1.2.3.4")
+list << CaMgm::LiteralValue.new("email", 'me@my-company.com')
+list << CaMgm::LiteralValue.new("URI", "http://www.my-company.com/")
+
+cid.extensions().subjectAlternativeName().setCopyEmail(1)
+cid.extensions().subjectAlternativeName().setAlternativeNameList(list)
+cid.extensions().issuerAlternativeName().setCopyIssuer(1)
+cid.extensions().issuerAlternativeName().setAlternativeNameList(list)
+
+# ---------------- create authority information extension ------------------------
+
+info = CaMgm::AuthorityInformationList.new()
+info << CaMgm::AuthorityInformation.new("OCSP",
+                                        CaMgm::LiteralValue.new("URI", "http://www.my-company.com/ocsp.pl"))
+info << CaMgm::AuthorityInformation.new("caIssuers",
+                                        CaMgm::LiteralValue.new("URI", "http://www.my-company.com/caIssuer.html"))
+
+cid.extensions().authorityInfoAccess().setAuthorityInformation(info)
+
+# ------------------------ create CRL dist point extension -----------------------
+
+crldist = CaMgm::LiteralValueList.new() 
+crldist << CaMgm::LiteralValue.new("URI", "ldap://ldap.my-company.com/?ou=PKI%2ddc=my-company%2ddc=com")
+
+cid.extensions().crlDistributionPoints().setCRLDistributionPoints(crldist)
+
+# -------------------- create certificate policy extension -----------------------
+
+p = CaMgm::CertificatePolicyList.new()
+p << CaMgm::CertificatePolicy.new("1.12.35.1")
+
+p2 = CaMgm::CertificatePolicy.new()
+p2.setPolicyIdentifier("1.3.6.8")
+
+slp = CaMgm::StringList.new()
+slp << "http://www.my-company.com/"
+slp << "http://www2.my-company.com/"
+p2.setCpsURI(slp)
+
+num = CaMgm::Int32List.new()
+num << 1
+num << 5
+num << 8
+
+un = CaMgm::UserNotice.new()
+un.setExplicitText("This is the explicite Text")
+un.setOrganizationNotice("My Company", num)
+
+unl = CaMgm::UserNoticeList.new()
+unl << un
+p2.setUserNoticeList(unl)
+p << p2
+
+cid.extensions().certificatePolicies().setPolicies(p)
+
+#---------------------------------------------------------------------------------
+
+c = ca.issueCertificate(r, cid, CaMgm::E_CA_Cert)
+
+print "RETURN Certificate \n"
+
+if File.exists?("./TestRepos/Test_CA1/newcerts/#{c}.pem")
+    print "Certificate exists: true\n"
+end
+
+cd = ca.getCertificate(c)
+
+ret = cd.getExtensions().dump()
+
+ret.each() do |ext|
+
+    if ext =~ /^KeyID/
+        print "found KeyID\n"
+    else
+        print "#{ext}\n"
+    end
+end
+
+print "DONE\n"
+
+
+
+
+
