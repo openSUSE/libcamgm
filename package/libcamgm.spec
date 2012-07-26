@@ -37,7 +37,7 @@ prefix:		/usr
 
 BuildRequires: curl gcc-c++ perl-gettext pkg-config
 BuildRequires: libopenssl-devel openssl doxygen swig pcre-devel
-BuildRequires: boost-devel ruby-devel dejagnu
+BuildRequires: boost-devel ruby-devel python-devel dejagnu
 BuildRequires: autoconf automake libtool
 BuildRequires: translation-update-upstream
 Requires: openssl
@@ -108,6 +108,17 @@ a Certificate Authority.
 
 This package provides the ruby bindings to the CA Management Library.
 
+%package -n python-camgm
+Requires: python
+Group:      Development/Languages/Python
+License:        GPL-2.0
+Summary:    CA Management Library Python Bindings
+
+%description -n python-camgm
+The CA Management Library provides methods for managing
+a Certificate Authority.
+
+This package provides the python bindings to the CA Management Library.
 
 %prep
 %setup
@@ -188,3 +199,8 @@ rm -rf "$RPM_BUILD_ROOT"
 %files -n ruby-camgm
 %defattr(-,root,root)
 %ruby_archdir/*.so
+
+%files -n python-camgm
+%defattr(-,root,root)
+%py_libdir/*
+
