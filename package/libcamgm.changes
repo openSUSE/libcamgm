@@ -1,6 +1,7 @@
 -------------------------------------------------------------------
 Sun May 13 15:35:49 UTC 2012 - mc@suse.com
 
+- use LGPL-2.1 as license
 - fix build with new openssl and gcc47
 - build ruby bindings
 - build python bindings
