@@ -101,6 +101,7 @@ src/.libs/
 src/libcamgm.la
 CaMgm.p*
 CaMgm.so
+_CaMgm.so
 *_wrap.cxx
 swig/perl5/auto/
 testsuite/CA2/out/
