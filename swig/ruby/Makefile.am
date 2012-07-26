@@ -3,13 +3,13 @@
 #
 
 RUBY_PC        = $(shell ruby -r rbconfig -e "print RbConfig::CONFIG[\"ruby_pc\"][0..-4]")
-RUBY_INCLUDE   = $(shell pkg-config --cflags $(RUBY_PC))
-VENDOR_ARCHDIR = $(shell ruby -r rbconfig -e "print Config::CONFIG['vendorarchdir']")
+RUBY_INCLUDE   = $(shell pkg-config --cflags $(RUBY_PC) || ruby -r rbconfig -e "print \"-I%s\" % RbConfig::CONFIG['archdir']")
+VENDOR_ARCHDIR = $(shell ruby -r rbconfig -e "print RbConfig::CONFIG['vendorarchdir']")
 RUBY_LIB       = -lruby
 
 INCLUDES       = -I$(top_builddir)/src -I$(top_srcdir)/src $(LIMAL_CFLAGS) $(RUBY_INCLUDE)
 # FIXME:
-LIBS         = -L$(top_builddir)/src/.libs -Wl,-rpath,$(camgmlibdir) -lcamgm $(LIB_SSL) $(LIB_UTIL) $(LIB_PCRE) $(PERL_LD) $(RUBY_LIB)
+LIBS         = -L$(top_builddir)/src/.libs -Wl,-rpath,$(camgmlibdir) -lcamgm $(LIB_SSL) $(LIB_UTIL) $(LIB_PCRE) $(RUBY_LIB)
 
 # FIXME:
 CXXFLAGS    += -Wno-unused -fPIC -DPIC
