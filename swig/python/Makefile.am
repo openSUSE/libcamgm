@@ -29,7 +29,7 @@ sources = $(top_srcdir)/swig/$(NAME).i \
 # ========================================================
 
 
-all: $(NAME).so
+all: _$(NAME).so
 
 clean:
 	rm -f *.o
@@ -37,8 +37,8 @@ clean:
 	rm -f *.cxx
 	rm -f $(NAME).rb
 
-$(NAME).so: $(NAME)_wrap.o
-	$(CXX) -shared -o $(NAME).so $< $(LDFLAGS) $(LIBS)
+_$(NAME).so: $(NAME)_wrap.o
+	$(CXX) -shared -o _$(NAME).so $< $(LDFLAGS) $(LIBS)
 
 $(NAME)_wrap.o: $(NAME)_wrap.cxx
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $<
@@ -48,5 +48,6 @@ $(NAME)_wrap.cxx: $(sources)
 
 install-data-local:
 	mkdir -p $(DESTDIR)/$(SITE_ARCHDIR)
-	install -m 755 $(NAME).so $(DESTDIR)/$(SITE_ARCHDIR)/
+	install -m 755 _$(NAME).so $(DESTDIR)/$(SITE_ARCHDIR)/
+	install -m 755 $(NAME).py* $(DESTDIR)/$(SITE_ARCHDIR)/
 
