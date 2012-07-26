@@ -175,6 +175,7 @@ EXTRA_DIST = CA2/*.* CA3/*.* CA4/*.* CA5/*.* single.out/*.* \
              openssl.cnf.tmpl                               \
              perl-*.single                                  \
              ruby-*.single                                  \
+             python-*.single                                \
              iniParser/*.out iniParser/*.in                 \
              iniParser/*.ini iniParser/*.err                \
              TestLineFormater.hpp TestLineFormater2.hpp

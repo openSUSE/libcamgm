@@ -1,0 +1,160 @@
+#!/usr/bin/env python
+import sys
+sys.path.append("../swig/python")
+import os.path
+
+import CaMgm
+
+print "START"
+
+ca = CaMgm.CA("Test_CA1", "system", "./TestRepos/")
+rgd = ca.getRequestDefaults(CaMgm.E_Client_Req)
+
+rdnlist = rgd.getSubjectDN().getDN()
+
+for rdn in rdnlist:
+
+    print "DN Key %s" % rdn.getType()
+
+    if rdn.getType() == "countryName":
+        rdn.setRDNValue("DE")
+    elif rdn.getType() == "commonName":
+        rdn.setRDNValue("Full Test Certificate Python")
+    elif rdn.getType() == "emailAddress":
+        rdn.setRDNValue('suse@suse.de')
+
+dn = CaMgm.DNObject(rdnlist)
+rgd.setSubjectDN(dn)
+
+r = ca.createRequest("system", rgd, CaMgm.E_Client_Req)
+
+print "RETURN Request "
+
+cid = ca.getIssueDefaults(CaMgm.E_Client_Cert)
+
+# ------------------------ create netscape extension -----------------------------
+
+cid.extensions().nsBaseUrl().setValue("http://www.my-company.com/")
+
+cid.extensions().nsRevocationUrl().setValue("http://www.my-company.com/revoke.pl")
+cid.extensions().nsCaRevocationUrl().setValue("http://www.my-company.com/CArevoke.pl")
+cid.extensions().nsRenewalUrl().setValue("http://www.my-company.com/renew.pl")
+cid.extensions().nsCaPolicyUrl().setValue("http://www.my-company.com/policy.html")
+cid.extensions().nsSslServerName().setValue("*.my-company.com")
+cid.extensions().nsComment().setValue("My Company Certificate")
+
+# ------------------------ create bit extension -----------------------------
+
+cid.extensions().keyUsage().setKeyUsage(CaMgm.KeyUsageExt.decipherOnly)
+cid.extensions().nsCertType().setNsCertType(CaMgm.NsCertTypeExt.objCA |
+                                            CaMgm.NsCertTypeExt.emailCA |
+                                            CaMgm.NsCertTypeExt.sslCA)
+
+# ----------------- create basic constrains extension -----------------------
+
+cid.extensions().basicConstraints().setBasicConstraints(1, 3)
+
+# ----------------- create extended keyUsage extension ----------------------
+
+sl = CaMgm.StringList()
+sl.append("2.3.4.5")
+sl.append("2.12.10.39")
+sl.append("codeSigning")
+sl.append("msCTLSign")
+sl.append("nsSGC")
+
+cid.extensions().extendedKeyUsage().setExtendedKeyUsage( sl )
+
+# ------------------------ create key identifier extension -----------------------------
+
+cid.extensions().subjectKeyIdentifier().setSubjectKeyIdentifier(1)
+cid.extensions().authorityKeyIdentifier().setKeyID(CaMgm.AuthorityKeyIdentifierGenerateExt.KeyID_always)
+cid.extensions().authorityKeyIdentifier().setIssuer(CaMgm.AuthorityKeyIdentifierGenerateExt.Issuer_always)
+
+# ------------------------ create alternative extension -----------------------------
+
+list = CaMgm.LiteralValueList()
+
+list.append(CaMgm.LiteralValue("IP", "164.34.35.184"))
+list.append(CaMgm.LiteralValue("DNS", "ca.my-company.com"))
+list.append(CaMgm.LiteralValue("RID", "1.2.3.4"))
+list.append(CaMgm.LiteralValue("email", 'me@my-company.com'))
+list.append(CaMgm.LiteralValue("URI", "http://www.my-company.com/"))
+
+cid.extensions().subjectAlternativeName().setCopyEmail(True)
+cid.extensions().subjectAlternativeName().setAlternativeNameList(list)
+cid.extensions().issuerAlternativeName().setCopyIssuer(True)
+cid.extensions().issuerAlternativeName().setAlternativeNameList(list)
+
+# ---------------- create authority information extension ------------------------
+
+info = CaMgm.AuthorityInformationList()
+info.append(CaMgm.AuthorityInformation("OCSP",
+                                       CaMgm.LiteralValue("URI", "http://www.my-company.com/ocsp.pl")))
+info.append(CaMgm.AuthorityInformation("caIssuers",
+                                       CaMgm.LiteralValue("URI", "http://www.my-company.com/caIssuer.html")))
+
+cid.extensions().authorityInfoAccess().setAuthorityInformation(info)
+
+# ------------------------ create CRL dist point extension -----------------------
+
+crldist = CaMgm.LiteralValueList()
+crldist.append(CaMgm.LiteralValue("URI", "ldap://ldap.my-company.com/?ou=PKI%2ddc=my-company%2ddc=com"))
+
+cid.extensions().crlDistributionPoints().setCRLDistributionPoints(crldist)
+
+# -------------------- create certificate policy extension -----------------------
+
+p = CaMgm.CertificatePolicyList()
+p.append(CaMgm.CertificatePolicy("1.12.35.1"))
+
+p2 = CaMgm.CertificatePolicy()
+p2.setPolicyIdentifier("1.3.6.8")
+
+slp = CaMgm.StringList()
+slp.append("http://www.my-company.com/")
+slp.append("http://www2.my-company.com/")
+p2.setCpsURI(slp)
+
+num = CaMgm.Int32List()
+num.append(1)
+num.append(5)
+num.append(8)
+
+un = CaMgm.UserNotice()
+un.setExplicitText("This is the explicite Text")
+un.setOrganizationNotice("My Company", num)
+
+unl = CaMgm.UserNoticeList()
+unl.append(un)
+p2.setUserNoticeList(unl)
+p.append(p2)
+
+cid.extensions().certificatePolicies().setPolicies(p)
+
+#---------------------------------------------------------------------------------
+
+c = ca.issueCertificate(r, cid, CaMgm.E_CA_Cert)
+
+print "RETURN Certificate "
+
+if os.path.exists("./TestRepos/Test_CA1/newcerts/%s.pem" % c):
+    print "Certificate exists: true"
+
+cd = ca.getCertificate(c)
+
+ret = cd.getExtensions().dump()
+
+for ext in ret:
+
+    if ext.find("KeyID") >= 0:
+        print "found KeyID"
+    else:
+        print "%s" % ext
+
+print "DONE"
+
+
+
+
+
