@@ -26,7 +26,7 @@
 Name:		libcamgm
 Version:	1.0.0
 Release:	0
-License:	GPL-2.0
+License:	LGPL-2.1
 Group:		Development/Libraries/C and C++
 Url:            https://github.com/openSUSE/libcamgm
 BuildRoot:	%{_tmppath}/%{name}-%{version}-build
@@ -57,7 +57,7 @@ The CA Management Library provides methods for managing a certificate authority.
 
 %package -n %{name}100
 Group:      Development/Libraries/C and C++
-License:    GPL-2.0
+License:    LGPL-2.1
 Summary:    CA Management Library
 
 %description -n %{name}100
@@ -69,7 +69,7 @@ Requires:       %{name}100 = %version
 Requires:       openssl-devel
 Requires:       pcre-devel
 Group:		Development/Libraries/C and C++
-License:        GPL-2.0
+License:        LGPL-2.1
 Summary:	CA Management Library Development Files
 %if 0%{?suse_version} >= 1030
 Requires: libopenssl-devel
@@ -87,7 +87,7 @@ Requires: perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 Requires:       perl = %{perl_version}
 %endif
 Group:		Development/Languages/Perl
-License:        GPL-2.0
+License:        LGPL-2.1
 Summary:	CA Management Library Perl Bindings
 
 %description -n perl-camgm
@@ -99,7 +99,7 @@ This package provides the perl bindings to the CA Management Library.
 %package -n ruby-camgm
 Requires: ruby
 Group:      Development/Languages/Ruby
-License:        GPL-2.0
+License:        LGPL-2.1
 Summary:    CA Management Library Ruby Bindings
 
 %description -n ruby-camgm
@@ -111,7 +111,7 @@ This package provides the ruby bindings to the CA Management Library.
 %package -n python-camgm
 Requires: python
 Group:      Development/Languages/Python
-License:        GPL-2.0
+License:        LGPL-2.1
 Summary:    CA Management Library Python Bindings
 
 %description -n python-camgm
