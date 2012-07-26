@@ -19,6 +19,7 @@
 #endif
 
 %{
+#define SWIG_FILE_WITH_INIT
 #include <ca-mgm/ByteBuffer.hpp>
 #include <ca-mgm/LogControl.hpp>
 %}
