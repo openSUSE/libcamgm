@@ -49,5 +49,7 @@ $(NAME)_wrap.cxx: $(sources)
 install-data-local:
 	mkdir -p $(DESTDIR)/$(SITE_ARCHDIR)
 	install -m 755 _$(NAME).so $(DESTDIR)/$(SITE_ARCHDIR)/
-	install -m 755 $(NAME).py* $(DESTDIR)/$(SITE_ARCHDIR)/
+	install -m 755 $(NAME).py $(DESTDIR)/$(SITE_ARCHDIR)/
+	python -c "import compileall; compileall.compile_dir('$(DESTDIR)/$(SITE_ARCHDIR)', 1, force=1)"
+	python -O -c "import compileall; compileall.compile_dir('$(DESTDIR)/$(SITE_ARCHDIR)', 1, force=1)"
 
