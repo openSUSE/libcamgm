@@ -99,8 +99,8 @@ doc/autodocs/tabs.css
 libcamgm.pc
 src/.libs/
 src/libcamgm.la
-swig/perl5/CaMgm.pm
-swig/perl5/CaMgm.so
+CaMgm.p*
+CaMgm.so
 *_wrap.cxx
 swig/perl5/auto/
 testsuite/CA2/out/
