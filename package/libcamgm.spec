@@ -172,6 +172,10 @@ rm -rf "$RPM_BUILD_ROOT"
 
 %files -n %{name}100 -f %name.lang
 %defattr(-,root,root)
+%docdir %_defaultdocdir/libcamgm
+%dir %_defaultdocdir/libcamgm
+%_defaultdocdir/libcamgm/COPYING
+%_defaultdocdir/libcamgm/README.mkd
 %attr(0700,root,root) %dir /var/lib/CAM
 %attr(0755,root,root) %dir /var/lib/CAM/.cas
 %config /var/lib/CAM/openssl.cnf.tmpl
@@ -179,6 +183,10 @@ rm -rf "$RPM_BUILD_ROOT"
 
 %files devel
 %defattr(-,root,root)
+%docdir %_defaultdocdir/libcamgm
+%dir %_defaultdocdir/libcamgm
+%_defaultdocdir/libcamgm/autodocs
+%_defaultdocdir/libcamgm/examples
 %{_libdir}/lib*.so
 %{_libdir}/lib*.la
 %dir %{_includedir}/ca-mgm
@@ -188,7 +196,6 @@ rm -rf "$RPM_BUILD_ROOT"
 %dir %{_datadir}/libcamgm/typemaps/
 %dir %{_datadir}/libcamgm/typemaps/perl5
 %{_datadir}/libcamgm/typemaps/perl5/*.i
-%doc %{_prefix}/share/doc/packages/libcamgm
 
 %files -n perl-camgm
 %defattr(-,root,root)

@@ -31,13 +31,16 @@ MAINTAINERCLEANFILES = configure $(RPMNAME).pc Makefile Makefile.in  \
 maintainer-clean-local:
 	-rm -rf m4
 
+pkgdocdir = $(docdir)
+pkgdoc_DATA = README.mkd COPYING
+
 configure: $(srcdir)/VERSION
 	$(MAKE) -f Makefile.cvs all
 
 EXTRA_DIST = \
 	VERSION RPMNAME MAINTAINER configure.in Makefile.cvs \
 	$(SUBDIRS_FILE) $(ACINCLUDE_FILE) COPYING \
-	$(RPMNAME).pc.in README
+	$(RPMNAME).pc.in README.mkd
 
 show-extra-dist:
 	@echo $(EXTRA_DIST)
