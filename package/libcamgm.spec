@@ -16,7 +16,7 @@
 #
 
 
-%define ruby_archdir %(ruby -r rbconfig -e "print Config::CONFIG['vendorarchdir']")
+%define ruby_archdir %(ruby -r rbconfig -e "print RbConfig::CONFIG['vendorarchdir']")
 
 Name:           libcamgm
 Version:        1.0.0
