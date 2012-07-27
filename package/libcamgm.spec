@@ -1,11 +1,7 @@
 #
-# spec file for package libcamgm (Version 1.0.0)
+# spec file for package libcamgm
 #
-# Copyright (c) 2006 SUSE LINUX Products GmbH, Nuernberg, Germany.
-# Copyright (c) 2007 SUSE LINUX Products GmbH, Nuernberg, Germany.
-# Copyright (c) 2008 SUSE LINUX Products GmbH, Nuernberg, Germany.
-# Copyright (c) 2009 SUSE LINUX Products GmbH, Nuernberg, Germany.
-# Copyright (c) 2010 SUSE LINUX Products GmbH, Nuernberg, Germany.
+# Copyright (c) 2012 SUSE LINUX Products GmbH, Nuernberg, Germany.
 #
 # All modifications and additions to the file contributed by third parties
 # remain the property of their copyright owners, unless otherwise agreed
@@ -15,50 +11,60 @@
 # case the license is the MIT License). An "Open Source License" is a
 # license that conforms to the Open Source Definition (Version 1.9)
 # published by the Open Source Initiative.
-#
+
 # Please submit bugfixes or comments via http://bugs.opensuse.org/
 #
 
-# norootforbuild
 
 %define ruby_archdir %(ruby -r rbconfig -e "print Config::CONFIG['vendorarchdir']")
 
-Name:		libcamgm
-Version:	1.0.0
-Release:	0
-License:	LGPL-2.1
-Group:		Development/Libraries/C and C++
+Name:           libcamgm
+Version:        1.0.0
+Release:        0
 Url:            https://github.com/openSUSE/libcamgm
-BuildRoot:	%{_tmppath}/%{name}-%{version}-build
+BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
-Source0:	libcamgm-1.0.0.tar.bz2
+Source0:        libcamgm-1.0.0.tar.bz2
 Source1:        baselibs.conf
-prefix:		/usr
+Prefix:         /usr
 
-BuildRequires: curl gcc-c++ perl-gettext pkg-config
-BuildRequires: libopenssl-devel openssl doxygen swig pcre-devel
-BuildRequires: boost-devel ruby-devel python-devel dejagnu
-BuildRequires: autoconf automake libtool
-BuildRequires: translation-update-upstream
-Requires: openssl
+BuildRequires:  autoconf
+BuildRequires:  automake
+BuildRequires:  boost-devel
+BuildRequires:  curl
+BuildRequires:  dejagnu
+BuildRequires:  doxygen
+BuildRequires:  gcc-c++
+BuildRequires:  libopenssl-devel
+BuildRequires:  libtool
+BuildRequires:  openssl
+BuildRequires:  pcre-devel
+BuildRequires:  perl-gettext
+BuildRequires:  pkg-config
+BuildRequires:  python-devel
+BuildRequires:  ruby-devel
+BuildRequires:  swig
+BuildRequires:  translation-update-upstream
+Requires:       openssl
 
 %if 0%{?fedora_version}
-BuildRequires: openssl-perl
-Requires: openssl-perl
+BuildRequires:  openssl-perl
+Requires:       openssl-perl
 %endif
 %if 0%{?fedora_version} >= 7
-BuildRequires: perl-ExtUtils-Embed
+BuildRequires:  perl-ExtUtils-Embed
 %endif
 
-Summary:	CA Management Library
+Summary:        CA Management Library
+License:        LGPL-2.1
+Group:          Development/Libraries/C and C++
 
 %description
 The CA Management Library provides methods for managing a certificate authority.
 
 %package -n %{name}100
-Group:      Development/Libraries/C and C++
-License:    LGPL-2.1
-Summary:    CA Management Library
+Summary:        CA Management Library
+Group:          Development/Libraries/C and C++
 
 %description -n %{name}100
 The CA Management Library provides methods for managing a certificate authority.
@@ -68,11 +74,10 @@ The CA Management Library provides methods for managing a certificate authority.
 Requires:       %{name}100 = %version
 Requires:       openssl-devel
 Requires:       pcre-devel
-Group:		Development/Libraries/C and C++
-License:        LGPL-2.1
-Summary:	CA Management Library Development Files
+Summary:        CA Management Library Development Files
+Group:          Development/Libraries/C and C++
 %if 0%{?suse_version} >= 1030
-Requires: libopenssl-devel
+Requires:       libopenssl-devel
 %endif
 
 %description devel
@@ -82,13 +87,12 @@ development documentation.
 
 %package -n perl-camgm
 %if 0%{?fedora_version} >= 7
-Requires: perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
+Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 %else
 Requires:       perl = %{perl_version}
 %endif
-Group:		Development/Languages/Perl
-License:        LGPL-2.1
-Summary:	CA Management Library Perl Bindings
+Summary:        CA Management Library Perl Bindings
+Group:          Development/Languages/Perl
 
 %description -n perl-camgm
 The CA Management Library provides methods for managing
@@ -97,10 +101,9 @@ a Certificate Authority.
 This package provides the perl bindings to the CA Management Library.
 
 %package -n ruby-camgm
-Requires: ruby
-Group:      Development/Languages/Ruby
-License:        LGPL-2.1
-Summary:    CA Management Library Ruby Bindings
+Requires:       ruby
+Summary:        CA Management Library Ruby Bindings
+Group:          Development/Languages/Ruby
 
 %description -n ruby-camgm
 The CA Management Library provides methods for managing
@@ -109,10 +112,9 @@ a Certificate Authority.
 This package provides the ruby bindings to the CA Management Library.
 
 %package -n python-camgm
-Requires: python
-Group:      Development/Languages/Python
-License:        LGPL-2.1
-Summary:    CA Management Library Python Bindings
+Requires:       python
+Summary:        CA Management Library Python Bindings
+Group:          Development/Languages/Python
 
 %description -n python-camgm
 The CA Management Library provides methods for managing
@@ -162,13 +164,8 @@ make check DESTDIR="$RPM_BUILD_ROOT" ||:
 %post -n %{name}100
 /sbin/ldconfig
 
-
 %postun -n %{name}100
 /sbin/ldconfig
-
-
-%clean
-rm -rf "$RPM_BUILD_ROOT"
 
 %files -n %{name}100 -f %name.lang
 %defattr(-,root,root)
@@ -211,3 +208,4 @@ rm -rf "$RPM_BUILD_ROOT"
 %defattr(-,root,root)
 %py_libdir/*
 
+%changelog
