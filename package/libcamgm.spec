@@ -1,7 +1,7 @@
 #
 # spec file for package libcamgm
 #
-# Copyright (c) 2012 SUSE LINUX Products GmbH, Nuernberg, Germany.
+# Copyright (c) 2013 SUSE LINUX Products GmbH, Nuernberg, Germany.
 #
 # All modifications and additions to the file contributed by third parties
 # remain the property of their copyright owners, unless otherwise agreed
@@ -149,7 +149,7 @@ install -m 0644 %{_builddir}/%{name}-%{version}/src/openssl.cnf.tmpl $RPM_BUILD_
 
 %check
 # testcases run only successfull with openssl >= 1.0 
-%if 0%{?suse_version} > 1120
+%if 0%{?suse_version} > 1210
 # required for perl test cases
 export LD_LIBRARY_PATH="$RPM_BUILD_ROOT/usr/lib/"
 %ifarch x86_64
