@@ -218,6 +218,15 @@ namespace ca_mgm
    }
     ///////////////////////////////////////////////////////////////////
 
+    /** \relates RWCOW_pointer Clone the underlying object.
+     * Calls \a rhs <tt>-\>clone()</tt>. Being defined as a
+     * function outside \ref RWCOW_pointer allows to overload
+     * it, in case a specific \a _D does not have <tt>clone()</tt>.
+    */
+    template<class _D>
+      inline _D * rwcowClone( const _D * rhs )
+      { return rhs->clone(); }
+
     ///////////////////////////////////////////////////////////////////
     //
     //	CLASS NAME : RW_pointer
@@ -322,6 +331,9 @@ namespace ca_mgm
         _Ptr getPtr()
         { return _dptr; }
 
+        _constPtr cgetPtr()
+        { return _dptr; }
+
       private:
         _Ptr _dptr;
       };
@@ -333,8 +345,7 @@ namespace ca_mgm
      * if the pointer is \c NULL.
     */
     template<class _D, class _Ptr>
-      inline std::ostream &
-      operator<<( std::ostream & str, const RW_pointer<_D, _Ptr> & obj )
+      inline std::ostream & operator<<( std::ostream & str, const RW_pointer<_D, _Ptr> & obj )
       {
         if ( obj.get() )
           return str << *obj.get();
@@ -343,30 +354,46 @@ namespace ca_mgm
 
     /** \relates RW_pointer */
     template<class _D, class _Ptr>
-      inline bool
-      operator==( const RW_pointer<_D, _Ptr> & lhs, const RW_pointer<_D, _Ptr> & rhs )
-      {
-        return( lhs.get() == rhs.get() );
-      }
+      inline bool operator==( const RW_pointer<_D, _Ptr> & lhs, const RW_pointer<_D, _Ptr> & rhs )
+      { return( lhs.get() == rhs.get() ); }
+    /** \relates RW_pointer */
+     template<class _D, class _Ptr>
+       inline bool operator==( const RW_pointer<_D, _Ptr> & lhs, const typename _Ptr::_Ptr & rhs )
+       { return( lhs.get() == rhs.get() ); }
+    /** \relates RW_pointer */
+     template<class _D, class _Ptr>
+       inline bool operator==( const typename _Ptr::_Ptr & lhs, const RW_pointer<_D, _Ptr> & rhs )
+       { return( lhs.get() == rhs.get() ); }
+    /** \relates RW_pointer */
+     template<class _D, class _Ptr>
+       inline bool operator==( const RW_pointer<_D, _Ptr> & lhs, const typename _Ptr::_constPtr & rhs )
+       { return( lhs.get() == rhs.get() ); }
+    /** \relates RW_pointer */
+     template<class _D, class _Ptr>
+       inline bool operator==( const typename _Ptr::_constPtr & lhs, const RW_pointer<_D, _Ptr> & rhs )
+       { return( lhs.get() == rhs.get() ); }
+
 
     /** \relates RW_pointer */
     template<class _D, class _Ptr>
-      inline bool
-      operator!=( const RW_pointer<_D, _Ptr> & lhs, const RW_pointer<_D, _Ptr> & rhs )
-      {
-        return ! ( lhs == rhs );
-      }
-
-    ///////////////////////////////////////////////////////////////////
-
-    /** \relates RWCOW_pointer Clone the underlying object.
-     * Calls \a rhs <tt>-\>clone()</tt>. Being defined as a
-     * function outside \ref RWCOW_pointer allows to overload
-     * it, in case a specific \a _D does not have <tt>clone()</tt>.
-    */
-    template<class _D>
-      inline _D * rwcowClone( const _D * rhs )
-      { return rhs->clone(); }
+      inline bool operator!=( const RW_pointer<_D, _Ptr> & lhs, const RW_pointer<_D, _Ptr> & rhs )
+      { return ! ( lhs == rhs ); }
+    /** \relates RW_pointer */
+     template<class _D, class _Ptr>
+       inline bool operator!=( const RW_pointer<_D, _Ptr> & lhs, const typename _Ptr::_Ptr & rhs )
+       { return ! ( lhs == rhs ); }
+    /** \relates RW_pointer */
+     template<class _D, class _Ptr>
+       inline bool operator!=( const typename _Ptr::_Ptr & lhs, const RW_pointer<_D, _Ptr> & rhs )
+       { return ! ( lhs == rhs ); }
+    /** \relates RW_pointer */
+     template<class _D, class _Ptr>
+       inline bool operator!=( const RW_pointer<_D, _Ptr> & lhs, const typename _Ptr::_constPtr & rhs )
+       { return ! ( lhs == rhs ); }
+    /** \relates RW_pointer */
+     template<class _D, class _Ptr>
+       inline bool operator!=( const typename _Ptr::_constPtr & lhs, const RW_pointer<_D, _Ptr> & rhs )
+       { return ! ( lhs == rhs ); }
 
 
     ///////////////////////////////////////////////////////////////////
@@ -443,6 +470,9 @@ namespace ca_mgm
         _Ptr getPtr()
         { assertUnshared(); return _dptr; }
 
+        _constPtr cgetPtr()
+        { return _dptr; }
+
       private:
 
         void assertUnshared()
@@ -462,8 +492,7 @@ namespace ca_mgm
      * if the pointer is \c NULL.
     */
     template<class _D, class _Ptr>
-      inline std::ostream &
-      operator<<( std::ostream & str, const RWCOW_pointer<_D, _Ptr> & obj )
+      inline std::ostream & operator<<( std::ostream & str, const RWCOW_pointer<_D, _Ptr> & obj )
       {
         if ( obj.get() )
           return str << *obj.get();
@@ -472,19 +501,45 @@ namespace ca_mgm
 
     /** \relates RWCOW_pointer */
     template<class _D, class _Ptr>
-      inline bool
-      operator==( const RWCOW_pointer<_D, _Ptr> & lhs, const RWCOW_pointer<_D, _Ptr> & rhs )
-      {
-        return( lhs.get() == rhs.get() );
-      }
+      inline bool operator==( const RWCOW_pointer<_D, _Ptr> & lhs, const RWCOW_pointer<_D, _Ptr> & rhs )
+      { return( lhs.get() == rhs.get() ); }
+    /** \relates RWCOW_pointer */
+    template<class _D, class _Ptr>
+      inline bool operator==( const RWCOW_pointer<_D, _Ptr> & lhs, const typename _Ptr::_Ptr & rhs )
+      { return( lhs.get() == rhs.get() ); }
+    /** \relates RWCOW_pointer */
+    template<class _D, class _Ptr>
+      inline bool operator==( const typename _Ptr::_Ptr & lhs, const RWCOW_pointer<_D, _Ptr> & rhs )
+      { return( lhs.get() == rhs.get() ); }
+    /** \relates RWCOW_pointer */
+    template<class _D, class _Ptr>
+      inline bool operator==( const RWCOW_pointer<_D, _Ptr> & lhs, const typename _Ptr::_constPtr & rhs )
+      { return( lhs.get() == rhs.get() ); }
+    /** \relates RWCOW_pointer */
+    template<class _D, class _Ptr>
+      inline bool operator==( const typename _Ptr::_constPtr & lhs, const RWCOW_pointer<_D, _Ptr> & rhs )
+      { return( lhs.get() == rhs.get() ); }
 
     /** \relates RWCOW_pointer */
     template<class _D, class _Ptr>
-      inline bool
-      operator!=( const RWCOW_pointer<_D, _Ptr> & lhs, const RWCOW_pointer<_D, _Ptr> & rhs )
-      {
-        return ! ( lhs == rhs );
-      }
+      inline bool operator!=( const RWCOW_pointer<_D, _Ptr> & lhs, const RWCOW_pointer<_D, _Ptr> & rhs )
+      { return ! ( lhs == rhs ); }
+    /** \relates RWCOW_pointer */
+    template<class _D, class _Ptr>
+      inline bool operator!=( const RWCOW_pointer<_D, _Ptr> & lhs, const typename _Ptr::_Ptr & rhs )
+      { return ! ( lhs == rhs ); }
+    /** \relates RWCOW_pointer */
+    template<class _D, class _Ptr>
+      inline bool operator!=( const typename _Ptr::_Ptr & lhs, const RWCOW_pointer<_D, _Ptr> & rhs )
+      { return ! ( lhs == rhs ); }
+    /** \relates RWCOW_pointer */
+    template<class _D, class _Ptr>
+      inline bool operator!=( const RWCOW_pointer<_D, _Ptr> & lhs, const typename _Ptr::_constPtr & rhs )
+      { return ! ( lhs == rhs ); }
+    /** \relates RWCOW_pointer */
+    template<class _D, class _Ptr>
+      inline bool operator!=( const typename _Ptr::_constPtr & lhs, const RWCOW_pointer<_D, _Ptr> & rhs )
+      { return ! ( lhs == rhs ); }
 
     ///////////////////////////////////////////////////////////////////
 
