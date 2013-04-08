@@ -273,7 +273,9 @@ namespace ca_mgm
       {
         typedef typename _Traits::_Ptr               _Ptr;
         typedef typename _Traits::_constPtr          _constPtr;
+#if defined( BOOST_NO_CXX11_EXPLICIT_CONVERSION_OPERATORS ) || defined( BOOST_NO_CXX11_NULLPTR )
         typedef typename _Ptr::unspecified_bool_type unspecified_bool_type;
+#endif
 
         explicit
         RW_pointer( typename _Ptr::element_type * dptr = 0 )
@@ -297,8 +299,12 @@ namespace ca_mgm
         void swap( _Ptr & rhs )
         { _dptr.swap( rhs ); }
 
+#if defined( BOOST_NO_CXX11_EXPLICIT_CONVERSION_OPERATORS ) || defined( BOOST_NO_CXX11_NULLPTR )
         operator unspecified_bool_type() const
         { return _dptr; }
+#else
+        explicit operator bool () const { return _dptr.get() != 0; }
+#endif
 
         const _D & operator*() const
         { return *_dptr; };
@@ -412,8 +418,9 @@ namespace ca_mgm
       {
         typedef typename _Traits::_Ptr               _Ptr;
         typedef typename _Traits::_constPtr          _constPtr;
+#if defined( BOOST_NO_CXX11_EXPLICIT_CONVERSION_OPERATORS ) || defined( BOOST_NO_CXX11_NULLPTR )
         typedef typename _Ptr::unspecified_bool_type unspecified_bool_type;
-
+#endif
         explicit
         RWCOW_pointer( typename _Ptr::element_type * dptr = 0 )
         : _dptr( dptr )
@@ -436,8 +443,12 @@ namespace ca_mgm
         void swap( _Ptr & rhs )
         { _dptr.swap( rhs ); }
 
+#if defined( BOOST_NO_CXX11_EXPLICIT_CONVERSION_OPERATORS ) || defined( BOOST_NO_CXX11_NULLPTR )
         operator unspecified_bool_type() const
         { return _dptr; }
+#else
+        explicit operator bool () const { return _dptr.get() != 0; }
+#endif
 
         const _D & operator*() const
         { return *_dptr; };
