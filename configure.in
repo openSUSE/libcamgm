@@ -121,8 +121,8 @@ dnl     AC_DEFINE([HAVE_CXX0X], 1, [Define to 1 if the c++ compiler knows <unord
 dnl     Y2CORE_CFLAGS="-std=c++0x"
         # gnu++0x instead of c++0x so that
         # we do not lose gnu extensions like typeof
-        CFLAGS="${CFLAGS} -std=gnu++0x -DHAVE_CXX0X"
-        CXXFLAGS="${CXXFLAGS} -std=gnu++0x -DHAVE_CXX0X"
+        CFLAGS="${CFLAGS} -std=c++0x"
+        CXXFLAGS="${CXXFLAGS} -std=c++0x"
         AC_MSG_RESULT([c++0x])
         ;;
     *)
