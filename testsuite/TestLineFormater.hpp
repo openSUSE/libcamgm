@@ -18,9 +18,16 @@
                                   int                      ,
                                   const std::string &      message_r )
       {
-         return ca_mgm::str::form( "%-5s %s - %s",
-                                   ca_mgm::logger::logLevelToString( level_r).c_str(),
-                                   group_r.c_str(), message_r.c_str());
+         if( message_r.find("Pid ") == std::string::npos )
+         {
+             return ca_mgm::str::form( "%-5s %s - %s",
+                                       ca_mgm::logger::logLevelToString( level_r).c_str(),
+                                       group_r.c_str(), message_r.c_str());
+         }
+         else
+         {
+             return "";
+         }
       }
       virtual ~TestLineFormater() {}
     };
