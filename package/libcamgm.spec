@@ -149,7 +149,7 @@ install -m 0644 %{_builddir}/%{name}-%{version}/src/openssl.cnf.tmpl $RPM_BUILD_
 
 %check
 # testcases run only successfull with openssl >= 1.0 
-%if 0%{?suse_version} > 1210
+%if 0%{?suse_version} > 1220
 # required for perl test cases
 export LD_LIBRARY_PATH="$RPM_BUILD_ROOT/usr/lib/"
 %ifarch x86_64
