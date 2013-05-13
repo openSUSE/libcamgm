@@ -148,6 +148,8 @@ int wrapExecuteProcessAndGatherOutput(
   }
   while(len == tmpBuffLen);
   ::fclose(stderr_output);
+  close(stderr_pipes[0]);
+  close(stderr_pipes[1]);
 
   if(exitStatus)
   {
