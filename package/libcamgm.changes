@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Mon May 13 15:39:08 UTC 2013 - mc@suse.com
+
+- close pipes after exec external program is finished
+
+-------------------------------------------------------------------
 Mon Apr  8 13:38:42 CEST 2013 - mc@suse.de
 
 - fix build with boost 1.53
