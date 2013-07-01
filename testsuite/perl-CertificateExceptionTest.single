@@ -56,6 +56,7 @@ eval{
 if($@)
 {
     use Data::Dumper;
+    $Data::Dumper::Sortkeys = 1;
 
     print "1:".Data::Dumper->Dump([$@]);
     print $@->{type}.":".$@->{code}.":".$@->{message}."\n";
@@ -75,6 +76,7 @@ eval {
 if($@)
 {
     use Data::Dumper;
+    $Data::Dumper::Sortkeys = 1;
 
     print "2:".Data::Dumper->Dump([$@]);
     print $@->{type}.":".$@->{code}.":".$@->{message}."\n";
