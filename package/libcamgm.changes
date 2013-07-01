@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Mon Jul  1 15:57:02 CEST 2013 - mc@suse.de
+
+- sort dumper output to make testsuite reproducible
+
+-------------------------------------------------------------------
 Mon May 13 15:39:08 UTC 2013 - mc@suse.com
 
 - close pipes after exec external program is finished
