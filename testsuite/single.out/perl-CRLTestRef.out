@@ -5,9 +5,9 @@ AuthorityKeyIdentifierExt::dump()
 ExtensionBase::dump()
 is Present = true
 is Critical = false
-KeyID = c6:89:52:90:26:46:f1:c4:1b:80:99:74:a5:b5:76:94:bd:da:81:21
+KeyID = b3:e9:ba:aa:1d:7d:47:3c:c7:57:c6:58:7e:8f:8b:e5:43:3d:22:f8
 DirName = /C=DE/CN=Test CA/emailAddress=suse@suse.de
-serial = c9:d1:26:e7:ac:d4:49:e6
+serial = b3:59:94:a2:87:7d:b4:35
 IssuerAlternativeNameExt::dump()
 ExtensionBase::dump()
 is Present = true

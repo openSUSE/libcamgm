@@ -82,7 +82,7 @@ is Present = true
 is Critical = false
 found KeyID
 DirName = /C=DE/CN=Test CA/emailAddress=suse@suse.de
-serial = c9:d1:26:e7:ac:d4:49:e6
+serial = b3:59:94:a2:87:7d:b4:35
 SubjectAlternativeNameExt::dump()
 ExtensionBase::dump()
 is Present = true
