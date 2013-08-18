@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Sun Aug 18 14:01:54 UTC 2013 - mc@suse.com
+
+- version 1.0.1
+- update CA certificate in the testsuite to prevent expiration
+- update testcases because of the new CA certificate
+
+-------------------------------------------------------------------
 Mon Jul  1 15:57:02 CEST 2013 - mc@suse.de
 
 - sort dumper output to make testsuite reproducible

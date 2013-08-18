@@ -19,12 +19,12 @@
 %define ruby_archdir %(ruby -r rbconfig -e "print RbConfig::CONFIG['vendorarchdir']")
 
 Name:           libcamgm
-Version:        1.0.0
+Version:        1.0.1
 Release:        0
 Url:            https://github.com/openSUSE/libcamgm
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
-Source0:        libcamgm-1.0.0.tar.bz2
+Source0:        libcamgm-%{version}.tar.bz2
 Source1:        baselibs.conf
 Prefix:         /usr
 
