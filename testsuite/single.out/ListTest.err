@@ -8,6 +8,7 @@ DEBUG ca-mgm -
 DEBUG ca-mgm - readDir ./TestRepos/Test_CA2/newcerts 
 DEBUG ca-mgm - Append '/SUSE Inc.\Gmbh' to commonName
 DEBUG ca-mgm - Append '/SUSE Inc.\Gmbh' to commonName
+DEBUG ca-mgm - Append '/SUSE Inc.Gmbh' to commonName
 DEBUG ca-mgm - removeFile ./TestRepos/Test_CA2/openssl.cnf
 DEBUG IniParser - File ./TestRepos//Test_CA2/openssl.cnf did not change. Not saving.
 DEBUG IniParser - File ./TestRepos//Test_CA2/openssl.cnf.tmpl did not change. Not saving.

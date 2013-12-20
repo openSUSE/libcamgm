@@ -30,6 +30,7 @@ DEBUG ca-mgm -
 DEBUG ca-mgm - readDir ./TestRepos/Test_CA2/newcerts 
 DEBUG ca-mgm - Append '/SUSE Inc.\Gmbh' to commonName
 DEBUG ca-mgm - Append '/SUSE Inc.\Gmbh' to commonName
+DEBUG ca-mgm - Append '/SUSE Inc.Gmbh' to commonName
 DEBUG IniParser - File ./TestRepos//Test_CA2/openssl.cnf did not change. Not saving.
 DEBUG ca-mgm - Command: /usr/bin/openssl verify -CApath ./TestRepos//.cas/ -purpose any -crl_check_all ./TestRepos/Test_CA2/newcerts/01:b4d4e48e6de644c953290eb2854a6ced-1124374396.pem
 ERROR ca-mgm - Certificate invalid! (certificate has expired / error 10 at 0 depth lookup:certificate has expired)
@@ -63,6 +64,9 @@ DEBUG ca-mgm - Command: /usr/bin/openssl verify -CApath ./TestRepos//.cas/ -purp
 ERROR ca-mgm - Certificate invalid! (certificate revoked / error 23 at 0 depth lookup:certificate revoked)
 DEBUG IniParser - File ./TestRepos//Test_CA2/openssl.cnf did not change. Not saving.
 DEBUG ca-mgm - Command: /usr/bin/openssl verify -CApath ./TestRepos//.cas/ -purpose any -crl_check_all ./TestRepos/Test_CA2/newcerts/0A:0d03287ae454fab8a0e905499d5132fd-1158057443.pem
+ERROR ca-mgm - Certificate invalid! (certificate has expired / error 10 at 0 depth lookup:certificate has expired)
+DEBUG IniParser - File ./TestRepos//Test_CA2/openssl.cnf did not change. Not saving.
+DEBUG ca-mgm - Command: /usr/bin/openssl verify -CApath ./TestRepos//.cas/ -purpose any -crl_check_all ./TestRepos/Test_CA2/newcerts/0B:d12f85f32848ae7f9f1d8064813aaa53-1387539653.pem
 DEBUG ca-mgm - removeFile ./TestRepos/Test_CA2/openssl.cnf
 DEBUG IniParser - File ./TestRepos//Test_CA2/openssl.cnf did not change. Not saving.
 DEBUG IniParser - File ./TestRepos//Test_CA2/openssl.cnf.tmpl did not change. Not saving.
