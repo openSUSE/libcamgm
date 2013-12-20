@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Fri Dec 20 13:16:57 CET 2013 - mc@suse.de
+
+- version 1.0.2
+- add new valid certificate for tests to fix the testsuite
+
+-------------------------------------------------------------------
 Sun Aug 18 14:01:54 UTC 2013 - mc@suse.com
 
 - version 1.0.1
