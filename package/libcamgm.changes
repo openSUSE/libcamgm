@@ -1,4 +1,20 @@
 -------------------------------------------------------------------
+Sun Apr 13 13:13:01 UTC 2014 - mc@suse.com
+
+- version 1.0.3
+- support digest sha224, sha256, sha384 and sha512
+- make MD sha256 default
+- add tests for new message digest algorithms
+- update translation files
+- remove libcamgm-1.0.2.patch - integrated upstream
+
+-------------------------------------------------------------------
+Tue Mar 18 09:30:39 UTC 2014 - kkaempf@suse.com
+
+- use correct type when calling C++ from Python
+  add libcamgm-1.0.2.patch
+
+-------------------------------------------------------------------
 Fri Dec 20 13:16:57 CET 2013 - mc@suse.de
 
 - version 1.0.2
