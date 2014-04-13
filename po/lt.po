@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2012-07-23 16:26+0200\n"
+"POT-Creation-Date: 2014-04-13 15:19+0200\n"
 "PO-Revision-Date: 2009-10-04 14:28+0300\n"
 "Last-Translator: Mindaugas Baranauskas <embar@super.lt>\n"
 "Language-Team: Lietuvių\n"
@@ -44,7 +44,7 @@ msgstr ""
 #: src/CRLDistributionPointsExtension.cpp:72
 #: src/CRLDistributionPointsExtension.cpp:162 src/DNObject.cpp:500
 #: src/ExtendedKeyUsageExt.cpp:73 src/ExtendedKeyUsageExt.cpp:225
-#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:244
+#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:260
 #: src/StringExtensions.cpp:118 src/StringExtensions.cpp:195
 #: src/StringExtensions.cpp:283 src/StringExtensions.cpp:353
 #: src/StringExtensions.cpp:437 src/StringExtensions.cpp:507
@@ -98,7 +98,7 @@ msgid "This BitExtension is not present."
 msgstr ""
 
 #: src/BitExtensions.cpp:130 src/BitExtensions.cpp:243
-#: src/CertificateIssueData.cpp:215 src/CRLGenerationData.cpp:158
+#: src/CertificateIssueData.cpp:231 src/CRLGenerationData.cpp:158
 #: src/DNObject.cpp:258 src/IssuerAlternativeNameExtension.cpp:220
 #, fuzzy, c-format
 msgid "Wrong type: %d."
@@ -358,8 +358,8 @@ msgstr ""
 msgid "Invalid serial %s."
 msgstr "klaidingas tarnybos „%1“ vardas"
 
-#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:393
-#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:365
+#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:409
+#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:381
 msgid "Cannot create a memory BIO."
 msgstr ""
 
@@ -392,13 +392,13 @@ msgstr "Nepalaikomas viešojo rakto tipas."
 msgid "Unsupported public key algorithm."
 msgstr "Nepalaikomas viešojo rakto algoritmas."
 
-#: src/CertificateData_Priv.cpp:440 src/CRLData_Priv.cpp:354
-#: src/RequestData_Priv.cpp:272
+#: src/CertificateData_Priv.cpp:456 src/CRLData_Priv.cpp:370
+#: src/RequestData_Priv.cpp:288
 #, fuzzy, c-format
 msgid "Unsupported signature algorithm %s."
 msgstr "Nepalaikomas parašo algoritmas %1."
 
-#: src/CertificateIssueData.cpp:207
+#: src/CertificateIssueData.cpp:223
 msgid "Invalid CertificateIssueData object."
 msgstr "Klaidingas CertificateIssueData objektas."
 
@@ -429,15 +429,15 @@ msgstr ""
 msgid "Invalid CertificatePoliciesExt object."
 msgstr "Klaidingas CertificatePoliciesExt objektas."
 
-#: src/CRLData.cpp:220
+#: src/CRLData.cpp:232
 msgid "Entry not found."
 msgstr "Įrašas nerastas."
 
-#: src/CRLData_Priv.cpp:421
+#: src/CRLData_Priv.cpp:437
 msgid "Cannot parse CRL."
 msgstr "Nepavyksta išnagrinėti CRL."
 
-#: src/CRLData_Priv.cpp:434
+#: src/CRLData_Priv.cpp:450
 msgid "Error parsing the CRL."
 msgstr "Klaida, nagrinėjant CRL."
 
@@ -711,15 +711,15 @@ msgstr "Nepavyksta sukurti rinkmenos."
 msgid "Can not open file."
 msgstr "Nepavyksta atverti rinkmenos %1."
 
-#: src/RequestData_Priv.cpp:392
+#: src/RequestData_Priv.cpp:408
 msgid "Cannot parse the request."
 msgstr "Nepavyksta išnagrinėti reikalavimo."
 
-#: src/RequestData_Priv.cpp:405
+#: src/RequestData_Priv.cpp:421
 msgid "Error while parsing the request."
 msgstr "Klaida, nagrinėjant reikalavimą."
 
-#: src/RequestGenerationData.cpp:236
+#: src/RequestGenerationData.cpp:252
 msgid "Invalid RequestGenerationData object."
 msgstr "Klaidingas RequestGenerationData objektas."
 

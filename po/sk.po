@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2012-07-23 16:26+0200\n"
+"POT-Creation-Date: 2014-04-13 15:19+0200\n"
 "PO-Revision-Date: 2009-04-15 20:27+0100\n"
 "Last-Translator: Rastislav Krupanský <rastislav.krupansky@gmail.com>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
@@ -46,7 +46,7 @@ msgstr "Neplatný accessOID."
 #: src/CRLDistributionPointsExtension.cpp:72
 #: src/CRLDistributionPointsExtension.cpp:162 src/DNObject.cpp:500
 #: src/ExtendedKeyUsageExt.cpp:73 src/ExtendedKeyUsageExt.cpp:225
-#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:244
+#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:260
 #: src/StringExtensions.cpp:118 src/StringExtensions.cpp:195
 #: src/StringExtensions.cpp:283 src/StringExtensions.cpp:353
 #: src/StringExtensions.cpp:437 src/StringExtensions.cpp:507
@@ -100,7 +100,7 @@ msgid "This BitExtension is not present."
 msgstr "This BitExtension nie je prítomné."
 
 #: src/BitExtensions.cpp:130 src/BitExtensions.cpp:243
-#: src/CertificateIssueData.cpp:215 src/CRLGenerationData.cpp:158
+#: src/CertificateIssueData.cpp:231 src/CRLGenerationData.cpp:158
 #: src/DNObject.cpp:258 src/IssuerAlternativeNameExtension.cpp:220
 #, fuzzy, c-format
 msgid "Wrong type: %d."
@@ -362,8 +362,8 @@ msgstr "Chýbajúca sekcia 'distinguished_name' v konfiguračnom súbore."
 msgid "Invalid serial %s."
 msgstr "Neplatné sériové číslo %1."
 
-#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:393
-#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:365
+#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:409
+#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:381
 msgid "Cannot create a memory BIO."
 msgstr "Nie je možné vytvoriť BIO pamäť."
 
@@ -395,13 +395,13 @@ msgstr "Nepodporovaný verejný typ kľúča."
 msgid "Unsupported public key algorithm."
 msgstr "Nepodporovaný verejný algoritmus kľúča."
 
-#: src/CertificateData_Priv.cpp:440 src/CRLData_Priv.cpp:354
-#: src/RequestData_Priv.cpp:272
+#: src/CertificateData_Priv.cpp:456 src/CRLData_Priv.cpp:370
+#: src/RequestData_Priv.cpp:288
 #, fuzzy, c-format
 msgid "Unsupported signature algorithm %s."
 msgstr "Nepodporovaný algoritmus podpisu %1."
 
-#: src/CertificateIssueData.cpp:207
+#: src/CertificateIssueData.cpp:223
 msgid "Invalid CertificateIssueData object."
 msgstr "Neplatný CertificateIssueData objekt."
 
@@ -432,15 +432,15 @@ msgstr "CertificatePoliciesExt nie je prítomné."
 msgid "Invalid CertificatePoliciesExt object."
 msgstr "Neplatný CertificatePoliciesExt objekt."
 
-#: src/CRLData.cpp:220
+#: src/CRLData.cpp:232
 msgid "Entry not found."
 msgstr "Položka nebola nájdená."
 
-#: src/CRLData_Priv.cpp:421
+#: src/CRLData_Priv.cpp:437
 msgid "Cannot parse CRL."
 msgstr "Nie je možné analyzovať CRL."
 
-#: src/CRLData_Priv.cpp:434
+#: src/CRLData_Priv.cpp:450
 msgid "Error parsing the CRL."
 msgstr "Chyba počas analyzovania CRL."
 
@@ -707,15 +707,15 @@ msgstr "Nie je možné vytvoriť súbor."
 msgid "Can not open file."
 msgstr "Nie je možné otvoriť súbor %1."
 
-#: src/RequestData_Priv.cpp:392
+#: src/RequestData_Priv.cpp:408
 msgid "Cannot parse the request."
 msgstr "Nie je možné analyzovať požiadavku."
 
-#: src/RequestData_Priv.cpp:405
+#: src/RequestData_Priv.cpp:421
 msgid "Error while parsing the request."
 msgstr "Chyba počas analyzovanie požiadavky."
 
-#: src/RequestGenerationData.cpp:236
+#: src/RequestGenerationData.cpp:252
 msgid "Invalid RequestGenerationData object."
 msgstr "Neplatný RequestGenerationData objekt."
 

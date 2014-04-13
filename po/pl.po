@@ -1,22 +1,18 @@
 # Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
 # This file is distributed under the same license as the package.
 #
-# Mariusz Fik <fisiu@opensuse.org>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2012-07-23 16:26+0200\n"
-"PO-Revision-Date: 2010-05-24 03:03+0200\n"
-"Last-Translator: Mariusz Fik <fisiu@opensuse.org>\n"
-"Language-Team: Polish <opensuse-pl@opensuse.org>\n"
-"Language: pl\n"
+"POT-Creation-Date: 2014-04-13 15:19+0200\n"
+"PO-Revision-Date: 2013-02-21 14:37\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.0\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2);\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:104
 #: src/AuthorityInfoAccessExtension.cpp:133
@@ -43,7 +39,7 @@ msgstr "Nieprawidłowy OID dostępu."
 #: src/CRLDistributionPointsExtension.cpp:72
 #: src/CRLDistributionPointsExtension.cpp:162 src/DNObject.cpp:500
 #: src/ExtendedKeyUsageExt.cpp:73 src/ExtendedKeyUsageExt.cpp:225
-#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:244
+#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:260
 #: src/StringExtensions.cpp:118 src/StringExtensions.cpp:195
 #: src/StringExtensions.cpp:283 src/StringExtensions.cpp:353
 #: src/StringExtensions.cpp:437 src/StringExtensions.cpp:507
@@ -97,7 +93,7 @@ msgid "This BitExtension is not present."
 msgstr "Taki BitExtension nie istnieje."
 
 #: src/BitExtensions.cpp:130 src/BitExtensions.cpp:243
-#: src/CertificateIssueData.cpp:215 src/CRLGenerationData.cpp:158
+#: src/CertificateIssueData.cpp:231 src/CRLGenerationData.cpp:158
 #: src/DNObject.cpp:258 src/IssuerAlternativeNameExtension.cpp:220
 #, fuzzy, c-format
 msgid "Wrong type: %d."
@@ -359,8 +355,8 @@ msgstr "Brak sekcji 'distinguished_name' w pliku konfiguracyjnym."
 msgid "Invalid serial %s."
 msgstr "Nieprawidłowa seria %1."
 
-#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:393
-#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:365
+#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:409
+#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:381
 msgid "Cannot create a memory BIO."
 msgstr "Nie można utworzyć pamięci BIO"
 
@@ -392,13 +388,13 @@ msgstr "Nieobsługiwany typ klucza publicznego."
 msgid "Unsupported public key algorithm."
 msgstr "Nieobsługiwany algorytm klucza publicznego."
 
-#: src/CertificateData_Priv.cpp:440 src/CRLData_Priv.cpp:354
-#: src/RequestData_Priv.cpp:272
+#: src/CertificateData_Priv.cpp:456 src/CRLData_Priv.cpp:370
+#: src/RequestData_Priv.cpp:288
 #, fuzzy, c-format
 msgid "Unsupported signature algorithm %s."
 msgstr "Nieobsługiwana sygnatura algorytmu %1."
 
-#: src/CertificateIssueData.cpp:207
+#: src/CertificateIssueData.cpp:223
 msgid "Invalid CertificateIssueData object."
 msgstr "Nieprawidłowy obiekt CertificateIssueData."
 
@@ -429,15 +425,15 @@ msgstr "CertificatePoliciesExt nie istnieje."
 msgid "Invalid CertificatePoliciesExt object."
 msgstr "Nieprawidłowy obiekt CertificatePoliciesExt."
 
-#: src/CRLData.cpp:220
+#: src/CRLData.cpp:232
 msgid "Entry not found."
 msgstr "Nie znaleziono wpisu."
 
-#: src/CRLData_Priv.cpp:421
+#: src/CRLData_Priv.cpp:437
 msgid "Cannot parse CRL."
 msgstr "Zanalizowanie CRL nie powiodło się."
 
-#: src/CRLData_Priv.cpp:434
+#: src/CRLData_Priv.cpp:450
 msgid "Error parsing the CRL."
 msgstr "Wystąpił błąd podczas analizy CRL."
 
@@ -704,15 +700,15 @@ msgstr "Nie można utworzyć pliku."
 msgid "Can not open file."
 msgstr "Utworzenie pliku %1 nie powiodło się."
 
-#: src/RequestData_Priv.cpp:392
+#: src/RequestData_Priv.cpp:408
 msgid "Cannot parse the request."
 msgstr "Nie można przetworzyć żądania."
 
-#: src/RequestData_Priv.cpp:405
+#: src/RequestData_Priv.cpp:421
 msgid "Error while parsing the request."
 msgstr "Wystąpił błąd podczas przetwarzania żądania."
 
-#: src/RequestGenerationData.cpp:236
+#: src/RequestGenerationData.cpp:252
 msgid "Invalid RequestGenerationData object."
 msgstr "Nieprawidłowy obiekt RequestGenerationData."
 
@@ -847,7 +843,7 @@ msgstr "Przetworzenie certyfikatu nie było możliwe (NID: %1 Crit: %2)."
 #: src/X509v3RequestExtensions_Priv.cpp:374
 #: src/X509v3RequestExtensions_Priv.cpp:432
 msgid "Extension occurred more than once."
-msgstr "Rozszerzenie występuje więcej niż raz."
+msgstr "Rozszerzenie występuje wiecej niż raz."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:513
 #: src/X509v3CertificateExtensions_Priv.cpp:579
@@ -1012,6 +1008,3 @@ msgstr ""
 
 #~ msgid "Cannot parse date %1."
 #~ msgstr "Zanalizowanie daty %1 nie powiodło się."
-
-#~ msgid "Command returned '%1' : %2"
-#~ msgstr "Polecenie %2 zwróciło wartość '%1'."

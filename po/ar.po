@@ -1,15 +1,12 @@
-# @TITLE@
-# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-# This file is distributed under the same license as @PACKAGE@ package. FIRST
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
+"Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2012-07-23 16:26+0200\n"
-"PO-Revision-Date: 2001-07-13 15:36+0200\n"
+"POT-Creation-Date: 2014-04-13 15:19+0200\n"
+"PO-Revision-Date: 2011-11-02 14:11\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "Language: \n"
@@ -42,7 +39,7 @@ msgstr "accessOID غير صالح."
 #: src/CRLDistributionPointsExtension.cpp:72
 #: src/CRLDistributionPointsExtension.cpp:162 src/DNObject.cpp:500
 #: src/ExtendedKeyUsageExt.cpp:73 src/ExtendedKeyUsageExt.cpp:225
-#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:244
+#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:260
 #: src/StringExtensions.cpp:118 src/StringExtensions.cpp:195
 #: src/StringExtensions.cpp:283 src/StringExtensions.cpp:353
 #: src/StringExtensions.cpp:437 src/StringExtensions.cpp:507
@@ -96,7 +93,7 @@ msgid "This BitExtension is not present."
 msgstr "BitExtension 衵ﾇ غير موجود."
 
 #: src/BitExtensions.cpp:130 src/BitExtensions.cpp:243
-#: src/CertificateIssueData.cpp:215 src/CRLGenerationData.cpp:158
+#: src/CertificateIssueData.cpp:231 src/CRLGenerationData.cpp:158
 #: src/DNObject.cpp:258 src/IssuerAlternativeNameExtension.cpp:220
 #, fuzzy, c-format
 msgid "Wrong type: %d."
@@ -294,9 +291,8 @@ msgid "Error during key encryption."
 msgstr "حدث خطأ أثناء تشفير المفتاح."
 
 #: src/CA.cpp:1388
-#, fuzzy
 msgid "Error during write defaults."
-msgstr "حدث خطأ أثناء تشفير المفتاح."
+msgstr "حدث خطأ أثناء كتابة الإعدادات الافتراضية."
 
 #: src/CA.cpp:1532
 #, fuzzy, c-format
@@ -358,8 +354,8 @@ msgstr "القسم 'distinguished_name' في ملف التكوين مفقود."
 msgid "Invalid serial %s."
 msgstr "تسلسل غير صالح %1."
 
-#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:393
-#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:365
+#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:409
+#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:381
 msgid "Cannot create a memory BIO."
 msgstr "تعذر إنشاء ذاكرة BIO."
 
@@ -372,9 +368,8 @@ msgid "Error while parsing the certificate."
 msgstr "حدث خطأ أثناء تحليل الشهادة."
 
 #: src/CertificateData_Priv.cpp:273
-#, fuzzy
 msgid "Cannot parse serial."
-msgstr "تعذر تحليل القسم %1."
+msgstr "تعذر تحليل الرقم المسلسل."
 
 #: src/CertificateData_Priv.cpp:341 src/RequestData_Priv.cpp:178
 msgid "Unable to get the public key."
@@ -392,13 +387,13 @@ msgstr "نوع مفتاح عام غير مدعوم."
 msgid "Unsupported public key algorithm."
 msgstr "خوارزمية مفتاح عام غير مدعومة."
 
-#: src/CertificateData_Priv.cpp:440 src/CRLData_Priv.cpp:354
-#: src/RequestData_Priv.cpp:272
+#: src/CertificateData_Priv.cpp:456 src/CRLData_Priv.cpp:370
+#: src/RequestData_Priv.cpp:288
 #, fuzzy, c-format
 msgid "Unsupported signature algorithm %s."
 msgstr "خوارزمية توقيع غير مدعومة %1."
 
-#: src/CertificateIssueData.cpp:207
+#: src/CertificateIssueData.cpp:223
 msgid "Invalid CertificateIssueData object."
 msgstr "كائن CertificateIssueData غير صالح."
 
@@ -429,15 +424,15 @@ msgstr "CertificatePoliciesExt غير موجود."
 msgid "Invalid CertificatePoliciesExt object."
 msgstr "كائن CertificatePoliciesExt غير صالح."
 
-#: src/CRLData.cpp:220
+#: src/CRLData.cpp:232
 msgid "Entry not found."
 msgstr "لم يتم العثور على الإدخال."
 
-#: src/CRLData_Priv.cpp:421
+#: src/CRLData_Priv.cpp:437
 msgid "Cannot parse CRL."
 msgstr "تعذر تحليل CRL."
 
-#: src/CRLData_Priv.cpp:434
+#: src/CRLData_Priv.cpp:450
 msgid "Error parsing the CRL."
 msgstr "تعذر تحليل CRL."
 
@@ -591,7 +586,7 @@ msgstr "أمر غير صالح %1."
 #: src/OpenSSLUtils.cpp:1493 src/OpenSSLUtils.cpp:1651
 #: src/OpenSSLUtils.cpp:1795 src/OpenSSLUtils.cpp:2586
 msgid "Executing openssl command failed."
-msgstr ""
+msgstr "فشل تنفيذ الأمر openssl."
 
 #: src/OpenSSLUtils.cpp:136 src/OpenSSLUtils.cpp:227 src/OpenSSLUtils.cpp:326
 #: src/OpenSSLUtils.cpp:451 src/OpenSSLUtils.cpp:590 src/OpenSSLUtils.cpp:691
@@ -601,7 +596,7 @@ msgstr ""
 #: src/OpenSSLUtils.cpp:1838 src/OpenSSLUtils.cpp:2613
 #, fuzzy, c-format
 msgid "openssl command failed: %s"
-msgstr "فشل الإنزال:"
+msgstr "فشل الأمر openssl: %1"
 
 #: src/OpenSSLUtils.cpp:166 src/OpenSSLUtils.cpp:254 src/OpenSSLUtils.cpp:358
 #: src/OpenSSLUtils.cpp:477 src/OpenSSLUtils.cpp:617 src/OpenSSLUtils.cpp:714
@@ -635,9 +630,8 @@ msgstr "ملف المفتاح غير موجود."
 
 #: src/OpenSSLUtils.cpp:1297 src/OpenSSLUtils.cpp:1686
 #: src/OpenSSLUtils.cpp:1833
-#, fuzzy
 msgid "Invalid password."
-msgstr "كلمة السر غير صالحة"
+msgstr "كلمة السر غير صالحة."
 
 #: src/OpenSSLUtils.cpp:1599
 msgid "The password for encrypting the output is required."
@@ -705,15 +699,15 @@ msgstr "تعذر إنشاء الملف."
 msgid "Can not open file."
 msgstr "تعذر فتح الملف %1."
 
-#: src/RequestData_Priv.cpp:392
+#: src/RequestData_Priv.cpp:408
 msgid "Cannot parse the request."
 msgstr "تعذر تحليل الطلب."
 
-#: src/RequestData_Priv.cpp:405
+#: src/RequestData_Priv.cpp:421
 msgid "Error while parsing the request."
 msgstr "حدث خطأ أثناء تحليل الشهادة."
 
-#: src/RequestGenerationData.cpp:236
+#: src/RequestGenerationData.cpp:252
 msgid "Invalid RequestGenerationData object."
 msgstr "كائن RequestGenerationData غير صالح."
 
@@ -996,6 +990,3 @@ msgstr "قيمة غير صالحة في X509v3RequestExts::setSubjectAlternative
 
 #~ msgid "Cannot parse date %1."
 #~ msgstr "تعذر تحليل التاريخ %1."
-
-#~ msgid "Command returned '%1' : %2"
-#~ msgstr "نتج عن هذا الأمر '%1' : %2"

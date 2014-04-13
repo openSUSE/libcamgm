@@ -1,25 +1,18 @@
-# translation of limal-ca-mgm.nl.po to Dutch
-# @TITLE@
-# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
 #
-# This file is distributed under the same license as @PACKAGE@ package. FIRST
-#
-# Rinse de Vries <rinsedevries@kde.nl>, 2006, 2008.
-# Freek de Kruijf <freek@opensuse.org>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: limal-ca-mgm.nl\n"
+"Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2012-07-23 16:26+0200\n"
-"PO-Revision-Date: 2008-11-08 00:32+0100\n"
-"Last-Translator: Freek de Kruijf <freek@opensuse.org>\n"
-"Language-Team: Dutch <yast-nl-l10n@lists.sf.kovoks.nl>\n"
-"Language: nl\n"
+"POT-Creation-Date: 2014-04-13 15:19+0200\n"
+"PO-Revision-Date: 2011-11-02 09:11\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=2; plural= n != 1;\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:104
 #: src/AuthorityInfoAccessExtension.cpp:133
@@ -46,7 +39,7 @@ msgstr "Ongeldige accessOID."
 #: src/CRLDistributionPointsExtension.cpp:72
 #: src/CRLDistributionPointsExtension.cpp:162 src/DNObject.cpp:500
 #: src/ExtendedKeyUsageExt.cpp:73 src/ExtendedKeyUsageExt.cpp:225
-#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:244
+#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:260
 #: src/StringExtensions.cpp:118 src/StringExtensions.cpp:195
 #: src/StringExtensions.cpp:283 src/StringExtensions.cpp:353
 #: src/StringExtensions.cpp:437 src/StringExtensions.cpp:507
@@ -100,7 +93,7 @@ msgid "This BitExtension is not present."
 msgstr "Deze BitExtension is niet aanwezig."
 
 #: src/BitExtensions.cpp:130 src/BitExtensions.cpp:243
-#: src/CertificateIssueData.cpp:215 src/CRLGenerationData.cpp:158
+#: src/CertificateIssueData.cpp:231 src/CRLGenerationData.cpp:158
 #: src/DNObject.cpp:258 src/IssuerAlternativeNameExtension.cpp:220
 #, fuzzy, c-format
 msgid "Wrong type: %d."
@@ -275,7 +268,7 @@ msgstr "CA-naam is leeg."
 
 #: src/CA.cpp:1288
 msgid "CA directory already exists."
-msgstr "CA-map bestaat reeds."
+msgstr "CA-directory bestaat reeds."
 
 #: src/CA.cpp:1299
 msgid "According to basicConstraints, this is not a CA."
@@ -299,7 +292,7 @@ msgstr "Fout bij versleutelen van de sleutel."
 
 #: src/CA.cpp:1388
 msgid "Error during write defaults."
-msgstr "Fout bij schrijven van standaards."
+msgstr "Fout bij schrijven standaardinstellingen."
 
 #: src/CA.cpp:1532
 #, fuzzy, c-format
@@ -347,7 +340,6 @@ msgstr "%1 moet in het CA-certificaat (%2) en de request (%3) hetzelfde zijn."
 msgid "The configuration file seems to have an invalid policy."
 msgstr "Het configuratiebestand bevat vermoedelijk een ongeldige richtlijn."
 
-# %s is either BOOTP or DHCP
 #: src/CA.cpp:1883 src/CA.cpp:1893
 msgid "The configuration is not initialized."
 msgstr "De configuratie is niet geïnitialiseerd."
@@ -362,8 +354,8 @@ msgstr "Sectie 'distinguished_name' ontbreekt in het configuratiebestand."
 msgid "Invalid serial %s."
 msgstr "Ongeldig serienummer %1."
 
-#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:393
-#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:365
+#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:409
+#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:381
 msgid "Cannot create a memory BIO."
 msgstr "Geheugen-BIO kan niet worden aangemaakt."
 
@@ -377,7 +369,7 @@ msgstr "Fout bij ontleden van het certificaat."
 
 #: src/CertificateData_Priv.cpp:273
 msgid "Cannot parse serial."
-msgstr "Kan serienummer niet ontleden."
+msgstr "Kan serienummer niet parseren."
 
 #: src/CertificateData_Priv.cpp:341 src/RequestData_Priv.cpp:178
 msgid "Unable to get the public key."
@@ -395,13 +387,13 @@ msgstr "Niet-ondersteund type publieke sleutel."
 msgid "Unsupported public key algorithm."
 msgstr "Niet-ondersteund algoritme voor publieke sleutel."
 
-#: src/CertificateData_Priv.cpp:440 src/CRLData_Priv.cpp:354
-#: src/RequestData_Priv.cpp:272
+#: src/CertificateData_Priv.cpp:456 src/CRLData_Priv.cpp:370
+#: src/RequestData_Priv.cpp:288
 #, fuzzy, c-format
 msgid "Unsupported signature algorithm %s."
 msgstr "Niet-ondersteund signatuuralgoritme %1."
 
-#: src/CertificateIssueData.cpp:207
+#: src/CertificateIssueData.cpp:223
 msgid "Invalid CertificateIssueData object."
 msgstr "Ongeldig CertificateIssueData-object."
 
@@ -432,15 +424,15 @@ msgstr "CertificatePoliciesExt is niet aanwezig"
 msgid "Invalid CertificatePoliciesExt object."
 msgstr "Ongeldig CertificatePoliciesExt-object"
 
-#: src/CRLData.cpp:220
+#: src/CRLData.cpp:232
 msgid "Entry not found."
 msgstr "Item niet gevonden."
 
-#: src/CRLData_Priv.cpp:421
+#: src/CRLData_Priv.cpp:437
 msgid "Cannot parse CRL."
 msgstr "Kan CRL niet ontleden."
 
-#: src/CRLData_Priv.cpp:434
+#: src/CRLData_Priv.cpp:450
 msgid "Error parsing the CRL."
 msgstr "Fout bij ontleden van de CRL."
 
@@ -525,12 +517,12 @@ msgstr "Kan certificaatuitvoer niet splitsen."
 #: src/LocalManagement.cpp:328
 #, fuzzy, c-format
 msgid "Cannot create directory %s: %s."
-msgstr "Kan map %1 niet aanmaken: %2."
+msgstr "Kan directory %1 niet aanmaken: %2."
 
 #: src/LocalManagement.cpp:342
 #, fuzzy, c-format
 msgid "%s is not a directory."
-msgstr "%1 is geen map."
+msgstr "%1 is geen directory."
 
 #: src/LocalManagement.cpp:363
 msgid "Invalid certificate file."
@@ -579,7 +571,7 @@ msgstr "Bestand bestaat niet: %1."
 #: src/OpenSSLUtils.cpp:58
 #, fuzzy, c-format
 msgid "Directory does not exist: %s."
-msgstr "Map bestaat niet: %1."
+msgstr "Directory bestaat niet: %1."
 
 #: src/OpenSSLUtils.cpp:67
 #, fuzzy, c-format
@@ -594,7 +586,7 @@ msgstr "Ongeldig commando: %1."
 #: src/OpenSSLUtils.cpp:1493 src/OpenSSLUtils.cpp:1651
 #: src/OpenSSLUtils.cpp:1795 src/OpenSSLUtils.cpp:2586
 msgid "Executing openssl command failed."
-msgstr "Uitvoeren van het openssl-commando mislukt."
+msgstr "Opdracht openssl uitvoeren is mislukt."
 
 #: src/OpenSSLUtils.cpp:136 src/OpenSSLUtils.cpp:227 src/OpenSSLUtils.cpp:326
 #: src/OpenSSLUtils.cpp:451 src/OpenSSLUtils.cpp:590 src/OpenSSLUtils.cpp:691
@@ -604,7 +596,7 @@ msgstr "Uitvoeren van het openssl-commando mislukt."
 #: src/OpenSSLUtils.cpp:1838 src/OpenSSLUtils.cpp:2613
 #, fuzzy, c-format
 msgid "openssl command failed: %s"
-msgstr "openssl-commando mislukt: %1"
+msgstr "Opdracht openssl mislukt: %1"
 
 #: src/OpenSSLUtils.cpp:166 src/OpenSSLUtils.cpp:254 src/OpenSSLUtils.cpp:358
 #: src/OpenSSLUtils.cpp:477 src/OpenSSLUtils.cpp:617 src/OpenSSLUtils.cpp:714
@@ -625,7 +617,7 @@ msgstr "Geen geldig certificaatbestand opgegeven."
 
 #: src/OpenSSLUtils.cpp:809
 msgid "No valid CA directory specified."
-msgstr "Geen geldige CA-map gespecificeerd."
+msgstr "Geen geldige CA-directory gespecificeerd."
 
 #: src/OpenSSLUtils.cpp:963
 #, fuzzy, c-format
@@ -653,7 +645,7 @@ msgstr "Het PKCS12-wachtwoord is vereist."
 #: src/OpenSSLUtils.cpp:2216
 #, fuzzy, c-format
 msgid "Cannot read directory: %s (%s) [%d]."
-msgstr "Kan map niet lezen: %1 (%2) [%3]."
+msgstr "Kan directory niet lezen: %1 (%2) [%3]."
 
 #: src/OpenSSLUtils.cpp:1914
 #, fuzzy, c-format
@@ -692,7 +684,7 @@ msgstr "%1 bestaat nog."
 #: src/OpenSSLUtils.cpp:2505 src/OpenSSLUtils.cpp:2519
 #, fuzzy, c-format
 msgid "Cannot create directory: %s (%s [%d])."
-msgstr "Kan map niet maken: %1 (%2 [%3])."
+msgstr "Kan directory niet maken: %1 (%2 [%3])."
 
 #: src/OpenSSLUtils.cpp:2450
 msgid "Cannot copy the configuration template."
@@ -707,15 +699,15 @@ msgstr "Kan het bestand niet maken."
 msgid "Can not open file."
 msgstr "Kan bestand %1 niet openen."
 
-#: src/RequestData_Priv.cpp:392
+#: src/RequestData_Priv.cpp:408
 msgid "Cannot parse the request."
 msgstr "Kan het verzoek niet parseren."
 
-#: src/RequestData_Priv.cpp:405
+#: src/RequestData_Priv.cpp:421
 msgid "Error while parsing the request."
 msgstr "Fout bij het parseren van het verzoek."
 
-#: src/RequestGenerationData.cpp:236
+#: src/RequestGenerationData.cpp:252
 msgid "Invalid RequestGenerationData object."
 msgstr "Ongeldig RequestGenerationData-object."
 

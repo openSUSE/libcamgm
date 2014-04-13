@@ -5,10 +5,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2012-07-23 16:26+0200\n"
-"PO-Revision-Date: 2008-11-24 18:34+0800\n"
-"Last-Translator: Thruth Wang <wanglihao@gmail.com>\n"
-"Language-Team: Simplified Chinese\n"
+"POT-Creation-Date: 2014-04-13 15:19+0200\n"
+"PO-Revision-Date: 2011-11-02 10:42\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,7 +39,7 @@ msgstr "无效 accessOID。"
 #: src/CRLDistributionPointsExtension.cpp:72
 #: src/CRLDistributionPointsExtension.cpp:162 src/DNObject.cpp:500
 #: src/ExtendedKeyUsageExt.cpp:73 src/ExtendedKeyUsageExt.cpp:225
-#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:244
+#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:260
 #: src/StringExtensions.cpp:118 src/StringExtensions.cpp:195
 #: src/StringExtensions.cpp:283 src/StringExtensions.cpp:353
 #: src/StringExtensions.cpp:437 src/StringExtensions.cpp:507
@@ -93,7 +93,7 @@ msgid "This BitExtension is not present."
 msgstr "此 BitExtension 不存在。"
 
 #: src/BitExtensions.cpp:130 src/BitExtensions.cpp:243
-#: src/CertificateIssueData.cpp:215 src/CRLGenerationData.cpp:158
+#: src/CertificateIssueData.cpp:231 src/CRLGenerationData.cpp:158
 #: src/DNObject.cpp:258 src/IssuerAlternativeNameExtension.cpp:220
 #, fuzzy, c-format
 msgid "Wrong type: %d."
@@ -290,7 +290,7 @@ msgstr "密钥解密期间出错。"
 
 #: src/CA.cpp:1388
 msgid "Error during write defaults."
-msgstr "写入默认值时出错。"
+msgstr "写入默认值过程中出错。"
 
 #: src/CA.cpp:1532
 #, fuzzy, c-format
@@ -348,10 +348,10 @@ msgstr "配置文件中缺少部分“distinguished_name”。"
 #: src/CRLData_Priv.cpp:135
 #, fuzzy, c-format
 msgid "Invalid serial %s."
-msgstr "无效的序列号 %1。"
+msgstr "无效的序号 %1。"
 
-#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:393
-#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:365
+#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:409
+#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:381
 msgid "Cannot create a memory BIO."
 msgstr "无法创建内存 BIO。"
 
@@ -365,7 +365,7 @@ msgstr "对证书进行语法分析时出错。"
 
 #: src/CertificateData_Priv.cpp:273
 msgid "Cannot parse serial."
-msgstr "无法解析序列号。"
+msgstr "无法对序列进行语法分析。"
 
 #: src/CertificateData_Priv.cpp:341 src/RequestData_Priv.cpp:178
 msgid "Unable to get the public key."
@@ -383,13 +383,13 @@ msgstr "不支持的公共密钥类型。"
 msgid "Unsupported public key algorithm."
 msgstr "不支持的公共密钥算法。"
 
-#: src/CertificateData_Priv.cpp:440 src/CRLData_Priv.cpp:354
-#: src/RequestData_Priv.cpp:272
+#: src/CertificateData_Priv.cpp:456 src/CRLData_Priv.cpp:370
+#: src/RequestData_Priv.cpp:288
 #, fuzzy, c-format
 msgid "Unsupported signature algorithm %s."
 msgstr "不支持的签名算法 %1。"
 
-#: src/CertificateIssueData.cpp:207
+#: src/CertificateIssueData.cpp:223
 msgid "Invalid CertificateIssueData object."
 msgstr "CertificateIssueData 对象无效。"
 
@@ -420,15 +420,15 @@ msgstr "CertificatePoliciesExt 不存在。"
 msgid "Invalid CertificatePoliciesExt object."
 msgstr "CertificatePoliciesExt 对象无效。"
 
-#: src/CRLData.cpp:220
+#: src/CRLData.cpp:232
 msgid "Entry not found."
 msgstr "条目未找到。"
 
-#: src/CRLData_Priv.cpp:421
+#: src/CRLData_Priv.cpp:437
 msgid "Cannot parse CRL."
 msgstr "无法对 CRL 进行语法分析。"
 
-#: src/CRLData_Priv.cpp:434
+#: src/CRLData_Priv.cpp:450
 msgid "Error parsing the CRL."
 msgstr "对 CRL 进行语法分析时出错。"
 
@@ -618,7 +618,7 @@ msgstr "未指定有效的 CA 目录。"
 #: src/OpenSSLUtils.cpp:963
 #, fuzzy, c-format
 msgid "Showing certificate status with serial %s failed (%d)."
-msgstr "通过序列号 %1 显示证书状态失败（%2）。"
+msgstr "通过连续的 %1 显示证书状态失败（%2）。"
 
 #: src/OpenSSLUtils.cpp:999
 msgid "The key file does not exist."
@@ -627,7 +627,7 @@ msgstr "键文件不存在。"
 #: src/OpenSSLUtils.cpp:1297 src/OpenSSLUtils.cpp:1686
 #: src/OpenSSLUtils.cpp:1833
 msgid "Invalid password."
-msgstr "口令无效。"
+msgstr "密码无效。"
 
 #: src/OpenSSLUtils.cpp:1599
 msgid "The password for encrypting the output is required."
@@ -695,15 +695,15 @@ msgstr "无法创建文件。"
 msgid "Can not open file."
 msgstr "无法打开文件 %1。"
 
-#: src/RequestData_Priv.cpp:392
+#: src/RequestData_Priv.cpp:408
 msgid "Cannot parse the request."
 msgstr "无法对请求进行语法分析。"
 
-#: src/RequestData_Priv.cpp:405
+#: src/RequestData_Priv.cpp:421
 msgid "Error while parsing the request."
 msgstr "对请求进行语法分析时出错。"
 
-#: src/RequestGenerationData.cpp:236
+#: src/RequestGenerationData.cpp:252
 msgid "Invalid RequestGenerationData object."
 msgstr "RequestGenerationData 对象无效。"
 
@@ -982,6 +982,3 @@ msgstr "X509v3RequestExts::setSubjectAlternativeName 的值无效。"
 
 #~ msgid "Cannot parse date %1."
 #~ msgstr "无法对日期 %1 进行语法分析。"
-
-#~ msgid "Command returned '%1' : %2"
-#~ msgstr "命令返回了“%1”：%2"

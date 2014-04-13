@@ -1,31 +1,28 @@
-# translation of limal-ca-mgm.po to Japanese
 # Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
 # This file is distributed under the same license as the package.
 #
-# Yasuhiko Kamata <belphegor@belbel.or.jp>, 2007, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2012-07-23 16:26+0200\n"
-"PO-Revision-Date: 2008-11-07 21:33+0900\n"
-"Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
-"Language-Team: Japanese <opensuse-ja@opensuse.org>\n"
-"Language: ja\n"
+"POT-Creation-Date: 2014-04-13 15:19+0200\n"
+"PO-Revision-Date: 2011-11-02 10:01\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:104
 #: src/AuthorityInfoAccessExtension.cpp:133
 msgid "Invalid location."
-msgstr "正しくない場所です。"
+msgstr "無効な場所です。"
 
 #: src/AuthorityInfoAccessExtension.cpp:109
 #: src/AuthorityInfoAccessExtension.cpp:138
 msgid "Invalid accessOID."
-msgstr "正しくないアクセス OID です。"
+msgstr "無効なアクセスOIDです。"
 
 #: src/AuthorityInfoAccessExtension.cpp:253
 #: src/AuthorityInfoAccessExtension.cpp:336
@@ -42,7 +39,7 @@ msgstr "正しくないアクセス OID です。"
 #: src/CRLDistributionPointsExtension.cpp:72
 #: src/CRLDistributionPointsExtension.cpp:162 src/DNObject.cpp:500
 #: src/ExtendedKeyUsageExt.cpp:73 src/ExtendedKeyUsageExt.cpp:225
-#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:244
+#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:260
 #: src/StringExtensions.cpp:118 src/StringExtensions.cpp:195
 #: src/StringExtensions.cpp:283 src/StringExtensions.cpp:353
 #: src/StringExtensions.cpp:437 src/StringExtensions.cpp:507
@@ -54,81 +51,81 @@ msgstr "正しくないアクセス OID です。"
 #: src/SubjectKeyIdentifierExtension.cpp:79
 #: src/SubjectKeyIdentifierExtension.cpp:202
 msgid "Wrong type: %1."
-msgstr "誤った種類: %1"
+msgstr "正しくないタイプ: %1 "
 
 #: src/AuthorityInfoAccessExtension.cpp:304
 msgid "Invalid AuthorityInformation in the information list."
-msgstr "情報一覧に正しくない AuthorityInformation があります。"
+msgstr "情報リストに無効なAuthorityInformationがあります。"
 
 #: src/AuthorityInfoAccessExtension.cpp:317
 msgid "AuthorityInfoAccessExt is not present."
-msgstr "AuthorityInfoAccessExt は存在していません。"
+msgstr "AuthorityInfoAccessExtは存在しません。"
 
 #: src/AuthorityInfoAccessExtension.cpp:328
 msgid "Invalid AuthorityInfoAccessExt object."
-msgstr "AuthorityInfoAccessExt オブジェクトが正しくありません。"
+msgstr "AuthorityInfoAccessExtオブジェクトが無効です。"
 
 #: src/AuthorityKeyIdentifierExtension.cpp:93
 #: src/AuthorityKeyIdentifierExtension.cpp:104
 #: src/AuthorityKeyIdentifierExtension.cpp:115
 msgid "AuthorityKeyIdentifierExt is not present."
-msgstr "AuthorityKeyIdentifierExt は存在していません。"
+msgstr "AuthorityKeyIdentifierExtは存在しません。"
 
 #: src/AuthorityKeyIdentifierGenerateExtension.cpp:150
 #: src/AuthorityKeyIdentifierGenerateExtension.cpp:169
 msgid "AuthorityKeyIdentifierGenerateExt is not present."
-msgstr "AuthorityKeyIdentifierGenerateExt が存在していません。"
+msgstr "AuthorityKeyIdentifierGenerateExtが存在しません。"
 
 #: src/AuthorityKeyIdentifierGenerateExtension.cpp:181
 msgid "Invalid AuthorityKeyIdentifierGenerateExt object."
-msgstr "AuthorityKeyIdentifierGenerateExt オブジェクトが無効です。"
+msgstr "AuthorityKeyIdentifierGenerateExtオブジェクトが無効です。"
 
 #: src/BasicConstraintsExtension.cpp:151 src/BasicConstraintsExtension.cpp:163
 msgid "BasicConstraintsExt is not present."
-msgstr "BasicConstraintsExt は存在していません。"
+msgstr "BasicConstraintsExtは存在しません。"
 
 #: src/BasicConstraintsExtension.cpp:175
 msgid "Invalid BasicConstraintsExt object."
-msgstr "BasicConstraintsExt オブジェクトが正しくありません。"
+msgstr "BasicConstraintsExtオブジェクトが無効です。"
 
 #: src/BitExtensions.cpp:107
 msgid "This BitExtension is not present."
-msgstr "この BitExtension は存在していません。"
+msgstr "このBitExtensionは存在しません。"
 
 #: src/BitExtensions.cpp:130 src/BitExtensions.cpp:243
-#: src/CertificateIssueData.cpp:215 src/CRLGenerationData.cpp:158
+#: src/CertificateIssueData.cpp:231 src/CRLGenerationData.cpp:158
 #: src/DNObject.cpp:258 src/IssuerAlternativeNameExtension.cpp:220
 #, fuzzy, c-format
 msgid "Wrong type: %d."
-msgstr "誤った種類: %1"
+msgstr "正しくないタイプ: %1 "
 
 #: src/BitExtensions.cpp:170 src/BitExtensions.cpp:199
 msgid "Invalid value for keyUsage."
-msgstr "keyUsage 値が誤っています。"
+msgstr "keyUsageの無効な値。"
 
 #: src/BitExtensions.cpp:211 src/BitExtensions.cpp:222
 msgid "KeyUsageExt is not present."
-msgstr "KeyUsageExt は存在していません。"
+msgstr "KeyUsageExtは存在しません。"
 
 #: src/BitExtensions.cpp:235
 msgid "Invalid KeyUsageExt object."
-msgstr "KeyUsageExt のオブジェクトが正しくありません。"
+msgstr "KeyUsageExtのオブジェクトが無効です。"
 
 #: src/BitExtensions.cpp:406
 msgid "Invalid value for NsCertTypeExt."
-msgstr "NsCertTypeExt の値が正しくありません。"
+msgstr "NsCertTypeExtの値が無効です。"
 
 #: src/BitExtensions.cpp:435
 msgid "Invalid value for NsCertTypeExt: %1."
-msgstr "NsCertTypeExt の値が正しくありません: %1"
+msgstr "NsCertTypeExtの値が無効です: %1"
 
 #: src/BitExtensions.cpp:447
 msgid "NsCertTypeExt is not present."
-msgstr "NsCertTypeExt は存在していません。"
+msgstr "NsCertTypeExtは存在しません。"
 
 #: src/BitExtensions.cpp:468
 msgid "Invalid NsCertTypeExt object."
-msgstr "NsCertTypeExt のオブジェクトが正しくありません。"
+msgstr "NsCertTypeExtのオブジェクトが無効です。"
 
 #: src/CA.cpp:96
 msgid "Template not initialized."
@@ -136,7 +133,7 @@ msgstr "テンプレートが初期化されていません。"
 
 #: src/CA.cpp:166 src/CA.cpp:1522
 msgid "Empty CA name."
-msgstr "認証機関名が設定されていません。"
+msgstr "CA名が空です。"
 
 #: src/CA.cpp:174
 #, fuzzy, c-format
@@ -145,20 +142,20 @@ msgstr "テンプレートがありません: %1"
 
 #: src/CA.cpp:186 src/CA.cpp:1543
 msgid "Invalid CA password."
-msgstr "認証機関のパスワードが無効です。"
+msgstr "CAパスワードが無効です。"
 
 #: src/CA.cpp:230 src/CA.cpp:1175 src/CA.cpp:1341
 msgid "Error while creating the CA infrastructure."
-msgstr "認証機関のインフラストラクチャを作成する際にエラーが発生しました。"
+msgstr "CAインフラストラクチャの作成中にエラーが発生しました。"
 
 #: src/CA.cpp:250 src/CA.cpp:1015
 #, fuzzy, c-format
 msgid "Cannot parse the certificate name %s."
-msgstr "証明書名 %1 を処理することができません。"
+msgstr "証明書名 %1 を解析することができません。"
 
 #: src/CA.cpp:261
 msgid "Cannot copy the private key."
-msgstr "個人鍵をコピーすることができません。"
+msgstr "個人キーをコピーすることができません。"
 
 #: src/CA.cpp:272
 msgid "Cannot copy the certificate."
@@ -166,30 +163,30 @@ msgstr "証明書をコピーできません。"
 
 #: src/CA.cpp:304
 msgid "Invalid request data."
-msgstr "無効な要求データです。"
+msgstr "無効な要求データ。"
 
 #: src/CA.cpp:323
 #, fuzzy, c-format
 msgid "Duplicate DN. Key %s.key already exists."
-msgstr "重複した DN です。鍵 %1.key は既に存在しています。"
+msgstr "重複したDN。キー %1。キーはすでに存在します。"
 
 #: src/CA.cpp:331
 #, fuzzy, c-format
 msgid "Duplicate DN. Request %s.req already exists."
-msgstr "重複した DN です。要求 %1.req は既に存在しています。"
+msgstr "重複したDN。要求 %1 はすでに存在します。"
 
 #: src/CA.cpp:400
 #, fuzzy, c-format
 msgid "Request does not exist (%s)."
-msgstr "要求は存在しません (%1) 。"
+msgstr "要求は存在しません(%1)。"
 
 #: src/CA.cpp:406
 msgid "Invalid issue data."
-msgstr "発行データが正しくありません。"
+msgstr "発行されたデータは無効です。"
 
 #: src/CA.cpp:423
 msgid "The CA expires before the certificate should expire."
-msgstr "証明書が期限切れになる前に認証機関が期限切れになります。"
+msgstr "証明書が期限切れになる前にCAが期限切れになります。"
 
 #: src/CA.cpp:501
 msgid "Issuing the certificate failed."
@@ -198,23 +195,23 @@ msgstr "証明書の発行に失敗しました。"
 #: src/CA.cpp:518
 #, fuzzy, c-format
 msgid "File %s not found in the repository."
-msgstr "ファイル %1 はリポジトリ内に見つかりませんでした。"
+msgstr "ファイル %1 をリポジトリ内で検出できませんでした。"
 
 #: src/CA.cpp:525 src/CRLData_Priv.cpp:153
 msgid "Invalid CRL reason."
-msgstr "CRL の理由が正しくありません。"
+msgstr "CRLの理由が無効です。"
 
 #: src/CA.cpp:548
 msgid "Invalid CRL data."
-msgstr "CRL データが正しくありません。"
+msgstr "CRLデータが無効です。"
 
 #: src/CA.cpp:594
 msgid "Duplicate DN. Request already exists."
-msgstr "重複した DN です。要求は既に存在しています。"
+msgstr "重複したDN要求がすでに存在します。"
 
 #: src/CA.cpp:859 src/CA.cpp:886 src/CA.cpp:916 src/OpenSSLUtils.cpp:988
 msgid "Cannot parse the certificate name."
-msgstr "証明書名を処理することができません。"
+msgstr "証明書名を解析することができません。"
 
 #: src/CA.cpp:967
 #, fuzzy, c-format
@@ -223,7 +220,7 @@ msgstr "要求 %1 は存在しません。"
 
 #: src/CA.cpp:989
 msgid "Removing the request failed (%1)."
-msgstr "要求の削除に失敗しました (%1) 。"
+msgstr "要求の削除に失敗しました(%1)。"
 
 #: src/CA.cpp:1003
 #, fuzzy, c-format
@@ -240,7 +237,8 @@ msgstr "証明書の削除に失敗しました: %1."
 msgid ""
 "Only revoked or expired certificates can be deleted. The status of the "
 "certificate is %s."
-msgstr "無効または期限切れの証明書のみ削除できます。証明書の状態は %1 です。"
+msgstr ""
+"無効または期限切れの証明書のみ削除できます。証明書のステータスは %1 です。"
 
 #: src/CA.cpp:1072
 msgid "Database not found."
@@ -253,11 +251,11 @@ msgstr "証明書が存在しません。"
 #: src/CA.cpp:1112
 #, fuzzy, c-format
 msgid "Invalid purpose %s."
-msgstr "目的 %1 が正しくありません。"
+msgstr "目的 %1 が無効です。"
 
 #: src/CA.cpp:1155
 msgid "Invalid CA request data."
-msgstr "認証機関要求データは正しくありません。"
+msgstr "CA要求データは無効です。"
 
 #: src/CA.cpp:1161
 msgid "Invalid CA issue data."
@@ -265,52 +263,52 @@ msgstr "CA発行データは無効です。"
 
 #: src/CA.cpp:1279
 msgid "CA name is empty."
-msgstr "認証機関名が設定されていません。"
+msgstr "CA 名は空です。"
 
 #: src/CA.cpp:1288
 msgid "CA directory already exists."
-msgstr "認証機関のディレクトリは既に存在しています。"
+msgstr "CAディレクトリはすでに存在しています。"
 
 #: src/CA.cpp:1299
 msgid "According to basicConstraints, this is not a CA."
-msgstr "'basicConstraints' によると、これは認証機関ではありません。"
+msgstr "「basicConstraints」によると、これは CA ではありません。"
 
 #: src/CA.cpp:1306
 msgid "CA key is empty."
-msgstr "認証機関の鍵が設定されていません。"
+msgstr "CAキーは空です。"
 
 #: src/CA.cpp:1315
 msgid "Invalid key data."
-msgstr "鍵データが正しくありません。"
+msgstr "キーデータは無効です。"
 
 #: src/CA.cpp:1322
 msgid "CA password is empty."
-msgstr "認証機関のパスワードが設定されていません。"
+msgstr "CAパスワードは空です。"
 
 #: src/CA.cpp:1366
 msgid "Error during key encryption."
-msgstr "鍵の暗号化中にエラーが発生しました。"
+msgstr "キーの暗号化中にエラーが発生しました。"
 
 #: src/CA.cpp:1388
 msgid "Error during write defaults."
-msgstr "既定値の書き込みの際にエラーが発生しました。"
+msgstr "デフォルトの書き込み中にエラーが発生しました。"
 
 #: src/CA.cpp:1532
 #, fuzzy, c-format
 msgid "CA name does not exist (%s)."
-msgstr "認証機関名が存在しません (%1)。"
+msgstr "CAの名前が存在しません (%1)。"
 
 #: src/CA.cpp:1563
 msgid ""
 "Deleting the CA is not allowed. The CA must be expired or never have signed "
 "a certificate."
 msgstr ""
-"その認証機関を削除することはできません。認証機関が期限切れであるか、署名した"
-"証明書をなくす必要があります。"
+"CAを削除することはできません。CA は期限切れである必要があります。または証明書"
+"に署名されていない必要があります。"
 
 #: src/CA.cpp:1588
 msgid "Deleting the CA failed: %1."
-msgstr "認証機関の削除に失敗しました: %1"
+msgstr "CAの削除に失敗しました: %1"
 
 #: src/CA.cpp:1639
 msgid "The configuration file is missing a value for policy."
@@ -320,26 +318,26 @@ msgstr "設定ファイルにポリシーの値がありません。"
 #: src/DNObject_Priv.cpp:207
 #, fuzzy, c-format
 msgid "Cannot parse section %s."
-msgstr "セクション %1 を処理できません。"
+msgstr "セクション %1 を解析できません。"
 
 #: src/CA.cpp:1721
 #, fuzzy, c-format
 msgid "Field %s must have a value."
-msgstr "項目 %1 には値が必要です。"
+msgstr "フィールド %1 には値が必要です。"
 
 #: src/CA.cpp:1760
 #, fuzzy, c-format
 msgid "%s must be defined."
-msgstr "%1 を設定する必要があります。"
+msgstr "%1 を定義する必要があります。"
 
 #: src/CA.cpp:1845
 #, fuzzy, c-format
 msgid "%s must be the same in the CA certificate (%s) and the request (%s)."
-msgstr "%1 は認証機関の証明書 (%2) と要求 (%3) で同じである必要があります。"
+msgstr "%1 は、CA証明書(%2)および要求(%3)で同じである必要があります。"
 
 #: src/CA.cpp:1857
 msgid "The configuration file seems to have an invalid policy."
-msgstr "設定ファイルには正しくないポリシーが入っているようです。"
+msgstr "設定ファイルには無効なポリシーが入っているようです。"
 
 #: src/CA.cpp:1883 src/CA.cpp:1893
 msgid "The configuration is not initialized."
@@ -347,7 +345,7 @@ msgstr "設定は初期化されていません。"
 
 #: src/CA.cpp:1901 src/DNObject.cpp:266 src/DNObject_Priv.cpp:197
 msgid "Missing section 'distinguished_name' in the configuration file."
-msgstr "設定ファイルに 'distinguished_name' のセクションがありません。"
+msgstr "設定ファイルに「distinguished_name」のセクションがありません。"
 
 #: src/CertificateData_Priv.cpp:92 src/CRLData_Priv.cpp:98
 #: src/CRLData_Priv.cpp:135
@@ -355,48 +353,48 @@ msgstr "設定ファイルに 'distinguished_name' のセクションがあり�
 msgid "Invalid serial %s."
 msgstr "シリアル %1 が無効です。"
 
-#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:393
-#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:365
+#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:409
+#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:381
 msgid "Cannot create a memory BIO."
-msgstr "メモリ BIO を作成できません。"
+msgstr "メモリBIOを作成できません。"
 
 #: src/CertificateData_Priv.cpp:233
 msgid "Cannot parse the certificate."
-msgstr "証明書を処理できません。"
+msgstr "証明書を解析できません。"
 
 #: src/CertificateData_Priv.cpp:246
 msgid "Error while parsing the certificate."
-msgstr "証明書の処理中にエラーが発生しました。"
+msgstr "証明書の解析中にエラーが発生しました。"
 
 #: src/CertificateData_Priv.cpp:273
 msgid "Cannot parse serial."
-msgstr "シリアルを処理できません。"
+msgstr "シリアルを解析できません。"
 
 #: src/CertificateData_Priv.cpp:341 src/RequestData_Priv.cpp:178
 msgid "Unable to get the public key."
-msgstr "公開鍵を取得できませんでした。"
+msgstr "公開鍵を取得できまんでした。"
 
 #: src/CertificateData_Priv.cpp:352 src/RequestData_Priv.cpp:189
 msgid "Could not get RSA key."
-msgstr "RSA 鍵を取得できませんでした。"
+msgstr "RSAキーを取得できませんでした。"
 
 #: src/CertificateData_Priv.cpp:372 src/RequestData_Priv.cpp:209
 msgid "Unsupported public key type."
-msgstr "サポートされていない種類の公開鍵です。"
+msgstr "サポートされていないタイプの公開キーです。"
 
 #: src/CertificateData_Priv.cpp:408 src/RequestData_Priv.cpp:242
 msgid "Unsupported public key algorithm."
-msgstr "サポートされていない公開鍵のアルゴリズムです。"
+msgstr "サポートされていない公開キーのアルゴリズムです。"
 
-#: src/CertificateData_Priv.cpp:440 src/CRLData_Priv.cpp:354
-#: src/RequestData_Priv.cpp:272
+#: src/CertificateData_Priv.cpp:456 src/CRLData_Priv.cpp:370
+#: src/RequestData_Priv.cpp:288
 #, fuzzy, c-format
 msgid "Unsupported signature algorithm %s."
 msgstr "サポートされていない署名アルゴリズム %1 です。"
 
-#: src/CertificateIssueData.cpp:207
+#: src/CertificateIssueData.cpp:223
 msgid "Invalid CertificateIssueData object."
-msgstr "正しくない CertificateIssueData オブジェクトです。"
+msgstr "無効なCertificateIssueDataオブジェクトです。"
 
 #: src/CertificatePoliciesExtension.cpp:210
 msgid "The text is too long."
@@ -404,111 +402,111 @@ msgstr "テキストが長すぎます。"
 
 #: src/CertificatePoliciesExtension.cpp:249
 msgid "Invalid UserNotice object."
-msgstr "無効な UserNotice オブジェクトです。"
+msgstr "無効なUserNoticeオブジェクトです。"
 
 #: src/CertificatePoliciesExtension.cpp:389
 #: src/CertificatePoliciesExtension.cpp:453
 #, fuzzy, c-format
 msgid "Invalid value for policyIdentifier: %s."
-msgstr "policyIdentifier の値が正しくありません: %1"
+msgstr "policyIdentifierの値が無効です: %1"
 
 #: src/CertificatePoliciesExtension.cpp:508
 msgid "Invalid CertificatePolicy object."
-msgstr "正しくない CertificatePolicy オブジェクトです。"
+msgstr "無効なCertificatePolicyオブジェクトです。"
 
 #: src/CertificatePoliciesExtension.cpp:777
 #: src/CertificatePoliciesExtension.cpp:802
 msgid "CertificatePoliciesExt is not present."
-msgstr "CertificatePoliciesExt が存在していません。"
+msgstr "CertificatePoliciesExtが存在しません。"
 
 #: src/CertificatePoliciesExtension.cpp:815
 msgid "Invalid CertificatePoliciesExt object."
-msgstr "正しくない CertificatePoliciesExt オブジェクトです。"
+msgstr "無効なCertificatePoliciesExtオブジェクトです。"
 
-#: src/CRLData.cpp:220
+#: src/CRLData.cpp:232
 msgid "Entry not found."
-msgstr "項目が見つかりませんでした。"
+msgstr "エントリが見つかりませんでした。"
 
-#: src/CRLData_Priv.cpp:421
+#: src/CRLData_Priv.cpp:437
 msgid "Cannot parse CRL."
-msgstr "CRL を処理できません。"
+msgstr "CRLを解析できません。"
 
-#: src/CRLData_Priv.cpp:434
+#: src/CRLData_Priv.cpp:450
 msgid "Error parsing the CRL."
-msgstr "CRL の処理中にエラーが発生しました。"
+msgstr "CRLの解析中にエラーが発生しました。"
 
 #: src/CRLDistributionPointsExtension.cpp:141
 msgid "CRLDistributionPointsExt is not present."
-msgstr "CRLDistributionPointsExt が存在していません。"
+msgstr "CRLDistributionPointsExtが存在しません。"
 
 #: src/CRLDistributionPointsExtension.cpp:153
 msgid "Invalid CRLDistributionPointsExt object."
-msgstr "正しくない CRLDistributionPointsExt オブジェクトです。"
+msgstr "無効なCRLDistributionPointsExtオブジェクトです。"
 
 #: src/CRLGenerationData.cpp:151
 msgid "Invalid CRLGenerationData object."
-msgstr "正しくない CRLGenerationData オブジェクトです。"
+msgstr "無効なCRLGenerationDataオブジェクトです。"
 
 #: src/CRLReason.cpp:96 src/CRLReason.cpp:132
 #, fuzzy, c-format
 msgid "Invalid revoke reason %s."
-msgstr "取り消した理由 %1 が正しくありません。"
+msgstr "取り消した理由 %1 が無効です。"
 
 #: src/CRLReason.cpp:170
 msgid "Reason is not certificateHold."
-msgstr "理由が certificateHold ではありません。"
+msgstr "理由はcertificateHoldではありません。"
 
 #: src/CRLReason.cpp:193 src/CRLReason.cpp:207
 msgid "Reason is not keyCompromise."
-msgstr "理由が keyCompromise ではありません。"
+msgstr "理由はkeyCompromiseではありません。"
 
 #: src/CRLReason.cpp:238 src/CRLReason.cpp:252
 msgid "Reason is not CACompromise."
-msgstr "理由が CACompromise ではありません。"
+msgstr "理由はCACompromiseではありません。"
 
 #: src/DNObject.cpp:100
 #, fuzzy, c-format
 msgid "Invalid type %s."
-msgstr "無効な種類 %1。"
+msgstr "無効なタイプ %1。"
 
 #: src/DNObject_Priv.cpp:157
 #, fuzzy, c-format
 msgid "Cannot parse DN line: %s."
-msgstr "DN 行を処理できません: %1."
+msgstr "DN行を解析できません: %1."
 
 #: src/ExtendedKeyUsageExt.cpp:118 src/ExtendedKeyUsageExt.cpp:167
 #, fuzzy, c-format
 msgid "Invalid ExtendedKeyUsage option %s."
-msgstr "正しくない ExtendedKeyUsage オプション %1 です。"
+msgstr "無効なExtendedKeyUsageオプション %1。"
 
 #: src/ExtendedKeyUsageExt.cpp:126 src/ExtendedKeyUsageExt.cpp:175
 msgid "Invalid ExtendedKeyUsageExt."
-msgstr "正しくない ExtendedKeyUsageExt です。"
+msgstr "無効なExtendedKeyUsageExt"
 
 #: src/ExtendedKeyUsageExt.cpp:188
 msgid "ExtendedKeyUsageExt is not present."
-msgstr "ExtendedKeyUsageExt は存在していません。"
+msgstr "ExtendedKeyUsageExtは存在しません。"
 
 #: src/ExtendedKeyUsageExt.cpp:217
 msgid "Invalid ExtendedKeyUsageExt object."
-msgstr "正しくない ExtendedKeyUsageExt オブジェクトです。"
+msgstr "無効なExtendedKeyUsageExtオブジェクトです。"
 
 #: src/IssuerAlternativeNameExtension.cpp:162
 #: src/IssuerAlternativeNameExtension.cpp:187
 msgid "IssuerAlternativeNameExt is not present."
-msgstr "IssuerAlternativeNameExt は存在していません。"
+msgstr "IssuerAlternativeNameExtは存在しません。"
 
 #: src/IssuerAlternativeNameExtension.cpp:199
 msgid "Invalid literal value for IssuerAlternativeNameExt."
-msgstr "IssuerAlternativeNameExt のリテラル値が正しくありません。"
+msgstr "IssuerAlternativeNameExtのリテラル値が無効です。"
 
 #: src/IssuerAlternativeNameExtension.cpp:212
 msgid "Invalid IssuerAlternativeNameExt object."
-msgstr "IssuerAlternativeNameExt オブジェクトが正しくありません。"
+msgstr "IssuerAlternativeNameExtオブジェクトが無効です。"
 
 #: src/LiteralValues.cpp:127
 msgid "Unknown type."
-msgstr "不明な種類"
+msgstr "不明なタイプ"
 
 #: src/LocalManagement.cpp:91
 msgid "Cannot split certificate output."
@@ -518,7 +516,7 @@ msgstr "証明書の出力を分割できません。"
 #: src/LocalManagement.cpp:328
 #, fuzzy, c-format
 msgid "Cannot create directory %s: %s."
-msgstr "ディレクトリ %1 を作成できません: %2"
+msgstr "フォルダ %1 を作成できません: %2"
 
 #: src/LocalManagement.cpp:342
 #, fuzzy, c-format
@@ -542,7 +540,7 @@ msgstr "ファイルが大きすぎます: %1."
 #: src/LocalManagement.cpp:459 src/LocalManagement.cpp:513
 #, fuzzy, c-format
 msgid "Cannot open file %s."
-msgstr "ファイル %1 を開くことができません。"
+msgstr "ファイル %1 を開けることができません。"
 
 #: src/LocalManagement.cpp:478
 #, fuzzy, c-format
@@ -587,7 +585,7 @@ msgstr "無効なコマンド %1 です。"
 #: src/OpenSSLUtils.cpp:1493 src/OpenSSLUtils.cpp:1651
 #: src/OpenSSLUtils.cpp:1795 src/OpenSSLUtils.cpp:2586
 msgid "Executing openssl command failed."
-msgstr "openssl コマンドの実行に失敗しました。"
+msgstr "opensslコマンドの実行に失敗しました。"
 
 #: src/OpenSSLUtils.cpp:136 src/OpenSSLUtils.cpp:227 src/OpenSSLUtils.cpp:326
 #: src/OpenSSLUtils.cpp:451 src/OpenSSLUtils.cpp:590 src/OpenSSLUtils.cpp:691
@@ -597,42 +595,42 @@ msgstr "openssl コマンドの実行に失敗しました。"
 #: src/OpenSSLUtils.cpp:1838 src/OpenSSLUtils.cpp:2613
 #, fuzzy, c-format
 msgid "openssl command failed: %s"
-msgstr "openssl コマンドが失敗しました: %1"
+msgstr "opensslコマンドが失敗しました: %1"
 
 #: src/OpenSSLUtils.cpp:166 src/OpenSSLUtils.cpp:254 src/OpenSSLUtils.cpp:358
 #: src/OpenSSLUtils.cpp:477 src/OpenSSLUtils.cpp:617 src/OpenSSLUtils.cpp:714
 msgid "No valid key file specified."
-msgstr "正しい鍵ファイルが指定されていません。"
+msgstr "有効なキーファイルが指定されていません。"
 
 #: src/OpenSSLUtils.cpp:262 src/OpenSSLUtils.cpp:366
 msgid "No valid request file specified."
-msgstr "正しい要求ファイルが指定されていません。"
+msgstr "有効な要求ファイルが指定されていません。"
 
 #: src/OpenSSLUtils.cpp:485 src/OpenSSLUtils.cpp:625 src/OpenSSLUtils.cpp:722
 msgid "No valid CA certificate file specified."
-msgstr "正しい証明機関の証明書ファイルが指定されていません。"
+msgstr "有効なCA証明書のファイルが指定されていません。"
 
 #: src/OpenSSLUtils.cpp:493 src/OpenSSLUtils.cpp:801
 msgid "No valid certificate file specified."
-msgstr "正しい証明書ファイルが指定されていません。"
+msgstr "有効な証明書ファイルが指定されていません。"
 
 #: src/OpenSSLUtils.cpp:809
 msgid "No valid CA directory specified."
-msgstr "正しい証明機関ディレクトリが指定されていません。"
+msgstr "有効なCAディレクトリが指定されていません。"
 
 #: src/OpenSSLUtils.cpp:963
 #, fuzzy, c-format
 msgid "Showing certificate status with serial %s failed (%d)."
-msgstr "シリアル %1 の証明書状態の表示に失敗しました (%2)。"
+msgstr "シリアル %1 による証明書のステータスの表示に失敗しました(%2)。"
 
 #: src/OpenSSLUtils.cpp:999
 msgid "The key file does not exist."
-msgstr "鍵ファイルが存在していません。"
+msgstr "キーファイルが存在していません。"
 
 #: src/OpenSSLUtils.cpp:1297 src/OpenSSLUtils.cpp:1686
 #: src/OpenSSLUtils.cpp:1833
 msgid "Invalid password."
-msgstr "パスワードが正しくありません。"
+msgstr "パスワードが無効です。"
 
 #: src/OpenSSLUtils.cpp:1599
 msgid "The password for encrypting the output is required."
@@ -640,13 +638,13 @@ msgstr "出力を暗号化するためのパスワードが必要です。"
 
 #: src/OpenSSLUtils.cpp:1746
 msgid "The PKCS12 password is required."
-msgstr "PKCS12 パスワードが必要です。"
+msgstr "PKCS12パスワードが必要です。"
 
 #: src/OpenSSLUtils.cpp:1864 src/OpenSSLUtils.cpp:2064
 #: src/OpenSSLUtils.cpp:2216
 #, fuzzy, c-format
 msgid "Cannot read directory: %s (%s) [%d]."
-msgstr "以下のディレクトリを読むことができません: %1 (%2) [%3]."
+msgstr "次のディレクトリを読めません: %1 (%2) [%3]."
 
 #: src/OpenSSLUtils.cpp:1914
 #, fuzzy, c-format
@@ -655,11 +653,11 @@ msgstr "%1 にシリアル番号がありません。"
 
 #: src/OpenSSLUtils.cpp:1934
 msgid "The request already exists."
-msgstr "この要求はすでに存在しています。"
+msgstr "このリクエストはすでに存在しています。"
 
 #: src/OpenSSLUtils.cpp:2125
 msgid "Cannot find the request subject."
-msgstr "要求サブジェクトが見つかりません。"
+msgstr "リクエストサブジェクトが見つかりません。"
 
 #: src/OpenSSLUtils.cpp:2286
 msgid "Cannot find the certificate subject."
@@ -668,12 +666,12 @@ msgstr "証明書サブジェクトが見つかりません。"
 #: src/OpenSSLUtils.cpp:2385
 #, fuzzy, c-format
 msgid "Invalid caName: %s."
-msgstr "不正な caName です: %1."
+msgstr "不正なcaName: %1."
 
 #: src/OpenSSLUtils.cpp:2394
 #, fuzzy, c-format
 msgid "'%s' does not exist."
-msgstr "'%1' は存在しません。"
+msgstr "'%1 は存在しません。"
 
 #: src/OpenSSLUtils.cpp:2404
 #, fuzzy, c-format
@@ -685,11 +683,11 @@ msgstr "%1 が存在しています。"
 #: src/OpenSSLUtils.cpp:2505 src/OpenSSLUtils.cpp:2519
 #, fuzzy, c-format
 msgid "Cannot create directory: %s (%s [%d])."
-msgstr "以下のディレクトリを作成できません: %1 (%2 [%3])."
+msgstr "次のディレクトリを作成できません: %1 (%2 [%3])."
 
 #: src/OpenSSLUtils.cpp:2450
 msgid "Cannot copy the configuration template."
-msgstr "設定テンプレートをコピーすることができません。"
+msgstr "環境設定テンプレートをコピーできません。"
 
 #: src/OpenSSLUtils.cpp:2537
 msgid "Cannot create the file."
@@ -698,122 +696,122 @@ msgstr "ファイルを作成できません。"
 #: src/OpenSSLUtils.cpp:2552
 #, fuzzy
 msgid "Can not open file."
-msgstr "ファイル %1 を開くことができません。"
+msgstr "ファイル %1 を開けることができません。"
 
-#: src/RequestData_Priv.cpp:392
+#: src/RequestData_Priv.cpp:408
 msgid "Cannot parse the request."
-msgstr "要求を処理できません。"
+msgstr "リクエストを解析できません。"
 
-#: src/RequestData_Priv.cpp:405
+#: src/RequestData_Priv.cpp:421
 msgid "Error while parsing the request."
-msgstr "要求処理中にエラーが発生しました。"
+msgstr "リクエスト解析中にエラーが発生しました。"
 
-#: src/RequestGenerationData.cpp:236
+#: src/RequestGenerationData.cpp:252
 msgid "Invalid RequestGenerationData object."
-msgstr "正しくない RequestGenerationData オブジェクトです。"
+msgstr "無効なRequestGenerationDataオブジェクト。"
 
 #: src/StringExtensions.cpp:105 src/StringExtensions.cpp:163
 msgid "Invalid value for NsBaseUrlExt."
-msgstr "NsBaseUrlExt の値が正しくありません。"
+msgstr "NsBaseUrlExtの値が無効です。"
 
 #: src/StringExtensions.cpp:175
 msgid "NsBaseUrlExt is not present."
-msgstr "NsBaseUrlExt が存在していません。"
+msgstr "NsBaseUrlExtが存在していません。"
 
 #: src/StringExtensions.cpp:187
 msgid "Invalid NsBaseUrlExt object."
-msgstr "正しくない NsBaseUrlExtオブジェクトです。"
+msgstr "無効なNsBaseUrlExtオブジェクト。"
 
 #: src/StringExtensions.cpp:270 src/StringExtensions.cpp:323
 msgid "Invalid value for NsRevocationUrlExt."
-msgstr "NsRevocationUrlExt の値が正しくありません。"
+msgstr "NsRevocationUrlExtの値が無効です。"
 
 #: src/StringExtensions.cpp:334
 msgid "NsRevocationUrlExt is not present."
-msgstr "NsRevocationUrlExt が存在していません。"
+msgstr "NsRevocationUrlExtが存在していません。"
 
 #: src/StringExtensions.cpp:345
 msgid "Invalid NsRevocationUrlExt object."
-msgstr "正しくない NsRevocationUrlExt オブジェクトです。"
+msgstr "無効なNsRevocationUrlExtオブジェクト。"
 
 #: src/StringExtensions.cpp:424 src/StringExtensions.cpp:477
 msgid "Invalid value for NsCaRevocationUrlExt."
-msgstr "NsCaRevocationUrlExt の値が正しくありません。"
+msgstr "NsCaRevocationUrlExtの値が無効です。"
 
 #: src/StringExtensions.cpp:488
 msgid "NsCaRevocationUrlExt is not present."
-msgstr "NsCaRevocationUrlExt が存在していません。"
+msgstr "NsCaRevocationUrlExtが存在していません。"
 
 #: src/StringExtensions.cpp:499
 msgid "Invalid NsCaRevocationUrlExt object."
-msgstr "正しくない NsCaRevocationUrlExt オブジェクトです。"
+msgstr "無効なNsCaRevocationUrlExtオブジェクト。"
 
 #: src/StringExtensions.cpp:577 src/StringExtensions.cpp:630
 msgid "Invalid value for NsRenewalUrlExt."
-msgstr "NsRenewalUrlExt の値が正しくありません。"
+msgstr "NsRenewalUrlExtの値が無効です。"
 
 #: src/StringExtensions.cpp:641
 msgid "NsRenewalUrlExt is not present."
-msgstr "NsRenewalUrlExt が存在していません。"
+msgstr "NsRenewalUrlExtが存在していません。"
 
 #: src/StringExtensions.cpp:652
 msgid "Invalid NsRenewalUrlExt object."
-msgstr "正しくない NsRenewalUrlExt オブジェクト。"
+msgstr "無効なNsRenewalUrlExtオブジェクト。"
 
 #: src/StringExtensions.cpp:729 src/StringExtensions.cpp:782
 msgid "Invalid value for NsCaPolicyUrlExt."
-msgstr "NsCaPolicyUrlExt の値が正しくありません。"
+msgstr "NsCaPolicyUrlExtの値が無効です。"
 
 #: src/StringExtensions.cpp:793
 msgid "NsCaPolicyUrlExt is not present."
-msgstr "NsCaPolicyUrlExt が存在していません。"
+msgstr "NsCaPolicyUrlExtが存在していません。"
 
 #: src/StringExtensions.cpp:804
 msgid "Invalid NsCaPolicyUrlExt object."
-msgstr "正しくない NsCaPolicyUrlExt オブジェクトです。"
+msgstr "無効なNsCaPolicyUrlExtオブジェクト。"
 
 #: src/StringExtensions.cpp:890
 msgid "Invalid type: %1."
-msgstr "不正な種類: %1."
+msgstr "無効なタイプ: %1."
 
 #: src/StringExtensions.cpp:936
 msgid "NsSslServerNameExt is not present."
-msgstr "NsSslServerNameExt が存在していません。"
+msgstr "NsSslServerNameExtが存在していません。"
 
 #: src/StringExtensions.cpp:947
 msgid "Invalid NsSslServerNameExt object."
-msgstr "正しくない NsSslServerNameExt オブジェクト。"
+msgstr "無効なNsSslServerNameExtオブジェクト。"
 
 #: src/StringExtensions.cpp:1062
 msgid "NsCommentExt is not present."
-msgstr "NsCommentExt が存在していません。"
+msgstr "NsCommentExtが存在していません。"
 
 #: src/StringExtensions.cpp:1073
 msgid "Invalid NsCommentExt object."
-msgstr "正しくない NsCommentExt オブジェクトです。"
+msgstr "無効なNsCommentExtオブジェクト。"
 
 #: src/SubjectAlternativeNameExtension.cpp:179
 #: src/SubjectAlternativeNameExtension.cpp:190
 msgid "SubjectAlternativeNameExt is not present."
-msgstr "SubjectAlternativeNameExt が存在していません。"
+msgstr "SubjectAlternativeNameExtが存在していません。"
 
 #: src/SubjectAlternativeNameExtension.cpp:203
 msgid "Invalid SubjectAlternativeNameExt object."
-msgstr "正しくない SubjectAlternativeNameExt オブジェクトです。"
+msgstr "無効なSubjectAlternativeNameExtオブジェクト。"
 
 #: src/SubjectKeyIdentifierExtension.cpp:123
 #: src/SubjectKeyIdentifierExtension.cpp:157
 msgid "Invalid KeyID."
-msgstr "正しくない KeyID。"
+msgstr "無効なKeyID。"
 
 #: src/SubjectKeyIdentifierExtension.cpp:170
 #: src/SubjectKeyIdentifierExtension.cpp:181
 msgid "SubjectKeyIdentifierExt is not present."
-msgstr "SubjectKeyIdentifierExt が存在していません。"
+msgstr "SubjectKeyIdentifierExtが存在していません。"
 
 #: src/SubjectKeyIdentifierExtension.cpp:194
 msgid "Invalid SubjectKeyIdentifierExt object."
-msgstr "正しくない SubjectKeyIdentifierExt オブジェクトです。"
+msgstr "無効なSubjectKeyIdentifierExtオブジェクト。"
 
 #: src/X509v3CertificateExtensions_Priv.cpp:392
 #: src/X509v3CertificateExtensions_Priv.cpp:449
@@ -827,7 +825,7 @@ msgstr "拡張機能が複数回発生しています: %1."
 #: src/X509v3RequestExtensions_Priv.cpp:137
 #: src/X509v3RequestExtensions_Priv.cpp:192
 msgid "Unable to parse the certificate (NID: %1 Crit: %2)."
-msgstr "証明書を処理できません (NID: %1 Crit: %2)。"
+msgstr "証明書を解析できません(NID: %1 Crit: %2)。"
 
 #: src/X509v3CertificateExtensions_Priv.cpp:508
 #: src/X509v3CertificateExtensions_Priv.cpp:574
@@ -859,147 +857,131 @@ msgstr "拡張機能が複数回発生しています。"
 #: src/X509v3RequestExtensions_Priv.cpp:380
 #: src/X509v3RequestExtensions_Priv.cpp:437
 msgid "Unable to parse the certificate (Crit: %1)."
-msgstr "証明書を処理できません (Crit: %1)。"
+msgstr "証明書を解析できません(Crit: %1)。"
 
 #: src/X509v3CertificateExtensions_Priv.cpp:937
 msgid "Invalid location in authorityInfoAccess."
-msgstr "authorityInfoAccess 内に正しくない場所があります。"
+msgstr "authorityInfoAccess内に無効な場所があります。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:170
 msgid "Invalid value for X509v3CertificateIssueExts::setNsBaseUrl."
-msgstr "X509v3CertificateIssueExts::setNsBaseUrl の値が正しくありません。"
+msgstr "X509v3CertificateIssueExts::setNsBaseUrlの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:193
 msgid "Invalid value for X509v3CertificateIssueExts::setNsRevocationUrl."
-msgstr ""
-"X509v3CertificateIssueExts::setNsRevocationUrl の値が正しくありません。"
+msgstr "X509v3CertificateIssueExts::setNsRevocationUrlの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:216
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCaRevocationUrl."
-msgstr ""
-"X509v3CertificateIssueExts::setNsCaRevocationUrl の値が正しくありません。"
+msgstr "X509v3CertificateIssueExts::setNsCaRevocationUrlの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:239
 msgid "Invalid value for X509v3CertificateIssueExts::setNsRenewalUrl."
-msgstr "X509v3CertificateIssueExts::setNsRenewalUrl の値が正しくありません。"
+msgstr "X509v3CertificateIssueExts::setNsRenewalUrlの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:262
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCaPolicyUrl."
-msgstr "X509v3CertificateIssueExts::setNsCaPolicyUrl の値が正しくありません。"
+msgstr "X509v3CertificateIssueExts::setNsCaPolicyUrlの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:285
 msgid "Invalid value for X509v3CertificateIssueExts::setNsSslServerName."
-msgstr ""
-"X509v3CertificateIssueExts::setNsSslServerName の値が正しくありません。"
+msgstr "X509v3CertificateIssueExts::setNsSslServerNameの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:308
 msgid "Invalid value for X509v3CertificateIssueExts::setNsComment."
-msgstr "X509v3CertificateIssueExts::setNsComment の値が正しくありません。"
+msgstr "X509v3CertificateIssueExts::setNsCommentの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:331
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCertType."
-msgstr "X509v3CertificateIssueExts::setNsCertType の値が正しくありません。"
+msgstr "X509v3CertificateIssueExts::setNsCertTypeの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:354
 msgid "Invalid value for X509v3CertificateIssueExts::setKeyUsage."
-msgstr "X509v3CertificateIssueExts::setKeyUsage の値が正しくありません。"
+msgstr "X509v3CertificateIssueExts::setKeyUsageの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:377
 msgid "Invalid value for X509v3CertificateIssueExts::setBasicConstraints."
-msgstr ""
-"X509v3CertificateIssueExts::setBasicConstraints の値が正しくありません。"
+msgstr "X509v3CertificateIssueExts::setBasicConstraintsの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:400
 msgid "Invalid value for X509v3CertificateIssueExts::setExtendedKeyUsage."
-msgstr ""
-"X509v3CertificateIssueExts::setExtendedKeyUsage の値が正しくありません。"
+msgstr "X509v3CertificateIssueExts::setExtendedKeyUsageの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:423
 msgid "Invalid value for X509v3CertificateIssueExts::setSubjectKeyIdentifier."
-msgstr ""
-"X509v3CertificateIssueExts::setSubjectKeyIdentifier の値が正しくありません。"
+msgstr "X509v3CertificateIssueExts::setSubjectKeyIdentifierの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:446
 msgid ""
 "Invalid value for X509v3CertificateIssueExts::setAuthorityKeyIdentifier."
-msgstr ""
-"X509v3CertificateIssueExts::setAuthorityKeyIdentifier の値が正しくありませ"
-"ん。"
+msgstr "X509v3CertificateIssueExts::setAuthorityKeyIdentifierの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:469
 msgid ""
 "Invalid value for X509v3CertificateIssueExts::setSubjectAlternativeName."
-msgstr ""
-"X509v3CertificateIssueExts::setSubjectAlternativeName の値が正しくありませ"
-"ん。"
+msgstr "X509v3CertificateIssueExts::setSubjectAlternativeNameの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:492
 msgid "Invalid value for X509v3CertificateIssueExts::setIssuerAlternativeName."
-msgstr ""
-"X509v3CertificateIssueExts::setIssuerAlternativeName の値が正しくありません。"
+msgstr "X509v3CertificateIssueExts::setIssuerAlternativeNameの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:515
 msgid "Invalid value for X509v3CertificateIssueExts::setAuthorityInfoAccess."
-msgstr ""
-"X509v3CertificateIssueExts::setAuthorityInfoAccess の値が正しくありません。"
+msgstr "X509v3CertificateIssueExts::setAuthorityInfoAccessの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:538
 msgid "Invalid value for X509v3CertificateIssueExts::setCRLDistributionPoints."
-msgstr ""
-"X509v3CertificateIssueExts::setCRLDistributionPoints の値が正しくありません。"
+msgstr "X509v3CertificateIssueExts::setCRLDistributionPointsの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:561
 msgid "Invalid value for X509v3CertificateIssueExts::setCertificatePolicies."
-msgstr ""
-"X509v3CertificateIssueExts::setCertificatePolicies の値が正しくありません。"
+msgstr "X509v3CertificateIssueExts::setCertificatePoliciesの値が無効です。"
 
 #: src/X509v3CertificateIssueExtensions.cpp:585
 #: src/X509v3CRLGenerationExtensions.cpp:145
 #: src/X509v3RequestExtensions.cpp:252
 msgid "Invalid X509v3RequestExts object."
-msgstr "X509v3RequestExts オブジェクトが正しくありません。"
+msgstr "X509v3RequestExtsオブジェクトが無効です。"
 
 #: src/X509v3CRLGenerationExtensions.cpp:98
 msgid "Invalid value for X509v3CRLGenerationExts::setAuthorityKeyIdentifier."
-msgstr ""
-"X509v3CRLGenerationExts::setAuthorityKeyIdentifier の値が正しくありません。"
+msgstr "X509v3CRLGenerationExts::setAuthorityKeyIdentifierの値が無効です。"
 
 #: src/X509v3CRLGenerationExtensions.cpp:121
 msgid "Invalid value for X509v3CRLGenerationExts::setIssuerAlternativeName."
-msgstr ""
-"X509v3CRLGenerationExts::setIssuerAlternativeName の値が正しくありません。"
+msgstr "X509v3CRLGenerationExts::setIssuerAlternativeNameの値が無効です。"
 
 #: src/X509v3RequestExtensions.cpp:67
 msgid "Invalid value for X509v3RequestExts::setNsSslServerName."
-msgstr "X509v3RequestExts::setNsSslServerName の値が正しくありません。"
+msgstr "X509v3RequestExts::setNsSslServerNameの値が無効です。"
 
 #: src/X509v3RequestExtensions.cpp:90
 msgid "Invalid value for X509v3RequestExts::setNsComment."
-msgstr "X509v3RequestExts::setNsComment の値が正しくありません。"
+msgstr "X509v3RequestExts::setNsCommentの値が無効です。"
 
 #: src/X509v3RequestExtensions.cpp:113
 msgid "Invalid value for X509v3RequestExts::setNsCertType."
-msgstr "X509v3RequestExts::setNsCertType の値が正しくありません。"
+msgstr "X509v3RequestExts::setNsCertTypeの値が無効です。"
 
 #: src/X509v3RequestExtensions.cpp:136
 msgid "Invalid value for X509v3RequestExts::setKeyUsage."
-msgstr "X509v3RequestExts::setKeyUsage の値が正しくありません。"
+msgstr "X509v3RequestExts::setKeyUsageの値が無効です。"
 
 #: src/X509v3RequestExtensions.cpp:159
 msgid "Invalid value for X509v3RequestExts::setBasicConstraints."
-msgstr "X509v3RequestExts::setBasicConstraints の値が正しくありません。"
+msgstr "X509v3RequestExts::setBasicConstraintsの値が無効です。"
 
 #: src/X509v3RequestExtensions.cpp:182
 msgid "Invalid value for X509v3RequestExts::setExtendedKeyUsage."
-msgstr "X509v3RequestExts::setExtendedKeyUsage の値が正しくありません。"
+msgstr "X509v3RequestExts::setExtendedKeyUsageの値が無効です。"
 
 #: src/X509v3RequestExtensions.cpp:205
 msgid "Invalid value for X509v3RequestExts::setSubjectKeyIdentifier."
-msgstr "X509v3RequestExts::setSubjectKeyIdentifier の値が正しくありません。"
+msgstr "X509v3RequestExts::setSubjectKeyIdentifierの値が無効です。"
 
 #: src/X509v3RequestExtensions.cpp:228
 msgid "Invalid value for X509v3RequestExts::setSubjectAlternativeName."
-msgstr "X509v3RequestExts::setSubjectAlternativeName の値が正しくありません。"
+msgstr "X509v3RequestExts::setSubjectAlternativeNameの値が無効です。"
 
 #~ msgid "Cannot parse date %1."
 #~ msgstr "日付 %1 を解析できません。"

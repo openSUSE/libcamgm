@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2012-07-23 16:26+0200\n"
+"POT-Creation-Date: 2014-04-13 15:19+0200\n"
 "PO-Revision-Date: 2003-08-14 10:47+0200\n"
 "Last-Translator: Priyavert Sharma<priyavert.sharma@agreeya.com>\n"
 "Language-Team: AgreeYa Solutions<linux_team@agreeya.com>\n"
@@ -37,7 +37,7 @@ msgstr "செல்லாத அணுக்கOID"
 #: src/CRLDistributionPointsExtension.cpp:72
 #: src/CRLDistributionPointsExtension.cpp:162 src/DNObject.cpp:500
 #: src/ExtendedKeyUsageExt.cpp:73 src/ExtendedKeyUsageExt.cpp:225
-#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:244
+#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:260
 #: src/StringExtensions.cpp:118 src/StringExtensions.cpp:195
 #: src/StringExtensions.cpp:283 src/StringExtensions.cpp:353
 #: src/StringExtensions.cpp:437 src/StringExtensions.cpp:507
@@ -91,7 +91,7 @@ msgid "This BitExtension is not present."
 msgstr "இந்த பிட்விரிவு இல்லை."
 
 #: src/BitExtensions.cpp:130 src/BitExtensions.cpp:243
-#: src/CertificateIssueData.cpp:215 src/CRLGenerationData.cpp:158
+#: src/CertificateIssueData.cpp:231 src/CRLGenerationData.cpp:158
 #: src/DNObject.cpp:258 src/IssuerAlternativeNameExtension.cpp:220
 #, fuzzy, c-format
 msgid "Wrong type: %d."
@@ -354,8 +354,8 @@ msgstr "உள்ளமைவு கோப்பில் காணப்ப�
 msgid "Invalid serial %s."
 msgstr "செல்லாத வரிசை %1."
 
-#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:393
-#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:365
+#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:409
+#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:381
 msgid "Cannot create a memory BIO."
 msgstr "ஒரு நினைவக BIO உருவாக்க முடியவில்லை."
 
@@ -388,13 +388,13 @@ msgstr "ஆதரவற்ற பொது விசை வகை."
 msgid "Unsupported public key algorithm."
 msgstr "ஆதரவற்ற பொது விசை சிக்கல் தீர்வு."
 
-#: src/CertificateData_Priv.cpp:440 src/CRLData_Priv.cpp:354
-#: src/RequestData_Priv.cpp:272
+#: src/CertificateData_Priv.cpp:456 src/CRLData_Priv.cpp:370
+#: src/RequestData_Priv.cpp:288
 #, fuzzy, c-format
 msgid "Unsupported signature algorithm %s."
 msgstr "ஆதரவற்ற கையொப்ப சிக்கல் தீர்வு %1."
 
-#: src/CertificateIssueData.cpp:207
+#: src/CertificateIssueData.cpp:223
 msgid "Invalid CertificateIssueData object."
 msgstr "செல்லாத சான்றிதழ்அளிப்புதரவு பொருள்."
 
@@ -425,15 +425,15 @@ msgstr "சான்றிதழ்கொள்கைகள்விரிவ
 msgid "Invalid CertificatePoliciesExt object."
 msgstr "செல்லாத சான்றிதழ்கொள்கைகள்விரிவு பொருள்."
 
-#: src/CRLData.cpp:220
+#: src/CRLData.cpp:232
 msgid "Entry not found."
 msgstr "உள்ளீடு காணப்படவில்லை."
 
-#: src/CRLData_Priv.cpp:421
+#: src/CRLData_Priv.cpp:437
 msgid "Cannot parse CRL."
 msgstr "CRLஐ விளக்க முடியவில்லை."
 
-#: src/CRLData_Priv.cpp:434
+#: src/CRLData_Priv.cpp:450
 msgid "Error parsing the CRL."
 msgstr "CRLஐ விளக்குவதில் பிழை."
 
@@ -701,15 +701,15 @@ msgstr "கோப்பை உருவாக்க முடியவில�
 msgid "Can not open file."
 msgstr "கோப்பை %1 திறக்க முடியவில்லை."
 
-#: src/RequestData_Priv.cpp:392
+#: src/RequestData_Priv.cpp:408
 msgid "Cannot parse the request."
 msgstr "கோரிக்கையை விளக்க முடியவில்லை."
 
-#: src/RequestData_Priv.cpp:405
+#: src/RequestData_Priv.cpp:421
 msgid "Error while parsing the request."
 msgstr "கோரிக்கையை விளக்கும்போது பிழை."
 
-#: src/RequestGenerationData.cpp:236
+#: src/RequestGenerationData.cpp:252
 msgid "Invalid RequestGenerationData object."
 msgstr "செல்லாத கோரிக்கைஉருவாக்கதரவு பொருள்."
 

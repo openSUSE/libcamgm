@@ -1,35 +1,28 @@
-# @TITLE@
-# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-# This file is distributed under the same license as @PACKAGE@ package. FIRST
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: limal-ca-mem.ko\n"
+"Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2012-07-23 16:26+0200\n"
-"PO-Revision-Date: 2009-10-23 02:40+0900\n"
-"Last-Translator: Yunseok Choi <xein@naver.com>\n"
-"Language-Team: Korean <xein@naver.com>\n"
-"Language: ko\n"
+"POT-Creation-Date: 2014-04-13 15:19+0200\n"
+"PO-Revision-Date: 2011-11-02 10:30\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Poedit-Language: Korean\n"
-"X-Poedit-Country: KOREA, REPUBLIC OF\n"
-"X-Poedit-SourceCharset: utf-8\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:104
 #: src/AuthorityInfoAccessExtension.cpp:133
 msgid "Invalid location."
-msgstr "잘못된 위치 입니다."
+msgstr "잘못된 위치입니다."
 
 #: src/AuthorityInfoAccessExtension.cpp:109
 #: src/AuthorityInfoAccessExtension.cpp:138
 msgid "Invalid accessOID."
-msgstr "잘못된 접근OID 입니다."
+msgstr "잘못된 accessOID입니다."
 
 #: src/AuthorityInfoAccessExtension.cpp:253
 #: src/AuthorityInfoAccessExtension.cpp:336
@@ -46,7 +39,7 @@ msgstr "잘못된 접근OID 입니다."
 #: src/CRLDistributionPointsExtension.cpp:72
 #: src/CRLDistributionPointsExtension.cpp:162 src/DNObject.cpp:500
 #: src/ExtendedKeyUsageExt.cpp:73 src/ExtendedKeyUsageExt.cpp:225
-#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:244
+#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:260
 #: src/StringExtensions.cpp:118 src/StringExtensions.cpp:195
 #: src/StringExtensions.cpp:283 src/StringExtensions.cpp:353
 #: src/StringExtensions.cpp:437 src/StringExtensions.cpp:507
@@ -62,45 +55,45 @@ msgstr "잘못된 형식: %1."
 
 #: src/AuthorityInfoAccessExtension.cpp:304
 msgid "Invalid AuthorityInformation in the information list."
-msgstr "잘못된 정보 목록의 AuthorityInformation 입니다."
+msgstr "정보 목록의 AuthorityInformation가 잘못되었습니다."
 
 #: src/AuthorityInfoAccessExtension.cpp:317
 msgid "AuthorityInfoAccessExt is not present."
-msgstr "AuthorityInfoAccessExt 는 존재하지 않습니다."
+msgstr "AuthorityInfoAccessExt가 존재하지 않습니다."
 
 #: src/AuthorityInfoAccessExtension.cpp:328
 msgid "Invalid AuthorityInfoAccessExt object."
-msgstr "잘못된 AuthorityInfoAccessExt 개채 입니다."
+msgstr "잘못된 AuthorityInfoAccessExt 개체입니다."
 
 #: src/AuthorityKeyIdentifierExtension.cpp:93
 #: src/AuthorityKeyIdentifierExtension.cpp:104
 #: src/AuthorityKeyIdentifierExtension.cpp:115
 msgid "AuthorityKeyIdentifierExt is not present."
-msgstr "AuthorityKeyIdentifierExt 는 존재하지 않습니다."
+msgstr "AuthorityKeyIdentifierExt가 없습니다."
 
 #: src/AuthorityKeyIdentifierGenerateExtension.cpp:150
 #: src/AuthorityKeyIdentifierGenerateExtension.cpp:169
 msgid "AuthorityKeyIdentifierGenerateExt is not present."
-msgstr "AuthorityKeyIdentifierGenerateExt 는 존재하지 않습니다."
+msgstr "AuthorityKeyIdentifierGenerateExt가 없습니다."
 
 #: src/AuthorityKeyIdentifierGenerateExtension.cpp:181
 msgid "Invalid AuthorityKeyIdentifierGenerateExt object."
-msgstr "잘못된 AuthorityKeyIdentifierGenerateExt 개채 입니다."
+msgstr "잘못된 AuthorityKeyIdentifierGenerateExt 개체입니다."
 
 #: src/BasicConstraintsExtension.cpp:151 src/BasicConstraintsExtension.cpp:163
 msgid "BasicConstraintsExt is not present."
-msgstr "BasicConstraintsExt 는 존재하지 않습니다."
+msgstr "BasicConstraintsExt가 없습니다."
 
 #: src/BasicConstraintsExtension.cpp:175
 msgid "Invalid BasicConstraintsExt object."
-msgstr "잘못된 BasicConstraintsExt 개채 입니다."
+msgstr "잘못된 BasicConstraintsExt 개체입니다."
 
 #: src/BitExtensions.cpp:107
 msgid "This BitExtension is not present."
-msgstr "이 BitExtension 는 존재하지 않습니다."
+msgstr "이 BitExtension이 없습니다."
 
 #: src/BitExtensions.cpp:130 src/BitExtensions.cpp:243
-#: src/CertificateIssueData.cpp:215 src/CRLGenerationData.cpp:158
+#: src/CertificateIssueData.cpp:231 src/CRLGenerationData.cpp:158
 #: src/DNObject.cpp:258 src/IssuerAlternativeNameExtension.cpp:220
 #, fuzzy, c-format
 msgid "Wrong type: %d."
@@ -108,35 +101,35 @@ msgstr "잘못된 형식: %1."
 
 #: src/BitExtensions.cpp:170 src/BitExtensions.cpp:199
 msgid "Invalid value for keyUsage."
-msgstr "잘못된 keyUsage에 대한 값 입니다."
+msgstr "잘못된 keyUsage 값입니다."
 
 #: src/BitExtensions.cpp:211 src/BitExtensions.cpp:222
 msgid "KeyUsageExt is not present."
-msgstr "KeyUsageExt 는 존재하지 않습니다."
+msgstr "KeyUsageExt가 없습니다."
 
 #: src/BitExtensions.cpp:235
 msgid "Invalid KeyUsageExt object."
-msgstr "잘못된 KeyUsageExt 개채 입니다."
+msgstr "잘못된 KeyUsageExt 개체입니다."
 
 #: src/BitExtensions.cpp:406
 msgid "Invalid value for NsCertTypeExt."
-msgstr "잘못된 NsCertTypeExt에 대한 값입니다."
+msgstr "잘못된 NsCertTypeExt 값입니다."
 
 #: src/BitExtensions.cpp:435
 msgid "Invalid value for NsCertTypeExt: %1."
-msgstr "잘못된 NsCertTypeExt에 대한 값: %1."
+msgstr "잘못된 NsCertTypeExt 값: %1."
 
 #: src/BitExtensions.cpp:447
 msgid "NsCertTypeExt is not present."
-msgstr "NsCertTypeExt 는 존재하지 않습니다."
+msgstr "NsCertTypeExt가 없습니다."
 
 #: src/BitExtensions.cpp:468
 msgid "Invalid NsCertTypeExt object."
-msgstr "잘못된 NsCertTypeExt 개채 입니다."
+msgstr "잘못된 NsCertTypeExt 개체입니다."
 
 #: src/CA.cpp:96
 msgid "Template not initialized."
-msgstr "템플릿이 초기화 되지 않았습니다."
+msgstr "템플릿이 초기화되지 않았습니다."
 
 #: src/CA.cpp:166 src/CA.cpp:1522
 msgid "Empty CA name."
@@ -149,55 +142,55 @@ msgstr "탬플릿이 존재하지 않음: %1."
 
 #: src/CA.cpp:186 src/CA.cpp:1543
 msgid "Invalid CA password."
-msgstr "잘못된 CA 열쇠글 입니다."
+msgstr "잘못된 CA 비밀번호입니다."
 
 #: src/CA.cpp:230 src/CA.cpp:1175 src/CA.cpp:1341
 msgid "Error while creating the CA infrastructure."
-msgstr "CA 하부구조를 생성하는 동안 오류가 발생했습니다."
+msgstr "CA 하부 구조를 생성하는 중에 오류가 발생했습니다."
 
 #: src/CA.cpp:250 src/CA.cpp:1015
 #, fuzzy, c-format
 msgid "Cannot parse the certificate name %s."
-msgstr "%1 증명서 이름을 처리 할 수 없습니다."
+msgstr "%1 인증서 이름을 구문 분석할 수 없습니다."
 
 #: src/CA.cpp:261
 msgid "Cannot copy the private key."
-msgstr "개인 키를 복사 할 수 없습니다."
+msgstr "개인 키를 복사할 수 없습니다."
 
 #: src/CA.cpp:272
 msgid "Cannot copy the certificate."
-msgstr "증명서를 복사 할 수 없습니다."
+msgstr "인증서를 복사할 수 없습니다."
 
 #: src/CA.cpp:304
 msgid "Invalid request data."
-msgstr "잘못된 데이터 요청 입니다."
+msgstr "잘못된 요청 데이터입니다."
 
 #: src/CA.cpp:323
 #, fuzzy, c-format
 msgid "Duplicate DN. Key %s.key already exists."
-msgstr "DN 중복입니다. %1 키. key는 이미 존재하고 있습니다."
+msgstr "중복된 DN입니다. %1.key 키가 이미 있습니다."
 
 #: src/CA.cpp:331
 #, fuzzy, c-format
 msgid "Duplicate DN. Request %s.req already exists."
-msgstr "DN 중복입니다. %1 요청. req는 이미 존재하고 잇습니다."
+msgstr "중복 DN입니다. %1. req 요청이 이미 있습니다."
 
 #: src/CA.cpp:400
 #, fuzzy, c-format
 msgid "Request does not exist (%s)."
-msgstr "요구는 존재하지 않습니다 (%1)."
+msgstr "요청이 존재하지 않습니다(%1)."
 
 #: src/CA.cpp:406
 msgid "Invalid issue data."
-msgstr "잘못된 발행 데이터 입니다."
+msgstr "잘못된 발급 데이터입니다."
 
 #: src/CA.cpp:423
 msgid "The CA expires before the certificate should expire."
-msgstr "증명서가 만료되기 전에 CA 가 만료됩니다."
+msgstr "인증서가 만료되기 전에 CA가 만료됩니다."
 
 #: src/CA.cpp:501
 msgid "Issuing the certificate failed."
-msgstr "증명서의 발행에 실패 했습니다."
+msgstr "인증서 발급에 실패했습니다."
 
 #: src/CA.cpp:518
 #, fuzzy, c-format
@@ -210,15 +203,15 @@ msgstr "잘못된 CRL 이유입니다."
 
 #: src/CA.cpp:548
 msgid "Invalid CRL data."
-msgstr "잘못된 CRL 데이터 입니다."
+msgstr "잘못된 CRL 데이터입니다."
 
 #: src/CA.cpp:594
 msgid "Duplicate DN. Request already exists."
-msgstr "DN 중복입니다. 요청이 이미 존재합니다."
+msgstr "중복 DN. 요청이 이미 있습니다."
 
 #: src/CA.cpp:859 src/CA.cpp:886 src/CA.cpp:916 src/OpenSSLUtils.cpp:988
 msgid "Cannot parse the certificate name."
-msgstr "인증서 이름을 처리 할 수 없습니다."
+msgstr "인증서 이름을 구문 분석할 수 없습니다."
 
 #: src/CA.cpp:967
 #, fuzzy, c-format
@@ -227,25 +220,24 @@ msgstr "%1 요청이 존재하지 않습니다."
 
 #: src/CA.cpp:989
 msgid "Removing the request failed (%1)."
-msgstr "요구 제거에 실패했습니다 (%1)."
+msgstr "요청 제거에 실패했습니다(%1)."
 
 #: src/CA.cpp:1003
 #, fuzzy, c-format
 msgid "Certificate %s does not exist."
-msgstr "%1 인증서가 존재하지 않습니다."
+msgstr "인증서 %1이(가) 존재하지 않습니다."
 
 #: src/CA.cpp:1052
 #, fuzzy, c-format
 msgid "Removing the certificate failed: %d."
-msgstr "인증서 제거에 실패: %1."
+msgstr "인증서 제거 실패: %1."
 
 #: src/CA.cpp:1060
 #, fuzzy, c-format
 msgid ""
 "Only revoked or expired certificates can be deleted. The status of the "
 "certificate is %s."
-msgstr ""
-"무효 또는 만료된 증명서만 삭제 할 수 있습니다. 증명서 상태는 %1 입니다."
+msgstr "취소 또는 만료된 인증서만 삭제할 수 있습니다. 인증서 상태는 %1입니다."
 
 #: src/CA.cpp:1072
 msgid "Database not found."
@@ -262,258 +254,256 @@ msgstr "잘못된 %1 목적입니다."
 
 #: src/CA.cpp:1155
 msgid "Invalid CA request data."
-msgstr "잘못된 CA 요청 데이터 입니다."
+msgstr "잘못된 CA 요청 데이터입니다."
 
 #: src/CA.cpp:1161
 msgid "Invalid CA issue data."
-msgstr "잘못된 CA 발행 데이터 입니다."
+msgstr "잘못된 CA 발급 데이터입니다."
 
 #: src/CA.cpp:1279
 msgid "CA name is empty."
-msgstr "CA 이름은 비어 있습니다."
+msgstr "CA 이름이 비어 있습니다."
 
 #: src/CA.cpp:1288
 msgid "CA directory already exists."
-msgstr "CA 디렉터리가 이미 존재 합니다."
+msgstr "CA 디렉토리가 이미 있습니다."
 
 #: src/CA.cpp:1299
 msgid "According to basicConstraints, this is not a CA."
-msgstr "basicConstraints에 의하면, 이것은 CA가 아닙니다."
+msgstr "basicConstraints에 따라 이것은 CA가 아닙니다."
 
 #: src/CA.cpp:1306
 msgid "CA key is empty."
-msgstr "CA 키는 비어있습니다."
+msgstr "CA 키가 비어 있습니다."
 
 #: src/CA.cpp:1315
 msgid "Invalid key data."
-msgstr "잘못된 키 데이터 입니다."
+msgstr "잘못된 키 데이터입니다."
 
 #: src/CA.cpp:1322
 msgid "CA password is empty."
-msgstr "CA 열쇠글이 비어 있습니다."
+msgstr "CA 비밀번호가 비어 있습니다."
 
 #: src/CA.cpp:1366
 msgid "Error during key encryption."
-msgstr "키 암호화 중 오류가 발생했습니다."
+msgstr "키 암호화 중에 오류가 발생했습니다."
 
 #: src/CA.cpp:1388
 msgid "Error during write defaults."
-msgstr "기본 기록하는 동안 오류가 발생했습니다."
+msgstr "기본값 쓰기 중에 오류가 발생했습니다."
 
 #: src/CA.cpp:1532
 #, fuzzy, c-format
 msgid "CA name does not exist (%s)."
-msgstr "CA 이름이 존재하지 않습니다 (%1)."
+msgstr "CA 이름이 존재하지 않습니다(%1)."
 
 #: src/CA.cpp:1563
 msgid ""
 "Deleting the CA is not allowed. The CA must be expired or never have signed "
 "a certificate."
-msgstr ""
-"CA 를 삭제 할 수 없습니다. CA 는 만료되거나, 서명한 증명서를 없앨 필요가 있습"
-"니다."
+msgstr "CA를 삭제할 수 없습니다. CA가 만료되거나 인증서에 서명해서는 안됩니다."
 
 #: src/CA.cpp:1588
 msgid "Deleting the CA failed: %1."
-msgstr "CA 삭제 중 실패: %1."
+msgstr "CA 삭제 실패: %1."
 
 #: src/CA.cpp:1639
 msgid "The configuration file is missing a value for policy."
-msgstr "설정 파일은 정책에 대한 값이 없습니다."
+msgstr "구성 파일에 정책 값이 없습니다."
 
 #: src/CA.cpp:1649 src/CA.cpp:1911 src/DNObject.cpp:277
 #: src/DNObject_Priv.cpp:207
 #, fuzzy, c-format
 msgid "Cannot parse section %s."
-msgstr "%1섹션을 처리할 수 없습니다."
+msgstr "섹션 %1을(를) 구문 분석할 수 없습니다."
 
 #: src/CA.cpp:1721
 #, fuzzy, c-format
 msgid "Field %s must have a value."
-msgstr "1% 필드는 값을 가져야 합니다."
+msgstr "필드 %1에 값이 있어야 합니다."
 
 #: src/CA.cpp:1760
 #, fuzzy, c-format
 msgid "%s must be defined."
-msgstr "%1 은 정의되어야 합니다."
+msgstr "%1이(가) 정의되어야 합니다."
 
 #: src/CA.cpp:1845
 #, fuzzy, c-format
 msgid "%s must be the same in the CA certificate (%s) and the request (%s)."
-msgstr "%1 은 CA 인증서(%2) 및 요청(%3)에 같이 있어야 합니다."
+msgstr "%1이(가) CA 인증서(%2) 및 요청(%3)에서 동일해야 합니다."
 
 #: src/CA.cpp:1857
 msgid "The configuration file seems to have an invalid policy."
-msgstr "설정 파일은 잘못된 정책을 가지고 있는 것 같습니다."
+msgstr "구성 파일에 잘못된 정책이 있는 것 같습니다."
 
 #: src/CA.cpp:1883 src/CA.cpp:1893
 msgid "The configuration is not initialized."
-msgstr "설정은 초기화 되지 않았습니다."
+msgstr "구성이 초기화되지 않았습니다."
 
 #: src/CA.cpp:1901 src/DNObject.cpp:266 src/DNObject_Priv.cpp:197
 msgid "Missing section 'distinguished_name' in the configuration file."
-msgstr "설정 파일의 'distinguished_name' 섹션을 놓쳤습니다."
+msgstr "구성 파일에 'distinguished_name' 섹션이 없습니다."
 
 #: src/CertificateData_Priv.cpp:92 src/CRLData_Priv.cpp:98
 #: src/CRLData_Priv.cpp:135
 #, fuzzy, c-format
 msgid "Invalid serial %s."
-msgstr "잘못된 %1 시리얼 입니다."
+msgstr "잘못된 직렬 %1입니다."
 
-#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:393
-#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:365
+#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:409
+#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:381
 msgid "Cannot create a memory BIO."
-msgstr "BIO 메모리를 생성 할 수 없습니다."
+msgstr "메모리 BIO를 생성할 수 없습니다."
 
 #: src/CertificateData_Priv.cpp:233
 msgid "Cannot parse the certificate."
-msgstr "인증서를 처리 할 수 없습니다."
+msgstr "인증서를 구문 분석할 수 없습니다."
 
 #: src/CertificateData_Priv.cpp:246
 msgid "Error while parsing the certificate."
-msgstr "인증서를 처리하는 동안 오류가 발생 했습니다."
+msgstr "인증서를 구문 분석하는 중에 오류가 발생했습니다."
 
 #: src/CertificateData_Priv.cpp:273
 msgid "Cannot parse serial."
-msgstr "시리얼을 처리할 수 없습니다."
+msgstr "직렬을 구문 분석할 수 없습니다."
 
 #: src/CertificateData_Priv.cpp:341 src/RequestData_Priv.cpp:178
 msgid "Unable to get the public key."
-msgstr "공개 키 획득을 사용할 수 없습니다."
+msgstr "공용 키를 가져올 수 없습니다."
 
 #: src/CertificateData_Priv.cpp:352 src/RequestData_Priv.cpp:189
 msgid "Could not get RSA key."
-msgstr "RSA 키를 획득 할 수 없습니다."
+msgstr "RSA 키를 가져올 수 없습니다."
 
 #: src/CertificateData_Priv.cpp:372 src/RequestData_Priv.cpp:209
 msgid "Unsupported public key type."
-msgstr "공개 키 형식을 지원하지 않습니다."
+msgstr "지원되지 않는 공용 키 유형입니다."
 
 #: src/CertificateData_Priv.cpp:408 src/RequestData_Priv.cpp:242
 msgid "Unsupported public key algorithm."
-msgstr "공개 키 알고리즘을 지원하지 않습니다."
+msgstr "지원되지 않는 공용 키 알고리즘입니다."
 
-#: src/CertificateData_Priv.cpp:440 src/CRLData_Priv.cpp:354
-#: src/RequestData_Priv.cpp:272
+#: src/CertificateData_Priv.cpp:456 src/CRLData_Priv.cpp:370
+#: src/RequestData_Priv.cpp:288
 #, fuzzy, c-format
 msgid "Unsupported signature algorithm %s."
-msgstr "%1 서명 알고리즘을 지원하지 않습니다."
+msgstr "지원되지 않는 서명 알고리즘 %1입니다."
 
-#: src/CertificateIssueData.cpp:207
+#: src/CertificateIssueData.cpp:223
 msgid "Invalid CertificateIssueData object."
-msgstr "잘못된 CertificateIssueData 개체 입니다."
+msgstr "잘못된 CertificateIssueData 개체입니다."
 
 #: src/CertificatePoliciesExtension.cpp:210
 msgid "The text is too long."
-msgstr "글이 너무 깁니다."
+msgstr "텍스트가 너무 깁니다."
 
 #: src/CertificatePoliciesExtension.cpp:249
 msgid "Invalid UserNotice object."
-msgstr "잘못된 UserNotice 개체 입니다."
+msgstr "잘못된 UserNotice 개체입니다."
 
 #: src/CertificatePoliciesExtension.cpp:389
 #: src/CertificatePoliciesExtension.cpp:453
 #, fuzzy, c-format
 msgid "Invalid value for policyIdentifier: %s."
-msgstr "잘못된 policyIdentifier에 대한 값: %1."
+msgstr "policyIdentifier의 값이 잘못됨: %1."
 
 #: src/CertificatePoliciesExtension.cpp:508
 msgid "Invalid CertificatePolicy object."
-msgstr "잘못된 CertificatePolicy 개체 입니다."
+msgstr "잘못된 CertificatePolicy 개체입니다."
 
 #: src/CertificatePoliciesExtension.cpp:777
 #: src/CertificatePoliciesExtension.cpp:802
 msgid "CertificatePoliciesExt is not present."
-msgstr "CertificatePoliciesExt 은 존재하지 않습니다."
+msgstr "CertificatePoliciesExt가 없습니다."
 
 #: src/CertificatePoliciesExtension.cpp:815
 msgid "Invalid CertificatePoliciesExt object."
-msgstr "잘못된 CertificatePoliciesExt 개체 입니다."
+msgstr "잘못된 CertificatePoliciesExt 개체입니다."
 
-#: src/CRLData.cpp:220
+#: src/CRLData.cpp:232
 msgid "Entry not found."
 msgstr "항목을 찾을 수 없습니다."
 
-#: src/CRLData_Priv.cpp:421
+#: src/CRLData_Priv.cpp:437
 msgid "Cannot parse CRL."
-msgstr "CRL을 처리 할 수 없습니다."
+msgstr "CRL을 구문 분석할 수 없습니다."
 
-#: src/CRLData_Priv.cpp:434
+#: src/CRLData_Priv.cpp:450
 msgid "Error parsing the CRL."
-msgstr "CRL 처리중에 오류가 발생했습니다."
+msgstr "CRL을 구문 분석하는 중에 오류가 발생했습니다."
 
 #: src/CRLDistributionPointsExtension.cpp:141
 msgid "CRLDistributionPointsExt is not present."
-msgstr "CRLDistributionPointsExt 는 존재하지 않습니다."
+msgstr "CRLDistributionPointsExt가 없습니다."
 
 #: src/CRLDistributionPointsExtension.cpp:153
 msgid "Invalid CRLDistributionPointsExt object."
-msgstr "잘못된 CRLDistributionPointsExt 개체 입니다."
+msgstr "잘못된 CRLDistributionPointsExt 개체입니다."
 
 #: src/CRLGenerationData.cpp:151
 msgid "Invalid CRLGenerationData object."
-msgstr "잘못된 CRLGenerationData 개체 입니다."
+msgstr "잘못된 CRLGenerationData 개체입니다."
 
 #: src/CRLReason.cpp:96 src/CRLReason.cpp:132
 #, fuzzy, c-format
 msgid "Invalid revoke reason %s."
-msgstr "잘못된 무효 이유 %1."
+msgstr "해지 이유 %1이(가) 잘못되었습니다."
 
 #: src/CRLReason.cpp:170
 msgid "Reason is not certificateHold."
-msgstr "이유는 certificateHold 이 아닙니다."
+msgstr "이유는 certificateHold가 아닙니다."
 
 #: src/CRLReason.cpp:193 src/CRLReason.cpp:207
 msgid "Reason is not keyCompromise."
-msgstr "이유는 keyCompromise 이 아닙니다."
+msgstr "이유는 keyCompromise가 아닙니다."
 
 #: src/CRLReason.cpp:238 src/CRLReason.cpp:252
 msgid "Reason is not CACompromise."
-msgstr "이유는 CACompromise 가 아닙니다."
+msgstr "이유는 CACompromise가 아닙니다."
 
 #: src/DNObject.cpp:100
 #, fuzzy, c-format
 msgid "Invalid type %s."
-msgstr "잘못된 %1 형식 입니다."
+msgstr "잘못된 유형 %1입니다."
 
 #: src/DNObject_Priv.cpp:157
 #, fuzzy, c-format
 msgid "Cannot parse DN line: %s."
-msgstr "DN 선을 처리 할 수 없습니다: %1."
+msgstr "DN 줄을 구문 분석할 수 없습니다: %1."
 
 #: src/ExtendedKeyUsageExt.cpp:118 src/ExtendedKeyUsageExt.cpp:167
 #, fuzzy, c-format
 msgid "Invalid ExtendedKeyUsage option %s."
-msgstr "잘못된 ExtendedKeyUsage %1 옵션입니다."
+msgstr "잘못된 ExtendedKeyUsage 옵션 %1입니다."
 
 #: src/ExtendedKeyUsageExt.cpp:126 src/ExtendedKeyUsageExt.cpp:175
 msgid "Invalid ExtendedKeyUsageExt."
-msgstr "잘못된 ExtendedKeyUsageExt 입니다."
+msgstr "잘못된 ExtendedKeyUsageExt입니다."
 
 #: src/ExtendedKeyUsageExt.cpp:188
 msgid "ExtendedKeyUsageExt is not present."
-msgstr "ExtendedKeyUsageExt 은 존재하지 않습니다."
+msgstr "ExtendedKeyUsageExt가 존재하지 않습니다."
 
 #: src/ExtendedKeyUsageExt.cpp:217
 msgid "Invalid ExtendedKeyUsageExt object."
-msgstr "잘못된 ExtendedKeyUsageExt 개체 입니다."
+msgstr "잘못된 ExtendedKeyUsageExt 개체입니다."
 
 #: src/IssuerAlternativeNameExtension.cpp:162
 #: src/IssuerAlternativeNameExtension.cpp:187
 msgid "IssuerAlternativeNameExt is not present."
-msgstr "IssuerAlternativeNameExt 는 존재하지 않습니다."
+msgstr "IssuerAlternativeNameExt가 없습니다."
 
 #: src/IssuerAlternativeNameExtension.cpp:199
 msgid "Invalid literal value for IssuerAlternativeNameExt."
-msgstr "잘못된 IssuerAlternativeNameExt에 대한 literal 값 입니다."
+msgstr "IssuerAlternativeNameExt의 리터럴 값이 잘못되었습니다."
 
 #: src/IssuerAlternativeNameExtension.cpp:212
 msgid "Invalid IssuerAlternativeNameExt object."
-msgstr "잘못된 IssuerAlternativeNameExt 개체 입니다."
+msgstr "잘못된 IssuerAlternativeNameExt 개체입니다."
 
 #: src/LiteralValues.cpp:127
 msgid "Unknown type."
-msgstr "알 수 없는 형식입니다."
+msgstr "알 수 없는 형식."
 
 #: src/LocalManagement.cpp:91
 msgid "Cannot split certificate output."
@@ -523,12 +513,12 @@ msgstr "인증서 출력을 나눌 수 없습니다."
 #: src/LocalManagement.cpp:328
 #, fuzzy, c-format
 msgid "Cannot create directory %s: %s."
-msgstr "%1 디렉터리를 생성 할 수 없음: %2."
+msgstr "%1 디렉토리를 생성할 수 없습니다: %2."
 
 #: src/LocalManagement.cpp:342
 #, fuzzy, c-format
 msgid "%s is not a directory."
-msgstr "%1 은 디렉터리가 아닙니다."
+msgstr "%1은(는) 디렉토리가 아닙니다."
 
 #: src/LocalManagement.cpp:363
 msgid "Invalid certificate file."
@@ -552,22 +542,22 @@ msgstr "%1 파일을 열 수 없습니다."
 #: src/LocalManagement.cpp:478
 #, fuzzy, c-format
 msgid "Cannot read from file %s."
-msgstr "%1 파일로 부터 읽을 수 없습니다."
+msgstr "%1 파일에서 읽을 수 없습니다."
 
 #: src/LocalManagement.cpp:503
 #, fuzzy, c-format
 msgid "File already exists: %s."
-msgstr "파일이 이미 존재: %1."
+msgstr "파일이 이미 있음: %1."
 
 #: src/LocalManagement.cpp:523
 #, fuzzy, c-format
 msgid "Cannot get lock on file %s."
-msgstr "%1 파일의 잠금을 획즉 할 수 없습니다."
+msgstr "%1 파일의 잠금을 가져올 수 없습니다."
 
 #: src/LocalManagement.cpp:535
 #, fuzzy, c-format
 msgid "Cannot write to file %s."
-msgstr "%1 파일에 기록 할 수 없습니다."
+msgstr "%1 파일에 쓸 수 없습니다."
 
 #: src/OpenSSLUtils.cpp:49
 #, fuzzy, c-format
@@ -577,12 +567,12 @@ msgstr "파일이 존재하지 않음: %1."
 #: src/OpenSSLUtils.cpp:58
 #, fuzzy, c-format
 msgid "Directory does not exist: %s."
-msgstr "디렉터리가 존재하지 않음: %1."
+msgstr "디렉토리가 존재하지 않음: %1."
 
 #: src/OpenSSLUtils.cpp:67
 #, fuzzy, c-format
 msgid "Invalid command %s."
-msgstr "잘못된 %1 명령 입니다."
+msgstr "잘못된 명령 %1입니다."
 
 #: src/OpenSSLUtils.cpp:124 src/OpenSSLUtils.cpp:214 src/OpenSSLUtils.cpp:313
 #: src/OpenSSLUtils.cpp:438 src/OpenSSLUtils.cpp:577 src/OpenSSLUtils.cpp:678
@@ -592,7 +582,7 @@ msgstr "잘못된 %1 명령 입니다."
 #: src/OpenSSLUtils.cpp:1493 src/OpenSSLUtils.cpp:1651
 #: src/OpenSSLUtils.cpp:1795 src/OpenSSLUtils.cpp:2586
 msgid "Executing openssl command failed."
-msgstr "openssl 명령 실행에 실패 했습니다."
+msgstr "openssl 명령 실행에 실패했습니다."
 
 #: src/OpenSSLUtils.cpp:136 src/OpenSSLUtils.cpp:227 src/OpenSSLUtils.cpp:326
 #: src/OpenSSLUtils.cpp:451 src/OpenSSLUtils.cpp:590 src/OpenSSLUtils.cpp:691
@@ -602,7 +592,7 @@ msgstr "openssl 명령 실행에 실패 했습니다."
 #: src/OpenSSLUtils.cpp:1838 src/OpenSSLUtils.cpp:2613
 #, fuzzy, c-format
 msgid "openssl command failed: %s"
-msgstr "openssl 명령 실패함: %1"
+msgstr "openssl 명령 실패: %1"
 
 #: src/OpenSSLUtils.cpp:166 src/OpenSSLUtils.cpp:254 src/OpenSSLUtils.cpp:358
 #: src/OpenSSLUtils.cpp:477 src/OpenSSLUtils.cpp:617 src/OpenSSLUtils.cpp:714
@@ -623,12 +613,12 @@ msgstr "올바른 인증서 파일이 지정되지 않았습니다."
 
 #: src/OpenSSLUtils.cpp:809
 msgid "No valid CA directory specified."
-msgstr "올바른 CA 디렉터리가 지정되지 않았습니다."
+msgstr "올바른 CA 디렉토리가 지정되지 않았습니다."
 
 #: src/OpenSSLUtils.cpp:963
 #, fuzzy, c-format
 msgid "Showing certificate status with serial %s failed (%d)."
-msgstr "인증서 상태를 시리얼 %1 과 보기에 실패 했습니다 (%2)."
+msgstr "직렬 %1(으)로 인증서 상태를 표시하지 못했습니다(%2)."
 
 #: src/OpenSSLUtils.cpp:999
 msgid "The key file does not exist."
@@ -637,30 +627,30 @@ msgstr "키 파일이 존재하지 않습니다."
 #: src/OpenSSLUtils.cpp:1297 src/OpenSSLUtils.cpp:1686
 #: src/OpenSSLUtils.cpp:1833
 msgid "Invalid password."
-msgstr "잘못된 열쇠글 입니다."
+msgstr "비밀번호가 잘못되었습니다."
 
 #: src/OpenSSLUtils.cpp:1599
 msgid "The password for encrypting the output is required."
-msgstr "출력을 암호화 하기 위한 열쇠글이 필요합니다."
+msgstr "출력을 암호화하기 위한 비밀번호가 필요합니다."
 
 #: src/OpenSSLUtils.cpp:1746
 msgid "The PKCS12 password is required."
-msgstr "PKCS12 열쇠글이 필요 합니다."
+msgstr "PKCS12 비밀번호가 필요합니다."
 
 #: src/OpenSSLUtils.cpp:1864 src/OpenSSLUtils.cpp:2064
 #: src/OpenSSLUtils.cpp:2216
 #, fuzzy, c-format
 msgid "Cannot read directory: %s (%s) [%d]."
-msgstr "디렉터리를 읽을 수 없음: %1 (%2) [%3]."
+msgstr "디렉토리를 읽을 수 없음: %1 (%2) [%3]."
 
 #: src/OpenSSLUtils.cpp:1914
 #, fuzzy, c-format
 msgid "No serial number found in %s."
-msgstr "%1 에 시리얼 번호가 없습니다."
+msgstr "%1에서 일련 번호를 찾을 수 없습니다."
 
 #: src/OpenSSLUtils.cpp:1934
 msgid "The request already exists."
-msgstr "요청은 이미 존재합니다."
+msgstr "요청이 이미 있습니다."
 
 #: src/OpenSSLUtils.cpp:2125
 msgid "Cannot find the request subject."
@@ -678,104 +668,104 @@ msgstr "잘못된 caName: %1."
 #: src/OpenSSLUtils.cpp:2394
 #, fuzzy, c-format
 msgid "'%s' does not exist."
-msgstr "'%1' 은 존재하지 않습니다."
+msgstr "'%1'이(가) 존재하지 않습니다."
 
 #: src/OpenSSLUtils.cpp:2404
 #, fuzzy, c-format
 msgid "%s still exists."
-msgstr "%1 여전히 존재합니다."
+msgstr "%1이(가) 여전히 있습니다."
 
 #: src/OpenSSLUtils.cpp:2415 src/OpenSSLUtils.cpp:2463
 #: src/OpenSSLUtils.cpp:2477 src/OpenSSLUtils.cpp:2491
 #: src/OpenSSLUtils.cpp:2505 src/OpenSSLUtils.cpp:2519
 #, fuzzy, c-format
 msgid "Cannot create directory: %s (%s [%d])."
-msgstr "디렉터리를 생성 할 수 없음: %1 (%2 [%3])."
+msgstr "디렉토리를 생성할 수 없음: %1 (%2 [%3])."
 
 #: src/OpenSSLUtils.cpp:2450
 msgid "Cannot copy the configuration template."
-msgstr "설정 템플릿을 복사 할 수 없습니다."
+msgstr "구성 템플릿을 복사할 수 없습니다."
 
 #: src/OpenSSLUtils.cpp:2537
 msgid "Cannot create the file."
-msgstr "파일을 생성 할 수 없습니다."
+msgstr "파일을 생성할 수 없습니다."
 
 #: src/OpenSSLUtils.cpp:2552
 #, fuzzy
 msgid "Can not open file."
 msgstr "%1 파일을 열 수 없습니다."
 
-#: src/RequestData_Priv.cpp:392
+#: src/RequestData_Priv.cpp:408
 msgid "Cannot parse the request."
-msgstr "요청 처리를 할 수 없습니다."
+msgstr "요청을 구문 분석할 수 없습니다."
 
-#: src/RequestData_Priv.cpp:405
+#: src/RequestData_Priv.cpp:421
 msgid "Error while parsing the request."
-msgstr "요청을 처리하는 동안 오류가 발생 했습니다."
+msgstr "요청을 구문 분석하는 중에 오류가 발생했습니다."
 
-#: src/RequestGenerationData.cpp:236
+#: src/RequestGenerationData.cpp:252
 msgid "Invalid RequestGenerationData object."
-msgstr "잘못된 RequestGenerationData 개체 입니다."
+msgstr "잘못된 RequestGenerationData 개체입니다."
 
 #: src/StringExtensions.cpp:105 src/StringExtensions.cpp:163
 msgid "Invalid value for NsBaseUrlExt."
-msgstr "잘못된 value for NsBaseUrlExt 입니다."
+msgstr "NsBaseUrlExt의 값이 잘못되었습니다."
 
 #: src/StringExtensions.cpp:175
 msgid "NsBaseUrlExt is not present."
-msgstr "NsBaseUrlExt 는 존재하지 않습니다."
+msgstr "NsBaseUrlExt가 없습니다."
 
 #: src/StringExtensions.cpp:187
 msgid "Invalid NsBaseUrlExt object."
-msgstr "잘못된 NsBaseUrlExt 개체 입니다."
+msgstr "잘못된 NsBaseUrlExt 개체입니다."
 
 #: src/StringExtensions.cpp:270 src/StringExtensions.cpp:323
 msgid "Invalid value for NsRevocationUrlExt."
-msgstr "잘못된 NsRevocationUrlExt에 대한 값 입니다."
+msgstr "NsRevocationUrlExt의 값이 잘못되었습니다."
 
 #: src/StringExtensions.cpp:334
 msgid "NsRevocationUrlExt is not present."
-msgstr "NsRevocationUrlExt 은 존재하지 않습니다."
+msgstr "NsRevocationUrlExt가 없습니다."
 
 #: src/StringExtensions.cpp:345
 msgid "Invalid NsRevocationUrlExt object."
-msgstr "잘못된 NsRevocationUrlExt 개체 입니다."
+msgstr "잘못된 NsRevocationUrlExt 개체입니다."
 
 #: src/StringExtensions.cpp:424 src/StringExtensions.cpp:477
 msgid "Invalid value for NsCaRevocationUrlExt."
-msgstr "잘못된 NsCaRevocationUrlExt에 대한 값 입니다."
+msgstr "NsCaRevocationUrlExt의 값이 잘못되었습니다."
 
 #: src/StringExtensions.cpp:488
 msgid "NsCaRevocationUrlExt is not present."
-msgstr "NsCaRevocationUrlExt 은 존재하지 않습니다."
+msgstr "NsCaRevocationUrlExt가 없습니다."
 
 #: src/StringExtensions.cpp:499
 msgid "Invalid NsCaRevocationUrlExt object."
-msgstr "잘못된 NsCaRevocationUrlExt 개체 입니다."
+msgstr "잘못된 NsCaRevocationUrlExt 개체입니다."
 
 #: src/StringExtensions.cpp:577 src/StringExtensions.cpp:630
 msgid "Invalid value for NsRenewalUrlExt."
-msgstr "잘못된 NsRenewalUrlExt에 대한 값 입니다."
+msgstr "NsRenewalUrlExt의 값이 잘못되었습니다."
 
 #: src/StringExtensions.cpp:641
 msgid "NsRenewalUrlExt is not present."
-msgstr "NsRenewalUrlExt 은 존재하지 않습니다."
+msgstr "NsRenewalUrlExt가 없습니다."
 
 #: src/StringExtensions.cpp:652
 msgid "Invalid NsRenewalUrlExt object."
-msgstr "잘못된 NsRenewalUrlExt 개체 입니다."
+msgstr "잘못된 NsRenewalUrlExt 개체입니다."
 
 #: src/StringExtensions.cpp:729 src/StringExtensions.cpp:782
 msgid "Invalid value for NsCaPolicyUrlExt."
-msgstr "잘못된 NsCaPolicyUrlExt에 대한 값 입니다."
+msgstr "NsCaPolicyUrlExt의 값이 잘못되었습니다."
 
 #: src/StringExtensions.cpp:793
 msgid "NsCaPolicyUrlExt is not present."
-msgstr "NsCaPolicyUrlExt 은 존재하지 않습니다."
+msgstr "NsCaPolicyUrlExt가 없습니다."
 
 #: src/StringExtensions.cpp:804
 msgid "Invalid NsCaPolicyUrlExt object."
-msgstr "잘못된 NsCaPolicyUrlExt 개체 입니다."
+msgstr "NsCaPolicyUrlExt의 값이 잘못되었습니다."
 
 #: src/StringExtensions.cpp:890
 msgid "Invalid type: %1."
@@ -783,56 +773,56 @@ msgstr "잘못된 형식: %1."
 
 #: src/StringExtensions.cpp:936
 msgid "NsSslServerNameExt is not present."
-msgstr "NsSslServerNameExt 은 존재하지 않습니다."
+msgstr "NsSslServerNameExt가 없습니다."
 
 #: src/StringExtensions.cpp:947
 msgid "Invalid NsSslServerNameExt object."
-msgstr "잘못된 NsSslServerNameExt 개체 입니다."
+msgstr "잘못된 NsSslServerNameExt 개체입니다."
 
 #: src/StringExtensions.cpp:1062
 msgid "NsCommentExt is not present."
-msgstr "NsCommentExt 은 존재하지 않습니다."
+msgstr "NsCommentExt가 없습니다."
 
 #: src/StringExtensions.cpp:1073
 msgid "Invalid NsCommentExt object."
-msgstr "잘못된 NsCommentExt 개체 입니다."
+msgstr "잘못된 NsCommentExt 개체입니다."
 
 #: src/SubjectAlternativeNameExtension.cpp:179
 #: src/SubjectAlternativeNameExtension.cpp:190
 msgid "SubjectAlternativeNameExt is not present."
-msgstr "SubjectAlternativeNameExt 은 존재하지 않습니다."
+msgstr "SubjectAlternativeNameExt가 없습니다."
 
 #: src/SubjectAlternativeNameExtension.cpp:203
 msgid "Invalid SubjectAlternativeNameExt object."
-msgstr "잘못된 SubjectAlternativeNameExt 개체 입니다."
+msgstr "잘못된 SubjectAlternativeNameExt 개체입니다."
 
 #: src/SubjectKeyIdentifierExtension.cpp:123
 #: src/SubjectKeyIdentifierExtension.cpp:157
 msgid "Invalid KeyID."
-msgstr "잘못된 KeyID 입니다."
+msgstr "잘못된 KeyID입니다."
 
 #: src/SubjectKeyIdentifierExtension.cpp:170
 #: src/SubjectKeyIdentifierExtension.cpp:181
 msgid "SubjectKeyIdentifierExt is not present."
-msgstr "SubjectKeyIdentifierExt 은 존재하지 않습니다."
+msgstr "SubjectKeyIdentifierExt가 없습니다."
 
 #: src/SubjectKeyIdentifierExtension.cpp:194
 msgid "Invalid SubjectKeyIdentifierExt object."
-msgstr "잘못된 SubjectKeyIdentifierExt 개체 입니다."
+msgstr "잘못된 SubjectKeyIdentifierExt 개체입니다."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:392
 #: src/X509v3CertificateExtensions_Priv.cpp:449
 #: src/X509v3RequestExtensions_Priv.cpp:130
 #: src/X509v3RequestExtensions_Priv.cpp:185
 msgid "Extension occurred more than once: %1."
-msgstr "확장 기능이 여러번 발생: %1."
+msgstr "확장이 두 번 이상 발생했습니다: %1."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:399
 #: src/X509v3CertificateExtensions_Priv.cpp:456
 #: src/X509v3RequestExtensions_Priv.cpp:137
 #: src/X509v3RequestExtensions_Priv.cpp:192
 msgid "Unable to parse the certificate (NID: %1 Crit: %2)."
-msgstr "인증서 처리를 사용할 수 없습니다 (NID: %1 Crit: %2)."
+msgstr "인증서를 구문 분석할 수 없습니다(NID: %1 Crit: %2)."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:508
 #: src/X509v3CertificateExtensions_Priv.cpp:574
@@ -848,7 +838,7 @@ msgstr "인증서 처리를 사용할 수 없습니다 (NID: %1 Crit: %2)."
 #: src/X509v3RequestExtensions_Priv.cpp:374
 #: src/X509v3RequestExtensions_Priv.cpp:432
 msgid "Extension occurred more than once."
-msgstr "확장 기능이 여러번 발생 했습니다."
+msgstr "확장이 두 번 이상 발생했습니다."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:513
 #: src/X509v3CertificateExtensions_Priv.cpp:579
@@ -864,139 +854,141 @@ msgstr "확장 기능이 여러번 발생 했습니다."
 #: src/X509v3RequestExtensions_Priv.cpp:380
 #: src/X509v3RequestExtensions_Priv.cpp:437
 msgid "Unable to parse the certificate (Crit: %1)."
-msgstr "인증서 처리를 사용할 수 없습니다 (Crit: %1)."
+msgstr "인증서를 구문 분석할 수 없습니다(Crit: %1)."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:937
 msgid "Invalid location in authorityInfoAccess."
-msgstr "잘못된 authorityInfoAccess 내의 위치 입니다."
+msgstr "authorityInfoAccess 내 위치가 잘못되었습니다."
 
 #: src/X509v3CertificateIssueExtensions.cpp:170
 msgid "Invalid value for X509v3CertificateIssueExts::setNsBaseUrl."
-msgstr "잘못된 X509v3CertificateIssueExts::setNsBaseUrl 의 값 입니다."
+msgstr "X509v3CertificateIssueExts::setNsBaseUrl의 값이 잘못되었습니다."
 
 #: src/X509v3CertificateIssueExtensions.cpp:193
 msgid "Invalid value for X509v3CertificateIssueExts::setNsRevocationUrl."
-msgstr "잘못된 X509v3CertificateIssueExts::setNsRevocationUrl 의 값 입니다."
+msgstr "X509v3CertificateIssueExts::setNsRevocationUrl의 값이 잘못되었습니다."
 
 #: src/X509v3CertificateIssueExtensions.cpp:216
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCaRevocationUrl."
-msgstr "잘못된 X509v3CertificateIssueExts::setNsCaRevocationUrl 의 값 입니다."
+msgstr ""
+"X509v3CertificateIssueExts::setNsCaRevocationUrl의 값이 잘못되었습니다."
 
 #: src/X509v3CertificateIssueExtensions.cpp:239
 msgid "Invalid value for X509v3CertificateIssueExts::setNsRenewalUrl."
-msgstr "잘못된 X509v3CertificateIssueExts::setNsRenewalUrl 의 값 입니다."
+msgstr "X509v3CertificateIssueExts::setNsRenewalUrl의 값이 잘못되었습니다."
 
 #: src/X509v3CertificateIssueExtensions.cpp:262
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCaPolicyUrl."
-msgstr "잘못된 X509v3CertificateIssueExts::setNsCaPolicyUrl 의 값 입니다."
+msgstr "X509v3CertificateIssueExts::setNsCaPolicyUrl의 값이 잘못되었습니다."
 
 #: src/X509v3CertificateIssueExtensions.cpp:285
 msgid "Invalid value for X509v3CertificateIssueExts::setNsSslServerName."
-msgstr "잘못된 X509v3CertificateIssueExts::setNsSslServerName 의 값 입니다."
+msgstr "X509v3CertificateIssueExts::setNsSslServerName의 값이 잘못되었습니다."
 
 #: src/X509v3CertificateIssueExtensions.cpp:308
 msgid "Invalid value for X509v3CertificateIssueExts::setNsComment."
-msgstr "잘못된 X509v3CertificateIssueExts::setNsComment 의 값 입니다."
+msgstr "X509v3CertificateIssueExts::setNsComment의 값이 잘못되었습니다."
 
 #: src/X509v3CertificateIssueExtensions.cpp:331
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCertType."
-msgstr "잘못된 X509v3CertificateIssueExts::setNsCertType 의 값 입니다."
+msgstr "X509v3CertificateIssueExts::setNsCertType의 값이 잘못되었습니다."
 
 #: src/X509v3CertificateIssueExtensions.cpp:354
 msgid "Invalid value for X509v3CertificateIssueExts::setKeyUsage."
-msgstr "잘못된 X509v3CertificateIssueExts::setKeyUsage 의 값 입니다."
+msgstr "X509v3CertificateIssueExts::setKeyUsage의 값이 잘못되었습니다."
 
 #: src/X509v3CertificateIssueExtensions.cpp:377
 msgid "Invalid value for X509v3CertificateIssueExts::setBasicConstraints."
-msgstr "잘못된 X509v3CertificateIssueExts::setBasicConstraints 의 값 입니다."
+msgstr "X509v3CertificateIssueExts::setBasicConstraints의 값이 잘못되었습니다."
 
 #: src/X509v3CertificateIssueExtensions.cpp:400
 msgid "Invalid value for X509v3CertificateIssueExts::setExtendedKeyUsage."
-msgstr "잘못된 X509v3CertificateIssueExts::setExtendedKeyUsage 의 값 입니다."
+msgstr "X509v3CertificateIssueExts::setExtendedKeyUsage의 값이 잘못되었습니다."
 
 #: src/X509v3CertificateIssueExtensions.cpp:423
 msgid "Invalid value for X509v3CertificateIssueExts::setSubjectKeyIdentifier."
 msgstr ""
-"잘못된 X509v3CertificateIssueExts::setSubjectKeyIdentifier 의 값 입니다."
+"X509v3CertificateIssueExts::setSubjectKeyIdentifier의 값이 잘못되었습니다."
 
 #: src/X509v3CertificateIssueExtensions.cpp:446
 msgid ""
 "Invalid value for X509v3CertificateIssueExts::setAuthorityKeyIdentifier."
 msgstr ""
-"잘못된 X509v3CertificateIssueExts::setAuthorityKeyIdentifier 의 값 입니다."
+"X509v3CertificateIssueExts::setAuthorityKeyIdentifier의 값이 잘못되었습니다."
 
 #: src/X509v3CertificateIssueExtensions.cpp:469
 msgid ""
 "Invalid value for X509v3CertificateIssueExts::setSubjectAlternativeName."
 msgstr ""
-"잘못된 X509v3CertificateIssueExts::setSubjectAlternativeName 의 값 입니다."
+"X509v3CertificateIssueExts::setSubjectAlternativeName의 값이 잘못되었습니다."
 
 #: src/X509v3CertificateIssueExtensions.cpp:492
 msgid "Invalid value for X509v3CertificateIssueExts::setIssuerAlternativeName."
 msgstr ""
-"잘못된 X509v3CertificateIssueExts::setIssuerAlternativeName 의 값 입니다."
+"X509v3CertificateIssueExts::setIssuerAlternativeName의 값이 잘못되었습니다."
 
 #: src/X509v3CertificateIssueExtensions.cpp:515
 msgid "Invalid value for X509v3CertificateIssueExts::setAuthorityInfoAccess."
 msgstr ""
-"잘못된 X509v3CertificateIssueExts::setAuthorityInfoAccess 의 값 입니다."
+"X509v3CertificateIssueExts::setAuthorityInfoAccess의 값이 잘못되었습니다."
 
 #: src/X509v3CertificateIssueExtensions.cpp:538
 msgid "Invalid value for X509v3CertificateIssueExts::setCRLDistributionPoints."
 msgstr ""
-"잘못된 X509v3CertificateIssueExts::setCRLDistributionPoints 의 값 입니다."
+"X509v3CertificateIssueExts::setCRLDistributionPoints의 값이 잘못되었습니다."
 
 #: src/X509v3CertificateIssueExtensions.cpp:561
 msgid "Invalid value for X509v3CertificateIssueExts::setCertificatePolicies."
 msgstr ""
-"잘못된 X509v3CertificateIssueExts::setCertificatePolicies 의 값 입니다."
+"X509v3CertificateIssueExts::setCertificatePolicies의 값이 잘못되었습니다."
 
 #: src/X509v3CertificateIssueExtensions.cpp:585
 #: src/X509v3CRLGenerationExtensions.cpp:145
 #: src/X509v3RequestExtensions.cpp:252
 msgid "Invalid X509v3RequestExts object."
-msgstr "잘못된 X509v3RequestExts 개체 입니다."
+msgstr "잘못된 X509v3RequestExts 개체입니다."
 
 #: src/X509v3CRLGenerationExtensions.cpp:98
 msgid "Invalid value for X509v3CRLGenerationExts::setAuthorityKeyIdentifier."
 msgstr ""
-"잘못된 X509v3CRLGenerationExts::setAuthorityKeyIdentifier 의 값 입니다."
+"X509v3CRLGenerationExts::setAuthorityKeyIdentifier의 값이 잘못되었습니다."
 
 #: src/X509v3CRLGenerationExtensions.cpp:121
 msgid "Invalid value for X509v3CRLGenerationExts::setIssuerAlternativeName."
-msgstr "잘못된 X509v3CRLGenerationExts::setIssuerAlternativeName 의 값 입니다."
+msgstr ""
+"X509v3CRLGenerationExts::setIssuerAlternativeName의 값이 잘못되었습니다."
 
 #: src/X509v3RequestExtensions.cpp:67
 msgid "Invalid value for X509v3RequestExts::setNsSslServerName."
-msgstr "잘못된 X509v3RequestExts::setNsSslServerName 의 값 입니다."
+msgstr "X509v3RequestExts::setNsSslServerName의 값이 잘못되었습니다."
 
 #: src/X509v3RequestExtensions.cpp:90
 msgid "Invalid value for X509v3RequestExts::setNsComment."
-msgstr "잘못된 X509v3RequestExts::setNsComment 의 값 입니다."
+msgstr "X509v3RequestExts::setNsComment의 값이 잘못되었습니다."
 
 #: src/X509v3RequestExtensions.cpp:113
 msgid "Invalid value for X509v3RequestExts::setNsCertType."
-msgstr "잘못된 X509v3RequestExts::setNsCertType 의 값 입니다."
+msgstr "X509v3RequestExts::setNsCertType의 값이 잘못되었습니다."
 
 #: src/X509v3RequestExtensions.cpp:136
 msgid "Invalid value for X509v3RequestExts::setKeyUsage."
-msgstr "잘못된 X509v3RequestExts::setKeyUsage 의 값 입니다."
+msgstr "X509v3RequestExts::setKeyUsage의 값이 잘못되었습니다."
 
 #: src/X509v3RequestExtensions.cpp:159
 msgid "Invalid value for X509v3RequestExts::setBasicConstraints."
-msgstr "잘못된 X509v3RequestExts::setBasicConstraints 의 값 입니다."
+msgstr "X509v3RequestExts::setBasicConstraints의 값이 잘못되었습니다."
 
 #: src/X509v3RequestExtensions.cpp:182
 msgid "Invalid value for X509v3RequestExts::setExtendedKeyUsage."
-msgstr "잘못된 X509v3RequestExts::setExtendedKeyUsage 의 값 입니다."
+msgstr "X509v3RequestExts::setExtendedKeyUsage의 값이 잘못되었습니다."
 
 #: src/X509v3RequestExtensions.cpp:205
 msgid "Invalid value for X509v3RequestExts::setSubjectKeyIdentifier."
-msgstr "잘못된 X509v3RequestExts::setSubjectKeyIdentifier 의 값 입니다."
+msgstr "X509v3RequestExts::setSubjectKeyIdentifier의 값이 잘못되었습니다."
 
 #: src/X509v3RequestExtensions.cpp:228
 msgid "Invalid value for X509v3RequestExts::setSubjectAlternativeName."
-msgstr "잘못된 X509v3RequestExts::setSubjectAlternativeName 의 값 입니다."
+msgstr "X509v3RequestExts::setSubjectAlternativeName의 값이 잘못되었습니다."
 
 #~ msgid "Cannot parse date %1."
-#~ msgstr "%1 날자를 처리 할 수 없습니다."
+#~ msgstr "날짜 %1을(를) 구문 분석할 수 없습니다."

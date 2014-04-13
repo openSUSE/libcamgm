@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2012-07-23 16:26+0200\n"
+"POT-Creation-Date: 2014-04-13 15:19+0200\n"
 "PO-Revision-Date: 2008-11-17 15:42+0700\n"
 "Last-Translator: Auk Piseth <piseth_dv@khmeros.info>\n"
 "Language-Team: khmer <support@khmeros.info>\n"
@@ -49,7 +49,7 @@ msgstr "accessOID មិន​ត្រឹមត្រូវ​ ។"
 #: src/CRLDistributionPointsExtension.cpp:72
 #: src/CRLDistributionPointsExtension.cpp:162 src/DNObject.cpp:500
 #: src/ExtendedKeyUsageExt.cpp:73 src/ExtendedKeyUsageExt.cpp:225
-#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:244
+#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:260
 #: src/StringExtensions.cpp:118 src/StringExtensions.cpp:195
 #: src/StringExtensions.cpp:283 src/StringExtensions.cpp:353
 #: src/StringExtensions.cpp:437 src/StringExtensions.cpp:507
@@ -103,7 +103,7 @@ msgid "This BitExtension is not present."
 msgstr "មិន​បាន​បង្ហាញ BitExtension នេះ​ទេ ។"
 
 #: src/BitExtensions.cpp:130 src/BitExtensions.cpp:243
-#: src/CertificateIssueData.cpp:215 src/CRLGenerationData.cpp:158
+#: src/CertificateIssueData.cpp:231 src/CRLGenerationData.cpp:158
 #: src/DNObject.cpp:258 src/IssuerAlternativeNameExtension.cpp:220
 #, fuzzy, c-format
 msgid "Wrong type: %d."
@@ -362,8 +362,8 @@ msgstr "បាត់​ផ្នែក 'ឈ្មោះ​ដែលបាន​�
 msgid "Invalid serial %s."
 msgstr "សៀរៀល %1 មិនត្រឹមត្រូវ ។"
 
-#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:393
-#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:365
+#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:409
+#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:381
 msgid "Cannot create a memory BIO."
 msgstr "មិនអាចបង្កើតសតិ BIO បានទេ ។"
 
@@ -395,13 +395,13 @@ msgstr "ប្រភេទ​សោរ​សាធារណៈ​ដែល​ម
 msgid "Unsupported public key algorithm."
 msgstr "ក្បួន​ដោះ​ស្រាយ​សោរ​សាធារណៈ​ដែល​មិន​បាន​គាំទ្រ ។"
 
-#: src/CertificateData_Priv.cpp:440 src/CRLData_Priv.cpp:354
-#: src/RequestData_Priv.cpp:272
+#: src/CertificateData_Priv.cpp:456 src/CRLData_Priv.cpp:370
+#: src/RequestData_Priv.cpp:288
 #, fuzzy, c-format
 msgid "Unsupported signature algorithm %s."
 msgstr "ក្បួន​ដោះ​ស្រាយ​ហត្ថលេខា %1 ដែល​មិន​បាន​គាំទ្រ ។"
 
-#: src/CertificateIssueData.cpp:207
+#: src/CertificateIssueData.cpp:223
 msgid "Invalid CertificateIssueData object."
 msgstr "វត្ថុ CertificateIssueData មិន​ត្រឹមត្រូវ​ ។"
 
@@ -432,15 +432,15 @@ msgstr "មិន​បង្ហាញ CertificatePoliciesExt ទេ ។"
 msgid "Invalid CertificatePoliciesExt object."
 msgstr "វត្ថុ CertificatePoliciesExt មិន​ត្រឹមត្រូវ​ ។"
 
-#: src/CRLData.cpp:220
+#: src/CRLData.cpp:232
 msgid "Entry not found."
 msgstr "រក​មិន​ឃើញ​ធាតុ ។"
 
-#: src/CRLData_Priv.cpp:421
+#: src/CRLData_Priv.cpp:437
 msgid "Cannot parse CRL."
 msgstr "មិន​អាច​ញែក CRL បាន​ទេ ។"
 
-#: src/CRLData_Priv.cpp:434
+#: src/CRLData_Priv.cpp:450
 msgid "Error parsing the CRL."
 msgstr "កំហុស​ក្នុង​ការ​ញែក CRL ។"
 
@@ -707,15 +707,15 @@ msgstr "មិន​អាច​បង្កើត​ឯកសារ​បាន
 msgid "Can not open file."
 msgstr "មិន​អាច​បើក​ឯកសារ %1 បាន​ឡើយ ។"
 
-#: src/RequestData_Priv.cpp:392
+#: src/RequestData_Priv.cpp:408
 msgid "Cannot parse the request."
 msgstr "មិន​អាច​ញែក​សំណើ​បាន​ឡើយ ។"
 
-#: src/RequestData_Priv.cpp:405
+#: src/RequestData_Priv.cpp:421
 msgid "Error while parsing the request."
 msgstr "កំហុស​ពេល​កំពុង​ញែក​សំណើ ។"
 
-#: src/RequestGenerationData.cpp:236
+#: src/RequestGenerationData.cpp:252
 msgid "Invalid RequestGenerationData object."
 msgstr "វត្ថុ RequestGenerationData មិន​ត្រឹមត្រូវ​ ។"
 

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2012-07-23 16:26+0200\n"
+"POT-Creation-Date: 2014-04-13 15:19+0200\n"
 "PO-Revision-Date: 2006-11-03 12:03\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -39,7 +39,7 @@ msgstr "Ufikeleleko lwe-OID alusebenziseki."
 #: src/CRLDistributionPointsExtension.cpp:72
 #: src/CRLDistributionPointsExtension.cpp:162 src/DNObject.cpp:500
 #: src/ExtendedKeyUsageExt.cpp:73 src/ExtendedKeyUsageExt.cpp:225
-#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:244
+#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:260
 #: src/StringExtensions.cpp:118 src/StringExtensions.cpp:195
 #: src/StringExtensions.cpp:283 src/StringExtensions.cpp:353
 #: src/StringExtensions.cpp:437 src/StringExtensions.cpp:507
@@ -93,7 +93,7 @@ msgid "This BitExtension is not present."
 msgstr "Esi SoluloSesuntsu asikho."
 
 #: src/BitExtensions.cpp:130 src/BitExtensions.cpp:243
-#: src/CertificateIssueData.cpp:215 src/CRLGenerationData.cpp:158
+#: src/CertificateIssueData.cpp:231 src/CRLGenerationData.cpp:158
 #: src/DNObject.cpp:258 src/IssuerAlternativeNameExtension.cpp:220
 #, fuzzy, c-format
 msgid "Wrong type: %d."
@@ -355,8 +355,8 @@ msgstr "Kulahleke icandelo kwifayili yobumbeko 'igama_elinokubalulwa'. "
 msgid "Invalid serial %s."
 msgstr "Ulandelelwano %1.alusebenziseki."
 
-#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:393
-#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:365
+#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:409
+#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:381
 msgid "Cannot create a memory BIO."
 msgstr "Akukwazeki ukudala uvimba wolwazi lwe-BIO."
 
@@ -389,13 +389,13 @@ msgstr "Uhlobo lweqhosha likawonkewonke elingenankxaso."
 msgid "Unsupported public key algorithm."
 msgstr "Isisombululo sengxaki yeqhosha likawonkewonke elingenankxaso."
 
-#: src/CertificateData_Priv.cpp:440 src/CRLData_Priv.cpp:354
-#: src/RequestData_Priv.cpp:272
+#: src/CertificateData_Priv.cpp:456 src/CRLData_Priv.cpp:370
+#: src/RequestData_Priv.cpp:288
 #, fuzzy, c-format
 msgid "Unsupported signature algorithm %s."
 msgstr "Isisombulo sengxaki somtyibelo ongenankxaso we- %1."
 
-#: src/CertificateIssueData.cpp:207
+#: src/CertificateIssueData.cpp:223
 msgid "Invalid CertificateIssueData object."
 msgstr "Into YeenkcukachaZokukhutshwaKwesatifiketi Ayisebenziseki."
 
@@ -426,15 +426,15 @@ msgstr "IsoluloSemigaqonkquboYezatifikethi asikho."
 msgid "Invalid CertificatePoliciesExt object."
 msgstr "Into YesoluloSemigaqonkquboYezatifiketi Ayisebenziseki."
 
-#: src/CRLData.cpp:220
+#: src/CRLData.cpp:232
 msgid "Entry not found."
 msgstr "Ukungenisa akufunyenwanga."
 
-#: src/CRLData_Priv.cpp:421
+#: src/CRLData_Priv.cpp:437
 msgid "Cannot parse CRL."
 msgstr "Ayikwazi kwahlulwa i-CRL."
 
-#: src/CRLData_Priv.cpp:434
+#: src/CRLData_Priv.cpp:450
 msgid "Error parsing the CRL."
 msgstr "Imposiso xa bekusahlulwa i-CRL."
 
@@ -704,15 +704,15 @@ msgstr "Ayikwazi kudaleka ifayili."
 msgid "Can not open file."
 msgstr "Ayikwazi kuvuleka ifayili %1."
 
-#: src/RequestData_Priv.cpp:392
+#: src/RequestData_Priv.cpp:408
 msgid "Cannot parse the request."
 msgstr "Akukwazeki ukwahlula isicelo."
 
-#: src/RequestData_Priv.cpp:405
+#: src/RequestData_Priv.cpp:421
 msgid "Error while parsing the request."
 msgstr "Imposiso xa kwahlulwa isicelo."
 
-#: src/RequestGenerationData.cpp:236
+#: src/RequestGenerationData.cpp:252
 msgid "Invalid RequestGenerationData object."
 msgstr "Into YeenkcukachaZoyiloLwesicelo Ayisebenziseki."
 

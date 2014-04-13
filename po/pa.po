@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm.pa\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2012-07-23 16:26+0200\n"
+"POT-Creation-Date: 2014-04-13 15:19+0200\n"
 "PO-Revision-Date: 2007-08-15 08:43+0530\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Panjabi <punjabi-l10n@lists.sf.net>\n"
@@ -45,7 +45,7 @@ msgstr "ਗਲਤ accessOID ਹੈ।"
 #: src/CRLDistributionPointsExtension.cpp:72
 #: src/CRLDistributionPointsExtension.cpp:162 src/DNObject.cpp:500
 #: src/ExtendedKeyUsageExt.cpp:73 src/ExtendedKeyUsageExt.cpp:225
-#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:244
+#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:260
 #: src/StringExtensions.cpp:118 src/StringExtensions.cpp:195
 #: src/StringExtensions.cpp:283 src/StringExtensions.cpp:353
 #: src/StringExtensions.cpp:437 src/StringExtensions.cpp:507
@@ -99,7 +99,7 @@ msgid "This BitExtension is not present."
 msgstr "ਇਹ BitExtension ਮੌਜੂਦ ਨਹੀਂ ਹੈ।"
 
 #: src/BitExtensions.cpp:130 src/BitExtensions.cpp:243
-#: src/CertificateIssueData.cpp:215 src/CRLGenerationData.cpp:158
+#: src/CertificateIssueData.cpp:231 src/CRLGenerationData.cpp:158
 #: src/DNObject.cpp:258 src/IssuerAlternativeNameExtension.cpp:220
 #, fuzzy, c-format
 msgid "Wrong type: %d."
@@ -362,8 +362,8 @@ msgstr "ਸੰਰਚਨਾ ਫਾਇਲ ਵਿੱਚ 'distinguished_name' ਸ਼
 msgid "Invalid serial %s."
 msgstr "ਗਲਤ ਸੀਰੀਅਲ %1।"
 
-#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:393
-#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:365
+#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:409
+#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:381
 msgid "Cannot create a memory BIO."
 msgstr "ਇੱਕ ਮੈਮੋਰੀ BIP ਬਣਾਇਆ ਨਹੀਂ ਜਾ ਸਕਦਾ ਹੈ।"
 
@@ -396,13 +396,13 @@ msgstr "ਨਾ-ਸਹਾਇਕ ਪਬਲਿਕ ਕੁੰਜੀ ਕਿਸਮ ਹ�
 msgid "Unsupported public key algorithm."
 msgstr "ਨਾ-ਸਹਾਇਕ ਪਬਲਿਕ ਕੁੰਜੀ ਐਲੋਗਰਥਿਮ ਹੈ।"
 
-#: src/CertificateData_Priv.cpp:440 src/CRLData_Priv.cpp:354
-#: src/RequestData_Priv.cpp:272
+#: src/CertificateData_Priv.cpp:456 src/CRLData_Priv.cpp:370
+#: src/RequestData_Priv.cpp:288
 #, fuzzy, c-format
 msgid "Unsupported signature algorithm %s."
 msgstr "ਨਾ-ਸਹਾਇਕ ਦਸਤਖਤੀ ਐਲੋਗਰਿਥਮ %1।"
 
-#: src/CertificateIssueData.cpp:207
+#: src/CertificateIssueData.cpp:223
 msgid "Invalid CertificateIssueData object."
 msgstr "ਗਲਤ CertificateIssueData ਆਬਜੈਕਟ ਹੈ।"
 
@@ -433,15 +433,15 @@ msgstr "CertificatePoliciesExt ਮੌਜੂਦ ਨਹੀਂ ਹੈ।"
 msgid "Invalid CertificatePoliciesExt object."
 msgstr "CertificatePoliciesExt ਆਬਜੈਕਟ ਗਲਤ ਹੈ।"
 
-#: src/CRLData.cpp:220
+#: src/CRLData.cpp:232
 msgid "Entry not found."
 msgstr "ਐਂਟਰੀ ਨਹੀਂ ਲੱਭੀ ਹੈ।"
 
-#: src/CRLData_Priv.cpp:421
+#: src/CRLData_Priv.cpp:437
 msgid "Cannot parse CRL."
 msgstr "CRL ਪਾਰਸ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ।"
 
-#: src/CRLData_Priv.cpp:434
+#: src/CRLData_Priv.cpp:450
 msgid "Error parsing the CRL."
 msgstr "CRL ਪਾਰਸ ਕਰਨ ਦੌਰਾਨ ਗਲਤੀ ਹੈ।"
 
@@ -709,15 +709,15 @@ msgstr "ਫਾਇਲ ਨਹੀਂ ਬਣਾਈ ਜਾ ਸਕਦੀ ਹੈ।"
 msgid "Can not open file."
 msgstr "ਫਾਇਲ %1 ਖੋਲ੍ਹੀ ਨਹੀਂ ਜਾ ਸਕਦੀ ਹੈ।"
 
-#: src/RequestData_Priv.cpp:392
+#: src/RequestData_Priv.cpp:408
 msgid "Cannot parse the request."
 msgstr "ਮੰਗ ਪਾਰਸ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕਦੀ ਹੈ।"
 
-#: src/RequestData_Priv.cpp:405
+#: src/RequestData_Priv.cpp:421
 msgid "Error while parsing the request."
 msgstr "ਮੰਗ ਪਾਰਸ ਕਰਨ ਦੌਰਾਨ ਗਲਤੀ ਹੈ।"
 
-#: src/RequestGenerationData.cpp:236
+#: src/RequestGenerationData.cpp:252
 msgid "Invalid RequestGenerationData object."
 msgstr "RequestGenerationData ਆਬਜੈਕਟ ਹੈ।"
 
