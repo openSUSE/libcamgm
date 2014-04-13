@@ -52,7 +52,7 @@ cid.extensions().nsCertType().setNsCertType(CaMgm.NsCertTypeExt.objCA |
 
 # ----------------- create basic constrains extension -----------------------
 
-cid.extensions().basicConstraints().setBasicConstraints(1, 3)
+cid.extensions().basicConstraints().setBasicConstraints(True, 3)
 
 # ----------------- create extended keyUsage extension ----------------------
 
@@ -67,7 +67,7 @@ cid.extensions().extendedKeyUsage().setExtendedKeyUsage( sl )
 
 # ------------------------ create key identifier extension -----------------------------
 
-cid.extensions().subjectKeyIdentifier().setSubjectKeyIdentifier(1)
+cid.extensions().subjectKeyIdentifier().setSubjectKeyIdentifier(True)
 cid.extensions().authorityKeyIdentifier().setKeyID(CaMgm.AuthorityKeyIdentifierGenerateExt.KeyID_always)
 cid.extensions().authorityKeyIdentifier().setIssuer(CaMgm.AuthorityKeyIdentifierGenerateExt.Issuer_always)
 
