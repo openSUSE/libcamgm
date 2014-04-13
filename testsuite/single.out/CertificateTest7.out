@@ -1,0 +1,17 @@
+START
+DN Key countryName
+DN Key stateOrProvinceName
+DN Key localityName
+DN Key organizationName
+DN Key organizationalUnitName
+DN Key commonName
+DN Key emailAddress
+Request with signature Algorithm sha224WithRSAEncryption
+Certificate with signature Algorithm sha224WithRSAEncryption
+Request with signature Algorithm sha256WithRSAEncryption
+Certificate with signature Algorithm sha256WithRSAEncryption
+Request with signature Algorithm sha3846WithRSAEncryption
+Certificate with signature Algorithm sha384WithRSAEncryption
+Request with signature Algorithm sha5126WithRSAEncryption
+Certificate with signature Algorithm sha512WithRSAEncryption
+DONE
