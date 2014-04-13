@@ -134,19 +134,31 @@ CertificateData::getSignatureAlgorithm() const
 std::string
 CertificateData::getSignatureAlgorithmAsString() const
 {
-	switch(m_impl->signatureAlgorithm)
-	{
-	case E_SHA1RSA:
-		return "SHA1RSA";
-		break;
-	case E_MD5RSA:
-		return "MD5RSA";
-		break;
-	case E_SHA1DSA:
-		return "SHA1DSA";
-		break;
-	}
-	return std::string();
+    switch(m_impl->signatureAlgorithm)
+    {
+        case E_SHA1RSA:
+            return "SHA1RSA";
+            break;
+        case E_MD5RSA:
+            return "MD5RSA";
+            break;
+        case E_SHA1DSA:
+            return "SHA1DSA";
+            break;
+        case E_SHA224RSA:
+            return "SHA224RSA";
+            break;
+        case E_SHA256RSA:
+            return "SHA256RSA";
+            break;
+        case E_SHA384RSA:
+            return "SHA384RSA";
+            break;
+        case E_SHA512RSA:
+            return "SHA512RSA";
+            break;
+    }
+    return std::string();
 }
 
 ByteBuffer

@@ -418,27 +418,43 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 	sbuf = std::string(cbuf, n);
 	BIO_free(bio);
 
-    if(str::compareCI(sbuf, "sha1WithRSAEncryption") == 0)
-	{
-		setSignatureAlgorithm( E_SHA1RSA );
-	}
-	else if(str::compareCI(sbuf, "md5WithRSAEncryption") == 0)
-	{
-		setSignatureAlgorithm( E_MD5RSA );
-	}
-	else if(str::compareCI(sbuf, "dsaWithSHA1") == 0)
-	{
-		setSignatureAlgorithm( E_SHA1DSA );
-	}
-	else
-	{
-		EVP_PKEY_free(pkey);
+        if(str::compareCI(sbuf, "sha1WithRSAEncryption") == 0)
+        {
+            setSignatureAlgorithm( E_SHA1RSA );
+        }
+        else if(str::compareCI(sbuf, "md5WithRSAEncryption") == 0)
+        {
+            setSignatureAlgorithm( E_MD5RSA );
+        }
+        else if(str::compareCI(sbuf, "dsaWithSHA1") == 0)
+        {
+            setSignatureAlgorithm( E_SHA1DSA );
+        }
+        else if(str::compareCI(sbuf, "sha224WithRSAEncryption") == 0 )
+        {
+            setSignatureAlgorithm(E_SHA224RSA);
+        }
+        else if(str::compareCI(sbuf, "sha256WithRSAEncryption") == 0 )
+        {
+            setSignatureAlgorithm(E_SHA256RSA);
+        }
+        else if(str::compareCI(sbuf, "sha384WithRSAEncryption") == 0 )
+        {
+            setSignatureAlgorithm(E_SHA384RSA);
+        }
+        else if(str::compareCI(sbuf, "sha512WithRSAEncryption") == 0 )
+        {
+            setSignatureAlgorithm(E_SHA512RSA);
+        }
+        else
+        {
+            EVP_PKEY_free(pkey);
 
-		LOGIT_ERROR("Unsupported signature algorithm: '" << sbuf << "'");
-		CA_MGM_THROW(ca_mgm::RuntimeException,
-		             // %s is the unsupported signature algorithm string
-		             str::form(__("Unsupported signature algorithm %s."), sbuf.c_str()).c_str());
-	}
+            LOGIT_ERROR("Unsupported signature algorithm: '" << sbuf << "'");
+            CA_MGM_THROW(ca_mgm::RuntimeException,
+                         // %s is the unsupported signature algorithm string
+                         str::form(__("Unsupported signature algorithm %s."), sbuf.c_str()).c_str());
+        }
 
 	// get signature
 

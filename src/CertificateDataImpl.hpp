@@ -45,7 +45,7 @@ public:
 		, keysize(2048)
 		, pubkeyAlgorithm(E_RSA)
 		, publicKey(ByteBuffer())
-		, signatureAlgorithm(E_SHA1RSA)
+		, signatureAlgorithm(E_SHA256RSA)
 		, signature(ByteBuffer())
 		, extensions(X509v3CertificateExts_Priv())
 		, x509(NULL)

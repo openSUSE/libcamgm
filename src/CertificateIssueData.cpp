@@ -40,7 +40,7 @@ public:
 	CertificateIssueDataImpl()
 		: notBefore(0)
 		, notAfter(0)
-		, messageDigest(E_SHA1)
+		, messageDigest(E_SHA256)
 		, extensions(X509v3CertificateIssueExts())
 	{}
 
@@ -97,11 +97,27 @@ CertificateIssueData::CertificateIssueData(CAConfig* caConfig, Type type)
 	{
 		setMessageDigest( E_MDC2 );
 	}
+        else if(0 == str::compareCI(md, "sha224"))
+        {
+                m_impl->messageDigest = E_SHA224;
+        }
+        else if(0 == str::compareCI(md, "sha256"))
+        {
+                m_impl->messageDigest = E_SHA256;
+        }
+        else if(0 == str::compareCI(md, "sha384"))
+        {
+                m_impl->messageDigest = E_SHA384;
+        }
+        else if(0 == str::compareCI(md, "sha512"))
+        {
+                m_impl->messageDigest = E_SHA512;
+        }
 	else
 	{
 		LOGIT_INFO("unsupported message digest: " << md);
-		LOGIT_INFO("select default sha1.");
-		setMessageDigest( E_SHA1 );
+		LOGIT_INFO("select default sha256.");
+		setMessageDigest( E_SHA256 );
 	}
 
 	setExtensions( X509v3CertificateIssueExts(caConfig, type));
@@ -218,7 +234,7 @@ CertificateIssueData::commit2Config(CA& ca, Type type) const
 
 	ca.getConfig()->setValue(type2Section(type, false), "default_days", str::numstring(t));
 
-	std::string md("sha1");
+	std::string md("sha256");
 	switch(getMessageDigest())
 	{
 	case E_SHA1:
@@ -230,6 +246,18 @@ CertificateIssueData::commit2Config(CA& ca, Type type) const
 	case E_MDC2:
 		md = "mdc2";
 		break;
+        case E_SHA224:
+                md = "sha224";
+                break;
+        case E_SHA256:
+                md = "sha256";
+                break;
+        case E_SHA384:
+                md = "sha384";
+                break;
+        case E_SHA512:
+                md = "sha512";
+                break;
 	}
 	ca.getConfig()->setValue(type2Section(type, false), "default_md", md);
 

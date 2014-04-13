@@ -347,6 +347,22 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
 	{
 		setSignatureAlgorithm(E_SHA1DSA);
 	}
+        else if(str::compareCI(sbuf, "sha224WithRSAEncryption") == 0 )
+        {
+                setSignatureAlgorithm(E_SHA224RSA);
+        }
+        else if(str::compareCI(sbuf, "sha256WithRSAEncryption") == 0 )
+        {
+                setSignatureAlgorithm(E_SHA256RSA);
+        }
+        else if(str::compareCI(sbuf, "sha384WithRSAEncryption") == 0 )
+        {
+                setSignatureAlgorithm(E_SHA384RSA);
+        }
+        else if(str::compareCI(sbuf, "sha512WithRSAEncryption") == 0 )
+        {
+                setSignatureAlgorithm(E_SHA512RSA);
+        }
 	else
 	{
 		LOGIT_ERROR("Unsupported signature algorithm: '" << sbuf << "'");

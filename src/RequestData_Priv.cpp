@@ -263,6 +263,22 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
 	{
 		m_impl->signatureAlgorithm = E_SHA1DSA;
 	}
+        else if(0 == str::compareCI(sbuf, "sha224WithRSAEncryption") )
+        {
+                m_impl->signatureAlgorithm = E_SHA224RSA;
+        }
+        else if(0 == str::compareCI(sbuf, "sha256WithRSAEncryption") )
+        {
+                m_impl->signatureAlgorithm = E_SHA256RSA;
+        }
+        else if(0 == str::compareCI(sbuf, "sha384WithRSAEncryption") )
+        {
+                m_impl->signatureAlgorithm = E_SHA384RSA;
+        }
+        else if(0 == str::compareCI(sbuf, "sha512WithRSAEncryption") )
+        {
+                m_impl->signatureAlgorithm = E_SHA512RSA;
+        }
 	else
 	{
 		EVP_PKEY_free(pkey);

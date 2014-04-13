@@ -61,12 +61,20 @@ namespace CA_MGM_NAMESPACE {
         E_SHA1RSA,
         E_MD5RSA,
         E_SHA1DSA,
+        E_SHA224RSA,
+        E_SHA256RSA,
+        E_SHA384RSA,
+        E_SHA512RSA,
     };
 
     enum MD {
         E_SHA1,
         E_MD5,
         E_MDC2,
+        E_SHA224,
+        E_SHA256,
+        E_SHA384,
+        E_SHA512,
     };
 
 	enum EErrorCodes

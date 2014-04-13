@@ -68,7 +68,7 @@ public:
 		, lastUpdate(0)
 		, nextUpdate(0)
 		, issuer(DNObject())
-		, signatureAlgorithm(E_SHA1RSA)
+		, signatureAlgorithm(E_SHA256RSA)
 		, signature(ByteBuffer())
 		, extensions(X509v3CRLExts_Priv())
 		, revocationData(std::map<std::string, RevocationEntry>())
