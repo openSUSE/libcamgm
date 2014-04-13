@@ -19,7 +19,7 @@ RANDFILE=$dir/.rand
 x509_extensions=v3_ca
 default_days=3650
 default_crl_hours=24
-default_md=sha1
+default_md=sha256
 preserve=no
 policy=policy_server
 nameopt=default_ca
@@ -36,7 +36,7 @@ unique_subject=no
 # required section
 [req_ca]
 default_bits=2048
-default_md=sha1
+default_md=sha256
 default_keyfile=privkey.pem
 distinguished_name=req_distinguished_name
 attributes=req_attributes
@@ -46,7 +46,7 @@ req_extensions=v3_req_ca
 
 [req_client]
 default_bits=2048
-default_md=sha1
+default_md=sha256
 default_keyfile=privkey.pem
 distinguished_name=req_distinguished_name
 attributes=req_attributes
@@ -56,7 +56,7 @@ req_extensions=v3_req_client
 
 [req_server]
 default_bits=2048
-default_md=sha1
+default_md=sha256
 default_keyfile=privkey.pem
 distinguished_name=req_distinguished_name
 attributes=req_attributes
@@ -80,7 +80,7 @@ RANDFILE=$dir/.rand
 x509_extensions=v3_client
 default_days=365
 default_crl_hours=24
-default_md=sha1
+default_md=sha256
 preserve=no
 policy=policy_client
 nameopt=default_ca
@@ -105,7 +105,7 @@ RANDFILE=$dir/.rand
 x509_extensions=v3_server
 default_days=365
 default_crl_hours=24
-default_md=sha1
+default_md=sha256
 preserve=no
 policy=policy_server
 nameopt=default_ca
