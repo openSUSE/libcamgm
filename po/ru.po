@@ -3,10 +3,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: limal-ca-mgm\n"
+"Project-Id-Version: libcamgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2014-04-13 15:19+0200\n"
-"PO-Revision-Date: 2011-11-02 09:26\n"
+"POT-Creation-Date: 2014-04-30 16:12+0200\n"
+"PO-Revision-Date: 2014-04-30 08:50\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "Language: \n"
@@ -95,9 +95,9 @@ msgstr "Отсутствует BitExtension."
 #: src/BitExtensions.cpp:130 src/BitExtensions.cpp:243
 #: src/CertificateIssueData.cpp:231 src/CRLGenerationData.cpp:158
 #: src/DNObject.cpp:258 src/IssuerAlternativeNameExtension.cpp:220
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong type: %d."
-msgstr "Неверный тип: %1."
+msgstr "Неверный тип: %d."
 
 #: src/BitExtensions.cpp:170 src/BitExtensions.cpp:199
 msgid "Invalid value for keyUsage."
@@ -136,9 +136,9 @@ msgid "Empty CA name."
 msgstr "Пустое CA имя."
 
 #: src/CA.cpp:174
-#, fuzzy, c-format
+#, c-format
 msgid "Template does not exist: %s."
-msgstr "Шаблон не существует: %1."
+msgstr "Шаблон не существует: %s."
 
 #: src/CA.cpp:186 src/CA.cpp:1543
 msgid "Invalid CA password."
@@ -149,9 +149,9 @@ msgid "Error while creating the CA infrastructure."
 msgstr "Ошибка при создании CA инфраструктуры."
 
 #: src/CA.cpp:250 src/CA.cpp:1015
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot parse the certificate name %s."
-msgstr "Невозможно обработать имя сертификата %1."
+msgstr "Невозможно обработать имя сертификата %s."
 
 #: src/CA.cpp:261
 msgid "Cannot copy the private key."
@@ -166,19 +166,19 @@ msgid "Invalid request data."
 msgstr "Неверные данные запроса."
 
 #: src/CA.cpp:323
-#, fuzzy, c-format
+#, c-format
 msgid "Duplicate DN. Key %s.key already exists."
-msgstr "Дублирование DN. Ключ %1.key уже существует."
+msgstr "Дублирование DN. Ключ %s.key уже существует."
 
 #: src/CA.cpp:331
-#, fuzzy, c-format
+#, c-format
 msgid "Duplicate DN. Request %s.req already exists."
-msgstr "Дублирование DN. Запрос %1.req уже существует."
+msgstr "Дублирование DN. Запрос %s.req уже существует."
 
 #: src/CA.cpp:400
-#, fuzzy, c-format
+#, c-format
 msgid "Request does not exist (%s)."
-msgstr "Запрос не существует (%1)."
+msgstr "Запрос не существует (%s)."
 
 #: src/CA.cpp:406
 msgid "Invalid issue data."
@@ -194,9 +194,9 @@ msgid "Issuing the certificate failed."
 msgstr "Не удалось выдать сертификат."
 
 #: src/CA.cpp:518
-#, fuzzy, c-format
+#, c-format
 msgid "File %s not found in the repository."
-msgstr "Файл %1 не найден в репозитарии."
+msgstr "Файл %s не найден в репозитории."
 
 #: src/CA.cpp:525 src/CRLData_Priv.cpp:153
 msgid "Invalid CRL reason."
@@ -215,32 +215,32 @@ msgid "Cannot parse the certificate name."
 msgstr "Невозможно обработать имя сертификата."
 
 #: src/CA.cpp:967
-#, fuzzy, c-format
+#, c-format
 msgid "Request %s does not exist."
-msgstr "Запрос %1 не существует."
+msgstr "Запрос %s не существует."
 
 #: src/CA.cpp:989
 msgid "Removing the request failed (%1)."
 msgstr "Не удалось удалить запрос: (%1)."
 
 #: src/CA.cpp:1003
-#, fuzzy, c-format
+#, c-format
 msgid "Certificate %s does not exist."
-msgstr "Сертификат %1 не существует."
+msgstr "Сертификат %s не существует."
 
 #: src/CA.cpp:1052
-#, fuzzy, c-format
+#, c-format
 msgid "Removing the certificate failed: %d."
-msgstr "Не удалось удалить сертификат: %1."
+msgstr "Не удалось удалить сертификат: %d."
 
 #: src/CA.cpp:1060
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Only revoked or expired certificates can be deleted. The status of the "
 "certificate is %s."
 msgstr ""
-"Могут быть удалены только отмененные или просроченные сертификаты. Статус "
-"сертификата %1."
+"Могут быть удалены только отменённые или просроченные сертификаты. Статус "
+"сертификата %s."
 
 #: src/CA.cpp:1072
 msgid "Database not found."
@@ -251,9 +251,9 @@ msgid "Certificate does not exist."
 msgstr "Сертификат не существует."
 
 #: src/CA.cpp:1112
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid purpose %s."
-msgstr "Неверное назначение %1."
+msgstr "Неверное назначение %s."
 
 #: src/CA.cpp:1155
 msgid "Invalid CA request data."
@@ -296,9 +296,9 @@ msgid "Error during write defaults."
 msgstr "Ошибка при записи значений по умолчанию."
 
 #: src/CA.cpp:1532
-#, fuzzy, c-format
+#, c-format
 msgid "CA name does not exist (%s)."
-msgstr "CA имя не существует (%1)."
+msgstr "Имя CA не существует (%s)."
 
 #: src/CA.cpp:1563
 msgid ""
@@ -318,24 +318,24 @@ msgstr "В файле конфигурации отсутствует значе
 
 #: src/CA.cpp:1649 src/CA.cpp:1911 src/DNObject.cpp:277
 #: src/DNObject_Priv.cpp:207
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot parse section %s."
-msgstr "Невозможно обработать секцию %1."
+msgstr "Невозможно обработать секцию %s."
 
 #: src/CA.cpp:1721
-#, fuzzy, c-format
+#, c-format
 msgid "Field %s must have a value."
-msgstr "Поле %1 должно иметь значение."
+msgstr "Поле %s должно иметь значение."
 
 #: src/CA.cpp:1760
-#, fuzzy, c-format
+#, c-format
 msgid "%s must be defined."
-msgstr "%1 должен быть определен."
+msgstr "%s должно быть определено."
 
 #: src/CA.cpp:1845
-#, fuzzy, c-format
+#, c-format
 msgid "%s must be the same in the CA certificate (%s) and the request (%s)."
-msgstr "%1 должен быть таким же как в CA сертификате (%2) и запросе (%3)."
+msgstr "%s должен быть таким же как в CA сертификате (%s) и запросе (%s)."
 
 #: src/CA.cpp:1857
 msgid "The configuration file seems to have an invalid policy."
@@ -351,9 +351,9 @@ msgstr "Отсутствует секция 'distinguished_name' в конфиг
 
 #: src/CertificateData_Priv.cpp:92 src/CRLData_Priv.cpp:98
 #: src/CRLData_Priv.cpp:135
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid serial %s."
-msgstr "Неверный серийный номер %1."
+msgstr "Неверный серийный номер %s."
 
 #: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:409
 #: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:381
@@ -390,9 +390,9 @@ msgstr "Неподдерживаемый алгоритм открытого к�
 
 #: src/CertificateData_Priv.cpp:456 src/CRLData_Priv.cpp:370
 #: src/RequestData_Priv.cpp:288
-#, fuzzy, c-format
+#, c-format
 msgid "Unsupported signature algorithm %s."
-msgstr "Неподдерживаемый алгоритм подписи %1."
+msgstr "Неподдерживаемый алгоритм подписи %s."
 
 #: src/CertificateIssueData.cpp:223
 msgid "Invalid CertificateIssueData object."
@@ -408,9 +408,9 @@ msgstr "Неверный объект UserNotice."
 
 #: src/CertificatePoliciesExtension.cpp:389
 #: src/CertificatePoliciesExtension.cpp:453
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid value for policyIdentifier: %s."
-msgstr "Неверное значение policyIdentifier: %1."
+msgstr "Неверное значение policyIdentifier: %s."
 
 #: src/CertificatePoliciesExtension.cpp:508
 msgid "Invalid CertificatePolicy object."
@@ -450,9 +450,9 @@ msgid "Invalid CRLGenerationData object."
 msgstr "Неверный объект CRLGenerationData."
 
 #: src/CRLReason.cpp:96 src/CRLReason.cpp:132
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid revoke reason %s."
-msgstr "Неверный аргумент отмены %1."
+msgstr "Неверный аргумент отмены %s."
 
 #: src/CRLReason.cpp:170
 msgid "Reason is not certificateHold."
@@ -467,19 +467,19 @@ msgid "Reason is not CACompromise."
 msgstr "Аргумент не CACompromise."
 
 #: src/DNObject.cpp:100
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid type %s."
-msgstr "Неверный тип %1."
+msgstr "Неверный тип %s."
 
 #: src/DNObject_Priv.cpp:157
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot parse DN line: %s."
-msgstr "Не удается выполнить анализ строки DN: %1."
+msgstr "Не удается выполнить анализ строки DN: %s."
 
 #: src/ExtendedKeyUsageExt.cpp:118 src/ExtendedKeyUsageExt.cpp:167
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid ExtendedKeyUsage option %s."
-msgstr "Неверный параметр ExtendedKeyUsage %1."
+msgstr "Неверный параметр ExtendedKeyUsage %s."
 
 #: src/ExtendedKeyUsageExt.cpp:126 src/ExtendedKeyUsageExt.cpp:175
 msgid "Invalid ExtendedKeyUsageExt."
@@ -516,68 +516,68 @@ msgstr "Невозможно разделить вывод сертификат�
 
 #: src/LocalManagement.cpp:288 src/LocalManagement.cpp:309
 #: src/LocalManagement.cpp:328
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot create directory %s: %s."
-msgstr "Невозможно создать каталог %1: %2."
+msgstr "Невозможно создать каталог %s: %s."
 
 #: src/LocalManagement.cpp:342
-#, fuzzy, c-format
+#, c-format
 msgid "%s is not a directory."
-msgstr "%1 не является каталогом."
+msgstr "%s не является каталогом."
 
 #: src/LocalManagement.cpp:363
 msgid "Invalid certificate file."
 msgstr "Неверный файл сертификата."
 
 #: src/LocalManagement.cpp:441
-#, fuzzy, c-format
+#, c-format
 msgid "File not found: %s."
-msgstr "Файл не найден: %1."
+msgstr "Файл не найден: %s."
 
 #: src/LocalManagement.cpp:450
-#, fuzzy, c-format
+#, c-format
 msgid "File too big: %s."
-msgstr "Файл слишком большой: %1."
+msgstr "Файл слишком большой: %s."
 
 #: src/LocalManagement.cpp:459 src/LocalManagement.cpp:513
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot open file %s."
-msgstr "Невозможно открыть файл %1."
+msgstr "Невозможно открыть файл %s."
 
 #: src/LocalManagement.cpp:478
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot read from file %s."
-msgstr "Невозможно прочитать из файла %1."
+msgstr "Невозможно прочитать из файла %s."
 
 #: src/LocalManagement.cpp:503
-#, fuzzy, c-format
+#, c-format
 msgid "File already exists: %s."
-msgstr "Файл уже существует: %1."
+msgstr "Файл уже существует: %s."
 
 #: src/LocalManagement.cpp:523
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot get lock on file %s."
-msgstr "Невозможно захватить файл %1."
+msgstr "Невозможно заблокировать файл %s."
 
 #: src/LocalManagement.cpp:535
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot write to file %s."
-msgstr "Невозможно записать в файл %1."
+msgstr "Невозможно записать в файл %s."
 
 #: src/OpenSSLUtils.cpp:49
-#, fuzzy, c-format
+#, c-format
 msgid "File does not exist: %s."
-msgstr "Файл не существует: %1."
+msgstr "Файл не существует: %s."
 
 #: src/OpenSSLUtils.cpp:58
-#, fuzzy, c-format
+#, c-format
 msgid "Directory does not exist: %s."
-msgstr "Каталог не существует: %1."
+msgstr "Каталог не существует: %s."
 
 #: src/OpenSSLUtils.cpp:67
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid command %s."
-msgstr "Неверная команда %1."
+msgstr "Неверная команда %s."
 
 #: src/OpenSSLUtils.cpp:124 src/OpenSSLUtils.cpp:214 src/OpenSSLUtils.cpp:313
 #: src/OpenSSLUtils.cpp:438 src/OpenSSLUtils.cpp:577 src/OpenSSLUtils.cpp:678
@@ -595,9 +595,9 @@ msgstr "Сбой при выполнении команды openssl"
 #: src/OpenSSLUtils.cpp:1302 src/OpenSSLUtils.cpp:1412
 #: src/OpenSSLUtils.cpp:1521 src/OpenSSLUtils.cpp:1691
 #: src/OpenSSLUtils.cpp:1838 src/OpenSSLUtils.cpp:2613
-#, fuzzy, c-format
+#, c-format
 msgid "openssl command failed: %s"
-msgstr "Команда openssl не выполнена: %1"
+msgstr "не удалось выполнить команду openssl: %s"
 
 #: src/OpenSSLUtils.cpp:166 src/OpenSSLUtils.cpp:254 src/OpenSSLUtils.cpp:358
 #: src/OpenSSLUtils.cpp:477 src/OpenSSLUtils.cpp:617 src/OpenSSLUtils.cpp:714
@@ -621,9 +621,9 @@ msgid "No valid CA directory specified."
 msgstr "Не указан действующий CA каталог."
 
 #: src/OpenSSLUtils.cpp:963
-#, fuzzy, c-format
+#, c-format
 msgid "Showing certificate status with serial %s failed (%d)."
-msgstr "Невозможно показать статус сертификата с серийным номером %1 (%2)."
+msgstr "Невозможно показать статус сертификата с серийным номером %s (%d)."
 
 #: src/OpenSSLUtils.cpp:999
 msgid "The key file does not exist."
@@ -644,14 +644,14 @@ msgstr "Пароль PKCS12 является обязательным."
 
 #: src/OpenSSLUtils.cpp:1864 src/OpenSSLUtils.cpp:2064
 #: src/OpenSSLUtils.cpp:2216
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot read directory: %s (%s) [%d]."
-msgstr "Невозможно прочитать каталог: %1 (%2) [%3]."
+msgstr "Невозможно прочитать каталог: %s (%s) [%d]."
 
 #: src/OpenSSLUtils.cpp:1914
-#, fuzzy, c-format
+#, c-format
 msgid "No serial number found in %s."
-msgstr "Не найден серийный номер в %1."
+msgstr "Не найден серийный номер в %s."
 
 #: src/OpenSSLUtils.cpp:1934
 msgid "The request already exists."
@@ -666,26 +666,26 @@ msgid "Cannot find the certificate subject."
 msgstr "Не удается найти тему сертификата."
 
 #: src/OpenSSLUtils.cpp:2385
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid caName: %s."
-msgstr "Неверное значение caName: %1."
+msgstr "Неверное значение caName: %s."
 
 #: src/OpenSSLUtils.cpp:2394
-#, fuzzy, c-format
+#, c-format
 msgid "'%s' does not exist."
-msgstr "'%1' не существует."
+msgstr "'%s' не существует."
 
 #: src/OpenSSLUtils.cpp:2404
-#, fuzzy, c-format
+#, c-format
 msgid "%s still exists."
-msgstr "%1 все еще существует."
+msgstr "%s все ещё существует."
 
 #: src/OpenSSLUtils.cpp:2415 src/OpenSSLUtils.cpp:2463
 #: src/OpenSSLUtils.cpp:2477 src/OpenSSLUtils.cpp:2491
 #: src/OpenSSLUtils.cpp:2505 src/OpenSSLUtils.cpp:2519
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot create directory: %s (%s [%d])."
-msgstr "Не удается создать каталог: %1 (%2 [%3])."
+msgstr "Невозможно создать каталог: %s (%s [%d])."
 
 #: src/OpenSSLUtils.cpp:2450
 msgid "Cannot copy the configuration template."
@@ -696,9 +696,8 @@ msgid "Cannot create the file."
 msgstr "Не удается создать файл."
 
 #: src/OpenSSLUtils.cpp:2552
-#, fuzzy
 msgid "Can not open file."
-msgstr "Невозможно открыть файл %1."
+msgstr "Невозможно открыть файл."
 
 #: src/RequestData_Priv.cpp:408
 msgid "Cannot parse the request."
@@ -994,6 +993,3 @@ msgstr "Неверное значение для X509v3RequestExts::setSubjectKe
 #: src/X509v3RequestExtensions.cpp:228
 msgid "Invalid value for X509v3RequestExts::setSubjectAlternativeName."
 msgstr "Неверное значение для X509v3RequestExts::setSubjectAlternativeName."
-
-#~ msgid "Cannot parse date %1."
-#~ msgstr "Невозможно обработать данные %1."
