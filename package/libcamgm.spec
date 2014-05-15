@@ -44,6 +44,11 @@ BuildRequires:  swig
 BuildRequires:  translation-update-upstream
 Requires:       openssl
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
+%if 0%{?fedora_version}
+BuildRequires:  openssl-perl
+BuildRequires:  perl-ExtUtils-Embed
+Requires:       openssl-perl
+%endif
 
 %description
 The CA Management Library provides methods for managing a certificate authority.
@@ -70,7 +75,11 @@ development documentation.
 %package -n perl-camgm
 Summary:        CA Management Library Perl Bindings
 Group:          Development/Languages/Perl
+%if 0%{?fedora_version}
+Requires:       perl(:MODULE_COMPAT_%(eval "`perl -V:version`"; echo $version))
+%else
 Requires:       perl = %{perl_version}
+%endif
 
 %description -n perl-camgm
 The CA Management Library provides methods for managing
