@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Thu May 15 14:12:56 UTC 2014 - tchvatal@suse.com
+
+- Cleanup with spec-cleaner
+- Remove conditional for other distros that we don't even build for
+- Silence some of the rpmlint warnings
+
+-------------------------------------------------------------------
 Wed Apr 30 16:13:04 CEST 2014 - mc@suse.de
 
 - version 1.0.4
