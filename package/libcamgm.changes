@@ -1,4 +1,16 @@
 -------------------------------------------------------------------
+Thu May 15 14:35:48 UTC 2014 - tchvatal@suse.com
+
+- Add back support for other fedora as it is still sometimes used
+
+-------------------------------------------------------------------
+Thu May 15 14:12:56 UTC 2014 - tchvatal@suse.com
+
+- Cleanup with spec-cleaner
+- Remove conditional for other distros that we don't even build for
+- Silence some of the rpmlint warnings
+
+-------------------------------------------------------------------
 Wed Apr 30 16:13:04 CEST 2014 - mc@suse.de
 
 - version 1.0.4
