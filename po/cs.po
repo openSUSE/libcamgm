@@ -3,10 +3,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: limal-ca-mgm\n"
+"Project-Id-Version: libcamgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2014-04-30 16:12+0200\n"
-"PO-Revision-Date: 2011-11-02 07:51\n"
+"POT-Creation-Date: 2014-04-13 15:19+0200\n"
+"PO-Revision-Date: 2014-06-06 15:26\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "Language: \n"
@@ -95,9 +95,9 @@ msgstr "Tento BitExtension není přítomen."
 #: src/BitExtensions.cpp:130 src/BitExtensions.cpp:243
 #: src/CertificateIssueData.cpp:231 src/CRLGenerationData.cpp:158
 #: src/DNObject.cpp:258 src/IssuerAlternativeNameExtension.cpp:220
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong type: %d."
-msgstr "Nesprávný typ: %1."
+msgstr "Nesprávný typ: %d."
 
 #: src/BitExtensions.cpp:170 src/BitExtensions.cpp:199
 msgid "Invalid value for keyUsage."
@@ -136,9 +136,9 @@ msgid "Empty CA name."
 msgstr "Prázdné jméno CA."
 
 #: src/CA.cpp:174
-#, fuzzy, c-format
+#, c-format
 msgid "Template does not exist: %s."
-msgstr "Šablona neexistuje: %1."
+msgstr "Šablona neexistuje: %s."
 
 #: src/CA.cpp:186 src/CA.cpp:1543
 msgid "Invalid CA password."
@@ -149,9 +149,9 @@ msgid "Error while creating the CA infrastructure."
 msgstr "Chyba během vytváření infrastruktury CA."
 
 #: src/CA.cpp:250 src/CA.cpp:1015
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot parse the certificate name %s."
-msgstr "Nelze analyzovat jméno certifikátu: %1."
+msgstr "Nelze analyzovat jméno certifikátu: %s."
 
 #: src/CA.cpp:261
 msgid "Cannot copy the private key."
@@ -166,19 +166,19 @@ msgid "Invalid request data."
 msgstr "Neplatná data požadavku."
 
 #: src/CA.cpp:323
-#, fuzzy, c-format
+#, c-format
 msgid "Duplicate DN. Key %s.key already exists."
-msgstr "Duplicitní DN. Klíč '%1.key' již existuje."
+msgstr "Duplicitní DN. Klíč '%s.key' již existuje."
 
 #: src/CA.cpp:331
-#, fuzzy, c-format
+#, c-format
 msgid "Duplicate DN. Request %s.req already exists."
-msgstr "Duplicitní DN. Požadavek %1.req již existuje."
+msgstr "Duplicitní DN. Požadavek %s.req již existuje."
 
 #: src/CA.cpp:400
-#, fuzzy, c-format
+#, c-format
 msgid "Request does not exist (%s)."
-msgstr "Požadavek neexistuje (%1)."
+msgstr "Požadavek neexistuje (%s)."
 
 #: src/CA.cpp:406
 msgid "Invalid issue data."
@@ -193,9 +193,9 @@ msgid "Issuing the certificate failed."
 msgstr "Vydání certifikátu selhalo."
 
 #: src/CA.cpp:518
-#, fuzzy, c-format
+#, c-format
 msgid "File %s not found in the repository."
-msgstr "Soubor '%1' nebyl nalezen v repozitáři."
+msgstr "Soubor '%s' v repozitáři nebyl nalezen."
 
 #: src/CA.cpp:525 src/CRLData_Priv.cpp:153
 msgid "Invalid CRL reason."
@@ -214,32 +214,32 @@ msgid "Cannot parse the certificate name."
 msgstr "Nelze analyzovat jméno certifikátu."
 
 #: src/CA.cpp:967
-#, fuzzy, c-format
+#, c-format
 msgid "Request %s does not exist."
-msgstr "Požadavek %1 neexistuje."
+msgstr "Požadavek %s neexistuje."
 
 #: src/CA.cpp:989
 msgid "Removing the request failed (%1)."
 msgstr "Odstraňování požadavku selhalo (%1)."
 
 #: src/CA.cpp:1003
-#, fuzzy, c-format
+#, c-format
 msgid "Certificate %s does not exist."
-msgstr "Certifikát %1 neexistuje."
+msgstr "Certifikát %s neexistuje."
 
 #: src/CA.cpp:1052
-#, fuzzy, c-format
+#, c-format
 msgid "Removing the certificate failed: %d."
-msgstr "Odstraňování certifikátu selhalo: %1."
+msgstr "Odstraňování certifikátu selhalo: %d."
 
 #: src/CA.cpp:1060
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Only revoked or expired certificates can be deleted. The status of the "
 "certificate is %s."
 msgstr ""
-"Pouze revokované nebo expirované certifikáty lze smazat. Status certifikátu "
-"je %1."
+"Lze smazat pouze revokované nebo expirované certifikáty. Stav certifikátu je "
+"%s."
 
 #: src/CA.cpp:1072
 msgid "Database not found."
@@ -250,9 +250,9 @@ msgid "Certificate does not exist."
 msgstr "Certifikát neexistuje."
 
 #: src/CA.cpp:1112
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid purpose %s."
-msgstr "Neplatný účel %1."
+msgstr "Neplatný účel %s."
 
 #: src/CA.cpp:1155
 msgid "Invalid CA request data."
@@ -295,9 +295,9 @@ msgid "Error during write defaults."
 msgstr "Chyba během zápisu výchozích hodnot."
 
 #: src/CA.cpp:1532
-#, fuzzy, c-format
+#, c-format
 msgid "CA name does not exist (%s)."
-msgstr "Jméno CA neexistuje (%1)."
+msgstr "Jméno CA neexistuje (%s)."
 
 #: src/CA.cpp:1563
 msgid ""
@@ -317,24 +317,24 @@ msgstr "Konfigurační soubor postrádá hodnotu pro politiku."
 
 #: src/CA.cpp:1649 src/CA.cpp:1911 src/DNObject.cpp:277
 #: src/DNObject_Priv.cpp:207
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot parse section %s."
-msgstr "Nelze analyzovat sekci %1."
+msgstr "Nelze analyzovat sekci %s."
 
 #: src/CA.cpp:1721
-#, fuzzy, c-format
+#, c-format
 msgid "Field %s must have a value."
-msgstr "Pole %1 musí mít hodnotu."
+msgstr "Pole %s musí mít hodnotu."
 
 #: src/CA.cpp:1760
-#, fuzzy, c-format
+#, c-format
 msgid "%s must be defined."
-msgstr "%1 musí být definováno."
+msgstr "%s musí být definováno."
 
 #: src/CA.cpp:1845
-#, fuzzy, c-format
+#, c-format
 msgid "%s must be the same in the CA certificate (%s) and the request (%s)."
-msgstr "Pole %1 musí být stejné v CA certifikátu (%2) a požadavku (%3)."
+msgstr "Pole %s musí být stejné v CA certifikátu (%s) a požadavku (%s)."
 
 #: src/CA.cpp:1857
 msgid "The configuration file seems to have an invalid policy."
@@ -350,9 +350,9 @@ msgstr "Chybí sekce 'distinguished_name' v konfiguračním souboru."
 
 #: src/CertificateData_Priv.cpp:92 src/CRLData_Priv.cpp:98
 #: src/CRLData_Priv.cpp:135
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid serial %s."
-msgstr "Neplatné sériové číslo: %1."
+msgstr "Neplatné sériové číslo %s."
 
 #: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:409
 #: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:381
@@ -389,9 +389,9 @@ msgstr "Nepodporovaný algoritmus veřejného klíče."
 
 #: src/CertificateData_Priv.cpp:456 src/CRLData_Priv.cpp:370
 #: src/RequestData_Priv.cpp:288
-#, fuzzy, c-format
+#, c-format
 msgid "Unsupported signature algorithm %s."
-msgstr "Nepodporovaný algoritmus podpisu %1."
+msgstr "Nepodporovaný algoritmus podpisu %s."
 
 #: src/CertificateIssueData.cpp:223
 msgid "Invalid CertificateIssueData object."
@@ -407,9 +407,9 @@ msgstr "Neplatný objekt UserNotice."
 
 #: src/CertificatePoliciesExtension.cpp:389
 #: src/CertificatePoliciesExtension.cpp:453
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid value for policyIdentifier: %s."
-msgstr "Neplatná hodnota pro policyIdentifier: %1."
+msgstr "Neplatná hodnota pro policyIdentifier: %s."
 
 #: src/CertificatePoliciesExtension.cpp:508
 msgid "Invalid CertificatePolicy object."
@@ -449,9 +449,9 @@ msgid "Invalid CRLGenerationData object."
 msgstr "Neplatný objekt CRLGenerationData."
 
 #: src/CRLReason.cpp:96 src/CRLReason.cpp:132
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid revoke reason %s."
-msgstr "Neplatný důvod revokace %1."
+msgstr "Neplatný důvod revokace %s."
 
 #: src/CRLReason.cpp:170
 msgid "Reason is not certificateHold."
@@ -466,19 +466,19 @@ msgid "Reason is not CACompromise."
 msgstr "Důvod není CACompromise."
 
 #: src/DNObject.cpp:100
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid type %s."
-msgstr "Neplatný typ %1."
+msgstr "Neplatný typ %s."
 
 #: src/DNObject_Priv.cpp:157
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot parse DN line: %s."
-msgstr "Nelze analyzovat řádek DN: %1."
+msgstr "Nelze analyzovat řádek DN: %s."
 
 #: src/ExtendedKeyUsageExt.cpp:118 src/ExtendedKeyUsageExt.cpp:167
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid ExtendedKeyUsage option %s."
-msgstr "Neplatná volba ExtendedKeyUsage %1."
+msgstr "Neplatná volba ExtendedKeyUsage %s."
 
 #: src/ExtendedKeyUsageExt.cpp:126 src/ExtendedKeyUsageExt.cpp:175
 msgid "Invalid ExtendedKeyUsageExt."
@@ -515,68 +515,68 @@ msgstr "Nelze rozdělit výstup certifikátu."
 
 #: src/LocalManagement.cpp:288 src/LocalManagement.cpp:309
 #: src/LocalManagement.cpp:328
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot create directory %s: %s."
-msgstr "Nelze vytvořit adresář '%1' :%2."
+msgstr "Nelze vytvořit adresář %s: %s."
 
 #: src/LocalManagement.cpp:342
-#, fuzzy, c-format
+#, c-format
 msgid "%s is not a directory."
-msgstr "'%1' není adresář."
+msgstr "%s není adresář."
 
 #: src/LocalManagement.cpp:363
 msgid "Invalid certificate file."
 msgstr "Neplatný soubor certifikátu."
 
 #: src/LocalManagement.cpp:441
-#, fuzzy, c-format
+#, c-format
 msgid "File not found: %s."
-msgstr "Soubor nenalezen: %1."
+msgstr "Soubor nenalezen: %s."
 
 #: src/LocalManagement.cpp:450
-#, fuzzy, c-format
+#, c-format
 msgid "File too big: %s."
-msgstr "Příliš veliký soubor: %1."
+msgstr "Příliš veliký soubor: %s."
 
 #: src/LocalManagement.cpp:459 src/LocalManagement.cpp:513
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot open file %s."
-msgstr "Nelze otevřít soubor: %1."
+msgstr "Nelze otevřít soubor: %s."
 
 #: src/LocalManagement.cpp:478
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot read from file %s."
-msgstr "Nelze číst ze souboru: %1."
+msgstr "Nelze číst ze souboru: %s."
 
 #: src/LocalManagement.cpp:503
-#, fuzzy, c-format
+#, c-format
 msgid "File already exists: %s."
-msgstr "Soubor již existuje: %1."
+msgstr "Soubor již existuje: %s."
 
 #: src/LocalManagement.cpp:523
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot get lock on file %s."
-msgstr "Nelze získat zámek na souboru: %1."
+msgstr "Nelze získat zámek na souboru: %s."
 
 #: src/LocalManagement.cpp:535
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot write to file %s."
-msgstr "Nelze zapisovat do souboru %1."
+msgstr "Nelze zapisovat do souboru %s."
 
 #: src/OpenSSLUtils.cpp:49
-#, fuzzy, c-format
+#, c-format
 msgid "File does not exist: %s."
-msgstr "Soubor neexistuje: %1."
+msgstr "Soubor neexistuje: %s."
 
 #: src/OpenSSLUtils.cpp:58
-#, fuzzy, c-format
+#, c-format
 msgid "Directory does not exist: %s."
-msgstr "Adresář neexistuje: %1."
+msgstr "Adresář neexistuje: %s."
 
 #: src/OpenSSLUtils.cpp:67
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid command %s."
-msgstr "Neplatný příkaz %1."
+msgstr "Neplatný příkaz %s."
 
 #: src/OpenSSLUtils.cpp:124 src/OpenSSLUtils.cpp:214 src/OpenSSLUtils.cpp:313
 #: src/OpenSSLUtils.cpp:438 src/OpenSSLUtils.cpp:577 src/OpenSSLUtils.cpp:678
@@ -594,9 +594,9 @@ msgstr "Spuštění příkazu openssl se nezdařilo."
 #: src/OpenSSLUtils.cpp:1302 src/OpenSSLUtils.cpp:1412
 #: src/OpenSSLUtils.cpp:1521 src/OpenSSLUtils.cpp:1691
 #: src/OpenSSLUtils.cpp:1838 src/OpenSSLUtils.cpp:2613
-#, fuzzy, c-format
+#, c-format
 msgid "openssl command failed: %s"
-msgstr "Příkaz openssl se nezdařil: %1"
+msgstr "Příkaz openssl selhal: %s"
 
 #: src/OpenSSLUtils.cpp:166 src/OpenSSLUtils.cpp:254 src/OpenSSLUtils.cpp:358
 #: src/OpenSSLUtils.cpp:477 src/OpenSSLUtils.cpp:617 src/OpenSSLUtils.cpp:714
@@ -620,9 +620,9 @@ msgid "No valid CA directory specified."
 msgstr "Nebyl zadán platný adresář CA."
 
 #: src/OpenSSLUtils.cpp:963
-#, fuzzy, c-format
+#, c-format
 msgid "Showing certificate status with serial %s failed (%d)."
-msgstr "Zobrazení statutu certifikátu se sériovým číslem '%1' selhalo.(%2)."
+msgstr "Zobrazení stavu certifikátu se sériovým číslem %s selhalo (%d)."
 
 #: src/OpenSSLUtils.cpp:999
 msgid "The key file does not exist."
@@ -643,14 +643,14 @@ msgstr "Je vyžadováno heslo PKCS12."
 
 #: src/OpenSSLUtils.cpp:1864 src/OpenSSLUtils.cpp:2064
 #: src/OpenSSLUtils.cpp:2216
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot read directory: %s (%s) [%d]."
-msgstr "Nelze číst adresář: %1 (%2) [%3]."
+msgstr "Nelze číst adresář: %s (%s) [%d]."
 
 #: src/OpenSSLUtils.cpp:1914
-#, fuzzy, c-format
+#, c-format
 msgid "No serial number found in %s."
-msgstr "V %1 nebylo nalezeno sériové číslo."
+msgstr "V %s nebylo nalezeno sériové číslo."
 
 #: src/OpenSSLUtils.cpp:1934
 msgid "The request already exists."
@@ -665,26 +665,26 @@ msgid "Cannot find the certificate subject."
 msgstr "Nelze nalézt předmět certifikátu."
 
 #: src/OpenSSLUtils.cpp:2385
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid caName: %s."
-msgstr "Neplatný název caName: %1."
+msgstr "Neplatný název caName: %s."
 
 #: src/OpenSSLUtils.cpp:2394
-#, fuzzy, c-format
+#, c-format
 msgid "'%s' does not exist."
-msgstr "%1 neexistuje."
+msgstr "'%s' neexistuje."
 
 #: src/OpenSSLUtils.cpp:2404
-#, fuzzy, c-format
+#, c-format
 msgid "%s still exists."
-msgstr "%1 již existuje."
+msgstr "%s již existuje."
 
 #: src/OpenSSLUtils.cpp:2415 src/OpenSSLUtils.cpp:2463
 #: src/OpenSSLUtils.cpp:2477 src/OpenSSLUtils.cpp:2491
 #: src/OpenSSLUtils.cpp:2505 src/OpenSSLUtils.cpp:2519
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot create directory: %s (%s [%d])."
-msgstr "Nelze vytvořit adresář: %1 (%2 [%3])."
+msgstr "Nelze vytvořit adresář: %s (%s [%d])."
 
 #: src/OpenSSLUtils.cpp:2450
 msgid "Cannot copy the configuration template."
@@ -695,9 +695,8 @@ msgid "Cannot create the file."
 msgstr "Nelze vytvořit soubor."
 
 #: src/OpenSSLUtils.cpp:2552
-#, fuzzy
 msgid "Can not open file."
-msgstr "Nelze otevřít soubor: %1."
+msgstr "Soubor nelze otevřít."
 
 #: src/RequestData_Priv.cpp:408
 msgid "Cannot parse the request."
@@ -992,6 +991,3 @@ msgstr "Neplatná hodnota pro X509v3RequestExts::setSubjectKeyIdentifier."
 #: src/X509v3RequestExtensions.cpp:228
 msgid "Invalid value for X509v3RequestExts::setSubjectAlternativeName."
 msgstr "Neplatná hodnota pro X509v3RequestExts::setSubjectAlternativeName."
-
-#~ msgid "Cannot parse date %1."
-#~ msgstr "Nelze analyzovat datum: %1."

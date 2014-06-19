@@ -3,12 +3,12 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: limal-ca-mgm\n"
+"Project-Id-Version: libcamgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2014-04-30 16:12+0200\n"
-"PO-Revision-Date: 2011-11-02 10:42\n"
-"Last-Translator: Novell Language <language@novell.com>\n"
-"Language-Team: Novell Language <language@novell.com>\n"
+"POT-Creation-Date: 2014-04-13 15:19+0200\n"
+"PO-Revision-Date: 2014-06-06 13:52\n"
+"Last-Translator: Novell language <language@novell.com>\n"
+"Language-Team: Novell language <language@novell.com>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -95,9 +95,9 @@ msgstr "此 BitExtension 不存在。"
 #: src/BitExtensions.cpp:130 src/BitExtensions.cpp:243
 #: src/CertificateIssueData.cpp:231 src/CRLGenerationData.cpp:158
 #: src/DNObject.cpp:258 src/IssuerAlternativeNameExtension.cpp:220
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong type: %d."
-msgstr "错误类型：%1。"
+msgstr "错误类型：%d。"
 
 #: src/BitExtensions.cpp:170 src/BitExtensions.cpp:199
 msgid "Invalid value for keyUsage."
@@ -136,9 +136,9 @@ msgid "Empty CA name."
 msgstr "CA 名称为空。"
 
 #: src/CA.cpp:174
-#, fuzzy, c-format
+#, c-format
 msgid "Template does not exist: %s."
-msgstr "模板不存在：%1。"
+msgstr "模板不存在：%s。"
 
 #: src/CA.cpp:186 src/CA.cpp:1543
 msgid "Invalid CA password."
@@ -149,9 +149,9 @@ msgid "Error while creating the CA infrastructure."
 msgstr "创建 CA 基础结构时出错。"
 
 #: src/CA.cpp:250 src/CA.cpp:1015
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot parse the certificate name %s."
-msgstr "无法对证书名称 %1 进行语法分析。"
+msgstr "无法解析证书名称 %s。"
 
 #: src/CA.cpp:261
 msgid "Cannot copy the private key."
@@ -166,19 +166,19 @@ msgid "Invalid request data."
 msgstr "请求数据无效。"
 
 #: src/CA.cpp:323
-#, fuzzy, c-format
+#, c-format
 msgid "Duplicate DN. Key %s.key already exists."
-msgstr "重复的 DN。密钥 %1。密钥已存在。"
+msgstr "重复的判别名。密钥 %s。密钥已存在。"
 
 #: src/CA.cpp:331
-#, fuzzy, c-format
+#, c-format
 msgid "Duplicate DN. Request %s.req already exists."
-msgstr "重复的 DN。请求 %1。请求已存在。"
+msgstr "重复的判别名。请求 %s。请求已存在。"
 
 #: src/CA.cpp:400
-#, fuzzy, c-format
+#, c-format
 msgid "Request does not exist (%s)."
-msgstr "请求不存在（%1）。"
+msgstr "请求不存在 (%s)。"
 
 #: src/CA.cpp:406
 msgid "Invalid issue data."
@@ -193,9 +193,9 @@ msgid "Issuing the certificate failed."
 msgstr "发出证书失败。"
 
 #: src/CA.cpp:518
-#, fuzzy, c-format
+#, c-format
 msgid "File %s not found in the repository."
-msgstr "未在存储库中找到文件 %1。"
+msgstr "源中未找到文件 %s。"
 
 #: src/CA.cpp:525 src/CRLData_Priv.cpp:153
 msgid "Invalid CRL reason."
@@ -214,30 +214,30 @@ msgid "Cannot parse the certificate name."
 msgstr "无法对证书名称进行语法分析。"
 
 #: src/CA.cpp:967
-#, fuzzy, c-format
+#, c-format
 msgid "Request %s does not exist."
-msgstr "请求 %1 不存在。"
+msgstr "请求 %s 不存在。"
 
 #: src/CA.cpp:989
 msgid "Removing the request failed (%1)."
 msgstr "删除请求失败（%1）。"
 
 #: src/CA.cpp:1003
-#, fuzzy, c-format
+#, c-format
 msgid "Certificate %s does not exist."
-msgstr "证书 %1 不存在。"
+msgstr "证书 %s 不存在。"
 
 #: src/CA.cpp:1052
-#, fuzzy, c-format
+#, c-format
 msgid "Removing the certificate failed: %d."
-msgstr "删除证书失败：%1。"
+msgstr "移除证书失败：%d。"
 
 #: src/CA.cpp:1060
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Only revoked or expired certificates can be deleted. The status of the "
 "certificate is %s."
-msgstr "只能删除已撤消或到期的证书。该证书的状态为 %1。"
+msgstr "只能删除已吊销或已过期的证书。该证书状态为 %s。"
 
 #: src/CA.cpp:1072
 msgid "Database not found."
@@ -248,9 +248,9 @@ msgid "Certificate does not exist."
 msgstr "证书不存在。"
 
 #: src/CA.cpp:1112
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid purpose %s."
-msgstr "无效用途 %1。"
+msgstr "无效用途 %s。"
 
 #: src/CA.cpp:1155
 msgid "Invalid CA request data."
@@ -293,9 +293,9 @@ msgid "Error during write defaults."
 msgstr "写入默认值过程中出错。"
 
 #: src/CA.cpp:1532
-#, fuzzy, c-format
+#, c-format
 msgid "CA name does not exist (%s)."
-msgstr "CA 名称不存在（%1）。"
+msgstr "CA 名称不存在 (%s)。"
 
 #: src/CA.cpp:1563
 msgid ""
@@ -313,24 +313,24 @@ msgstr "配置文件缺少策略的值。"
 
 #: src/CA.cpp:1649 src/CA.cpp:1911 src/DNObject.cpp:277
 #: src/DNObject_Priv.cpp:207
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot parse section %s."
-msgstr "无法对部分 %1 进行语法分析。"
+msgstr "无法解析部分 %s。"
 
 #: src/CA.cpp:1721
-#, fuzzy, c-format
+#, c-format
 msgid "Field %s must have a value."
-msgstr "字段 %1 必须具有值。"
+msgstr "字段 %s 必须有值。"
 
 #: src/CA.cpp:1760
-#, fuzzy, c-format
+#, c-format
 msgid "%s must be defined."
-msgstr "必须定义 %1。"
+msgstr "必须定义 %s。"
 
 #: src/CA.cpp:1845
-#, fuzzy, c-format
+#, c-format
 msgid "%s must be the same in the CA certificate (%s) and the request (%s)."
-msgstr "CA 证书（%2）和请求（%3）中的 %1 必须相同。"
+msgstr "%s 必须在 CA 证书中 (%s) 和请求 (%s) 中保持一致。"
 
 #: src/CA.cpp:1857
 msgid "The configuration file seems to have an invalid policy."
@@ -346,9 +346,9 @@ msgstr "配置文件中缺少部分“distinguished_name”。"
 
 #: src/CertificateData_Priv.cpp:92 src/CRLData_Priv.cpp:98
 #: src/CRLData_Priv.cpp:135
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid serial %s."
-msgstr "无效的序号 %1。"
+msgstr "无效串号 %s。"
 
 #: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:409
 #: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:381
@@ -385,9 +385,9 @@ msgstr "不支持的公共密钥算法。"
 
 #: src/CertificateData_Priv.cpp:456 src/CRLData_Priv.cpp:370
 #: src/RequestData_Priv.cpp:288
-#, fuzzy, c-format
+#, c-format
 msgid "Unsupported signature algorithm %s."
-msgstr "不支持的签名算法 %1。"
+msgstr "不支持的签名算法 %s。"
 
 #: src/CertificateIssueData.cpp:223
 msgid "Invalid CertificateIssueData object."
@@ -403,9 +403,9 @@ msgstr "UserNotice 对象无效。"
 
 #: src/CertificatePoliciesExtension.cpp:389
 #: src/CertificatePoliciesExtension.cpp:453
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid value for policyIdentifier: %s."
-msgstr "policyIdentifier 的值无效：%1。"
+msgstr "policyIdentifier 的值无效：%s。"
 
 #: src/CertificatePoliciesExtension.cpp:508
 msgid "Invalid CertificatePolicy object."
@@ -445,9 +445,9 @@ msgid "Invalid CRLGenerationData object."
 msgstr "CRLGenerationData 对象无效。"
 
 #: src/CRLReason.cpp:96 src/CRLReason.cpp:132
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid revoke reason %s."
-msgstr "撤消原因 %1 无效。"
+msgstr "无效的吊销原因 %s。"
 
 #: src/CRLReason.cpp:170
 msgid "Reason is not certificateHold."
@@ -462,19 +462,19 @@ msgid "Reason is not CACompromise."
 msgstr "原因不是 CACompromise。"
 
 #: src/DNObject.cpp:100
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid type %s."
-msgstr "类型 %1 无效。"
+msgstr "无效类型 %s。"
 
 #: src/DNObject_Priv.cpp:157
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot parse DN line: %s."
-msgstr "无法对 DN 行进行语法分析： %1."
+msgstr "无法解析判别名行：%s。"
 
 #: src/ExtendedKeyUsageExt.cpp:118 src/ExtendedKeyUsageExt.cpp:167
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid ExtendedKeyUsage option %s."
-msgstr "ExtendedKeyUsage 选项 %1 无效。"
+msgstr "无效的 ExtendedKeyUsage 选项 %s。"
 
 #: src/ExtendedKeyUsageExt.cpp:126 src/ExtendedKeyUsageExt.cpp:175
 msgid "Invalid ExtendedKeyUsageExt."
@@ -511,68 +511,68 @@ msgstr "无法分割证书输出。"
 
 #: src/LocalManagement.cpp:288 src/LocalManagement.cpp:309
 #: src/LocalManagement.cpp:328
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot create directory %s: %s."
-msgstr "无法创建目录 %1：%2。"
+msgstr "无法创建文件夹 %s：%s。"
 
 #: src/LocalManagement.cpp:342
-#, fuzzy, c-format
+#, c-format
 msgid "%s is not a directory."
-msgstr "%1 不是目录。"
+msgstr "%s 不是一个文件夹。"
 
 #: src/LocalManagement.cpp:363
 msgid "Invalid certificate file."
 msgstr "证书文件无效。"
 
 #: src/LocalManagement.cpp:441
-#, fuzzy, c-format
+#, c-format
 msgid "File not found: %s."
-msgstr "文件未找到：%1。"
+msgstr "未找到文件：%s。"
 
 #: src/LocalManagement.cpp:450
-#, fuzzy, c-format
+#, c-format
 msgid "File too big: %s."
-msgstr "文件过大：%1。"
+msgstr "文件过大：%s。"
 
 #: src/LocalManagement.cpp:459 src/LocalManagement.cpp:513
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot open file %s."
-msgstr "无法打开文件 %1。"
+msgstr "无法打开文件 %s。"
 
 #: src/LocalManagement.cpp:478
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot read from file %s."
-msgstr "无法读取文件 %1。"
+msgstr "无法读取文件 %s。"
 
 #: src/LocalManagement.cpp:503
-#, fuzzy, c-format
+#, c-format
 msgid "File already exists: %s."
-msgstr "文件已存在：%1。"
+msgstr "文件已存在：%s。"
 
 #: src/LocalManagement.cpp:523
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot get lock on file %s."
-msgstr "无法锁定文件 %1。"
+msgstr "无法获取文件 %s 的锁。"
 
 #: src/LocalManagement.cpp:535
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot write to file %s."
-msgstr "无法写入文件 %1。"
+msgstr "无法写入文件 %s。"
 
 #: src/OpenSSLUtils.cpp:49
-#, fuzzy, c-format
+#, c-format
 msgid "File does not exist: %s."
-msgstr "文件不存在：%1。"
+msgstr "文件不存在：%s。"
 
 #: src/OpenSSLUtils.cpp:58
-#, fuzzy, c-format
+#, c-format
 msgid "Directory does not exist: %s."
-msgstr "目录不存在：%1。"
+msgstr "文件夹不存在：%s。"
 
 #: src/OpenSSLUtils.cpp:67
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid command %s."
-msgstr "无效命令 %1。"
+msgstr "无效命令 %s。"
 
 #: src/OpenSSLUtils.cpp:124 src/OpenSSLUtils.cpp:214 src/OpenSSLUtils.cpp:313
 #: src/OpenSSLUtils.cpp:438 src/OpenSSLUtils.cpp:577 src/OpenSSLUtils.cpp:678
@@ -590,9 +590,9 @@ msgstr "执行 openssl 命令失败。"
 #: src/OpenSSLUtils.cpp:1302 src/OpenSSLUtils.cpp:1412
 #: src/OpenSSLUtils.cpp:1521 src/OpenSSLUtils.cpp:1691
 #: src/OpenSSLUtils.cpp:1838 src/OpenSSLUtils.cpp:2613
-#, fuzzy, c-format
+#, c-format
 msgid "openssl command failed: %s"
-msgstr "openssl 命令失败：%1"
+msgstr "openssl 命令失败：%s"
 
 #: src/OpenSSLUtils.cpp:166 src/OpenSSLUtils.cpp:254 src/OpenSSLUtils.cpp:358
 #: src/OpenSSLUtils.cpp:477 src/OpenSSLUtils.cpp:617 src/OpenSSLUtils.cpp:714
@@ -616,9 +616,9 @@ msgid "No valid CA directory specified."
 msgstr "未指定有效的 CA 目录。"
 
 #: src/OpenSSLUtils.cpp:963
-#, fuzzy, c-format
+#, c-format
 msgid "Showing certificate status with serial %s failed (%d)."
-msgstr "通过连续的 %1 显示证书状态失败（%2）。"
+msgstr "显示串号为 %s 的证书的状态失败 (%d)。"
 
 #: src/OpenSSLUtils.cpp:999
 msgid "The key file does not exist."
@@ -639,14 +639,14 @@ msgstr "需要 PKCS12 口令。"
 
 #: src/OpenSSLUtils.cpp:1864 src/OpenSSLUtils.cpp:2064
 #: src/OpenSSLUtils.cpp:2216
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot read directory: %s (%s) [%d]."
-msgstr "无法读取目录： %1 (%2) [%3]."
+msgstr "无法读取文件夹：%s (%s) [%d]。"
 
 #: src/OpenSSLUtils.cpp:1914
-#, fuzzy, c-format
+#, c-format
 msgid "No serial number found in %s."
-msgstr "在 %1 找不到序列号。"
+msgstr "%s 中未找到串号。"
 
 #: src/OpenSSLUtils.cpp:1934
 msgid "The request already exists."
@@ -661,26 +661,26 @@ msgid "Cannot find the certificate subject."
 msgstr "找不到证书主题。"
 
 #: src/OpenSSLUtils.cpp:2385
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid caName: %s."
-msgstr "caName 无效： %1."
+msgstr "无效的 CA 名称：%s。"
 
 #: src/OpenSSLUtils.cpp:2394
-#, fuzzy, c-format
+#, c-format
 msgid "'%s' does not exist."
-msgstr "'%1”不存在。"
+msgstr "'%s' 不存在。"
 
 #: src/OpenSSLUtils.cpp:2404
-#, fuzzy, c-format
+#, c-format
 msgid "%s still exists."
-msgstr "%1 仍然存在。"
+msgstr "%s 依旧存在。"
 
 #: src/OpenSSLUtils.cpp:2415 src/OpenSSLUtils.cpp:2463
 #: src/OpenSSLUtils.cpp:2477 src/OpenSSLUtils.cpp:2491
 #: src/OpenSSLUtils.cpp:2505 src/OpenSSLUtils.cpp:2519
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot create directory: %s (%s [%d])."
-msgstr "无法创建目录： %1 (%2 [%3])."
+msgstr "无法创建文件夹：%s (%s [%d])。"
 
 #: src/OpenSSLUtils.cpp:2450
 msgid "Cannot copy the configuration template."
@@ -691,9 +691,8 @@ msgid "Cannot create the file."
 msgstr "无法创建文件。"
 
 #: src/OpenSSLUtils.cpp:2552
-#, fuzzy
 msgid "Can not open file."
-msgstr "无法打开文件 %1。"
+msgstr "无法打开文件。"
 
 #: src/RequestData_Priv.cpp:408
 msgid "Cannot parse the request."
@@ -979,6 +978,3 @@ msgstr "X509v3RequestExts::setSubjectKeyIdentifier 的值无效。"
 #: src/X509v3RequestExtensions.cpp:228
 msgid "Invalid value for X509v3RequestExts::setSubjectAlternativeName."
 msgstr "X509v3RequestExts::setSubjectAlternativeName 的值无效。"
-
-#~ msgid "Cannot parse date %1."
-#~ msgstr "无法对日期 %1 进行语法分析。"

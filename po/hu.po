@@ -1,26 +1,18 @@
-# translation of limal-ca-mgm.po to
-# translation of limal-ca-mgm.hu.po to
-# @TITLE@
-# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
 #
-# This file is distributed under the same license as @PACKAGE@ package. FIRST
-#
-# Kalman Kemenczy <kkemenczy@novell.com>, 2006, 2007, 2008.
-# Gabor Kelemen <kelemeng@gnome.hu>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: limal-ca-mgm.hu\n"
+"Project-Id-Version: libcamgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2014-04-30 16:12+0200\n"
-"PO-Revision-Date: 2008-12-07 13:45+0100\n"
-"Last-Translator: Kalman Kemenczy <kkemenczy@novell.com>\n"
-"Language-Team: <hu@li.org>\n"
+"POT-Creation-Date: 2014-04-13 15:19+0200\n"
+"PO-Revision-Date: 2014-06-06 15:39\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: KBabel 1.11.4\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:104
 #: src/AuthorityInfoAccessExtension.cpp:133
@@ -103,9 +95,9 @@ msgstr "Nincs BitExtension."
 #: src/BitExtensions.cpp:130 src/BitExtensions.cpp:243
 #: src/CertificateIssueData.cpp:231 src/CRLGenerationData.cpp:158
 #: src/DNObject.cpp:258 src/IssuerAlternativeNameExtension.cpp:220
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong type: %d."
-msgstr "Érvénytelen típus: %1."
+msgstr "Helytelen típus: %d."
 
 #: src/BitExtensions.cpp:170 src/BitExtensions.cpp:199
 msgid "Invalid value for keyUsage."
@@ -144,9 +136,9 @@ msgid "Empty CA name."
 msgstr "Üres CA név."
 
 #: src/CA.cpp:174
-#, fuzzy, c-format
+#, c-format
 msgid "Template does not exist: %s."
-msgstr "A sablon nem létezik: %1."
+msgstr "Nem létező sablon: %s."
 
 #: src/CA.cpp:186 src/CA.cpp:1543
 msgid "Invalid CA password."
@@ -157,9 +149,9 @@ msgid "Error while creating the CA infrastructure."
 msgstr "Hiba a CA infrastruktúra létrehozása közben."
 
 #: src/CA.cpp:250 src/CA.cpp:1015
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot parse the certificate name %s."
-msgstr "A tanúsítványnév feldolgozása sikertelen: %1."
+msgstr "A(z) %s tanúsítványnév elemzése sikertelen."
 
 #: src/CA.cpp:261
 msgid "Cannot copy the private key."
@@ -174,19 +166,19 @@ msgid "Invalid request data."
 msgstr "Érvénytelen kérelem."
 
 #: src/CA.cpp:323
-#, fuzzy, c-format
+#, c-format
 msgid "Duplicate DN. Key %s.key already exists."
-msgstr "A megadott DN. Key már létezik: %1."
+msgstr "Ismétlődő DN. A(z) %s.key kulcs már szerepel."
 
 #: src/CA.cpp:331
-#, fuzzy, c-format
+#, c-format
 msgid "Duplicate DN. Request %s.req already exists."
-msgstr "A megadott DN. kérelem már létezik: %1."
+msgstr "Ismétlődő DN. A(z) %s.key kérelem már szerepel."
 
 #: src/CA.cpp:400
-#, fuzzy, c-format
+#, c-format
 msgid "Request does not exist (%s)."
-msgstr "Nincs ilyen kérés (%1)."
+msgstr "A kérelem nem létezik (%s)."
 
 #: src/CA.cpp:406
 msgid "Invalid issue data."
@@ -201,9 +193,9 @@ msgid "Issuing the certificate failed."
 msgstr "A tanúsítvány kiadása sikertelen."
 
 #: src/CA.cpp:518
-#, fuzzy, c-format
+#, c-format
 msgid "File %s not found in the repository."
-msgstr "A(z) %1 fájl nem található tanúsítványtárban."
+msgstr "A(z) %s fájl nem található a tárban."
 
 #: src/CA.cpp:525 src/CRLData_Priv.cpp:153
 msgid "Invalid CRL reason."
@@ -222,32 +214,31 @@ msgid "Cannot parse the certificate name."
 msgstr "A tanúsítvány nevének feldolgozása sikertelen."
 
 #: src/CA.cpp:967
-#, fuzzy, c-format
+#, c-format
 msgid "Request %s does not exist."
-msgstr "A(z) %1 kérelem nem létezik."
+msgstr "A(z) %s kérelem nem létezik."
 
 #: src/CA.cpp:989
 msgid "Removing the request failed (%1)."
 msgstr "A(z) '%1' kérelem eltávolítása sikertelen."
 
 #: src/CA.cpp:1003
-#, fuzzy, c-format
+#, c-format
 msgid "Certificate %s does not exist."
-msgstr "A(z) %1 tanúsítvány nem létezik."
+msgstr "A(z) %s tanúsítvány nem létezik."
 
 #: src/CA.cpp:1052
-#, fuzzy, c-format
+#, c-format
 msgid "Removing the certificate failed: %d."
-msgstr "A(z) '%1' tanúsítvány eltávolítása sikertelen."
+msgstr "A tanúsítvány eltávolítása sikertelen: %d."
 
 #: src/CA.cpp:1060
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Only revoked or expired certificates can be deleted. The status of the "
 "certificate is %s."
 msgstr ""
-"Csak visszavont vagy lejárt tanúsítvány eltávolítása lehetséges. A "
-"tanúsítvány jelenlegi állapota: '%1'."
+"Csak visszavont vagy lejárt tanúsítvány törölhető. A tanúsítvány %s állapotú."
 
 #: src/CA.cpp:1072
 msgid "Database not found."
@@ -258,9 +249,9 @@ msgid "Certificate does not exist."
 msgstr "A tanúsítvány nem található."
 
 #: src/CA.cpp:1112
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid purpose %s."
-msgstr "Érvénytelen cél: %1."
+msgstr "Érvénytelen cél: %s."
 
 #: src/CA.cpp:1155
 msgid "Invalid CA request data."
@@ -303,9 +294,9 @@ msgid "Error during write defaults."
 msgstr "Az alapértelmezett beállítások kiírása sikertelen."
 
 #: src/CA.cpp:1532
-#, fuzzy, c-format
+#, c-format
 msgid "CA name does not exist (%s)."
-msgstr "A CA név nem létezik (%1)."
+msgstr "Nem létező CA-név (%s)."
 
 #: src/CA.cpp:1563
 msgid ""
@@ -319,35 +310,30 @@ msgstr ""
 msgid "Deleting the CA failed: %1."
 msgstr "A CA törlése sikertelen: %1."
 
-# modules/dialup/dialup.ycp:231 modules/dialup/dialup.ycp:246
-# modules/dialup/dialup.ycp:259
-# menuentries/menuentry_lan_sendmail.ycp:14
 #: src/CA.cpp:1639
 msgid "The configuration file is missing a value for policy."
 msgstr "A konfigurációs fájl nem tartalmazza a szükséges értékeket."
 
 #: src/CA.cpp:1649 src/CA.cpp:1911 src/DNObject.cpp:277
 #: src/DNObject_Priv.cpp:207
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot parse section %s."
-msgstr "A(z) %1 rész feldolgozása sikertelen."
+msgstr "A(z) %s szakasz nem elemezhető."
 
 #: src/CA.cpp:1721
-#, fuzzy, c-format
+#, c-format
 msgid "Field %s must have a value."
-msgstr "A következő mezőnek kötelező értéket megadni: %1."
+msgstr "A(z) %s mezőben kötelezően meg kell adni egy értéket."
 
 #: src/CA.cpp:1760
-#, fuzzy, c-format
+#, c-format
 msgid "%s must be defined."
-msgstr "A következő mezőt definiálni kell: %1."
+msgstr "A(z) %s megadása kötelező."
 
 #: src/CA.cpp:1845
-#, fuzzy, c-format
+#, c-format
 msgid "%s must be the same in the CA certificate (%s) and the request (%s)."
-msgstr ""
-"A(z) '%1' mezőnek azonosnak kell lennie a CA tanúsítványban (%2) és a "
-"kérelemben (%3)."
+msgstr "Azonos %s szükséges a CA tanúsítványában (%s) és a kérelemben (%s)."
 
 #: src/CA.cpp:1857
 msgid "The configuration file seems to have an invalid policy."
@@ -363,9 +349,9 @@ msgstr "A konfigurációs fájlban hiányzik a 'distinguished_name' rész."
 
 #: src/CertificateData_Priv.cpp:92 src/CRLData_Priv.cpp:98
 #: src/CRLData_Priv.cpp:135
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid serial %s."
-msgstr "Érvénytelen sorozat: %1."
+msgstr "Érvénytelen sorozatszám: %s."
 
 #: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:409
 #: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:381
@@ -402,9 +388,9 @@ msgstr "Nem támogatott nyilvános kulcs algoritmus."
 
 #: src/CertificateData_Priv.cpp:456 src/CRLData_Priv.cpp:370
 #: src/RequestData_Priv.cpp:288
-#, fuzzy, c-format
+#, c-format
 msgid "Unsupported signature algorithm %s."
-msgstr "Nem támogatott nyilvános aláírás algoritmus: %1."
+msgstr "Nem támogatott aláírási algoritmus: %s."
 
 #: src/CertificateIssueData.cpp:223
 msgid "Invalid CertificateIssueData object."
@@ -420,9 +406,9 @@ msgstr "Érvénytelen UserNotice objektum."
 
 #: src/CertificatePoliciesExtension.cpp:389
 #: src/CertificatePoliciesExtension.cpp:453
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid value for policyIdentifier: %s."
-msgstr "A policyIdentifier értéke érvénytelen: %1."
+msgstr "Érvénytelen érték a policyIdentifier tulajdonságnál: %s."
 
 #: src/CertificatePoliciesExtension.cpp:508
 msgid "Invalid CertificatePolicy object."
@@ -462,9 +448,9 @@ msgid "Invalid CRLGenerationData object."
 msgstr "Érvénytelen CRLGenerationData objektum."
 
 #: src/CRLReason.cpp:96 src/CRLReason.cpp:132
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid revoke reason %s."
-msgstr "Érvénytelen visszavonás indoklás: %1."
+msgstr "Érvénytelen visszavonási ok: %s."
 
 #: src/CRLReason.cpp:170
 msgid "Reason is not certificateHold."
@@ -479,19 +465,19 @@ msgid "Reason is not CACompromise."
 msgstr "Az indoklás nem CACompromise."
 
 #: src/DNObject.cpp:100
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid type %s."
-msgstr "Érvénytelen típus: %1."
+msgstr "Érvénytelen típus: %s."
 
 #: src/DNObject_Priv.cpp:157
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot parse DN line: %s."
-msgstr "A DN sor feldolgozása sikertelen: %1."
+msgstr "A DN-sor elemzése sikertelen: %s."
 
 #: src/ExtendedKeyUsageExt.cpp:118 src/ExtendedKeyUsageExt.cpp:167
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid ExtendedKeyUsage option %s."
-msgstr "Érvénytelen ExtendedKeyUsage beállítás: %1."
+msgstr "Érvénytelen ExtendedKeyUsage-paraméter: %s."
 
 #: src/ExtendedKeyUsageExt.cpp:126 src/ExtendedKeyUsageExt.cpp:175
 msgid "Invalid ExtendedKeyUsageExt."
@@ -528,70 +514,69 @@ msgstr "A tanúsítvány kimeneten nem tagolható."
 
 #: src/LocalManagement.cpp:288 src/LocalManagement.cpp:309
 #: src/LocalManagement.cpp:328
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot create directory %s: %s."
-msgstr "A könyvtár létrehozása sikertelen: %1 :%2."
+msgstr "A(z) %s könyvtár létrehozása sikertelen: %s."
 
 #: src/LocalManagement.cpp:342
-#, fuzzy, c-format
+#, c-format
 msgid "%s is not a directory."
-msgstr "A(z) %1 nem könyvtár."
+msgstr "A(z) %s nem könyvtár."
 
 #: src/LocalManagement.cpp:363
 msgid "Invalid certificate file."
 msgstr "Érvénytelen tanúsítvány."
 
 #: src/LocalManagement.cpp:441
-#, fuzzy, c-format
+#, c-format
 msgid "File not found: %s."
-msgstr "A fájl nem található: %1."
+msgstr "A fájl nem található: %s."
 
 #: src/LocalManagement.cpp:450
-#, fuzzy, c-format
+#, c-format
 msgid "File too big: %s."
-msgstr "A fájl mérete túl nagy: %1."
+msgstr "Túl nagy fájl: %s."
 
 #: src/LocalManagement.cpp:459 src/LocalManagement.cpp:513
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot open file %s."
-msgstr "A fájl nem nyitható meg: %1."
+msgstr "A(z) %s fájlt nem lehet megnyitni."
 
 #: src/LocalManagement.cpp:478
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot read from file %s."
-msgstr "A fájl beolvasása sikertelen: %1."
+msgstr "A(z) %s fájlból nem sikerült olvasni."
 
 #: src/LocalManagement.cpp:503
-#, fuzzy, c-format
+#, c-format
 msgid "File already exists: %s."
-msgstr "A fájl már létezik: %1."
+msgstr "Már létező fájl: %s."
 
 #: src/LocalManagement.cpp:523
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot get lock on file %s."
-msgstr "A fájl zárolása sikertelen: %1."
+msgstr "A(z) %s fájlt nem sikerült zárolni."
 
 #: src/LocalManagement.cpp:535
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot write to file %s."
-msgstr "A fájl írása sikertelen: %1."
+msgstr "A(z) %s fájlba nem sikerült írni."
 
 #: src/OpenSSLUtils.cpp:49
-#, fuzzy, c-format
+#, c-format
 msgid "File does not exist: %s."
-msgstr "A fájl nem létezik: %1."
+msgstr "Nem létező fájl: %s."
 
 #: src/OpenSSLUtils.cpp:58
-#, fuzzy, c-format
+#, c-format
 msgid "Directory does not exist: %s."
-msgstr "A könyvtár nem létezik: %1."
+msgstr "Nem létező könyvtár: %s."
 
 #: src/OpenSSLUtils.cpp:67
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid command %s."
 msgstr "Érvénytelen parancs: %s."
 
-# 27559 AttribValues/label
 #: src/OpenSSLUtils.cpp:124 src/OpenSSLUtils.cpp:214 src/OpenSSLUtils.cpp:313
 #: src/OpenSSLUtils.cpp:438 src/OpenSSLUtils.cpp:577 src/OpenSSLUtils.cpp:678
 #: src/OpenSSLUtils.cpp:761 src/OpenSSLUtils.cpp:852 src/OpenSSLUtils.cpp:933
@@ -608,9 +593,9 @@ msgstr "Az openssl parancs végrehajtása sikertelen."
 #: src/OpenSSLUtils.cpp:1302 src/OpenSSLUtils.cpp:1412
 #: src/OpenSSLUtils.cpp:1521 src/OpenSSLUtils.cpp:1691
 #: src/OpenSSLUtils.cpp:1838 src/OpenSSLUtils.cpp:2613
-#, fuzzy, c-format
+#, c-format
 msgid "openssl command failed: %s"
-msgstr "sikertelen openssl parancs: %1"
+msgstr "Sikertelen openssl parancs: %s"
 
 #: src/OpenSSLUtils.cpp:166 src/OpenSSLUtils.cpp:254 src/OpenSSLUtils.cpp:358
 #: src/OpenSSLUtils.cpp:477 src/OpenSSLUtils.cpp:617 src/OpenSSLUtils.cpp:714
@@ -634,10 +619,10 @@ msgid "No valid CA directory specified."
 msgstr "Nincs megadva érvényes CA könyvtár."
 
 #: src/OpenSSLUtils.cpp:963
-#, fuzzy, c-format
+#, c-format
 msgid "Showing certificate status with serial %s failed (%d)."
 msgstr ""
-"A tanúsítvány állapotának lekérdezése a(z) %1 sorozatszámmal sikertelen (%2)."
+"A(z) %s sorozatszámú tanúsítvány állapotának megjelenítése sikertelen (%d)."
 
 #: src/OpenSSLUtils.cpp:999
 msgid "The key file does not exist."
@@ -658,14 +643,14 @@ msgstr "A PKCS12 jelszó szükséges."
 
 #: src/OpenSSLUtils.cpp:1864 src/OpenSSLUtils.cpp:2064
 #: src/OpenSSLUtils.cpp:2216
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot read directory: %s (%s) [%d]."
-msgstr "A könyvtár nem olvasható: %1 (%2) [%3]."
+msgstr "A könyvtár nem olvasható: %s (%s) [%d]."
 
 #: src/OpenSSLUtils.cpp:1914
-#, fuzzy, c-format
+#, c-format
 msgid "No serial number found in %s."
-msgstr "Nem található sorozatszám itt: %1."
+msgstr "Nem található sorozatszám a következőben: %s."
 
 #: src/OpenSSLUtils.cpp:1934
 msgid "The request already exists."
@@ -680,28 +665,27 @@ msgid "Cannot find the certificate subject."
 msgstr "A tanúsítvány tárgya nem található."
 
 #: src/OpenSSLUtils.cpp:2385
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid caName: %s."
-msgstr "Érvénytelen caName: %1."
+msgstr "Érvénytelen caName név: %s."
 
 #: src/OpenSSLUtils.cpp:2394
-#, fuzzy, c-format
+#, c-format
 msgid "'%s' does not exist."
-msgstr "A következő fájl nem létezik: '%1'."
+msgstr "Nem létezik a következő: „%s”."
 
 #: src/OpenSSLUtils.cpp:2404
-#, fuzzy, c-format
+#, c-format
 msgid "%s still exists."
-msgstr "A(z) %1 továbbra is létezik."
+msgstr "A(z) %s továbbra is létezik."
 
 #: src/OpenSSLUtils.cpp:2415 src/OpenSSLUtils.cpp:2463
 #: src/OpenSSLUtils.cpp:2477 src/OpenSSLUtils.cpp:2491
 #: src/OpenSSLUtils.cpp:2505 src/OpenSSLUtils.cpp:2519
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot create directory: %s (%s [%d])."
-msgstr "Nem hozható létre könyvtár: %1 (%2 [%3])."
+msgstr "A könyvtár létrehozása sikertelen: %s (%s [%d])."
 
-# /tmp/xapi:49
 #: src/OpenSSLUtils.cpp:2450
 msgid "Cannot copy the configuration template."
 msgstr "A konfigurációs sablon nem másolható."
@@ -711,9 +695,8 @@ msgid "Cannot create the file."
 msgstr "Nem hozható létre a fájl."
 
 #: src/OpenSSLUtils.cpp:2552
-#, fuzzy
 msgid "Can not open file."
-msgstr "A fájl nem nyitható meg: %1."
+msgstr "A fájl megnyitása sikertelen."
 
 #: src/RequestData_Priv.cpp:408
 msgid "Cannot parse the request."
@@ -1004,6 +987,3 @@ msgstr "Érvénytelen érték: X509v3RequestExts::setSubjectKeyIdentifier."
 #: src/X509v3RequestExtensions.cpp:228
 msgid "Invalid value for X509v3RequestExts::setSubjectAlternativeName."
 msgstr "Érvénytelen érték: X509v3RequestExts::setSubjectAlternativeName."
-
-#~ msgid "Cannot parse date %1."
-#~ msgstr "A dátum feldolgozása sikertelen: %1."

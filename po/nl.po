@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libcamgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2014-04-30 16:12+0200\n"
-"PO-Revision-Date: 2014-04-30 09:24\n"
+"POT-Creation-Date: 2014-04-13 15:19+0200\n"
+"PO-Revision-Date: 2014-06-06 16:04\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "Language: \n"
@@ -151,7 +151,7 @@ msgstr "Fout tijdens aanmaken van CA-infrastructuur."
 #: src/CA.cpp:250 src/CA.cpp:1015
 #, c-format
 msgid "Cannot parse the certificate name %s."
-msgstr "Kon deze certificaatnaam niet ontleden: %s."
+msgstr "Kan deze certificaatnaam niet parseren: %s."
 
 #: src/CA.cpp:261
 msgid "Cannot copy the private key."
@@ -173,12 +173,12 @@ msgstr "Dubbele DN. Sleutel '%s.key' bestaat reeds."
 #: src/CA.cpp:331
 #, c-format
 msgid "Duplicate DN. Request %s.req already exists."
-msgstr "Dubbele DN. Request '%s.req' bestaat reeds."
+msgstr "Dubbele DN. Aanvraag '%s.req' bestaat reeds."
 
 #: src/CA.cpp:400
 #, c-format
 msgid "Request does not exist (%s)."
-msgstr "Request bestaat niet (%s)."
+msgstr "Aanvraag bestaat niet (%s)."
 
 #: src/CA.cpp:406
 msgid "Invalid issue data."
@@ -195,7 +195,7 @@ msgstr "De uitgave van het certificaat is mislukt."
 #: src/CA.cpp:518
 #, c-format
 msgid "File %s not found in the repository."
-msgstr "Bestand '%s' niet gevonden in de repository."
+msgstr "Bestand '%s' niet gevonden in de opslagruimte."
 
 #: src/CA.cpp:525 src/CRLData_Priv.cpp:153
 msgid "Invalid CRL reason."
@@ -216,7 +216,7 @@ msgstr "Kan de certificaatnaam niet ontleden."
 #: src/CA.cpp:967
 #, c-format
 msgid "Request %s does not exist."
-msgstr "Request %s bestaat niet."
+msgstr "Aanvraag %s bestaat niet."
 
 #: src/CA.cpp:989
 msgid "Removing the request failed (%1)."
@@ -319,7 +319,7 @@ msgstr "Het configuratiebestand mist een richtlijnwaarde."
 #: src/DNObject_Priv.cpp:207
 #, c-format
 msgid "Cannot parse section %s."
-msgstr "Kan sectie %s niet ontleden."
+msgstr "Kan sectie %s niet parseren."
 
 #: src/CA.cpp:1721
 #, c-format
@@ -334,7 +334,7 @@ msgstr "%s moet worden gedefinieerd."
 #: src/CA.cpp:1845
 #, c-format
 msgid "%s must be the same in the CA certificate (%s) and the request (%s)."
-msgstr "%s moet in het CA-certificaat (%s) en het request (%s) hetzelfde zijn."
+msgstr "%s moet in het CA-certificaat (%s) en de aanvraag (%s) hetzelfde zijn."
 
 #: src/CA.cpp:1857
 msgid "The configuration file seems to have an invalid policy."
@@ -391,7 +391,7 @@ msgstr "Niet-ondersteund algoritme voor publieke sleutel."
 #: src/RequestData_Priv.cpp:288
 #, c-format
 msgid "Unsupported signature algorithm %s."
-msgstr "Niet-ondersteund signatuuralgoritme %s."
+msgstr "Niet-ondersteund handtekeningenalgoritme %s."
 
 #: src/CertificateIssueData.cpp:223
 msgid "Invalid CertificateIssueData object."
@@ -517,12 +517,12 @@ msgstr "Kan certificaatuitvoer niet splitsen."
 #: src/LocalManagement.cpp:328
 #, c-format
 msgid "Cannot create directory %s: %s."
-msgstr "Kan map %s niet aanmaken: %s."
+msgstr "Kan directory %s niet aanmaken: %s."
 
 #: src/LocalManagement.cpp:342
 #, c-format
 msgid "%s is not a directory."
-msgstr "%s is geen map."
+msgstr "%s is geen directory."
 
 #: src/LocalManagement.cpp:363
 msgid "Invalid certificate file."
@@ -571,12 +571,12 @@ msgstr "Bestand bestaat niet: %s."
 #: src/OpenSSLUtils.cpp:58
 #, c-format
 msgid "Directory does not exist: %s."
-msgstr "Map bestaat niet: %s."
+msgstr "Directory bestaat niet: %s."
 
 #: src/OpenSSLUtils.cpp:67
 #, c-format
 msgid "Invalid command %s."
-msgstr "Ongeldig commando: %s."
+msgstr "Ongeldige opdracht: %s."
 
 #: src/OpenSSLUtils.cpp:124 src/OpenSSLUtils.cpp:214 src/OpenSSLUtils.cpp:313
 #: src/OpenSSLUtils.cpp:438 src/OpenSSLUtils.cpp:577 src/OpenSSLUtils.cpp:678
@@ -596,7 +596,7 @@ msgstr "Opdracht openssl uitvoeren is mislukt."
 #: src/OpenSSLUtils.cpp:1838 src/OpenSSLUtils.cpp:2613
 #, c-format
 msgid "openssl command failed: %s"
-msgstr "openssl-commando mislukt: %s"
+msgstr "openssl-opdracht mislukt: %s"
 
 #: src/OpenSSLUtils.cpp:166 src/OpenSSLUtils.cpp:254 src/OpenSSLUtils.cpp:358
 #: src/OpenSSLUtils.cpp:477 src/OpenSSLUtils.cpp:617 src/OpenSSLUtils.cpp:714
@@ -645,7 +645,7 @@ msgstr "Het PKCS12-wachtwoord is vereist."
 #: src/OpenSSLUtils.cpp:2216
 #, c-format
 msgid "Cannot read directory: %s (%s) [%d]."
-msgstr "Kan map niet lezen: %s (%s) [%d]."
+msgstr "Kan directory niet lezen: %s (%s) [%d]."
 
 #: src/OpenSSLUtils.cpp:1914
 #, c-format
@@ -684,7 +684,7 @@ msgstr "%s bestaat nog."
 #: src/OpenSSLUtils.cpp:2505 src/OpenSSLUtils.cpp:2519
 #, c-format
 msgid "Cannot create directory: %s (%s [%d])."
-msgstr "Kan map niet maken: %s (%s [%d])."
+msgstr "Kan directory niet maken: %s (%s [%d])."
 
 #: src/OpenSSLUtils.cpp:2450
 msgid "Cannot copy the configuration template."

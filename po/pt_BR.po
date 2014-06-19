@@ -5,10 +5,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libcamgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2014-04-30 16:12+0200\n"
-"PO-Revision-Date: 2014-04-29 13:02\n"
-"Last-Translator: Novell Language <language@novell.com>\n"
-"Language-Team: Novell Language <language@novell.com>\n"
+"POT-Creation-Date: 2014-04-13 15:19+0200\n"
+"PO-Revision-Date: 2014-06-06 13:52\n"
+"Last-Translator: Novell language <language@novell.com>\n"
+"Language-Team: Novell language <language@novell.com>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -138,7 +138,7 @@ msgstr "Nome de CA vazio."
 #: src/CA.cpp:174
 #, c-format
 msgid "Template does not exist: %s."
-msgstr "O modelo não existe: %s."
+msgstr "O gabarito não existe: %s."
 
 #: src/CA.cpp:186 src/CA.cpp:1543
 msgid "Invalid CA password."
@@ -151,7 +151,7 @@ msgstr "Erro ao criar a infra-estrutura de CA."
 #: src/CA.cpp:250 src/CA.cpp:1015
 #, c-format
 msgid "Cannot parse the certificate name %s."
-msgstr "Não foi possível analisar o nome do certificado %s."
+msgstr "Impossível analisar o nome do certificado %s."
 
 #: src/CA.cpp:261
 msgid "Cannot copy the private key."
@@ -238,7 +238,7 @@ msgid ""
 "Only revoked or expired certificates can be deleted. The status of the "
 "certificate is %s."
 msgstr ""
-"Somente certificados revogados ou expirados podem ser removidos. O estado do "
+"Somente certificados revogados ou expirados podem ser apagados. O status do "
 "certificado é %s."
 
 #: src/CA.cpp:1072
@@ -319,7 +319,7 @@ msgstr "Falta um valor para política no arquivo de configuração."
 #: src/DNObject_Priv.cpp:207
 #, c-format
 msgid "Cannot parse section %s."
-msgstr "Não foi possível analisar a seção %s."
+msgstr "Impossível analisar a seção %s."
 
 #: src/CA.cpp:1721
 #, c-format
@@ -473,7 +473,7 @@ msgstr "Tipo inválido %s."
 #: src/DNObject_Priv.cpp:157
 #, c-format
 msgid "Cannot parse DN line: %s."
-msgstr "Não foi possível analisar a linha de DN: %s."
+msgstr "Impossível analisar a linha de DN: %s."
 
 #: src/ExtendedKeyUsageExt.cpp:118 src/ExtendedKeyUsageExt.cpp:167
 #, c-format
@@ -517,7 +517,7 @@ msgstr "Não é possível dividir a saída do certificado."
 #: src/LocalManagement.cpp:328
 #, c-format
 msgid "Cannot create directory %s: %s."
-msgstr "Não foi possível criar o diretório %s: %s."
+msgstr "Impossível criar o diretório %s: %s."
 
 #: src/LocalManagement.cpp:342
 #, c-format
@@ -541,12 +541,12 @@ msgstr "Arquivo muito grande: %s."
 #: src/LocalManagement.cpp:459 src/LocalManagement.cpp:513
 #, c-format
 msgid "Cannot open file %s."
-msgstr "Não foi possível abrir o arquivo %s."
+msgstr "Impossível abrir o arquivo %s."
 
 #: src/LocalManagement.cpp:478
 #, c-format
 msgid "Cannot read from file %s."
-msgstr "Não foi possível ler do arquivo %s."
+msgstr "Impossível ler o arquivo %s."
 
 #: src/LocalManagement.cpp:503
 #, c-format
@@ -556,12 +556,12 @@ msgstr "O arquivo já existe: %s."
 #: src/LocalManagement.cpp:523
 #, c-format
 msgid "Cannot get lock on file %s."
-msgstr "Não foi possível obter o bloqueio no arquivo %s."
+msgstr "Impossível obter o bloqueio no arquivo %s."
 
 #: src/LocalManagement.cpp:535
 #, c-format
 msgid "Cannot write to file %s."
-msgstr "Não foi possível salvar no arquivo %s."
+msgstr "Impossível gravar no arquivo %s."
 
 #: src/OpenSSLUtils.cpp:49
 #, c-format
@@ -645,7 +645,7 @@ msgstr "A senha do PKCS12 é obrigatória."
 #: src/OpenSSLUtils.cpp:2216
 #, c-format
 msgid "Cannot read directory: %s (%s) [%d]."
-msgstr "Não foi possível ler o diretório: %s (%s) [%d]."
+msgstr "Impossível ler o diretório: %s (%s) [%d]."
 
 #: src/OpenSSLUtils.cpp:1914
 #, c-format
@@ -684,7 +684,7 @@ msgstr "%s ainda existe."
 #: src/OpenSSLUtils.cpp:2505 src/OpenSSLUtils.cpp:2519
 #, c-format
 msgid "Cannot create directory: %s (%s [%d])."
-msgstr "Não foi possível criar o diretório: %s (%s [%d])."
+msgstr "Impossível criar o diretório: %s (%s [%d])."
 
 #: src/OpenSSLUtils.cpp:2450
 msgid "Cannot copy the configuration template."
@@ -696,7 +696,7 @@ msgstr "Impossível criar o arquivo."
 
 #: src/OpenSSLUtils.cpp:2552
 msgid "Can not open file."
-msgstr "Não foi possível abrir o arquivo."
+msgstr "Impossível abrir o arquivo."
 
 #: src/RequestData_Priv.cpp:408
 msgid "Cannot parse the request."

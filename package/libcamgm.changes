@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Thu Jun 19 14:18:08 UTC 2014 - mc@suse.com
+
+- replace expired certificate in the testsuite
+
+-------------------------------------------------------------------
 Thu May 15 14:35:48 UTC 2014 - tchvatal@suse.com
 
 - Add back support for other fedora as it is still sometimes used

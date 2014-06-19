@@ -5,10 +5,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libcamgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2014-04-30 16:12+0200\n"
-"PO-Revision-Date: 2014-04-30 09:37\n"
-"Last-Translator: Novell Language <language@novell.com>\n"
-"Language-Team: Novell Language <language@novell.com>\n"
+"POT-Creation-Date: 2014-04-13 15:19+0200\n"
+"PO-Revision-Date: 2014-06-06 13:52\n"
+"Last-Translator: Novell language <language@novell.com>\n"
+"Language-Team: Novell language <language@novell.com>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -97,7 +97,7 @@ msgstr "このBitExtensionは存在しません。"
 #: src/DNObject.cpp:258 src/IssuerAlternativeNameExtension.cpp:220
 #, c-format
 msgid "Wrong type: %d."
-msgstr "誤った種類です: %d"
+msgstr "誤った種類です: %d。"
 
 #: src/BitExtensions.cpp:170 src/BitExtensions.cpp:199
 msgid "Invalid value for keyUsage."
@@ -138,7 +138,7 @@ msgstr "CA名が空です。"
 #: src/CA.cpp:174
 #, c-format
 msgid "Template does not exist: %s."
-msgstr "テンプレートが存在しません: %s"
+msgstr "テンプレートが存在しません: %s。"
 
 #: src/CA.cpp:186 src/CA.cpp:1543
 msgid "Invalid CA password."
@@ -151,7 +151,7 @@ msgstr "CAインフラストラクチャの作成中にエラーが発生しま�
 #: src/CA.cpp:250 src/CA.cpp:1015
 #, c-format
 msgid "Cannot parse the certificate name %s."
-msgstr "証明書名 %s を処理することができません。"
+msgstr "証明書名 %s を解析することができません。"
 
 #: src/CA.cpp:261
 msgid "Cannot copy the private key."
@@ -168,17 +168,17 @@ msgstr "無効な要求データ。"
 #: src/CA.cpp:323
 #, c-format
 msgid "Duplicate DN. Key %s.key already exists."
-msgstr "重複した DN です。鍵 %s.key は既に存在しています。"
+msgstr "重複したDNです。鍵 %s.key は既に存在しています。"
 
 #: src/CA.cpp:331
 #, c-format
 msgid "Duplicate DN. Request %s.req already exists."
-msgstr "重複した DN です。要求 %s.req は既に存在しています。"
+msgstr "重複したDNです。要求 %s.req は既に存在しています。"
 
 #: src/CA.cpp:400
 #, c-format
 msgid "Request does not exist (%s)."
-msgstr "要求が存在しません (%s) 。"
+msgstr "要求が存在しません(%s)。"
 
 #: src/CA.cpp:406
 msgid "Invalid issue data."
@@ -195,7 +195,7 @@ msgstr "証明書の発行に失敗しました。"
 #: src/CA.cpp:518
 #, c-format
 msgid "File %s not found in the repository."
-msgstr "ファイル %s はリポジトリ内に見つかりませんでした。"
+msgstr "ファイル %s がリポジトリ内に見つかりません。"
 
 #: src/CA.cpp:525 src/CRLData_Priv.cpp:153
 msgid "Invalid CRL reason."
@@ -230,7 +230,7 @@ msgstr "証明書 %s が存在しません。"
 #: src/CA.cpp:1052
 #, c-format
 msgid "Removing the certificate failed: %d."
-msgstr "証明書の削除に失敗しました: %d."
+msgstr "証明書の削除に失敗しました: %d。"
 
 #: src/CA.cpp:1060
 #, c-format
@@ -238,7 +238,8 @@ msgid ""
 "Only revoked or expired certificates can be deleted. The status of the "
 "certificate is %s."
 msgstr ""
-"失効済みまたは期限切れの証明書のみ削除できます。証明書の状態は %s です。"
+"削除できるのは取り消し済みまたは期限切れの証明書のみです。この証明書の状態は "
+"%s です。"
 
 #: src/CA.cpp:1072
 msgid "Database not found."
@@ -296,7 +297,7 @@ msgstr "デフォルトの書き込み中にエラーが発生しました。"
 #: src/CA.cpp:1532
 #, c-format
 msgid "CA name does not exist (%s)."
-msgstr "証明機関名が存在しません (%s)。"
+msgstr "CA名が存在しません(%s)。"
 
 #: src/CA.cpp:1563
 msgid ""
@@ -318,22 +319,22 @@ msgstr "設定ファイルにポリシーの値がありません。"
 #: src/DNObject_Priv.cpp:207
 #, c-format
 msgid "Cannot parse section %s."
-msgstr "セクション %s を処理できません。"
+msgstr "セクション %s を解析できません。"
 
 #: src/CA.cpp:1721
 #, c-format
 msgid "Field %s must have a value."
-msgstr "項目 %s には値が必要です。"
+msgstr "フィールド %s には値が必要です。"
 
 #: src/CA.cpp:1760
 #, c-format
 msgid "%s must be defined."
-msgstr "%s を設定する必要があります。"
+msgstr "%s を定義する必要があります。"
 
 #: src/CA.cpp:1845
 #, c-format
 msgid "%s must be the same in the CA certificate (%s) and the request (%s)."
-msgstr "%s は証明機関の証明書 (%s) と要求 (%s) で同じ値でなければなりません。"
+msgstr "%s はCAの証明書(%s)と要求(%s)で同じである必要があります。"
 
 #: src/CA.cpp:1857
 msgid "The configuration file seems to have an invalid policy."
@@ -351,7 +352,7 @@ msgstr "設定ファイルに「distinguished_name」のセクションがあり
 #: src/CRLData_Priv.cpp:135
 #, c-format
 msgid "Invalid serial %s."
-msgstr "シリアル番号 %s が正しくありません。"
+msgstr "シリアル %s が正しくありません。"
 
 #: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:409
 #: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:381
@@ -408,7 +409,7 @@ msgstr "無効なUserNoticeオブジェクトです。"
 #: src/CertificatePoliciesExtension.cpp:453
 #, c-format
 msgid "Invalid value for policyIdentifier: %s."
-msgstr "policyIdentifier の値が正しくありません: %s"
+msgstr "policyIdentifierの値が正しくありません: %s。"
 
 #: src/CertificatePoliciesExtension.cpp:508
 msgid "Invalid CertificatePolicy object."
@@ -450,7 +451,7 @@ msgstr "無効なCRLGenerationDataオブジェクトです。"
 #: src/CRLReason.cpp:96 src/CRLReason.cpp:132
 #, c-format
 msgid "Invalid revoke reason %s."
-msgstr "失効理由 %s が正しくありません。"
+msgstr "取り消し理由 %s が正しくありません。"
 
 #: src/CRLReason.cpp:170
 msgid "Reason is not certificateHold."
@@ -472,12 +473,12 @@ msgstr "種類 %s が正しくありません。"
 #: src/DNObject_Priv.cpp:157
 #, c-format
 msgid "Cannot parse DN line: %s."
-msgstr "DN 行を処理できません: %s"
+msgstr "DN行を解析できません: %s。"
 
 #: src/ExtendedKeyUsageExt.cpp:118 src/ExtendedKeyUsageExt.cpp:167
 #, c-format
 msgid "Invalid ExtendedKeyUsage option %s."
-msgstr "正しくない ExtendedKeyUsage オプション %s です。"
+msgstr "正しくないExtendedKeyUsageオプション %s です。"
 
 #: src/ExtendedKeyUsageExt.cpp:126 src/ExtendedKeyUsageExt.cpp:175
 msgid "Invalid ExtendedKeyUsageExt."
@@ -516,7 +517,7 @@ msgstr "証明書の出力を分割できません。"
 #: src/LocalManagement.cpp:328
 #, c-format
 msgid "Cannot create directory %s: %s."
-msgstr "ディレクトリ %s を作成できません: %s"
+msgstr "ディレクトリ %s を作成できません: %s。"
 
 #: src/LocalManagement.cpp:342
 #, c-format
@@ -530,12 +531,12 @@ msgstr "無効な証明書ファイルです。"
 #: src/LocalManagement.cpp:441
 #, c-format
 msgid "File not found: %s."
-msgstr "ファイルが見つかりません: %s"
+msgstr "ファイルが見つかりません: %s。"
 
 #: src/LocalManagement.cpp:450
 #, c-format
 msgid "File too big: %s."
-msgstr "ファイルが大きすぎます: %s"
+msgstr "ファイルが大きすぎます: %s。"
 
 #: src/LocalManagement.cpp:459 src/LocalManagement.cpp:513
 #, c-format
@@ -550,7 +551,7 @@ msgstr "ファイル %s から読み込むことができません。"
 #: src/LocalManagement.cpp:503
 #, c-format
 msgid "File already exists: %s."
-msgstr "ファイルはすでに存在します: %s"
+msgstr "ファイルは既に存在します: %s。"
 
 #: src/LocalManagement.cpp:523
 #, c-format
@@ -565,12 +566,12 @@ msgstr "ファイル %s に書き込めません。"
 #: src/OpenSSLUtils.cpp:49
 #, c-format
 msgid "File does not exist: %s."
-msgstr "ファイルが存在しません: %s"
+msgstr "ファイルが存在しません: %s。"
 
 #: src/OpenSSLUtils.cpp:58
 #, c-format
 msgid "Directory does not exist: %s."
-msgstr "ディレクトリが存在しません: %s"
+msgstr "ディレクトリが存在しません: %s。"
 
 #: src/OpenSSLUtils.cpp:67
 #, c-format
@@ -595,7 +596,7 @@ msgstr "opensslコマンドの実行に失敗しました。"
 #: src/OpenSSLUtils.cpp:1838 src/OpenSSLUtils.cpp:2613
 #, c-format
 msgid "openssl command failed: %s"
-msgstr "openssl コマンドが失敗しました: %s"
+msgstr "opensslコマンドが失敗しました: %s"
 
 #: src/OpenSSLUtils.cpp:166 src/OpenSSLUtils.cpp:254 src/OpenSSLUtils.cpp:358
 #: src/OpenSSLUtils.cpp:477 src/OpenSSLUtils.cpp:617 src/OpenSSLUtils.cpp:714
@@ -621,7 +622,7 @@ msgstr "有効なCAディレクトリが指定されていません。"
 #: src/OpenSSLUtils.cpp:963
 #, c-format
 msgid "Showing certificate status with serial %s failed (%d)."
-msgstr "シリアル番号 %s の証明書状態の表示に失敗しました (%d)。"
+msgstr "シリアル番号 %s の証明書の状態の表示に失敗しました(%d)。"
 
 #: src/OpenSSLUtils.cpp:999
 msgid "The key file does not exist."
@@ -644,12 +645,12 @@ msgstr "PKCS12パスワードが必要です。"
 #: src/OpenSSLUtils.cpp:2216
 #, c-format
 msgid "Cannot read directory: %s (%s) [%d]."
-msgstr "以下のディレクトリを読むことができません: %s (%s) [%d]."
+msgstr "以下のディレクトリを読み込めません: %s (%s) [%d]。"
 
 #: src/OpenSSLUtils.cpp:1914
 #, c-format
 msgid "No serial number found in %s."
-msgstr "%s にシリアル番号がありません。"
+msgstr "%s でシリアル番号が見つかりません。"
 
 #: src/OpenSSLUtils.cpp:1934
 msgid "The request already exists."
@@ -666,24 +667,24 @@ msgstr "証明書サブジェクトが見つかりません。"
 #: src/OpenSSLUtils.cpp:2385
 #, c-format
 msgid "Invalid caName: %s."
-msgstr "caName が正しくありません: %s"
+msgstr "caNameが正しくありません: %s。"
 
 #: src/OpenSSLUtils.cpp:2394
 #, c-format
 msgid "'%s' does not exist."
-msgstr "'%s' は存在しません。"
+msgstr "「%s」は存在しません。"
 
 #: src/OpenSSLUtils.cpp:2404
 #, c-format
 msgid "%s still exists."
-msgstr "%s が存在しています。"
+msgstr "%s はまだ存在しています。"
 
 #: src/OpenSSLUtils.cpp:2415 src/OpenSSLUtils.cpp:2463
 #: src/OpenSSLUtils.cpp:2477 src/OpenSSLUtils.cpp:2491
 #: src/OpenSSLUtils.cpp:2505 src/OpenSSLUtils.cpp:2519
 #, c-format
 msgid "Cannot create directory: %s (%s [%d])."
-msgstr "以下のディレクトリを作成できません: %s (%s [%d])."
+msgstr "以下のディレクトリを作成できません: %s (%s [%d])。"
 
 #: src/OpenSSLUtils.cpp:2450
 msgid "Cannot copy the configuration template."
