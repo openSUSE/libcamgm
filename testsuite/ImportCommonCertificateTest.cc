@@ -34,7 +34,7 @@ int main()
 
         cout << "============ ca.exportCertificateAsPKCS12(..., false); ===========" << endl;
 
-        ByteBuffer ba = ca2.exportCertificateAsPKCS12("04:9528e1d8783f83b662fca6085a8c1467-1111161258",
+        ByteBuffer ba = ca2.exportCertificateAsPKCS12("06:9528e1d8783f83b662fca6085a8c1467-1111161258",
                                                       "system", "tralla", false);
 
         LocalManagement::writeFile(ba, "./TestRepos3/testCert.p12");
@@ -89,7 +89,7 @@ int main()
 
         cout << "============ ca.exportCertificateAsPKCS12(..., true); ============" << endl;
 
-        ba = ca2.exportCertificateAsPKCS12("04:9528e1d8783f83b662fca6085a8c1467-1111161258",
+        ba = ca2.exportCertificateAsPKCS12("06:9528e1d8783f83b662fca6085a8c1467-1111161258",
                                            "system", "tralla", true);
 
         LocalManagement::writeFile(ba, "./TestRepos3/testCertChain.p12");
