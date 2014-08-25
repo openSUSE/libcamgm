@@ -5,10 +5,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libcamgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2014-04-13 15:19+0200\n"
-"PO-Revision-Date: 2014-06-06 16:12\n"
-"Last-Translator: Novell Language <language@novell.com>\n"
-"Language-Team: Novell Language <language@novell.com>\n"
+"POT-Creation-Date: 2014-04-30 16:12+0200\n"
+"PO-Revision-Date: 2014-07-15 11:30\n"
+"Last-Translator: Novell language <language@novell.com>\n"
+"Language-Team: Novell language <language@novell.com>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -151,7 +151,7 @@ msgstr "Błąd podczas tworzenia infrastruktury CA."
 #: src/CA.cpp:250 src/CA.cpp:1015
 #, c-format
 msgid "Cannot parse the certificate name %s."
-msgstr "Nie można sparsować nazwy certyfikatu %s."
+msgstr "Nie można przeanalizować nazwy certyfikatu %s."
 
 #: src/CA.cpp:261
 msgid "Cannot copy the private key."
@@ -168,12 +168,12 @@ msgstr "Zażądano nieprawidłowych danych."
 #: src/CA.cpp:323
 #, c-format
 msgid "Duplicate DN. Key %s.key already exists."
-msgstr "Zduplikowany DN. Klucz %s.key już istnieje."
+msgstr "Zduplikowana nazwa DN. Klucz %s.key już istnieje."
 
 #: src/CA.cpp:331
 #, c-format
 msgid "Duplicate DN. Request %s.req already exists."
-msgstr "Zduplikowany DN. Żądanie %s.req już istnieje."
+msgstr "Zduplikowana nazwa DN. Żądanie %s.req już istnieje."
 
 #: src/CA.cpp:400
 #, c-format
@@ -319,17 +319,17 @@ msgstr "Plik konfiguracyjny nie zawiera wartości dla reguły."
 #: src/DNObject_Priv.cpp:207
 #, c-format
 msgid "Cannot parse section %s."
-msgstr "Sparsowanie sekcji %s nie powiodło się."
+msgstr "Analizowanie sekcji %s nie powiodło się."
 
 #: src/CA.cpp:1721
 #, c-format
 msgid "Field %s must have a value."
-msgstr "Pole %s musi mieć podaną wartość."
+msgstr "Pole %s musi mieć wartość."
 
 #: src/CA.cpp:1760
 #, c-format
 msgid "%s must be defined."
-msgstr "%s musi być zdefiniowany."
+msgstr "Element %s musi być zdefiniowany."
 
 #: src/CA.cpp:1845
 #, c-format
@@ -474,7 +474,7 @@ msgstr "Nieprawidłowy typ %s."
 #: src/DNObject_Priv.cpp:157
 #, c-format
 msgid "Cannot parse DN line: %s."
-msgstr "Nie można sparsować linii DN: %s."
+msgstr "Nie można sparsować wiersza nazwy DN: %s."
 
 #: src/ExtendedKeyUsageExt.cpp:118 src/ExtendedKeyUsageExt.cpp:167
 #, c-format
@@ -523,7 +523,7 @@ msgstr "Nie można utworzyć katalogu %s: %s."
 #: src/LocalManagement.cpp:342
 #, c-format
 msgid "%s is not a directory."
-msgstr "%s nie jest katalogiem."
+msgstr "Element %s nie jest katalogiem."
 
 #: src/LocalManagement.cpp:363
 msgid "Invalid certificate file."
@@ -669,17 +669,17 @@ msgstr "Nie można odnaleźć tematu certyfikatu."
 #: src/OpenSSLUtils.cpp:2385
 #, c-format
 msgid "Invalid caName: %s."
-msgstr "Nieprawidłowy caName: %s."
+msgstr "Nieprawidłowa wartość caName: %s."
 
 #: src/OpenSSLUtils.cpp:2394
 #, c-format
 msgid "'%s' does not exist."
-msgstr "'%s' nie istnieje."
+msgstr "Element %s nie istnieje."
 
 #: src/OpenSSLUtils.cpp:2404
 #, c-format
 msgid "%s still exists."
-msgstr "%s wciąż istnieje."
+msgstr "Element %s wciąż istnieje."
 
 #: src/OpenSSLUtils.cpp:2415 src/OpenSSLUtils.cpp:2463
 #: src/OpenSSLUtils.cpp:2477 src/OpenSSLUtils.cpp:2491

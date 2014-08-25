@@ -5,10 +5,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libcamgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2014-04-13 15:19+0200\n"
-"PO-Revision-Date: 2014-06-06 14:45\n"
-"Last-Translator: Novell Language <language@novell.com>\n"
-"Language-Team: Novell Language <language@novell.com>\n"
+"POT-Creation-Date: 2014-04-30 16:12+0200\n"
+"PO-Revision-Date: 2014-07-15 11:31\n"
+"Last-Translator: Novell language <language@novell.com>\n"
+"Language-Team: Novell language <language@novell.com>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -151,7 +151,7 @@ msgstr "حدث خطأ أثناء إنشاء البنية الأساسية CA."
 #: src/CA.cpp:250 src/CA.cpp:1015
 #, c-format
 msgid "Cannot parse the certificate name %s."
-msgstr "تعذر تحليل اسم الشهادة %s."
+msgstr "لا يمكن تحليل اسم الشهادة %s."
 
 #: src/CA.cpp:261
 msgid "Cannot copy the private key."
@@ -168,12 +168,12 @@ msgstr "بيانات طلب غير صالحة."
 #: src/CA.cpp:323
 #, c-format
 msgid "Duplicate DN. Key %s.key already exists."
-msgstr "اسم مميز مكرر. مفتاح %s.المفتاح موجود بالفعل."
+msgstr "الاسم المميز مكرر . المفتاح %s.key موجود بالفعل."
 
 #: src/CA.cpp:331
 #, c-format
 msgid "Duplicate DN. Request %s.req already exists."
-msgstr "اسم مميز مكرر. طلب %s.طلب موجود بالفعل."
+msgstr "الاسم المميز مكرر. الطلب %s.req موجود بالفعل."
 
 #: src/CA.cpp:400
 #, c-format
@@ -230,16 +230,14 @@ msgstr "الشهادة %s غير موجودة."
 #: src/CA.cpp:1052
 #, c-format
 msgid "Removing the certificate failed: %d."
-msgstr "فشل إزالة الشهادة: %d."
+msgstr "فشلت عملية إزالة الشهادة: %d."
 
 #: src/CA.cpp:1060
 #, c-format
 msgid ""
 "Only revoked or expired certificates can be deleted. The status of the "
 "certificate is %s."
-msgstr ""
-"يمكن حذف الشهادات المبطلة أو ذات الصلاحية المنتهية فقط. تم تعيين حالة "
-"الشهادة على %s."
+msgstr "يمكن فقط حذف الشهادات المبطلة أو منتهية الصلاحية. الشهادة بالحالة %s."
 
 #: src/CA.cpp:1072
 msgid "Database not found."
@@ -319,22 +317,22 @@ msgstr "ملف التكوين ينقصه قيمة السياسة."
 #: src/DNObject_Priv.cpp:207
 #, c-format
 msgid "Cannot parse section %s."
-msgstr "تعذر تحليل القسم %s."
+msgstr "لا يمكن تحليل المقطع %s."
 
 #: src/CA.cpp:1721
 #, c-format
 msgid "Field %s must have a value."
-msgstr "يجب أن يحتوي الحقل %s على قيمة."
+msgstr "يجب أن يحتوي الحقل %s على إحدى القيم."
 
 #: src/CA.cpp:1760
 #, c-format
 msgid "%s must be defined."
-msgstr "%s يجب تعريفه."
+msgstr "يجب تحديد %s."
 
 #: src/CA.cpp:1845
 #, c-format
 msgid "%s must be the same in the CA certificate (%s) and the request (%s)."
-msgstr "%s يجب أن تتطابق في شهادة CA (%s) والطلب (%s)."
+msgstr "يجب أن تتطابق القيمة %s في شهادة CA‏ (%s) والطلب (%s)."
 
 #: src/CA.cpp:1857
 msgid "The configuration file seems to have an invalid policy."
@@ -409,7 +407,7 @@ msgstr "كائن UserNotice غير صالح."
 #: src/CertificatePoliciesExtension.cpp:453
 #, c-format
 msgid "Invalid value for policyIdentifier: %s."
-msgstr "قيمة غير صالحة لـpolicyIdentifier: %s."
+msgstr "قيمة غير صالحة لـ policyIdentifier: %s."
 
 #: src/CertificatePoliciesExtension.cpp:508
 msgid "Invalid CertificatePolicy object."
@@ -473,7 +471,7 @@ msgstr "نوع غير صالح %s."
 #: src/DNObject_Priv.cpp:157
 #, c-format
 msgid "Cannot parse DN line: %s."
-msgstr "تعذر تحليل خط DN: %s."
+msgstr "لا يمكن تحليل سطر الاسم المميز: %s."
 
 #: src/ExtendedKeyUsageExt.cpp:118 src/ExtendedKeyUsageExt.cpp:167
 #, c-format
@@ -517,12 +515,12 @@ msgstr "تعذر تقسيم مخرجات الشهادة."
 #: src/LocalManagement.cpp:328
 #, c-format
 msgid "Cannot create directory %s: %s."
-msgstr "تعذر إنشاء مجلد %s: %s."
+msgstr "لا يمكن إنشاء الدليل %s: %s."
 
 #: src/LocalManagement.cpp:342
 #, c-format
 msgid "%s is not a directory."
-msgstr "%s لا يعتبر مجلداً."
+msgstr "لا يعتبر %s دليلًا."
 
 #: src/LocalManagement.cpp:363
 msgid "Invalid certificate file."
@@ -541,12 +539,12 @@ msgstr "الملف كبير للغاية: %s."
 #: src/LocalManagement.cpp:459 src/LocalManagement.cpp:513
 #, c-format
 msgid "Cannot open file %s."
-msgstr "تعذر فتح الملف %s."
+msgstr "لا يمكن فتح الملف %s."
 
 #: src/LocalManagement.cpp:478
 #, c-format
 msgid "Cannot read from file %s."
-msgstr "تعذرت القراءة من الملف %s."
+msgstr "لا يمكن القراءة من الملف %s."
 
 #: src/LocalManagement.cpp:503
 #, c-format
@@ -556,12 +554,12 @@ msgstr "الملف موجود بالفعل: %s."
 #: src/LocalManagement.cpp:523
 #, c-format
 msgid "Cannot get lock on file %s."
-msgstr "تعذر الحصول على قفل على الملف %s."
+msgstr "لا يمكن قفل الملف %s."
 
 #: src/LocalManagement.cpp:535
 #, c-format
 msgid "Cannot write to file %s."
-msgstr "تعذرت الكتابة إلى الملف %s."
+msgstr "لا يمكن الكتابة إلى الملف %s."
 
 #: src/OpenSSLUtils.cpp:49
 #, c-format
@@ -571,7 +569,7 @@ msgstr "الملف غير موجود: %s."
 #: src/OpenSSLUtils.cpp:58
 #, c-format
 msgid "Directory does not exist: %s."
-msgstr "المجلد غير موجود: %s."
+msgstr "الدليل غير موجود: %s."
 
 #: src/OpenSSLUtils.cpp:67
 #, c-format
@@ -596,7 +594,7 @@ msgstr "فشل تنفيذ الأمر openssl."
 #: src/OpenSSLUtils.cpp:1838 src/OpenSSLUtils.cpp:2613
 #, c-format
 msgid "openssl command failed: %s"
-msgstr "أمر openssl فشل : %s"
+msgstr "فشل أمر openssl: %s"
 
 #: src/OpenSSLUtils.cpp:166 src/OpenSSLUtils.cpp:254 src/OpenSSLUtils.cpp:358
 #: src/OpenSSLUtils.cpp:477 src/OpenSSLUtils.cpp:617 src/OpenSSLUtils.cpp:714
@@ -622,7 +620,7 @@ msgstr "لم يتم تحديد دليل CA صالح."
 #: src/OpenSSLUtils.cpp:963
 #, c-format
 msgid "Showing certificate status with serial %s failed (%d)."
-msgstr "فشل إظهار حالة الشهادة مع التسلسل%s (%d)."
+msgstr "فشل إظهار حالة الشهادة بالتسلسل %s (%d)."
 
 #: src/OpenSSLUtils.cpp:999
 msgid "The key file does not exist."
@@ -645,12 +643,12 @@ msgstr "مطلوب كلمة السر PKCS12."
 #: src/OpenSSLUtils.cpp:2216
 #, c-format
 msgid "Cannot read directory: %s (%s) [%d]."
-msgstr "تعذرت قراءة المجلد: %s (%s) [%d]."
+msgstr "لا يمكن قراءة الدليل: %s (%s) [%d]."
 
 #: src/OpenSSLUtils.cpp:1914
 #, c-format
 msgid "No serial number found in %s."
-msgstr "لم يتم العثور على رقم تسلسلي في %s."
+msgstr "لم يتم العثور على رقم مسلسل في %s."
 
 #: src/OpenSSLUtils.cpp:1934
 msgid "The request already exists."
@@ -677,14 +675,14 @@ msgstr "'%s' غير موجود."
 #: src/OpenSSLUtils.cpp:2404
 #, c-format
 msgid "%s still exists."
-msgstr "%s لا يزال موجودًا."
+msgstr "لا يزال %s موجودًا."
 
 #: src/OpenSSLUtils.cpp:2415 src/OpenSSLUtils.cpp:2463
 #: src/OpenSSLUtils.cpp:2477 src/OpenSSLUtils.cpp:2491
 #: src/OpenSSLUtils.cpp:2505 src/OpenSSLUtils.cpp:2519
 #, c-format
 msgid "Cannot create directory: %s (%s [%d])."
-msgstr "تعذر إنشاء المجلد: %s (%s [%d])."
+msgstr "لا يمكن إنشاء الدليل: %s (%s [%d])."
 
 #: src/OpenSSLUtils.cpp:2450
 msgid "Cannot copy the configuration template."
@@ -696,7 +694,7 @@ msgstr "تعذر إنشاء الملف."
 
 #: src/OpenSSLUtils.cpp:2552
 msgid "Can not open file."
-msgstr "تعذر فتح الملف."
+msgstr "لا يمكن فتح الملف."
 
 #: src/RequestData_Priv.cpp:408
 msgid "Cannot parse the request."

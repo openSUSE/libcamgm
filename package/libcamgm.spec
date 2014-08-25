@@ -17,7 +17,7 @@
 
 
 Name:           libcamgm
-Version:        1.0.5
+Version:        1.0.6
 Release:        0
 Summary:        CA Management Library
 License:        LGPL-2.1

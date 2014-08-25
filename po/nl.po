@@ -5,10 +5,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libcamgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2014-04-13 15:19+0200\n"
-"PO-Revision-Date: 2014-06-06 16:04\n"
-"Last-Translator: Novell Language <language@novell.com>\n"
-"Language-Team: Novell Language <language@novell.com>\n"
+"POT-Creation-Date: 2014-04-30 16:12+0200\n"
+"PO-Revision-Date: 2014-07-15 11:30\n"
+"Last-Translator: Novell language <language@novell.com>\n"
+"Language-Team: Novell language <language@novell.com>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -168,7 +168,7 @@ msgstr "Ongeldige request-gegevens."
 #: src/CA.cpp:323
 #, c-format
 msgid "Duplicate DN. Key %s.key already exists."
-msgstr "Dubbele DN. Sleutel '%s.key' bestaat reeds."
+msgstr "Dubbele DN. Sleutel '%s.sleutel' bestaat reeds."
 
 #: src/CA.cpp:331
 #, c-format
@@ -225,7 +225,7 @@ msgstr "Verwijderen van de request is mislukt (%1)."
 #: src/CA.cpp:1003
 #, c-format
 msgid "Certificate %s does not exist."
-msgstr "Certificaat %s bestaat niet"
+msgstr "Certificaat %s bestaat niet."
 
 #: src/CA.cpp:1052
 #, c-format
@@ -409,7 +409,7 @@ msgstr "Ongeldig UserNotice-object."
 #: src/CertificatePoliciesExtension.cpp:453
 #, c-format
 msgid "Invalid value for policyIdentifier: %s."
-msgstr "Ongeldige waarde voor policyIdentifier: %s."
+msgstr "Ongeldige waarde voor beleids-id: %s."
 
 #: src/CertificatePoliciesExtension.cpp:508
 msgid "Invalid CertificatePolicy object."
@@ -478,7 +478,7 @@ msgstr "Kan DN-regel niet parseren: %s."
 #: src/ExtendedKeyUsageExt.cpp:118 src/ExtendedKeyUsageExt.cpp:167
 #, c-format
 msgid "Invalid ExtendedKeyUsage option %s."
-msgstr "Ongeldige ExtendedKeyUsage-optie %s."
+msgstr "Ongeldige optie Uitgebreid sleutelgebruik %s."
 
 #: src/ExtendedKeyUsageExt.cpp:126 src/ExtendedKeyUsageExt.cpp:175
 msgid "Invalid ExtendedKeyUsageExt."
@@ -551,7 +551,7 @@ msgstr "Kan bestand %s niet lezen."
 #: src/LocalManagement.cpp:503
 #, c-format
 msgid "File already exists: %s."
-msgstr "Bestand %s bestaat reeds."
+msgstr "Bestand bestaat reeds: %s."
 
 #: src/LocalManagement.cpp:523
 #, c-format
@@ -677,7 +677,7 @@ msgstr "'%s' bestaat niet."
 #: src/OpenSSLUtils.cpp:2404
 #, c-format
 msgid "%s still exists."
-msgstr "%s bestaat nog."
+msgstr "'%s' bestaat nog."
 
 #: src/OpenSSLUtils.cpp:2415 src/OpenSSLUtils.cpp:2463
 #: src/OpenSSLUtils.cpp:2477 src/OpenSSLUtils.cpp:2491

@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libcamgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2014-04-13 15:19+0200\n"
-"PO-Revision-Date: 2014-06-06 14:34\n"
+"POT-Creation-Date: 2014-04-30 16:12+0200\n"
+"PO-Revision-Date: 2014-07-15 11:27\n"
 "Last-Translator: Novell language <language@novell.com>\n"
 "Language-Team: Novell language <language@novell.com>\n"
 "Language: \n"
@@ -195,7 +195,7 @@ msgstr "Impossibile emettere il certificato."
 #: src/CA.cpp:518
 #, c-format
 msgid "File %s not found in the repository."
-msgstr "File %s non trovato nel repository."
+msgstr "File %s non trovato nell'archivio."
 
 #: src/CA.cpp:525 src/CRLData_Priv.cpp:153
 msgid "Invalid CRL reason."
@@ -230,7 +230,7 @@ msgstr "Il certificato %s non esiste."
 #: src/CA.cpp:1052
 #, c-format
 msgid "Removing the certificate failed: %d."
-msgstr "Rimozione del certificato fallita: %d."
+msgstr "Rimozione del certificato non riuscita: %d."
 
 #: src/CA.cpp:1060
 #, c-format
@@ -297,7 +297,7 @@ msgstr "Errore durante la scrittura delle impostazioni predefinite."
 #: src/CA.cpp:1532
 #, c-format
 msgid "CA name does not exist (%s)."
-msgstr "Il nome della CA non esiste (%s)."
+msgstr "Il nome CA non esiste (%s)."
 
 #: src/CA.cpp:1563
 msgid ""
@@ -597,7 +597,7 @@ msgstr "Esecuzione comando openssl non riuscita."
 #: src/OpenSSLUtils.cpp:1838 src/OpenSSLUtils.cpp:2613
 #, c-format
 msgid "openssl command failed: %s"
-msgstr "Comando openssl fallito: %s"
+msgstr "Comando openssl non riuscito: %s"
 
 #: src/OpenSSLUtils.cpp:166 src/OpenSSLUtils.cpp:254 src/OpenSSLUtils.cpp:358
 #: src/OpenSSLUtils.cpp:477 src/OpenSSLUtils.cpp:617 src/OpenSSLUtils.cpp:714
@@ -624,7 +624,7 @@ msgstr "Nessuna directory CA valida specificata."
 #, c-format
 msgid "Showing certificate status with serial %s failed (%d)."
 msgstr ""
-"Visualizzazione dello stato del certificato con seriale %s fallita (%d)."
+"Visualizzazione dello stato del certificato con seriale %s non riuscita (%d)."
 
 #: src/OpenSSLUtils.cpp:999
 msgid "The key file does not exist."
@@ -652,7 +652,7 @@ msgstr "Impossibile leggere la directory: %s (%s) [%d]."
 #: src/OpenSSLUtils.cpp:1914
 #, c-format
 msgid "No serial number found in %s."
-msgstr "Nessun numero seriale trovato in %s."
+msgstr "Nessun numero di serie trovato in %s."
 
 #: src/OpenSSLUtils.cpp:1934
 msgid "The request already exists."
