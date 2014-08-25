@@ -1014,7 +1014,7 @@ X509v3CertificateExts_Priv::parseCertificatePoliciesExt(STACK_OF(X509_EXTENSION)
 	{
 		pinfo = sk_POLICYINFO_value(cps, i);
 
-		i2t_ASN1_OBJECT(obj_tmp, sizeof obj_tmp, pinfo->policyid);
+		OBJ_obj2txt(obj_tmp, sizeof obj_tmp, pinfo->policyid, 1);
 
 		CertificatePolicy cp(obj_tmp);
 
