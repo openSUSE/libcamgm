@@ -1,0 +1,5 @@
+START
+./TestRepos/anyPolicyCA/ exists
+./TestRepos/anyPolicyCA/cacert.pem exists
+./TestRepos/anyPolicyCA/cacert.key exists
+DONE

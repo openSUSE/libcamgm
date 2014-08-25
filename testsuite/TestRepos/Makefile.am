@@ -4,6 +4,7 @@ check: clean-local
 clean-local:
 	rm -rf Test_CA/
 	rm -rf Test_CA3/
+	rm -rf anyPolicyCA/
 	rm -rf SubCA_Test/
 	rm -f .cas/*
 	if [ ! -d "./.cas" ]; then \
@@ -45,7 +46,10 @@ EXTRA_DIST = ca1_test/*.* ca2_test/*.* \
 	     importRequestTest-DER.req \
 	     importRequestTest.req     \
 	     openssl.cnf.tmpl \
-	     c293624b6a877f401407ce8f8f1f327e.req
+	     c293624b6a877f401407ce8f8f1f327e.req \
+	     anyPolicyCA.key \
+	     anyPolicyCA.pem
+
 
 dist-hook:
 	rm -rf `find $(distdir)/ -name .svn`
