@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libcamgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2014-04-30 16:12+0200\n"
+"POT-Creation-Date: 2014-09-19 09:36+0200\n"
 "PO-Revision-Date: 2014-07-15 11:30\n"
 "Last-Translator: Novell language <language@novell.com>\n"
 "Language-Team: Novell language <language@novell.com>\n"
@@ -525,41 +525,41 @@ msgstr "Nie można utworzyć katalogu %s: %s."
 msgid "%s is not a directory."
 msgstr "Element %s nie jest katalogiem."
 
-#: src/LocalManagement.cpp:363
+#: src/LocalManagement.cpp:370
 msgid "Invalid certificate file."
 msgstr "Nieprawidłowy plik certyfikatu."
 
-#: src/LocalManagement.cpp:441
+#: src/LocalManagement.cpp:448
 #, c-format
 msgid "File not found: %s."
 msgstr "Nie znaleziono pliku: %s."
 
-#: src/LocalManagement.cpp:450
+#: src/LocalManagement.cpp:457
 #, c-format
 msgid "File too big: %s."
 msgstr "Plik jest za duży: %s."
 
-#: src/LocalManagement.cpp:459 src/LocalManagement.cpp:513
+#: src/LocalManagement.cpp:466 src/LocalManagement.cpp:520
 #, c-format
 msgid "Cannot open file %s."
 msgstr "Nie można otworzyć pliku %s."
 
-#: src/LocalManagement.cpp:478
+#: src/LocalManagement.cpp:485
 #, c-format
 msgid "Cannot read from file %s."
 msgstr "Odczyt z pliku %s nie powiódł się."
 
-#: src/LocalManagement.cpp:503
+#: src/LocalManagement.cpp:510
 #, c-format
 msgid "File already exists: %s."
 msgstr "Plik już istnieje: %s."
 
-#: src/LocalManagement.cpp:523
+#: src/LocalManagement.cpp:530
 #, c-format
 msgid "Cannot get lock on file %s."
 msgstr "Zablokowanie pliku %s nie powiodło się."
 
-#: src/LocalManagement.cpp:535
+#: src/LocalManagement.cpp:542
 #, c-format
 msgid "Cannot write to file %s."
 msgstr "Zapis do pliku %s nie powiódł się."

@@ -205,9 +205,16 @@ if test -z "$C_REHASH_COMMAND" ; then
     AC_MSG_ERROR([c_rehash command is missing; please install])
 fi
 
+AC_PATH_PROG(UPDATE_CADIR_COMMAND, "update-ca-certificates")
+if test -z "$UPDATE_CADIR_COMMAND" ; then
+    #AC_MSG_ERROR([update-ca-certificates command is missing; please install])
+    UPDATE_CADIR_COMMAND="/usr/sbin/update-ca-certificates"
+fi
+
 AC_SUBST(DOXYGEN_COMMAND)
 AC_SUBST(OPENSSL_COMMAND)
 AC_SUBST(C_REHASH_COMMAND)
+AC_SUBST(UPDATE_CADIR_COMMAND)
 
 AC_CHECK_HEADER([openssl/x509v3.h],,[
     AC_MSG_ERROR([Unable to find openssl/x509v3.h])

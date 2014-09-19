@@ -32,6 +32,7 @@ namespace CA_MGM_NAMESPACE {
 
 const std::string OPENSSL_COMMAND  = "@OPENSSL_COMMAND@";
 const std::string C_REHASH_COMMAND = "@C_REHASH_COMMAND@";
+const std::string UPDATE_CADIR_COMMAND = "@UPDATE_CADIR_COMMAND@";
 const std::string CP_COMMAND = "@CP_COMMAND@";
 const std::string RM_COMMAND = "@RM_COMMAND@";
 }

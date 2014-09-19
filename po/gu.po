@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nis\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2014-04-30 16:12+0200\n"
+"POT-Creation-Date: 2014-09-19 09:36+0200\n"
 "PO-Revision-Date: 2006-11-11 18:41+0530\n"
 "Last-Translator: Priyavert Sharma<priyavert.sharma@agreeya.com>\n"
 "Language-Team: AgreeYa Solutions<linux_team@agreeya.com>\n"
@@ -524,41 +524,41 @@ msgstr "ડિરેક્ટરી %1 બનાવી શકાતી નથી
 msgid "%s is not a directory."
 msgstr "%1 ડિરેક્ટરી નથી."
 
-#: src/LocalManagement.cpp:363
+#: src/LocalManagement.cpp:370
 msgid "Invalid certificate file."
 msgstr "સર્ટિફીકેટ ફાઈલ અમાન્ય."
 
-#: src/LocalManagement.cpp:441
+#: src/LocalManagement.cpp:448
 #, fuzzy, c-format
 msgid "File not found: %s."
 msgstr "ફાઈલ નથી મળતી: %1."
 
-#: src/LocalManagement.cpp:450
+#: src/LocalManagement.cpp:457
 #, fuzzy, c-format
 msgid "File too big: %s."
 msgstr "ફાઈલ ઘણી મોટી છે: %1."
 
-#: src/LocalManagement.cpp:459 src/LocalManagement.cpp:513
+#: src/LocalManagement.cpp:466 src/LocalManagement.cpp:520
 #, fuzzy, c-format
 msgid "Cannot open file %s."
 msgstr "ફાઈલ ખુલી શકતી નથી: %1."
 
-#: src/LocalManagement.cpp:478
+#: src/LocalManagement.cpp:485
 #, fuzzy, c-format
 msgid "Cannot read from file %s."
 msgstr "ફાઈલ વાંચી શકાતી નથી: %1."
 
-#: src/LocalManagement.cpp:503
+#: src/LocalManagement.cpp:510
 #, fuzzy, c-format
 msgid "File already exists: %s."
 msgstr "ફાઈલ અસ્તિત્વમાં છે: %1."
 
-#: src/LocalManagement.cpp:523
+#: src/LocalManagement.cpp:530
 #, fuzzy, c-format
 msgid "Cannot get lock on file %s."
 msgstr "ફાઈલ પર લૉક નથી મળતું: %1."
 
-#: src/LocalManagement.cpp:535
+#: src/LocalManagement.cpp:542
 #, fuzzy, c-format
 msgid "Cannot write to file %s."
 msgstr "ફાઈલ પર લખાઈ શકાતું નથી: %1."

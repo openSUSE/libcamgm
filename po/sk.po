@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2014-04-30 16:12+0200\n"
+"POT-Creation-Date: 2014-09-19 09:36+0200\n"
 "PO-Revision-Date: 2009-04-15 20:27+0100\n"
 "Last-Translator: Rastislav Krupanský <rastislav.krupansky@gmail.com>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
@@ -532,41 +532,41 @@ msgstr "Nie je možné vytvoriť priečinok %1: %2."
 msgid "%s is not a directory."
 msgstr "%1 nie je priečinok."
 
-#: src/LocalManagement.cpp:363
+#: src/LocalManagement.cpp:370
 msgid "Invalid certificate file."
 msgstr "Neplatný súbor certifikátu."
 
-#: src/LocalManagement.cpp:441
+#: src/LocalManagement.cpp:448
 #, fuzzy, c-format
 msgid "File not found: %s."
 msgstr "Súbor nebol nájdený: %1."
 
-#: src/LocalManagement.cpp:450
+#: src/LocalManagement.cpp:457
 #, fuzzy, c-format
 msgid "File too big: %s."
 msgstr "Súbor príliš veľký: %1."
 
-#: src/LocalManagement.cpp:459 src/LocalManagement.cpp:513
+#: src/LocalManagement.cpp:466 src/LocalManagement.cpp:520
 #, fuzzy, c-format
 msgid "Cannot open file %s."
 msgstr "Nie je možné otvoriť súbor %1."
 
-#: src/LocalManagement.cpp:478
+#: src/LocalManagement.cpp:485
 #, fuzzy, c-format
 msgid "Cannot read from file %s."
 msgstr "Nie je možné čítať z riadka %1."
 
-#: src/LocalManagement.cpp:503
+#: src/LocalManagement.cpp:510
 #, fuzzy, c-format
 msgid "File already exists: %s."
 msgstr "Súbor už existuje: %1."
 
-#: src/LocalManagement.cpp:523
+#: src/LocalManagement.cpp:530
 #, fuzzy, c-format
 msgid "Cannot get lock on file %s."
 msgstr "Nie je možné získať zámok na súbore %1."
 
-#: src/LocalManagement.cpp:535
+#: src/LocalManagement.cpp:542
 #, fuzzy, c-format
 msgid "Cannot write to file %s."
 msgstr "Nie je možné zapisovať do súboru %1."

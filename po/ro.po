@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openSUSE\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2014-04-30 16:12+0200\n"
+"POT-Creation-Date: 2014-09-19 09:36+0200\n"
 "PO-Revision-Date: 2010-04-30 16:32+0300\n"
 "Last-Translator: Lucian Oprea <oprea.luci@gmail.com>\n"
 "Language-Team: Comunitatea traducatorilor openSUSE Romania. Contact: <oprea."
@@ -526,41 +526,41 @@ msgstr "Nu pot crea directorul %1: %2."
 msgid "%s is not a directory."
 msgstr "%1 nu este un director."
 
-#: src/LocalManagement.cpp:363
+#: src/LocalManagement.cpp:370
 msgid "Invalid certificate file."
 msgstr "Fişier certificat invalid."
 
-#: src/LocalManagement.cpp:441
+#: src/LocalManagement.cpp:448
 #, fuzzy, c-format
 msgid "File not found: %s."
 msgstr "Nu am găsit fişierul: %1."
 
-#: src/LocalManagement.cpp:450
+#: src/LocalManagement.cpp:457
 #, fuzzy, c-format
 msgid "File too big: %s."
 msgstr "Fişier prea mare: %1."
 
-#: src/LocalManagement.cpp:459 src/LocalManagement.cpp:513
+#: src/LocalManagement.cpp:466 src/LocalManagement.cpp:520
 #, fuzzy, c-format
 msgid "Cannot open file %s."
 msgstr "Nu pot deschide fişierul %1."
 
-#: src/LocalManagement.cpp:478
+#: src/LocalManagement.cpp:485
 #, fuzzy, c-format
 msgid "Cannot read from file %s."
 msgstr "Nu pot citi din fişierul %1."
 
-#: src/LocalManagement.cpp:503
+#: src/LocalManagement.cpp:510
 #, fuzzy, c-format
 msgid "File already exists: %s."
 msgstr "Fişierul există deja: %1."
 
-#: src/LocalManagement.cpp:523
+#: src/LocalManagement.cpp:530
 #, fuzzy, c-format
 msgid "Cannot get lock on file %s."
 msgstr "Nu pot bloca fişierul %1."
 
-#: src/LocalManagement.cpp:535
+#: src/LocalManagement.cpp:542
 #, fuzzy, c-format
 msgid "Cannot write to file %s."
 msgstr "Nu pot scrie în fişierul %1."

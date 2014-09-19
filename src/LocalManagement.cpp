@@ -352,8 +352,15 @@ LocalManagement::importAsLocalCertificate(const ByteBuffer &pkcs12Data,
 				          pi.toString() + "/YaST-CA-" + str::numstring(i) + ".pem");
 			}
 
-			rehashCAs(pi.toString());
-
+			if(path::PathName::equal(pi.toString(), "/etc/pki/trust/anchors/") ||
+                           path::PathName::equal(pi.toString(), "/usr/share/pki/trust/anchors/"))
+                        {
+                            updateCADir();
+                        }
+                        else
+                        {
+                            rehashCAs(pi.toString());
+                        }
 		}
 
 	} else {
@@ -369,11 +376,11 @@ void
 LocalManagement::importCommonServerCertificate(const std::string &pkcs12File,
                                                const std::string &password)
 {
-importAsLocalCertificate(readFile(pkcs12File),
-                         password,
-                         "/etc/ssl/certs/",
-                         "/etc/ssl/servercerts/servercert.pem",
-                         "/etc/ssl/servercerts/serverkey.pem");
+        importAsLocalCertificate(readFile(pkcs12File),
+                                 password,
+                                 "/etc/pki/trust/anchors/",
+                                 "/etc/ssl/servercerts/servercert.pem",
+                                 "/etc/ssl/servercerts/serverkey.pem");
 }
 
 void
@@ -382,7 +389,7 @@ LocalManagement::importCommonServerCertificate(const ByteBuffer &pkcs12Data,
 {
 	importAsLocalCertificate(pkcs12Data,
 	                         password,
-	                         "/etc/ssl/certs/",
+	                         "/etc/pki/trust/anchors/",
 	                         "/etc/ssl/servercerts/servercert.pem",
 	                         "/etc/ssl/servercerts/serverkey.pem");
 }

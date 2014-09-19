@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2014-04-30 16:12+0200\n"
+"POT-Creation-Date: 2014-09-19 09:36+0200\n"
 "PO-Revision-Date: 2006-11-03 12:03\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -526,41 +526,41 @@ msgstr "Ayikwazi ukwakha i-directory '%1'. %2."
 msgid "%s is not a directory."
 msgstr "I-%1 ayiyona i-directory."
 
-#: src/LocalManagement.cpp:363
+#: src/LocalManagement.cpp:370
 msgid "Invalid certificate file."
 msgstr "Ifayela yesitifiketi engekho emthethweni."
 
-#: src/LocalManagement.cpp:441
+#: src/LocalManagement.cpp:448
 #, fuzzy, c-format
 msgid "File not found: %s."
 msgstr "Ifayela ayitholakali: %1."
 
-#: src/LocalManagement.cpp:450
+#: src/LocalManagement.cpp:457
 #, fuzzy, c-format
 msgid "File too big: %s."
 msgstr "Ifayela inkulu kakhulu: %1."
 
-#: src/LocalManagement.cpp:459 src/LocalManagement.cpp:513
+#: src/LocalManagement.cpp:466 src/LocalManagement.cpp:520
 #, fuzzy, c-format
 msgid "Cannot open file %s."
 msgstr "Ayikwazi ukuvula ifayela %1."
 
-#: src/LocalManagement.cpp:478
+#: src/LocalManagement.cpp:485
 #, fuzzy, c-format
 msgid "Cannot read from file %s."
 msgstr "Ayikwazi ukufunda ifayela  %1."
 
-#: src/LocalManagement.cpp:503
+#: src/LocalManagement.cpp:510
 #, fuzzy, c-format
 msgid "File already exists: %s."
 msgstr "Ifayela isikhona kakade: %1."
 
-#: src/LocalManagement.cpp:523
+#: src/LocalManagement.cpp:530
 #, fuzzy, c-format
 msgid "Cannot get lock on file %s."
 msgstr "Ayikwazi ukuthola isihluthulelo efayeleni %1."
 
-#: src/LocalManagement.cpp:535
+#: src/LocalManagement.cpp:542
 #, fuzzy, c-format
 msgid "Cannot write to file %s."
 msgstr "Ayikwazi ukubhala efayeleni %1."

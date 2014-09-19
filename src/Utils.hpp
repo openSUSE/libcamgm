@@ -286,6 +286,45 @@ inline int rehashCAs(const std::string &repositoryDir)
 	return status;
 }
 
+inline int updateCADir()
+{
+        std::vector<std::string> cmd;
+        cmd.push_back(UPDATE_CADIR_COMMAND);
+
+        ExternalProgram::Environment env;
+        env["PATH"] = "/usr/bin/:/usr/sbin/";
+
+        std::string stdOutput;
+        std::string errOutput;
+        int    status = -1;
+        try
+        {
+                status = wrapExecuteProcessAndGatherOutput(cmd, stdOutput,
+                                                           errOutput, env);
+        }
+        catch(ca_mgm::Exception& e)
+        {
+                LOGIT_INFO( "update-ca-certificates exception:" << e);
+        }
+        if(status != 0)
+        {
+                LOGIT_INFO( "update-ca-certificates status:" << str::numstring(status));
+        }
+        if(!errOutput.empty())
+        {
+                LOGIT_INFO("update-ca-certificates stderr:" << errOutput);
+        }
+        if(!stdOutput.empty())
+        {
+                // this output here is not so important and makes trouble
+                // in testcases
+                //
+                //LOGIT_DEBUG("c_rehash stdout:" << stdOutput);
+        }
+        return status;
+}
+
+
 //std::vector<std::string> convStringArray(const std::stringArray &in);
 void appendArray(std::vector<std::string> &in, const std::vector<std::string> &arr);
 
