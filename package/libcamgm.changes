@@ -1,4 +1,13 @@
 -------------------------------------------------------------------
+Fri Sep 19 09:33:57 CEST 2014 - mc@suse.de
+
+- version 1.0.7
+- Store the common server CA to /etc/pki/trust/anchors
+  and run update-ca-certificates to update the trust dir
+  (bnc#897441)
+- upate translation files
+
+-------------------------------------------------------------------
 Mon Aug 25 11:41:32 CEST 2014 - mc@suse.de
 
 - version 1.0.6

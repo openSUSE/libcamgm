@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libcamgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2014-04-30 16:12+0200\n"
+"POT-Creation-Date: 2014-09-19 09:36+0200\n"
 "PO-Revision-Date: 2014-07-15 11:32\n"
 "Last-Translator: Novell language <language@novell.com>\n"
 "Language-Team: Novell language <language@novell.com>\n"
@@ -520,41 +520,41 @@ msgstr "%s 디렉토리를 생성할 수 없음: %s."
 msgid "%s is not a directory."
 msgstr "%s은(는) 디렉토리가 아닙니다."
 
-#: src/LocalManagement.cpp:363
+#: src/LocalManagement.cpp:370
 msgid "Invalid certificate file."
 msgstr "잘못된 인증서 파일입니다."
 
-#: src/LocalManagement.cpp:441
+#: src/LocalManagement.cpp:448
 #, c-format
 msgid "File not found: %s."
 msgstr "파일을 찾을 수 없음: %s."
 
-#: src/LocalManagement.cpp:450
+#: src/LocalManagement.cpp:457
 #, c-format
 msgid "File too big: %s."
 msgstr "파일이 너무 큼: %s."
 
-#: src/LocalManagement.cpp:459 src/LocalManagement.cpp:513
+#: src/LocalManagement.cpp:466 src/LocalManagement.cpp:520
 #, c-format
 msgid "Cannot open file %s."
 msgstr "%s 파일을 열 수 없습니다."
 
-#: src/LocalManagement.cpp:478
+#: src/LocalManagement.cpp:485
 #, c-format
 msgid "Cannot read from file %s."
 msgstr "%s 파일에서 읽을 수 없습니다."
 
-#: src/LocalManagement.cpp:503
+#: src/LocalManagement.cpp:510
 #, c-format
 msgid "File already exists: %s."
 msgstr "파일이 이미 있음: %s."
 
-#: src/LocalManagement.cpp:523
+#: src/LocalManagement.cpp:530
 #, c-format
 msgid "Cannot get lock on file %s."
 msgstr "%s 파일에 대한 잠금을 얻을 수 없습니다."
 
-#: src/LocalManagement.cpp:535
+#: src/LocalManagement.cpp:542
 #, c-format
 msgid "Cannot write to file %s."
 msgstr "%s 파일에 쓸 수 없습니다."
