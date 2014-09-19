@@ -43,6 +43,7 @@ BuildRequires:  ruby-devel
 BuildRequires:  swig
 BuildRequires:  translation-update-upstream
 Requires:       openssl
+Requires:       ca-certificates
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 %if 0%{?fedora_version}
 BuildRequires:  openssl-perl
