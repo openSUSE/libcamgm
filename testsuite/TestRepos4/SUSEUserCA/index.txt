@@ -1,0 +1,2 @@
+V	390928172421Z		01	unknown	/C=DE/L=Nuremberg/O=SUSE Linux GmbH/OU=IT/CN=build98765.suse.de/emailAddress=suse@suse.de
+V	390928172835Z		02	unknown	/C=DE/L=Nuremberg/O=SUSE Linux GmbH/OU=IT/CN=SUSE IPSec CA/emailAddress=ipsec@suse.de

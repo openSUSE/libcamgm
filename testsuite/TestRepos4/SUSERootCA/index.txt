@@ -1,0 +1,2 @@
+V	400106171826Z		01	unknown	/C=DE/L=Nuremberg/O=SUSE Linux GmbH/OU=IT/CN=SUSE User CA/emailAddress=security-team@suse.de
+V	390928172142Z		02	unknown	/C=DE/L=Nuremberg/O=SUSE Linux GmbH/OU=IT/CN=build12345.suse.de/emailAddress=suse@suse.de

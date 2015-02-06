@@ -183,5 +183,11 @@ EXTRA_DIST = CA2/*.* CA3/*.* CA4/*.* CA5/*.* single.out/*.* \
              python-*.single                                \
              iniParser/*.out iniParser/*.in                 \
              iniParser/*.ini iniParser/*.err                \
-             TestLineFormater.hpp TestLineFormater2.hpp
+             TestLineFormater.hpp TestLineFormater2.hpp     \
+             TestRepos4/SUSEIPsecCA/*.*                     \
+             TestRepos4/SUSERootCA/*/*.*                    \
+             TestRepos4/SUSERootCA/*.*                      \
+             TestRepos4/SUSEUserCA/*/*.*                    \
+             TestRepos4/SUSEUserCA/*.*                      \
+             TestRepos4/.cas/*.*
 

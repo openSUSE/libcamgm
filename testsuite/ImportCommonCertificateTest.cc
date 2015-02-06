@@ -30,16 +30,16 @@ int main()
         logger.setLogLevel( logger::E_INFO );
         logger.logToStdErr();
 
-        CA ca2("SUSEUserCA", "system", "./TestRepos3/");
+        CA ca2("SUSEUserCA", "system", "./TestRepos4/");
 
         cout << "============ ca.exportCertificateAsPKCS12(..., false); ===========" << endl;
 
-        ByteBuffer ba = ca2.exportCertificateAsPKCS12("06:9528e1d8783f83b662fca6085a8c1467-1111161258",
+        ByteBuffer ba = ca2.exportCertificateAsPKCS12("01:64758469504eccf1543930224f60315d-1423243460",
                                                       "system", "tralla", false);
 
-        LocalManagement::writeFile(ba, "./TestRepos3/testCert.p12");
+        LocalManagement::writeFile(ba, "./TestRepos4/testCert.p12");
 
-        path::PathInfo pi("./TestRepos3/testCert.p12");
+        path::PathInfo pi("./TestRepos4/testCert.p12");
         if(pi.exists() && pi.size() > 2500)
         {
             cout << "Certificate exists" << endl;
@@ -49,23 +49,23 @@ int main()
 
         LocalManagement::importAsLocalCertificate(ba,
                                                   "tralla",
-                                                  "./TestRepos3/localTest/certs/",
-                                                  "./TestRepos3/localTest/servercerts/servercert.pem",
-                                                  "./TestRepos3/localTest/servercerts/serverkey.pem");
+                                                  "./TestRepos4/localTest/certs/",
+                                                  "./TestRepos4/localTest/servercerts/servercert.pem",
+                                                  "./TestRepos4/localTest/servercerts/serverkey.pem");
 
-        pi.stat("./TestRepos3/localTest/servercerts/servercert.pem");
+        pi.stat("./TestRepos4/localTest/servercerts/servercert.pem");
         if(pi.exists())
         {
             cout << "servercert.pem exists" << endl;
         }
 
-        pi.stat("./TestRepos3/localTest/servercerts/serverkey.pem");
+        pi.stat("./TestRepos4/localTest/servercerts/serverkey.pem");
         if(pi.exists() && pi.hasPerm(0600))
         {
             cout << "serverkey.pem exists and has permissions 0600" << endl;
         }
 
-        pi.stat("./TestRepos3/localTest/certs/YaST-CA.pem");
+        pi.stat("./TestRepos4/localTest/certs/YaST-CA.pem");
         if(pi.exists())
         {
             cout << "CA exists ! OK!" << endl;
@@ -75,7 +75,7 @@ int main()
             cout << "CA do not exists ! WRONG !" << endl;
         }
 
-        pi.stat("./TestRepos3/localTest/certs/YaST-CA-0.pem");
+        pi.stat("./TestRepos4/localTest/certs/YaST-CA-0.pem");
         if(pi.exists())
         {
             cout << "YaST-CA-0 exists !WRONG!" << endl;
@@ -85,17 +85,17 @@ int main()
             cout << "YaST-CA-0 do not exists ! OK !" << endl;
         }
 
-        path::removeFile("./TestRepos3/testCert.p12");
+        path::removeFile("./TestRepos4/testCert.p12");
 
         cout << "============ ca.exportCertificateAsPKCS12(..., true); ============" << endl;
 
-        ba = ca2.exportCertificateAsPKCS12("06:9528e1d8783f83b662fca6085a8c1467-1111161258",
+        ba = ca2.exportCertificateAsPKCS12("01:64758469504eccf1543930224f60315d-1423243460",
                                            "system", "tralla", true);
 
-        LocalManagement::writeFile(ba, "./TestRepos3/testCertChain.p12");
+        LocalManagement::writeFile(ba, "./TestRepos4/testCertChain.p12");
 
-        pi.stat("./TestRepos3/testCertChain.p12");
-        if(pi.exists() && pi.size() > 5400)
+        pi.stat("./TestRepos4/testCertChain.p12");
+        if(pi.exists() && pi.size() > 4700)
         {
             cout << "Certificate exists" << endl;
         }
@@ -104,29 +104,29 @@ int main()
 
         LocalManagement::importAsLocalCertificate(pi.toString(),
                                                   "tralla",
-                                                  "./TestRepos3/localTest/certs2/",
-                                                  "./TestRepos3/localTest/servercerts/servercert2.pem",
-                                                  "./TestRepos3/localTest/servercerts/serverkey2.pem");
+                                                  "./TestRepos4/localTest/certs2/",
+                                                  "./TestRepos4/localTest/servercerts/servercert2.pem",
+                                                  "./TestRepos4/localTest/servercerts/serverkey2.pem");
 
-        pi.stat("./TestRepos3/localTest/servercerts/servercert2.pem");
+        pi.stat("./TestRepos4/localTest/servercerts/servercert2.pem");
         if(pi.exists())
         {
             cout << "servercert.pem exists" << endl;
         }
 
-        pi.stat("./TestRepos3/localTest/servercerts/serverkey2.pem");
+        pi.stat("./TestRepos4/localTest/servercerts/serverkey2.pem");
         if(pi.exists() && pi.hasPerm(0600))
         {
             cout << "serverkey.pem exists and has permissions 0600" << endl;
         }
 
-        pi.stat("./TestRepos3/localTest/certs2/YaST-CA.pem");
+        pi.stat("./TestRepos4/localTest/certs2/YaST-CA.pem");
         if(pi.exists())
         {
             cout << "CA exists" << endl;
         }
 
-        pi.stat("./TestRepos3/localTest/certs2/YaST-CA-0.pem");
+        pi.stat("./TestRepos4/localTest/certs2/YaST-CA-0.pem");
         if(pi.exists())
         {
             cout << "YaST-CA-0 exists ! OK !" << endl;
@@ -136,8 +136,8 @@ int main()
             cout << "YaST-CA-0 do not exists ! WRONG !" << endl;
         }
 
-        path::removeFile("./TestRepos3/testCertChain.p12");
-        path::removeDirRecursive("./TestRepos3/localTest/");
+        path::removeFile("./TestRepos4/testCertChain.p12");
+        path::removeDirRecursive("./TestRepos4/localTest/");
 
         cout << "DONE" << endl;
     }

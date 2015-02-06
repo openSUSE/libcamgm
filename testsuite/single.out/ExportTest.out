@@ -16,9 +16,9 @@ Certificate exists
 ================= ca.exportCAasPKCS12('tralla', true); =================
 Certificate exists
 ==================== ca.exportCertificate(PEM); ======================
-Subject: /C=DE/L=Nuremberg/O=SUSE Linux GmbH/OU=IT/CN=taylor.suse.de/emailAddress=ug@suse.de
+Subject: /C=DE/L=Nuremberg/O=SUSE Linux GmbH/OU=IT/CN=build98765.suse.de/emailAddress=suse@suse.de
 ==================== ca.exportCertificate(DER); ======================
-Subject: /C=DE/L=Nuremberg/O=SUSE Linux GmbH/OU=IT/CN=taylor.suse.de/emailAddress=ug@suse.de
+Subject: /C=DE/L=Nuremberg/O=SUSE Linux GmbH/OU=IT/CN=build98765.suse.de/emailAddress=suse@suse.de
 ================== ca.exportCertificateKeyAsPEM(decr); ===================
 Key exists
 Key is decrypted

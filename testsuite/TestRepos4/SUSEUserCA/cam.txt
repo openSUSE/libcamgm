@@ -1,0 +1,2 @@
+64758469504eccf1543930224f60315d-1423243460 /C=DE/L=Nuremberg/O=SUSE Linux GmbH/OU=IT/CN=build98765.suse.de/emailAddress=suse@suse.de
+edbfc5cf3212c59a4dec3a5ae59de306-1423243715 /C=DE/L=Nuremberg/O=SUSE Linux GmbH/OU=IT/CN=SUSE IPSec CA/emailAddress=ipsec@suse.de
