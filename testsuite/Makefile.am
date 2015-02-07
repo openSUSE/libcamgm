@@ -5,9 +5,7 @@ SUBDIRS = TestRepos lib config limal.test single.out
 PACKAGE = limal
 AUTOMAKE_OPTIONS = dejagnu
 
-INCLUDES= -I. -I$(top_srcdir)/src
-
-AM_CPPFLAGS = $(DEBUG_FLAGS) -pthread -DLOCALEDIR=\"${localedir}\"
+AM_CPPFLAGS = -I. -I$(top_srcdir)/src $(DEBUG_FLAGS) -pthread -DLOCALEDIR=\"${localedir}\"
 
 AM_LDFLAGS =  \
 	-pthread -Xlinker --whole-archive \

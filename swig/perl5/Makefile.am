@@ -7,13 +7,13 @@ PERL_CC      = $(shell $(PERL) -MExtUtils::Embed -e ccopts)
 PERL_LD      = $(shell $(PERL) -MExtUtils::Embed -e ldopts)
 VENDOR_ARCH  = $(shell $(PERL) -MConfig -e 'print $$Config{installvendorarch};')
 
-INCLUDES     = -I$(top_builddir)/src -I$(top_srcdir)/src $(LIMAL_CFLAGS) $(PERL_CC)
+AM_CPPFLAGS  = -I$(top_builddir)/src -I$(top_srcdir)/src $(LIMAL_CFLAGS) $(PERL_CC) -Wno-unused -Wno-unused-parameter
 
 # FIXME:
 LIBS         = -L$(top_builddir)/src/.libs -Wl,-rpath,$(camgmlibdir) -lcamgm $(LIB_SSL) $(LIB_UTIL) $(LIB_PCRE) $(PERL_LD)
 
 # FIXME:
-CXXFLAGS    += -Wno-unused -fPIC -DPIC
+CXXFLAGS    += -fPIC -DPIC
 #AM_CPPFLAGS = $(DEBUG_FLAGS) -D_GNU_SOURCE -DLOCALEDIR=\"${localedir}\"
 SWIGFLAGS    = -I${top_builddir}/typemaps/perl5 -I$(top_srcdir)/src -DCA_MGM_NAMESPACE=ca_mgm
 
@@ -51,7 +51,7 @@ $(NAME).so: $(NAME)_wrap.o
         fi
 
 $(NAME)_wrap.o: $(NAME)_wrap.cxx
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $<
+	$(CXX) $(CXXFLAGS) $(AM_CPPFLAGS) -c $<
 
 $(NAME)_wrap.cxx: $(sources)
 	$(SWIG) -c++ -perl $(SWIGFLAGS) -o $(NAME)_wrap.cxx $<

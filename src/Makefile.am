@@ -4,10 +4,8 @@
 
 SUBDIRS = ca-mgm
 
-INCLUDES = -I. -I$(srcdir)
-
 # FIXME:
-AM_CPPFLAGS = $(DEBUG_FLAGS) -pthread -DLOCALEDIR=\"${localedir}\"
+AM_CPPFLAGS = -I. -I$(srcdir) $(DEBUG_FLAGS) -pthread -DLOCALEDIR=\"${localedir}\"
 AM_LDFLAGS  = -pthread
 
 camgmlib_LTLIBRARIES = libcamgm.la

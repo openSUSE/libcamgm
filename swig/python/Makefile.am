@@ -6,7 +6,7 @@ PYCFLAGS = $(shell /usr/bin/python-config --cflags)
 PYLDFLAGS = $(shell /usr/bin/python-config --ldflags)
 SITE_ARCHDIR = $(shell python -c "from distutils.sysconfig import get_python_lib; print get_python_lib(plat_specific=True)")
 
-INCLUDES       = -I$(top_builddir)/src -I$(top_srcdir)/src $(LIMAL_CFLAGS) $(PYCFLAGS)
+AM_CPPFLAGS  = -I$(top_builddir)/src -I$(top_srcdir)/src $(LIMAL_CFLAGS) $(PYCFLAGS)
 # FIXME:
 LIBS         = -L$(top_builddir)/src/.libs -Wl,-rpath,$(camgmlibdir) -lcamgm $(LIB_SSL) $(LIB_UTIL) $(LIB_PCRE) $(PYLDFLAGS)
 
@@ -41,7 +41,7 @@ _$(NAME).so: $(NAME)_wrap.o
 	$(CXX) -shared -o _$(NAME).so $< $(LDFLAGS) $(LIBS)
 
 $(NAME)_wrap.o: $(NAME)_wrap.cxx
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $<
+	$(CXX) $(CXXFLAGS) $(AM_CPPFLAGS) -c $<
 
 $(NAME)_wrap.cxx: $(sources)
 	$(SWIG) -c++ -python $(SWIGFLAGS) -o $(NAME)_wrap.cxx $<
