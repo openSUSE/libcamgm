@@ -38,7 +38,7 @@ configure: $(srcdir)/VERSION
 	$(MAKE) -f Makefile.cvs all
 
 EXTRA_DIST = \
-	VERSION RPMNAME MAINTAINER configure.in Makefile.cvs \
+	VERSION RPMNAME MAINTAINER configure.ac Makefile.cvs \
 	$(SUBDIRS_FILE) $(ACINCLUDE_FILE) COPYING \
 	$(RPMNAME).pc.in README.mkd
 
