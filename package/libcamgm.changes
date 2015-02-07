@@ -1,4 +1,24 @@
 -------------------------------------------------------------------
+Sat Feb  7 15:10:38 CEST 2015 - mc@suse.de
+
+- version 1.0.8
+- replace expired certificate in the testsuite (boo#916361)
+- rename configure.in into configure.ac
+- update Makefiles to reduce warnings
+
+-------------------------------------------------------------------
+Sun Jan 11 19:04:11 UTC 2015 - meissner@suse.com
+
+- libcamgm-openssl1.0.1i.patch: remove again as 1.0.1k does more
+  errors again.
+
+-------------------------------------------------------------------
+Wed Dec 10 15:03:02 UTC 2014 - meissner@suse.com
+
+- libcamgm-openssl1.0.1i.patch: adjust the testsuite to match
+  the current openssl version (it reports less errors).
+
+-------------------------------------------------------------------
 Fri Sep 19 09:33:57 CEST 2014 - mc@suse.de
 
 - version 1.0.7

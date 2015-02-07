@@ -1,7 +1,7 @@
 #
 # spec file for package libcamgm
 #
-# Copyright (c) 2014 SUSE LINUX Products GmbH, Nuernberg, Germany.
+# Copyright (c) 2015 SUSE LINUX Products GmbH, Nuernberg, Germany.
 #
 # All modifications and additions to the file contributed by third parties
 # remain the property of their copyright owners, unless otherwise agreed
@@ -17,7 +17,7 @@
 
 
 Name:           libcamgm
-Version:        1.0.7
+Version:        1.0.8
 Release:        0
 Summary:        CA Management Library
 License:        LGPL-2.1
@@ -42,8 +42,8 @@ BuildRequires:  python-devel
 BuildRequires:  ruby-devel
 BuildRequires:  swig
 BuildRequires:  translation-update-upstream
-Requires:       openssl
 Requires:       ca-certificates
+Requires:       openssl
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 %if 0%{?fedora_version}
 BuildRequires:  openssl-perl
