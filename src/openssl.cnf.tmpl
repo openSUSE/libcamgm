@@ -170,7 +170,6 @@ nsCertType=server
 keyUsage=critical, digitalSignature, keyEncipherment, keyAgreement
 subjectKeyIdentifier=hash
 authorityKeyIdentifier=keyid,issuer:always
-subjectAltName=email:copy
 issuerAltName=issuer:copy
 
 [v3_ca]
@@ -180,7 +179,6 @@ nsCertType=sslCA, emailCA
 keyUsage=cRLSign, keyCertSign
 subjectKeyIdentifier=hash
 authorityKeyIdentifier=keyid:always,issuer:always
-subjectAltName=email:copy
 issuerAltName=issuer:copy
 
 [v3_req_ca]
