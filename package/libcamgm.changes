@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Wed Apr  1 12:27:13 CEST 2015 - mc@suse.de
+
+- change openssl.cnf.tmpl to not copy the email address to
+  subjectAltName for server certificates and CAs (bsc#908325)
+
+-------------------------------------------------------------------
 Sat Feb  7 15:10:38 CEST 2015 - mc@suse.de
 
 - version 1.0.8
