@@ -1,25 +1,34 @@
+# Translator(s):
+#
+# strainu <narro@strainu.ro>
+# xdaiana <xdaiana@yahoo.com>
+#
+# Reviewer(s):
+#
+# xdaiana <xdaiana@yahoo.com>
+#
 # Comunitatea romana openSUSE - www.suseromania.ro
 msgid ""
 msgstr ""
-"Project-Id-Version: openSUSE\n"
+"Project-Id-Version: OpenSUSE\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2015-02-07 15:13+0100\n"
-"PO-Revision-Date: 2010-04-30 16:32+0300\n"
+"POT-Creation-Date: 2012-07-23 16:26+0200\n"
+"PO-Revision-Date: 2012-11-19 15:00+0200\n"
 "Last-Translator: Lucian Oprea <oprea.luci@gmail.com>\n"
-"Language-Team: Comunitatea traducatorilor openSUSE Romania. Contact: <oprea."
-"luci@gmail.com><strainu10@gmail.com><traduceri@suseromania.ro>\n"
-"Language: \n"
+"Language-Team: Romanian <LL@li.org>\n"
+"Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Narro 2.0 on http://tradu.softwareliber.ro\n"
 "Plural-Forms:  nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2;\n"
-"X-Generator: Narro 0.9.4 on http://tradu.softwareliber.ro\n"
+"X-Generator: Narro 2.0 on http://tradu.softwareliber.ro\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:104
 #: src/AuthorityInfoAccessExtension.cpp:133
 msgid "Invalid location."
-msgstr "Locaţie invalidă."
+msgstr "Locație invalidă."
 
 #: src/AuthorityInfoAccessExtension.cpp:109
 #: src/AuthorityInfoAccessExtension.cpp:138
@@ -41,7 +50,7 @@ msgstr "accessOID invalid."
 #: src/CRLDistributionPointsExtension.cpp:72
 #: src/CRLDistributionPointsExtension.cpp:162 src/DNObject.cpp:500
 #: src/ExtendedKeyUsageExt.cpp:73 src/ExtendedKeyUsageExt.cpp:225
-#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:260
+#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:244
 #: src/StringExtensions.cpp:118 src/StringExtensions.cpp:195
 #: src/StringExtensions.cpp:283 src/StringExtensions.cpp:353
 #: src/StringExtensions.cpp:437 src/StringExtensions.cpp:507
@@ -57,7 +66,7 @@ msgstr "Tip eronat: %1."
 
 #: src/AuthorityInfoAccessExtension.cpp:304
 msgid "Invalid AuthorityInformation in the information list."
-msgstr "AuthorityInformation invalid în lista de informaţii."
+msgstr "AuthorityInformation invalid în lista de informații."
 
 #: src/AuthorityInfoAccessExtension.cpp:317
 msgid "AuthorityInfoAccessExt is not present."
@@ -95,9 +104,10 @@ msgid "This BitExtension is not present."
 msgstr "Acest BitExtension nu există."
 
 #: src/BitExtensions.cpp:130 src/BitExtensions.cpp:243
-#: src/CertificateIssueData.cpp:231 src/CRLGenerationData.cpp:158
+#: src/CertificateIssueData.cpp:215 src/CRLGenerationData.cpp:158
 #: src/DNObject.cpp:258 src/IssuerAlternativeNameExtension.cpp:220
 #, fuzzy, c-format
+#| msgid "Wrong type: %1."
 msgid "Wrong type: %d."
 msgstr "Tip eronat: %1."
 
@@ -131,7 +141,7 @@ msgstr "Obiect NsCertTypeExt invalid."
 
 #: src/CA.cpp:96
 msgid "Template not initialized."
-msgstr "Schema nu a fost iniţializată."
+msgstr "Schema nu a fost inițializată."
 
 #: src/CA.cpp:166 src/CA.cpp:1522
 msgid "Empty CA name."
@@ -139,6 +149,7 @@ msgstr "Nume CA vid."
 
 #: src/CA.cpp:174
 #, fuzzy, c-format
+#| msgid "Template does not exist: %1."
 msgid "Template does not exist: %s."
 msgstr "Schema nu există: %1."
 
@@ -152,6 +163,7 @@ msgstr "Eroare la crearea infrastructurii CA."
 
 #: src/CA.cpp:250 src/CA.cpp:1015
 #, fuzzy, c-format
+#| msgid "Cannot parse the certificate name %1."
 msgid "Cannot parse the certificate name %s."
 msgstr "Nu pot parcurge numele de certificat %1."
 
@@ -169,16 +181,19 @@ msgstr "Date cerere invalide."
 
 #: src/CA.cpp:323
 #, fuzzy, c-format
+#| msgid "Duplicate DN. Key %1.key already exists."
 msgid "Duplicate DN. Key %s.key already exists."
 msgstr "DN duplicat. Cheia %1.key există deja."
 
 #: src/CA.cpp:331
 #, fuzzy, c-format
+#| msgid "Duplicate DN. Request %1.req already exists."
 msgid "Duplicate DN. Request %s.req already exists."
 msgstr "DN duplicat. Cererea %1.req există deja."
 
 #: src/CA.cpp:400
 #, fuzzy, c-format
+#| msgid "Request does not exist (%1)."
 msgid "Request does not exist (%s)."
 msgstr "Cererea nu există (%1)."
 
@@ -192,12 +207,13 @@ msgstr "CA expiră înainte de expirarea certificatului."
 
 #: src/CA.cpp:501
 msgid "Issuing the certificate failed."
-msgstr "Emiterea certificatului a eşuat."
+msgstr "Emiterea certificatului a eșuat."
 
 #: src/CA.cpp:518
 #, fuzzy, c-format
+#| msgid "File %1 not found in the repository."
 msgid "File %s not found in the repository."
-msgstr "Fişierul %1 nu a fost găsit în sursa de instalare."
+msgstr "Fișierul %1 nu a fost găsit în sursa de instalare."
 
 #: src/CA.cpp:525 src/CRLData_Priv.cpp:153
 msgid "Invalid CRL reason."
@@ -217,30 +233,36 @@ msgstr "Nu pot parcurge numele de certificat."
 
 #: src/CA.cpp:967
 #, fuzzy, c-format
+#| msgid "Request %1 does not exist."
 msgid "Request %s does not exist."
 msgstr "Cererea %1 nu există."
 
 #: src/CA.cpp:989
 msgid "Removing the request failed (%1)."
-msgstr "Îndepărtarea cererii a eşuat (%1)."
+msgstr "Îndepărtarea cererii a eșuat (%1)."
 
 #: src/CA.cpp:1003
 #, fuzzy, c-format
+#| msgid "Certificate %1 does not exist."
 msgid "Certificate %s does not exist."
 msgstr "Certificatul %1 nu există."
 
 #: src/CA.cpp:1052
 #, fuzzy, c-format
+#| msgid "Removing the certificate failed: %1."
 msgid "Removing the certificate failed: %d."
-msgstr "Îndepărtarea certificatului a eşuat: %1."
+msgstr "Îndepărtarea certificatului a eșuat: %1."
 
 #: src/CA.cpp:1060
 #, fuzzy, c-format
+#| msgid ""
+#| "Only revoked or expired certificates can be deleted. The status of the "
+#| "certificate is %1."
 msgid ""
 "Only revoked or expired certificates can be deleted. The status of the "
 "certificate is %s."
 msgstr ""
-"Pot fi şterse doar certificatele revocate sau expirate. Starea "
+"Pot fi șterse doar certificatele revocate sau expirate. Starea "
 "certificatului este %1."
 
 #: src/CA.cpp:1072
@@ -253,6 +275,7 @@ msgstr "Certificatul nu există."
 
 #: src/CA.cpp:1112
 #, fuzzy, c-format
+#| msgid "Invalid purpose %1."
 msgid "Invalid purpose %s."
 msgstr "Scop invalid %1."
 
@@ -298,6 +321,7 @@ msgstr "Eroare la scrierea valorilor implicite."
 
 #: src/CA.cpp:1532
 #, fuzzy, c-format
+#| msgid "CA name does not exist (%1)."
 msgid "CA name does not exist (%s)."
 msgstr "Numele CA nu există (%1)."
 
@@ -306,58 +330,63 @@ msgid ""
 "Deleting the CA is not allowed. The CA must be expired or never have signed "
 "a certificate."
 msgstr ""
-"Ştergerea CA nu este permisă. CA trebuie să expire sau să nu fi semnat nici "
+"Ștergerea CA nu este permisă. CA trebuie să expire sau să nu fi semnat nici "
 "un certificat."
 
 #: src/CA.cpp:1588
 msgid "Deleting the CA failed: %1."
-msgstr "Ştergerea CA a eşuat: %1."
+msgstr "Ștergerea CA a eșuat: %1."
 
 #: src/CA.cpp:1639
 msgid "The configuration file is missing a value for policy."
-msgstr "Din fişierul de configurare lipseşte valoarea pentru regulă."
+msgstr "Din fișierul de configurare lipsește valoarea pentru regulă."
 
 #: src/CA.cpp:1649 src/CA.cpp:1911 src/DNObject.cpp:277
 #: src/DNObject_Priv.cpp:207
 #, fuzzy, c-format
+#| msgid "Cannot parse section %1."
 msgid "Cannot parse section %s."
-msgstr "Nu am putut parcurge secţiunea %1."
+msgstr "Nu am putut parcurge secțiunea %1."
 
 #: src/CA.cpp:1721
 #, fuzzy, c-format
+#| msgid "Field %1 must have a value."
 msgid "Field %s must have a value."
 msgstr "Câmpul %1 trebuie să aibă o valoare."
 
 #: src/CA.cpp:1760
 #, fuzzy, c-format
+#| msgid "%1 must be defined."
 msgid "%s must be defined."
 msgstr "%1 trebuie definit."
 
 #: src/CA.cpp:1845
 #, fuzzy, c-format
+#| msgid "%1 must be the same in the CA certificate (%2) and the request (%3)."
 msgid "%s must be the same in the CA certificate (%s) and the request (%s)."
-msgstr "%1 trebuie să fie identic în certificatul CA (%2) şi în cerere (%3)."
+msgstr "%1 trebuie să fie identic în certificatul CA (%2) și în cerere (%3)."
 
 #: src/CA.cpp:1857
 msgid "The configuration file seems to have an invalid policy."
-msgstr "Fişierul de configurare conţine probabil o regulă invalidă."
+msgstr "Fișierul de configurare conține probabil o regulă invalidă."
 
 #: src/CA.cpp:1883 src/CA.cpp:1893
 msgid "The configuration is not initialized."
-msgstr "Configuraţia nu este iniţializată."
+msgstr "Configurația nu este inițializată."
 
 #: src/CA.cpp:1901 src/DNObject.cpp:266 src/DNObject_Priv.cpp:197
 msgid "Missing section 'distinguished_name' in the configuration file."
-msgstr "Secţiunea 'distinguishedname' lipseşte din fişierul de configurare."
+msgstr "Secțiunea 'distinguishedname' lipsește din fișierul de configurare."
 
 #: src/CertificateData_Priv.cpp:92 src/CRLData_Priv.cpp:98
 #: src/CRLData_Priv.cpp:135
 #, fuzzy, c-format
+#| msgid "Invalid serial %1."
 msgid "Invalid serial %s."
 msgstr "Număr de serie invalid %1."
 
-#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:409
-#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:381
+#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:393
+#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:365
 msgid "Cannot create a memory BIO."
 msgstr "Nu pot crea un BIO de memorie."
 
@@ -375,11 +404,11 @@ msgstr "Nu pot parcurge numărul de serie."
 
 #: src/CertificateData_Priv.cpp:341 src/RequestData_Priv.cpp:178
 msgid "Unable to get the public key."
-msgstr "Nu pot obţine cheia publică."
+msgstr "Nu pot obține cheia publică."
 
 #: src/CertificateData_Priv.cpp:352 src/RequestData_Priv.cpp:189
 msgid "Could not get RSA key."
-msgstr "Nu pot obţine cheia RSA."
+msgstr "Nu pot obține cheia RSA."
 
 #: src/CertificateData_Priv.cpp:372 src/RequestData_Priv.cpp:209
 msgid "Unsupported public key type."
@@ -389,13 +418,14 @@ msgstr "Tip de cheie publică nesuportat."
 msgid "Unsupported public key algorithm."
 msgstr "Algoritm de cheie publică nesuportat."
 
-#: src/CertificateData_Priv.cpp:456 src/CRLData_Priv.cpp:370
-#: src/RequestData_Priv.cpp:288
+#: src/CertificateData_Priv.cpp:440 src/CRLData_Priv.cpp:354
+#: src/RequestData_Priv.cpp:272
 #, fuzzy, c-format
+#| msgid "Unsupported signature algorithm %1."
 msgid "Unsupported signature algorithm %s."
 msgstr "Algoritm de semnătură invalid %1."
 
-#: src/CertificateIssueData.cpp:223
+#: src/CertificateIssueData.cpp:207
 msgid "Invalid CertificateIssueData object."
 msgstr "Obiect CertificateIssueData invalid."
 
@@ -410,6 +440,7 @@ msgstr "Obiect UserNotice invalid."
 #: src/CertificatePoliciesExtension.cpp:389
 #: src/CertificatePoliciesExtension.cpp:453
 #, fuzzy, c-format
+#| msgid "Invalid value for policyIdentifier: %1."
 msgid "Invalid value for policyIdentifier: %s."
 msgstr "Valoare invalidă pentru policyIdentifier: %1."
 
@@ -426,15 +457,15 @@ msgstr "CertificatePoliciesExt nu există."
 msgid "Invalid CertificatePoliciesExt object."
 msgstr "Obiect CertificatePoliciesExt invalid."
 
-#: src/CRLData.cpp:232
+#: src/CRLData.cpp:220
 msgid "Entry not found."
 msgstr "Nu am găsit intrarea."
 
-#: src/CRLData_Priv.cpp:437
+#: src/CRLData_Priv.cpp:421
 msgid "Cannot parse CRL."
 msgstr "Nupot parcurge CRL."
 
-#: src/CRLData_Priv.cpp:450
+#: src/CRLData_Priv.cpp:434
 msgid "Error parsing the CRL."
 msgstr "Eroare la parcurgerea CRL."
 
@@ -452,6 +483,7 @@ msgstr "Obiect CRLGenerationData invalid."
 
 #: src/CRLReason.cpp:96 src/CRLReason.cpp:132
 #, fuzzy, c-format
+#| msgid "Invalid revoke reason %1."
 msgid "Invalid revoke reason %s."
 msgstr "Motiv de revocare invalid %1."
 
@@ -469,18 +501,21 @@ msgstr "Motivul nu este CACompromise."
 
 #: src/DNObject.cpp:100
 #, fuzzy, c-format
+#| msgid "Invalid type %1."
 msgid "Invalid type %s."
 msgstr "Tip invalid %1."
 
 #: src/DNObject_Priv.cpp:157
 #, fuzzy, c-format
+#| msgid "Cannot parse DN line: %1."
 msgid "Cannot parse DN line: %s."
 msgstr "Nu pot parcurge linia DN: %1."
 
 #: src/ExtendedKeyUsageExt.cpp:118 src/ExtendedKeyUsageExt.cpp:167
 #, fuzzy, c-format
+#| msgid "Invalid ExtendedKeyUsage option %1."
 msgid "Invalid ExtendedKeyUsage option %s."
-msgstr "Opţiune ExtendedKeyUsage invalidă %1."
+msgstr "Opțiune ExtendedKeyUsage invalidă %1."
 
 #: src/ExtendedKeyUsageExt.cpp:126 src/ExtendedKeyUsageExt.cpp:175
 msgid "Invalid ExtendedKeyUsageExt."
@@ -513,70 +548,82 @@ msgstr "Tip necunoscut."
 
 #: src/LocalManagement.cpp:91
 msgid "Cannot split certificate output."
-msgstr "Nu pot împărţi datele de ieşire ale certificatului."
+msgstr "Nu pot împărți datele de ieșire ale certificatului."
 
 #: src/LocalManagement.cpp:288 src/LocalManagement.cpp:309
 #: src/LocalManagement.cpp:328
 #, fuzzy, c-format
+#| msgid "Cannot create directory %1: %2."
 msgid "Cannot create directory %s: %s."
 msgstr "Nu pot crea directorul %1: %2."
 
 #: src/LocalManagement.cpp:342
 #, fuzzy, c-format
+#| msgid "%1 is not a directory."
 msgid "%s is not a directory."
 msgstr "%1 nu este un director."
 
-#: src/LocalManagement.cpp:370
+#: src/LocalManagement.cpp:363
 msgid "Invalid certificate file."
-msgstr "Fişier certificat invalid."
+msgstr "Fișier certificat invalid."
 
-#: src/LocalManagement.cpp:448
+#: src/LocalManagement.cpp:441
 #, fuzzy, c-format
+#| msgid "File not found: %1."
 msgid "File not found: %s."
-msgstr "Nu am găsit fişierul: %1."
+msgstr "Nu am găsit fișierul: %1."
 
-#: src/LocalManagement.cpp:457
+#: src/LocalManagement.cpp:450
 #, fuzzy, c-format
+#| msgid "File too big: %1."
 msgid "File too big: %s."
-msgstr "Fişier prea mare: %1."
+msgstr "Fișier prea mare: %1."
 
-#: src/LocalManagement.cpp:466 src/LocalManagement.cpp:520
+#: src/LocalManagement.cpp:459 src/LocalManagement.cpp:513
 #, fuzzy, c-format
+#| msgid "Cannot open file %1."
 msgid "Cannot open file %s."
-msgstr "Nu pot deschide fişierul %1."
+msgstr "Nu pot deschide fișierul %1."
 
-#: src/LocalManagement.cpp:485
+#: src/LocalManagement.cpp:478
 #, fuzzy, c-format
+#| msgid "Cannot read from file %1."
 msgid "Cannot read from file %s."
-msgstr "Nu pot citi din fişierul %1."
+msgstr "Nu pot citi din fișierul %1."
 
-#: src/LocalManagement.cpp:510
+#: src/LocalManagement.cpp:503
 #, fuzzy, c-format
+#| msgid "File already exists: %1."
 msgid "File already exists: %s."
-msgstr "Fişierul există deja: %1."
+msgstr "Fișierul există deja: %1."
 
-#: src/LocalManagement.cpp:530
+#: src/LocalManagement.cpp:523
 #, fuzzy, c-format
+#| msgid "Cannot get lock on file %1."
 msgid "Cannot get lock on file %s."
-msgstr "Nu pot bloca fişierul %1."
+msgstr "Nu pot bloca fișierul %1."
 
-#: src/LocalManagement.cpp:542
+#: src/LocalManagement.cpp:535
 #, fuzzy, c-format
+#| msgid "Cannot write to file %1."
 msgid "Cannot write to file %s."
-msgstr "Nu pot scrie în fişierul %1."
+msgstr "Nu pot scrie în fișierul %1."
 
 #: src/OpenSSLUtils.cpp:49
 #, fuzzy, c-format
+#| msgid "File does not exist: %1."
 msgid "File does not exist: %s."
-msgstr "Fişierul nu există: %1."
+msgstr "Fișierul nu există: %1."
 
 #: src/OpenSSLUtils.cpp:58
 #, fuzzy, c-format
+#| msgid "Directory does not exist: %1."
 msgid "Directory does not exist: %s."
 msgstr "Directorul nu există: %1."
 
 #: src/OpenSSLUtils.cpp:67
 #, fuzzy, c-format
+#| msgid "Invalid command %1."
 msgid "Invalid command %s."
 msgstr "Comandă invalidă %1."
 
@@ -588,34 +635,35 @@ msgstr "Comandă invalidă %1."
 #: src/OpenSSLUtils.cpp:1493 src/OpenSSLUtils.cpp:1651
 #: src/OpenSSLUtils.cpp:1795 src/OpenSSLUtils.cpp:2586
 msgid "Executing openssl command failed."
-msgstr "Executarea comenzii command a eşuat."
+msgstr "Executarea comenzii command a eșuat."
 
 #: src/OpenSSLUtils.cpp:136 src/OpenSSLUtils.cpp:227 src/OpenSSLUtils.cpp:326
 #: src/OpenSSLUtils.cpp:451 src/OpenSSLUtils.cpp:590 src/OpenSSLUtils.cpp:691
-#: src/OpenSSLUtils.cpp:777 src/OpenSSLUtils.cpp:1147
-#: src/OpenSSLUtils.cpp:1302 src/OpenSSLUtils.cpp:1412
-#: src/OpenSSLUtils.cpp:1521 src/OpenSSLUtils.cpp:1691
-#: src/OpenSSLUtils.cpp:1838 src/OpenSSLUtils.cpp:2613
+#: src/OpenSSLUtils.cpp:777 src/OpenSSLUtils.cpp:1147 src/OpenSSLUtils.cpp:1302
+#: src/OpenSSLUtils.cpp:1412 src/OpenSSLUtils.cpp:1521
+#: src/OpenSSLUtils.cpp:1691 src/OpenSSLUtils.cpp:1838
+#: src/OpenSSLUtils.cpp:2613
 #, fuzzy, c-format
+#| msgid "openssl command failed: %1"
 msgid "openssl command failed: %s"
-msgstr "Comanda openssl a eşuat: %1"
+msgstr "Comanda openssl a eșuat: %1"
 
 #: src/OpenSSLUtils.cpp:166 src/OpenSSLUtils.cpp:254 src/OpenSSLUtils.cpp:358
 #: src/OpenSSLUtils.cpp:477 src/OpenSSLUtils.cpp:617 src/OpenSSLUtils.cpp:714
 msgid "No valid key file specified."
-msgstr "Nu a fost specificat nici un fişier cheie valid."
+msgstr "Nu a fost specificat nici un fișier cheie valid."
 
 #: src/OpenSSLUtils.cpp:262 src/OpenSSLUtils.cpp:366
 msgid "No valid request file specified."
-msgstr "Nu a fost specificat nici un fişier cerere valid."
+msgstr "Nu a fost specificat nici un fișier cerere valid."
 
 #: src/OpenSSLUtils.cpp:485 src/OpenSSLUtils.cpp:625 src/OpenSSLUtils.cpp:722
 msgid "No valid CA certificate file specified."
-msgstr "Nu a fost specificat nici un fişier certificat CA valid."
+msgstr "Nu a fost specificat nici un fișier certificat CA valid."
 
 #: src/OpenSSLUtils.cpp:493 src/OpenSSLUtils.cpp:801
 msgid "No valid certificate file specified."
-msgstr "Nu a fost specificat nici un fişier certificat valid."
+msgstr "Nu a fost specificat nici un fișier certificat valid."
 
 #: src/OpenSSLUtils.cpp:809
 msgid "No valid CA directory specified."
@@ -623,12 +671,13 @@ msgstr "Nu a fost specificat nici un director CA valid."
 
 #: src/OpenSSLUtils.cpp:963
 #, fuzzy, c-format
+#| msgid "Showing certificate status with serial %1 failed (%2)."
 msgid "Showing certificate status with serial %s failed (%d)."
-msgstr "Afişarea stării certificatului cu numărul de serie %1 a eşuat (%2)."
+msgstr "Afișarea stării certificatului cu numărul de serie %1 a eșuat (%2)."
 
 #: src/OpenSSLUtils.cpp:999
 msgid "The key file does not exist."
-msgstr "Fişierul cheie nu există."
+msgstr "Fișierul cheie nu există."
 
 #: src/OpenSSLUtils.cpp:1297 src/OpenSSLUtils.cpp:1686
 #: src/OpenSSLUtils.cpp:1833
@@ -637,7 +686,7 @@ msgstr "Parolă invalidă."
 
 #: src/OpenSSLUtils.cpp:1599
 msgid "The password for encrypting the output is required."
-msgstr "Este necesară parola pentru criptarea datelor de ieşire."
+msgstr "Este necesară parola pentru criptarea datelor de ieșire."
 
 #: src/OpenSSLUtils.cpp:1746
 msgid "The PKCS12 password is required."
@@ -646,11 +695,13 @@ msgstr "Parola PKCS12 este necesară."
 #: src/OpenSSLUtils.cpp:1864 src/OpenSSLUtils.cpp:2064
 #: src/OpenSSLUtils.cpp:2216
 #, fuzzy, c-format
+#| msgid "Cannot read directory: %1 (%2) [%3]."
 msgid "Cannot read directory: %s (%s) [%d]."
 msgstr "Nu pot citi directorul: %1 (%2) [%3]."
 
 #: src/OpenSSLUtils.cpp:1914
 #, fuzzy, c-format
+#| msgid "No serial number found in %1."
 msgid "No serial number found in %s."
 msgstr "Nu am găsit nici un număr de serie în %1."
 
@@ -668,16 +719,19 @@ msgstr "Nu am putut găsi subiectul certificatului."
 
 #: src/OpenSSLUtils.cpp:2385
 #, fuzzy, c-format
+#| msgid "Invalid caName: %1."
 msgid "Invalid caName: %s."
 msgstr "caName invalid: %1."
 
 #: src/OpenSSLUtils.cpp:2394
 #, fuzzy, c-format
+#| msgid "'%1' does not exist."
 msgid "'%s' does not exist."
 msgstr "'%1' nu există."
 
 #: src/OpenSSLUtils.cpp:2404
 #, fuzzy, c-format
+#| msgid "%1 still exists."
 msgid "%s still exists."
 msgstr "%1 încă mai există."
 
@@ -685,6 +739,7 @@ msgstr "%1 încă mai există."
 #: src/OpenSSLUtils.cpp:2477 src/OpenSSLUtils.cpp:2491
 #: src/OpenSSLUtils.cpp:2505 src/OpenSSLUtils.cpp:2519
 #, fuzzy, c-format
+#| msgid "Cannot create directory: %1 (%2 [%3])."
 msgid "Cannot create directory: %s (%s [%d])."
 msgstr "Nu pot crea directorul: %1 (%2 [%3])."
 
@@ -694,22 +749,23 @@ msgstr "Nu pot copia schema de configurare."
 
 #: src/OpenSSLUtils.cpp:2537
 msgid "Cannot create the file."
-msgstr "Nu pot crea fişierul."
+msgstr "Nu pot crea fișierul."
 
 #: src/OpenSSLUtils.cpp:2552
 #, fuzzy
+#| msgid "Cannot open file %1."
 msgid "Can not open file."
-msgstr "Nu pot deschide fişierul %1."
+msgstr "Nu pot deschide fișierul %1."
 
-#: src/RequestData_Priv.cpp:408
+#: src/RequestData_Priv.cpp:392
 msgid "Cannot parse the request."
 msgstr "Nu pot parcurge cererea."
 
-#: src/RequestData_Priv.cpp:421
+#: src/RequestData_Priv.cpp:405
 msgid "Error while parsing the request."
 msgstr "Eroare la parcurgerea cererii."
 
-#: src/RequestGenerationData.cpp:252
+#: src/RequestGenerationData.cpp:236
 msgid "Invalid RequestGenerationData object."
 msgstr "Obiect RequestGenerationData invalid."
 
@@ -864,7 +920,7 @@ msgstr "Nu pot parcurge certificatul (Crit: %1)."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:937
 msgid "Invalid location in authorityInfoAccess."
-msgstr "Locaţie invalidă în authorityInfoAccess."
+msgstr "Locație invalidă în authorityInfoAccess."
 
 #: src/X509v3CertificateIssueExtensions.cpp:170
 msgid "Invalid value for X509v3CertificateIssueExts::setNsBaseUrl."

@@ -8,15 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2015-02-07 15:13+0100\n"
-"PO-Revision-Date: 2007-02-22 21:04+0100\n"
-"Last-Translator: Anna <blabla@blabla.es>\n"
+"POT-Creation-Date: 2012-07-23 16:26+0200\n"
+"PO-Revision-Date: 2014-09-12 18:40+0100\n"
+"Last-Translator: David Medina <opensusecatala@gmail.com>\n"
 "Language-Team: Catalan\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.5.7\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:104
 #: src/AuthorityInfoAccessExtension.cpp:133
@@ -43,7 +43,7 @@ msgstr "accessOID no vàlid."
 #: src/CRLDistributionPointsExtension.cpp:72
 #: src/CRLDistributionPointsExtension.cpp:162 src/DNObject.cpp:500
 #: src/ExtendedKeyUsageExt.cpp:73 src/ExtendedKeyUsageExt.cpp:225
-#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:260
+#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:244
 #: src/StringExtensions.cpp:118 src/StringExtensions.cpp:195
 #: src/StringExtensions.cpp:283 src/StringExtensions.cpp:353
 #: src/StringExtensions.cpp:437 src/StringExtensions.cpp:507
@@ -97,11 +97,12 @@ msgid "This BitExtension is not present."
 msgstr "Aquesta BitExtension no es troba."
 
 #: src/BitExtensions.cpp:130 src/BitExtensions.cpp:243
-#: src/CertificateIssueData.cpp:231 src/CRLGenerationData.cpp:158
+#: src/CertificateIssueData.cpp:215 src/CRLGenerationData.cpp:158
 #: src/DNObject.cpp:258 src/IssuerAlternativeNameExtension.cpp:220
-#, fuzzy, c-format
+#, c-format
+#| msgid "Wrong type: %1."
 msgid "Wrong type: %d."
-msgstr "Tipus incorrecte: %1."
+msgstr "Tipus incorrecte: %d."
 
 #: src/BitExtensions.cpp:170 src/BitExtensions.cpp:199
 msgid "Invalid value for keyUsage."
@@ -140,9 +141,10 @@ msgid "Empty CA name."
 msgstr "El nom de la CA és buit."
 
 #: src/CA.cpp:174
-#, fuzzy, c-format
+#, c-format
+#| msgid "Template does not exist: %1."
 msgid "Template does not exist: %s."
-msgstr "La plantilla no existeix: %1."
+msgstr "La plantilla no existeix: %s."
 
 #: src/CA.cpp:186 src/CA.cpp:1543
 msgid "Invalid CA password."
@@ -153,9 +155,10 @@ msgid "Error while creating the CA infrastructure."
 msgstr "S'ha produït un error en crear la infraestructura de CA."
 
 #: src/CA.cpp:250 src/CA.cpp:1015
-#, fuzzy, c-format
+#, c-format
+#| msgid "Cannot parse the certificate name %1."
 msgid "Cannot parse the certificate name %s."
-msgstr "No es pot analitzar el nom del certificat %1."
+msgstr "No es pot analitzar el nom del certificat %s."
 
 #: src/CA.cpp:261
 msgid "Cannot copy the private key."
@@ -170,19 +173,22 @@ msgid "Invalid request data."
 msgstr "Les dades de la sol·licitud no són vàlides."
 
 #: src/CA.cpp:323
-#, fuzzy, c-format
+#, c-format
+#| msgid "Duplicate DN. Key %1.key already exists."
 msgid "Duplicate DN. Key %s.key already exists."
-msgstr "DN duplicat. La clau %1.key ja existeix."
+msgstr "DN duplicat. La clau %s.key ja existeix."
 
 #: src/CA.cpp:331
-#, fuzzy, c-format
+#, c-format
+#| msgid "Duplicate DN. Request %1.req already exists."
 msgid "Duplicate DN. Request %s.req already exists."
-msgstr "DN duplicat. La sol·licitud %1.req ja existeix."
+msgstr "DN duplicat. La sol·licitud %s.req ja existeix."
 
 #: src/CA.cpp:400
-#, fuzzy, c-format
+#, c-format
+#| msgid "Request does not exist (%1)."
 msgid "Request does not exist (%s)."
-msgstr "La sol·licitud no existeix (%1)."
+msgstr "La sol·licitud no existeix (%s)."
 
 #: src/CA.cpp:406
 msgid "Invalid issue data."
@@ -197,9 +203,10 @@ msgid "Issuing the certificate failed."
 msgstr "S'ha produït un error durant l'emissió del certificat."
 
 #: src/CA.cpp:518
-#, fuzzy, c-format
+#, c-format
+#| msgid "File %1 not found in the repository."
 msgid "File %s not found in the repository."
-msgstr "No s'ha trobat el fitxer %1 al dipòsit."
+msgstr "No s'ha trobat el fitxer %s al repositori."
 
 #: src/CA.cpp:525 src/CRLData_Priv.cpp:153
 msgid "Invalid CRL reason."
@@ -218,32 +225,38 @@ msgid "Cannot parse the certificate name."
 msgstr "No es pot analitzar el nom del certificat."
 
 #: src/CA.cpp:967
-#, fuzzy, c-format
+#, c-format
+#| msgid "Request %1 does not exist."
 msgid "Request %s does not exist."
-msgstr "La sol·licitud %1 no existeix."
+msgstr "La sol·licitud %s no existeix."
 
 #: src/CA.cpp:989
 msgid "Removing the request failed (%1)."
 msgstr "Ha fallat l'eliminació de la sol·licitud (%1)."
 
 #: src/CA.cpp:1003
-#, fuzzy, c-format
+#, c-format
+#| msgid "Certificate %1 does not exist."
 msgid "Certificate %s does not exist."
-msgstr "El certificat %1 no existeix."
+msgstr "El certificat %s no existeix."
 
 #: src/CA.cpp:1052
-#, fuzzy, c-format
+#, c-format
+#| msgid "Removing the certificate failed: %1."
 msgid "Removing the certificate failed: %d."
-msgstr "Ha fallat l'eliminació del certificat: %1."
+msgstr "Ha fallat l'eliminació del certificat: %d."
 
 #: src/CA.cpp:1060
-#, fuzzy, c-format
+#, c-format
+#| msgid ""
+#| "Only revoked or expired certificates can be deleted. The status of the "
+#| "certificate is %1."
 msgid ""
 "Only revoked or expired certificates can be deleted. The status of the "
 "certificate is %s."
 msgstr ""
 "Només es poden suprimir certificats revocats o caducats. L'estat del "
-"certificat és %1."
+"certificat és %s."
 
 #: src/CA.cpp:1072
 msgid "Database not found."
@@ -254,9 +267,10 @@ msgid "Certificate does not exist."
 msgstr "El certificat no existeix."
 
 #: src/CA.cpp:1112
-#, fuzzy, c-format
+#, c-format
+#| msgid "Invalid purpose %1."
 msgid "Invalid purpose %s."
-msgstr "La finalitat %1 no és vàlida."
+msgstr "La finalitat %s no és vàlida."
 
 #: src/CA.cpp:1155
 msgid "Invalid CA request data."
@@ -295,14 +309,14 @@ msgid "Error during key encryption."
 msgstr "S'ha produït un error durant el xifratge de la clau."
 
 #: src/CA.cpp:1388
-#, fuzzy
 msgid "Error during write defaults."
-msgstr "S'ha produït un error durant el xifratge de la clau."
+msgstr "Error durant l'escriptura dels paràmetres per defecte."
 
 #: src/CA.cpp:1532
-#, fuzzy, c-format
+#, c-format
+#| msgid "CA name does not exist (%1)."
 msgid "CA name does not exist (%s)."
-msgstr "El nom de la CA no existeix (%1)."
+msgstr "El nom de CA no existeix (%s)."
 
 #: src/CA.cpp:1563
 msgid ""
@@ -322,24 +336,28 @@ msgstr "Falta un valor de política al fitxer de configuració."
 
 #: src/CA.cpp:1649 src/CA.cpp:1911 src/DNObject.cpp:277
 #: src/DNObject_Priv.cpp:207
-#, fuzzy, c-format
+#, c-format
+#| msgid "Cannot parse section %1."
 msgid "Cannot parse section %s."
-msgstr "No es pot analitzar la secció %1."
+msgstr "No es pot analitzar la secció %s."
 
 #: src/CA.cpp:1721
-#, fuzzy, c-format
+#, c-format
+#| msgid "Field %1 must have a value."
 msgid "Field %s must have a value."
-msgstr "El camp %1 ha de tenir un valor."
+msgstr "El camp %s ha de tenir un valor."
 
 #: src/CA.cpp:1760
-#, fuzzy, c-format
+#, c-format
+#| msgid "%1 must be defined."
 msgid "%s must be defined."
-msgstr "%1 ha d'estar definit."
+msgstr "%s ha d'estar definit."
 
 #: src/CA.cpp:1845
-#, fuzzy, c-format
+#, c-format
+#| msgid "%1 must be the same in the CA certificate (%2) and the request (%3)."
 msgid "%s must be the same in the CA certificate (%s) and the request (%s)."
-msgstr "%1 ha de ser idèntic al certificat CA (%2) i la sol·licitud (%3)."
+msgstr "%s ha de ser idèntic al certificat CA (%s) i la sol·licitud (%s)."
 
 #: src/CA.cpp:1857
 msgid "The configuration file seems to have an invalid policy."
@@ -355,12 +373,13 @@ msgstr "Falta la secció 'distinguished_name' al fitxer de configuració."
 
 #: src/CertificateData_Priv.cpp:92 src/CRLData_Priv.cpp:98
 #: src/CRLData_Priv.cpp:135
-#, fuzzy, c-format
+#, c-format
+#| msgid "Invalid serial %1."
 msgid "Invalid serial %s."
-msgstr "La sèrie %1 no és vàlida."
+msgstr "La sèrie %s no és vàlida."
 
-#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:409
-#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:381
+#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:393
+#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:365
 msgid "Cannot create a memory BIO."
 msgstr "No es pot crear un BIO de memòria."
 
@@ -373,9 +392,8 @@ msgid "Error while parsing the certificate."
 msgstr "S'ha produït un error en analitzar el certificat."
 
 #: src/CertificateData_Priv.cpp:273
-#, fuzzy
 msgid "Cannot parse serial."
-msgstr "No es pot analitzar la secció %1."
+msgstr "No es pot analitzar la sèrie."
 
 #: src/CertificateData_Priv.cpp:341 src/RequestData_Priv.cpp:178
 msgid "Unable to get the public key."
@@ -393,13 +411,14 @@ msgstr "Tipus de clau pública no compatible."
 msgid "Unsupported public key algorithm."
 msgstr "No s'admet l'algoritme de clau pública."
 
-#: src/CertificateData_Priv.cpp:456 src/CRLData_Priv.cpp:370
-#: src/RequestData_Priv.cpp:288
-#, fuzzy, c-format
+#: src/CertificateData_Priv.cpp:440 src/CRLData_Priv.cpp:354
+#: src/RequestData_Priv.cpp:272
+#, c-format
+#| msgid "Unsupported signature algorithm %1."
 msgid "Unsupported signature algorithm %s."
-msgstr "L'algoritme de signatura %1 és incompatible."
+msgstr "L'algoritme de signatura %s no té suport."
 
-#: src/CertificateIssueData.cpp:223
+#: src/CertificateIssueData.cpp:207
 msgid "Invalid CertificateIssueData object."
 msgstr "Objecte CertificateIssueData no vàlid."
 
@@ -413,9 +432,10 @@ msgstr "Objecte UserNotice no vàlid."
 
 #: src/CertificatePoliciesExtension.cpp:389
 #: src/CertificatePoliciesExtension.cpp:453
-#, fuzzy, c-format
+#, c-format
+#| msgid "Invalid value for policyIdentifier: %1."
 msgid "Invalid value for policyIdentifier: %s."
-msgstr "Valor de policyIdentifier no vàlid: %1."
+msgstr "Valor de policyIdentifier no vàlid: %s."
 
 #: src/CertificatePoliciesExtension.cpp:508
 msgid "Invalid CertificatePolicy object."
@@ -430,15 +450,15 @@ msgstr "CertificatePoliciesExt no es troba."
 msgid "Invalid CertificatePoliciesExt object."
 msgstr "Objecte CertificatePoliciesExt no vàlid."
 
-#: src/CRLData.cpp:232
+#: src/CRLData.cpp:220
 msgid "Entry not found."
 msgstr "No s'ha trobat l'entrada."
 
-#: src/CRLData_Priv.cpp:437
+#: src/CRLData_Priv.cpp:421
 msgid "Cannot parse CRL."
 msgstr "No es pot analitzar la CRL."
 
-#: src/CRLData_Priv.cpp:450
+#: src/CRLData_Priv.cpp:434
 msgid "Error parsing the CRL."
 msgstr "S'ha produït un error en analitzar la CRL."
 
@@ -455,9 +475,10 @@ msgid "Invalid CRLGenerationData object."
 msgstr "Objecte CRLGenerationData no vàlid."
 
 #: src/CRLReason.cpp:96 src/CRLReason.cpp:132
-#, fuzzy, c-format
+#, c-format
+#| msgid "Invalid revoke reason %1."
 msgid "Invalid revoke reason %s."
-msgstr "Motiu de revocació %1 no vàlid."
+msgstr "Motiu de revocació %s no vàlid."
 
 #: src/CRLReason.cpp:170
 msgid "Reason is not certificateHold."
@@ -472,19 +493,22 @@ msgid "Reason is not CACompromise."
 msgstr "El motiu no és CACompromise."
 
 #: src/DNObject.cpp:100
-#, fuzzy, c-format
+#, c-format
+#| msgid "Invalid type %1."
 msgid "Invalid type %s."
-msgstr "Tipus %1 no vàlid."
+msgstr "Tipus %s no vàlid."
 
 #: src/DNObject_Priv.cpp:157
-#, fuzzy, c-format
+#, c-format
+#| msgid "Cannot parse DN line: %1."
 msgid "Cannot parse DN line: %s."
-msgstr "No es pot analitzar la línia DN: %1."
+msgstr "No es pot analitzar la línia DN: %s."
 
 #: src/ExtendedKeyUsageExt.cpp:118 src/ExtendedKeyUsageExt.cpp:167
-#, fuzzy, c-format
+#, c-format
+#| msgid "Invalid ExtendedKeyUsage option %1."
 msgid "Invalid ExtendedKeyUsage option %s."
-msgstr "Opció ExtendedKeyUsage no vàlida %1."
+msgstr "Opció ExtendedKeyUsage no vàlida %s."
 
 #: src/ExtendedKeyUsageExt.cpp:126 src/ExtendedKeyUsageExt.cpp:175
 msgid "Invalid ExtendedKeyUsageExt."
@@ -521,68 +545,80 @@ msgstr "No es pot dividir el resultat del certificat."
 
 #: src/LocalManagement.cpp:288 src/LocalManagement.cpp:309
 #: src/LocalManagement.cpp:328
-#, fuzzy, c-format
+#, c-format
+#| msgid "Cannot create directory %1: %2."
 msgid "Cannot create directory %s: %s."
-msgstr "No es pot crear el directori %1: %2."
+msgstr "No es pot crear el directori %s: %s."
 
 #: src/LocalManagement.cpp:342
-#, fuzzy, c-format
+#, c-format
+#| msgid "%1 is not a directory."
 msgid "%s is not a directory."
-msgstr "%1 no és un directori."
+msgstr "%s no és un directori."
 
-#: src/LocalManagement.cpp:370
+#: src/LocalManagement.cpp:363
 msgid "Invalid certificate file."
 msgstr "El fitxer de certificat no és vàlid."
 
-#: src/LocalManagement.cpp:448
-#, fuzzy, c-format
+#: src/LocalManagement.cpp:441
+#, c-format
+#| msgid "File not found: %1."
 msgid "File not found: %s."
-msgstr "No s'ha trobat el fitxer: %1."
+msgstr "No s'ha trobat el fitxer: %s."
 
-#: src/LocalManagement.cpp:457
-#, fuzzy, c-format
+#: src/LocalManagement.cpp:450
+#, c-format
+#| msgid "File too big: %1."
 msgid "File too big: %s."
-msgstr "Fitxer massa gran: %1."
+msgstr "Fitxer massa gran: %s."
 
-#: src/LocalManagement.cpp:466 src/LocalManagement.cpp:520
-#, fuzzy, c-format
+#: src/LocalManagement.cpp:459 src/LocalManagement.cpp:513
+#, c-format
+#| msgid "Cannot open file %1."
 msgid "Cannot open file %s."
-msgstr "No es pot obrir el fitxer %1."
+msgstr "No es pot obrir el fitxer %s."
 
-#: src/LocalManagement.cpp:485
-#, fuzzy, c-format
+#: src/LocalManagement.cpp:478
+#, c-format
+#| msgid "Cannot read from file %1."
 msgid "Cannot read from file %s."
-msgstr "No es pot llegir des del fitxer %1."
+msgstr "No es pot llegir des del fitxer %s."
 
-#: src/LocalManagement.cpp:510
-#, fuzzy, c-format
+#: src/LocalManagement.cpp:503
+#, c-format
+#| msgid "File already exists: %1."
 msgid "File already exists: %s."
-msgstr "El fitxer ja existeix: %1."
+msgstr "El fitxer ja existeix: %s."
 
-#: src/LocalManagement.cpp:530
-#, fuzzy, c-format
+#: src/LocalManagement.cpp:523
+#, c-format
+#| msgid "Cannot get lock on file %1."
 msgid "Cannot get lock on file %s."
-msgstr "No es pot obtenir el bloqueig al fitxer %1."
+msgstr "No es pot obtenir el bloqueig al fitxer %s."
 
-#: src/LocalManagement.cpp:542
-#, fuzzy, c-format
+#: src/LocalManagement.cpp:535
+#, c-format
+#| msgid "Cannot write to file %1."
 msgid "Cannot write to file %s."
-msgstr "No es pot escriure al fitxer %1."
+msgstr "No es pot escriure al fitxer %s."
 
 #: src/OpenSSLUtils.cpp:49
-#, fuzzy, c-format
+#, c-format
+#| msgid "File does not exist: %1."
 msgid "File does not exist: %s."
-msgstr "El fitxer no existeix: %1."
+msgstr "El fitxer no existeix: %s."
 
 #: src/OpenSSLUtils.cpp:58
-#, fuzzy, c-format
+#, c-format
+#| msgid "Directory does not exist: %1."
 msgid "Directory does not exist: %s."
-msgstr "El directori no existeix: %1."
+msgstr "El directori no existeix: %s."
 
 #: src/OpenSSLUtils.cpp:67
-#, fuzzy, c-format
+#, c-format
+#| msgid "Invalid command %1."
 msgid "Invalid command %s."
-msgstr "L'ordre %1 no és vàlida."
+msgstr "L'ordre %s no és vàlida."
 
 #: src/OpenSSLUtils.cpp:124 src/OpenSSLUtils.cpp:214 src/OpenSSLUtils.cpp:313
 #: src/OpenSSLUtils.cpp:438 src/OpenSSLUtils.cpp:577 src/OpenSSLUtils.cpp:678
@@ -592,17 +628,17 @@ msgstr "L'ordre %1 no és vàlida."
 #: src/OpenSSLUtils.cpp:1493 src/OpenSSLUtils.cpp:1651
 #: src/OpenSSLUtils.cpp:1795 src/OpenSSLUtils.cpp:2586
 msgid "Executing openssl command failed."
-msgstr ""
+msgstr "Ha fallat l'execució de l'ordre openssl"
 
 #: src/OpenSSLUtils.cpp:136 src/OpenSSLUtils.cpp:227 src/OpenSSLUtils.cpp:326
 #: src/OpenSSLUtils.cpp:451 src/OpenSSLUtils.cpp:590 src/OpenSSLUtils.cpp:691
-#: src/OpenSSLUtils.cpp:777 src/OpenSSLUtils.cpp:1147
-#: src/OpenSSLUtils.cpp:1302 src/OpenSSLUtils.cpp:1412
-#: src/OpenSSLUtils.cpp:1521 src/OpenSSLUtils.cpp:1691
-#: src/OpenSSLUtils.cpp:1838 src/OpenSSLUtils.cpp:2613
-#, fuzzy, c-format
+#: src/OpenSSLUtils.cpp:777 src/OpenSSLUtils.cpp:1147 src/OpenSSLUtils.cpp:1302
+#: src/OpenSSLUtils.cpp:1412 src/OpenSSLUtils.cpp:1521
+#: src/OpenSSLUtils.cpp:1691 src/OpenSSLUtils.cpp:1838
+#: src/OpenSSLUtils.cpp:2613
+#, c-format
 msgid "openssl command failed: %s"
-msgstr "La baixada ha fallat:"
+msgstr "Ha fallat l'ordre openssl: %s"
 
 #: src/OpenSSLUtils.cpp:166 src/OpenSSLUtils.cpp:254 src/OpenSSLUtils.cpp:358
 #: src/OpenSSLUtils.cpp:477 src/OpenSSLUtils.cpp:617 src/OpenSSLUtils.cpp:714
@@ -626,10 +662,11 @@ msgid "No valid CA directory specified."
 msgstr "No s'ha especificat cap directori CA vàlid."
 
 #: src/OpenSSLUtils.cpp:963
-#, fuzzy, c-format
+#, c-format
+#| msgid "Showing certificate status with serial %1 failed (%2)."
 msgid "Showing certificate status with serial %s failed (%d)."
 msgstr ""
-"S'ha produït un error en mostrar l'estat del certificat amb la sèrie %1 (%2)."
+"S'ha produït un error en mostrar l'estat del certificat amb la sèrie %s (%d)."
 
 #: src/OpenSSLUtils.cpp:999
 msgid "The key file does not exist."
@@ -637,9 +674,8 @@ msgstr "El fitxer de claus no existeix."
 
 #: src/OpenSSLUtils.cpp:1297 src/OpenSSLUtils.cpp:1686
 #: src/OpenSSLUtils.cpp:1833
-#, fuzzy
 msgid "Invalid password."
-msgstr "Contrasenya no vàlida"
+msgstr "Contrasenya no vàlida."
 
 #: src/OpenSSLUtils.cpp:1599
 msgid "The password for encrypting the output is required."
@@ -651,14 +687,16 @@ msgstr "Es necessita la contrasenya de PKCS12."
 
 #: src/OpenSSLUtils.cpp:1864 src/OpenSSLUtils.cpp:2064
 #: src/OpenSSLUtils.cpp:2216
-#, fuzzy, c-format
+#, c-format
+#| msgid "Cannot read directory: %1 (%2) [%3]."
 msgid "Cannot read directory: %s (%s) [%d]."
-msgstr "No es pot llegir el directori: %1 (%2) [%3]."
+msgstr "No es pot llegir el directori: %s (%s) [%d]."
 
 #: src/OpenSSLUtils.cpp:1914
-#, fuzzy, c-format
+#, c-format
+#| msgid "No serial number found in %1."
 msgid "No serial number found in %s."
-msgstr "No s'ha trobat cap número de sèrie a %1."
+msgstr "No s'ha trobat cap número de sèrie a %s."
 
 #: src/OpenSSLUtils.cpp:1934
 msgid "The request already exists."
@@ -673,26 +711,30 @@ msgid "Cannot find the certificate subject."
 msgstr "No es pot trobar el tema del certificat."
 
 #: src/OpenSSLUtils.cpp:2385
-#, fuzzy, c-format
+#, c-format
+#| msgid "Invalid caName: %1."
 msgid "Invalid caName: %s."
-msgstr "caName no vàlid: %1."
+msgstr "caName no vàlid: %s."
 
 #: src/OpenSSLUtils.cpp:2394
-#, fuzzy, c-format
+#, c-format
+#| msgid "'%1' does not exist."
 msgid "'%s' does not exist."
-msgstr "'%1' no existeix."
+msgstr "'%s' no existeix."
 
 #: src/OpenSSLUtils.cpp:2404
-#, fuzzy, c-format
+#, c-format
+#| msgid "%1 still exists."
 msgid "%s still exists."
-msgstr "%1 encara existeix."
+msgstr "%s encara existeix."
 
 #: src/OpenSSLUtils.cpp:2415 src/OpenSSLUtils.cpp:2463
 #: src/OpenSSLUtils.cpp:2477 src/OpenSSLUtils.cpp:2491
 #: src/OpenSSLUtils.cpp:2505 src/OpenSSLUtils.cpp:2519
-#, fuzzy, c-format
+#, c-format
+#| msgid "Cannot create directory: %1 (%2 [%3])."
 msgid "Cannot create directory: %s (%s [%d])."
-msgstr "No es pot crear el directori: %1 (%2 [%3])."
+msgstr "No es pot crear el directori: %s (%s [%d])."
 
 #: src/OpenSSLUtils.cpp:2450
 msgid "Cannot copy the configuration template."
@@ -703,19 +745,19 @@ msgid "Cannot create the file."
 msgstr "No es pot crear el fitxer."
 
 #: src/OpenSSLUtils.cpp:2552
-#, fuzzy
+#| msgid "Cannot open file %1."
 msgid "Can not open file."
-msgstr "No es pot obrir el fitxer %1."
+msgstr "No es pot obrir el fitxer."
 
-#: src/RequestData_Priv.cpp:408
+#: src/RequestData_Priv.cpp:392
 msgid "Cannot parse the request."
 msgstr "No es pot analitzar la sol·licitud."
 
-#: src/RequestData_Priv.cpp:421
+#: src/RequestData_Priv.cpp:405
 msgid "Error while parsing the request."
 msgstr "S'ha produït un error en analitzar la sol·licitud."
 
-#: src/RequestGenerationData.cpp:252
+#: src/RequestGenerationData.cpp:236
 msgid "Invalid RequestGenerationData object."
 msgstr "Objecte RequestGenerationData no vàlid."
 

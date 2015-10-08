@@ -7,29 +7,33 @@
 # Vasileios Giannakopoulos <billg@hellug.gr>, 2007.
 # Kostas Boukouvalas <quantis@hellug.gr>, 2007.
 # Vasileios Giannakopoulos <billg@billg.gr>, 2008.
+# Ευστάθιος Αγραπίδης <stathisagrapidis@gmail.com>, 2011.
+# Efstathios Iosifidis <iosifidis@opensuse.org>, 2013.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm.el\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2015-02-07 15:13+0100\n"
-"PO-Revision-Date: 2008-06-06 01:04+0100\n"
-"Last-Translator: Vasileios Giannakopoulos <billg@billg.gr>\n"
-"Language-Team: Ελληνικά <billg@billg.gr>\n"
+"POT-Creation-Date: 2012-07-23 16:26+0200\n"
+"PO-Revision-Date: 2013-09-23 11:58+0200\n"
+"Last-Translator: Efstathios Iosifidis <iosifidis@opensuse.org>\n"
+"Language-Team: Greek, Modern (1453-) <opensuse-translation-el@opensuse.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Poedit 1.5.7\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:104
 #: src/AuthorityInfoAccessExtension.cpp:133
 msgid "Invalid location."
-msgstr "Λανθασμένη τοποθεσία."
+msgstr "Μη έγκυρη τοποθεσία."
 
 #: src/AuthorityInfoAccessExtension.cpp:109
 #: src/AuthorityInfoAccessExtension.cpp:138
 msgid "Invalid accessOID."
-msgstr "Λανθασμένο accessOID"
+msgstr "Μη έγκυρο accessOID"
 
 #: src/AuthorityInfoAccessExtension.cpp:253
 #: src/AuthorityInfoAccessExtension.cpp:336
@@ -46,7 +50,7 @@ msgstr "Λανθασμένο accessOID"
 #: src/CRLDistributionPointsExtension.cpp:72
 #: src/CRLDistributionPointsExtension.cpp:162 src/DNObject.cpp:500
 #: src/ExtendedKeyUsageExt.cpp:73 src/ExtendedKeyUsageExt.cpp:225
-#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:260
+#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:244
 #: src/StringExtensions.cpp:118 src/StringExtensions.cpp:195
 #: src/StringExtensions.cpp:283 src/StringExtensions.cpp:353
 #: src/StringExtensions.cpp:437 src/StringExtensions.cpp:507
@@ -62,7 +66,7 @@ msgstr "Λανθασμένος τύπος: %1."
 
 #: src/AuthorityInfoAccessExtension.cpp:304
 msgid "Invalid AuthorityInformation in the information list."
-msgstr "Λανθασμένη AuthorityInformation στην λίστα πληροφοριών"
+msgstr "Μη έγκυρη AuthorityInformation στην λίστα πληροφοριών."
 
 #: src/AuthorityInfoAccessExtension.cpp:317
 msgid "AuthorityInfoAccessExt is not present."
@@ -70,7 +74,7 @@ msgstr "Η AuthorityInfoAccessExt δεν είναι παρούσα"
 
 #: src/AuthorityInfoAccessExtension.cpp:328
 msgid "Invalid AuthorityInfoAccessExt object."
-msgstr "Λανθασμένο αντικείμενο AuthorityInfoAccess"
+msgstr "Μη έγκυρο αντικείμενο AuthorityInfoAccessExt."
 
 #: src/AuthorityKeyIdentifierExtension.cpp:93
 #: src/AuthorityKeyIdentifierExtension.cpp:104
@@ -85,30 +89,30 @@ msgstr "Το AuthorityKeyIdentifierGenerateExt δεν είναι παρών."
 
 #: src/AuthorityKeyIdentifierGenerateExtension.cpp:181
 msgid "Invalid AuthorityKeyIdentifierGenerateExt object."
-msgstr "Λανθασμένο αντικείμενο AuthorityKeyIdentifierGenerateExt"
+msgstr "Μη έγκυρο αντικείμενο AuthorityKeyIdentifierGenerateExt."
 
 #: src/BasicConstraintsExtension.cpp:151 src/BasicConstraintsExtension.cpp:163
 msgid "BasicConstraintsExt is not present."
-msgstr "Το BasicConstraintsExt δεν είναι παρών"
+msgstr "Το BasicConstraintsExt δεν είναι παρών."
 
 #: src/BasicConstraintsExtension.cpp:175
 msgid "Invalid BasicConstraintsExt object."
-msgstr "Λανθασμένο αντικείμενο BasicConstraintsExt"
+msgstr "Μη έγκυρο αντικείμενο BasicConstraintsExt."
 
 #: src/BitExtensions.cpp:107
 msgid "This BitExtension is not present."
 msgstr "Αυτή η BitExtension δεν είναι παρούσα."
 
 #: src/BitExtensions.cpp:130 src/BitExtensions.cpp:243
-#: src/CertificateIssueData.cpp:231 src/CRLGenerationData.cpp:158
+#: src/CertificateIssueData.cpp:215 src/CRLGenerationData.cpp:158
 #: src/DNObject.cpp:258 src/IssuerAlternativeNameExtension.cpp:220
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong type: %d."
-msgstr "Λανθασμένος τύπος: %1."
+msgstr "Λανθασμένος τύπος: %d."
 
 #: src/BitExtensions.cpp:170 src/BitExtensions.cpp:199
 msgid "Invalid value for keyUsage."
-msgstr "Λανθασμένη τιμή για keyUsage."
+msgstr "Μη έγκυρη τιμή για το keyUsage."
 
 #: src/BitExtensions.cpp:211 src/BitExtensions.cpp:222
 msgid "KeyUsageExt is not present."
@@ -116,15 +120,15 @@ msgstr "Το KeyUsageExt δεν είναι παρών."
 
 #: src/BitExtensions.cpp:235
 msgid "Invalid KeyUsageExt object."
-msgstr "Λανθασμένο αντικείμενο KeyUsageExt."
+msgstr "Μη έγκυρο αντικείμενο KeyUsageExt."
 
 #: src/BitExtensions.cpp:406
 msgid "Invalid value for NsCertTypeExt."
-msgstr "Λανθασμένη τιμή για NsCertTypeExt."
+msgstr "Μη έγκυρη τιμή για το NsCertTypeExt."
 
 #: src/BitExtensions.cpp:435
 msgid "Invalid value for NsCertTypeExt: %1."
-msgstr "Λανθασμένη τιμή για NsCertTypeExt: %1."
+msgstr "Μη έγκυρη τιμή για το NsCertTypeExt: %1."
 
 #: src/BitExtensions.cpp:447
 msgid "NsCertTypeExt is not present."
@@ -132,7 +136,7 @@ msgstr "Το NsCertTypeExt δεν είναι παρών."
 
 #: src/BitExtensions.cpp:468
 msgid "Invalid NsCertTypeExt object."
-msgstr "Λανθασμένο αντικείμενο NsCertTypeExt."
+msgstr "Μη έγκυρο αντικείμενο NsCertTypeExt."
 
 #: src/CA.cpp:96
 msgid "Template not initialized."
@@ -143,22 +147,22 @@ msgid "Empty CA name."
 msgstr "Κενό όνομα CA."
 
 #: src/CA.cpp:174
-#, fuzzy, c-format
+#, c-format
 msgid "Template does not exist: %s."
-msgstr "Το πρότυπο δεν υπάρχει: %1."
+msgstr "Το πρότυπο δεν υπάρχει: %s."
 
 #: src/CA.cpp:186 src/CA.cpp:1543
 msgid "Invalid CA password."
-msgstr "Λανθασμένο συνθηματικό CA."
+msgstr "Μη έγκυρο συνθηματικό CA."
 
 #: src/CA.cpp:230 src/CA.cpp:1175 src/CA.cpp:1341
 msgid "Error while creating the CA infrastructure."
-msgstr "Σφάλμα κατα τη δημιουργία της υποδομής CA."
+msgstr "Σφάλμα κατά τη δημιουργία της υποδομής CA."
 
 #: src/CA.cpp:250 src/CA.cpp:1015
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot parse the certificate name %s."
-msgstr "Αδυναμία ανάλυσης του ονόματος πιστοποιητικού %1."
+msgstr "Αδυναμία ανάλυσης του ονόματος πιστοποιητικού %s."
 
 #: src/CA.cpp:261
 msgid "Cannot copy the private key."
@@ -170,26 +174,26 @@ msgstr "Αδυναμία αντιγραφής του πιστοποιητικο�
 
 #: src/CA.cpp:304
 msgid "Invalid request data."
-msgstr "Λανθασμένα δεδομένα αίτησης."
+msgstr "Μη έγκυρα δεδομένα αίτησης."
 
 #: src/CA.cpp:323
-#, fuzzy, c-format
+#, c-format
 msgid "Duplicate DN. Key %s.key already exists."
-msgstr "Αντιγραφή DN. Το κλειδί %1.key υπάρχει ήδη."
+msgstr "Διπλό DN. Το κλειδί %s.key υπάρχει ήδη."
 
 #: src/CA.cpp:331
-#, fuzzy, c-format
+#, c-format
 msgid "Duplicate DN. Request %s.req already exists."
-msgstr "Αντιγραφή DN. Η αίτηση %1.req υπάρχει ήδη."
+msgstr "Διπλό DN. Η αίτηση %s.req υπάρχει ήδη."
 
 #: src/CA.cpp:400
-#, fuzzy, c-format
+#, c-format
 msgid "Request does not exist (%s)."
-msgstr "Η αίτηση δεν υπάρχει (%1)."
+msgstr "Η αίτηση δεν υπάρχει (%s)."
 
 #: src/CA.cpp:406
 msgid "Invalid issue data."
-msgstr "Λανθασμένα δεδομένα θέματος."
+msgstr "Μη έγκυρα δεδομένα θέματος."
 
 #: src/CA.cpp:423
 msgid "The CA expires before the certificate should expire."
@@ -198,56 +202,56 @@ msgstr ""
 
 #: src/CA.cpp:501
 msgid "Issuing the certificate failed."
-msgstr "Η θεματοποίηση του πιστοποιητικού απέτυχε."
+msgstr "Η έκδοση του πιστοποιητικού απέτυχε."
 
 #: src/CA.cpp:518
-#, fuzzy, c-format
+#, c-format
 msgid "File %s not found in the repository."
-msgstr "Το αρχείο %1 δεν βρέθηκε στον κατάλογο."
+msgstr "Το αρχείο %s δεν βρέθηκε στο αποθετήριο."
 
 #: src/CA.cpp:525 src/CRLData_Priv.cpp:153
 msgid "Invalid CRL reason."
-msgstr "Λανθασμένος λόγος CRL."
+msgstr "Λανθασμένος λόγος CRL"
 
 #: src/CA.cpp:548
 msgid "Invalid CRL data."
-msgstr "Λανθασμένα δεδομένα CRL."
+msgstr "Μη έγκυρα δεδομένα CRL."
 
 #: src/CA.cpp:594
 msgid "Duplicate DN. Request already exists."
-msgstr "Αντιγραφή DN. Η αίτηση υπάρχει ήδη."
+msgstr "Διπλό DN. Η αίτηση υπάρχει ήδη."
 
 #: src/CA.cpp:859 src/CA.cpp:886 src/CA.cpp:916 src/OpenSSLUtils.cpp:988
 msgid "Cannot parse the certificate name."
 msgstr "Αδυναμία ανάλυσης του ονόματος πιστοποιητικού."
 
 #: src/CA.cpp:967
-#, fuzzy, c-format
+#, c-format
 msgid "Request %s does not exist."
-msgstr "Η αίτηση %1 δεν υπάρχει."
+msgstr "Η αίτηση %s δεν υπάρχει."
 
 #: src/CA.cpp:989
 msgid "Removing the request failed (%1)."
 msgstr "Η αφαίρεση της αίτησης απέτυχε (%1)."
 
 #: src/CA.cpp:1003
-#, fuzzy, c-format
+#, c-format
 msgid "Certificate %s does not exist."
-msgstr "Το πιστοποιητικό %1 δεν υπάρχει."
+msgstr "Το πιστοποιητικό %s δεν υπάρχει."
 
 #: src/CA.cpp:1052
-#, fuzzy, c-format
+#, c-format
 msgid "Removing the certificate failed: %d."
-msgstr "Αφαίρεση του πιστοποιητικού απέτυχε: %1."
+msgstr "Αφαίρεση του πιστοποιητικού απέτυχε: %d."
 
 #: src/CA.cpp:1060
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Only revoked or expired certificates can be deleted. The status of the "
 "certificate is %s."
 msgstr ""
 "Μόνο τα ανακληθέντα ή τα ληγμένα πιστοποιητικά μπορούν να διαγραφούν. Η "
-"κατάσταση του πιστοποιητικού είναι %1."
+"κατάσταση του πιστοποιητικού είναι %s."
 
 #: src/CA.cpp:1072
 msgid "Database not found."
@@ -258,17 +262,17 @@ msgid "Certificate does not exist."
 msgstr "Το πιστοποιητικό δεν υπάρχει."
 
 #: src/CA.cpp:1112
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid purpose %s."
-msgstr "Λανθασμένος σκοπός %1."
+msgstr "Μη έγκυρος σκοπός %s."
 
 #: src/CA.cpp:1155
 msgid "Invalid CA request data."
-msgstr "Λανθασμένα δεδομένα αίτησης αρχής πιστοποίησης."
+msgstr "Μη έγκυρα δεδομένα αίτησης αρχής πιστοποίησης."
 
 #: src/CA.cpp:1161
 msgid "Invalid CA issue data."
-msgstr "Λανθασμένα δεδομένα θέματος αρχής πιστοποίησης."
+msgstr "Λανθασμένα δεδομένα αίτησης αρχής πιστοποίησης"
 
 #: src/CA.cpp:1279
 msgid "CA name is empty."
@@ -288,25 +292,24 @@ msgstr "Το κλειδί της αρχής πιστοποίησης είναι 
 
 #: src/CA.cpp:1315
 msgid "Invalid key data."
-msgstr "Λανθασμένα δεδομένα κλειδιού."
+msgstr "Μη έγκυρα δεδομένα κλειδιού."
 
 #: src/CA.cpp:1322
 msgid "CA password is empty."
-msgstr "Το συνθηματικό αρχής πιστοποίησης είναι κενό."
+msgstr "Το συνθηματικό της αρχής πιστοποίησης είναι κενό."
 
 #: src/CA.cpp:1366
 msgid "Error during key encryption."
-msgstr "Σφάλμα κατα την κρυπτογράφηση του κλειδιού."
+msgstr "Σφάλμα κατά την κρυπτογράφηση του κλειδιού."
 
 #: src/CA.cpp:1388
-#, fuzzy
 msgid "Error during write defaults."
-msgstr "Σφάλμα κατα την κρυπτογράφηση του κλειδιού."
+msgstr "Σφάλμα κατά την εγγραφή των προεπιλογών."
 
 #: src/CA.cpp:1532
-#, fuzzy, c-format
+#, c-format
 msgid "CA name does not exist (%s)."
-msgstr "Το όνομα της αρχής πιστοποίησης δεν υπάρχει (%1)."
+msgstr "Το όνομα της αρχής πιστοποίησης δεν υπάρχει (%s)."
 
 #: src/CA.cpp:1563
 msgid ""
@@ -326,30 +329,30 @@ msgstr "Στο αρχείο ρυθμίσεων λείπει μια τιμή γι
 
 #: src/CA.cpp:1649 src/CA.cpp:1911 src/DNObject.cpp:277
 #: src/DNObject_Priv.cpp:207
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot parse section %s."
-msgstr "Αδυναμία ανάλυσης τομέα %1."
+msgstr "Αδυναμία ανάλυσης τομέα %s."
 
 #: src/CA.cpp:1721
-#, fuzzy, c-format
+#, c-format
 msgid "Field %s must have a value."
-msgstr "Το πεδίο %1 πρέπει να έχει μια τιμή."
+msgstr "Το πεδίο %s πρέπει να έχει μια τιμή."
 
 #: src/CA.cpp:1760
-#, fuzzy, c-format
+#, c-format
 msgid "%s must be defined."
-msgstr "Το %1 πρέπει να οριστεί."
+msgstr "Το %s πρέπει να οριστεί."
 
 #: src/CA.cpp:1845
-#, fuzzy, c-format
+#, c-format
 msgid "%s must be the same in the CA certificate (%s) and the request (%s)."
 msgstr ""
-"Το %1 πρέπει να είναι το ίδιο στην αρχή πιστοποίησης (%2) και στην αίτηση "
-"(%3)."
+"Το %s πρέπει να είναι το ίδιο στην αρχή πιστοποίησης (%s) και στην αίτηση "
+"(%s)."
 
 #: src/CA.cpp:1857
 msgid "The configuration file seems to have an invalid policy."
-msgstr "Το αρχείο ρυθμίσεων φαίνεται να έχει λανθασμένη πολιτική."
+msgstr "Το αρχείο ρυθμίσεων φαίνεται να έχει μια μη έγκυρη πολιτική."
 
 # %s is either BOOTP or DHCP
 #: src/CA.cpp:1883 src/CA.cpp:1893
@@ -358,18 +361,18 @@ msgstr "Η ρύθμιση δεν αρχικοποιήθηκε."
 
 #: src/CA.cpp:1901 src/DNObject.cpp:266 src/DNObject_Priv.cpp:197
 msgid "Missing section 'distinguished_name' in the configuration file."
-msgstr "Λείπει ο τομέας'distinguished_name' στο αρχείο ρυθμίσεων. "
+msgstr "Λείπει ο τομέας 'distinguished_name' στο αρχείο ρυθμίσεων."
 
 #: src/CertificateData_Priv.cpp:92 src/CRLData_Priv.cpp:98
 #: src/CRLData_Priv.cpp:135
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid serial %s."
-msgstr "Λανθασμένος σειριακός %1."
+msgstr "Μη έγκυρος σειριακός %s."
 
-#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:409
-#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:381
+#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:393
+#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:365
 msgid "Cannot create a memory BIO."
-msgstr "Αδυναμία δημιουργίας ενός BIO μνήμης."
+msgstr "Αδυναμία δημιουργίας μιας BIO μνήμης."
 
 #: src/CertificateData_Priv.cpp:233
 msgid "Cannot parse the certificate."
@@ -377,20 +380,19 @@ msgstr "Αδυναμία ανάλυσης του πιστοποιητικού."
 
 #: src/CertificateData_Priv.cpp:246
 msgid "Error while parsing the certificate."
-msgstr "Σφάλμα κατα την ανάλυση του πιστοποιητικού."
+msgstr "Σφάλμα κατά την ανάλυση του πιστοποιητικού."
 
 #: src/CertificateData_Priv.cpp:273
-#, fuzzy
 msgid "Cannot parse serial."
-msgstr "Αδυναμία ανάλυσης τομέα %1."
+msgstr "Αδυναμία ανάλυσης σειριακού."
 
 #: src/CertificateData_Priv.cpp:341 src/RequestData_Priv.cpp:178
 msgid "Unable to get the public key."
-msgstr "Αδυναμία λήψης του δημοσίου κλειδιού."
+msgstr "Αδυναμία λήψης του δημόσιου κλειδιού."
 
 #: src/CertificateData_Priv.cpp:352 src/RequestData_Priv.cpp:189
 msgid "Could not get RSA key."
-msgstr "Αδυναμία λήψης του RSA κλειδιού."
+msgstr "Αδυναμία λήψης του κλειδιού RSA."
 
 #: src/CertificateData_Priv.cpp:372 src/RequestData_Priv.cpp:209
 msgid "Unsupported public key type."
@@ -400,33 +402,33 @@ msgstr "Μη υποστηριζόμενος τύπος δημοσίου κλει
 msgid "Unsupported public key algorithm."
 msgstr "Μη υποστηριζόμενος αλγόριθμος δημοσίου κλειδιού."
 
-#: src/CertificateData_Priv.cpp:456 src/CRLData_Priv.cpp:370
-#: src/RequestData_Priv.cpp:288
-#, fuzzy, c-format
+#: src/CertificateData_Priv.cpp:440 src/CRLData_Priv.cpp:354
+#: src/RequestData_Priv.cpp:272
+#, c-format
 msgid "Unsupported signature algorithm %s."
-msgstr "Μη υποστηριζόμενος αλγόριθμος υπογραφής %1."
+msgstr "Μη υποστηριζόμενος αλγόριθμος υπογραφής %s."
 
-#: src/CertificateIssueData.cpp:223
+#: src/CertificateIssueData.cpp:207
 msgid "Invalid CertificateIssueData object."
-msgstr "Λανθασμένο αντικείμενο CertificateIssueData."
+msgstr "Μη έγκυρο αντικείμενο CertificateIssueData."
 
 #: src/CertificatePoliciesExtension.cpp:210
 msgid "The text is too long."
-msgstr "Το κείμενο είναι πολύ μακρύ."
+msgstr "Το κείμενο είναι πολύ μεγάλο."
 
 #: src/CertificatePoliciesExtension.cpp:249
 msgid "Invalid UserNotice object."
-msgstr "Λανθασμένο αντικείμενο UserNotice."
+msgstr "Μη έγκυρο αντικείμενο UserNotice."
 
 #: src/CertificatePoliciesExtension.cpp:389
 #: src/CertificatePoliciesExtension.cpp:453
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid value for policyIdentifier: %s."
-msgstr "Λανθασμένη τιμή για policyIdentifier: %1."
+msgstr "Μη έγκυρη τιμή για policyIdentifier: %s."
 
 #: src/CertificatePoliciesExtension.cpp:508
 msgid "Invalid CertificatePolicy object."
-msgstr "Λανθασμένο αντικείμενο CertificatePolicy."
+msgstr "Μη έγκυρο αντικείμενο CertificatePolicy."
 
 #: src/CertificatePoliciesExtension.cpp:777
 #: src/CertificatePoliciesExtension.cpp:802
@@ -435,19 +437,19 @@ msgstr "Το CertificatePoliciesExt δεν είναι παρών."
 
 #: src/CertificatePoliciesExtension.cpp:815
 msgid "Invalid CertificatePoliciesExt object."
-msgstr "Λανθασμένο αντικείμενο CertificatePoliciesExt."
+msgstr "Μη έγκυρο αντικείμενο CertificatePoliciesExt."
 
-#: src/CRLData.cpp:232
+#: src/CRLData.cpp:220
 msgid "Entry not found."
 msgstr "Η καταχώρηση δε βρέθηκε."
 
-#: src/CRLData_Priv.cpp:437
+#: src/CRLData_Priv.cpp:421
 msgid "Cannot parse CRL."
 msgstr "Αδυναμία ανάλυσης CRL."
 
-#: src/CRLData_Priv.cpp:450
+#: src/CRLData_Priv.cpp:434
 msgid "Error parsing the CRL."
-msgstr "Αδυναμία κατα την ανάλυση της CRL."
+msgstr "Σφάλμα κατά την ανάλυση της CRL."
 
 #: src/CRLDistributionPointsExtension.cpp:141
 msgid "CRLDistributionPointsExt is not present."
@@ -455,16 +457,16 @@ msgstr "Το CRLDistributionPointsExt δεν είναι παρών."
 
 #: src/CRLDistributionPointsExtension.cpp:153
 msgid "Invalid CRLDistributionPointsExt object."
-msgstr "Λανθασμένο αντικείμενο CRLDistributionPointsExt."
+msgstr "Μη έγκυρο αντικείμενο CRLDistributionPointsExt."
 
 #: src/CRLGenerationData.cpp:151
 msgid "Invalid CRLGenerationData object."
-msgstr "Λανθασμένο αντικείμενο CRLGenerationData."
+msgstr "Μη έγκυρο αντικείμενο CRLGenerationData."
 
 #: src/CRLReason.cpp:96 src/CRLReason.cpp:132
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid revoke reason %s."
-msgstr "Λανθασμένος λόγος ανάκλησης %1."
+msgstr "Μη έγκυρος λόγος ανάκλησης %s."
 
 #: src/CRLReason.cpp:170
 msgid "Reason is not certificateHold."
@@ -479,44 +481,44 @@ msgid "Reason is not CACompromise."
 msgstr "Ο λόγος δεν είναι CACompromise."
 
 #: src/DNObject.cpp:100
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid type %s."
-msgstr "Λανθασμένος τύπος %1."
+msgstr "Μη έγκυρος τύπος %s."
 
 #: src/DNObject_Priv.cpp:157
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot parse DN line: %s."
-msgstr "Αδυναμία ανάλυσης γραμμής DN: %1."
+msgstr "Αδυναμία ανάλυσης γραμμής DN: %s."
 
 #: src/ExtendedKeyUsageExt.cpp:118 src/ExtendedKeyUsageExt.cpp:167
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid ExtendedKeyUsage option %s."
-msgstr "Λανθασμένη επιλογή ExtendedKeyUsage %1."
+msgstr "Μη έγκυρη επιλογή ExtendedKeyUsage %s."
 
 #: src/ExtendedKeyUsageExt.cpp:126 src/ExtendedKeyUsageExt.cpp:175
 msgid "Invalid ExtendedKeyUsageExt."
-msgstr "Λανθασμένο ExtendedKeyUsageExt."
+msgstr "Μη έγκυρο ExtendedKeyUsageExt."
 
 #: src/ExtendedKeyUsageExt.cpp:188
 msgid "ExtendedKeyUsageExt is not present."
-msgstr "Το ExtendedKeyUsageExt δεν είναι παρών"
+msgstr "Το ExtendedKeyUsageExt δεν είναι παρών."
 
 #: src/ExtendedKeyUsageExt.cpp:217
 msgid "Invalid ExtendedKeyUsageExt object."
-msgstr "Λανθασμένο αντικείμενο ExtendedKeyUsageExt."
+msgstr "Μη έγκυρο αντικείμενο ExtendedKeyUsageExt."
 
 #: src/IssuerAlternativeNameExtension.cpp:162
 #: src/IssuerAlternativeNameExtension.cpp:187
 msgid "IssuerAlternativeNameExt is not present."
-msgstr "Το IssuerAlternativeNameExt δεν είναι παρών"
+msgstr "Το IssuerAlternativeNameExt δεν είναι παρών."
 
 #: src/IssuerAlternativeNameExtension.cpp:199
 msgid "Invalid literal value for IssuerAlternativeNameExt."
-msgstr "Λανθασμένη αληθής τιμή για IssuerAlternativeNameExt."
+msgstr "Μη έγκυρη τιμή για το IssuerAlternativeNameExt."
 
 #: src/IssuerAlternativeNameExtension.cpp:212
 msgid "Invalid IssuerAlternativeNameExt object."
-msgstr "Λανθασμένο αντικείμενο IssuerAlternativeNameExt."
+msgstr "Μη έγκυρο αντικείμενο IssuerAlternativeNameExt."
 
 #: src/LiteralValues.cpp:127
 msgid "Unknown type."
@@ -524,72 +526,72 @@ msgstr "Άγνωστος τύπος."
 
 #: src/LocalManagement.cpp:91
 msgid "Cannot split certificate output."
-msgstr "Αδυναμία διαχωρισμού αποτελέσματος πιστοποιητικού."
+msgstr "Αδυναμία διαχωρισμού εξόδου πιστοποιητικού."
 
 #: src/LocalManagement.cpp:288 src/LocalManagement.cpp:309
 #: src/LocalManagement.cpp:328
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot create directory %s: %s."
-msgstr "Αδυναμία δημιουργίας καταλόγου %1: %2."
+msgstr "Αδυναμία δημιουργίας καταλόγου %s: %s."
 
 #: src/LocalManagement.cpp:342
-#, fuzzy, c-format
+#, c-format
 msgid "%s is not a directory."
-msgstr "Το %1 δεν είναι κατάλογος."
+msgstr "Το %s δεν είναι κατάλογος."
 
-#: src/LocalManagement.cpp:370
+#: src/LocalManagement.cpp:363
 msgid "Invalid certificate file."
-msgstr "Λανθασμένο αρχείο πιστοποιητικού."
+msgstr "Μη έγκυρο αρχείο πιστοποιητικού."
 
-#: src/LocalManagement.cpp:448
-#, fuzzy, c-format
+#: src/LocalManagement.cpp:441
+#, c-format
 msgid "File not found: %s."
-msgstr "Το αρχείο δε βρέθηκε: %1."
+msgstr "Το αρχείο δε βρέθηκε: %s."
 
-#: src/LocalManagement.cpp:457
-#, fuzzy, c-format
+#: src/LocalManagement.cpp:450
+#, c-format
 msgid "File too big: %s."
-msgstr "Το αρχείο είναι πολύ μεγάλο: %1."
+msgstr "Το αρχείο είναι πολύ μεγάλο: %s."
 
-#: src/LocalManagement.cpp:466 src/LocalManagement.cpp:520
-#, fuzzy, c-format
+#: src/LocalManagement.cpp:459 src/LocalManagement.cpp:513
+#, c-format
 msgid "Cannot open file %s."
-msgstr "Αδυναμία ανοίγματος αρχείου %1."
+msgstr "Αδυναμία ανοίγματος αρχείου %s."
 
-#: src/LocalManagement.cpp:485
-#, fuzzy, c-format
+#: src/LocalManagement.cpp:478
+#, c-format
 msgid "Cannot read from file %s."
-msgstr "Αδυναμία ανάγνωσης από το αρχείο %1."
+msgstr "Αδυναμία ανάγνωσης από το αρχείο %s."
 
-#: src/LocalManagement.cpp:510
-#, fuzzy, c-format
+#: src/LocalManagement.cpp:503
+#, c-format
 msgid "File already exists: %s."
-msgstr "Το αρχείο υπάρχει ήδη: %1."
+msgstr "Το αρχείο υπάρχει ήδη: %s."
 
-#: src/LocalManagement.cpp:530
-#, fuzzy, c-format
+#: src/LocalManagement.cpp:523
+#, c-format
 msgid "Cannot get lock on file %s."
-msgstr "Αδυναμία λήψης κλειδώματος στο αρχείο %1."
+msgstr "Αδυναμία λήψης κλειδώματος στο αρχείο %s."
 
-#: src/LocalManagement.cpp:542
-#, fuzzy, c-format
+#: src/LocalManagement.cpp:535
+#, c-format
 msgid "Cannot write to file %s."
-msgstr "Αδυναμία εγγραφής στο αρχείο %1."
+msgstr "Αδυναμία εγγραφής στο αρχείο %s."
 
 #: src/OpenSSLUtils.cpp:49
-#, fuzzy, c-format
+#, c-format
 msgid "File does not exist: %s."
-msgstr "Το αρχείο δεν υπάρχει: %1."
+msgstr "Το αρχείο δεν υπάρχει: %s."
 
 #: src/OpenSSLUtils.cpp:58
-#, fuzzy, c-format
+#, c-format
 msgid "Directory does not exist: %s."
-msgstr "Ο κατάλογος δεν υπάρχει: %1."
+msgstr "Ο κατάλογος δεν υπάρχει: %s."
 
 #: src/OpenSSLUtils.cpp:67
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid command %s."
-msgstr "Λανθασμένη εντολή %1."
+msgstr "Μη έγκυρη εντολή %s."
 
 #: src/OpenSSLUtils.cpp:124 src/OpenSSLUtils.cpp:214 src/OpenSSLUtils.cpp:313
 #: src/OpenSSLUtils.cpp:438 src/OpenSSLUtils.cpp:577 src/OpenSSLUtils.cpp:678
@@ -598,24 +600,23 @@ msgstr "Λανθασμένη εντολή %1."
 #: src/OpenSSLUtils.cpp:1259 src/OpenSSLUtils.cpp:1384
 #: src/OpenSSLUtils.cpp:1493 src/OpenSSLUtils.cpp:1651
 #: src/OpenSSLUtils.cpp:1795 src/OpenSSLUtils.cpp:2586
-#, fuzzy
 msgid "Executing openssl command failed."
-msgstr "απέτυχε."
+msgstr "Η εκτέλεση της εντολής openssl απέτυχε."
 
 #: src/OpenSSLUtils.cpp:136 src/OpenSSLUtils.cpp:227 src/OpenSSLUtils.cpp:326
 #: src/OpenSSLUtils.cpp:451 src/OpenSSLUtils.cpp:590 src/OpenSSLUtils.cpp:691
-#: src/OpenSSLUtils.cpp:777 src/OpenSSLUtils.cpp:1147
-#: src/OpenSSLUtils.cpp:1302 src/OpenSSLUtils.cpp:1412
-#: src/OpenSSLUtils.cpp:1521 src/OpenSSLUtils.cpp:1691
-#: src/OpenSSLUtils.cpp:1838 src/OpenSSLUtils.cpp:2613
-#, fuzzy, c-format
+#: src/OpenSSLUtils.cpp:777 src/OpenSSLUtils.cpp:1147 src/OpenSSLUtils.cpp:1302
+#: src/OpenSSLUtils.cpp:1412 src/OpenSSLUtils.cpp:1521
+#: src/OpenSSLUtils.cpp:1691 src/OpenSSLUtils.cpp:1838
+#: src/OpenSSLUtils.cpp:2613
+#, c-format
 msgid "openssl command failed: %s"
-msgstr "Μεταφόρτωση απέτυχε:"
+msgstr "Η εντολή openssl απέτυχε: %s"
 
 #: src/OpenSSLUtils.cpp:166 src/OpenSSLUtils.cpp:254 src/OpenSSLUtils.cpp:358
 #: src/OpenSSLUtils.cpp:477 src/OpenSSLUtils.cpp:617 src/OpenSSLUtils.cpp:714
 msgid "No valid key file specified."
-msgstr "Δεν καθορίστηκε έγκυρο κλειδί."
+msgstr "Δεν καθορίστηκε έγκυρο αρχείο κλειδιού."
 
 #: src/OpenSSLUtils.cpp:262 src/OpenSSLUtils.cpp:366
 msgid "No valid request file specified."
@@ -623,20 +624,20 @@ msgstr "Δεν καθορίστηκε έγκυρο αρχείο αίτησης."
 
 #: src/OpenSSLUtils.cpp:485 src/OpenSSLUtils.cpp:625 src/OpenSSLUtils.cpp:722
 msgid "No valid CA certificate file specified."
-msgstr "Δεν καθορίστηκε έγκυρο πιστοποιητικό αρχείο αρχής πιστοποίησης."
+msgstr "Δεν καθορίστηκε έγκυρο πιστοποιητικό αρχής πιστοποίησης."
 
 #: src/OpenSSLUtils.cpp:493 src/OpenSSLUtils.cpp:801
 msgid "No valid certificate file specified."
-msgstr "Δεν καθορίστηκε έγκυρο πιστοποιητικό αρχείο."
+msgstr "Δεν καθορίστηκε έγκυρο αρχείο πιστοποιητικού."
 
 #: src/OpenSSLUtils.cpp:809
 msgid "No valid CA directory specified."
-msgstr "Δεν καθορίστηκε έγκυρος κατάλογος της αρχής πιστοποίησης."
+msgstr "Δεν καθορίστηκε έγκυρος κατάλογος αρχής πιστοποίησης."
 
 #: src/OpenSSLUtils.cpp:963
-#, fuzzy, c-format
+#, c-format
 msgid "Showing certificate status with serial %s failed (%d)."
-msgstr "Προφολή της κατάστασης πιστοποιητικού με σειριακό %1 απέτυχε (%2)."
+msgstr "Προβολή της κατάστασης πιστοποιητικού με σειριακό %s απέτυχε (%d)."
 
 #: src/OpenSSLUtils.cpp:999
 msgid "The key file does not exist."
@@ -644,9 +645,8 @@ msgstr "Το αρχείο κλειδιού δεν υπάρχει."
 
 #: src/OpenSSLUtils.cpp:1297 src/OpenSSLUtils.cpp:1686
 #: src/OpenSSLUtils.cpp:1833
-#, fuzzy
 msgid "Invalid password."
-msgstr "Λανθασμένο συνθηματικό CA."
+msgstr "Μη έγκυρο συνθηματικό."
 
 #: src/OpenSSLUtils.cpp:1599
 msgid "The password for encrypting the output is required."
@@ -658,14 +658,14 @@ msgstr "Απαιτείται το συνθηματικό PKCS12."
 
 #: src/OpenSSLUtils.cpp:1864 src/OpenSSLUtils.cpp:2064
 #: src/OpenSSLUtils.cpp:2216
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot read directory: %s (%s) [%d]."
-msgstr "Αδυναμία ανάγνωσης καταλόγου: %1 (%2) [%3]."
+msgstr "Αδυναμία ανάγνωσης καταλόγου: %s (%s) [%d]."
 
 #: src/OpenSSLUtils.cpp:1914
-#, fuzzy, c-format
+#, c-format
 msgid "No serial number found in %s."
-msgstr "Δεν βρέθηκε σειριακός αριθμός στο %1."
+msgstr "Δεν βρέθηκε σειριακός αριθμός στο %s."
 
 #: src/OpenSSLUtils.cpp:1934
 msgid "The request already exists."
@@ -680,26 +680,26 @@ msgid "Cannot find the certificate subject."
 msgstr "Αδυναμία εύρεσης του θέματος πιστοποιητικού."
 
 #: src/OpenSSLUtils.cpp:2385
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid caName: %s."
-msgstr "Λανθασμένο caName: %1."
+msgstr "Μη έγκυρο caName: %s."
 
 #: src/OpenSSLUtils.cpp:2394
-#, fuzzy, c-format
+#, c-format
 msgid "'%s' does not exist."
-msgstr "'%1' δεν υπάρχει."
+msgstr "'%s' δεν υπάρχει."
 
 #: src/OpenSSLUtils.cpp:2404
-#, fuzzy, c-format
+#, c-format
 msgid "%s still exists."
-msgstr "%1 ακόμα υπάρχει."
+msgstr "%s υπάρχει ακόμα."
 
 #: src/OpenSSLUtils.cpp:2415 src/OpenSSLUtils.cpp:2463
 #: src/OpenSSLUtils.cpp:2477 src/OpenSSLUtils.cpp:2491
 #: src/OpenSSLUtils.cpp:2505 src/OpenSSLUtils.cpp:2519
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot create directory: %s (%s [%d])."
-msgstr "Αδυναμία δημιουργίας καταλόγου %1 (%2 [%3])."
+msgstr "Αδυναμία δημιουργίας καταλόγου: %s (%s [%d])."
 
 #: src/OpenSSLUtils.cpp:2450
 msgid "Cannot copy the configuration template."
@@ -710,25 +710,24 @@ msgid "Cannot create the file."
 msgstr "Αδυναμία δημιουργίας του αρχείου."
 
 #: src/OpenSSLUtils.cpp:2552
-#, fuzzy
 msgid "Can not open file."
-msgstr "Αδυναμία ανοίγματος αρχείου %1."
+msgstr "Αδυναμία ανοίγματος αρχείου."
 
-#: src/RequestData_Priv.cpp:408
+#: src/RequestData_Priv.cpp:392
 msgid "Cannot parse the request."
 msgstr "Αδυναμία ανάλυσης της αίτησης."
 
-#: src/RequestData_Priv.cpp:421
+#: src/RequestData_Priv.cpp:405
 msgid "Error while parsing the request."
-msgstr "Σφάλμα κατα την ανάλυση της αίτησης."
+msgstr "Σφάλμα κατά την ανάλυση της αίτησης."
 
-#: src/RequestGenerationData.cpp:252
+#: src/RequestGenerationData.cpp:236
 msgid "Invalid RequestGenerationData object."
-msgstr "Λανθασμένο αντικείμενο RequestGenerationData."
+msgstr "Μη έγκυρο αντικείμενο RequestGenerationData."
 
 #: src/StringExtensions.cpp:105 src/StringExtensions.cpp:163
 msgid "Invalid value for NsBaseUrlExt."
-msgstr "Λανθασμένη τιμή για NsBaseUrlExt."
+msgstr "Μη έγκυρη τιμή για το NsBaseUrlExt."
 
 #: src/StringExtensions.cpp:175
 msgid "NsBaseUrlExt is not present."
@@ -736,11 +735,11 @@ msgstr "Το NsBaseUrlExt δεν είναι παρών."
 
 #: src/StringExtensions.cpp:187
 msgid "Invalid NsBaseUrlExt object."
-msgstr "Λανθασμένο αντικείμενο NsBaseUrlExt."
+msgstr "Μη έγκυρο αντικείμενο NsBaseUrlExt."
 
 #: src/StringExtensions.cpp:270 src/StringExtensions.cpp:323
 msgid "Invalid value for NsRevocationUrlExt."
-msgstr "Λανθασμένη τιμή για NsRevocationUrlExt."
+msgstr "Μη έγκυρη τιμή για το NsRevocationUrlExt."
 
 #: src/StringExtensions.cpp:334
 msgid "NsRevocationUrlExt is not present."
@@ -748,11 +747,11 @@ msgstr "Το NsRevocationUrlExt δεν είναι παρών."
 
 #: src/StringExtensions.cpp:345
 msgid "Invalid NsRevocationUrlExt object."
-msgstr "Λανθασμένο αντικείμενο NsRevocationUrlExt."
+msgstr "Μη έγκυρο αντικείμενο NsRevocationUrlExt."
 
 #: src/StringExtensions.cpp:424 src/StringExtensions.cpp:477
 msgid "Invalid value for NsCaRevocationUrlExt."
-msgstr "Λανθασμένη τιμή για NsCaRevocationUrlExt."
+msgstr "Μη έγκυρη τιμή για το NsCaRevocationUrlExt."
 
 #: src/StringExtensions.cpp:488
 msgid "NsCaRevocationUrlExt is not present."
@@ -760,11 +759,11 @@ msgstr "Το NsCaRevocationUrlExt δεν είναι παρών."
 
 #: src/StringExtensions.cpp:499
 msgid "Invalid NsCaRevocationUrlExt object."
-msgstr "Λανθασμένο αντικείμενο NsCaRevocationUrlExt."
+msgstr "Μη έγκυρο αντικείμενο NsCaRevocationUrlExt."
 
 #: src/StringExtensions.cpp:577 src/StringExtensions.cpp:630
 msgid "Invalid value for NsRenewalUrlExt."
-msgstr "Λανθασμένη τιμή για NsRenewalUrlExt."
+msgstr "Μη έγκυρη τιμή για το NsRenewalUrlExt."
 
 #: src/StringExtensions.cpp:641
 msgid "NsRenewalUrlExt is not present."
@@ -772,11 +771,11 @@ msgstr "Το NsRenewalUrlExt δεν είναι παρών."
 
 #: src/StringExtensions.cpp:652
 msgid "Invalid NsRenewalUrlExt object."
-msgstr "Λανθασμένο αντικείμενο NsRenewalUrlExt."
+msgstr "Μη έγκυρο αντικείμενο NsRenewalUrlExt."
 
 #: src/StringExtensions.cpp:729 src/StringExtensions.cpp:782
 msgid "Invalid value for NsCaPolicyUrlExt."
-msgstr "Λανθασμένη τιμή για NsCaPolicyUrlExt."
+msgstr "Μη έγκυρη τιμή για το NsCaPolicyUrlExt."
 
 #: src/StringExtensions.cpp:793
 msgid "NsCaPolicyUrlExt is not present."
@@ -784,11 +783,11 @@ msgstr "Το NsCaPolicyUrlExt δεν είναι παρών."
 
 #: src/StringExtensions.cpp:804
 msgid "Invalid NsCaPolicyUrlExt object."
-msgstr "Λανθασμένο αντικείμενο NsCaPolicyUrlExt."
+msgstr "Μη έγκυρο αντικείμενο NsCaPolicyUrlExt."
 
 #: src/StringExtensions.cpp:890
 msgid "Invalid type: %1."
-msgstr "Λανθασμένος τύπος %1."
+msgstr "Μη έγκυρος τύπος: %1."
 
 #: src/StringExtensions.cpp:936
 msgid "NsSslServerNameExt is not present."
@@ -796,7 +795,7 @@ msgstr "Το NsSslServerNameExt δεν είναι παρών."
 
 #: src/StringExtensions.cpp:947
 msgid "Invalid NsSslServerNameExt object."
-msgstr "Λανθασμένο αντικείμενο NsSslServerNameExt."
+msgstr "Μη έγκυρο αντικείμενο NsSslServerNameExt."
 
 #: src/StringExtensions.cpp:1062
 msgid "NsCommentExt is not present."
@@ -804,7 +803,7 @@ msgstr "Το NsCommentExt δεν είναι παρών."
 
 #: src/StringExtensions.cpp:1073
 msgid "Invalid NsCommentExt object."
-msgstr "Λανθασμένο αντικείμενο NsCommentExt."
+msgstr "Μη έγκυρο αντικείμενο NsCommentExt."
 
 #: src/SubjectAlternativeNameExtension.cpp:179
 #: src/SubjectAlternativeNameExtension.cpp:190
@@ -813,12 +812,12 @@ msgstr "Το SubjectAlternativeNameExt δεν είναι παρών."
 
 #: src/SubjectAlternativeNameExtension.cpp:203
 msgid "Invalid SubjectAlternativeNameExt object."
-msgstr "Λανθασμένο αντικείμενο SubjectAlternativeNameExt."
+msgstr "Μη έγκυρο αντικείμενο SubjectAlternativeNameExt."
 
 #: src/SubjectKeyIdentifierExtension.cpp:123
 #: src/SubjectKeyIdentifierExtension.cpp:157
 msgid "Invalid KeyID."
-msgstr "Λανθασμένο KeyID."
+msgstr "Μη έγκυρο KeyID."
 
 #: src/SubjectKeyIdentifierExtension.cpp:170
 #: src/SubjectKeyIdentifierExtension.cpp:181
@@ -827,14 +826,14 @@ msgstr "Το SubjectKeyIdentifierExt δεν είναι παρών."
 
 #: src/SubjectKeyIdentifierExtension.cpp:194
 msgid "Invalid SubjectKeyIdentifierExt object."
-msgstr "Λανθασμένο αντικείμενο SubjectKeyIdentifierExt."
+msgstr "Μη έγκυρο αντικείμενο SubjectKeyIdentifierExt."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:392
 #: src/X509v3CertificateExtensions_Priv.cpp:449
 #: src/X509v3RequestExtensions_Priv.cpp:130
 #: src/X509v3RequestExtensions_Priv.cpp:185
 msgid "Extension occurred more than once: %1."
-msgstr "Η επέκταση εμφανίστηκε περισσότερο από μια φοα %1."
+msgstr "Η επέκταση εμφανίστηκε περισσότερο από μια φορά: %1."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:399
 #: src/X509v3CertificateExtensions_Priv.cpp:456
@@ -857,7 +856,7 @@ msgstr "Αδυναμία ανάλυσης του πιστοποιητικού (N
 #: src/X509v3RequestExtensions_Priv.cpp:374
 #: src/X509v3RequestExtensions_Priv.cpp:432
 msgid "Extension occurred more than once."
-msgstr "Η επέκταση εμφανίστηκε περισσότερο από μια φορά"
+msgstr "Η επέκταση εμφανίστηκε περισσότερο από μια φορά."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:513
 #: src/X509v3CertificateExtensions_Priv.cpp:579
@@ -877,135 +876,137 @@ msgstr "Αδυναμία ανάλυσης του πιστοποιητικού (C
 
 #: src/X509v3CertificateExtensions_Priv.cpp:937
 msgid "Invalid location in authorityInfoAccess."
-msgstr "Λανθασμένη τοποθεσία στο authorityInfoAccess."
+msgstr "Μη έγκυρη τοποθεσία στο authorityInfoAccess."
 
 #: src/X509v3CertificateIssueExtensions.cpp:170
 msgid "Invalid value for X509v3CertificateIssueExts::setNsBaseUrl."
-msgstr "Λανθασμένη τιμή για X509v3CertificateIssueExts::setNsBaseUrl."
+msgstr "Μη έγκυρη τιμή για το X509v3CertificateIssueExts::setNsBaseUrl."
 
 #: src/X509v3CertificateIssueExtensions.cpp:193
 msgid "Invalid value for X509v3CertificateIssueExts::setNsRevocationUrl."
-msgstr "Λανθασμένη τιμή για X509v3CertificateIssueExts::setNsRevocationUrl."
+msgstr "Μη έγκυρη τιμή για το X509v3CertificateIssueExts::setNsRevocationUrl."
 
 #: src/X509v3CertificateIssueExtensions.cpp:216
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCaRevocationUrl."
-msgstr "Λανθασμένη τιμή για X509v3CertificateIssueExts::setNsCaRevocationUrl."
+msgstr ""
+"Μη έγκυρη τιμή για το X509v3CertificateIssueExts::setNsCaRevocationUrl."
 
 #: src/X509v3CertificateIssueExtensions.cpp:239
 msgid "Invalid value for X509v3CertificateIssueExts::setNsRenewalUrl."
-msgstr "Λανθασμένη τιμή για X509v3CertificateIssueExts::setNsRenewalUrl."
+msgstr "Μη έγκυρη τιμή για το X509v3CertificateIssueExts::setNsRenewalUrl."
 
 #: src/X509v3CertificateIssueExtensions.cpp:262
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCaPolicyUrl."
-msgstr "Λανθασμένη τιμή για X509v3CertificateIssueExts::setNsCaPolicyUrl."
+msgstr "Μη έγκυρη τιμή για το X509v3CertificateIssueExts::setNsCaPolicyUrl."
 
 #: src/X509v3CertificateIssueExtensions.cpp:285
 msgid "Invalid value for X509v3CertificateIssueExts::setNsSslServerName."
-msgstr "Λανθασμένη τιμή για X509v3CertificateIssueExts::setNsSslServerName."
+msgstr "Μη έγκυρη τιμή για το X509v3CertificateIssueExts::setNsSslServerName."
 
 #: src/X509v3CertificateIssueExtensions.cpp:308
 msgid "Invalid value for X509v3CertificateIssueExts::setNsComment."
-msgstr "Λανθασμένη τιμή για X509v3CertificateIssueExts::setNsComment."
+msgstr "Μη έγκυρη τιμή για το X509v3CertificateIssueExts::setNsComment."
 
 #: src/X509v3CertificateIssueExtensions.cpp:331
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCertType."
-msgstr "Λανθασμένη τιμή για X509v3CertificateIssueExts::setNsCertType."
+msgstr "Μη έγκυρη τιμή για το X509v3CertificateIssueExts::setNsCertType."
 
 #: src/X509v3CertificateIssueExtensions.cpp:354
 msgid "Invalid value for X509v3CertificateIssueExts::setKeyUsage."
-msgstr "Λανθασμένη τιμή για X509v3CertificateIssueExts::setKeyUsage."
+msgstr "Μη έγκυρη τιμή για το X509v3CertificateIssueExts::setKeyUsage."
 
 #: src/X509v3CertificateIssueExtensions.cpp:377
 msgid "Invalid value for X509v3CertificateIssueExts::setBasicConstraints."
-msgstr "Λανθασμένη τιμή για X509v3CertificateIssueExts::setBasicConstraints."
+msgstr "Μη έγκυρη τιμή για το X509v3CertificateIssueExts::setBasicConstraints."
 
 #: src/X509v3CertificateIssueExtensions.cpp:400
 msgid "Invalid value for X509v3CertificateIssueExts::setExtendedKeyUsage."
-msgstr "Λανθασμένη τιμή για X509v3CertificateIssueExts::setExtendedKeyUsage."
+msgstr "Μη έγκυρη τιμή για το X509v3CertificateIssueExts::setExtendedKeyUsage."
 
 #: src/X509v3CertificateIssueExtensions.cpp:423
 msgid "Invalid value for X509v3CertificateIssueExts::setSubjectKeyIdentifier."
 msgstr ""
-"Λανθασμένη τιμή για X509v3CertificateIssueExts::setSubjectKeyIdentifier."
+"Μη έγκυρη τιμή για το X509v3CertificateIssueExts::setSubjectKeyIdentifier."
 
 #: src/X509v3CertificateIssueExtensions.cpp:446
 msgid ""
 "Invalid value for X509v3CertificateIssueExts::setAuthorityKeyIdentifier."
 msgstr ""
-"Λανθασμένη τιμή για X509v3CertificateIssueExts::setAuthorityKeyIdentifier."
+"Μη έγκυρη τιμή για το X509v3CertificateIssueExts::setAuthorityKeyIdentifier."
 
 #: src/X509v3CertificateIssueExtensions.cpp:469
 msgid ""
 "Invalid value for X509v3CertificateIssueExts::setSubjectAlternativeName."
 msgstr ""
-"Λανθασμένη τιμή για X509v3CertificateIssueExts::setSubjectAlternativeName."
+"Μη έγκυρη τιμή για το X509v3CertificateIssueExts::setSubjectAlternativeName."
 
 #: src/X509v3CertificateIssueExtensions.cpp:492
 msgid "Invalid value for X509v3CertificateIssueExts::setIssuerAlternativeName."
 msgstr ""
-"Λανθασμένη τιμή για X509v3CertificateIssueExts::setIssuerAlternativeName."
+"Μη έγκυρη τιμή για το X509v3CertificateIssueExts::setIssuerAlternativeName."
 
 #: src/X509v3CertificateIssueExtensions.cpp:515
 msgid "Invalid value for X509v3CertificateIssueExts::setAuthorityInfoAccess."
 msgstr ""
-"Λανθασμένη τιμή για X509v3CertificateIssueExts::setAuthorityInfoAccess."
+"Μη έγκυρη τιμή για το X509v3CertificateIssueExts::setAuthorityInfoAccess."
 
 #: src/X509v3CertificateIssueExtensions.cpp:538
 msgid "Invalid value for X509v3CertificateIssueExts::setCRLDistributionPoints."
 msgstr ""
-"Λανθασμένη τιμή για X509v3CertificateIssueExts::setCRLDistributionPoints."
+"Μη έγκυρη τιμή για το X509v3CertificateIssueExts::setCRLDistributionPoints."
 
 #: src/X509v3CertificateIssueExtensions.cpp:561
 msgid "Invalid value for X509v3CertificateIssueExts::setCertificatePolicies."
 msgstr ""
-"Λανθασμένη τιμή για X509v3CertificateIssueExts::setCertificatePolicies."
+"Μη έγκυρη τιμή για το X509v3CertificateIssueExts::setCertificatePolicies."
 
 #: src/X509v3CertificateIssueExtensions.cpp:585
 #: src/X509v3CRLGenerationExtensions.cpp:145
 #: src/X509v3RequestExtensions.cpp:252
 msgid "Invalid X509v3RequestExts object."
-msgstr "Λανθασμένο αντικείμενο X509v3RequestExts."
+msgstr "Μη έγκυρο αντικείμενο X509v3RequestExts."
 
 #: src/X509v3CRLGenerationExtensions.cpp:98
 msgid "Invalid value for X509v3CRLGenerationExts::setAuthorityKeyIdentifier."
 msgstr ""
-"Λανθασμένη τιμή για X509v3CRLGenerationExts::setAuthorityKeyIdentifier."
+"Μη έγκυρη τιμή για το X509v3CRLGenerationExts::setAuthorityKeyIdentifier."
 
 #: src/X509v3CRLGenerationExtensions.cpp:121
 msgid "Invalid value for X509v3CRLGenerationExts::setIssuerAlternativeName."
-msgstr "Λανθασμένη τιμή για X509v3CRLGenerationExts::setIssuerAlternativeName."
+msgstr ""
+"Μη έγκυρη τιμή για το X509v3CRLGenerationExts::setIssuerAlternativeName."
 
 #: src/X509v3RequestExtensions.cpp:67
 msgid "Invalid value for X509v3RequestExts::setNsSslServerName."
-msgstr "Λανθασμένη τιμή για X509v3RequestExts::setNsSslServerName."
+msgstr "Μη έγκυρη τιμή για το X509v3RequestExts::setNsSslServerName."
 
 #: src/X509v3RequestExtensions.cpp:90
 msgid "Invalid value for X509v3RequestExts::setNsComment."
-msgstr "Λανθασμένη τιμή για X509v3RequestExts::setNsComment."
+msgstr "Μη έγκυρη τιμή για το X509v3RequestExts::setNsComment."
 
 #: src/X509v3RequestExtensions.cpp:113
 msgid "Invalid value for X509v3RequestExts::setNsCertType."
-msgstr "Λανθασμένη τιμή για X509v3RequestExts::setNsCertType."
+msgstr "Μη έγκυρη τιμή για το X509v3RequestExts::setNsCertType."
 
 #: src/X509v3RequestExtensions.cpp:136
 msgid "Invalid value for X509v3RequestExts::setKeyUsage."
-msgstr "Λανθασμένη τιμή για X509v3RequestExts::setKeyUsage."
+msgstr "Μη έγκυρη τιμή για το X509v3RequestExts::setKeyUsage."
 
 #: src/X509v3RequestExtensions.cpp:159
 msgid "Invalid value for X509v3RequestExts::setBasicConstraints."
-msgstr "Λανθασμένη τιμή για X509v3RequestExts::setBasicConstraints."
+msgstr "Μη έγκυρη τιμή για το X509v3RequestExts::setBasicConstraints."
 
 #: src/X509v3RequestExtensions.cpp:182
 msgid "Invalid value for X509v3RequestExts::setExtendedKeyUsage."
-msgstr "Λανθασμένη τιμή για X509v3RequestExts::setExtendedKeyUsage."
+msgstr "Μη έγκυρη τιμή για το X509v3RequestExts::setExtendedKeyUsage."
 
 #: src/X509v3RequestExtensions.cpp:205
 msgid "Invalid value for X509v3RequestExts::setSubjectKeyIdentifier."
-msgstr "Λανθασμένη τιμή για X509v3RequestExts::setSubjectKeyIdentifier."
+msgstr "Μη έγκυρη τιμή για το X509v3RequestExts::setSubjectKeyIdentifier."
 
 #: src/X509v3RequestExtensions.cpp:228
 msgid "Invalid value for X509v3RequestExts::setSubjectAlternativeName."
-msgstr "Λανθασμένη τιμή για X509v3RequestExts::setSubjectAlternativeName."
+msgstr "Μη έγκυρη τιμή για το X509v3RequestExts::setSubjectAlternativeName."
 
 #~ msgid "Cannot parse date %1."
 #~ msgstr "Αδυναμία ανάλυσης ημερομηνίας %1."

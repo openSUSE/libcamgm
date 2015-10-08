@@ -1,18 +1,24 @@
-# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
-# This file is distributed under the same license as the package.
-#
+# @TITLE@
+# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
+# This file is distributed under the same license as @PACKAGE@ package. FIRST
+# moh <malham1@gmail.com>, 2011.
+# Mohammad Alhargan <malham1@hotmail.com>, 2012.
+# محمد الحرقان <malham1@gmail.com>, 2013.
 msgid ""
 msgstr ""
-"Project-Id-Version: libcamgm\n"
+"Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2015-02-07 15:13+0100\n"
-"PO-Revision-Date: 2014-07-15 11:31\n"
-"Last-Translator: Novell language <language@novell.com>\n"
-"Language-Team: Novell language <language@novell.com>\n"
-"Language: \n"
+"POT-Creation-Date: 2012-07-23 16:26+0200\n"
+"PO-Revision-Date: 2013-10-03 09:32+0300\n"
+"Last-Translator: محمد الحرقان <malham1@gmail.com>\n"
+"Language-Team: ترجمة سوزي\n"
+"Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Virtaal 0.7.1\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:104
 #: src/AuthorityInfoAccessExtension.cpp:133
@@ -39,7 +45,7 @@ msgstr "accessOID غير صالح."
 #: src/CRLDistributionPointsExtension.cpp:72
 #: src/CRLDistributionPointsExtension.cpp:162 src/DNObject.cpp:500
 #: src/ExtendedKeyUsageExt.cpp:73 src/ExtendedKeyUsageExt.cpp:225
-#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:260
+#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:244
 #: src/StringExtensions.cpp:118 src/StringExtensions.cpp:195
 #: src/StringExtensions.cpp:283 src/StringExtensions.cpp:353
 #: src/StringExtensions.cpp:437 src/StringExtensions.cpp:507
@@ -90,10 +96,10 @@ msgstr "كائن BasicConstraintsExt غير صالح."
 
 #: src/BitExtensions.cpp:107
 msgid "This BitExtension is not present."
-msgstr "BitExtension 衵ﾇ غير موجود."
+msgstr "BitExtension غير موجود."
 
 #: src/BitExtensions.cpp:130 src/BitExtensions.cpp:243
-#: src/CertificateIssueData.cpp:231 src/CRLGenerationData.cpp:158
+#: src/CertificateIssueData.cpp:215 src/CRLGenerationData.cpp:158
 #: src/DNObject.cpp:258 src/IssuerAlternativeNameExtension.cpp:220
 #, c-format
 msgid "Wrong type: %d."
@@ -151,7 +157,7 @@ msgstr "حدث خطأ أثناء إنشاء البنية الأساسية CA."
 #: src/CA.cpp:250 src/CA.cpp:1015
 #, c-format
 msgid "Cannot parse the certificate name %s."
-msgstr "لا يمكن تحليل اسم الشهادة %s."
+msgstr "تعذر تحليل اسم الشهادة %s."
 
 #: src/CA.cpp:261
 msgid "Cannot copy the private key."
@@ -168,12 +174,12 @@ msgstr "بيانات طلب غير صالحة."
 #: src/CA.cpp:323
 #, c-format
 msgid "Duplicate DN. Key %s.key already exists."
-msgstr "الاسم المميز مكرر . المفتاح %s.key موجود بالفعل."
+msgstr "اسم مميز مكرر. مفتاح %s.المفتاح موجود بالفعل."
 
 #: src/CA.cpp:331
 #, c-format
 msgid "Duplicate DN. Request %s.req already exists."
-msgstr "الاسم المميز مكرر. الطلب %s.req موجود بالفعل."
+msgstr "اسم مميز مكرر. طلب %s.طلب موجود بالفعل."
 
 #: src/CA.cpp:400
 #, c-format
@@ -186,7 +192,7 @@ msgstr "بيانات الإصدار غير صالحة."
 
 #: src/CA.cpp:423
 msgid "The CA expires before the certificate should expire."
-msgstr "تنتهي صلاحية CA قبل أن تنتهي صلاحية الشهادة."
+msgstr "تنتهي صلاحية CA قبل انتهاء صلاحية الشهادة."
 
 #: src/CA.cpp:501
 msgid "Issuing the certificate failed."
@@ -230,14 +236,16 @@ msgstr "الشهادة %s غير موجودة."
 #: src/CA.cpp:1052
 #, c-format
 msgid "Removing the certificate failed: %d."
-msgstr "فشلت عملية إزالة الشهادة: %d."
+msgstr "فشل إزالة الشهادة: %d."
 
 #: src/CA.cpp:1060
 #, c-format
 msgid ""
 "Only revoked or expired certificates can be deleted. The status of the "
 "certificate is %s."
-msgstr "يمكن فقط حذف الشهادات المبطلة أو منتهية الصلاحية. الشهادة بالحالة %s."
+msgstr ""
+"يمكن حذف الشهادات المبطلة أو ذات الصلاحية المنتهية فقط. تم تعيين حالة "
+"الشهادة على %s."
 
 #: src/CA.cpp:1072
 msgid "Database not found."
@@ -266,7 +274,7 @@ msgstr "اسم CA فارغ."
 
 #: src/CA.cpp:1288
 msgid "CA directory already exists."
-msgstr "دليل CA موجود بالفعل."
+msgstr "مجلد CA موجود بالفعل."
 
 #: src/CA.cpp:1299
 msgid "According to basicConstraints, this is not a CA."
@@ -317,34 +325,34 @@ msgstr "ملف التكوين ينقصه قيمة السياسة."
 #: src/DNObject_Priv.cpp:207
 #, c-format
 msgid "Cannot parse section %s."
-msgstr "لا يمكن تحليل المقطع %s."
+msgstr "تعذر تحليل القسم %s."
 
 #: src/CA.cpp:1721
 #, c-format
 msgid "Field %s must have a value."
-msgstr "يجب أن يحتوي الحقل %s على إحدى القيم."
+msgstr "يجب أن يحتوي الحقل %s على قيمة."
 
 #: src/CA.cpp:1760
 #, c-format
 msgid "%s must be defined."
-msgstr "يجب تحديد %s."
+msgstr "%s يجب تعريفه."
 
 #: src/CA.cpp:1845
 #, c-format
 msgid "%s must be the same in the CA certificate (%s) and the request (%s)."
-msgstr "يجب أن تتطابق القيمة %s في شهادة CA‏ (%s) والطلب (%s)."
+msgstr "%s يجب أن تتطابق في شهادة CA (%s) والطلب (%s)."
 
 #: src/CA.cpp:1857
 msgid "The configuration file seems to have an invalid policy."
-msgstr "يبدو أن ملف التكوين يحتوي على سياسة غير صالحة."
+msgstr "يبدو أن ملف الإعداد يحتوي على سياسة غير صالحة."
 
 #: src/CA.cpp:1883 src/CA.cpp:1893
 msgid "The configuration is not initialized."
-msgstr "لم تتم تهيئة التكوين."
+msgstr "لم تتم تهيئة الإعداد."
 
 #: src/CA.cpp:1901 src/DNObject.cpp:266 src/DNObject_Priv.cpp:197
 msgid "Missing section 'distinguished_name' in the configuration file."
-msgstr "القسم 'distinguished_name' في ملف التكوين مفقود."
+msgstr "القسم 'distinguished_name' في ملف الإعداد مفقود."
 
 #: src/CertificateData_Priv.cpp:92 src/CRLData_Priv.cpp:98
 #: src/CRLData_Priv.cpp:135
@@ -352,8 +360,8 @@ msgstr "القسم 'distinguished_name' في ملف التكوين مفقود."
 msgid "Invalid serial %s."
 msgstr "تسلسل غير صالح %s."
 
-#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:409
-#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:381
+#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:393
+#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:365
 msgid "Cannot create a memory BIO."
 msgstr "تعذر إنشاء ذاكرة BIO."
 
@@ -367,7 +375,7 @@ msgstr "حدث خطأ أثناء تحليل الشهادة."
 
 #: src/CertificateData_Priv.cpp:273
 msgid "Cannot parse serial."
-msgstr "تعذر تحليل الرقم المسلسل."
+msgstr "لا يمكن التحليل التسلسلي."
 
 #: src/CertificateData_Priv.cpp:341 src/RequestData_Priv.cpp:178
 msgid "Unable to get the public key."
@@ -385,13 +393,13 @@ msgstr "نوع مفتاح عام غير مدعوم."
 msgid "Unsupported public key algorithm."
 msgstr "خوارزمية مفتاح عام غير مدعومة."
 
-#: src/CertificateData_Priv.cpp:456 src/CRLData_Priv.cpp:370
-#: src/RequestData_Priv.cpp:288
+#: src/CertificateData_Priv.cpp:440 src/CRLData_Priv.cpp:354
+#: src/RequestData_Priv.cpp:272
 #, c-format
 msgid "Unsupported signature algorithm %s."
 msgstr "خوارزمية توقيع غير مدعومة %s."
 
-#: src/CertificateIssueData.cpp:223
+#: src/CertificateIssueData.cpp:207
 msgid "Invalid CertificateIssueData object."
 msgstr "كائن CertificateIssueData غير صالح."
 
@@ -407,7 +415,7 @@ msgstr "كائن UserNotice غير صالح."
 #: src/CertificatePoliciesExtension.cpp:453
 #, c-format
 msgid "Invalid value for policyIdentifier: %s."
-msgstr "قيمة غير صالحة لـ policyIdentifier: %s."
+msgstr "قيمة غير صالحة لـpolicyIdentifier: %s."
 
 #: src/CertificatePoliciesExtension.cpp:508
 msgid "Invalid CertificatePolicy object."
@@ -422,15 +430,15 @@ msgstr "CertificatePoliciesExt غير موجود."
 msgid "Invalid CertificatePoliciesExt object."
 msgstr "كائن CertificatePoliciesExt غير صالح."
 
-#: src/CRLData.cpp:232
+#: src/CRLData.cpp:220
 msgid "Entry not found."
 msgstr "لم يتم العثور على الإدخال."
 
-#: src/CRLData_Priv.cpp:437
+#: src/CRLData_Priv.cpp:421
 msgid "Cannot parse CRL."
 msgstr "تعذر تحليل CRL."
 
-#: src/CRLData_Priv.cpp:450
+#: src/CRLData_Priv.cpp:434
 msgid "Error parsing the CRL."
 msgstr "تعذر تحليل CRL."
 
@@ -471,7 +479,7 @@ msgstr "نوع غير صالح %s."
 #: src/DNObject_Priv.cpp:157
 #, c-format
 msgid "Cannot parse DN line: %s."
-msgstr "لا يمكن تحليل سطر الاسم المميز: %s."
+msgstr "تعذر تحليل خط DN: %s."
 
 #: src/ExtendedKeyUsageExt.cpp:118 src/ExtendedKeyUsageExt.cpp:167
 #, c-format
@@ -515,51 +523,51 @@ msgstr "تعذر تقسيم مخرجات الشهادة."
 #: src/LocalManagement.cpp:328
 #, c-format
 msgid "Cannot create directory %s: %s."
-msgstr "لا يمكن إنشاء الدليل %s: %s."
+msgstr "تعذر إنشاء مجلد %s: %s."
 
 #: src/LocalManagement.cpp:342
 #, c-format
 msgid "%s is not a directory."
-msgstr "لا يعتبر %s دليلًا."
+msgstr "%s لا يعتبر مجلداً."
 
-#: src/LocalManagement.cpp:370
+#: src/LocalManagement.cpp:363
 msgid "Invalid certificate file."
 msgstr "ملف شهادة غير صالح."
 
-#: src/LocalManagement.cpp:448
+#: src/LocalManagement.cpp:441
 #, c-format
 msgid "File not found: %s."
 msgstr "لم يتم العثور على الملف: %s."
 
-#: src/LocalManagement.cpp:457
+#: src/LocalManagement.cpp:450
 #, c-format
 msgid "File too big: %s."
 msgstr "الملف كبير للغاية: %s."
 
-#: src/LocalManagement.cpp:466 src/LocalManagement.cpp:520
+#: src/LocalManagement.cpp:459 src/LocalManagement.cpp:513
 #, c-format
 msgid "Cannot open file %s."
-msgstr "لا يمكن فتح الملف %s."
+msgstr "تعذر فتح الملف %s."
 
-#: src/LocalManagement.cpp:485
+#: src/LocalManagement.cpp:478
 #, c-format
 msgid "Cannot read from file %s."
-msgstr "لا يمكن القراءة من الملف %s."
+msgstr "تعذرت القراءة من الملف %s."
 
-#: src/LocalManagement.cpp:510
+#: src/LocalManagement.cpp:503
 #, c-format
 msgid "File already exists: %s."
 msgstr "الملف موجود بالفعل: %s."
 
-#: src/LocalManagement.cpp:530
+#: src/LocalManagement.cpp:523
 #, c-format
 msgid "Cannot get lock on file %s."
-msgstr "لا يمكن قفل الملف %s."
+msgstr "تعذر الحصول على قفل على الملف %s."
 
-#: src/LocalManagement.cpp:542
+#: src/LocalManagement.cpp:535
 #, c-format
 msgid "Cannot write to file %s."
-msgstr "لا يمكن الكتابة إلى الملف %s."
+msgstr "تعذرت الكتابة إلى الملف %s."
 
 #: src/OpenSSLUtils.cpp:49
 #, c-format
@@ -569,7 +577,7 @@ msgstr "الملف غير موجود: %s."
 #: src/OpenSSLUtils.cpp:58
 #, c-format
 msgid "Directory does not exist: %s."
-msgstr "الدليل غير موجود: %s."
+msgstr "المجلد غير موجود: %s."
 
 #: src/OpenSSLUtils.cpp:67
 #, c-format
@@ -584,17 +592,17 @@ msgstr "أمر غير صالح %s."
 #: src/OpenSSLUtils.cpp:1493 src/OpenSSLUtils.cpp:1651
 #: src/OpenSSLUtils.cpp:1795 src/OpenSSLUtils.cpp:2586
 msgid "Executing openssl command failed."
-msgstr "فشل تنفيذ الأمر openssl."
+msgstr "فشل تنفيذ الأمر openssl المنفذة."
 
 #: src/OpenSSLUtils.cpp:136 src/OpenSSLUtils.cpp:227 src/OpenSSLUtils.cpp:326
 #: src/OpenSSLUtils.cpp:451 src/OpenSSLUtils.cpp:590 src/OpenSSLUtils.cpp:691
-#: src/OpenSSLUtils.cpp:777 src/OpenSSLUtils.cpp:1147
-#: src/OpenSSLUtils.cpp:1302 src/OpenSSLUtils.cpp:1412
-#: src/OpenSSLUtils.cpp:1521 src/OpenSSLUtils.cpp:1691
-#: src/OpenSSLUtils.cpp:1838 src/OpenSSLUtils.cpp:2613
+#: src/OpenSSLUtils.cpp:777 src/OpenSSLUtils.cpp:1147 src/OpenSSLUtils.cpp:1302
+#: src/OpenSSLUtils.cpp:1412 src/OpenSSLUtils.cpp:1521
+#: src/OpenSSLUtils.cpp:1691 src/OpenSSLUtils.cpp:1838
+#: src/OpenSSLUtils.cpp:2613
 #, c-format
 msgid "openssl command failed: %s"
-msgstr "فشل أمر openssl: %s"
+msgstr "أمر openssl فشل : %s"
 
 #: src/OpenSSLUtils.cpp:166 src/OpenSSLUtils.cpp:254 src/OpenSSLUtils.cpp:358
 #: src/OpenSSLUtils.cpp:477 src/OpenSSLUtils.cpp:617 src/OpenSSLUtils.cpp:714
@@ -620,7 +628,7 @@ msgstr "لم يتم تحديد دليل CA صالح."
 #: src/OpenSSLUtils.cpp:963
 #, c-format
 msgid "Showing certificate status with serial %s failed (%d)."
-msgstr "فشل إظهار حالة الشهادة بالتسلسل %s (%d)."
+msgstr "فشل إظهار حالة الشهادة مع التسلسل%s (%d)."
 
 #: src/OpenSSLUtils.cpp:999
 msgid "The key file does not exist."
@@ -629,26 +637,26 @@ msgstr "ملف المفتاح غير موجود."
 #: src/OpenSSLUtils.cpp:1297 src/OpenSSLUtils.cpp:1686
 #: src/OpenSSLUtils.cpp:1833
 msgid "Invalid password."
-msgstr "كلمة السر غير صالحة."
+msgstr "كلمة المرور غير صالحة."
 
 #: src/OpenSSLUtils.cpp:1599
 msgid "The password for encrypting the output is required."
-msgstr "مطلوب كلمة السر الخاصة بتشفير المخرجات."
+msgstr "مطلوب كلمة المرور الخاصة بتشفير المخرجات."
 
 #: src/OpenSSLUtils.cpp:1746
 msgid "The PKCS12 password is required."
-msgstr "مطلوب كلمة السر PKCS12."
+msgstr "مطلوب كلمة المرور PKCS12."
 
 #: src/OpenSSLUtils.cpp:1864 src/OpenSSLUtils.cpp:2064
 #: src/OpenSSLUtils.cpp:2216
 #, c-format
 msgid "Cannot read directory: %s (%s) [%d]."
-msgstr "لا يمكن قراءة الدليل: %s (%s) [%d]."
+msgstr "تعذرت قراءة المجلد: %s (%s) [%d]."
 
 #: src/OpenSSLUtils.cpp:1914
 #, c-format
 msgid "No serial number found in %s."
-msgstr "لم يتم العثور على رقم مسلسل في %s."
+msgstr "لم يتم العثور على رقم تسلسلي في %s."
 
 #: src/OpenSSLUtils.cpp:1934
 msgid "The request already exists."
@@ -675,18 +683,18 @@ msgstr "'%s' غير موجود."
 #: src/OpenSSLUtils.cpp:2404
 #, c-format
 msgid "%s still exists."
-msgstr "لا يزال %s موجودًا."
+msgstr "%s لا يزال موجودًا."
 
 #: src/OpenSSLUtils.cpp:2415 src/OpenSSLUtils.cpp:2463
 #: src/OpenSSLUtils.cpp:2477 src/OpenSSLUtils.cpp:2491
 #: src/OpenSSLUtils.cpp:2505 src/OpenSSLUtils.cpp:2519
 #, c-format
 msgid "Cannot create directory: %s (%s [%d])."
-msgstr "لا يمكن إنشاء الدليل: %s (%s [%d])."
+msgstr "تعذر إنشاء المجلد: %s (%s [%d])."
 
 #: src/OpenSSLUtils.cpp:2450
 msgid "Cannot copy the configuration template."
-msgstr "تعذر نسخ قالب التكوين."
+msgstr "تعذر نسخ قالب الإعداد."
 
 #: src/OpenSSLUtils.cpp:2537
 msgid "Cannot create the file."
@@ -694,17 +702,17 @@ msgstr "تعذر إنشاء الملف."
 
 #: src/OpenSSLUtils.cpp:2552
 msgid "Can not open file."
-msgstr "لا يمكن فتح الملف."
+msgstr "تعذر فتح الملف."
 
-#: src/RequestData_Priv.cpp:408
+#: src/RequestData_Priv.cpp:392
 msgid "Cannot parse the request."
 msgstr "تعذر تحليل الطلب."
 
-#: src/RequestData_Priv.cpp:421
+#: src/RequestData_Priv.cpp:405
 msgid "Error while parsing the request."
 msgstr "حدث خطأ أثناء تحليل الشهادة."
 
-#: src/RequestGenerationData.cpp:252
+#: src/RequestGenerationData.cpp:236
 msgid "Invalid RequestGenerationData object."
 msgstr "كائن RequestGenerationData غير صالح."
 
@@ -984,3 +992,9 @@ msgstr "قيمة غير صالحة في X509v3RequestExts::setSubjectKeyIdentifi
 #: src/X509v3RequestExtensions.cpp:228
 msgid "Invalid value for X509v3RequestExts::setSubjectAlternativeName."
 msgstr "قيمة غير صالحة في X509v3RequestExts::setSubjectAlternativeName."
+
+#~ msgid "Cannot parse date %1."
+#~ msgstr "تعذر تحليل التاريخ %1."
+
+#~ msgid "Command returned '%1' : %2"
+#~ msgstr "نتج عن هذا الأمر '%1' : %2"

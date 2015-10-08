@@ -6,20 +6,20 @@
 #
 # Ib Larsen <i.la@tele2adsl.dk>, 2006, 2007.
 # Jan Madsen <jan.madsen.pt(a)gmail.com>, 2006.
-# Martin Schlander <mschlander@opensuse.org>, 2008.
+# Martin Schlander <mschlander@opensuse.org>, 2008, 2010, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2015-02-07 15:13+0100\n"
-"PO-Revision-Date: 2008-11-07 14:11+0100\n"
+"POT-Creation-Date: 2012-07-23 16:26+0200\n"
+"PO-Revision-Date: 2013-09-30 21:28+0200\n"
 "Last-Translator: Martin Schlander <mschlander@opensuse.org>\n"
 "Language-Team: Danish <opensuse-translation@opensuse.org>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 0.2\n"
+"X-Generator: Lokalize 1.5\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:104
@@ -47,7 +47,7 @@ msgstr "Ugyldigt accessOID."
 #: src/CRLDistributionPointsExtension.cpp:72
 #: src/CRLDistributionPointsExtension.cpp:162 src/DNObject.cpp:500
 #: src/ExtendedKeyUsageExt.cpp:73 src/ExtendedKeyUsageExt.cpp:225
-#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:260
+#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:244
 #: src/StringExtensions.cpp:118 src/StringExtensions.cpp:195
 #: src/StringExtensions.cpp:283 src/StringExtensions.cpp:353
 #: src/StringExtensions.cpp:437 src/StringExtensions.cpp:507
@@ -101,11 +101,11 @@ msgid "This BitExtension is not present."
 msgstr "Denne BitExtension findes ikke."
 
 #: src/BitExtensions.cpp:130 src/BitExtensions.cpp:243
-#: src/CertificateIssueData.cpp:231 src/CRLGenerationData.cpp:158
+#: src/CertificateIssueData.cpp:215 src/CRLGenerationData.cpp:158
 #: src/DNObject.cpp:258 src/IssuerAlternativeNameExtension.cpp:220
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong type: %d."
-msgstr "Forkert type: %1."
+msgstr "Forkert type: %d."
 
 #: src/BitExtensions.cpp:170 src/BitExtensions.cpp:199
 msgid "Invalid value for keyUsage."
@@ -144,9 +144,9 @@ msgid "Empty CA name."
 msgstr "Tomt CA-navn."
 
 #: src/CA.cpp:174
-#, fuzzy, c-format
+#, c-format
 msgid "Template does not exist: %s."
-msgstr "Skabelon findes ikke: %1."
+msgstr "Skabelon findes ikke: %s."
 
 #: src/CA.cpp:186 src/CA.cpp:1543
 msgid "Invalid CA password."
@@ -157,9 +157,9 @@ msgid "Error while creating the CA infrastructure."
 msgstr "Fejl under oprettelse af CA-infrastrukturen."
 
 #: src/CA.cpp:250 src/CA.cpp:1015
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot parse the certificate name %s."
-msgstr "Kan ikke fortolke certifikatnavnet %1."
+msgstr "Kan ikke fortolke certifikatnavnet %s."
 
 #: src/CA.cpp:261
 msgid "Cannot copy the private key."
@@ -171,22 +171,22 @@ msgstr "Kan ikke kopiere certifikatet."
 
 #: src/CA.cpp:304
 msgid "Invalid request data."
-msgstr "Ugyldig efterspørgselsdata."
+msgstr "Ugyldige forespørgselsdata."
 
 #: src/CA.cpp:323
-#, fuzzy, c-format
+#, c-format
 msgid "Duplicate DN. Key %s.key already exists."
-msgstr "Duplikeret DN. Nøglen %1.key findes allerede."
+msgstr "Duplikeret DN. Nøglen %s.key findes allerede."
 
 #: src/CA.cpp:331
-#, fuzzy, c-format
+#, c-format
 msgid "Duplicate DN. Request %s.req already exists."
-msgstr "Duplikeret DN. Efterspørgsel %1.req findes allerede."
+msgstr "Duplikeret DN. Forespørgslen %s.req findes allerede."
 
 #: src/CA.cpp:400
-#, fuzzy, c-format
+#, c-format
 msgid "Request does not exist (%s)."
-msgstr "Efterspørgsel findes ikke (%1)."
+msgstr "Forespørgslen findes ikke (%s)."
 
 #: src/CA.cpp:406
 msgid "Invalid issue data."
@@ -201,9 +201,9 @@ msgid "Issuing the certificate failed."
 msgstr "Udstedelse af certifikat fejlede."
 
 #: src/CA.cpp:518
-#, fuzzy, c-format
+#, c-format
 msgid "File %s not found in the repository."
-msgstr "Filen %1 blev ikke fundet i depotet."
+msgstr "Filen %s blev ikke fundet i depotet."
 
 #: src/CA.cpp:525 src/CRLData_Priv.cpp:153
 msgid "Invalid CRL reason."
@@ -215,39 +215,39 @@ msgstr "Ugyldig CRL-data."
 
 #: src/CA.cpp:594
 msgid "Duplicate DN. Request already exists."
-msgstr "Duplikeret DN. Efterspørgsel findes allerede."
+msgstr "Duplikeret DN. Forespørglen findes allerede."
 
 #: src/CA.cpp:859 src/CA.cpp:886 src/CA.cpp:916 src/OpenSSLUtils.cpp:988
 msgid "Cannot parse the certificate name."
 msgstr "Kan ikke fortolke certifikatnavnet."
 
 #: src/CA.cpp:967
-#, fuzzy, c-format
+#, c-format
 msgid "Request %s does not exist."
-msgstr "Efterspørgsel %1 findes ikke."
+msgstr "Forespørgslen %s findes ikke."
 
 #: src/CA.cpp:989
 msgid "Removing the request failed (%1)."
-msgstr "Fjernelse af efterspørgsel fejlede (%1)."
+msgstr "Fjernelse af forespørgslen mislykkedes (%1)."
 
 #: src/CA.cpp:1003
-#, fuzzy, c-format
+#, c-format
 msgid "Certificate %s does not exist."
-msgstr "Certifikat %1 findes ikke."
+msgstr "Certifikat %s findes ikke."
 
 #: src/CA.cpp:1052
-#, fuzzy, c-format
+#, c-format
 msgid "Removing the certificate failed: %d."
-msgstr "Fjernelse af certifikat fejlede. %1."
+msgstr "Fjernelse af certifikat fejlede. %d."
 
 #: src/CA.cpp:1060
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Only revoked or expired certificates can be deleted. The status of the "
 "certificate is %s."
 msgstr ""
 "Kun tilbagekaldte eller udløbne certifikater kan slettes. Status på "
-"certifikatet er %1."
+"certifikatet er %s."
 
 #: src/CA.cpp:1072
 msgid "Database not found."
@@ -258,13 +258,13 @@ msgid "Certificate does not exist."
 msgstr "Certifikat findes ikke."
 
 #: src/CA.cpp:1112
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid purpose %s."
-msgstr "Ugyldigt formål %1."
+msgstr "Ugyldigt formål %s."
 
 #: src/CA.cpp:1155
 msgid "Invalid CA request data."
-msgstr "Ugyldig CA efterspørgselsdata."
+msgstr "Ugyldig CA-forespørgselsdata."
 
 #: src/CA.cpp:1161
 msgid "Invalid CA issue data."
@@ -303,9 +303,9 @@ msgid "Error during write defaults."
 msgstr "Fejl under skriv standardindstillinger."
 
 #: src/CA.cpp:1532
-#, fuzzy, c-format
+#, c-format
 msgid "CA name does not exist (%s)."
-msgstr "CA-navn eksisterer ikke (%1)."
+msgstr "CA-navn eksisterer ikke (%s)."
 
 #: src/CA.cpp:1563
 msgid ""
@@ -325,24 +325,24 @@ msgstr "Konfigurationsfilen mangler en værdi for retningslinjer."
 
 #: src/CA.cpp:1649 src/CA.cpp:1911 src/DNObject.cpp:277
 #: src/DNObject_Priv.cpp:207
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot parse section %s."
-msgstr "Kunne ikke fortolke afsnit %1."
+msgstr "Kunne ikke fortolke afsnit %s."
 
 #: src/CA.cpp:1721
-#, fuzzy, c-format
+#, c-format
 msgid "Field %s must have a value."
-msgstr "Feltet %1 skal have en værdi."
+msgstr "Feltet %s skal have en værdi."
 
 #: src/CA.cpp:1760
-#, fuzzy, c-format
+#, c-format
 msgid "%s must be defined."
-msgstr "%1 skal angives."
+msgstr "%s skal angives."
 
 #: src/CA.cpp:1845
-#, fuzzy, c-format
+#, c-format
 msgid "%s must be the same in the CA certificate (%s) and the request (%s)."
-msgstr "%1 skal være det samme i CA-certifikat (%2) og efterspørgsel (%3)."
+msgstr "%s skal være det samme i CA-certifikat (%s) og forespørgslen (%s)."
 
 #: src/CA.cpp:1857
 msgid "The configuration file seems to have an invalid policy."
@@ -359,12 +359,12 @@ msgstr "Mangler afsnit 'distinguished_name' i konfigurationsfilen."
 
 #: src/CertificateData_Priv.cpp:92 src/CRLData_Priv.cpp:98
 #: src/CRLData_Priv.cpp:135
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid serial %s."
-msgstr "Ugyldigt serienummer %1."
+msgstr "Ugyldigt serienummer %s."
 
-#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:409
-#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:381
+#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:393
+#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:365
 msgid "Cannot create a memory BIO."
 msgstr "Kan ikke oprette en hukommelses-BIO."
 
@@ -396,13 +396,13 @@ msgstr "Ikke-understøttet type af offentlig nøgle."
 msgid "Unsupported public key algorithm."
 msgstr "Ikke understøttet algoritme for offentlig-nøgle."
 
-#: src/CertificateData_Priv.cpp:456 src/CRLData_Priv.cpp:370
-#: src/RequestData_Priv.cpp:288
-#, fuzzy, c-format
+#: src/CertificateData_Priv.cpp:440 src/CRLData_Priv.cpp:354
+#: src/RequestData_Priv.cpp:272
+#, c-format
 msgid "Unsupported signature algorithm %s."
-msgstr "Ikke understøttet signatur-algoritme %1."
+msgstr "Ikke understøttet signatur-algoritme %s."
 
-#: src/CertificateIssueData.cpp:223
+#: src/CertificateIssueData.cpp:207
 msgid "Invalid CertificateIssueData object."
 msgstr "Ugyldigt CertificateIssueData-emne."
 
@@ -416,9 +416,9 @@ msgstr "Ugyldigt UserNotice-emne."
 
 #: src/CertificatePoliciesExtension.cpp:389
 #: src/CertificatePoliciesExtension.cpp:453
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid value for policyIdentifier: %s."
-msgstr "Ugyldig værdi for policyIdentifier: %1."
+msgstr "Ugyldig værdi for policyIdentifier: %s."
 
 #: src/CertificatePoliciesExtension.cpp:508
 msgid "Invalid CertificatePolicy object."
@@ -433,15 +433,15 @@ msgstr "CertificatePoliciesExt findes ikke."
 msgid "Invalid CertificatePoliciesExt object."
 msgstr "Ugyldigt CertificatePoliciesExt-objekt."
 
-#: src/CRLData.cpp:232
+#: src/CRLData.cpp:220
 msgid "Entry not found."
 msgstr "Indgangen ikke fundet."
 
-#: src/CRLData_Priv.cpp:437
+#: src/CRLData_Priv.cpp:421
 msgid "Cannot parse CRL."
 msgstr "Kan ikke fortolke CRL."
 
-#: src/CRLData_Priv.cpp:450
+#: src/CRLData_Priv.cpp:434
 msgid "Error parsing the CRL."
 msgstr "Fejl under fortolkning af CRL."
 
@@ -458,9 +458,9 @@ msgid "Invalid CRLGenerationData object."
 msgstr "Ugyldig CRLGenerationData-objekt."
 
 #: src/CRLReason.cpp:96 src/CRLReason.cpp:132
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid revoke reason %s."
-msgstr "Ugyldig tilbagekaldelsesårsag %1."
+msgstr "Ugyldig tilbagekaldelsesårsag %s."
 
 #: src/CRLReason.cpp:170
 msgid "Reason is not certificateHold."
@@ -475,19 +475,19 @@ msgid "Reason is not CACompromise."
 msgstr "Årsag er ikke CACompromise."
 
 #: src/DNObject.cpp:100
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid type %s."
-msgstr "Ugyldig type %1."
+msgstr "Ugyldig type %s."
 
 #: src/DNObject_Priv.cpp:157
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot parse DN line: %s."
-msgstr "DN-linjen kan ikke fortolkes: %1."
+msgstr "DN-linjen kan ikke fortolkes: %s."
 
 #: src/ExtendedKeyUsageExt.cpp:118 src/ExtendedKeyUsageExt.cpp:167
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid ExtendedKeyUsage option %s."
-msgstr "Ugyldig ExtendedKeyUsage-valgmulighed %1."
+msgstr "Ugyldigt ExtendedKeyUsage-tilvalg %s."
 
 #: src/ExtendedKeyUsageExt.cpp:126 src/ExtendedKeyUsageExt.cpp:175
 msgid "Invalid ExtendedKeyUsageExt."
@@ -524,68 +524,68 @@ msgstr "kan ikke opdele certifikatuddata."
 
 #: src/LocalManagement.cpp:288 src/LocalManagement.cpp:309
 #: src/LocalManagement.cpp:328
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot create directory %s: %s."
-msgstr "Kan ikke oprette mappe %1: %2."
+msgstr "Kan ikke oprette mappe %s: %s."
 
 #: src/LocalManagement.cpp:342
-#, fuzzy, c-format
+#, c-format
 msgid "%s is not a directory."
-msgstr "%1 er ikke en mappe."
+msgstr "%s er ikke en mappe."
 
-#: src/LocalManagement.cpp:370
+#: src/LocalManagement.cpp:363
 msgid "Invalid certificate file."
 msgstr "Ugyldig certifikatfil."
 
-#: src/LocalManagement.cpp:448
-#, fuzzy, c-format
+#: src/LocalManagement.cpp:441
+#, c-format
 msgid "File not found: %s."
-msgstr "Filen blev ikke fundet: %1."
+msgstr "Filen blev ikke fundet: %s."
 
-#: src/LocalManagement.cpp:457
-#, fuzzy, c-format
+#: src/LocalManagement.cpp:450
+#, c-format
 msgid "File too big: %s."
-msgstr "Filen er for stor: %1."
+msgstr "Filen er for stor: %s."
 
-#: src/LocalManagement.cpp:466 src/LocalManagement.cpp:520
-#, fuzzy, c-format
+#: src/LocalManagement.cpp:459 src/LocalManagement.cpp:513
+#, c-format
 msgid "Cannot open file %s."
-msgstr "Kan ikke åbne filen %1."
+msgstr "Kan ikke åbne filen %s."
 
-#: src/LocalManagement.cpp:485
-#, fuzzy, c-format
+#: src/LocalManagement.cpp:478
+#, c-format
 msgid "Cannot read from file %s."
-msgstr "kan ikke læse fra fil %1."
+msgstr "kan ikke læse fra fil %s."
 
-#: src/LocalManagement.cpp:510
-#, fuzzy, c-format
+#: src/LocalManagement.cpp:503
+#, c-format
 msgid "File already exists: %s."
-msgstr "Filen eksisterer allerede: %1."
+msgstr "Filen eksisterer allerede: %s."
 
-#: src/LocalManagement.cpp:530
-#, fuzzy, c-format
+#: src/LocalManagement.cpp:523
+#, c-format
 msgid "Cannot get lock on file %s."
-msgstr "Kan ikke hente lås på fil %1."
+msgstr "Kan ikke hente lås på fil %s."
 
-#: src/LocalManagement.cpp:542
-#, fuzzy, c-format
+#: src/LocalManagement.cpp:535
+#, c-format
 msgid "Cannot write to file %s."
-msgstr "Kan ikke skrive til fil %1."
+msgstr "Kan ikke skrive til fil %s."
 
 #: src/OpenSSLUtils.cpp:49
-#, fuzzy, c-format
+#, c-format
 msgid "File does not exist: %s."
-msgstr "Filen findes ikke: %1."
+msgstr "Filen findes ikke: %s."
 
 #: src/OpenSSLUtils.cpp:58
-#, fuzzy, c-format
+#, c-format
 msgid "Directory does not exist: %s."
-msgstr "Mappen findes ikke: %1."
+msgstr "Mappen findes ikke: %s."
 
 #: src/OpenSSLUtils.cpp:67
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid command %s."
-msgstr "Ugyldig kommando %1."
+msgstr "Ugyldig kommando %s."
 
 #: src/OpenSSLUtils.cpp:124 src/OpenSSLUtils.cpp:214 src/OpenSSLUtils.cpp:313
 #: src/OpenSSLUtils.cpp:438 src/OpenSSLUtils.cpp:577 src/OpenSSLUtils.cpp:678
@@ -599,13 +599,13 @@ msgstr "Kørsel af openssl-kommando fejlede."
 
 #: src/OpenSSLUtils.cpp:136 src/OpenSSLUtils.cpp:227 src/OpenSSLUtils.cpp:326
 #: src/OpenSSLUtils.cpp:451 src/OpenSSLUtils.cpp:590 src/OpenSSLUtils.cpp:691
-#: src/OpenSSLUtils.cpp:777 src/OpenSSLUtils.cpp:1147
-#: src/OpenSSLUtils.cpp:1302 src/OpenSSLUtils.cpp:1412
-#: src/OpenSSLUtils.cpp:1521 src/OpenSSLUtils.cpp:1691
-#: src/OpenSSLUtils.cpp:1838 src/OpenSSLUtils.cpp:2613
-#, fuzzy, c-format
+#: src/OpenSSLUtils.cpp:777 src/OpenSSLUtils.cpp:1147 src/OpenSSLUtils.cpp:1302
+#: src/OpenSSLUtils.cpp:1412 src/OpenSSLUtils.cpp:1521
+#: src/OpenSSLUtils.cpp:1691 src/OpenSSLUtils.cpp:1838
+#: src/OpenSSLUtils.cpp:2613
+#, c-format
 msgid "openssl command failed: %s"
-msgstr "openssl-kommando fejlede: %1"
+msgstr "openssl-kommando fejlede: %s"
 
 #: src/OpenSSLUtils.cpp:166 src/OpenSSLUtils.cpp:254 src/OpenSSLUtils.cpp:358
 #: src/OpenSSLUtils.cpp:477 src/OpenSSLUtils.cpp:617 src/OpenSSLUtils.cpp:714
@@ -614,7 +614,7 @@ msgstr "Der er ikke angivet en gyldig nøglefil."
 
 #: src/OpenSSLUtils.cpp:262 src/OpenSSLUtils.cpp:366
 msgid "No valid request file specified."
-msgstr "Der er ikke angivet en gyldig efterspørgselsfil."
+msgstr "Der er ikke angivet en gyldig forespørgselsfil."
 
 #: src/OpenSSLUtils.cpp:485 src/OpenSSLUtils.cpp:625 src/OpenSSLUtils.cpp:722
 msgid "No valid CA certificate file specified."
@@ -629,9 +629,9 @@ msgid "No valid CA directory specified."
 msgstr "Der er ikke angivet en gyldig CA-mappe."
 
 #: src/OpenSSLUtils.cpp:963
-#, fuzzy, c-format
+#, c-format
 msgid "Showing certificate status with serial %s failed (%d)."
-msgstr "At vise certifikatstatus med serienummer %1 fejlede (%2)."
+msgstr "At vise certifikatstatus med serienummer %s fejlede (%d)."
 
 #: src/OpenSSLUtils.cpp:999
 msgid "The key file does not exist."
@@ -652,48 +652,48 @@ msgstr "PKCS12-adgangskoden er påkrævet."
 
 #: src/OpenSSLUtils.cpp:1864 src/OpenSSLUtils.cpp:2064
 #: src/OpenSSLUtils.cpp:2216
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot read directory: %s (%s) [%d]."
-msgstr "Bibliotek kan ikke læses: %1 (%2) [%3]."
+msgstr "Bibliotek kan ikke læses: %s (%s) [%d]."
 
 #: src/OpenSSLUtils.cpp:1914
-#, fuzzy, c-format
+#, c-format
 msgid "No serial number found in %s."
-msgstr "Der blev ikke fundet et serienummer i %1."
+msgstr "Der blev ikke fundet et serienummer i %s."
 
 #: src/OpenSSLUtils.cpp:1934
 msgid "The request already exists."
-msgstr "Anmodningen eksisterer allerede."
+msgstr "Forespørgslen findes allerede."
 
 #: src/OpenSSLUtils.cpp:2125
 msgid "Cannot find the request subject."
-msgstr "Anmodningens emne blev ikke fundet."
+msgstr "Forespørgslens emne blev ikke fundet."
 
 #: src/OpenSSLUtils.cpp:2286
 msgid "Cannot find the certificate subject."
 msgstr "Certifikatemnet blev ikke fundet."
 
 #: src/OpenSSLUtils.cpp:2385
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid caName: %s."
-msgstr "caName er ugyldigt: %1."
+msgstr "caName er ugyldigt: %s."
 
 #: src/OpenSSLUtils.cpp:2394
-#, fuzzy, c-format
+#, c-format
 msgid "'%s' does not exist."
-msgstr "'%1' findes ikke."
+msgstr "\"%s\" findes ikke."
 
 #: src/OpenSSLUtils.cpp:2404
-#, fuzzy, c-format
+#, c-format
 msgid "%s still exists."
-msgstr "%1 findes stadig."
+msgstr "%s findes stadig."
 
 #: src/OpenSSLUtils.cpp:2415 src/OpenSSLUtils.cpp:2463
 #: src/OpenSSLUtils.cpp:2477 src/OpenSSLUtils.cpp:2491
 #: src/OpenSSLUtils.cpp:2505 src/OpenSSLUtils.cpp:2519
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot create directory: %s (%s [%d])."
-msgstr "Biblioteket kan ikke oprettes: %1 (%2 [%3])."
+msgstr "Biblioteket kan ikke oprettes: %s (%s [%d])."
 
 #: src/OpenSSLUtils.cpp:2450
 msgid "Cannot copy the configuration template."
@@ -704,19 +704,18 @@ msgid "Cannot create the file."
 msgstr "Filen kan ikke oprettes."
 
 #: src/OpenSSLUtils.cpp:2552
-#, fuzzy
 msgid "Can not open file."
-msgstr "Kan ikke åbne filen %1."
+msgstr "Kan ikke åbne filen."
 
-#: src/RequestData_Priv.cpp:408
+#: src/RequestData_Priv.cpp:392
 msgid "Cannot parse the request."
-msgstr "Anmodningen kan ikke fortolkes."
+msgstr "Forespørgslen kan ikke fortolkes."
 
-#: src/RequestData_Priv.cpp:421
+#: src/RequestData_Priv.cpp:405
 msgid "Error while parsing the request."
-msgstr "Fejl under fortolkning af anmodningen."
+msgstr "Fejl under fortolkning af forespørgslen."
 
-#: src/RequestGenerationData.cpp:252
+#: src/RequestGenerationData.cpp:236
 msgid "Invalid RequestGenerationData object."
 msgstr "Ugyldigt RequestGenerationData-objekt."
 

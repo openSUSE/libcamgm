@@ -1,18 +1,26 @@
-# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
-# This file is distributed under the same license as the package.
+# translation of limal-ca-mgm.po to
+# translation of limal-ca-mgm.hu.po to
+# @TITLE@
+# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
 #
+# This file is distributed under the same license as @PACKAGE@ package. FIRST
+#
+# Kalman Kemenczy <kkemenczy@novell.com>, 2006, 2007, 2008.
+# Gabor Kelemen <kelemeng@gnome.hu>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: libcamgm\n"
+"Project-Id-Version: limal-ca-mgm.hu\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2015-02-07 15:13+0100\n"
-"PO-Revision-Date: 2014-07-23 16:46\n"
-"Last-Translator: Novell language <language@novell.com>\n"
-"Language-Team: Novell language <language@novell.com>\n"
+"POT-Creation-Date: 2012-07-23 16:26+0200\n"
+"PO-Revision-Date: 2008-11-08 11:43+0100\n"
+"Last-Translator: Kalman Kemenczy <kkemenczy@novell.com>\n"
+"Language-Team: <hu@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:104
 #: src/AuthorityInfoAccessExtension.cpp:133
@@ -39,7 +47,7 @@ msgstr "Érvénytelen accessOID."
 #: src/CRLDistributionPointsExtension.cpp:72
 #: src/CRLDistributionPointsExtension.cpp:162 src/DNObject.cpp:500
 #: src/ExtendedKeyUsageExt.cpp:73 src/ExtendedKeyUsageExt.cpp:225
-#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:260
+#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:244
 #: src/StringExtensions.cpp:118 src/StringExtensions.cpp:195
 #: src/StringExtensions.cpp:283 src/StringExtensions.cpp:353
 #: src/StringExtensions.cpp:437 src/StringExtensions.cpp:507
@@ -310,6 +318,9 @@ msgstr ""
 msgid "Deleting the CA failed: %1."
 msgstr "A CA törlése sikertelen: %1."
 
+# modules/dialup/dialup.ycp:231 modules/dialup/dialup.ycp:246
+# modules/dialup/dialup.ycp:259
+# menuentries/menuentry_lan_sendmail.ycp:14
 #: src/CA.cpp:1639
 msgid "The configuration file is missing a value for policy."
 msgstr "A konfigurációs fájl nem tartalmazza a szükséges értékeket."
@@ -353,8 +364,8 @@ msgstr "A konfigurációs fájlban hiányzik a 'distinguished_name' rész."
 msgid "Invalid serial %s."
 msgstr "Érvénytelen sorozatszám: %s."
 
-#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:409
-#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:381
+#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:393
+#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:365
 msgid "Cannot create a memory BIO."
 msgstr "A memory BIO létrehozása sikertelen."
 
@@ -392,7 +403,7 @@ msgstr "Nem támogatott nyilvános kulcs algoritmus."
 msgid "Unsupported signature algorithm %s."
 msgstr "Nem támogatott aláírási algoritmus: %s."
 
-#: src/CertificateIssueData.cpp:223
+#: src/CertificateIssueData.cpp:207
 msgid "Invalid CertificateIssueData object."
 msgstr "Érvénytelen CertificateIssueData objektum."
 
@@ -423,15 +434,15 @@ msgstr "Nincs CertificatePoliciesExt."
 msgid "Invalid CertificatePoliciesExt object."
 msgstr "Érvénytelen CertificatePoliciesExt objektum."
 
-#: src/CRLData.cpp:232
+#: src/CRLData.cpp:220
 msgid "Entry not found."
 msgstr "A bejegyzés nem található."
 
-#: src/CRLData_Priv.cpp:437
+#: src/CRLData_Priv.cpp:421
 msgid "Cannot parse CRL."
 msgstr "A CRL feldolgozása sikertelen."
 
-#: src/CRLData_Priv.cpp:450
+#: src/CRLData_Priv.cpp:434
 msgid "Error parsing the CRL."
 msgstr "A CRL feldolgozása hibás."
 
@@ -523,7 +534,7 @@ msgstr "A(z) %s könyvtár létrehozása sikertelen: %s."
 msgid "%s is not a directory."
 msgstr "A(z) %s nem könyvtár."
 
-#: src/LocalManagement.cpp:370
+#: src/LocalManagement.cpp:363
 msgid "Invalid certificate file."
 msgstr "Érvénytelen tanúsítvány."
 
@@ -577,6 +588,7 @@ msgstr "Nem létező könyvtár: %s."
 msgid "Invalid command %s."
 msgstr "Érvénytelen parancs: %s."
 
+# 27559 AttribValues/label
 #: src/OpenSSLUtils.cpp:124 src/OpenSSLUtils.cpp:214 src/OpenSSLUtils.cpp:313
 #: src/OpenSSLUtils.cpp:438 src/OpenSSLUtils.cpp:577 src/OpenSSLUtils.cpp:678
 #: src/OpenSSLUtils.cpp:761 src/OpenSSLUtils.cpp:852 src/OpenSSLUtils.cpp:933
@@ -589,10 +601,10 @@ msgstr "Az openssl parancs végrehajtása sikertelen."
 
 #: src/OpenSSLUtils.cpp:136 src/OpenSSLUtils.cpp:227 src/OpenSSLUtils.cpp:326
 #: src/OpenSSLUtils.cpp:451 src/OpenSSLUtils.cpp:590 src/OpenSSLUtils.cpp:691
-#: src/OpenSSLUtils.cpp:777 src/OpenSSLUtils.cpp:1147
-#: src/OpenSSLUtils.cpp:1302 src/OpenSSLUtils.cpp:1412
-#: src/OpenSSLUtils.cpp:1521 src/OpenSSLUtils.cpp:1691
-#: src/OpenSSLUtils.cpp:1838 src/OpenSSLUtils.cpp:2613
+#: src/OpenSSLUtils.cpp:777 src/OpenSSLUtils.cpp:1147 src/OpenSSLUtils.cpp:1302
+#: src/OpenSSLUtils.cpp:1412 src/OpenSSLUtils.cpp:1521
+#: src/OpenSSLUtils.cpp:1691 src/OpenSSLUtils.cpp:1838
+#: src/OpenSSLUtils.cpp:2613
 #, c-format
 msgid "openssl command failed: %s"
 msgstr "Sikertelen openssl parancs: %s"
@@ -686,6 +698,7 @@ msgstr "A(z) %s továbbra is létezik."
 msgid "Cannot create directory: %s (%s [%d])."
 msgstr "A könyvtár létrehozása sikertelen: %s (%s [%d])."
 
+# /tmp/xapi:49
 #: src/OpenSSLUtils.cpp:2450
 msgid "Cannot copy the configuration template."
 msgstr "A konfigurációs sablon nem másolható."
@@ -698,15 +711,15 @@ msgstr "Nem hozható létre a fájl."
 msgid "Can not open file."
 msgstr "A fájl megnyitása sikertelen."
 
-#: src/RequestData_Priv.cpp:408
+#: src/RequestData_Priv.cpp:392
 msgid "Cannot parse the request."
 msgstr "A kérés feldolgozása sikertelen."
 
-#: src/RequestData_Priv.cpp:421
+#: src/RequestData_Priv.cpp:405
 msgid "Error while parsing the request."
 msgstr "Hiba a kérés feldolgozása során."
 
-#: src/RequestGenerationData.cpp:252
+#: src/RequestGenerationData.cpp:236
 msgid "Invalid RequestGenerationData object."
 msgstr "Érvénytelen RequestGenerationData objektum."
 
@@ -987,3 +1000,6 @@ msgstr "Érvénytelen érték: X509v3RequestExts::setSubjectKeyIdentifier."
 #: src/X509v3RequestExtensions.cpp:228
 msgid "Invalid value for X509v3RequestExts::setSubjectAlternativeName."
 msgstr "Érvénytelen érték: X509v3RequestExts::setSubjectAlternativeName."
+
+#~ msgid "Cannot parse date %1."
+#~ msgstr "A dátum feldolgozása sikertelen: %1."

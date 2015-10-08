@@ -1,18 +1,22 @@
+# translation of limal-ca-mgm.po to Chinese Traditional
+# translation of limal-ca-mgm.po to
 # Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
 # This file is distributed under the same license as the package.
 #
+# swyear <swyear@gmail.com>, 2008, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: libcamgm\n"
+"Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2015-02-07 15:13+0100\n"
-"PO-Revision-Date: 2014-07-15 11:28\n"
-"Last-Translator: Novell language <language@novell.com>\n"
-"Language-Team: Novell language <language@novell.com>\n"
+"POT-Creation-Date: 2012-07-23 16:26+0200\n"
+"PO-Revision-Date: 2009-09-18 17:28+0800\n"
+"Last-Translator: swyear <swyear@gmail.com>\n"
+"Language-Team: Chinese Traditional <zh@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:104
 #: src/AuthorityInfoAccessExtension.cpp:133
@@ -39,7 +43,7 @@ msgstr "無效的 accessOID。"
 #: src/CRLDistributionPointsExtension.cpp:72
 #: src/CRLDistributionPointsExtension.cpp:162 src/DNObject.cpp:500
 #: src/ExtendedKeyUsageExt.cpp:73 src/ExtendedKeyUsageExt.cpp:225
-#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:260
+#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:244
 #: src/StringExtensions.cpp:118 src/StringExtensions.cpp:195
 #: src/StringExtensions.cpp:283 src/StringExtensions.cpp:353
 #: src/StringExtensions.cpp:437 src/StringExtensions.cpp:507
@@ -129,7 +133,7 @@ msgstr "無效的 NsCertTypeExt 物件。"
 
 #: src/CA.cpp:96
 msgid "Template not initialized."
-msgstr "範本未啟始化。"
+msgstr "範本未初始化。"
 
 #: src/CA.cpp:166 src/CA.cpp:1522
 msgid "Empty CA name."
@@ -159,7 +163,7 @@ msgstr "無法複製金鑰。"
 
 #: src/CA.cpp:272
 msgid "Cannot copy the certificate."
-msgstr "無法複製證書。"
+msgstr "無法複製憑證。"
 
 #: src/CA.cpp:304
 msgid "Invalid request data."
@@ -186,11 +190,11 @@ msgstr "無效的問題資料。"
 
 #: src/CA.cpp:423
 msgid "The CA expires before the certificate should expire."
-msgstr "CA 在證書過期前過期。"
+msgstr "CA 在憑證過期前過期。"
 
 #: src/CA.cpp:501
 msgid "Issuing the certificate failed."
-msgstr "發出證書失敗。"
+msgstr "發出憑證失敗。"
 
 #: src/CA.cpp:518
 #, c-format
@@ -211,7 +215,7 @@ msgstr "重複的 DN. 要求已存在。"
 
 #: src/CA.cpp:859 src/CA.cpp:886 src/CA.cpp:916 src/OpenSSLUtils.cpp:988
 msgid "Cannot parse the certificate name."
-msgstr "無法剖析證書名稱。"
+msgstr "無法剖析憑證名稱。"
 
 #: src/CA.cpp:967
 #, c-format
@@ -245,7 +249,7 @@ msgstr "找不到資料庫。"
 
 #: src/CA.cpp:1098
 msgid "Certificate does not exist."
-msgstr "證書不存在。"
+msgstr "憑證不存在。"
 
 #: src/CA.cpp:1112
 #, c-format
@@ -290,7 +294,7 @@ msgstr "金鑰加密期間發生錯誤。"
 
 #: src/CA.cpp:1388
 msgid "Error during write defaults."
-msgstr "寫入預設值時發生錯誤。"
+msgstr "寫入預設值發生錯誤。"
 
 #: src/CA.cpp:1532
 #, c-format
@@ -301,7 +305,7 @@ msgstr "CA 名稱不存在 (%s)。"
 msgid ""
 "Deleting the CA is not allowed. The CA must be expired or never have signed "
 "a certificate."
-msgstr "不允許刪除 CA。CA 必須過期或是從未簽署證書。"
+msgstr "不允許刪除 CA。CA 必須過期或是從未簽署憑證。"
 
 #: src/CA.cpp:1588
 msgid "Deleting the CA failed: %1."
@@ -338,7 +342,7 @@ msgstr "組態檔案似乎有無效的原則。"
 
 #: src/CA.cpp:1883 src/CA.cpp:1893
 msgid "The configuration is not initialized."
-msgstr "組態未啟始化。"
+msgstr "組態未初始化。"
 
 #: src/CA.cpp:1901 src/DNObject.cpp:266 src/DNObject_Priv.cpp:197
 msgid "Missing section 'distinguished_name' in the configuration file."
@@ -350,22 +354,22 @@ msgstr "缺少組態檔案中的區段 'distinguished_name'。"
 msgid "Invalid serial %s."
 msgstr "無效的序號 %s。"
 
-#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:409
-#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:381
+#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:393
+#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:365
 msgid "Cannot create a memory BIO."
 msgstr "無法建立記憶體 BIO。"
 
 #: src/CertificateData_Priv.cpp:233
 msgid "Cannot parse the certificate."
-msgstr "無法剖析證書。"
+msgstr "無法剖析憑證。"
 
 #: src/CertificateData_Priv.cpp:246
 msgid "Error while parsing the certificate."
-msgstr "剖析證書時發生錯誤。"
+msgstr "剖析憑證時發生錯誤。"
 
 #: src/CertificateData_Priv.cpp:273
 msgid "Cannot parse serial."
-msgstr "無法剖析序列。"
+msgstr "無法剖析序號。"
 
 #: src/CertificateData_Priv.cpp:341 src/RequestData_Priv.cpp:178
 msgid "Unable to get the public key."
@@ -389,7 +393,7 @@ msgstr "不支援的公開金鑰演算法。"
 msgid "Unsupported signature algorithm %s."
 msgstr "不支援的簽名演算法 %s。"
 
-#: src/CertificateIssueData.cpp:223
+#: src/CertificateIssueData.cpp:207
 msgid "Invalid CertificateIssueData object."
 msgstr "無效的 CertificateIssueData 物件。"
 
@@ -420,15 +424,15 @@ msgstr "CertificatePoliciesExt 不存在。"
 msgid "Invalid CertificatePoliciesExt object."
 msgstr "無效的 CertificatePoliciesExt 物件。"
 
-#: src/CRLData.cpp:232
+#: src/CRLData.cpp:220
 msgid "Entry not found."
 msgstr "找不到項目。"
 
-#: src/CRLData_Priv.cpp:437
+#: src/CRLData_Priv.cpp:421
 msgid "Cannot parse CRL."
 msgstr "無法剖析 CRL。"
 
-#: src/CRLData_Priv.cpp:450
+#: src/CRLData_Priv.cpp:434
 msgid "Error parsing the CRL."
 msgstr "剖析 CRL 時發生錯誤。"
 
@@ -507,7 +511,7 @@ msgstr "未知的類型。"
 
 #: src/LocalManagement.cpp:91
 msgid "Cannot split certificate output."
-msgstr "無法分割證書輸出。"
+msgstr "無法分割憑證輸出。"
 
 #: src/LocalManagement.cpp:288 src/LocalManagement.cpp:309
 #: src/LocalManagement.cpp:328
@@ -520,9 +524,9 @@ msgstr "無法建立目錄 %s︰%s。"
 msgid "%s is not a directory."
 msgstr "%s 不是目錄。"
 
-#: src/LocalManagement.cpp:370
+#: src/LocalManagement.cpp:363
 msgid "Invalid certificate file."
-msgstr "無效的證書檔案。"
+msgstr "無效的憑證檔案。"
 
 #: src/LocalManagement.cpp:448
 #, c-format
@@ -582,14 +586,14 @@ msgstr "無效的指令 %s。"
 #: src/OpenSSLUtils.cpp:1493 src/OpenSSLUtils.cpp:1651
 #: src/OpenSSLUtils.cpp:1795 src/OpenSSLUtils.cpp:2586
 msgid "Executing openssl command failed."
-msgstr "執行 openssl 指令失敗。"
+msgstr "執行 openssl 命令失敗。"
 
 #: src/OpenSSLUtils.cpp:136 src/OpenSSLUtils.cpp:227 src/OpenSSLUtils.cpp:326
 #: src/OpenSSLUtils.cpp:451 src/OpenSSLUtils.cpp:590 src/OpenSSLUtils.cpp:691
-#: src/OpenSSLUtils.cpp:777 src/OpenSSLUtils.cpp:1147
-#: src/OpenSSLUtils.cpp:1302 src/OpenSSLUtils.cpp:1412
-#: src/OpenSSLUtils.cpp:1521 src/OpenSSLUtils.cpp:1691
-#: src/OpenSSLUtils.cpp:1838 src/OpenSSLUtils.cpp:2613
+#: src/OpenSSLUtils.cpp:777 src/OpenSSLUtils.cpp:1147 src/OpenSSLUtils.cpp:1302
+#: src/OpenSSLUtils.cpp:1412 src/OpenSSLUtils.cpp:1521
+#: src/OpenSSLUtils.cpp:1691 src/OpenSSLUtils.cpp:1838
+#: src/OpenSSLUtils.cpp:2613
 #, c-format
 msgid "openssl command failed: %s"
 msgstr "openssl 指令失敗︰%s"
@@ -605,11 +609,11 @@ msgstr "沒有指定的有效要求檔案。"
 
 #: src/OpenSSLUtils.cpp:485 src/OpenSSLUtils.cpp:625 src/OpenSSLUtils.cpp:722
 msgid "No valid CA certificate file specified."
-msgstr "沒有指定的有效 CA 證書。"
+msgstr "沒有指定的有效 CA 憑證。"
 
 #: src/OpenSSLUtils.cpp:493 src/OpenSSLUtils.cpp:801
 msgid "No valid certificate file specified."
-msgstr "沒有指定的有效證書檔案。"
+msgstr "沒有指定的有效憑證檔案。"
 
 #: src/OpenSSLUtils.cpp:809
 msgid "No valid CA directory specified."
@@ -650,11 +654,11 @@ msgstr "%s 中沒有序號。"
 
 #: src/OpenSSLUtils.cpp:1934
 msgid "The request already exists."
-msgstr "該要求已經存在。"
+msgstr "該申請已經存在。"
 
 #: src/OpenSSLUtils.cpp:2125
 msgid "Cannot find the request subject."
-msgstr "找不到要求標題。"
+msgstr "找不到申請標題。"
 
 #: src/OpenSSLUtils.cpp:2286
 msgid "Cannot find the certificate subject."
@@ -684,7 +688,7 @@ msgstr "無法建立目錄︰%s (%s [%d])。"
 
 #: src/OpenSSLUtils.cpp:2450
 msgid "Cannot copy the configuration template."
-msgstr "無法複製組態樣板。"
+msgstr "無法複製組態範本。"
 
 #: src/OpenSSLUtils.cpp:2537
 msgid "Cannot create the file."
@@ -694,15 +698,15 @@ msgstr "無法建立檔案。"
 msgid "Can not open file."
 msgstr "無法開啟檔案。"
 
-#: src/RequestData_Priv.cpp:408
+#: src/RequestData_Priv.cpp:392
 msgid "Cannot parse the request."
-msgstr "無法分析要求。"
+msgstr "無法分析申請。"
 
-#: src/RequestData_Priv.cpp:421
+#: src/RequestData_Priv.cpp:405
 msgid "Error while parsing the request."
-msgstr "分析要求時發生錯誤。"
+msgstr "分析申請時發生錯誤。"
 
-#: src/RequestGenerationData.cpp:252
+#: src/RequestGenerationData.cpp:236
 msgid "Invalid RequestGenerationData object."
 msgstr "無效的 RequestGenerationData 物件。"
 
@@ -978,3 +982,6 @@ msgstr "無效的 X509v3RequestExts::setSubjectKeyIdentifier 值。"
 #: src/X509v3RequestExtensions.cpp:228
 msgid "Invalid value for X509v3RequestExts::setSubjectAlternativeName."
 msgstr "無效的 X509v3RequestExts::setSubjectAlternativeName 值。"
+
+#~ msgid "Cannot parse date %1."
+#~ msgstr "無法剖析日期 %1。"

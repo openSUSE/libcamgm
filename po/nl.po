@@ -1,18 +1,25 @@
-# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
-# This file is distributed under the same license as the package.
+# translation of limal-ca-mgm.nl.po to Dutch
+# @TITLE@
+# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
 #
+# This file is distributed under the same license as @PACKAGE@ package. FIRST
+#
+# Rinse de Vries <rinsedevries@kde.nl>, 2006, 2008.
+# Freek de Kruijf <freek@opensuse.org>, 2008, 2013.
 msgid ""
 msgstr ""
-"Project-Id-Version: libcamgm\n"
+"Project-Id-Version: limal-ca-mgm.nl\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2015-02-07 15:13+0100\n"
-"PO-Revision-Date: 2014-07-15 11:30\n"
-"Last-Translator: Novell language <language@novell.com>\n"
-"Language-Team: Novell language <language@novell.com>\n"
-"Language: \n"
+"POT-Creation-Date: 2012-07-23 16:26+0200\n"
+"PO-Revision-Date: 2013-09-12 13:58+0200\n"
+"Last-Translator: Freek de Kruijf <freek@opensuse.org>\n"
+"Language-Team: Dutch <opensuse-nl@opensuse.org>\n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.5\n"
+"Plural-Forms: nplurals=2; plural= n != 1;\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:104
 #: src/AuthorityInfoAccessExtension.cpp:133
@@ -39,7 +46,7 @@ msgstr "Ongeldige accessOID."
 #: src/CRLDistributionPointsExtension.cpp:72
 #: src/CRLDistributionPointsExtension.cpp:162 src/DNObject.cpp:500
 #: src/ExtendedKeyUsageExt.cpp:73 src/ExtendedKeyUsageExt.cpp:225
-#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:260
+#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:244
 #: src/StringExtensions.cpp:118 src/StringExtensions.cpp:195
 #: src/StringExtensions.cpp:283 src/StringExtensions.cpp:353
 #: src/StringExtensions.cpp:437 src/StringExtensions.cpp:507
@@ -93,7 +100,7 @@ msgid "This BitExtension is not present."
 msgstr "Deze BitExtension is niet aanwezig."
 
 #: src/BitExtensions.cpp:130 src/BitExtensions.cpp:243
-#: src/CertificateIssueData.cpp:231 src/CRLGenerationData.cpp:158
+#: src/CertificateIssueData.cpp:215 src/CRLGenerationData.cpp:158
 #: src/DNObject.cpp:258 src/IssuerAlternativeNameExtension.cpp:220
 #, c-format
 msgid "Wrong type: %d."
@@ -151,7 +158,7 @@ msgstr "Fout tijdens aanmaken van CA-infrastructuur."
 #: src/CA.cpp:250 src/CA.cpp:1015
 #, c-format
 msgid "Cannot parse the certificate name %s."
-msgstr "Kan deze certificaatnaam niet parseren: %s."
+msgstr "Kon deze certificaatnaam niet ontleden: %s."
 
 #: src/CA.cpp:261
 msgid "Cannot copy the private key."
@@ -168,17 +175,17 @@ msgstr "Ongeldige request-gegevens."
 #: src/CA.cpp:323
 #, c-format
 msgid "Duplicate DN. Key %s.key already exists."
-msgstr "Dubbele DN. Sleutel '%s.sleutel' bestaat reeds."
+msgstr "Dubbele DN. Sleutel '%s.key' bestaat reeds."
 
 #: src/CA.cpp:331
 #, c-format
 msgid "Duplicate DN. Request %s.req already exists."
-msgstr "Dubbele DN. Aanvraag '%s.req' bestaat reeds."
+msgstr "Dubbele DN. Request '%s.req' bestaat reeds."
 
 #: src/CA.cpp:400
 #, c-format
 msgid "Request does not exist (%s)."
-msgstr "Aanvraag bestaat niet (%s)."
+msgstr "Request bestaat niet (%s)."
 
 #: src/CA.cpp:406
 msgid "Invalid issue data."
@@ -195,7 +202,7 @@ msgstr "De uitgave van het certificaat is mislukt."
 #: src/CA.cpp:518
 #, c-format
 msgid "File %s not found in the repository."
-msgstr "Bestand '%s' niet gevonden in de opslagruimte."
+msgstr "Bestand '%s' niet gevonden in de repository."
 
 #: src/CA.cpp:525 src/CRLData_Priv.cpp:153
 msgid "Invalid CRL reason."
@@ -216,7 +223,7 @@ msgstr "Kan de certificaatnaam niet ontleden."
 #: src/CA.cpp:967
 #, c-format
 msgid "Request %s does not exist."
-msgstr "Aanvraag %s bestaat niet."
+msgstr "Request %s bestaat niet."
 
 #: src/CA.cpp:989
 msgid "Removing the request failed (%1)."
@@ -225,7 +232,7 @@ msgstr "Verwijderen van de request is mislukt (%1)."
 #: src/CA.cpp:1003
 #, c-format
 msgid "Certificate %s does not exist."
-msgstr "Certificaat %s bestaat niet."
+msgstr "Certificaat %s bestaat niet"
 
 #: src/CA.cpp:1052
 #, c-format
@@ -268,7 +275,7 @@ msgstr "CA-naam is leeg."
 
 #: src/CA.cpp:1288
 msgid "CA directory already exists."
-msgstr "CA-directory bestaat reeds."
+msgstr "CA-map bestaat reeds."
 
 #: src/CA.cpp:1299
 msgid "According to basicConstraints, this is not a CA."
@@ -292,7 +299,7 @@ msgstr "Fout bij versleutelen van de sleutel."
 
 #: src/CA.cpp:1388
 msgid "Error during write defaults."
-msgstr "Fout bij schrijven standaardinstellingen."
+msgstr "Fout bij schrijven van standaards."
 
 #: src/CA.cpp:1532
 #, c-format
@@ -319,7 +326,7 @@ msgstr "Het configuratiebestand mist een richtlijnwaarde."
 #: src/DNObject_Priv.cpp:207
 #, c-format
 msgid "Cannot parse section %s."
-msgstr "Kan sectie %s niet parseren."
+msgstr "Kan sectie %s niet ontleden."
 
 #: src/CA.cpp:1721
 #, c-format
@@ -334,12 +341,13 @@ msgstr "%s moet worden gedefinieerd."
 #: src/CA.cpp:1845
 #, c-format
 msgid "%s must be the same in the CA certificate (%s) and the request (%s)."
-msgstr "%s moet in het CA-certificaat (%s) en de aanvraag (%s) hetzelfde zijn."
+msgstr "%s moet in het CA-certificaat (%s) en het request (%s) hetzelfde zijn."
 
 #: src/CA.cpp:1857
 msgid "The configuration file seems to have an invalid policy."
 msgstr "Het configuratiebestand bevat vermoedelijk een ongeldige richtlijn."
 
+# %s is either BOOTP or DHCP
 #: src/CA.cpp:1883 src/CA.cpp:1893
 msgid "The configuration is not initialized."
 msgstr "De configuratie is niet geïnitialiseerd."
@@ -354,8 +362,8 @@ msgstr "Sectie 'distinguished_name' ontbreekt in het configuratiebestand."
 msgid "Invalid serial %s."
 msgstr "Ongeldig serienummer %s."
 
-#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:409
-#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:381
+#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:393
+#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:365
 msgid "Cannot create a memory BIO."
 msgstr "Geheugen-BIO kan niet worden aangemaakt."
 
@@ -369,7 +377,7 @@ msgstr "Fout bij ontleden van het certificaat."
 
 #: src/CertificateData_Priv.cpp:273
 msgid "Cannot parse serial."
-msgstr "Kan serienummer niet parseren."
+msgstr "Kan serienummer niet ontleden."
 
 #: src/CertificateData_Priv.cpp:341 src/RequestData_Priv.cpp:178
 msgid "Unable to get the public key."
@@ -387,13 +395,13 @@ msgstr "Niet-ondersteund type publieke sleutel."
 msgid "Unsupported public key algorithm."
 msgstr "Niet-ondersteund algoritme voor publieke sleutel."
 
-#: src/CertificateData_Priv.cpp:456 src/CRLData_Priv.cpp:370
-#: src/RequestData_Priv.cpp:288
+#: src/CertificateData_Priv.cpp:440 src/CRLData_Priv.cpp:354
+#: src/RequestData_Priv.cpp:272
 #, c-format
 msgid "Unsupported signature algorithm %s."
-msgstr "Niet-ondersteund handtekeningenalgoritme %s."
+msgstr "Niet-ondersteund signatuuralgoritme %s."
 
-#: src/CertificateIssueData.cpp:223
+#: src/CertificateIssueData.cpp:207
 msgid "Invalid CertificateIssueData object."
 msgstr "Ongeldig CertificateIssueData-object."
 
@@ -409,7 +417,7 @@ msgstr "Ongeldig UserNotice-object."
 #: src/CertificatePoliciesExtension.cpp:453
 #, c-format
 msgid "Invalid value for policyIdentifier: %s."
-msgstr "Ongeldige waarde voor beleids-id: %s."
+msgstr "Ongeldige waarde voor policyIdentifier: %s."
 
 #: src/CertificatePoliciesExtension.cpp:508
 msgid "Invalid CertificatePolicy object."
@@ -424,15 +432,15 @@ msgstr "CertificatePoliciesExt is niet aanwezig"
 msgid "Invalid CertificatePoliciesExt object."
 msgstr "Ongeldig CertificatePoliciesExt-object"
 
-#: src/CRLData.cpp:232
+#: src/CRLData.cpp:220
 msgid "Entry not found."
 msgstr "Item niet gevonden."
 
-#: src/CRLData_Priv.cpp:437
+#: src/CRLData_Priv.cpp:421
 msgid "Cannot parse CRL."
 msgstr "Kan CRL niet ontleden."
 
-#: src/CRLData_Priv.cpp:450
+#: src/CRLData_Priv.cpp:434
 msgid "Error parsing the CRL."
 msgstr "Fout bij ontleden van de CRL."
 
@@ -478,7 +486,7 @@ msgstr "Kan DN-regel niet parseren: %s."
 #: src/ExtendedKeyUsageExt.cpp:118 src/ExtendedKeyUsageExt.cpp:167
 #, c-format
 msgid "Invalid ExtendedKeyUsage option %s."
-msgstr "Ongeldige optie Uitgebreid sleutelgebruik %s."
+msgstr "Ongeldige ExtendedKeyUsage-optie %s."
 
 #: src/ExtendedKeyUsageExt.cpp:126 src/ExtendedKeyUsageExt.cpp:175
 msgid "Invalid ExtendedKeyUsageExt."
@@ -517,48 +525,48 @@ msgstr "Kan certificaatuitvoer niet splitsen."
 #: src/LocalManagement.cpp:328
 #, c-format
 msgid "Cannot create directory %s: %s."
-msgstr "Kan directory %s niet aanmaken: %s."
+msgstr "Kan map %s niet aanmaken: %s."
 
 #: src/LocalManagement.cpp:342
 #, c-format
 msgid "%s is not a directory."
-msgstr "%s is geen directory."
+msgstr "%s is geen map."
 
-#: src/LocalManagement.cpp:370
+#: src/LocalManagement.cpp:363
 msgid "Invalid certificate file."
 msgstr "Ongeldig certificaatbestand."
 
-#: src/LocalManagement.cpp:448
+#: src/LocalManagement.cpp:441
 #, c-format
 msgid "File not found: %s."
 msgstr "Bestand niet gevonden: %s."
 
-#: src/LocalManagement.cpp:457
+#: src/LocalManagement.cpp:450
 #, c-format
 msgid "File too big: %s."
 msgstr "Bestand te groot: %s."
 
-#: src/LocalManagement.cpp:466 src/LocalManagement.cpp:520
+#: src/LocalManagement.cpp:459 src/LocalManagement.cpp:513
 #, c-format
 msgid "Cannot open file %s."
 msgstr "Kan bestand %s niet openen."
 
-#: src/LocalManagement.cpp:485
+#: src/LocalManagement.cpp:478
 #, c-format
 msgid "Cannot read from file %s."
 msgstr "Kan bestand %s niet lezen."
 
-#: src/LocalManagement.cpp:510
+#: src/LocalManagement.cpp:503
 #, c-format
 msgid "File already exists: %s."
-msgstr "Bestand bestaat reeds: %s."
+msgstr "Bestand %s bestaat reeds."
 
-#: src/LocalManagement.cpp:530
+#: src/LocalManagement.cpp:523
 #, c-format
 msgid "Cannot get lock on file %s."
 msgstr "Kan bestand %s niet vergrendelen."
 
-#: src/LocalManagement.cpp:542
+#: src/LocalManagement.cpp:535
 #, c-format
 msgid "Cannot write to file %s."
 msgstr "Kan niet schrijven naar bestand %s."
@@ -571,12 +579,12 @@ msgstr "Bestand bestaat niet: %s."
 #: src/OpenSSLUtils.cpp:58
 #, c-format
 msgid "Directory does not exist: %s."
-msgstr "Directory bestaat niet: %s."
+msgstr "Map bestaat niet: %s."
 
 #: src/OpenSSLUtils.cpp:67
 #, c-format
 msgid "Invalid command %s."
-msgstr "Ongeldige opdracht: %s."
+msgstr "Ongeldig commando: %s."
 
 #: src/OpenSSLUtils.cpp:124 src/OpenSSLUtils.cpp:214 src/OpenSSLUtils.cpp:313
 #: src/OpenSSLUtils.cpp:438 src/OpenSSLUtils.cpp:577 src/OpenSSLUtils.cpp:678
@@ -586,17 +594,17 @@ msgstr "Ongeldige opdracht: %s."
 #: src/OpenSSLUtils.cpp:1493 src/OpenSSLUtils.cpp:1651
 #: src/OpenSSLUtils.cpp:1795 src/OpenSSLUtils.cpp:2586
 msgid "Executing openssl command failed."
-msgstr "Opdracht openssl uitvoeren is mislukt."
+msgstr "Uitvoeren van het openssl-commando mislukt."
 
 #: src/OpenSSLUtils.cpp:136 src/OpenSSLUtils.cpp:227 src/OpenSSLUtils.cpp:326
 #: src/OpenSSLUtils.cpp:451 src/OpenSSLUtils.cpp:590 src/OpenSSLUtils.cpp:691
-#: src/OpenSSLUtils.cpp:777 src/OpenSSLUtils.cpp:1147
-#: src/OpenSSLUtils.cpp:1302 src/OpenSSLUtils.cpp:1412
-#: src/OpenSSLUtils.cpp:1521 src/OpenSSLUtils.cpp:1691
-#: src/OpenSSLUtils.cpp:1838 src/OpenSSLUtils.cpp:2613
+#: src/OpenSSLUtils.cpp:777 src/OpenSSLUtils.cpp:1147 src/OpenSSLUtils.cpp:1302
+#: src/OpenSSLUtils.cpp:1412 src/OpenSSLUtils.cpp:1521
+#: src/OpenSSLUtils.cpp:1691 src/OpenSSLUtils.cpp:1838
+#: src/OpenSSLUtils.cpp:2613
 #, c-format
 msgid "openssl command failed: %s"
-msgstr "openssl-opdracht mislukt: %s"
+msgstr "openssl-commando mislukt: %s"
 
 #: src/OpenSSLUtils.cpp:166 src/OpenSSLUtils.cpp:254 src/OpenSSLUtils.cpp:358
 #: src/OpenSSLUtils.cpp:477 src/OpenSSLUtils.cpp:617 src/OpenSSLUtils.cpp:714
@@ -617,7 +625,7 @@ msgstr "Geen geldig certificaatbestand opgegeven."
 
 #: src/OpenSSLUtils.cpp:809
 msgid "No valid CA directory specified."
-msgstr "Geen geldige CA-directory gespecificeerd."
+msgstr "Geen geldige CA-map gespecificeerd."
 
 #: src/OpenSSLUtils.cpp:963
 #, c-format
@@ -645,7 +653,7 @@ msgstr "Het PKCS12-wachtwoord is vereist."
 #: src/OpenSSLUtils.cpp:2216
 #, c-format
 msgid "Cannot read directory: %s (%s) [%d]."
-msgstr "Kan directory niet lezen: %s (%s) [%d]."
+msgstr "Kan map niet lezen: %s (%s) [%d]."
 
 #: src/OpenSSLUtils.cpp:1914
 #, c-format
@@ -677,14 +685,14 @@ msgstr "'%s' bestaat niet."
 #: src/OpenSSLUtils.cpp:2404
 #, c-format
 msgid "%s still exists."
-msgstr "'%s' bestaat nog."
+msgstr "%s bestaat nog."
 
 #: src/OpenSSLUtils.cpp:2415 src/OpenSSLUtils.cpp:2463
 #: src/OpenSSLUtils.cpp:2477 src/OpenSSLUtils.cpp:2491
 #: src/OpenSSLUtils.cpp:2505 src/OpenSSLUtils.cpp:2519
 #, c-format
 msgid "Cannot create directory: %s (%s [%d])."
-msgstr "Kan directory niet maken: %s (%s [%d])."
+msgstr "Kan map niet maken: %s (%s [%d])."
 
 #: src/OpenSSLUtils.cpp:2450
 msgid "Cannot copy the configuration template."
@@ -698,15 +706,15 @@ msgstr "Kan het bestand niet maken."
 msgid "Can not open file."
 msgstr "Kan bestand niet openen."
 
-#: src/RequestData_Priv.cpp:408
+#: src/RequestData_Priv.cpp:392
 msgid "Cannot parse the request."
 msgstr "Kan het verzoek niet parseren."
 
-#: src/RequestData_Priv.cpp:421
+#: src/RequestData_Priv.cpp:405
 msgid "Error while parsing the request."
 msgstr "Fout bij het parseren van het verzoek."
 
-#: src/RequestGenerationData.cpp:252
+#: src/RequestGenerationData.cpp:236
 msgid "Invalid RequestGenerationData object."
 msgstr "Ongeldig RequestGenerationData-object."
 
@@ -992,3 +1000,6 @@ msgstr "Ongeldige waarde voor X509v3RequestExts::setSubjectKeyIdentifier."
 #: src/X509v3RequestExtensions.cpp:228
 msgid "Invalid value for X509v3RequestExts::setSubjectAlternativeName."
 msgstr "Ongeldige waarde voor X509v3RequestExts::setSubjectAlternativeName."
+
+#~ msgid "Cannot parse date %1."
+#~ msgstr "Kan datum %1 niet ontleden."

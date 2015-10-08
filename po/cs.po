@@ -1,18 +1,26 @@
-# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
-# This file is distributed under the same license as the package.
+# translation of limal-ca-mgm.po to czech
+# @TITLE@
+# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
 #
+# This file is distributed under the same license as @PACKAGE@ package. FIRST
+#
+# Jakub Friedl <jfriedl@suse.cz>, 2006.
+# Vojtěch Zeisek <vojta.sc@seznam.cz>, 2008.
+# Jan Papez (honyczek) <honyczek@centrum.cz>, 2013.
 msgid ""
 msgstr ""
-"Project-Id-Version: libcamgm\n"
+"Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2015-02-07 15:13+0100\n"
-"PO-Revision-Date: 2014-07-15 11:32\n"
-"Last-Translator: Novell language <language@novell.com>\n"
-"Language-Team: Novell language <language@novell.com>\n"
-"Language: \n"
+"POT-Creation-Date: 2012-07-23 16:26+0200\n"
+"PO-Revision-Date: 2013-09-22 22:17+0200\n"
+"Last-Translator: Jan Papez (honyczek) <honyczek@centrum.cz>\n"
+"Language-Team: Czech <kde-i18n-doc@kde.org>\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.5\n"
+"Plural-Forms:  nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:104
 #: src/AuthorityInfoAccessExtension.cpp:133
@@ -39,7 +47,7 @@ msgstr "Neplatné accessOID."
 #: src/CRLDistributionPointsExtension.cpp:72
 #: src/CRLDistributionPointsExtension.cpp:162 src/DNObject.cpp:500
 #: src/ExtendedKeyUsageExt.cpp:73 src/ExtendedKeyUsageExt.cpp:225
-#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:260
+#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:244
 #: src/StringExtensions.cpp:118 src/StringExtensions.cpp:195
 #: src/StringExtensions.cpp:283 src/StringExtensions.cpp:353
 #: src/StringExtensions.cpp:437 src/StringExtensions.cpp:507
@@ -93,7 +101,7 @@ msgid "This BitExtension is not present."
 msgstr "Tento BitExtension není přítomen."
 
 #: src/BitExtensions.cpp:130 src/BitExtensions.cpp:243
-#: src/CertificateIssueData.cpp:231 src/CRLGenerationData.cpp:158
+#: src/CertificateIssueData.cpp:215 src/CRLGenerationData.cpp:158
 #: src/DNObject.cpp:258 src/IssuerAlternativeNameExtension.cpp:220
 #, c-format
 msgid "Wrong type: %d."
@@ -195,7 +203,7 @@ msgstr "Vydání certifikátu selhalo."
 #: src/CA.cpp:518
 #, c-format
 msgid "File %s not found in the repository."
-msgstr "Soubor '%s' v repozitáři nebyl nalezen."
+msgstr "Soubor '%s' nebyl nalezen v repozitáři."
 
 #: src/CA.cpp:525 src/CRLData_Priv.cpp:153
 msgid "Invalid CRL reason."
@@ -292,7 +300,7 @@ msgstr "Chyba při šifrování klíče."
 
 #: src/CA.cpp:1388
 msgid "Error during write defaults."
-msgstr "Chyba během zápisu výchozích hodnot."
+msgstr "Chyba při zápisu výchozích hodnot."
 
 #: src/CA.cpp:1532
 #, c-format
@@ -354,8 +362,8 @@ msgstr "Chybí sekce 'distinguished_name' v konfiguračním souboru."
 msgid "Invalid serial %s."
 msgstr "Neplatné sériové číslo %s."
 
-#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:409
-#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:381
+#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:393
+#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:365
 msgid "Cannot create a memory BIO."
 msgstr "Nelze vytvořit memory BIO."
 
@@ -369,7 +377,7 @@ msgstr "Chyba při analýze certifikátu."
 
 #: src/CertificateData_Priv.cpp:273
 msgid "Cannot parse serial."
-msgstr "Sériové číslo nelze analyzovat."
+msgstr "Nelze analyzovat sekci."
 
 #: src/CertificateData_Priv.cpp:341 src/RequestData_Priv.cpp:178
 msgid "Unable to get the public key."
@@ -387,13 +395,13 @@ msgstr "Nepodporovaný typ veřejného klíče."
 msgid "Unsupported public key algorithm."
 msgstr "Nepodporovaný algoritmus veřejného klíče."
 
-#: src/CertificateData_Priv.cpp:456 src/CRLData_Priv.cpp:370
-#: src/RequestData_Priv.cpp:288
+#: src/CertificateData_Priv.cpp:440 src/CRLData_Priv.cpp:354
+#: src/RequestData_Priv.cpp:272
 #, c-format
 msgid "Unsupported signature algorithm %s."
 msgstr "Nepodporovaný algoritmus podpisu %s."
 
-#: src/CertificateIssueData.cpp:223
+#: src/CertificateIssueData.cpp:207
 msgid "Invalid CertificateIssueData object."
 msgstr "Neplatný objekt CertificateIssueData."
 
@@ -424,15 +432,15 @@ msgstr "CertificatePoliciesExt není přítomný."
 msgid "Invalid CertificatePoliciesExt object."
 msgstr "Neplatný objekt CertificatePoliciesExt."
 
-#: src/CRLData.cpp:232
+#: src/CRLData.cpp:220
 msgid "Entry not found."
 msgstr "Záznam nenalezen."
 
-#: src/CRLData_Priv.cpp:437
+#: src/CRLData_Priv.cpp:421
 msgid "Cannot parse CRL."
 msgstr "Nelze analyzovat CRL."
 
-#: src/CRLData_Priv.cpp:450
+#: src/CRLData_Priv.cpp:434
 msgid "Error parsing the CRL."
 msgstr "Chyba analýzy CRL."
 
@@ -517,48 +525,48 @@ msgstr "Nelze rozdělit výstup certifikátu."
 #: src/LocalManagement.cpp:328
 #, c-format
 msgid "Cannot create directory %s: %s."
-msgstr "Nelze vytvořit adresář %s: %s."
+msgstr "Nelze vytvořit adresář %s :%s."
 
 #: src/LocalManagement.cpp:342
 #, c-format
 msgid "%s is not a directory."
 msgstr "%s není adresář."
 
-#: src/LocalManagement.cpp:370
+#: src/LocalManagement.cpp:363
 msgid "Invalid certificate file."
 msgstr "Neplatný soubor certifikátu."
 
-#: src/LocalManagement.cpp:448
+#: src/LocalManagement.cpp:441
 #, c-format
 msgid "File not found: %s."
 msgstr "Soubor nenalezen: %s."
 
-#: src/LocalManagement.cpp:457
+#: src/LocalManagement.cpp:450
 #, c-format
 msgid "File too big: %s."
 msgstr "Příliš veliký soubor: %s."
 
-#: src/LocalManagement.cpp:466 src/LocalManagement.cpp:520
+#: src/LocalManagement.cpp:459 src/LocalManagement.cpp:513
 #, c-format
 msgid "Cannot open file %s."
 msgstr "Nelze otevřít soubor: %s."
 
-#: src/LocalManagement.cpp:485
+#: src/LocalManagement.cpp:478
 #, c-format
 msgid "Cannot read from file %s."
 msgstr "Nelze číst ze souboru: %s."
 
-#: src/LocalManagement.cpp:510
+#: src/LocalManagement.cpp:503
 #, c-format
 msgid "File already exists: %s."
 msgstr "Soubor již existuje: %s."
 
-#: src/LocalManagement.cpp:530
+#: src/LocalManagement.cpp:523
 #, c-format
 msgid "Cannot get lock on file %s."
 msgstr "Nelze získat zámek na souboru: %s."
 
-#: src/LocalManagement.cpp:542
+#: src/LocalManagement.cpp:535
 #, c-format
 msgid "Cannot write to file %s."
 msgstr "Nelze zapisovat do souboru %s."
@@ -578,6 +586,7 @@ msgstr "Adresář neexistuje: %s."
 msgid "Invalid command %s."
 msgstr "Neplatný příkaz %s."
 
+# 27559 AttribValues/label
 #: src/OpenSSLUtils.cpp:124 src/OpenSSLUtils.cpp:214 src/OpenSSLUtils.cpp:313
 #: src/OpenSSLUtils.cpp:438 src/OpenSSLUtils.cpp:577 src/OpenSSLUtils.cpp:678
 #: src/OpenSSLUtils.cpp:761 src/OpenSSLUtils.cpp:852 src/OpenSSLUtils.cpp:933
@@ -586,17 +595,17 @@ msgstr "Neplatný příkaz %s."
 #: src/OpenSSLUtils.cpp:1493 src/OpenSSLUtils.cpp:1651
 #: src/OpenSSLUtils.cpp:1795 src/OpenSSLUtils.cpp:2586
 msgid "Executing openssl command failed."
-msgstr "Spuštění příkazu openssl se nezdařilo."
+msgstr "Spuštění příkazu openssl selhalo."
 
 #: src/OpenSSLUtils.cpp:136 src/OpenSSLUtils.cpp:227 src/OpenSSLUtils.cpp:326
 #: src/OpenSSLUtils.cpp:451 src/OpenSSLUtils.cpp:590 src/OpenSSLUtils.cpp:691
-#: src/OpenSSLUtils.cpp:777 src/OpenSSLUtils.cpp:1147
-#: src/OpenSSLUtils.cpp:1302 src/OpenSSLUtils.cpp:1412
-#: src/OpenSSLUtils.cpp:1521 src/OpenSSLUtils.cpp:1691
-#: src/OpenSSLUtils.cpp:1838 src/OpenSSLUtils.cpp:2613
+#: src/OpenSSLUtils.cpp:777 src/OpenSSLUtils.cpp:1147 src/OpenSSLUtils.cpp:1302
+#: src/OpenSSLUtils.cpp:1412 src/OpenSSLUtils.cpp:1521
+#: src/OpenSSLUtils.cpp:1691 src/OpenSSLUtils.cpp:1838
+#: src/OpenSSLUtils.cpp:2613
 #, c-format
 msgid "openssl command failed: %s"
-msgstr "Příkaz openssl selhal: %s"
+msgstr "příkaz openssl selhal: %s"
 
 #: src/OpenSSLUtils.cpp:166 src/OpenSSLUtils.cpp:254 src/OpenSSLUtils.cpp:358
 #: src/OpenSSLUtils.cpp:477 src/OpenSSLUtils.cpp:617 src/OpenSSLUtils.cpp:714
@@ -622,7 +631,7 @@ msgstr "Nebyl zadán platný adresář CA."
 #: src/OpenSSLUtils.cpp:963
 #, c-format
 msgid "Showing certificate status with serial %s failed (%d)."
-msgstr "Zobrazení stavu certifikátu se sériovým číslem %s selhalo (%d)."
+msgstr "Zobrazení statutu certifikátu se sériovým číslem %s selhalo (%d)."
 
 #: src/OpenSSLUtils.cpp:999
 msgid "The key file does not exist."
@@ -698,15 +707,15 @@ msgstr "Nelze vytvořit soubor."
 msgid "Can not open file."
 msgstr "Soubor nelze otevřít."
 
-#: src/RequestData_Priv.cpp:408
+#: src/RequestData_Priv.cpp:392
 msgid "Cannot parse the request."
 msgstr "Nelze analyzovat požadavek."
 
-#: src/RequestData_Priv.cpp:421
+#: src/RequestData_Priv.cpp:405
 msgid "Error while parsing the request."
 msgstr "Chyba při analýze požadavku."
 
-#: src/RequestGenerationData.cpp:252
+#: src/RequestGenerationData.cpp:236
 msgid "Invalid RequestGenerationData object."
 msgstr "Neplatný objekt RequestGenerationData."
 
@@ -827,6 +836,7 @@ msgstr "Rozšíření se vyskytlo více než jednou: %1."
 msgid "Unable to parse the certificate (NID: %1 Crit: %2)."
 msgstr "Nelze analyzovat certifikát (NID: %1 Krit: %2)."
 
+# 51125 AttribValues/label
 #: src/X509v3CertificateExtensions_Priv.cpp:508
 #: src/X509v3CertificateExtensions_Priv.cpp:574
 #: src/X509v3CertificateExtensions_Priv.cpp:638
@@ -991,3 +1001,6 @@ msgstr "Neplatná hodnota pro X509v3RequestExts::setSubjectKeyIdentifier."
 #: src/X509v3RequestExtensions.cpp:228
 msgid "Invalid value for X509v3RequestExts::setSubjectAlternativeName."
 msgstr "Neplatná hodnota pro X509v3RequestExts::setSubjectAlternativeName."
+
+#~ msgid "Cannot parse date %1."
+#~ msgstr "Nelze analyzovat datum: %1."

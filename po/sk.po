@@ -1,22 +1,23 @@
 # @TITLE@
 # Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# Ladislav Michnovič <lmichnovic@suse.cz>, 2007.
 #
 # This file is distributed under the same license as @PACKAGE@ package. FIRST
 #
+# Ladislav Michnovič <lmichnovic@suse.cz>, 2007.
+# Ferdinand Galko <galko.ferdinand@gmail.com>, 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2015-02-07 15:13+0100\n"
-"PO-Revision-Date: 2009-04-15 20:27+0100\n"
-"Last-Translator: Rastislav Krupanský <rastislav.krupansky@gmail.com>\n"
-"Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
+"POT-Creation-Date: 2012-07-23 16:26+0200\n"
+"PO-Revision-Date: 2015-08-29 19:16+0200\n"
+"Last-Translator: Ferdinand Galko <galko.ferdinand@gmail.com>\n"
+"Language-Team: Slovak <opensuse-translation-sk@opensuse.org>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.2\n"
+"X-Generator: Lokalize 1.5\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Poedit-Language: Slovak\n"
 "X-Poedit-Country: SLOVAKIA\n"
@@ -46,7 +47,7 @@ msgstr "Neplatný accessOID."
 #: src/CRLDistributionPointsExtension.cpp:72
 #: src/CRLDistributionPointsExtension.cpp:162 src/DNObject.cpp:500
 #: src/ExtendedKeyUsageExt.cpp:73 src/ExtendedKeyUsageExt.cpp:225
-#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:260
+#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:244
 #: src/StringExtensions.cpp:118 src/StringExtensions.cpp:195
 #: src/StringExtensions.cpp:283 src/StringExtensions.cpp:353
 #: src/StringExtensions.cpp:437 src/StringExtensions.cpp:507
@@ -100,11 +101,12 @@ msgid "This BitExtension is not present."
 msgstr "This BitExtension nie je prítomné."
 
 #: src/BitExtensions.cpp:130 src/BitExtensions.cpp:243
-#: src/CertificateIssueData.cpp:231 src/CRLGenerationData.cpp:158
+#: src/CertificateIssueData.cpp:215 src/CRLGenerationData.cpp:158
 #: src/DNObject.cpp:258 src/IssuerAlternativeNameExtension.cpp:220
-#, fuzzy, c-format
+#, c-format
+#| msgid "Wrong type: %1."
 msgid "Wrong type: %d."
-msgstr "Nesprávny typ: %1."
+msgstr "Nesprávny typ: %d."
 
 #: src/BitExtensions.cpp:170 src/BitExtensions.cpp:199
 msgid "Invalid value for keyUsage."
@@ -143,9 +145,10 @@ msgid "Empty CA name."
 msgstr "Prázdne CA meno."
 
 #: src/CA.cpp:174
-#, fuzzy, c-format
+#, c-format
+#| msgid "Template does not exist: %1."
 msgid "Template does not exist: %s."
-msgstr "Šablóna neexistuje: %1."
+msgstr "Šablóna neexistuje: %s."
 
 #: src/CA.cpp:186 src/CA.cpp:1543
 msgid "Invalid CA password."
@@ -156,9 +159,10 @@ msgid "Error while creating the CA infrastructure."
 msgstr "Chyba počas vytvárania infraštruktúry CA."
 
 #: src/CA.cpp:250 src/CA.cpp:1015
-#, fuzzy, c-format
+#, c-format
+#| msgid "Cannot parse the certificate name %1."
 msgid "Cannot parse the certificate name %s."
-msgstr "Nie je možné analyzovať názov certifikátu %1."
+msgstr "Nie je možné analyzovať názov certifikátu %s."
 
 #: src/CA.cpp:261
 msgid "Cannot copy the private key."
@@ -173,19 +177,22 @@ msgid "Invalid request data."
 msgstr "Neplatné dáta požiadavky."
 
 #: src/CA.cpp:323
-#, fuzzy, c-format
+#, c-format
+#| msgid "Duplicate DN. Key %1.key already exists."
 msgid "Duplicate DN. Key %s.key already exists."
-msgstr "Duplicitný DN. Kľúč %1.key už existuje."
+msgstr "Duplicitný DN. Kľúč %s.key už existuje."
 
 #: src/CA.cpp:331
-#, fuzzy, c-format
+#, c-format
+#| msgid "Duplicate DN. Request %1.req already exists."
 msgid "Duplicate DN. Request %s.req already exists."
-msgstr "Duplicitný DN. Požiadavka %1.req už existuje."
+msgstr "Duplicitný DN. Požiadavka %s.req už existuje."
 
 #: src/CA.cpp:400
-#, fuzzy, c-format
+#, c-format
+#| msgid "Request does not exist (%1)."
 msgid "Request does not exist (%s)."
-msgstr "Požiadavka neexistuje (%1)."
+msgstr "Požiadavka neexistuje (%s)."
 
 #: src/CA.cpp:406
 msgid "Invalid issue data."
@@ -193,16 +200,17 @@ msgstr "Neplatný dáta vydania."
 
 #: src/CA.cpp:423
 msgid "The CA expires before the certificate should expire."
-msgstr "CA vyprší pred expiráciou certifikátu."
+msgstr "CA vyprší pred vypršaním certifikátu."
 
 #: src/CA.cpp:501
 msgid "Issuing the certificate failed."
 msgstr "Zlyhalo vydanie certifikátu."
 
 #: src/CA.cpp:518
-#, fuzzy, c-format
+#, c-format
+#| msgid "File %1 not found in the repository."
 msgid "File %s not found in the repository."
-msgstr "Súbor %1 nenájdený v repozitári."
+msgstr "Súbor %s nebol nenájdený v repozitári."
 
 #: src/CA.cpp:525 src/CRLData_Priv.cpp:153
 msgid "Invalid CRL reason."
@@ -221,32 +229,38 @@ msgid "Cannot parse the certificate name."
 msgstr "Nie je možné analyzovať názov certifikátu."
 
 #: src/CA.cpp:967
-#, fuzzy, c-format
+#, c-format
+#| msgid "Request %1 does not exist."
 msgid "Request %s does not exist."
-msgstr "Požiadavka %1 neexistuje."
+msgstr "Požiadavka %s neexistuje."
 
 #: src/CA.cpp:989
 msgid "Removing the request failed (%1)."
 msgstr "Zlyhalo odstránenie požiadavky (%1)."
 
 #: src/CA.cpp:1003
-#, fuzzy, c-format
+#, c-format
+#| msgid "Certificate %1 does not exist."
 msgid "Certificate %s does not exist."
-msgstr "Certifikát %1 neexistuje."
+msgstr "Certifikát %s neexistuje."
 
 #: src/CA.cpp:1052
-#, fuzzy, c-format
+#, c-format
+#| msgid "Removing the certificate failed: %1."
 msgid "Removing the certificate failed: %d."
-msgstr "Zlyhalo odstránenie certifikátu: %1."
+msgstr "Zlyhalo odstraňovanie certifikátu: %d."
 
 #: src/CA.cpp:1060
-#, fuzzy, c-format
+#, c-format
+#| msgid ""
+#| "Only revoked or expired certificates can be deleted. The status of the "
+#| "certificate is %1."
 msgid ""
 "Only revoked or expired certificates can be deleted. The status of the "
 "certificate is %s."
 msgstr ""
-"Môžu byť odstránené iba neplatné, alebo preexpirované certifikáty. Stav "
-"certifikátu je%1."
+"Môžu byť odstránené iba odvolané alebo vypršané certifikáty. Stav "
+"certifikátu je %s."
 
 #: src/CA.cpp:1072
 msgid "Database not found."
@@ -257,9 +271,10 @@ msgid "Certificate does not exist."
 msgstr "Certifikát neexistuje."
 
 #: src/CA.cpp:1112
-#, fuzzy, c-format
+#, c-format
+#| msgid "Invalid purpose %1."
 msgid "Invalid purpose %s."
-msgstr "Neplatný účel %1."
+msgstr "Neplatný účel %s."
 
 #: src/CA.cpp:1155
 msgid "Invalid CA request data."
@@ -302,16 +317,17 @@ msgid "Error during write defaults."
 msgstr "Chyba počas zápisu štandardných hodnôt."
 
 #: src/CA.cpp:1532
-#, fuzzy, c-format
+#, c-format
+#| msgid "CA name does not exist (%1)."
 msgid "CA name does not exist (%s)."
-msgstr "Názov CA neexistuje (%1)."
+msgstr "Názov CA neexistuje (%s)."
 
 #: src/CA.cpp:1563
 msgid ""
 "Deleting the CA is not allowed. The CA must be expired or never have signed "
 "a certificate."
 msgstr ""
-"Nie je umožnené odstránenie CA. CA musí byť preexpirovaný, alebo nesmie byť "
+"Nie je umožnené odstránenie CA. CA musí byť vypršaný alebo nesmie byť "
 "podpísaný žiadny certifikát."
 
 #: src/CA.cpp:1588
@@ -324,24 +340,28 @@ msgstr "Konfiguračný súbor má chýbajúcu hodnotu politiky."
 
 #: src/CA.cpp:1649 src/CA.cpp:1911 src/DNObject.cpp:277
 #: src/DNObject_Priv.cpp:207
-#, fuzzy, c-format
+#, c-format
+#| msgid "Cannot parse section %1."
 msgid "Cannot parse section %s."
-msgstr "Nie je možné analyzovať sekciu %1."
+msgstr "Nie je možné analyzovať sekciu %s."
 
 #: src/CA.cpp:1721
-#, fuzzy, c-format
+#, c-format
+#| msgid "Field %1 must have a value."
 msgid "Field %s must have a value."
-msgstr "Pole %1 musí mať hodnotu."
+msgstr "Pole %s musí mať hodnotu."
 
 #: src/CA.cpp:1760
-#, fuzzy, c-format
+#, c-format
+#| msgid "%1 must be defined."
 msgid "%s must be defined."
-msgstr "%1 musí byť definovaný."
+msgstr "%s musí byť definované."
 
 #: src/CA.cpp:1845
-#, fuzzy, c-format
+#, c-format
+#| msgid "%1 must be the same in the CA certificate (%2) and the request (%3)."
 msgid "%s must be the same in the CA certificate (%s) and the request (%s)."
-msgstr "%1 musí byť rovnaké v CA certifikáte (%2) a požiadavke (%3)."
+msgstr "%s musí byť rovnaké v CA certifikáte (%s) a požiadavke (%s)."
 
 #: src/CA.cpp:1857
 msgid "The configuration file seems to have an invalid policy."
@@ -358,12 +378,13 @@ msgstr "Chýbajúca sekcia 'distinguished_name' v konfiguračnom súbore."
 
 #: src/CertificateData_Priv.cpp:92 src/CRLData_Priv.cpp:98
 #: src/CRLData_Priv.cpp:135
-#, fuzzy, c-format
+#, c-format
+#| msgid "Invalid serial %1."
 msgid "Invalid serial %s."
-msgstr "Neplatné sériové číslo %1."
+msgstr "Neplatné sériové číslo %s."
 
-#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:409
-#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:381
+#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:393
+#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:365
 msgid "Cannot create a memory BIO."
 msgstr "Nie je možné vytvoriť BIO pamäť."
 
@@ -395,13 +416,14 @@ msgstr "Nepodporovaný verejný typ kľúča."
 msgid "Unsupported public key algorithm."
 msgstr "Nepodporovaný verejný algoritmus kľúča."
 
-#: src/CertificateData_Priv.cpp:456 src/CRLData_Priv.cpp:370
-#: src/RequestData_Priv.cpp:288
-#, fuzzy, c-format
+#: src/CertificateData_Priv.cpp:440 src/CRLData_Priv.cpp:354
+#: src/RequestData_Priv.cpp:272
+#, c-format
+#| msgid "Unsupported signature algorithm %1."
 msgid "Unsupported signature algorithm %s."
-msgstr "Nepodporovaný algoritmus podpisu %1."
+msgstr "Nepodporovaný algoritmus podpisu %s."
 
-#: src/CertificateIssueData.cpp:223
+#: src/CertificateIssueData.cpp:207
 msgid "Invalid CertificateIssueData object."
 msgstr "Neplatný CertificateIssueData objekt."
 
@@ -415,9 +437,10 @@ msgstr "Neplatný UserNotice objekt."
 
 #: src/CertificatePoliciesExtension.cpp:389
 #: src/CertificatePoliciesExtension.cpp:453
-#, fuzzy, c-format
+#, c-format
+#| msgid "Invalid value for policyIdentifier: %1."
 msgid "Invalid value for policyIdentifier: %s."
-msgstr "Neplatná hodnota pre policyIdentifier: %1."
+msgstr "Neplatná hodnota pre policyIdentifier: %s."
 
 #: src/CertificatePoliciesExtension.cpp:508
 msgid "Invalid CertificatePolicy object."
@@ -432,15 +455,15 @@ msgstr "CertificatePoliciesExt nie je prítomné."
 msgid "Invalid CertificatePoliciesExt object."
 msgstr "Neplatný CertificatePoliciesExt objekt."
 
-#: src/CRLData.cpp:232
+#: src/CRLData.cpp:220
 msgid "Entry not found."
 msgstr "Položka nebola nájdená."
 
-#: src/CRLData_Priv.cpp:437
+#: src/CRLData_Priv.cpp:421
 msgid "Cannot parse CRL."
 msgstr "Nie je možné analyzovať CRL."
 
-#: src/CRLData_Priv.cpp:450
+#: src/CRLData_Priv.cpp:434
 msgid "Error parsing the CRL."
 msgstr "Chyba počas analyzovania CRL."
 
@@ -457,9 +480,10 @@ msgid "Invalid CRLGenerationData object."
 msgstr "Neplatný CRLGenerationData objekt."
 
 #: src/CRLReason.cpp:96 src/CRLReason.cpp:132
-#, fuzzy, c-format
+#, c-format
+#| msgid "Invalid revoke reason %1."
 msgid "Invalid revoke reason %s."
-msgstr "Neplatný dôvod %1."
+msgstr "Neplatný dôvod odvolania %s."
 
 #: src/CRLReason.cpp:170
 msgid "Reason is not certificateHold."
@@ -474,19 +498,22 @@ msgid "Reason is not CACompromise."
 msgstr "Dôvod nie je CACompromise."
 
 #: src/DNObject.cpp:100
-#, fuzzy, c-format
+#, c-format
+#| msgid "Invalid type %1."
 msgid "Invalid type %s."
-msgstr "Neplatný typ %1."
+msgstr "Neplatný typ %s."
 
 #: src/DNObject_Priv.cpp:157
-#, fuzzy, c-format
+#, c-format
+#| msgid "Cannot parse DN line: %1."
 msgid "Cannot parse DN line: %s."
-msgstr "Nie je možné analyzovať DN riadok: %1."
+msgstr "Nie je možné analyzovať DN riadok: %s."
 
 #: src/ExtendedKeyUsageExt.cpp:118 src/ExtendedKeyUsageExt.cpp:167
-#, fuzzy, c-format
+#, c-format
+#| msgid "Invalid ExtendedKeyUsage option %1."
 msgid "Invalid ExtendedKeyUsage option %s."
-msgstr "Neplatná voľba ExtendedKeyUsage %1."
+msgstr "Neplatná voľba ExtendedKeyUsage %s."
 
 #: src/ExtendedKeyUsageExt.cpp:126 src/ExtendedKeyUsageExt.cpp:175
 msgid "Invalid ExtendedKeyUsageExt."
@@ -523,68 +550,80 @@ msgstr "Nie je možné rozdeliť výstup certifikátu."
 
 #: src/LocalManagement.cpp:288 src/LocalManagement.cpp:309
 #: src/LocalManagement.cpp:328
-#, fuzzy, c-format
+#, c-format
+#| msgid "Cannot create directory %1: %2."
 msgid "Cannot create directory %s: %s."
-msgstr "Nie je možné vytvoriť priečinok %1: %2."
+msgstr "Nie je možné vytvoriť adresár %s: %s."
 
 #: src/LocalManagement.cpp:342
-#, fuzzy, c-format
+#, c-format
+#| msgid "%1 is not a directory."
 msgid "%s is not a directory."
-msgstr "%1 nie je priečinok."
+msgstr "%s nie je adresár."
 
-#: src/LocalManagement.cpp:370
+#: src/LocalManagement.cpp:363
 msgid "Invalid certificate file."
 msgstr "Neplatný súbor certifikátu."
 
-#: src/LocalManagement.cpp:448
-#, fuzzy, c-format
+#: src/LocalManagement.cpp:441
+#, c-format
+#| msgid "File not found: %1."
 msgid "File not found: %s."
-msgstr "Súbor nebol nájdený: %1."
+msgstr "Súbor nebol nájdený: %s."
 
-#: src/LocalManagement.cpp:457
-#, fuzzy, c-format
+#: src/LocalManagement.cpp:450
+#, c-format
+#| msgid "File too big: %1."
 msgid "File too big: %s."
-msgstr "Súbor príliš veľký: %1."
+msgstr "Príliš veľký súbor: %s."
 
-#: src/LocalManagement.cpp:466 src/LocalManagement.cpp:520
-#, fuzzy, c-format
+#: src/LocalManagement.cpp:459 src/LocalManagement.cpp:513
+#, c-format
+#| msgid "Cannot open file %1."
 msgid "Cannot open file %s."
-msgstr "Nie je možné otvoriť súbor %1."
+msgstr "Nie je možné otvoriť súbor %s."
 
-#: src/LocalManagement.cpp:485
-#, fuzzy, c-format
+#: src/LocalManagement.cpp:478
+#, c-format
+#| msgid "Cannot read from file %1."
 msgid "Cannot read from file %s."
-msgstr "Nie je možné čítať z riadka %1."
+msgstr "Nie je možné čítať zo súboru %s."
 
-#: src/LocalManagement.cpp:510
-#, fuzzy, c-format
+#: src/LocalManagement.cpp:503
+#, c-format
+#| msgid "File already exists: %1."
 msgid "File already exists: %s."
-msgstr "Súbor už existuje: %1."
+msgstr "Súbor už existuje: %s."
 
-#: src/LocalManagement.cpp:530
-#, fuzzy, c-format
+#: src/LocalManagement.cpp:523
+#, c-format
+#| msgid "Cannot get lock on file %1."
 msgid "Cannot get lock on file %s."
-msgstr "Nie je možné získať zámok na súbore %1."
+msgstr "Nie je možné získať zámok na súbore %s."
 
-#: src/LocalManagement.cpp:542
-#, fuzzy, c-format
+#: src/LocalManagement.cpp:535
+#, c-format
+#| msgid "Cannot write to file %1."
 msgid "Cannot write to file %s."
-msgstr "Nie je možné zapisovať do súboru %1."
+msgstr "Nie je možné zapisovať do súboru %s."
 
 #: src/OpenSSLUtils.cpp:49
-#, fuzzy, c-format
+#, c-format
+#| msgid "File does not exist: %1."
 msgid "File does not exist: %s."
-msgstr "Súbor neexistuje: %1."
+msgstr "Súbor neexistuje: %s."
 
 #: src/OpenSSLUtils.cpp:58
-#, fuzzy, c-format
+#, c-format
+#| msgid "Directory does not exist: %1."
 msgid "Directory does not exist: %s."
-msgstr "Priečinok neexistuje: %1."
+msgstr "Adresár neexistuje: %s."
 
 #: src/OpenSSLUtils.cpp:67
-#, fuzzy, c-format
+#, c-format
+#| msgid "Invalid command %1."
 msgid "Invalid command %s."
-msgstr "Neplatný príkaz %1."
+msgstr "Neplatný príkaz %s."
 
 #: src/OpenSSLUtils.cpp:124 src/OpenSSLUtils.cpp:214 src/OpenSSLUtils.cpp:313
 #: src/OpenSSLUtils.cpp:438 src/OpenSSLUtils.cpp:577 src/OpenSSLUtils.cpp:678
@@ -598,13 +637,14 @@ msgstr "Zlyhalo spustenie príkazu openssl."
 
 #: src/OpenSSLUtils.cpp:136 src/OpenSSLUtils.cpp:227 src/OpenSSLUtils.cpp:326
 #: src/OpenSSLUtils.cpp:451 src/OpenSSLUtils.cpp:590 src/OpenSSLUtils.cpp:691
-#: src/OpenSSLUtils.cpp:777 src/OpenSSLUtils.cpp:1147
-#: src/OpenSSLUtils.cpp:1302 src/OpenSSLUtils.cpp:1412
-#: src/OpenSSLUtils.cpp:1521 src/OpenSSLUtils.cpp:1691
-#: src/OpenSSLUtils.cpp:1838 src/OpenSSLUtils.cpp:2613
-#, fuzzy, c-format
+#: src/OpenSSLUtils.cpp:777 src/OpenSSLUtils.cpp:1147 src/OpenSSLUtils.cpp:1302
+#: src/OpenSSLUtils.cpp:1412 src/OpenSSLUtils.cpp:1521
+#: src/OpenSSLUtils.cpp:1691 src/OpenSSLUtils.cpp:1838
+#: src/OpenSSLUtils.cpp:2613
+#, c-format
+#| msgid "openssl command failed: %1"
 msgid "openssl command failed: %s"
-msgstr "zlyhal príkaz openssl: %1"
+msgstr "zlyhal príkaz openssl: %s"
 
 #: src/OpenSSLUtils.cpp:166 src/OpenSSLUtils.cpp:254 src/OpenSSLUtils.cpp:358
 #: src/OpenSSLUtils.cpp:477 src/OpenSSLUtils.cpp:617 src/OpenSSLUtils.cpp:714
@@ -628,9 +668,10 @@ msgid "No valid CA directory specified."
 msgstr "Nebol zadaný platný priečinok CA."
 
 #: src/OpenSSLUtils.cpp:963
-#, fuzzy, c-format
+#, c-format
+#| msgid "Showing certificate status with serial %1 failed (%2)."
 msgid "Showing certificate status with serial %s failed (%d)."
-msgstr "Zlyhalo (%2) zobrazenie stavu certifikátu so sériovým číslom %1."
+msgstr "Zobrazenie stavu certifikátu so sériovým číslom %s zlyhalo (%d)."
 
 #: src/OpenSSLUtils.cpp:999
 msgid "The key file does not exist."
@@ -651,14 +692,16 @@ msgstr "Je vyžadované heslo KCS12."
 
 #: src/OpenSSLUtils.cpp:1864 src/OpenSSLUtils.cpp:2064
 #: src/OpenSSLUtils.cpp:2216
-#, fuzzy, c-format
+#, c-format
+#| msgid "Cannot read directory: %1 (%2) [%3]."
 msgid "Cannot read directory: %s (%s) [%d]."
-msgstr "Nie je možné čítať priečinok: %1 (%2) [%3]."
+msgstr "Nie je možné čítať adresár: %s (%s) [%d]."
 
 #: src/OpenSSLUtils.cpp:1914
-#, fuzzy, c-format
+#, c-format
+#| msgid "No serial number found in %1."
 msgid "No serial number found in %s."
-msgstr "Nebolo nájdené sériové číslo v %1."
+msgstr "Nebolo nájdené žiadne sériové číslo v %s."
 
 #: src/OpenSSLUtils.cpp:1934
 msgid "The request already exists."
@@ -673,26 +716,30 @@ msgid "Cannot find the certificate subject."
 msgstr "Nie je možné nájsť predmet certifikátu."
 
 #: src/OpenSSLUtils.cpp:2385
-#, fuzzy, c-format
+#, c-format
+#| msgid "Invalid caName: %1."
 msgid "Invalid caName: %s."
-msgstr "Neplatný caName: %1."
+msgstr "Neplatné caName: %s."
 
 #: src/OpenSSLUtils.cpp:2394
-#, fuzzy, c-format
+#, c-format
+#| msgid "'%1' does not exist."
 msgid "'%s' does not exist."
-msgstr "'%1' neexistuje."
+msgstr "'%s' neexistuje."
 
 #: src/OpenSSLUtils.cpp:2404
-#, fuzzy, c-format
+#, c-format
+#| msgid "%1 still exists."
 msgid "%s still exists."
-msgstr "%1 stále existuje."
+msgstr "%s stále existuje."
 
 #: src/OpenSSLUtils.cpp:2415 src/OpenSSLUtils.cpp:2463
 #: src/OpenSSLUtils.cpp:2477 src/OpenSSLUtils.cpp:2491
 #: src/OpenSSLUtils.cpp:2505 src/OpenSSLUtils.cpp:2519
-#, fuzzy, c-format
+#, c-format
+#| msgid "Cannot create directory: %1 (%2 [%3])."
 msgid "Cannot create directory: %s (%s [%d])."
-msgstr "Nie je možné vytvoriť priečinok: %1 (%2 [%3])."
+msgstr "Nie je možné vytvoriť adresár: %s (%s [%d])."
 
 #: src/OpenSSLUtils.cpp:2450
 msgid "Cannot copy the configuration template."
@@ -703,19 +750,19 @@ msgid "Cannot create the file."
 msgstr "Nie je možné vytvoriť súbor."
 
 #: src/OpenSSLUtils.cpp:2552
-#, fuzzy
+#| msgid "Cannot open file %1."
 msgid "Can not open file."
-msgstr "Nie je možné otvoriť súbor %1."
+msgstr "Nie je možné otvoriť súbor."
 
-#: src/RequestData_Priv.cpp:408
+#: src/RequestData_Priv.cpp:392
 msgid "Cannot parse the request."
 msgstr "Nie je možné analyzovať požiadavku."
 
-#: src/RequestData_Priv.cpp:421
+#: src/RequestData_Priv.cpp:405
 msgid "Error while parsing the request."
 msgstr "Chyba počas analyzovanie požiadavky."
 
-#: src/RequestGenerationData.cpp:252
+#: src/RequestGenerationData.cpp:236
 msgid "Invalid RequestGenerationData object."
 msgstr "Neplatný RequestGenerationData objekt."
 
@@ -753,7 +800,7 @@ msgstr "NsCaRevocationUrlExt nie je prítomné."
 
 #: src/StringExtensions.cpp:499
 msgid "Invalid NsCaRevocationUrlExt object."
-msgstr "NeplatnýNsCaRevocationUrlExt objekt."
+msgstr "Neplatný NsCaRevocationUrlExt objekt."
 
 #: src/StringExtensions.cpp:577 src/StringExtensions.cpp:630
 msgid "Invalid value for NsRenewalUrlExt."

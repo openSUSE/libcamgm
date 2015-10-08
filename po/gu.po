@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nis\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2015-02-07 15:13+0100\n"
+"POT-Creation-Date: 2012-07-23 16:26+0200\n"
 "PO-Revision-Date: 2006-11-11 18:41+0530\n"
 "Last-Translator: Priyavert Sharma<priyavert.sharma@agreeya.com>\n"
 "Language-Team: AgreeYa Solutions<linux_team@agreeya.com>\n"
@@ -37,7 +37,7 @@ msgstr "accessOID અમાન્ય."
 #: src/CRLDistributionPointsExtension.cpp:72
 #: src/CRLDistributionPointsExtension.cpp:162 src/DNObject.cpp:500
 #: src/ExtendedKeyUsageExt.cpp:73 src/ExtendedKeyUsageExt.cpp:225
-#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:260
+#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:244
 #: src/StringExtensions.cpp:118 src/StringExtensions.cpp:195
 #: src/StringExtensions.cpp:283 src/StringExtensions.cpp:353
 #: src/StringExtensions.cpp:437 src/StringExtensions.cpp:507
@@ -91,9 +91,10 @@ msgid "This BitExtension is not present."
 msgstr "BitExtension મોજૂદ નથી."
 
 #: src/BitExtensions.cpp:130 src/BitExtensions.cpp:243
-#: src/CertificateIssueData.cpp:231 src/CRLGenerationData.cpp:158
+#: src/CertificateIssueData.cpp:215 src/CRLGenerationData.cpp:158
 #: src/DNObject.cpp:258 src/IssuerAlternativeNameExtension.cpp:220
 #, fuzzy, c-format
+#| msgid "Wrong type: %1."
 msgid "Wrong type: %d."
 msgstr "ખોટો પ્રકાર: %1."
 
@@ -135,6 +136,7 @@ msgstr "CA નામ ખાલી છે."
 
 #: src/CA.cpp:174
 #, fuzzy, c-format
+#| msgid "Template does not exist: %1."
 msgid "Template does not exist: %s."
 msgstr "ટેમ્પલેટ છે જ નહીં: %1."
 
@@ -148,6 +150,7 @@ msgstr "CA ઈન્ફ્રાસ્ટ્રક્ચર બનાવતી �
 
 #: src/CA.cpp:250 src/CA.cpp:1015
 #, fuzzy, c-format
+#| msgid "Cannot parse the certificate name %1."
 msgid "Cannot parse the certificate name %s."
 msgstr "સર્ટફીકેટ નામ %1 પાર્સ કરી શકાયું નહીં."
 
@@ -165,16 +168,19 @@ msgstr "રિક્વેસ્ટ ડેટા અમાન્ય."
 
 #: src/CA.cpp:323
 #, fuzzy, c-format
+#| msgid "Duplicate DN. Key %1.key already exists."
 msgid "Duplicate DN. Key %s.key already exists."
 msgstr "DN સરખું જ છે. કી %1.key અસ્તિત્વમાં છે જ."
 
 #: src/CA.cpp:331
 #, fuzzy, c-format
+#| msgid "Duplicate DN. Request %1.req already exists."
 msgid "Duplicate DN. Request %s.req already exists."
 msgstr "DN સરખું જ છે. રિક્વેસ્ટ %1. req અસ્તિત્વમાં છે જ."
 
 #: src/CA.cpp:400
 #, fuzzy, c-format
+#| msgid "Request does not exist (%1)."
 msgid "Request does not exist (%s)."
 msgstr "રિક્વેસ્ટ અસ્તિત્વમાં નથી(%1)."
 
@@ -192,6 +198,7 @@ msgstr "સર્ટિફીકેટ ઈસ્યુ કરવાનું ન
 
 #: src/CA.cpp:518
 #, fuzzy, c-format
+#| msgid "File %1 not found in the repository."
 msgid "File %s not found in the repository."
 msgstr "રિપોસીટરીમાં ફાઈલ %1 મળી નહીં."
 
@@ -213,6 +220,7 @@ msgstr "સર્ટફીકેટ નામ પાર્સ કરી શક�
 
 #: src/CA.cpp:967
 #, fuzzy, c-format
+#| msgid "Request %1 does not exist."
 msgid "Request %s does not exist."
 msgstr "રિક્વેસ્ટ %1 અસ્તિત્વમાં નથી."
 
@@ -222,16 +230,21 @@ msgstr "રિક્વેસ્ટ દૂર કરવાનું નિષ્
 
 #: src/CA.cpp:1003
 #, fuzzy, c-format
+#| msgid "Certificate %1 does not exist."
 msgid "Certificate %s does not exist."
 msgstr "સર્ટિફીકેટ %1 અસ્તિત્વમાં નથી."
 
 #: src/CA.cpp:1052
 #, fuzzy, c-format
+#| msgid "Removing the certificate failed: %1."
 msgid "Removing the certificate failed: %d."
 msgstr "સર્ટિફીકેટ દૂર કરવાનું નિષ્ફળ: %1."
 
 #: src/CA.cpp:1060
 #, fuzzy, c-format
+#| msgid ""
+#| "Only revoked or expired certificates can be deleted. The status of the "
+#| "certificate is %1."
 msgid ""
 "Only revoked or expired certificates can be deleted. The status of the "
 "certificate is %s."
@@ -249,6 +262,7 @@ msgstr "સર્ટિફીકેટ અસ્તિત્વમાં નથ�
 
 #: src/CA.cpp:1112
 #, fuzzy, c-format
+#| msgid "Invalid purpose %1."
 msgid "Invalid purpose %s."
 msgstr "હેતુ અમાન્ય %1."
 
@@ -295,6 +309,7 @@ msgstr "કી એન્ક્રીપ્ટશન દરમિયાન ભૂ
 
 #: src/CA.cpp:1532
 #, fuzzy, c-format
+#| msgid "CA name does not exist (%1)."
 msgid "CA name does not exist (%s)."
 msgstr "CA નામ અતિત્વમાં નથી (%1)."
 
@@ -317,21 +332,25 @@ msgstr "કન્ફિગરેશન ફાઈલમાં પોલિસી 
 #: src/CA.cpp:1649 src/CA.cpp:1911 src/DNObject.cpp:277
 #: src/DNObject_Priv.cpp:207
 #, fuzzy, c-format
+#| msgid "Cannot parse section %1."
 msgid "Cannot parse section %s."
 msgstr "વિભાગ પાર્સ નથી કરી શકાતો %1."
 
 #: src/CA.cpp:1721
 #, fuzzy, c-format
+#| msgid "Field %1 must have a value."
 msgid "Field %s must have a value."
 msgstr "%1 ફિલ્ડમાં મૂલ હોવું જરૂરી છે."
 
 #: src/CA.cpp:1760
 #, fuzzy, c-format
+#| msgid "%1 must be defined."
 msgid "%s must be defined."
 msgstr "%1 ડિફાઈન થયું હોવું જોઈએ."
 
 #: src/CA.cpp:1845
 #, fuzzy, c-format
+#| msgid "%1 must be the same in the CA certificate (%2) and the request (%3)."
 msgid "%s must be the same in the CA certificate (%s) and the request (%s)."
 msgstr "CA સર્ટિફીકેટ (%2) અને રિક્વેસ્ટ(%3) માં %1 સરખું હોવું જોઈએ."
 
@@ -350,11 +369,12 @@ msgstr "કન્ફિગ્યુરેશન ફાઈલમાં ‘ડિ�
 #: src/CertificateData_Priv.cpp:92 src/CRLData_Priv.cpp:98
 #: src/CRLData_Priv.cpp:135
 #, fuzzy, c-format
+#| msgid "Invalid serial %1."
 msgid "Invalid serial %s."
 msgstr "સીરીઅલ %1 અમાન્ય છે."
 
-#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:409
-#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:381
+#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:393
+#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:365
 msgid "Cannot create a memory BIO."
 msgstr "મેમરી BIO બનાવી શકાતો નથી."
 
@@ -387,13 +407,14 @@ msgstr "પબ્લીક કી ના પ્રકાર ને આધાર 
 msgid "Unsupported public key algorithm."
 msgstr "પબ્લીક કી ના આલ્ગોરીધમ ને આધાર નથી."
 
-#: src/CertificateData_Priv.cpp:456 src/CRLData_Priv.cpp:370
-#: src/RequestData_Priv.cpp:288
+#: src/CertificateData_Priv.cpp:440 src/CRLData_Priv.cpp:354
+#: src/RequestData_Priv.cpp:272
 #, fuzzy, c-format
+#| msgid "Unsupported signature algorithm %1."
 msgid "Unsupported signature algorithm %s."
 msgstr "સિગ્નેચર આલ્ગોરીધમ ને આધાર નથી %1."
 
-#: src/CertificateIssueData.cpp:223
+#: src/CertificateIssueData.cpp:207
 msgid "Invalid CertificateIssueData object."
 msgstr "CertificateIssueData ઓબજેક્ટ અમાન્ય"
 
@@ -408,6 +429,7 @@ msgstr "UserNotice ઓબજેક્ટ અમાન્ય"
 #: src/CertificatePoliciesExtension.cpp:389
 #: src/CertificatePoliciesExtension.cpp:453
 #, fuzzy, c-format
+#| msgid "Invalid value for policyIdentifier: %1."
 msgid "Invalid value for policyIdentifier: %s."
 msgstr "policyIdentifier: %1 માટે મૂલ અમાન્ય"
 
@@ -424,15 +446,15 @@ msgstr "CertificatePoliciesExt મોજૂદ નથી."
 msgid "Invalid CertificatePoliciesExt object."
 msgstr "CertificatePoliciesExt ઓબજેક્ટ અમાન્ય"
 
-#: src/CRLData.cpp:232
+#: src/CRLData.cpp:220
 msgid "Entry not found."
 msgstr "એન્ટ્રી મળી નહીં."
 
-#: src/CRLData_Priv.cpp:437
+#: src/CRLData_Priv.cpp:421
 msgid "Cannot parse CRL."
 msgstr "CRL પાર્સ કરી શકાય નહીં."
 
-#: src/CRLData_Priv.cpp:450
+#: src/CRLData_Priv.cpp:434
 msgid "Error parsing the CRL."
 msgstr "CRL પાર કરવામાં ભૂલ."
 
@@ -450,6 +472,7 @@ msgstr "CRLGenerationData ઓબજેક્ટ અમાન્ય"
 
 #: src/CRLReason.cpp:96 src/CRLReason.cpp:132
 #, fuzzy, c-format
+#| msgid "Invalid revoke reason %1."
 msgid "Invalid revoke reason %s."
 msgstr "રિવોક રીઝન અમાન્ય %1."
 
@@ -467,16 +490,19 @@ msgstr "રીઝન નથી CACompromise."
 
 #: src/DNObject.cpp:100
 #, fuzzy, c-format
+#| msgid "Invalid type %1."
 msgid "Invalid type %s."
 msgstr "અમાન્ય પ્રકાર %1."
 
 #: src/DNObject_Priv.cpp:157
 #, fuzzy, c-format
+#| msgid "Cannot parse DN line: %1."
 msgid "Cannot parse DN line: %s."
 msgstr "DN લાઈન પાર્સ કરી શકાતી નથી:%1."
 
 #: src/ExtendedKeyUsageExt.cpp:118 src/ExtendedKeyUsageExt.cpp:167
 #, fuzzy, c-format
+#| msgid "Invalid ExtendedKeyUsage option %1."
 msgid "Invalid ExtendedKeyUsage option %s."
 msgstr "ExtendedKeyUsage વિકલ્પ અમાન્ય %1."
 
@@ -516,65 +542,77 @@ msgstr "સર્ટિફીકેટ આઉટપુટ સ્પ્લીટ 
 #: src/LocalManagement.cpp:288 src/LocalManagement.cpp:309
 #: src/LocalManagement.cpp:328
 #, fuzzy, c-format
+#| msgid "Cannot create directory %1: %2."
 msgid "Cannot create directory %s: %s."
 msgstr "ડિરેક્ટરી %1 બનાવી શકાતી નથી: %2."
 
 #: src/LocalManagement.cpp:342
 #, fuzzy, c-format
+#| msgid "%1 is not a directory."
 msgid "%s is not a directory."
 msgstr "%1 ડિરેક્ટરી નથી."
 
-#: src/LocalManagement.cpp:370
+#: src/LocalManagement.cpp:363
 msgid "Invalid certificate file."
 msgstr "સર્ટિફીકેટ ફાઈલ અમાન્ય."
 
-#: src/LocalManagement.cpp:448
+#: src/LocalManagement.cpp:441
 #, fuzzy, c-format
+#| msgid "File not found: %1."
 msgid "File not found: %s."
 msgstr "ફાઈલ નથી મળતી: %1."
 
-#: src/LocalManagement.cpp:457
+#: src/LocalManagement.cpp:450
 #, fuzzy, c-format
+#| msgid "File too big: %1."
 msgid "File too big: %s."
 msgstr "ફાઈલ ઘણી મોટી છે: %1."
 
-#: src/LocalManagement.cpp:466 src/LocalManagement.cpp:520
+#: src/LocalManagement.cpp:459 src/LocalManagement.cpp:513
 #, fuzzy, c-format
+#| msgid "Cannot open file %1."
 msgid "Cannot open file %s."
 msgstr "ફાઈલ ખુલી શકતી નથી: %1."
 
-#: src/LocalManagement.cpp:485
+#: src/LocalManagement.cpp:478
 #, fuzzy, c-format
+#| msgid "Cannot read from file %1."
 msgid "Cannot read from file %s."
 msgstr "ફાઈલ વાંચી શકાતી નથી: %1."
 
-#: src/LocalManagement.cpp:510
+#: src/LocalManagement.cpp:503
 #, fuzzy, c-format
+#| msgid "File already exists: %1."
 msgid "File already exists: %s."
 msgstr "ફાઈલ અસ્તિત્વમાં છે: %1."
 
-#: src/LocalManagement.cpp:530
+#: src/LocalManagement.cpp:523
 #, fuzzy, c-format
+#| msgid "Cannot get lock on file %1."
 msgid "Cannot get lock on file %s."
 msgstr "ફાઈલ પર લૉક નથી મળતું: %1."
 
-#: src/LocalManagement.cpp:542
+#: src/LocalManagement.cpp:535
 #, fuzzy, c-format
+#| msgid "Cannot write to file %1."
 msgid "Cannot write to file %s."
 msgstr "ફાઈલ પર લખાઈ શકાતું નથી: %1."
 
 #: src/OpenSSLUtils.cpp:49
 #, fuzzy, c-format
+#| msgid "File does not exist: %1."
 msgid "File does not exist: %s."
 msgstr "ફાઈલ અસ્તિત્વમાં નથી: %1."
 
 #: src/OpenSSLUtils.cpp:58
 #, fuzzy, c-format
+#| msgid "Directory does not exist: %1."
 msgid "Directory does not exist: %s."
 msgstr "ડિરેક્ટરી અસ્તિત્વમાં નથી: %1."
 
 #: src/OpenSSLUtils.cpp:67
 #, fuzzy, c-format
+#| msgid "Invalid command %1."
 msgid "Invalid command %s."
 msgstr "કમાન્ડ અમાન્ય %1."
 
@@ -590,13 +628,14 @@ msgstr ""
 
 #: src/OpenSSLUtils.cpp:136 src/OpenSSLUtils.cpp:227 src/OpenSSLUtils.cpp:326
 #: src/OpenSSLUtils.cpp:451 src/OpenSSLUtils.cpp:590 src/OpenSSLUtils.cpp:691
-#: src/OpenSSLUtils.cpp:777 src/OpenSSLUtils.cpp:1147
-#: src/OpenSSLUtils.cpp:1302 src/OpenSSLUtils.cpp:1412
-#: src/OpenSSLUtils.cpp:1521 src/OpenSSLUtils.cpp:1691
-#: src/OpenSSLUtils.cpp:1838 src/OpenSSLUtils.cpp:2613
-#, c-format
+#: src/OpenSSLUtils.cpp:777 src/OpenSSLUtils.cpp:1147 src/OpenSSLUtils.cpp:1302
+#: src/OpenSSLUtils.cpp:1412 src/OpenSSLUtils.cpp:1521
+#: src/OpenSSLUtils.cpp:1691 src/OpenSSLUtils.cpp:1838
+#: src/OpenSSLUtils.cpp:2613
+#, fuzzy, c-format
+#| msgid "DBI Execution failed: %s"
 msgid "openssl command failed: %s"
-msgstr ""
+msgstr "DBI Execution failed: %s"
 
 #: src/OpenSSLUtils.cpp:166 src/OpenSSLUtils.cpp:254 src/OpenSSLUtils.cpp:358
 #: src/OpenSSLUtils.cpp:477 src/OpenSSLUtils.cpp:617 src/OpenSSLUtils.cpp:714
@@ -621,6 +660,7 @@ msgstr "કોઈ માન્ય CA ડિરેક્ટરી જણાવા
 
 #: src/OpenSSLUtils.cpp:963
 #, fuzzy, c-format
+#| msgid "Showing certificate status with serial %1 failed (%2)."
 msgid "Showing certificate status with serial %s failed (%d)."
 msgstr "સીરીઅલ %1 સાથે બતાવેલ સ્થિતિ નિષ્ફળ(%2)."
 
@@ -645,11 +685,13 @@ msgstr "PKCS12 પાસવર્ડ જરૂરી છે."
 #: src/OpenSSLUtils.cpp:1864 src/OpenSSLUtils.cpp:2064
 #: src/OpenSSLUtils.cpp:2216
 #, fuzzy, c-format
+#| msgid "Cannot read directory: %1 (%2) [%3]."
 msgid "Cannot read directory: %s (%s) [%d]."
 msgstr "ડિરેક્ટરી વાંચી શકાતી નથી: %1 (%2) [%3]."
 
 #: src/OpenSSLUtils.cpp:1914
 #, fuzzy, c-format
+#| msgid "No serial number found in %1."
 msgid "No serial number found in %s."
 msgstr "કોઈ સીરીઅલ નંબર મળ્યો નથી %1."
 
@@ -667,16 +709,19 @@ msgstr "સર્ટિફીકેટ વિષય મળી શકતો ન�
 
 #: src/OpenSSLUtils.cpp:2385
 #, fuzzy, c-format
+#| msgid "Invalid caName: %1."
 msgid "Invalid caName: %s."
 msgstr "અમાન્ય caName: %1."
 
 #: src/OpenSSLUtils.cpp:2394
 #, fuzzy, c-format
+#| msgid "'%1' does not exist."
 msgid "'%s' does not exist."
 msgstr "'%1' અસ્તિત્વ ધરાવતી નથી."
 
 #: src/OpenSSLUtils.cpp:2404
 #, fuzzy, c-format
+#| msgid "%1 still exists."
 msgid "%s still exists."
 msgstr "%1 અસ્તિત્વ ધરાવે છે."
 
@@ -684,6 +729,7 @@ msgstr "%1 અસ્તિત્વ ધરાવે છે."
 #: src/OpenSSLUtils.cpp:2477 src/OpenSSLUtils.cpp:2491
 #: src/OpenSSLUtils.cpp:2505 src/OpenSSLUtils.cpp:2519
 #, fuzzy, c-format
+#| msgid "Cannot create directory: %1 (%2 [%3])."
 msgid "Cannot create directory: %s (%s [%d])."
 msgstr "ડિરેક્ટરી બનાવી શકાઈ નથી: %1 (%2 [%3])."
 
@@ -697,18 +743,19 @@ msgstr "ફાઈલ બનાવી શકાતી નથી."
 
 #: src/OpenSSLUtils.cpp:2552
 #, fuzzy
+#| msgid "Cannot open file %1."
 msgid "Can not open file."
 msgstr "ફાઈલ ખુલી શકતી નથી: %1."
 
-#: src/RequestData_Priv.cpp:408
+#: src/RequestData_Priv.cpp:392
 msgid "Cannot parse the request."
 msgstr "રિક્વેસ્ટ પાર્સ કરી શકાતી નથી."
 
-#: src/RequestData_Priv.cpp:421
+#: src/RequestData_Priv.cpp:405
 msgid "Error while parsing the request."
 msgstr "રિક્વેસ્ટ પાર્સ કરવામાં ભૂલ."
 
-#: src/RequestGenerationData.cpp:252
+#: src/RequestGenerationData.cpp:236
 msgid "Invalid RequestGenerationData object."
 msgstr "RequestGenerationData ઓબજેક્ટ અમાન્ય."
 

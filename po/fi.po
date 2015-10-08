@@ -9,25 +9,26 @@
 # Jyri Palokangas <jmp@netti.fi>, 2006.
 # Jyri Palokangas <jmp@opensuse.fi>, 2007, 2008.
 # Sami Ojanen <sami.ojanen@kapsi.fi>, 2008.
-# Jyri Palokangas <jyri.palokangas@opensuse.org>, 2008.
+# Jyri Palokangas <jyri.palokangas@opensuse.org>, 2008, 2010, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm.fi\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2015-02-07 15:13+0100\n"
-"PO-Revision-Date: 2008-11-07 20:01+0200\n"
+"POT-Creation-Date: 2012-07-23 16:26+0200\n"
+"PO-Revision-Date: 2013-09-12 21:40+0300\n"
 "Last-Translator: Jyri Palokangas <jyri.palokangas@opensuse.org>\n"
-"Language-Team: suomi <fi@li.org>\n"
-"Language: \n"
+"Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Lokalize 1.5\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:104
 #: src/AuthorityInfoAccessExtension.cpp:133
 msgid "Invalid location."
-msgstr "Virheellinen paikka."
+msgstr "Virheellinen sijainti."
 
 #: src/AuthorityInfoAccessExtension.cpp:109
 #: src/AuthorityInfoAccessExtension.cpp:138
@@ -49,7 +50,7 @@ msgstr "Virheellinen accessOID"
 #: src/CRLDistributionPointsExtension.cpp:72
 #: src/CRLDistributionPointsExtension.cpp:162 src/DNObject.cpp:500
 #: src/ExtendedKeyUsageExt.cpp:73 src/ExtendedKeyUsageExt.cpp:225
-#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:260
+#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:244
 #: src/StringExtensions.cpp:118 src/StringExtensions.cpp:195
 #: src/StringExtensions.cpp:283 src/StringExtensions.cpp:353
 #: src/StringExtensions.cpp:437 src/StringExtensions.cpp:507
@@ -103,11 +104,11 @@ msgid "This BitExtension is not present."
 msgstr "Tätä BitExtension:ia ei löydetty."
 
 #: src/BitExtensions.cpp:130 src/BitExtensions.cpp:243
-#: src/CertificateIssueData.cpp:231 src/CRLGenerationData.cpp:158
+#: src/CertificateIssueData.cpp:215 src/CRLGenerationData.cpp:158
 #: src/DNObject.cpp:258 src/IssuerAlternativeNameExtension.cpp:220
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong type: %d."
-msgstr "Väärä tyyppi: %1"
+msgstr "Väärä tyyppi: %d."
 
 #: src/BitExtensions.cpp:170 src/BitExtensions.cpp:199
 msgid "Invalid value for keyUsage."
@@ -146,9 +147,9 @@ msgid "Empty CA name."
 msgstr "Tyhjä CA-nimi."
 
 #: src/CA.cpp:174
-#, fuzzy, c-format
+#, c-format
 msgid "Template does not exist: %s."
-msgstr "Malli: %1 ei ole olemassa."
+msgstr "Mallia ei ole olemassa: %s."
 
 #: src/CA.cpp:186 src/CA.cpp:1543
 msgid "Invalid CA password."
@@ -159,9 +160,9 @@ msgid "Error while creating the CA infrastructure."
 msgstr "Virhe luotaessa CA-infrastruktuuria."
 
 #: src/CA.cpp:250 src/CA.cpp:1015
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot parse the certificate name %s."
-msgstr "Ei voitu koostaa varmennenimeä: %1."
+msgstr "Ei voitu koostaa varmennenimeä %s."
 
 #: src/CA.cpp:261
 msgid "Cannot copy the private key."
@@ -176,19 +177,19 @@ msgid "Invalid request data."
 msgstr "Pyynnön tieto virheellinen."
 
 #: src/CA.cpp:323
-#, fuzzy, c-format
+#, c-format
 msgid "Duplicate DN. Key %s.key already exists."
-msgstr "Duplikaatti DN.avain %1.avain on jo olemassa."
+msgstr "Duplikaatti DN Avain %s. avain on jo olemassa."
 
 #: src/CA.cpp:331
-#, fuzzy, c-format
+#, c-format
 msgid "Duplicate DN. Request %s.req already exists."
-msgstr "Duplikaatti DN. Pyyntö %1 .Pyyntö on jo olemassa"
+msgstr "Duplikaatti DN. Pyyntö %s .Pyyntö on jo olemassa"
 
 #: src/CA.cpp:400
-#, fuzzy, c-format
+#, c-format
 msgid "Request does not exist (%s)."
-msgstr "Pyyntöä (%1) ei ole olemassa."
+msgstr "Pyyntöä (%s) ei ole olemassa."
 
 #: src/CA.cpp:406
 msgid "Invalid issue data."
@@ -203,9 +204,9 @@ msgid "Issuing the certificate failed."
 msgstr "Varmenteen myöntäminen epäonnistui."
 
 #: src/CA.cpp:518
-#, fuzzy, c-format
+#, c-format
 msgid "File %s not found in the repository."
-msgstr "Tiedostoa %1 ei löydetty varastosta (repository)."
+msgstr "Tiedostoa %s ei löydetty tietovarastosta."
 
 #: src/CA.cpp:525 src/CRLData_Priv.cpp:153
 msgid "Invalid CRL reason."
@@ -224,32 +225,32 @@ msgid "Cannot parse the certificate name."
 msgstr "Ei voitu koostaa varmenteen nimeä."
 
 #: src/CA.cpp:967
-#, fuzzy, c-format
+#, c-format
 msgid "Request %s does not exist."
-msgstr "Pyyntöä %1 ei ole olemassa."
+msgstr "Pyyntöä %s ei ole olemassa."
 
 #: src/CA.cpp:989
 msgid "Removing the request failed (%1)."
 msgstr "Pyynnön %1 poisto epäonnistui."
 
 #: src/CA.cpp:1003
-#, fuzzy, c-format
+#, c-format
 msgid "Certificate %s does not exist."
-msgstr "Varmennetta %1 ei ole olemassa."
+msgstr "Varmennetta %s ei ole olemassa."
 
 #: src/CA.cpp:1052
-#, fuzzy, c-format
+#, c-format
 msgid "Removing the certificate failed: %d."
-msgstr "Varmenteen %1 poisto epäonnistui."
+msgstr "Varmenteen poisto epäonnistui: %d."
 
 #: src/CA.cpp:1060
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Only revoked or expired certificates can be deleted. The status of the "
 "certificate is %s."
 msgstr ""
 "Vain peruutettuja tai vanhentuneita varmenteita voi poistaa. Varmenteen tila "
-"on %1."
+"on %s."
 
 #: src/CA.cpp:1072
 msgid "Database not found."
@@ -260,9 +261,9 @@ msgid "Certificate does not exist."
 msgstr "Varmennetta ei ole olemassa."
 
 #: src/CA.cpp:1112
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid purpose %s."
-msgstr "Virheellinen tarkoitus (purpose) %1."
+msgstr "Virheellinen tarkoitus (purpose) %s."
 
 #: src/CA.cpp:1155
 msgid "Invalid CA request data."
@@ -305,9 +306,9 @@ msgid "Error during write defaults."
 msgstr "Virhe oletuskirjoitusten aikana."
 
 #: src/CA.cpp:1532
-#, fuzzy, c-format
+#, c-format
 msgid "CA name does not exist (%s)."
-msgstr "CA-nimeä %1 ei ole olemassa."
+msgstr "CA-nimeä ei ole olemassa (%s)."
 
 #: src/CA.cpp:1563
 msgid ""
@@ -327,24 +328,24 @@ msgstr "Määritystiedostosta puuttuu \"menettely\" (value for policy)"
 
 #: src/CA.cpp:1649 src/CA.cpp:1911 src/DNObject.cpp:277
 #: src/DNObject_Priv.cpp:207
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot parse section %s."
-msgstr "Ei voitu koostaa osiota %1."
+msgstr "Ei voitu koostaa osiota %s."
 
 #: src/CA.cpp:1721
-#, fuzzy, c-format
+#, c-format
 msgid "Field %s must have a value."
-msgstr "Kentässä %1 täytyy olla arvo."
+msgstr "Kentässä %s täytyy olla arvo."
 
 #: src/CA.cpp:1760
-#, fuzzy, c-format
+#, c-format
 msgid "%s must be defined."
-msgstr "%1 pitää olla määritetty."
+msgstr "%s pitää olla määritetty."
 
 #: src/CA.cpp:1845
-#, fuzzy, c-format
+#, c-format
 msgid "%s must be the same in the CA certificate (%s) and the request (%s)."
-msgstr "%1:sen pitää olla sama kuin CA-varmenteessa %2 (pyyntö oli %3)."
+msgstr "%s pitää olla sama kuin CA-varmenteessa (%s) ja pyynnössä (%s)."
 
 #: src/CA.cpp:1857
 msgid "The configuration file seems to have an invalid policy."
@@ -362,12 +363,12 @@ msgstr "Määritystiedostosta puuttuu osio: 'distinguished_name' ."
 
 #: src/CertificateData_Priv.cpp:92 src/CRLData_Priv.cpp:98
 #: src/CRLData_Priv.cpp:135
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid serial %s."
-msgstr "Virheellinen sarja (serial) %1."
+msgstr "Virheellinen sarja (serial) %s."
 
-#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:409
-#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:381
+#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:393
+#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:365
 msgid "Cannot create a memory BIO."
 msgstr "Ei voitu luoda muisti-BIO:a"
 
@@ -399,13 +400,13 @@ msgstr "Julkisen avaimen tyyppi ei tuettu."
 msgid "Unsupported public key algorithm."
 msgstr "Julkisen avaimen algoritmi ei tuettu."
 
-#: src/CertificateData_Priv.cpp:456 src/CRLData_Priv.cpp:370
-#: src/RequestData_Priv.cpp:288
-#, fuzzy, c-format
+#: src/CertificateData_Priv.cpp:440 src/CRLData_Priv.cpp:354
+#: src/RequestData_Priv.cpp:272
+#, c-format
 msgid "Unsupported signature algorithm %s."
-msgstr "Allekirjoituksen algoritmi %1 ei tuettu."
+msgstr "Allekirjoituksen algoritmi %s ei tuettu."
 
-#: src/CertificateIssueData.cpp:223
+#: src/CertificateIssueData.cpp:207
 msgid "Invalid CertificateIssueData object."
 msgstr "Virheellinen CertificateIssueData objekti."
 
@@ -419,9 +420,9 @@ msgstr "Virheellinen UserNotice objekti."
 
 #: src/CertificatePoliciesExtension.cpp:389
 #: src/CertificatePoliciesExtension.cpp:453
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid value for policyIdentifier: %s."
-msgstr "Virheellinen policyIdentifier arvo: %1."
+msgstr "Virheellinen policyIdentifier arvo: %s."
 
 #: src/CertificatePoliciesExtension.cpp:508
 msgid "Invalid CertificatePolicy object."
@@ -436,15 +437,15 @@ msgstr "CertificatePoliciesExt:ia ei löydy."
 msgid "Invalid CertificatePoliciesExt object."
 msgstr "Virheellinen CertificatePoliciesExt objekti."
 
-#: src/CRLData.cpp:232
+#: src/CRLData.cpp:220
 msgid "Entry not found."
 msgstr "Merkintää ei löytynyt."
 
-#: src/CRLData_Priv.cpp:437
+#: src/CRLData_Priv.cpp:421
 msgid "Cannot parse CRL."
 msgstr "CRL:ää ei voitu koostaa."
 
-#: src/CRLData_Priv.cpp:450
+#: src/CRLData_Priv.cpp:434
 msgid "Error parsing the CRL."
 msgstr "Virhe CRL:n koostamisessa."
 
@@ -461,9 +462,9 @@ msgid "Invalid CRLGenerationData object."
 msgstr "Virheellinen CRLGenerationData objekti."
 
 #: src/CRLReason.cpp:96 src/CRLReason.cpp:132
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid revoke reason %s."
-msgstr "Virheellinen peruutuksen (revoke) syy: %1."
+msgstr "Virheellinen peruutuksen (revoke) syy: %s."
 
 #: src/CRLReason.cpp:170
 msgid "Reason is not certificateHold."
@@ -478,19 +479,19 @@ msgid "Reason is not CACompromise."
 msgstr "Syynä ei ole CACompromise."
 
 #: src/DNObject.cpp:100
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid type %s."
-msgstr "Virheellinen tyyppi %1."
+msgstr "Virheellinen tyyppi %s."
 
 #: src/DNObject_Priv.cpp:157
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot parse DN line: %s."
-msgstr "DN-riviä ei voi jäsentää: %1."
+msgstr "DN-riviä ei voi jäsentää: %s."
 
 #: src/ExtendedKeyUsageExt.cpp:118 src/ExtendedKeyUsageExt.cpp:167
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid ExtendedKeyUsage option %s."
-msgstr "Virheellinen ExtendedKeyUsage optio %1."
+msgstr "Virheellinen ExtendedKeyUsage optio %s."
 
 #: src/ExtendedKeyUsageExt.cpp:126 src/ExtendedKeyUsageExt.cpp:175
 msgid "Invalid ExtendedKeyUsageExt."
@@ -527,68 +528,68 @@ msgstr "Varmenteen tulostusta (output) ei voida jakaa"
 
 #: src/LocalManagement.cpp:288 src/LocalManagement.cpp:309
 #: src/LocalManagement.cpp:328
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot create directory %s: %s."
-msgstr "Ei voitu luoda hakemistoa %1: %2."
+msgstr "Ei voitu luoda hakemistoa %s: %s."
 
 #: src/LocalManagement.cpp:342
-#, fuzzy, c-format
+#, c-format
 msgid "%s is not a directory."
-msgstr "%1 ei ole hakemisto."
+msgstr "%s ei ole hakemisto."
 
-#: src/LocalManagement.cpp:370
+#: src/LocalManagement.cpp:363
 msgid "Invalid certificate file."
 msgstr "Virheellinen varmenne-tiedosto."
 
-#: src/LocalManagement.cpp:448
-#, fuzzy, c-format
+#: src/LocalManagement.cpp:441
+#, c-format
 msgid "File not found: %s."
-msgstr "Tiedostoa %1 ei löytynyt."
+msgstr "Tiedostoa ei löytynyt: %s."
 
-#: src/LocalManagement.cpp:457
-#, fuzzy, c-format
+#: src/LocalManagement.cpp:450
+#, c-format
 msgid "File too big: %s."
-msgstr "Tiedosto %1 liian iso."
+msgstr "Tiedosto liian suuri: %s."
 
-#: src/LocalManagement.cpp:466 src/LocalManagement.cpp:520
-#, fuzzy, c-format
+#: src/LocalManagement.cpp:459 src/LocalManagement.cpp:513
+#, c-format
 msgid "Cannot open file %s."
-msgstr "Tiedostoa %1 ei voitu avata."
+msgstr "Tiedostoa %s ei voitu avata."
 
-#: src/LocalManagement.cpp:485
-#, fuzzy, c-format
+#: src/LocalManagement.cpp:478
+#, c-format
 msgid "Cannot read from file %s."
-msgstr "Tiedostosta %1 ei voitu lukea."
+msgstr "Tiedostosta %s ei voitu lukea."
 
-#: src/LocalManagement.cpp:510
-#, fuzzy, c-format
+#: src/LocalManagement.cpp:503
+#, c-format
 msgid "File already exists: %s."
-msgstr "Tiedosto %1 on jo olemassa."
+msgstr "Tiedosto on jo olemassa: %s."
 
-#: src/LocalManagement.cpp:530
-#, fuzzy, c-format
+#: src/LocalManagement.cpp:523
+#, c-format
 msgid "Cannot get lock on file %s."
-msgstr "Tiedostoa %1 ei voitu lukita."
+msgstr "Tiedostoa %s ei voitu lukita."
 
-#: src/LocalManagement.cpp:542
-#, fuzzy, c-format
+#: src/LocalManagement.cpp:535
+#, c-format
 msgid "Cannot write to file %s."
-msgstr "Tiedostoon %1 ei voitu kirjoittaa."
+msgstr "Tiedostoon %s ei voitu kirjoittaa."
 
 #: src/OpenSSLUtils.cpp:49
-#, fuzzy, c-format
+#, c-format
 msgid "File does not exist: %s."
-msgstr "Tiedostoa %1 ei ole olemassa."
+msgstr "Tiedostoa ei ole olemassa: %s."
 
 #: src/OpenSSLUtils.cpp:58
-#, fuzzy, c-format
+#, c-format
 msgid "Directory does not exist: %s."
-msgstr "Hakemistoa %1 ei ole olemassa."
+msgstr "Hakemistoa ei ole olemassa: %s."
 
 #: src/OpenSSLUtils.cpp:67
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid command %s."
-msgstr "Virheellinen komento %1."
+msgstr "Virheellinen komento %s."
 
 #: src/OpenSSLUtils.cpp:124 src/OpenSSLUtils.cpp:214 src/OpenSSLUtils.cpp:313
 #: src/OpenSSLUtils.cpp:438 src/OpenSSLUtils.cpp:577 src/OpenSSLUtils.cpp:678
@@ -602,13 +603,13 @@ msgstr "openssl komennon suorittaminen epäonnistui."
 
 #: src/OpenSSLUtils.cpp:136 src/OpenSSLUtils.cpp:227 src/OpenSSLUtils.cpp:326
 #: src/OpenSSLUtils.cpp:451 src/OpenSSLUtils.cpp:590 src/OpenSSLUtils.cpp:691
-#: src/OpenSSLUtils.cpp:777 src/OpenSSLUtils.cpp:1147
-#: src/OpenSSLUtils.cpp:1302 src/OpenSSLUtils.cpp:1412
-#: src/OpenSSLUtils.cpp:1521 src/OpenSSLUtils.cpp:1691
-#: src/OpenSSLUtils.cpp:1838 src/OpenSSLUtils.cpp:2613
-#, fuzzy, c-format
+#: src/OpenSSLUtils.cpp:777 src/OpenSSLUtils.cpp:1147 src/OpenSSLUtils.cpp:1302
+#: src/OpenSSLUtils.cpp:1412 src/OpenSSLUtils.cpp:1521
+#: src/OpenSSLUtils.cpp:1691 src/OpenSSLUtils.cpp:1838
+#: src/OpenSSLUtils.cpp:2613
+#, c-format
 msgid "openssl command failed: %s"
-msgstr "openssl komento epäonnistui: %1"
+msgstr "openssl komento epäonnistui: %s"
 
 #: src/OpenSSLUtils.cpp:166 src/OpenSSLUtils.cpp:254 src/OpenSSLUtils.cpp:358
 #: src/OpenSSLUtils.cpp:477 src/OpenSSLUtils.cpp:617 src/OpenSSLUtils.cpp:714
@@ -632,9 +633,9 @@ msgid "No valid CA directory specified."
 msgstr "Kelvollista CA-hakemistoa ei ole määritetty."
 
 #: src/OpenSSLUtils.cpp:963
-#, fuzzy, c-format
+#, c-format
 msgid "Showing certificate status with serial %s failed (%d)."
-msgstr "Varmenteen tilan näyttäminen sarjalla (serial) %1 epäonnistui (%2)."
+msgstr "Varmenteen tilan näyttäminen sarjalla (serial) %s epäonnistui (%d)."
 
 #: src/OpenSSLUtils.cpp:999
 msgid "The key file does not exist."
@@ -655,14 +656,14 @@ msgstr "PKCS12-salasana on pakollinen."
 
 #: src/OpenSSLUtils.cpp:1864 src/OpenSSLUtils.cpp:2064
 #: src/OpenSSLUtils.cpp:2216
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot read directory: %s (%s) [%d]."
-msgstr "Hakemistoa ei voi lukea: %1 (%2) [%3]."
+msgstr "Hakemistoa ei voi lukea: %s (%s) [%d]."
 
 #: src/OpenSSLUtils.cpp:1914
-#, fuzzy, c-format
+#, c-format
 msgid "No serial number found in %s."
-msgstr "Sarjanumeroa ei löydetty kohteesta %1."
+msgstr "Sarjanumeroa ei löydetty kohteesta %s."
 
 #: src/OpenSSLUtils.cpp:1934
 msgid "The request already exists."
@@ -677,26 +678,26 @@ msgid "Cannot find the certificate subject."
 msgstr "Varmenneaihetta (certificate subject) ei löydy ."
 
 #: src/OpenSSLUtils.cpp:2385
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid caName: %s."
-msgstr "Virheellinen caName: %1."
+msgstr "Virheellinen caName: %s."
 
 #: src/OpenSSLUtils.cpp:2394
-#, fuzzy, c-format
+#, c-format
 msgid "'%s' does not exist."
-msgstr "'%1' ei ole olemassa."
+msgstr "'%s' ei ole olemassa."
 
 #: src/OpenSSLUtils.cpp:2404
-#, fuzzy, c-format
+#, c-format
 msgid "%s still exists."
-msgstr "%1 on yhä olemassa."
+msgstr "%s on yhä olemassa."
 
 #: src/OpenSSLUtils.cpp:2415 src/OpenSSLUtils.cpp:2463
 #: src/OpenSSLUtils.cpp:2477 src/OpenSSLUtils.cpp:2491
 #: src/OpenSSLUtils.cpp:2505 src/OpenSSLUtils.cpp:2519
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot create directory: %s (%s [%d])."
-msgstr "Hakemistoa ei voi luoda: %1 (%2 [%3])."
+msgstr "Hakemistoa ei voi luoda: %s (%s [%d])."
 
 #: src/OpenSSLUtils.cpp:2450
 msgid "Cannot copy the configuration template."
@@ -707,19 +708,18 @@ msgid "Cannot create the file."
 msgstr "Tiedostoa ei voi luoda."
 
 #: src/OpenSSLUtils.cpp:2552
-#, fuzzy
 msgid "Can not open file."
-msgstr "Tiedostoa %1 ei voitu avata."
+msgstr "Tiedostoa ei voitu avata."
 
-#: src/RequestData_Priv.cpp:408
+#: src/RequestData_Priv.cpp:392
 msgid "Cannot parse the request."
 msgstr "Pyyntöä ei voi jäsentää."
 
-#: src/RequestData_Priv.cpp:421
+#: src/RequestData_Priv.cpp:405
 msgid "Error while parsing the request."
 msgstr "Virhe jäsennettäessä pyyntöä."
 
-#: src/RequestGenerationData.cpp:252
+#: src/RequestGenerationData.cpp:236
 msgid "Invalid RequestGenerationData object."
 msgstr "Virheellinen RequestGenerationData-objekti."
 

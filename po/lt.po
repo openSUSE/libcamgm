@@ -2,32 +2,32 @@
 # Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
 #
 # Andrius Štikonas <stikonas@gmail.com>, 2006.
-# Mindaugas Baranauskas <embar@super.lt>, 2009.
+# Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>, 2009, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2015-02-07 15:13+0100\n"
-"PO-Revision-Date: 2009-10-04 14:28+0300\n"
-"Last-Translator: Mindaugas Baranauskas <embar@super.lt>\n"
-"Language-Team: Lietuvių\n"
-"Language: \n"
+"POT-Creation-Date: 2012-07-23 16:26+0200\n"
+"PO-Revision-Date: 2010-07-29 21:07+0300\n"
+"Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
+"Language-Team: Lithuanian <>\n"
+"Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
-"%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 ? 0 : n%10==1 && n%100!=11 ? 1 : n"
+"%10>=2 && (n%100<10 || n%100>=20) ? 2 : 3);\n"
+"X-Generator: Lokalize 1.0\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:104
 #: src/AuthorityInfoAccessExtension.cpp:133
 msgid "Invalid location."
-msgstr "Klaidinga vieta."
+msgstr "Netinkama vieta."
 
 #: src/AuthorityInfoAccessExtension.cpp:109
 #: src/AuthorityInfoAccessExtension.cpp:138
 msgid "Invalid accessOID."
-msgstr ""
+msgstr "Netinkamas accessOID."
 
 #: src/AuthorityInfoAccessExtension.cpp:253
 #: src/AuthorityInfoAccessExtension.cpp:336
@@ -44,7 +44,7 @@ msgstr ""
 #: src/CRLDistributionPointsExtension.cpp:72
 #: src/CRLDistributionPointsExtension.cpp:162 src/DNObject.cpp:500
 #: src/ExtendedKeyUsageExt.cpp:73 src/ExtendedKeyUsageExt.cpp:225
-#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:260
+#: src/IssuerAlternativeNameExtension.cpp:94 src/RequestGenerationData.cpp:244
 #: src/StringExtensions.cpp:118 src/StringExtensions.cpp:195
 #: src/StringExtensions.cpp:283 src/StringExtensions.cpp:353
 #: src/StringExtensions.cpp:437 src/StringExtensions.cpp:507
@@ -60,45 +60,45 @@ msgstr "Blogas tipas: %1."
 
 #: src/AuthorityInfoAccessExtension.cpp:304
 msgid "Invalid AuthorityInformation in the information list."
-msgstr ""
+msgstr "Informacijos sąraše netinkamas AuthorityInformation."
 
 #: src/AuthorityInfoAccessExtension.cpp:317
 msgid "AuthorityInfoAccessExt is not present."
-msgstr ""
+msgstr "Nepateiktas AuthorityInfoAccessExt."
 
 #: src/AuthorityInfoAccessExtension.cpp:328
 msgid "Invalid AuthorityInfoAccessExt object."
-msgstr "Klaidingas AuthorityInfoAccessExt objektas."
+msgstr "Netinkamas AuthorityInfoAccessExt objektas."
 
 #: src/AuthorityKeyIdentifierExtension.cpp:93
 #: src/AuthorityKeyIdentifierExtension.cpp:104
 #: src/AuthorityKeyIdentifierExtension.cpp:115
 msgid "AuthorityKeyIdentifierExt is not present."
-msgstr ""
+msgstr "Nepateiktas AuthorityKeyIdentifierExt."
 
 #: src/AuthorityKeyIdentifierGenerateExtension.cpp:150
 #: src/AuthorityKeyIdentifierGenerateExtension.cpp:169
 msgid "AuthorityKeyIdentifierGenerateExt is not present."
-msgstr ""
+msgstr "Nepateiktas AuthorityKeyIdentifierGenerateExt."
 
 #: src/AuthorityKeyIdentifierGenerateExtension.cpp:181
 msgid "Invalid AuthorityKeyIdentifierGenerateExt object."
-msgstr "Klaidingas AuthorityKeyIdentifierGenerateExt objektas."
+msgstr "Netinkamas AuthorityKeyIdentifierGenerateExt objektas."
 
 #: src/BasicConstraintsExtension.cpp:151 src/BasicConstraintsExtension.cpp:163
 msgid "BasicConstraintsExt is not present."
-msgstr ""
+msgstr "Nepateiktas BasicConstraintsExt."
 
 #: src/BasicConstraintsExtension.cpp:175
 msgid "Invalid BasicConstraintsExt object."
-msgstr "Klaidingas BasicConstraintsExt objektas."
+msgstr "Netinkamas BasicConstraintsExt objektas."
 
 #: src/BitExtensions.cpp:107
 msgid "This BitExtension is not present."
-msgstr ""
+msgstr "Nepateiktas BitExtension."
 
 #: src/BitExtensions.cpp:130 src/BitExtensions.cpp:243
-#: src/CertificateIssueData.cpp:231 src/CRLGenerationData.cpp:158
+#: src/CertificateIssueData.cpp:215 src/CRLGenerationData.cpp:158
 #: src/DNObject.cpp:258 src/IssuerAlternativeNameExtension.cpp:220
 #, fuzzy, c-format
 msgid "Wrong type: %d."
@@ -106,57 +106,57 @@ msgstr "Blogas tipas: %1."
 
 #: src/BitExtensions.cpp:170 src/BitExtensions.cpp:199
 msgid "Invalid value for keyUsage."
-msgstr "Klaidinga keyUsage vertė."
+msgstr "Netinkama keyUsage reikšmė."
 
 #: src/BitExtensions.cpp:211 src/BitExtensions.cpp:222
 msgid "KeyUsageExt is not present."
-msgstr ""
+msgstr "Nepateiktas KeyUsageExt."
 
 #: src/BitExtensions.cpp:235
 msgid "Invalid KeyUsageExt object."
-msgstr "Klaidingas KeyUsageExt objektas."
+msgstr "Netinkamas KeyUsageExt objektas."
 
 #: src/BitExtensions.cpp:406
 msgid "Invalid value for NsCertTypeExt."
-msgstr "Klaidinga NsCertTypeExt vertė."
+msgstr "Netinkama NsCertTypeExt reikšmė."
 
 #: src/BitExtensions.cpp:435
 msgid "Invalid value for NsCertTypeExt: %1."
-msgstr "Klaidinga NsCertTypeExt vertė: %1"
+msgstr "Netinkama NsCertTypeExt reikšmė: %1"
 
 #: src/BitExtensions.cpp:447
 msgid "NsCertTypeExt is not present."
-msgstr ""
+msgstr "Nepateiktas NsCertTypeExt."
 
 #: src/BitExtensions.cpp:468
 msgid "Invalid NsCertTypeExt object."
-msgstr "Klaidingas NsCertTypeExt objektas."
+msgstr "Netinkamas NsCertTypeExt objektas."
 
 #: src/CA.cpp:96
 msgid "Template not initialized."
-msgstr ""
+msgstr "Šablonas neparuoštas."
 
 #: src/CA.cpp:166 src/CA.cpp:1522
 msgid "Empty CA name."
-msgstr "Tuščias CA pavadinimas."
+msgstr "Tuščias liudijimų įstaigos pavadinimas."
 
 #: src/CA.cpp:174
 #, fuzzy, c-format
 msgid "Template does not exist: %s."
-msgstr "Šablonas neegzistuoja: %1."
+msgstr "Šablono nėra: %1."
 
 #: src/CA.cpp:186 src/CA.cpp:1543
 msgid "Invalid CA password."
-msgstr "Klaidingas CA spaltažodis."
+msgstr "Netinkamas liudijimų įstaigos slaptažodis."
 
 #: src/CA.cpp:230 src/CA.cpp:1175 src/CA.cpp:1341
 msgid "Error while creating the CA infrastructure."
-msgstr ""
+msgstr "Kuriant liudijimų įstaigos infrastruktūrą įvyko klaida."
 
 #: src/CA.cpp:250 src/CA.cpp:1015
 #, fuzzy, c-format
 msgid "Cannot parse the certificate name %s."
-msgstr "Nepavyksta išnagrinėti sertifikato pavadinimo."
+msgstr "Nepavyksta išnagrinėti liudijimo pavadinimo %1."
 
 #: src/CA.cpp:261
 msgid "Cannot copy the private key."
@@ -164,11 +164,11 @@ msgstr "Nepavyksta nukopijuoti privataus rakto."
 
 #: src/CA.cpp:272
 msgid "Cannot copy the certificate."
-msgstr "Nepavyksta nukopijuoti sertifikato."
+msgstr "Nepavyksta nukopijuoti liudijimo."
 
 #: src/CA.cpp:304
 msgid "Invalid request data."
-msgstr ""
+msgstr "Netinkama užklausa."
 
 #: src/CA.cpp:323
 #, c-format
@@ -176,14 +176,14 @@ msgid "Duplicate DN. Key %s.key already exists."
 msgstr ""
 
 #: src/CA.cpp:331
-#, c-format
+#, fuzzy, c-format
 msgid "Duplicate DN. Request %s.req already exists."
-msgstr ""
+msgstr "Užklausa jau yra."
 
 #: src/CA.cpp:400
 #, fuzzy, c-format
 msgid "Request does not exist (%s)."
-msgstr "CA pavadinimas neegzistuoja (%1)."
+msgstr "Užklausos nėra (%1)."
 
 #: src/CA.cpp:406
 msgid "Invalid issue data."
@@ -192,24 +192,25 @@ msgstr ""
 #: src/CA.cpp:423
 msgid "The CA expires before the certificate should expire."
 msgstr ""
+"Liudijimų įstaiga nustoja galioti anksčiau nei turėti baigti galioti "
+"liudijimas."
 
 #: src/CA.cpp:501
 msgid "Issuing the certificate failed."
 msgstr ""
 
 #: src/CA.cpp:518
-#, c-format
+#, fuzzy, c-format
 msgid "File %s not found in the repository."
-msgstr ""
+msgstr "Rinkmena %1 nerasta saugykloje."
 
 #: src/CA.cpp:525 src/CRLData_Priv.cpp:153
-#, fuzzy
 msgid "Invalid CRL reason."
-msgstr "Diegimas"
+msgstr ""
 
 #: src/CA.cpp:548
 msgid "Invalid CRL data."
-msgstr "Klaidingi CRL duomenys."
+msgstr "Netinkami atšaukto liudijimo sąrašo (CRL) duomenys"
 
 #: src/CA.cpp:594
 msgid "Duplicate DN. Request already exists."
@@ -217,33 +218,35 @@ msgstr ""
 
 #: src/CA.cpp:859 src/CA.cpp:886 src/CA.cpp:916 src/OpenSSLUtils.cpp:988
 msgid "Cannot parse the certificate name."
-msgstr "Nepavyksta išnagrinėti sertifikato pavadinimo."
+msgstr "Nepavyksta išnagrinėti liudijimo pavadinimo."
 
 #: src/CA.cpp:967
 #, fuzzy, c-format
 msgid "Request %s does not exist."
-msgstr "„%1“ neegzistuoja."
+msgstr "Užklausos %1 nėra."
 
 #: src/CA.cpp:989
 msgid "Removing the request failed (%1)."
-msgstr ""
+msgstr "Nepavyko pašalinti užklausos (%1)."
 
 #: src/CA.cpp:1003
 #, fuzzy, c-format
 msgid "Certificate %s does not exist."
-msgstr "Sertifikatas %1 neegzistuoja."
+msgstr "Liudijimo %1 nėra."
 
 #: src/CA.cpp:1052
 #, fuzzy, c-format
 msgid "Removing the certificate failed: %d."
-msgstr "Sertifikato rinkmena klaidinga."
+msgstr "Nepavyko pašalinti liudijimo: %1."
 
 #: src/CA.cpp:1060
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Only revoked or expired certificates can be deleted. The status of the "
 "certificate is %s."
 msgstr ""
+"Galima pašalinti tik atmestus arba nebegaliojančius liudijimus. Šio "
+"liudijimo būsena: %1"
 
 #: src/CA.cpp:1072
 msgid "Database not found."
@@ -251,16 +254,16 @@ msgstr "Duomenų bazė nerasta."
 
 #: src/CA.cpp:1098
 msgid "Certificate does not exist."
-msgstr "Sertifikatas neegzistuoja."
+msgstr "Liudijimo nėra."
 
 #: src/CA.cpp:1112
 #, fuzzy, c-format
 msgid "Invalid purpose %s."
-msgstr "Klaidingas priežastis %1."
+msgstr "Netinkama paskirtis %1."
 
 #: src/CA.cpp:1155
 msgid "Invalid CA request data."
-msgstr ""
+msgstr "Netinkami liudijimų įstaigos užklausos duomenys."
 
 #: src/CA.cpp:1161
 msgid "Invalid CA issue data."
@@ -268,51 +271,52 @@ msgstr ""
 
 #: src/CA.cpp:1279
 msgid "CA name is empty."
-msgstr "CA pavadinimas tuščias."
+msgstr "Liudijimų įstaigos pavadinimas yra tuščias."
 
 #: src/CA.cpp:1288
 msgid "CA directory already exists."
-msgstr "CA aplankas jau egzistuoja."
+msgstr "Liudijimų įstaigos katalogas jau yra."
 
 #: src/CA.cpp:1299
 msgid "According to basicConstraints, this is not a CA."
-msgstr ""
+msgstr "Pagal basicConstraints, tai nėra liudijimų įstaiga."
 
 #: src/CA.cpp:1306
 msgid "CA key is empty."
-msgstr "CA raktas tuščias."
+msgstr "Liudijimų įstaigos raktas yra tuščias."
 
 #: src/CA.cpp:1315
 msgid "Invalid key data."
-msgstr "Klaidingi rakto duomenys."
+msgstr "Netinkami rakto duomenys."
 
 #: src/CA.cpp:1322
 msgid "CA password is empty."
-msgstr "CA slaptažodis tuščias."
+msgstr "Liudijimų įstaigos slaptažodis yra tuščias."
 
 #: src/CA.cpp:1366
 msgid "Error during key encryption."
-msgstr ""
+msgstr "Slaptažodžio užšifravimo klaida."
 
 #: src/CA.cpp:1388
-#, fuzzy
 msgid "Error during write defaults."
-msgstr "Klaida, nagrinėjant CRL."
+msgstr "Įrašant numatytuosius įvyko klaida."
 
 #: src/CA.cpp:1532
 #, fuzzy, c-format
 msgid "CA name does not exist (%s)."
-msgstr "CA pavadinimas neegzistuoja (%1)."
+msgstr "Nėra liudijimų įstaigos pavadinimo (%1)."
 
 #: src/CA.cpp:1563
 msgid ""
 "Deleting the CA is not allowed. The CA must be expired or never have signed "
 "a certificate."
 msgstr ""
+"Negalima ištrinti liudijimų įstaigos. Liudijimų įstaiga turi nebegalioti "
+"arba neturi būti pasirašiusi liudijimo."
 
 #: src/CA.cpp:1588
 msgid "Deleting the CA failed: %1."
-msgstr "CA trynimas nepavyko: %1"
+msgstr "Nepavyko pašalinti liudijimų įstaigos: %1"
 
 #: src/CA.cpp:1639
 msgid "The configuration file is missing a value for policy."
@@ -322,63 +326,62 @@ msgstr ""
 #: src/DNObject_Priv.cpp:207
 #, fuzzy, c-format
 msgid "Cannot parse section %s."
-msgstr "Nepavyksta išnagrinėti CRL."
+msgstr "Nepavyksta išnagrinėti skyriaus %1."
 
 #: src/CA.cpp:1721
-#, c-format
+#, fuzzy, c-format
 msgid "Field %s must have a value."
-msgstr ""
+msgstr "Laukelis %1 turi būti reikšmė."
 
 #: src/CA.cpp:1760
 #, fuzzy, c-format
 msgid "%s must be defined."
-msgstr "%1 privalo būti apibrėžtas."
+msgstr "Turi būti nurodytas %1."
 
 #: src/CA.cpp:1845
-#, c-format
+#, fuzzy, c-format
 msgid "%s must be the same in the CA certificate (%s) and the request (%s)."
 msgstr ""
+"%1 turi būti toks pat liudijimų įstaigos liudijime (%2) ir užklausoje (%3)."
 
 #: src/CA.cpp:1857
 msgid "The configuration file seems to have an invalid policy."
 msgstr ""
 
 #: src/CA.cpp:1883 src/CA.cpp:1893
-#, fuzzy
 msgid "The configuration is not initialized."
-msgstr "Nėra konfigūracijos"
+msgstr "Konfigūracija neparuošta."
 
 #: src/CA.cpp:1901 src/DNObject.cpp:266 src/DNObject_Priv.cpp:197
 msgid "Missing section 'distinguished_name' in the configuration file."
-msgstr ""
+msgstr "Konfigūracijos rinkmenoje trūksta skyriaus „distinguished_name“."
 
 #: src/CertificateData_Priv.cpp:92 src/CRLData_Priv.cpp:98
 #: src/CRLData_Priv.cpp:135
 #, fuzzy, c-format
 msgid "Invalid serial %s."
-msgstr "klaidingas tarnybos „%1“ vardas"
+msgstr "Netinkamas tipas %1."
 
-#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:409
-#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:381
+#: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:393
+#: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:365
 msgid "Cannot create a memory BIO."
-msgstr ""
+msgstr "Nepavyksta sukurti atminties BIO."
 
 #: src/CertificateData_Priv.cpp:233
 msgid "Cannot parse the certificate."
-msgstr "Nepavyksta išnagrinėti sertifiakto."
+msgstr "Nepavyksta išnagrinėti liudijimo."
 
 #: src/CertificateData_Priv.cpp:246
 msgid "Error while parsing the certificate."
-msgstr "Klaida nagrinėjant sertifikatą."
+msgstr "Nagrinėjant liudijimą įvyko klaida."
 
 #: src/CertificateData_Priv.cpp:273
-#, fuzzy
 msgid "Cannot parse serial."
-msgstr "Nepavyksta išnagrinėti CRL."
+msgstr ""
 
 #: src/CertificateData_Priv.cpp:341 src/RequestData_Priv.cpp:178
 msgid "Unable to get the public key."
-msgstr "Nepavyksta gauti viešąjį raktą"
+msgstr "Nepavyksta gauti viešojo rakto."
 
 #: src/CertificateData_Priv.cpp:352 src/RequestData_Priv.cpp:189
 msgid "Could not get RSA key."
@@ -392,15 +395,15 @@ msgstr "Nepalaikomas viešojo rakto tipas."
 msgid "Unsupported public key algorithm."
 msgstr "Nepalaikomas viešojo rakto algoritmas."
 
-#: src/CertificateData_Priv.cpp:456 src/CRLData_Priv.cpp:370
-#: src/RequestData_Priv.cpp:288
+#: src/CertificateData_Priv.cpp:440 src/CRLData_Priv.cpp:354
+#: src/RequestData_Priv.cpp:272
 #, fuzzy, c-format
 msgid "Unsupported signature algorithm %s."
 msgstr "Nepalaikomas parašo algoritmas %1."
 
-#: src/CertificateIssueData.cpp:223
+#: src/CertificateIssueData.cpp:207
 msgid "Invalid CertificateIssueData object."
-msgstr "Klaidingas CertificateIssueData objektas."
+msgstr "Netinkamas CertificateIssueData objektas."
 
 #: src/CertificatePoliciesExtension.cpp:210
 msgid "The text is too long."
@@ -408,76 +411,72 @@ msgstr "Tekstas per ilgas."
 
 #: src/CertificatePoliciesExtension.cpp:249
 msgid "Invalid UserNotice object."
-msgstr "Klaidingas UserNotice objektas."
+msgstr "Netinkamas UserNotice objektas."
 
 #: src/CertificatePoliciesExtension.cpp:389
 #: src/CertificatePoliciesExtension.cpp:453
 #, fuzzy, c-format
 msgid "Invalid value for policyIdentifier: %s."
-msgstr "Klaidinga NsCaPolicyUrlExt vertė."
+msgstr "Netinkama policyIdentifier reikšmė: %1."
 
 #: src/CertificatePoliciesExtension.cpp:508
 msgid "Invalid CertificatePolicy object."
-msgstr "Klaidingas CertificatePolicy objektas."
+msgstr "Netinkamas CertificatePolicy objektas."
 
 #: src/CertificatePoliciesExtension.cpp:777
 #: src/CertificatePoliciesExtension.cpp:802
 msgid "CertificatePoliciesExt is not present."
-msgstr ""
+msgstr "Nepateiktas CertificatePoliciesExt."
 
 #: src/CertificatePoliciesExtension.cpp:815
 msgid "Invalid CertificatePoliciesExt object."
-msgstr "Klaidingas CertificatePoliciesExt objektas."
+msgstr "Netinkamas CertificatePoliciesExt objektas."
 
-#: src/CRLData.cpp:232
+#: src/CRLData.cpp:220
 msgid "Entry not found."
 msgstr "Įrašas nerastas."
 
-#: src/CRLData_Priv.cpp:437
+#: src/CRLData_Priv.cpp:421
 msgid "Cannot parse CRL."
-msgstr "Nepavyksta išnagrinėti CRL."
+msgstr "Nepavyksta išnagrinėti atšauktų liudijimų sąrašo (CRL)"
 
-#: src/CRLData_Priv.cpp:450
+#: src/CRLData_Priv.cpp:434
 msgid "Error parsing the CRL."
-msgstr "Klaida, nagrinėjant CRL."
+msgstr "Nepavyko išnagrinėti atšauktų liudijimų sąrašo (CRL)"
 
 #: src/CRLDistributionPointsExtension.cpp:141
 msgid "CRLDistributionPointsExt is not present."
-msgstr ""
+msgstr "Nepateiktas CRLDistributionPointsExt."
 
 #: src/CRLDistributionPointsExtension.cpp:153
 msgid "Invalid CRLDistributionPointsExt object."
-msgstr ""
+msgstr "Netinkamas CRLDistributionPointsExt objektas."
 
 #: src/CRLGenerationData.cpp:151
 msgid "Invalid CRLGenerationData object."
-msgstr "Klaidingas CRLGenerationData objektas."
+msgstr "Netinkamas CRLGenerationData objektas."
 
-# fuzzy
 #: src/CRLReason.cpp:96 src/CRLReason.cpp:132
 #, fuzzy, c-format
 msgid "Invalid revoke reason %s."
-msgstr "Klaidingas paleidimo lygmens %1 vardas"
+msgstr "Netinkama paskirtis %1."
 
 #: src/CRLReason.cpp:170
-#, fuzzy
 msgid "Reason is not certificateHold."
-msgstr "Meniu yra Compose."
+msgstr ""
 
 #: src/CRLReason.cpp:193 src/CRLReason.cpp:207
-#, fuzzy
 msgid "Reason is not keyCompromise."
-msgstr "Meniu yra Compose."
+msgstr ""
 
 #: src/CRLReason.cpp:238 src/CRLReason.cpp:252
-#, fuzzy
 msgid "Reason is not CACompromise."
-msgstr "Meniu yra Compose."
+msgstr ""
 
 #: src/DNObject.cpp:100
 #, fuzzy, c-format
 msgid "Invalid type %s."
-msgstr "Klaidingas tipas %1."
+msgstr "Netinkamas tipas %1."
 
 #: src/DNObject_Priv.cpp:157
 #, fuzzy, c-format
@@ -487,11 +486,11 @@ msgstr "Nepavyksta išnagrinėti datos %1."
 #: src/ExtendedKeyUsageExt.cpp:118 src/ExtendedKeyUsageExt.cpp:167
 #, fuzzy, c-format
 msgid "Invalid ExtendedKeyUsage option %s."
-msgstr "Klaidingas ExtendedKeyUsageExt."
+msgstr "Netinkama ExtendedKeyUsage parinktis %1."
 
 #: src/ExtendedKeyUsageExt.cpp:126 src/ExtendedKeyUsageExt.cpp:175
 msgid "Invalid ExtendedKeyUsageExt."
-msgstr "Klaidingas ExtendedKeyUsageExt."
+msgstr "Netinkamas ExtendedKeyUsageExt."
 
 #: src/ExtendedKeyUsageExt.cpp:188
 msgid "ExtendedKeyUsageExt is not present."
@@ -499,20 +498,20 @@ msgstr ""
 
 #: src/ExtendedKeyUsageExt.cpp:217
 msgid "Invalid ExtendedKeyUsageExt object."
-msgstr "Klaidingas ExtendedKeyUsageExt objektas."
+msgstr "Netinkamas ExtendedKeyUsageExt objektas."
 
 #: src/IssuerAlternativeNameExtension.cpp:162
 #: src/IssuerAlternativeNameExtension.cpp:187
 msgid "IssuerAlternativeNameExt is not present."
-msgstr ""
+msgstr "Nepateiktas IssuerAlternativeNameExt."
 
 #: src/IssuerAlternativeNameExtension.cpp:199
 msgid "Invalid literal value for IssuerAlternativeNameExt."
-msgstr ""
+msgstr "Netinkama IssuerAlternativeNameExt raidinė reikšmė."
 
 #: src/IssuerAlternativeNameExtension.cpp:212
 msgid "Invalid IssuerAlternativeNameExt object."
-msgstr "Klaidingas IssuerAlternativeNameExt objektas."
+msgstr "Netinkamas IssuerAlternativeNameExt objektas."
 
 #: src/LiteralValues.cpp:127
 msgid "Unknown type."
@@ -520,54 +519,54 @@ msgstr "Nežinomas tipas."
 
 #: src/LocalManagement.cpp:91
 msgid "Cannot split certificate output."
-msgstr ""
+msgstr "Nepavyksta skaidyti liudijimo išvesties."
 
 #: src/LocalManagement.cpp:288 src/LocalManagement.cpp:309
 #: src/LocalManagement.cpp:328
 #, fuzzy, c-format
 msgid "Cannot create directory %s: %s."
-msgstr "Nepavyksta sukurti aplanko %1: %2."
+msgstr "Nepavyksta sukurti katalogo %1: %2."
 
 #: src/LocalManagement.cpp:342
 #, fuzzy, c-format
 msgid "%s is not a directory."
-msgstr "%1 nėra aplankas."
+msgstr "%1 nėra katalogas."
 
-#: src/LocalManagement.cpp:370
+#: src/LocalManagement.cpp:363
 msgid "Invalid certificate file."
-msgstr "Sertifikato rinkmena klaidinga."
+msgstr "Liudijimo rinkmena nėra tinkama."
 
-#: src/LocalManagement.cpp:448
+#: src/LocalManagement.cpp:441
 #, fuzzy, c-format
 msgid "File not found: %s."
 msgstr "Rinkmena nerasta: %1."
 
-#: src/LocalManagement.cpp:457
+#: src/LocalManagement.cpp:450
 #, fuzzy, c-format
 msgid "File too big: %s."
 msgstr "Rinkmena per didelė: %1."
 
-#: src/LocalManagement.cpp:466 src/LocalManagement.cpp:520
+#: src/LocalManagement.cpp:459 src/LocalManagement.cpp:513
 #, fuzzy, c-format
 msgid "Cannot open file %s."
 msgstr "Nepavyksta atverti rinkmenos %1."
 
-#: src/LocalManagement.cpp:485
+#: src/LocalManagement.cpp:478
 #, fuzzy, c-format
 msgid "Cannot read from file %s."
-msgstr "Nepavyksta nuskaityti iš rinkmenos %1."
+msgstr "Nepavyksta nuskaityti rinkmenos %1."
 
-#: src/LocalManagement.cpp:510
+#: src/LocalManagement.cpp:503
 #, fuzzy, c-format
 msgid "File already exists: %s."
 msgstr "Rinkmena jau yra: %1."
 
-#: src/LocalManagement.cpp:530
+#: src/LocalManagement.cpp:523
 #, fuzzy, c-format
 msgid "Cannot get lock on file %s."
-msgstr "Negaliu užrakinti rinkmenos %1."
+msgstr "Nepavyksta užrakinti rinkmenos %1."
 
-#: src/LocalManagement.cpp:542
+#: src/LocalManagement.cpp:535
 #, fuzzy, c-format
 msgid "Cannot write to file %s."
 msgstr "Nepavyksta įrašyti į rinkmeną %1."
@@ -580,12 +579,12 @@ msgstr "Rinkmenos nėra: %1."
 #: src/OpenSSLUtils.cpp:58
 #, fuzzy, c-format
 msgid "Directory does not exist: %s."
-msgstr "Aplankas neegzistuoja: %1."
+msgstr "Katalogo nėra: %1."
 
 #: src/OpenSSLUtils.cpp:67
 #, fuzzy, c-format
 msgid "Invalid command %s."
-msgstr "Bloga komanda %1."
+msgstr "Netinkama komanda %1."
 
 #: src/OpenSSLUtils.cpp:124 src/OpenSSLUtils.cpp:214 src/OpenSSLUtils.cpp:313
 #: src/OpenSSLUtils.cpp:438 src/OpenSSLUtils.cpp:577 src/OpenSSLUtils.cpp:678
@@ -595,38 +594,38 @@ msgstr "Bloga komanda %1."
 #: src/OpenSSLUtils.cpp:1493 src/OpenSSLUtils.cpp:1651
 #: src/OpenSSLUtils.cpp:1795 src/OpenSSLUtils.cpp:2586
 msgid "Executing openssl command failed."
-msgstr ""
+msgstr "Nepavyko įvykdyti openssl komandos."
 
 #: src/OpenSSLUtils.cpp:136 src/OpenSSLUtils.cpp:227 src/OpenSSLUtils.cpp:326
 #: src/OpenSSLUtils.cpp:451 src/OpenSSLUtils.cpp:590 src/OpenSSLUtils.cpp:691
-#: src/OpenSSLUtils.cpp:777 src/OpenSSLUtils.cpp:1147
-#: src/OpenSSLUtils.cpp:1302 src/OpenSSLUtils.cpp:1412
-#: src/OpenSSLUtils.cpp:1521 src/OpenSSLUtils.cpp:1691
-#: src/OpenSSLUtils.cpp:1838 src/OpenSSLUtils.cpp:2613
+#: src/OpenSSLUtils.cpp:777 src/OpenSSLUtils.cpp:1147 src/OpenSSLUtils.cpp:1302
+#: src/OpenSSLUtils.cpp:1412 src/OpenSSLUtils.cpp:1521
+#: src/OpenSSLUtils.cpp:1691 src/OpenSSLUtils.cpp:1838
+#: src/OpenSSLUtils.cpp:2613
 #, fuzzy, c-format
 msgid "openssl command failed: %s"
-msgstr "Atsiuntimas nutrūko: "
+msgstr "openssl komandos klaida: %1"
 
 #: src/OpenSSLUtils.cpp:166 src/OpenSSLUtils.cpp:254 src/OpenSSLUtils.cpp:358
 #: src/OpenSSLUtils.cpp:477 src/OpenSSLUtils.cpp:617 src/OpenSSLUtils.cpp:714
 msgid "No valid key file specified."
-msgstr ""
+msgstr "Nenurodyta jokia galiojančio rakto rinkmena."
 
 #: src/OpenSSLUtils.cpp:262 src/OpenSSLUtils.cpp:366
 msgid "No valid request file specified."
-msgstr ""
+msgstr "Nenurodyta galiojančios užklausos rinkmena."
 
 #: src/OpenSSLUtils.cpp:485 src/OpenSSLUtils.cpp:625 src/OpenSSLUtils.cpp:722
 msgid "No valid CA certificate file specified."
-msgstr ""
+msgstr "Nenurodytas joks galiojantis liudijimų įstaigos liudijimas."
 
 #: src/OpenSSLUtils.cpp:493 src/OpenSSLUtils.cpp:801
 msgid "No valid certificate file specified."
-msgstr ""
+msgstr "Nenurodytas joks galiojantis liudijimas."
 
 #: src/OpenSSLUtils.cpp:809
 msgid "No valid CA directory specified."
-msgstr ""
+msgstr "Nenurodytas joks galiojantis liudijimų įstaigos katalogas."
 
 #: src/OpenSSLUtils.cpp:963
 #, c-format
@@ -644,7 +643,7 @@ msgstr "Netinkamas slaptažodis."
 
 #: src/OpenSSLUtils.cpp:1599
 msgid "The password for encrypting the output is required."
-msgstr ""
+msgstr "Išvesties užšifravimui reikia slaptažodžio."
 
 #: src/OpenSSLUtils.cpp:1746
 msgid "The PKCS12 password is required."
@@ -654,7 +653,7 @@ msgstr "Reikalingas PKCS12 slaptažodis."
 #: src/OpenSSLUtils.cpp:2216
 #, fuzzy, c-format
 msgid "Cannot read directory: %s (%s) [%d]."
-msgstr "Nepavyksta nuskaityti aplanko: %1 (%2) [%3]."
+msgstr "Nepavyksta nuskaityti katalogo: %1 (%2) [%3]."
 
 #: src/OpenSSLUtils.cpp:1914
 #, c-format
@@ -663,22 +662,21 @@ msgstr ""
 
 #: src/OpenSSLUtils.cpp:1934
 msgid "The request already exists."
-msgstr ""
+msgstr "Užklausa jau yra."
 
 #: src/OpenSSLUtils.cpp:2125
 msgid "Cannot find the request subject."
-msgstr ""
+msgstr "Nepavyksta rasti užklausos temos."
 
 #: src/OpenSSLUtils.cpp:2286
-#, fuzzy
 msgid "Cannot find the certificate subject."
-msgstr "Nėra konfigūracijos"
+msgstr "Nepavyksta rasti liudijimo temos."
 
 # fuzzy
 #: src/OpenSSLUtils.cpp:2385
 #, fuzzy, c-format
 msgid "Invalid caName: %s."
-msgstr "Blogas tipas %1."
+msgstr "Netinkamas caName: %1."
 
 #: src/OpenSSLUtils.cpp:2394
 #, fuzzy, c-format
@@ -688,19 +686,18 @@ msgstr "„%1“ neegzistuoja."
 #: src/OpenSSLUtils.cpp:2404
 #, fuzzy, c-format
 msgid "%s still exists."
-msgstr "%1 vis dar egzistuoja."
+msgstr "%1 vis dar yra."
 
 #: src/OpenSSLUtils.cpp:2415 src/OpenSSLUtils.cpp:2463
 #: src/OpenSSLUtils.cpp:2477 src/OpenSSLUtils.cpp:2491
 #: src/OpenSSLUtils.cpp:2505 src/OpenSSLUtils.cpp:2519
 #, fuzzy, c-format
 msgid "Cannot create directory: %s (%s [%d])."
-msgstr "Nepavyksta sukurti aplanko: %1 (%2 [%3])."
+msgstr "Nepavyksta sukurti katalogo: %1 (%2 [%3])."
 
 #: src/OpenSSLUtils.cpp:2450
-#, fuzzy
 msgid "Cannot copy the configuration template."
-msgstr "Nėra konfigūracijos"
+msgstr "Nepavyksta nukopijuoti konfigūracijos šablono."
 
 #: src/OpenSSLUtils.cpp:2537
 msgid "Cannot create the file."
@@ -711,120 +708,120 @@ msgstr "Nepavyksta sukurti rinkmenos."
 msgid "Can not open file."
 msgstr "Nepavyksta atverti rinkmenos %1."
 
-#: src/RequestData_Priv.cpp:408
+#: src/RequestData_Priv.cpp:392
 msgid "Cannot parse the request."
-msgstr "Nepavyksta išnagrinėti reikalavimo."
+msgstr "Nepavyksta išnagrinėti užklausos."
 
-#: src/RequestData_Priv.cpp:421
+#: src/RequestData_Priv.cpp:405
 msgid "Error while parsing the request."
-msgstr "Klaida, nagrinėjant reikalavimą."
+msgstr "Klaida nagrinėjant užklausą."
 
-#: src/RequestGenerationData.cpp:252
+#: src/RequestGenerationData.cpp:236
 msgid "Invalid RequestGenerationData object."
-msgstr "Klaidingas RequestGenerationData objektas."
+msgstr "Netinkamas RequestGenerationData objektas."
 
 #: src/StringExtensions.cpp:105 src/StringExtensions.cpp:163
 msgid "Invalid value for NsBaseUrlExt."
-msgstr "Klaidinga NsBaseUrlExt vertė."
+msgstr "Netinkama NsBaseUrlExt reikšmė."
 
 #: src/StringExtensions.cpp:175
 msgid "NsBaseUrlExt is not present."
-msgstr ""
+msgstr "Nepateiktas NsBaseUrlExt."
 
 #: src/StringExtensions.cpp:187
 msgid "Invalid NsBaseUrlExt object."
-msgstr "Klaidingas NsBaseUrlExt objektas."
+msgstr "Netinkamas NsBaseUrlExt objektas."
 
 #: src/StringExtensions.cpp:270 src/StringExtensions.cpp:323
 msgid "Invalid value for NsRevocationUrlExt."
-msgstr "Klaidinga NsRevocationUrlExt vertė."
+msgstr "Netinkama NsRevocationUrlExt reikšmė."
 
 #: src/StringExtensions.cpp:334
 msgid "NsRevocationUrlExt is not present."
-msgstr ""
+msgstr "Nepateiktas NsRevocationUrlExt."
 
 #: src/StringExtensions.cpp:345
 msgid "Invalid NsRevocationUrlExt object."
-msgstr "Klaidingas NsRevocationUrlExt objektas."
+msgstr "Netinkamas NsRevocationUrlExt objektas."
 
 #: src/StringExtensions.cpp:424 src/StringExtensions.cpp:477
 msgid "Invalid value for NsCaRevocationUrlExt."
-msgstr "Klaidinga NsCaRevocationUrlExt vertė."
+msgstr "Netinkama NsCaRevocationUrlExt reikšmė."
 
 #: src/StringExtensions.cpp:488
 msgid "NsCaRevocationUrlExt is not present."
-msgstr ""
+msgstr "Nepateiktas NsCaRevocationUrlExt."
 
 #: src/StringExtensions.cpp:499
 msgid "Invalid NsCaRevocationUrlExt object."
-msgstr "Klaidingas NsCaRevocationUrlExt objektas."
+msgstr "Netinkamas NsCaRevocationUrlExt objektas."
 
 #: src/StringExtensions.cpp:577 src/StringExtensions.cpp:630
 msgid "Invalid value for NsRenewalUrlExt."
-msgstr "Klaidinga NsRenewalUrlExt vertė."
+msgstr "Netinkama NsRenewalUrlExt reikšmė."
 
 #: src/StringExtensions.cpp:641
 msgid "NsRenewalUrlExt is not present."
-msgstr ""
+msgstr "Nepateiktas NsRenewalUrlExt."
 
 #: src/StringExtensions.cpp:652
 msgid "Invalid NsRenewalUrlExt object."
-msgstr "Klaidingas NsRenewalUrlExt objektas."
+msgstr "Netinkamas NsRenewalUrlExt objektas."
 
 #: src/StringExtensions.cpp:729 src/StringExtensions.cpp:782
 msgid "Invalid value for NsCaPolicyUrlExt."
-msgstr "Klaidinga NsCaPolicyUrlExt vertė."
+msgstr "Netinkama NsCaPolicyUrlExt reikšmė."
 
 #: src/StringExtensions.cpp:793
 msgid "NsCaPolicyUrlExt is not present."
-msgstr ""
+msgstr "Nepateiktas NsCaPolicyUrlExt."
 
 #: src/StringExtensions.cpp:804
 msgid "Invalid NsCaPolicyUrlExt object."
-msgstr "Klaidingas NsCaPolicyUrlExt objektas."
+msgstr "Netinkamas NsCaPolicyUrlExt objektas."
 
 #: src/StringExtensions.cpp:890
 msgid "Invalid type: %1."
-msgstr "Klaidingas tipas: %1."
+msgstr "Netinkamas tipas: %1."
 
 #: src/StringExtensions.cpp:936
 msgid "NsSslServerNameExt is not present."
-msgstr ""
+msgstr "Nepateiktas NsSslServerNameExt."
 
 #: src/StringExtensions.cpp:947
 msgid "Invalid NsSslServerNameExt object."
-msgstr "Klaidingas NsSslServerNameExt objektas."
+msgstr "Netinkamas NsSslServerNameExt objektas."
 
 #: src/StringExtensions.cpp:1062
 msgid "NsCommentExt is not present."
-msgstr ""
+msgstr "Nepateiktas NsCommentExt."
 
 #: src/StringExtensions.cpp:1073
 msgid "Invalid NsCommentExt object."
-msgstr "Klaidingas NsCommentExt objektas."
+msgstr "Netinkamas NsCommentExt objektas."
 
 #: src/SubjectAlternativeNameExtension.cpp:179
 #: src/SubjectAlternativeNameExtension.cpp:190
 msgid "SubjectAlternativeNameExt is not present."
-msgstr ""
+msgstr "Nepateiktas SubjectAlternativeNameExt."
 
 #: src/SubjectAlternativeNameExtension.cpp:203
 msgid "Invalid SubjectAlternativeNameExt object."
-msgstr "Klaidingas SubjectAlternativeNameExt objektas."
+msgstr "Netinkamas SubjectAlternativeNameExt objektas."
 
 #: src/SubjectKeyIdentifierExtension.cpp:123
 #: src/SubjectKeyIdentifierExtension.cpp:157
 msgid "Invalid KeyID."
-msgstr "Klaidingas RaktoID."
+msgstr "Netinkamas rakto ID (KeyID)."
 
 #: src/SubjectKeyIdentifierExtension.cpp:170
 #: src/SubjectKeyIdentifierExtension.cpp:181
 msgid "SubjectKeyIdentifierExt is not present."
-msgstr ""
+msgstr "Nepateiktas SubjectKeyIdentifierExt."
 
 #: src/SubjectKeyIdentifierExtension.cpp:194
 msgid "Invalid SubjectKeyIdentifierExt object."
-msgstr "Klaidingas SubjectKeyIdentifierExt objektas."
+msgstr "Netinkamas SubjectKeyIdentifierExt objektas."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:392
 #: src/X509v3CertificateExtensions_Priv.cpp:449
@@ -869,130 +866,133 @@ msgstr ""
 #: src/X509v3RequestExtensions_Priv.cpp:316
 #: src/X509v3RequestExtensions_Priv.cpp:380
 #: src/X509v3RequestExtensions_Priv.cpp:437
-#, fuzzy
 msgid "Unable to parse the certificate (Crit: %1)."
-msgstr "Nepavyksta išnagrinėte url eilutės „%1“"
+msgstr ""
 
 #: src/X509v3CertificateExtensions_Priv.cpp:937
 msgid "Invalid location in authorityInfoAccess."
-msgstr ""
+msgstr "Netinkama vieta ties authorityInfoAccess."
 
 #: src/X509v3CertificateIssueExtensions.cpp:170
 msgid "Invalid value for X509v3CertificateIssueExts::setNsBaseUrl."
-msgstr "Klaidinga X509v3CertificateIssueExts::setNsBaseUrl vertė."
+msgstr "Netinkama X509v3CertificateIssueExts::setNsBaseUrl reikšmė."
 
 #: src/X509v3CertificateIssueExtensions.cpp:193
 msgid "Invalid value for X509v3CertificateIssueExts::setNsRevocationUrl."
-msgstr "Klaidinga X509v3CertificateIssueExts::setNsRevocationUrl vertė."
+msgstr "Netinkama X509v3CertificateIssueExts::setNsRevocationUrl reikšmė."
 
 #: src/X509v3CertificateIssueExtensions.cpp:216
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCaRevocationUrl."
-msgstr "Klaidinga X509v3CertificateIssueExts::setNsCaRevocationUrl vertė."
+msgstr "Netinkama X509v3CertificateIssueExts::setNsCaRevocationUrl reikšmė."
 
 #: src/X509v3CertificateIssueExtensions.cpp:239
 msgid "Invalid value for X509v3CertificateIssueExts::setNsRenewalUrl."
-msgstr "Klaidinga X509v3CertificateIssueExts::setNsRenewalUrl vertė."
+msgstr "Netinkama X509v3CertificateIssueExts::setNsRenewalUrl reikšmė."
 
 #: src/X509v3CertificateIssueExtensions.cpp:262
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCaPolicyUrl."
-msgstr "Klaidinga X509v3CertificateIssueExts::setNsCaPolicyUrl vertė."
+msgstr "Netinkama X509v3CertificateIssueExts::setNsCaPolicyUrl reikšmė."
 
 #: src/X509v3CertificateIssueExtensions.cpp:285
 msgid "Invalid value for X509v3CertificateIssueExts::setNsSslServerName."
-msgstr "Klaidinga X509v3CertificateIssueExts::setNsSslServerName vertė."
+msgstr "Netinkama X509v3CertificateIssueExts::setNsSslServerName reikšmė."
 
 #: src/X509v3CertificateIssueExtensions.cpp:308
 msgid "Invalid value for X509v3CertificateIssueExts::setNsComment."
-msgstr "Klaidinga X509v3CertificateIssueExts::setNsComment vertė."
+msgstr "Netinkama X509v3CertificateIssueExts::setNsComment reikšmė."
 
 #: src/X509v3CertificateIssueExtensions.cpp:331
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCertType."
-msgstr "Klaidinga X509v3CertificateIssueExts::setNsCertType vertė."
+msgstr "Netinkama X509v3CertificateIssueExts::setNsCertType reikšmė."
 
 #: src/X509v3CertificateIssueExtensions.cpp:354
 msgid "Invalid value for X509v3CertificateIssueExts::setKeyUsage."
-msgstr "Klaidinga X509v3CertificateIssueExts::setKeyUsage vertė."
+msgstr "Netinkama X509v3CertificateIssueExts::setKeyUsage reikšmė."
 
 #: src/X509v3CertificateIssueExtensions.cpp:377
 msgid "Invalid value for X509v3CertificateIssueExts::setBasicConstraints."
-msgstr "Klaidinga X509v3CertificateIssueExts::setBasicConstraints vertė."
+msgstr "Netinkama X509v3CertificateIssueExts::setBasicConstraints reikšmė."
 
 #: src/X509v3CertificateIssueExtensions.cpp:400
 msgid "Invalid value for X509v3CertificateIssueExts::setExtendedKeyUsage."
-msgstr "Klaidinga X509v3CertificateIssueExts::setExtendedKeyUsage vertė."
+msgstr "Netinkama X509v3CertificateIssueExts::setExtendedKeyUsage reikšmė."
 
 #: src/X509v3CertificateIssueExtensions.cpp:423
 msgid "Invalid value for X509v3CertificateIssueExts::setSubjectKeyIdentifier."
-msgstr "Klaidinga X509v3CertificateIssueExts::setSubjectKeyIdentifier vertė."
+msgstr "Netinkama X509v3CertificateIssueExts::setSubjectKeyIdentifier reikšmė."
 
 #: src/X509v3CertificateIssueExtensions.cpp:446
 msgid ""
 "Invalid value for X509v3CertificateIssueExts::setAuthorityKeyIdentifier."
-msgstr "Klaidinga X509v3CertificateIssueExts::setAuthorityKeyIdentifier vertė."
+msgstr ""
+"Netinkama X509v3CertificateIssueExts::setAuthorityKeyIdentifier reikšmė."
 
 #: src/X509v3CertificateIssueExtensions.cpp:469
 msgid ""
 "Invalid value for X509v3CertificateIssueExts::setSubjectAlternativeName."
-msgstr "Klaidinga X509v3CertificateIssueExts::setSubjectAlternativeName vertė."
+msgstr ""
+"Netinkama X509v3CertificateIssueExts::setSubjectAlternativeName reikšmė."
 
 #: src/X509v3CertificateIssueExtensions.cpp:492
 msgid "Invalid value for X509v3CertificateIssueExts::setIssuerAlternativeName."
-msgstr "Klaidinga X509v3CertificateIssueExts::setIssuerAlternativeName vertė."
+msgstr ""
+"Netinkama X509v3CertificateIssueExts::setIssuerAlternativeName reikšmė."
 
 #: src/X509v3CertificateIssueExtensions.cpp:515
 msgid "Invalid value for X509v3CertificateIssueExts::setAuthorityInfoAccess."
-msgstr "Klaidinga X509v3CertificateIssueExts::setAuthorityInfoAccess vertė."
+msgstr "Netinkama X509v3CertificateIssueExts::setAuthorityInfoAccess reikšmė."
 
 #: src/X509v3CertificateIssueExtensions.cpp:538
 msgid "Invalid value for X509v3CertificateIssueExts::setCRLDistributionPoints."
-msgstr "Klaidinga X509v3CertificateIssueExts::setCRLDistributionPoints vertė."
+msgstr ""
+"Netinkama X509v3CertificateIssueExts::setCRLDistributionPoints reikšmė."
 
 #: src/X509v3CertificateIssueExtensions.cpp:561
 msgid "Invalid value for X509v3CertificateIssueExts::setCertificatePolicies."
-msgstr "Klaidinga X509v3CertificateIssueExts::setCertificatePolicies vertė."
+msgstr "Netinkama X509v3CertificateIssueExts::setCertificatePolicies reikšmė."
 
 #: src/X509v3CertificateIssueExtensions.cpp:585
 #: src/X509v3CRLGenerationExtensions.cpp:145
 #: src/X509v3RequestExtensions.cpp:252
 msgid "Invalid X509v3RequestExts object."
-msgstr "Klaidingas X509v3RequestExts objektas."
+msgstr "Netinkamas X509v3RequestExts objektas."
 
 #: src/X509v3CRLGenerationExtensions.cpp:98
 msgid "Invalid value for X509v3CRLGenerationExts::setAuthorityKeyIdentifier."
-msgstr "Klaidinga X509v3CRLGenerationExts::setAuthorityKeyIdentifier vertė."
+msgstr "Netinkama X509v3CRLGenerationExts::setAuthorityKeyIdentifier reikšmė."
 
 #: src/X509v3CRLGenerationExtensions.cpp:121
 msgid "Invalid value for X509v3CRLGenerationExts::setIssuerAlternativeName."
-msgstr "Klaidinga X509v3CRLGenerationExts::setIssuerAlternativeName vertė."
+msgstr "Netinkama X509v3CRLGenerationExts::setIssuerAlternativeName reikšmė."
 
 #: src/X509v3RequestExtensions.cpp:67
 msgid "Invalid value for X509v3RequestExts::setNsSslServerName."
-msgstr "Klaidinga X509v3RequestExts::setNsSslServerName vertė."
+msgstr "Netinkama X509v3RequestExts::setNsSslServerName reikšmė."
 
 #: src/X509v3RequestExtensions.cpp:90
 msgid "Invalid value for X509v3RequestExts::setNsComment."
-msgstr "Klaidinga X509v3RequestExts::setNsComment vertė."
+msgstr "Netinkama X509v3RequestExts::setNsComment reikšmė."
 
 #: src/X509v3RequestExtensions.cpp:113
 msgid "Invalid value for X509v3RequestExts::setNsCertType."
-msgstr "Klaidinga X509v3RequestExts::setNsCertType vertė."
+msgstr "Netinkama X509v3RequestExts::setNsCertType reikšmė."
 
 #: src/X509v3RequestExtensions.cpp:136
 msgid "Invalid value for X509v3RequestExts::setKeyUsage."
-msgstr "Klaidinga X509v3RequestExts::setKeyUsage vertė."
+msgstr "Netinkama X509v3RequestExts::setKeyUsage reikšmė."
 
 #: src/X509v3RequestExtensions.cpp:159
 msgid "Invalid value for X509v3RequestExts::setBasicConstraints."
-msgstr "Klaidinga X509v3RequestExts::setBasicConstraints vertė."
+msgstr "Netinkama X509v3RequestExts::setBasicConstraints reikšmė."
 
 #: src/X509v3RequestExtensions.cpp:182
 msgid "Invalid value for X509v3RequestExts::setExtendedKeyUsage."
-msgstr "Klaidinga X509v3RequestExts::setExtendedKeyUsage vertė."
+msgstr "Netinkama X509v3RequestExts::setExtendedKeyUsage reikšmė."
 
 #: src/X509v3RequestExtensions.cpp:205
 msgid "Invalid value for X509v3RequestExts::setSubjectKeyIdentifier."
-msgstr "Klaidinga X509v3RequestExts::setSubjectKeyIdentifier vertė."
+msgstr "Netinkama X509v3RequestExts::setSubjectKeyIdentifier reikšmė."
 
 #: src/X509v3RequestExtensions.cpp:228
 msgid "Invalid value for X509v3RequestExts::setSubjectAlternativeName."
-msgstr "Klaidinga X509v3RequestExts::setSubjectAlternativeName vertė."
+msgstr "Netinkama X509v3RequestExts::setSubjectAlternativeName reikšmė."
