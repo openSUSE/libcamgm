@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: limal-ca-mgm.ru\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2012-07-23 16:26+0200\n"
-"PO-Revision-Date: 2013-09-17 18:57+0400\n"
-"Last-Translator: Alexander Melentev <minton@opensuse.org>\n"
-"Language-Team: Russian <opensuse-translation-ru@opensuse.org>\n"
+"PO-Revision-Date: 2015-10-16 22:52+0200\n"
+"Last-Translator: Alex Minton <alex239@gmail.com>\n"
+"Language-Team: Russian <http://10n.opensuse.org/projects/libcamgm/master/ru/>"
+"\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Lokalize 1.5\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 2.3\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:104
 #: src/AuthorityInfoAccessExtension.cpp:133
@@ -508,7 +509,7 @@ msgstr "Неверное строковое значение IssuerAlternativeNa
 
 #: src/IssuerAlternativeNameExtension.cpp:212
 msgid "Invalid IssuerAlternativeNameExt object."
-msgstr "Неверный объект IssuerAlternativeNameExt"
+msgstr "Неверный объект IssuerAlternativeNameExt."
 
 #: src/LiteralValues.cpp:127
 msgid "Unknown type."
