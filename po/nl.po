@@ -11,15 +11,16 @@ msgstr ""
 "Project-Id-Version: limal-ca-mgm.nl\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2012-07-23 16:26+0200\n"
-"PO-Revision-Date: 2013-09-12 13:58+0200\n"
-"Last-Translator: Freek de Kruijf <freek@opensuse.org>\n"
-"Language-Team: Dutch <opensuse-nl@opensuse.org>\n"
+"PO-Revision-Date: 2016-03-30 12:16+0000\n"
+"Last-Translator: Nathan Follens <nthn@unseen.is>\n"
+"Language-Team: Dutch <http://l10n.opensuse.org/projects/libcamgm/master/nl/>"
+"\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.5\n"
-"Plural-Forms: nplurals=2; plural= n != 1;\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.5\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:104
 #: src/AuthorityInfoAccessExtension.cpp:133
@@ -210,7 +211,7 @@ msgstr "Ongeldige CRL-reden."
 
 #: src/CA.cpp:548
 msgid "Invalid CRL data."
-msgstr "Ongeldige CRL-gegevens,"
+msgstr "Ongeldige CRL-gegevens."
 
 #: src/CA.cpp:594
 msgid "Duplicate DN. Request already exists."
@@ -232,7 +233,7 @@ msgstr "Verwijderen van de request is mislukt (%1)."
 #: src/CA.cpp:1003
 #, c-format
 msgid "Certificate %s does not exist."
-msgstr "Certificaat %s bestaat niet"
+msgstr "Certificaat %s bestaat niet."
 
 #: src/CA.cpp:1052
 #, c-format
@@ -426,11 +427,11 @@ msgstr "Ongeldige CertificatePolicy-object."
 #: src/CertificatePoliciesExtension.cpp:777
 #: src/CertificatePoliciesExtension.cpp:802
 msgid "CertificatePoliciesExt is not present."
-msgstr "CertificatePoliciesExt is niet aanwezig"
+msgstr "CertificatePoliciesExt is niet aanwezig."
 
 #: src/CertificatePoliciesExtension.cpp:815
 msgid "Invalid CertificatePoliciesExt object."
-msgstr "Ongeldig CertificatePoliciesExt-object"
+msgstr "Ongeldig CertificatePoliciesExt-object."
 
 #: src/CRLData.cpp:220
 msgid "Entry not found."
@@ -450,11 +451,11 @@ msgstr "CRLDistributionPointsExt is niet aanwezig."
 
 #: src/CRLDistributionPointsExtension.cpp:153
 msgid "Invalid CRLDistributionPointsExt object."
-msgstr "Ongeldig CRLDistributionPointsExt-object"
+msgstr "Ongeldig CRLDistributionPointsExt-object."
 
 #: src/CRLGenerationData.cpp:151
 msgid "Invalid CRLGenerationData object."
-msgstr "Ongeldig CRLGenerationData-object"
+msgstr "Ongeldig CRLGenerationData-object."
 
 #: src/CRLReason.cpp:96 src/CRLReason.cpp:132
 #, c-format
@@ -494,16 +495,16 @@ msgstr "Ongeldige ExtendedKeyUsageExt."
 
 #: src/ExtendedKeyUsageExt.cpp:188
 msgid "ExtendedKeyUsageExt is not present."
-msgstr "ExtendedKeyUsageExt is niet aanwezig"
+msgstr "ExtendedKeyUsageExt is niet aanwezig."
 
 #: src/ExtendedKeyUsageExt.cpp:217
 msgid "Invalid ExtendedKeyUsageExt object."
-msgstr "Ongeldig ExtendedKeyUsageExt-object"
+msgstr "Ongeldig ExtendedKeyUsageExt-object."
 
 #: src/IssuerAlternativeNameExtension.cpp:162
 #: src/IssuerAlternativeNameExtension.cpp:187
 msgid "IssuerAlternativeNameExt is not present."
-msgstr "IssuerAlternativeNameExt is niet aanwezig"
+msgstr "IssuerAlternativeNameExt is niet aanwezig."
 
 #: src/IssuerAlternativeNameExtension.cpp:199
 msgid "Invalid literal value for IssuerAlternativeNameExt."
