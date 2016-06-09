@@ -10,15 +10,16 @@ msgstr ""
 "Project-Id-Version: limal-ca-mgm.sv\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2012-07-23 16:26+0200\n"
-"PO-Revision-Date: 2008-11-07 12:22+0100\n"
-"Last-Translator: Jonas Björk <jonas@jonasbjork.net>\n"
-"Language-Team: svenska <sv@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2016-06-09 21:19+0000\n"
+"Last-Translator: Jonas Svensson <jonas@ekhorva.se>\n"
+"Language-Team: Swedish "
+"<https://l10n.opensuse.org/projects/libcamgm/master/sv/>\n"
+"Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
-"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.6\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:104
 #: src/AuthorityInfoAccessExtension.cpp:133
@@ -298,7 +299,7 @@ msgstr "Ett fel inträffade under nyckelkrypteringen."
 
 #: src/CA.cpp:1388
 msgid "Error during write defaults."
-msgstr "Ett fel inträffade med skrivningen av standardinställningarna"
+msgstr "Ett fel inträffade vid skrivning av standardinställningar."
 
 #: src/CA.cpp:1532
 #, c-format
@@ -376,7 +377,7 @@ msgstr "Ett fel uppstod när certifikatet skulle tolkas."
 
 #: src/CertificateData_Priv.cpp:273
 msgid "Cannot parse serial."
-msgstr "Kunde inte tolka serienumret"
+msgstr "Kunde inte tolka serienumret."
 
 #: src/CertificateData_Priv.cpp:341 src/RequestData_Priv.cpp:178
 msgid "Unable to get the public key."
@@ -638,7 +639,7 @@ msgstr "Nyckelfilen finns inte."
 #: src/OpenSSLUtils.cpp:1297 src/OpenSSLUtils.cpp:1686
 #: src/OpenSSLUtils.cpp:1833
 msgid "Invalid password."
-msgstr "Ogiltigt lösenord"
+msgstr "Ogiltigt lösenord."
 
 #: src/OpenSSLUtils.cpp:1599
 msgid "The password for encrypting the output is required."
