@@ -129,6 +129,5 @@ testsuite/openssl.cnf.tmpl.test
 testsuite/single.out/out/
 testsuite/site.exp
 package/libcamgm-*.tar.bz2
-po/libcamgm.pot
 po/remove-potcdate.sed
 po/stamp-po
