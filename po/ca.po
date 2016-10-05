@@ -9,14 +9,16 @@ msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2012-07-23 16:26+0200\n"
-"PO-Revision-Date: 2014-09-12 18:40+0100\n"
-"Last-Translator: David Medina <opensusecatala@gmail.com>\n"
-"Language-Team: Catalan\n"
+"PO-Revision-Date: 2016-10-05 15:38+0000\n"
+"Last-Translator: David Medina <medipas@gmail.com>\n"
+"Language-Team: Catalan "
+"<https://l10n.opensuse.org/projects/libcamgm/master/ca/>\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.7\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.6\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:104
 #: src/AuthorityInfoAccessExtension.cpp:133
@@ -628,7 +630,7 @@ msgstr "L'ordre %s no és vàlida."
 #: src/OpenSSLUtils.cpp:1493 src/OpenSSLUtils.cpp:1651
 #: src/OpenSSLUtils.cpp:1795 src/OpenSSLUtils.cpp:2586
 msgid "Executing openssl command failed."
-msgstr "Ha fallat l'execució de l'ordre openssl"
+msgstr "Ha fallat l'execució de l'ordre openssl."
 
 #: src/OpenSSLUtils.cpp:136 src/OpenSSLUtils.cpp:227 src/OpenSSLUtils.cpp:326
 #: src/OpenSSLUtils.cpp:451 src/OpenSSLUtils.cpp:590 src/OpenSSLUtils.cpp:691
