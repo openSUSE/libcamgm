@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2012-07-23 16:26+0200\n"
-"PO-Revision-Date: 2016-10-05 15:38+0000\n"
+"PO-Revision-Date: 2016-10-14 11:54+0000\n"
 "Last-Translator: David Medina <medipas@gmail.com>\n"
 "Language-Team: Catalan "
 "<https://l10n.opensuse.org/projects/libcamgm/master/ca/>\n"
@@ -272,7 +272,7 @@ msgstr "El certificat no existeix."
 #, c-format
 #| msgid "Invalid purpose %1."
 msgid "Invalid purpose %s."
-msgstr "La finalitat %s no és vàlida."
+msgstr "El propòsit %s no és vàlid."
 
 #: src/CA.cpp:1155
 msgid "Invalid CA request data."
