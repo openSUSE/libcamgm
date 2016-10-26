@@ -1,16 +1,14 @@
 # @TITLE@
 # Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# Arif Budiman <arifpedia@gmail.com>, 2016.
 # This file is distributed under the same license as @PACKAGE@ package. FIRST
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2012-07-23 16:26+0200\n"
-"PO-Revision-Date: 2016-10-06 16:14+0000\n"
-"Last-Translator: Panji Yudha <akangstress12@gmail.com>\n"
+"PO-Revision-Date: 2016-10-26 22:54+0700\n"
+"Last-Translator: Arif Budiman <arifpedia@gmail.com>\n"
 "Language-Team: Indonesian "
 "<https://l10n.opensuse.org/projects/libcamgm/master/id/>\n"
 "Language: id\n"
@@ -18,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.6\n"
+"X-Generator: Poedit 1.8.8\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:104
 #: src/AuthorityInfoAccessExtension.cpp:133
@@ -27,9 +25,8 @@ msgstr "Lokasi tidak valid."
 
 #: src/AuthorityInfoAccessExtension.cpp:109
 #: src/AuthorityInfoAccessExtension.cpp:138
-#, fuzzy
 msgid "Invalid accessOID."
-msgstr "aksesOID tidak valid."
+msgstr "accessOID tidak valid."
 
 #: src/AuthorityInfoAccessExtension.cpp:253
 #: src/AuthorityInfoAccessExtension.cpp:336
@@ -58,543 +55,534 @@ msgstr "aksesOID tidak valid."
 #: src/SubjectKeyIdentifierExtension.cpp:79
 #: src/SubjectKeyIdentifierExtension.cpp:202
 msgid "Wrong type: %1."
-msgstr ""
+msgstr "Tipe salah: %1"
 
 #: src/AuthorityInfoAccessExtension.cpp:304
 msgid "Invalid AuthorityInformation in the information list."
-msgstr ""
+msgstr "AuthorityInformation di daftar informasi tidak valid."
 
 #: src/AuthorityInfoAccessExtension.cpp:317
 msgid "AuthorityInfoAccessExt is not present."
-msgstr ""
+msgstr "AuthorityInfoAccessExt tidak ada."
 
 #: src/AuthorityInfoAccessExtension.cpp:328
 msgid "Invalid AuthorityInfoAccessExt object."
-msgstr ""
+msgstr "Obyek AuthorityInfoAccessExt tidak valid."
 
 #: src/AuthorityKeyIdentifierExtension.cpp:93
 #: src/AuthorityKeyIdentifierExtension.cpp:104
 #: src/AuthorityKeyIdentifierExtension.cpp:115
 msgid "AuthorityKeyIdentifierExt is not present."
-msgstr ""
+msgstr "AuthorityKeyIdentifierExt tidak ada."
 
 #: src/AuthorityKeyIdentifierGenerateExtension.cpp:150
 #: src/AuthorityKeyIdentifierGenerateExtension.cpp:169
 msgid "AuthorityKeyIdentifierGenerateExt is not present."
-msgstr ""
+msgstr "AuthorityKeyIdentifierGenerateExt tidak ada."
 
 #: src/AuthorityKeyIdentifierGenerateExtension.cpp:181
 msgid "Invalid AuthorityKeyIdentifierGenerateExt object."
-msgstr ""
+msgstr "Obyek AuthorityKeyIdentifierGenerateExt tidak valid."
 
 #: src/BasicConstraintsExtension.cpp:151 src/BasicConstraintsExtension.cpp:163
 msgid "BasicConstraintsExt is not present."
-msgstr ""
+msgstr "BasicConstraintsExt tidak ada."
 
 #: src/BasicConstraintsExtension.cpp:175
 msgid "Invalid BasicConstraintsExt object."
-msgstr ""
+msgstr "Obyek BasicConstraintsExt tidak valid."
 
 #: src/BitExtensions.cpp:107
 msgid "This BitExtension is not present."
-msgstr ""
+msgstr "This BitExtension tidak ada."
 
 #: src/BitExtensions.cpp:130 src/BitExtensions.cpp:243
 #: src/CertificateIssueData.cpp:215 src/CRLGenerationData.cpp:158
 #: src/DNObject.cpp:258 src/IssuerAlternativeNameExtension.cpp:220
-#, fuzzy, c-format
+#, c-format, c-format
 msgid "Wrong type: %d."
-msgstr "Skema url '%1' tidak valid"
+msgstr "Tipe salah: %d."
 
 #: src/BitExtensions.cpp:170 src/BitExtensions.cpp:199
 msgid "Invalid value for keyUsage."
-msgstr ""
+msgstr "Nilai untuk keyUsage tidak valid."
 
 #: src/BitExtensions.cpp:211 src/BitExtensions.cpp:222
 msgid "KeyUsageExt is not present."
-msgstr ""
+msgstr "KeyUsageExt tidak ada."
 
 #: src/BitExtensions.cpp:235
 msgid "Invalid KeyUsageExt object."
-msgstr ""
+msgstr "Obyek KeyUsageExt tidak valid."
 
 #: src/BitExtensions.cpp:406
 msgid "Invalid value for NsCertTypeExt."
-msgstr ""
+msgstr "Nilai untuk NsCertTypeExt tidak valid."
 
 #: src/BitExtensions.cpp:435
 msgid "Invalid value for NsCertTypeExt: %1."
-msgstr ""
+msgstr "Nilai untuk NsCertTypeExt tidak valid: %1."
 
 #: src/BitExtensions.cpp:447
 msgid "NsCertTypeExt is not present."
-msgstr ""
+msgstr "NsCertTypeExt tidak ada."
 
 #: src/BitExtensions.cpp:468
 msgid "Invalid NsCertTypeExt object."
-msgstr ""
+msgstr "Obyek NsCertTypeExt tidak valid."
 
 #: src/CA.cpp:96
 msgid "Template not initialized."
-msgstr ""
+msgstr "Templat tidak diinisialisasi."
 
 #: src/CA.cpp:166 src/CA.cpp:1522
 msgid "Empty CA name."
-msgstr ""
+msgstr "Nama CA kosong."
 
 #: src/CA.cpp:174
 #, c-format
 msgid "Template does not exist: %s."
-msgstr ""
+msgstr "Templat tidak ada: %s."
 
 #: src/CA.cpp:186 src/CA.cpp:1543
 msgid "Invalid CA password."
-msgstr ""
+msgstr "Kata sandi CA tidak valid."
 
 #: src/CA.cpp:230 src/CA.cpp:1175 src/CA.cpp:1341
-#, fuzzy
 msgid "Error while creating the CA infrastructure."
-msgstr ""
-"Terjadi kesalahan ketika mengakses server FTP:\n"
-"\n"
-"%s"
+msgstr "Kesalahan saat membuat infrastruktur CA."
 
 #: src/CA.cpp:250 src/CA.cpp:1015
-#, fuzzy, c-format
+#, c-format, c-format
 msgid "Cannot parse the certificate name %s."
-msgstr "Tidak dapat menemukan ypserver master: %s"
+msgstr "Tidak dapat menguraikan nama sertifikat %s."
 
 #: src/CA.cpp:261
 msgid "Cannot copy the private key."
-msgstr ""
+msgstr "Tidak dapat menyalin kunci pribadi."
 
 #: src/CA.cpp:272
 msgid "Cannot copy the certificate."
-msgstr ""
+msgstr "Tidak dapat menyalin sertifikat."
 
 #: src/CA.cpp:304
 msgid "Invalid request data."
-msgstr ""
+msgstr "Data permintaan tidak valid."
 
 #: src/CA.cpp:323
 #, c-format
 msgid "Duplicate DN. Key %s.key already exists."
-msgstr ""
+msgstr "Duplikasi DN. Kunci %s.key sudah ada."
 
 #: src/CA.cpp:331
 #, c-format
 msgid "Duplicate DN. Request %s.req already exists."
-msgstr ""
+msgstr "Duplikasi DN. Kunci %s.req sudah ada."
 
 #: src/CA.cpp:400
 #, c-format
 msgid "Request does not exist (%s)."
-msgstr ""
+msgstr "Permintaan tidak ada (%s)."
 
 #: src/CA.cpp:406
 msgid "Invalid issue data."
-msgstr ""
+msgstr "Data penerbitan tidak valid."
 
 #: src/CA.cpp:423
 msgid "The CA expires before the certificate should expire."
-msgstr ""
+msgstr "CA kadaluarsa sebelum sertifikat kadaluarsa."
 
 #: src/CA.cpp:501
 msgid "Issuing the certificate failed."
-msgstr ""
+msgstr "Gagal menerbitkan sertifikat."
 
 #: src/CA.cpp:518
 #, c-format
 msgid "File %s not found in the repository."
-msgstr ""
+msgstr "Berkas %s tidak ditemukan dalam repositori."
 
 #: src/CA.cpp:525 src/CRLData_Priv.cpp:153
 msgid "Invalid CRL reason."
-msgstr ""
+msgstr "Alasan CRL tidak valid."
 
 #: src/CA.cpp:548
 msgid "Invalid CRL data."
-msgstr ""
+msgstr "Data CRL tidak valid."
 
 #: src/CA.cpp:594
 msgid "Duplicate DN. Request already exists."
-msgstr ""
+msgstr "Duplikasi DN. Permintaan sudah ada."
 
 #: src/CA.cpp:859 src/CA.cpp:886 src/CA.cpp:916 src/OpenSSLUtils.cpp:988
 msgid "Cannot parse the certificate name."
-msgstr ""
+msgstr "Tidak dapat menguraikan nama sertifikat."
 
 #: src/CA.cpp:967
 #, c-format
 msgid "Request %s does not exist."
-msgstr ""
+msgstr "Permintaan %s tidak ada."
 
 #: src/CA.cpp:989
 msgid "Removing the request failed (%1)."
-msgstr ""
+msgstr "Menghapus permintaan gagal (%1)."
 
 #: src/CA.cpp:1003
 #, c-format
 msgid "Certificate %s does not exist."
-msgstr ""
+msgstr "Sertifikat %s tidak ada."
 
 #: src/CA.cpp:1052
-#, fuzzy, c-format
+#, c-format, c-format
 msgid "Removing the certificate failed: %d."
-msgstr "Tidak dapat menemukan ypserver master: %s"
+msgstr "Menghapus sertifikat gagal: %d."
 
 #: src/CA.cpp:1060
 #, c-format
 msgid "Only revoked or expired certificates can be deleted. The status of the certificate is %s."
 msgstr ""
+"Hanya sertifikat yang telah dicabut atau kadaluarsa yang dapat dihapus. "
+"Status sertifikat %s."
 
 #: src/CA.cpp:1072
 msgid "Database not found."
-msgstr ""
+msgstr "Basis data tidak ditemukan."
 
 #: src/CA.cpp:1098
 msgid "Certificate does not exist."
-msgstr ""
+msgstr "Sertifikat tidak ada."
 
 #: src/CA.cpp:1112
-#, fuzzy, c-format
+#, c-format, c-format
 msgid "Invalid purpose %s."
-msgstr "Skema url '%1' tidak valid"
+msgstr "Tujuan %s tidak valid."
 
 #: src/CA.cpp:1155
 msgid "Invalid CA request data."
-msgstr ""
+msgstr "Data permintaan CA tidak valid."
 
 #: src/CA.cpp:1161
 msgid "Invalid CA issue data."
-msgstr ""
+msgstr "Data penerbitan CA tidak valid."
 
 #: src/CA.cpp:1279
 msgid "CA name is empty."
-msgstr ""
+msgstr "Nama CA kosong."
 
 #: src/CA.cpp:1288
 msgid "CA directory already exists."
-msgstr ""
+msgstr "Direktori CA sudah ada."
 
 #: src/CA.cpp:1299
 msgid "According to basicConstraints, this is not a CA."
-msgstr ""
+msgstr "Berdasarkan basicConstraints, ini bukan sebuah CA."
 
 #: src/CA.cpp:1306
 msgid "CA key is empty."
-msgstr ""
+msgstr "Kunci CA kosong."
 
 #: src/CA.cpp:1315
 msgid "Invalid key data."
-msgstr ""
+msgstr "Data kunci tidak valid."
 
 #: src/CA.cpp:1322
 msgid "CA password is empty."
-msgstr ""
+msgstr "Kata sandi CA kosong."
 
 #: src/CA.cpp:1366
 msgid "Error during key encryption."
-msgstr ""
+msgstr "Kesalahan pada saat enkripsi kunci."
 
 #: src/CA.cpp:1388
-#, fuzzy
 msgid "Error during write defaults."
-msgstr ""
-"Terjadi kesalahan ketika mengakses server FTP:\n"
-"\n"
-"%s"
+msgstr "Kesalahan pada saat menulis standar."
 
 #: src/CA.cpp:1532
 #, c-format
 msgid "CA name does not exist (%s)."
-msgstr ""
+msgstr "Nama CA tidak ada (%s)."
 
 #: src/CA.cpp:1563
 msgid "Deleting the CA is not allowed. The CA must be expired or never have signed a certificate."
 msgstr ""
+"Menghapus CA tidak diizinkan. CA harus sudah kadaluarsa atau belum pernah "
+"menandatangani sertifikat."
 
 #: src/CA.cpp:1588
 msgid "Deleting the CA failed: %1."
-msgstr ""
+msgstr "Menghapus CA gagal: %1"
 
 #: src/CA.cpp:1639
 msgid "The configuration file is missing a value for policy."
-msgstr ""
+msgstr "Berkas konfigurasi tidak memiliki nilai untuk kebijakan."
 
 #: src/CA.cpp:1649 src/CA.cpp:1911 src/DNObject.cpp:277
 #: src/DNObject_Priv.cpp:207
-#, fuzzy, c-format
+#, c-format, c-format
 msgid "Cannot parse section %s."
-msgstr "Tidak dapat membuka %s: %m"
+msgstr "Tidak dapat menguraikan bagian %s."
 
 #: src/CA.cpp:1721
 #, c-format
 msgid "Field %s must have a value."
-msgstr ""
+msgstr "Bidang %s harus memiliki nilai."
 
 #: src/CA.cpp:1760
 #, c-format
 msgid "%s must be defined."
-msgstr ""
+msgstr "%s harus ditetapkan."
 
 #: src/CA.cpp:1845
 #, c-format
 msgid "%s must be the same in the CA certificate (%s) and the request (%s)."
-msgstr ""
+msgstr "%s harus sama dalam sertifikat CA (%s) dan permintaan (%s)."
 
 #: src/CA.cpp:1857
 msgid "The configuration file seems to have an invalid policy."
-msgstr ""
+msgstr "Kelihatannya berkas konfigurasi memiliki kebijakan yang tidak valid."
 
 #: src/CA.cpp:1883 src/CA.cpp:1893
 msgid "The configuration is not initialized."
-msgstr ""
+msgstr "Konfigurasi tidak diinisialisasi."
 
 #: src/CA.cpp:1901 src/DNObject.cpp:266 src/DNObject_Priv.cpp:197
 msgid "Missing section 'distinguished_name' in the configuration file."
-msgstr ""
+msgstr "Bagian 'distinguished_name' tidak ada dalam berkas konfigurasi."
 
 #: src/CertificateData_Priv.cpp:92 src/CRLData_Priv.cpp:98
 #: src/CRLData_Priv.cpp:135
-#, fuzzy, c-format
+#, c-format, c-format
 msgid "Invalid serial %s."
-msgstr "Skema url '%1' tidak valid"
+msgstr "Serial %s tidak valid."
 
 #: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:393
 #: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:365
 msgid "Cannot create a memory BIO."
-msgstr ""
+msgstr "Tidak dapat membuat memori BIO."
 
 #: src/CertificateData_Priv.cpp:233
 msgid "Cannot parse the certificate."
-msgstr ""
+msgstr "Tidak dapat menguraikan sertifikat."
 
 #: src/CertificateData_Priv.cpp:246
-#, fuzzy
 msgid "Error while parsing the certificate."
-msgstr ""
-"Terjadi kesalahan ketika mengakses server FTP:\n"
-"\n"
-"%s"
+msgstr "Kesalahan saat mengurai sertifikat."
 
 #: src/CertificateData_Priv.cpp:273
-#, fuzzy
 msgid "Cannot parse serial."
-msgstr "Tidak dapat membuka %s: %m"
+msgstr "Tidak dapat mengurai serial."
 
 #: src/CertificateData_Priv.cpp:341 src/RequestData_Priv.cpp:178
 msgid "Unable to get the public key."
-msgstr ""
+msgstr "Tidak dapat mengambil kunci publik."
 
 #: src/CertificateData_Priv.cpp:352 src/RequestData_Priv.cpp:189
 msgid "Could not get RSA key."
-msgstr ""
+msgstr "Tidak dapat mengambil kunci RSA."
 
 #: src/CertificateData_Priv.cpp:372 src/RequestData_Priv.cpp:209
 msgid "Unsupported public key type."
-msgstr ""
+msgstr "Tipe kunci publik tidak didukung."
 
 #: src/CertificateData_Priv.cpp:408 src/RequestData_Priv.cpp:242
 msgid "Unsupported public key algorithm."
-msgstr ""
+msgstr "Algoritma kunci publik tidak didukung."
 
 #: src/CertificateData_Priv.cpp:440 src/CRLData_Priv.cpp:354
 #: src/RequestData_Priv.cpp:272
 #, c-format
 msgid "Unsupported signature algorithm %s."
-msgstr ""
+msgstr "Algoritma penandatanganan %s tidak didukung."
 
 #: src/CertificateIssueData.cpp:207
 msgid "Invalid CertificateIssueData object."
-msgstr ""
+msgstr "Obyek CertificateIssueData tidak valid."
 
 #: src/CertificatePoliciesExtension.cpp:210
 msgid "The text is too long."
-msgstr ""
+msgstr "Teks terlalu panjang."
 
 #: src/CertificatePoliciesExtension.cpp:249
 msgid "Invalid UserNotice object."
-msgstr ""
+msgstr "Obyek UserNotice tidak valid."
 
 #: src/CertificatePoliciesExtension.cpp:389
 #: src/CertificatePoliciesExtension.cpp:453
 #, c-format
 msgid "Invalid value for policyIdentifier: %s."
-msgstr ""
+msgstr "Nilai untuk policyIdentifier tidak valid: %s."
 
 #: src/CertificatePoliciesExtension.cpp:508
 msgid "Invalid CertificatePolicy object."
-msgstr ""
+msgstr "Obyek CertificatePolicy tidak valid."
 
 #: src/CertificatePoliciesExtension.cpp:777
 #: src/CertificatePoliciesExtension.cpp:802
 msgid "CertificatePoliciesExt is not present."
-msgstr ""
+msgstr "CertificatePoliciesExt tidak ada."
 
 #: src/CertificatePoliciesExtension.cpp:815
 msgid "Invalid CertificatePoliciesExt object."
-msgstr ""
+msgstr "Obyek CertificatePoliciesExt tidak valid."
 
 #: src/CRLData.cpp:220
 msgid "Entry not found."
-msgstr ""
+msgstr "Entri tidak ditemukan."
 
 #: src/CRLData_Priv.cpp:421
 msgid "Cannot parse CRL."
-msgstr ""
+msgstr "Tidak dapat mengurai CRL."
 
 #: src/CRLData_Priv.cpp:434
 msgid "Error parsing the CRL."
-msgstr ""
+msgstr "Kesalahan menguraikan CRL."
 
 #: src/CRLDistributionPointsExtension.cpp:141
 msgid "CRLDistributionPointsExt is not present."
-msgstr ""
+msgstr "CRLDistributionPointsExt tidak ada."
 
 #: src/CRLDistributionPointsExtension.cpp:153
 msgid "Invalid CRLDistributionPointsExt object."
-msgstr ""
+msgstr "Obyek CRLDistributionPointsExt tidak valid."
 
 #: src/CRLGenerationData.cpp:151
 msgid "Invalid CRLGenerationData object."
-msgstr ""
+msgstr "Obyek CRLGenerationData tidak valid."
 
 #: src/CRLReason.cpp:96 src/CRLReason.cpp:132
 #, c-format
 msgid "Invalid revoke reason %s."
-msgstr ""
+msgstr "Alasan pencabutan %s tidak valid."
 
 #: src/CRLReason.cpp:170
 msgid "Reason is not certificateHold."
-msgstr ""
+msgstr "Alasan bukanlah certificateHold."
 
 #: src/CRLReason.cpp:193 src/CRLReason.cpp:207
 msgid "Reason is not keyCompromise."
-msgstr ""
+msgstr "Alasan bukanlah keyCompromise."
 
 #: src/CRLReason.cpp:238 src/CRLReason.cpp:252
 msgid "Reason is not CACompromise."
-msgstr ""
+msgstr "Alasan bukanlah CACompromise."
 
 #: src/DNObject.cpp:100
-#, fuzzy, c-format
+#, c-format, c-format
 msgid "Invalid type %s."
-msgstr "Skema url '%1' tidak valid"
+msgstr "Tipe %s tidak valid."
 
 #: src/DNObject_Priv.cpp:157
-#, fuzzy, c-format
+#, c-format, c-format
 msgid "Cannot parse DN line: %s."
-msgstr "Tidak dapat membuka %s: %m"
+msgstr "Tidak dapat mengurai baris DN: %s"
 
 #: src/ExtendedKeyUsageExt.cpp:118 src/ExtendedKeyUsageExt.cpp:167
 #, c-format
 msgid "Invalid ExtendedKeyUsage option %s."
-msgstr ""
+msgstr "Opsi %s ExtendedKeyUsage tidak valid."
 
 #: src/ExtendedKeyUsageExt.cpp:126 src/ExtendedKeyUsageExt.cpp:175
 msgid "Invalid ExtendedKeyUsageExt."
-msgstr ""
+msgstr "ExtendedKeyUsageExt tidak valid."
 
 #: src/ExtendedKeyUsageExt.cpp:188
 msgid "ExtendedKeyUsageExt is not present."
-msgstr ""
+msgstr "ExtendedKeyUsageExt tidak ada."
 
 #: src/ExtendedKeyUsageExt.cpp:217
 msgid "Invalid ExtendedKeyUsageExt object."
-msgstr ""
+msgstr "Obyek ExtendedKeyUsageExt tidak valid."
 
 #: src/IssuerAlternativeNameExtension.cpp:162
 #: src/IssuerAlternativeNameExtension.cpp:187
 msgid "IssuerAlternativeNameExt is not present."
-msgstr ""
+msgstr "IssuerAlternativeNameExt tidak ada."
 
 #: src/IssuerAlternativeNameExtension.cpp:199
 msgid "Invalid literal value for IssuerAlternativeNameExt."
-msgstr ""
+msgstr "Nilai harfiah untuk IssuerAlternativeNameExt tidak valid."
 
 #: src/IssuerAlternativeNameExtension.cpp:212
 msgid "Invalid IssuerAlternativeNameExt object."
-msgstr ""
+msgstr "Obyek IssuerAlternativeNameExt tidak valid."
 
 #: src/LiteralValues.cpp:127
 msgid "Unknown type."
-msgstr ""
+msgstr "Tipe tidak diketahui."
 
 #: src/LocalManagement.cpp:91
 msgid "Cannot split certificate output."
-msgstr ""
+msgstr "Tidak dapat memisah keluaran sertifikat."
 
 #: src/LocalManagement.cpp:288 src/LocalManagement.cpp:309
 #: src/LocalManagement.cpp:328
-#, fuzzy, c-format
+#, c-format, c-format
 msgid "Cannot create directory %s: %s."
-msgstr "Tidak dapat membuat file temp (%s): %m"
+msgstr "Tidak dapat membuat direktori %s: %s."
 
 #: src/LocalManagement.cpp:342
-#, fuzzy, c-format
+#, c-format, c-format
 #| msgid "Set initial directory"
 msgid "%s is not a directory."
-msgstr "Set direktori awal"
+msgstr "%s bukan sebuah direktori."
 
 #: src/LocalManagement.cpp:363
 msgid "Invalid certificate file."
-msgstr ""
+msgstr "Berkas sertifikat tidak valid."
 
 #: src/LocalManagement.cpp:441
-#, fuzzy, c-format
+#, c-format, c-format
 #| msgid "Failed to parse: %s."
 msgid "File not found: %s."
-msgstr "Failed to parse: %s."
+msgstr "Berkas tidak ditemukan: %s."
 
 #: src/LocalManagement.cpp:450
-#, fuzzy, c-format
+#, c-format, c-format
 #| msgid "Failed to parse: %s."
 msgid "File too big: %s."
-msgstr "Failed to parse: %s."
+msgstr "Berkas terlalu besar: %s."
 
 #: src/LocalManagement.cpp:459 src/LocalManagement.cpp:513
-#, fuzzy, c-format
+#, c-format, c-format
 #| msgid "Cannot open %s: %m"
 msgid "Cannot open file %s."
-msgstr "Tidak dapat membuka %s: %m"
+msgstr "Tidak dapat membuka berkas %s."
 
 #: src/LocalManagement.cpp:478
-#, fuzzy, c-format
+#, c-format, c-format
 msgid "Cannot read from file %s."
-msgstr "Tidak dapat membuat file temp %s: %m"
+msgstr "Tidak dapat membaca dari berkas %s."
 
 #: src/LocalManagement.cpp:503
 #, c-format
 msgid "File already exists: %s."
-msgstr ""
+msgstr "Berkas sudah ada: %s."
 
 #: src/LocalManagement.cpp:523
-#, fuzzy, c-format
+#, c-format, c-format
 #| msgid "Cannot get options"
 msgid "Cannot get lock on file %s."
-msgstr "Tidak dapat memperoleh opsi"
+msgstr "Tidak dapat mengunci berkas %s."
 
 #: src/LocalManagement.cpp:535
-#, fuzzy, c-format
+#, c-format, c-format
 msgid "Cannot write to file %s."
-msgstr "Tidak dapat membuat file temp %s: %m"
+msgstr "Tidak dapat menulis berkas %s."
 
 #: src/OpenSSLUtils.cpp:49
-#, fuzzy, c-format
+#, c-format, c-format
 #| msgid "Failed to parse: %s."
 msgid "File does not exist: %s."
-msgstr "Failed to parse: %s."
+msgstr "Berkas tidak ada: %s."
 
 #: src/OpenSSLUtils.cpp:58
 #, c-format
 msgid "Directory does not exist: %s."
-msgstr ""
+msgstr "Direktori tidak ada: %s."
 
 #: src/OpenSSLUtils.cpp:67
-#, fuzzy, c-format
+#, c-format, c-format
 msgid "Invalid command %s."
-msgstr "Skema url '%1' tidak valid"
+msgstr "Perintah %s tidak valid."
 
 #: src/OpenSSLUtils.cpp:124 src/OpenSSLUtils.cpp:214 src/OpenSSLUtils.cpp:313
 #: src/OpenSSLUtils.cpp:438 src/OpenSSLUtils.cpp:577 src/OpenSSLUtils.cpp:678
@@ -604,7 +592,7 @@ msgstr "Skema url '%1' tidak valid"
 #: src/OpenSSLUtils.cpp:1493 src/OpenSSLUtils.cpp:1651
 #: src/OpenSSLUtils.cpp:1795 src/OpenSSLUtils.cpp:2586
 msgid "Executing openssl command failed."
-msgstr ""
+msgstr "Mengeksekusi perintah openssl gagal."
 
 #: src/OpenSSLUtils.cpp:136 src/OpenSSLUtils.cpp:227 src/OpenSSLUtils.cpp:326
 #: src/OpenSSLUtils.cpp:451 src/OpenSSLUtils.cpp:590 src/OpenSSLUtils.cpp:691
@@ -612,249 +600,239 @@ msgstr ""
 #: src/OpenSSLUtils.cpp:1302 src/OpenSSLUtils.cpp:1412
 #: src/OpenSSLUtils.cpp:1521 src/OpenSSLUtils.cpp:1691
 #: src/OpenSSLUtils.cpp:1838 src/OpenSSLUtils.cpp:2613
-#, fuzzy, c-format
+#, c-format, c-format
 #| msgid "DBI Execution failed: %s"
 msgid "openssl command failed: %s"
-msgstr "DBI Execution failed: %s"
+msgstr "Perintah openssl gagal: %s"
 
 #: src/OpenSSLUtils.cpp:166 src/OpenSSLUtils.cpp:254 src/OpenSSLUtils.cpp:358
 #: src/OpenSSLUtils.cpp:477 src/OpenSSLUtils.cpp:617 src/OpenSSLUtils.cpp:714
 msgid "No valid key file specified."
-msgstr ""
+msgstr "Berkas kunci yang ditetapkan tidak valid."
 
 #: src/OpenSSLUtils.cpp:262 src/OpenSSLUtils.cpp:366
 msgid "No valid request file specified."
-msgstr ""
+msgstr "Berkas permintaan yang ditetapkan tidak valid."
 
 #: src/OpenSSLUtils.cpp:485 src/OpenSSLUtils.cpp:625 src/OpenSSLUtils.cpp:722
 msgid "No valid CA certificate file specified."
-msgstr ""
+msgstr "Berkas sertifikat CA yang ditetapkan tidak valid."
 
 #: src/OpenSSLUtils.cpp:493 src/OpenSSLUtils.cpp:801
 msgid "No valid certificate file specified."
-msgstr ""
+msgstr "Berkas sertifikat yang ditetapkan tidak valid."
 
 #: src/OpenSSLUtils.cpp:809
 msgid "No valid CA directory specified."
-msgstr ""
+msgstr "Direktori CA yang ditetapkan tidak valid."
 
 #: src/OpenSSLUtils.cpp:963
 #, c-format
 msgid "Showing certificate status with serial %s failed (%d)."
-msgstr ""
+msgstr "Menampilkan status sertifikat dengan serial %s gagal (%d)."
 
 #: src/OpenSSLUtils.cpp:999
 msgid "The key file does not exist."
-msgstr ""
+msgstr "Berkas kunci tidak ada."
 
 #: src/OpenSSLUtils.cpp:1297 src/OpenSSLUtils.cpp:1686
 #: src/OpenSSLUtils.cpp:1833
-#, fuzzy
 msgid "Invalid password."
-msgstr "Password buruk: "
+msgstr "Kata sandi tidak valid."
 
 #: src/OpenSSLUtils.cpp:1599
 msgid "The password for encrypting the output is required."
-msgstr ""
+msgstr "Kata sandi untuk mengenkripsi keluaran diperlukan."
 
 #: src/OpenSSLUtils.cpp:1746
 msgid "The PKCS12 password is required."
-msgstr ""
+msgstr "Kata sandi PKC12 diperlukan."
 
 #: src/OpenSSLUtils.cpp:1864 src/OpenSSLUtils.cpp:2064
 #: src/OpenSSLUtils.cpp:2216
-#, fuzzy, c-format
+#, c-format, c-format
 msgid "Cannot read directory: %s (%s) [%d]."
-msgstr "Tidak dapat membuat file temp (%s): %m"
+msgstr "Tidak dapat membaca direktori: %s (%s) [%d]."
 
 #: src/OpenSSLUtils.cpp:1914
 #, c-format
 msgid "No serial number found in %s."
-msgstr ""
+msgstr "Tidak ada nomor seri yang ditemukan di %s."
 
 #: src/OpenSSLUtils.cpp:1934
 msgid "The request already exists."
-msgstr ""
+msgstr "Permintaan sudah ada."
 
 #: src/OpenSSLUtils.cpp:2125
-#, fuzzy
 msgid "Cannot find the request subject."
-msgstr "Tidak dapat menemukan ypserver master: %s"
+msgstr "Tidak dapat menemukan judul permintaan."
 
 #: src/OpenSSLUtils.cpp:2286
-#, fuzzy
 msgid "Cannot find the certificate subject."
-msgstr "Tidak dapat menemukan ypserver master: %s"
+msgstr "Tidak dapat menemukan judul sertifikat."
 
 #: src/OpenSSLUtils.cpp:2385
-#, fuzzy, c-format
+#, c-format, c-format
 msgid "Invalid caName: %s."
-msgstr "Skema url '%1' tidak valid"
+msgstr "caName tidak valid: %s."
 
 #: src/OpenSSLUtils.cpp:2394
 #, c-format
 msgid "'%s' does not exist."
-msgstr ""
+msgstr "'%s' tidak ada."
 
 #: src/OpenSSLUtils.cpp:2404
 #, c-format
 msgid "%s still exists."
-msgstr ""
+msgstr "%s tetap ada."
 
 #: src/OpenSSLUtils.cpp:2415 src/OpenSSLUtils.cpp:2463
 #: src/OpenSSLUtils.cpp:2477 src/OpenSSLUtils.cpp:2491
 #: src/OpenSSLUtils.cpp:2505 src/OpenSSLUtils.cpp:2519
-#, fuzzy, c-format
+#, c-format, c-format
 msgid "Cannot create directory: %s (%s [%d])."
-msgstr "Tidak dapat membuat file temp (%s): %m"
+msgstr "Tidak dapat membuat direktori: %s (%s [%d])."
 
 #: src/OpenSSLUtils.cpp:2450
 msgid "Cannot copy the configuration template."
-msgstr ""
+msgstr "Tidak dapat menyalin templat konfigurasi."
 
 #: src/OpenSSLUtils.cpp:2537
-#, fuzzy
 msgid "Cannot create the file."
-msgstr "Tidak dapat membuat file temp %s: %m"
+msgstr "Tidak dapat membuat berkas."
 
 #: src/OpenSSLUtils.cpp:2552
-#, fuzzy
 msgid "Can not open file."
-msgstr "Tidak dapat membuka %s: %m"
+msgstr "Tidak dapat membuka berkas."
 
 #: src/RequestData_Priv.cpp:392
 msgid "Cannot parse the request."
-msgstr ""
+msgstr "Tidak dapa mengurai permintaan."
 
 #: src/RequestData_Priv.cpp:405
-#, fuzzy
 msgid "Error while parsing the request."
-msgstr ""
-"Terjadi kesalahan ketika mengakses server FTP:\n"
-"\n"
-"%s"
+msgstr "Kesalahan saat mengurai permintaan."
 
 #: src/RequestGenerationData.cpp:236
 msgid "Invalid RequestGenerationData object."
-msgstr ""
+msgstr "Obyek RequestGenerationData tidak valid."
 
 #: src/StringExtensions.cpp:105 src/StringExtensions.cpp:163
 msgid "Invalid value for NsBaseUrlExt."
-msgstr ""
+msgstr "Nilai untuk NsBaseUrlExt tidak valid."
 
 #: src/StringExtensions.cpp:175
 msgid "NsBaseUrlExt is not present."
-msgstr ""
+msgstr "NsBaseUrlExt tidak ada."
 
 #: src/StringExtensions.cpp:187
 msgid "Invalid NsBaseUrlExt object."
-msgstr ""
+msgstr "Obyek NsBaseUrlExt tidak valid."
 
 #: src/StringExtensions.cpp:270 src/StringExtensions.cpp:323
 msgid "Invalid value for NsRevocationUrlExt."
-msgstr ""
+msgstr "Nilai untuk NsRevocationUrlExt tidak valid."
 
 #: src/StringExtensions.cpp:334
 msgid "NsRevocationUrlExt is not present."
-msgstr ""
+msgstr "NsRevocationUrlExt tidak ada."
 
 #: src/StringExtensions.cpp:345
 msgid "Invalid NsRevocationUrlExt object."
-msgstr ""
+msgstr "Obyek NsRevocationUrlExt tidak valid."
 
 #: src/StringExtensions.cpp:424 src/StringExtensions.cpp:477
 msgid "Invalid value for NsCaRevocationUrlExt."
-msgstr ""
+msgstr "Nilai untuk NsCaRevocationUrlExt tidak valid."
 
 #: src/StringExtensions.cpp:488
 msgid "NsCaRevocationUrlExt is not present."
-msgstr ""
+msgstr "NsCaRevocationUrlExt tidak ada."
 
 #: src/StringExtensions.cpp:499
 msgid "Invalid NsCaRevocationUrlExt object."
-msgstr ""
+msgstr "Obyek NsCaRevocationUrlExt tidak valid."
 
 #: src/StringExtensions.cpp:577 src/StringExtensions.cpp:630
 msgid "Invalid value for NsRenewalUrlExt."
-msgstr ""
+msgstr "Nilai untuk NsRenewalUrlExt tidak valid."
 
 #: src/StringExtensions.cpp:641
 msgid "NsRenewalUrlExt is not present."
-msgstr ""
+msgstr "NsRenewalUrlExt tidak ada."
 
 #: src/StringExtensions.cpp:652
 msgid "Invalid NsRenewalUrlExt object."
-msgstr ""
+msgstr "Obyek NsRenewalUrlExt tidak valid."
 
 #: src/StringExtensions.cpp:729 src/StringExtensions.cpp:782
 msgid "Invalid value for NsCaPolicyUrlExt."
-msgstr ""
+msgstr "Nilai untuk NsCaPolicyUrlExt tidak valid."
 
 #: src/StringExtensions.cpp:793
 msgid "NsCaPolicyUrlExt is not present."
-msgstr ""
+msgstr "NsCaPolicyUrlExt tidak ada."
 
 #: src/StringExtensions.cpp:804
 msgid "Invalid NsCaPolicyUrlExt object."
-msgstr ""
+msgstr "Obyek NsCaPolicyUrlExt tidak valid."
 
 #: src/StringExtensions.cpp:890
-#, fuzzy
 msgid "Invalid type: %1."
-msgstr "Skema url '%1' tidak valid"
+msgstr "Tipe tidak valid: %1."
 
 #: src/StringExtensions.cpp:936
 msgid "NsSslServerNameExt is not present."
-msgstr ""
+msgstr "NsSslServerNameExt tidak ada."
 
 #: src/StringExtensions.cpp:947
 msgid "Invalid NsSslServerNameExt object."
-msgstr ""
+msgstr "Obyek NsSslServerNameExt tidak valid."
 
 #: src/StringExtensions.cpp:1062
 msgid "NsCommentExt is not present."
-msgstr ""
+msgstr "NsCommentExt tidak ada."
 
 #: src/StringExtensions.cpp:1073
 msgid "Invalid NsCommentExt object."
-msgstr ""
+msgstr "Obyek NsCommentExt tidak valid."
 
 #: src/SubjectAlternativeNameExtension.cpp:179
 #: src/SubjectAlternativeNameExtension.cpp:190
 msgid "SubjectAlternativeNameExt is not present."
-msgstr ""
+msgstr "SubjectAlternativeNameExt tidak ada."
 
 #: src/SubjectAlternativeNameExtension.cpp:203
 msgid "Invalid SubjectAlternativeNameExt object."
-msgstr ""
+msgstr "Obyek SubjectAlternativeNameExt tidak valid."
 
 #: src/SubjectKeyIdentifierExtension.cpp:123
 #: src/SubjectKeyIdentifierExtension.cpp:157
 msgid "Invalid KeyID."
-msgstr ""
+msgstr "KeyID tidak valid."
 
 #: src/SubjectKeyIdentifierExtension.cpp:170
 #: src/SubjectKeyIdentifierExtension.cpp:181
 msgid "SubjectKeyIdentifierExt is not present."
-msgstr ""
+msgstr "SubjectKeyIdentifierExt tidak ada."
 
 #: src/SubjectKeyIdentifierExtension.cpp:194
 msgid "Invalid SubjectKeyIdentifierExt object."
-msgstr ""
+msgstr "Obyek SubjectKeyIdentifierExt tidak valid."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:392
 #: src/X509v3CertificateExtensions_Priv.cpp:449
 #: src/X509v3RequestExtensions_Priv.cpp:130
 #: src/X509v3RequestExtensions_Priv.cpp:185
 msgid "Extension occurred more than once: %1."
-msgstr ""
+msgstr "Ekstensi muncul lebih dari sekali: %1."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:399
 #: src/X509v3CertificateExtensions_Priv.cpp:456
 #: src/X509v3RequestExtensions_Priv.cpp:137
 #: src/X509v3RequestExtensions_Priv.cpp:192
 msgid "Unable to parse the certificate (NID: %1 Crit: %2)."
-msgstr ""
+msgstr "Tidak dapat mengurai sertifikat (NID: %1 Crit: %2)."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:508
 #: src/X509v3CertificateExtensions_Priv.cpp:574
@@ -870,7 +848,7 @@ msgstr ""
 #: src/X509v3RequestExtensions_Priv.cpp:374
 #: src/X509v3RequestExtensions_Priv.cpp:432
 msgid "Extension occurred more than once."
-msgstr ""
+msgstr "Ekstensi muncul lebih dari sekali."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:513
 #: src/X509v3CertificateExtensions_Priv.cpp:579
@@ -885,128 +863,141 @@ msgstr ""
 #: src/X509v3RequestExtensions_Priv.cpp:316
 #: src/X509v3RequestExtensions_Priv.cpp:380
 #: src/X509v3RequestExtensions_Priv.cpp:437
-#, fuzzy
 msgid "Unable to parse the certificate (Crit: %1)."
-msgstr "Tidak dapat memparse string url '%1'"
+msgstr "Tidak dapat mengurai sertifikat (Crit: %1)."
 
 #: src/X509v3CertificateExtensions_Priv.cpp:937
 msgid "Invalid location in authorityInfoAccess."
-msgstr ""
+msgstr "Lokasi dalam authorityInfoAccess tidak valid."
 
 #: src/X509v3CertificateIssueExtensions.cpp:170
 msgid "Invalid value for X509v3CertificateIssueExts::setNsBaseUrl."
-msgstr ""
+msgstr "Nilai untuk X509v3CertificateIssueExts::setNsBaseUrl tidak valid."
 
 #: src/X509v3CertificateIssueExtensions.cpp:193
 msgid "Invalid value for X509v3CertificateIssueExts::setNsRevocationUrl."
-msgstr ""
+msgstr "Nilai untuk X509v3CertificateIssueExts::setNsRevocationUrl tidak valid."
 
 #: src/X509v3CertificateIssueExtensions.cpp:216
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCaRevocationUrl."
 msgstr ""
+"Nilai untuk X509v3CertificateIssueExts::setNsCaRevocationUrl tidak valid."
 
 #: src/X509v3CertificateIssueExtensions.cpp:239
 msgid "Invalid value for X509v3CertificateIssueExts::setNsRenewalUrl."
-msgstr ""
+msgstr "Nilai untuk X509v3CertificateIssueExts::setNsRenewalUrl tidak valid."
 
 #: src/X509v3CertificateIssueExtensions.cpp:262
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCaPolicyUrl."
-msgstr ""
+msgstr "Nilai untuk X509v3CertificateIssueExts::setNsCaPolicyUrl tidak valid."
 
 #: src/X509v3CertificateIssueExtensions.cpp:285
 msgid "Invalid value for X509v3CertificateIssueExts::setNsSslServerName."
-msgstr ""
+msgstr "Nilai untuk X509v3CertificateIssueExts::setNsSslServerName tidak valid."
 
 #: src/X509v3CertificateIssueExtensions.cpp:308
 msgid "Invalid value for X509v3CertificateIssueExts::setNsComment."
-msgstr ""
+msgstr "Nilai untuk X509v3CertificateIssueExts::setNsComment tidak valid."
 
 #: src/X509v3CertificateIssueExtensions.cpp:331
 msgid "Invalid value for X509v3CertificateIssueExts::setNsCertType."
-msgstr ""
+msgstr "Nilai untuk X509v3CertificateIssueExts::setNsCertType tidak valid."
 
 #: src/X509v3CertificateIssueExtensions.cpp:354
 msgid "Invalid value for X509v3CertificateIssueExts::setKeyUsage."
-msgstr ""
+msgstr "Nilai untuk X509v3CertificateIssueExts::setKeyUsage tidak valid."
 
 #: src/X509v3CertificateIssueExtensions.cpp:377
 msgid "Invalid value for X509v3CertificateIssueExts::setBasicConstraints."
 msgstr ""
+"Nilai untuk X509v3CertificateIssueExts::setBasicConstraints tidak valid."
 
 #: src/X509v3CertificateIssueExtensions.cpp:400
 msgid "Invalid value for X509v3CertificateIssueExts::setExtendedKeyUsage."
 msgstr ""
+"Nilai untuk X509v3CertificateIssueExts::setExtendedKeyUsage tidak valid."
 
 #: src/X509v3CertificateIssueExtensions.cpp:423
 msgid "Invalid value for X509v3CertificateIssueExts::setSubjectKeyIdentifier."
 msgstr ""
+"Nilai untuk X509v3CertificateIssueExts::setSubjectKeyIdentifier tidak valid."
 
 #: src/X509v3CertificateIssueExtensions.cpp:446
 msgid "Invalid value for X509v3CertificateIssueExts::setAuthorityKeyIdentifier."
 msgstr ""
+"Nilai untuk X509v3CertificateIssueExts::setAuthorityKeyIdentifier tidak "
+"valid."
 
 #: src/X509v3CertificateIssueExtensions.cpp:469
 msgid "Invalid value for X509v3CertificateIssueExts::setSubjectAlternativeName."
 msgstr ""
+"Nilai untuk X509v3CertificateIssueExts::setSubjectAlternativeName tidak "
+"valid."
 
 #: src/X509v3CertificateIssueExtensions.cpp:492
 msgid "Invalid value for X509v3CertificateIssueExts::setIssuerAlternativeName."
 msgstr ""
+"Nilai untuk X509v3CertificateIssueExts::setIssuerAlternativeName tidak valid."
 
 #: src/X509v3CertificateIssueExtensions.cpp:515
 msgid "Invalid value for X509v3CertificateIssueExts::setAuthorityInfoAccess."
 msgstr ""
+"Nilai untuk X509v3CertificateIssueExts::setAuthorityInfoAccess tidak valid."
 
 #: src/X509v3CertificateIssueExtensions.cpp:538
 msgid "Invalid value for X509v3CertificateIssueExts::setCRLDistributionPoints."
 msgstr ""
+"Nilai untuk X509v3CertificateIssueExts::setCRLDistributionPoints tidak valid."
 
 #: src/X509v3CertificateIssueExtensions.cpp:561
 msgid "Invalid value for X509v3CertificateIssueExts::setCertificatePolicies."
 msgstr ""
+"Nilai untuk X509v3CertificateIssueExts::setCertificatePolicies tidak valid."
 
 #: src/X509v3CertificateIssueExtensions.cpp:585
 #: src/X509v3CRLGenerationExtensions.cpp:145
 #: src/X509v3RequestExtensions.cpp:252
 msgid "Invalid X509v3RequestExts object."
-msgstr ""
+msgstr "Obyek X509v3RequestExts tidak valid."
 
 #: src/X509v3CRLGenerationExtensions.cpp:98
 msgid "Invalid value for X509v3CRLGenerationExts::setAuthorityKeyIdentifier."
 msgstr ""
+"Nilai untuk X509v3CRLGenerationExts::setAuthorityKeyIdentifier tidak valid."
 
 #: src/X509v3CRLGenerationExtensions.cpp:121
 msgid "Invalid value for X509v3CRLGenerationExts::setIssuerAlternativeName."
 msgstr ""
+"Nilai untuk X509v3CRLGenerationExts::setIssuerAlternativeName tidak valid."
 
 #: src/X509v3RequestExtensions.cpp:67
 msgid "Invalid value for X509v3RequestExts::setNsSslServerName."
-msgstr ""
+msgstr "Nilai untuk X509v3RequestExts::setNsSslServerName tidak valid."
 
 #: src/X509v3RequestExtensions.cpp:90
 msgid "Invalid value for X509v3RequestExts::setNsComment."
-msgstr ""
+msgstr "Nilai untuk X509v3RequestExts::setNsComment tidak valid."
 
 #: src/X509v3RequestExtensions.cpp:113
 msgid "Invalid value for X509v3RequestExts::setNsCertType."
-msgstr ""
+msgstr "Nilai untuk X509v3RequestExts::setNsCertType tidak valid."
 
 #: src/X509v3RequestExtensions.cpp:136
 msgid "Invalid value for X509v3RequestExts::setKeyUsage."
-msgstr ""
+msgstr "Nilai untuk X509v3RequestExts::setKeyUsage tidak valid."
 
 #: src/X509v3RequestExtensions.cpp:159
 msgid "Invalid value for X509v3RequestExts::setBasicConstraints."
-msgstr ""
+msgstr "Nilai untuk X509v3RequestExts::setBasicConstraints tidak valid."
 
 #: src/X509v3RequestExtensions.cpp:182
 msgid "Invalid value for X509v3RequestExts::setExtendedKeyUsage."
-msgstr ""
+msgstr "Nilai untuk X509v3RequestExts::setExtendedKeyUsage tidak valid."
 
 #: src/X509v3RequestExtensions.cpp:205
 msgid "Invalid value for X509v3RequestExts::setSubjectKeyIdentifier."
-msgstr ""
+msgstr "Nilai untuk X509v3RequestExts::setSubjectKeyIdentifier tidak valid."
 
 #: src/X509v3RequestExtensions.cpp:228
 msgid "Invalid value for X509v3RequestExts::setSubjectAlternativeName."
-msgstr ""
+msgstr "Nilai untuk X509v3RequestExts::setSubjectAlternativeName tidak valid."
