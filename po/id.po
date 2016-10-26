@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2012-07-23 16:26+0200\n"
-"PO-Revision-Date: 2016-10-26 22:54+0700\n"
+"PO-Revision-Date: 2016-10-26 16:01+0000\n"
 "Last-Translator: Arif Budiman <arifpedia@gmail.com>\n"
 "Language-Team: Indonesian "
 "<https://l10n.opensuse.org/projects/libcamgm/master/id/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Weblate 2.6\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:104
 #: src/AuthorityInfoAccessExtension.cpp:133
@@ -55,7 +55,7 @@ msgstr "accessOID tidak valid."
 #: src/SubjectKeyIdentifierExtension.cpp:79
 #: src/SubjectKeyIdentifierExtension.cpp:202
 msgid "Wrong type: %1."
-msgstr "Tipe salah: %1"
+msgstr "Tipe salah: %1."
 
 #: src/AuthorityInfoAccessExtension.cpp:304
 msgid "Invalid AuthorityInformation in the information list."
@@ -309,7 +309,7 @@ msgstr ""
 
 #: src/CA.cpp:1588
 msgid "Deleting the CA failed: %1."
-msgstr "Menghapus CA gagal: %1"
+msgstr "Menghapus CA gagal: %1."
 
 #: src/CA.cpp:1639
 msgid "The configuration file is missing a value for policy."
@@ -473,7 +473,7 @@ msgstr "Tipe %s tidak valid."
 #: src/DNObject_Priv.cpp:157
 #, c-format, c-format
 msgid "Cannot parse DN line: %s."
-msgstr "Tidak dapat mengurai baris DN: %s"
+msgstr "Tidak dapat mengurai baris DN: %s."
 
 #: src/ExtendedKeyUsageExt.cpp:118 src/ExtendedKeyUsageExt.cpp:167
 #, c-format
