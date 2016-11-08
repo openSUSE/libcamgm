@@ -8,14 +8,16 @@ msgstr ""
 "Project-Id-Version: libcamgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2012-07-23 16:26+0200\n"
-"PO-Revision-Date: 2013-09-13 07:46+0900\n"
+"PO-Revision-Date: 2016-11-08 06:18+0000\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
-"Language-Team: Japanese <opensuse-ja@opensuse.org>\n"
+"Language-Team: Japanese "
+"<https://l10n.opensuse.org/projects/libcamgm/master/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2.6\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:104
 #: src/AuthorityInfoAccessExtension.cpp:133
@@ -54,7 +56,7 @@ msgstr "正しくないアクセス OID です。"
 #: src/SubjectKeyIdentifierExtension.cpp:79
 #: src/SubjectKeyIdentifierExtension.cpp:202
 msgid "Wrong type: %1."
-msgstr "誤った種類: %1"
+msgstr "誤った種類です: %1"
 
 #: src/AuthorityInfoAccessExtension.cpp:304
 msgid "Invalid AuthorityInformation in the information list."
@@ -509,7 +511,7 @@ msgstr "IssuerAlternativeNameExt オブジェクトが正しくありません�
 
 #: src/LiteralValues.cpp:127
 msgid "Unknown type."
-msgstr "不明な種類"
+msgstr "不明な種類です。"
 
 #: src/LocalManagement.cpp:91
 msgid "Cannot split certificate output."
