@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2012-07-23 16:26+0200\n"
-"PO-Revision-Date: 2013-09-23 23:29+0200\n"
-"Last-Translator: Krzysztof Magda <krzysztof.magda@opensuse.biz>\n"
-"Language-Team: Polish <team@opensuse.biz>\n"
+"PO-Revision-Date: 2016-12-24 13:02+0000\n"
+"Last-Translator: Kamil Stańczyk <suszaraa@gmail.com>\n"
+"Language-Team: Polish "
+"<https://l10n.opensuse.org/projects/libcamgm/master/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.5\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 2.6\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:104
 #: src/AuthorityInfoAccessExtension.cpp:133
@@ -363,7 +364,7 @@ msgstr "Nieprawidłowy numer seryjny %s."
 #: src/CertificateData_Priv.cpp:204 src/CRLData_Priv.cpp:393
 #: src/DNObject_Priv.cpp:78 src/RequestData_Priv.cpp:365
 msgid "Cannot create a memory BIO."
-msgstr "Nie można utworzyć pamięci BIO"
+msgstr "Nie można utworzyć pamięci BIO."
 
 #: src/CertificateData_Priv.cpp:233
 msgid "Cannot parse the certificate."
@@ -405,7 +406,7 @@ msgstr "Nieprawidłowy obiekt CertificateIssueData."
 
 #: src/CertificatePoliciesExtension.cpp:210
 msgid "The text is too long."
-msgstr "Tekst jest za długi"
+msgstr "Tekst jest za długi."
 
 #: src/CertificatePoliciesExtension.cpp:249
 msgid "Invalid UserNotice object."
