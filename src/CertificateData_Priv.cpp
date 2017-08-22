@@ -341,7 +341,14 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 		             __("Unable to get the public key."));
 	}
 
-	if(pkey->type == EVP_PKEY_RSA)
+	int pkey_type;
+	#if (OPENSSL_VERSION_NUMBER >= 0x10100000L)
+	pkey_type = EVP_PKEY_base_id(pkey);
+	#else
+	pkey_type = pkey->type;
+	#endif
+
+	if(pkey_type == EVP_PKEY_RSA)
 	{
 		rsa_st *rsa = EVP_PKEY_get1_RSA(pkey);
 
@@ -357,6 +364,12 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 		int len  = i2d_RSA_PUBKEY(rsa, &y);
 
 		setPublicKey( ByteBuffer((char*)y, len));
+		// get keysize
+		#if (OPENSSL_VERSION_NUMBER >= 0x10100000L)
+		setKeysize( RSA_bits(rsa));
+		#else
+		setKeysize( BN_num_bits(rsa->n));
+		#endif
 
 		free(y); // ??
 		RSA_free(rsa);
@@ -372,30 +385,22 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 		             __("Unsupported public key type."));
 	}
 
-	// get keysize
-	if (pkey->type == EVP_PKEY_RSA)
-	{
-		setKeysize( BN_num_bits(pkey->pkey.rsa->n));
-	}
-	// no need for else; unsupported key type was fetched before
-
-
     // get pubkeyAlgorithm
 
-	if(pkey->type == EVP_PKEY_RSA ||
-	   pkey->type == EVP_PKEY_RSA2 )
+	if(pkey_type == EVP_PKEY_RSA ||
+	   pkey_type == EVP_PKEY_RSA2 )
 	{
 		setPublicKeyAlgorithm( E_RSA );
 	}
-	else if(pkey->type == EVP_PKEY_DSA  ||
-	        pkey->type == EVP_PKEY_DSA1 ||
-	        pkey->type == EVP_PKEY_DSA2 ||
-	        pkey->type == EVP_PKEY_DSA3 ||
-	        pkey->type == EVP_PKEY_DSA4  )
+	else if(pkey_type == EVP_PKEY_DSA  ||
+	        pkey_type == EVP_PKEY_DSA1 ||
+	        pkey_type == EVP_PKEY_DSA2 ||
+	        pkey_type == EVP_PKEY_DSA3 ||
+	        pkey_type == EVP_PKEY_DSA4  )
 	{
 		setPublicKeyAlgorithm( E_DSA );
 	}
-	else if(pkey->type == EVP_PKEY_DH )
+	else if(pkey_type == EVP_PKEY_DH )
 	{
 		setPublicKeyAlgorithm( E_DH );
 	}
@@ -412,7 +417,14 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 
 	n = 0;
 	BIO *bio = BIO_new(BIO_s_mem());
+	#if (OPENSSL_VERSION_NUMBER >= 0x10100000L)
+	const ASN1_BIT_STRING *psig = NULL;
+	const X509_ALGOR *palg = NULL;
+	X509_get0_signature(&psig, &palg, x509);
+	i2a_ASN1_OBJECT(bio, palg->algorithm);
+	#else
 	i2a_ASN1_OBJECT(bio, x509->cert_info->signature->algorithm);
+	#endif
 	n = BIO_get_mem_data(bio, &cbuf);
 
 	sbuf = std::string(cbuf, n);
@@ -458,12 +470,21 @@ CertificateData_Priv::parseCertificate(X509 *x509)
 
 	// get signature
 
+	#if (OPENSSL_VERSION_NUMBER >= 0x10100000L)
+	setSignature( ByteBuffer((char*)psig->data, psig->length));
+	#else
 	setSignature( ByteBuffer((char*)x509->signature->data, x509->signature->length));
+	#endif
+
 
 
 	// get extensions
 
+	#if (OPENSSL_VERSION_NUMBER >= 0x10100000L)
+	setExtensions( X509v3CertificateExts_Priv((STACK_OF(X509_EXTENSION *))X509_get0_extensions(x509)));
+	#else
 	setExtensions( X509v3CertificateExts_Priv(x509->cert_info->extensions));
+	#endif
 
 	EVP_PKEY_free(pkey);
 }

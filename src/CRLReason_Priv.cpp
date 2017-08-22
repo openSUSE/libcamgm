@@ -57,7 +57,11 @@ CRLReason_Priv::CRLReason_Priv(STACK_OF(X509_EXTENSION) *stack)
 		char            obj_tmp[80];
 		BIO            *out;
 
+		#if (OPENSSL_VERSION_NUMBER >= 0x10100000L)
+		i2t_ASN1_OBJECT(obj_tmp, 80, X509_EXTENSION_get_object(xe));
+		#else
 		i2t_ASN1_OBJECT(obj_tmp, 80, xe->object);
+		#endif
 		nid = OBJ_txt2nid(obj_tmp);
 
 		LOGIT_DEBUG("NID: " << obj_tmp << " " << nid);

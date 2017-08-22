@@ -255,7 +255,11 @@ CRLData::getExtensionsAsText() const
 	unsigned int n = 0;
 	BIO *bio = BIO_new(BIO_s_mem());
 
+	#if (OPENSSL_VERSION_NUMBER >= 0x10100000L)
+	X509V3_extensions_print(bio, NULL, X509_CRL_get0_extensions(m_impl->x509), 0, 4);
+	#else
 	X509V3_extensions_print(bio, NULL, m_impl->x509->crl->extensions, 0, 4);
+	#endif
 	n = BIO_get_mem_data(bio, &ustringval);
 
 	std::string extText = std::string((const char*)ustringval, n);
