@@ -167,7 +167,11 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
 	m_impl->version = X509_REQ_get_version(x509) + 1;
 
     // get subject
+	#if (OPENSSL_VERSION_NUMBER >= 0x10100000L)
+	m_impl->subject = DNObject_Priv(X509_REQ_get_subject_name(x509));
+	#else
 	m_impl->subject = DNObject_Priv(x509->req_info->subject);
+	#endif
 
 	EVP_PKEY *pkey = X509_REQ_get_pubkey(x509);
 
@@ -178,7 +182,14 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
 		             __("Unable to get the public key."));
 	}
 
-	if(pkey->type == EVP_PKEY_RSA)
+	int pkey_type;
+	#if (OPENSSL_VERSION_NUMBER >= 0x10100000L)
+	pkey_type = EVP_PKEY_base_id(pkey);
+	#else
+	pkey_type = pkey->type;
+	#endif
+
+	if(pkey_type == EVP_PKEY_RSA)
 	{
 		rsa_st *rsa = EVP_PKEY_get1_RSA(pkey);
 
@@ -195,6 +206,13 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
 
 		m_impl->publicKey = ByteBuffer((char*)y, len);
 
+		// get keysize
+		#if (OPENSSL_VERSION_NUMBER >= 0x10100000L)
+		m_impl->keysize = RSA_bits(rsa);
+		#else
+		m_impl->keysize = BN_num_bits(pkey->pkey.rsa->n);
+		#endif
+
 		free(y);
 		RSA_free(rsa);
 	}
@@ -209,27 +227,21 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
 		             __("Unsupported public key type."));
 	}
 
-	// get keysize
-	if (pkey->type == EVP_PKEY_RSA)
-	{
-		m_impl->keysize = BN_num_bits(pkey->pkey.rsa->n);
-	}
-
 	// get pubkeyAlgorithm
-	if(pkey->type == EVP_PKEY_RSA ||
-	   pkey->type == EVP_PKEY_RSA2 )
+	if(pkey_type == EVP_PKEY_RSA ||
+	   pkey_type == EVP_PKEY_RSA2 )
 	{
 		m_impl->pubkeyAlgorithm = E_RSA;
 	}
-	else if(pkey->type == EVP_PKEY_DSA  ||
-	        pkey->type == EVP_PKEY_DSA1 ||
-	        pkey->type == EVP_PKEY_DSA2 ||
-	        pkey->type == EVP_PKEY_DSA3 ||
-	        pkey->type == EVP_PKEY_DSA4  )
+	else if(pkey_type == EVP_PKEY_DSA  ||
+	        pkey_type == EVP_PKEY_DSA1 ||
+	        pkey_type == EVP_PKEY_DSA2 ||
+	        pkey_type == EVP_PKEY_DSA3 ||
+	        pkey_type == EVP_PKEY_DSA4  )
 	{
 		m_impl->pubkeyAlgorithm = E_DSA;
 	}
-	else if(pkey->type == EVP_PKEY_DH )
+	else if(pkey_type == EVP_PKEY_DH )
 	{
 		m_impl->pubkeyAlgorithm = E_DH;
 	}
@@ -245,7 +257,14 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
 	// get signatureAlgorithm
 	char      *cbuf = NULL;
 	BIO       *bio  = BIO_new(BIO_s_mem());
+	#if (OPENSSL_VERSION_NUMBER >= 0x10100000L)
+	const ASN1_BIT_STRING *psig = NULL;
+	const X509_ALGOR *palg = NULL;
+	X509_REQ_get0_signature(x509, &psig, &palg);
+	i2a_ASN1_OBJECT(bio, palg->algorithm);
+	#else
 	i2a_ASN1_OBJECT(bio, x509->sig_alg->algorithm);
+	#endif
 	int n = BIO_get_mem_data(bio, &cbuf);
 
 	std::string sbuf = std::string(cbuf, n);
@@ -290,10 +309,47 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
 
 	// get signature
 
+	#if (OPENSSL_VERSION_NUMBER >= 0x10100000L)
+	m_impl->signature = ByteBuffer((char*)psig->data, psig->length);
+	#else
 	m_impl->signature = ByteBuffer((char*)x509->signature->data, x509->signature->length);
+	#endif
 
 	// get attributes
 
+	#if (OPENSSL_VERSION_NUMBER >= 0x10100000L)
+	for (int i=0; i<X509_REQ_get_attr_count(x509); i++)
+	{
+		ASN1_TYPE *at;
+		X509_ATTRIBUTE *a;
+		ASN1_BIT_STRING *bs=NULL;
+		ASN1_OBJECT *attr_obj;
+		int type=0,count=1,ii=0;
+		int attr_nid;
+
+		a=X509_REQ_get_attr(x509,i);
+		attr_obj = X509_ATTRIBUTE_get0_object(a);
+		attr_nid = OBJ_obj2nid(attr_obj);
+		if(X509_REQ_extension_nid(attr_nid))
+			continue;
+
+		char obj_tmp[80];
+		i2t_ASN1_OBJECT(obj_tmp, sizeof(obj_tmp), attr_obj);
+		int nid = OBJ_txt2nid(obj_tmp);
+		if(nid != NID_pkcs9_challengePassword &&
+		   nid != NID_pkcs9_unstructuredName     )
+		{
+			LOGIT_INFO("Unsupported attribute found: " << obj_tmp);
+			continue;
+		}
+
+		ii=0;
+		count=X509_ATTRIBUTE_count(a);
+		get_next:
+		at=X509_ATTRIBUTE_get0_type(a, ii);
+		type=at->type;
+		bs=at->value.asn1_string;
+	#else
 	for (int i=0; i<sk_X509_ATTRIBUTE_num(x509->req_info->attributes); i++)
 	{
 		ASN1_TYPE *at;
@@ -333,6 +389,7 @@ RequestData_Priv::parseRequest(X509_REQ *x509)
 			type=at->type;
 			bs=at->value.asn1_string;
 		}
+	#endif
 
 		if ( (type == V_ASN1_PRINTABLESTRING) ||
 		     (type == V_ASN1_T61STRING) ||

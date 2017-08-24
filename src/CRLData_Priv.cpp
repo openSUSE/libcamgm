@@ -60,7 +60,11 @@ RevocationEntry_Priv::RevocationEntry_Priv(X509_REVOKED *rev)
 	unsigned int n = 0;
 
 	BIO *bioS           = BIO_new(BIO_s_mem());
+	#if (OPENSSL_VERSION_NUMBER >= 0x10100000L)
+	i2a_ASN1_INTEGER(bioS, X509_REVOKED_get0_serialNumber(rev));
+	#else
 	i2a_ASN1_INTEGER(bioS, rev->serialNumber);
+	#endif
 	n = BIO_get_mem_data(bioS, &ustringval);
 
 	setSerial(std::string(reinterpret_cast<const char*>(ustringval), n));
@@ -70,9 +74,15 @@ RevocationEntry_Priv::RevocationEntry_Priv(X509_REVOKED *rev)
 
     // get revocationDate
 
-	char *cbuf = new char[rev->revocationDate->length + 1];
-	memcpy(cbuf, rev->revocationDate->data, rev->revocationDate->length);
-	cbuf[rev->revocationDate->length] = '\0';
+	const ASN1_TIME *revocationDate;
+	#if (OPENSSL_VERSION_NUMBER >= 0x10100000L)
+        revocationDate = X509_REVOKED_get0_revocationDate(rev);
+	#else
+	revocationDate = rev->revocationDate;
+	#endif
+	char *cbuf = new char[revocationDate->length + 1];
+	memcpy(cbuf, revocationDate->data, revocationDate->length);
+	cbuf[revocationDate->length] = '\0';
 
 	std::string sbuf(cbuf);
 	delete [] cbuf;
@@ -83,7 +93,11 @@ RevocationEntry_Priv::RevocationEntry_Priv(X509_REVOKED *rev)
 
     // get CRL Reason
 
+	#if (OPENSSL_VERSION_NUMBER >= 0x10100000L)
+	setReason( CRLReason_Priv((stack_st_X509_EXTENSION*)X509_REVOKED_get0_extensions(rev)) );
+	#else
 	setReason( CRLReason_Priv(rev->extensions) );
+	#endif
 }
 
 RevocationEntry_Priv::RevocationEntry_Priv(const std::string&    serial,
@@ -296,7 +310,11 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
 	BIO_free(bioFP);
 
     // get lastUpdate
+	#if (OPENSSL_VERSION_NUMBER >= 0x10100000L)
+	const ASN1_TIME *t   = X509_CRL_get0_lastUpdate(x509);
+	#else
 	ASN1_TIME *t   = X509_CRL_get_lastUpdate(x509);
+	#endif
 	char      *cbuf = new char[t->length + 1];
 
 	memcpy(cbuf, t->data, t->length);
@@ -308,7 +326,11 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
 	time_t lastUpdate = dt;
 
     // get nextUpdate
+	#if (OPENSSL_VERSION_NUMBER >= 0x10100000L)
+	t    = X509_CRL_get0_nextUpdate(x509);
+	#else
 	t    = X509_CRL_get_nextUpdate(x509);
+	#endif
 	cbuf = new char[t->length + 1];
 
 	memcpy(cbuf, t->data, t->length);
@@ -324,12 +346,23 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
 
 	// get issuer
 
+	#if (OPENSSL_VERSION_NUMBER >= 0x10100000L)
+	setIssuerDN( DNObject_Priv(X509_CRL_get_issuer(x509)) );
+	#else
 	setIssuerDN( DNObject_Priv(x509->crl->issuer) );
+	#endif
 
 	// get signatureAlgorithm
 	n = 0;
 	BIO *bio = BIO_new(BIO_s_mem());
+	#if (OPENSSL_VERSION_NUMBER >= 0x10100000L)
+	const ASN1_BIT_STRING *psig = NULL;
+	const X509_ALGOR *palg = NULL;
+	X509_CRL_get0_signature(x509, &psig, &palg);
+	i2a_ASN1_OBJECT(bio, palg->algorithm);
+	#else
 	i2a_ASN1_OBJECT(bio, x509->sig_alg->algorithm);
+	#endif
 	n = BIO_get_mem_data(bio, &cbuf);
 
 	sbuf = std::string(cbuf, n);
@@ -372,19 +405,34 @@ CRLData_Priv::parseCRL(X509_CRL *x509)
 
 	// get signature
 
+	#if (OPENSSL_VERSION_NUMBER >= 0x10100000L)
+	setSignature( ByteBuffer((char*)psig->data, psig->length));
+	#else
 	setSignature( ByteBuffer((char*)x509->signature->data, x509->signature->length));
+	#endif
 
 	// get extensions
+
+	#if (OPENSSL_VERSION_NUMBER >= 0x10100000L)
+	setExtensions( X509v3CRLExts_Priv((STACK_OF(X509_EXTENSION *))X509_CRL_get0_extensions(x509)));
+	#else
 	setExtensions( X509v3CRLExts_Priv(x509->crl->extensions));
+	#endif
 
 	// get revocationData
 
 	std::map<std::string, RevocationEntry> revData;
 
+	#if (OPENSSL_VERSION_NUMBER >= 0x10100000L)
+	STACK_OF(X509_REVOKED) *revoked = X509_CRL_get_REVOKED(x509);
+	for (int i=0; i<sk_X509_REVOKED_num(revoked); i++)
+	{
+		RevocationEntry_Priv revEntry(sk_X509_REVOKED_value(revoked,i));
+	#else
 	for (int i=0; i<sk_X509_REVOKED_num(x509->crl->revoked); i++)
 	{
 		RevocationEntry_Priv revEntry(sk_X509_REVOKED_value(x509->crl->revoked,i));
-
+	#endif
 		std::string ser = revEntry.getSerial();
 		revData[ser] = revEntry;
 	}
