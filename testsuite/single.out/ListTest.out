@@ -125,7 +125,7 @@ commonName = Test Sub CA
 country = DE
 emailAddress = suse@suse.de
 serial = 07
-status = Valid
+status = Expired
 New Entry
 certificate = 08:40717a16174dc4d516f6fa7ee8eeb18c-1124792802
 commonName = Full Test Certificate
@@ -153,7 +153,7 @@ commonName = Test CA/SUSE Inc.Gmbh
 country = DE
 emailAddress = suse@suse.de
 serial = 0B
-status = Valid
+status = Expired
 getCertificateList successfully executed
 =================== end List tests ========================
 DONE

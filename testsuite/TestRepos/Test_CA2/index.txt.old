@@ -7,5 +7,5 @@ R	060818161327Z	050818141328Z,CAkeyTime,20050818155648Z	06	unknown	/C=DE/CN=Test
 V	150816161329Z		07	unknown	/C=DE/CN=Test Sub CA/emailAddress=suse@suse.de
 E	060823102644Z		08	unknown	/C=DE/CN=Full Test Certificate/emailAddress=suse@suse.de
 R	060829132817Z	050829132818Z,holdInstruction,1.6.21.43	09	unknown	/C=DE/CN=Test Certificate for revocation 5 oid test/emailAddress=suse@suse.de
-V	131214103725Z		0A	unknown	/C=DE/O=Example Inc./CN=tait.example.com
+E	131214103725Z		0A	unknown	/C=DE/O=Example Inc./CN=tait.example.com
 V	150816121237Z		0B	unknown	/C=DE/CN=Test CA/SUSE Inc.Gmbh/emailAddress=suse@suse.de

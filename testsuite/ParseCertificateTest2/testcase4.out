@@ -144,7 +144,8 @@ is Present = false
 Certificate:
     Data:
         Version: 3 (0x2)
-        Serial Number: 10706219120783845727 (0x94942190fdd0e95f)
+        Serial Number:
+            94:94:21:90:fd:d0:e9:5f
     Signature Algorithm: sha1WithRSAEncryption
         Issuer: C=DE, L=Nuernberg, O=My GmbH, CN=My_Test_SuSE CA/emailAddress=my@linux.tux
         Validity

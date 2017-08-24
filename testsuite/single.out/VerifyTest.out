@@ -6,10 +6,10 @@ START
 04: Verify failed: Found revoked certificate
 05: Verify failed: Found revoked certificate
 06: Verify failed: Found revoked certificate
-07: Verify success
+07: Verify failed: Found expired certificate
 08: Verify failed: Found expired certificate
 09: Verify failed: Found revoked certificate
 0A: Verify failed: Found expired certificate
-0B: Verify success
+0B: Verify failed: Found expired certificate
 =================== end List tests ========================
 DONE
