@@ -104,11 +104,11 @@ Exception::getFullMessage() const
     try
     {
       return str::form("%s: %s %s: %s%s",
-                       (getFile() == '\0')?"[no file]":getFile(),
+                       (getFile() == NULL)?"[no file]":getFile(),
                        (getLine() == 0)?"[no line]":str::numstring(getLine()).c_str(),
                        type(),
                        (getErrorCode() != 0)?(str::numstring(getErrorCode())+": ").c_str():" ",
-                       (getMessage() == '\0')?"[no message]":getMessage()
+                       (getMessage() == NULL)?"[no message]":getMessage()
                       );
     }
     catch (...)
