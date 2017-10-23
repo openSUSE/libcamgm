@@ -9,25 +9,26 @@ msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2012-07-23 16:26+0200\n"
-"PO-Revision-Date: 2005-08-18 21:16+0300\n"
-"Last-Translator: Borislav Mitev <morbid_viper@tkzs.org>\n"
-"Language-Team: Bulgarian <bg@li.org>\n"
+"PO-Revision-Date: 2017-10-23 07:37+0000\n"
+"Last-Translator: Dimitar Zahariev <mitko@tuionui.com>\n"
+"Language-Team: Bulgarian "
+"<https://l10n.opensuse.org/projects/libcamgm/master/bg/>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.13.1\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:104
 #: src/AuthorityInfoAccessExtension.cpp:133
-#, fuzzy
 msgid "Invalid location."
-msgstr "Невалидна информация"
+msgstr "Невалидно местоположение."
 
 #: src/AuthorityInfoAccessExtension.cpp:109
 #: src/AuthorityInfoAccessExtension.cpp:138
 msgid "Invalid accessOID."
-msgstr ""
+msgstr "Невалиден accessOID."
 
 #: src/AuthorityInfoAccessExtension.cpp:253
 #: src/AuthorityInfoAccessExtension.cpp:336
@@ -55,9 +56,8 @@ msgstr ""
 #: src/SubjectAlternativeNameExtension.cpp:211
 #: src/SubjectKeyIdentifierExtension.cpp:79
 #: src/SubjectKeyIdentifierExtension.cpp:202
-#, fuzzy
 msgid "Wrong type: %1."
-msgstr "Невалиден вход."
+msgstr "Грешен тип: %1."
 
 #: src/AuthorityInfoAccessExtension.cpp:304
 #, fuzzy
@@ -66,105 +66,94 @@ msgstr "Невалидна информация"
 
 #: src/AuthorityInfoAccessExtension.cpp:317
 msgid "AuthorityInfoAccessExt is not present."
-msgstr ""
+msgstr "AuthorityInfoAccessExt не е наличен."
 
 #: src/AuthorityInfoAccessExtension.cpp:328
-#, fuzzy
 msgid "Invalid AuthorityInfoAccessExt object."
-msgstr "Невалидна информация"
+msgstr "Невалиден AuthorityInfoAccessExt обект."
 
 #: src/AuthorityKeyIdentifierExtension.cpp:93
 #: src/AuthorityKeyIdentifierExtension.cpp:104
 #: src/AuthorityKeyIdentifierExtension.cpp:115
 msgid "AuthorityKeyIdentifierExt is not present."
-msgstr ""
+msgstr "AuthorityKeyIdentifierExt не е наличен."
 
 #: src/AuthorityKeyIdentifierGenerateExtension.cpp:150
 #: src/AuthorityKeyIdentifierGenerateExtension.cpp:169
 msgid "AuthorityKeyIdentifierGenerateExt is not present."
-msgstr ""
+msgstr "AuthorityKeyIdentifierGenerateExt не е наличен."
 
 #: src/AuthorityKeyIdentifierGenerateExtension.cpp:181
 msgid "Invalid AuthorityKeyIdentifierGenerateExt object."
-msgstr ""
+msgstr "Невалиден AuthorityKeyIdentifierGenerateExt обект."
 
 #: src/BasicConstraintsExtension.cpp:151 src/BasicConstraintsExtension.cpp:163
 msgid "BasicConstraintsExt is not present."
-msgstr ""
+msgstr "BasicConstraintsExt не е наличен."
 
 #: src/BasicConstraintsExtension.cpp:175
-#, fuzzy
 msgid "Invalid BasicConstraintsExt object."
-msgstr "Невалидно име на устройство."
+msgstr "Невалиден BasicConstraintsExt обект."
 
 #: src/BitExtensions.cpp:107
 msgid "This BitExtension is not present."
-msgstr ""
+msgstr "Този BitExtension не е наличен."
 
 #: src/BitExtensions.cpp:130 src/BitExtensions.cpp:243
 #: src/CertificateIssueData.cpp:215 src/CRLGenerationData.cpp:158
 #: src/DNObject.cpp:258 src/IssuerAlternativeNameExtension.cpp:220
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong type: %d."
-msgstr "Невалиден вход."
+msgstr "Грешен тип: %d."
 
 #: src/BitExtensions.cpp:170 src/BitExtensions.cpp:199
 msgid "Invalid value for keyUsage."
-msgstr ""
+msgstr "Невалидна стойност за keyUsage."
 
 #: src/BitExtensions.cpp:211 src/BitExtensions.cpp:222
-#, fuzzy
 msgid "KeyUsageExt is not present."
-msgstr "не е налично."
+msgstr "KeyUsageExt не е наличен."
 
 #: src/BitExtensions.cpp:235
-#, fuzzy
 msgid "Invalid KeyUsageExt object."
-msgstr "Невалидно име на устройство."
+msgstr "Невалиден KeyUsageExt обект."
 
 #: src/BitExtensions.cpp:406
 msgid "Invalid value for NsCertTypeExt."
-msgstr ""
+msgstr "Невалидна стойност за NsCertTypeExt."
 
 #: src/BitExtensions.cpp:435
-#, fuzzy
 msgid "Invalid value for NsCertTypeExt: %1."
-msgstr "Невалиден вход."
+msgstr "Невалидна стойност за NsCertTypeExt: %1."
 
 #: src/BitExtensions.cpp:447
 msgid "NsCertTypeExt is not present."
-msgstr ""
+msgstr "NsCertTypeExt не е наличен."
 
 #: src/BitExtensions.cpp:468
-#, fuzzy
 msgid "Invalid NsCertTypeExt object."
-msgstr "Невалидно име на устройство."
+msgstr "Невалиден NsCertTypeExt обект."
 
 #: src/CA.cpp:96
 msgid "Template not initialized."
-msgstr ""
+msgstr "Шаблонът не е инициализиран."
 
 #: src/CA.cpp:166 src/CA.cpp:1522
 msgid "Empty CA name."
-msgstr ""
+msgstr "Празно CA име."
 
 #: src/CA.cpp:174
 #, c-format
 msgid "Template does not exist: %s."
-msgstr ""
+msgstr "Шаблонът не съществува: %s."
 
 #: src/CA.cpp:186 src/CA.cpp:1543
-#, fuzzy
 msgid "Invalid CA password."
-msgstr "Невалидна информация"
+msgstr "Невалидна CA парола."
 
 #: src/CA.cpp:230 src/CA.cpp:1175 src/CA.cpp:1341
-#, fuzzy
 msgid "Error while creating the CA infrastructure."
-msgstr ""
-"Грешка при свързването с FTP сървъра:\n"
-"\n"
-"%s"
+msgstr "Възникна грешка при създаване на CA инфраструктурата."
 
 #: src/CA.cpp:250 src/CA.cpp:1015
 #, fuzzy, c-format
@@ -173,12 +162,11 @@ msgstr "Няма налична настройка"
 
 #: src/CA.cpp:261
 msgid "Cannot copy the private key."
-msgstr ""
+msgstr "Частният ключ не може да бъде копиран."
 
 #: src/CA.cpp:272
-#, fuzzy
 msgid "Cannot copy the certificate."
-msgstr "Няма налична настройка"
+msgstr "Сетрификатът не може да бъде копиран."
 
 #: src/CA.cpp:304
 #, fuzzy
