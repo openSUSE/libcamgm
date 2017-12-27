@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: libcamgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2012-07-23 16:26+0200\n"
-"PO-Revision-Date: 2016-11-08 06:18+0000\n"
+"PO-Revision-Date: 2017-12-27 04:04+0000\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
 "Language-Team: Japanese "
 "<https://l10n.opensuse.org/projects/libcamgm/master/ja/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.6\n"
+"X-Generator: Weblate 2.17.1\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:104
 #: src/AuthorityInfoAccessExtension.cpp:133
@@ -134,7 +134,7 @@ msgstr "NsCertTypeExt のオブジェクトが正しくありません。"
 
 #: src/CA.cpp:96
 msgid "Template not initialized."
-msgstr "テンプレートが初期化されていません。"
+msgstr "テンプレートが準備されていません。"
 
 #: src/CA.cpp:166 src/CA.cpp:1522
 msgid "Empty CA name."
