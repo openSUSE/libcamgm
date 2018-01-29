@@ -10,17 +10,18 @@ msgstr ""
 "Project-Id-Version: limal-ca-mgm\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2012-07-23 16:26+0200\n"
-"PO-Revision-Date: 2013-09-12 13:46+0200\n"
-"Last-Translator: Andrea Turrini <andrea.turrini@gmail.com>\n"
-"Language-Team: Italian <opensuse-translation@opensuse.org>\n"
+"PO-Revision-Date: 2018-01-29 17:03+0000\n"
+"Last-Translator: Davide Aiello <davidea@novilinguists.com>\n"
+"Language-Team: Italian "
+"<https://l10n.opensuse.org/projects/libcamgm/master/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.18\n"
 "X-Poedit-Bookmarks: 113,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
-"X-Generator: Lokalize 1.5\n"
 "X-Poedit-Language: Italian\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:104
 #: src/AuthorityInfoAccessExtension.cpp:133
@@ -59,7 +60,7 @@ msgstr "accessOID non valido."
 #: src/SubjectKeyIdentifierExtension.cpp:79
 #: src/SubjectKeyIdentifierExtension.cpp:202
 msgid "Wrong type: %1."
-msgstr "Tipo errato: %1"
+msgstr "Tipo errato: %1."
 
 #: src/AuthorityInfoAccessExtension.cpp:304
 msgid "Invalid AuthorityInformation in the information list."
@@ -98,7 +99,7 @@ msgstr "Oggetto BasicConstraintsExt non valido."
 
 #: src/BitExtensions.cpp:107
 msgid "This BitExtension is not present."
-msgstr "Questa BitExtension non presente."
+msgstr "BitExtension non presente."
 
 #: src/BitExtensions.cpp:130 src/BitExtensions.cpp:243
 #: src/CertificateIssueData.cpp:215 src/CRLGenerationData.cpp:158
@@ -198,7 +199,7 @@ msgstr "La CA scade prima della scadenza del certificato."
 
 #: src/CA.cpp:501
 msgid "Issuing the certificate failed."
-msgstr "Emissione del certificato fallita."
+msgstr "Emissione del certificato non riuscita."
 
 #: src/CA.cpp:518
 #, c-format
@@ -228,7 +229,7 @@ msgstr "La richiesta %s non esiste."
 
 #: src/CA.cpp:989
 msgid "Removing the request failed (%1)."
-msgstr "Rimozione della richiesta fallita (%1)."
+msgstr "Rimozione della richiesta non riuscita (%1)."
 
 #: src/CA.cpp:1003
 #, c-format
@@ -238,7 +239,7 @@ msgstr "Il certificato %s non esiste."
 #: src/CA.cpp:1052
 #, c-format
 msgid "Removing the certificate failed: %d."
-msgstr "Rimozione del certificato fallita: %d."
+msgstr "Rimozione del certificato non riuscita: %d."
 
 #: src/CA.cpp:1060
 #, c-format
@@ -268,7 +269,7 @@ msgstr "Dati della richiesta CA non validi."
 
 #: src/CA.cpp:1161
 msgid "Invalid CA issue data."
-msgstr "Dati emissione CA non validi."
+msgstr "Dati di emissione CA non validi."
 
 #: src/CA.cpp:1279
 msgid "CA name is empty."
@@ -312,12 +313,12 @@ msgid ""
 "Deleting the CA is not allowed. The CA must be expired or never have signed "
 "a certificate."
 msgstr ""
-"L'eliminazione della CA non è consentita. La CA deve scadere o non avere mai "
-"firmato un certificato."
+"L'eliminazione della CA non è consentita. La CA deve essere scaduta o non "
+"deve avere mai firmato un certificato."
 
 #: src/CA.cpp:1588
 msgid "Deleting the CA failed: %1."
-msgstr "Eliminazione della CA fallita: %1."
+msgstr "Eliminazione della CA non riuscita: %1."
 
 #: src/CA.cpp:1639
 msgid "The configuration file is missing a value for policy."
@@ -481,7 +482,7 @@ msgstr "Tipo %s non valido."
 #: src/DNObject_Priv.cpp:157
 #, c-format
 msgid "Cannot parse DN line: %s."
-msgstr "Impossibile analizzare la linea DN: %s."
+msgstr "Impossibile analizzare la riga DN: %s."
 
 #: src/ExtendedKeyUsageExt.cpp:118 src/ExtendedKeyUsageExt.cpp:167
 #, c-format
@@ -564,7 +565,7 @@ msgstr "Il file esiste già: %s."
 #: src/LocalManagement.cpp:523
 #, c-format
 msgid "Cannot get lock on file %s."
-msgstr "Impossibile acquisire il blocco sul file %s."
+msgstr "Impossibile ottenere il blocco sul file %s."
 
 #: src/LocalManagement.cpp:535
 #, c-format
@@ -594,7 +595,7 @@ msgstr "Comando %s non valido."
 #: src/OpenSSLUtils.cpp:1493 src/OpenSSLUtils.cpp:1651
 #: src/OpenSSLUtils.cpp:1795 src/OpenSSLUtils.cpp:2586
 msgid "Executing openssl command failed."
-msgstr "Esecuzione del comando openssl fallita."
+msgstr "Esecuzione del comando openssl non riuscita."
 
 #: src/OpenSSLUtils.cpp:136 src/OpenSSLUtils.cpp:227 src/OpenSSLUtils.cpp:326
 #: src/OpenSSLUtils.cpp:451 src/OpenSSLUtils.cpp:590 src/OpenSSLUtils.cpp:691
@@ -604,7 +605,7 @@ msgstr "Esecuzione del comando openssl fallita."
 #: src/OpenSSLUtils.cpp:2613
 #, c-format
 msgid "openssl command failed: %s"
-msgstr "Comando openssl fallito: %s"
+msgstr "Comando openssl non riuscito: %s"
 
 #: src/OpenSSLUtils.cpp:166 src/OpenSSLUtils.cpp:254 src/OpenSSLUtils.cpp:358
 #: src/OpenSSLUtils.cpp:477 src/OpenSSLUtils.cpp:617 src/OpenSSLUtils.cpp:714
@@ -631,7 +632,7 @@ msgstr "Nessuna directory CA valida specificata."
 #, c-format
 msgid "Showing certificate status with serial %s failed (%d)."
 msgstr ""
-"Visualizzazione dello stato del certificato con seriale %s fallita (%d)."
+"Visualizzazione dello stato del certificato con seriale %s non riuscita (%d)."
 
 #: src/OpenSSLUtils.cpp:999
 msgid "The key file does not exist."
@@ -640,7 +641,7 @@ msgstr "Il file della chiave non esiste."
 #: src/OpenSSLUtils.cpp:1297 src/OpenSSLUtils.cpp:1686
 #: src/OpenSSLUtils.cpp:1833
 msgid "Invalid password."
-msgstr "Password non valida"
+msgstr "Password non valida."
 
 #: src/OpenSSLUtils.cpp:1599
 msgid "The password for encrypting the output is required."
@@ -667,11 +668,11 @@ msgstr "La richiesta esiste già."
 
 #: src/OpenSSLUtils.cpp:2125
 msgid "Cannot find the request subject."
-msgstr "Impossibile trovare il soggetto della richiesta."
+msgstr "Impossibile trovare l'oggetto della richiesta."
 
 #: src/OpenSSLUtils.cpp:2286
 msgid "Cannot find the certificate subject."
-msgstr "Impossibile trovare il soggetto del certificato."
+msgstr "Impossibile trovare l'oggetto del certificato."
 
 #: src/OpenSSLUtils.cpp:2385
 #, c-format
