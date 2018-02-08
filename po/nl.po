@@ -11,16 +11,16 @@ msgstr ""
 "Project-Id-Version: limal-ca-mgm.nl\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2012-07-23 16:26+0200\n"
-"PO-Revision-Date: 2016-03-30 12:16+0000\n"
-"Last-Translator: Nathan Follens <nthn@unseen.is>\n"
-"Language-Team: Dutch <http://l10n.opensuse.org/projects/libcamgm/master/nl/>"
+"PO-Revision-Date: 2018-02-08 13:01+0000\n"
+"Last-Translator: Eva van Rein <vistatec@globaltextware.nl>\n"
+"Language-Team: Dutch <https://l10n.opensuse.org/projects/libcamgm/master/nl/>"
 "\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.5\n"
+"X-Generator: Weblate 2.18\n"
 
 #: src/AuthorityInfoAccessExtension.cpp:104
 #: src/AuthorityInfoAccessExtension.cpp:133
@@ -163,7 +163,7 @@ msgstr "Kon deze certificaatnaam niet ontleden: %s."
 
 #: src/CA.cpp:261
 msgid "Cannot copy the private key."
-msgstr "Kon private sleutel niet kopiëren."
+msgstr "Kon privésleutel niet kopiëren."
 
 #: src/CA.cpp:272
 msgid "Cannot copy the certificate."
@@ -171,7 +171,7 @@ msgstr "Kon het certificaat niet kopiëren."
 
 #: src/CA.cpp:304
 msgid "Invalid request data."
-msgstr "Ongeldige request-gegevens."
+msgstr "Ongeldige aanvraaggegevens."
 
 #: src/CA.cpp:323
 #, c-format
@@ -186,7 +186,7 @@ msgstr "Dubbele DN. Request '%s.req' bestaat reeds."
 #: src/CA.cpp:400
 #, c-format
 msgid "Request does not exist (%s)."
-msgstr "Request bestaat niet (%s)."
+msgstr "Verzoek bestaat niet (%s)."
 
 #: src/CA.cpp:406
 msgid "Invalid issue data."
@@ -203,7 +203,7 @@ msgstr "De uitgave van het certificaat is mislukt."
 #: src/CA.cpp:518
 #, c-format
 msgid "File %s not found in the repository."
-msgstr "Bestand '%s' niet gevonden in de repository."
+msgstr "Bestand '%s' niet gevonden in de opslagruimte."
 
 #: src/CA.cpp:525 src/CRLData_Priv.cpp:153
 msgid "Invalid CRL reason."
@@ -215,7 +215,7 @@ msgstr "Ongeldige CRL-gegevens."
 
 #: src/CA.cpp:594
 msgid "Duplicate DN. Request already exists."
-msgstr "Dubbele DN. Request bestaat reeds."
+msgstr "Dubbele DN. Verzoek bestaat al."
 
 #: src/CA.cpp:859 src/CA.cpp:886 src/CA.cpp:916 src/OpenSSLUtils.cpp:988
 msgid "Cannot parse the certificate name."
@@ -224,7 +224,7 @@ msgstr "Kan de certificaatnaam niet ontleden."
 #: src/CA.cpp:967
 #, c-format
 msgid "Request %s does not exist."
-msgstr "Request %s bestaat niet."
+msgstr "Verzoek %s bestaat niet."
 
 #: src/CA.cpp:989
 msgid "Removing the request failed (%1)."
@@ -264,11 +264,11 @@ msgstr "Ongeldig doel %s."
 
 #: src/CA.cpp:1155
 msgid "Invalid CA request data."
-msgstr "Ongeldige CA-request-gegevens."
+msgstr "Ongeldige CA-aanvraaggegevens."
 
 #: src/CA.cpp:1161
 msgid "Invalid CA issue data."
-msgstr "Ongeldige CA-uitgiftedatum."
+msgstr "Ongeldige CA-uitgavedatum."
 
 #: src/CA.cpp:1279
 msgid "CA name is empty."
@@ -276,7 +276,7 @@ msgstr "CA-naam is leeg."
 
 #: src/CA.cpp:1288
 msgid "CA directory already exists."
-msgstr "CA-map bestaat reeds."
+msgstr "CA-map bestaat al."
 
 #: src/CA.cpp:1299
 msgid "According to basicConstraints, this is not a CA."
@@ -300,7 +300,7 @@ msgstr "Fout bij versleutelen van de sleutel."
 
 #: src/CA.cpp:1388
 msgid "Error during write defaults."
-msgstr "Fout bij schrijven van standaards."
+msgstr "Fout bij schrijven van standaarden."
 
 #: src/CA.cpp:1532
 #, c-format
@@ -585,7 +585,7 @@ msgstr "Map bestaat niet: %s."
 #: src/OpenSSLUtils.cpp:67
 #, c-format
 msgid "Invalid command %s."
-msgstr "Ongeldig commando: %s."
+msgstr "Ongeldige opdracht: %s."
 
 #: src/OpenSSLUtils.cpp:124 src/OpenSSLUtils.cpp:214 src/OpenSSLUtils.cpp:313
 #: src/OpenSSLUtils.cpp:438 src/OpenSSLUtils.cpp:577 src/OpenSSLUtils.cpp:678
@@ -595,7 +595,7 @@ msgstr "Ongeldig commando: %s."
 #: src/OpenSSLUtils.cpp:1493 src/OpenSSLUtils.cpp:1651
 #: src/OpenSSLUtils.cpp:1795 src/OpenSSLUtils.cpp:2586
 msgid "Executing openssl command failed."
-msgstr "Uitvoeren van het openssl-commando mislukt."
+msgstr "Uitvoeren van de opdracht openssl mislukt."
 
 #: src/OpenSSLUtils.cpp:136 src/OpenSSLUtils.cpp:227 src/OpenSSLUtils.cpp:326
 #: src/OpenSSLUtils.cpp:451 src/OpenSSLUtils.cpp:590 src/OpenSSLUtils.cpp:691
@@ -605,7 +605,7 @@ msgstr "Uitvoeren van het openssl-commando mislukt."
 #: src/OpenSSLUtils.cpp:2613
 #, c-format
 msgid "openssl command failed: %s"
-msgstr "openssl-commando mislukt: %s"
+msgstr "opdracht openssl mislukt: %s"
 
 #: src/OpenSSLUtils.cpp:166 src/OpenSSLUtils.cpp:254 src/OpenSSLUtils.cpp:358
 #: src/OpenSSLUtils.cpp:477 src/OpenSSLUtils.cpp:617 src/OpenSSLUtils.cpp:714
@@ -614,7 +614,7 @@ msgstr "Geen geldig sleutelbestand opgegeven."
 
 #: src/OpenSSLUtils.cpp:262 src/OpenSSLUtils.cpp:366
 msgid "No valid request file specified."
-msgstr "Geen geldig request-bestand opgegeven."
+msgstr "Geen geldig aanvraagbestand opgegeven."
 
 #: src/OpenSSLUtils.cpp:485 src/OpenSSLUtils.cpp:625 src/OpenSSLUtils.cpp:722
 msgid "No valid CA certificate file specified."
